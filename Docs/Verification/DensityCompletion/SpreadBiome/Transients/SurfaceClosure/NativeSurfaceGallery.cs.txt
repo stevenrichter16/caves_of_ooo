@@ -1,0 +1,91 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Rendering;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
+using Object=UnityEngine.Object;
+public static class NativeSurfaceGallery
+{
+ [Serializable]public sealed class Report{public string status,error,canVerify,cannotVerify;public bool mainSceneRestored,borrowedFilesUnchanged;public List<Frame> frames=new List<Frame>();}
+ [Serializable]public sealed class Frame{public string label,image,stateBefore,stateAfter;public int nonBackgroundPixels;public List<Sample> samples=new List<Sample>();}
+ [Serializable]public sealed class Sample{public string owner,kind,color;public int x,y,amount,vertices;public bool represented;}
+ static void Require(bool v,string msg){if(!v)throw new InvalidOperationException(msg);}
+ static string Hash(string path){using(var s=System.Security.Cryptography.SHA256.Create())return BitConverter.ToString(s.ComputeHash(File.ReadAllBytes(path))).Replace("-","").ToLowerInvariant();}
+ public static object Run()
+ {
+  Require(!EditorApplication.isPlayingOrWillChangePlaymode,"Capture requires idle editor.");
+  string folder=Path.Combine("/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery",Guid.NewGuid().ToString("N"));Directory.CreateDirectory(folder);
+  var report=new Report{canVerify="Isolated native preview: all26 registered coating identities, two actual authored residue identities, real water/oil heat reaction priority, and the exact submitted !/z/V semantic meshes through the existing frame adapter. Current identity/lifetime/source bytes and owned-resource cleanup are checked.",cannotVerify="Staged sources and resolved FX requests, not naturally occurring discovery, live AI emissions, combat readability, animation, full biome performance or accessibility. Numeric UI, original FX timing and transition lifecycle remain separately native-tested. Every GPU image still needs visual inspection. Coatings with the same legacy tint are not visually distinguishable by color; this slice preserves those native semantics."};
+  var original=SceneManager.GetActiveScene();bool dirty=original.isDirty;var priorRT=RenderTexture.active;bool async=ShaderUtil.allowAsyncCompilation;
+  var liquidField=typeof(LiquidRegistry).GetField("_byId",BindingFlags.Static|BindingFlags.NonPublic);var liquidFlag=typeof(LiquidRegistry).GetField("_initialized",BindingFlags.Static|BindingFlags.NonPublic);var liquidMap=(Dictionary<string,LiquidDefinition>)liquidField.GetValue(null);var oldLiquid=new Dictionary<string,LiquidDefinition>(liquidMap);bool oldLiquidFlag=(bool)liquidFlag.GetValue(null);
+  var reactionsField=typeof(TileReactionSystem).GetField("_reactions",BindingFlags.Static|BindingFlags.NonPublic);var initializedField=typeof(TileReactionSystem).GetField("<IsInitialized>k__BackingField",BindingFlags.Static|BindingFlags.NonPublic);var reactions=(IList)reactionsField.GetValue(null);var oldReactions=reactions.Cast<object>().ToArray();bool reactionInitialized=TileReactionSystem.IsInitialized;
+  Scene preview=default(Scene);object fixture=null;RenderTexture target=null;SpreadParticleFrame particles=null;var hashes=new Dictionary<string,string>();
+  try
+  {
+   ShaderUtil.allowAsyncCompilation=false;preview=EditorSceneManager.NewPreviewScene();
+   var type=AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType("CavesOfOoo.Tests.SpawnRing3DIntegrationFixture")).FirstOrDefault(t=>t!=null);Require(type!=null,"Actual native test fixture assembly must be loaded.");
+   fixture=Activator.CreateInstance(type,BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance,null,new object[]{"Overworld.12.10.0",false},null);
+   Func<string,object> get=name=>type.GetField(name).GetValue(fixture);var root=(GameObject)get("Root");SceneManager.MoveGameObjectToScene(root,preview);
+   var manager=(OverworldZoneManager)get("Manager");var factory=(CavesOfOoo.Data.EntityFactory)get("Factory");var player=(Entity)get("Player");var oldZone=(Zone)get("Zone");oldZone.RemoveEntity(player);
+   // Labelled fixture graph: never replace or mutate a running user's world.
+   var zone=new Zone(oldZone.ZoneID);manager.SetActiveZone(zone);type.GetField("Zone").SetValue(fixture,zone);Require(SpreadPresentationScope.IsActive(zone),"Actual manager/Spread authority required.");
+   for(int y=6;y<=15;y++)for(int x=14;x<=28;x++){Require(zone.AddEntity(factory.CreateEntity("Grass"),x,y),"Owned ground insertion failed.");zone.GetCell(x,y).IsVisible=zone.GetCell(x,y).Explored=true;}
+   Require(zone.AddEntity(player,17,12),"Owned actor insertion failed.");type.GetMethod("Reveal").Invoke(fixture,null);type.GetMethod("Bind").Invoke(fixture,new object[]{zone});
+   var presenter=(SpawnRing3DPresenter)get("Presenter");var surface=presenter.ActiveSurface;var source=(Camera)get("Source");var ring=(SpawnRing3DLibrary)get("Library");
+   foreach(var asset in new Object[]{ring,ring.WorldMaterial,ring.WaterMaterial,ReferenceGladeVoxelLibrary.Load().Material}){string path=AssetDatabase.GetAssetPath(asset);if(!string.IsNullOrEmpty(path)&&File.Exists(path)){hashes[path]=Hash(path);if(File.Exists(path+".meta"))hashes[path+".meta"]=Hash(path+".meta");}}
+   LiquidRegistry.InitializeFromJsonSources(Directory.GetFiles(Path.Combine(Application.dataPath,"Resources/Content/Data/LiquidDefinitions"),"*.json").Select(File.ReadAllText));TileReactionSystem.Initialize(File.ReadAllText(Path.Combine(Application.dataPath,"Resources/Content/Data/TileReactions/Reactions.json")));
+   target=new RenderTexture(960,640,24,RenderTextureFormat.ARGB32,RenderTextureReadWrite.sRGB){antiAliasing=1,filterMode=FilterMode.Bilinear};Require(target.Create(),"Capture target failed.");
+   Action refresh=()=>{type.GetMethod("Refresh").Invoke(fixture,new object[]{null});surface=presenter.ActiveSurface;Require(surface!=null&&surface.IsVisible,"Native output unavailable.");};
+   Action<Frame> capture=frame=>
+   {
+    refresh();var camera=surface.WorldCamera;camera.enabled=false;camera.scene=preview;camera.overrideSceneCullingMask=EditorSceneManager.GetSceneCullingMask(preview);camera.rect=new Rect(0,0,1,1);camera.aspect=1.5f;camera.orthographicSize=4.8f;
+    var center=Village3DProjection.CellCentre(21,10,.35f);camera.transform.position=center+new Vector3(-3.4f,6.7f,-9.4f);camera.transform.LookAt(center);camera.ResetProjectionMatrix();
+    foreach(var s in frame.samples)if(s.represented){var pos=camera.WorldToViewportPoint(Village3DProjection.CellCentre(s.x,s.y,.35f));Require(pos.z>0&&pos.x>.06f&&pos.x<.94f&&pos.y>.06f&&pos.y<.94f,"Source outside capture viewport.");}
+    var request=new UniversalRenderPipeline.SingleCameraRequest{destination=target};Require(RenderPipeline.SupportsRenderRequest(camera,request),"URP capture unavailable.");RenderTexture.active=target;GL.Clear(true,true,camera.backgroundColor);RenderPipeline.SubmitRenderRequest(camera,request);RenderTexture.active=target;
+    var pixels=new Texture2D(960,640,TextureFormat.RGBA32,false,false);try{pixels.ReadPixels(new Rect(0,0,960,640),0,0);pixels.Apply(false,false);var data=pixels.GetPixels32();var bg=data[0];frame.nonBackgroundPixels=data.Count(c=>Math.Abs(c.r-bg.r)+Math.Abs(c.g-bg.g)+Math.Abs(c.b-bg.b)>12);Require(frame.nonBackgroundPixels>100,"Blank capture is not evidence.");frame.image=report.frames.Count.ToString("00")+"-"+frame.label+".png";File.WriteAllBytes(Path.Combine(folder,frame.image),ImageConversion.EncodeToPNG(pixels));}finally{Object.DestroyImmediate(pixels);}frame.stateAfter=zone.TileState.ToSaveString();Require(frame.stateAfter==frame.stateBefore,"Rendering changed staged tile state.");report.frames.Add(frame);
+   };
+   Action clear=()=>{foreach(var cell in zone.Cells)zone.TileState.Clear(cell.X,cell.Y);refresh();};
+   Func<int,int,string,int,Sample> observe=(x,y,kind,amount)=>
+   {
+    GameObject volume;SpreadTransientSample sample;Require(presenter.TryGetElementVolume(x,y,out volume,out sample),"Exact source missing: "+kind);Require(sample.Kind==kind&&sample.Amount==amount,"Identity/lifetime differs from actual source: "+kind);var mesh=volume.GetComponent<MeshFilter>().sharedMesh;Require(mesh!=null&&mesh.vertexCount>0,"Empty ground mark.");if(kind.StartsWith("coating:")||kind.StartsWith("residue:"))Require(mesh.bounds.max.y<=.15f,"Ground mark exceeds promised low height.");return new Sample{kind=kind,color=sample.Color,x=x,y=y,amount=amount,vertices=mesh.vertexCount,represented=true};
+   };
+   var ids=liquidMap.Keys.OrderBy(x=>x,StringComparer.Ordinal).ToArray();Require(ids.Length==26,"Expected current26 liquid closure; audit must be updated for new definitions.");
+   for(int start=0;start<ids.Length;start+=6)
+   {
+    clear();var frame=new Frame{label="liquid-coatings-"+(start/6).ToString("00")};
+    for(int j=0;j<6&&start+j<ids.Length;j++)zone.TileState.WriteCoating(18+(j%3)*3,9+(j/3)*3,ids[start+j],3);
+    frame.stateBefore=zone.TileState.ToSaveString();refresh();
+    for(int j=0;j<6&&start+j<ids.Length;j++)frame.samples.Add(observe(18+(j%3)*3,9+(j/3)*3,"coating:"+ids[start+j],3));
+    capture(frame);foreach(var sample in frame.samples)observe(sample.x,sample.y,sample.kind,sample.amount);
+   }
+   clear();zone.TileState.WriteResidue(18,10,"embers",4);zone.TileState.WriteResidue(24,10,"petals",4);refresh();var residues=new Frame{label="authored-residues-embers-petals",stateBefore=zone.TileState.ToSaveString()};residues.samples.Add(observe(18,10,"residue:embers",4));residues.samples.Add(observe(24,10,"residue:petals",4));capture(residues);foreach(var sample in residues.samples)observe(sample.x,sample.y,sample.kind,sample.amount);
+   clear();zone.TileState.WriteCoating(18,10,"water",3);zone.TileState.AddHeat(18,10,1);zone.TileState.WriteCoating(24,10,"oil",3);zone.TileState.AddHeat(24,10,1);Require(TileReactionSystem.ResolveZone(zone)>=2,"Actual two reactions required.");Require(zone.TileState.Cloud(18,10)=="steam"&&zone.TileState.Cloud(24,10)=="smoke","Wrong actual reaction cloud.");refresh();var reaction=new Frame{label="actual-water-steam-oil-embers-priority",stateBefore=zone.TileState.ToSaveString()};reaction.samples.Add(observe(18,10,"steam",zone.TileState.Get(18,10).CloudTurns));reaction.samples.Add(observe(24,10,"residue:embers",zone.TileState.Get(24,10).Residues[0].Turns));capture(reaction);foreach(var sample in reaction.samples)observe(sample.x,sample.y,sample.kind,sample.amount);
+   clear();particles=new SpreadParticleFrame(surface,ring.WorldMaterial);particles.BeginFrame(zone);char[] glyphs={'!','z','V','*'};string[] kinds={"alert","sleep","down-chevron","spark"};
+   var signals=new Frame{label="behavior-alert-sleep-down-and-decorative-control",stateBefore=zone.TileState.ToSaveString()};var signalRoots=new List<GameObject>();var signalMeshes=new List<Mesh>();
+   for(int j=0;j<glyphs.Length;j++){int x=17+j*3;Require(particles.TryDraw(x,10,glyphs[j],"&Y"),"Semantic frame draw refused.");GameObject volume;Require(particles.TryGet(x,10,out volume),"Semantic output missing.");SpreadParticleSample sample;Require(SpreadParticleSource.TrySample(zone,x,10,glyphs[j],"&Y",out sample)&&sample.Shape==kinds[j],"Meaningful signal collapsed to decoration.");var mesh=volume.GetComponent<MeshFilter>().sharedMesh;Require(mesh!=null&&mesh.vertexCount>0,"Empty signal.");signalRoots.Add(volume);signalMeshes.Add(mesh);signals.samples.Add(new Sample{kind=kinds[j],color="&Y",x=x,y=10,amount=1,vertices=mesh.vertexCount,represented=true});}
+   particles.EndFrame();Require(signalMeshes.Distinct().Count()==4,"Meaningful signals share inappropriate geometry.");capture(signals);for(int j=0;j<glyphs.Length;j++){GameObject current;Require(particles.TryGet(17+j*3,10,out current)&&current==signalRoots[j]&&current.GetComponent<MeshFilter>().sharedMesh==signalMeshes[j],"Capture changed owned signal.");}
+   particles.Dispose();particles=null;Require(signalRoots.All(x=>x==null)&&signalMeshes.All(x=>x==null),"Owned signal geometry survived Dispose.");
+   Require(report.frames.Count==8,"Incomplete final marks/signals gallery.");report.borrowedFilesUnchanged=hashes.All(p=>File.Exists(p.Key)&&Hash(p.Key)==p.Value);Require(report.borrowedFilesUnchanged,"Borrowed persistent files changed.");
+  }
+  catch(Exception e){report.error=e.ToString();}
+  finally
+  {
+   RenderTexture.active=priorRT;ShaderUtil.allowAsyncCompilation=async;if(particles!=null)particles.Dispose();if(fixture is IDisposable d)d.Dispose();if(target!=null){target.Release();Object.DestroyImmediate(target);}if(preview.IsValid())EditorSceneManager.ClosePreviewScene(preview);
+   liquidMap.Clear();foreach(var p in oldLiquid)liquidMap.Add(p.Key,p.Value);liquidFlag.SetValue(null,oldLiquidFlag);reactions.Clear();foreach(var r in oldReactions)reactions.Add(r);initializedField.SetValue(null,reactionInitialized);
+   var after=SceneManager.GetActiveScene();report.mainSceneRestored=after.handle==original.handle&&after.isDirty==dirty&&after.path==original.path;
+  }
+  report.status=report.error==null&&report.mainSceneRestored&&report.borrowedFilesUnchanged?"passed":"failed";string serialized=JsonConvert.SerializeObject(report,Formatting.Indented);var serializedReport=JObject.Parse(serialized);var serializedFrames=serializedReport["frames"]as JArray;Require(serializedFrames!=null&&serializedFrames.Count==report.frames.Count,"Report serializer omitted captured frame metadata.");for(int i=0;i<report.frames.Count;i++){var samples=serializedFrames[i]["samples"]as JArray;Require(samples!=null&&samples.Count==report.frames[i].samples.Count&&serializedFrames[i]["image"].Value<string>()==report.frames[i].image,"Report serializer omitted source-image mapping.");}File.WriteAllText(Path.Combine(folder,"report.json"),serialized);File.WriteAllText(Path.Combine(folder,"index.html"),"<!doctype html><meta charset='utf-8'><title>Native surface marks and signals</title><style>body{background:#182724;color:white;font:16px system-ui}img{max-width:960px;width:100%}</style><h1>Staged native transient sources</h1>"+string.Join("",report.frames.Select(f=>"<h2>"+f.label+"</h2><p>Exact source identities, positions and remaining lifetimes are recorded in report.json.</p><img src='"+f.image+"'>")));
+  return new{folder,status=report.status,frames=report.frames.Count,error=report.error,mainSceneRestored=report.mainSceneRestored,borrowedFilesUnchanged=report.borrowedFilesUnchanged};
+ }
+}

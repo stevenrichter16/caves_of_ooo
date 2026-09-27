@@ -53,7 +53,14 @@ namespace CavesOfOoo.Tests
             if (withClaim) zone.AddEntity(Factory.CreateEntity("Mogu"), 12, 10);
             LocalPeople.Apply(zone, manager); manager.SetActiveZone(zone);
             var loaded = RoundTrip(GameSessionState.Capture("null-world", "test", manager, new TurnManager(), player));
-            if (!withClaim) { Assert.IsNull(loaded.World); return; }
+            if (!withClaim)
+            {
+                Assert.NotNull(loaded.World);
+                Assert.NotNull(loaded.World.GetPart<LairStackLedgerPart>());
+                Assert.AreEqual(0, loaded.World.GetPart<LairStackLedgerPart>().Count);
+                Assert.IsNull(loaded.World.GetPart<LocalPeopleLedgerPart>());
+                return;
+            }
             Assert.IsTrue(loaded.World.HasTag("WorldEntity")); Assert.AreEqual(1, loaded.World.GetPart<LocalPeopleLedgerPart>().Count);
             var fresh = new Zone("Overworld.2.1.0"); fresh.AddEntity(Factory.CreateEntity("Mogu"), 10, 10); LocalPeople.Apply(fresh, loaded.ZoneManager); Assert.IsEmpty(fresh.GetAllEntities());
         }

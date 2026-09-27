@@ -23,10 +23,20 @@ namespace CavesOfOoo.Tests
                 original=Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath).Bindings.Single(b=>b.Source==source.sharedMesh).Voxel;originalUvs=original.uv;
                 var skin=f.View(owner).GetComponentInChildren<SkinnedMeshRenderer>();var painted=skin.sharedMesh;
                 Assert.That(AssetDatabase.GetAssetPath(painted),Does.StartWith("Assets/Resources/ReferenceGlade3D/ActorPaint/"));Assert.AreNotSame(original,painted);
-                CollectionAssert.AreEqual(original.vertices,painted.vertices);CollectionAssert.AreEqual(original.normals,painted.normals);
-                CollectionAssert.AreEqual(original.boneWeights,painted.boneWeights);CollectionAssert.AreEqual(original.bindposes,painted.bindposes);
-                Assert.AreEqual(original.bounds,painted.bounds);Assert.AreEqual(original.subMeshCount,painted.subMeshCount);
-                for(int i=0;i<original.subMeshCount;i++)CollectionAssert.AreEqual(original.GetTriangles(i),painted.GetTriangles(i));
+                CollectionAssert.AreEqual(original.bindposes,painted.bindposes);Assert.AreEqual(original.subMeshCount,painted.subMeshCount);
+                if(blueprint.StartsWith("Marlback"))
+                {
+                    // The five original creatures are still strictly UV-only.
+                    CollectionAssert.AreEqual(original.vertices,painted.vertices);CollectionAssert.AreEqual(original.normals,painted.normals);
+                    CollectionAssert.AreEqual(original.boneWeights,painted.boneWeights);Assert.AreEqual(original.bounds,painted.bounds);
+                    for(int i=0;i<original.subMeshCount;i++)CollectionAssert.AreEqual(original.GetTriangles(i),painted.GetTriangles(i));
+                }
+                else
+                {
+                    Assert.AreNotEqual(original.vertexCount,painted.vertexCount,"Only the three humanoids have authored local silhouettes; morphology is pinned separately.");
+                    Assert.That(painted.boneWeights.All(w=>w.weight0==1&&w.weight1==0&&w.weight2==0&&w.weight3==0&&w.boneIndex0>=0&&w.boneIndex0<skin.bones.Length));
+                    CollectionAssert.AreEqual(source.bones.Select(b=>b.name),skin.bones.Select(b=>b.name));
+                }
                 var kit=ReferenceGladeVoxelLibrary.Load();Assert.AreSame(kit.Material.GetTexture("_BaseMap"),skin.sharedMaterial.GetTexture("_BaseMap"));
                 int body=blueprint=="Player"?16:blueprint=="Warden"||blueprint=="Villager"?11:18;
                 int accent=blueprint.StartsWith("Marlback")?21:17;

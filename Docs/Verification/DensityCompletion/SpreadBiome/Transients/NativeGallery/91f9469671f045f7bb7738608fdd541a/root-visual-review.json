@@ -1,0 +1,23 @@
+{
+  "reviewer": "root",
+  "reviewedImages": [
+    "00-bloom-spores.png",
+    "01-confusion-vapor.png",
+    "02-cryo-mist.png",
+    "03-fungal-spores.png",
+    "04-marsh-gas.png",
+    "05-plasma-gas.png",
+    "06-poison-vapor.png",
+    "07-sleep-vapor.png",
+    "08-stun-vapor.png",
+    "09-actual-steam-smoke-priority-and-energy.png"
+  ],
+  "source": "Actual Unity GPU captures, original pixels; no editing",
+  "findings": [
+    "All nine gas identities display sparse volumetric voxel motes in three density groups beside an actual native player.",
+    "Plasma red, stun white and confusion/bloom colors are clearly distinct. Dark green poison/marsh and dark blue sleep motes have lower contrast against teal ground, but are visible in these isolated images.",
+    "Actual steam/energy image visibly retains spatial separation and color; smoke plus embers remains the recorded unsupported residue case pending the next slice."
+  ],
+  "scope": "Bounded identity/density appearance only. Does not establish animation quality, every gameplay mixture or normal-size crowded combat readability.",
+  "result": "No new blocking shape defect in viewed supported gas/element slice; residue coverage remains open."
+}

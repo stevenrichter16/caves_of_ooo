@@ -525,16 +525,19 @@ def marlback(mid,bp):
 def lantern_moth(mid):
  model(mid,'actor','feet-root');weights={}
  def part(ob,bone='Body'):weights[ob.name]=bone;return ob
- part(ellipsoid('Lantern_moth_body',(0,0,.36),(.040,.105,.044),'bone_shadow',2))
- part(ellipsoid('Lantern_moth_head',(0,-.095,.37),(.047,.045,.042),'fungal_pale',2),'Head')
+ # A raised dark thorax stays above four separate pale lobes after the exact
+ # moth-only 1/16-cell bake. Features must survive native voxels, not only FBX.
+ part(ellipsoid('Lantern_moth_body',(0,0,.39),(.053,.135,.069),'bark_shadow',2))
+ part(ellipsoid('Lantern_moth_head',(0,-.132,.417),(.053,.052,.047),'fungal_pale',2),'Head')
  for sx,side in [(-1,'L'),(1,'R')]:
   bone='Wing.'+side
-  part(ellipsoid('Lantern_moth_forewing',(sx*.175,-.038,.365),(.192,.17,.018),'fungal_light',2),bone)
-  part(ellipsoid('Lantern_moth_hindwing',(sx*.135,.112,.36),(.144,.13,.016),'dew',2),bone)
+  part(ellipsoid('Lantern_moth_forewing',(sx*.20,-.10,.365),(.17,.115,.032),'fungal_light',2),bone)
+  part(ellipsoid('Lantern_moth_hindwing',(sx*.14,.21,.35),(.135,.085,.031),'fungal_light',2),bone)
+  part(beam('Lantern_moth_hindwing_root',(sx*.034,.065,.355),(sx*.095,.165,.35),.033,'fungal_light',6),bone)
   for band in range(3):
-   x=sx*(.11+band*.073)
-   part(ellipsoid('Lantern_moth_wing_band',(x,-.035+band*.012,.385),(.012,.115-band*.018,.003),'bone_shadow',2),bone)
-  part(beam('Lantern_moth_antenna',(sx*.023,-.12,.39),(sx*.074,-.20,.416),.005,'fungal_pale',5),'Head')
+   x=sx*(.115+band*.083)
+   part(ellipsoid('Lantern_moth_wing_band',(x,-.10,.403),(.030,.081-band*.012,.017),'bark_shadow',2),bone)
+  part(beam('Lantern_moth_antenna',(sx*.023,-.155,.438),(sx*.078,-.23,.46),.017,'fungal_pale',5),'Head')
  bones=[('Root',(0,0,0),(0,0,.10),None),('Body',(0,0,.10),(0,0,.36),'Root'),('Head',(0,-.04,.36),(0,-.12,.37),'Body'),('Wing.L',(-.025,0,.36),(-.28,0,.36),'Body'),('Wing.R',(.025,0,.36),(.28,0,.36),'Body')]
  rig_parts(mid,bones,weights,'avian')
 

@@ -1,0 +1,46 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "1896a53c77b04ca6b6da79ce76c2b425",
+  "run": {
+    "id": "2",
+    "testcasecount": "12",
+    "result": "Failed(Child)",
+    "total": "12",
+    "passed": "6",
+    "failed": "6",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 04:36:20Z",
+    "end-time": "2026-09-27 04:36:25Z",
+    "duration": "4.5179211"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.OriginalEnemyBodyEvidenceTests.DiagnosticCountsOnlyTheExactBodyAfterOwnedEquipmentProof(\"bare\",True)",
+      "message": "  bare\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.OriginalEnemyBodyEvidenceTests.DiagnosticCountsOnlyTheExactBodyAfterOwnedEquipmentProof(\"equipped\",True)",
+      "message": "  equipped\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadEquipmentFitGalleryTests.CaptureActualFittedForms(\"Farmer\",\"ChainMail\",\"IronHelmet\",\"IronshodBoots\",\"WardedCloak\",\"Hatchet\")",
+      "message": "  Native equip precondition Farmer/LeatherGloves\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadEquipmentFitGalleryTests.CaptureActualFittedForms(\"Scribe\",\"PlateArmor\",\"IronHelmet\",\"IronshodBoots\",\"Cloak\",\"Spear\")",
+      "message": "  Native equip precondition Scribe/LeatherGloves\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadEquipmentFitGalleryTests.CaptureActualFittedForms(\"Elder\",\"FineRingMail\",\"LeatherCap\",\"LeatherBoots\",\"WardedCloak\",\"CounterweightMaul\")",
+      "message": "  Native equip precondition Elder/LeatherCap\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadEquipmentFitGalleryTests.CaptureActualFittedForms(\"MarlbackBreacher\",\"RivetedPlate\",\"IronHelmet\",\"IronshodBoots\",\"Cloak\",\"BreacherCleaver\")",
+      "message": "  Native equip precondition MarlbackBreacher/IronHelmet\n  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68474d2e6b0d4363bec0b5f242df84ff, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.SpreadCreature3DLibrary
+  Entries:
+  - Id: spread-creature-giant-spider
+    Prefab: {fileID: 4791185724308719282, guid: 753a1d5560d144465b2ad0ae077b4d0a, type: 3}
+    Mesh: {fileID: 6219771461930748860, guid: 9d0d29793b0c54e7bafe8442767742c6, type: 3}
+    Spec:
+      id: spread-creature-giant-spider
+      path: Assets/Resources/SpreadCreature3D/Actors/spread-creature-giant-spider.prefab
+      kind: actor
+      rigFamily: arachnid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: GiantSpider
+      rigged: 1
+      boundsCenter: {x: -0.00003131944, y: 0.20449743, z: -0.032034427}
+      boundsSize: {x: 1.4410862, y: 0.5981794, z: 0.9740687}
+      triangles: 504
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-creature-jungle-ape
+    Prefab: {fileID: 4165684328327998162, guid: 4d22ade0e75df4942aea6d877e650f5d, type: 3}
+    Mesh: {fileID: 6751767368286090095, guid: dc819eb44325f46d3978a75abeedf786, type: 3}
+    Spec:
+      id: spread-creature-jungle-ape
+      path: Assets/Resources/SpreadCreature3D/Actors/spread-creature-jungle-ape.prefab
+      kind: actor
+      rigFamily: ape
+      materialFamily: reference-glade-palette
+      sourceBlueprint: JungleApe
+      rigged: 1
+      boundsCenter: {x: 0.0019609085, y: 0.6642663, z: -0.05821551}
+      boundsSize: {x: 1.604232, y: 1.5381961, z: 0.88665485}
+      triangles: 300
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-creature-mimic-closed
+    Prefab: {fileID: 3835801755362177417, guid: 927806f387a0e48abacc07faf5947f21, type: 3}
+    Mesh: {fileID: 5547183401304005490, guid: 96d0d8d970bb245a4992f64eecb0a784, type: 3}
+    Spec:
+      id: spread-creature-mimic-closed
+      path: Assets/Resources/SpreadCreature3D/Actors/spread-creature-mimic-closed.prefab
+      kind: actor
+      rigFamily: mimic
+      materialFamily: reference-glade-palette
+      sourceBlueprint: MimicChest
+      rigged: 1
+      boundsCenter: {x: 0.0025564432, y: 0.3393242, z: 0.000018199864}
+      boundsSize: {x: 0.74906415, y: 0.7086485, z: 0.6862448}
+      triangles: 132
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-creature-mimic-awake
+    Prefab: {fileID: 2462750590529548770, guid: 6a231207d2ebb43e0806efd23554a76c, type: 3}
+    Mesh: {fileID: -3345220326957269436, guid: 1926fe576a74f4ad6b85c11122aad1d0, type: 3}
+    Spec:
+      id: spread-creature-mimic-awake
+      path: Assets/Resources/SpreadCreature3D/Actors/spread-creature-mimic-awake.prefab
+      kind: actor
+      rigFamily: mimic
+      materialFamily: reference-glade-palette
+      sourceBlueprint: MimicChest
+      rigged: 1
+      boundsCenter: {x: -0.0019138657, y: 0.32945094, z: -0.1109752}
+      boundsSize: {x: 1.3311409, y: 0.9350145, z: 0.91804945}
+      triangles: 324
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-creature-glowmaw
+    Prefab: {fileID: 8587802127593161451, guid: cbde1458d2e5349bcb86af33b7c4ace4, type: 3}
+    Mesh: {fileID: -8238245022123257883, guid: 71eecb0fcabb046a78cc65697df7849e, type: 3}
+    Spec:
+      id: spread-creature-glowmaw
+      path: Assets/Resources/SpreadCreature3D/Actors/spread-creature-glowmaw.prefab
+      kind: actor
+      rigFamily: grasping
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Glowmaw
+      rigged: 1
+      boundsCenter: {x: -0.000041332733, y: 0.22411327, z: -0.035335343}
+      boundsSize: {x: 1.3597039, y: 0.7067732, z: 0.8300814}
+      triangles: 288
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []

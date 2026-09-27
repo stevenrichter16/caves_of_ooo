@@ -741,9 +741,10 @@ namespace CavesOfOoo.Rendering
                 int oldX = oldCell?.X ?? -1;
                 int oldY = oldCell?.Y ?? -1;
 
-                var (moved, blockedBy) = MovementSystem.TryMoveEx(PlayerEntity, CurrentZone, dx, dy);
+                var move = MovementSystem.TryMoveDetailed(PlayerEntity, CurrentZone, dx, dy);
+                var blockedBy = move.BlockedBy;
 
-                if (moved)
+                if (move.Moved)
                 {
                     var newCell = CurrentZone.GetEntityCell(PlayerEntity);
 
@@ -751,6 +752,12 @@ namespace CavesOfOoo.Rendering
                     if (ZoneRenderer != null && oldCell != null && newCell != null)
                         ZoneRenderer.RefreshMovement(oldX, oldY, newCell.X, newCell.Y);
 
+                    EndTurnAndProcess();
+                }
+                else if (move.ActionPerformed)
+                {
+                    // Unlocking/opening is this turn's action. It must not also
+                    // strike the owner or walk through it in the same input.
                     EndTurnAndProcess();
                 }
                 else if (blockedBy != null && blockedBy.HasTag("Creature")
@@ -814,7 +821,7 @@ namespace CavesOfOoo.Rendering
                 // Pair this with TurnManager.ProcessUntilPlayerTurn's
                 // early-return on player-block: one keypress = one
                 // blocked-turn thaw, matching player expectation.
-                if (!moved)
+                if (!move.Moved && !move.ActionPerformed)
                 {
                     var sep = PlayerEntity.GetPart<StatusEffectsPart>();
                     if (sep != null && sep.IsActionBlocked())
@@ -2819,6 +2826,13 @@ namespace CavesOfOoo.Rendering
                 RequestZoneRedraw("Morrowfast.QuestAction");
                 return;
             }
+            if (action.Command == DoorPart.OpenCommand || action.Command == DoorPart.CloseCommand)
+            {
+                if (target.GetPart<DoorPart>()?.TrySetOpen(PlayerEntity, CurrentZone, action.Command == DoorPart.OpenCommand) == true)
+                    EndTurnAndProcess();
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
             if (action.Command == MorrowfastPropPart.ClearCommand || action.Command == MorrowfastPropPart.RoofCommand
                 || action.Command == MorrowfastDoorPart.OpenCommand || action.Command == MorrowfastDoorPart.CloseCommand)
             {
@@ -2874,6 +2888,21 @@ namespace CavesOfOoo.Rendering
                 {
                     EndTurnAndProcess();
                     RequestZoneRedraw("Furniture.PlayerSeat");
+                }
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
+            // Harvesting commits finite world output through the same command
+            // transaction as carried harvest. Refusal consumes no time.
+            if (action.Command == "Harvest")
+            {
+                var harvest = InventorySystem.ExecuteCommand(
+                    new PerformInventoryActionCommand(target, action.Command), PlayerEntity, CurrentZone);
+                if (harvest.Success)
+                {
+                    EndTurnAndProcess();
+                    RequestZoneRedraw("World.Harvest");
                 }
                 _inputState = _worldActionMenuReturnState;
                 return;

@@ -1,10 +1,15 @@
 # Content density completion — implementation plan
 
-**Status:** implementation and native acceptance in progress, 26 September 2026. This plan was recorded before implementation. Execution is
+**Status:** whole-biome C15 native acceptance complete; remaining content milestones active, 27 September 2026. This plan was recorded before implementation. Execution is
 authorized by the user's instruction to analyze the gaps, write a thorough plan,
 write an execution prompt, and implement it. Baseline: `50ef23d2` on `main`.
 The companion [execution prompt](DENSITY-EXECUTION-PROMPT.md) drives this work.
 Every milestone below remains open until its own acceptance evidence is recorded.
+
+**Latest user extension (26 September):** expand the approved reference-glade
+look to an entire biome and start new players there. C15 below is required work,
+including all chunks, environmental objects, NPCs, enemies, player and items.
+The existing content completion milestones remain active.
 
 ## 1. Outcome and completion contract
 
@@ -329,18 +334,19 @@ gates, not a substitute for focused RED evidence.
 | C0 | Baseline recorded | Five seeds, 150 zones, 447 stocked container observations; historical open counter overcounted locked-container attempts; exact-key C12 replay now separates lock refusal and observed opens |
 | C1 | Implemented, native integration green | 51 RED (41 missing-content, 10 controls); 138 focused GREEN; native new content/adversarial GREEN; armor 19→59 in scoped census |
 | C2 | Implemented, play gate pending | Ten kits, local assistance/flee, 98 new checks native GREEN; ordinary-stat scheduler audit under verification |
-| C3 | Water/cooking implemented | 75 core/adversarial +16 UI native GREEN; native input acquisition13/13 complete; general liquid carry/pour still open |
-| C4 | Partial implementation | Day band/rest, chairs and finite carried torches implemented with native action timing; beds and generated-door gate remain open |
+| C3 | Water/cooking and general liquids verified in native Play | Water/cooking75 core/adversarial +16UI GREEN and13/13 acquisition. General liquids94 native core/UI and26 renderer GREEN; actual purchased water/oil/acid carry/pour/save route21/21, zero errors, exact restoration. Three native puddle frames visually reviewed |
+| C4 | Beds and generated doors verified in native Play | Generated-bed route15/15, zero errors. Door110 gameplay/menu and28render checks native GREEN. C15 route791acdc226ba4c1da03727736d14618d now reaches an actual supported Spread village: exact generated VillageDoor body, paid close/open, stable owner/position and native state-dependent models pass. Its later lair-source refusal remains an honest separate failure |
 | C5 | Readables and examine coverage implemented | 13 canonical copies, native pagination and acquisition proof;39 useful descriptions added after39 actual-factory RED cases,116 focused GREEN |
 | C6 | Implemented | 27 roles/seven cultures; five unique Choir identities;59 native GREEN, additional saved-graph and dead-listener controls verified standalone |
 | C7 | Implemented, broader play pending | Sari45 native GREEN; contextual remarks and finite persistent travellers; native transition/cache integration GREEN; 126 focused checks |
-| C8 | Partial implementation | Full-body hazard navigation108 focused GREEN; smoke visibility/cache181 core/nearby GREEN; thermal contact and native fire gate remain open |
+| C8 | Measured material and steam fixes verified; broader environment work open | Hazard navigation108, smoke181 focused GREEN. Steam22/22 native route and34 native unit checks. Five blueprint unit corrections pass28 new plus137 neighboring native tests; unchanged thermal replay8/8, zero errors. Tar still does not ignite from one FlamingHands; broad combustion/contact/scald remain open |
 | C9 | Implemented; native follow-up pending | Corpse/scenery census,4 content yields and transactional finite harvest;90 focused GREEN plus independent malformed-product guards |
-| C10 | Placement and second layout implemented | Boss/guard overlap repaired; depth-aware alternate room layout and reserved travel routes pass 188 focused standalone checks. Native layout/integration GREEN in the580-case selection; saved multi-level lair graph remains private for a separate commit |
-| C11 | First T4 slice implemented | Four mundane equipment finds behind eligible deep reliquaries; source/lock tests and private generated cohort pass. Native source/lock checks GREEN, including three real finds in60 generated zones; modified and legendary finds remain open |
-| C12 | Foundation integration green; campaign gate open | Exact standalone differential has zero new failures. Final unfiltered native Unity sweep passes 16,996/16,996 with no skips. Exact-key census: 445 containers, 39 locked, 406 observed opens. Follow-up source changes require their own checks; representative campaign play remains open |
-| C13 | Runtime and scoped models implemented | Original Marlbacks, Grove lantern moth and two quest creatures; exact saved-identity compatibility, 163+7 native art checks. Full live roster inspection remains open |
-| C14 | Playable scene implemented; visual iteration | Real authored world zone,40 scoped prop models,8 persistent actor paint meshes and saved scene. Third native route12/12 with zero errors;60.208-second editor sample mean6.117ms/p957.010ms. Fourth proportion pass remains private; visual fidelity is not yet complete |
+| C10 | Placement and second layout implemented | Boss/guard overlap repaired; depth-aware alternate room layout and reserved travel routes pass 188 focused standalone checks. Native layout/integration GREEN in the580-case selection; saved multi-level lair graph is published and native focused GREEN; actual ordinary-stat Beating keyboard route14/14 GREEN, real starting Calm/Rime Grip, reward/save/ascent/revisit and exact cleanup proven; failed dagger-only attempt retained |
+| C11 | T4, modified finds and one legendary keeper source verified in native Play | Actual T4 sources/locks and modified/legendary42-case native selections GREEN. Complete native route19/19, zero errors, exact restoration: earned modified maul and real keeper armor acquired/equipped/inspected, both actual enemies defeated, F5/mutate/F6 preserves reward identities and source depletion. Two labelled content-entry transfers; ordinary initial stats, earned levels, no grants. Broader legendary families remain open |
+| C12 | Foundation integration green; campaign gate open | Exact standalone differential has zero new failures. Final unfiltered native Unity sweep passes 16,996/16,996 with no skips. Exact-key census: 445 containers, 39 locked, 406 observed opens. Final standalone follow-up repeats10,075 cases with zero new failures against both preserved baselines; supplemental1,888/1,888 pass. Final native follow-up now19709/19709 GREEN; representative campaign play remains open |
+| C13 | Runtime and scoped models implemented | Original Marlbacks, Grove lantern moth and two quest creatures; exact saved-identity compatibility, 163+7 native art checks. Separated native roster75/75 passes with zero errors; all six bodies inspected, moth wing silhouette repaired and134 nearby native art checks pass; follow-up commit pending |
+| C14 | User-approved scene, contact rendering and native combat verified | Latest walkthrough12/12 and strict real-player combat12/12, zero errors, exact restoration. Combat finishes31/40HP with original dagger and one original Rime, no tonic; earlier dagger-only failure retained.60.016-second editor movement sample mean3.869ms/p954.030ms. Native glade/contact regressions GREEN; reeds partly obscure the upper-edge fight, so pose observation is not an animation-quality claim |
+| C15 | Whole-biome implementation and native acceptance complete | Normal N/F5/scene-reload/C startup12GREEN. Imported52 profession rigs,396 portable forms,56 scenery variants,40 environment forms,5 fauna forms,12 fitted gear forms and common terrain9. Headwear16+fit6+seven native gear galleries pass; all52 original body shape/UV0/rig buffers remain unchanged. Existing visitor rigs13 adopted with36nativeGREEN; full107 roster now106 approved/1 intentionally hidden after29 new species bodies pass76 native checks and29 three-pose capture cases. Static868 import completes (462verified reused/406written); new29body pack imports before hooks. Actual biome route23/23, zero errors, exact restoration verifies chunk travel/harvest/save, village doors, paired lair stairs and foreign profile. User-reported2D fallback is resolved in viewed native frames. Pool33 native gates and13-image comparison now pass after a scoped8-mesh rebuild; all864 unrelated adopted entries and458 unsaved editor objects remain unchanged. Gas/ground/particle source, lifecycle and actual512-capacity checks are native GREEN, with complete reviewed native galleries. Controlled final editor movement sample averages4.252ms/p954.014ms; redraw p9543.007ms and one506.677ms editor/GC/UI spike remain honestly recorded. Exact-role Posy repair passes24/24 and combined72/72, including all142 Spread surfaces perseed plus1/1/2 affiliated floors across seeds64/1/1729. Normal-bootstrap story registries are now explicitly isolated/loaded/restored by the census. Final unfiltered native19709/19709 GREEN, zero failures/skips, exact editor restoration and zero drift in2513 inputs. The fourteen first-sweep obsolete expectations are preserved and corrected with157/157 focused GREEN. Exact9249-path ownership draft has complete GUID/resource dependencies and compiles1055 runtime sources against clean HEAD with only declared overlays |
 
 ## 7. Implementation log and self-review
 
@@ -357,3 +363,77 @@ gates, not a substitute for focused RED evidence.
 
 - Native integration follow-up:141/141 passed (chair/torch inventory timing, sari entry/ending, local people, ordinary-stat combat scheduler). The preceding33-case RED had7 intended missing-hook failures. This is native EditMode integration, not a keyboard combat/balance playtest.
 - Isolated baseline full standalone corpus:10,060 cases,9,765 passed,295 environment failures. The exact same 672-file selection after C10/C11 yields 10,075 cases, 9,780 passed, and the same 295 failures: zero newly failing. Renamed/added test cases explain the count change; new fixtures outside this selection have separate focused coverage.
+
+### C15 — Complete Spread biome in the approved voxel style
+
+**Status: implementation and native acceptance complete for the bounded source corpus and recorded routes.** The user likes
+C14's current native appearance and requests its use across an entire biome.
+Choose the existing **Spread**, whose palette and native glade already fit.
+
+1. Inventory actual Spread generation, including every authored and generated
+   POI, travelling populations, merchant stock, drops, dynamic liquids, doors,
+   harvest products and player equipment. Record provenance and explicit model
+   coverage, including rare sources; sampled occurrence alone is insufficient.
+2. Add map-derived presentation authority for every Spread surface chunk and
+   restored graph. Separate visual eligibility from the fixed reference scene's
+   authored geometry. Preserve each chunk's own terrain, collision, placement,
+   contents and gameplay identity. Foreign biomes and ordinary underground are
+   negative controls; biome-affiliated lair floors need an explicit source rule.
+3. Extend the original modular voxel kit with distinct silhouettes for every
+   uncovered family and species. Apply the approved palette, geometry scale,
+   actor treatment, lighting and ground detail to all models used in eligible
+   chunks, including objects carried in from elsewhere. No ASCII or invisible
+   object may silently stand in for missing coverage. Preserve functional rigs,
+   attack animation, equipment sockets and interaction/picking footprints.
+4. Make the normal new-game entry use a verified Spread start with safe legal
+   placement, ordinary stats and equipment, connected travel and reachable
+   services. Keep Continue at its saved location. Review seed and scene defaults
+   and test failed/malformed spawn candidates rather than assuming a clear cell.
+5. Verify cross-chunk travel, POI visits, biome exits/re-entry, live entities,
+   item drops, light/door/liquid changes, death cleanup and save/load. Capture
+   actual native frames across varied chunks and compare performance to C14.
+   Run source coverage checks plus paired native rendering controls and finish
+   with the full integration suite. Update this plan with exact results.
+
+Initial sweep corrections: `SpreadCompositionPlan` uses a fixed authored
+wilderness list, not current map biome authority; `AreaCompositionScope` does
+not yet cover Spread; the reference-glade visual profile currently belongs to
+one exact zone. The saved SampleScene overrides the code's nominal Morrowfast
+start. Widening the glade address predicate alone would neither cover the biome
+nor safely establish an ordinary new-game start. Specialist inventories and
+concrete source/asset manifests will accompany the implementation.
+
+
+C15 receiving-creature follow-up is now source and native evidence based:
+`DENSITY-SPREAD-VISITOR-MODELS.md` records the107-definition native diagnostic
+and its test-first execution plan. Its initial107-roster fixture recorded64
+approved bodies and42 visible gaps, split into13 existing animated forms needing
+style adoption and29 missing species bodies. The13 existing forms now pass36
+native checks and a39-frame pose gallery, bringing approved coverage to77; the29
+new bodies now pass76 native art checks and29 three-pose capture cases; the complete107 roster passes with106 approved bodies and one intentionally hidden definition. One undropped Glowmaw is legitimately
+hidden. The initial missing42 assertion and all owner/removal controls remain
+preserved as RED evidence. Party transfer on surface/stair transitions makes receiving-biome
+coverage relevant, while the diagnostic does not claim ordinary local spawning
+or recruitment of every species. The original roster gaps are closed; the final unfiltered native checkpoint and its explicit evidence bounds determine C15 completion.
+
+
+### Follow-on completeness audit (user extension,27 September)
+
+After C15 actual biome presentation is verified, continue the remaining ledger
+and inspect coded systems for incomplete implementation or inaccessible content.
+For each candidate, trace definition → actual generation/source → ordinary player
+action → outcome/feedback → persistence/revisit. Prioritize verified broken or
+unreachable behavior over speculative new systems. Record exact source premises,
+a failing ordinary-route assertion, bounded implementation, matched negative
+controls and native acceptance where visible interaction is involved. The user
+explicitly requested continuing this audit if the original content-filling list
+runs out; it does not waive the existing lore, BitLocker or verification rules.
+
+
+### C15 final native checkpoint — 27 September 2026
+
+Actual unfiltered Unity EditMode job `fd718936b9304ca3b0441e84e92ad5d4` completed **19,709/19,709 passing, zero failures and zero skips**, in 979.5685913 seconds. The authoritative XML and summary are preserved at `Docs/Verification/DensityCompletion/Integration/native-spread-full-second.json` and its neighboring `.xml.gz`. All2,513 recorded compilation/content inputs remained unchanged during the run. Scene/start-scene, seed override, save root, last-game preference, background execution and input settings restored exactly.
+
+The first full follow-up retained14 failures from obsolete rendering expectations; all14 were addressed by narrowly strengthened fixture/classification corrections, then157/157 affected cases passed before this second unfiltered run. No production behavior was weakened to satisfy those pins. The three normal-bootstrap story-aware census seeds each cover142 surface chunks plus1/1/2 affiliated lair floors with zero unmodeled supported owners. Actual biome keyboard acceptance remains23/23, ordinary N/F5/scene-reload/C is12/12, and Beating lair acceptance is14/14. Their screenshots, explicit travel shortcuts and exact cleanup receipts remain separate from EditMode evidence.
+
+C15 is complete for the stated shipped-source corpus and verified routes. This is not every possible world seed, every animation transition, an unlimited particle budget or a standalone player-build benchmark. The measured editor redraw p95 is43.007ms with one506.677ms editor/GC/UI spike. Broader encounter balance, ambient dialogue acceptance, ordinary corpse-harvest acceptance, combustion/contact, additional legendary families and campaign-level content review remain on the active plan; legacy2D liquid shimmer is a separate narrow follow-up.

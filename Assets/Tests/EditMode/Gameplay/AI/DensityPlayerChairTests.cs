@@ -31,8 +31,15 @@ namespace CavesOfOoo.Tests
         {chair.GetPart<ChairPart>().Occupied=true;Assert.False(Act("SitOnChair"));Assert.False(Act("StandFromChair"));Assert.True(chair.GetPart<ChairPart>().Occupied);}
         [Test]public void AdjacentOrRemoteChair_RequiresStandingAtSeat()
         {zone.MoveEntity(chair,11,10);Assert.False(Act("SitOnChair"));Assert.False(chair.GetPart<ChairPart>().Occupied);zone.MoveEntity(chair,20,10);Assert.False(Act("SitOnChair"));}
-        [Test]public void OrdinaryBed_DoesNotGrantFreeInnHealing()
-        {var bed=new Entity();bed.AddPart(new BedPart());zone.AddEntity(bed,10,10);Assert.False(InventorySystem.GetActions(actor,bed).Any(a=>a.Command=="SleepOnBed"));Assert.False(InventorySystem.PerformAction(actor,bed,"SleepOnBed",zone));}
+        [Test]public void BedInventoryTransaction_DoesNotGrantFreeInnHealing()
+        {
+            var bed=new Entity();bed.AddPart(new BedPart());bed.AddPart(new PhysicsPart());zone.AddEntity(bed,10,10);
+            Assert.True(InventorySystem.GetActions(actor,bed).Any(a=>a.Command=="SleepOnBed"));
+            actor.GetStat("Hitpoints").BaseValue=7;
+            Assert.False(InventorySystem.PerformAction(actor,bed,"SleepOnBed",zone));
+            Assert.AreEqual(7,actor.GetStatValue("Hitpoints"));Assert.False(actor.HasEffect<WellRestedEffect>());
+            Assert.False(bed.GetPart<BedPart>().Occupied);
+        }
         [Test]public void NonPlayer_CannotUsePlayerSeatCommand()
         {actor.Tags.Remove("Player");Assert.False(Act("SitOnChair"));Assert.False(chair.GetPart<ChairPart>().Occupied);}
         [Test]public void EffectApplicationVeto_LeavesChairUnclaimed()

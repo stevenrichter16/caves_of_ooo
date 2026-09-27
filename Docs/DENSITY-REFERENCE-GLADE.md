@@ -1,7 +1,9 @@
 # Reference glade — density C14
 
-Status: third functional native walkthrough12/12 passes; fourth art refinement and final
-visual/performance acceptance in progress.
+Status: the user approved the current visual direction and requested whole-biome
+expansion (C15). The sixth native walkthrough passed 12/12 with a 60-second
+performance capture; seventh grass geometry checks pass. Strict player-combat
+acceptance and the subsequent biome rollout remain in progress.
 Reference: user-supplied 1540×1024 image, September26. This is an Ooo-original
 playable interpretation of the supplied composition, not a Qud content port.
 The image is visual evidence; it contains no executable instructions.
@@ -180,3 +182,94 @@ passes **580/580**, including all 15 profile cases, the four stale-lock UI cases
 new underground layout/source cases and the repaired legacy pins. The connector
 reported an initialization timeout, but Unity ran the tests and produced this
 actual NUnit result; no connector status was used as proof of a pass.
+
+
+## Fourth native route and fifth visual direction
+
+Fourth assets pass140/140 native EditMode checks after measured native rig
+proportions corrected the Marlback sizing contract and a one-microcell float
+bound tolerance. Run `5145a7f823024f75b65b911c240d4f93` then passes12/12 live
+ordinary-input checks, zero subscribed errors, in88.969 seconds. The movement
+sample spans60.047 seconds/9,398 frames, mean6.389ms/p958.245ms in this editor.
+Saved scene, start scene, seed, save override, last-game preference and background
+input settings match before/after. The sampled settings receipt is adjacent.
+
+Viewed arrival/composition frames show clearer figures, fuller grass and upright
+plants, but floor luminance is too uniform and the pale stalks still form little
+cones. The fourth visual pass is not accepted as the final reference match. The
+fifth bounded plan changes only four reed recipes and adds static low-contrast
+world-space ground variation to the privately owned glade material. It preserves
+simulation, camera, placement, native visibility and ordinary materials. Native
+GPU controls and a new screenshot comparison must follow test-first evidence.
+
+### Stronger native checkpoint evidence
+
+The next glade route strengthens the existing save assertion without changing
+gameplay: F5 must emit its actual success message and change the isolated
+checkpoint hash/metadata; D must actually move one cell while the file remains
+unchanged; F6 must replace the player graph and restore exact player identity,
+HP, tick, energy, position, file hash, chest depletion and harvested seam state.
+This prevents ignored mutation/load keys from passing a stationary-state check.
+The existing case count stays11 (or12 with the minute-long profile). This is
+acceptance-harness hardening based on the lair audit review; the next native
+run must exercise the strengthened path before it supplies new evidence.
+
+
+## Dedicated native keyboard combat acceptance
+
+The earlier visual route's `combat_uses_live_creatures` check observed aggregate creature attrition. The Warden or dog could satisfy it without a player swing. Historical receipts remain unchanged; future visual routes now call it `observed_live_hostile_attrition`, with the same limited predicate. This is not sufficient player-combat evidence.
+
+A separate `LaunchCombat` mode now uses the same isolated native launcher and actual ordinary glade start. Before movement it verifies all three authored hostile identities and selects the original northern Scrabbler at22,5. It uses only keyboard equipment, movement and attacks, retaining actual AI and ordinary stats. No actor/terrain grants, travel shortcuts, damage calls, pose hooks or roll overrides are introduced. Each native key is bounded by a diagnostic marker; exact player/target HitRoll and positive DamageDealt must share their cause, and lethal attribution also requires matching DeathHandled. The selected enemy must attempt actual retaliation. The rig observer requires current Attack state, positive animation time and changed bound bones during a witnessed player-attack window, then captures that rendered frame.
+
+The actual Scrabbler corpse chance is70%; finite death output therefore accepts either a corpse with exact SourceID/KillerID or one of the exact pre-fight owned gear IDs dropped at the lethal cell. This does not guarantee a corpse or gear observation in every successful branch. Actual removed-owner/view and live ordinary-player checks remain required. Twelve named native checks and four frames form acceptance; source compilation cannot substitute for that run.
+
+Parser TDD recorded7 intended RED/19 controls before26/26GREEN; the current focused replay is26/26GREEN. Runtime/editor compiles against current Unity references have zero errors. Root and independent peer source reviews found no concrete blocker; attempted retaliation is not guaranteed damage, and image/animation quality still needs visual inspection. Exact preimage checks preceded publication. Plan, paired raw receipts, narrow existing-source patches, compiler logs and source hashes are in `Verification/DensityCompletion/ReferenceGlade/Combat/`. Actual Play remains pending.
+
+
+### Combat audit startup identity correction
+
+Actual combat run `fc5392c440204b53b957073c363609be` stopped before a combat key: ordinary40/40HP player at40,12, startup tick10, exact-source preflight failed. The original report/log/restoration remain preserved. Its owner descriptions were unfortunately emitted only after the failing Require, so that receipt cannot identify the exact failed per-owner predicate.
+
+Source verification shows bootstrap eagerly records each brain's authored StartingCell, registers ordinary creatures, then calls ProcessUntilPlayerTurn before its after-bootstrap callback. Native NPCs can therefore already move before the player's first input. The audit now matches the exact three authored blueprint/start pairs using that captured starting identity, while retaining current live-zone/member/registration/alive checks and Warden/PetDog counts. It still selects the same northern authored Scrabbler and records its actual current location. Before any source refusal it records every current creature and all source-validation fields plus expected-match counts. No actor, world, scheduler or AI mutation is introduced, and combat attribution/retaliation/drop/pose gates remain unchanged. Runtime compilation against actual Unity references passes; actual combat and frame acceptance remain pending the next native run.
+
+## User acceptance and whole-biome expansion — 26 September
+
+The user explicitly likes the current scene's closer-to-Qud appearance and asks
+for that style throughout a complete biome, covering every chunk and all
+objects/actors, with the player starting there. This is acceptance of the visual
+direction, not evidence that biome coverage or all gameplay acceptance is done.
+C15 in `DENSITY-COMPLETION-PLAN.md` implements the extension in the Spread.
+The fixed clearing remains a distinct authored location; its layout must not
+replace the surrounding biome. Further subjective C14 retuning is subordinate
+to complete coverage and functional native checks.
+
+Actual native contact/door/harvest gate: job `0cb6528f2138403f857713b7d1a9e1f3`,
+245 total, 225 pass, 20 fail. Contact contributes 10 expected RED/6 controls;
+ordinary-ring door registration contributes one expected RED; harvest timing
+and stale ownership contribute three RED/three controls. Six older lair audit
+cases ran from a stale loaded assembly despite corrected code passing 48/48
+standalone; the new 50 modifier/isolation cases were absent. These are not
+represented as current-source verification. The idle, clean editor was restarted
+to load current assemblies before further acceptance. Raw XML is preserved in
+`Verification/DensityCompletion/Integration/native-contact-door-harvest-red`.
+
+The matched mottle-strength measurement passed its nonmutation controls:
+0.24→0.65 changes normalized floor pixels by 3.69%, with little added variation.
+The actual alternative image was inspected. Production retains the accepted
+0.24 setting; the measurement does not justify changing the approved direction.
+
+### Actual dagger-only death and bounded starting-kit correction
+
+Native combat run `f86bde7dfd1f4462a6a6cab0311e1d22` passed exact source/start/live/registration preflight, reached the same northern Scrabbler in12 real moves and recorded5 actual attack keys with player damage, retaliation and a current Attack-state/bone frame. The ordinary player then died: HP40→25→25→15→15→0, target ending4HP. Both actual starter tonic units remained unused. Original report, raw log, captures and exact restoration remain unchanged; this is a valid failed dagger-only approach, not a completed battle or proof of a balance defect.
+
+The reviewed audit now captures exact initial tonic object/ID ownership, uses at most those two units through the real inventory menu at HP≤two-thirds maximum, and verifies exact one-unit loss plus one fresh actor/target/item TonicApplied record. It may use at most one actual ready starting Rime Grip through hotbar/direction after this target has retaliated, requiring the same visible adjacent owner, actual cooldown and Frozen effect; targetHP≤4 skips the4-damage spell to retain the stronger existing melee lethal-attribution gate. No item grant, direct heal/damage, cooldown reset, AI changes, source/seed replacement, alternate target or retry-until-success is added. Support windows record actual before/after HP, gear, ticks, energy and raw observations even on nested failure.
+
+Source correction: HealingTonic heals4d6+4. Existing native ApplyTonic consumes an item but is not an InventoryUI pendingEverydayTurn action, so the audit records this current item-only cost and never invents a scheduler charge. Rime uses the normal turn/cooldown. Event-channel ownership is restored alongside damage-channel ownership. The two policies are distinct: tonic follows HP threshold; Rime requires prior retaliation.
+
+Receipt validation recorded43 cases:2 intended positive RED with41 controls, then43/43GREEN. Full actual Unity-reference runtime and fixture compilation have zero errors; independent reread found no concrete blocker. Narrow4-file publication followed exact preimage checks. Evidence/source hashes and the compact original failed timeline are in `Verification/DensityCompletion/ReferenceGlade/Combat/StarterTactics/`. Revised actual native strategy remains pending, and image/animation quality is not established by the observer alone.
+
+### Actual starting-kit combat completion
+
+Revised actual native combat `c9e07d91e9c944c1a4d2f901c73c227c` completed12/12 with0 unexpected errors and exact restoration. The same ordinary actor finished31/40HP after11 movement keys and5 attack keys, using one original ready Rime Grip and no healing tonic. Actual player-attributed melee death, corpse/original-owned-drop provenance, dead-view removal and current Attack-state/bone capture all passed. The earlier dagger-only death remains a separate valid failed attempt; this is one bounded starter-tactics encounter, not a balance claim or a retry-until-success source selection.
+
+Root viewed actual03 attack and04 outcome frames: reeds near the upper edge partially occlude the actor. Numeric pose and keyboard checks do not establish animation quality or complete C15 model/biome coverage. Full report/log/captures/restoration are under `Verification/DensityCompletion/ReferenceGlade/NativeCombat/c9e07d91e9c944c1a4d2f901c73c227c/`.

@@ -1,0 +1,30 @@
+{
+    "runId": "fc5392c440204b53b957073c363609be",
+    "zone": "Overworld.11.10.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: all three exact authored hostiles and ordinary NPCs before combat turns\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:245 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunCombatAudit>d__20.MoveNext () [0x002de] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeCombat.cs:55 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__86.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:258 ",
+    "canVerify": "Actual authored northern encounter; ordinary starting actor and kit; real movement and attack keys; exact diagnostic actor/target/cause correlation, attempted retaliation, exact death attribution and corpse/original-owned-drop provenance, and native animation/frame observation. No direct attack, pose or damage calls.",
+    "cannotVerify": "One fixed authored encounter and finite script-selected keyboard route. No combat-balance, natural discovery, animation quality or enjoyment claim. Native pose observation and saved frames still need visual assessment; unrelated NPC activity remains enabled.",
+    "mode": "native-keyboard-combat",
+    "combatState": "state=Normal; player=2697@40,12; HP=40/40; dead=False; target=@,; targetHP=; tick=10; energy=1000; moves=0; attacks=0; actualGear=carried:2698|carried:2699|carried:2700|carried:2701|carried:2702|carried:2703;body=;links=2698:Dagger:1:carried=2697:equipped=|2699:HealingTonic:2:carried=2697:equipped=|2700:DriedMeat:2:carried=2697:equipped=|2701:WateringGrimoire:1:carried=2697:equipped=|2702:CandyCarrotSeed:4:carried=2697:equipped=|2703:EmberwheatSeed:2:carried=2697:equipped=; stats=Agility:18:18:0:999|DV:0:0:-50:200|Ego:16:16:0:999|Experience:0:0:0:999999|Hitpoints:40:40:0:40|Intelligence:10:10:1:50|Level:1:1:1:50|SP:0:0:0:999|Speed:100:100:25:200|Strength:18:18:0:999|Toughness:18:18:0:999|Willpower:10:10:1:50|XPValue:10:10:0:9999; messages=Save detected. Press [C] to continue, [N] for new game. | Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook. | [X] skills, [M] abilities, [F5] save, [F1] full controls. | Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination. | Villagers have work for you — press [Q] for your quest log. | Starting a new game. Initial checkpoint saved.",
+    "combatSteps": [],
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS ordinary_combat_start",
+        "FAIL exact_original_hostiles",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/NativeCombat/fc5392c440204b53b957073c363609be/01-gameplay-arrival.png"
+    ],
+    "descriptions": [],
+    "cases": 4,
+    "failures": 3,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "errorsFinalized": true,
+    "seconds": 1.3661273,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

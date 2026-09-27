@@ -23,8 +23,11 @@ namespace CavesOfOoo.Rendering
     public static class SpawnRing3DRecipes
     {
         public static SpawnRing3DRecipe Resolve(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot = null)
+            => SpreadVisitorCreatureLibrary.Refine(zone, entity, SpreadEnvironmentRecipes.Refine(zone, entity, SpreadCommonTerrain.Refine(zone, entity, SpreadCreature3DLibrary.Refine(zone, entity, SpreadSceneryWorldRecipes.Refine(zone, entity, SpreadBiomeHumanoidLibrary.Refine(zone, entity, SpreadPortableWorldRecipes.Refine(zone, entity, ResolveNative(zone, entity, catalog, pilot))))))));
+
+        private static SpawnRing3DRecipe ResolveNative(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot)
         {
-            if (zone == null || catalog == null || !catalog.SupportsZone(zone.ZoneID)) return Refused(entity, "outside-ring");
+            if (zone == null || catalog == null || !catalog.SupportsZone(zone)) return Refused(entity, "outside-ring");
             if (!AreaCompositionScope.Allows(zone)) return Refused(entity,"runtime-place-authority");
             if (zone.ZoneID == FellingSiteBuilder.ZoneID && !FellingSceneRuntime.IsActive(zone)) return Refused(entity, "missing-native-felling-contract");
             if (entity == null) return Refused(null, "missing-native-entity");
@@ -32,6 +35,30 @@ namespace CavesOfOoo.Rendering
             if (cell == null || !cell.Objects.Contains(entity)) return Refused(entity, "not-current-zone-member");
             var render = entity.GetPart<RenderPart>();
             if (render == null || !render.Visible) return Refused(entity, "native-render-hidden");
+            if (entity.BlueprintName == "PouredLiquidPool")
+            {
+                string poured = PouredLiquid3DLibrary.ResolveOwner(entity);
+                return poured == null ? Refused(entity, "unsupported-current-poured-liquid")
+                    : new SpawnRing3DRecipe(entity, poured, null, Village3DProjection.CellCentre(cell.X, cell.Y), false, false);
+            }
+            if (entity.BlueprintName == "VillageDoor")
+            {
+                var door = entity.GetPart<DoorPart>(); var physics = entity.GetPart<PhysicsPart>();
+                if (door == null || !ReferenceEquals(door.ParentEntity, entity)
+                    || physics == null || !ReferenceEquals(physics.ParentEntity, entity)
+                    || !ReferenceEquals(render.ParentEntity, entity) || physics.Takeable || physics.Solid
+                    || physics.InInventory != null || physics.Equipped != null
+                    || entity.HasTag("Creature") || entity.HasTag("Item") || entity.HasTag("Solid") || entity.HasPart<SpatialFootprintPart>()
+                    || entity.HasPart<MorrowfastDoorPart>() || entity.HasPart<SealedLibraryBarrierPart>()
+                    || door.QuarterTurns < 0 || door.QuarterTurns > 3
+                    || !string.IsNullOrEmpty(render.VisualID) || !string.IsNullOrEmpty(render.VisualVariant)
+                    || !string.IsNullOrEmpty(render.GlyphVariants) || render.RenderString != (door.IsClosed ? "+" : "/"))
+                    return Refused(entity, "unsupported-current-village-door");
+                string id = StillleafVoxelLibrary.ModelId(door.IsClosed ? "door" : "open-door",
+                    Variant(zone.ZoneID, entity.BlueprintName, entity.ID, cell.X, cell.Y, 4));
+                return new SpawnRing3DRecipe(entity, id, null,
+                    Village3DProjection.CellCentre(cell.X, cell.Y), false, false, quarterTurns: door.QuarterTurns);
+            }
             if (ReferenceGladePlan.IsActive(zone))
             {
                 string humanoid = entity.BlueprintName == "Warden" ? "ring-sien" : entity.BlueprintName == "Villager" ? "ring-nam" : null;
@@ -49,6 +76,14 @@ namespace CavesOfOoo.Rendering
                     int turn=((entity.GetIntProperty("ReferenceGladeQuarterTurns")%4)+4)%4;
                     return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),false,true,quarterTurns:turn);
                 }
+            }
+            // Only these newly authored species enter this additive route. Existing
+            // native quest/state recipes retain their own identity requirements.
+            if (SpreadPresentationScope.IsActive(zone) && SpreadBiomeActorLibrary.ModelId(entity.BlueprintName) != null)
+            {
+                string animal = SpreadBiomeActorLibrary.ResolveOwner(entity);
+                return animal == null ? Refused(entity, "unsupported-current-spread-animal")
+                    : new SpawnRing3DRecipe(entity, animal, null, Village3DProjection.CellCentre(cell.X, cell.Y), true, false);
             }
             if (entity.HasPart<MultiCellPilotPropPart>()) return ResolvePilot(zone, entity, pilot);
             var component = entity.GetPart<FellingScenePropPart>();

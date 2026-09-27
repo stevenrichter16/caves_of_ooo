@@ -1,0 +1,78 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "86cea88c844044629adae9d1f278bfd0",
+  "run": {
+    "id": "2",
+    "testcasecount": "19668",
+    "result": "Failed(Child)",
+    "total": "19668",
+    "passed": "19654",
+    "failed": "14",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 13:29:36Z",
+    "end-time": "2026-09-27 13:45:26Z",
+    "duration": "949.9437487"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.BiomeAffordanceRenderingTests.ActualPresenterReplacesOnlyTheHarvestedRowsMeshAndRemovesTheSpentOwnerNormally",
+      "message": "  Expected: String starting with \"spread-barley-\"\n  But was:  \"spread-environment-grain-0\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeArtTests.RealGladeRecipePreservesOwnerAndCurrentVisibility(\"Grass\",\"ground\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeArtTests.RealGladeRecipePreservesOwnerAndCurrentVisibility(\"Reeds\",\"pale-reeds\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeArtTests.RealGladeRecipePreservesOwnerAndCurrentVisibility(\"Bush\",\"green-grass\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeArtTests.RealGladeRecipePreservesOwnerAndCurrentVisibility(\"Wall\",\"dark-ruin\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeArtTests.RealGladeRecipePreservesOwnerAndCurrentVisibility(\"Wall\",\"low-wall\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeArtTests.RealGladeRecipePreservesOwnerAndCurrentVisibility(\"Wall\",\"lit-wall\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpawnRing3DCatalogTests.CompleteCoverageResolvesExactNativeFellingOwnersAndEightZones",
+      "message": "System.Reflection.AmbiguousMatchException : Ambiguous match found."
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpawnRing3DCatalogTests.UnknownRuntimeNamesAreHonestFallbackWhileDeclaredReferencesAreStrict",
+      "message": "System.Reflection.AmbiguousMatchException : Ambiguous match found."
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCommonTerrainTests.CustomHiddenAndForeignOwnersCannotAcquireTheScopedAlias(\"visual\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.AlreadyModeledNativeFlowerFieldPreservesItsSuccessfulRecipe",
+      "message": "  Expected string length 16 but was 28. Strings differ at index 7.\n  Expected: \"spread-flowers-3\"\n  But was:  \"spread-environment-flowers-3\"\n  ------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.StillleafSearcherTests.TheSearcherIsRealNamedArt_InBothPresentations",
+      "message": "  Expected: String starting with \"quillhold-scribe-\"\n  But was:  \"spread-person-stillleaf-searcher\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.TerrainRenderCoverageTests.EveryTerrainBlueprintIsEitherGroundOrDeliberatelyAGlyph",
+      "message": "  These terrain blueprints resolve no ground material and are not listed as glyph-only, so they will render as bare ASCII over the flowing ground field. Either map them in EnvironmentSpriteRenderer.ResolveGroundMaterial or add them to GlyphOnlyByDesign with a reason: PouredLiquidPool\n  Expected: <empty>\n  But was:  < \"PouredLiquidPool\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WitnessIntakeCourierTests.ActualSorterParcelReachesActualClerkAndOnlyCarriedCargoCanComplete(True)",
+      "message": "  Expected: String starting with \"drownedledger-parcel-\"\n  But was:  \"spread-portable-sealedbogtakenbody\"\n"
+    }
+  ]
+}

@@ -229,3 +229,34 @@ core action dispatch, transaction/save/replay safeguards, overflow conservation
 and channel-gated diagnostic records under the standalone runtime.
 **Cannot verify yet:** native keyboard discovery/harvest/replay, rendered source
 removal, food/sale balance or Unity-identical maps. Root owns those native checks.
+
+## Native Harvest action timing follow-up
+
+Actual DensityHarvestNativeUiTests executed six cases before the UI change: live world and carried Harvest both succeeded without charging an action, and a stale carried selection also succeeded; those three RED cases were paired with three refusal controls. These were two equally free success routes, not an already-correct carried/world timing asymmetry.
+
+The published narrow InputHandler and InventoryUI changes charge exactly one normal completed turn only after successful Harvest. Carried Harvest additionally requires exact inventory membership and Physics.InInventory ownership at execution; stale selections emit HarvestRejected and remain free. Existing secure core harvesting, yield and finite-owner cleanup behavior is unchanged. The actual runtime source compilation passed before publication. Native six-case GREEN passed within the actual280/280 integrated selection (Integration/native-spread-start-animal-harvest-green). The generated Bones/actual corpse keyboard acquisition remains pending, so this publication does not establish all-family discovery, difficulty or natural harvest acquisition. Exact before/after SHA preconditions and files are included in SpreadBiome/starter-publication.json.
+
+## Native killed-corpse follow-up plan (2026-09-27)
+
+A fresh source/receipt sweep corrects two acceptance assumptions. The successful
+12-case glade combat run produced an actual MarlbackCorpse, but neither its
+creature recipe nor corpse blueprint grants Harvest; it must remain a negative
+control. HarvestablePart has no cutting-tool gate, so the starter dagger is
+combat equipment rather than a Harvest prerequisite. Also, the complete
+23-case C15 native walkthrough actually harvested BerryBush → WildBerries.
+That proves finite native scenery/forage Harvest, while generated Bones keyboard
+acquisition and actual killed-corpse harvesting are still distinct unclosed gates.
+
+The proposed corpse route uses a real generated living SunStriker, ordinary
+player/kit, native melee death attribution, exact corpse SourceID/KillerID,
+native Harvest and authored RawMeat1–2, finite removal and F5/real yield drop/F6
+replacement persistence. Its inherited corpse and harvest chances are100%; no
+RNG override is needed. The authored Beating has only tiers2/3, whose SunStriker
+rows are optional, so source selection is a bounded recorded search of actual
+current wilderness graphs with one labelled live-player approach shortcut. No
+production change or new native execution is claimed. The full correction
+table, source hashes, finite route and paired observer/launcher test strategy
+are in `Verification/DensityCompletion/Scenery/NativeCorpseAcceptance/PLAN.md`
+and `source-sweep.json`. This plan keeps glade combat unchanged and records
+generated Bones as a separate residual rather than inferring it from a generic
+harvest check name. Root owns the eventual test-only and implementation windows.

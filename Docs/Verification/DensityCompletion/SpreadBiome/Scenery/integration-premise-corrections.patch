@@ -1,0 +1,66 @@
+--- native-red49.cs
++++ corrected49.cs
+@@ -18,10 +18,11 @@
+             owner.AddPart(new RenderPart{RenderString="o",ColorString="&y"});owner.AddPart(new PhysicsPart{Solid=false});
+             owner.AddPart(new QuestMarkerTriggerPart{Fact="bmo_stump_reached",Value=1});Assert.True(f.Zone.AddEntity(owner,x,y));return owner;
+         }
+-        private static SpawnRing3DRecipe Native(SpawnRing3DIntegrationFixture f,Entity owner)
++        private static SpawnRing3DRecipe Native(SpawnRing3DIntegrationFixture f,Entity owner)=>Native(f.Zone,f.Library.Definition,owner);
++        private static SpawnRing3DRecipe Native(Zone zone,SpawnRing3DCatalog catalog,Entity owner)
+         {
+             var method=typeof(SpawnRing3DRecipes).GetMethod("ResolveNative",BindingFlags.Static|BindingFlags.NonPublic);
+-            Assert.NotNull(method);return (SpawnRing3DRecipe)method.Invoke(null,new object[]{f.Zone,owner,f.Library.Definition,null});
++            Assert.NotNull(method);return (SpawnRing3DRecipe)method.Invoke(null,new object[]{zone,owner,catalog,null});
+         }
+         private static SpawnRing3DRecipe Refine(Zone zone,Entity owner,SpawnRing3DRecipe prior)
+         {
+@@ -45,7 +46,6 @@
+         [TestCase("HollowStump")]
+         [TestCase("Beehive")]
+         [TestCase("RiverShrine")]
+-        [TestCase("FlowerField")]
+         [TestCase("StoneFloor")]
+         [TestCase("StoneWall")]
+         [TestCase("Chair")]
+@@ -79,6 +79,20 @@
+                 Assert.AreEqual(position,f.Zone.GetEntityPosition(owner));Assert.AreEqual(solid,owner.GetPart<PhysicsPart>().Solid);CollectionAssert.AreEqual(parts,owner.Parts);
+             }
+         }
++        [Test] public void AlreadyModeledNativeFlowerFieldPreservesItsSuccessfulRecipe()
++        {
++            using(var f=new SpawnRing3DIntegrationFixture("Overworld.12.10.0"))
++            {
++                var owner=Add(f,"FlowerField");var before=Native(f,owner);Assert.IsNull(before.Failure);Assert.NotNull(before.ModelId);
++                int version=f.Zone.EntityVersion;var parts=owner.Parts.ToArray();string tiles=f.Zone.TileState.ToSaveString();
++                f.Refresh();var actual=SpawnRing3DRecipes.Resolve(f.Zone,owner,f.Library.Definition);
++                Assert.AreSame(before.Owner,actual.Owner);Assert.AreEqual(before.ModelId,actual.ModelId);Assert.AreEqual(before.Failure,actual.Failure);
++                Assert.AreEqual(before.Position,actual.Position);Assert.AreEqual(before.Batched,actual.Batched);Assert.AreEqual(before.Transient,actual.Transient);
++                Assert.AreEqual(before.ComponentId,actual.ComponentId);Assert.AreEqual(before.QuarterTurns,actual.QuarterTurns);
++                Assert.AreEqual(version,f.Zone.EntityVersion);CollectionAssert.AreEqual(parts,owner.Parts);Assert.AreEqual(tiles,f.Zone.TileState.ToSaveString());
++                Assert.False(actual.ModelId.StartsWith("spread-scenery-",StringComparison.Ordinal),"Successful native FlowerField remains separately owned regional-style work.");
++            }
++        }
+         [TestCase("hidden")][TestCase("removed")][TestCase("same-id-clone")][TestCase("foreign-biome")][TestCase("foreign-render")]
+         public void CurrentOwnerAuthorityLossCannotBorrowItsPriorModel(string change)
+         {
+@@ -184,13 +198,17 @@
+             {
+                 if(village)
+                 {
+-                    Zone selected=null;
++                    Zone selected=null;var inspected=new System.Collections.Generic.List<string>();
+                     for(int y=0;y<WorldMap.Height&&selected==null;y++)for(int x=0;x<WorldMap.Width&&selected==null;x++)
+                     {
+                         if(f.Manager.WorldMap.GetBiome(x,y)!=BiomeType.Spread||f.Manager.WorldMap.GetPOI(x,y)?.Type!=POIType.Village)continue;
+-                        selected=f.Manager.GetZone(WorldMap.ToZoneID(x,y,0));
++                        string id=WorldMap.ToZoneID(x,y,0);var candidate=f.Manager.GetZone(id);
++                        int count=candidate?.GetReadOnlyEntities().Count(owner=>SpreadSceneryRecipes.TryModel(owner,0,out _)
++                            &&Native(candidate,f.Library.Definition,owner).Failure=="unmodeled-native-blueprint")??0;
++                        inspected.Add(id+":"+count);if(count>0)selected=candidate;
+                     }
+-                    Assert.NotNull(selected,"Actual current-map Spread village source required.");
++                    TestContext.WriteLine("Inspected actual Spread villages: "+string.Join(",",inspected));
++                    Assert.NotNull(selected,"Actual current-map Spread village with native-missing scenery required: "+string.Join(",",inspected));
+                     f.Zone.RemoveEntity(f.Player);f.Zone=selected;var at=f.FreeCell();Assert.True(f.Zone.AddEntity(f.Player,at.x,at.y));
+                     f.Manager.SetActiveZone(selected);f.Reveal();f.Bind(selected);
+                 }

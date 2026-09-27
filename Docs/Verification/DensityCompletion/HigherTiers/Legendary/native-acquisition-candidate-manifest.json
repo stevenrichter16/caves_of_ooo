@@ -1,0 +1,78 @@
+{
+  "status": "Published reviewed bounded adjacent-hostile native melee recovery; compiler GREEN;19-check native replay pending.",
+  "sources": {
+    "DensityFindsNativePlayer.cs": "9fff39ed7d5185ea9c2bf964749ef5b5903c64f511ed94f58d48d51984a1ab45",
+    "DensityFindsNativePlayer.cs.meta": "e1478698887fed29aa48077778339aeaf741eb19fe31b38fadc43d11edd17c95",
+    "DensityFindsNativeBatch.cs": "88e2e7242f8a7c8b281af2beda4445eb6174d485eec08704574a8f359e052286",
+    "DensityFindsNativeBatch.cs.meta": "475017762b9f9c6ad2b6c2d8fc351294c9f1523c4544baa64c3f4ba757cd0fa1"
+  },
+  "plan": "PLAN.md",
+  "red": "missing-driver-red.log (actual missing-source compile failure before creation)",
+  "runtime": "runtime-starter-control.log (actual Unity references, zero errors)",
+  "editor": "editor-current.log",
+  "review": "Independent source selection/real acquisition/save/cleanup read. Equipment ownership gap fixed; exact captured slots/body/Physics owners compared after F6. Actual starting-control/FX helper independently reviewed in C10 and copied with dead-target guard.",
+  "limits": [
+    "Native retries prove actual deep-cache acquisition, equipment, inspection and guardian defeat; keeper/reward/save completion remains pending.",
+    "One ordinary actor, two explicit travel starts; fixed seed1; every candidate recorded.",
+    "No source/reward/health/AI/stat grants or roll override; actual starting Calm/Rime Grip available.",
+    "No generic ordinary-zone unload claim; exact loaded source depletion verified."
+  ],
+  "preflightRepair": {
+    "firstNativeRun": "afe6159bf2bd4b8fb89f6478a39c2ab8",
+    "finding": "No-domain-reload registry retained only four ItemEnhancingTests stubs. All16 unmarked finds were mislabelled ordinary chance misses. Invalid source-census evidence.",
+    "guard": "Before new-game input require exact five production type registrations through normal lazy initialization; never reset/register to conceal contamination.",
+    "requiredChecks": 19,
+    "runtimeCompile": "registry-preflight-runtime.log",
+    "editorCompile": "registry-preflight-editor.log"
+  },
+  "equipmentConfirmationRepair": {
+    "priorSharedHash": "a4ce603c2a001314323bcadd1350e15c2e0076e52fb93eeab29fbe0e25a4f887",
+    "nativeFailure": "1f56e919e32d40b98c2567bc1285ab2f",
+    "cause": "Generic Escape cleanup cancelled actual equip_auto displacement confirmation.",
+    "behavior": "Verify exact requested item and current equipped displacement owners; native Y; require popup closure and exact equipped owner before leaving inventory.",
+    "review": "Independent InventoryUI flow review found no concrete false-positive blocker; original failure retained.",
+    "runtime": "equipment-confirm-runtime.log",
+    "editor": "equipment-confirm-editor.log"
+  },
+  "earnedAnnouncementRepair": {
+    "priorSharedHash": "9781a356c25a866a714ebbdeea795b0e161a0243de58774e59040277a54a7043",
+    "nativeFailure": "3dca03893470443c9c829cabf5949dec",
+    "provenBeforeFailure": "Real modified maul equipped+inspected, actual guardian killed;550XP naturally earned Levels2/3 and44maxHP.",
+    "behavior": "At gameplay boundaries show actual queued UI; only exact earned-level text matching current level and log; Escape; compare all stats/gear/slots/tick/energy/cell unchanged. Never consume queue or modify gains.",
+    "review": "Independent actual-UI flow reread found no concrete blocker.",
+    "runtime": "advancement-runtime.log",
+    "editor": "advancement-editor.log"
+  },
+  "ownerRouteRepair": {
+    "priorSharedHash": "e0537acee266497ba4360f16c22c7e613350a8648ef91b4628051724d3294451",
+    "nativeFailure": "1520cd447eb6498ca32fb875b38fc56d",
+    "observed": "Nine required checks passed; earned modal handled; live actor44/44HP, Normal at37,11 in keeper zone when safe route was refused.",
+    "behavior": "Re-resolve current owner after each real key; same threat/occupancy/trigger predicate; if reach is blocked, walk to a ready real Calm/Rime Grip first-impact line. Record nearby owner positions/control states and each route.",
+    "limits": "No recorded exact boss coordinates in original failure; specific target geometry is inferred. This predicate is not all-hazard immunity. No source/seed/actor/stat/AI/reward/RNG change.",
+    "review": "Independent bounded read found no concrete blocker; route remains finite160 steps and native acceptance is pending.",
+    "runtime": "route-runtime.log",
+    "editor": "route-editor.log",
+    "patch": "native-route-repair.patch"
+  },
+  "cooldownRecoveryRepair": {
+    "priorSharedHash": "79fd5018f2ad72e0307c8d264b638affc882dd30cbcfb1da0fde8ea81edd3a48",
+    "nativeFailure": "f398e421d1e640ba8b81b1353ae963ec",
+    "observed": "Player38,11 Normal44/44HP; keeper42,11 frozenCold0.475; active Bandfrogs43,10 and43,13; Calm5 andRime34 cooldown. Successful real Rime cast preceding route refusal.",
+    "behavior": "At most12 actual native waiting or safe retreat actions when no current reach/ready-ray route exists and a starting control is cooling. Same safety predicate; exact position, scheduler action and cooldown-advance controls. Replan after every action.",
+    "review": "cooldown-review.md",
+    "runtime": "cooldown-runtime.log",
+    "editor": "cooldown-editor.log",
+    "patch": "native-cooldown-recovery.patch"
+  },
+  "adjacentRouteCombatRepair": {
+    "status": "PUBLISHED; independently reviewed; offline native-reference runtime/editor compile zero errors. Actual native replay pending.",
+    "source": "Assets/Scripts/Scenarios/Custom/DensityFindsNativePlayer.cs",
+    "priorSha256": "8d7ee45f0ae50c1634bc3404de8d7ca3e75de24b7021dcdc495b786d16391094",
+    "candidateSha256": "9fff39ed7d5185ea9c2bf964749ef5b5903c64f511ed94f58d48d51984a1ab45",
+    "nativeRed": "8ee69ab842794f1caa7374c6449f7dba",
+    "patch": "native-adjacent-route-combat.patch",
+    "review": "route-melee-review.md",
+    "runtime": "route-melee-runtime.log",
+    "editor": "route-melee-editor.log"
+  }
+}

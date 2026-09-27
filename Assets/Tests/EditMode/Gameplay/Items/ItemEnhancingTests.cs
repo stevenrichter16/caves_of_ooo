@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 using NUnit.Framework;
 using CavesOfOoo.Core;
 using CavesOfOoo.Diagnostics;
@@ -23,15 +26,55 @@ namespace CavesOfOoo.Tests
     /// </summary>
     public class ItemEnhancingTests
     {
+        private const BindingFlags RegistryFlags = BindingFlags.Static | BindingFlags.NonPublic;
+        private Dictionary<string, Type> _savedClasses;
+        private Dictionary<string, Type> _savedDisplayNames;
+        private bool _savedInitialized;
+        private bool _hasSavedRegistry;
+
+        private static Dictionary<string, Type> Registry(string field)
+        {
+            return (Dictionary<string, Type>)typeof(EnhancementFactory)
+                .GetField(field, RegistryFlags).GetValue(null);
+        }
+
         [SetUp]
         public void Setup()
         {
+            _savedClasses = new Dictionary<string, Type>(Registry("_byClassName"));
+            _savedDisplayNames = new Dictionary<string, Type>(Registry("_byDisplayName"));
+            _savedInitialized = (bool)typeof(EnhancementFactory)
+                .GetField("_initialized", RegistryFlags).GetValue(null);
+            _hasSavedRegistry = true;
             EnhancementFactory.ResetForTests();
             EnhancementFactory.Register(typeof(StubA));
             EnhancementFactory.Register(typeof(StubB));
             EnhancementFactory.Register(typeof(StubC));
             EnhancementFactory.Register(typeof(StubRejecter));
             Diag.ResetAll();
+        }
+
+        [TearDown]
+        public void RestoreRegistry()
+        {
+            if (!_hasSavedRegistry)
+                return;
+
+            // The editor may enter Play without reloading the domain. Restore
+            // the exact borrowed registry, including an uninitialized state.
+            RestoreMap("_byClassName", _savedClasses);
+            RestoreMap("_byDisplayName", _savedDisplayNames);
+            typeof(EnhancementFactory).GetField("_initialized", RegistryFlags)
+                .SetValue(null, _savedInitialized);
+            _hasSavedRegistry = false;
+        }
+
+        private static void RestoreMap(string field, Dictionary<string, Type> saved)
+        {
+            var registry = Registry(field);
+            registry.Clear();
+            foreach (var entry in saved)
+                registry.Add(entry.Key, entry.Value);
         }
 
         // ── Stubs ─────────────────────────────────────────────────

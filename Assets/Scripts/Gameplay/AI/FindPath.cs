@@ -136,16 +136,20 @@ namespace CavesOfOoo.Core
                     // passability check and the terrain/gas hazard penalty.
                     var neighborCell = zone.GetCell(nx, ny);
 
-                    // Goal cell is always considered passable (we want to path TO it)
+                    // Doors never inherit the legacy goal-cell shortcut. A capable
+                    // actor may plan one paid opening action, without changing it.
+                    int doorCost = DoorStepCost(zone, neighborCell, actor);
+                    if (doorCost < 0) continue;
                     bool wideActor = actor?.HasPart<SpatialFootprintPart>() == true;
                     if (wideActor || contactTarget != null)
                     {
-                        if (!zone.CanPlaceFootprint(actor, nx, ny, ignoreCreatures)) continue;
+                        if (!zone.CanPlaceFootprint(actor, nx, ny, ignoreCreatures, allowOperableDoors: true)) continue;
                     }
                     else if (neighborIdx != goalIdx)
                     {
                         if (neighborCell == null) continue;
-                        if (!neighborCell.IsPassable()) continue;
+                        if (!neighborCell.IsPassable()
+                            && !(doorCost > 0 && zone.CanPlaceFootprint(actor, nx, ny, ignoreCreatures, allowOperableDoors: true))) continue;
 
                         // When not ignoring creatures, also check PhysicsPart.Solid.
                         // Cell.IsPassable() only checks the "Solid" tag (walls), but
@@ -172,7 +176,7 @@ namespace CavesOfOoo.Core
                     // Finite terrain/gas avoidance cost for the complete body.
                     // Actor-less callers remain unchanged; a sole hazardous
                     // route can still reach the goal.
-                    int tentativeG = Pool[currentIdx].G + Cost[dir];
+                    int tentativeG = Pool[currentIdx].G + Cost[dir] + doorCost;
                     if (actor != null && neighborCell != null)
                         tentativeG += TerrainNavigationWeight.ForStep(zone, nx, ny, actor);
 
@@ -201,6 +205,34 @@ namespace CavesOfOoo.Core
 
             // No path found
             return result;
+        }
+
+        private static int DoorStepCost(Zone zone, Cell target, Entity actor)
+        {
+            if (target == null) return -1;
+            var cells = actor == null ? default(OccupiedCells) : zone.GetOccupiedCells(actor, target.X, target.Y);
+            HashSet<Entity> seen = null;
+            int cost = 0;
+            if (actor == null)
+            {
+                foreach (var owner in target.Occupants)
+                    if (owner.GetPart<DoorPart>()?.IsClosed == true) return -1;
+                return 0;
+            }
+            foreach (var cell in cells)
+            {
+                if (cell == null) return -1;
+                foreach (var owner in cell.Occupants)
+                {
+                    var door = owner.GetPart<DoorPart>();
+                    if (door?.IsClosed != true) continue;
+                    if (seen == null) seen = new HashSet<Entity>();
+                    if (!seen.Add(owner)) continue;
+                    if (!door.CanOperate(actor, zone)) return -1;
+                    cost += 10;
+                }
+            }
+            return cost;
         }
 
         /// <summary>Finds any reachable, non-overlapping body contact. One A*

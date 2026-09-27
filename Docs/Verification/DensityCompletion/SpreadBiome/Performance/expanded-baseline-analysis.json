@@ -1,0 +1,440 @@
+{
+  "runId": "1eff33093df740a39bc8495b4e8da91c",
+  "rawSha256": "7ba27eb6901f86600019e8bc83e3db7942db587cc5665aa9b0741210746a564e",
+  "sampleRows": 1734,
+  "scope": "Editor-only native route. First two observations excluded. Latest-completed profiler values may lag current renderer snapshot. Redraw groups use their own completed RenderZone marker; no same-row dirty attribution. Nested values overlap and are not additive. No RenderCell measurements when detailed cell profiling is disabled.",
+  "lagComparison": [
+    {
+      "recorderRowMinusSnapshotRow": -2,
+      "absoluteDifferenceMs": {
+        "count": 1730,
+        "mean": 32.68824343526011,
+        "p50": 0.476221,
+        "p95": 195.42722684999998,
+        "max": 243.04010000000002
+      }
+    },
+    {
+      "recorderRowMinusSnapshotRow": -1,
+      "absoluteDifferenceMs": {
+        "count": 1731,
+        "mean": 32.58157379780474,
+        "p50": 0.3659079999999997,
+        "p95": 195.5375335,
+        "max": 242.81490000000002
+      }
+    },
+    {
+      "recorderRowMinusSnapshotRow": 0,
+      "absoluteDifferenceMs": {
+        "count": 1732,
+        "mean": 32.48534521593534,
+        "p50": 0.24915399999999988,
+        "p95": 195.60215974999997,
+        "max": 242.8862
+      }
+    },
+    {
+      "recorderRowMinusSnapshotRow": 1,
+      "absoluteDifferenceMs": {
+        "count": 1731,
+        "mean": 0.006909920854997089,
+        "p50": 0.004875000000000185,
+        "p95": 0.017675000000000107,
+        "max": 0.20680000000000032
+      }
+    },
+    {
+      "recorderRowMinusSnapshotRow": 2,
+      "absoluteDifferenceMs": {
+        "count": 1730,
+        "mean": 32.426833736416185,
+        "p50": 0.25101300000000015,
+        "p95": 195.63030924999998,
+        "max": 242.87774199999998
+      }
+    }
+  ],
+  "groups": {
+    "allAfterFirstTwo": {
+      "COO.ZoneRenderer.LateUpdate": {
+        "count": 1732,
+        "mean": 19.80668767205543,
+        "p50": 3.5494995,
+        "p95": 184.44698749999992,
+        "max": 246.431
+      },
+      "COO.Input.Update": {
+        "count": 1732,
+        "mean": 1.7896995744803694,
+        "p50": 0.04325,
+        "p95": 19.176073099999993,
+        "max": 26.44875
+      },
+      "COO.ZoneRenderer.RenderZone": {
+        "count": 1732,
+        "mean": 15.628268911662818,
+        "p50": 0.0,
+        "p95": 174.94624999999985,
+        "max": 235.791125
+      },
+      "COO.ZoneRenderer.RenderCell": {
+        "count": 1732,
+        "mean": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "COO.ZoneRenderer.ComputeFOV": {
+        "count": 1732,
+        "mean": 1.547176452078522,
+        "p50": 0.0,
+        "p95": 16.21825609999999,
+        "max": 25.992125
+      },
+      "COO.ZoneRenderer.ComputeLightMap": {
+        "count": 1732,
+        "mean": 0.3690371651270208,
+        "p50": 0.0,
+        "p95": 4.112970499999999,
+        "max": 6.668459
+      },
+      "COO.ZoneRenderer.UpdateAmbientAnimations": {
+        "count": 1732,
+        "mean": 0.002890401270207852,
+        "p50": 0.002292,
+        "p95": 0.005459,
+        "max": 0.0605
+      },
+      "COO.ZoneRenderer.RenderSidebar": {
+        "count": 1732,
+        "mean": 1.077412236143187,
+        "p50": 0.45518800000000004,
+        "p95": 6.636801749999999,
+        "max": 10.754417
+      },
+      "COO.ZoneRenderer.RenderHotbar": {
+        "count": 1732,
+        "mean": 2.903714604503464,
+        "p50": 2.870104,
+        "p95": 3.9602543499999996,
+        "max": 4.52075
+      },
+      "COO.EnvSprites.PostRender": {
+        "count": 1732,
+        "mean": 0.9735660877598153,
+        "p50": 0.0,
+        "p95": 10.313356099999996,
+        "max": 16.980584
+      },
+      "COO.UI.Sidebar.Render": {
+        "count": 1732,
+        "mean": 0.5925153758660509,
+        "p50": 0.0095205,
+        "p95": 6.1902208,
+        "max": 8.770041
+      },
+      "COO.UI.Hotbar.Render": {
+        "count": 1732,
+        "mean": 2.8660380889145496,
+        "p50": 2.834146,
+        "p95": 3.9219456499999996,
+        "max": 4.486958
+      },
+      "COO.Turns.ProcessUntilPlayerTurn": {
+        "count": 1732,
+        "mean": 0.36435202309468817,
+        "p50": 0.0,
+        "p95": 4.1534815499999995,
+        "max": 6.006917
+      },
+      "COO.Turns.Tick": {
+        "count": 1732,
+        "mean": 0.0011235848729792147,
+        "p50": 0.0,
+        "p95": 0.01208245,
+        "max": 0.032667
+      },
+      "COO.Turns.AI.TakeTurn": {
+        "count": 1732,
+        "mean": 0.34534672632794455,
+        "p50": 0.0,
+        "p95": 3.97936425,
+        "max": 5.6865
+      },
+      "COO.Turns.EndTurn": {
+        "count": 1732,
+        "mean": 0.021606566974595842,
+        "p50": 0.0,
+        "p95": 0.20782919999999983,
+        "max": 0.792917
+      }
+    },
+    "completedRedrawMarkerPositive": {
+      "COO.ZoneRenderer.LateUpdate": {
+        "count": 150,
+        "mean": 190.40332773333333,
+        "p50": 187.3864165,
+        "p95": 229.95356494999996,
+        "max": 246.431
+      },
+      "COO.Input.Update": {
+        "count": 150,
+        "mean": 20.174591146666668,
+        "p50": 20.8488125,
+        "p95": 23.821962799999994,
+        "max": 26.44875
+      },
+      "COO.ZoneRenderer.RenderZone": {
+        "count": 150,
+        "mean": 180.4544117,
+        "p50": 178.795646,
+        "p95": 218.3830891,
+        "max": 235.791125
+      },
+      "COO.ZoneRenderer.RenderCell": {
+        "count": 150,
+        "mean": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "COO.ZoneRenderer.ComputeFOV": {
+        "count": 150,
+        "mean": 17.864730766666668,
+        "p50": 16.847229,
+        "p95": 22.19837225,
+        "max": 25.992125
+      },
+      "COO.ZoneRenderer.ComputeLightMap": {
+        "count": 150,
+        "mean": 4.261149133333333,
+        "p50": 4.2136875,
+        "p95": 5.698643749999999,
+        "max": 6.668459
+      },
+      "COO.ZoneRenderer.UpdateAmbientAnimations": {
+        "count": 150,
+        "mean": 0.004321693333333334,
+        "p50": 0.0041875,
+        "p95": 0.0062121999999999985,
+        "max": 0.008166
+      },
+      "COO.ZoneRenderer.RenderSidebar": {
+        "count": 150,
+        "mean": 7.2326722000000006,
+        "p50": 6.8503335,
+        "p95": 9.07465885,
+        "max": 9.328583
+      },
+      "COO.ZoneRenderer.RenderHotbar": {
+        "count": 150,
+        "mean": 2.4232538800000003,
+        "p50": 2.2965,
+        "p95": 3.091582999999999,
+        "max": 3.252791
+      },
+      "COO.EnvSprites.PostRender": {
+        "count": 150,
+        "mean": 11.241443093333334,
+        "p50": 10.702646,
+        "p95": 14.3561955,
+        "max": 16.980584
+      },
+      "COO.UI.Sidebar.Render": {
+        "count": 150,
+        "mean": 6.735410253333334,
+        "p50": 6.326896,
+        "p95": 8.45921425,
+        "max": 8.770041
+      },
+      "COO.UI.Hotbar.Render": {
+        "count": 150,
+        "mean": 2.36587026,
+        "p50": 2.2453125,
+        "p95": 3.0074477999999996,
+        "max": 3.13375
+      },
+      "COO.Turns.ProcessUntilPlayerTurn": {
+        "count": 150,
+        "mean": 4.2070513599999995,
+        "p50": 4.4259165,
+        "p95": 5.65678095,
+        "max": 6.006917
+      },
+      "COO.Turns.Tick": {
+        "count": 150,
+        "mean": 0.01297366,
+        "p50": 0.0128135,
+        "p95": 0.016566549999999992,
+        "max": 0.032667
+      },
+      "COO.Turns.AI.TakeTurn": {
+        "count": 150,
+        "mean": 3.9876035333333335,
+        "p50": 4.2021045,
+        "p95": 5.3362516,
+        "max": 5.6865
+      },
+      "COO.Turns.EndTurn": {
+        "count": 150,
+        "mean": 0.24948382666666666,
+        "p50": 0.22441650000000002,
+        "p95": 0.44894414999999965,
+        "max": 0.792917
+      }
+    },
+    "completedRedrawMarkerZero": {
+      "COO.ZoneRenderer.LateUpdate": {
+        "count": 1582,
+        "mean": 3.631279322376738,
+        "p50": 3.503333,
+        "p95": 4.832097599999999,
+        "max": 14.990708
+      },
+      "COO.Input.Update": {
+        "count": 1582,
+        "mean": 0.04650505120101138,
+        "p50": 0.042167,
+        "p95": 0.072,
+        "max": 0.131167
+      },
+      "COO.ZoneRenderer.RenderZone": {
+        "count": 1582,
+        "mean": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "COO.ZoneRenderer.RenderCell": {
+        "count": 1582,
+        "mean": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "COO.ZoneRenderer.ComputeFOV": {
+        "count": 1582,
+        "mean": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "COO.ZoneRenderer.ComputeLightMap": {
+        "count": 1582,
+        "mean": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "COO.ZoneRenderer.UpdateAmbientAnimations": {
+        "count": 1582,
+        "mean": 0.0027546908975979775,
+        "p50": 0.002166,
+        "p95": 0.004787799999999985,
+        "max": 0.0605
+      },
+      "COO.ZoneRenderer.RenderSidebar": {
+        "count": 1582,
+        "mean": 0.4937908742098609,
+        "p50": 0.44347899999999996,
+        "p95": 0.6782690999999995,
+        "max": 10.754417
+      },
+      "COO.ZoneRenderer.RenderHotbar": {
+        "count": 1582,
+        "mean": 2.949270298988622,
+        "p50": 2.8908329999999998,
+        "p95": 3.9821225999999985,
+        "max": 4.52075
+      },
+      "COO.EnvSprites.PostRender": {
+        "count": 1582,
+        "mean": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "COO.UI.Sidebar.Render": {
+        "count": 1582,
+        "mean": 0.010066430467762327,
+        "p50": 0.009291,
+        "p95": 0.014370849999999985,
+        "max": 0.030583
+      },
+      "COO.UI.Hotbar.Render": {
+        "count": 1582,
+        "mean": 2.9134623457648545,
+        "p50": 2.858729,
+        "p95": 3.9318562499999996,
+        "max": 4.486958
+      },
+      "COO.Turns.ProcessUntilPlayerTurn": {
+        "count": 1582,
+        "mean": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "COO.Turns.Tick": {
+        "count": 1582,
+        "mean": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "COO.Turns.AI.TakeTurn": {
+        "count": 1582,
+        "mean": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "COO.Turns.EndTurn": {
+        "count": 1582,
+        "mean": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      }
+    }
+  },
+  "settingsBefore": {
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "targetWidth": 1461,
+    "targetHeight": 918,
+    "msaa": 1,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "groundBuildCount": 40,
+    "gc0": 1040,
+    "gc1": 1040,
+    "gc2": 1040,
+    "filter": "Bilinear",
+    "zone": "Overworld.11.10.0",
+    "runInBackground": true,
+    "focused": true,
+    "profilerEnabled": false,
+    "timeScale": 1.0
+  },
+  "settingsAfter": {
+    "screenWidth": 1920,
+    "screenHeight": 1080,
+    "targetWidth": 1461,
+    "targetHeight": 918,
+    "msaa": 1,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "groundBuildCount": 40,
+    "gc0": 1041,
+    "gc1": 1041,
+    "gc2": 1041,
+    "filter": "Bilinear",
+    "zone": "Overworld.11.10.0",
+    "runInBackground": true,
+    "focused": true,
+    "profilerEnabled": false,
+    "timeScale": 1.0
+  }
+}

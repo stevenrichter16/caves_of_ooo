@@ -1,0 +1,120 @@
+--- a/Assets/Scripts/Scenarios/Custom/DensityFindsNativePlayer.cs
++++ b/Assets/Scripts/Scenarios/Custom/DensityFindsNativePlayer.cs
+@@ -31,7 +31,7 @@
+         private Zone _stagedZone;
+         private Keyboard _keyboard, _oldKeyboard;
+         private InputSettings _oldSettings, _settings;
+-        private bool _oldBackground, _oldScenario, _cleaned, _errorsFinalized, _summaryEmitted;
++        private bool _oldBackground, _oldScenario, _oldDamage, _cleaned, _errorsFinalized, _summaryEmitted;
+         private int _failures, _unexpectedErrors;
+         private string _ownedRoot, _fatal;
+         private System.Diagnostics.Stopwatch _clock;
+@@ -122,6 +122,7 @@
+             _context = context; _ownedRoot = SaveGameService.SaveRootOverride;
+             _clock = System.Diagnostics.Stopwatch.StartNew();
+             _oldScenario = Diag.IsChannelEnabled("scenario"); Diag.SetChannel("scenario", true);
++            _oldDamage = Diag.IsChannelEnabled("damage"); Diag.SetChannel("damage", true);
+             _oldKeyboard = Keyboard.current; _oldSettings = InputSystem.settings; _settings = Instantiate(_oldSettings);
+             _settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
+ #if UNITY_EDITOR
+@@ -600,7 +601,61 @@
+             }
+             return null;
+         }
+-        private int _controlRecoveryActions;
++        private int _controlRecoveryActions, _routeMeleeAttempts;
++        private readonly List<string> _routeMeleeWindows = new List<string>();
++        private Entity AdjacentRouteThreat(Entity destinationOwner)
++        {
++            var actor = _input.PlayerEntity; var zone = _input.CurrentZone;
++            return zone.GetReadOnlyEntities().Where(enemy => enemy != destinationOwner && IsActiveVisibleThreat(enemy)
++                && FactionManager.IsHostile(actor, enemy)
++                && ReferenceEquals(enemy.GetPart<BrainPart>()?.CurrentZone, zone)
++                && _input.TurnManager.IsRegistered(enemy) && SpatialQuery.Distance(zone, actor, enemy) == 1)
++                .OrderBy(enemy => enemy.GetStatValue("Hitpoints")).ThenBy(enemy => enemy.ID, StringComparer.Ordinal).FirstOrDefault();
++        }
++        private IEnumerator StrikeAdjacentRouteThreat(Entity enemy, Entity destinationOwner)
++        {
++            Require(_routeMeleeAttempts < 40 && ReferenceEquals(AdjacentRouteThreat(destinationOwner), enemy),
++                "bounded native melee against exact current adjacent visible active hostile; " + RuntimeDetails());
++            var actor = _input.PlayerEntity; var zone = _input.CurrentZone; var from = Cell();
++            var to = SpatialQuery.ClosestCell(zone, enemy, from.X, from.Y);
++            Require(zone.GetReadOnlyEntities().Count(e => e.ID == enemy.ID) == 1
++                && Math.Max(Math.Abs(to.X - from.X), Math.Abs(to.Y - from.Y)) == 1,
++                "unique adjacent native route enemy owns its physical cell");
++            int serial = MessageLog.GetRecentEntries(1).LastOrDefault().Serial;
++            Diag.Record("scenario", "DensityFindsRouteMeleeStart", actor, enemy,
++                new { runId = RunId, destinationOwner = destinationOwner.ID,
++                    fromX = from.X, fromY = from.Y, targetX = to.X, targetY = to.Y,
++                    actorHP = actor.GetStatValue("Hitpoints"), enemyHP = enemy.GetStatValue("Hitpoints") });
++            string marker = Diag.Snapshot(1).Single().TraceId;
++            IReadOnlyList<Diag.Entry> rows = null;
++            try
++            {
++                _routeMeleeAttempts++;
++                yield return Tap(Direction(Math.Sign(to.X - from.X), Math.Sign(to.Y - from.Y)));
++            }
++            finally
++            {
++                rows = Diag.Snapshot(Diag.BufferCapacity);
++                _routeMeleeWindows.Add(Newtonsoft.Json.JsonConvert.SerializeObject(new
++                {
++                    marker, actor = actor.ID, enemy = enemy.ID, blueprint = enemy.BlueprintName,
++                    actorHP = actor.GetStatValue("Hitpoints"), actorDead = CombatSystem.IsDeathHandled(actor),
++                    enemyHP = enemy.GetStatValue("Hitpoints"), enemyDead = CombatSystem.IsDeathHandled(enemy),
++                    records = rows.SkipWhile(row => row.TraceId != marker).ToArray()
++                }));
++            }
++            Require(rows.Count(row => row.TraceId == marker && row.Kind == "DensityFindsRouteMeleeStart"
++                && row.ActorId == actor.ID && row.TargetId == enemy.ID) == 1
++                && rows.SkipWhile(row => row.TraceId != marker).Any(row => row.Category == "damage" && row.Kind == "HitRoll"
++                    && row.ActorId == actor.ID && row.TargetId == enemy.ID && !string.IsNullOrEmpty(row.CauseTraceId)),
++                "real native route melee dispatched against the intended hostile");
++            yield return DismissEarnedAdvancement();
++            _transcript.AddRange(MessageLog.GetRecentEntries(24).Where(e => e.Serial > serial).Select(e => "route combat: " + e.Text));
++            _descriptions.Add(new Description { subject = "Actual adjacent route combat", source = enemy.ID,
++                text = "native movement attack with actual earned kit; " + enemy.BlueprintName
++                    + "; HP=" + enemy.GetStatValue("Hitpoints") + "; dead=" + CombatSystem.IsDeathHandled(enemy)
++                    + "; attempt=" + _routeMeleeAttempts + "; marker=" + marker });
++        }
+         private ActivatedAbility[] CoolingStartingControls()
+         {
+             var abilities = _input.PlayerEntity.GetPart<ActivatedAbilitiesPart>();
+@@ -692,6 +747,12 @@
+                 yield return ProtectRouteWithStartingControl();
+                 if (CombatSystem.IsDeathHandled(target) || (target.HasTag("Creature") && target.GetStatValue("Hitpoints") <= 0)) yield break;
+                 if (SpatialQuery.Distance(_input.CurrentZone, _input.PlayerEntity, target) <= 1) yield break;
++                var adjacentThreat = AdjacentRouteThreat(target);
++                if (adjacentThreat != null)
++                {
++                    yield return StrikeAdjacentRouteThreat(adjacentThreat, target);
++                    continue;
++                }
+                 var path = SafeRouteTo(c => SpatialQuery.DistanceToCell(_input.CurrentZone, target, c.X, c.Y) <= 1);
+                 string goal = "current owner reach";
+                 if (path == null)
+@@ -911,7 +972,7 @@
+                 complete = Complete, errorsFinalized = _errorsFinalized, seconds = _clock?.Elapsed.TotalSeconds ?? 0,
+                 keyboardMoves = _keyboardMoves, startingTonicsUsed = _startingTonicsUsed, routeZones = _routeZones.ToArray(), transcript = _transcript.ToArray(),
+                 startShortcut = _usedStartShortcut, bossID = _bossID, rewardID = _rewardID, checkpointHash = _checkpointHash,
+-                zone = _input?.CurrentZone?.ZoneID, failureState = _failureState, nativeKeys = _nativeKeys.ToArray(), candidates = _candidates.ToArray(), stageStarts = _starts, generatedZones = _generatedZones, fatal = _fatal, audit = _audit.ToArray(), screenshots = _screenshots.ToArray(), descriptions = _descriptions.ToArray(),
++                zone = _input?.CurrentZone?.ZoneID, failureState = _failureState, nativeKeys = _nativeKeys.ToArray(), routeMeleeWindows = _routeMeleeWindows.ToArray(), candidates = _candidates.ToArray(), stageStarts = _starts, generatedZones = _generatedZones, fatal = _fatal, audit = _audit.ToArray(), screenshots = _screenshots.ToArray(), descriptions = _descriptions.ToArray(),
+                 canVerify = "Fixed seed1 actual modified deep reliquary and unforced named final keeper; native key pickup, unlock, collection, equipment, inspection, ordinary active-AI fights, same actual rewards and real F5/mutate/F6 proof. Actual starting Calm/Rime Grip may pacify/freeze targets through native hotbar use; this is an acquisition audit, not a duel. All candidate outcomes recorded.",
+                 cannotVerify = "Two explicitly labelled content-stage starts shorten travel to real source entrances. No source/gear/currency/stat/health grant or modifier roll override. Starting stats are ordinary; naturally earned XP/equipment remain real. First combat failure is retained with no reseed/retry. Bounded generated-source selection is not discovery, frequency, natural progression or combat-balance evidence. Screenshots still need visual review."
+             }, true));
+@@ -920,6 +981,7 @@
+         private void Cleanup()
+         {
+             if (_cleaned) return; _cleaned = true;
++            Diag.SetChannel("damage", _oldDamage);
+             if (_keyboard != null) { InputSystem.QueueStateEvent(_keyboard, new KeyboardState()); InputSystem.RemoveDevice(_keyboard); }
+             if (_oldKeyboard != null && _oldKeyboard.added) _oldKeyboard.MakeCurrent();
+             if (_oldSettings != null) InputSystem.settings = _oldSettings;
+@@ -938,6 +1000,7 @@
+         {
+             public string runId, zone, fatal, canVerify, cannotVerify;
+             public NativeState failureState; public NativeKeyStep[] nativeKeys;
++            public string[] routeMeleeWindows;
+             public CandidateRow[] candidates; public int stageStarts, generatedZones;
+             public string[] audit, screenshots;
+             public Description[] descriptions;

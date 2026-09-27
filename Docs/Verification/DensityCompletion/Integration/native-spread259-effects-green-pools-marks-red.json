@@ -1,0 +1,142 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "8351c374aeb346c69c2727f3b69f5783",
+  "run": {
+    "id": "2",
+    "testcasecount": "259",
+    "result": "Failed(Child)",
+    "total": "259",
+    "passed": "229",
+    "failed": "30",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 06:59:11Z",
+    "end-time": "2026-09-27 06:59:53Z",
+    "duration": "41.7216184"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.SpreadNativeModelLookupTests.ExactExtensionRequestsOnlyItsOwningResourceAndReturnsOriginalIdentity(7,False)",
+      "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadNativeModelLookupTests.ExactExtensionRequestsOnlyItsOwningResourceAndReturnsOriginalIdentity(7,True)",
+      "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.InvalidSelectionRefusesBeforeAnyPersistentWrite(\"null\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   The bounded selected-import preflight must exist before repairing four outputs.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.Method (System.String name) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:25 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.Invoke (System.String name, System.String[] selection) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:30 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests+<>c__DisplayClass3_0.<InvalidSelectionRefusesBeforeAnyPersistentWrite>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:39 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.InvalidSelectionRefusesBeforeAnyPersistentWrite(\"empty\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   The bounded selected-import preflight must exist before repairing four outputs.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.Method (System.String name) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:25 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.Invoke (System.String name, System.String[] selection) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:30 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests+<>c__DisplayClass3_0.<InvalidSelectionRefusesBeforeAnyPersistentWrite>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:39 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.InvalidSelectionRefusesBeforeAnyPersistentWrite(\"duplicate\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   The bounded selected-import preflight must exist before repairing four outputs.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.Method (System.String name) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:25 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.Invoke (System.String name, System.String[] selection) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:30 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests+<>c__DisplayClass3_0.<InvalidSelectionRefusesBeforeAnyPersistentWrite>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:39 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.InvalidSelectionRefusesBeforeAnyPersistentWrite(\"unknown\")",
+      "message": "  Expected: <System.ArgumentException>\n  But was:  <NUnit.Framework.AssertionException:   The bounded selected-import preflight must exist before repairing four outputs.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.Method (System.String name) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:25 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.Invoke (System.String name, System.String[] selection) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:30 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests+<>c__DisplayClass3_0.<InvalidSelectionRefusesBeforeAnyPersistentWrite>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:39 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.MalformedUnselectedEntryBlocksTheWholeSelectedImportWithoutWrites",
+      "message": "  A four-model repair cannot retain an unverified foreign/malformed neighbor.\n  Expected: <System.InvalidOperationException>\n  But was:  <NUnit.Framework.AssertionException:   The bounded selected-import preflight must exist before repairing four outputs.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.Method (System.String name) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:25 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.Invoke (System.String name, System.String[] selection) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:30 \n  at CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests+<>c.<MalformedUnselectedEntryBlocksTheWholeSelectedImportWithoutWrites>b__5_1 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleSelectedImportTests.cs:56 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x0002f] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadNativeStyleSelectedImportTests.ValidSelectionPreflightIsReadOnlyAndRetainsEveryCurrentEntry",
+      "message": "  The bounded selected-import preflight must exist before repairing four outputs.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSprayPoolShapeTests.AdoptedPoolKeepsRoundLowWaterAndDistinctRaisedRim(0)",
+      "message": "  Separate semantic slots cannot approve duplicate solid boxes.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSprayPoolShapeTests.AdoptedPoolKeepsRoundLowWaterAndDistinctRaisedRim(1)",
+      "message": "  Separate semantic slots cannot approve duplicate solid boxes.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSprayPoolShapeTests.AdoptedPoolKeepsRoundLowWaterAndDistinctRaisedRim(2)",
+      "message": "  Separate semantic slots cannot approve duplicate solid boxes.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSprayPoolShapeTests.AdoptedPoolKeepsRoundLowWaterAndDistinctRaisedRim(3)",
+      "message": "  Separate semantic slots cannot approve duplicate solid boxes.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSprayPoolShapeTests.ExactRigidSpraySourcesRetainBasinAndRimResolution(0)",
+      "message": "  Expected: 0.0625f\n  But was:  0.25f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSprayPoolShapeTests.ExactRigidSpraySourcesRetainBasinAndRimResolution(1)",
+      "message": "  Expected: 0.0625f\n  But was:  0.25f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSprayPoolShapeTests.ExactRigidSpraySourcesRetainBasinAndRimResolution(2)",
+      "message": "  Expected: 0.0625f\n  But was:  0.25f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSprayPoolShapeTests.ExactRigidSpraySourcesRetainBasinAndRimResolution(3)",
+      "message": "  Expected: 0.0625f\n  But was:  0.25f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.ActualPrioritizedSurfaceMarkKeepsOriginalTintAndLowGroundGeometry(\"water\",0.3f,0.55f,0.95f)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.ActualPrioritizedSurfaceMarkKeepsOriginalTintAndLowGroundGeometry(\"oil\",0.35f,0.25f,0.45f)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.ActualPrioritizedSurfaceMarkKeepsOriginalTintAndLowGroundGeometry(\"ice\",0.85f,0.95f,1.0f)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.ActualPrioritizedSurfaceMarkKeepsOriginalTintAndLowGroundGeometry(\"acid\",0.3f,0.55f,0.95f)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.ActualPrioritizedSurfaceMarkKeepsOriginalTintAndLowGroundGeometry(\"embers\",1.0f,0.45f,0.1f)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.ActualPrioritizedSurfaceMarkKeepsOriginalTintAndLowGroundGeometry(\"petals\",0.6f,0.6f,0.6f)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.HigherPriorityNativeLayerCannotBorrowUnderlyingEnergy(\"oil\",\"coating:oil\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.HigherPriorityNativeLayerCannotBorrowUnderlyingEnergy(\"ice\",\"coating:ice\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.HigherPriorityNativeLayerCannotBorrowUnderlyingEnergy(\"petals\",\"residue:petals\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.RealTileReactionChoosesActualSmokeResidueOrSteamSource(True)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.UnsupportedOrRetiredSurfaceDoesNotReuseTheOldMark(\"unknown-residue\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.UnsupportedOrRetiredSurfaceDoesNotReuseTheOldMark(\"unknown-coating\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.UnsupportedOrRetiredSurfaceDoesNotReuseTheOldMark(\"hidden\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSurfaceMarkRenderingTests.UnsupportedOrRetiredSurfaceDoesNotReuseTheOldMark(\"removed\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

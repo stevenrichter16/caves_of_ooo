@@ -1,0 +1,470 @@
+{
+    "blueprint": "Player",
+    "owner": "2282",
+    "zone": "Overworld.12.10.0",
+    "bodyModel": "ring-player",
+    "canVerify": "Explicit factory gear equipped through native InventorySystem on seven representative real rigged bodies; exact adopted body/equipment mesh and owned palette, paired bone ownership, real imported clip sampling, unchanged tile state, zone entity version, existing IDs/positions/HP/equipped IDs during capture, actual PNG output.",
+    "cannotVerify": "Staged EditMode art, not naturally acquired equipment, scheduling, live animation transitions, keyboard combat or balance. Camera is an explicit close-up; passing assertions do not establish visual fit, clipping, readability or appearance; neighboring geometry may still occlude the subject and requires human review.",
+    "frames": [
+        {
+            "image": "00-Idle-0.png",
+            "clip": "Idle",
+            "normalizedTime": 0.0,
+            "yaw": 0.0,
+            "width": 0.8946590423583984,
+            "height": 1.2303520441055298,
+            "depth": 0.6050491333007813,
+            "camera": {
+                "size": 0.9842816591262817,
+                "position": {
+                    "x": 1.4575426578521729,
+                    "y": 3.406705856323242,
+                    "z": 17.63650894165039
+                },
+                "rotation": {
+                    "x": 25.01689910888672,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "width": 720,
+                "height": 720
+            },
+            "gear": [
+                {
+                    "blueprint": "LeatherArmor",
+                    "id": "2283",
+                    "model": "spread-worn-leatherarmor",
+                    "mesh": "spread-worn-leatherarmor",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Body"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherCap",
+                    "id": "2284",
+                    "model": "spread-worn-leathercap",
+                    "mesh": "spread-worn-leathercap",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Head"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherBoots",
+                    "id": "2285",
+                    "model": "spread-worn-leatherboots",
+                    "mesh": "spread-worn-leatherboots",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Feet.L",
+                        "SpreadEquipment.Feet.R"
+                    ]
+                },
+                {
+                    "blueprint": "Cloak",
+                    "id": "2286",
+                    "model": "spread-worn-cloak",
+                    "mesh": "spread-worn-cloak",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Back"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherGloves",
+                    "id": "2287",
+                    "model": "spread-worn-leathergloves",
+                    "mesh": "spread-worn-leathergloves",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Handwear.L",
+                        "SpreadEquipment.Handwear.R"
+                    ]
+                },
+                {
+                    "blueprint": "Greatsword",
+                    "id": "2288",
+                    "model": "spread-portable-greatsword",
+                    "mesh": "spread-portable-greatsword",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                }
+            ]
+        },
+        {
+            "image": "01-Idle-90.png",
+            "clip": "Idle",
+            "normalizedTime": 0.0,
+            "yaw": 90.0,
+            "width": 0.8946590423583984,
+            "height": 1.2303520441055298,
+            "depth": 0.6050491333007813,
+            "camera": {
+                "size": 0.9842816591262817,
+                "position": {
+                    "x": -4.54245662689209,
+                    "y": 3.406705856323242,
+                    "z": 23.63650894165039
+                },
+                "rotation": {
+                    "x": 25.01689910888672,
+                    "y": 90.0,
+                    "z": 9.421646041118947e-7
+                },
+                "width": 720,
+                "height": 720
+            },
+            "gear": [
+                {
+                    "blueprint": "LeatherArmor",
+                    "id": "2283",
+                    "model": "spread-worn-leatherarmor",
+                    "mesh": "spread-worn-leatherarmor",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Body"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherCap",
+                    "id": "2284",
+                    "model": "spread-worn-leathercap",
+                    "mesh": "spread-worn-leathercap",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Head"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherBoots",
+                    "id": "2285",
+                    "model": "spread-worn-leatherboots",
+                    "mesh": "spread-worn-leatherboots",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Feet.L",
+                        "SpreadEquipment.Feet.R"
+                    ]
+                },
+                {
+                    "blueprint": "Cloak",
+                    "id": "2286",
+                    "model": "spread-worn-cloak",
+                    "mesh": "spread-worn-cloak",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Back"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherGloves",
+                    "id": "2287",
+                    "model": "spread-worn-leathergloves",
+                    "mesh": "spread-worn-leathergloves",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Handwear.L",
+                        "SpreadEquipment.Handwear.R"
+                    ]
+                },
+                {
+                    "blueprint": "Greatsword",
+                    "id": "2288",
+                    "model": "spread-portable-greatsword",
+                    "mesh": "spread-portable-greatsword",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                }
+            ]
+        },
+        {
+            "image": "02-Idle-180.png",
+            "clip": "Idle",
+            "normalizedTime": 0.0,
+            "yaw": 180.0,
+            "width": 0.8946590423583984,
+            "height": 1.2303520441055298,
+            "depth": 0.6050491333007813,
+            "camera": {
+                "size": 0.9842816591262817,
+                "position": {
+                    "x": 1.457543134689331,
+                    "y": 3.406705856323242,
+                    "z": 29.63650894165039
+                },
+                "rotation": {
+                    "x": 25.01689910888672,
+                    "y": 180.0,
+                    "z": 1.1231477309607205e-13
+                },
+                "width": 720,
+                "height": 720
+            },
+            "gear": [
+                {
+                    "blueprint": "LeatherArmor",
+                    "id": "2283",
+                    "model": "spread-worn-leatherarmor",
+                    "mesh": "spread-worn-leatherarmor",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Body"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherCap",
+                    "id": "2284",
+                    "model": "spread-worn-leathercap",
+                    "mesh": "spread-worn-leathercap",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Head"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherBoots",
+                    "id": "2285",
+                    "model": "spread-worn-leatherboots",
+                    "mesh": "spread-worn-leatherboots",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Feet.L",
+                        "SpreadEquipment.Feet.R"
+                    ]
+                },
+                {
+                    "blueprint": "Cloak",
+                    "id": "2286",
+                    "model": "spread-worn-cloak",
+                    "mesh": "spread-worn-cloak",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Back"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherGloves",
+                    "id": "2287",
+                    "model": "spread-worn-leathergloves",
+                    "mesh": "spread-worn-leathergloves",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Handwear.L",
+                        "SpreadEquipment.Handwear.R"
+                    ]
+                },
+                {
+                    "blueprint": "Greatsword",
+                    "id": "2288",
+                    "model": "spread-portable-greatsword",
+                    "mesh": "spread-portable-greatsword",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                }
+            ]
+        },
+        {
+            "image": "03-Walk-35.png",
+            "clip": "Walk",
+            "normalizedTime": 0.25,
+            "yaw": 35.0,
+            "width": 0.9394617080688477,
+            "height": 1.2665730714797974,
+            "depth": 0.7087860107421875,
+            "camera": {
+                "size": 1.013258457183838,
+                "position": {
+                    "x": -1.973543405532837,
+                    "y": 3.3885953426361086,
+                    "z": 18.66176986694336
+                },
+                "rotation": {
+                    "x": 25.01689338684082,
+                    "y": 34.999996185302737,
+                    "z": 0.0000014132468777461327
+                },
+                "width": 720,
+                "height": 720
+            },
+            "gear": [
+                {
+                    "blueprint": "LeatherArmor",
+                    "id": "2283",
+                    "model": "spread-worn-leatherarmor",
+                    "mesh": "spread-worn-leatherarmor",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Body"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherCap",
+                    "id": "2284",
+                    "model": "spread-worn-leathercap",
+                    "mesh": "spread-worn-leathercap",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Head"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherBoots",
+                    "id": "2285",
+                    "model": "spread-worn-leatherboots",
+                    "mesh": "spread-worn-leatherboots",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Feet.L",
+                        "SpreadEquipment.Feet.R"
+                    ]
+                },
+                {
+                    "blueprint": "Cloak",
+                    "id": "2286",
+                    "model": "spread-worn-cloak",
+                    "mesh": "spread-worn-cloak",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Back"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherGloves",
+                    "id": "2287",
+                    "model": "spread-worn-leathergloves",
+                    "mesh": "spread-worn-leathergloves",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Handwear.L",
+                        "SpreadEquipment.Handwear.R"
+                    ]
+                },
+                {
+                    "blueprint": "Greatsword",
+                    "id": "2288",
+                    "model": "spread-portable-greatsword",
+                    "mesh": "spread-portable-greatsword",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                }
+            ]
+        },
+        {
+            "image": "04-Attack-35.png",
+            "clip": "Attack",
+            "normalizedTime": 0.25,
+            "yaw": 35.0,
+            "width": 0.836850643157959,
+            "height": 1.230714201927185,
+            "depth": 0.7846908569335938,
+            "camera": {
+                "size": 0.9845713973045349,
+                "position": {
+                    "x": -2.09477162361145,
+                    "y": 3.4068868160247804,
+                    "z": 18.63177490234375
+                },
+                "rotation": {
+                    "x": 25.01689338684082,
+                    "y": 34.999996185302737,
+                    "z": 0.0000014132468777461327
+                },
+                "width": 720,
+                "height": 720
+            },
+            "gear": [
+                {
+                    "blueprint": "LeatherArmor",
+                    "id": "2283",
+                    "model": "spread-worn-leatherarmor",
+                    "mesh": "spread-worn-leatherarmor",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Body"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherCap",
+                    "id": "2284",
+                    "model": "spread-worn-leathercap",
+                    "mesh": "spread-worn-leathercap",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Head"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherBoots",
+                    "id": "2285",
+                    "model": "spread-worn-leatherboots",
+                    "mesh": "spread-worn-leatherboots",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Feet.L",
+                        "SpreadEquipment.Feet.R"
+                    ]
+                },
+                {
+                    "blueprint": "Cloak",
+                    "id": "2286",
+                    "model": "spread-worn-cloak",
+                    "mesh": "spread-worn-cloak",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Back"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherGloves",
+                    "id": "2287",
+                    "model": "spread-worn-leathergloves",
+                    "mesh": "spread-worn-leathergloves",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Handwear.L",
+                        "SpreadEquipment.Handwear.R"
+                    ]
+                },
+                {
+                    "blueprint": "Greatsword",
+                    "id": "2288",
+                    "model": "spread-portable-greatsword",
+                    "mesh": "spread-portable-greatsword",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                }
+            ]
+        }
+    ]
+}

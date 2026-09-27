@@ -1,0 +1,12 @@
+--- /tmp/coo-density-modifier-diag/LootStocker.cs.before.txt	2026-09-26 20:48:16
++++ /tmp/coo-density-modifier-diag/LootStocker.cs	2026-09-26 20:55:42
+@@ -34,7 +34,8 @@
+                 if (item != null && containerPart.AddItem(item))
+                 {
+                     added++;
+-                    FoundEquipmentEnhancements.TryApply(container, tableName, item, rng);
++                    if (tableName == FoundEquipmentEnhancements.SourceTable)
++                        FoundEquipmentEnhancements.TryApply(container, tableName, item, rng);
+                 }
+             }
+ 

@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-biome-calm/Runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="45" result="Failed" start-time="2026-09-27T05:12:15.3636750Z" end-time="2026-09-27T05:12:15.4076580Z" duration="0.043958" total="45" passed="41" failed="4" inconclusive="0" skipped="0" warnings="0" asserts="97" random-seed="39606358">
+  <command-line><![CDATA[/private/tmp/coo-biome-calm/Runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-biome-calm/adversarial-red.xml --where "class =~ /ReferenceGladeRouteControlTests|NoFightConversationTests/"]]></command-line>
+  <filter>
+    <class re="1">ReferenceGladeRouteControlTests|NoFightConversationTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1052" name="EditModeRunner.dll" fullname="/private/tmp/coo-biome-calm/Runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="45" result="Failed" site="Child" start-time="2026-09-27T05:12:15.3636750Z" end-time="2026-09-27T05:12:15.4076580Z" duration="0.043958" total="45" passed="41" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="97">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-biome-calm/Runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-biome-calm/Runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="23849" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1053" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="45" result="Failed" site="Child" start-time="2026-09-27T05:12:15.3652290Z" end-time="2026-09-27T05:12:15.4076560Z" duration="0.042418" total="45" passed="41" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="97">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1054" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="45" result="Failed" site="Child" start-time="2026-09-27T05:12:15.3653360Z" end-time="2026-09-27T05:12:15.4076520Z" duration="0.042307" total="45" passed="41" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="97">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1043" name="NoFightConversationTests" fullname="CavesOfOoo.Tests.NoFightConversationTests" classname="CavesOfOoo.Tests.NoFightConversationTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-09-27T05:12:15.3656880Z" end-time="2026-09-27T05:12:15.3773350Z" duration="0.011645" total="8" passed="8" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="16">
+          <test-case id="1047" name="PushNoFightGoal_Idempotent_DoesNotStackIfAlreadyPresent" fullname="CavesOfOoo.Tests.NoFightConversationTests.PushNoFightGoal_Idempotent_DoesNotStackIfAlreadyPresent" methodname="PushNoFightGoal_Idempotent_DoesNotStackIfAlreadyPresent" classname="CavesOfOoo.Tests.NoFightConversationTests" runstate="Runnable" seed="1595873365" result="Passed" start-time="2026-09-27T05:12:15.3665500Z" end-time="2026-09-27T05:12:15.3746400Z" duration="0.008115" asserts="3" />
+          <test-case id="1049" name="PushNoFightGoal_NullSpeaker_IsNoOp" fullname="CavesOfOoo.Tests.NoFightConversationTests.PushNoFightGoal_NullSpeaker_IsNoOp" methodname="PushNoFightGoal_NullSpeaker_IsNoOp" classname="CavesOfOoo.Tests.NoFightConversationTests" runstate="Runnable" seed="1391161501" result="Passed" start-time="2026-09-27T05:12:15.3752230Z" end-time="2026-09-27T05:12:15.3759930Z" duration="0.000770" asserts="1" />
+          <test-case id="1051" name="PushNoFightGoal_PushedOnSpeakerNotListener" fullname="CavesOfOoo.Tests.NoFightConversationTests.PushNoFightGoal_PushedOnSpeakerNotListener" methodname="PushNoFightGoal_PushedOnSpeakerNotListener" classname="CavesOfOoo.Tests.NoFightConversationTests" runstate="Runnable" seed="1757435177" result="Passed" start-time="2026-09-27T05:12:15.3760070Z" end-time="2026-09-27T05:12:15.3763190Z" duration="0.000312" asserts="2" />
+          <test-case id="1048" name="PushNoFightGoal_SpeakerWithoutBrain_IsNoOp" fullname="CavesOfOoo.Tests.NoFightConversationTests.PushNoFightGoal_SpeakerWithoutBrain_IsNoOp" methodname="PushNoFightGoal_SpeakerWithoutBrain_IsNoOp" classname="CavesOfOoo.Tests.NoFightConversationTests" runstate="Runnable" seed="1152680784" result="Passed" start-time="2026-09-27T05:12:15.3763350Z" end-time="2026-09-27T05:12:15.3764840Z" duration="0.000149" asserts="1" />
+          <test-case id="1050" name="PushNoFightGoal_ViaChoiceActionsList_WiresThroughExecuteAll" fullname="CavesOfOoo.Tests.NoFightConversationTests.PushNoFightGoal_ViaChoiceActionsList_WiresThroughExecuteAll" methodname="PushNoFightGoal_ViaChoiceActionsList_WiresThroughExecuteAll" classname="CavesOfOoo.Tests.NoFightConversationTests" runstate="Runnable" seed="611445416" result="Passed" start-time="2026-09-27T05:12:15.3765000Z" end-time="2026-09-27T05:12:15.3766760Z" duration="0.000175" asserts="2" />
+          <test-case id="1045" name="PushNoFightGoal_WithEmptyArg_DefaultsTo100" fullname="CavesOfOoo.Tests.NoFightConversationTests.PushNoFightGoal_WithEmptyArg_DefaultsTo100" methodname="PushNoFightGoal_WithEmptyArg_DefaultsTo100" classname="CavesOfOoo.Tests.NoFightConversationTests" runstate="Runnable" seed="1436028647" result="Passed" start-time="2026-09-27T05:12:15.3767070Z" end-time="2026-09-27T05:12:15.3767620Z" duration="0.000054" asserts="2" />
+          <test-case id="1046" name="PushNoFightGoal_WithInvalidArg_DefaultsTo100" fullname="CavesOfOoo.Tests.NoFightConversationTests.PushNoFightGoal_WithInvalidArg_DefaultsTo100" methodname="PushNoFightGoal_WithInvalidArg_DefaultsTo100" classname="CavesOfOoo.Tests.NoFightConversationTests" runstate="Runnable" seed="1522598238" result="Passed" start-time="2026-09-27T05:12:15.3767780Z" end-time="2026-09-27T05:12:15.3768720Z" duration="0.000094" asserts="2" />
+          <test-case id="1044" name="PushNoFightGoal_WithValidDuration_PushesWithParsedDuration" fullname="CavesOfOoo.Tests.NoFightConversationTests.PushNoFightGoal_WithValidDuration_PushesWithParsedDuration" methodname="PushNoFightGoal_WithValidDuration_PushesWithParsedDuration" classname="CavesOfOoo.Tests.NoFightConversationTests" runstate="Runnable" seed="821301241" result="Passed" start-time="2026-09-27T05:12:15.3769200Z" end-time="2026-09-27T05:12:15.3770130Z" duration="0.000094" asserts="3" />
+        </test-suite>
+        <test-suite type="TestFixture" id="1000" name="ReferenceGladeRouteControlTests" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" testcasecount="37" result="Failed" site="Child" start-time="2026-09-27T05:12:15.3777170Z" end-time="2026-09-27T05:12:15.4076370Z" duration="0.029914" total="37" passed="33" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="81">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1002" name="ActiveCalmOnlySuppressesWhileExactUnfinishedTopGoal" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ActiveCalmOnlySuppressesWhileExactUnfinishedTopGoal" methodname="ActiveCalmOnlySuppressesWhileExactUnfinishedTopGoal" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="2016528823" result="Passed" start-time="2026-09-27T05:12:15.3777580Z" end-time="2026-09-27T05:12:15.3798710Z" duration="0.002113" asserts="4" />
+          <test-suite type="ParameterizedMethod" id="1032" name="ActualFirstImpactCannotBeSkipped" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ActualFirstImpactCannotBeSkipped" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27T05:12:15.3799080Z" end-time="2026-09-27T05:12:15.3823400Z" duration="0.002432" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <test-case id="1029" name="ActualFirstImpactCannotBeSkipped(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ActualFirstImpactCannotBeSkipped(&quot;creature&quot;)" methodname="ActualFirstImpactCannotBeSkipped" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="56232066" result="Passed" start-time="2026-09-27T05:12:15.3799970Z" end-time="2026-09-27T05:12:15.3814270Z" duration="0.001430" asserts="1" />
+            <test-case id="1030" name="ActualFirstImpactCannotBeSkipped(&quot;structure&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ActualFirstImpactCannotBeSkipped(&quot;structure&quot;)" methodname="ActualFirstImpactCannotBeSkipped" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1633431380" result="Passed" start-time="2026-09-27T05:12:15.3814380Z" end-time="2026-09-27T05:12:15.3817340Z" duration="0.000296" asserts="1" />
+            <test-case id="1031" name="ActualFirstImpactCannotBeSkipped(&quot;solid&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ActualFirstImpactCannotBeSkipped(&quot;solid&quot;)" methodname="ActualFirstImpactCannotBeSkipped" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="383111313" result="Passed" start-time="2026-09-27T05:12:15.3817460Z" end-time="2026-09-27T05:12:15.3823270Z" duration="0.000581" asserts="1" />
+          </test-suite>
+          <test-case id="1001" name="ActualReadyExactRayIsReadOnly" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ActualReadyExactRayIsReadOnly" methodname="ActualReadyExactRayIsReadOnly" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1514053003" result="Passed" start-time="2026-09-27T05:12:15.3823460Z" end-time="2026-09-27T05:12:15.3833000Z" duration="0.000954" asserts="7" />
+          <test-suite type="ParameterizedMethod" id="1011" name="InvalidOrEndedCalmRestoresThreat" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.InvalidOrEndedCalmRestoresThreat" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-09-27T05:12:15.3833160Z" end-time="2026-09-27T05:12:15.3855620Z" duration="0.002245" total="8" passed="8" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <test-case id="1003" name="InvalidOrEndedCalmRestoresThreat(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.InvalidOrEndedCalmRestoresThreat(&quot;removed&quot;)" methodname="InvalidOrEndedCalmRestoresThreat" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1303799789" result="Passed" start-time="2026-09-27T05:12:15.3833380Z" end-time="2026-09-27T05:12:15.3836350Z" duration="0.000298" asserts="2" />
+            <test-case id="1004" name="InvalidOrEndedCalmRestoresThreat(&quot;finished&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.InvalidOrEndedCalmRestoresThreat(&quot;finished&quot;)" methodname="InvalidOrEndedCalmRestoresThreat" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1779914309" result="Passed" start-time="2026-09-27T05:12:15.3836590Z" end-time="2026-09-27T05:12:15.3837940Z" duration="0.000135" asserts="2" />
+            <test-case id="1005" name="InvalidOrEndedCalmRestoresThreat(&quot;buried&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.InvalidOrEndedCalmRestoresThreat(&quot;buried&quot;)" methodname="InvalidOrEndedCalmRestoresThreat" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="270765222" result="Passed" start-time="2026-09-27T05:12:15.3838050Z" end-time="2026-09-27T05:12:15.3838990Z" duration="0.000094" asserts="2" />
+            <test-case id="1006" name="InvalidOrEndedCalmRestoresThreat(&quot;foreign-brain&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.InvalidOrEndedCalmRestoresThreat(&quot;foreign-brain&quot;)" methodname="InvalidOrEndedCalmRestoresThreat" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1223862282" result="Passed" start-time="2026-09-27T05:12:15.3839080Z" end-time="2026-09-27T05:12:15.3839850Z" duration="0.000077" asserts="2" />
+            <test-case id="1007" name="InvalidOrEndedCalmRestoresThreat(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.InvalidOrEndedCalmRestoresThreat(&quot;foreign-zone&quot;)" methodname="InvalidOrEndedCalmRestoresThreat" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1464997335" result="Passed" start-time="2026-09-27T05:12:15.3839980Z" end-time="2026-09-27T05:12:15.3853030Z" duration="0.001305" asserts="2" />
+            <test-case id="1008" name="InvalidOrEndedCalmRestoresThreat(&quot;foreign-goal&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.InvalidOrEndedCalmRestoresThreat(&quot;foreign-goal&quot;)" methodname="InvalidOrEndedCalmRestoresThreat" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="17577034" result="Passed" start-time="2026-09-27T05:12:15.3853130Z" end-time="2026-09-27T05:12:15.3853780Z" duration="0.000064" asserts="2" />
+            <test-case id="1009" name="InvalidOrEndedCalmRestoresThreat(&quot;wandering&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.InvalidOrEndedCalmRestoresThreat(&quot;wandering&quot;)" methodname="InvalidOrEndedCalmRestoresThreat" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1233605076" result="Passed" start-time="2026-09-27T05:12:15.3853890Z" end-time="2026-09-27T05:12:15.3854500Z" duration="0.000060" asserts="2" />
+            <test-case id="1010" name="InvalidOrEndedCalmRestoresThreat(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.InvalidOrEndedCalmRestoresThreat(&quot;dead&quot;)" methodname="InvalidOrEndedCalmRestoresThreat" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="449367185" result="Passed" start-time="2026-09-27T05:12:15.3854610Z" end-time="2026-09-27T05:12:15.3855490Z" duration="0.000088" asserts="2" />
+          </test-suite>
+          <test-case id="1041" name="NullGraphsRefuseWithoutMutation" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.NullGraphsRefuseWithoutMutation" methodname="NullGraphsRefuseWithoutMutation" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="270610154" result="Failed" label="Error" start-time="2026-09-27T05:12:15.3855740Z" end-time="2026-09-27T05:12:15.3913690Z" duration="0.005793" asserts="1">
+            <failure>
+              <message><![CDATA[System.ArgumentNullException : Value cannot be null. (Parameter 'key')]]></message>
+              <stack-trace><![CDATA[   at System.Collections.Generic.Dictionary`2.FindValue(TKey key)
+   at System.Collections.Generic.Dictionary`2.TryGetValue(TKey key, TValue& value)
+   at CavesOfOoo.Core.Zone.GetEntityCell(Entity entity) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/World/Map/Zone.cs:line 495
+   at CavesOfOoo.Scenarios.ReferenceGladeRouteControl.CurrentLiving(Zone zone, Entity owner) in /tmp/coo-biome-calm/ReferenceGladeRouteControl.cs:line 78
+   at CavesOfOoo.Scenarios.ReferenceGladeRouteControl.HasLiveCalm(Zone zone, Entity owner) in /tmp/coo-biome-calm/ReferenceGladeRouteControl.cs:line 16
+   at CavesOfOoo.Tests.ReferenceGladeRouteControlTests.NullGraphsRefuseWithoutMutation() in /tmp/coo-biome-calm/ReferenceGladeRouteControlTests.cs:line 87
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)]]></stack-trace>
+            </failure>
+          </test-case>
+          <test-case id="1033" name="PhysicsOnlyIsNotATaggedSpellRayWall" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.PhysicsOnlyIsNotATaggedSpellRayWall" methodname="PhysicsOnlyIsNotATaggedSpellRayWall" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1397517315" result="Passed" start-time="2026-09-27T05:12:15.3914240Z" end-time="2026-09-27T05:12:15.3915480Z" duration="0.000124" asserts="1" />
+          <test-suite type="ParameterizedMethod" id="1037" name="ProductionRefusesAnyExistingNoFightSoPreflightDoesToo" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ProductionRefusesAnyExistingNoFightSoPreflightDoesToo" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T05:12:15.3915540Z" end-time="2026-09-27T05:12:15.3985060Z" duration="0.006950" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1035" name="ProductionRefusesAnyExistingNoFightSoPreflightDoesToo(&quot;buried&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ProductionRefusesAnyExistingNoFightSoPreflightDoesToo(&quot;buried&quot;)" methodname="ProductionRefusesAnyExistingNoFightSoPreflightDoesToo" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1697165712" result="Failed" start-time="2026-09-27T05:12:15.3915610Z" end-time="2026-09-27T05:12:15.3982200Z" duration="0.006657" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ProductionRefusesAnyExistingNoFightSoPreflightDoesToo(String shape) in /tmp/coo-biome-calm/ReferenceGladeRouteControlTests.cs:line 72
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ProductionRefusesAnyExistingNoFightSoPreflightDoesToo(String shape) in /tmp/coo-biome-calm/ReferenceGladeRouteControlTests.cs:line 72
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1036" name="ProductionRefusesAnyExistingNoFightSoPreflightDoesToo(&quot;finished&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ProductionRefusesAnyExistingNoFightSoPreflightDoesToo(&quot;finished&quot;)" methodname="ProductionRefusesAnyExistingNoFightSoPreflightDoesToo" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1836539916" result="Failed" start-time="2026-09-27T05:12:15.3982370Z" end-time="2026-09-27T05:12:15.3984960Z" duration="0.000260" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ProductionRefusesAnyExistingNoFightSoPreflightDoesToo(String shape) in /tmp/coo-biome-calm/ReferenceGladeRouteControlTests.cs:line 72
+   at InvokeStub_ReferenceGladeRouteControlTests.ProductionRefusesAnyExistingNoFightSoPreflightDoesToo(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ReferenceGladeRouteControlTests.ProductionRefusesAnyExistingNoFightSoPreflightDoesToo(String shape) in /tmp/coo-biome-calm/ReferenceGladeRouteControlTests.cs:line 72
+   at InvokeStub_ReferenceGladeRouteControlTests.ProductionRefusesAnyExistingNoFightSoPreflightDoesToo(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1042" name="RemovedSameIdOwnerCannotReuseCalm" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.RemovedSameIdOwnerCannotReuseCalm" methodname="RemovedSameIdOwnerCannotReuseCalm" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1613436058" result="Passed" start-time="2026-09-27T05:12:15.3985090Z" end-time="2026-09-27T05:12:15.3990990Z" duration="0.000589" asserts="2" />
+          <test-case id="1034" name="SameCellCreaturePriorityMatchesNativeSpell" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameCellCreaturePriorityMatchesNativeSpell" methodname="SameCellCreaturePriorityMatchesNativeSpell" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="698557756" result="Passed" start-time="2026-09-27T05:12:15.3991060Z" end-time="2026-09-27T05:12:15.3992000Z" duration="0.000094" asserts="1" />
+          <test-suite type="ParameterizedMethod" id="1028" name="SameSetupRefusesInvalidCast" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-09-27T05:12:15.3992050Z" end-time="2026-09-27T05:12:15.4015320Z" duration="0.002327" total="16" passed="16" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="32">
+            <test-case id="1012" name="SameSetupRefusesInvalidCast(&quot;cooldown&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;cooldown&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="950975624" result="Passed" start-time="2026-09-27T05:12:15.3992100Z" end-time="2026-09-27T05:12:15.3994760Z" duration="0.000266" asserts="2" />
+            <test-case id="1013" name="SameSetupRefusesInvalidCast(&quot;replaced-id&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;replaced-id&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1241498381" result="Passed" start-time="2026-09-27T05:12:15.3994870Z" end-time="2026-09-27T05:12:15.3995950Z" duration="0.000108" asserts="2" />
+            <test-case id="1014" name="SameSetupRefusesInvalidCast(&quot;unbound&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;unbound&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="896397387" result="Passed" start-time="2026-09-27T05:12:15.3996090Z" end-time="2026-09-27T05:12:15.3996880Z" duration="0.000079" asserts="2" />
+            <test-case id="1015" name="SameSetupRefusesInvalidCast(&quot;mode&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;mode&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="458038281" result="Passed" start-time="2026-09-27T05:12:15.3997080Z" end-time="2026-09-27T05:12:15.3997880Z" duration="0.000080" asserts="2" />
+            <test-case id="1016" name="SameSetupRefusesInvalidCast(&quot;range&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;range&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="2048897701" result="Passed" start-time="2026-09-27T05:12:15.3998080Z" end-time="2026-09-27T05:12:15.3998780Z" duration="0.000070" asserts="2" />
+            <test-case id="1017" name="SameSetupRefusesInvalidCast(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;hidden&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="385366652" result="Passed" start-time="2026-09-27T05:12:15.3998890Z" end-time="2026-09-27T05:12:15.3999410Z" duration="0.000052" asserts="2" />
+            <test-case id="1018" name="SameSetupRefusesInvalidCast(&quot;not-visible&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;not-visible&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1758248632" result="Passed" start-time="2026-09-27T05:12:15.3999530Z" end-time="2026-09-27T05:12:15.4000130Z" duration="0.000060" asserts="2" />
+            <test-case id="1019" name="SameSetupRefusesInvalidCast(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;removed&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="264168535" result="Passed" start-time="2026-09-27T05:12:15.4000220Z" end-time="2026-09-27T05:12:15.4000810Z" duration="0.000058" asserts="2" />
+            <test-case id="1020" name="SameSetupRefusesInvalidCast(&quot;foreign-brain&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;foreign-brain&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1551050311" result="Passed" start-time="2026-09-27T05:12:15.4000880Z" end-time="2026-09-27T05:12:15.4001490Z" duration="0.000061" asserts="2" />
+            <test-case id="1021" name="SameSetupRefusesInvalidCast(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;foreign-zone&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="67580188" result="Passed" start-time="2026-09-27T05:12:15.4001660Z" end-time="2026-09-27T05:12:15.4002730Z" duration="0.000107" asserts="2" />
+            <test-case id="1022" name="SameSetupRefusesInvalidCast(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;dead&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="548795646" result="Passed" start-time="2026-09-27T05:12:15.4002780Z" end-time="2026-09-27T05:12:15.4003290Z" duration="0.000051" asserts="2" />
+            <test-case id="1023" name="SameSetupRefusesInvalidCast(&quot;actor-dead&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;actor-dead&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="1980251004" result="Passed" start-time="2026-09-27T05:12:15.4003400Z" end-time="2026-09-27T05:12:15.4004050Z" duration="0.000065" asserts="2" />
+            <test-case id="1024" name="SameSetupRefusesInvalidCast(&quot;calmed&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;calmed&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="620374292" result="Passed" start-time="2026-09-27T05:12:15.4004170Z" end-time="2026-09-27T05:12:15.4005000Z" duration="0.000083" asserts="2" />
+            <test-case id="1025" name="SameSetupRefusesInvalidCast(&quot;friendly&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;friendly&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="2068461547" result="Passed" start-time="2026-09-27T05:12:15.4005080Z" end-time="2026-09-27T05:12:15.4005810Z" duration="0.000073" asserts="2" />
+            <test-case id="1026" name="SameSetupRefusesInvalidCast(&quot;nonaligned&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;nonaligned&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="39345424" result="Passed" start-time="2026-09-27T05:12:15.4006100Z" end-time="2026-09-27T05:12:15.4014550Z" duration="0.000845" asserts="2" />
+            <test-case id="1027" name="SameSetupRefusesInvalidCast(&quot;too-far&quot;)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SameSetupRefusesInvalidCast(&quot;too-far&quot;)" methodname="SameSetupRefusesInvalidCast" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="605608615" result="Passed" start-time="2026-09-27T05:12:15.4014630Z" end-time="2026-09-27T05:12:15.4015210Z" duration="0.000058" asserts="2" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1040" name="SavedGoalStateKeepsExactExpiryAfterRealGraphLoad" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SavedGoalStateKeepsExactExpiryAfterRealGraphLoad" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T05:12:15.4015360Z" end-time="2026-09-27T05:12:15.4075930Z" duration="0.006056" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="10">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1038" name="SavedGoalStateKeepsExactExpiryAfterRealGraphLoad(49,True)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SavedGoalStateKeepsExactExpiryAfterRealGraphLoad(49,True)" methodname="SavedGoalStateKeepsExactExpiryAfterRealGraphLoad" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="2032613620" result="Passed" start-time="2026-09-27T05:12:15.4015410Z" end-time="2026-09-27T05:12:15.4069630Z" duration="0.005421" asserts="5" />
+            <test-case id="1039" name="SavedGoalStateKeepsExactExpiryAfterRealGraphLoad(50,False)" fullname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SavedGoalStateKeepsExactExpiryAfterRealGraphLoad(50,False)" methodname="SavedGoalStateKeepsExactExpiryAfterRealGraphLoad" classname="CavesOfOoo.Tests.ReferenceGladeRouteControlTests" runstate="Runnable" seed="522054157" result="Failed" start-time="2026-09-27T05:12:15.4069810Z" end-time="2026-09-27T05:12:15.4075840Z" duration="0.000603" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SavedGoalStateKeepsExactExpiryAfterRealGraphLoad(Int32 age, Boolean protectedNow) in /tmp/coo-biome-calm/ReferenceGladeRouteControlTests.cs:line 84
+   at InvokeStub_ReferenceGladeRouteControlTests.SavedGoalStateKeepsExactExpiryAfterRealGraphLoad(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.ReferenceGladeRouteControlTests.SavedGoalStateKeepsExactExpiryAfterRealGraphLoad(Int32 age, Boolean protectedNow) in /tmp/coo-biome-calm/ReferenceGladeRouteControlTests.cs:line 84
+   at InvokeStub_ReferenceGladeRouteControlTests.SavedGoalStateKeepsExactExpiryAfterRealGraphLoad(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

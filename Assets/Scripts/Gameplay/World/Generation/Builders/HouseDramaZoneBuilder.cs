@@ -19,6 +19,9 @@ namespace CavesOfOoo.Core
         /// <summary>Named composed towns reserve dry approaches and work cells
         /// before late drama placement. Other villages keep their existing policy.</summary>
         public bool RespectReservations { get; set; }
+        /// <summary>Enabled only by an ordinary village pipeline which supplies
+        /// operable doors; authored composition permissions stay unchanged.</summary>
+        public bool CanOpenOrdinaryDoors { get; set; }
 
         public int Priority => 4500;
 
@@ -85,6 +88,7 @@ namespace CavesOfOoo.Core
 
                 Entity npc = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, blueprint);
                 if (npc == null) continue;
+                if (CanOpenOrdinaryDoors) npc.SetTag("CanOpenDoors");
 
                 var part = new HouseDramaPart
                 {

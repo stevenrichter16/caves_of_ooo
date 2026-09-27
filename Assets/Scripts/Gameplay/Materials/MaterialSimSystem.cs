@@ -9,9 +9,9 @@ namespace CavesOfOoo.Core
     {
         /// <summary>
         /// Tick non-creature entities that participate in the material
-        /// simulation. Burning entities get a full BeginTakeAction (fuel
+        /// simulation. Burning or steam-bearing entities get a full BeginTakeAction (fuel
         /// consumption, damage, heat propagation) followed by EndTurn
-        /// (temperature decay, evaporation, extinguish check). Non-burning
+        /// (temperature decay, evaporation, extinguish check). Other non-burning
         /// entities that are wet or thermally displaced from ambient get
         /// only an EndTurn so their WetEffect evaporates and ThermalPart
         /// cools naturally. Creatures are excluded because they already
@@ -24,7 +24,7 @@ namespace CavesOfOoo.Core
 
             // Snapshot the relevant entities so newly-ignited or newly-wet
             // entities this tick don't get processed twice in the same turn.
-            var burning = new System.Collections.Generic.List<Entity>();
+            var active = new System.Collections.Generic.List<Entity>();
             var passive = new System.Collections.Generic.List<Entity>();
             zone.ForEachCell((cell, x, y) =>
             {
@@ -34,9 +34,9 @@ namespace CavesOfOoo.Core
                     if (obj.HasTag("Creature"))
                         continue;
 
-                    if (obj.HasEffect<BurningEffect>())
+                    if (obj.HasEffect<BurningEffect>() || obj.HasEffect<SteamEffect>())
                     {
-                        burning.Add(obj);
+                        active.Add(obj);
                         continue;
                     }
 
@@ -60,24 +60,34 @@ namespace CavesOfOoo.Core
                 }
             });
 
-            for (int i = 0; i < burning.Count; i++)
+            for (int i = 0; i < active.Count; i++)
             {
-                Entity entity = burning[i];
+                Entity entity = active[i];
+                if (zone.GetEntityCell(entity) == null) continue;
+                bool wasBurning = entity.HasEffect<BurningEffect>();
 
                 var beginTurn = GameEvent.New("BeginTakeAction");
                 beginTurn.SetParameter("Zone", (object)zone);
                 entity.FireEvent(beginTurn);
                 beginTurn.Release();
+                if (zone.GetEntityCell(entity) == null) continue;
 
                 var endTurn = GameEvent.New("EndTurn");
                 endTurn.SetParameter("Zone", (object)zone);
                 entity.FireEvent(endTurn);
                 endTurn.Release();
+
+                // Steam-only props previously belonged to the passive path.
+                // Preserve their data reactions without re-evaluating burning
+                // reactions already dispatched by BurningEffect.OnTurnStart.
+                if (!wasBurning && zone.GetEntityCell(entity) != null)
+                    MaterialReactionResolver.EvaluateReactions(entity, zone, null);
             }
 
             for (int i = 0; i < passive.Count; i++)
             {
                 Entity entity = passive[i];
+                if (zone.GetEntityCell(entity) == null) continue;
 
                 var endTurn = GameEvent.New("EndTurn");
                 endTurn.SetParameter("Zone", (object)zone);
@@ -88,8 +98,9 @@ namespace CavesOfOoo.Core
                 // entities run fire_plus_raw_* cooking; frozen brittle metal runs the
                 // cold_plus_metal path; acid-coated wood runs acid_plus_organic. Burning
                 // entities are skipped here because BurningEffect.OnTurnStart already
-                // invoked EvaluateReactions during the burning list pass above.
-                MaterialReactionResolver.EvaluateReactions(entity, zone, null);
+                // invoked EvaluateReactions during the active list pass above.
+                if (zone.GetEntityCell(entity) != null)
+                    MaterialReactionResolver.EvaluateReactions(entity, zone, null);
             }
         }
 

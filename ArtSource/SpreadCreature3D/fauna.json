@@ -1,0 +1,2542 @@
+{
+  "schemaVersion": 1,
+  "coordinates": "Unity X east,Y height,Z north;1unit/nativecell",
+  "palette": [
+    "#082C28",
+    "#103E36",
+    "#1A4B40",
+    "#26594A",
+    "#A0A77C",
+    "#CBC697",
+    "#647353",
+    "#235D25",
+    "#40872C",
+    "#65AE3D",
+    "#435A53",
+    "#62786C",
+    "#819489",
+    "#16883B",
+    "#45CB4B",
+    "#A0E772",
+    "#207838",
+    "#D2D3B4",
+    "#B77B43",
+    "#403D28",
+    "#756C40",
+    "#A39456",
+    "#C4B877",
+    "#243E39"
+  ],
+  "models": [
+    {
+      "id": "spread-creature-giant-spider",
+      "blueprint": "GiantSpider",
+      "rigFamily": "arachnid",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "bones": [
+        {
+          "name": "Root",
+          "head": [
+            0,
+            0,
+            0
+          ],
+          "tail": [
+            0,
+            0.05,
+            0
+          ],
+          "parent": null
+        },
+        {
+          "name": "Body",
+          "head": [
+            0,
+            0.27,
+            0
+          ],
+          "tail": [
+            0,
+            0.42000000000000004,
+            0
+          ],
+          "parent": "Root"
+        },
+        {
+          "name": "Head",
+          "head": [
+            0,
+            0.25,
+            -0.18
+          ],
+          "tail": [
+            0,
+            0.31,
+            -0.35
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Leg.L0",
+          "head": [
+            -0.13,
+            0.27,
+            -0.22
+          ],
+          "tail": [
+            -0.52,
+            0.05,
+            -0.29500000000000004
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Leg.L1",
+          "head": [
+            -0.13,
+            0.27,
+            -0.07999999999999999
+          ],
+          "tail": [
+            -0.545,
+            0.05,
+            -0.10499999999999998
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Leg.L2",
+          "head": [
+            -0.13,
+            0.27,
+            0.060000000000000026
+          ],
+          "tail": [
+            -0.545,
+            0.05,
+            0.08500000000000002
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Leg.L3",
+          "head": [
+            -0.13,
+            0.27,
+            0.20000000000000004
+          ],
+          "tail": [
+            -0.52,
+            0.05,
+            0.275
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Leg.R0",
+          "head": [
+            0.13,
+            0.27,
+            -0.22
+          ],
+          "tail": [
+            0.52,
+            0.05,
+            -0.29500000000000004
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Leg.R1",
+          "head": [
+            0.13,
+            0.27,
+            -0.07999999999999999
+          ],
+          "tail": [
+            0.545,
+            0.05,
+            -0.10499999999999998
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Leg.R2",
+          "head": [
+            0.13,
+            0.27,
+            0.060000000000000026
+          ],
+          "tail": [
+            0.545,
+            0.05,
+            0.08500000000000002
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Leg.R3",
+          "head": [
+            0.13,
+            0.27,
+            0.20000000000000004
+          ],
+          "tail": [
+            0.52,
+            0.05,
+            0.275
+          ],
+          "parent": "Body"
+        }
+      ],
+      "boxes": [
+        {
+          "part": "abdomen",
+          "center": [
+            0,
+            0.3,
+            0.21
+          ],
+          "size": [
+            0.46,
+            0.34,
+            0.49
+          ],
+          "color": 19,
+          "bone": "Body"
+        },
+        {
+          "part": "abdomen-top",
+          "center": [
+            0,
+            0.476,
+            0.23
+          ],
+          "size": [
+            0.33,
+            0.045,
+            0.32
+          ],
+          "color": 18,
+          "bone": "Body"
+        },
+        {
+          "part": "thorax",
+          "center": [
+            0,
+            0.25,
+            -0.12
+          ],
+          "size": [
+            0.32,
+            0.25,
+            0.32
+          ],
+          "color": 23,
+          "bone": "Body"
+        },
+        {
+          "part": "head",
+          "center": [
+            0,
+            0.25,
+            -0.33
+          ],
+          "size": [
+            0.29,
+            0.2,
+            0.18
+          ],
+          "color": 19,
+          "bone": "Head"
+        },
+        {
+          "part": "upper-Leg.L0",
+          "center": [
+            -0.26,
+            0.28,
+            -0.22
+          ],
+          "size": [
+            0.31,
+            0.085,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.L0"
+        },
+        {
+          "part": "bend-Leg.L0",
+          "center": [
+            -0.39,
+            0.215,
+            -0.22
+          ],
+          "size": [
+            0.09,
+            0.2,
+            0.095
+          ],
+          "color": 19,
+          "bone": "Leg.L0"
+        },
+        {
+          "part": "lower-Leg.L0",
+          "center": [
+            -0.455,
+            0.105,
+            -0.265
+          ],
+          "size": [
+            0.2,
+            0.09,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.L0"
+        },
+        {
+          "part": "foot-Leg.L0",
+          "center": [
+            -0.52,
+            0.022,
+            -0.295
+          ],
+          "size": [
+            0.1,
+            0.044,
+            0.1
+          ],
+          "color": 23,
+          "bone": "Leg.L0"
+        },
+        {
+          "part": "upper-Leg.L1",
+          "center": [
+            -0.26,
+            0.28,
+            -0.08
+          ],
+          "size": [
+            0.31,
+            0.085,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.L1"
+        },
+        {
+          "part": "bend-Leg.L1",
+          "center": [
+            -0.425,
+            0.215,
+            -0.08
+          ],
+          "size": [
+            0.09,
+            0.2,
+            0.095
+          ],
+          "color": 19,
+          "bone": "Leg.L1"
+        },
+        {
+          "part": "lower-Leg.L1",
+          "center": [
+            -0.485,
+            0.105,
+            -0.095
+          ],
+          "size": [
+            0.2,
+            0.09,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.L1"
+        },
+        {
+          "part": "foot-Leg.L1",
+          "center": [
+            -0.545,
+            0.022,
+            -0.105
+          ],
+          "size": [
+            0.1,
+            0.044,
+            0.1
+          ],
+          "color": 23,
+          "bone": "Leg.L1"
+        },
+        {
+          "part": "upper-Leg.L2",
+          "center": [
+            -0.26,
+            0.28,
+            0.06
+          ],
+          "size": [
+            0.31,
+            0.085,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.L2"
+        },
+        {
+          "part": "bend-Leg.L2",
+          "center": [
+            -0.425,
+            0.215,
+            0.06
+          ],
+          "size": [
+            0.09,
+            0.2,
+            0.095
+          ],
+          "color": 19,
+          "bone": "Leg.L2"
+        },
+        {
+          "part": "lower-Leg.L2",
+          "center": [
+            -0.485,
+            0.105,
+            0.075
+          ],
+          "size": [
+            0.2,
+            0.09,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.L2"
+        },
+        {
+          "part": "foot-Leg.L2",
+          "center": [
+            -0.545,
+            0.022,
+            0.085
+          ],
+          "size": [
+            0.1,
+            0.044,
+            0.1
+          ],
+          "color": 23,
+          "bone": "Leg.L2"
+        },
+        {
+          "part": "upper-Leg.L3",
+          "center": [
+            -0.26,
+            0.28,
+            0.2
+          ],
+          "size": [
+            0.31,
+            0.085,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.L3"
+        },
+        {
+          "part": "bend-Leg.L3",
+          "center": [
+            -0.39,
+            0.215,
+            0.2
+          ],
+          "size": [
+            0.09,
+            0.2,
+            0.095
+          ],
+          "color": 19,
+          "bone": "Leg.L3"
+        },
+        {
+          "part": "lower-Leg.L3",
+          "center": [
+            -0.455,
+            0.105,
+            0.245
+          ],
+          "size": [
+            0.2,
+            0.09,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.L3"
+        },
+        {
+          "part": "foot-Leg.L3",
+          "center": [
+            -0.52,
+            0.022,
+            0.275
+          ],
+          "size": [
+            0.1,
+            0.044,
+            0.1
+          ],
+          "color": 23,
+          "bone": "Leg.L3"
+        },
+        {
+          "part": "eye-L0",
+          "center": [
+            -0.065,
+            0.305,
+            -0.425
+          ],
+          "size": [
+            0.038,
+            0.04,
+            0.022
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "eye-L1",
+          "center": [
+            -0.125,
+            0.305,
+            -0.425
+          ],
+          "size": [
+            0.038,
+            0.04,
+            0.022
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "mouthpart-L",
+          "center": [
+            -0.065,
+            0.16,
+            -0.437
+          ],
+          "size": [
+            0.065,
+            0.1,
+            0.1
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "upper-Leg.R0",
+          "center": [
+            0.26,
+            0.28,
+            -0.22
+          ],
+          "size": [
+            0.31,
+            0.085,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.R0"
+        },
+        {
+          "part": "bend-Leg.R0",
+          "center": [
+            0.39,
+            0.215,
+            -0.22
+          ],
+          "size": [
+            0.09,
+            0.2,
+            0.095
+          ],
+          "color": 19,
+          "bone": "Leg.R0"
+        },
+        {
+          "part": "lower-Leg.R0",
+          "center": [
+            0.455,
+            0.105,
+            -0.265
+          ],
+          "size": [
+            0.2,
+            0.09,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.R0"
+        },
+        {
+          "part": "foot-Leg.R0",
+          "center": [
+            0.52,
+            0.022,
+            -0.295
+          ],
+          "size": [
+            0.1,
+            0.044,
+            0.1
+          ],
+          "color": 23,
+          "bone": "Leg.R0"
+        },
+        {
+          "part": "upper-Leg.R1",
+          "center": [
+            0.26,
+            0.28,
+            -0.08
+          ],
+          "size": [
+            0.31,
+            0.085,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.R1"
+        },
+        {
+          "part": "bend-Leg.R1",
+          "center": [
+            0.425,
+            0.215,
+            -0.08
+          ],
+          "size": [
+            0.09,
+            0.2,
+            0.095
+          ],
+          "color": 19,
+          "bone": "Leg.R1"
+        },
+        {
+          "part": "lower-Leg.R1",
+          "center": [
+            0.485,
+            0.105,
+            -0.095
+          ],
+          "size": [
+            0.2,
+            0.09,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.R1"
+        },
+        {
+          "part": "foot-Leg.R1",
+          "center": [
+            0.545,
+            0.022,
+            -0.105
+          ],
+          "size": [
+            0.1,
+            0.044,
+            0.1
+          ],
+          "color": 23,
+          "bone": "Leg.R1"
+        },
+        {
+          "part": "upper-Leg.R2",
+          "center": [
+            0.26,
+            0.28,
+            0.06
+          ],
+          "size": [
+            0.31,
+            0.085,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.R2"
+        },
+        {
+          "part": "bend-Leg.R2",
+          "center": [
+            0.425,
+            0.215,
+            0.06
+          ],
+          "size": [
+            0.09,
+            0.2,
+            0.095
+          ],
+          "color": 19,
+          "bone": "Leg.R2"
+        },
+        {
+          "part": "lower-Leg.R2",
+          "center": [
+            0.485,
+            0.105,
+            0.075
+          ],
+          "size": [
+            0.2,
+            0.09,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.R2"
+        },
+        {
+          "part": "foot-Leg.R2",
+          "center": [
+            0.545,
+            0.022,
+            0.085
+          ],
+          "size": [
+            0.1,
+            0.044,
+            0.1
+          ],
+          "color": 23,
+          "bone": "Leg.R2"
+        },
+        {
+          "part": "upper-Leg.R3",
+          "center": [
+            0.26,
+            0.28,
+            0.2
+          ],
+          "size": [
+            0.31,
+            0.085,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.R3"
+        },
+        {
+          "part": "bend-Leg.R3",
+          "center": [
+            0.39,
+            0.215,
+            0.2
+          ],
+          "size": [
+            0.09,
+            0.2,
+            0.095
+          ],
+          "color": 19,
+          "bone": "Leg.R3"
+        },
+        {
+          "part": "lower-Leg.R3",
+          "center": [
+            0.455,
+            0.105,
+            0.245
+          ],
+          "size": [
+            0.2,
+            0.09,
+            0.075
+          ],
+          "color": 18,
+          "bone": "Leg.R3"
+        },
+        {
+          "part": "foot-Leg.R3",
+          "center": [
+            0.52,
+            0.022,
+            0.275
+          ],
+          "size": [
+            0.1,
+            0.044,
+            0.1
+          ],
+          "color": 23,
+          "bone": "Leg.R3"
+        },
+        {
+          "part": "eye-R0",
+          "center": [
+            0.065,
+            0.305,
+            -0.425
+          ],
+          "size": [
+            0.038,
+            0.04,
+            0.022
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "eye-R1",
+          "center": [
+            0.125,
+            0.305,
+            -0.425
+          ],
+          "size": [
+            0.038,
+            0.04,
+            0.022
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "mouthpart-R",
+          "center": [
+            0.065,
+            0.16,
+            -0.437
+          ],
+          "size": [
+            0.065,
+            0.1,
+            0.1
+          ],
+          "color": 17,
+          "bone": "Head"
+        }
+      ],
+      "sockets": []
+    },
+    {
+      "id": "spread-creature-jungle-ape",
+      "blueprint": "JungleApe",
+      "rigFamily": "ape",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "bones": [
+        {
+          "name": "Root",
+          "head": [
+            0,
+            0,
+            0
+          ],
+          "tail": [
+            0,
+            0.05,
+            0
+          ],
+          "parent": null
+        },
+        {
+          "name": "Body",
+          "head": [
+            0,
+            0.7,
+            0
+          ],
+          "tail": [
+            0,
+            0.85,
+            0
+          ],
+          "parent": "Root"
+        },
+        {
+          "name": "Head",
+          "head": [
+            0,
+            0.91,
+            -0.13
+          ],
+          "tail": [
+            0,
+            1.18,
+            -0.23
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Arm.L",
+          "head": [
+            -0.29,
+            0.93,
+            0
+          ],
+          "tail": [
+            -0.45,
+            0.43,
+            -0.13
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Hand.L",
+          "head": [
+            -0.45,
+            0.4,
+            -0.13
+          ],
+          "tail": [
+            -0.47,
+            0.08,
+            -0.21
+          ],
+          "parent": "Arm.L"
+        },
+        {
+          "name": "Leg.L",
+          "head": [
+            -0.15,
+            0.45,
+            0.07
+          ],
+          "tail": [
+            -0.2,
+            0.08,
+            0.15
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Arm.R",
+          "head": [
+            0.29,
+            0.93,
+            0
+          ],
+          "tail": [
+            0.45,
+            0.43,
+            -0.13
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Hand.R",
+          "head": [
+            0.45,
+            0.4,
+            -0.13
+          ],
+          "tail": [
+            0.47,
+            0.08,
+            -0.21
+          ],
+          "parent": "Arm.R"
+        },
+        {
+          "name": "Leg.R",
+          "head": [
+            0.15,
+            0.45,
+            0.07
+          ],
+          "tail": [
+            0.2,
+            0.08,
+            0.15
+          ],
+          "parent": "Body"
+        }
+      ],
+      "boxes": [
+        {
+          "part": "barrel-torso",
+          "center": [
+            0,
+            0.7,
+            0.075
+          ],
+          "size": [
+            0.55,
+            0.6,
+            0.43
+          ],
+          "color": 23,
+          "bone": "Body"
+        },
+        {
+          "part": "shoulder-mantle",
+          "center": [
+            0,
+            0.96,
+            0.015
+          ],
+          "size": [
+            0.76,
+            0.29,
+            0.43
+          ],
+          "color": 6,
+          "bone": "Body"
+        },
+        {
+          "part": "lower-belly",
+          "center": [
+            0,
+            0.51,
+            -0.16
+          ],
+          "size": [
+            0.43,
+            0.27,
+            0.12
+          ],
+          "color": 10,
+          "bone": "Body"
+        },
+        {
+          "part": "head",
+          "center": [
+            0,
+            1.14,
+            -0.12
+          ],
+          "size": [
+            0.36,
+            0.37,
+            0.33
+          ],
+          "color": 6,
+          "bone": "Head"
+        },
+        {
+          "part": "pale-face",
+          "center": [
+            0,
+            1.095,
+            -0.3
+          ],
+          "size": [
+            0.3,
+            0.235,
+            0.075
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "blunt-muzzle",
+          "center": [
+            0,
+            1.055,
+            -0.365
+          ],
+          "size": [
+            0.235,
+            0.1,
+            0.09
+          ],
+          "color": 11,
+          "bone": "Head"
+        },
+        {
+          "part": "brow",
+          "center": [
+            0,
+            1.21,
+            -0.325
+          ],
+          "size": [
+            0.34,
+            0.075,
+            0.075
+          ],
+          "color": 23,
+          "bone": "Head"
+        },
+        {
+          "part": "upper-arm-L",
+          "center": [
+            -0.36,
+            0.73,
+            -0.02
+          ],
+          "size": [
+            0.23,
+            0.46,
+            0.27
+          ],
+          "color": 6,
+          "bone": "Arm.L"
+        },
+        {
+          "part": "forearm-L",
+          "center": [
+            -0.45,
+            0.4,
+            -0.14
+          ],
+          "size": [
+            0.225,
+            0.35,
+            0.26
+          ],
+          "color": 23,
+          "bone": "Arm.L"
+        },
+        {
+          "part": "knuckle-L",
+          "center": [
+            -0.47,
+            0.1,
+            -0.22
+          ],
+          "size": [
+            0.24,
+            0.2,
+            0.25
+          ],
+          "color": 11,
+          "bone": "Hand.L"
+        },
+        {
+          "part": "finger-L0",
+          "center": [
+            -0.535,
+            0.065,
+            -0.345
+          ],
+          "size": [
+            0.047,
+            0.13,
+            0.03
+          ],
+          "color": 17,
+          "bone": "Hand.L"
+        },
+        {
+          "part": "finger-L1",
+          "center": [
+            -0.47,
+            0.065,
+            -0.345
+          ],
+          "size": [
+            0.047,
+            0.13,
+            0.03
+          ],
+          "color": 17,
+          "bone": "Hand.L"
+        },
+        {
+          "part": "finger-L2",
+          "center": [
+            -0.405,
+            0.065,
+            -0.345
+          ],
+          "size": [
+            0.047,
+            0.13,
+            0.03
+          ],
+          "color": 17,
+          "bone": "Hand.L"
+        },
+        {
+          "part": "thigh-L",
+          "center": [
+            -0.17,
+            0.32,
+            0.13
+          ],
+          "size": [
+            0.22,
+            0.32,
+            0.25
+          ],
+          "color": 6,
+          "bone": "Leg.L"
+        },
+        {
+          "part": "foot-L",
+          "center": [
+            -0.2,
+            0.07,
+            0.06
+          ],
+          "size": [
+            0.24,
+            0.14,
+            0.34
+          ],
+          "color": 11,
+          "bone": "Leg.L"
+        },
+        {
+          "part": "eye-L",
+          "center": [
+            -0.085,
+            1.145,
+            -0.347
+          ],
+          "size": [
+            0.04,
+            0.035,
+            0.025
+          ],
+          "color": 23,
+          "bone": "Head"
+        },
+        {
+          "part": "upper-arm-R",
+          "center": [
+            0.36,
+            0.73,
+            -0.02
+          ],
+          "size": [
+            0.23,
+            0.46,
+            0.27
+          ],
+          "color": 6,
+          "bone": "Arm.R"
+        },
+        {
+          "part": "forearm-R",
+          "center": [
+            0.45,
+            0.4,
+            -0.14
+          ],
+          "size": [
+            0.225,
+            0.35,
+            0.26
+          ],
+          "color": 23,
+          "bone": "Arm.R"
+        },
+        {
+          "part": "knuckle-R",
+          "center": [
+            0.47,
+            0.1,
+            -0.22
+          ],
+          "size": [
+            0.24,
+            0.2,
+            0.25
+          ],
+          "color": 11,
+          "bone": "Hand.R"
+        },
+        {
+          "part": "finger-R0",
+          "center": [
+            0.405,
+            0.065,
+            -0.345
+          ],
+          "size": [
+            0.047,
+            0.13,
+            0.03
+          ],
+          "color": 17,
+          "bone": "Hand.R"
+        },
+        {
+          "part": "finger-R1",
+          "center": [
+            0.47,
+            0.065,
+            -0.345
+          ],
+          "size": [
+            0.047,
+            0.13,
+            0.03
+          ],
+          "color": 17,
+          "bone": "Hand.R"
+        },
+        {
+          "part": "finger-R2",
+          "center": [
+            0.535,
+            0.065,
+            -0.345
+          ],
+          "size": [
+            0.047,
+            0.13,
+            0.03
+          ],
+          "color": 17,
+          "bone": "Hand.R"
+        },
+        {
+          "part": "thigh-R",
+          "center": [
+            0.17,
+            0.32,
+            0.13
+          ],
+          "size": [
+            0.22,
+            0.32,
+            0.25
+          ],
+          "color": 6,
+          "bone": "Leg.R"
+        },
+        {
+          "part": "foot-R",
+          "center": [
+            0.2,
+            0.07,
+            0.06
+          ],
+          "size": [
+            0.24,
+            0.14,
+            0.34
+          ],
+          "color": 11,
+          "bone": "Leg.R"
+        },
+        {
+          "part": "eye-R",
+          "center": [
+            0.085,
+            1.145,
+            -0.347
+          ],
+          "size": [
+            0.04,
+            0.035,
+            0.025
+          ],
+          "color": 23,
+          "bone": "Head"
+        }
+      ],
+      "sockets": []
+    },
+    {
+      "id": "spread-creature-mimic-closed",
+      "blueprint": "MimicChest",
+      "rigFamily": "mimic",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "bones": [
+        {
+          "name": "Root",
+          "head": [
+            0,
+            0,
+            0
+          ],
+          "tail": [
+            0,
+            0.05,
+            0
+          ],
+          "parent": null
+        },
+        {
+          "name": "Body",
+          "head": [
+            0,
+            0.18,
+            0
+          ],
+          "tail": [
+            0,
+            0.32999999999999996,
+            0
+          ],
+          "parent": "Root"
+        },
+        {
+          "name": "Head",
+          "head": [
+            0,
+            0.35,
+            0.2
+          ],
+          "tail": [
+            0,
+            0.63,
+            0.16
+          ],
+          "parent": "Body"
+        }
+      ],
+      "boxes": [
+        {
+          "part": "chest-box",
+          "center": [
+            0,
+            0.215,
+            0
+          ],
+          "size": [
+            0.69,
+            0.36,
+            0.52
+          ],
+          "color": 18,
+          "bone": "Body"
+        },
+        {
+          "part": "front-frame",
+          "center": [
+            0,
+            0.2,
+            -0.285
+          ],
+          "size": [
+            0.73,
+            0.43,
+            0.045
+          ],
+          "color": 20,
+          "bone": "Body"
+        },
+        {
+          "part": "side-band",
+          "center": [
+            -0.24,
+            0.235,
+            0
+          ],
+          "size": [
+            0.075,
+            0.39,
+            0.56
+          ],
+          "color": 21,
+          "bone": "Body"
+        },
+        {
+          "part": "foot",
+          "center": [
+            -0.27,
+            0.035,
+            0.16
+          ],
+          "size": [
+            0.14,
+            0.07,
+            0.14
+          ],
+          "color": 19,
+          "bone": "Body"
+        },
+        {
+          "part": "side-band",
+          "center": [
+            0.24,
+            0.235,
+            0
+          ],
+          "size": [
+            0.075,
+            0.39,
+            0.56
+          ],
+          "color": 21,
+          "bone": "Body"
+        },
+        {
+          "part": "foot",
+          "center": [
+            0.27,
+            0.035,
+            0.16
+          ],
+          "size": [
+            0.14,
+            0.07,
+            0.14
+          ],
+          "color": 19,
+          "bone": "Body"
+        },
+        {
+          "part": "lid",
+          "center": [
+            0,
+            0.465,
+            0
+          ],
+          "size": [
+            0.74,
+            0.16,
+            0.57
+          ],
+          "color": 18,
+          "bone": "Head"
+        },
+        {
+          "part": "lid-top",
+          "center": [
+            0,
+            0.56,
+            0
+          ],
+          "size": [
+            0.62,
+            0.055,
+            0.44
+          ],
+          "color": 20,
+          "bone": "Head"
+        },
+        {
+          "part": "lid-band",
+          "center": [
+            -0.24,
+            0.49,
+            0
+          ],
+          "size": [
+            0.075,
+            0.235,
+            0.61
+          ],
+          "color": 22,
+          "bone": "Head"
+        },
+        {
+          "part": "lid-band",
+          "center": [
+            0.24,
+            0.49,
+            0
+          ],
+          "size": [
+            0.075,
+            0.235,
+            0.61
+          ],
+          "color": 22,
+          "bone": "Head"
+        },
+        {
+          "part": "latch",
+          "center": [
+            0,
+            0.3,
+            -0.322
+          ],
+          "size": [
+            0.11,
+            0.17,
+            0.035
+          ],
+          "color": 22,
+          "bone": "Body"
+        }
+      ],
+      "sockets": []
+    },
+    {
+      "id": "spread-creature-mimic-awake",
+      "blueprint": "MimicChest",
+      "rigFamily": "mimic",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "bones": [
+        {
+          "name": "Root",
+          "head": [
+            0,
+            0,
+            0
+          ],
+          "tail": [
+            0,
+            0.05,
+            0
+          ],
+          "parent": null
+        },
+        {
+          "name": "Body",
+          "head": [
+            0,
+            0.18,
+            0
+          ],
+          "tail": [
+            0,
+            0.32999999999999996,
+            0
+          ],
+          "parent": "Root"
+        },
+        {
+          "name": "Head",
+          "head": [
+            0,
+            0.35,
+            0.2
+          ],
+          "tail": [
+            0,
+            0.63,
+            0.16
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Arm.L",
+          "head": [
+            -0.29,
+            0.22,
+            0.0
+          ],
+          "tail": [
+            -0.43,
+            0.05,
+            -0.18
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Arm.R",
+          "head": [
+            0.29,
+            0.22,
+            0.0
+          ],
+          "tail": [
+            0.43,
+            0.05,
+            -0.18
+          ],
+          "parent": "Body"
+        }
+      ],
+      "boxes": [
+        {
+          "part": "chest-box",
+          "center": [
+            0,
+            0.215,
+            0
+          ],
+          "size": [
+            0.69,
+            0.36,
+            0.52
+          ],
+          "color": 18,
+          "bone": "Body"
+        },
+        {
+          "part": "front-frame",
+          "center": [
+            0,
+            0.2,
+            -0.285
+          ],
+          "size": [
+            0.73,
+            0.43,
+            0.045
+          ],
+          "color": 20,
+          "bone": "Body"
+        },
+        {
+          "part": "side-band",
+          "center": [
+            -0.24,
+            0.235,
+            0
+          ],
+          "size": [
+            0.075,
+            0.39,
+            0.56
+          ],
+          "color": 21,
+          "bone": "Body"
+        },
+        {
+          "part": "foot",
+          "center": [
+            -0.27,
+            0.035,
+            0.16
+          ],
+          "size": [
+            0.14,
+            0.07,
+            0.14
+          ],
+          "color": 19,
+          "bone": "Body"
+        },
+        {
+          "part": "side-band",
+          "center": [
+            0.24,
+            0.235,
+            0
+          ],
+          "size": [
+            0.075,
+            0.39,
+            0.56
+          ],
+          "color": 21,
+          "bone": "Body"
+        },
+        {
+          "part": "foot",
+          "center": [
+            0.27,
+            0.035,
+            0.16
+          ],
+          "size": [
+            0.14,
+            0.07,
+            0.14
+          ],
+          "color": 19,
+          "bone": "Body"
+        },
+        {
+          "part": "mouth-shadow",
+          "center": [
+            0,
+            0.445,
+            -0.065
+          ],
+          "size": [
+            0.59,
+            0.14,
+            0.45
+          ],
+          "color": 0,
+          "bone": "Body"
+        },
+        {
+          "part": "raised-lid",
+          "center": [
+            0,
+            0.64,
+            0.14
+          ],
+          "size": [
+            0.75,
+            0.22,
+            0.33
+          ],
+          "color": 18,
+          "bone": "Head"
+        },
+        {
+          "part": "lid-inner",
+          "center": [
+            0,
+            0.615,
+            -0.043
+          ],
+          "size": [
+            0.65,
+            0.16,
+            0.043
+          ],
+          "color": 19,
+          "bone": "Head"
+        },
+        {
+          "part": "lower-tooth-0",
+          "center": [
+            -0.21,
+            0.39,
+            -0.285
+          ],
+          "size": [
+            0.064,
+            0.115,
+            0.068
+          ],
+          "color": 17,
+          "bone": "Body"
+        },
+        {
+          "part": "upper-tooth-0",
+          "center": [
+            -0.22,
+            0.51,
+            -0.082
+          ],
+          "size": [
+            0.075,
+            0.16,
+            0.068
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "lower-tooth-1",
+          "center": [
+            -0.105,
+            0.39,
+            -0.285
+          ],
+          "size": [
+            0.064,
+            0.115,
+            0.068
+          ],
+          "color": 17,
+          "bone": "Body"
+        },
+        {
+          "part": "upper-tooth-1",
+          "center": [
+            -0.11,
+            0.51,
+            -0.082
+          ],
+          "size": [
+            0.075,
+            0.16,
+            0.068
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "lower-tooth-2",
+          "center": [
+            0.0,
+            0.39,
+            -0.285
+          ],
+          "size": [
+            0.064,
+            0.115,
+            0.068
+          ],
+          "color": 17,
+          "bone": "Body"
+        },
+        {
+          "part": "upper-tooth-2",
+          "center": [
+            0.0,
+            0.51,
+            -0.082
+          ],
+          "size": [
+            0.075,
+            0.16,
+            0.068
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "lower-tooth-3",
+          "center": [
+            0.105,
+            0.39,
+            -0.285
+          ],
+          "size": [
+            0.064,
+            0.115,
+            0.068
+          ],
+          "color": 17,
+          "bone": "Body"
+        },
+        {
+          "part": "upper-tooth-3",
+          "center": [
+            0.11,
+            0.51,
+            -0.082
+          ],
+          "size": [
+            0.075,
+            0.16,
+            0.068
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "lower-tooth-4",
+          "center": [
+            0.21,
+            0.39,
+            -0.285
+          ],
+          "size": [
+            0.064,
+            0.115,
+            0.068
+          ],
+          "color": 17,
+          "bone": "Body"
+        },
+        {
+          "part": "upper-tooth-4",
+          "center": [
+            0.22,
+            0.51,
+            -0.082
+          ],
+          "size": [
+            0.075,
+            0.16,
+            0.068
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "tongue",
+          "center": [
+            0,
+            0.38,
+            -0.4
+          ],
+          "size": [
+            0.155,
+            0.055,
+            0.24
+          ],
+          "color": 18,
+          "bone": "Body"
+        },
+        {
+          "part": "tongue-tip",
+          "center": [
+            0,
+            0.405,
+            -0.53
+          ],
+          "size": [
+            0.17,
+            0.065,
+            0.08
+          ],
+          "color": 22,
+          "bone": "Body"
+        },
+        {
+          "part": "claw-base-L",
+          "center": [
+            -0.4,
+            0.115,
+            -0.15
+          ],
+          "size": [
+            0.17,
+            0.17,
+            0.23
+          ],
+          "color": 19,
+          "bone": "Arm.L"
+        },
+        {
+          "part": "claw-L0",
+          "center": [
+            -0.4375,
+            0.065,
+            -0.29
+          ],
+          "size": [
+            0.035,
+            0.1,
+            0.1
+          ],
+          "color": 17,
+          "bone": "Arm.L"
+        },
+        {
+          "part": "claw-L1",
+          "center": [
+            -0.3825,
+            0.065,
+            -0.29
+          ],
+          "size": [
+            0.035,
+            0.1,
+            0.1
+          ],
+          "color": 17,
+          "bone": "Arm.L"
+        },
+        {
+          "part": "claw-base-R",
+          "center": [
+            0.4,
+            0.115,
+            -0.15
+          ],
+          "size": [
+            0.17,
+            0.17,
+            0.23
+          ],
+          "color": 19,
+          "bone": "Arm.R"
+        },
+        {
+          "part": "claw-R0",
+          "center": [
+            0.3825,
+            0.065,
+            -0.29
+          ],
+          "size": [
+            0.035,
+            0.1,
+            0.1
+          ],
+          "color": 17,
+          "bone": "Arm.R"
+        },
+        {
+          "part": "claw-R1",
+          "center": [
+            0.4375,
+            0.065,
+            -0.29
+          ],
+          "size": [
+            0.035,
+            0.1,
+            0.1
+          ],
+          "color": 17,
+          "bone": "Arm.R"
+        }
+      ],
+      "sockets": []
+    },
+    {
+      "id": "spread-creature-glowmaw",
+      "blueprint": "Glowmaw",
+      "rigFamily": "grasping",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "bones": [
+        {
+          "name": "Root",
+          "head": [
+            0,
+            0,
+            0
+          ],
+          "tail": [
+            0,
+            0.05,
+            0
+          ],
+          "parent": null
+        },
+        {
+          "name": "Body",
+          "head": [
+            0,
+            0.32,
+            0
+          ],
+          "tail": [
+            0,
+            0.47,
+            0
+          ],
+          "parent": "Root"
+        },
+        {
+          "name": "Head",
+          "head": [
+            0,
+            0.34,
+            -0.12
+          ],
+          "tail": [
+            0,
+            0.38,
+            -0.27
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Arm.L0",
+          "head": [
+            -0.17,
+            0.34,
+            -0.08
+          ],
+          "tail": [
+            -0.39,
+            0.055,
+            -0.18
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Arm.L1",
+          "head": [
+            -0.17,
+            0.34,
+            0.15000000000000002
+          ],
+          "tail": [
+            -0.39,
+            0.055,
+            0.05000000000000002
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Arm.R0",
+          "head": [
+            0.17,
+            0.34,
+            -0.08
+          ],
+          "tail": [
+            0.39,
+            0.055,
+            -0.18
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Arm.R1",
+          "head": [
+            0.17,
+            0.34,
+            0.15000000000000002
+          ],
+          "tail": [
+            0.39,
+            0.055,
+            0.05000000000000002
+          ],
+          "parent": "Body"
+        }
+      ],
+      "boxes": [
+        {
+          "part": "flattened-body",
+          "center": [
+            0,
+            0.36,
+            0.1
+          ],
+          "size": [
+            0.47,
+            0.31,
+            0.48
+          ],
+          "color": 19,
+          "bone": "Body"
+        },
+        {
+          "part": "back-plate",
+          "center": [
+            0,
+            0.535,
+            0.14
+          ],
+          "size": [
+            0.38,
+            0.085,
+            0.37
+          ],
+          "color": 20,
+          "bone": "Body"
+        },
+        {
+          "part": "mouth-shadow",
+          "center": [
+            0,
+            0.32,
+            -0.22
+          ],
+          "size": [
+            0.41,
+            0.31,
+            0.08
+          ],
+          "color": 0,
+          "bone": "Head"
+        },
+        {
+          "part": "throat",
+          "center": [
+            0,
+            0.33,
+            -0.268
+          ],
+          "size": [
+            0.225,
+            0.175,
+            0.035
+          ],
+          "color": 22,
+          "bone": "Head"
+        },
+        {
+          "part": "blunt-mouth-rim-0",
+          "center": [
+            0.205,
+            0.33,
+            -0.26
+          ],
+          "size": [
+            0.11,
+            0.085,
+            0.105
+          ],
+          "color": 18,
+          "bone": "Head"
+        },
+        {
+          "part": "blunt-mouth-rim-1",
+          "center": [
+            0.14496,
+            0.43253,
+            -0.26
+          ],
+          "size": [
+            0.11,
+            0.085,
+            0.105
+          ],
+          "color": 18,
+          "bone": "Head"
+        },
+        {
+          "part": "blunt-mouth-rim-2",
+          "center": [
+            0.0,
+            0.475,
+            -0.26
+          ],
+          "size": [
+            0.11,
+            0.085,
+            0.105
+          ],
+          "color": 18,
+          "bone": "Head"
+        },
+        {
+          "part": "blunt-mouth-rim-3",
+          "center": [
+            -0.14496,
+            0.43253,
+            -0.26
+          ],
+          "size": [
+            0.11,
+            0.085,
+            0.105
+          ],
+          "color": 18,
+          "bone": "Head"
+        },
+        {
+          "part": "blunt-mouth-rim-4",
+          "center": [
+            -0.205,
+            0.33,
+            -0.26
+          ],
+          "size": [
+            0.11,
+            0.085,
+            0.105
+          ],
+          "color": 18,
+          "bone": "Head"
+        },
+        {
+          "part": "blunt-mouth-rim-5",
+          "center": [
+            -0.14496,
+            0.22747,
+            -0.26
+          ],
+          "size": [
+            0.11,
+            0.085,
+            0.105
+          ],
+          "color": 18,
+          "bone": "Head"
+        },
+        {
+          "part": "blunt-mouth-rim-6",
+          "center": [
+            -0.0,
+            0.185,
+            -0.26
+          ],
+          "size": [
+            0.11,
+            0.085,
+            0.105
+          ],
+          "color": 18,
+          "bone": "Head"
+        },
+        {
+          "part": "blunt-mouth-rim-7",
+          "center": [
+            0.14496,
+            0.22747,
+            -0.26
+          ],
+          "size": [
+            0.11,
+            0.085,
+            0.105
+          ],
+          "color": 18,
+          "bone": "Head"
+        },
+        {
+          "part": "upper-Arm.L0",
+          "center": [
+            -0.3,
+            0.29,
+            -0.08
+          ],
+          "size": [
+            0.27,
+            0.115,
+            0.12
+          ],
+          "color": 20,
+          "bone": "Arm.L0"
+        },
+        {
+          "part": "grasp-Arm.L0",
+          "center": [
+            -0.405,
+            0.145,
+            -0.15
+          ],
+          "size": [
+            0.095,
+            0.25,
+            0.13
+          ],
+          "color": 19,
+          "bone": "Arm.L0"
+        },
+        {
+          "part": "digit-Arm.L0",
+          "center": [
+            -0.36,
+            0.04,
+            -0.23
+          ],
+          "size": [
+            0.18,
+            0.08,
+            0.13
+          ],
+          "color": 17,
+          "bone": "Arm.L0"
+        },
+        {
+          "part": "upper-Arm.L1",
+          "center": [
+            -0.3,
+            0.29,
+            0.15
+          ],
+          "size": [
+            0.27,
+            0.115,
+            0.12
+          ],
+          "color": 20,
+          "bone": "Arm.L1"
+        },
+        {
+          "part": "grasp-Arm.L1",
+          "center": [
+            -0.405,
+            0.145,
+            0.08
+          ],
+          "size": [
+            0.095,
+            0.25,
+            0.13
+          ],
+          "color": 19,
+          "bone": "Arm.L1"
+        },
+        {
+          "part": "digit-Arm.L1",
+          "center": [
+            -0.36,
+            0.04,
+            0.0
+          ],
+          "size": [
+            0.18,
+            0.08,
+            0.13
+          ],
+          "color": 17,
+          "bone": "Arm.L1"
+        },
+        {
+          "part": "upper-Arm.R0",
+          "center": [
+            0.3,
+            0.29,
+            -0.08
+          ],
+          "size": [
+            0.27,
+            0.115,
+            0.12
+          ],
+          "color": 20,
+          "bone": "Arm.R0"
+        },
+        {
+          "part": "grasp-Arm.R0",
+          "center": [
+            0.405,
+            0.145,
+            -0.15
+          ],
+          "size": [
+            0.095,
+            0.25,
+            0.13
+          ],
+          "color": 19,
+          "bone": "Arm.R0"
+        },
+        {
+          "part": "digit-Arm.R0",
+          "center": [
+            0.36,
+            0.04,
+            -0.23
+          ],
+          "size": [
+            0.18,
+            0.08,
+            0.13
+          ],
+          "color": 17,
+          "bone": "Arm.R0"
+        },
+        {
+          "part": "upper-Arm.R1",
+          "center": [
+            0.3,
+            0.29,
+            0.15
+          ],
+          "size": [
+            0.27,
+            0.115,
+            0.12
+          ],
+          "color": 20,
+          "bone": "Arm.R1"
+        },
+        {
+          "part": "grasp-Arm.R1",
+          "center": [
+            0.405,
+            0.145,
+            0.08
+          ],
+          "size": [
+            0.095,
+            0.25,
+            0.13
+          ],
+          "color": 19,
+          "bone": "Arm.R1"
+        },
+        {
+          "part": "digit-Arm.R1",
+          "center": [
+            0.36,
+            0.04,
+            0.0
+          ],
+          "size": [
+            0.18,
+            0.08,
+            0.13
+          ],
+          "color": 17,
+          "bone": "Arm.R1"
+        }
+      ],
+      "sockets": []
+    }
+  ]
+}

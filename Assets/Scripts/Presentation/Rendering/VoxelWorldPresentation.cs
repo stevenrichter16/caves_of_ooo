@@ -29,6 +29,34 @@ namespace CavesOfOoo.Rendering
                 var glade=ReferenceGladeVoxelLibrary.Load();if(glade==null)throw new InvalidOperationException("Reference glade voxel kit missing.");
                 glade.Validate();foreach(var entry in glade.Entries)generated.Add(entry.Mesh);
                 foreach(var paint in glade.ActorPaints)generated.Add(paint.Painted);
+                var visitors=SpreadVisitorPaintLibrary.Load();
+                if(visitors==null)throw new InvalidOperationException("Scoped existing visitor palette library missing.");
+                visitors.Validate();foreach(var entry in visitors.Entries)generated.Add(entry.Painted);
+                // Original animal volumes are already authored as small cubes.
+                // Register the persistent imported mesh; do not re-voxelize away
+                // thin wings, beaks, feet or the snake's continuous bend.
+                var animals=SpreadBiomeActorLibrary.Load();
+                if(animals==null)throw new InvalidOperationException("Original Spread animal library missing.");
+                animals.Validate();foreach(var entry in animals.Entries)generated.Add(entry.Mesh);
+                var newVisitors=SpreadVisitorCreatureLibrary.Load();if(newVisitors==null)throw new InvalidOperationException("Original visitor library missing.");
+                newVisitors.Validate();foreach(var entry in newVisitors.Entries)generated.Add(entry.Mesh);
+                var creatures=SpreadCreature3DLibrary.Load();if(creatures==null)throw new InvalidOperationException("Scoped creature library missing.");
+                creatures.Validate();foreach(var entry in creatures.Entries)generated.Add(entry.Mesh);
+                var people=SpreadBiomeHumanoidLibrary.Load();if(people==null)throw new InvalidOperationException("Scoped humanoid library missing.");
+                people.Validate();foreach(var entry in people.Entries)generated.Add(entry.Mesh);
+                var portable = SpreadPortable3DLibrary.Load();
+                if (portable == null) throw new InvalidOperationException("Spread portable voxel library missing.");
+                portable.Validate(); foreach (var entry in portable.Entries) generated.Add(entry.Mesh);
+                var worn = SpreadEquipment3DLibrary.Load();
+                if (worn == null) throw new InvalidOperationException("Spread fitted equipment library missing.");
+                worn.Validate(); foreach (var entry in worn.Entries) generated.Add(entry.Mesh);
+                var nativeStyles=SpreadNativeStyle3DLibrary.Load();if(nativeStyles==null)throw new InvalidOperationException("Native static style library missing.");
+                nativeStyles.EnsureReady();foreach(var entry in nativeStyles.Entries)generated.Add(entry.Mesh);
+                var environment = SpreadEnvironment3DLibrary.Load();if(environment==null)throw new InvalidOperationException("Approved environment library missing.");
+                environment.Validate();foreach(var entry in environment.Entries)generated.Add(entry.Mesh);
+                var scenery = SpreadScenery3DLibrary.Load();
+                if (scenery == null) throw new InvalidOperationException("Spread scenery voxel library missing.");
+                scenery.Validate(); foreach (var entry in scenery.Entries) generated.Add(entry.Mesh);
             }
             // Pool hazards and market stalls can occur in any supported native
             // zone. Register their already-voxel meshes once per bind, not frame.
@@ -42,6 +70,9 @@ namespace CavesOfOoo.Rendering
             for (int variant = 0; variant < 4; variant++)
             {
                 generated.Add(springs.Find(StillleafVoxelLibrary.ModelId("spring", variant)).Mesh);
+                // Ordinary doors borrow these exact saved-state meshes in every ring zone.
+                generated.Add(springs.Find(StillleafVoxelLibrary.ModelId("door", variant)).Mesh);
+                generated.Add(springs.Find(StillleafVoxelLibrary.ModelId("open-door", variant)).Mesh);
                 generated.Add(stalls.Find(CinderholdVoxelKitLibrary.ModelId("stall", variant)).Mesh);
             }
             if (SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId))
@@ -196,7 +227,7 @@ namespace CavesOfOoo.Rendering
             }
         }
         public static bool IsEnabledFor(Zone zone)
-            => Village3DSettings.Enabled && zone != null && IsSupported(zone.ZoneID) && AreaCompositionScope.Allows(zone);
+            => Village3DSettings.Enabled && zone != null && (SpreadPresentationScope.IsActive(zone) || IsSupported(zone.ZoneID)) && AreaCompositionScope.Allows(zone);
 
         /// <summary>Unsupported zones do not load resources. Invalid required
         /// resources throw into the presenter's existing cleanup/fallback path.</summary>
@@ -207,7 +238,7 @@ namespace CavesOfOoo.Rendering
             {
                 var library = Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath);
                 if (library == null) throw new InvalidOperationException("Required voxel mesh catalogue is unavailable.");
-                var result = new VoxelWorldPresentation(zone.ZoneID, library, ReferenceGladePlan.IsActive(zone));
+                var result = new VoxelWorldPresentation(zone.ZoneID, library, ReferenceGladePlan.IsActive(zone) || SpreadPresentationScope.IsActive(zone));
                 if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "VoxelPresentationBound",
                     payload: new { zoneId = zone.ZoneID, bindings = library.Bindings.Length });
                 return result;

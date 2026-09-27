@@ -1,0 +1,9 @@
+{
+  "nativeRed": "Integration/native-style-integration126-failure.xml.gz",
+  "problem": "Unity forbids MaterialPropertyBlock native handle creation in MonoBehaviour constructors or instance field initializers. This escaped pure reference compilation; actual native tests threw CreateImpl and cleanup NullReferenceException.",
+  "fix": "Create scratch block inside Spread Bind on main thread; cleanup is null-safe and relinquishes scratch reference. No gameplay or source assets changed.",
+  "path": "Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs",
+  "beforeSha256": "69358789eaf9dfc913c4598b2115a0b27a330778296a61d0d94acf8c89e7ae15",
+  "afterSha256": "dee19737122a70903032454e57c85ddc41a806a920089a61166ffd2b7d0b583e",
+  "nativeRerun": "pending"
+}

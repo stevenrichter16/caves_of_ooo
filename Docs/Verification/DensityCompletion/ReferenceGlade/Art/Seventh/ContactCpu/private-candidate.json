@@ -1,0 +1,39 @@
+{
+  "status": "Private CPU-only math unit; source skeleton actual15RED/6controls ->21GREEN. Native shader and ownership integration still unimplemented/awaiting RED.",
+  "red": {
+    "cases": 21,
+    "passed": 6,
+    "failed": 15
+  },
+  "green": {
+    "cases": 21,
+    "passed": 21,
+    "failed": 0
+  },
+  "files": [
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/ReferenceGladeContactGeometry.cs",
+      "sha256": "87c134c2ed8c7c0383e1f453208667cf9ffdac821adc1d7d64def96b3b7a896f"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/ReferenceGladeContactGeometry.cs.meta",
+      "sha256": "f7c2e152b44aba5064764b657c752f06168b9e71f7eacd92ca0990eed779a34e"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeContactGeometryTests.cs",
+      "sha256": "ef1a8b1052f3c0aa2e701d5ee438bc69cc629e2d5f165f92776870e88ff14d80"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeContactGeometryTests.cs.meta",
+      "sha256": "32450c54423c3985a71b5f9a9e18d9e12df90541d66ba642b76a1aca6f762640"
+    }
+  ],
+  "countercheck": {
+    "cases": 25,
+    "beforePassed": 23,
+    "beforeFailed": 2,
+    "afterPassed": 25,
+    "afterFailed": 0,
+    "finding": "Symmetric initial rectangle could not distinguish +90/-90; off-centre native-yaw controls exposed swapped90/270 quarter-turn transform."
+  }
+}

@@ -1,0 +1,141 @@
+--- a/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+@@ -1078,7 +1078,11 @@
+             SetTurnProvider(turnProvider);
+         }
+ 
+-        protected override bool CommitGeneratedZone(Zone zone, string zoneID) => LairStacks.CommitGenerated(zone, this);
++        protected override bool CommitGeneratedZone(Zone zone, string zoneID)
++        {
++            LegendaryLairEncounters.TryApplyGeneratedFinal(zone, this);
++            return LairStacks.CommitGenerated(zone, this);
++        }
+         protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID);
+ 
+         protected override void OnZoneAttached(Zone zone)
+--- a/Assets/Scripts/Gameplay/Entities/ExaminablePart.cs
++++ b/Assets/Scripts/Gameplay/Entities/ExaminablePart.cs
+@@ -99,6 +99,10 @@
+             if (!string.IsNullOrWhiteSpace(Text))
+                 baseLine += " " + Text.Trim();
+ 
++            var carriedReward = ParentEntity?.GetPart<LegendaryIdentityPart>()?.DescribeCarriedReward();
++            if (!string.IsNullOrWhiteSpace(carriedReward))
++                baseLine += "\n" + carriedReward;
++
+             var directions = ParentEntity?.GetPart<RegionalSignpostPart>()?.GetDirectionsText();
+             if (!string.IsNullOrWhiteSpace(directions))
+                 baseLine += "\n" + directions;
+--- a/Assets/Scripts/Gameplay/World/Generation/LairStacks.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/LairStacks.cs
+@@ -202,40 +202,8 @@
+                 return true;
+             }
+             PendingZones.Remove(zone);
+-            // Native generation callbacks run after builders. Validate the actual
+-            // staged identities again, before either claims or routes can publish.
+-            if (!ValidOwner(zone, p.BossOwner, p.Boss, "boss")
+-                || !ValidOwner(zone, p.RewardOwner, p.Reward, "reward")
+-                || !ValidOwner(zone, p.UpOwner, p.Up, "up")
+-                || !ValidOwner(zone, p.DownOwner, p.Down, "down")
+-                || !ValidOwner(zone, p.LooseOwner, p.Loose, "loose"))
+-                return false;
+-            if (ledger.Records.TryGetValue(p.Plan.SurfaceID, out var old) && (old.Legacy || (old.GeneratedMask & (1 << p.Depth)) != 0))
+-                return false;
+-            var next = (old ?? p.Plan).Copy();
+-            next.GeneratedMask |= 1 << p.Depth;
+-            next.Up[p.Depth] = p.Up;
+-            next.Down[p.Depth] = p.Down;
+-            if (p.Depth == next.FinalDepth)
+-            {
+-                next.BossID = p.Boss;
+-                next.RewardID = p.Reward;
+-                if (string.IsNullOrEmpty(next.BossID) || string.IsNullOrEmpty(next.RewardID))
+-                    return false;
+-            }
+-            var stagedEdges = new List<ZoneConnection>();
+-            if (p.Up != null)
+-            {
+-                if (!TryEdge(manager, next, p.Depth - 1, zone, out var incoming))
+-                    return false;
+-                stagedEdges.Add(incoming);
+-            }
+-            if (p.Down != null)
+-            {
+-                if (!TryEdge(manager, next, p.Depth, zone, out var outgoing))
+-                    return false;
+-                stagedEdges.Add(outgoing);
+-            }
++            if (!TryPrepareCommit(zone, manager, ledger, p, out var next, out var stagedEdges))
++                return false;
+             ledger.Records[next.SurfaceID] = next;
+             // A removed cached endpoint cannot leave a stale deferred route.
+             foreach (var edge in manager.GetConnections(zone.ZoneID).ToArray())
+@@ -263,6 +231,67 @@
+                 reward = next.RewardID,
+                 loose = p.Loose
+             });
++            return true;
++        }
++        /// <summary>Non-consuming preflight for a fresh final-floor decoration.
++        /// The caller receives the actual staged owner only after the same native
++        /// ownership and route checks required by commit. An ID or blueprint match
++        /// cannot authorize a replacement, borrowed actor or lookalike zone.</summary>
++        internal static bool TryGetValidatedFinalBoss(Zone zone, OverworldZoneManager manager, out Entity boss)
++        {
++            boss = null;
++            if (zone == null || manager == null || manager.CachedZones.ContainsKey(zone.ZoneID)
++                || !PendingZones.TryGetValue(zone, out var pending) || pending.BossOwner == null
++                || pending.Plan.Legacy || pending.Depth != pending.Plan.FinalDepth
++                || zone.ZoneID != pending.Plan.ZoneAt(pending.Depth)
++                || !TryPlan(manager, zone.ZoneID, out var current)
++                || current.SurfaceID != pending.Plan.SurfaceID || current.Biome != pending.Plan.Biome
++                || current.Tier != pending.Plan.Tier || current.FinalDepth != pending.Plan.FinalDepth
++                || current.BossBlueprint != pending.Plan.BossBlueprint
++                || !TryPrepareCommit(zone, manager, Ledger(manager), pending, out _, out _))
++                return false;
++            boss = pending.BossOwner;
++            return true;
++        }
++        private static bool TryPrepareCommit(Zone zone, OverworldZoneManager manager,
++            LairStackLedgerPart ledger, Pending p, out LairStackRecord next, out List<ZoneConnection> stagedEdges)
++        {
++            next = null;
++            stagedEdges = null;
++            // Native generation callbacks run after builders. Validate the actual
++            // staged identities again, before either claims or routes can publish.
++            if (!ValidOwner(zone, p.BossOwner, p.Boss, "boss")
++                || !ValidOwner(zone, p.RewardOwner, p.Reward, "reward")
++                || !ValidOwner(zone, p.UpOwner, p.Up, "up")
++                || !ValidOwner(zone, p.DownOwner, p.Down, "down")
++                || !ValidOwner(zone, p.LooseOwner, p.Loose, "loose"))
++                return false;
++            if (ledger.Records.TryGetValue(p.Plan.SurfaceID, out var old) && (old.Legacy || (old.GeneratedMask & (1 << p.Depth)) != 0))
++                return false;
++            next = (old ?? p.Plan).Copy();
++            next.GeneratedMask |= 1 << p.Depth;
++            next.Up[p.Depth] = p.Up;
++            next.Down[p.Depth] = p.Down;
++            if (p.Depth == next.FinalDepth)
++            {
++                next.BossID = p.Boss;
++                next.RewardID = p.Reward;
++                if (string.IsNullOrEmpty(next.BossID) || string.IsNullOrEmpty(next.RewardID))
++                    return false;
++            }
++            stagedEdges = new List<ZoneConnection>();
++            if (p.Up != null)
++            {
++                if (!TryEdge(manager, next, p.Depth - 1, zone, out var incoming))
++                    return false;
++                stagedEdges.Add(incoming);
++            }
++            if (p.Down != null)
++            {
++                if (!TryEdge(manager, next, p.Depth, zone, out var outgoing))
++                    return false;
++                stagedEdges.Add(outgoing);
++            }
+             return true;
+         }
+         private static bool ValidOwner(Zone zone, Entity owner, string id, string role)

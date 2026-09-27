@@ -1,0 +1,152 @@
+--- a/Assets/Scripts/Scenarios/Custom/DensityFindsNativePlayer.cs
++++ b/Assets/Scripts/Scenarios/Custom/DensityFindsNativePlayer.cs
+@@ -52,7 +52,7 @@
+         private NativeState _failureState;
+         [Serializable] private sealed class NativeState
+         {
+-            public string label, state, zone, pendingEquipmentID, inventoryStatus, inventoryActionItemID, announcement; public string[] pendingDisplacements; public int hp, maxHp, x, y, tick, energy;
++            public string label, state, zone, pendingEquipmentID, inventoryStatus, inventoryActionItemID, announcement; public string[] pendingDisplacements, nearbyCreatures, controlCooldowns; public int hp, maxHp, x, y, tick, energy;
+             public bool deathHandled, blockingFx; public string[] lastMessages;
+         }
+         [Serializable] private sealed class NativeKeyStep
+@@ -78,6 +78,17 @@
+                 inventoryActionItemID = itemActions == null ? null : ((Entity)Field(itemActions, "Item"))?.ID,
+                 announcement = _input?.AnnouncementUI == null || !_input.AnnouncementUI.IsOpen ? null
+                     : (string)Field(_input.AnnouncementUI, "_message"),
++                nearbyCreatures = zone == null || actor == null || cell == null ? Array.Empty<string>()
++                    : zone.GetReadOnlyEntities().Where(e => e != actor && e.HasTag("Creature")
++                        && SpatialQuery.DistanceToCell(zone, e, cell.X, cell.Y) <= 9)
++                        .Select(e => e.ID + ":" + e.BlueprintName + "@" + string.Join("/", zone.GetOccupiedCells(e).Select(c => c.X + "," + c.Y))
++                            + ";HP=" + e.GetStatValue("Hitpoints") + ";visible=" + zone.GetOccupiedCells(e).Any(c => c.IsVisible)
++                            + ";noFight=" + (e.GetPart<BrainPart>()?.HasGoal<NoFightGoal>() == true)
++                            + ";cold=" + (e.GetEffect<FrozenEffect>()?.Cold ?? 0)).ToArray(),
++                controlCooldowns = actor?.GetPart<ActivatedAbilitiesPart>() == null ? Array.Empty<string>()
++                    : Enumerable.Range(0, ActivatedAbilitiesPart.SlotCount).Select(i => actor.GetPart<ActivatedAbilitiesPart>().GetAbilityBySlot(i))
++                        .Where(a => a != null && (a.Command == "CommandCalm" || a.Command == "CommandRimeGrip"))
++                        .Select(a => a.Command + ":" + a.CooldownRemaining).ToArray(),
+                 lastMessages = MessageLog.GetRecentEntries(12).Select(e => e.Text).ToArray() };
+         }
+         private string RuntimeDetails()
+@@ -490,8 +501,10 @@
+             slot = -1; return null;
+         }
+         private bool ClearCastLine(Entity target, int range, out int dx, out int dy)
++            => ClearCastLineFrom(Cell(), target, range, out dx, out dy);
++        private bool ClearCastLineFrom(Cell from, Entity target, int range, out int dx, out int dy)
+         {
+-            dx = dy = 0; var from = Cell();
++            dx = dy = 0;
+             foreach (var at in _input.CurrentZone.GetOccupiedCells(target))
+             {
+                 int x = at.X - from.X, y = at.Y - from.Y;
+@@ -554,11 +567,12 @@
+             return true;
+         }
+         private List<Cell> SafeRoute(int x, int y)
++            => SafeRouteTo(c => c.X == x && c.Y == y);
++        private List<Cell> SafeRouteTo(Func<Cell, bool> destination)
+         {
+-            var origin = Cell(); var start = (origin.X, origin.Y); var end = (x, y);
+-            if (start == end) return new List<Cell>();
++            var origin = Cell(); var start = (origin.X, origin.Y);
++            if (destination(origin)) return new List<Cell>();
+             var threats = _input.CurrentZone.GetReadOnlyEntities().Where(IsActiveVisibleThreat).ToArray();
+-            if (!SafeRouteCell(x, y, threats)) return null;
+             var previous = new Dictionary<(int, int), (int, int)> { [start] = start };
+             var queue = new Queue<(int, int)>(); queue.Enqueue(start);
+             while (queue.Count > 0)
+@@ -570,10 +584,15 @@
+                     var next = (at.Item1 + dx, at.Item2 + dy);
+                     if (previous.ContainsKey(next) || !SafeRouteCell(next.Item1, next.Item2, threats)) continue;
+                     previous[next] = at;
+-                    if (next == end)
++                    var cell = _input.CurrentZone.GetCell(next.Item1, next.Item2);
++                    if (destination(cell))
+                     {
+-                        var path = new List<Cell>(); var p = end;
+-                        while (p != start) { path.Add(_input.CurrentZone.GetCell(p.x, p.y)); p = previous[p]; }
++                        var path = new List<Cell>(); var point = next;
++                        while (point != start)
++                        {
++                            path.Add(_input.CurrentZone.GetCell(point.Item1, point.Item2));
++                            point = previous[point];
++                        }
+                         path.Reverse(); return path;
+                     }
+                     queue.Enqueue(next);
+@@ -581,22 +600,63 @@
+             }
+             return null;
+         }
++        private bool CanUseReadyControlFrom(Cell from)
++        {
++            foreach (var threat in _input.CurrentZone.GetReadOnlyEntities().Where(IsActiveVisibleThreat))
++            foreach (string command in new[] { "CommandCalm", "CommandRimeGrip" })
++            {
++                if (ReadyAbility(command, out _) == null) continue;
++                int range = command == "CommandCalm" ? 6 : 5;
++                if (ClearCastLineFrom(from, threat, range, out _, out _)) return true;
++            }
++            return false;
++        }
+         private IEnumerator WalkIntoReach(Entity target)
+         {
+-            yield return ProtectRouteWithStartingControl();
+-            if (CombatSystem.IsDeathHandled(target) || (target.HasTag("Creature") && target.GetStatValue("Hitpoints") <= 0)) yield break;
+-            var from = Cell(); Cell best = null; int cost = int.MaxValue;
+-            foreach (var owned in _input.CurrentZone.GetOccupiedCells(target))
+-                for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++)
++            // Native actors move and visibility changes after every action.
++            // Never keep walking toward an old adjacent cell selected before a
++            // target moved. A control ray must be reached by real safe steps.
++            for (int step = 0; step < 160; step++)
++            {
++                yield return WaitForNativeFx();
++                yield return DismissEarnedAdvancement();
++                Require(State() == "Normal" && _input.PlayerEntity.GetStatValue("Hitpoints") > 0
++                    && !CombatSystem.IsDeathHandled(_input.PlayerEntity), "live native approach; " + RuntimeDetails());
++                if (_input.PlayerEntity.GetStatValue("Hitpoints") <= 20 && _startingTonicsUsed < 2)
+                 {
+-                    if (dx == 0 && dy == 0) continue;
+-                    var cell = _input.CurrentZone.GetCell(owned.X + dx, owned.Y + dy);
+-                    if (cell == null || cell.BlocksMovement(_input.PlayerEntity) || cell.Objects.Any(e => e.HasPart<TriggerOnStepPart>())) continue;
+-                    var path = SafeRoute(cell.X, cell.Y);
+-                    if (path != null && path.Count < cost) { best = cell; cost = path.Count; }
++                    var tonic = Owned().FirstOrDefault(e => e.BlueprintName == "HealingTonic");
++                    if (tonic != null)
++                    {
++                        yield return ItemAction(tonic, "ApplyTonic"); yield return CloseToNormal(); _startingTonicsUsed++;
++                        _transcript.Add("Keyboard used actual starting healing tonic " + _startingTonicsUsed + " of2; no direct health modification.");
++                    }
+                 }
+-            Require(best != null, "native walking approach to reward");
+-            yield return WalkTo(best.X, best.Y);
++                if (CombatSystem.IsDeathHandled(target) || (target.HasTag("Creature") && target.GetStatValue("Hitpoints") <= 0)) yield break;
++                Require(_input.CurrentZone.GetEntityCell(target) != null, "approach owner remains in this native zone");
++                if (SpatialQuery.Distance(_input.CurrentZone, _input.PlayerEntity, target) <= 1) yield break;
++                yield return ProtectRouteWithStartingControl();
++                if (CombatSystem.IsDeathHandled(target) || (target.HasTag("Creature") && target.GetStatValue("Hitpoints") <= 0)) yield break;
++                if (SpatialQuery.Distance(_input.CurrentZone, _input.PlayerEntity, target) <= 1) yield break;
++                var path = SafeRouteTo(c => SpatialQuery.DistanceToCell(_input.CurrentZone, target, c.X, c.Y) <= 1);
++                string goal = "current owner reach";
++                if (path == null)
++                {
++                    path = SafeRouteTo(CanUseReadyControlFrom);
++                    goal = "ready native control casting line";
++                }
++                _descriptions.Add(new Description { subject = "Replanned native approach", source = target.ID,
++                    text = goal + "; origin=" + Cell().X + "," + Cell().Y + "; path="
++                        + (path == null ? "none" : string.Join("/", path.Select(c => c.X + "," + c.Y))) });
++                if (path != null && path.Count == 0 && goal == "ready native control casting line")
++                {
++                    yield return ProtectRouteWithStartingControl();
++                    continue;
++                }
++                Require(path != null && path.Count > 0, "safe native reach or control-position route; " + RuntimeDetails());
++                var next = path[0]; var from = Cell();
++                yield return Tap(Direction(next.X - from.X, next.Y - from.Y)); _keyboardMoves++;
++            }
++            throw new InvalidOperationException("Finite native owner approach exceeded160 steps.");
+         }
+ 
+         private Cell CheckpointStep(int x, int y)

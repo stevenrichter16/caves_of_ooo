@@ -1,0 +1,41 @@
+var folder="/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Fauna/NativeGallery";
+System.IO.Directory.CreateDirectory(folder);
+var lib=CavesOfOoo.Rendering.SpreadCreature3DLibrary.Load();lib.Validate();
+var ring=UnityEngine.Resources.Load<CavesOfOoo.Rendering.SpawnRing3DLibrary>(CavesOfOoo.Rendering.SpawnRing3DLibrary.ResourcePath);
+var palette=CavesOfOoo.Rendering.ReferenceGladeVoxelLibrary.Load();
+var oldRT=UnityEngine.RenderTexture.active;var oldAsync=UnityEditor.ShaderUtil.allowAsyncCompilation;
+var scene=UnityEditor.SceneManagement.EditorSceneManager.NewPreviewScene();
+var root=new UnityEngine.GameObject("Owned native fauna asset gallery");UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(root,scene);
+CavesOfOoo.Rendering.NativeZone3DRenderSurface surface=null;
+var rt=new UnityEngine.RenderTexture(1536,1536,24,UnityEngine.RenderTextureFormat.ARGB32){antiAliasing=1,filterMode=UnityEngine.FilterMode.Point};rt.Create();
+var images=new System.Collections.Generic.List<string>();var rows=new System.Collections.Generic.List<string>();
+try {
+ UnityEditor.ShaderUtil.allowAsyncCompilation=false;
+ surface=new CavesOfOoo.Rendering.NativeZone3DRenderSurface(root.transform,ring.Renderer,ring.RendererIndex,ring.CompositeMaterial,new[]{palette.Material},1.45f);
+ surface.ConfigureLighting(1.45f,.65f,.9f,new UnityEngine.Color(1,.98f,.92f),new UnityEngine.Vector3(55,-145,0),.68f,.008f,.018f,18,UnityEngine.FilterMode.Point,true);
+ surface.ConfigureAmbientProbe(new UnityEngine.Color(.28f,.32f,.30f));
+ var sourceObject=new UnityEngine.GameObject("Owned gallery source camera");sourceObject.transform.SetParent(root.transform,false);
+ var source=sourceObject.AddComponent<UnityEngine.Camera>();source.enabled=false;source.orthographic=true;source.orthographicSize=4.4f;source.aspect=1;source.targetTexture=rt;source.transform.position=new UnityEngine.Vector3(40,12,-10);
+ surface.Sync(source,true,false);
+ var camera=surface.WorldCamera;camera.enabled=false;camera.scene=scene;camera.overrideSceneCullingMask=UnityEditor.SceneManagement.EditorSceneManager.GetSceneCullingMask(scene);camera.backgroundColor=new UnityEngine.Color(.02f,.075f,.075f,1);
+ var pixels=new UnityEngine.Color32[surface.FogTexture.width*surface.FogTexture.height];for(int i=0;i<pixels.Length;i++)pixels[i]=new UnityEngine.Color32(255,255,255,255);surface.FogTexture.SetPixels32(pixels);surface.FogTexture.Apply(false,false);
+ for(int page=0;page<3;page++) {
+  var models=new System.Collections.Generic.List<UnityEngine.GameObject>();
+  for(int local=0;local<lib.Entries.Length;local++) {
+   int index=local;var entry=lib.Entries[index];
+   var model=UnityEngine.Object.Instantiate(entry.Prefab,surface.ContentRoot,false);model.transform.position=new UnityEngine.Vector3(37+(local%3)*3,0,14-(local/3)*3);
+   surface.PrepareModel(model,true);var animator=model.GetComponentInChildren<UnityEngine.Animator>();animator.enabled=false;var pose=new[]{"Idle","Walk","Attack"}[page];var clip=animator.runtimeAnimatorController.animationClips.First(c=>c.name==pose);clip.SampleAnimation(animator.gameObject,clip.length*.35f);models.Add(model);rows.Add("page"+page+" pose="+pose+" row"+(local/3)+" col"+(local%3)+" "+entry.Spec.sourceBlueprint+" "+entry.Id);
+  }
+  var request=new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest{destination=rt};
+  if(!UnityEngine.Rendering.RenderPipeline.SupportsRenderRequest(camera,request))throw new System.InvalidOperationException("Native GPU capture unsupported");
+  UnityEngine.RenderTexture.active=rt;UnityEngine.GL.Clear(true,true,camera.backgroundColor);UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(camera,request);UnityEngine.RenderTexture.active=rt;
+  var read=new UnityEngine.Texture2D(1536,1536,UnityEngine.TextureFormat.RGBA32,false,true);
+  try {read.ReadPixels(new UnityEngine.Rect(0,0,1536,1536),0,0);read.Apply(false,false);string path=folder+"/native-fauna-pose-"+page+".png";System.IO.File.WriteAllBytes(path,read.EncodeToPNG());images.Add(path);}finally{UnityEngine.Object.DestroyImmediate(read);}
+  foreach(var model in models)UnityEngine.Object.DestroyImmediate(model);
+ }
+ System.IO.File.WriteAllLines(folder+"/index.txt",rows.ToArray());
+} finally {
+ UnityEngine.RenderTexture.active=oldRT;UnityEditor.ShaderUtil.allowAsyncCompilation=oldAsync;
+ if(surface!=null)surface.Dispose();UnityEngine.Object.DestroyImmediate(root);rt.Release();UnityEngine.Object.DestroyImmediate(rt);UnityEditor.SceneManagement.EditorSceneManager.ClosePreviewScene(scene);
+}
+return new{images=images.ToArray(),scope="Actual persistent imported fauna prefabs sampled at Idle/Walk/Attack 35 percent, native owned palette and effective native Spread lighting in an isolated preview. Ordered asset review, not gameplay or wholebiome acceptance.",sceneDirty=UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty};

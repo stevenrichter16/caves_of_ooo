@@ -1,0 +1,103 @@
+--- a/Assets/Scripts/Gameplay/Items/WaterVesselService.cs
++++ b/Assets/Scripts/Gameplay/Items/WaterVesselService.cs
+@@ -38,6 +38,7 @@
+                     transaction.Do(null, () => { skin.Charges = before; if (pool != null) pool.Volume = oldVolume; });
+                     skin.Charges += amount;
+                     if (pool != null) pool.Volume -= amount;
++                    transaction.AfterCommit(() => LiquidVesselService.RetireExhaustedPouredPool(zone, source, pool));
+                     int filled = skin.Charges;
+                     transaction.AfterCommit(() => Diag.Record("event", "WaterskinFilled", actor, vessel,
+                         new { source = source.BlueprintName, amount, remaining = filled }));
+@@ -98,14 +99,18 @@
+             if (zone?.GetEntityCell(actor) == null) return null;
+             foreach (var source in zone.GetReadOnlyEntities())
+             {
+-                if (SpatialQuery.Distance(zone, actor, source) > 1) continue;
++                if (SpatialQuery.Distance(zone, actor, source) > 1 || source.HasTag("Creature")
++                    || source.GetPart<PhysicsPart>()?.Takeable == true
++                    || source.GetPart<PhysicsPart>()?.InInventory != null
++                    || source.GetPart<PhysicsPart>()?.Equipped != null) continue;
+                 // A finite pool takes precedence over terrain's renewing coating.
+                 var pool = source.GetPart<LiquidPoolPart>();
+                 if (pool != null)
+-                { if (pool.LiquidId == "water" && pool.Volume > 0) return source; continue; }
++                { if (pool.LiquidId == "water" && pool.Volume > 0 && LiquidSourceSafety.IsUnmixedPool(zone, source)) return source; continue; }
+                 if (source.HasPart<WellPart>()) return source;
+                 var spring = source.GetPart<TileStateSourcePart>();
+-                if (spring?.Coating == "water" && spring.CoatingTurns > 0) return source;
++                if (spring?.Coating == "water" && spring.CoatingTurns > 0
++                    && LiquidSourceSafety.IsUnmixedSource(zone, source, "water")) return source;
+             }
+             return null;
+         }
+--- a/Assets/Scripts/Gameplay/Items/ItemExamineService.cs
++++ b/Assets/Scripts/Gameplay/Items/ItemExamineService.cs
+@@ -13,7 +13,7 @@
+     public static class ItemExamineService
+     {
+         /// <summary>
+-        /// Describe the live fields of an Item-tagged weapon, armor or tonic.
++        /// Describe the live fields of an Item-tagged weapon, armor, tonic or liquid vessel.
+         /// False means no supported details; callers preserve ordinary Examine.
+         /// Previews construct effects without applying them or using game RNG.
+         /// </summary>
+@@ -42,6 +42,23 @@
+                     lines.Add("Equip slots: " + string.Join(",", equipment.GetSlotArray()) + ".");
+                     DescribeEquipBonuses(equipment.EquipBonuses, lines);
+                 }
++            }
++
++            var vessel = item.GetPart<LiquidVesselPart>();
++            if (vessel != null)
++            {
++                bool valid = vessel.Capacity > 0 && vessel.Volume >= 0 && vessel.Volume <= vessel.Capacity
++                    && (vessel.Volume == 0 ? string.IsNullOrEmpty(vessel.LiquidId)
++                        : !string.IsNullOrEmpty(vessel.LiquidId) && LiquidRegistry.Get(vessel.LiquidId) != null);
++                if (valid)
++                {
++                    string contents = vessel.Volume == 0 ? "empty"
++                        : LiquidRegistry.Get(vessel.LiquidId).DisplayName ?? vessel.LiquidId;
++                    lines.Add("Contents: " + contents + " (" + vessel.Volume.ToString(CultureInfo.InvariantCulture)
++                        + "/" + vessel.Capacity.ToString(CultureInfo.InvariantCulture) + " volume).");
++                    lines.Add("Fill from a nearby unmixed pool; pour onto nearby ground.");
++                }
++                else lines.Add("Liquid contents are invalid; fill and pour are unavailable.");
+             }
+ 
+             if (TonicExamineService.TryDescribeDetails(item, out string tonic))
+--- a/Assets/Scripts/Presentation/UI/InventoryUI.cs
++++ b/Assets/Scripts/Presentation/UI/InventoryUI.cs
+@@ -1407,7 +1407,8 @@
+             }
+             if (completed && (action.Command == "FillWaterskin"
+                 || action.Command == "DrinkWaterskin" || action.Command == "Cook"
+-                || action.Command == "LightTorch" || action.Command == "ExtinguishTorch"))
++                || action.Command == "LightTorch" || action.Command == "ExtinguishTorch"
++                || LiquidVesselService.IsLiquidCommand(action.Command)))
+             {
+                 _pendingEverydayTurn = true;
+                 Close();
+--- a/Assets/Scripts/Gameplay/World/MorrowfastContent.cs
++++ b/Assets/Scripts/Gameplay/World/MorrowfastContent.cs
+@@ -77,7 +77,7 @@
+             }
+             var actor = factory.CreateEntity(blueprintName);
+             if (index == 4) Stock(actor, factory, new[] { "Torch", "Dagger", "Spear", "LeatherArmor", "Tepuibone", "FireClay" }, new[] { 4, 2, 1, 1, 3, 4 });
+-            if (index == 5) Stock(actor, factory, new[] { "Mushroom", "DriedMeat", "HealingTonic", "BurnSalve", "WaterTonic", "Waterskin" }, new[] { 8, 4, 2, 2, 3, 1 });
++            if (index == 5) Stock(actor, factory, new[] { "Mushroom", "DriedMeat", "HealingTonic", "BurnSalve", "WaterTonic", "Waterskin", "LiquidFlask" }, new[] { 8, 4, 2, 2, 3, 1, 1 });
+             return actor;
+         }
+         private static void Stock(Entity actor, EntityFactory factory, string[] items, int[] counts)
+--- a/Assets/Tests/EditMode/Gameplay/World/MorrowfastMerchantRestockTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/MorrowfastMerchantRestockTests.cs
+@@ -18,8 +18,8 @@
+         private System.Random previousRng;
+         private static readonly string[] MenderItems = { "Torch", "Dagger", "Spear", "LeatherArmor", "Tepuibone", "FireClay" };
+         private static readonly int[] MenderCounts = { 4, 2, 1, 1, 3, 4 };
+-        private static readonly string[] FoodItems = { "Mushroom", "DriedMeat", "HealingTonic", "BurnSalve", "WaterTonic", "Waterskin" };
+-        private static readonly int[] FoodCounts = { 8, 4, 2, 2, 3, 1 };
++        private static readonly string[] FoodItems = { "Mushroom", "DriedMeat", "HealingTonic", "BurnSalve", "WaterTonic", "Waterskin", "LiquidFlask" };
++        private static readonly int[] FoodCounts = { 8, 4, 2, 2, 3, 1, 1 };
+ 
+         [SetUp] public void SetUp()
+         {

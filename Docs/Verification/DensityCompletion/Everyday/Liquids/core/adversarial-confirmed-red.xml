@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="40" result="Failed" start-time="2026-09-26T23:28:47.6763210Z" end-time="2026-09-26T23:28:48.5276440Z" duration="0.851294" total="40" passed="31" failed="9" inconclusive="0" skipped="0" warnings="0" asserts="247" random-seed="1399988674">
+  <command-line><![CDATA[/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-density-liquid-vessel/verification/adversarial-confirmed-red.xml --where "class =~ /DensityLiquidVessel/"]]></command-line>
+  <filter>
+    <class re="1">DensityLiquidVessel</class>
+  </filter>
+  <test-suite type="Assembly" id="1050" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-09-26T23:28:47.6763210Z" end-time="2026-09-26T23:28:48.5276440Z" duration="0.851294" total="40" passed="31" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="247">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="18788" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1051" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-09-26T23:28:47.6779600Z" end-time="2026-09-26T23:28:48.5276410Z" duration="0.849667" total="40" passed="31" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="247">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1052" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-09-26T23:28:47.6780870Z" end-time="2026-09-26T23:28:48.5276290Z" duration="0.849529" total="40" passed="31" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="247">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1016" name="DensityLiquidVesselAdversarialTests" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" testcasecount="27" result="Failed" site="Child" start-time="2026-09-26T23:28:47.6784340Z" end-time="2026-09-26T23:28:48.2414790Z" duration="0.563035" total="27" passed="18" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="141">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1035" name="ActorCallbackRefusalOrExceptionDoesNotLeaveLiquidBehind" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.ActorCallbackRefusalOrExceptionDoesNotLeaveLiquidBehind" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-26T23:28:47.6793880Z" end-time="2026-09-26T23:28:47.7799800Z" duration="0.100590" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1033" name="ActorCallbackRefusalOrExceptionDoesNotLeaveLiquidBehind(&quot;before&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.ActorCallbackRefusalOrExceptionDoesNotLeaveLiquidBehind(&quot;before&quot;)" methodname="ActorCallbackRefusalOrExceptionDoesNotLeaveLiquidBehind" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="260033798" result="Passed" start-time="2026-09-26T23:28:47.6794780Z" end-time="2026-09-26T23:28:47.7572250Z" duration="0.077770" asserts="6" />
+            <test-case id="1034" name="ActorCallbackRefusalOrExceptionDoesNotLeaveLiquidBehind(&quot;after&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.ActorCallbackRefusalOrExceptionDoesNotLeaveLiquidBehind(&quot;after&quot;)" methodname="ActorCallbackRefusalOrExceptionDoesNotLeaveLiquidBehind" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="437484321" result="Passed" start-time="2026-09-26T23:28:47.7578060Z" end-time="2026-09-26T23:28:47.7796300Z" duration="0.021824" asserts="6" />
+          </test-suite>
+          <test-case id="1032" name="DestinationIntegerOverflowCannotEmptyVessel" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.DestinationIntegerOverflowCannotEmptyVessel" methodname="DestinationIntegerOverflowCannotEmptyVessel" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="292110892" result="Passed" start-time="2026-09-26T23:28:47.7801440Z" end-time="2026-09-26T23:28:47.8088050Z" duration="0.028660" asserts="6" />
+          <test-case id="1031" name="FillOuterRollbackRestoresSourceIdentityAndAmount" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.FillOuterRollbackRestoresSourceIdentityAndAmount" methodname="FillOuterRollbackRestoresSourceIdentityAndAmount" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="8780358" result="Passed" start-time="2026-09-26T23:28:47.8088320Z" end-time="2026-09-26T23:28:47.8245430Z" duration="0.015710" asserts="7" />
+          <test-suite type="ParameterizedMethod" id="1042" name="MalformedStateRefusesWithoutRepair" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.MalformedStateRefusesWithoutRepair" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-26T23:28:47.8245700Z" end-time="2026-09-26T23:28:47.9280620Z" duration="0.103490" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="36">
+            <test-case id="1036" name="MalformedStateRefusesWithoutRepair(-1,12,&quot;water&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.MalformedStateRefusesWithoutRepair(-1,12,&quot;water&quot;)" methodname="MalformedStateRefusesWithoutRepair" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="1800227170" result="Passed" start-time="2026-09-26T23:28:47.8245930Z" end-time="2026-09-26T23:28:47.8409230Z" duration="0.016329" asserts="6" />
+            <test-case id="1037" name="MalformedStateRefusesWithoutRepair(13,12,&quot;water&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.MalformedStateRefusesWithoutRepair(13,12,&quot;water&quot;)" methodname="MalformedStateRefusesWithoutRepair" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="2048326518" result="Passed" start-time="2026-09-26T23:28:47.8409460Z" end-time="2026-09-26T23:28:47.8586760Z" duration="0.017730" asserts="6" />
+            <test-case id="1038" name="MalformedStateRefusesWithoutRepair(0,0,&quot;&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.MalformedStateRefusesWithoutRepair(0,0,&quot;&quot;)" methodname="MalformedStateRefusesWithoutRepair" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="1664215736" result="Passed" start-time="2026-09-26T23:28:47.8587010Z" end-time="2026-09-26T23:28:47.8813080Z" duration="0.022607" asserts="6" />
+            <test-case id="1039" name="MalformedStateRefusesWithoutRepair(1,12,&quot;&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.MalformedStateRefusesWithoutRepair(1,12,&quot;&quot;)" methodname="MalformedStateRefusesWithoutRepair" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="1250356512" result="Passed" start-time="2026-09-26T23:28:47.8813390Z" end-time="2026-09-26T23:28:47.8981590Z" duration="0.016819" asserts="6" />
+            <test-case id="1040" name="MalformedStateRefusesWithoutRepair(0,12,&quot;water&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.MalformedStateRefusesWithoutRepair(0,12,&quot;water&quot;)" methodname="MalformedStateRefusesWithoutRepair" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="1961777923" result="Passed" start-time="2026-09-26T23:28:47.8981780Z" end-time="2026-09-26T23:28:47.9126250Z" duration="0.014446" asserts="6" />
+            <test-case id="1041" name="MalformedStateRefusesWithoutRepair(1,12,&quot;missing-liquid&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.MalformedStateRefusesWithoutRepair(1,12,&quot;missing-liquid&quot;)" methodname="MalformedStateRefusesWithoutRepair" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="631025299" result="Passed" start-time="2026-09-26T23:28:47.9126510Z" end-time="2026-09-26T23:28:47.9280140Z" duration="0.015362" asserts="6" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1024" name="OuterRollbackRestoresBothSidesAndDoesNotPublishContact" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.OuterRollbackRestoresBothSidesAndDoesNotPublishContact" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T23:28:47.9281240Z" end-time="2026-09-26T23:28:47.9793060Z" duration="0.051181" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="15">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1022" name="OuterRollbackRestoresBothSidesAndDoesNotPublishContact(True)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.OuterRollbackRestoresBothSidesAndDoesNotPublishContact(True)" methodname="OuterRollbackRestoresBothSidesAndDoesNotPublishContact" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="568167171" result="Passed" start-time="2026-09-26T23:28:47.9281600Z" end-time="2026-09-26T23:28:47.9464440Z" duration="0.018284" asserts="10" />
+            <test-case id="1023" name="OuterRollbackRestoresBothSidesAndDoesNotPublishContact(False)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.OuterRollbackRestoresBothSidesAndDoesNotPublishContact(False)" methodname="OuterRollbackRestoresBothSidesAndDoesNotPublishContact" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="2010457299" result="Failed" start-time="2026-09-26T23:28:47.9464810Z" end-time="2026-09-26T23:28:47.9792200Z" duration="0.032739" asserts="5">
+              <failure>
+                <message><![CDATA[  rollback restores the pool-owned projection
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.OuterRollbackRestoresBothSidesAndDoesNotPublishContact(Boolean existing) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 32
+   at InvokeStub_DensityLiquidVesselAdversarialTests.OuterRollbackRestoresBothSidesAndDoesNotPublishContact(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  rollback restores the pool-owned projection
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.OuterRollbackRestoresBothSidesAndDoesNotPublishContact(Boolean existing) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 32
+   at InvokeStub_DensityLiquidVesselAdversarialTests.OuterRollbackRestoresBothSidesAndDoesNotPublishContact(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1021" name="PreparedGroundBlueprintCannotMintItsOwnInitialVolume" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.PreparedGroundBlueprintCannotMintItsOwnInitialVolume" methodname="PreparedGroundBlueprintCannotMintItsOwnInitialVolume" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="120172396" result="Failed" start-time="2026-09-26T23:28:47.9793350Z" end-time="2026-09-26T23:28:48.0006820Z" duration="0.021347" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.PreparedGroundBlueprintCannotMintItsOwnInitialVolume() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 31
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.PreparedGroundBlueprintCannotMintItsOwnInitialVolume() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 31
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1029" name="PreparedGroundBlueprintMustBeAnEmptyUnidentifiedShell" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.PreparedGroundBlueprintMustBeAnEmptyUnidentifiedShell" methodname="PreparedGroundBlueprintMustBeAnEmptyUnidentifiedShell" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="1527569563" result="Failed" start-time="2026-09-26T23:28:48.0007090Z" end-time="2026-09-26T23:28:48.0160890Z" duration="0.015379" asserts="3">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.PreparedGroundBlueprintMustBeAnEmptyUnidentifiedShell() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 35
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.PreparedGroundBlueprintMustBeAnEmptyUnidentifiedShell() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 35
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1019" name="RenewingWaterSpringCannotBypassPollutedCellSafety" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.RenewingWaterSpringCannotBypassPollutedCellSafety" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T23:28:48.0161140Z" end-time="2026-09-26T23:28:48.0514490Z" duration="0.035335" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1017" name="RenewingWaterSpringCannotBypassPollutedCellSafety(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.RenewingWaterSpringCannotBypassPollutedCellSafety(&quot;acid&quot;)" methodname="RenewingWaterSpringCannotBypassPollutedCellSafety" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="1554343460" result="Failed" start-time="2026-09-26T23:28:48.0161350Z" end-time="2026-09-26T23:28:48.0334640Z" duration="0.017329" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.RenewingWaterSpringCannotBypassPollutedCellSafety(String unsafeId) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 29
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.RenewingWaterSpringCannotBypassPollutedCellSafety(String unsafeId) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 29
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1018" name="RenewingWaterSpringCannotBypassPollutedCellSafety(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.RenewingWaterSpringCannotBypassPollutedCellSafety(&quot;oil&quot;)" methodname="RenewingWaterSpringCannotBypassPollutedCellSafety" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="1344944599" result="Failed" start-time="2026-09-26T23:28:48.0334970Z" end-time="2026-09-26T23:28:48.0514130Z" duration="0.017916" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.RenewingWaterSpringCannotBypassPollutedCellSafety(String unsafeId) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 29
+   at InvokeStub_DensityLiquidVesselAdversarialTests.RenewingWaterSpringCannotBypassPollutedCellSafety(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.RenewingWaterSpringCannotBypassPollutedCellSafety(String unsafeId) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 29
+   at InvokeStub_DensityLiquidVesselAdversarialTests.RenewingWaterSpringCannotBypassPollutedCellSafety(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1030" name="RolledBackNewPoolRestoresPriorCoatingLease" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.RolledBackNewPoolRestoresPriorCoatingLease" methodname="RolledBackNewPoolRestoresPriorCoatingLease" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="1050540586" result="Failed" start-time="2026-09-26T23:28:48.0514650Z" end-time="2026-09-26T23:28:48.0721940Z" duration="0.020729" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: 2
+  But was:  2147483647
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.RolledBackNewPoolRestoresPriorCoatingLease() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 36
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 2
+  But was:  2147483647
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.RolledBackNewPoolRestoresPriorCoatingLease() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 36
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1049" name="SpillSelectionMovedOutOfReachCannotPourRemotely" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.SpillSelectionMovedOutOfReachCannotPourRemotely" methodname="SpillSelectionMovedOutOfReachCannotPourRemotely" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="1464575201" result="Passed" start-time="2026-09-26T23:28:48.0722180Z" end-time="2026-09-26T23:28:48.0894960Z" duration="0.017278" asserts="5" />
+          <test-suite type="ParameterizedMethod" id="1028" name="StaleGroundDestinationCannotBeCarriedOrTakeable" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-26T23:28:48.0895240Z" end-time="2026-09-26T23:28:48.1383670Z" duration="0.048842" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1025" name="StaleGroundDestinationCannotBeCarriedOrTakeable(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(&quot;takeable&quot;)" methodname="StaleGroundDestinationCannotBeCarriedOrTakeable" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="1382862340" result="Failed" start-time="2026-09-26T23:28:48.0895370Z" end-time="2026-09-26T23:28:48.1049580Z" duration="0.015421" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(String changed) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 34
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(String changed) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 34
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1026" name="StaleGroundDestinationCannotBeCarriedOrTakeable(&quot;inventory&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(&quot;inventory&quot;)" methodname="StaleGroundDestinationCannotBeCarriedOrTakeable" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="874963384" result="Failed" start-time="2026-09-26T23:28:48.1050110Z" end-time="2026-09-26T23:28:48.1208860Z" duration="0.015874" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(String changed) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 34
+   at InvokeStub_DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(String changed) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 34
+   at InvokeStub_DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1027" name="StaleGroundDestinationCannotBeCarriedOrTakeable(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(&quot;equipped&quot;)" methodname="StaleGroundDestinationCannotBeCarriedOrTakeable" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="761186498" result="Failed" start-time="2026-09-26T23:28:48.1209200Z" end-time="2026-09-26T23:28:48.1383390Z" duration="0.017419" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(String changed) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 34
+   at InvokeStub_DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(String changed) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselAdversarialTests.cs:line 34
+   at InvokeStub_DensityLiquidVesselAdversarialTests.StaleGroundDestinationCannotBeCarriedOrTakeable(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1043" name="StalePourAfterContentsChangeDoesNotRedirectOrSpend" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StalePourAfterContentsChangeDoesNotRedirectOrSpend" methodname="StalePourAfterContentsChangeDoesNotRedirectOrSpend" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="2019197600" result="Passed" start-time="2026-09-26T23:28:48.1383870Z" end-time="2026-09-26T23:28:48.1573310Z" duration="0.018944" asserts="5" />
+          <test-suite type="ParameterizedMethod" id="1048" name="StaleVesselOrActorAuthorityIsRevalidated" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleVesselOrActorAuthorityIsRevalidated" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-26T23:28:48.1573620Z" end-time="2026-09-26T23:28:48.2207650Z" duration="0.063403" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <test-case id="1044" name="StaleVesselOrActorAuthorityIsRevalidated(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleVesselOrActorAuthorityIsRevalidated(&quot;dead&quot;)" methodname="StaleVesselOrActorAuthorityIsRevalidated" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="226096205" result="Passed" start-time="2026-09-26T23:28:48.1573830Z" end-time="2026-09-26T23:28:48.1738890Z" duration="0.016506" asserts="5" />
+            <test-case id="1045" name="StaleVesselOrActorAuthorityIsRevalidated(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleVesselOrActorAuthorityIsRevalidated(&quot;detached&quot;)" methodname="StaleVesselOrActorAuthorityIsRevalidated" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="257915326" result="Passed" start-time="2026-09-26T23:28:48.1739130Z" end-time="2026-09-26T23:28:48.1886130Z" duration="0.014700" asserts="5" />
+            <test-case id="1046" name="StaleVesselOrActorAuthorityIsRevalidated(&quot;stacked&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleVesselOrActorAuthorityIsRevalidated(&quot;stacked&quot;)" methodname="StaleVesselOrActorAuthorityIsRevalidated" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="1348293531" result="Passed" start-time="2026-09-26T23:28:48.1886340Z" end-time="2026-09-26T23:28:48.2038210Z" duration="0.015187" asserts="5" />
+            <test-case id="1047" name="StaleVesselOrActorAuthorityIsRevalidated(&quot;ownership&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.StaleVesselOrActorAuthorityIsRevalidated(&quot;ownership&quot;)" methodname="StaleVesselOrActorAuthorityIsRevalidated" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="79285668" result="Passed" start-time="2026-09-26T23:28:48.2038550Z" end-time="2026-09-26T23:28:48.2207390Z" duration="0.016885" asserts="5" />
+          </test-suite>
+          <test-case id="1020" name="WellDrawRemainsProtectedFromUnrelatedGroundSpill" fullname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests.WellDrawRemainsProtectedFromUnrelatedGroundSpill" methodname="WellDrawRemainsProtectedFromUnrelatedGroundSpill" classname="CavesOfOoo.Tests.DensityLiquidVesselAdversarialTests" runstate="Runnable" seed="273505415" result="Passed" start-time="2026-09-26T23:28:48.2207750Z" end-time="2026-09-26T23:28:48.2414310Z" duration="0.020656" asserts="5" />
+        </test-suite>
+        <test-suite type="TestFixture" id="1000" name="DensityLiquidVesselTests" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-26T23:28:48.2417750Z" end-time="2026-09-26T23:28:48.5276080Z" duration="0.285829" total="13" passed="13" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="106">
+          <test-suite type="ParameterizedMethod" id="1004" name="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-26T23:28:48.2418350Z" end-time="2026-09-26T23:28:48.3091350Z" duration="0.067299" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="27">
+            <test-case id="1001" name="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(&quot;water&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(&quot;water&quot;)" methodname="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="342062490" result="Passed" start-time="2026-09-26T23:28:48.2418530Z" end-time="2026-09-26T23:28:48.2640090Z" duration="0.022156" asserts="9" />
+            <test-case id="1002" name="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(&quot;oil&quot;)" methodname="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="274465548" result="Passed" start-time="2026-09-26T23:28:48.2640500Z" end-time="2026-09-26T23:28:48.2864530Z" duration="0.022403" asserts="9" />
+            <test-case id="1003" name="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(&quot;acid&quot;)" methodname="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="1552453508" result="Passed" start-time="2026-09-26T23:28:48.2865220Z" end-time="2026-09-26T23:28:48.3091030Z" duration="0.022581" asserts="9" />
+          </test-suite>
+          <test-case id="1015" name="ExistingPureWaterSkinLoopRemainsValid" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.ExistingPureWaterSkinLoopRemainsValid" methodname="ExistingPureWaterSkinLoopRemainsValid" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="422112167" result="Passed" start-time="2026-09-26T23:28:48.3091460Z" end-time="2026-09-26T23:28:48.3319740Z" duration="0.022828" asserts="8" />
+          <test-case id="1005" name="FillPartialVolumeAndPourGroundConserveBothSides" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.FillPartialVolumeAndPourGroundConserveBothSides" methodname="FillPartialVolumeAndPourGroundConserveBothSides" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="1096727612" result="Passed" start-time="2026-09-26T23:28:48.3320050Z" end-time="2026-09-26T23:28:48.3570720Z" duration="0.025067" asserts="12" />
+          <test-suite type="ParameterizedMethod" id="1014" name="FreshWaterSkinCannotDrawAnOverlappingUnsafePool" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.FreshWaterSkinCannotDrawAnOverlappingUnsafePool" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-26T23:28:48.3571040Z" end-time="2026-09-26T23:28:48.3980500Z" duration="0.040946" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="13">
+            <test-case id="1012" name="FreshWaterSkinCannotDrawAnOverlappingUnsafePool(False)" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.FreshWaterSkinCannotDrawAnOverlappingUnsafePool(False)" methodname="FreshWaterSkinCannotDrawAnOverlappingUnsafePool" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="1657834460" result="Passed" start-time="2026-09-26T23:28:48.3571190Z" end-time="2026-09-26T23:28:48.3763820Z" duration="0.019263" asserts="7" />
+            <test-case id="1013" name="FreshWaterSkinCannotDrawAnOverlappingUnsafePool(True)" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.FreshWaterSkinCannotDrawAnOverlappingUnsafePool(True)" methodname="FreshWaterSkinCannotDrawAnOverlappingUnsafePool" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="1405966646" result="Passed" start-time="2026-09-26T23:28:48.3764270Z" end-time="2026-09-26T23:28:48.3980060Z" duration="0.021579" asserts="6" />
+          </test-suite>
+          <test-case id="1006" name="LikeLiquidPourMergesWithoutDuplicateGroundPool" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.LikeLiquidPourMergesWithoutDuplicateGroundPool" methodname="LikeLiquidPourMergesWithoutDuplicateGroundPool" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="1650862072" result="Passed" start-time="2026-09-26T23:28:48.3980640Z" end-time="2026-09-26T23:28:48.4188790Z" duration="0.020814" asserts="7" />
+          <test-case id="1011" name="PourAtFeetUsesExistingContactLiquidAndDoesNotDrink" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.PourAtFeetUsesExistingContactLiquidAndDoesNotDrink" methodname="PourAtFeetUsesExistingContactLiquidAndDoesNotDrink" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="33833924" result="Passed" start-time="2026-09-26T23:28:48.4189080Z" end-time="2026-09-26T23:28:48.4424130Z" duration="0.023505" asserts="7" />
+          <test-case id="1010" name="PureWaterPourCannotBecomePickableWaterInsideAnAcidPool" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.PureWaterPourCannotBecomePickableWaterInsideAnAcidPool" methodname="PureWaterPourCannotBecomePickableWaterInsideAnAcidPool" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="1064063348" result="Passed" start-time="2026-09-26T23:28:48.4424850Z" end-time="2026-09-26T23:28:48.4683170Z" duration="0.025831" asserts="8" />
+          <test-case id="1009" name="SourceIdentityChangeCannotSilentlySubstituteAnotherLiquid" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.SourceIdentityChangeCannotSilentlySubstituteAnotherLiquid" methodname="SourceIdentityChangeCannotSilentlySubstituteAnotherLiquid" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="317138040" result="Passed" start-time="2026-09-26T23:28:48.4683540Z" end-time="2026-09-26T23:28:48.4871480Z" duration="0.018793" asserts="7" />
+          <test-case id="1008" name="StaleSourceSelectionRefusesInsteadOfUsingDifferentNearbyPool" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.StaleSourceSelectionRefusesInsteadOfUsingDifferentNearbyPool" methodname="StaleSourceSelectionRefusesInsteadOfUsingDifferentNearbyPool" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="1406943652" result="Passed" start-time="2026-09-26T23:28:48.4871780Z" end-time="2026-09-26T23:28:48.5067570Z" duration="0.019579" asserts="8" />
+          <test-case id="1007" name="UnlikeLiquidCannotReplaceOrCleanseVessel" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.UnlikeLiquidCannotReplaceOrCleanseVessel" methodname="UnlikeLiquidCannotReplaceOrCleanseVessel" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="259206588" result="Passed" start-time="2026-09-26T23:28:48.5067840Z" end-time="2026-09-26T23:28:48.5275590Z" duration="0.020775" asserts="9" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

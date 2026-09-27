@@ -38,6 +38,7 @@ namespace CavesOfOoo.Core
                     transaction.Do(null, () => { skin.Charges = before; if (pool != null) pool.Volume = oldVolume; });
                     skin.Charges += amount;
                     if (pool != null) pool.Volume -= amount;
+                    transaction.AfterCommit(() => LiquidVesselService.RetireExhaustedPouredPool(zone, source, pool));
                     int filled = skin.Charges;
                     transaction.AfterCommit(() => Diag.Record("event", "WaterskinFilled", actor, vessel,
                         new { source = source.BlueprintName, amount, remaining = filled }));
@@ -98,14 +99,18 @@ namespace CavesOfOoo.Core
             if (zone?.GetEntityCell(actor) == null) return null;
             foreach (var source in zone.GetReadOnlyEntities())
             {
-                if (SpatialQuery.Distance(zone, actor, source) > 1) continue;
+                if (SpatialQuery.Distance(zone, actor, source) > 1 || source.HasTag("Creature")
+                    || source.GetPart<PhysicsPart>()?.Takeable == true
+                    || source.GetPart<PhysicsPart>()?.InInventory != null
+                    || source.GetPart<PhysicsPart>()?.Equipped != null) continue;
                 // A finite pool takes precedence over terrain's renewing coating.
                 var pool = source.GetPart<LiquidPoolPart>();
                 if (pool != null)
-                { if (pool.LiquidId == "water" && pool.Volume > 0) return source; continue; }
+                { if (pool.LiquidId == "water" && pool.Volume > 0 && LiquidSourceSafety.IsUnmixedPool(zone, source)) return source; continue; }
                 if (source.HasPart<WellPart>()) return source;
                 var spring = source.GetPart<TileStateSourcePart>();
-                if (spring?.Coating == "water" && spring.CoatingTurns > 0) return source;
+                if (spring?.Coating == "water" && spring.CoatingTurns > 0
+                    && LiquidSourceSafety.IsUnmixedSource(zone, source, "water")) return source;
             }
             return null;
         }

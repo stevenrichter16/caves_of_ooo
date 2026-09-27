@@ -1,0 +1,102 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "0cb6528f2138403f857713b7d1a9e1f3",
+  "run": {
+    "id": "2",
+    "testcasecount": "245",
+    "result": "Failed(Child)",
+    "total": "245",
+    "passed": "225",
+    "failed": "20",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 02:20:19Z",
+    "end-time": "2026-09-27 02:21:08Z",
+    "duration": "48.6219092"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorRenderingTests.AllEightBorrowedDoorMeshesAreAlreadyNativeVoxelsAcrossSupportedZones(\"Overworld.2.5.0\")",
+      "message": "  Expected: 0\n  But was:  8\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestNativeUiTests.CarriedHarvestUsesSamePaymentAndStaleOwnershipStaysFree(False)",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestNativeUiTests.CarriedHarvestUsesSamePaymentAndStaleOwnershipStaysFree(True)",
+      "message": "  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityHarvestNativeUiTests.WorldHarvestPaysExactlyOnCommittedFiniteYield(\"live\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPhase1BenchTests.Smoke_RealFactoryMatrix_CompletesWithRunStampedMeasurements",
+      "message": "  Expected: 0\n  But was:  4\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPhase1BenchTests.Smoke_RerunGetsAFreshMarker_AndDoesNotAccumulateCases",
+      "message": "  Expected: 0\n  But was:  4\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPhase1PlacementTests.ActualLairPipeline_PlacesSparseUnoccupiedTraps(Spread)",
+      "message": "  Expected: in range (1,2)\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPhase1PlacementTests.ActualLairPipeline_PlacesSparseUnoccupiedTraps(Sodden)",
+      "message": "  Expected: in range (1,2)\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPhase1PlacementTests.ActualLairPipeline_PlacesSparseUnoccupiedTraps(Beating)",
+      "message": "  Expected: in range (1,2)\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPhase1PlacementTests.ActualLairPipeline_PlacesSparseUnoccupiedTraps(Grovelands)",
+      "message": "  Expected: in range (1,2)\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeContactTests.ActualGpuContactChangesOnlyLiveGroundNearTheFootprint(\"live\")",
+      "message": "  The real shader must darken ground under the owned footprint.\n  Expected: greater than 0.0199999996f\n  But was:  0.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeContactTests.CurrentGeometryContactClearsWhenItsActualOwnerChanges(\"move\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeContactTests.CurrentGeometryContactClearsWhenItsActualOwnerChanges(\"remove\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeContactTests.CurrentGeometryContactClearsWhenItsActualOwnerChanges(\"hide\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeContactTests.CurrentGeometryContactClearsWhenItsActualOwnerChanges(\"foreign\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeContactTests.LowDetailAuthorityLossAndDisposalReleaseOnlyOwnedContactState",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeContactTests.MeshExtractionRejectsFlatFloorAndElevatedGeometry(\"broad-base\",0)",
+      "message": "  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeContactTests.MeshExtractionRejectsFlatFloorAndElevatedGeometry(\"raised-face\",0)",
+      "message": "  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeContactTests.MeshExtractionRejectsFlatFloorAndElevatedGeometry(\"grounded-stem\",1)",
+      "message": "  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeContactTests.RealMeshContactIsBoundedAndDoesNotAlterBorrowedGeometryOrNativeState",
+      "message": "  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

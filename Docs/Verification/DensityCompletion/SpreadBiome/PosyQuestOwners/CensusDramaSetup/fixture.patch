@@ -1,0 +1,81 @@
+--- Assets/Tests/EditMode/Presentation/Rendering/SpreadBiomeCoverageTests.cs
++++ Assets/Tests/EditMode/Presentation/Rendering/SpreadBiomeCoverageTests.cs
+@@ -3,6 +3,7 @@
+ using System.IO;
+ using System.Linq;
+ using CavesOfOoo.Core;
++using CavesOfOoo.Data;
+ using CavesOfOoo.Rendering;
+ using System.IO.Compression;
+ using NUnit.Framework;
+@@ -22,6 +23,7 @@
+         [TestCase("Overworld.15.6.0")]
+         public void RepresentativeActualOwnersAndTheirGearHaveDrawnBodies(string address)
+         {
++            using (var drama = new CensusDramaScope())
+             using (var f = new SpawnRing3DIntegrationFixture())
+             {
+                 f.Manager = OverworldZoneManager.CreateDetached(f.Factory, 64);
+@@ -37,6 +39,7 @@
+         [Category("SpreadBiomeFullCoverage")]
+         public void EveryActualSurfaceAndCommittedLairHasNativeGeometry(int seed)
+         {
++            using (var drama = new CensusDramaScope())
+             using (var f = new SpawnRing3DIntegrationFixture())
+             {
+                 f.Manager = OverworldZoneManager.CreateDetached(f.Factory, seed);
+@@ -57,6 +60,54 @@
+                 Write(report);
+                 Assert.AreEqual(142, report.surfaces, "Current authored Spread address pin.");
+                 Assert.IsEmpty(report.failures, string.Join("\n", report.failures.Take(70)));
++            }
++        }
++
++        // The real bootstrap loads/registers every authored drama before any
++        // village is generated. Isolate both registries so this census neither
++        // inherits a prior fixture's omissions nor changes its active stories.
++        private sealed class CensusDramaScope : IDisposable
++        {
++            const System.Reflection.BindingFlags Flags = System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic;
++            readonly Dictionary<string, HouseDramaData> loader;
++            readonly Dictionary<string, ActiveDrama> runtime;
++            readonly Dictionary<string, HouseDramaData> oldLoader;
++            readonly Dictionary<string, ActiveDrama> oldRuntime;
++            readonly System.Reflection.FieldInfo loaded;
++            readonly bool oldLoaded;
++            bool disposed;
++            internal CensusDramaScope()
++            {
++                loader = (Dictionary<string, HouseDramaData>)typeof(HouseDramaLoader).GetField("_dramas", Flags).GetValue(null);
++                runtime = (Dictionary<string, ActiveDrama>)typeof(HouseDramaRuntime).GetField("_dramas", Flags).GetValue(null);
++                loaded = typeof(HouseDramaLoader).GetField("_loaded", Flags);
++                oldLoader = new Dictionary<string, HouseDramaData>(loader);
++                oldRuntime = new Dictionary<string, ActiveDrama>(runtime);
++                oldLoaded = (bool)loaded.GetValue(null);
++                try
++                {
++                    // Detach original ActiveDrama objects before generation can
++                    // activate/mutate stories. LoadAll creates fresh definitions.
++                    loader.Clear(); runtime.Clear();
++                    HouseDramaLoader.LoadAll();
++                    foreach (var definition in HouseDramaLoader.GetAll())
++                        HouseDramaRuntime.RegisterDrama(definition);
++                    Assert.Greater(runtime.Count, 0, "Ordinary bootstrap drama content must participate in coverage.");
++                    CollectionAssert.AreEquivalent(loader.Keys, runtime.Keys);
++                }
++                catch { Dispose(); throw; }
++            }
++            public void Dispose()
++            {
++                if (disposed) return;
++                disposed = true;
++                loader.Clear(); foreach (var pair in oldLoader) loader.Add(pair.Key, pair.Value);
++                runtime.Clear(); foreach (var pair in oldRuntime) runtime.Add(pair.Key, pair.Value);
++                loaded.SetValue(null, oldLoaded);
++                Assert.AreEqual(oldLoaded, loaded.GetValue(null));
++                Assert.AreEqual(oldLoader.Count, loader.Count); Assert.AreEqual(oldRuntime.Count, runtime.Count);
++                foreach (var pair in oldLoader) Assert.AreSame(pair.Value, loader[pair.Key]);
++                foreach (var pair in oldRuntime) Assert.AreSame(pair.Value, runtime[pair.Key]);
+             }
+         }
+ 

@@ -1,0 +1,1 @@
+Root and standalone_verify independently reviewed exact cached graph, canonical/current map, no lazy ledger creation and successful commit/restore-only exact floor bindings. No concrete blocker found. Read-only/compiler/standalone evidence is separate from native rendering and execution.

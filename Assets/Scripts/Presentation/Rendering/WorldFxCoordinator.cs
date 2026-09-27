@@ -18,6 +18,8 @@ namespace CavesOfOoo.Rendering
         public EmberSpitAudioPlayer EmberAudio { get; }
         public StarterSpellAudioPlayer StarterAudio { get; }
         private NativeZone3DRenderSurface _nativeSurface;
+        private SpreadParticleFrame _particleFrame;
+        private bool _particlePreparationFailed;
         private readonly List<WorldFxPlayback> _playbacks = new List<WorldFxPlayback>();
         private readonly List<WorldFxPlayback> _nativePlaybacks = new List<WorldFxPlayback>();
         private Zone _zone;
@@ -52,9 +54,11 @@ namespace CavesOfOoo.Rendering
         {
             if (_disposed || ReferenceEquals(_nativeSurface, surface)) return;
             CancelAll();
+            ReleaseParticleFrame(); _particlePreparationFailed = false;
             _nativeSurface = surface;
             _native.SetSurface(surface);
             PrepareNative();
+            if (_visible) RebuildAuras();
         }
 
         public void SetZone(Zone zone)
@@ -155,11 +159,40 @@ namespace CavesOfOoo.Rendering
 
         private void PrepareNative()
         {
+            PrepareParticleFrame();
             _ascii.CompactAuras = _visible && _spriteMode && _nativeSurface != null && _nativeSurface.IsVisible;
             if (!_visible || !_spriteMode || SpellFxSettings.Mode == SpellFxMode.Off) return;
             _native.Prepare();
             ReleaseCancelledNativePlaybacks();
         }
+
+        /// <summary>Read-only evidence for the exact current decorative draw
+        /// cell. Numeric readouts and unsupported sources retain their UI.</summary>
+        public bool TryGetNativeParticle(int x, int y, out GameObject root)
+        { root = null; return !_disposed && _particleFrame != null && _particleFrame.TryGet(x, y, out root); }
+
+        private void PrepareParticleFrame()
+        {
+            bool active = _visible && _spriteMode && SpellFxSettings.Mode != SpellFxMode.Off
+                && _nativeSurface != null && _nativeSurface.IsVisible && SpreadPresentationScope.IsActive(_zone);
+            if (!active) { ReleaseParticleFrame(); return; }
+            if (_particleFrame != null || _particlePreparationFailed) return;
+            try
+            {
+                var library = Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath);
+                if (library == null) throw new InvalidOperationException("native-particle-material-unavailable");
+                _particleFrame = new SpreadParticleFrame(_nativeSurface, library.WorldMaterial);
+                _ascii.NativeFrame = _particleFrame;
+            }
+            catch (Exception exception)
+            {
+                ReleaseParticleFrame(); _particlePreparationFailed = true;
+                if (Diag.IsChannelEnabled("effect")) Diag.Record("effect", "NativeParticlePreparationRejected",
+                    payload: new { zoneId = _zone?.ZoneID, reason = exception.Message });
+            }
+        }
+        private void ReleaseParticleFrame()
+        { _ascii.NativeFrame = null; _particleFrame?.Dispose(); _particleFrame = null; }
 
         public WorldFxPlayback Play(SpellFxSequence sequence)
         {
@@ -354,6 +387,7 @@ namespace CavesOfOoo.Rendering
         {
             if (_disposed) return;
             CancelAll();
+            ReleaseParticleFrame();
             _sprites.Dispose();
             _native.Dispose();
             EmberAudio.Dispose();

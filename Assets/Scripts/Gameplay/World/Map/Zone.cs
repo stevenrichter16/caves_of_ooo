@@ -111,7 +111,7 @@ namespace CavesOfOoo.Core
 
         /// <summary>Checks the complete candidate body without mutation; ignores itself.
         /// ignoreCreatures is used by path searches that deliberately omit actors.</summary>
-        public bool CanPlaceFootprint(Entity entity, int x, int y, bool ignoreCreatures = false, Entity ignoring = null)
+        public bool CanPlaceFootprint(Entity entity, int x, int y, bool ignoreCreatures = false, Entity ignoring = null, bool allowOperableDoors = false)
         {
             if (entity == null || !InBounds(x,y)) return false;
             var cells = GetOccupiedCells(entity, x, y);
@@ -127,6 +127,8 @@ namespace CavesOfOoo.Core
                     if (other == null || other == entity || other == ignoring || (ignoreCreatures && other.HasTag("Creature"))) continue;
                     if (other.HasTag("Solid") || other.GetPart<PhysicsPart>()?.Solid == true
                         || other.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true) return false;
+                    var door = other.GetPart<DoorPart>();
+                    if (door?.IsClosed == true && (!allowOperableDoors || !door.CanOperate(entity, this))) return false;
                 }
             }
             return true;
@@ -603,6 +605,12 @@ namespace CavesOfOoo.Core
         /// Used by LightMap to skip recomputation when nothing changed.
         /// </summary>
         public int EntityVersion { get; private set; }
+
+        /// <summary>Runtime light-cache epoch for stationary ordinary-door state.
+        /// EntityVersion still describes only membership and movement. A loaded
+        /// zone starts a fresh cache, so this epoch is not save data.</summary>
+        public int DoorOcclusionVersion { get; private set; }
+        internal void MarkDoorOcclusionChanged() { unchecked { DoorOcclusionVersion++; } }
 
         public int EntityCount => _entityCells.Count;
 

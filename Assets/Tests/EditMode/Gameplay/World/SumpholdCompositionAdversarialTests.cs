@@ -123,7 +123,7 @@ namespace CavesOfOoo.Tests
             }
             finally{LiquidRegistry.ResetForTests();}
         }
-        [Test] public void LoadedHouseDramaPipelineOptInIsScopedToSumpholdNotOrdinaryVillages()
+        [Test] public void LoadedHouseDramaReservationsFollowComposedSitesAndOrdinaryDoorSources()
         {
             HouseDramaLoader.Reset();HouseDramaRuntime.Reset();
             try
@@ -132,15 +132,20 @@ namespace CavesOfOoo.Tests
                 HouseDramaLoader.Register(drama);HouseDramaRuntime.RegisterDrama(drama);HouseDramaRuntime.ActivateDrama(drama.ID);
                 var manager=new OverworldZoneManager(GrovelandsCompositionTests.Factory(),64);
                 var method=typeof(OverworldZoneManager).GetMethod("GetPipelineForZone",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
-                // The newly composed First Tent opts in too; an ordinary place
-                // at this same address must retain the legacy unreserved policy.
+                // Authored compositions reserve their own routes. An ordinary
+                // replacement now reserves actual doors/approaches, and only
+                // that route grants late drama residents ordinary door access.
                 var first=(ZoneGenerationPipeline)method.Invoke(manager,new object[]{"Overworld.5.17.0"});
                 Assert.IsTrue(first.Builders.OfType<HouseDramaZoneBuilder>().Single().RespectReservations);
                 manager.WorldMap.SetPOI(5,17,new PointOfInterest(POIType.Village,"Ordinary village control",tier:3));
                 foreach(var id in new[]{SumpholdCompositionTests.Id,"Overworld.6.6.0","Overworld.5.17.0"})
                 {
                     var pipeline=(ZoneGenerationPipeline)method.Invoke(manager,new object[]{id});var pop=pipeline.Builders.OfType<HouseDramaZoneBuilder>().Single();
-                    Assert.AreEqual(id!="Overworld.5.17.0",typeof(HouseDramaZoneBuilder).GetProperty("RespectReservations").GetValue(pop));
+                    bool ordinary = id == "Overworld.5.17.0";
+                    Assert.IsTrue(pop.RespectReservations, "Both authored routes and real ordinary door approaches remain clear.");
+                    Assert.AreEqual(ordinary, pop.CanOpenOrdinaryDoors, "Authored sites do not inherit generic door permission.");
+                    Assert.AreEqual(ordinary, pipeline.Builders.OfType<VillageBuilder>().Any());
+                    Assert.AreEqual(ordinary, pipeline.Builders.OfType<VillageDoorPlacementBuilder>().Any());
                 }
             }
             finally{HouseDramaLoader.Reset();HouseDramaRuntime.Reset();}

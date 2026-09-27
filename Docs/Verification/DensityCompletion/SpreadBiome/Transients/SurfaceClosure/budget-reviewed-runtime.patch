@@ -1,0 +1,69 @@
+--- a/Assets/Scripts/Presentation/Rendering/SpreadTransientVolumes.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpreadTransientVolumes.cs
+@@ -33,6 +33,12 @@
+    if(disposed)return;
+    if(!ReferenceEquals(zone,current)){Clear();zone=current;}
+    if(!SpreadPresentationScope.IsActive(zone)||surface.ContentRoot==null){Clear();return;}
++   // Retired sources must release capacity before this dirty refresh admits
++   // their replacements. This reads live source state; it never advances it.
++   removedGas.Clear();foreach(var p in gases)if(!SpreadTransientSource.TryGas(zone,p.Key,out _))removedGas.Add(p.Key);
++   foreach(var owner in removedGas){DestroyView(gases[owner]);gases.Remove(owner);}
++   removedElements.Clear();foreach(var p in elements)if(!TryTileSample(p.Key%Zone.Width,p.Key/Zone.Width,out _))removedElements.Add(p.Key);
++   foreach(int key in removedElements){DestroyView(elements[key]);elements.Remove(key);}
+    seenGas.Clear();seenElements.Clear();
+    foreach(var owner in zone.GetReadOnlyEntities())
+    {
+--- a/Assets/Scripts/Presentation/Rendering/SpreadParticleFrame.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpreadParticleFrame.cs
+@@ -14,13 +14,15 @@
+   public const int MaximumViews=512;
+   readonly NativeZone3DRenderSurface surface;readonly Material material;
+   readonly Dictionary<int,View> views=new Dictionary<int,View>();readonly Dictionary<string,Mesh> meshes=new Dictionary<string,Mesh>();
+-  readonly HashSet<int> seen=new HashSet<int>();readonly List<int> remove=new List<int>();readonly List<Material> materials=new List<Material>(2);
++  readonly HashSet<int> seen=new HashSet<int>();readonly List<int> remove=new List<int>();
++  readonly List<int> priorKeys=new List<int>();int reuseCursor;readonly List<Material> materials=new List<Material>(2);
+   readonly MaterialPropertyBlock block=new MaterialPropertyBlock();Zone zone;bool disposed,frame;
+   sealed class View{public GameObject Root;public MeshFilter Filter;public MeshRenderer Renderer;public SpreadParticleSample Sample;}
+   public SpreadParticleFrame(NativeZone3DRenderSurface surface,Material borrowedMaterial)
+   {this.surface=surface??throw new ArgumentNullException(nameof(surface));material=surface.MaterialFor(borrowedMaterial);if(surface.ContentRoot==null)throw new ArgumentException("Native particle surface is unavailable.");}
+   public void BeginFrame(Zone current)
+-  {if(disposed)return;if(!ReferenceEquals(zone,current)){Clear();zone=current;}seen.Clear();frame=surface.IsVisible&&surface.ContentRoot!=null&&SpreadPresentationScope.IsActive(zone);if(!frame)Clear();}
++  {if(disposed)return;if(!ReferenceEquals(zone,current)){Clear();zone=current;}seen.Clear();frame=surface.IsVisible&&surface.ContentRoot!=null&&SpreadPresentationScope.IsActive(zone);if(!frame){Clear();return;}
++   priorKeys.Clear();reuseCursor=0;foreach(int key in views.Keys)priorKeys.Add(key);}
+   /// <summary>Called for every resolved visible mark in original draw order.
+   /// Returning true proves this exact mark now has a submitted native view.
+   /// Refusals remove an earlier native mark at this cell, preserving last draw.</summary>
+@@ -29,7 +31,23 @@
+    if(disposed)return false;int key=y*Zone.Width+x;
+    if(!frame||!SpreadParticleSource.TrySample(zone,x,y,glyph,color,out var sample)){Forget(key);return false;}
+    if(!views.TryGetValue(key,out var view))
+-   {if(views.Count>=MaximumViews)return false;view=Create();views.Add(key,view);}
++   {
++    if(views.Count>=MaximumViews)
++    {
++     // Each prior key is considered at most once. A view already drawn this
++     // frame is never recycled, even if its old key appears later in the list.
++     view=null;
++     while(reuseCursor<priorKeys.Count)
++     {
++      int priorKey=priorKeys[reuseCursor++];
++      if(seen.Contains(priorKey)||!views.TryGetValue(priorKey,out var prior))continue;
++      views.Remove(priorKey);view=prior;break;
++     }
++     if(view==null)return false;
++    }
++    else view=Create();
++    views.Add(key,view);
++   }
+    if(!meshes.TryGetValue(sample.Shape,out var mesh)||mesh==null){mesh=Build(sample.Shape);meshes[sample.Shape]=mesh;}
+    if(view.Root==null||view.Filter==null||view.Renderer==null){Forget(key);return false;}
+    view.Sample=sample;view.Filter.sharedMesh=mesh;var t=view.Root.transform;t.SetParent(surface.ContentRoot,false);t.position=Village3DProjection.CellCentre(x,y);t.rotation=Quaternion.identity;t.localScale=Vector3.one;view.Root.layer=NativeZone3DRenderSurface.WorldLayer;
+@@ -73,7 +91,7 @@
+   static void Face(Vector3 c,Vector3 r,Vector3 u,Vector3 normal,List<Vector3> v,List<Vector3> n,List<Vector2> uv,List<int> t)
+   {int start=v.Count;v.Add(c-r-u);v.Add(c+r-u);v.Add(c+r+u);v.Add(c-r+u);for(int i=0;i<4;i++){n.Add(normal);uv.Add(new Vector2(.5f,.5f));}t.Add(start);t.Add(start+1);t.Add(start+2);t.Add(start);t.Add(start+2);t.Add(start+3);}
+   void Forget(int key){if(!views.TryGetValue(key,out var view))return;if(view.Root!=null){view.Root.SetActive(false);Destroy(view.Root);}views.Remove(key);seen.Remove(key);}
+-  public void Clear(){foreach(var v in views.Values)if(v.Root!=null){v.Root.SetActive(false);Destroy(v.Root);}views.Clear();seen.Clear();frame=false;}
++  public void Clear(){foreach(var v in views.Values)if(v.Root!=null){v.Root.SetActive(false);Destroy(v.Root);}views.Clear();seen.Clear();priorKeys.Clear();reuseCursor=0;frame=false;}
+   static void Destroy(Object o){if(o==null)return;if(Application.isPlaying)Object.Destroy(o);else Object.DestroyImmediate(o);}
+   public void Dispose(){if(disposed)return;Clear();foreach(var m in meshes.Values)Destroy(m);meshes.Clear();block.Clear();zone=null;disposed=true;}
+  }

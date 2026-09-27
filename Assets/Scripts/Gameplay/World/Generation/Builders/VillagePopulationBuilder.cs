@@ -1298,6 +1298,7 @@ namespace CavesOfOoo.Core
         private void WireNPC(Entity npc, string settlementId)
         {
             if (npc == null) return;
+            npc.SetTag("CanOpenDoors");
             if (_poi?.Faction != null)
                 npc.SetTag("Faction", _poi.Faction);
             if (!string.IsNullOrEmpty(settlementId))

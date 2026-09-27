@@ -1,0 +1,279 @@
+{
+    "runId": "238dc69e867c473bb07c8286c911f14d",
+    "zone": "Overworld.2.6.0",
+    "saveRoot": "/var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-native-save-audits/bf0646c9f39f4c28814f455030f62054",
+    "fatal": "",
+    "canVerify": "Six exact factory creature identities/loadouts in an ordinary native zone; adopted rig/voxel view, gear or explicit native fallback, picking, scripted movement and presentation Attack hook/bone motion, hidden/removal controls, unchanged preexisting entity identities/positions/HP/equipped IDs and turn. Actual PNG output.",
+    "cannotVerify": "Explicit staged art demo: one factory owner at a time, not naturally acquired or spawned population; staged owners are not scheduled for AI. Zone placement plus explicit Moved/Attack presentation hooks are not ordinary keyboard combat, AI, damage or balance. Full reveal and doubled inspection camera zoom are temporary and restored. The passive moth is not given an attack or light. Native backend log review, human deformation/appearance acceptance, and ordinary encounter balance remain separate.",
+    "complete": true,
+    "errorsFinalized": true,
+    "cases": 75,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "seconds": 8.3075033,
+    "audit": [
+        "PASS isolated_ordinary_player",
+        "PASS MarlbackScrabbler_correct_real_body",
+        "PASS MarlbackScrabbler_adopted_voxel_mesh",
+        "PASS MarlbackScrabbler_idle_walk_states",
+        "PASS MarlbackScrabbler_authored_loadout_present",
+        "PASS MarlbackScrabbler_actual_gear_or_declared_fallback",
+        "PASS MarlbackScrabbler_pickable",
+        "PASS MarlbackScrabbler_walk_bones_change",
+        "PASS MarlbackScrabbler_walk_reaches_actual_cell",
+        "PASS MarlbackScrabbler_attack_pose_changes_bones",
+        "PASS MarlbackScrabbler_hidden_owner_not_drawn",
+        "PASS MarlbackScrabbler_visible_owner_recovers",
+        "PASS MarlbackScrabbler_removed_owner_gone",
+        "PASS MarlbackGleaner_correct_real_body",
+        "PASS MarlbackGleaner_adopted_voxel_mesh",
+        "PASS MarlbackGleaner_idle_walk_states",
+        "PASS MarlbackGleaner_authored_loadout_present",
+        "PASS MarlbackGleaner_actual_gear_or_declared_fallback",
+        "PASS MarlbackGleaner_pickable",
+        "PASS MarlbackGleaner_walk_bones_change",
+        "PASS MarlbackGleaner_walk_reaches_actual_cell",
+        "PASS MarlbackGleaner_attack_pose_changes_bones",
+        "PASS MarlbackGleaner_hidden_owner_not_drawn",
+        "PASS MarlbackGleaner_visible_owner_recovers",
+        "PASS MarlbackGleaner_removed_owner_gone",
+        "PASS MarlbackTunnelguard_correct_real_body",
+        "PASS MarlbackTunnelguard_adopted_voxel_mesh",
+        "PASS MarlbackTunnelguard_idle_walk_states",
+        "PASS MarlbackTunnelguard_authored_loadout_present",
+        "PASS MarlbackTunnelguard_actual_gear_or_declared_fallback",
+        "PASS MarlbackTunnelguard_pickable",
+        "PASS MarlbackTunnelguard_walk_bones_change",
+        "PASS MarlbackTunnelguard_walk_reaches_actual_cell",
+        "PASS MarlbackTunnelguard_attack_pose_changes_bones",
+        "PASS MarlbackTunnelguard_hidden_owner_not_drawn",
+        "PASS MarlbackTunnelguard_visible_owner_recovers",
+        "PASS MarlbackTunnelguard_removed_owner_gone",
+        "PASS MarlbackWallkeeper_correct_real_body",
+        "PASS MarlbackWallkeeper_adopted_voxel_mesh",
+        "PASS MarlbackWallkeeper_idle_walk_states",
+        "PASS MarlbackWallkeeper_authored_loadout_present",
+        "PASS MarlbackWallkeeper_actual_gear_or_declared_fallback",
+        "PASS MarlbackWallkeeper_pickable",
+        "PASS MarlbackWallkeeper_walk_bones_change",
+        "PASS MarlbackWallkeeper_walk_reaches_actual_cell",
+        "PASS MarlbackWallkeeper_attack_pose_changes_bones",
+        "PASS MarlbackWallkeeper_hidden_owner_not_drawn",
+        "PASS MarlbackWallkeeper_visible_owner_recovers",
+        "PASS MarlbackWallkeeper_removed_owner_gone",
+        "PASS MarlbackBreacher_correct_real_body",
+        "PASS MarlbackBreacher_adopted_voxel_mesh",
+        "PASS MarlbackBreacher_idle_walk_states",
+        "PASS MarlbackBreacher_authored_loadout_present",
+        "PASS MarlbackBreacher_actual_gear_or_declared_fallback",
+        "PASS MarlbackBreacher_pickable",
+        "PASS MarlbackBreacher_walk_bones_change",
+        "PASS MarlbackBreacher_walk_reaches_actual_cell",
+        "PASS MarlbackBreacher_attack_pose_changes_bones",
+        "PASS MarlbackBreacher_hidden_owner_not_drawn",
+        "PASS MarlbackBreacher_visible_owner_recovers",
+        "PASS MarlbackBreacher_removed_owner_gone",
+        "PASS GroveLanternMoth_correct_real_body",
+        "PASS GroveLanternMoth_adopted_voxel_mesh",
+        "PASS GroveLanternMoth_idle_walk_states",
+        "PASS GroveLanternMoth_authored_loadout_present",
+        "PASS GroveLanternMoth_actual_gear_or_declared_fallback",
+        "PASS GroveLanternMoth_pickable",
+        "PASS GroveLanternMoth_walk_bones_change",
+        "PASS GroveLanternMoth_walk_reaches_actual_cell",
+        "PASS passive_moth_not_given_attack_or_light",
+        "PASS GroveLanternMoth_hidden_owner_not_drawn",
+        "PASS GroveLanternMoth_visible_owner_recovers",
+        "PASS GroveLanternMoth_removed_owner_gone",
+        "PASS all_six_original_roles_observed",
+        "PASS staging_preserves_existing_world_and_turn"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackScrabbler-01-idle.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackScrabbler-02-world-idle.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackScrabbler-03-scripted-walk.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackScrabbler-04-scripted-attack.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackGleaner-01-idle.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackGleaner-02-world-idle.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackGleaner-03-scripted-walk.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackGleaner-04-scripted-attack.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackTunnelguard-01-idle.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackTunnelguard-02-world-idle.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackTunnelguard-03-scripted-walk.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackTunnelguard-04-scripted-attack.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackWallkeeper-01-idle.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackWallkeeper-02-world-idle.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackWallkeeper-03-scripted-walk.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackWallkeeper-04-scripted-attack.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackBreacher-01-idle.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackBreacher-02-world-idle.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackBreacher-03-scripted-walk.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/MarlbackBreacher-04-scripted-attack.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/GroveLanternMoth-01-idle.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/GroveLanternMoth-02-world-idle.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/OriginalEnemies/Native/238dc69e867c473bb07c8286c911f14d/GroveLanternMoth-03-scripted-walk.png"
+    ],
+    "actors": [
+        {
+            "blueprint": "MarlbackScrabbler",
+            "model": "ring-snapjaw",
+            "owner": "2531",
+            "stageX": 40,
+            "stageY": 10,
+            "height": 1.3589434623718262,
+            "width": 1.5000001192092896,
+            "walkMotion": 1.1756821870803834,
+            "attackMotion": 8.933720588684082,
+            "gear": [
+                {
+                    "blueprint": "Dagger",
+                    "id": "2532",
+                    "fallback": "",
+                    "owned": true,
+                    "rendered": true
+                }
+            ]
+        },
+        {
+            "blueprint": "MarlbackGleaner",
+            "model": "ring-marlback-gleaner",
+            "owner": "2533",
+            "stageX": 40,
+            "stageY": 10,
+            "height": 1.3736038208007813,
+            "width": 1.5000001192092896,
+            "walkMotion": 1.1419103145599366,
+            "attackMotion": 9.668560981750489,
+            "gear": [
+                {
+                    "blueprint": "ShortSword",
+                    "id": "2534",
+                    "fallback": "",
+                    "owned": true,
+                    "rendered": true
+                }
+            ]
+        },
+        {
+            "blueprint": "MarlbackTunnelguard",
+            "model": "ring-marlback-tunnelguard",
+            "owner": "2535",
+            "stageX": 40,
+            "stageY": 10,
+            "height": 1.3589434623718262,
+            "width": 1.5000001192092896,
+            "walkMotion": 1.1494252681732178,
+            "attackMotion": 9.023859977722168,
+            "gear": [
+                {
+                    "blueprint": "Spear",
+                    "id": "2536",
+                    "fallback": "",
+                    "owned": true,
+                    "rendered": true
+                },
+                {
+                    "blueprint": "LeatherCap",
+                    "id": "2537",
+                    "fallback": "",
+                    "owned": true,
+                    "rendered": true
+                }
+            ]
+        },
+        {
+            "blueprint": "MarlbackWallkeeper",
+            "model": "ring-marlback-wallkeeper",
+            "owner": "2538",
+            "stageX": 40,
+            "stageY": 10,
+            "height": 1.3674997091293336,
+            "width": 1.5000001192092896,
+            "walkMotion": 1.1183630228042603,
+            "attackMotion": 8.821375846862793,
+            "gear": [
+                {
+                    "blueprint": "LongSword",
+                    "id": "2539",
+                    "fallback": "",
+                    "owned": true,
+                    "rendered": true
+                },
+                {
+                    "blueprint": "LeatherArmor",
+                    "id": "2540",
+                    "fallback": "unsupported-equipped-item",
+                    "owned": true,
+                    "rendered": false
+                },
+                {
+                    "blueprint": "LeatherCap",
+                    "id": "2541",
+                    "fallback": "",
+                    "owned": true,
+                    "rendered": true
+                },
+                {
+                    "blueprint": "LeatherBoots",
+                    "id": "2542",
+                    "fallback": "unsupported-equipped-item",
+                    "owned": true,
+                    "rendered": false
+                }
+            ]
+        },
+        {
+            "blueprint": "MarlbackBreacher",
+            "model": "ring-snapjaw-warlord",
+            "owner": "2543",
+            "stageX": 40,
+            "stageY": 10,
+            "height": 1.3674997091293336,
+            "width": 1.5000001192092896,
+            "walkMotion": 1.2169010639190674,
+            "attackMotion": 9.132604598999024,
+            "gear": [
+                {
+                    "blueprint": "BreacherCleaver",
+                    "id": "2544",
+                    "fallback": "unsupported-equipped-item",
+                    "owned": true,
+                    "rendered": false
+                },
+                {
+                    "blueprint": "LeatherArmor",
+                    "id": "2545",
+                    "fallback": "unsupported-equipped-item",
+                    "owned": true,
+                    "rendered": false
+                },
+                {
+                    "blueprint": "IronHelmet",
+                    "id": "2546",
+                    "fallback": "",
+                    "owned": true,
+                    "rendered": true
+                },
+                {
+                    "blueprint": "IronshodBoots",
+                    "id": "2547",
+                    "fallback": "unsupported-equipped-item",
+                    "owned": true,
+                    "rendered": false
+                }
+            ]
+        },
+        {
+            "blueprint": "GroveLanternMoth",
+            "model": "ring-grove-lantern-moth",
+            "owner": "2548",
+            "stageX": 40,
+            "stageY": 10,
+            "height": 0.6764240860939026,
+            "width": 0.7500000596046448,
+            "walkMotion": 1.9439339637756348,
+            "attackMotion": 0.0,
+            "gear": []
+        }
+    ]
+}

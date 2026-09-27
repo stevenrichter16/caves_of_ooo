@@ -149,7 +149,16 @@ namespace CavesOfOoo.Tests
                             target = (x, y);
             }
             Assert.IsTrue(target.HasValue, "seed must exercise a real lair in " + biome);
-            var zone = manager.GetZone($"Overworld.{target.Value.x}.{target.Value.y}.0");
+            string surfaceID = $"Overworld.{target.Value.x}.{target.Value.y}.0";
+            manager.GetZone(surfaceID);
+            var stack = LairStacks.Inspect(manager, surfaceID);
+            Assert.IsNotNull(stack, "the actual lair pipeline must publish its stack");
+            Assert.IsFalse(stack.Legacy);
+            Assert.That(stack.FinalDepth, Is.InRange(1, 2));
+            for (int depth = 0; depth < stack.FinalDepth; depth++)
+                Assert.IsFalse(manager.GetZone(stack.ZoneAt(depth)).GetAllEntities().Any(e => e.HasTag("Trap")),
+                    "approach floors must not duplicate the final-floor trap budget");
+            var zone = manager.GetZone(stack.ZoneAt(stack.FinalDepth));
             var traps = zone.GetAllEntities().Where(e => e.HasTag("Trap")).ToList();
             Assert.That(traps.Count, Is.InRange(1, 2));
             foreach (var trap in traps)

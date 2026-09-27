@@ -17,25 +17,32 @@ def make(family,variant):
  if family=='ground':
   box(0,-.017,0,1,.03,1,0)
   for i in range(3+variant%3):
-   x=rng.uniform(-.40,.40);z=rng.uniform(-.40,.40);h=rng.choice([.045,.055,.065]);box(x,h*.5,z,.06,h,.061,2 if i%2 else 3)
+   x=rng.uniform(-.40,.40);z=rng.uniform(-.40,.40);h=rng.choice([.055,.062,.068]);w=rng.choice([.09,.10,.11]);box(x,h*.5,z,w,h,w,2 if i%2 else 3)
  elif family=='pale-reeds':
-  for i in range(7):
-   x=(i%3-1)*.23+rng.uniform(-.02,.02);z=(i//3-1)*.24+rng.uniform(-.025,.025);h=.49+rng.randrange(5)*.062
-   box(x,h*.5,z,.116,h,.118,4 if i%2 else 5)
-   box(x,h+.04,z,.127,.08,.129,5)
-   side=(-1 if (i+variant)%2 else 1);bh=h*.55
-   box(x+side*.071,bh,z,.145,.11,.105,4 if i%2 else 5)
-   box(x+side*.123,bh+.102,z,.111,.204,.115,4)
-   box(x+side*.123,bh+.23,z,.119,.052,.12,5)
+  # Uneven rectangular reed fingers, with flat block tops. Keep most mass
+  # vertical and only a few rising offshoots, never repeated centered cones.
+  for i,(px,pz) in enumerate([(-.24,-.22),(.015,-.24),(.25,-.13),(-.28,.025),(-.035,.015),(.20,.16),(-.16,.25)]):
+   x=px+rng.uniform(-.025,.025);z=pz+rng.uniform(-.025,.025);h=.43+((i*3+variant)%5)*.046
+   w=.124+((i+variant)%3)*.009;d=.13+((i*2+variant)%3)*.008
+   box(x,h*.5,z,w,h,d,4)
+   box(x,h+.024,z,w+.008,.048,d+.004,5)
+   # Short asymmetric branchlets rise alongside two or three selected stems.
+   if (i+variant)%3==0:
+    side=-1 if (i+variant)%2 else 1
+    box(x+side*.077,h*.40,z+.024,.078,.13,.083,4)
+    box(x+side*.092,h*.40+.112,z+.024,.083,.104,.086,5)
  elif family=='green-grass':
-  for i in range(3):
-   x=(i-1)*.17+rng.uniform(-.01,.01);z=(-.11 if i==1 else .09)+rng.uniform(-.01,.01);h=.32+((i+variant)%3)*.045
-   box(x,h*.5,z,.072,h,.07,8 if i%2 else 9)
-   for side in [-1,1]:
-    box(x+side*.043,h*.51,z,.065,.096,.07,8)
-    box(x+side*.069,h*.69,z,.053,.11,.061,9)
-    box(x+side*.083,h*.86,z,.051,.082,.053,9)
-   box(x,h+.018,z,.068,.069,.066,9)
+  # Seven simple unequal rising fingers; no repeated side-leaf ladders.
+  for i,(px,pz) in enumerate([(-.22,-.13),(-.04,-.21),(.17,-.16),(-.16,.09),(.04,.015),(.23,.09),(.00,.22)]):
+   x=px+rng.uniform(-.009,.009);z=pz+rng.uniform(-.009,.009);h=.25+((i*3+variant)%5)*.032
+   box(x,.032,z,.112,.064,.112,7)
+   box(x,h*.5,z,.088,h,.092,8 if i%3==0 else 9)
+   box(x,h+.025,z,.072,.070,.075,9)
+  # Seventh image comparison: the fixed view foreshortens narrow fingers.
+  # Broaden only this tuft's X silhouette; keep seven stems and its Z footprint.
+  for b in boxes:
+   b['center']['x']=round(b['center']['x']*1.75,5);b['size']['x']=round(b['size']['x']*1.5,5)
+   b['center']['y']=round(b['center']['y']*.96,5);b['size']['y']=round(b['size']['y']*.96,5)
  elif family=='dark-ruin':
   box(0,.075,0,.92,.15,.55,1)
   for i in range(9):
@@ -68,7 +75,7 @@ def make(family,variant):
    for i in range(5):box((i-2)*.19,.665,-.1,.08,.042,.12,14 if i%2 else 13)
  elif family=='gravel':
   for i in range(27+variant*2):
-   x=rng.uniform(-.445,.445);z=rng.uniform(-.445,.445);h=rng.choice([.043,.06,.075]);w=rng.choice([.065,.078,.09])
+   x=rng.uniform(-.445,.445);z=rng.uniform(-.445,.445);h=rng.choice([.055,.068,.083]);w=rng.choice([.09,.10,.11])
    box(x,h*.5,z,w,h,w,10 if i%4==0 else 3 if i%2 else 2)
  elif family=='chest':
   box(0,.19,0,.62,.34,.43,19)

@@ -1,0 +1,10 @@
+{
+  "result": "refused-before-writes",
+  "reason": "Global SaveAssets in selected voxel builder would save existing dirty persistent assets.",
+  "observedExamples": [
+    "Assets/Resources/ReferenceGlade3D/ActorPaint/ring-player.asset",
+    "Assets/Shaders/AnimatedEnvironment.shader",
+    "Package and builtin shaders"
+  ],
+  "action": "Preserve all existing dirty objects; implement bounded selected-output saving before retry. No pool meshes rebuilt."
+}

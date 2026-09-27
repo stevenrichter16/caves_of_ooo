@@ -26,12 +26,14 @@ namespace CavesOfOoo.Editor
         }
         public static void Run() => LaunchCore(true);
         public static void LaunchProfile() => LaunchCore(false,true);
+        public static void LaunchCombat() => LaunchCore(false,false,true);
+        public static void LaunchBiome() => LaunchCore(false,false,false,true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Native Audit")]
         public static void Launch() => LaunchCore(false);
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Native Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool profile=false)
+        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the completion audit.");
@@ -49,6 +51,8 @@ namespace CavesOfOoo.Editor
             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
             SessionState.SetInt(Prefix + "seed", 64);
             SessionState.SetBool(Prefix+"profile",profile);
+            SessionState.SetBool(Prefix+"combat",combat);
+            SessionState.SetBool(Prefix+"biome",biome);
             SessionState.SetBool(Prefix + "active", true);
             SessionState.SetBool(Prefix + "restoreScenes", false);
             SessionState.SetBool(Prefix + "exitEditor", exitEditor);
@@ -76,7 +80,7 @@ namespace CavesOfOoo.Editor
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
             new GameObject("Reference Glade Native Audit").AddComponent<ReferenceGladeNativePlayer>()
-                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"profile",false));
+                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"profile",false),SessionState.GetBool(Prefix+"combat",false),SessionState.GetBool(Prefix+"biome",false));
         }
         private static void Poll()
         {
@@ -111,6 +115,10 @@ namespace CavesOfOoo.Editor
         }
         private static void AwaitSceneRestore()
         {
+            // A one-shot delay can fire during Play teardown and be consumed
+            // before the editor is ready. Keep one retry until restoration ends.
+            EditorApplication.update -= RestoreScenes;
+            EditorApplication.update += RestoreScenes;
             EditorApplication.playModeStateChanged -= OnStopped;
             EditorApplication.playModeStateChanged += OnStopped;
             if (!EditorApplication.isPlayingOrWillChangePlaymode) EditorApplication.delayCall += RestoreScenes;
@@ -119,7 +127,10 @@ namespace CavesOfOoo.Editor
         { if (state == PlayModeStateChange.EnteredEditMode) EditorApplication.delayCall += RestoreScenes; }
         private static void RestoreScenes()
         {
-            if (!SessionState.GetBool(Prefix + "restoreScenes", false) || EditorApplication.isPlayingOrWillChangePlaymode) return;
+            if (!SessionState.GetBool(Prefix + "restoreScenes", false))
+            { EditorApplication.update -= RestoreScenes; return; }
+            if (EditorApplication.isPlayingOrWillChangePlaymode) return;
+            EditorApplication.update -= RestoreScenes;
             SessionState.SetBool(Prefix + "restoreScenes", false);
             RestoreView();
             EditorApplication.playModeStateChanged -= OnStopped;

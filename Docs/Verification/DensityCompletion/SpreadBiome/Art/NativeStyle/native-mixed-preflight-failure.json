@@ -1,0 +1,75 @@
+{
+  "error": "Mixed semantic material source.",
+  "preflightBeforeAnyOutputFolder": true,
+  "diagnostic": [
+    {
+      "id": "ring-spray-pool-0",
+      "materials": [
+        "Assets/Art3D/SpawnRing/Materials/SpawnRingPalette.mat",
+        "Assets/Art3D/SpawnRing/Materials/SpawnRingWater.mat"
+      ],
+      "renderers": [
+        {
+          "name": "ring-spray-pool-0__Geometry",
+          "slots": 1
+        },
+        {
+          "name": "ring-spray-pool-0__Water",
+          "slots": 1
+        }
+      ]
+    },
+    {
+      "id": "ring-spray-pool-1",
+      "materials": [
+        "Assets/Art3D/SpawnRing/Materials/SpawnRingPalette.mat",
+        "Assets/Art3D/SpawnRing/Materials/SpawnRingWater.mat"
+      ],
+      "renderers": [
+        {
+          "name": "ring-spray-pool-1__Geometry",
+          "slots": 1
+        },
+        {
+          "name": "ring-spray-pool-1__Water",
+          "slots": 1
+        }
+      ]
+    },
+    {
+      "id": "ring-spray-pool-2",
+      "materials": [
+        "Assets/Art3D/SpawnRing/Materials/SpawnRingPalette.mat",
+        "Assets/Art3D/SpawnRing/Materials/SpawnRingWater.mat"
+      ],
+      "renderers": [
+        {
+          "name": "ring-spray-pool-2__Geometry",
+          "slots": 1
+        },
+        {
+          "name": "ring-spray-pool-2__Water",
+          "slots": 1
+        }
+      ]
+    },
+    {
+      "id": "ring-spray-pool-3",
+      "materials": [
+        "Assets/Art3D/SpawnRing/Materials/SpawnRingPalette.mat",
+        "Assets/Art3D/SpawnRing/Materials/SpawnRingWater.mat"
+      ],
+      "renderers": [
+        {
+          "name": "ring-spray-pool-3__Geometry",
+          "slots": 1
+        },
+        {
+          "name": "ring-spray-pool-3__Water",
+          "slots": 1
+        }
+      ]
+    }
+  ],
+  "diagnosticCode": "var source=UnityEngine.JsonUtility.FromJson<CavesOfOoo.Rendering.SpreadNativeStyleSource>(System.IO.File.ReadAllText(\"ArtSource/SpreadNativeStyle3D/sources.json\"));var ring=UnityEngine.Resources.Load<CavesOfOoo.Rendering.SpawnRing3DLibrary>(CavesOfOoo.Rendering.SpawnRing3DLibrary.ResourcePath);var rows=new System.Collections.Generic.List<object>();foreach(var spec in source.models.Where(e=>e.semanticColors)){var p=ring.FindModel(spec.id);var materials=p.GetComponentsInChildren<UnityEngine.Renderer>(true).SelectMany(r=>r.sharedMaterials).Distinct().ToArray();if(materials.Length>1)rows.Add(new{id=spec.id,materials=materials.Select(m=>UnityEditor.AssetDatabase.GetAssetPath(m)).ToArray(),renderers=p.GetComponentsInChildren<UnityEngine.Renderer>(true).Select(r=>new{name=r.name,slots=r.sharedMaterials.Length}).ToArray()});}return rows;"
+}

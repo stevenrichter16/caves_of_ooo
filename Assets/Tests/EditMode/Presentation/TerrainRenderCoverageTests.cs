@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
 using CavesOfOoo.Core;
@@ -53,6 +55,12 @@ namespace CavesOfOoo.Tests
         {
             // Objects that merely sit on the terrain layer.
             "StairsDown", "StairsUp", "Campfire", "BrokenColumn", "Bush",
+            // Runtime liquid identity is assigned only when a real vessel is
+            // poured. LiquidPool.Initialize supplies its exact registry glyph
+            // and color; a fixed ground-water mapping would mislabel oil/acid.
+            // Supported native zones use the separately tested exact-volume
+            // PouredLiquid3D recipe. This list describes the legacy 2D fallback.
+            "PouredLiquidPool",
             "CampfireGroundMarker", "LanternGroundMarker",
             "OvenGroundMarker", "WellGroundMarker",
 
@@ -136,6 +144,62 @@ namespace CavesOfOoo.Tests
             foreach (var (bp, _) in EnvironmentSpriteRenderer.FixtureSprites)
                 if (bp == blueprint) return true;
             return false;
+        }
+
+        [Test]
+        public void PouredLiquidFallbackKeepsEveryActualRuntimeIdentity()
+        {
+            // This is the 2D fallback contract, not native-model/pixel proof.
+            // The separate DensityPouredLiquidRenderingTests cover the exact
+            // positive-volume model, switch, ownership and refusal paths.
+            var type = typeof(LiquidRegistry);
+            var registry = (Dictionary<string, LiquidDefinition>)type.GetField(
+                "_byId", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
+            var saved = new Dictionary<string, LiquidDefinition>(registry);
+            var initialized = type.GetField("_initialized", BindingFlags.Static | BindingFlags.NonPublic);
+            bool wasInitialized = (bool)initialized.GetValue(null);
+            try
+            {
+                LiquidRegistry.InitializeFromJsonSources(Resources.LoadAll<TextAsset>(
+                    "Content/Data/LiquidDefinitions").Select(asset => asset.text));
+                Assert.AreEqual(26, LiquidRegistry.Count, "Actual shipped liquid census must not be empty.");
+                Assert.IsTrue(GlyphOnlyByDesign.Contains("PouredLiquidPool"),
+                    "Only this reviewed dynamic shell opts into the legacy glyph fallback.");
+                var owner = _factory.CreateEntity("PouredLiquidPool");
+                var pool = owner.GetPart<LiquidPoolPart>();
+                var render = owner.GetPart<RenderPart>();
+                Assert.NotNull(pool); Assert.NotNull(render);
+                Assert.AreEqual("", pool.LiquidId); Assert.AreEqual(0, pool.Volume);
+                Assert.IsFalse(owner.GetPart<PhysicsPart>().Takeable);
+                foreach (var definition in registry.Values)
+                {
+                    pool.LiquidId = definition.Id; pool.Volume = 3; pool.Initialize();
+                    Assert.AreEqual(definition.Glyph, render.RenderString, definition.Id);
+                    Assert.AreEqual(definition.Color, render.ColorString, definition.Id);
+                    Assert.AreEqual(3, pool.Volume, "Appearance cannot consume the source.");
+                    Assert.AreEqual(EnvironmentSpriteRenderer.GroundMaterial.None,
+                        EnvironmentSpriteRenderer.ResolveGroundMaterial(owner.BlueprintName),
+                        "A blueprint-only ground mapping cannot distinguish acid/oil/water.");
+                }
+            }
+            finally
+            {
+                registry.Clear(); foreach (var pair in saved) registry.Add(pair.Key, pair.Value);
+                initialized.SetValue(null, wasInitialized);
+            }
+        }
+
+        [Test]
+        public void AnUnreviewedLiquidTerrainDoesNotInheritThePouredShellExemption()
+        {
+            var owner = _factory.CreateEntity("PouredLiquidPool");
+            owner.BlueprintName = "UnreviewedLiquidTerrain";
+            Assert.IsTrue(owner.HasTag("Terrain")); Assert.NotNull(owner.GetPart<LiquidPoolPart>());
+            Assert.IsFalse(GlyphOnlyByDesign.Contains(owner.BlueprintName),
+                "Having a LiquidPool part is not a blanket art-coverage exemption.");
+            Assert.IsFalse(HasFixtureSprite(owner.BlueprintName));
+            Assert.AreEqual(EnvironmentSpriteRenderer.GroundMaterial.None,
+                EnvironmentSpriteRenderer.ResolveGroundMaterial(owner.BlueprintName));
         }
 
         [Test]

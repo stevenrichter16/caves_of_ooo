@@ -1,0 +1,49 @@
+--- a/Assets/Scripts/Scenarios/Custom/ReferenceGladeCombatEvidence.cs
++++ b/Assets/Scripts/Scenarios/Custom/ReferenceGladeCombatEvidence.cs
+@@ -57,6 +57,46 @@
+             return result;
+         }
+ 
++        public const string SupportMarkerKind = "ReferenceGladeCombatSupportStart";
++
++        /// <summary>A fresh exact self-use event and loss of one original
++        /// carried unit prove tonic consumption; HP alone cannot, because
++        /// ordinary hostile turns may deal damage during the same action.</summary>
++        public static bool HasConsumedTonic(IReadOnlyList<Diag.Entry> rows, string marker,
++            string player, string item, int beforeUnits, int afterUnits)
++        {
++            if (rows == null || string.IsNullOrEmpty(marker) || string.IsNullOrEmpty(player)
++                || string.IsNullOrEmpty(item) || beforeUnits <= 0 || afterUnits < 0
++                || afterUnits != beforeUnits - 1) return false;
++            int start = -1;
++            for (int i = 0; i < rows.Count; i++)
++            {
++                var row = rows[i];
++                if (row.TraceId != marker) continue;
++                if (start >= 0 || row.Category != "scenario" || row.Kind != SupportMarkerKind
++                    || row.ActorId != player || row.TargetId != player) return false;
++                start = i;
++            }
++            if (start < 0) return false;
++            int matches = 0;
++            for (int i = start + 1; i < rows.Count; i++)
++            {
++                var row = rows[i];
++                if (row.Category != "event" || row.Kind != "TonicApplied"
++                    || row.ActorId != player || row.TargetId != player
++                    || string.IsNullOrEmpty(row.TraceId) || string.IsNullOrEmpty(row.PayloadJson)) continue;
++                try
++                {
++                    var payload = JObject.Parse(row.PayloadJson);
++                    if (payload["item"]?.Type == JTokenType.String && payload["item"].Value<string>() == item
++                        && payload["consumed"]?.Type == JTokenType.Boolean && payload["consumed"].Value<bool>())
++                        matches++;
++                }
++                catch (Exception) { /* Malformed observations cannot prove use. */ }
++            }
++            return matches == 1;
++        }
++
+         private static bool TryReadPositiveDamage(string json, out bool lethal)
+         {
+             lethal = false;

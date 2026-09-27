@@ -1,0 +1,13 @@
+/tmp/coo-c13-moth/ArtSource/SpawnRing3D/build_ring.py:122: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  MAT=bpy.data.materials.new('SpawnRingPalette');MAT.use_nodes=True;bs=MAT.node_tree.nodes.get('Principled BSDF');bs.inputs['Roughness'].default_value=.88
+/tmp/coo-c13-moth/ArtSource/SpawnRing3D/build_ring.py:124: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  WATER=bpy.data.materials.new('SpawnRingWater');WATER.use_nodes=True;bs=WATER.node_tree.nodes.get('Principled BSDF');bs.inputs['Base Color'].default_value=(.018,.085,.09,1);bs.inputs['Roughness'].default_value=.35;bs.inputs['Specular IOR Level'].default_value=.2
+RING_KIT_AUTHORED 222
+
+FBX export starting... '/private/tmp/coo-c13-moth/export/models/ring-grove-lantern-moth.fbx'
+(bpy.data.armatures['ring-grove-lantern-moth_Skeleton.001'], 'POSE')
+export finished in 2.0087 sec.
+RING_MODEL_METADATA_READY 222
+RING_MODELS_EXPORTED 1
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+Info: Saved as "ring_kit.blend"

@@ -273,14 +273,14 @@ namespace CavesOfOoo.Core
             return rows.Actions;
         }
 
-        /// <summary>Expose explicitly marked underfoot terrain without
+        /// <summary>Expose explicitly marked underfoot terrain and existing-save beds without
         /// replacing the actor or loot target. Only the actor's occupied cell
         /// qualifies. Picker execution re-resolves the entity by its ID.</summary>
         public static void AppendUnderfootActions(List<InventoryAction> rows, Cell cell, Entity actor, Entity target = null)
         {
             if (rows == null || cell == null || actor == null || !cell.Occupants.Contains(actor)) return;
             foreach (var e in cell.Occupants)
-                if (e != target && e.HasTag("UnderfootInteractable") && !string.IsNullOrEmpty(e.ID))
+                if (e != target && (e.HasTag("UnderfootInteractable") || e.HasPart<BedPart>()) && !string.IsNullOrEmpty(e.ID))
                     rows.Add(new InventoryAction("Underfoot", e.GetDisplayName() + " underfoot",
                         PickTargetCommandPrefix + e.ID, '\0', 0));
         }

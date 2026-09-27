@@ -1,0 +1,156 @@
+[
+  {
+    "Name": "LiquidFlask",
+    "Inherits": "PhysicalObject",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "liquid flask"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "!"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&c"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "5"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Takeable",
+            "Value": "true"
+          },
+          {
+            "Key": "Weight",
+            "Value": "1"
+          }
+        ]
+      },
+      {
+        "Name": "LiquidVessel",
+        "Params": [
+          {
+            "Key": "Capacity",
+            "Value": "12"
+          },
+          {
+            "Key": "Volume",
+            "Value": "0"
+          },
+          {
+            "Key": "LiquidId",
+            "Value": ""
+          }
+        ]
+      },
+      {
+        "Name": "Handling",
+        "Params": [
+          {
+            "Key": "GripType",
+            "Value": "OneHand"
+          },
+          {
+            "Key": "BulkClass",
+            "Value": "Light"
+          }
+        ]
+      },
+      {
+        "Name": "Commerce",
+        "Params": [
+          {
+            "Key": "Value",
+            "Value": "8"
+          }
+        ]
+      },
+      {
+        "Name": "Examinable",
+        "Params": [
+          {
+            "Key": "Text",
+            "Value": "Thick glass and a tight stopper. The narrow neck lets you pour without wetting your hands."
+          }
+        ]
+      }
+    ],
+    "Stats": [],
+    "Tags": [
+      {
+        "Key": "Item",
+        "Value": "true"
+      },
+      {
+        "Key": "Tier",
+        "Value": "1"
+      }
+    ]
+  },
+  {
+    "Name": "PouredLiquidPool",
+    "Inherits": "Terrain",
+    "Parts": [
+      {
+        "Name": "Render",
+        "Params": [
+          {
+            "Key": "DisplayName",
+            "Value": "poured liquid"
+          },
+          {
+            "Key": "RenderString",
+            "Value": "~"
+          },
+          {
+            "Key": "ColorString",
+            "Value": "&c"
+          },
+          {
+            "Key": "RenderLayer",
+            "Value": "1"
+          }
+        ]
+      },
+      {
+        "Name": "Physics",
+        "Params": [
+          {
+            "Key": "Takeable",
+            "Value": "false"
+          },
+          {
+            "Key": "Solid",
+            "Value": "false"
+          }
+        ]
+      },
+      {
+        "Name": "LiquidPool",
+        "Params": [
+          {
+            "Key": "LiquidId",
+            "Value": ""
+          },
+          {
+            "Key": "Volume",
+            "Value": "0"
+          }
+        ]
+      }
+    ],
+    "Stats": [],
+    "Tags": []
+  }
+]

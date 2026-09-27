@@ -14,6 +14,7 @@ namespace CavesOfOoo.Core
         private Color[,] _tint;
         private int _lastEntityVersion = -1;
         private int _lastSightVersion = -1;
+        private int _lastDoorOcclusionVersion = -1;
         // Cache key also tracks EquipmentChangeBus.GlobalVersion so
         // equipping/unequipping invalidates the LightMap cache immediately
         // — closes the T2.2 cache-staleness 🟡 finding (commit cd355b5).
@@ -67,6 +68,7 @@ namespace CavesOfOoo.Core
             if (ReferenceEquals(zone, _lastZone)
                 && zone.EntityVersion == _lastEntityVersion
                 && zone.TileState.SightVersion == _lastSightVersion
+                && zone.DoorOcclusionVersion == _lastDoorOcclusionVersion
                 && currentEquipmentVersion == _lastEquipmentVersion
                 && currentDoors == _lastMorrowfastDoors
                 && zone.AmbientLevel == _lastAmbientLevel
@@ -75,6 +77,7 @@ namespace CavesOfOoo.Core
             _lastZone = zone;
             _lastEntityVersion = zone.EntityVersion;
             _lastSightVersion = zone.TileState.SightVersion;
+            _lastDoorOcclusionVersion = zone.DoorOcclusionVersion;
             _lastEquipmentVersion = currentEquipmentVersion;
             _lastMorrowfastDoors = currentDoors;
             _lastAmbientLevel = zone.AmbientLevel;

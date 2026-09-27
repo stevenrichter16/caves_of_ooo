@@ -1,0 +1,10 @@
+{
+  "status": "PUBLISHED; runtime compile against current Unity references zero errors; actual native repeat pending.",
+  "source": "Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeCombat.cs",
+  "priorSha256": "cd5db9ecb44bebe77851218186a9f01ec5f71ad7a0cd1b854f230d7922ad3b10",
+  "sha256": "599e0215bee3648927e7d0be8113814f9efbde3ab7d0b671fc60f471cec21be2",
+  "nativeRed": "fc5392c440204b53b957073c363609be",
+  "finding": "Preflight assumed unchanged current authored positions although Bootstrap eagerly captures Brain starts and processes NPC turns before yielding player input. Startup tick10 observed.",
+  "repair": "Before Require dump each current creature with ID/blueprint/current and authored position/live-zone/native membership/scheduler/HP/death/gear and exact roster counts. Match fixed authored identity by eagerly captured Brain.StartingCell; retain exact three blueprints, alive/current zone/member/registered checks and ordinary Warden/PetDog counts. Select same northern authored owner, record actual current position.",
+  "limits": "No direct actor/movement/AI/scheduler changes. No loosened combat attribution or native pose gates. First report lacked snapshots, so exact failed per-owner predicate cannot be reconstructed; next run exposes it."
+}

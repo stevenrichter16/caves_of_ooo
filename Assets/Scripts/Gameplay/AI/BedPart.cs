@@ -1,4 +1,5 @@
 using System;
+using CavesOfOoo.Core.Inventory;
 
 namespace CavesOfOoo.Core
 {
@@ -18,6 +19,20 @@ namespace CavesOfOoo.Core
 
         public override bool HandleEvent(GameEvent e)
         {
+            if (e.ID == "GetInventoryActions" && e.GetParameter<Entity>("Actor")?.HasTag("Player") == true)
+            {
+                var actions = e.GetParameter<InventoryActionList>("Actions");
+                actions?.AddAction("Sleep", "sleep in bed", PlayerBedService.RestCommand, 's', 10);
+                actions?.AddAction("SleepNextBand", "sleep until the next time of day", PlayerBedService.NextBandCommand, 'n', 9);
+            }
+            if (e.ID == "InventoryAction")
+            {
+                if (PlayerBedService.TryAct(e.GetParameter<Entity>("Actor"), ParentEntity,
+                    e.GetParameter<Zone>("Zone"), e.GetStringParameter("Command"),
+                    e.GetParameter<InventoryTransaction>("InventoryTransaction")))
+                { e.Handled = true; return false; }
+                return true;
+            }
             if (e.ID == IdleQueryEvent.ID)
                 return HandleIdleQuery(e);
             return true;

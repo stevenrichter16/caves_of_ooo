@@ -1,0 +1,20 @@
+{
+  "files": [
+    {
+      "path": "Assets/Editor/Art/SpreadNativeStyleBuilder.cs",
+      "source": "/tmp/coo-c15-rendering/resume-static/Assets/Editor/Art/SpreadNativeStyleBuilder.cs",
+      "beforeSha256": "37c27dcf20ad5c8dc42e52478dbb81820d29f11c4a48146f5b36123cd226d3d9",
+      "afterSha256": "12113abccefc3ef314d37e54dc0ac206a716d799b71ec23bfcf4c682ea7b6405"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleImporterReuseTests.cs",
+      "source": "/tmp/coo-c15-rendering/resume-static/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleImporterReuseTests.cs",
+      "beforeSha256": "aa0a804f4980a407fc717d152e7bf0ecf78108717bef6d2988d1c4eb597228b5",
+      "afterSha256": "265a48f59a3e95a5dc853211b0a8a002c14c8852c738b817af7cae7adda50369"
+    }
+  ],
+  "cases": 15,
+  "nativeRed": "12 original cases executed RED on missing reuse seam; three extra bounds/shadow mutations written before their private guards, pending native execution.",
+  "behavior": "Whole-source preflight unchanged; exact complete pair reuse includes all arrays/submeshes, reconstructed bounds within1e-5 float tolerance, inert prefab/material/root and default writer shadow state. Mismatch uses original write path; only complete868 library publishes.",
+  "cause": "Previous editor process exit remains unexplained; no assertion this synchronous importer caused it or that reuse removes that external risk."
+}

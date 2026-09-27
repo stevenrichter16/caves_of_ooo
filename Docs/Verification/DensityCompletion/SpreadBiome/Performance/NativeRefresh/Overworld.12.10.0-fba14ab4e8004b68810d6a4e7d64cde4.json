@@ -1,0 +1,164 @@
+{
+    "zone": "Overworld.12.10.0",
+    "filter": "Bilinear",
+    "canVerify": "Warmed stable native fixture CPU lookup/refresh wall times and per-thread managed allocation; exact unchanged native IDs/positions/HP/equipment/tile state and patch build count. No simulated actions or persistent asset changes.",
+    "cannotVerify": "Not live game-frame, GPU, input/turn, editor throttling or actual keyboard movement performance. Frozen lookup map is only a diagnostic reference, not a proposed invalidation policy. No absolute performance acceptance threshold.",
+    "owners": 2273,
+    "recipes": 2273,
+    "uniqueModels": 32,
+    "groundBuilds": 40,
+    "targetWidth": 720,
+    "targetHeight": 512,
+    "msaa": 1,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "playing": false,
+    "focused": true,
+    "runInBackground": true,
+    "measurements": [
+        {
+            "name": "resolve-every-current-owner",
+            "operationsPerSample": 2273,
+            "milliseconds": [
+                19.7957,
+                19.7024,
+                18.4181,
+                18.0242,
+                18.6462
+            ],
+            "allocatedBytes": [
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "name": "catalog-find-every-recipe",
+            "operationsPerSample": 2273,
+            "milliseconds": [
+                12.5291,
+                14.3333,
+                14.2735,
+                13.8506,
+                14.1287
+            ],
+            "allocatedBytes": [
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "name": "frozen-identical-model-map-control",
+            "operationsPerSample": 2273,
+            "milliseconds": [
+                0.2608,
+                0.259,
+                0.2579,
+                0.258,
+                0.258
+            ],
+            "allocatedBytes": [
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "name": "native-static-current-owner-selection",
+            "operationsPerSample": 2273,
+            "milliseconds": [
+                3.6457,
+                3.6219,
+                3.6191,
+                3.6086,
+                3.5912
+            ],
+            "allocatedBytes": [
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "name": "light-cache-compute",
+            "operationsPerSample": 1,
+            "milliseconds": [
+                0.0001,
+                0.0001,
+                0.0001,
+                0.0,
+                0.0001
+            ],
+            "allocatedBytes": [
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "name": "presenter-empty-dirty-refresh",
+            "operationsPerSample": 1,
+            "milliseconds": [
+                28.2806,
+                27.2153,
+                26.9903,
+                27.0445,
+                27.6009
+            ],
+            "allocatedBytes": [
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "name": "presenter-complete-fingerprint-refresh",
+            "operationsPerSample": 1,
+            "milliseconds": [
+                45.7628,
+                45.07,
+                49.6257,
+                47.081,
+                49.1231
+            ],
+            "allocatedBytes": [
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        },
+        {
+            "name": "same-zone-bind-fast-path",
+            "operationsPerSample": 1,
+            "milliseconds": [
+                0.005,
+                0.0048,
+                0.0047,
+                0.0048,
+                0.0046
+            ],
+            "allocatedBytes": [
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        }
+    ]
+}

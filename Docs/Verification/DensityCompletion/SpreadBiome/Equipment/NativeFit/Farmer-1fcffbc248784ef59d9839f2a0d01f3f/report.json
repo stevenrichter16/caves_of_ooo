@@ -1,0 +1,515 @@
+{
+    "blueprint": "Farmer",
+    "owner": "2283",
+    "zone": "Overworld.12.10.0",
+    "bodyModel": "spread-person-farmer",
+    "canVerify": "Explicit factory gear equipped through native InventorySystem on seven representative real rigged bodies; exact adopted body/equipment mesh and owned palette, paired bone ownership, real imported clip sampling, unchanged tile state, zone entity version, existing IDs/positions/HP/equipped IDs during capture, actual PNG output.",
+    "cannotVerify": "Staged EditMode art, not naturally acquired equipment, scheduling, live animation transitions, keyboard combat or balance. Camera is an explicit close-up; passing assertions do not establish visual fit, clipping, readability or appearance; neighboring geometry may still occlude the subject and requires human review.",
+    "frames": [
+        {
+            "image": "00-Idle-0.png",
+            "clip": "Idle",
+            "normalizedTime": 0.0,
+            "yaw": 0.0,
+            "width": 1.0012502670288087,
+            "height": 1.211491584777832,
+            "depth": 0.5107345581054688,
+            "camera": {
+                "size": 0.9691932797431946,
+                "position": {
+                    "x": 2.601250171661377,
+                    "y": 3.397674083709717,
+                    "z": 17.578693389892579
+                },
+                "rotation": {
+                    "x": 25.01689910888672,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "width": 720,
+                "height": 720
+            },
+            "gear": [
+                {
+                    "blueprint": "ChainMail",
+                    "id": "2291",
+                    "model": "spread-worn-chainmail",
+                    "mesh": "spread-worn-chainmail",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Body"
+                    ]
+                },
+                {
+                    "blueprint": "IronHelmet",
+                    "id": "2292",
+                    "model": "spread-worn-ironhelmet",
+                    "mesh": "spread-worn-ironhelmet",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Head"
+                    ]
+                },
+                {
+                    "blueprint": "IronshodBoots",
+                    "id": "2293",
+                    "model": "spread-worn-ironshodboots",
+                    "mesh": "spread-worn-ironshodboots",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Feet.L",
+                        "SpreadEquipment.Feet.R"
+                    ]
+                },
+                {
+                    "blueprint": "WardedCloak",
+                    "id": "2294",
+                    "model": "spread-worn-wardedcloak",
+                    "mesh": "spread-worn-wardedcloak",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Back"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherGloves",
+                    "id": "2290",
+                    "model": "spread-worn-leathergloves",
+                    "mesh": "spread-worn-leathergloves",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Handwear.L",
+                        "SpreadEquipment.Handwear.R"
+                    ]
+                },
+                {
+                    "blueprint": "Hatchet",
+                    "id": "2295",
+                    "model": "spread-portable-hatchet",
+                    "mesh": "spread-portable-hatchet",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                },
+                {
+                    "blueprint": "Buckler",
+                    "id": "2296",
+                    "model": "spread-portable-buckler",
+                    "mesh": "spread-portable-buckler",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                }
+            ]
+        },
+        {
+            "image": "01-Idle-90.png",
+            "clip": "Idle",
+            "normalizedTime": 0.0,
+            "yaw": 90.0,
+            "width": 1.0012502670288087,
+            "height": 1.2114918231964112,
+            "depth": 0.5107345581054688,
+            "camera": {
+                "size": 0.9691934585571289,
+                "position": {
+                    "x": -3.398749351501465,
+                    "y": 3.397674083709717,
+                    "z": 23.578693389892579
+                },
+                "rotation": {
+                    "x": 25.016895294189454,
+                    "y": 90.0,
+                    "z": 9.421646041118947e-7
+                },
+                "width": 720,
+                "height": 720
+            },
+            "gear": [
+                {
+                    "blueprint": "ChainMail",
+                    "id": "2291",
+                    "model": "spread-worn-chainmail",
+                    "mesh": "spread-worn-chainmail",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Body"
+                    ]
+                },
+                {
+                    "blueprint": "IronHelmet",
+                    "id": "2292",
+                    "model": "spread-worn-ironhelmet",
+                    "mesh": "spread-worn-ironhelmet",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Head"
+                    ]
+                },
+                {
+                    "blueprint": "IronshodBoots",
+                    "id": "2293",
+                    "model": "spread-worn-ironshodboots",
+                    "mesh": "spread-worn-ironshodboots",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Feet.L",
+                        "SpreadEquipment.Feet.R"
+                    ]
+                },
+                {
+                    "blueprint": "WardedCloak",
+                    "id": "2294",
+                    "model": "spread-worn-wardedcloak",
+                    "mesh": "spread-worn-wardedcloak",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Back"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherGloves",
+                    "id": "2290",
+                    "model": "spread-worn-leathergloves",
+                    "mesh": "spread-worn-leathergloves",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Handwear.L",
+                        "SpreadEquipment.Handwear.R"
+                    ]
+                },
+                {
+                    "blueprint": "Hatchet",
+                    "id": "2295",
+                    "model": "spread-portable-hatchet",
+                    "mesh": "spread-portable-hatchet",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                },
+                {
+                    "blueprint": "Buckler",
+                    "id": "2296",
+                    "model": "spread-portable-buckler",
+                    "mesh": "spread-portable-buckler",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                }
+            ]
+        },
+        {
+            "image": "02-Idle-180.png",
+            "clip": "Idle",
+            "normalizedTime": 0.0,
+            "yaw": 180.0,
+            "width": 1.0012502670288087,
+            "height": 1.2114918231964112,
+            "depth": 0.5107345581054688,
+            "camera": {
+                "size": 0.9691934585571289,
+                "position": {
+                    "x": 2.601250648498535,
+                    "y": 3.397674083709717,
+                    "z": 29.578693389892579
+                },
+                "rotation": {
+                    "x": 25.01689338684082,
+                    "y": 180.0,
+                    "z": 0.0
+                },
+                "width": 720,
+                "height": 720
+            },
+            "gear": [
+                {
+                    "blueprint": "ChainMail",
+                    "id": "2291",
+                    "model": "spread-worn-chainmail",
+                    "mesh": "spread-worn-chainmail",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Body"
+                    ]
+                },
+                {
+                    "blueprint": "IronHelmet",
+                    "id": "2292",
+                    "model": "spread-worn-ironhelmet",
+                    "mesh": "spread-worn-ironhelmet",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Head"
+                    ]
+                },
+                {
+                    "blueprint": "IronshodBoots",
+                    "id": "2293",
+                    "model": "spread-worn-ironshodboots",
+                    "mesh": "spread-worn-ironshodboots",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Feet.L",
+                        "SpreadEquipment.Feet.R"
+                    ]
+                },
+                {
+                    "blueprint": "WardedCloak",
+                    "id": "2294",
+                    "model": "spread-worn-wardedcloak",
+                    "mesh": "spread-worn-wardedcloak",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Back"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherGloves",
+                    "id": "2290",
+                    "model": "spread-worn-leathergloves",
+                    "mesh": "spread-worn-leathergloves",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Handwear.L",
+                        "SpreadEquipment.Handwear.R"
+                    ]
+                },
+                {
+                    "blueprint": "Hatchet",
+                    "id": "2295",
+                    "model": "spread-portable-hatchet",
+                    "mesh": "spread-portable-hatchet",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                },
+                {
+                    "blueprint": "Buckler",
+                    "id": "2296",
+                    "model": "spread-portable-buckler",
+                    "mesh": "spread-portable-buckler",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                }
+            ]
+        },
+        {
+            "image": "03-Walk-35.png",
+            "clip": "Walk",
+            "normalizedTime": 0.25,
+            "yaw": 35.0,
+            "width": 1.0630946159362794,
+            "height": 1.2460088729858399,
+            "depth": 0.567901611328125,
+            "camera": {
+                "size": 0.9968070983886719,
+                "position": {
+                    "x": -0.827286958694458,
+                    "y": 3.380415678024292,
+                    "z": 18.604393005371095
+                },
+                "rotation": {
+                    "x": 25.01689338684082,
+                    "y": 34.999996185302737,
+                    "z": 0.0000014132468777461327
+                },
+                "width": 720,
+                "height": 720
+            },
+            "gear": [
+                {
+                    "blueprint": "ChainMail",
+                    "id": "2291",
+                    "model": "spread-worn-chainmail",
+                    "mesh": "spread-worn-chainmail",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Body"
+                    ]
+                },
+                {
+                    "blueprint": "IronHelmet",
+                    "id": "2292",
+                    "model": "spread-worn-ironhelmet",
+                    "mesh": "spread-worn-ironhelmet",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Head"
+                    ]
+                },
+                {
+                    "blueprint": "IronshodBoots",
+                    "id": "2293",
+                    "model": "spread-worn-ironshodboots",
+                    "mesh": "spread-worn-ironshodboots",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Feet.L",
+                        "SpreadEquipment.Feet.R"
+                    ]
+                },
+                {
+                    "blueprint": "WardedCloak",
+                    "id": "2294",
+                    "model": "spread-worn-wardedcloak",
+                    "mesh": "spread-worn-wardedcloak",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Back"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherGloves",
+                    "id": "2290",
+                    "model": "spread-worn-leathergloves",
+                    "mesh": "spread-worn-leathergloves",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Handwear.L",
+                        "SpreadEquipment.Handwear.R"
+                    ]
+                },
+                {
+                    "blueprint": "Hatchet",
+                    "id": "2295",
+                    "model": "spread-portable-hatchet",
+                    "mesh": "spread-portable-hatchet",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                },
+                {
+                    "blueprint": "Buckler",
+                    "id": "2296",
+                    "model": "spread-portable-buckler",
+                    "mesh": "spread-portable-buckler",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                }
+            ]
+        },
+        {
+            "image": "04-Attack-35.png",
+            "clip": "Attack",
+            "normalizedTime": 0.25,
+            "yaw": 35.0,
+            "width": 0.9097013473510742,
+            "height": 1.213364839553833,
+            "depth": 0.8372726440429688,
+            "camera": {
+                "size": 0.9706918597221375,
+                "position": {
+                    "x": -0.9758930206298828,
+                    "y": 3.3986105918884279,
+                    "z": 18.500511169433595
+                },
+                "rotation": {
+                    "x": 25.016887664794923,
+                    "y": 34.999996185302737,
+                    "z": 0.0000014132468777461327
+                },
+                "width": 720,
+                "height": 720
+            },
+            "gear": [
+                {
+                    "blueprint": "ChainMail",
+                    "id": "2291",
+                    "model": "spread-worn-chainmail",
+                    "mesh": "spread-worn-chainmail",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Body"
+                    ]
+                },
+                {
+                    "blueprint": "IronHelmet",
+                    "id": "2292",
+                    "model": "spread-worn-ironhelmet",
+                    "mesh": "spread-worn-ironhelmet",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Head"
+                    ]
+                },
+                {
+                    "blueprint": "IronshodBoots",
+                    "id": "2293",
+                    "model": "spread-worn-ironshodboots",
+                    "mesh": "spread-worn-ironshodboots",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Feet.L",
+                        "SpreadEquipment.Feet.R"
+                    ]
+                },
+                {
+                    "blueprint": "WardedCloak",
+                    "id": "2294",
+                    "model": "spread-worn-wardedcloak",
+                    "mesh": "spread-worn-wardedcloak",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": [
+                        "SpreadEquipment.Back"
+                    ]
+                },
+                {
+                    "blueprint": "LeatherGloves",
+                    "id": "2290",
+                    "model": "spread-worn-leathergloves",
+                    "mesh": "spread-worn-leathergloves",
+                    "palette": "Palette",
+                    "pieces": 2,
+                    "bones": [
+                        "SpreadEquipment.Handwear.L",
+                        "SpreadEquipment.Handwear.R"
+                    ]
+                },
+                {
+                    "blueprint": "Hatchet",
+                    "id": "2295",
+                    "model": "spread-portable-hatchet",
+                    "mesh": "spread-portable-hatchet",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                },
+                {
+                    "blueprint": "Buckler",
+                    "id": "2296",
+                    "model": "spread-portable-buckler",
+                    "mesh": "spread-portable-buckler",
+                    "palette": "Palette",
+                    "pieces": 1,
+                    "bones": []
+                }
+            ]
+        }
+    ]
+}

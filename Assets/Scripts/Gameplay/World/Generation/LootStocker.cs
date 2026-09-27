@@ -32,7 +32,11 @@ namespace CavesOfOoo.Core
                     continue;
                 Entity item = factory.CreateEntity(rolled[i]);
                 if (item != null && containerPart.AddItem(item))
+                {
                     added++;
+                    if (tableName == FoundEquipmentEnhancements.SourceTable)
+                        FoundEquipmentEnhancements.TryApply(container, tableName, item, rng);
+                }
             }
 
             if (CavesOfOoo.Diagnostics.Diag.IsChannelEnabled("loot"))

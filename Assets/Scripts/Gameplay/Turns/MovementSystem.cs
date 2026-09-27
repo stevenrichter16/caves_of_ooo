@@ -38,18 +38,36 @@ namespace CavesOfOoo.Core
         /// Extended move attempt that also returns what blocked movement.
         /// Returns (moved, blockedBy) where blockedBy is the entity that blocked, or null.
         /// </summary>
+        public readonly struct MoveResult
+        {
+            public readonly bool Moved,ActionPerformed;
+            public readonly Entity BlockedBy;
+            public MoveResult(bool moved,bool performed,Entity blockedBy)
+            {Moved=moved;ActionPerformed=performed;BlockedBy=blockedBy;}
+        }
+        /// <summary>Compatibility: moved is true only after actual relocation.
+        /// This entry point retains the original movement-only behavior.</summary>
         public static (bool moved, Entity blockedBy) TryMoveEx(Entity entity, Zone zone, int dx, int dy)
         {
+            var result=TryMoveDetailedCore(entity,zone,dx,dy,false);
+            return (result.Moved,result.BlockedBy);
+        }
+        /// <summary>Native input and NPC navigation may perform one stationary
+        /// door action. ActionPerformed never implies the actor moved.</summary>
+        public static MoveResult TryMoveDetailed(Entity entity,Zone zone,int dx,int dy)
+            =>TryMoveDetailedCore(entity,zone,dx,dy,true);
+        private static MoveResult TryMoveDetailedCore(Entity entity, Zone zone, int dx, int dy,bool allowDoorAction)
+        {
             var currentCell = zone.GetEntityCell(entity);
-            if (currentCell == null) return (false, null);
+            if (currentCell == null) return new MoveResult(false,false,null);
 
             int newX = currentCell.X + dx;
             int newY = currentCell.Y + dy;
 
-            if (!zone.InBounds(newX, newY)) return (false, null);
+            if (!zone.InBounds(newX, newY)) return new MoveResult(false,false,null);
 
             var targetCell = zone.GetCell(newX, newY);
-            if (targetCell == null) return (false, null);
+            if (targetCell == null) return new MoveResult(false,false,null);
 
             // Fire BeforeMove event
             var beforeMove = GameEvent.New("BeforeMove");
@@ -64,15 +82,18 @@ namespace CavesOfOoo.Core
             {
                 // Check if something blocked us
                 var blocker = beforeMove.GetParameter<Entity>("BlockedBy");
+                bool performed=beforeMove.GetParameter<bool>("ActionPerformed");
                 beforeMove.Release();
-                return (false, blocker);
+                if(allowDoorAction && !performed && blocker?.GetPart<DoorPart>() is DoorPart door && door.IsClosed)
+                    performed=door.TrySetOpen(entity,zone,true);
+                return new MoveResult(false,performed,blocker);
             }
             beforeMove.Release();
 
             // Perform the move
             int oldX = currentCell.X;
             int oldY = currentCell.Y;
-            if (!zone.MoveEntity(entity, newX, newY)) return (false, null);
+            if (!zone.MoveEntity(entity, newX, newY)) return new MoveResult(false,false,null);
 
             NotifyVisualMove(entity, zone, oldX, oldY, newX, newY, false);
 
@@ -95,7 +116,7 @@ namespace CavesOfOoo.Core
             FireCellEnteredEvents(entity, currentCell, targetCell);
             LiquidSlipSystem.ResolveAfterMove(entity, zone, targetCell);
 
-            return (true, null);
+            return new MoveResult(true,false,null);
         }
 
         /// <summary>

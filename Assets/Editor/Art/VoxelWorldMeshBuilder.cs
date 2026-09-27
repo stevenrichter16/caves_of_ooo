@@ -115,7 +115,7 @@ namespace CavesOfOoo.Editor
                 foreach(var source in sources.OrderBy(s=>s.Key,StringComparer.Ordinal))
                 {
                     bool equipment=Path.GetFileNameWithoutExtension(source.Path).StartsWith("equipment-",StringComparison.Ordinal);
-                    float worldPitch=VoxelWorldDensity.SelectWorldPitch(source.Mesh.bounds.size,source.Scale,source.Skinned,equipment);
+                    float worldPitch=VoxelWorldDensity.SelectNativeWorldPitch(source.Path,source.Mesh.bounds.size,source.Scale,source.Skinned,equipment);
                     float localPitch=worldPitch/source.Scale;
                     var baked=VoxelWorldMeshBaker.Bake(source.Mesh,localPitch);
                     // Own the native allocation before palette IO/validation can
@@ -165,7 +165,10 @@ namespace CavesOfOoo.Editor
                 var candidate=ScriptableObject.CreateInstance<VoxelWorldMeshCatalog>();
                 try {candidate.Bindings=bindings.ToArray();candidate.Validate();catalog.Bindings=candidate.Bindings;catalog.InvalidateCaches();catalog.Validate();}
                 finally {Object.DestroyImmediate(candidate);}
-                EditorUtility.SetDirty(catalog);AssetDatabase.SaveAssets();
+                EditorUtility.SetDirty(catalog);
+                SaveImportOutputs(sourceAssetPaths!=null,
+                    sourceAssetPaths==null?null:prepared.Select(e=>AssetDatabase.LoadAssetAtPath<Mesh>(e.Report.outputPath)).ToArray(),
+                    catalog,AssetDatabase.SaveAssetIfDirty,AssetDatabase.SaveAssets);
                 foreach(var old in existingGuids)if(AssetDatabase.AssetPathToGUID(old.Key)!=old.Value)throw new InvalidOperationException("Existing voxel asset GUID changed: "+old.Key);
                 CheckBorrowed(borrowed);
                 report.meshCount=prepared.Count;report.skinnedMeshCount=prepared.Count(p=>p.Source.Skinned);
@@ -183,6 +186,28 @@ namespace CavesOfOoo.Editor
                 foreach(var entry in prepared)if(entry.Mesh!=null)Object.DestroyImmediate(entry.Mesh);
             }
         }
+        /// <summary>Effect-free-testable save boundary. The selected builder
+        /// supplies only its freshly published meshes and catalog; full builds
+        /// retain the existing global save. Validate the complete selected list
+        /// before invoking any callback so malformed output cannot partly save.</summary>
+        public static void SaveImportOutputs(bool selected, Mesh[] meshes,
+            VoxelWorldMeshCatalog catalog, Action<Object> saveOne, Action saveAll)
+        {
+            if(!selected)
+            {
+                if(saveAll==null)throw new ArgumentException("Full import save callback is required.");
+                saveAll();
+                return;
+            }
+            if(meshes==null||meshes.Length==0||catalog==null||saveOne==null)
+                throw new ArgumentException("Selected import requires its produced meshes, catalog and save callback.");
+            var seen=new HashSet<Mesh>();
+            foreach(var mesh in meshes)
+                if(mesh==null||!seen.Add(mesh))throw new ArgumentException("Selected outputs must be distinct existing meshes.");
+            foreach(var mesh in meshes)saveOne(mesh);
+            saveOne(catalog);
+        }
+
         // CopySerialized can retain a persistent skinned mesh's old vertex
         // stream while replacing its indices. Write the generated channels
         // through Mesh instead, retaining the destination asset and its GUID.

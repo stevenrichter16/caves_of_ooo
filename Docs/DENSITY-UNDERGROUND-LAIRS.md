@@ -1,11 +1,13 @@
 # C10 — underground layouts and lair progression
 
-**Status:** minimal lair placement safety and second ordinary underground layout
-implemented; focused standalone checks are GREEN. Persistent multi-level lairs
-remain design only, and the new layout still needs native verification.
-Navigation and smoke are tracked separately in C8.
-Root must coordinate the shared manager/world-save hooks and boss content before
-implementation. This is CoO progression design, not a claim of Qud parity.
+**Status:** lair placement, second ordinary underground layouts and persistent
+multi-level lairs are implemented. Native focused integration is GREEN; the
+ordinary-stat Beating route completed14/14 checks with real starting spells,
+reward collection, save/load, ascent and revisit. The earlier dagger-only death
+is retained. Root reviewed two of seven route captures; no general balance or
+3D/lair-art claim follows. Historical implementation stages below preserve
+their original RED/GREEN boundaries. Navigation and smoke are tracked in C8.
+This is CoO progression design, not a claim of Qud parity.
 
 ## Verified corrections before implementation
 
@@ -375,7 +377,7 @@ of the two managers contain the standalone hash adapter and must never replace
 the shared files wholesale.
 
 The initial API compile RED and 10 routing REDs preceded the implementation.
-The private affected regression now passes **500/500**, including **140 dedicated
+The private affected regression now passes **516/516**, including **156 dedicated
 new core/adversarial/review/reward/pacing cases** and 360 existing save, lair,
 people, underground, world and neighbouring cases. The actual-content census is
 included in that total; its portable-output follow-up also passes 1/1. These are standalone engine-core results, not Unity input/rendering
@@ -398,6 +400,7 @@ or native seed equivalence. Durable compressed raw XML/logs are under
 | One small final cache removed most of the old stock; consolidating all stock still left empty approach floors. | `reward-distribution-red.xml.gz`, 12 RED; `pacing-red.xml.gz`, 16 RED. | Calibrate bounded biome/tier rolls, then redistribute them into one ordinary cache on each earlier floor and one final cache. Preserve the same exact final claim. |
 | A loose reward source could be omitted or invalidated after placement. | `reward-loose-source-red.xml.gz`, 6 RED; `reward-loose-callback-red.xml.gz`, 3 RED. | One optional existing-tier Sodden equipment find is staged and revalidated with other owners; its native identity and removal persist. |
 | A custom factory could return a cache or item already owned by another zone/inventory. | Foreign-owner cases in `pacing-red.xml.gz`, followed by paired fresh-owner controls. | Refuse before changing capacity, contents, placement or inventory ownership; final/approach/loose/item paths all check freshness. |
+| An item-creation callback could transfer the initially fresh cache or remove its ContainerPart before stocking. | `stock-owner-callback-red.xml.gz`: 16 cases, 8 incorrect-success REDs, 4 production NullReferenceException REDs, and 4 unchanged controls. | Revalidate fresh owner and exact ContainerPart identity after every factory callback, including GoldCoin fallback; all 16 GREEN, then all 516 affected cases GREEN. |
 
 Whole-body and offset-body controls cover boss/stair placement; oversized bodies
 refuse without a durable claim. Real CombatSystem death, carried equipment,
@@ -515,7 +518,7 @@ Can verify now: finite core generation, full-body routes, staged authority,
 bounded source budgets, actual serializer identity/depletion, and private-source
 compilation against Unity's references. Cannot verify now: native seed geometry,
 keyboard route success, ordinary-stat survival, rendered readability, discovery,
-or whether the encounter is enjoyable. The 500-case runner uses its documented
+or whether the encounter is enjoyable. The 516-case runner uses its documented
 stable-hash adapter; it cannot substitute for those native checks.
 
 Self-review: the concrete 🟡 identity, callback, endpoint, palette, cache provenance,
@@ -524,3 +527,133 @@ foreign-owner, stock-loss, pacing and save-shape findings above are fixed privat
 scoped higher-tier boss roster; no combat rebalance is implied. No hot turn/frame
 hook is added: generation validates bounded entities/edges and at most eight stock
 rolls, unload performs one ledger lookup, and save/load walks the retained graph.
+
+
+### C10.2 publication checkpoint — 2026-09-26
+
+The reviewed C10.2 unit is now published: twelve new source/test/audit files and
+fresh metas, six existing-file hook changes, and two native launcher-restoration
+fixture cases. The finalized private production candidate's eighteen source
+hashes matched before copying. Only the reviewed hook patch was applied to the
+current managers/save/builders; no standalone string-hash adapters entered
+Assets. The candidate manifest now records the actual published hashes and the
+exact applied existing-file diff in `published-hooks.patch`.
+
+The audit launcher uses the current independently verified OriginalEnemy launcher
+restoration pattern: one editor-update retry survives Play teardown, detaches
+when restoration finishes or is cancelled, and restores the prior start scene
+and owned Game View before editor exit. A separate reviewed override preserves
+the immutable gameplay candidate. Four source contracts were RED on the original
+one-shot launcher and GREEN on the override; actual editor-reference compilation
+passes. These source checks do not claim the two new native cases have run.
+Root owns the next Unity EditMode and ordinary-stat Beating Play gates. C11.3
+legendary keepers remain private and are absent from this C10.2 publication.
+
+
+### Native focused gate and audit proof repair — 2026-09-26
+
+Root's actual Unity focused C10/C11/glade/save run is **422/422 GREEN**; the
+`Integration/native-c10-c11-fifth-focused` receipt is authoritative. This is a
+combined affected run, not a claim that all422 cases are new lair tests.
+
+Cross-review of the liquid audit exposed a weakness in the original lair driver:
+unchanged owner IDs could pass if the F5/F6 keys were ignored. A driver-only repair
+now requires a new F5 save message/metadata/hash, a real one-cell keyboard move
+with exact scheduler cost and unchanged checkpoint bytes, then a replaced player
+graph after F6. Saved boss/player HP, IDs, gear, cache depletion, position, tick,
+energy and file hash must all be restored. Its completion gate names all fourteen
+required checks and requires the seven captures. Four source contracts were
+RED before the fix and GREEN afterward; Unity-reference runtime compilation is
+clean and independent reread found no further concrete false-positive. Those are
+source/compiler checks; root's actual ordinary-stat Beating route remains pending.
+No gameplay production code or finalized private C10.2 source changed in this
+second publication; only the native audit player was patched.
+
+## Native focused gate
+
+Actual Unity422/422 combined selection passed the C10.2 lair fixtures and nearby route/local-people controls (Integration/native-c10-c11-fifth-focused). Ordinary-stat keyboard traversal is still pending; the audit driver now needs verified F5/F6 graph replacement and a real post-save movement control before that run.
+
+## First actual native three-floor route
+
+Native/b82b480a3be8462a89450980f436f40f reached the real seed64 Beating
+surface, intermediate and final floors by native stair keys after one disclosed
+starting transfer. Seven checks passed, including final boss examination.
+The ordinary40HP starting dagger character then died on the approach to the
+reward: the actual editor log records15 damage, bleeding,9 damage and a lethal
+15-damage claw, plus the native death message. This is not an inferred death
+from the generic precondition text and not a successful route. No tonic had
+been used. Reward, native checkpoint restoration, ascent and revisit gates
+remain open. Three native images were captured; root inspected the boss image.
+
+The receipt has two aggregate failures: the failed precondition and its logged
+error. Scene/start scene, seed, save root/preferences and input/background
+settings restored exactly; the full recorded editor log byte range is retained.
+The next audit records per-key state/HP/messages and uses actual available
+combat tools; it cannot grant health, remove hostiles, erase this outcome or
+claim a successful ordinary campaign from a staged route.
+
+
+### Reviewed native retry
+
+The separately reviewed retry is now published only as
+`DensityLairNativePlayer.cs`. It keeps seed64, the same world/kit/stats/enemies
+and the first-failure receipt above. Actual ready starting Calm/Rime Grip use
+native hotbar controls with real cooldown/target-effect checks. Replanned paths
+avoid creature bodies, traps and active visible melee reach; they do not certify
+all terrain as hazard-free. Bounded FX waits retain real death handling, and
+every key/failure records state, HP, position and recent messages.
+
+The independent source review found no blocking API or ownership issue; actual
+Unity-reference compilation returned zero errors. Root owns the pending native
+retry. This is a changed player tactic, not an animation-only repair, a combat
+rebalance or a successful route claim. The original death and all remaining
+reward/save/ascent/revisit gates remain explicit until the next receipt.
+
+
+### Actual native retry accepted
+
+`Native/ec7f98d1d263442babe5d065ca47fa87` completed14/14 named checks, zero
+errors,18.6449 seconds,32 actual walking inputs and zero tonics. The same ordinary
+40HP actor used actual Calm on prowler9497 (slot5, observed cooldown19) and Rime
+Grip on hound9514 (slot4, cooldown34). Its route was surface→intermediate→final→
+intermediate→surface→intermediate→final. Final cache9498 was collected; owner
+identity, depletion, ascent and revisit checks passed. The failed dagger-only
+attempt remains preserved as a separate gameplay outcome.
+
+I independently inspected the raw key receipt: F5 at final cell39,15/tick180;
+native D moved to40,15/tick190; F6 restored39,15/tick180 with40HP and1000energy.
+The driver also required actual replacement player identity, unchanged saved
+bytes after the mutation, changed F5 checkpoint hash, exact boss HP/gear and
+depleted cache. The archive's restoration before/after objects match exactly.
+
+Root visually inspected the final-boss and revisit images: ordinary40HP, a clear
+look target and the reciprocal route are visible. The other five captures exist
+but were not visually reviewed. This closes the owed Beating Play look and the
+script-observable native route/save/revisit gate. It establishes neither natural
+discovery, campaign combat balance, all seed routes nor a3D/lair-art quality claim.
+
+## Integration counter-check: old Phase 1 surface-only audit
+
+The fresh exact-corpus standalone comparison found six newly failing cases:
+four biome trap placements and two numeric audit smokes. `LairStackBuilder`
+places the single boss/ambush/trap budget only on its final depth; the older
+checks inspected surface depth 0 exclusively. The preserved RED is under
+`Verification/DensityCompletion/Integration/PostFoundationRegression`.
+The repair inspects the published stack, requires a new depth of 1–2, checks
+that every approach remains free of duplicate traps/bosses, and retains the
+original final-floor sparse, unoccupied and unreserved trap assertions. The
+numeric audit still requires both an observed ambush and a no-ambush control.
+This is an audit correction, not additional traps or a changed reward budget.
+Focused and broad GREEN evidence remain pending until recorded below.
+
+Focused standalone repair result: **48/48 PASS**, including the four actual
+biome pipelines, two audit smokes, and existing rejection/placement controls.
+Full differential and native integration remain pending.
+
+The current-source native selection passed **295/295**, including all48 Phase1
+placement/bench cases (`native-door-diagnostics-lair-green`, job
+`a1655e7e91b7402b9abf9aa0fc9bd4e3`). The exact10,075-case standalone comparison
+now has9,780passes and the same295environment failures, with **zero newly
+failing** cases. The intermediate ordinary-village reservation pin was corrected
+with paired pipeline/door-permission assertions; no production behavior was
+reversed to satisfy the historical pin. Evidence: `PostFoundationRegression`.

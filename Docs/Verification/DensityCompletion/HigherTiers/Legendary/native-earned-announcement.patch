@@ -1,0 +1,91 @@
+--- before-earned-modal-repair
++++ reviewed-native-key-dismissal
+@@ -52,7 +52,7 @@
+         private NativeState _failureState;
+         [Serializable] private sealed class NativeState
+         {
+-            public string label, state, zone, pendingEquipmentID, inventoryStatus, inventoryActionItemID; public string[] pendingDisplacements; public int hp, maxHp, x, y, tick, energy;
++            public string label, state, zone, pendingEquipmentID, inventoryStatus, inventoryActionItemID, announcement; public string[] pendingDisplacements; public int hp, maxHp, x, y, tick, energy;
+             public bool deathHandled, blockingFx; public string[] lastMessages;
+         }
+         [Serializable] private sealed class NativeKeyStep
+@@ -76,6 +76,8 @@
+                         .Select(d => (d.Item?.ID ?? "missing-item") + "@" + (d.BodyPart == null ? "missing-part" : d.BodyPart.ID.ToString())).ToArray(),
+                 inventoryStatus = inventory == null ? null : (string)Field(inventory, "_actionStatus"),
+                 inventoryActionItemID = itemActions == null ? null : ((Entity)Field(itemActions, "Item"))?.ID,
++                announcement = _input?.AnnouncementUI == null || !_input.AnnouncementUI.IsOpen ? null
++                    : (string)Field(_input.AnnouncementUI, "_message"),
+                 lastMessages = MessageLog.GetRecentEntries(12).Select(e => e.Text).ToArray() };
+         }
+         private string RuntimeDetails()
+@@ -371,9 +373,53 @@
+                 int serial = MessageLog.GetRecentEntries(1).LastOrDefault().Serial;
+                 yield return Tap(Direction(Math.Sign(to.X - from.X), Math.Sign(to.Y - from.Y)));
+                 _transcript.AddRange(MessageLog.GetRecentEntries(12).Where(e => e.Serial > serial).Select(e => role + ": " + e.Text));
++                yield return DismissEarnedAdvancement();
+                 Observe(role + "-attack-" + attacks);
+             }
+-        }
++            yield return DismissEarnedAdvancement();
++        }
++        private IEnumerator DismissEarnedAdvancement()
++        {
++            // Announcements are opened on a later Update than the killing key.
++            // Let the actual UI display its queue; never consume it directly.
++            yield return null;
++            for (int dismissed = 0; dismissed < 8; dismissed++)
++            {
++                double began = Time.realtimeSinceStartupAsDouble;
++                while (MessageLog.HasPendingAnnouncement && State() != "AnnouncementOpen")
++                {
++                    Require(State() == "Normal" && Time.realtimeSinceStartupAsDouble - began < 2,
++                        "pending advancement reaches actual announcement UI; " + RuntimeDetails());
++                    yield return null;
++                }
++                if (State() != "AnnouncementOpen") yield break;
++                string message = (string)Field(_input.AnnouncementUI, "_message");
++                const string prefix = "You advance to level ";
++                Require(message != null && message.StartsWith(prefix, StringComparison.Ordinal)
++                    && message.EndsWith("!", StringComparison.Ordinal)
++                    && int.TryParse(message.Substring(prefix.Length, message.Length - prefix.Length - 1), out int level)
++                    && level >= 2 && level <= _input.PlayerEntity.GetStatValue("Level")
++                    && MessageLog.GetRecentEntries(64).Any(e => e.Text == message),
++                    "only an actual earned-level announcement may be dismissed automatically; " + message);
++                var actor = _input.PlayerEntity; var at = Cell();
++                int tick = _input.TurnManager.TickCount, energy = _input.TurnManager.GetEnergy(actor);
++                string stats = StatSignature(actor), gear = GearIdentity(actor), equipment = EquipmentSignature(actor);
++                _descriptions.Add(new Description { subject = "Native earned advancement dismissal", source = actor.ID,
++                    text = message + "; preserved stats=" + stats });
++                yield return Tap(Key.Escape);
++                Require(ReferenceEquals(actor, _input.PlayerEntity) && ReferenceEquals(at, Cell())
++                    && _input.TurnManager.TickCount == tick && _input.TurnManager.GetEnergy(actor) == energy
++                    && StatSignature(actor) == stats && GearIdentity(actor) == gear && EquipmentSignature(actor) == equipment,
++                    "dismissing earned advancement preserves all actual gains and costs no turn");
++                yield return null;
++            }
++            Require(State() != "AnnouncementOpen" && !MessageLog.HasPendingAnnouncement,
++                "bounded earned-advancement queue drained");
++        }
++        private static string StatSignature(Entity actor)
++            => string.Join("|", actor.Statistics.OrderBy(p => p.Key)
++                .Select(p => p.Key + ":" + p.Value.BaseValue + ":" + p.Value.Value + ":" + p.Value.Min + ":" + p.Value.Max));
++
+         private IEnumerator ProveCheckpoint()
+         {
+             var p = _input.PlayerEntity; var at = Cell(); int sx = at.X, sy = at.Y;
+@@ -487,6 +533,7 @@
+                 yield return Tap((Key)Enum.Parse(typeof(Key), slot == 9 ? "Digit0" : "Digit" + (slot + 1)));
+                 Require(State() == "AwaitingDirection", "actual ready starter asks for direction; " + RuntimeDetails());
+                 yield return Tap(Direction(dx, dy));
++                yield return DismissEarnedAdvancement();
+                 Require(State() == "Normal" && ability.CooldownRemaining > 0, "native starting control consumes its real cooldown; " + RuntimeDetails());
+                 bool applied = command == "CommandCalm" ? target.GetPart<BrainPart>()?.HasGoal<NoFightGoal>() == true
+                     : target.GetEffect<FrozenEffect>()?.Cold > 0 || CombatSystem.IsDeathHandled(target);
+@@ -590,6 +637,7 @@
+             for(int step=0;step<160;step++)
+             {
+                 yield return WaitForNativeFx();
++                yield return DismissEarnedAdvancement();
+                 Require(State()=="Normal"&&_input.PlayerEntity.GetStatValue("Hitpoints")>0&&!CombatSystem.IsDeathHandled(_input.PlayerEntity),"live ordinary actor while walking; "+RuntimeDetails());
+                 var c=Cell();if(c.X==x&&c.Y==y)yield break;
+                 if (_input.PlayerEntity.GetStat("Hitpoints").Value <= 20 && _startingTonicsUsed < 2)

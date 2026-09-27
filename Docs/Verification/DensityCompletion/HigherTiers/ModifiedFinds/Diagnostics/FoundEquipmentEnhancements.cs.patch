@@ -1,0 +1,130 @@
+--- /tmp/coo-density-modifier-diag/FoundEquipmentEnhancements.cs.before.txt	2026-09-26 20:48:16
++++ /tmp/coo-density-modifier-diag/FoundEquipmentEnhancements.cs	2026-09-26 20:52:14
+@@ -11,7 +11,7 @@
+     {
+         public const int ChancePercent = 25;
+         public const string RollMarker = "DeepFindEnhancementRolled";
+-        private const string SourceTable = "DeepReliquaryT4";
++        public const string SourceTable = "DeepReliquaryT4";
+         private static readonly Type[] Allowed =
+         {
+             typeof(EnhancementSerrated), typeof(EnhancementPaleSalt),
+@@ -28,30 +28,12 @@
+             Random rng, int chancePercent = ChancePercent)
+         {
+             if (chancePercent < 0 || chancePercent > 100)
++            {
++                Reject(container, tableName, item, chancePercent, "invalid_chance");
+                 throw new ArgumentOutOfRangeException(nameof(chancePercent));
+-            if (rng == null || tableName != SourceTable || container?.BlueprintName != "LockedChest"
+-                || container.GetPart<LockPart>() == null || item == null)
+-                return false;
+-            var ownerPhysics = container.GetPart<PhysicsPart>();
+-            if (ownerPhysics == null || ownerPhysics.Takeable || ownerPhysics.InInventory != null || ownerPhysics.Equipped != null)
+-                return false;
+-            var contents = container.GetPart<ContainerPart>();
+-            var physics = item.GetPart<PhysicsPart>();
+-            if (contents == null || !contents.Contents.Contains(item) || physics == null
+-                || !ReferenceEquals(physics.InInventory, container) || physics.Equipped != null
+-                || !item.HasTag("Item") || item.GetTag("Tier") != "4"
+-                || item.HasTag("Unique") || item.HasTag("QuestItem") || item.HasTag("Crafted")
+-                || item.HasTag("Rentable") || item.GetPart<RentalPart>() != null
+-                || item.GetPart<EquippablePart>() == null
+-                || item.Properties.ContainsKey(RollMarker) || ItemEnhancing.CountEnhancements(item) != 0)
+-                return false;
+-            var stack = item.GetPart<StackerPart>();
+-            if (stack != null && stack.StackCount != 1) return false;
+-            bool weapon = item.BlueprintName == "TemperedLongSword" || item.BlueprintName == "CounterweightMaul";
+-            bool armor = item.BlueprintName == "FineRingMail" || item.BlueprintName == "RivetedPlate";
+-            if ((!weapon && !armor) || (weapon && (item.GetPart<MeleeWeaponPart>() == null || item.GetPart<ArmorPart>() != null))
+-                || (armor && (item.GetPart<ArmorPart>() == null || item.GetPart<MeleeWeaponPart>() != null)))
+-                return false;
++            }
++            string refusal = ContextRefusal(container, tableName, item, rng);
++            if (refusal != null) return Reject(container, tableName, item, chancePercent, refusal);
+ 
+             EnhancementFactory.EnsureInitialized();
+             var candidates = new List<string>(Allowed.Length);
+@@ -61,16 +43,77 @@
+                 var enhancement = EnhancementFactory.Create(type.Name, 1);
+                 if (enhancement != null && enhancement.Applicable(item)) candidates.Add(type.Name);
+             }
+-            if (candidates.Count == 0) return false;
++            if (candidates.Count == 0) return Reject(container, tableName, item, chancePercent, "no_candidates");
+ 
+             item.Properties[RollMarker] = "1";
+-            if (chancePercent == 0 || (chancePercent < 100 && rng.Next(100) >= chancePercent)) return false;
++            // Observe only the roll the gameplay already consumes. Zero/full
++            // chance retain their original zero chance-roll behavior.
++            int? roll = chancePercent > 0 && chancePercent < 100 ? rng.Next(100) : (int?)null;
++            if (chancePercent == 0 || roll.HasValue && roll.Value >= chancePercent)
++            {
++                Record("FoundEquipmentEnhancementMissed", container, tableName, item, chancePercent,
++                    chancePercent == 0 ? "zero_chance" : "chance_roll", roll);
++                return false;
++            }
+             string selected = candidates[rng.Next(candidates.Count)];
+             bool applied = ItemEnhancing.Apply(item, selected, 1);
+-            if (applied && Diag.IsChannelEnabled("loot"))
+-                Diag.Record("loot", "FoundEquipmentEnhanced", actor: container, target: item,
+-                    payload: new { table = tableName, enhancement = selected, tier = 1, chancePercent });
++            Record(applied ? "FoundEquipmentEnhanced" : "FoundEquipmentEnhancementRejected",
++                container, tableName, item, chancePercent, applied ? "applied" : "apply_refused", roll, selected);
+             return applied;
+         }
++
++        private static string ContextRefusal(Entity container, string tableName, Entity item, Random rng)
++        {
++            if (rng == null) return "random_required";
++            if (tableName != SourceTable) return "wrong_table";
++            if (container == null) return "owner_required";
++            if (container.BlueprintName != "LockedChest") return "owner_blueprint";
++            if (container.GetPart<LockPart>() == null) return "owner_lock_required";
++            if (item == null) return "item_required";
++            var ownerPhysics = container.GetPart<PhysicsPart>();
++            if (ownerPhysics == null) return "owner_physics_required";
++            if (ownerPhysics.Takeable) return "owner_takeable";
++            if (ownerPhysics.InInventory != null) return "owner_carried";
++            if (ownerPhysics.Equipped != null) return "owner_equipped";
++            var contents = container.GetPart<ContainerPart>();
++            var physics = item.GetPart<PhysicsPart>();
++            if (contents == null) return "container_required";
++            if (!contents.Contents.Contains(item)) return "item_not_retained";
++            if (physics == null) return "item_physics_required";
++            if (!ReferenceEquals(physics.InInventory, container)) return "item_owner_mismatch";
++            if (physics.Equipped != null) return "item_equipped";
++            if (!item.HasTag("Item")) return "item_tag_required";
++            if (item.GetTag("Tier") != "4") return "item_tier";
++            if (item.HasTag("Unique")) return "item_unique";
++            if (item.HasTag("QuestItem")) return "item_quest";
++            if (item.HasTag("Crafted")) return "item_crafted";
++            if (item.HasTag("Rentable")) return "item_rentable";
++            if (item.GetPart<RentalPart>() != null) return "item_rented";
++            if (item.GetPart<EquippablePart>() == null) return "item_not_equippable";
++            if (item.Properties.ContainsKey(RollMarker)) return "already_rolled";
++            if (ItemEnhancing.CountEnhancements(item) != 0) return "already_enhanced";
++            var stack = item.GetPart<StackerPart>();
++            if (stack != null && stack.StackCount != 1) return "item_stack";
++            bool weapon = item.BlueprintName == "TemperedLongSword" || item.BlueprintName == "CounterweightMaul";
++            bool armor = item.BlueprintName == "FineRingMail" || item.BlueprintName == "RivetedPlate";
++            if (!weapon && !armor) return "item_blueprint";
++            if (weapon && (item.GetPart<MeleeWeaponPart>() == null || item.GetPart<ArmorPart>() != null)) return "weapon_shape";
++            if (armor && (item.GetPart<ArmorPart>() == null || item.GetPart<MeleeWeaponPart>() != null)) return "armor_shape";
++            return null;
++        }
++
++        private static bool Reject(Entity owner, string table, Entity item, int chance, string reason)
++        {
++            Record("FoundEquipmentEnhancementRejected", owner, table, item, chance, reason);
++            return false;
++        }
++
++        private static void Record(string kind, Entity owner, string table, Entity item,
++            int chancePercent, string reason, int? roll = null, string enhancement = null)
++        {
++            if (!Diag.IsChannelEnabled("loot")) return;
++            Diag.Record("loot", kind, actor: owner, target: item,
++                payload: new { table, reason, enhancement, tier = 1, chancePercent, roll });
++        }
+     }
+ }

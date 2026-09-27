@@ -1,0 +1,102 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "09a3a6dcfdb54877afd834bbd01b822a",
+  "run": {
+    "id": "2",
+    "testcasecount": "50",
+    "result": "Failed(Child)",
+    "total": "50",
+    "passed": "30",
+    "failed": "20",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 00:21:29Z",
+    "end-time": "2026-09-27 00:21:32Z",
+    "duration": "3.9347144"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DensityDoorInputTests.SuccessfulBumpUnlockCostsOneActionAndNeverAlsoStrikes(True)",
+      "message": "  Unlocking must never fall through to bump-to-break on the same press.\n  Expected: 22\n  But was:  20\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityDoorInputTests.SuccessfulBumpUnlockCostsOneActionAndNeverAlsoStrikes(False)",
+      "message": "  Expected: 0\n  But was:  1000\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_ActivePropsReceiveExactlyOneStartAndEnd(\"steam\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_DetachedPropsAreNotTicked(False)",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_NewlySpawnedSteamWaitsForTheNextSnapshot(True)",
+      "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_NewlySpawnedSteamWaitsForTheNextSnapshot(False)",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_PhysicalBodySizeDoesNotMultiplyTurnDispatch(\"0,0;1,0\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_PhysicalBodySizeDoesNotMultiplyTurnDispatch(\"2,0\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_RemovedSnapshotMemberNeverReceivesALaterTurn(False,\"steam\")",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_RemovedSnapshotMemberNeverReceivesALaterTurn(True,\"thermal\")",
+      "message": "  Expected: 0\n  But was:  1\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_SelfRemovalAtStartCannotReceiveEndTurn(True)",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_SelfRemovalAtStartCannotReceiveEndTurn(False)",
+      "message": "  Expected: 1\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_SteamExpiresAndStopsSchedulingWithoutThermalDisplacement(0.05f)",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_SteamExpiresAndStopsSchedulingWithoutThermalDisplacement(0.8f)",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingTests.RealReactionSteamCoolsAndWetsAfterOriginalPropStopsBurning(False)",
+      "message": "  Expected: less than 100.0f\n  But was:  100.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingTests.RealReactionSteamCoolsAndWetsAfterOriginalPropStopsBurning(True)",
+      "message": "  Expected: less than 100.0f\n  But was:  100.0f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySteamSchedulingTests.RealReactionSteamLifetimeAdvancesWithoutDependingOnUnrelatedHeat(False)",
+      "message": "  Expected: less than 0.800000012f\n  But was:  0.800000012f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeHumanoidFormTests.ActualLocalHumanoidHasSmallHeadShortTorsoAndSeparatedLegs(\"Player\")",
+      "message": "  Large pale hood still dominates the visible body.\n  Expected: less than 0.280000001f\n  But was:  0.599999845f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeHumanoidFormTests.ActualLocalHumanoidHasSmallHeadShortTorsoAndSeparatedLegs(\"Warden\")",
+      "message": "  Large pale hood still dominates the visible body.\n  Expected: less than 0.280000001f\n  But was:  0.599999368f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeHumanoidFormTests.ActualLocalHumanoidHasSmallHeadShortTorsoAndSeparatedLegs(\"Villager\")",
+      "message": "  Large pale hood still dominates the visible body.\n  Expected: less than 0.280000001f\n  But was:  0.599999368f\n"
+    }
+  ]
+}

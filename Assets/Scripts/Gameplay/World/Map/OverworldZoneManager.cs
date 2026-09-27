@@ -57,6 +57,13 @@ namespace CavesOfOoo.Core
                 return pilot;
             }
 
+            if (LairStacks.TryPlan(this, zoneID, out var lairPlan))
+            {
+                var stack = new ZoneGenerationPipeline();
+                stack.AddBuilder(new LairStackBuilder(this, lairPlan));
+                return stack;
+            }
+
             BiomeType biome = WorldMap.GetBiome(wx, wy);
             var poi = WorldMap.GetPOI(wx, wy);
 
@@ -864,7 +871,9 @@ namespace CavesOfOoo.Core
             var tineBase=tine?new TineCompositionBuilder(WorldSeed):null;
             var quillholdBase=quillhold?new QuillholdCompositionBuilder(WorldSeed):null;
             var tallyBase=tally?new TallyCompositionBuilder(WorldSeed):null;
-            pipeline.AddBuilder(gantry?(IZoneBuilder)gantryBase:tine?tineBase:quillhold?quillholdBase:tally?tallyBase:firstTent?first:lastCounter?last:wellmeet?camp:cinderhold?post:sumphold?yard:drownedLedger?ledger:marrowstye?intake:new VillageBuilder(biome, poi, SettlementManager, largeTown: isStartingTown));
+            var ordinaryVillage=composed?null:new VillageBuilder(biome, poi, SettlementManager, largeTown: isStartingTown);
+            pipeline.AddBuilder(gantry?(IZoneBuilder)gantryBase:tine?tineBase:quillhold?quillholdBase:tally?tallyBase:firstTent?first:lastCounter?last:wellmeet?camp:cinderhold?post:sumphold?yard:drownedLedger?ledger:marrowstye?intake:ordinaryVillage);
+            if(ordinaryVillage!=null)pipeline.AddBuilder(new VillageDoorPlacementBuilder(ordinaryVillage));
 
             // W2.6 (Docs/FELLING-W1-W2-PLAN.md §7.6, decision D5): the
             // first consumer of Place.Faction — until now all sixteen
@@ -993,7 +1002,7 @@ namespace CavesOfOoo.Core
             if(tine)pipeline.AddBuilder(new TineArrivalReservationBuilder(tineBase));
             if(quillhold)pipeline.AddBuilder(new QuillholdArrivalReservationBuilder(quillholdBase));
             if(tally)pipeline.AddBuilder(new TallyArrivalReservationBuilder(tallyBase));
-            var population=new VillagePopulationBuilder(poi, SettlementManager){RespectInteriorReservations=composed};
+            var population=new VillagePopulationBuilder(poi, SettlementManager){RespectInteriorReservations=true};
             if(gantry)population.PreferredServiceCell=(zone,blueprint)=>gantryBase.TryGetServiceCell(blueprint,out int x,out int y)?zone.GetCell(x,y):null;
             if(tine)population.PreferredServiceCell=(zone,blueprint)=>tineBase.TryGetServiceCell(blueprint,out int x,out int y)?zone.GetCell(x,y):null;
             if(quillhold)population.PreferredServiceCell=(zone,blueprint)=>quillholdBase.TryGetServiceCell(blueprint,out int x,out int y)?zone.GetCell(x,y):null;
@@ -1011,7 +1020,7 @@ namespace CavesOfOoo.Core
             {
                 int zoneSeed = WorldSeed ^ zoneID.GetHashCode();
                 int pick = (zoneSeed & int.MaxValue) % dramaIds.Count;
-                pipeline.AddBuilder(new HouseDramaZoneBuilder(dramaIds[pick]){RespectReservations=cinderhold||sumphold||drownedLedger||marrowstye||firstTent||lastCounter||civicQuartet});
+                pipeline.AddBuilder(new HouseDramaZoneBuilder(dramaIds[pick]){RespectReservations=ordinaryVillage!=null||cinderhold||sumphold||drownedLedger||marrowstye||firstTent||lastCounter||civicQuartet,CanOpenOrdinaryDoors=ordinaryVillage!=null});
             }
 
             return pipeline;
@@ -1070,6 +1079,13 @@ namespace CavesOfOoo.Core
             SettlementManager.SetPointOfInterestResolver(ResolvePointOfInterestForSettlement);
             SetTurnProvider(turnProvider);
         }
+
+        protected override bool CommitGeneratedZone(Zone zone, string zoneID)
+        {
+            LegendaryLairEncounters.TryApplyGeneratedFinal(zone, this);
+            return LairStacks.CommitGenerated(zone, this);
+        }
+        protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID);
 
         protected override void OnZoneAttached(Zone zone)
         {

@@ -126,6 +126,7 @@ namespace CavesOfOoo.Core
                 var otherPhysics = other.GetPart<PhysicsPart>();
                 bool isSolid = (otherPhysics != null && otherPhysics.Solid)
                                || other.HasTag("Solid")
+                               || other.GetPart<DoorPart>()?.IsClosed == true
                                || other.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true;
                 if (!isSolid) continue;
 
@@ -153,6 +154,8 @@ namespace CavesOfOoo.Core
                         // bumps walk through. Still block THIS turn
                         // so the player explicitly steps in next.
                         if (otherPhysics != null) otherPhysics.Solid = false;
+                        e.SetParameter("ActionPerformed", true);
+                        ZoneRenderHooks.MarkFullDirty("Door.Unlocked");
                     }
                     e.SetParameter("Blocked", true);
                     e.SetParameter("BlockedBy", (object)other);

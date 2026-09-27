@@ -1,0 +1,43 @@
+{
+  "status": "Published after full exact preimage verification; standalone tests/actual-reference compile and independent review GREEN. Actual native current-source execution pending.",
+  "files": [
+    {
+      "source": "/tmp/coo-glade-combat/ReferenceGladeNativeCombat.cs",
+      "destination": "Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeCombat.cs",
+      "sha256": "94ae352c89072c7b1062dd269b586321d7d57fd9e88c80ce613d05b4426bb6d2",
+      "previousSha256": "599e0215bee3648927e7d0be8113814f9efbde3ab7d0b671fc60f471cec21be2"
+    },
+    {
+      "source": "/tmp/coo-glade-combat/ReferenceGladeNativePlayer.cs",
+      "destination": "Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs",
+      "sha256": "096b93d3a2c6c96788425ae7baa267a080310b67d249dcbb5d48f0496864dca4",
+      "previousSha256": "3ce24c310650a7f91179ed9eb4a9ecbbfdcf714ce3c75c444183602fc717488b"
+    },
+    {
+      "source": "/tmp/coo-glade-combat/ReferenceGladeCombatEvidence.cs",
+      "destination": "Assets/Scripts/Scenarios/Custom/ReferenceGladeCombatEvidence.cs",
+      "sha256": "2d6e696569de1f8285cb499785ebc55514acde3ab4f270f3058cc5e4a1f14b7c",
+      "previousSha256": "fdd93e917ebee5a7773f95e9b675e6a6c6299d7c50aa5c49cef664140a81868f"
+    },
+    {
+      "source": "/tmp/coo-glade-combat/ReferenceGladeCombatEvidenceTests.cs",
+      "destination": "Assets/Tests/EditMode/Gameplay/Combat/ReferenceGladeCombatEvidenceTests.cs",
+      "sha256": "4a7a9ebc3b6496f90541209f675e35b5ae0c03baa40536bb980051ae0f5084fb",
+      "previousSha256": "f55d179eaa2935f8b0f84dc66adb9ffaf8c5c1a56882f0daae2cc34c90ba3e34"
+    }
+  ],
+  "priorNativeFailure": "f86bde7dfd1f4462a6a6cab0311e1d22",
+  "evidence": {
+    "red": "tonic-evidence-red.xml:2 failures/41 controls",
+    "green": "tonic-evidence-green.xml:43/43",
+    "compile": "support-runtime.log + support-tests.log: zero errors"
+  },
+  "review": "Standalone independent bounded reread clear; corrected report wording so only Rime requires prior retaliation.",
+  "bounds": [
+    "Same actual original target, seed and route; no changes to gameplay",
+    "At most2 captured original tonic units via actual native inventory at <=2/3HP",
+    "At most1 original ready Rime via actual hotbar after witnessed retaliation; skip targetHP<=4",
+    "Tonic current InventoryUI action has item cost but no pending turn; actual ticks/energy recorded without synthetic charge",
+    "Prior dagger-only death and raw logs remain unchanged"
+  ]
+}

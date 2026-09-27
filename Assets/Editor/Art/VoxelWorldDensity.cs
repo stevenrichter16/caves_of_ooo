@@ -32,6 +32,31 @@ namespace CavesOfOoo.Editor
             if(!skinned&&middle<ThinRigidCrossSection&&longest>=RigidElongation*middle)return previousPitch;
             return skinned?Mathf.Max(previousPitch,CharacterPitch):SceneryPitch;
         }
+        /// <summary>The one original thin-winged moth needs enough cells to
+        /// retain four lobes and its dark body. Exact native source identity and
+        /// a real skin are required; all generic density and validation stay intact.</summary>
+        public static float SelectNativeWorldPitch(string sourceAssetPath,Vector3 localBoundsSize,float prefabScale,bool skinned,bool equipment)
+        {
+            float ordinary=SelectWorldPitch(localBoundsSize,prefabScale,skinned,equipment);
+            // These four thin authored basins contain separate .02m water and
+            // .16m rim rocks. The ordinary .25m cell merges both into one slab.
+            // Keep exact source identities and ordinary validation/capability gates.
+            const float sprayBasinPitch=.0625f;
+            if(!skinned&&!equipment&&IsSprayBasin(sourceAssetPath))return sprayBasinPitch;
+            return sourceAssetPath=="Assets/Art3D/SpawnRing/Models/ring-grove-lantern-moth.fbx"&&skinned&&!equipment
+                ?.0625f:ordinary;
+        }
+        static bool IsSprayBasin(string sourceAssetPath)
+        {
+            switch(sourceAssetPath)
+            {
+                case "Assets/Art3D/SpawnRing/Models/ring-spray-pool-0.fbx":
+                case "Assets/Art3D/SpawnRing/Models/ring-spray-pool-1.fbx":
+                case "Assets/Art3D/SpawnRing/Models/ring-spray-pool-2.fbx":
+                case "Assets/Art3D/SpawnRing/Models/ring-spray-pool-3.fbx": return true;
+                default: return false;
+            }
+        }
         static bool Finite(float value)=>!float.IsNaN(value)&&!float.IsInfinity(value);
     }
 }

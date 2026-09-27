@@ -1,0 +1,25 @@
+{
+  "status": "Private; no shared Assets publication or Unity execution.",
+  "sources": {
+    "DensityBedNativePlayer.cs": "66822f95d646505d979085cd5620773df302e48cbc43fdc405f441f0a9b8d8a7",
+    "DensityBedNativePlayer.cs.meta": "abc8a44db544927d11905d83cd1fdbc51bbe9f443b53b35abe17c3d8a52e6e26",
+    "DensityBedNativeBatch.cs": "7cd755203217b74088ad93731b8ee69faaaac4c73f1aa1ced9546562055b0723",
+    "DensityBedNativeBatch.cs.meta": "96c5e7ca0fe12173c23f43c60c3cc59ada472c50aefa64849639643b08734771"
+  },
+  "plan": "PLAN.md",
+  "red": "missing-driver-red.log: actual compiler missing-source CS2001 before harness creation",
+  "runtimeCompile": "runtime-final.log: actual Unity references, zero errors",
+  "editorCompile": "editor.log: actual Unity editor references, zero errors",
+  "requiredChecks": 15,
+  "minimumCaptures": 6,
+  "productionDependency": "/tmp/coo-density-beds/candidate-manifest.json;153 focused core/save/neighboring tests GREEN from owner",
+  "narrowMerge": "Current shared SaveSystem plus only Owner && FieldType==Entity exclusion. Preserve C10/C11 hooks. Current WorldInteractionSystem plus actual BedPart underfoot eligibility.",
+  "limits": [
+    "No injury, money, item, health, AI or source grants; no manual scheduler bypass or NPC schedule injection. One labelled approach transfer.",
+    "Actual beds start unowned. Only selected real bed Owner is deliberately assigned existing NPC ID for diagnostic owner/save control, then cleared after checkpoint.",
+    "Full40HP timing cannot demonstrate healing/cure; core tests cover those.",
+    "Instant rest is world-clock advancement; NPC turns are not simulated.",
+    "Real native input and scene restoration remain unrun; all first failures must be preserved."
+  ],
+  "independentReview": "Standalone agent read native source/menu/time/checkpoint/cleanup and found no concrete false-positive blocker. Reporting clarified that ordinary HandleZoneTransition may legitimately register schedules."
+}

@@ -1,0 +1,31 @@
+F.FF
+======================================================================
+FAIL: test_all_six_bars_are_wide_enough_for_finer_voxels (__main__.SourceMothTests.test_all_six_bars_are_wide_enough_for_finer_voxels)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c13-moth/test_moth_source.py", line 23, in test_all_six_bars_are_wide_enough_for_finer_voxels
+    for b in bands:self.assertGreaterEqual(b.scale[0]*2,.05)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.024 not greater than or equal to 0.05
+
+======================================================================
+FAIL: test_fore_and_hind_lobes_have_a_real_notch (__main__.SourceMothTests.test_fore_and_hind_lobes_have_a_real_notch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c13-moth/test_moth_source.py", line 20, in test_fore_and_hind_lobes_have_a_real_notch
+    for f,h in zip(front,rear):self.assertGreaterEqual((h.center[1]-h.scale[1])-(f.center[1]+f.scale[1]),.08)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: -0.15000000000000002 not greater than or equal to 0.08
+
+======================================================================
+FAIL: test_raised_body_is_visible_above_pale_wings (__main__.SourceMothTests.test_raised_body_is_visible_above_pale_wings)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c13-moth/test_moth_source.py", line 26, in test_raised_body_is_visible_above_pale_wings
+    self.assertGreaterEqual(body.center[2]+body.scale[2]-(wing.center[2]+wing.scale[2]),.04)
+AssertionError: 0.020999999999999963 not greater than or equal to 0.04
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.069s
+
+FAILED (failures=3)

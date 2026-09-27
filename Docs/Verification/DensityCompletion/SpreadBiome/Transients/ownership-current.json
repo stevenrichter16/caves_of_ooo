@@ -1,0 +1,569 @@
+{
+  "recordedAt": "2026-09-27T13:25:23.265522+00:00",
+  "scope": "Complete transient slice ownership only. Shared hooks also contain independently owned C15 changes; no stage/commit performed. Native lifecycle17 fixture is peer-owned, listed separately rather than claimed.",
+  "files": [
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadTransientSource.cs",
+      "role": "new-runtime",
+      "sha256": "3e96aa7bda878d553799ffd5de10323870f6ae468e42bb7a255e616a6a82153e"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadTransientSource.cs.meta",
+      "role": "new-runtime",
+      "sha256": "4016a7d94515bbf70d4c2f2ee352b76c0ae91d35fab2fe978d2917341381de30"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadTransientVolumes.cs",
+      "role": "new-runtime",
+      "sha256": "37548747c422e4da61e49d2403236d3e63491e30ad36786b6efc69e4bf54ff4a"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadTransientVolumes.cs.meta",
+      "role": "new-runtime",
+      "sha256": "7157477c99dce913e08f058fd3e7ffcd51a52a2d750180767c5dbe4cf0c9ffe7"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadParticleSource.cs",
+      "role": "new-runtime",
+      "sha256": "f296e48311878636d2095e3a57e40fa9d1d2cd6f03b200205b73a173886affa0"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadParticleSource.cs.meta",
+      "role": "new-runtime",
+      "sha256": "c0889b1d7b3fe529ab96ce3862acc2c337459916f3992c2d4422ac435fefdafb"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadParticleFrame.cs",
+      "role": "new-runtime",
+      "sha256": "20dc7ceac9774b7069525ac4c02c283e4bfe63b7fbb0a3fa5abe0771c7dcbe0b"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadParticleFrame.cs.meta",
+      "role": "new-runtime",
+      "sha256": "d57b413aa9ee50c0d53748db57035a1935a487f8fc1f84c27c68a4ea86e1346e"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadTransientSourceTests.cs",
+      "role": "new-test",
+      "sha256": "cb1bd30ead5e0e2c985ba64ab92900cf89e3ebedd8174056f6c200decba9afc4"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadTransientSourceTests.cs.meta",
+      "role": "new-test",
+      "sha256": "4fa9a88a989165b774269807ffef7e8d3d53de49c0a4aa13c859d8204cd08d7b"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadParticleSourceTests.cs",
+      "role": "new-test",
+      "sha256": "36982789290488f6a9fa549b2078f04899e3edd3aee3a251e38eeceee510b602"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadParticleSourceTests.cs.meta",
+      "role": "new-test",
+      "sha256": "03001d48e6fe5bec061065c682109a9e6ed2ddb6a54701a32e3f85be6cdd50b8"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadSurfaceMarkSourceTests.cs",
+      "role": "new-test",
+      "sha256": "a8b9dd933ba7e867773f2a71344ce24a4558819d58bc8e5b093559882f5dfcd1"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadSurfaceMarkSourceTests.cs.meta",
+      "role": "new-test",
+      "sha256": "1093f133822c8e1f7d05dec5f6a02d3f2e82fa1edd5d6c79ff9b679c1f3f62da"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadParticleSignalSourceTests.cs",
+      "role": "new-test",
+      "sha256": "5855decb5ad61a1e76c5e3f24ddac8c3724967e92cae6bd388b3f17d391e1736"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadParticleSignalSourceTests.cs.meta",
+      "role": "new-test",
+      "sha256": "e5078e07531581fb19d05aef79974cbcbfc6bd77bfd68639c23555fbe5a31d31"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadTransientRenderingTests.cs",
+      "role": "new-test",
+      "sha256": "5d06f13eefabf2471ce59b7f490c0a3b594d1ea80c4843016f9815f3371d4e53"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadTransientRenderingTests.cs.meta",
+      "role": "new-test",
+      "sha256": "95e80bdb4b6199335c70489ae3303561419002ae1964ea7300966ad5591960c8"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadTransientRenderingAdversarialTests.cs",
+      "role": "new-test",
+      "sha256": "86ed19769a1957c3f85f8ced4a3128444211417718173f114ba73c1e54e77c1d"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadTransientRenderingAdversarialTests.cs.meta",
+      "role": "new-test",
+      "sha256": "d18cf5470f7290d82d591fabe55545715056cf42ac73127c7b81c31892da365c"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadParticleRenderingTests.cs",
+      "role": "new-test",
+      "sha256": "22e809182098d5af1924d4f2c6a023beccbcae5f180a311afbe9bf4affd179d3"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadParticleRenderingTests.cs.meta",
+      "role": "new-test",
+      "sha256": "71f71151275b495e03ef300f10c141c50c6d5c933bf7da275e20cceb040a79f0"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadSurfaceMarkRenderingTests.cs",
+      "role": "new-test",
+      "sha256": "aaa2f82a76fd07f7aa0febe8c265f04757236e95944a41dafad4e9e4a9f32378"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadSurfaceMarkRenderingTests.cs.meta",
+      "role": "new-test",
+      "sha256": "8d1c9ea22dd1cc7c0dc57ef84e1aa39b3e3d66241c9c2f83ba6c723eac41b879"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadParticleSignalRenderingTests.cs",
+      "role": "new-test",
+      "sha256": "e4d6fbffc5ab9e2c5c480b24390127a6d9cf0c34f1996cf12c690d7f70dc3ceb"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadParticleSignalRenderingTests.cs.meta",
+      "role": "new-test",
+      "sha256": "9229bd33d979e1df7fe6731d7f6cd02feca01e89dd31c6508897818e943508b0"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadTransientBudgetTests.cs",
+      "role": "new-test",
+      "sha256": "70096e88561139009c54e54267bc2fb3b3acbb944e38c7ec63f382560e5d203b"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadTransientBudgetTests.cs.meta",
+      "role": "new-test",
+      "sha256": "fd13bff64ce51940890de2ffe3ce13fb8f22f03afd6dbc2f5115f6be008cbd7f"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs",
+      "role": "shared-file-narrow-hooks; preserve other task edits",
+      "sha256": "31835f4d0d2c561abf9d379936a1b55f92c5dcb6a5e13505111fbc40bf62b631"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs",
+      "role": "shared-file-narrow-hooks; preserve other task edits",
+      "sha256": "ad329c15b3362305d944c2206813f6b73dadc338282a06fa6a1ce11907336b7f"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/AsciiFxRenderer.cs",
+      "role": "shared-file-narrow-hooks; preserve other task edits",
+      "sha256": "823a3504b318820d2e9fc6ba662bafa48eade417e7e9accee2aa090ff2df6752"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/WorldFxCoordinator.cs",
+      "role": "shared-file-narrow-hooks; preserve other task edits",
+      "sha256": "b8ba61623e2ab68d781cc8cc9e0845379df2b148d148c6f8f327d8ac703ae522"
+    },
+    {
+      "path": "Docs/DENSITY-SPREAD-TRANSIENTS.md",
+      "role": "living-doc",
+      "sha256": "c53095a8e82eaaa646fa3df9ba52c1fe05119555590a8a2b020f39118dc97963"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadTransientCoordinateTests.cs",
+      "role": "new-test",
+      "sha256": "a48852c803f07509ca7ddb836714a7dbb68e9636e8f57cac90be5c9b1f35ba46"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadTransientCoordinateTests.cs.meta",
+      "role": "new-test",
+      "sha256": "605acedd51e14235292c7473cedc9d5aada5ccc1d89612312bcdfc42d1188675"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/particle-api-red.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "1e3efbb38aee302e3a21ab35ceead2339cbc3fc607839d01889699136339dbe0"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/source60-green.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "e311b631aaae1561379c5abc9aa84ef024f9832201fdc061eb822ffec05ef283"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/source90-green.xml.gz",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "a8a60cf98962d671eeffe11c674de434cb49a635a9cf89343d480cb056050d4f"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/runtime-particles-compile.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "9e592066414ea33bfdf549243743f852627efb3beae4da038e51ad8c84328e18"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/private-readiness.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "06ddd695bbf36630f0763c7efb8fd0fc5d3e5d69184f436c8dd0ddb772f6fbe3"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/source90-green.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "12060adb8565849ada5817d056104b8abab395ef67ecbeea26deb85afc2615c2"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/source-compile-red.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "8affe1e72c4f1cfc41e6f76c45696eb5a105faa222d5ba6c38bf8190843befd5"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/water-red.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "003edf1cdb1422f9aa8628e6cc24ff198bfb81b1081a56e65b124cd898f0d91c"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/native-tests-compile.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "c11ba6f53721b1f46d6722570de566101072c890fb4085f21ee305994dcdaa53"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/particle-source-red.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "43e8fa45cfef9dff68964a1879263141a028b019bb2491527032dfb5dc605a4c"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/source60-green.xml.gz",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "5d0542c70e4ead07a2975bb053d5456459197a20a815fe9ad4cf333126012127"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/budget-production-manifest.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "b2c5adf24da3dfff409f7dca9215a2542d5a6db9d7e35279b14b99a7f007ec88"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/budget-tests-compile.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "c11ba6f53721b1f46d6722570de566101072c890fb4085f21ee305994dcdaa53"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/signal-red.xml.gz",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "e2f76edbab27286889f9362ffc9b1df86b07ea7a28019a4f7f412128178dc0be"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/budget-reviewed-runtime.patch",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "acad60262a8e74a56300029553f9905097f9b62f0e8d3c3dbae1a47cb9051513"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/budget-runtime-compile.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "71576dbada5325b7f047c65fd7d994ba83dc71e857fe51804adcbb068e67e715"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/combined-source-green.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "c6fc1001fb7bc552f209623c9a3f2f673b67c33a55ce20d2972617dd8c702802"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/gallery.rsp.txt",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "e84b4172ae557daa9a54cbc72eca140c7ee07d7aa220844403fee736e661abce"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/sleep-yaw-red.xml.gz",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "b17e63fb956cccaeb554812618932c4dba274b82b99d99389e9586959458f2d3"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/coordinate-tests-compile.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "9e2bae82f680404447f14887c1843251f961637e428c251828ce700b662988c7"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/private-readiness.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "d8e01ddb878afc737e14a59868a42ad1dac5d2f8855d6c8b7c0afbe7cdef76fe"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/budget10-test-publication.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "fc3dfb5c4f8254a4f5698e38a0c82b2a6ffa8d97d53038f30f70f96a206aeb45"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/gallery-readiness.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "80bf826440d82a302061fc945cd9fdead7921881fb620538a0c4aab918d4b7e2"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeSurfaceGallery.cs.txt",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "eba48342496dd6ae357929d04d556ee358830ca4be4b808dc2e7693b640a48fc"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/fixture-and-budget-red-publication.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "40acd5e6cf0448eca252e08002e18ae7dd5da3d2b3b8db0807b8c5d185f174c0"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/coordinate-runtime-compile.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "9e592066414ea33bfdf549243743f852627efb3beae4da038e51ad8c84328e18"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/sleep-yaw-red.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "c4f180ba381938be471c6b3cee0293a085a844fd83452f6a283b9f3996bb89f9"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/native-tests-compile.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "5d504b27ddf43034eb145854b59cfbdc1cb16e464dd5b72929dce366b3f9aad0"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/budget-PLAN.md",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "605feb3dd6ba8331d9a3b6b9cea49faaf4405bd2abba28f2089d3d10e6e0c799"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/signal-red.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "1a8d0ed1aebb17d02fed79ba08b51460c15cc4941043f7ed84b574be7351f14f"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/combined-source-green.xml.gz",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "1a9e97b3fcded49ed301de9fdfc28fe3c76fb3c79474a8c68c6e013ee915d18b"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/coordinate-production-manifest.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "e1dbb1782abdadf0c1057a001534bf17535ff7acf6cc88985a58c4294d8031c6"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/PLAN.md",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "0938fce2bb70d5dc45c08c50e04cba558e3d468e274ddf2c75f5dbc395493537"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/coordinate-repair.patch",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "b31975d886880c522117181f0e680b03e032eb1a5eb74430cd03fdc9b6f6c33a"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/runtime-compile.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "c221062aee2375502e6e4df8ed98674d11562ab82d3cb5bf879091a0ed1aeded"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/budget-production-publication.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "a5f7f3fbf96f853ea74f2713e822ba8b6f981c2ebd5d2cadbd09c4046e1da240"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/surface-source-red.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "593cf25e7fb0556fb62bdf80a5de60e0096563bc09300d654aed7c140078e186"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/gallery-compile.log",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "35cc26525c0eb3eb10f709cdc7374f4b0b5fb973101d606485c1442600c16a82"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/cold-eye-current.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "9e4af094ac4d2355e4ae3bb10c286de6ff7dd9fd9c491fbcb9b1fd732b42a67d"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/coordinate-production-publication.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "c35b832fe91487e33763828318d00c4fe3eb5112bd3b8a886b8250dd3aec8c80"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/production-publication.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "bfb08e1d05f7238a02648d0ae06fab78b1d79295b358f738cd4291974dbe8a51"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/coordinate-test-publication.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "2f849b7e50ab2ff0cea45325b5c19f9e6210f0958119848ae0220d371a14302f"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/9db24d707bb24fb8a2d9f4ac476254b6/06-actual-water-steam-oil-embers-priority.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "801ab97254ab922ecdeb0690c67c8b2bde76c6bb8fc1523e1294464395466e94"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/9db24d707bb24fb8a2d9f4ac476254b6/05-authored-residues-embers-petals.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "27de3026e043cfe69207a472b7801cf9a846d8da41d188156f9282f162071509"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/9db24d707bb24fb8a2d9f4ac476254b6/03-liquid-coatings-03.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "b5a1d730e20689ff800977b3521dffa05b24a0160067e8f64c680903415971d3"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/9db24d707bb24fb8a2d9f4ac476254b6/04-liquid-coatings-04.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "1e47a5f5043c41b79f4533b01e61ee1b17202ef6f46b8ccd6c0803fe0e64296a"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/9db24d707bb24fb8a2d9f4ac476254b6/index.html",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "03a153205b36f214edf46cb4330be2b1acc7eec55785fe839eac6a4ff3f8def0"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/9db24d707bb24fb8a2d9f4ac476254b6/report.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "00058043a05c53dd7cfaa4fad662766fdd621a7cc5b32e0c39c2f8d47d3e7e6e"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/9db24d707bb24fb8a2d9f4ac476254b6/00-liquid-coatings-00.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "ef728ca05349ae5e3df91c6f2d379e4f38e4ad5c63afdddfbd9c414c365bb0b8"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/9db24d707bb24fb8a2d9f4ac476254b6/01-liquid-coatings-01.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "ef728ca05349ae5e3df91c6f2d379e4f38e4ad5c63afdddfbd9c414c365bb0b8"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/9db24d707bb24fb8a2d9f4ac476254b6/02-liquid-coatings-02.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "0f6b2db159f3ffb38acd15627d0062f08929efb323e91dc55df88d5f2504c5d2"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/9db24d707bb24fb8a2d9f4ac476254b6/07-behavior-alert-sleep-down-and-decorative-control.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "bec409c793828c823c8cc4f8ae35874ca3db2918896c1b00d4db05c16d379d38"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/196c64aa78b5447d90f8aa830846684d/06-actual-water-steam-oil-embers-priority.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "801ab97254ab922ecdeb0690c67c8b2bde76c6bb8fc1523e1294464395466e94"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/196c64aa78b5447d90f8aa830846684d/05-authored-residues-embers-petals.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "27de3026e043cfe69207a472b7801cf9a846d8da41d188156f9282f162071509"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/196c64aa78b5447d90f8aa830846684d/03-liquid-coatings-03.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "b5a1d730e20689ff800977b3521dffa05b24a0160067e8f64c680903415971d3"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/196c64aa78b5447d90f8aa830846684d/04-liquid-coatings-04.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "1e47a5f5043c41b79f4533b01e61ee1b17202ef6f46b8ccd6c0803fe0e64296a"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/196c64aa78b5447d90f8aa830846684d/index.html",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "03a153205b36f214edf46cb4330be2b1acc7eec55785fe839eac6a4ff3f8def0"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/196c64aa78b5447d90f8aa830846684d/report.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "4185ea9169058e11e95307cf81312d7efb8bd0ad262c794074319518fbf6aefc"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/196c64aa78b5447d90f8aa830846684d/00-liquid-coatings-00.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "ef728ca05349ae5e3df91c6f2d379e4f38e4ad5c63afdddfbd9c414c365bb0b8"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/196c64aa78b5447d90f8aa830846684d/01-liquid-coatings-01.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "ef728ca05349ae5e3df91c6f2d379e4f38e4ad5c63afdddfbd9c414c365bb0b8"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/196c64aa78b5447d90f8aa830846684d/02-liquid-coatings-02.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "0f6b2db159f3ffb38acd15627d0062f08929efb323e91dc55df88d5f2504c5d2"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/196c64aa78b5447d90f8aa830846684d/root-visual-review.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "9bb7f462c114313bba1eaaecd4d7d42eef1e3140e9ae989e427e7a7dfa972570"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/SurfaceClosure/NativeGallery/196c64aa78b5447d90f8aa830846684d/07-behavior-alert-sleep-down-and-decorative-control.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "bec409c793828c823c8cc4f8ae35874ca3db2918896c1b00d4db05c16d379d38"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/02-cryo-mist.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "e13895c4441fc8a757476aa6b1a2b191c5febd5b806e66364cb7fd82314f25db"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/00-bloom-spores.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "15a818d6c3029ac8cfa6e351389b4f6473ee3e2407387be5be1f7108ea08f56f"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/index.html",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "67d76e0ba448a3e9e816b71c8c783410aff7ff2384c66364ada0d28daffcb043"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/report.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "c81cc550946d9a614ca1497bff529a329e2c13fda0e12a8950ab80155fc64264"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/08-stun-vapor.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "f4e5c80e3dd9703f9db5847b09410a451ac857f6b52766abf5f6ffd1993d9f36"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/07-sleep-vapor.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "80ce9f5d52594d00589f925a15cf33524d7481188a208b3bf8113ff576fef723"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/04-marsh-gas.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "77701cbf90d696af020eca1d446daded41976a602805ebdc81114d215bbeef7b"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/09-actual-steam-smoke-priority-and-energy.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "053f14b5e5683b8b615de58c05a501d019c0d989ab3d3f36dd9515ec5750175a"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/root-visual-review.json",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "2bad7fb703bddf7a0b77a33a61bb22a53842e3a5982566e48978502ca3ad3428"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/05-plasma-gas.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "1563666429a9cc8cd401d58f49791133239137c34bd40300b4bf3e004e08c33e"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/03-fungal-spores.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "0f7e56e96dba63d9bd5fa796cd6763c014b5d215900719d68f4ccc35e8b59566"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/06-poison-vapor.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "77701cbf90d696af020eca1d446daded41976a602805ebdc81114d215bbeef7b"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/SpreadBiome/Transients/NativeGallery/91f9469671f045f7bb7738608fdd541a/01-confusion-vapor.png",
+      "role": "scoped-verification-artifact; includes parent native captures",
+      "sha256": "b7aeebc660a7998094424b8e9051a44dc034f8c91e76a8edcc172b7dcb9ee9be"
+    }
+  ],
+  "peerOwnedTests": [
+    "Assets/Tests/EditMode/Presentation/Rendering/SpreadWorldFxLifecycleTests.cs",
+    "Assets/Tests/EditMode/Presentation/Rendering/SpreadWorldFxLifecycleTests.cs.meta"
+  ],
+  "excluded": "Other agent scenery/actor/pool/performance/art changes and unrelated preexisting files; no transient persistent model assets added.",
+  "status": "All declared runtime changes published; capacity10, coordinate6, particle32 and lifecycle17 native GREEN; final gallery8/34metadata complete. Shared hooks preserve other task ownership.",
+  "boundedCorrectnessPending": [],
+  "finalNativeGate": "Docs/Verification/DensityCompletion/Integration/native-spread89-transients-green-posy-red.json"
+}

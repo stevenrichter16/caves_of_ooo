@@ -113,6 +113,9 @@ namespace CavesOfOoo.Core
                 if (command != "Unlock") return true;
 
                 var menuActor = e.GetParameter<Entity>("Actor");
+                var ordinaryDoor=ParentEntity?.GetPart<DoorPart>();
+                if(ordinaryDoor!=null&&(!IsLocked||!ordinaryDoor.CanUnlock(menuActor,e.GetParameter<Zone>("Zone"))))
+                {ordinaryDoor.RejectUnlock(menuActor);return true;}
                 var attempt = GameEvent.New("AttemptUnlock");
                 attempt.SetParameter("Actor", (object)menuActor);
                 ParentEntity.FireEventAndRelease(attempt);
@@ -133,6 +136,10 @@ namespace CavesOfOoo.Core
             if (e.ID != "AttemptUnlock") return true;
 
             var actor = e.GetParameter<Entity>("Actor");
+            var door=ParentEntity?.GetPart<DoorPart>();
+            if(door!=null&&!door.CanUnlock(actor,e.GetParameter<Zone>("Zone")??ParentEntity.SpatialZone))
+            {e.SetParameter("Unlocked",false);door.RejectUnlock(actor);return true;}
+            bool wasLocked=IsLocked;
             bool succeeded;
             Entity keyUsed = null;
 
@@ -173,6 +180,7 @@ namespace CavesOfOoo.Core
                 succeeded = !IsLocked;
             }
 
+            if(wasLocked&&!IsLocked)door?.RefreshAfterLockChange();
             // Surface results on the event + log line + diag record.
             e.SetParameter("Unlocked", succeeded);
             if (keyUsed != null) e.SetParameter("KeyUsed", (object)keyUsed);

@@ -1,6 +1,6 @@
 # Original enemy replacement — census, design, and migration plan
 
-**Status:** runtime migration implemented; art and final integrated acceptance in progress, 2026-09-26. Root applied the approved surgical Objects changes. Runtime identity migration is implemented and focused-tested; the art owner is replacing the actual silhouette and bindings. This work implements the user's new requirement to remove recognizable Caves of Qud enemies and replace them with original creatures; it does not claim Qud parity.
+**Status:** runtime identity and original models implemented, with native roster acceptance recorded, 2026-09-26. The separated native roster route passes 75/75 with zero errors; all six visible bodies were inspected and the moth refinement passes 134 nearby native art checks (see `DENSITY-ORIGINAL-ENEMY-NATIVE-AUDIT.md`). The runtime/art foundation is on main; the later moth refinement awaits its follow-up commit. Broader ordinary campaign/combat acceptance remains in C2/C12. This work implements the user's new requirement to remove recognizable Caves of Qud enemies and replace them with original creatures; it does not claim Qud parity.
 
 ## 1. Verified result and scope
 

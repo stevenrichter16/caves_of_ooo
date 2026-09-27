@@ -14,7 +14,7 @@ namespace CavesOfOoo.Rendering
         [Serializable]public sealed class Entry{public string Id;public GameObject Prefab;public Mesh Mesh;public SpawnRing3DCatalog.Model Spec;}
         public Entry[] Entries;
         public static IReadOnlyList<string> ActorModelIds{get;}=Array.AsReadOnly(new[]{"ring-player","ring-sien","ring-nam","ring-snapjaw","ring-marlback-gleaner","ring-marlback-tunnelguard","ring-marlback-wallkeeper","ring-snapjaw-warlord"});
-        [Serializable]public sealed class ActorPaint{public string ModelId;public Mesh Source,Painted;}
+        [Serializable]public sealed class ActorPaint{public string ModelId;public Mesh Source,Painted;public bool AuthoredGeometry;}
         public ActorPaint[] ActorPaints;
         private Dictionary<Mesh,ActorPaint> actorPaints;
         public Material Material;
@@ -48,10 +48,23 @@ namespace CavesOfOoo.Rendering
             foreach(var paint in ActorPaints)
             {
                 if(paint==null||!remaining.Remove(paint.ModelId)||paint.Source==null||paint.Painted==null||paint.Source==paint.Painted
-                    ||!paint.Source.isReadable||!paint.Painted.isReadable||paint.Source.vertexCount!=paint.Painted.vertexCount
+                    ||!paint.Source.isReadable||!paint.Painted.isReadable||paint.Painted.vertexCount==0
                     ||paint.Source.subMeshCount!=paint.Painted.subMeshCount||paint.Source.bindposeCount!=paint.Painted.bindposeCount
-                    ||paint.Source.bounds!=paint.Painted.bounds||paint.Painted.uv.Length!=paint.Painted.vertexCount||paints.ContainsKey(paint.Source))
+                    ||paint.Painted.uv.Length!=paint.Painted.vertexCount||paints.ContainsKey(paint.Source))
                     throw new InvalidOperationException("Invalid scoped reference glade actor paint.");
+                bool humanoid=paint.ModelId=="ring-player"||paint.ModelId=="ring-sien"||paint.ModelId=="ring-nam";
+                if(paint.AuthoredGeometry&&!humanoid)throw new InvalidOperationException("Only the three exact humanoids have local body geometry.");
+                if(!paint.AuthoredGeometry&&(paint.Source.vertexCount!=paint.Painted.vertexCount||paint.Source.bounds!=paint.Painted.bounds))
+                    throw new InvalidOperationException("UV-only actor paint must preserve source geometry.");
+                var sourceBindposes=paint.Source.bindposes;var bindposes=paint.Painted.bindposes;
+                for(int i=0;i<bindposes.Length;i++)if(sourceBindposes[i]!=bindposes[i])throw new InvalidOperationException("Scoped body changed its source bindposes.");
+                if(paint.AuthoredGeometry)
+                {
+                    var weights=paint.Painted.boneWeights;
+                    if(bindposes.Length==0||weights.Length!=paint.Painted.vertexCount)throw new InvalidOperationException("Incomplete local humanoid weights.");
+                    foreach(var weight in weights)if(weight.weight0!=1||weight.weight1!=0||weight.weight2!=0||weight.weight3!=0||weight.boneIndex0<0||weight.boneIndex0>=bindposes.Length)
+                        throw new InvalidOperationException("Local humanoids require valid rigid source bone weights.");
+                }
                 paints.Add(paint.Source,paint);
             }
             if(remaining.Count!=0)throw new InvalidOperationException("Missing scoped reference glade actor paint.");
@@ -66,7 +79,19 @@ namespace CavesOfOoo.Rendering
             if(actorPaints==null)Validate();
             foreach(var skin in ownedInstance.GetComponentsInChildren<SkinnedMeshRenderer>(true))
                 if(skin.sharedMesh!=null&&actorPaints.TryGetValue(skin.sharedMesh,out var paint))
-                {skin.sharedMesh=paint.Painted;skin.sharedMaterial=Material;}
+                {
+                    var envelope=skin.localBounds;
+                    skin.sharedMesh=paint.Painted;skin.sharedMaterial=Material;
+                    // Retain the imported animation envelope as well as the new
+                    // bind-pose shape. Bounds are never tightened around one frame.
+                    if(paint.AuthoredGeometry){envelope.Encapsulate(paint.Painted.bounds.min);envelope.Encapsulate(paint.Painted.bounds.max);skin.localBounds=envelope;}
+                }
+        }
+        internal bool IsAuthoredHumanoidMesh(Mesh mesh)
+        {
+            if(mesh==null)return false;if(actorPaints==null)Validate();
+            foreach(var paint in ActorPaints)if(paint.AuthoredGeometry&&paint.Painted==mesh)return true;
+            return false;
         }
         public Entry Find(string id){if(id==null||!id.StartsWith("reference-glade-",StringComparison.Ordinal))return null;if(index==null)Validate();return index.TryGetValue(id,out var entry)?entry:null;}
         public static string ModelId(string family,int variant)

@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-doors/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="15" result="Failed" start-time="2026-09-27T00:13:42.2037100Z" end-time="2026-09-27T00:13:42.2360480Z" duration="0.032328" total="15" passed="0" failed="15" inconclusive="0" skipped="0" warnings="0" asserts="15" random-seed="1095851796">
+  <command-line><![CDATA[/private/tmp/coo-density-doors/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-density-doors/verification/core-red.xml --where "class =~ /DensityGeneratedDoorTests/"]]></command-line>
+  <filter>
+    <class re="1">DensityGeneratedDoorTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1020" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-doors/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-09-27T00:13:42.2037100Z" end-time="2026-09-27T00:13:42.2360480Z" duration="0.032328" total="15" passed="0" failed="15" warnings="0" inconclusive="0" skipped="0" asserts="15">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-density-doors/Tools/EditModeRunner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-density-doors/Tools/EditModeRunner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="33400" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1021" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-09-27T00:13:42.2053760Z" end-time="2026-09-27T00:13:42.2360450Z" duration="0.030669" total="15" passed="0" failed="15" warnings="0" inconclusive="0" skipped="0" asserts="15">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1022" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-09-27T00:13:42.2054970Z" end-time="2026-09-27T00:13:42.2360420Z" duration="0.030545" total="15" passed="0" failed="15" warnings="0" inconclusive="0" skipped="0" asserts="15">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="DensityGeneratedDoorTests" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-09-27T00:13:42.2058690Z" end-time="2026-09-27T00:13:42.2360200Z" duration="0.030151" total="15" passed="0" failed="15" warnings="0" inconclusive="0" skipped="0" asserts="15">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1015" name="ClosingRefusesActorStandingInDoorway" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesActorStandingInDoorway" methodname="ClosingRefusesActorStandingInDoorway" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="280602152" result="Failed" start-time="2026-09-27T00:13:42.2066690Z" end-time="2026-09-27T00:13:42.2291650Z" duration="0.022529" asserts="1">
+            <failure>
+              <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesActorStandingInDoorway() in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 66
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesActorStandingInDoorway() in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 66
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1014" name="ClosingRefusesLooseObjectsButPermitsGround" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesLooseObjectsButPermitsGround" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T00:13:42.2297890Z" end-time="2026-09-27T00:13:42.2312510Z" duration="0.001462" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1012" name="ClosingRefusesLooseObjectsButPermitsGround(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesLooseObjectsButPermitsGround(True)" methodname="ClosingRefusesLooseObjectsButPermitsGround" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="2006272833" result="Failed" start-time="2026-09-27T00:13:42.2298760Z" end-time="2026-09-27T00:13:42.2305280Z" duration="0.000652" asserts="1">
+              <failure>
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesLooseObjectsButPermitsGround(Boolean terrain) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 62
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesLooseObjectsButPermitsGround(Boolean terrain) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 62
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1013" name="ClosingRefusesLooseObjectsButPermitsGround(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesLooseObjectsButPermitsGround(False)" methodname="ClosingRefusesLooseObjectsButPermitsGround" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1260476460" result="Failed" start-time="2026-09-27T00:13:42.2305410Z" end-time="2026-09-27T00:13:42.2309550Z" duration="0.000414" asserts="1">
+              <failure>
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesLooseObjectsButPermitsGround(Boolean terrain) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 62
+   at InvokeStub_DensityGeneratedDoorTests.ClosingRefusesLooseObjectsButPermitsGround(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesLooseObjectsButPermitsGround(Boolean terrain) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 62
+   at InvokeStub_DensityGeneratedDoorTests.ClosingRefusesLooseObjectsButPermitsGround(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1019" name="DetailedMoveCanReportOpeningWithoutPretendingToMove" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.DetailedMoveCanReportOpeningWithoutPretendingToMove" methodname="DetailedMoveCanReportOpeningWithoutPretendingToMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1340228101" result="Failed" start-time="2026-09-27T00:13:42.2314190Z" end-time="2026-09-27T00:13:42.2317950Z" duration="0.000376" asserts="1">
+            <failure>
+              <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.DetailedMoveCanReportOpeningWithoutPretendingToMove() in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 75
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.DetailedMoveCanReportOpeningWithoutPretendingToMove() in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 75
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1011" name="InvalidRequestsAreUnchangedAndUnconsumed" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-27T00:13:42.2318020Z" end-time="2026-09-27T00:13:42.2342770Z" duration="0.002475" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1005" name="InvalidRequestsAreUnchangedAndUnconsumed(&quot;same_state&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(&quot;same_state&quot;)" methodname="InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="2111475516" result="Failed" start-time="2026-09-27T00:13:42.2318070Z" end-time="2026-09-27T00:13:42.2320780Z" duration="0.000271" asserts="1">
+              <failure>
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 51
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 51
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="InvalidRequestsAreUnchangedAndUnconsumed(&quot;distant&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(&quot;distant&quot;)" methodname="InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="309114233" result="Failed" start-time="2026-09-27T00:13:42.2320830Z" end-time="2026-09-27T00:13:42.2322660Z" duration="0.000183" asserts="1">
+              <failure>
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 51
+   at InvokeStub_DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 51
+   at InvokeStub_DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="InvalidRequestsAreUnchangedAndUnconsumed(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(&quot;dead&quot;)" methodname="InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1555248965" result="Failed" start-time="2026-09-27T00:13:42.2322710Z" end-time="2026-09-27T00:13:42.2324070Z" duration="0.000136" asserts="1">
+              <failure>
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 51
+   at InvokeStub_DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 51
+   at InvokeStub_DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="InvalidRequestsAreUnchangedAndUnconsumed(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(&quot;removed&quot;)" methodname="InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1429968590" result="Failed" start-time="2026-09-27T00:13:42.2324120Z" end-time="2026-09-27T00:13:42.2325510Z" duration="0.000139" asserts="1">
+              <failure>
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 51
+   at InvokeStub_DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 51
+   at InvokeStub_DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="InvalidRequestsAreUnchangedAndUnconsumed(&quot;foreign_zone&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(&quot;foreign_zone&quot;)" methodname="InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1023254503" result="Failed" start-time="2026-09-27T00:13:42.2325550Z" end-time="2026-09-27T00:13:42.2326920Z" duration="0.000136" asserts="1">
+              <failure>
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 51
+   at InvokeStub_DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 51
+   at InvokeStub_DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1010" name="InvalidRequestsAreUnchangedAndUnconsumed(&quot;locked&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(&quot;locked&quot;)" methodname="InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1748814552" result="Failed" start-time="2026-09-27T00:13:42.2326960Z" end-time="2026-09-27T00:13:42.2342180Z" duration="0.001523" asserts="1">
+              <failure>
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 51
+   at InvokeStub_DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 51
+   at InvokeStub_DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1004" name="MenuOpenAndCloseChangeOneOwnerWithoutMovement" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.MenuOpenAndCloseChangeOneOwnerWithoutMovement" methodname="MenuOpenAndCloseChangeOneOwnerWithoutMovement" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="448415981" result="Failed" start-time="2026-09-27T00:13:42.2343300Z" end-time="2026-09-27T00:13:42.2346480Z" duration="0.000318" asserts="1">
+            <failure>
+              <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.MenuOpenAndCloseChangeOneOwnerWithoutMovement() in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 45
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.MenuOpenAndCloseChangeOneOwnerWithoutMovement() in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 45
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1018" name="NpcPermissionIsExplicit" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.NpcPermissionIsExplicit" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T00:13:42.2346640Z" end-time="2026-09-27T00:13:42.2352340Z" duration="0.000570" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1016" name="NpcPermissionIsExplicit(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.NpcPermissionIsExplicit(True)" methodname="NpcPermissionIsExplicit" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1806442559" result="Failed" start-time="2026-09-27T00:13:42.2346880Z" end-time="2026-09-27T00:13:42.2349610Z" duration="0.000273" asserts="1">
+              <failure>
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.NpcPermissionIsExplicit(Boolean capable) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 70
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.NpcPermissionIsExplicit(Boolean capable) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 70
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1017" name="NpcPermissionIsExplicit(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.NpcPermissionIsExplicit(False)" methodname="NpcPermissionIsExplicit" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="2077574404" result="Failed" start-time="2026-09-27T00:13:42.2349760Z" end-time="2026-09-27T00:13:42.2351960Z" duration="0.000220" asserts="1">
+              <failure>
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.NpcPermissionIsExplicit(Boolean capable) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 70
+   at InvokeStub_DensityGeneratedDoorTests.NpcPermissionIsExplicit(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.NpcPermissionIsExplicit(Boolean capable) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 70
+   at InvokeStub_DensityGeneratedDoorTests.NpcPermissionIsExplicit(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1003" name="OpenStateControlsRealCollisionAndSight" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.OpenStateControlsRealCollisionAndSight" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T00:13:42.2352450Z" end-time="2026-09-27T00:13:42.2359630Z" duration="0.000718" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="OpenStateControlsRealCollisionAndSight(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.OpenStateControlsRealCollisionAndSight(False)" methodname="OpenStateControlsRealCollisionAndSight" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="534684838" result="Failed" start-time="2026-09-27T00:13:42.2352760Z" end-time="2026-09-27T00:13:42.2356690Z" duration="0.000393" asserts="1">
+              <failure>
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.OpenStateControlsRealCollisionAndSight(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 39
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.OpenStateControlsRealCollisionAndSight(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 39
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="OpenStateControlsRealCollisionAndSight(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.OpenStateControlsRealCollisionAndSight(True)" methodname="OpenStateControlsRealCollisionAndSight" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1284376086" result="Failed" start-time="2026-09-27T00:13:42.2356830Z" end-time="2026-09-27T00:13:42.2359280Z" duration="0.000246" asserts="1">
+              <failure>
+                <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.OpenStateControlsRealCollisionAndSight(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 39
+   at InvokeStub_DensityGeneratedDoorTests.OpenStateControlsRealCollisionAndSight(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  ordinary generated doors need a real saved Part
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorTests.Door(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 24
+   at CavesOfOoo.Tests.DensityGeneratedDoorTests.OpenStateControlsRealCollisionAndSight(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorTests.cs:line 39
+   at InvokeStub_DensityGeneratedDoorTests.OpenStateControlsRealCollisionAndSight(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

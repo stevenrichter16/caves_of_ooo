@@ -109,11 +109,39 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(new Rect(3, 1, 10, 13), sprite.rect, "sliced to the named-resident silhouette, like her Curation and Concord counterparts");
             Assert.AreEqual(FilterMode.Point, sprite.texture.filterMode); Assert.AreEqual("stillleaf_searcher_0", sprite.name, "her own name on the slice, not a copied one");
             Assert.AreEqual("@", searcher.GetPart<RenderPart>().RenderString, "the shipped glyph is the canonical one, so the reskin guard passes");
-            // 3D: she keeps the Quillhold scribe body and moves as an actor.
+            // Managed Spread now refines her valid regional recipe to the
+            // adopted named body. Quest ownership and the 2D identity stay native.
             var catalog = Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath).Definition;
             var recipe = SpawnRing3DRecipes.Resolve(quillhold, searcher, catalog);
-            Assert.NotNull(recipe.ModelId, recipe.Failure); StringAssert.StartsWith("quillhold-scribe-", recipe.ModelId);
+            Assert.IsTrue(SpreadPresentationScope.IsActive(quillhold));
+            Assert.AreEqual("spread-person-stillleaf-searcher", recipe.ModelId, recipe.Failure);
+            Assert.AreSame(searcher, recipe.Owner);
             Assert.IsTrue(recipe.Transient); Assert.IsFalse(recipe.Batched);
+            Assert.AreEqual(StillleafArchiveContent.SearcherId, searcher.ID);
+            Assert.AreEqual(StillleafArchiveContent.ConversationId, searcher.GetPart<ConversationPart>().ConversationID);
+            Assert.AreEqual(StillleafArchiveContent.QuestId, searcher.GetPart<QuestBeaconPart>().Quest);
+            var kit = SpreadBiomeHumanoidLibrary.Load(); Assert.NotNull(kit); kit.Validate();
+            var entry = kit.Find(recipe.ModelId); Assert.NotNull(entry);
+            Assert.AreEqual(StillleafArchiveContent.SearcherBlueprint, entry.Blueprint);
+            Assert.AreEqual("humanoid", entry.Spec.rigFamily); Assert.IsTrue(entry.Spec.rigged);
+            Assert.AreEqual(StillleafArchiveContent.SearcherBlueprint, entry.Spec.sourceBlueprint);
+            var skin = entry.Prefab.GetComponentsInChildren<SkinnedMeshRenderer>(true).Single();
+            Assert.AreSame(entry.Mesh, skin.sharedMesh); Assert.IsTrue(kit.ContainsMesh(skin.sharedMesh));
+            Assert.AreEqual(1, skin.sharedMaterials.Length); Assert.AreSame(kit.Material, skin.sharedMaterial);
+            Assert.AreSame(ReferenceGladeVoxelLibrary.Load().Material, kit.Material);
+            Assert.AreEqual(9, skin.bones.Length); Assert.IsTrue(skin.bones.All(bone => bone != null));
+            var animator = entry.Prefab.GetComponentsInChildren<Animator>(true).Single();
+            Assert.NotNull(animator.avatar); Assert.IsTrue(animator.avatar.isValid);
+            CollectionAssert.AreEquivalent(new[] { "Idle", "Walk", "Interact", "Attack", "Hit" },
+                animator.runtimeAnimatorController.animationClips.Select(clip => clip.name));
+            // An ordinary resident retains her own adopted identity; neither
+            // the named model nor a hidden current owner is accepted by proxy.
+            var ordinary = quillhold.GetAllEntities().Single(e => e.BlueprintName == "Scribe");
+            Assert.AreEqual("spread-person-scribe", SpawnRing3DRecipes.Resolve(quillhold, ordinary, catalog).ModelId);
+            var render = searcher.GetPart<RenderPart>(); bool wasVisible = render.Visible;
+            try { render.Visible = false; Assert.IsNull(SpawnRing3DRecipes.Resolve(quillhold, searcher, catalog).ModelId); }
+            finally { render.Visible = wasVisible; }
+            Assert.AreEqual(recipe.ModelId, SpawnRing3DRecipes.Resolve(quillhold, searcher, catalog).ModelId);
         }
 
         [Test]

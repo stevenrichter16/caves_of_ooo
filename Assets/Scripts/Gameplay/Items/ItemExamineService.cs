@@ -13,7 +13,7 @@ namespace CavesOfOoo.Core
     public static class ItemExamineService
     {
         /// <summary>
-        /// Describe the live fields of an Item-tagged weapon, armor or tonic.
+        /// Describe the live fields of an Item-tagged weapon, armor, tonic or liquid vessel.
         /// False means no supported details; callers preserve ordinary Examine.
         /// Previews construct effects without applying them or using game RNG.
         /// </summary>
@@ -42,6 +42,23 @@ namespace CavesOfOoo.Core
                     lines.Add("Equip slots: " + string.Join(",", equipment.GetSlotArray()) + ".");
                     DescribeEquipBonuses(equipment.EquipBonuses, lines);
                 }
+            }
+
+            var vessel = item.GetPart<LiquidVesselPart>();
+            if (vessel != null)
+            {
+                bool valid = vessel.Capacity > 0 && vessel.Volume >= 0 && vessel.Volume <= vessel.Capacity
+                    && (vessel.Volume == 0 ? string.IsNullOrEmpty(vessel.LiquidId)
+                        : !string.IsNullOrEmpty(vessel.LiquidId) && LiquidRegistry.Get(vessel.LiquidId) != null);
+                if (valid)
+                {
+                    string contents = vessel.Volume == 0 ? "empty"
+                        : LiquidRegistry.Get(vessel.LiquidId).DisplayName ?? vessel.LiquidId;
+                    lines.Add("Contents: " + contents + " (" + vessel.Volume.ToString(CultureInfo.InvariantCulture)
+                        + "/" + vessel.Capacity.ToString(CultureInfo.InvariantCulture) + " volume).");
+                    lines.Add("Fill from a nearby unmixed pool; pour onto nearby ground.");
+                }
+                else lines.Add("Liquid contents are invalid; fill and pour are unavailable.");
             }
 
             if (TonicExamineService.TryDescribeDetails(item, out string tonic))

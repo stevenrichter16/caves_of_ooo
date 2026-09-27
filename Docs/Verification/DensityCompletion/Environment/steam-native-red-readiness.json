@@ -1,0 +1,52 @@
+{
+  "status": "tests only published; runtime MaterialSimSystem unchanged",
+  "files": [
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Materials/DensitySteamSchedulingTests.cs",
+      "sha256": "1f107fd83821624d1ca8b4e2625a46dff66779dd585e0082ef02cebb8027f77a"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Materials/DensitySteamSchedulingTests.cs.meta",
+      "sha256": "44d160025a0d0ef8dd4d48b9154ce709851c009cd52beefe2ae668c3d04cba9e"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Materials/DensitySteamSchedulingAdversarialTests.cs",
+      "sha256": "f5ccd680fc9092f0812903facdb7455ae2d59d6376c1cfae9adaa39076a2ebe1"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Materials/DensitySteamSchedulingAdversarialTests.cs.meta",
+      "sha256": "5f1420f4d0f6dd1c7874dc6251005207e2349ec90bd359a106bf1197f7353341"
+    }
+  ],
+  "expectedFromSameCorpusStandaloneBefore": {
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests": {
+      "total": 24,
+      "failed": 12,
+      "passed": 12
+    },
+    "CavesOfOoo.Tests.DensitySteamSchedulingTests": {
+      "total": 10,
+      "failed": 3,
+      "passed": 7
+    }
+  },
+  "expectedFailedNames": [
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_ActivePropsReceiveExactlyOneStartAndEnd(\"steam\")",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_DetachedPropsAreNotTicked(False)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_NewlySpawnedSteamWaitsForTheNextSnapshot(True)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_NewlySpawnedSteamWaitsForTheNextSnapshot(False)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_PhysicalBodySizeDoesNotMultiplyTurnDispatch(\"0,0;1,0\")",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_PhysicalBodySizeDoesNotMultiplyTurnDispatch(\"2,0\")",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_RemovedSnapshotMemberNeverReceivesALaterTurn(False,\"steam\")",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_RemovedSnapshotMemberNeverReceivesALaterTurn(True,\"thermal\")",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_SelfRemovalAtStartCannotReceiveEndTurn(True)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_SelfRemovalAtStartCannotReceiveEndTurn(False)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_SteamExpiresAndStopsSchedulingWithoutThermalDisplacement(0.05f)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingAdversarialTests.Adversarial_SteamExpiresAndStopsSchedulingWithoutThermalDisplacement(0.8f)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingTests.RealReactionSteamCoolsAndWetsAfterOriginalPropStopsBurning(False)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingTests.RealReactionSteamCoolsAndWetsAfterOriginalPropStopsBurning(True)",
+    "CavesOfOoo.Tests.DensitySteamSchedulingTests.RealReactionSteamLifetimeAdvancesWithoutDependingOnUnrelatedHeat(False)"
+  ],
+  "independentReview": "render_completion reviewed bounded runtime scheduling and footprint scan; no blocking issue",
+  "nativeResult": "pending"
+}

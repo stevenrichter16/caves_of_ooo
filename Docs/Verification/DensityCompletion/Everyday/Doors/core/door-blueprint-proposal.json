@@ -1,0 +1,65 @@
+{
+  "Name": "VillageDoor",
+  "Inherits": "PhysicalObject",
+  "Parts": [
+    {
+      "Name": "Render",
+      "Params": [
+        {
+          "Key": "DisplayName",
+          "Value": "door"
+        },
+        {
+          "Key": "RenderString",
+          "Value": "/"
+        },
+        {
+          "Key": "ColorString",
+          "Value": "&w"
+        },
+        {
+          "Key": "RenderLayer",
+          "Value": "5"
+        }
+      ]
+    },
+    {
+      "Name": "Physics",
+      "Params": [
+        {
+          "Key": "Solid",
+          "Value": "false"
+        },
+        {
+          "Key": "Takeable",
+          "Value": "false"
+        }
+      ]
+    },
+    {
+      "Name": "Door",
+      "Params": [
+        {
+          "Key": "IsOpen",
+          "Value": "true"
+        }
+      ]
+    },
+    {
+      "Name": "Examinable",
+      "Params": [
+        {
+          "Key": "Description",
+          "Value": "A fitted panel swings on hinges. A simple latch holds it closed."
+        }
+      ]
+    }
+  ],
+  "Stats": [],
+  "Tags": [
+    {
+      "Key": "Furniture",
+      "Value": ""
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-doors/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="102" result="Failed" start-time="2026-09-27T01:46:00.3802590Z" end-time="2026-09-27T01:46:00.7633070Z" duration="0.383032" total="13" passed="4" failed="9" inconclusive="0" skipped="0" warnings="0" asserts="114" random-seed="1147436719">
+  <command-line><![CDATA[/private/tmp/coo-density-doors/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-density-doors/verification/native-followup-red.xml --where "class =~ /DensityGeneratedDoorNativeFollowupTests/"]]></command-line>
+  <filter>
+    <class re="1">DensityGeneratedDoorNativeFollowupTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1130" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-doors/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="102" result="Failed" site="Child" start-time="2026-09-27T01:46:00.3802590Z" end-time="2026-09-27T01:46:00.7633070Z" duration="0.383032" total="13" passed="4" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="114">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-density-doors/Tools/EditModeRunner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-density-doors/Tools/EditModeRunner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="62246" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1131" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="102" result="Failed" site="Child" start-time="2026-09-27T01:46:00.3819200Z" end-time="2026-09-27T01:46:00.7633000Z" duration="0.381379" total="13" passed="4" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="114">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1132" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="102" result="Failed" site="Child" start-time="2026-09-27T01:46:00.3820350Z" end-time="2026-09-27T01:46:00.7632620Z" duration="0.381227" total="13" passed="4" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="114">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1114" name="DensityGeneratedDoorNativeFollowupTests" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-09-27T01:46:00.3823980Z" end-time="2026-09-27T01:46:00.7632520Z" duration="0.380854" total="13" passed="4" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="114">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1128" name="ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-27T01:46:00.3836540Z" end-time="2026-09-27T01:46:00.5340640Z" duration="0.150411" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1124" name="ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(&quot;Overworld.10.10.0&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(&quot;Overworld.10.10.0&quot;)" methodname="ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="1615144138" result="Failed" start-time="2026-09-27T01:46:00.3837330Z" end-time="2026-09-27T01:46:00.4784840Z" duration="0.094792" asserts="2">
+              <failure>
+                <message><![CDATA[  Late residents must keep doorway and approaches free.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 45
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Late residents must keep doorway and approaches free.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 45
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1125" name="ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(&quot;Overworld.5.9.0&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(&quot;Overworld.5.9.0&quot;)" methodname="ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="2084002595" result="Failed" start-time="2026-09-27T01:46:00.4793410Z" end-time="2026-09-27T01:46:00.4995020Z" duration="0.020162" asserts="2">
+              <failure>
+                <message><![CDATA[  Late residents must keep doorway and approaches free.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 45
+   at InvokeStub_DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Late residents must keep doorway and approaches free.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 45
+   at InvokeStub_DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1126" name="ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(&quot;Overworld.15.15.0&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(&quot;Overworld.15.15.0&quot;)" methodname="ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="1103448476" result="Failed" start-time="2026-09-27T01:46:00.4995760Z" end-time="2026-09-27T01:46:00.5159350Z" duration="0.016359" asserts="2">
+              <failure>
+                <message><![CDATA[  Late residents must keep doorway and approaches free.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 45
+   at InvokeStub_DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Late residents must keep doorway and approaches free.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 45
+   at InvokeStub_DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1127" name="ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(&quot;Overworld.16.1.0&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(&quot;Overworld.16.1.0&quot;)" methodname="ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="2067930319" result="Failed" start-time="2026-09-27T01:46:00.5159550Z" end-time="2026-09-27T01:46:00.5333030Z" duration="0.017348" asserts="2">
+              <failure>
+                <message><![CDATA[  Late residents must keep doorway and approaches free.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 45
+   at InvokeStub_DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Late residents must keep doorway and approaches free.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 45
+   at InvokeStub_DensityGeneratedDoorNativeFollowupTests.ActualOrdinaryPipelineWiresLateDramaPermissionsAndReservations(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1123" name="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-27T01:46:00.5343410Z" end-time="2026-09-27T01:46:00.7191180Z" duration="0.184777" total="8" passed="4" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1115" name="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;RisingInheritor&quot;,True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;RisingInheritor&quot;,True)" methodname="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="1720096478" result="Failed" start-time="2026-09-27T01:46:00.5343950Z" end-time="2026-09-27T01:46:00.5868930Z" duration="0.052498" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(String role, Boolean enabled) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 37
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(String role, Boolean enabled) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 37
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1116" name="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;RisingInheritor&quot;,False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;RisingInheritor&quot;,False)" methodname="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="746012111" result="Passed" start-time="2026-09-27T01:46:00.5869190Z" end-time="2026-09-27T01:46:00.6063860Z" duration="0.019467" asserts="3" />
+            <test-case id="1117" name="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;DiminishedHead&quot;,True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;DiminishedHead&quot;,True)" methodname="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="1070814316" result="Failed" start-time="2026-09-27T01:46:00.6064080Z" end-time="2026-09-27T01:46:00.6278600Z" duration="0.021452" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(String role, Boolean enabled) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 37
+   at InvokeStub_DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(String role, Boolean enabled) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 37
+   at InvokeStub_DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1118" name="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;DiminishedHead&quot;,False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;DiminishedHead&quot;,False)" methodname="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="2013915211" result="Passed" start-time="2026-09-27T01:46:00.6278950Z" end-time="2026-09-27T01:46:00.6438790Z" duration="0.015984" asserts="3" />
+            <test-case id="1119" name="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;NamedAntagonist&quot;,True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;NamedAntagonist&quot;,True)" methodname="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="640098474" result="Failed" start-time="2026-09-27T01:46:00.6439350Z" end-time="2026-09-27T01:46:00.6618300Z" duration="0.017895" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(String role, Boolean enabled) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 37
+   at InvokeStub_DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(String role, Boolean enabled) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 37
+   at InvokeStub_DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1120" name="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;NamedAntagonist&quot;,False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;NamedAntagonist&quot;,False)" methodname="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="1069534774" result="Passed" start-time="2026-09-27T01:46:00.6619090Z" end-time="2026-09-27T01:46:00.6815550Z" duration="0.019646" asserts="3" />
+            <test-case id="1121" name="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;SilencedHelper&quot;,True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;SilencedHelper&quot;,True)" methodname="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="931533095" result="Failed" start-time="2026-09-27T01:46:00.6815750Z" end-time="2026-09-27T01:46:00.6985980Z" duration="0.017023" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(String role, Boolean enabled) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 37
+   at InvokeStub_DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(String role, Boolean enabled) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 37
+   at InvokeStub_DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1122" name="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;SilencedHelper&quot;,False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext(&quot;SilencedHelper&quot;,False)" methodname="LateDramaResidentsOnlyGainDoorPermissionInExplicitOrdinaryContext" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="92794635" result="Passed" start-time="2026-09-27T01:46:00.6986290Z" end-time="2026-09-27T01:46:00.7190470Z" duration="0.020418" asserts="3" />
+          </test-suite>
+          <test-case id="1129" name="StationaryDoorStateInvalidatesExistingLightWithoutInventingEntityMovement" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.StationaryDoorStateInvalidatesExistingLightWithoutInventingEntityMovement" methodname="StationaryDoorStateInvalidatesExistingLightWithoutInventingEntityMovement" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="1970383716" result="Failed" start-time="2026-09-27T01:46:00.7191530Z" end-time="2026-09-27T01:46:00.7632040Z" duration="0.044051" asserts="86">
+            <failure>
+              <message><![CDATA[  Expected: 0.74523812532424927d +/- 9.9999997473787516E-05d
+  But was:  0.05000000074505806d
+  Off by:   0.69523812457919121d
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.StationaryDoorStateInvalidatesExistingLightWithoutInventingEntityMovement() in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 55
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 0.74523812532424927d +/- 9.9999997473787516E-05d
+  But was:  0.05000000074505806d
+  Off by:   0.69523812457919121d
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.StationaryDoorStateInvalidatesExistingLightWithoutInventingEntityMovement() in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 55
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

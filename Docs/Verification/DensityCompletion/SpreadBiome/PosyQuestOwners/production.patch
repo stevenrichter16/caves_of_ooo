@@ -1,0 +1,31 @@
+--- Assets/Scripts/Presentation/Rendering/SpreadBiomeHumanoidLibrary.cs
++++ Assets/Scripts/Presentation/Rendering/SpreadBiomeHumanoidLibrary.cs
+@@ -51,6 +51,19 @@
+     ||render.RenderString=="b"&&render.ColorString=="&c"&&conversation.ConversationID=="BMO_Quest"&&beacon.Quest=="BmoCartridge";
+   }
+ 
++  // Posy's message quest keeps its actual home metadata while an owner travels.
++  // The recipient has no beacon; the giver requires its exact native beacon.
++  private static bool IsAuthoredPosyQuestAppearance(Entity owner,RenderPart render)
++  {
++   if(owner.BlueprintName!="Villager"||owner.GetProperty("SettlementId")!="Overworld.5.9.0")return false;
++   var conversation=owner.GetPart<ConversationPart>();
++   if(conversation==null||!ReferenceEquals(conversation.ParentEntity,owner))return false;
++   var beacon=owner.GetPart<QuestBeaconPart>();
++   return render.RenderString=="b"&&render.ColorString=="&w"&&conversation.ConversationID=="Baker_Quest"
++     &&beacon!=null&&ReferenceEquals(beacon.ParentEntity,owner)&&beacon.Quest=="MessageForHermit"
++    ||render.RenderString=="h"&&render.ColorString=="&K"&&conversation.ConversationID=="Hermit_Quest"&&beacon==null;
++  }
++
+   internal static SpawnRing3DRecipe Refine(Zone zone,Entity owner,SpawnRing3DRecipe native)
+   {
+    if(!SpreadPresentationScope.IsActive(zone)||ModelId(owner?.BlueprintName)==null)return native;
+@@ -62,7 +75,7 @@
+      ||physics==null||!ReferenceEquals(physics.ParentEntity,owner)||physics.Takeable||physics.InInventory!=null||physics.Equipped!=null
+      ||brain==null||!ReferenceEquals(brain.ParentEntity,owner)||!owner.HasTag("Creature")||owner.HasTag("Item")
+      ||owner.HasPart<SpatialFootprintPart>()||owner.HasPart<MultiCellPilotPropPart>()||!string.IsNullOrEmpty(render.VisualID)||!string.IsNullOrEmpty(render.VisualVariant)||!string.IsNullOrEmpty(render.GlyphVariants)
+-     ||native.Failure!=null&&render.RenderString!=SpreadBiomeHumanoidSource.CanonicalGlyph(owner.BlueprintName)&&!IsAuthoredSillQuestAppearance(owner,render))return native;
++     ||native.Failure!=null&&render.RenderString!=SpreadBiomeHumanoidSource.CanonicalGlyph(owner.BlueprintName)&&!IsAuthoredSillQuestAppearance(owner,render)&&!IsAuthoredPosyQuestAppearance(owner,render))return native;
+    return new SpawnRing3DRecipe(owner,ModelId(owner.BlueprintName),native.ComponentId,Village3DProjection.CellCentre(cell.X,cell.Y),true,false,quarterTurns:native.QuarterTurns);
+   }
+  }

@@ -1,0 +1,53 @@
+{
+  "status": "private-ready-not-published",
+  "files": [
+    {
+      "path": "Assets/Editor/Art/SpreadNativeStyleBuilder.cs",
+      "source": "/tmp/coo-c15-rendering/mixed-static/Assets/Editor/Art/SpreadNativeStyleBuilder.cs",
+      "beforeSha256": "7db2148a8256447d98cfd61a2d8249befea1f08cdcb996052bb563591b2ce66d",
+      "afterSha256": "37c27dcf20ad5c8dc42e52478dbb81820d29f11c4a48146f5b36123cd226d3d9"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadNativeStyle3DLibrary.cs",
+      "source": "/tmp/coo-c15-rendering/mixed-static/Assets/Scripts/Presentation/Rendering/SpreadNativeStyle3DLibrary.cs",
+      "beforeSha256": "da3db22d4b8b8af8d539079e1a0b32539d08dd3deca1608cdb70ef5ddfe1d4e2",
+      "afterSha256": "3e96cee34d5876187bacde39220dd23bf449af9867fe27fdbc4479a272d04e43"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadBiomeStyleEvidence.cs",
+      "source": "/tmp/coo-c15-rendering/mixed-static/Assets/Scripts/Presentation/Rendering/SpreadBiomeStyleEvidence.cs",
+      "beforeSha256": "294ac6552c4bf8d5c9f5354914b4de4c5467594dd095e6e0cbb3f64e5b42f493",
+      "afterSha256": "afcb614be4534017a1d5d3fc2b2d8ca781d7004afc81501d0a179374cdc96812"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs",
+      "source": "/tmp/coo-c15-rendering/mixed-static/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs",
+      "beforeSha256": "5f9157b16cbf359af4b76614f971661463bf24bcc5e6c78d429af5ace6d61cfb",
+      "afterSha256": "3c96bf72062860db1c6c9f8f6ebeaf6891cd87324914dd5a874bac997e966fe0"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs",
+      "source": "/tmp/coo-c15-rendering/mixed-static/Assets/Scripts/Presentation/Rendering/SpawnRing3DGroundPatches.cs",
+      "beforeSha256": "d8485298a8b11c6d6d708ae36590ccef9d3d1cc41452f0db29db7c99996f0441",
+      "afterSha256": "cfef04356fb75537d511414d8df3bcae98082c9b1256aef69da233d92bc33328"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleMixedMaterialTests.cs",
+      "source": "/tmp/coo-c15-rendering/mixed-static/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleMixedMaterialTests.cs",
+      "beforeSha256": null,
+      "afterSha256": "8eac2db59ae11ae00dca88e5d77208c2c482f0fa165cf771ebb00a38b5db41e9"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleMixedMaterialTests.cs.meta",
+      "source": "/tmp/coo-c15-rendering/mixed-static/Assets/Tests/EditMode/Presentation/Rendering/SpreadNativeStyleMixedMaterialTests.cs.meta",
+      "beforeSha256": null,
+      "afterSha256": "01e9c71db9c86451bcf6ef69cc261d945c17e5bd85dd90af2a3aee33b3269581"
+    }
+  ],
+  "cases": 13,
+  "referenceCompileCases": 60,
+  "red": "Actual native importer rejected four mixed semantic World/Water sources before output creation; new Materials/PieceCount/GetPiece fixture then produced executed missing-API compiler RED. New state mutations await native execution.",
+  "behavior": "Preserve every source vertex, UV and per-material triangle/winding in two submeshes. Exact World and Water material slots are retained. Independent and batch style proof checks every source/submitted piece, renderer and root/index palette override; no surviving fragment can stand in for the missing one.",
+  "bounds": "Single-material models retain one slot; source manifest/geometry/recipe identities unchanged. Representative legacy evidence fields remain; PieceCount/GetPiece enumerate body material-slot evidence. Equipment proof still has its existing representative evidence after its own all-pieces validation.",
+  "publishedAt": "2026-09-27T05:50:53.841067+00:00"
+}

@@ -1,0 +1,93 @@
+--- Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeBiome.cs
++++ Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeBiome.cs
+@@ -15,6 +15,9 @@
+         private bool _biomeOnly;
+         private readonly List<string> _biomeSteps = new List<string>();
+         private int _biomeShortcuts;
++        private Guid _biomeOriginalCalm;
++        private int _biomeDefensiveCalmUses;
++        private const int MaxBiomeDefensiveCalmUses = 8;
+         private static readonly string[] BiomeRequired = {
+             "biome_initial_profile", "original_dagger_ground_owner", "original_dagger_picked_up", "biome_native_harvest_paid_and_finite",
+             "biome_checkpoint_saved", "biome_checkpoint_mutated", "biome_checkpoint_restored",
+@@ -34,6 +37,9 @@
+             Require(actor.GetStatValue("Hitpoints") == 40 && actor.GetStatValue("Strength") == 18
+                 && actor.GetStatValue("Agility") == 18 && actor.GetStatValue("Toughness") == 18
+                 && TradeSystem.GetDrams(actor) == 50 && !actor.HasTag("Invulnerable"),"ordinary unmodified starter");
++            _biomeOriginalCalm = actor.GetPart<ActivatedAbilitiesPart>()?.AbilityList
++                .SingleOrDefault(a => a.Command == "CommandCalm")?.ID ?? Guid.Empty;
++            Require(_biomeOriginalCalm != Guid.Empty,"actual original starting Calm exists before any route action");
+             string initialItems = BiomeItemCollection(actor), actorID = actor.ID;
+             Check("biome_initial_profile", BiomeProfile(true));
+             var dagger = actor.GetPart<InventoryPart>().Objects.Single(e => e.BlueprintName == "Dagger");
+@@ -136,7 +142,13 @@
+                         source=candidate;approach=near;best=path;
+                     }
+                 }
+-                if(source==null)BiomeRouteDiagnostic(zone);
++                if(source==null)
++                {
++                    BiomeRouteDiagnostic(zone);
++                    int castsBefore=_biomeDefensiveCalmUses;
++                    yield return BiomeCalmBlockingThreat();
++                    if(_biomeDefensiveCalmUses>castsBefore)continue;
++                }
+                 Require(source!=null,"real visited neighbor contains a currently reachable finite Bones/BerryBush source; no staged replacement");
+                 _biomeSteps.Add("adaptive-harvest "+zone.ZoneID+"@"+Cell().X+","+Cell().Y+" source="+source.ID+":"+source.BlueprintName+" approach="+approach.X+","+approach.Y+" remaining="+best.Count);
+                 if(best.Count==0)break;
+@@ -336,7 +348,55 @@
+             var actor=_input.PlayerEntity;
+             return zone.GetReadOnlyEntities().Where(e=>e!=actor&&e.HasTag("Creature")&&!CombatSystem.IsDeathHandled(e)
+                 &&(e.GetStat("Hitpoints")==null||e.GetStatValue("Hitpoints")>0)
++                &&!ReferenceGladeRouteControl.HasLiveCalm(zone,e)
+                 &&(FactionManager.IsHostile(e,actor)||e.GetPart<BrainPart>()?.IsPersonallyHostileTo(actor)==true||e.GetPart<BrainPart>()?.Target==actor)).ToArray();
++        }
++        private IEnumerator BiomeCalmBlockingThreat()
++        {
++            // A defensive action is only considered after the unchanged safe
++            // route actually failed. No cooldown waits or actor/world edits.
++            var zone=_input.CurrentZone;var actor=_input.PlayerEntity;var origin=Cell();
++            if(_biomeDefensiveCalmUses>=MaxBiomeDefensiveCalmUses)yield break;
++            foreach(var target in BiomeThreats(zone).Where(e=>SpatialQuery.Distance(zone,actor,e)<=2)
++                .OrderBy(e=>SpatialQuery.Distance(zone,actor,e)).ThenBy(e=>e.ID,StringComparer.Ordinal))
++            {
++                if(!ReferenceGladeRouteControl.TryCalm(zone,actor,target,_biomeOriginalCalm,out int slot,out int dx,out int dy))continue;
++                var ability=actor.GetPart<ActivatedAbilitiesPart>().GetAbilityBySlot(slot);
++                int tick=_input.TurnManager.TickCount,energy=_input.TurnManager.GetEnergy(actor);
++                string gear=CombatGear(actor),targetID=target.ID;
++                _biomeSteps.Add("DEFENSIVE CALM begin exact owner="+targetID+"@"+zone.GetEntityCell(target).X+","+zone.GetEntityCell(target).Y
++                    +" originalAbility="+_biomeOriginalCalm+" slot="+slot+" from="+origin.X+","+origin.Y+" tick="+tick+" energy="+energy);
++                try
++                {
++                    yield return Tap((Key)Enum.Parse(typeof(Key),slot==9?"Digit0":"Digit"+(slot+1)));
++                    Require(State()=="AwaitingDirection"&&_input.TurnManager.TickCount==tick
++                        &&_input.TurnManager.GetEnergy(actor)==energy,"native original Calm asks for direction before payment");
++                    Require(ReferenceEquals(_input.CurrentZone,zone)&&ReferenceEquals(_input.PlayerEntity,actor)&&ReferenceEquals(Cell(),origin)
++                        &&ReferenceGladeRouteControl.TryCalm(zone,actor,target,_biomeOriginalCalm,out int freshSlot,out int freshDx,out int freshDy)
++                        &&freshSlot==slot&&freshDx==dx&&freshDy==dy,"exact live original target and first impact still match before direction");
++                    yield return Tap(Direction(dx,dy));
++                    double began=Time.realtimeSinceStartupAsDouble;
++                    while(State()=="WaitingForFxResolution"||_input.ZoneRenderer?.WorldFx?.HasBlockingFx==true)
++                    {Require(Time.realtimeSinceStartupAsDouble-began<8&&!CombatSystem.IsDeathHandled(actor),"finite native Calm FX resolution");yield return null;}
++                    Require(State()=="Normal"&&ReferenceEquals(_input.CurrentZone,zone)&&ReferenceEquals(_input.PlayerEntity,actor)
++                        &&ReferenceEquals(Cell(),origin)&&BiomeOneAction(tick,energy)&&CombatGear(actor)==gear
++                        &&ReferenceEquals(actor.GetPart<ActivatedAbilitiesPart>().GetAbilityBySlot(slot),ability)
++                        &&ability.ID==_biomeOriginalCalm&&ability.CooldownRemaining>0
++                        &&target.ID==targetID&&ReferenceGladeRouteControl.HasLiveCalm(zone,target),
++                        "native original Calm paid one stationary action and pacified the exact current owner without changing gear");
++                    _biomeDefensiveCalmUses++;
++                }
++                finally
++                {
++                    var goal=target.GetPart<BrainPart>()?.PeekGoal() as NoFightGoal;
++                    _biomeSteps.Add("DEFENSIVE CALM observed owner="+targetID+" live="+(zone.GetEntityCell(target)!=null)
++                        +" goal="+(goal==null?"none":goal.Age+"/"+goal.Duration+" wander="+goal.Wander+" finished="+goal.Finished())
++                        +" cooldown="+ability.CooldownRemaining+" provenUses="+_biomeDefensiveCalmUses+" state="+BiomeState());
++                    WriteReport();
++                }
++                yield break;
++            }
++            _biomeSteps.Add("DEFENSIVE CALM unavailable: no ready original ability with a visible exact first-impact threat within two cells; ordinary failure retained");
+         }
+         private bool BiomeSafe(Zone zone,Cell cell,int clearance)=>BiomeSafe(zone,cell,clearance,BiomeThreats(zone));
+         private bool BiomeSafe(Zone zone,Cell cell,int clearance,Entity[] threats)

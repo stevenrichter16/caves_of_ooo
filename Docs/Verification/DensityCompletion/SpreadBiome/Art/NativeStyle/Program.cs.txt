@@ -1,0 +1,16 @@
+using System.Text.Json;
+using CavesOfOoo.Rendering;
+var options=new JsonSerializerOptions{IncludeFields=true};var raw=File.ReadAllText("../ArtSource/SpreadNativeStyle3D/sources.json");
+SpreadNativeStyleSource Load()=>JsonSerializer.Deserialize<SpreadNativeStyleSource>(raw,options);
+int passed=0;void Check(string name,Action<SpreadNativeStyleSource> mutate,bool refused=true){var input=Load();mutate(input);bool did=false;try{input.Validate();}catch(InvalidOperationException){did=true;}if(did!=refused)throw new Exception(name+": refusal="+did);Console.WriteLine("PASS "+name);passed++;}
+Check("exact full existing static graph",_=>{},false);
+Check("null models",x=>x.models=null);Check("empty models",x=>x.models=Array.Empty<SpreadNativeStyleSource.Model>());
+Check("one missing",x=>x.models=x.models[..^1]);Check("extra row",x=>x.models=x.models.Append(x.models[0]).ToArray());
+Check("null entry",x=>x.models[0]=null);Check("duplicate",x=>x.models[1].id=x.models[0].id);
+Check("wrong version",x=>x.schemaVersion=2);Check("wrong identity",x=>x.id="other");
+Check("null id",x=>x.models[0].id=null);Check("empty id",x=>x.models[0].id="");Check("path traversal",x=>x.models[0].id="../ring-sack");
+Check("slash",x=>x.models[0].id="ring/sack");Check("uppercase",x=>x.models[0].id="Ring-sack");
+Check("unknown library",x=>x.models[0].sourceLibrary="Unknown");Check("null library",x=>x.models[0].sourceLibrary=null);
+Check("actor geometry",x=>x.models[0].kind="actor");Check("unknown kind",x=>x.models[0].kind="invisible");
+Check("ordered input is not gameplay RNG",x=>Array.Reverse(x.models),false);
+Console.WriteLine($"RESULT {passed}/{passed} PASS");

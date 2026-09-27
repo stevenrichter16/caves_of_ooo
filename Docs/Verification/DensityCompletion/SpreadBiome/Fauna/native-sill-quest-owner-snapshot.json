@@ -1,0 +1,38 @@
+{
+  "result": {
+    "seed": 64,
+    "zone": "Overworld.10.10.0",
+    "scope": "Actual regenerated detached Sill graph under ordinary native content fixture; IDs can differ from prior census allocation; no presenter/world/save mutations.",
+    "owners": [
+      {
+        "ID": "2859",
+        "BlueprintName": "Villager",
+        "DisplayName": "Hallun",
+        "RenderString": "r",
+        "ColorString": "&r",
+        "VisualID": "",
+        "conversation": "RootBeerGuy_Quest",
+        "quest": "RootBeerGuyCase",
+        "renderBacklink": true,
+        "conversationBacklink": true,
+        "beaconBacklink": true,
+        "position": "(35, 17)"
+      },
+      {
+        "ID": "2868",
+        "BlueprintName": "Villager",
+        "DisplayName": "Ellun",
+        "RenderString": "b",
+        "ColorString": "&c",
+        "VisualID": "",
+        "conversation": "BMO_Quest",
+        "quest": "BmoCartridge",
+        "renderBacklink": true,
+        "conversationBacklink": true,
+        "beaconBacklink": true,
+        "position": "(49, 9)"
+      }
+    ]
+  },
+  "code": "var testType=System.AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType(\"CavesOfOoo.Tests.EntityEquipmentContentFixture\")).First(t=>t!=null);\nvar fixture=System.Activator.CreateInstance(testType,true);\ntry {\n var factory=(CavesOfOoo.Data.EntityFactory)testType.GetField(\"Factory\").GetValue(fixture);\n var manager=CavesOfOoo.Core.OverworldZoneManager.CreateDetached(factory,64); var zone=manager.GetZone(\"Overworld.10.10.0\");\n var rows=zone.GetReadOnlyEntities().Where(e=>e.BlueprintName==\"Villager\" && e.GetPart<CavesOfOoo.Core.RenderPart>().RenderString!=\"@\").Select(e=>{\n var render=e.GetPart<CavesOfOoo.Core.RenderPart>(); var conversation=e.GetPart<CavesOfOoo.Core.ConversationPart>(); var beacon=e.GetPart<CavesOfOoo.Storylets.QuestBeaconPart>();\n return new { e.ID,e.BlueprintName,render.DisplayName,render.RenderString,render.ColorString,render.VisualID, conversation=conversation==null?null:conversation.ConversationID, quest=beacon==null?null:beacon.Quest,renderBacklink=System.Object.ReferenceEquals(render.ParentEntity,e),conversationBacklink=conversation!=null&&System.Object.ReferenceEquals(conversation.ParentEntity,e),beaconBacklink=beacon!=null&&System.Object.ReferenceEquals(beacon.ParentEntity,e),position=zone.GetEntityPosition(e).ToString()}; }).ToArray();\n return new {seed=64,zone=zone.ZoneID,scope=\"Actual regenerated detached Sill graph under ordinary native content fixture; IDs can differ from prior census allocation; no presenter/world/save mutations.\",owners=rows};\n}finally{((System.IDisposable)fixture).Dispose();}"
+}

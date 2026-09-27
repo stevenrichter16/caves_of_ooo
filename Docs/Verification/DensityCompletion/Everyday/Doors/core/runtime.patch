@@ -1,0 +1,501 @@
+--- a/Assets/Scripts/Gameplay/World/Map/Cell.cs
++++ b/Assets/Scripts/Gameplay/World/Map/Cell.cs
+@@ -101,7 +101,7 @@
+             if (MorrowfastSceneRuntime.BlockingOwner(this) != null) return true;
+             for (int i = 0; i < Occupants.Count; i++)
+             {
+-                if (Occupants[i].HasTag("Solid") || Occupants[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
++                if (Occupants[i].HasTag("Solid") || Occupants[i].GetPart<DoorPart>()?.IsClosed == true || Occupants[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
+                     return true;
+             }
+             return false;
+@@ -135,7 +135,7 @@
+                 if (o.HasTag("Solid")) return true;
+                 var physics = o.GetPart<PhysicsPart>();
+                 if (physics != null && physics.Solid) return true;
+-                if (o.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true) return true;
++                if (o.GetPart<DoorPart>()?.IsClosed == true || o.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true) return true;
+             }
+             return false;
+         }
+@@ -148,7 +148,7 @@
+             if (MorrowfastSceneRuntime.BlockingOwner(this, opaqueOnly: true) != null) return true;
+             for (int i = 0; i < Occupants.Count; i++)
+             {
+-                if (Occupants[i].HasTag("Wall") || Occupants[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
++                if (Occupants[i].HasTag("Wall") || Occupants[i].GetPart<DoorPart>()?.IsClosed == true || Occupants[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
+                     return true;
+             }
+             return false;
+--- a/Assets/Scripts/Gameplay/World/Map/Zone.cs
++++ b/Assets/Scripts/Gameplay/World/Map/Zone.cs
+@@ -111,7 +111,7 @@
+ 
+         /// <summary>Checks the complete candidate body without mutation; ignores itself.
+         /// ignoreCreatures is used by path searches that deliberately omit actors.</summary>
+-        public bool CanPlaceFootprint(Entity entity, int x, int y, bool ignoreCreatures = false, Entity ignoring = null)
++        public bool CanPlaceFootprint(Entity entity, int x, int y, bool ignoreCreatures = false, Entity ignoring = null, bool allowOperableDoors = false)
+         {
+             if (entity == null || !InBounds(x,y)) return false;
+             var cells = GetOccupiedCells(entity, x, y);
+@@ -127,6 +127,8 @@
+                     if (other == null || other == entity || other == ignoring || (ignoreCreatures && other.HasTag("Creature"))) continue;
+                     if (other.HasTag("Solid") || other.GetPart<PhysicsPart>()?.Solid == true
+                         || other.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true) return false;
++                    var door = other.GetPart<DoorPart>();
++                    if (door?.IsClosed == true && (!allowOperableDoors || !door.CanOperate(entity, this))) return false;
+                 }
+             }
+             return true;
+--- a/Assets/Scripts/Gameplay/Turns/MovementSystem.cs
++++ b/Assets/Scripts/Gameplay/Turns/MovementSystem.cs
+@@ -38,18 +38,36 @@
+         /// Extended move attempt that also returns what blocked movement.
+         /// Returns (moved, blockedBy) where blockedBy is the entity that blocked, or null.
+         /// </summary>
++        public readonly struct MoveResult
++        {
++            public readonly bool Moved,ActionPerformed;
++            public readonly Entity BlockedBy;
++            public MoveResult(bool moved,bool performed,Entity blockedBy)
++            {Moved=moved;ActionPerformed=performed;BlockedBy=blockedBy;}
++        }
++        /// <summary>Compatibility: moved is true only after actual relocation.
++        /// This entry point retains the original movement-only behavior.</summary>
+         public static (bool moved, Entity blockedBy) TryMoveEx(Entity entity, Zone zone, int dx, int dy)
+         {
++            var result=TryMoveDetailedCore(entity,zone,dx,dy,false);
++            return (result.Moved,result.BlockedBy);
++        }
++        /// <summary>Native input and NPC navigation may perform one stationary
++        /// door action. ActionPerformed never implies the actor moved.</summary>
++        public static MoveResult TryMoveDetailed(Entity entity,Zone zone,int dx,int dy)
++            =>TryMoveDetailedCore(entity,zone,dx,dy,true);
++        private static MoveResult TryMoveDetailedCore(Entity entity, Zone zone, int dx, int dy,bool allowDoorAction)
++        {
+             var currentCell = zone.GetEntityCell(entity);
+-            if (currentCell == null) return (false, null);
++            if (currentCell == null) return new MoveResult(false,false,null);
+ 
+             int newX = currentCell.X + dx;
+             int newY = currentCell.Y + dy;
+ 
+-            if (!zone.InBounds(newX, newY)) return (false, null);
++            if (!zone.InBounds(newX, newY)) return new MoveResult(false,false,null);
+ 
+             var targetCell = zone.GetCell(newX, newY);
+-            if (targetCell == null) return (false, null);
++            if (targetCell == null) return new MoveResult(false,false,null);
+ 
+             // Fire BeforeMove event
+             var beforeMove = GameEvent.New("BeforeMove");
+@@ -64,15 +82,18 @@
+             {
+                 // Check if something blocked us
+                 var blocker = beforeMove.GetParameter<Entity>("BlockedBy");
++                bool performed=beforeMove.GetParameter<bool>("ActionPerformed");
+                 beforeMove.Release();
+-                return (false, blocker);
++                if(allowDoorAction && !performed && blocker?.GetPart<DoorPart>() is DoorPart door && door.IsClosed)
++                    performed=door.TrySetOpen(entity,zone,true);
++                return new MoveResult(false,performed,blocker);
+             }
+             beforeMove.Release();
+ 
+             // Perform the move
+             int oldX = currentCell.X;
+             int oldY = currentCell.Y;
+-            if (!zone.MoveEntity(entity, newX, newY)) return (false, null);
++            if (!zone.MoveEntity(entity, newX, newY)) return new MoveResult(false,false,null);
+ 
+             NotifyVisualMove(entity, zone, oldX, oldY, newX, newY, false);
+ 
+@@ -95,7 +116,7 @@
+             FireCellEnteredEvents(entity, currentCell, targetCell);
+             LiquidSlipSystem.ResolveAfterMove(entity, zone, targetCell);
+ 
+-            return (true, null);
++            return new MoveResult(true,false,null);
+         }
+ 
+         /// <summary>
+--- a/Assets/Scripts/Gameplay/Combat/PhysicsPart.cs
++++ b/Assets/Scripts/Gameplay/Combat/PhysicsPart.cs
+@@ -126,6 +126,7 @@
+                 var otherPhysics = other.GetPart<PhysicsPart>();
+                 bool isSolid = (otherPhysics != null && otherPhysics.Solid)
+                                || other.HasTag("Solid")
++                               || other.GetPart<DoorPart>()?.IsClosed == true
+                                || other.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true;
+                 if (!isSolid) continue;
+ 
+@@ -153,6 +154,8 @@
+                         // bumps walk through. Still block THIS turn
+                         // so the player explicitly steps in next.
+                         if (otherPhysics != null) otherPhysics.Solid = false;
++                        e.SetParameter("ActionPerformed", true);
++                        ZoneRenderHooks.MarkFullDirty("Door.Unlocked");
+                     }
+                     e.SetParameter("Blocked", true);
+                     e.SetParameter("BlockedBy", (object)other);
+--- a/Assets/Scripts/Gameplay/Items/LockPart.cs
++++ b/Assets/Scripts/Gameplay/Items/LockPart.cs
+@@ -113,6 +113,9 @@
+                 if (command != "Unlock") return true;
+ 
+                 var menuActor = e.GetParameter<Entity>("Actor");
++                var ordinaryDoor=ParentEntity?.GetPart<DoorPart>();
++                if(ordinaryDoor!=null&&(!IsLocked||!ordinaryDoor.CanUnlock(menuActor,e.GetParameter<Zone>("Zone"))))
++                {ordinaryDoor.RejectUnlock(menuActor);return true;}
+                 var attempt = GameEvent.New("AttemptUnlock");
+                 attempt.SetParameter("Actor", (object)menuActor);
+                 ParentEntity.FireEventAndRelease(attempt);
+@@ -133,6 +136,10 @@
+             if (e.ID != "AttemptUnlock") return true;
+ 
+             var actor = e.GetParameter<Entity>("Actor");
++            var door=ParentEntity?.GetPart<DoorPart>();
++            if(door!=null&&!door.CanUnlock(actor,e.GetParameter<Zone>("Zone")??ParentEntity.SpatialZone))
++            {e.SetParameter("Unlocked",false);door.RejectUnlock(actor);return true;}
++            bool wasLocked=IsLocked;
+             bool succeeded;
+             Entity keyUsed = null;
+ 
+@@ -173,6 +180,7 @@
+                 succeeded = !IsLocked;
+             }
+ 
++            if(wasLocked&&!IsLocked)door?.RefreshAfterLockChange();
+             // Surface results on the event + log line + diag record.
+             e.SetParameter("Unlocked", succeeded);
+             if (keyUsed != null) e.SetParameter("KeyUsed", (object)keyUsed);
+--- a/Assets/Scripts/Presentation/Input/InputHandler.cs
++++ b/Assets/Scripts/Presentation/Input/InputHandler.cs
+@@ -741,9 +741,10 @@
+                 int oldX = oldCell?.X ?? -1;
+                 int oldY = oldCell?.Y ?? -1;
+ 
+-                var (moved, blockedBy) = MovementSystem.TryMoveEx(PlayerEntity, CurrentZone, dx, dy);
+-
+-                if (moved)
++                var move = MovementSystem.TryMoveDetailed(PlayerEntity, CurrentZone, dx, dy);
++                var blockedBy = move.BlockedBy;
++
++                if (move.Moved)
+                 {
+                     var newCell = CurrentZone.GetEntityCell(PlayerEntity);
+ 
+@@ -751,6 +752,12 @@
+                     if (ZoneRenderer != null && oldCell != null && newCell != null)
+                         ZoneRenderer.RefreshMovement(oldX, oldY, newCell.X, newCell.Y);
+ 
++                    EndTurnAndProcess();
++                }
++                else if (move.ActionPerformed)
++                {
++                    // Unlocking/opening is this turn's action. It must not also
++                    // strike the owner or walk through it in the same input.
+                     EndTurnAndProcess();
+                 }
+                 else if (blockedBy != null && blockedBy.HasTag("Creature")
+@@ -814,7 +821,7 @@
+                 // Pair this with TurnManager.ProcessUntilPlayerTurn's
+                 // early-return on player-block: one keypress = one
+                 // blocked-turn thaw, matching player expectation.
+-                if (!moved)
++                if (!move.Moved && !move.ActionPerformed)
+                 {
+                     var sep = PlayerEntity.GetPart<StatusEffectsPart>();
+                     if (sep != null && sep.IsActionBlocked())
+--- a/Assets/Scripts/Gameplay/AI/FindPath.cs
++++ b/Assets/Scripts/Gameplay/AI/FindPath.cs
+@@ -136,16 +136,20 @@
+                     // passability check and the terrain/gas hazard penalty.
+                     var neighborCell = zone.GetCell(nx, ny);
+ 
+-                    // Goal cell is always considered passable (we want to path TO it)
++                    // Doors never inherit the legacy goal-cell shortcut. A capable
++                    // actor may plan one paid opening action, without changing it.
++                    int doorCost = DoorStepCost(zone, neighborCell, actor);
++                    if (doorCost < 0) continue;
+                     bool wideActor = actor?.HasPart<SpatialFootprintPart>() == true;
+                     if (wideActor || contactTarget != null)
+                     {
+-                        if (!zone.CanPlaceFootprint(actor, nx, ny, ignoreCreatures)) continue;
++                        if (!zone.CanPlaceFootprint(actor, nx, ny, ignoreCreatures, allowOperableDoors: true)) continue;
+                     }
+                     else if (neighborIdx != goalIdx)
+                     {
+                         if (neighborCell == null) continue;
+-                        if (!neighborCell.IsPassable()) continue;
++                        if (!neighborCell.IsPassable()
++                            && !(doorCost > 0 && zone.CanPlaceFootprint(actor, nx, ny, ignoreCreatures, allowOperableDoors: true))) continue;
+ 
+                         // When not ignoring creatures, also check PhysicsPart.Solid.
+                         // Cell.IsPassable() only checks the "Solid" tag (walls), but
+@@ -172,7 +176,7 @@
+                     // Finite terrain/gas avoidance cost for the complete body.
+                     // Actor-less callers remain unchanged; a sole hazardous
+                     // route can still reach the goal.
+-                    int tentativeG = Pool[currentIdx].G + Cost[dir];
++                    int tentativeG = Pool[currentIdx].G + Cost[dir] + doorCost;
+                     if (actor != null && neighborCell != null)
+                         tentativeG += TerrainNavigationWeight.ForStep(zone, nx, ny, actor);
+ 
+@@ -203,6 +207,34 @@
+             return result;
+         }
+ 
++        private static int DoorStepCost(Zone zone, Cell target, Entity actor)
++        {
++            if (target == null) return -1;
++            var cells = actor == null ? default(OccupiedCells) : zone.GetOccupiedCells(actor, target.X, target.Y);
++            HashSet<Entity> seen = null;
++            int cost = 0;
++            if (actor == null)
++            {
++                foreach (var owner in target.Occupants)
++                    if (owner.GetPart<DoorPart>()?.IsClosed == true) return -1;
++                return 0;
++            }
++            foreach (var cell in cells)
++            {
++                if (cell == null) return -1;
++                foreach (var owner in cell.Occupants)
++                {
++                    var door = owner.GetPart<DoorPart>();
++                    if (door?.IsClosed != true) continue;
++                    if (seen == null) seen = new HashSet<Entity>();
++                    if (!seen.Add(owner)) continue;
++                    if (!door.CanOperate(actor, zone)) return -1;
++                    cost += 10;
++                }
++            }
++            return cost;
++        }
++
+         /// <summary>Finds any reachable, non-overlapping body contact. One A*
+         /// search considers all edges, including when the nearest edge is enclosed.</summary>
+         public static FindPath ToContact(Zone zone,Entity actor,Entity target,int maxNodes=2000)
+--- a/Assets/Scripts/Gameplay/AI/AIHelpers.cs
++++ b/Assets/Scripts/Gameplay/AI/AIHelpers.cs
+@@ -316,39 +316,45 @@
+         /// <summary>
+         /// Greedy step toward target with fallback directions.
+         /// Tries the ideal diagonal/cardinal direction first, then falls back to alternatives.
+-        /// Returns true if movement succeeded.
++        /// Returns true if movement or one stationary door action succeeded.
+         ///
+         /// This is the fast path — it handles thin obstacles (single-cell walls)
+         /// via diagonal/cardinal fallbacks, but CANNOT navigate around larger
+         /// obstacles like building walls. Use TryApproachWithPathfinding for
+         /// combat/chase logic that must reach moving targets around walls.
+         /// </summary>
++        private static bool TryStepOrOpenDoor(Entity actor, Zone zone, int dx, int dy)
++        {
++            var move = MovementSystem.TryMoveDetailed(actor, zone, dx, dy);
++            return move.Moved || move.ActionPerformed;
++        }
++
+         public static bool TryStepToward(Entity entity, Zone zone, int myX, int myY, int targetX, int targetY)
+         {
+             var (dx, dy) = StepToward(myX, myY, targetX, targetY);
+ 
+-            if (MovementSystem.TryMove(entity, zone, dx, dy))
++            if (TryStepOrOpenDoor(entity, zone, dx, dy))
+                 return true;
+ 
+             if (dx != 0 && dy != 0)
+             {
+-                if (MovementSystem.TryMove(entity, zone, dx, 0))
+-                    return true;
+-                if (MovementSystem.TryMove(entity, zone, 0, dy))
++                if (TryStepOrOpenDoor(entity, zone, dx, 0))
++                    return true;
++                if (TryStepOrOpenDoor(entity, zone, 0, dy))
+                     return true;
+             }
+             else if (dx != 0)
+             {
+-                if (MovementSystem.TryMove(entity, zone, dx, 1))
+-                    return true;
+-                if (MovementSystem.TryMove(entity, zone, dx, -1))
++                if (TryStepOrOpenDoor(entity, zone, dx, 1))
++                    return true;
++                if (TryStepOrOpenDoor(entity, zone, dx, -1))
+                     return true;
+             }
+             else if (dy != 0)
+             {
+-                if (MovementSystem.TryMove(entity, zone, 1, dy))
+-                    return true;
+-                if (MovementSystem.TryMove(entity, zone, -1, dy))
++                if (TryStepOrOpenDoor(entity, zone, 1, dy))
++                    return true;
++                if (TryStepOrOpenDoor(entity, zone, -1, dy))
+                     return true;
+             }
+             return false;
+@@ -392,7 +398,7 @@
+                     var idealCell = zone.GetCell(idealX, idealY);
+                     if (idealCell != null && idealCell.IsPassable())
+                     {
+-                        if (MovementSystem.TryMove(entity, zone, dx, dy))
++                        if (TryStepOrOpenDoor(entity, zone, dx, dy))
+                             return true;
+                     }
+                 }
+@@ -408,7 +414,7 @@
+             if (path.Usable && path.Steps.Count > 0)
+             {
+                 var (pdx, pdy) = path.Steps[0];
+-                if (MovementSystem.TryMove(entity, zone, pdx, pdy))
++                if (TryStepOrOpenDoor(entity, zone, pdx, pdy))
+                     return true;
+             }
+ 
+@@ -426,14 +432,14 @@
+         {
+             var (dx, dy) = StepAway(myX, myY, awayFromX, awayFromY);
+ 
+-            if (MovementSystem.TryMove(entity, zone, dx, dy))
++            if (TryStepOrOpenDoor(entity, zone, dx, dy))
+                 return true;
+ 
+             if (dx != 0 && dy != 0)
+             {
+-                if (MovementSystem.TryMove(entity, zone, dx, 0))
+-                    return true;
+-                if (MovementSystem.TryMove(entity, zone, 0, dy))
++                if (TryStepOrOpenDoor(entity, zone, dx, 0))
++                    return true;
++                if (TryStepOrOpenDoor(entity, zone, 0, dy))
+                     return true;
+             }
+             return false;
+--- a/Assets/Scripts/Gameplay/AI/Goals/MoveToGoal.cs
++++ b/Assets/Scripts/Gameplay/AI/Goals/MoveToGoal.cs
+@@ -54,10 +54,12 @@
+             if (_pathStep < _path.Count)
+             {
+                 var (dx, dy) = _path[_pathStep];
+-                if (MovementSystem.TryMove(ParentEntity, CurrentZone, dx, dy))
++                var move = MovementSystem.TryMoveDetailed(ParentEntity, CurrentZone, dx, dy);
++                if (move.Moved)
+                 {
+                     _pathStep++;
+                 }
++                else if (move.ActionPerformed) return;
+                 else
+                 {
+                     // Step blocked — recompute from current position
+@@ -71,10 +73,9 @@
+                     else if (_pathStep < _path.Count)
+                     {
+                         var (rdx, rdy) = _path[_pathStep];
+-                        if (MovementSystem.TryMove(ParentEntity, CurrentZone, rdx, rdy))
+-                            _pathStep++;
+-                        else
+-                            FailToParent();
++                        var retry = MovementSystem.TryMoveDetailed(ParentEntity, CurrentZone, rdx, rdy);
++                        if (retry.Moved) _pathStep++;
++                        else if (!retry.ActionPerformed) FailToParent();
+                     }
+                 }
+             }
+--- a/Assets/Scripts/Gameplay/AI/Goals/StepGoal.cs
++++ b/Assets/Scripts/Gameplay/AI/Goals/StepGoal.cs
+@@ -20,7 +20,9 @@
+ 
+         public override void TakeAction()
+         {
+-            if (!MovementSystem.TryMove(ParentEntity, CurrentZone, DX, DY))
++            var move = MovementSystem.TryMoveDetailed(ParentEntity, CurrentZone, DX, DY);
++            if (move.ActionPerformed) return;
++            if (!move.Moved)
+             {
+                 FailToParent();
+                 return;
+--- a/Assets/Scripts/Gameplay/World/Generation/Builders/VillageBuilder.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/Builders/VillageBuilder.cs
+@@ -17,6 +17,18 @@
+         private BiomeType _biome;
+         private PointOfInterest _poi;
+         private SettlementManager _settlementManager;
++        internal readonly struct DoorAperture
++        {
++            internal readonly int X,Y,InDX,InDY;
++            internal readonly Entity FlankA,FlankB;
++            internal DoorAperture(int x,int y,int dx,int dy,Entity a,Entity b)
++            {X=x;Y=y;InDX=dx;InDY=dy;FlankA=a;FlankB=b;}
++        }
++        private readonly List<DoorAperture> _doorApertures = new List<DoorAperture>();
++        internal IReadOnlyList<DoorAperture> DoorApertures => _doorApertures;
++        internal Zone ApertureSourceZone { get; private set; }
++        internal int ApertureRevision { get; private set; }
++
+ 
+         // Biome palette
+         private string _floorBlueprint;
+@@ -103,6 +115,9 @@
+ 
+         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
+         {
++            ApertureSourceZone=zone;
++            ApertureRevision++;
++            _doorApertures.Clear();
+             // 1. Fill the zone with biome-appropriate floor
+             FillWithFloor(zone, factory);
+ 
+@@ -276,7 +291,18 @@
+                     if (cell.Objects[i].HasTag("Wall"))
+                         zone.RemoveEntity(cell.Objects[i]);
+                 }
+-            }
++                int inDX=side==2?1:side==3?-1:0;
++                int inDY=side==0?1:side==1?-1:0;
++                var a=ApertureWall(zone.GetCell(doorX-inDY,doorY+inDX));
++                var b=ApertureWall(zone.GetCell(doorX+inDY,doorY-inDX));
++                if(a!=null&&b!=null)_doorApertures.Add(new DoorAperture(doorX,doorY,inDX,inDY,a,b));
++            }
++        }
++
++        private static Entity ApertureWall(Cell cell)
++        {
++            if(cell!=null)foreach(var entity in cell.Occupants)if(entity.HasTag("Wall"))return entity;
++            return null;
+         }
+ 
+         private void CarvePath(Zone zone, EntityFactory factory, int x1, int y1, int x2, int y2)
+--- a/Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/Builders/VillagePopulationBuilder.cs
+@@ -1298,6 +1298,7 @@
+         private void WireNPC(Entity npc, string settlementId)
+         {
+             if (npc == null) return;
++            npc.SetTag("CanOpenDoors");
+             if (_poi?.Faction != null)
+                 npc.SetTag("Faction", _poi.Faction);
+             if (!string.IsNullOrEmpty(settlementId))
+--- a/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+@@ -871,7 +871,9 @@
+             var tineBase=tine?new TineCompositionBuilder(WorldSeed):null;
+             var quillholdBase=quillhold?new QuillholdCompositionBuilder(WorldSeed):null;
+             var tallyBase=tally?new TallyCompositionBuilder(WorldSeed):null;
+-            pipeline.AddBuilder(gantry?(IZoneBuilder)gantryBase:tine?tineBase:quillhold?quillholdBase:tally?tallyBase:firstTent?first:lastCounter?last:wellmeet?camp:cinderhold?post:sumphold?yard:drownedLedger?ledger:marrowstye?intake:new VillageBuilder(biome, poi, SettlementManager, largeTown: isStartingTown));
++            var ordinaryVillage=composed?null:new VillageBuilder(biome, poi, SettlementManager, largeTown: isStartingTown);
++            pipeline.AddBuilder(gantry?(IZoneBuilder)gantryBase:tine?tineBase:quillhold?quillholdBase:tally?tallyBase:firstTent?first:lastCounter?last:wellmeet?camp:cinderhold?post:sumphold?yard:drownedLedger?ledger:marrowstye?intake:ordinaryVillage);
++            if(ordinaryVillage!=null)pipeline.AddBuilder(new VillageDoorPlacementBuilder(ordinaryVillage));
+ 
+             // W2.6 (Docs/FELLING-W1-W2-PLAN.md §7.6, decision D5): the
+             // first consumer of Place.Faction — until now all sixteen
+@@ -1000,7 +1002,7 @@
+             if(tine)pipeline.AddBuilder(new TineArrivalReservationBuilder(tineBase));
+             if(quillhold)pipeline.AddBuilder(new QuillholdArrivalReservationBuilder(quillholdBase));
+             if(tally)pipeline.AddBuilder(new TallyArrivalReservationBuilder(tallyBase));
+-            var population=new VillagePopulationBuilder(poi, SettlementManager){RespectInteriorReservations=composed};
++            var population=new VillagePopulationBuilder(poi, SettlementManager){RespectInteriorReservations=true};
+             if(gantry)population.PreferredServiceCell=(zone,blueprint)=>gantryBase.TryGetServiceCell(blueprint,out int x,out int y)?zone.GetCell(x,y):null;
+             if(tine)population.PreferredServiceCell=(zone,blueprint)=>tineBase.TryGetServiceCell(blueprint,out int x,out int y)?zone.GetCell(x,y):null;
+             if(quillhold)population.PreferredServiceCell=(zone,blueprint)=>quillholdBase.TryGetServiceCell(blueprint,out int x,out int y)?zone.GetCell(x,y):null;

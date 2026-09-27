@@ -1,0 +1,339 @@
+{
+  "beforeRun": "a9af7a901cfb42678a896c09ec0f782b",
+  "afterRun": "b5fe9ac349d145b79870ddc96b82f17c",
+  "scope": "Observed native editor routes, not controlled causal attribution. Same marker instrumentation and render/focus/settings; finite60s admits differing redraw counts and world turns. Original FOV/cell/upload also faster. Exact output/work tests establish optimization semantics independently. Global GC metrics include Editor/tool allocations and do not attribute them to game code.",
+  "overallBefore": {
+    "cases": 12,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "profileSeconds": 60.206145791999916,
+    "profileFrames": 7479,
+    "profileFrameMeanMs": 8.057456970214844,
+    "profileFrameP95Ms": 8.304244995117188
+  },
+  "overallAfter": {
+    "cases": 12,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "profileSeconds": 60.257372416999715,
+    "profileFrames": 14180,
+    "profileFrameMeanMs": 4.252089500427246,
+    "profileFrameP95Ms": 4.013584136962891
+  },
+  "relevantSettingsDifferences": {},
+  "completedRedrawMeanP95MaxMs": [
+    {
+      "marker": "COO.ZoneRenderer.LateUpdate",
+      "before": {
+        "count": 251,
+        "mean": 72.82425715139443,
+        "p50": 70.703459,
+        "p95": 98.74237500000001,
+        "max": 195.884041
+      },
+      "after": {
+        "count": 311,
+        "mean": 40.226729887459804,
+        "p50": 38.148542,
+        "p95": 43.0065,
+        "max": 506.676708
+      },
+      "afterOverBeforeMean": 0.5523809162080762
+    },
+    {
+      "marker": "COO.ZoneRenderer.RenderZone",
+      "before": {
+        "count": 251,
+        "mean": 67.26460307569721,
+        "p50": 66.094208,
+        "p95": 91.66431299999999,
+        "max": 192.091833
+      },
+      "after": {
+        "count": 311,
+        "mean": 36.10070468488746,
+        "p50": 35.250958,
+        "p95": 39.953145500000005,
+        "max": 149.895125
+      },
+      "afterOverBeforeMean": 0.5366969109185258
+    },
+    {
+      "marker": "COO.NativePresenter.Refresh",
+      "before": {
+        "count": 251,
+        "mean": 41.924339960159365,
+        "p50": 40.589917,
+        "p95": 54.780916500000004,
+        "max": 97.249041
+      },
+      "after": {
+        "count": 311,
+        "mean": 21.794942254019293,
+        "p50": 20.9815,
+        "p95": 23.694083499999998,
+        "max": 131.812291
+      },
+      "afterOverBeforeMean": 0.5198636943296184
+    },
+    {
+      "marker": "COO.GroundContact.Refresh",
+      "before": {
+        "count": 251,
+        "mean": 18.883356055776893,
+        "p50": 18.259125,
+        "p95": 24.1106455,
+        "max": 74.105375
+      },
+      "after": {
+        "count": 311,
+        "mean": 8.790587225080387,
+        "p50": 8.404791,
+        "p95": 10.0742295,
+        "max": 60.000167
+      },
+      "afterOverBeforeMean": 0.46552038732495993
+    },
+    {
+      "marker": "COO.GroundContact.Rasterize",
+      "before": {
+        "count": 251,
+        "mean": 16.752936438247012,
+        "p50": 16.508209,
+        "p95": 21.355375000000002,
+        "max": 28.052917
+      },
+      "after": {
+        "count": 311,
+        "mean": 7.62768838585209,
+        "p50": 7.392166,
+        "p95": 9.0298125,
+        "max": 11.080167
+      },
+      "afterOverBeforeMean": 0.45530456191775737
+    },
+    {
+      "marker": "COO.GroundContact.Upload",
+      "before": {
+        "count": 251,
+        "mean": 0.6186221633466135,
+        "p50": 0.621083,
+        "p95": 0.8442915,
+        "max": 1.038625
+      },
+      "after": {
+        "count": 311,
+        "mean": 0.35469762057877813,
+        "p50": 0.354,
+        "p95": 0.389917,
+        "max": 0.53375
+      },
+      "afterOverBeforeMean": 0.5733671400648498
+    },
+    {
+      "marker": "COO.ZoneRenderer.RenderCells",
+      "before": {
+        "count": 251,
+        "mean": 7.3375230398406375,
+        "p50": 7.244,
+        "p95": 9.73925,
+        "max": 12.89175
+      },
+      "after": {
+        "count": 311,
+        "mean": 4.277962736334405,
+        "p50": 4.195208,
+        "p95": 4.822313,
+        "max": 7.052125
+      },
+      "afterOverBeforeMean": 0.5830254587421803
+    },
+    {
+      "marker": "COO.ZoneRenderer.ComputeFOV",
+      "before": {
+        "count": 251,
+        "mean": 7.486799115537849,
+        "p50": 7.403375,
+        "p95": 9.9985415,
+        "max": 12.336792
+      },
+      "after": {
+        "count": 311,
+        "mean": 4.089377430868168,
+        "p50": 3.995,
+        "p95": 5.429063,
+        "max": 7.381375
+      },
+      "afterOverBeforeMean": 0.5462117211588077
+    },
+    {
+      "marker": "COO.EnvSprites.PostRender",
+      "before": {
+        "count": 251,
+        "mean": 4.958289665338645,
+        "p50": 4.939667,
+        "p95": 6.8263545,
+        "max": 8.7775
+      },
+      "after": {
+        "count": 311,
+        "mean": 2.860852041800643,
+        "p50": 2.814458,
+        "p95": 3.215458,
+        "max": 3.635042
+      },
+      "afterOverBeforeMean": 0.5769836445417212
+    },
+    {
+      "marker": "COO.ZoneRenderer.RenderSidebar",
+      "before": {
+        "count": 251,
+        "mean": 3.7759488286852587,
+        "p50": 3.582833,
+        "p95": 4.884417,
+        "max": 29.837
+      },
+      "after": {
+        "count": 311,
+        "mean": 2.4537042797427655,
+        "p50": 2.131833,
+        "p95": 2.3769584999999998,
+        "max": 92.354666
+      },
+      "afterOverBeforeMean": 0.6498245582944292
+    },
+    {
+      "marker": "COO.ZoneRenderer.RenderHotbar",
+      "before": {
+        "count": 251,
+        "mean": 1.2693064541832668,
+        "p50": 1.231375,
+        "p95": 1.686771,
+        "max": 6.338667
+      },
+      "after": {
+        "count": 311,
+        "mean": 1.589524221864952,
+        "p50": 0.724959,
+        "p95": 0.8092715,
+        "max": 264.333666
+      },
+      "afterOverBeforeMean": 1.252277743193017
+    }
+  ],
+  "afterLargestRendererRecorderSamples": [
+    {
+      "unityFrame": "19830",
+      "rendererSnapshotFrame": "19830",
+      "tick": "3940",
+      "x": "33",
+      "y": "12",
+      "COO.ZoneRenderer.LateUpdate": "506676708",
+      "COO.ZoneRenderer.RenderZone": "149895125",
+      "COO.NativePresenter.Refresh": "131812291",
+      "COO.GroundContact.Refresh": "60000167",
+      "COO.GroundContact.Rasterize": "9958834",
+      "COO.GroundContact.Upload": "346541",
+      "COO.ZoneRenderer.RenderCells": "4389291",
+      "COO.ZoneRenderer.ComputeFOV": "4032708",
+      "COO.EnvSprites.PostRender": "3128750",
+      "COO.ZoneRenderer.RenderSidebar": "92354666",
+      "COO.ZoneRenderer.RenderHotbar": "264333666",
+      "GC.Collect": "186487794",
+      "GC Allocated In Frame": "2468209064",
+      "Main Thread": "513594625"
+    },
+    {
+      "unityFrame": "19913",
+      "rendererSnapshotFrame": "19913",
+      "tick": "3960",
+      "x": "33",
+      "y": "12",
+      "COO.ZoneRenderer.LateUpdate": "105742833",
+      "COO.ZoneRenderer.RenderZone": "102633792",
+      "COO.NativePresenter.Refresh": "86864500",
+      "COO.GroundContact.Refresh": "8410083",
+      "COO.GroundContact.Rasterize": "7388458",
+      "COO.GroundContact.Upload": "359542",
+      "COO.ZoneRenderer.RenderCells": "4514000",
+      "COO.ZoneRenderer.ComputeFOV": "4121292",
+      "COO.EnvSprites.PostRender": "3068083",
+      "COO.ZoneRenderer.RenderSidebar": "2277292",
+      "COO.ZoneRenderer.RenderHotbar": "763208",
+      "GC.Collect": "15072875",
+      "GC Allocated In Frame": "30911875",
+      "Main Thread": "112368959"
+    },
+    {
+      "unityFrame": "18433",
+      "rendererSnapshotFrame": "18433",
+      "tick": "3580",
+      "x": "33",
+      "y": "12",
+      "COO.ZoneRenderer.LateUpdate": "46596791",
+      "COO.ZoneRenderer.RenderZone": "42414542",
+      "COO.NativePresenter.Refresh": "24528875",
+      "COO.GroundContact.Refresh": "9470500",
+      "COO.GroundContact.Rasterize": "8344916",
+      "COO.GroundContact.Upload": "394625",
+      "COO.ZoneRenderer.RenderCells": "4882916",
+      "COO.ZoneRenderer.ComputeFOV": "5070292",
+      "COO.EnvSprites.PostRender": "3258709",
+      "COO.ZoneRenderer.RenderSidebar": "3103375",
+      "COO.ZoneRenderer.RenderHotbar": "1045292",
+      "GC.Collect": "0",
+      "GC Allocated In Frame": "8501660",
+      "Main Thread": "53318666"
+    },
+    {
+      "unityFrame": "18395",
+      "rendererSnapshotFrame": "18395",
+      "tick": "3570",
+      "x": "32",
+      "y": "12",
+      "COO.ZoneRenderer.LateUpdate": "45553458",
+      "COO.ZoneRenderer.RenderZone": "40671833",
+      "COO.NativePresenter.Refresh": "21854417",
+      "COO.GroundContact.Refresh": "8435375",
+      "COO.GroundContact.Rasterize": "7393958",
+      "COO.GroundContact.Upload": "374583",
+      "COO.ZoneRenderer.RenderCells": "4611792",
+      "COO.ZoneRenderer.ComputeFOV": "3948292",
+      "COO.EnvSprites.PostRender": "3186459",
+      "COO.ZoneRenderer.RenderSidebar": "2653500",
+      "COO.ZoneRenderer.RenderHotbar": "2155000",
+      "GC.Collect": "0",
+      "GC Allocated In Frame": "2663105",
+      "Main Thread": "56750250"
+    },
+    {
+      "unityFrame": "18328",
+      "rendererSnapshotFrame": "18328",
+      "tick": "3550",
+      "x": "32",
+      "y": "12",
+      "COO.ZoneRenderer.LateUpdate": "45284416",
+      "COO.ZoneRenderer.RenderZone": "41685583",
+      "COO.NativePresenter.Refresh": "23824708",
+      "COO.GroundContact.Refresh": "8525083",
+      "COO.GroundContact.Rasterize": "7448708",
+      "COO.GroundContact.Upload": "382750",
+      "COO.ZoneRenderer.RenderCells": "4718958",
+      "COO.ZoneRenderer.ComputeFOV": "3733417",
+      "COO.EnvSprites.PostRender": "3109375",
+      "COO.ZoneRenderer.RenderSidebar": "2599500",
+      "COO.ZoneRenderer.RenderHotbar": "963667",
+      "GC.Collect": "0",
+      "GC Allocated In Frame": "8864611",
+      "Main Thread": "52030916"
+    }
+  ],
+  "spikeUnits": "All profiler time raw values are nanoseconds; GC Allocated In Frame is bytes. Recorder UnityFrame is observation row, completed sample matches previous renderer snapshot; no same-row attribution.",
+  "limitations": [
+    "Overall p95 excludes most dirty-redraw samples (<5% of all frames).",
+    "Largest post-contact renderer sample506.677ms co-occurs with186.488ms global GC.Collect and2,468,209,064 globally recorded allocation bytes. No claim of no spikes.",
+    "No additional production change is justified solely from this one outlier."
+  ]
+}

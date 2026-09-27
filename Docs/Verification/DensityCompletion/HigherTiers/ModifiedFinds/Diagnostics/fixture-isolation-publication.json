@@ -1,0 +1,23 @@
+{
+  "status": "PUBLISHED;18focused and104affected GREEN; separate actual Unity/NUnit-reference compiler zero errors; native execution pending.",
+  "nativeFinding": "First C11 run afe6159bf2bd4b8fb89f6478a39c2ab8 had initialized registry containing only four fixture stubs after unit tests with domain reload disabled; invalid source census preserved.",
+  "red": "fixture-isolation-red.xml.gz:18total14pass4exact-restorationfailures",
+  "green": "fixture-isolation-green.xml.gz:18pass",
+  "affected": "diagnostic-fixture-regression-green.xml.gz:104pass",
+  "review": "fixture-isolation-review.md",
+  "files": {
+    "ItemEnhancingTests.cs": {
+      "path": "Assets/Tests/EditMode/Gameplay/Items/ItemEnhancingTests.cs",
+      "sha256": "50624aa4a887f243c7145bac44dfbe12f43d6713757f5115b32d2f68676be8c2",
+      "priorSha256": "5ae457f70c113dd29c78adc02e054c2a8888288d9ede591d43dcb1b323253d51"
+    },
+    "DensityEnhancementFixtureIsolationTests.cs": {
+      "path": "Assets/Tests/EditMode/Gameplay/Items/DensityEnhancementFixtureIsolationTests.cs",
+      "sha256": "72f1ae3ebcd38491e3aa107c129cae50c2d0cc23d34fe49653a42bf9ba4d2a89"
+    },
+    "DensityEnhancementFixtureIsolationTests.cs.meta": {
+      "path": "Assets/Tests/EditMode/Gameplay/Items/DensityEnhancementFixtureIsolationTests.cs.meta",
+      "sha256": "97044142c2504055bee5956f27700f0c3c8164581337133990bcac2e5b2fc5c4"
+    }
+  }
+}

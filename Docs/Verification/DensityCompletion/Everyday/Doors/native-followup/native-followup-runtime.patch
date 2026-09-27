@@ -1,0 +1,108 @@
+--- a/Assets/Scripts/Gameplay/World/Generation/Builders/HouseDramaZoneBuilder.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/Builders/HouseDramaZoneBuilder.cs
+@@ -19,6 +19,9 @@
+         /// <summary>Named composed towns reserve dry approaches and work cells
+         /// before late drama placement. Other villages keep their existing policy.</summary>
+         public bool RespectReservations { get; set; }
++        /// <summary>Enabled only by an ordinary village pipeline which supplies
++        /// operable doors; authored composition permissions stay unchanged.</summary>
++        public bool CanOpenOrdinaryDoors { get; set; }
+ 
+         public int Priority => 4500;
+ 
+@@ -85,6 +88,7 @@
+ 
+                 Entity npc = PlaceNPCInInterior(zone, factory, rng, interiorCells, openCells, blueprint);
+                 if (npc == null) continue;
++                if (CanOpenOrdinaryDoors) npc.SetTag("CanOpenDoors");
+ 
+                 var part = new HouseDramaPart
+                 {
+--- a/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+@@ -1020,7 +1020,7 @@
+             {
+                 int zoneSeed = WorldSeed ^ zoneID.GetHashCode();
+                 int pick = (zoneSeed & int.MaxValue) % dramaIds.Count;
+-                pipeline.AddBuilder(new HouseDramaZoneBuilder(dramaIds[pick]){RespectReservations=cinderhold||sumphold||drownedLedger||marrowstye||firstTent||lastCounter||civicQuartet});
++                pipeline.AddBuilder(new HouseDramaZoneBuilder(dramaIds[pick]){RespectReservations=ordinaryVillage!=null||cinderhold||sumphold||drownedLedger||marrowstye||firstTent||lastCounter||civicQuartet,CanOpenOrdinaryDoors=ordinaryVillage!=null});
+             }
+ 
+             return pipeline;
+--- a/Assets/Scripts/Gameplay/World/Map/Zone.cs
++++ b/Assets/Scripts/Gameplay/World/Map/Zone.cs
+@@ -606,6 +606,12 @@
+         /// </summary>
+         public int EntityVersion { get; private set; }
+ 
++        /// <summary>Runtime light-cache epoch for stationary ordinary-door state.
++        /// EntityVersion still describes only membership and movement. A loaded
++        /// zone starts a fresh cache, so this epoch is not save data.</summary>
++        public int DoorOcclusionVersion { get; private set; }
++        internal void MarkDoorOcclusionChanged() { unchecked { DoorOcclusionVersion++; } }
++
+         public int EntityCount => _entityCells.Count;
+ 
+         public void RebuildEntityCellsFromCells()
+--- a/Assets/Scripts/Gameplay/World/DoorPart.cs
++++ b/Assets/Scripts/Gameplay/World/DoorPart.cs
+@@ -33,7 +33,7 @@
+         /// diagnostic, or state mutation. Reach is checked only at execution.</summary>
+         public bool CanOperate(Entity actor,Zone zone)=>HasAuthority(actor,zone)&&ParentEntity.GetPart<LockPart>()?.IsLocked!=true;
+         internal bool CanUnlock(Entity actor,Zone zone)=>HasAuthority(actor,zone)&&SpatialQuery.Distance(zone,actor,ParentEntity)<=1;
+-        internal void RefreshAfterLockChange(){RefreshGlyph();ZoneRenderHooks.MarkFullDirty("Door.LockState");}
++        internal void RefreshAfterLockChange(){RefreshGlyph();ParentEntity?.SpatialZone?.MarkDoorOcclusionChanged();ZoneRenderHooks.MarkFullDirty("Door.LockState");}
+         internal void RejectUnlock(Entity actor)=>Reject(actor,"invalid-lock-request");
+         private bool HasAuthority(Entity actor,Zone zone)
+         {
+@@ -55,7 +55,7 @@
+                 foreach(var cell in zone.GetOccupiedCells(ParentEntity))
+                     foreach(var other in cell.Occupants)
+                         if(other!=ParentEntity&&!IsBareGround(other))return Reject(actor,"doorway-occupied");
+-            IsOpen=open;RefreshGlyph();
++            IsOpen=open;RefreshGlyph();zone.MarkDoorOcclusionChanged();
+             ZoneRenderHooks.MarkFullDirty("Door.State");
+             MessageLog.Add(actor.HasTag("Player")?(open?"You open the door.":"You close the door.")
+                 :actor.GetDisplayName()+(open?" opens the door.":" closes the door."));
+--- a/Assets/Scripts/Gameplay/World/LightMap.cs
++++ b/Assets/Scripts/Gameplay/World/LightMap.cs
+@@ -14,6 +14,7 @@
+         private Color[,] _tint;
+         private int _lastEntityVersion = -1;
+         private int _lastSightVersion = -1;
++        private int _lastDoorOcclusionVersion = -1;
+         // Cache key also tracks EquipmentChangeBus.GlobalVersion so
+         // equipping/unequipping invalidates the LightMap cache immediately
+         // — closes the T2.2 cache-staleness 🟡 finding (commit cd355b5).
+@@ -67,6 +68,7 @@
+             if (ReferenceEquals(zone, _lastZone)
+                 && zone.EntityVersion == _lastEntityVersion
+                 && zone.TileState.SightVersion == _lastSightVersion
++                && zone.DoorOcclusionVersion == _lastDoorOcclusionVersion
+                 && currentEquipmentVersion == _lastEquipmentVersion
+                 && currentDoors == _lastMorrowfastDoors
+                 && zone.AmbientLevel == _lastAmbientLevel
+@@ -75,6 +77,7 @@
+             _lastZone = zone;
+             _lastEntityVersion = zone.EntityVersion;
+             _lastSightVersion = zone.TileState.SightVersion;
++            _lastDoorOcclusionVersion = zone.DoorOcclusionVersion;
+             _lastEquipmentVersion = currentEquipmentVersion;
+             _lastMorrowfastDoors = currentDoors;
+             _lastAmbientLevel = zone.AmbientLevel;
+--- a/Assets/Scripts/Presentation/Input/InputHandler.cs
++++ b/Assets/Scripts/Presentation/Input/InputHandler.cs
+@@ -2826,6 +2826,13 @@
+                 RequestZoneRedraw("Morrowfast.QuestAction");
+                 return;
+             }
++            if (action.Command == DoorPart.OpenCommand || action.Command == DoorPart.CloseCommand)
++            {
++                if (target.GetPart<DoorPart>()?.TrySetOpen(PlayerEntity, CurrentZone, action.Command == DoorPart.OpenCommand) == true)
++                    EndTurnAndProcess();
++                _inputState = _worldActionMenuReturnState;
++                return;
++            }
+             if (action.Command == MorrowfastPropPart.ClearCommand || action.Command == MorrowfastPropPart.RoofCommand
+                 || action.Command == MorrowfastDoorPart.OpenCommand || action.Command == MorrowfastDoorPart.CloseCommand)
+             {

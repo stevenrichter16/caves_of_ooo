@@ -38,6 +38,7 @@ namespace CavesOfOoo.Tests
             try
             {
                 Runtime = new HotbarSaveFixture(false, false);
+                Bootstrap.FreshGameZoneID = MorrowfastSceneRuntime.ZoneID;
                 Factory = MorrowfastTestWorld.Factory();
                 LoadoutPart.Factory = Factory;
                 TraderPart.Factory = Factory;
@@ -82,6 +83,7 @@ namespace CavesOfOoo.Tests
         }
         public void UseActualVillage(int seed = 64)
         {
+            Bootstrap.FreshGameZoneID = MorrowfastSceneRuntime.ZoneID;
             var manager = new OverworldZoneManager(Factory, seed);
             var zone = manager.GetZone(MorrowfastSceneRuntime.ZoneID);
             manager.SetActiveZone(zone);
@@ -91,6 +93,7 @@ namespace CavesOfOoo.Tests
         }
         public void UseBareZone(string id)
         {
+            Bootstrap.FreshGameZoneID = id;
             var zone = new Zone(id); var manager = new OverworldZoneManager(Factory, 64);
             manager.ReplaceLoadedState(new Dictionary<string, Zone> { { id, zone } }, id,
                 new Dictionary<string, List<ZoneConnection>>());
@@ -136,7 +139,7 @@ namespace CavesOfOoo.Tests
 
     public sealed class GameAuditMorrowfastStartTests
     {
-        [Test] public void ActualFreshZoneGenerationSelectsAuthoredMorrowfastAndItsCachedInstance()
+        [Test] public void ExplicitFreshZoneGenerationSelectsAuthoredMorrowfastAndItsCachedInstance()
         {
             using (var f = new MorrowfastStartFixture())
             {

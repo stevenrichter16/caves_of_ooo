@@ -1,0 +1,50 @@
+{
+  "status": "private harness-only repair after preserved first native failure; await coordinated publication",
+  "createdUtc": "2026-09-27T00:05:50.990972+00:00",
+  "files": [
+    {
+      "privatePath": "/tmp/coo-liquid-native/DensityLiquidNativePlayer.cs",
+      "proposedSharedPath": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityLiquidNativePlayer.cs",
+      "sha256": "c0fc31a1969d205ab66a8ccadeae7166c07771e93c63b74b839ffc597b153b71",
+      "currentSharedBeforeSha256": "8090412200d6bae2e188402ab1fa821480c04cf0e8cfe021f84073a221fdd156"
+    },
+    {
+      "privatePath": "/tmp/coo-liquid-native/DensityLiquidNativePlayer.cs.meta",
+      "proposedSharedPath": "/Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityLiquidNativePlayer.cs.meta",
+      "sha256": "e8d0dd291ab094670b5f1c683af8decbef6ef4efea2bd08229f59fab75d7df84",
+      "currentSharedBeforeSha256": "e8d0dd291ab094670b5f1c683af8decbef6ef4efea2bd08229f59fab75d7df84"
+    },
+    {
+      "privatePath": "/tmp/coo-liquid-native/DensityLiquidNativeBatch.cs",
+      "proposedSharedPath": "/Users/steven/caves-of-ooo/Assets/Editor/Scenarios/DensityLiquidNativeBatch.cs",
+      "sha256": "b03ca6c54c491e49d99de0e84c8f1c14f6c0c5409ece581583c5ad584592b0b5",
+      "currentSharedBeforeSha256": "b03ca6c54c491e49d99de0e84c8f1c14f6c0c5409ece581583c5ad584592b0b5"
+    },
+    {
+      "privatePath": "/tmp/coo-liquid-native/DensityLiquidNativeBatch.cs.meta",
+      "proposedSharedPath": "/Users/steven/caves-of-ooo/Assets/Editor/Scenarios/DensityLiquidNativeBatch.cs.meta",
+      "sha256": "93a1b6703f0bb25781517f5b9281dc2f86c14bfbfb32d80f59f2857f7c4b6f7c",
+      "currentSharedBeforeSha256": "93a1b6703f0bb25781517f5b9281dc2f86c14bfbfb32d80f59f2857f7c4b6f7c"
+    }
+  ],
+  "nativeRequiredChecks": 21,
+  "minimumScreenshots": 10,
+  "offlineCompile": "passed against current last-imported Unity project/engine DLLs; includes unchanged MenuShortcutMap source for its internal helper; not Unity import or runtime proof",
+  "gameplayChanges": "none; liquid core/data/UI and renderer candidates are separately reviewed and not yet all integrated",
+  "preconditions": [
+    "Reviewed LiquidFlask/PouredLiquidPool blueprints, three stock rows, and Morrowfast fallback stock",
+    "Reviewed LiquidVesselPart/Service plus ItemExamineService/WaterVesselService and native inventory completion route",
+    "Actual poured-liquid renderer recipe, with identity swatches, for visual acceptance"
+  ],
+  "ordinaryAcquisition": "Actual Player blueprint starts with 50 drams and Ego16; both vessels Commerce8. Native runtime quoted prices and exact debits are checked; no currency or item grants. No sale should be required at neutral starting reputation.",
+  "independentReview": "combat_density reviewed acquisition/volume/save/cleanup; no concrete blocker. Corrected schedule wording to distinguish normal zone-transition registration from manual scheduling.",
+  "sourceBoundary": "No sources changed, no purity or32-cell threat rule relaxed. At most64 fresh Sodden surfaces plus32 ordinary depth1 columns for acid; existing source candidates logged. Real source acquisition with labelled travel shortcuts, not prevalence or natural-route proof.",
+  "cleanup": "NativeSaveIsolation owner token; input device/settings/background and diagnostics restored; explicit playModeStartScene plus scene setup restored by reviewed update-retry pattern.",
+  "entryPoint": "CavesOfOoo.Editor.DensityLiquidNativeBatch.Launch",
+  "reportRoot": "Docs/Verification/DensityCompletion/NativeLiquids/<RunId>/report.json",
+  "nativeResult": "retry pending",
+  "finiteSourceUpdate": "Native graph check expects exhausted poured owner and permanent projection absent before save and after reload; post-save mutation creates a new recorded puddle ID which must disappear on load.",
+  "firstNativeRun": "e17faf63283a4e36b544a11fdc9ca722:17 positives +1 acid-search precondition failure;0 unexpected errors; original report/log/restoration preserved",
+  "repair": "Only player harness: actual acid source domains and rejection logging; native Look recenter; carry real purchased water to supported ordinary visual site; exact current view/model/fully visible bounds; remote original source depletion remains checked afterF6.",
+  "visualBoundary": "First-run water filename did not establish on-screen native body; town fallback is outside ring presentation authority. Retry preflight requires actual identity model and full viewport bounds in supported ordinary zone; screenshots still need visual review."
+}

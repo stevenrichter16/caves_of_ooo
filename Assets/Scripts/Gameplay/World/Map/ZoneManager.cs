@@ -87,8 +87,13 @@ namespace CavesOfOoo.Core
             if (success)
                 OnZoneGenerated(zone, zoneID);
 
-            return success ? zone : null;
+            return success && CommitGeneratedZone(zone, zoneID) ? zone : null;
         }
+
+        /// <summary>Final acceptance after generation callbacks; false discards the staged zone.</summary>
+        protected virtual bool CommitGeneratedZone(Zone zone, string zoneID) => true;
+        /// <summary>Allow bounded owners to retain their already generated native graph.</summary>
+        protected virtual bool CanUnloadZone(string zoneID) => true;
 
         protected virtual void OnZoneGenerated(Zone zone, string zoneID)
         {
@@ -110,6 +115,7 @@ namespace CavesOfOoo.Core
 
         public void UnloadZone(string zoneID)
         {
+            if (!CanUnloadZone(zoneID)) return;
             CachedZones.Remove(zoneID);
             if (ActiveZone?.ZoneID == zoneID)
                 ActiveZone = null;

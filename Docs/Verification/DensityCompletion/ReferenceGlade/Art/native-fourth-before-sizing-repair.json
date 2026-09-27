@@ -1,0 +1,54 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "356a7c05f0cd4f748abea39809e14b4d",
+  "run": {
+    "id": "2",
+    "testcasecount": "148",
+    "result": "Failed(Child)",
+    "total": "148",
+    "passed": "140",
+    "failed": "8",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-26 23:37:47Z",
+    "end-time": "2026-09-26 23:38:02Z",
+    "duration": "14.7720333"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DensityLiquidVesselUiTests.SuccessfulLiquidTransferClosesInventoryAndQueuesExactlyOneTurn(\"FillLiquidVessel|pool-id|water\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityLiquidVesselUiTests.SuccessfulLiquidTransferClosesInventoryAndQueuesExactlyOneTurn(\"PourLiquidVessel|oil|5|LiquidVesselUI|10|11\")",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeArtTests.ArtScaleMatchesLowReferenceHierarchy(\"ground\",0.005f,0.1f)",
+      "message": "  Expected: in range (0.005,0.1)\n  But was:  0.100000009f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeFourthProfileTests.OriginalMarlbacksStayLowAndWideButDoNotCollapseIntoSmallDots(\"MarlbackScrabbler\")",
+      "message": "  Expected: in range (0.95,1.03)\n  But was:  0.860962927f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeFourthProfileTests.OriginalMarlbacksStayLowAndWideButDoNotCollapseIntoSmallDots(\"MarlbackGleaner\")",
+      "message": "  Expected: in range (0.95,1.03)\n  But was:  0.851773977f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeFourthProfileTests.OriginalMarlbacksStayLowAndWideButDoNotCollapseIntoSmallDots(\"MarlbackTunnelguard\")",
+      "message": "  Expected: in range (0.95,1.03)\n  But was:  0.860962927f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeFourthProfileTests.OriginalMarlbacksStayLowAndWideButDoNotCollapseIntoSmallDots(\"MarlbackWallkeeper\")",
+      "message": "  Expected: in range (0.95,1.03)\n  But was:  0.855576098f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeFourthProfileTests.OriginalMarlbacksStayLowAndWideButDoNotCollapseIntoSmallDots(\"MarlbackBreacher\")",
+      "message": "  Expected: in range (0.95,1.03)\n  But was:  0.855576098f\n"
+    }
+  ]
+}

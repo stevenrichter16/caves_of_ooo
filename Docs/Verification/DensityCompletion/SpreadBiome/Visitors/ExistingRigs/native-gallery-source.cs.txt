@@ -1,0 +1,134 @@
+// Execute in the idle editor after native36 GREEN. Staged asset review only.
+// Required imports: System.Linq (all other nonbuilt-in names are qualified).
+var folder = "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Visitors/ExistingRigs/NativeGallery/" + System.Guid.NewGuid().ToString("N");
+System.IO.Directory.CreateDirectory(folder);
+System.Action<bool, string> Require = (value, message) => { if (!value) throw new System.InvalidOperationException(message); };
+System.Func<string, string> Q = s => "\"" + (s ?? "").Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", "\\r").Replace("\n", "\\n") + "\"";
+System.Func<float, string> Number = f => f.ToString("R", System.Globalization.CultureInfo.InvariantCulture);
+System.Func<string, string> Hash = path => { using (var sha = System.Security.Cryptography.SHA256.Create()) return System.BitConverter.ToString(sha.ComputeHash(System.IO.File.ReadAllBytes(path))).Replace("-", "").ToLowerInvariant(); };
+Require(!UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode, "Gallery requires an idle editor.");
+var activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+string scenePath = activeScene.path; bool sceneDirty = activeScene.isDirty;
+var lib = CavesOfOoo.Rendering.SpreadVisitorPaintLibrary.Load(); Require(lib != null, "Native visitor library missing."); lib.Validate();
+var voxel = UnityEngine.Resources.Load<CavesOfOoo.Rendering.VoxelWorldMeshCatalog>(CavesOfOoo.Rendering.VoxelWorldMeshCatalog.ResourcePath); voxel.Validate();
+var ring = UnityEngine.Resources.Load<CavesOfOoo.Rendering.SpawnRing3DLibrary>(CavesOfOoo.Rendering.SpawnRing3DLibrary.ResourcePath); ring.Validate();
+var palette = CavesOfOoo.Rendering.ReferenceGladeVoxelLibrary.Load();
+var apply = typeof(CavesOfOoo.Rendering.SpreadVisitorPaintLibrary).GetMethod("Apply", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+Require(apply != null, "Exact native paint-adoption seam missing.");
+string[] species = { "ChoirTendril", "Mosshulk", "Rotling", "MawToad", "SariSnake", "Wardline", "CascadeFather", "GlasspaneFrog", "YellowfootWayfarer", "Shambler", "GroveLanternMoth", "SkySari", "HelmwoodFrog" };
+var paths = new System.Collections.Generic.HashSet<string>(System.StringComparer.Ordinal);
+foreach (var entry in lib.Entries) {
+ foreach (var asset in new UnityEngine.Object[] { entry.SourcePrefab, entry.Source, entry.Painted, lib, palette.Material }) {
+  string path = UnityEditor.AssetDatabase.GetAssetPath(asset); Require(!string.IsNullOrEmpty(path), "Gallery requires persistent native assets.");
+  foreach (string dep in UnityEditor.AssetDatabase.GetDependencies(path, true)) if (System.IO.File.Exists(dep)) { paths.Add(dep); if (System.IO.File.Exists(dep + ".meta")) paths.Add(dep + ".meta"); }
+ }
+}
+var hashes = paths.ToDictionary(p => p, p => Hash(p));
+var oldActive = UnityEngine.RenderTexture.active; bool oldAsync = UnityEditor.ShaderUtil.allowAsyncCompilation;
+UnityEngine.SceneManagement.Scene preview = default(UnityEngine.SceneManagement.Scene);
+UnityEngine.GameObject root = null;
+UnityEngine.RenderTexture target = null;
+CavesOfOoo.Rendering.NativeZone3DRenderSurface surface = null;
+var images = new System.Collections.Generic.List<string>(); var rows = new System.Collections.Generic.List<string>();
+var names = new System.Collections.Generic.List<string>(); string error = null;
+bool bytesEqual = false, restored = false;
+try {
+ UnityEditor.ShaderUtil.allowAsyncCompilation = false;
+ preview = UnityEditor.SceneManagement.EditorSceneManager.NewPreviewScene();
+ root = new UnityEngine.GameObject("Owned thirteen-visitor native pose gallery");
+ UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(root, preview);
+ target = new UnityEngine.RenderTexture(768, 768, 24, UnityEngine.RenderTextureFormat.ARGB32, UnityEngine.RenderTextureReadWrite.sRGB) { antiAliasing = 1, filterMode = UnityEngine.FilterMode.Bilinear };
+ Require(target.Create(), "Gallery render target allocation failed.");
+ surface = new CavesOfOoo.Rendering.NativeZone3DRenderSurface(root.transform, ring.Renderer, ring.RendererIndex, ring.CompositeMaterial, new[] { palette.Material }, 1.45f);
+ // Exact current Spread presenter light and per-surface ambient probe; no scene RenderSettings writes.
+ surface.ConfigureLighting(1.45f, .65f, .9f, new UnityEngine.Color(1, .98f, .92f), new UnityEngine.Vector3(55, -145, 0), .68f, .008f, .018f, 18, UnityEngine.FilterMode.Bilinear, true);
+ surface.ConfigureAmbientProbe(new UnityEngine.Color(.28f, .32f, .30f));
+ var sourceObject = new UnityEngine.GameObject("Owned gallery source camera"); sourceObject.transform.SetParent(root.transform, false);
+ var source = sourceObject.AddComponent<UnityEngine.Camera>(); source.enabled = false; source.orthographic = true; source.orthographicSize = 4; source.aspect = 1; source.targetTexture = target; source.transform.position = new UnityEngine.Vector3(40, 12, -10);
+ surface.Sync(source, true, false);
+ var camera = surface.WorldCamera; camera.enabled = false; camera.scene = preview;
+ camera.overrideSceneCullingMask = UnityEditor.SceneManagement.EditorSceneManager.GetSceneCullingMask(preview);
+ camera.backgroundColor = new UnityEngine.Color(.02f, .075f, .075f, 1); camera.clearFlags = UnityEngine.CameraClearFlags.SolidColor;
+ camera.rect = new UnityEngine.Rect(0, 0, 1, 1); camera.aspect = 1;
+ var fog = new UnityEngine.Color32[surface.FogTexture.width * surface.FogTexture.height];
+ for (int n = 0; n < fog.Length; n++) fog[n] = new UnityEngine.Color32(255, 255, 255, 255);
+ surface.FogTexture.SetPixels32(fog); surface.FogTexture.Apply(false, false);
+ for (int i = 0; i < species.Length; i++) {
+  string modelId = CavesOfOoo.Rendering.SpreadVisitorPaintLibrary.ModelIds[i]; var entry = lib.Find(modelId); Require(entry != null, modelId);
+  var nativeSkin = entry.SourcePrefab.GetComponentInChildren<UnityEngine.SkinnedMeshRenderer>(true);
+  var nativeAnimator = entry.SourcePrefab.GetComponentInChildren<UnityEngine.Animator>(true);
+  var originalVertices = entry.Source.vertices; var paintVertices = entry.Painted.vertices;
+  var instance = UnityEngine.Object.Instantiate(entry.SourcePrefab, surface.ContentRoot, false);
+  try {
+   instance.name = "Gallery-" + species[i]; instance.transform.position = new UnityEngine.Vector3(40, 0, 12);
+   voxel.Apply(instance);
+   var skin = instance.GetComponentsInChildren<UnityEngine.SkinnedMeshRenderer>(true).Single(); var boundsBefore = skin.localBounds;
+   Require(skin.sharedMesh == entry.Source, "Actual runtime voxel adoption must precede scoped paint.");
+   apply.Invoke(lib, new object[] { instance, modelId });
+   Require(skin.sharedMesh == entry.Painted && skin.localBounds == boundsBefore, "Paint adoption changed the native bounds or used the wrong mesh.");
+   surface.PrepareModel(instance, true);
+   Require(skin.sharedMaterial == surface.MaterialFor(lib.Material), "Exact owned approved material required.");
+   var animator = instance.GetComponentInChildren<UnityEngine.Animator>(true); Require(animator != null && animator.runtimeAnimatorController == nativeAnimator.runtimeAnimatorController && animator.avatar == nativeAnimator.avatar, "Original controller/avatar required.");
+   Require(skin.bones.Select(b => b.name).SequenceEqual(nativeSkin.bones.Select(b => b.name)), "Native bone order changed.");
+   animator.enabled = false; skin.updateWhenOffscreen = true;
+   UnityEngine.Vector3[] idleVertices = null;
+   foreach (string pose in new[] { "Idle", "Walk", "Attack" }) {
+    var clip = animator.runtimeAnimatorController.animationClips.Single(c => c.name == pose || c.name.EndsWith(pose, System.StringComparison.Ordinal));
+    float time = clip.length * .35f; clip.SampleAnimation(animator.gameObject, time);
+    Require(skin.sharedMesh == entry.Painted && skin.enabled && !skin.forceRenderingOff && skin.gameObject.activeInHierarchy, "Current owned painted body must be drawn.");
+    var baked = new UnityEngine.Mesh(); UnityEngine.Bounds bounds = default(UnityEngine.Bounds); float maxDelta = 0;
+    try {
+     skin.BakeMesh(baked, true); var vertices = baked.vertices; Require(vertices.Length == entry.Painted.vertexCount && vertices.Length > 0, "Native sampled skin must have geometry.");
+     for (int v = 0; v < vertices.Length; v++) { var point = skin.transform.TransformPoint(vertices[v]); if (v == 0) bounds = new UnityEngine.Bounds(point, UnityEngine.Vector3.zero); else bounds.Encapsulate(point); }
+     if (idleVertices == null) idleVertices = vertices;
+     else for (int v = 0; v < vertices.Length; v++) maxDelta = UnityEngine.Mathf.Max(maxDelta, UnityEngine.Vector3.Distance(idleVertices[v], vertices[v]));
+    } finally { UnityEngine.Object.DestroyImmediate(baked); }
+    Require(bounds.size.sqrMagnitude > .001f, "Empty native pose bounds.");
+    float extent = UnityEngine.Mathf.Max(bounds.size.y, UnityEngine.Mathf.Max(bounds.size.x, bounds.size.z));
+    camera.orthographicSize = extent * .8f; camera.transform.position = bounds.center + new UnityEngine.Vector3(-.65f, .38f, -.9f).normalized * (extent * 3 + 3); camera.transform.LookAt(bounds.center); camera.ResetProjectionMatrix();
+    bool framed = false;
+    for (int attempt = 0; attempt < 5; attempt++) {
+     framed = true;
+     for (int x = 0; x < 2; x++) for (int y = 0; y < 2; y++) for (int z = 0; z < 2; z++) {
+      var p = camera.WorldToViewportPoint(new UnityEngine.Vector3(x == 0 ? bounds.min.x : bounds.max.x, y == 0 ? bounds.min.y : bounds.max.y, z == 0 ? bounds.min.z : bounds.max.z));
+      framed &= p.z > 0 && p.x >= .04f && p.x <= .96f && p.y >= .04f && p.y <= .96f;
+     }
+     if (framed) break; camera.orthographicSize *= 1.25f; camera.ResetProjectionMatrix();
+    }
+    Require(framed, "Native sampled bounds do not fit the gallery frame.");
+    var request = new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest { destination = target };
+    Require(UnityEngine.Rendering.RenderPipeline.SupportsRenderRequest(camera, request), "Native URP capture unsupported.");
+    UnityEngine.RenderTexture.active = target; UnityEngine.GL.Clear(true, true, camera.backgroundColor);
+    UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(camera, request); UnityEngine.RenderTexture.active = target;
+    var pixels = new UnityEngine.Texture2D(768, 768, UnityEngine.TextureFormat.RGBA32, false, false);
+    string file = i.ToString("00") + "-" + species[i] + "-" + pose + ".png";
+    try {
+     pixels.ReadPixels(new UnityEngine.Rect(0, 0, 768, 768), 0, 0); pixels.Apply(false, false);
+     var data = pixels.GetPixels32(); var background = data[0]; int nonbackground = data.Count(c => System.Math.Abs(c.r - background.r) + System.Math.Abs(c.g - background.g) + System.Math.Abs(c.b - background.b) > 12);
+     Require(nonbackground > 64, "An empty/background-only frame is not a visible gallery.");
+     System.IO.File.WriteAllBytes(folder + "/" + file, UnityEngine.ImageConversion.EncodeToPNG(pixels));
+     rows.Add("{\"species\":" + Q(species[i]) + ",\"model\":" + Q(modelId) + ",\"pose\":" + Q(pose) + ",\"clip\":" + Q(clip.name) + ",\"seconds\":" + Number(time) + ",\"normalizedTime\":0.35,\"image\":" + Q(file) + ",\"sourceMesh\":" + Q(UnityEditor.AssetDatabase.GetAssetPath(entry.Source)) + ",\"paintedMesh\":" + Q(UnityEditor.AssetDatabase.GetAssetPath(entry.Painted)) + ",\"vertices\":" + entry.Painted.vertexCount + ",\"bones\":" + skin.bones.Length + ",\"maxVertexDeltaFromIdle\":" + Number(maxDelta) + ",\"nonBackgroundPixels\":" + nonbackground + ",\"cameraPosition\":" + UnityEngine.JsonUtility.ToJson(camera.transform.position) + ",\"cameraSize\":" + Number(camera.orthographicSize) + "}");
+     images.Add(folder + "/" + file); names.Add(species[i] + " | " + modelId + " | " + pose + " | " + file);
+    } finally { UnityEngine.Object.DestroyImmediate(pixels); }
+    Require(originalVertices.SequenceEqual(entry.Source.vertices) && paintVertices.SequenceEqual(entry.Painted.vertices), "Capture changed borrowed mesh vertices.");
+   }
+  } finally { UnityEngine.Object.DestroyImmediate(instance); }
+ }
+ lib.Validate(); Require(images.Count == 39, "All thirteen species need three native poses.");
+ bytesEqual = hashes.All(p => System.IO.File.Exists(p.Key) && Hash(p.Key) == p.Value); Require(bytesEqual, "Native gallery changed borrowed asset bytes.");
+} catch (System.Exception e) { error = e.ToString(); }
+finally {
+ UnityEngine.RenderTexture.active = oldActive; UnityEditor.ShaderUtil.allowAsyncCompilation = oldAsync;
+ if (surface != null) surface.Dispose(); if (root != null) UnityEngine.Object.DestroyImmediate(root);
+ if (target != null) { target.Release(); UnityEngine.Object.DestroyImmediate(target); }
+ if (preview.IsValid()) UnityEditor.SceneManagement.EditorSceneManager.ClosePreviewScene(preview);
+ var current = UnityEngine.SceneManagement.SceneManager.GetActiveScene(); restored = current.handle == activeScene.handle && current.path == scenePath && current.isDirty == sceneDirty;
+}
+System.IO.File.WriteAllLines(folder + "/index.txt", names);
+string scope = "Staged native preview: exact thirteen current runtime-adopted owned painted meshes, original native prefab rigs/controller/avatar/clips, Idle/Walk/Attack sampled at35%, current approved Spread light/ambient, bounded framing and actual GPU PNGs. Source dependencies and current main scene are checked unchanged.";
+string boundary = "Not ordinary occurrence/recruitment, gameplay movement/combat, live animation transitions, receiving-zone transfer or whole-biome coverage. Separate native36 tests establish scoped owner adoption; sampled frames require visual inspection for clipping, readability and aesthetic quality. Delta metrics are observations, not proof of animation quality.";
+System.IO.File.WriteAllText(folder + "/report.json", "{\"status\":" + Q(error == null && restored ? "passed" : "failed") + ",\"error\":" + Q(error) + ",\"sourceAssetsUnchanged\":" + bytesEqual.ToString().ToLowerInvariant() + ",\"mainSceneRestored\":" + restored.ToString().ToLowerInvariant() + ",\"frames\":[" + string.Join(",", rows) + "],\"canVerify\":" + Q(scope) + ",\"cannotVerify\":" + Q(boundary) + "}");
+var html = "<!doctype html><meta charset='utf-8'><title>Thirteen native visitor rigs</title><style>body{background:#102322;color:#eee;font:16px system-ui}section{display:flex;gap:12px}figure{margin:0;flex:1}img{width:100%}h2{margin-top:32px}</style><h1>Thirteen native visitor rigs</h1><p>Staged native GPU captures; original geometry and animations. Idle, Walk, Attack at35%.</p>";
+for (int i = 0; i < species.Length; i++) { html += "<h2>" + species[i] + "</h2><section>"; foreach (string pose in new[] { "Idle", "Walk", "Attack" }) { string file = i.ToString("00") + "-" + species[i] + "-" + pose + ".png"; html += "<figure><figcaption>" + pose + "</figcaption><img src='" + file + "'></figure>"; } html += "</section>"; }
+System.IO.File.WriteAllText(folder + "/index.html", html);
+return new { folder, images = images.ToArray(), frames = images.Count, error, sourceAssetsUnchanged = bytesEqual, mainSceneRestored = restored, canVerify = scope, cannotVerify = boundary };

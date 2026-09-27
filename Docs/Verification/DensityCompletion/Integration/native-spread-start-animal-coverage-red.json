@@ -1,0 +1,110 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "75136801a79948c9a2730b030cc4c638",
+  "run": {
+    "id": "2",
+    "testcasecount": "347",
+    "result": "Failed(Child)",
+    "total": "347",
+    "passed": "325",
+    "failed": "22",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 02:58:54Z",
+    "end-time": "2026-09-27 02:59:31Z",
+    "duration": "36.75922"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DensitySpreadBootstrapNativeTests.ActualBootstrapHonorsPhysicalCenterOwner(True)",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySpreadBootstrapNativeTests.ActualBootstrapNeverStartsOnANonSolidCreature(True)",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySpreadBootstrapNativeTests.EmptySettingGeneratesCurrentActualSpreadWithoutChangingAuthoredVillageIdentity",
+      "message": "  Expected: Spread\n  But was:  Cave\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySpreadBootstrapNativeTests.FailedExplicitPlacementDoesNotForceOverlapOrOverwriteThePreviousSave",
+      "message": "  Expected: null\n  But was:  <Cell(40,12) [2 objects]>\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySpreadBootstrapNativeTests.NativeContinueRestoresOldForeignLocationDespiteDefaultSpreadFreshGraph(False)",
+      "message": "  Expected string length 17 but was 0. Strings differ at index 0.\n  Expected: \"Overworld.11.10.0\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySpreadBootstrapNativeTests.NativeContinueRestoresOldForeignLocationDespiteDefaultSpreadFreshGraph(True)",
+      "message": "  Expected string length 17 but was 0. Strings differ at index 0.\n  Expected: \"Overworld.11.10.0\"\n  But was:  <string.Empty>\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySpreadBootstrapNativeTests.RealBootNCheckpointsNewSpreadGraphAndPreservesPreviousSaveBytes",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensitySpreadBootstrapNativeTests.UnconfiguredBootstrapUsesOrdinaryDefaultSentinel",
+      "message": "  Expected string length 0 but was 15. Strings differ at index 0.\n  Expected: <string.Empty>\n  But was:  \"Overworld.3.6.0\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeAnimalArtTests.CurrentManagedSpreadAnimalHasItsOwnActualRiggedBody(\"Magpie\")",
+      "message": "  Expected: \"spread-biome-magpie\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeAnimalArtTests.CurrentManagedSpreadAnimalHasItsOwnActualRiggedBody(\"PetDog\")",
+      "message": "  Expected: \"spread-biome-pet-dog\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeAnimalArtTests.CurrentManagedSpreadAnimalHasItsOwnActualRiggedBody(\"Viper\")",
+      "message": "  Expected: \"spread-biome-viper\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeAnimalArtTests.MovementHideAndRemovalFollowTheActualOwnerWithoutChangingSharedGeometry(\"Magpie\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeAnimalArtTests.MovementHideAndRemovalFollowTheActualOwnerWithoutChangingSharedGeometry(\"PetDog\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeAnimalArtTests.MovementHideAndRemovalFollowTheActualOwnerWithoutChangingSharedGeometry(\"Viper\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeAnimalArtTests.PersistentOriginalBodyHasActualFiveMovingClipsAndCorrectAnatomy(\"Magpie\",0.35f,0.85f)",
+      "message": "  Actual adopted persistent body is required, not source JSON.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeAnimalArtTests.PersistentOriginalBodyHasActualFiveMovingClipsAndCorrectAnatomy(\"PetDog\",0.45f,0.9f)",
+      "message": "  Actual adopted persistent body is required, not source JSON.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeAnimalArtTests.PersistentOriginalBodyHasActualFiveMovingClipsAndCorrectAnatomy(\"Viper\",0.08f,0.35f)",
+      "message": "  Actual adopted persistent body is required, not source JSON.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeCoverageTests.RepresentativeActualOwnersAndTheirGearHaveDrawnBodies(\"Overworld.11.10.0\")",
+      "message": "  Overworld.11.10.0: undrawn Torch#4601\nOverworld.11.10.0: undrawn Signpost#4602\nOverworld.11.10.0: missing/shared attachment MarlbackScrabbler/LeatherGloves#4607\nOverworld.11.10.0: missing/shared attachment MarlbackGleaner/LeatherGloves#4610\nOverworld.11.10.0: missing/shared attachment MarlbackGleaner/LeatherArmor#4611\nOverworld.11.10.0: missing/shared attachment MarlbackScrabbler/LeatherGloves#4615\nOverworld.11.10.0: missing/shared attachment Warden/LeatherArmor#4624\nOverworld.11.10.0: missing/shared attachment Warden/LeatherBoots#4625\nOverworld.11.10.0: undrawn PetDog#4632\nOverworld.11.10.0: unanimated PetDog#4632\n  Expected: <empty>\n  But was:  < \"Overworld.11.10.0: undrawn Torch#4601\", \"Overworld.11.10.0: undrawn Signpost#4602\", \"Overworld.11.10.0: missing/shared attachment MarlbackScrabbler/LeatherGloves#4607\", \"Overworld.11.10.0: missing/shared attachment MarlbackGleaner/LeatherGloves#4610\", \"Overworld.11.10.0: missing/shared attachment MarlbackGleaner/LeatherArmor#4611\", \"Overworld.11.10.0: missing/shared attachment MarlbackScrabbler/LeatherGloves#4615\", \"Overworld.11.10.0: missing/shared attachment Warden/LeatherArmor#4624\", \"Overworld.11.10.0: missing/shared attachment Warden/LeatherBoots#4625\", \"Overworld.11.10.0: undrawn PetDog#4632\", \"Overworld.11.10.0: unanimated PetDog#4632\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeCoverageTests.RepresentativeActualOwnersAndTheirGearHaveDrawnBodies(\"Overworld.12.10.0\")",
+      "message": "  Overworld.12.10.0: undrawn Farmer#4739\nOverworld.12.10.0: unanimated Farmer#4739\nOverworld.12.10.0: missing/shared attachment Farmer/LeatherBoots#4745\nOverworld.12.10.0: missing/shared attachment Farmer/LeatherGloves#4746\nOverworld.12.10.0: undrawn Magpie#4771\nOverworld.12.10.0: unanimated Magpie#4771\nOverworld.12.10.0: undrawn Magpie#4772\nOverworld.12.10.0: unanimated Magpie#4772\nOverworld.12.10.0: undrawn Magpie#4773\nOverworld.12.10.0: unanimated Magpie#4773\nOverworld.12.10.0: missing/shared attachment MarlbackScrabbler/LeatherGloves#4776\nOverworld.12.10.0: undrawn BerryBush#4778\nOverworld.12.10.0: undrawn Beehive#4779\n  Expected: <empty>\n  But was:  < \"Overworld.12.10.0: undrawn Farmer#4739\", \"Overworld.12.10.0: unanimated Farmer#4739\", \"Overworld.12.10.0: missing/shared attachment Farmer/LeatherBoots#4745\", \"Overworld.12.10.0: missing/shared attachment Farmer/LeatherGloves#4746\", \"Overworld.12.10.0: undrawn Magpie#4771\", \"Overworld.12.10.0: unanimated Magpie#4771\", \"Overworld.12.10.0: undrawn Magpie#4772\", \"Overworld.12.10.0: unanimated Magpie#4772\", \"Overworld.12.10.0: undrawn Magpie#4773\", \"Overworld.12.10.0: unanimated Magpie#4773\"... >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeCoverageTests.RepresentativeActualOwnersAndTheirGearHaveDrawnBodies(\"Overworld.10.10.0\")",
+      "message": "  Overworld.10.10.0: presenter unavailable: Current supported native zone, recipes and live surface are required.\n  Expected: <empty>\n  But was:  < \"Overworld.10.10.0: presenter unavailable: Current supported native zone, recipes and live surface are required.\" >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeCoverageTests.RepresentativeActualOwnersAndTheirGearHaveDrawnBodies(\"Overworld.15.6.0\")",
+      "message": "  Overworld.15.6.0: unanimated PeatCutter#5111\nOverworld.15.6.0: missing/shared attachment PeatCutter/LeatherBoots#5112\nOverworld.15.6.0: missing/shared attachment PeatCutter/LeatherGloves#5113\nOverworld.15.6.0: unanimated PeatCutter#5115\nOverworld.15.6.0: missing/shared attachment PeatCutter/LeatherBoots#5116\nOverworld.15.6.0: missing/shared attachment PeatCutter/LeatherGloves#5117\nOverworld.15.6.0: unanimated Elder#5136\nOverworld.15.6.0: missing/shared attachment Elder/LeatherCap#5142\nOverworld.15.6.0: missing/shared attachment Elder/LeatherBoots#5143\nOverworld.15.6.0: unanimated Merchant#5144\nOverworld.15.6.0: missing/shared attachment Merchant/ShortSword#5154\nOverworld.15.6.0: missing/shared attachment Merchant/LeatherBoots#5155\nOverworld.15.6.0: unanimated Quartermaster#5162\nOverworld.15.6.0: missing/shared attachment Quartermaster/Spear#5170\nOverworld.15.6.0: missing/shared attachment Quartermaster/LeatherArmor#5171\nOverworld.15.6.0: missing/shared attachment Quartermaster/LeatherBoots#5172\nOverworld.15.6.0: unanimated Tinker#5176\nOverworld.15.6.0: missing/shared attachment Tinker/Dagger#5182\nOverworld.15.6.0: missing/shared attachment Tinker/LeatherGloves#5183\nOverworld.15.6.0: unanimated Scribe#5184\nOverworld.15.6.0: missing/shared attachment Scribe/LeatherGloves#5191\nOverworld.15.6.0: missing/shared attachment Scribe/LeatherCap#5192\nOverworld.15.6.0: unanimated Innkeeper#5195\nOverworld.15.6.0: unanimated VillageChild#5200\nOverworld.15.6.0: unanimated VillageChild#5201\nOverworld.15.6.0: unanimated Villager#5202\nOverworld.15.6.0: unanimated Villager#5208\nOverworld.15.6.0: unanimated Villager#5214\nOverworld.15.6.0: unanimated Villager#5220\nOverworld.15.6.0: unanimated Villager#5226\n  Expected: <empty>\n  But was:  < \"Overworld.15.6.0: unanimated PeatCutter#5111\", \"Overworld.15.6.0: missing/shared attachment PeatCutter/LeatherBoots#5112\", \"Overworld.15.6.0: missing/shared attachment PeatCutter/LeatherGloves#5113\", \"Overworld.15.6.0: unanimated PeatCutter#5115\", \"Overworld.15.6.0: missing/shared attachment PeatCutter/LeatherBoots#5116\", \"Overworld.15.6.0: missing/shared attachment PeatCutter/LeatherGloves#5117\", \"Overworld.15.6.0: unanimated Elder#5136\", \"Overworld.15.6.0: missing/shared attachment Elder/LeatherCap#5142\", \"Overworld.15.6.0: missing/shared attachment Elder/LeatherBoots#5143\", \"Overworld.15.6.0: unanimated Merchant#5144\"... >\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeProfileTests.ApprovedPlayerAndProfileReachOrdinarySpreadAndActualPois(\"Overworld.10.10.0\",True)",
+      "message": "  Current supported native zone, recipes and live surface are required.\n  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

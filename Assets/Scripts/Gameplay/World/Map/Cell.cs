@@ -101,7 +101,7 @@ namespace CavesOfOoo.Core
             if (MorrowfastSceneRuntime.BlockingOwner(this) != null) return true;
             for (int i = 0; i < Occupants.Count; i++)
             {
-                if (Occupants[i].HasTag("Solid") || Occupants[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
+                if (Occupants[i].HasTag("Solid") || Occupants[i].GetPart<DoorPart>()?.IsClosed == true || Occupants[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
                     return true;
             }
             return false;
@@ -135,7 +135,7 @@ namespace CavesOfOoo.Core
                 if (o.HasTag("Solid")) return true;
                 var physics = o.GetPart<PhysicsPart>();
                 if (physics != null && physics.Solid) return true;
-                if (o.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true) return true;
+                if (o.GetPart<DoorPart>()?.IsClosed == true || o.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true) return true;
             }
             return false;
         }
@@ -148,7 +148,7 @@ namespace CavesOfOoo.Core
             if (MorrowfastSceneRuntime.BlockingOwner(this, opaqueOnly: true) != null) return true;
             for (int i = 0; i < Occupants.Count; i++)
             {
-                if (Occupants[i].HasTag("Wall") || Occupants[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
+                if (Occupants[i].HasTag("Wall") || Occupants[i].GetPart<DoorPart>()?.IsClosed == true || Occupants[i].GetPart<SealedLibraryBarrierPart>()?.IsClosed == true)
                     return true;
             }
             return false;

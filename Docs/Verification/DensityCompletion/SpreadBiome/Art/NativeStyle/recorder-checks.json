@@ -1,0 +1,44 @@
+{
+  "status": "8/8 recorder artifact controls passed",
+  "scope": "Disposable synthetic file sets validate record refusal paths only; actual native import has independent successful receipt. No Assets or Unity modified.",
+  "cases": [
+    {
+      "case": "missing completion receipt",
+      "passed": true,
+      "refusal": "Expected regular owned file: /var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-static-manifest-check-ixra0em0/Docs/Verification/DensityCompletion/SpreadBiome/Art/NativeStyle/nat"
+    },
+    {
+      "case": "exact complete set",
+      "passed": true
+    },
+    {
+      "case": "unrelated output rejected",
+      "passed": true,
+      "refusal": "Output set mismatch: {\"missing\": [], \"extra\": [\"Assets/Resources/SpreadNativeStyle3D/unrelated.asset\"]}"
+    },
+    {
+      "case": "missing expected output rejected",
+      "passed": true,
+      "refusal": "Expected regular owned file: /var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-static-manifest-check-ixra0em0/Assets/Resources/SpreadNativeStyle3D.meta"
+    },
+    {
+      "case": "incomplete counters rejected",
+      "passed": true,
+      "refusal": "Exact complete reused+written counters required"
+    },
+    {
+      "case": "source hash changed",
+      "passed": true,
+      "refusal": "Reviewed source checksum differs"
+    },
+    {
+      "case": "linked output rejected",
+      "passed": true,
+      "refusal": "Expected regular owned file: /var/folders/rz/pncy35b16zs05n4vzkj7vmkr0000gn/T/coo-static-manifest-check-ixra0em0/Assets/Resources/SpreadNativeStyle3D.meta"
+    },
+    {
+      "case": "restored complete control",
+      "passed": true
+    }
+  ]
+}

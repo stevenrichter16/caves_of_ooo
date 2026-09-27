@@ -59,8 +59,46 @@ namespace CavesOfOoo.Rendering
                 if(EquipmentLibrary.FindModel(id)==null)throw new InvalidOperationException("Shared equipment model unavailable: "+id);
             models=candidates;equipmentIds=new HashSet<string>(d.externalEquipment.models,StringComparer.Ordinal);
         }
-        public GameObject FindModel(string modelId)
-        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:ReferenceGladeVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? DensityPhase1VoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OlderdeepVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? WellmeetVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? CinderholdVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? SumpholdVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? DrownedLedgerVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? MarrowstyeVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? FirstTentVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? LastCounterVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? GantryVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? TineVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? QuillholdVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? TallyVoxelKitLibrary.Load()?.Find(modelId)?.Prefab;}
+        private static readonly Func<string,Type,UnityEngine.Object> DefaultExtensionLoader=Resources.Load;
+        // Per-call loader seam observes resource requests without global test state.
+        // The public runtime path uses the same body and Unity's actual loader.
+        public GameObject FindModel(string modelId) => FindModel(modelId,DefaultExtensionLoader);
+        // Pure guards match each owning Find contract. Skip unrelated resource
+        // loads without caching results or bypassing current asset validation.
+        internal GameObject FindModel(string modelId,Func<string,Type,UnityEngine.Object> load)
+        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:
+            (SpreadEnvironmentSource.IsModelId(modelId) ? LoadExtension<SpreadEnvironment3DLibrary>(load, SpreadEnvironment3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (SpreadVisitorCreatureSource.Find(modelId)!=null ? LoadExtension<SpreadVisitorCreatureLibrary>(load, SpreadVisitorCreatureLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (modelId.StartsWith("spread-creature-",StringComparison.Ordinal) ? LoadExtension<SpreadCreature3DLibrary>(load, SpreadCreature3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (SpreadScenerySource.IsModelId(modelId) ? LoadExtension<SpreadScenery3DLibrary>(load, SpreadScenery3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (modelId.StartsWith("spread-portable-",StringComparison.Ordinal) ? LoadExtension<SpreadPortable3DLibrary>(load, SpreadPortable3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (modelId.StartsWith("spread-person-",StringComparison.Ordinal) ? LoadExtension<SpreadBiomeHumanoidLibrary>(load, SpreadBiomeHumanoidLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (modelId.StartsWith("spread-biome-",StringComparison.Ordinal) ? LoadExtension<SpreadBiomeActorLibrary>(load, SpreadBiomeActorLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (modelId.StartsWith("poured-liquid-",StringComparison.Ordinal) ? LoadExtension<PouredLiquid3DLibrary>(load, PouredLiquid3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? LoadExtension<ReferenceGladeVoxelLibrary>(load, ReferenceGladeVoxelLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<DensityPhase1VoxelLibrary>(load, DensityPhase1VoxelLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<SpreadVoxelLibrary>(load, SpreadVoxelLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<SoddenVoxelLibrary>(load, SoddenVoxelLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<BeatingVoxelLibrary>(load, BeatingVoxelLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<StumpVoxelLibrary>(load, StumpVoxelLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<OverwritVoxelLibrary>(load, OverwritVoxelLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<GinmereVoxelLibrary>(load, GinmereVoxelLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<CathedralVoxelLibrary>(load, CathedralVoxelLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<StillleafVoxelLibrary>(load, StillleafVoxelLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<OlderdeepVoxelLibrary>(load, OlderdeepVoxelLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<WellmeetVoxelLibrary>(load, WellmeetVoxelLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<CinderholdVoxelKitLibrary>(load, CinderholdVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<SumpholdVoxelKitLibrary>(load, SumpholdVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<DrownedLedgerVoxelKitLibrary>(load, DrownedLedgerVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<MarrowstyeVoxelKitLibrary>(load, MarrowstyeVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<FirstTentVoxelKitLibrary>(load, FirstTentVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<LastCounterVoxelKitLibrary>(load, LastCounterVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<GantryVoxelKitLibrary>(load, GantryVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<TineVoxelKitLibrary>(load, TineVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<QuillholdVoxelKitLibrary>(load, QuillholdVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Prefab
+            ?? LoadExtension<TallyVoxelKitLibrary>(load, TallyVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Prefab;}
+        private static T LoadExtension<T>(Func<string,Type,UnityEngine.Object> load,string path) where T:UnityEngine.Object
+            => load(path,typeof(T)) as T;
         public GameObject FindEquipmentModel(string modelId)
         {if(string.IsNullOrEmpty(modelId))return null;if(equipmentIds==null)Validate();return equipmentIds.Contains(modelId)?EquipmentLibrary.FindModel(modelId):null;}
     }

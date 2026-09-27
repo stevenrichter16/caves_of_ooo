@@ -1407,7 +1407,9 @@ namespace CavesOfOoo.Rendering
             }
             if (completed && (action.Command == "FillWaterskin"
                 || action.Command == "DrinkWaterskin" || action.Command == "Cook"
-                || action.Command == "LightTorch" || action.Command == "ExtinguishTorch"))
+                || action.Command == "LightTorch" || action.Command == "ExtinguishTorch"
+                || action.Command == "Harvest"
+                || LiquidVesselService.IsLiquidCommand(action.Command)))
             {
                 _pendingEverydayTurn = true;
                 Close();
@@ -1488,6 +1490,18 @@ namespace CavesOfOoo.Rendering
             ClearActionStatus();
             if (item == null || string.IsNullOrEmpty(actionCommand))
             { SetActionFailure("That item action is no longer available."); return false; }
+
+            // A carried-item popup cannot silently become a world harvest
+            // after the owner was dropped or transferred while the menu was open.
+            if (actionCommand == "Harvest"
+                && (PlayerEntity?.GetPart<InventoryPart>()?.Objects.Contains(item) != true
+                    || item.GetPart<PhysicsPart>()?.InInventory != PlayerEntity))
+            {
+                if (Diag.IsChannelEnabled("loot"))
+                    Diag.Record("loot", "HarvestRejected", PlayerEntity, item, new { reason = "not-carried" });
+                SetActionFailure("You are no longer carrying that item.");
+                return false;
+            }
 
             var result = InventorySystem.ExecuteCommand(
                 new PerformInventoryActionCommand(item, actionCommand),

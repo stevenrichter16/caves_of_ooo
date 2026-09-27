@@ -316,39 +316,45 @@ namespace CavesOfOoo.Core
         /// <summary>
         /// Greedy step toward target with fallback directions.
         /// Tries the ideal diagonal/cardinal direction first, then falls back to alternatives.
-        /// Returns true if movement succeeded.
+        /// Returns true if movement or one stationary door action succeeded.
         ///
         /// This is the fast path — it handles thin obstacles (single-cell walls)
         /// via diagonal/cardinal fallbacks, but CANNOT navigate around larger
         /// obstacles like building walls. Use TryApproachWithPathfinding for
         /// combat/chase logic that must reach moving targets around walls.
         /// </summary>
+        private static bool TryStepOrOpenDoor(Entity actor, Zone zone, int dx, int dy)
+        {
+            var move = MovementSystem.TryMoveDetailed(actor, zone, dx, dy);
+            return move.Moved || move.ActionPerformed;
+        }
+
         public static bool TryStepToward(Entity entity, Zone zone, int myX, int myY, int targetX, int targetY)
         {
             var (dx, dy) = StepToward(myX, myY, targetX, targetY);
 
-            if (MovementSystem.TryMove(entity, zone, dx, dy))
+            if (TryStepOrOpenDoor(entity, zone, dx, dy))
                 return true;
 
             if (dx != 0 && dy != 0)
             {
-                if (MovementSystem.TryMove(entity, zone, dx, 0))
+                if (TryStepOrOpenDoor(entity, zone, dx, 0))
                     return true;
-                if (MovementSystem.TryMove(entity, zone, 0, dy))
+                if (TryStepOrOpenDoor(entity, zone, 0, dy))
                     return true;
             }
             else if (dx != 0)
             {
-                if (MovementSystem.TryMove(entity, zone, dx, 1))
+                if (TryStepOrOpenDoor(entity, zone, dx, 1))
                     return true;
-                if (MovementSystem.TryMove(entity, zone, dx, -1))
+                if (TryStepOrOpenDoor(entity, zone, dx, -1))
                     return true;
             }
             else if (dy != 0)
             {
-                if (MovementSystem.TryMove(entity, zone, 1, dy))
+                if (TryStepOrOpenDoor(entity, zone, 1, dy))
                     return true;
-                if (MovementSystem.TryMove(entity, zone, -1, dy))
+                if (TryStepOrOpenDoor(entity, zone, -1, dy))
                     return true;
             }
             return false;
@@ -392,7 +398,7 @@ namespace CavesOfOoo.Core
                     var idealCell = zone.GetCell(idealX, idealY);
                     if (idealCell != null && idealCell.IsPassable())
                     {
-                        if (MovementSystem.TryMove(entity, zone, dx, dy))
+                        if (TryStepOrOpenDoor(entity, zone, dx, dy))
                             return true;
                     }
                 }
@@ -408,7 +414,7 @@ namespace CavesOfOoo.Core
             if (path.Usable && path.Steps.Count > 0)
             {
                 var (pdx, pdy) = path.Steps[0];
-                if (MovementSystem.TryMove(entity, zone, pdx, pdy))
+                if (TryStepOrOpenDoor(entity, zone, pdx, pdy))
                     return true;
             }
 
@@ -426,14 +432,14 @@ namespace CavesOfOoo.Core
         {
             var (dx, dy) = StepAway(myX, myY, awayFromX, awayFromY);
 
-            if (MovementSystem.TryMove(entity, zone, dx, dy))
+            if (TryStepOrOpenDoor(entity, zone, dx, dy))
                 return true;
 
             if (dx != 0 && dy != 0)
             {
-                if (MovementSystem.TryMove(entity, zone, dx, 0))
+                if (TryStepOrOpenDoor(entity, zone, dx, 0))
                     return true;
-                if (MovementSystem.TryMove(entity, zone, 0, dy))
+                if (TryStepOrOpenDoor(entity, zone, 0, dy))
                     return true;
             }
             return false;

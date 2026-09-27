@@ -1,0 +1,63 @@
+{
+  "reviewer": "combat_density",
+  "scope": "Independent still-image review of all six contact sheets (87 downsampled frames), plus four original 720x720 Walk frames. No editor execution by this reviewer.",
+  "cohortManifest": "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Visitors/native-gallery-cohort.json",
+  "cohortSha256": "316b023fc3c97d5b6e8356e696509305b91335c5e9265479f432df8855d0bace",
+  "nativeReceipt": "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Integration/native-spread265-first.json",
+  "sheetsViewed": [
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Visitors/NativeContactSheets/contact-01.png",
+      "sha256": "68aacd31c8cccf0058dbe696fdb18575bdd081a598eeff1de8c1e5c5ca01d5f7"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Visitors/NativeContactSheets/contact-02.png",
+      "sha256": "78bff2d4c0920402d4588f31ac68b986115147c8d8d7d8a852870b7b4138911e"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Visitors/NativeContactSheets/contact-03.png",
+      "sha256": "cc9337c75cfab9e4bdcc0cd355b71fa6c82e7595e90f46787d4f2c93d6a8f7e4"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Visitors/NativeContactSheets/contact-04.png",
+      "sha256": "90afbcf93690a200da7862e273df2fad5fa35aa5369f9265c8d0d34295314693"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Visitors/NativeContactSheets/contact-05.png",
+      "sha256": "24cc61f533da2753b8dfc65aedfa3a235cda91408bc9583b512599b816513e90"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Visitors/NativeContactSheets/contact-06.png",
+      "sha256": "196dbe6102e2990838662be11311786f68c5861c26ffa092c30fbd3e87b02a1d"
+    }
+  ],
+  "originalsViewed": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Visitors/NativeGallery/SkeletalSentry-9cfef7872eec4c5284bf1b9f03f39c58/01-Walk.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Visitors/NativeGallery/Bandfrog-133c967f1cea4785898b86d09a3c5485/01-Walk.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Visitors/NativeGallery/PrickleBrowGecko-42c87a38ada34956a1fb0f79e84646c6/01-Walk.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Visitors/NativeGallery/CaveBear-f8e39c2346c14804bd43ed0bfcfa9439/01-Walk.png"
+  ],
+  "findings": [
+    {
+      "severity": "observation",
+      "detail": "All 29 subjects appear contained and rendered in the sampled poses. Bat, segmented wurm, scorpions, quadrupeds, low slime, plant, skeleton and construct families have visibly different silhouettes; no missing body or detached geometry was apparent in these stills."
+    },
+    {
+      "severity": "observation",
+      "detail": "The actual SkeletalSentry helmet sits on the skull with eye sockets and ribs visible in the full-resolution Walk frame. This is a single item/pose view, not an all-angle armor fit claim."
+    },
+    {
+      "severity": "observation",
+      "detail": "Endemic frog and lizard markings remain distinct: Reedfrog green spots, Bandfrog red bars, GinFrog pale plain face, SummitSinger dark head mark; SunStriker stripes, Brocchinia dorsal spots and PrickleBrowGecko paired horns/pale dorsal markers. The full-resolution Bandfrog and PrickleBrowGecko frames contain no apparent repaired coplanar face speckles."
+    },
+    {
+      "severity": "limited-readability",
+      "detail": "CaveBear, JungleStalker, ObsidianBrute, CharredHusk and Bandfrog have low interior contrast against the dark green ground. Eyes, accents and silhouettes remain legible in these close-up captures; normal camera distance and motion readability are not established by this gallery."
+    }
+  ],
+  "verdict": "No new blocking geometry or fit defect found in this bounded still-image review. This is not broad visual/gameplay acceptance.",
+  "limits": [
+    "Only four originals were viewed at full resolution; the other 83 frames were viewed as contact-sheet thumbnails.",
+    "Gallery poses use authored art fixtures and changing cameras. These stills do not prove continuous animation quality, gameplay attack attribution, actual combat, or acquisition.",
+    "No claims about all angles, lighting conditions, normal-camera-scale readability, performance, clipping during full animation, or exact style test results beyond the linked native receipt."
+  ]
+}

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-doors/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="104" result="Failed" start-time="2026-09-27T01:47:54.9093970Z" end-time="2026-09-27T01:47:55.0608430Z" duration="0.151396" total="2" passed="1" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="173" random-seed="688624773">
+  <command-line><![CDATA[/private/tmp/coo-density-doors/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-density-doors/verification/native-followup-unlock-red.xml --where "method == UnlockInvalidatesLightOnlyAccordingToTheSavedLatch"]]></command-line>
+  <filter>
+    <method>UnlockInvalidatesLightOnlyAccordingToTheSavedLatch</method>
+  </filter>
+  <test-suite type="Assembly" id="1133" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-doors/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="104" result="Failed" site="Child" start-time="2026-09-27T01:47:54.9093970Z" end-time="2026-09-27T01:47:55.0608430Z" duration="0.151396" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="173">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-density-doors/Tools/EditModeRunner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-density-doors/Tools/EditModeRunner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="63075" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1134" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="104" result="Failed" site="Child" start-time="2026-09-27T01:47:54.9116800Z" end-time="2026-09-27T01:47:55.0608300Z" duration="0.149150" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="173">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1135" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="104" result="Failed" site="Child" start-time="2026-09-27T01:47:54.9118690Z" end-time="2026-09-27T01:47:55.0608230Z" duration="0.148954" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="173">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1114" name="DensityGeneratedDoorNativeFollowupTests" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-09-27T01:47:54.9123280Z" end-time="2026-09-27T01:47:55.0607620Z" duration="0.148435" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="173">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1132" name="UnlockInvalidatesLightOnlyAccordingToTheSavedLatch" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.UnlockInvalidatesLightOnlyAccordingToTheSavedLatch" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T01:47:54.9138870Z" end-time="2026-09-27T01:47:55.0605420Z" duration="0.146655" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="173">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1130" name="UnlockInvalidatesLightOnlyAccordingToTheSavedLatch(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.UnlockInvalidatesLightOnlyAccordingToTheSavedLatch(True)" methodname="UnlockInvalidatesLightOnlyAccordingToTheSavedLatch" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="1555602271" result="Failed" start-time="2026-09-27T01:47:54.9140260Z" end-time="2026-09-27T01:47:55.0380440Z" duration="0.124046" asserts="86">
+              <failure>
+                <message><![CDATA[  Expected: 0.74523812532424927d +/- 9.9999997473787516E-05d
+  But was:  0.05000000074505806d
+  Off by:   0.69523812457919121d
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.UnlockInvalidatesLightOnlyAccordingToTheSavedLatch(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 68
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 0.74523812532424927d +/- 9.9999997473787516E-05d
+  But was:  0.05000000074505806d
+  Off by:   0.69523812457919121d
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.UnlockInvalidatesLightOnlyAccordingToTheSavedLatch(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs:line 68
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1131" name="UnlockInvalidatesLightOnlyAccordingToTheSavedLatch(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests.UnlockInvalidatesLightOnlyAccordingToTheSavedLatch(False)" methodname="UnlockInvalidatesLightOnlyAccordingToTheSavedLatch" classname="CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests" runstate="Runnable" seed="488510796" result="Passed" start-time="2026-09-27T01:47:55.0387360Z" end-time="2026-09-27T01:47:55.0601840Z" duration="0.021448" asserts="87" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

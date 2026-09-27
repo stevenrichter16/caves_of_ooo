@@ -1,0 +1,538 @@
+{
+  "scope": "Read-only count comparison; no graph mutation or new failure inferred. Global HouseDrama registry snapshots were not captured in the census, so the exact inter-run registry cause is not proven.",
+  "sourceMechanism": "OverworldZoneManager chooses a late HouseDramaZoneBuilder only when HouseDramaRuntime.GetAllDramaIds is nonempty. The four living role fallback blueprints are Elder/Villager/Merchant/Scribe, exactly the observed9-village quartet delta.",
+  "comparisons": [
+    {
+      "seed": 64,
+      "before": "64-all-current-Spread-10050befd6274831964151295a2cccb6.json.gz",
+      "after": "64-all-current-Spread-b2ded7778bb74661b5e9d2c4ec1e8020.json.gz",
+      "beforeOwners": 313228,
+      "afterOwners": 313192,
+      "beforeSurfaces": 142,
+      "afterSurfaces": 142,
+      "beforeLairs": 1,
+      "afterLairs": 1,
+      "afterFailures": 0,
+      "differences": [
+        {
+          "zone": "Overworld.10.10.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.10.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.10.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.10.0",
+          "blueprint": "Villager",
+          "before": 5,
+          "after": 4,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.14.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.14.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.14.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.14.0",
+          "blueprint": "Villager",
+          "before": 5,
+          "after": 4,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.12.12.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.12.12.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.12.12.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.12.12.0",
+          "blueprint": "Villager",
+          "before": 3,
+          "after": 2,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.13.7.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.13.7.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.13.7.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.13.7.0",
+          "blueprint": "Villager",
+          "before": 5,
+          "after": 4,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.14.9.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.14.9.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.14.9.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.14.9.0",
+          "blueprint": "Villager",
+          "before": 5,
+          "after": 4,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.15.6.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.15.6.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.15.6.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.15.6.0",
+          "blueprint": "Villager",
+          "before": 6,
+          "after": 5,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.16.11.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.16.11.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.16.11.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.16.11.0",
+          "blueprint": "Villager",
+          "before": 4,
+          "after": 3,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.5.9.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.5.9.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.5.9.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.5.9.0",
+          "blueprint": "Villager",
+          "before": 5,
+          "after": 4,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.7.8.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.7.8.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.7.8.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.7.8.0",
+          "blueprint": "Villager",
+          "before": 8,
+          "after": 7,
+          "delta": -1
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "before": "1-all-current-Spread-f5ae5bfa347c42eb86d8eb926ea0195e.json.gz",
+      "after": "1-all-current-Spread-4d63c00e51e549888c768c4c3b275072.json.gz",
+      "beforeOwners": 313347,
+      "afterOwners": 313311,
+      "beforeSurfaces": 142,
+      "afterSurfaces": 142,
+      "beforeLairs": 1,
+      "afterLairs": 1,
+      "afterFailures": 0,
+      "differences": [
+        {
+          "zone": "Overworld.10.10.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.10.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.10.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.10.0",
+          "blueprint": "Villager",
+          "before": 6,
+          "after": 5,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.14.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.14.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.14.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.10.14.0",
+          "blueprint": "Villager",
+          "before": 3,
+          "after": 2,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.12.12.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.12.12.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.12.12.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.12.12.0",
+          "blueprint": "Villager",
+          "before": 5,
+          "after": 4,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.13.7.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.13.7.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.13.7.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.13.7.0",
+          "blueprint": "Villager",
+          "before": 5,
+          "after": 4,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.14.9.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.14.9.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.14.9.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.14.9.0",
+          "blueprint": "Villager",
+          "before": 4,
+          "after": 3,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.15.6.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.15.6.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.15.6.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.15.6.0",
+          "blueprint": "Villager",
+          "before": 4,
+          "after": 3,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.16.11.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.16.11.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.16.11.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.16.11.0",
+          "blueprint": "Villager",
+          "before": 4,
+          "after": 3,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.5.9.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.5.9.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.5.9.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.5.9.0",
+          "blueprint": "Villager",
+          "before": 6,
+          "after": 5,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.7.8.0",
+          "blueprint": "Elder",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.7.8.0",
+          "blueprint": "Merchant",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.7.8.0",
+          "blueprint": "Scribe",
+          "before": 2,
+          "after": 1,
+          "delta": -1
+        },
+        {
+          "zone": "Overworld.7.8.0",
+          "blueprint": "Villager",
+          "before": 9,
+          "after": 8,
+          "delta": -1
+        }
+      ]
+    }
+  ]
+}

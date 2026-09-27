@@ -27836,11 +27836,11 @@
             },
             {
               "Key": "Volatility",
-              "Value": "30"
+              "Value": "0.3"
             },
             {
               "Key": "MaterialTagsRaw",
-              "Value": "Liquid,Tar,Fuel"
+              "Value": "Liquid,Tar,Fuel,Flammable"
             }
           ]
         },
@@ -28115,7 +28115,7 @@
             },
             {
               "Key": "Porosity",
-              "Value": "80"
+              "Value": "0.8"
             },
             {
               "Key": "MaterialTagsRaw",
@@ -28236,7 +28236,7 @@
             },
             {
               "Key": "Brittleness",
-              "Value": "70"
+              "Value": "0.7"
             },
             {
               "Key": "MaterialTagsRaw",
@@ -28333,7 +28333,7 @@
             },
             {
               "Key": "Brittleness",
-              "Value": "90"
+              "Value": "0.9"
             },
             {
               "Key": "MaterialTagsRaw",
@@ -28426,7 +28426,7 @@
             },
             {
               "Key": "Porosity",
-              "Value": "100"
+              "Value": "1"
             },
             {
               "Key": "MaterialTagsRaw",
@@ -36056,6 +36056,225 @@
         {
           "Key": "Tier",
           "Value": "4"
+        }
+      ]
+    },
+    {
+      "Name": "LiquidFlask",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "liquid flask"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "!"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "LiquidVessel",
+          "Params": [
+            {
+              "Key": "Capacity",
+              "Value": "12"
+            },
+            {
+              "Key": "Volume",
+              "Value": "0"
+            },
+            {
+              "Key": "LiquidId",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Handling",
+          "Params": [
+            {
+              "Key": "GripType",
+              "Value": "OneHand"
+            },
+            {
+              "Key": "BulkClass",
+              "Value": "Light"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "Thick glass and a tight stopper. The narrow neck lets you pour without wetting your hands."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Item",
+          "Value": "true"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
+      "Name": "PouredLiquidPool",
+      "Inherits": "Terrain",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "poured liquid"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "~"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Solid",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "LiquidPool",
+          "Params": [
+            {
+              "Key": "LiquidId",
+              "Value": ""
+            },
+            {
+              "Key": "Volume",
+              "Value": "0"
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "VillageDoor",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "door"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "/"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Door",
+          "Params": [
+            {
+              "Key": "IsOpen",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A fitted panel swings on hinges. A simple latch holds it closed."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Furniture",
+          "Value": ""
         }
       ]
     }

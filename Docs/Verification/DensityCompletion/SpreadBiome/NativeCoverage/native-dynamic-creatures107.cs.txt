@@ -1,0 +1,29 @@
+var names=new[]{"MarlbackScrabbler","Player","MarlbackGleaner","MarlbackTunnelguard","Elder","Villager","Weaponsmith","Armorer","Apothecary","Arcanist","Provisioner","CaveHermit","DesertHermit","JungleHermit","RuinsHermit","Marceline","Magpie","PetDog","VillageChild","Tinker","Merchant","Quartermaster","ChoirTendril","PalimpsestEcho","SaccharineEnvoy","ConcordFactor","PaleCurator","GlassblownDrifter","CaveBat","CaveSlime","CaveBear","Glowmaw","Scorpion","DesertBandit","SandWurm","GiantSpider","Viper","JungleApe","RuinScavenger","SkeletalSentry","StoneGolem","PaleStalker","ObsidianBrute","MarlbackWallkeeper","MarlbackBreacher","Mosshulk","DesertProwler","DuneLurker","BrittleHound","JungleStalker","Rotling","CanopyStrangler","AncientGuardian","VaultSentinel","BrassHusk","GlassScorpion","SporeShambler","Mogu","Grib","Nam","Sien","Sopp","IceWight","CharredHusk","Warden","WellKeeper","Farmer","Innkeeper","Undertaker","Scribe","SleepingTroll","MimicChest","AmbushBandit","RuneCultist","SunStriker","TentRightHost","SaltMaster","Reedfrog","Bandfrog","MawToad","GinFrog","RecensionScribe","StillleafSearcher","CurationSorter","StillleafIndexer","PeatCutter","FilerClerk","EncasedElder","CatacombWarden","PlaqueTender","SariSnake","Wardline","CascadeFather","GlasspaneFrog","YellowfootWayfarer","Shambler","GroveLanternMoth","SummitSinger","BrocchiniaSentinel","SkySari","PrickleBrowGecko","HelmwoodFrog","FoundingListener","FoundingPlaqueTender","GantryRegistrar","SootGremlin","DirtGnome"};
+var testType=System.AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType("CavesOfOoo.Tests.SpawnRing3DIntegrationFixture")).First(t=>t!=null);
+var fixture=System.Activator.CreateInstance(testType,System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.Public|System.Reflection.BindingFlags.NonPublic,null,new object[]{"Overworld.12.10.0",false},null);
+var rows=new System.Collections.Generic.List<object>();
+try {
+ var factory=(CavesOfOoo.Data.EntityFactory)testType.GetField("Factory").GetValue(fixture);
+ var zone=(CavesOfOoo.Core.Zone)testType.GetField("Zone").GetValue(fixture);
+ var player=(CavesOfOoo.Core.Entity)testType.GetField("Player").GetValue(fixture);
+ var presenter=(CavesOfOoo.Rendering.SpawnRing3DPresenter)testType.GetField("Presenter").GetValue(fixture);
+ testType.GetMethod("Set").Invoke(fixture,new object[]{"FullReveal",true});
+ foreach(var blueprint in names){
+  var actor=blueprint=="Player"?player:factory.CreateEntity(blueprint);
+  bool added=blueprint=="Player";string failure=null;
+  if(actor==null){rows.Add(new{blueprint,failure="factory-null"});continue;}
+  if(!added)for(int y=1;y<CavesOfOoo.Core.Zone.Height-2&&!added;y++)for(int x=1;x<CavesOfOoo.Core.Zone.Width-2&&!added;x++)
+    if(zone.CanPlaceFootprint(actor,x,y)&&!zone.GetOccupiedCells(actor,x,y).Any(c=>c.Occupants.Any(e=>e.HasTag("Creature")||e.HasTag("Player"))))added=zone.AddEntity(actor,x,y);
+  if(!added){rows.Add(new{blueprint,failure="no-legal-native-footprint"});continue;}
+  try{
+   testType.GetMethod("Reveal").Invoke(fixture,null);testType.GetMethod("Refresh").Invoke(fixture,new object[]{null});
+   var render=actor.GetPart<CavesOfOoo.Core.RenderPart>();var recipe=CavesOfOoo.Rendering.SpawnRing3DRecipes.Resolve(zone,actor,presenter.ActiveSurface==null?null:UnityEngine.Resources.Load<CavesOfOoo.Rendering.SpawnRing3DLibrary>(CavesOfOoo.Rendering.SpawnRing3DLibrary.ResourcePath).Definition);
+   CavesOfOoo.Rendering.SpreadBiomeStyleEvidence proof;bool approved=presenter.TryGetApprovedStyle(actor,out proof);
+   UnityEngine.GameObject root;string model;bool found=presenter.TryGetEntityView(actor,out root,out model);
+   var animator=root==null?null:root.GetComponentInChildren<UnityEngine.Animator>(true);
+   rows.Add(new{blueprint,id=actor.ID,visible=render!=null&&render.Visible,renderString=render==null?null:render.RenderString,model,recipeFailure=recipe.Failure,approved,styleFailure=proof.Failure,found,animated=animator!=null&&animator.runtimeAnimatorController!=null});
+  }catch(System.Exception e){rows.Add(new{blueprint,failure=e.ToString()});}
+  finally{if(actor!=player)zone.RemoveEntity(actor);}
+ }
+ return new{scope="Native source-roster diagnostic:107 factory-defined creatures explicitly placed on legal available footprints in one generated receiving Spread fixture, then removed. This proves renderer adoption/control gaps only; no ordinary encounter or gameplay reachability claim.",count=rows.Count,rows=rows.ToArray()};
+}finally{((System.IDisposable)fixture).Dispose();}

@@ -84,7 +84,7 @@ namespace CavesOfOoo.Rendering
         /// Call once at bind for an authored profile. Borrowed assets and global
         /// render settings remain unchanged; low-detail Sync still disables shadows.</summary>
         public void ConfigureLighting(float exposure, float ambient, float sunlight, Color color,
-            Vector3 euler, float strength, float bias, float normalBias, float altitude, FilterMode filter)
+            Vector3 euler, float strength, float bias, float normalBias, float altitude, FilterMode filter, bool useLocalShadowBias = false)
         {
             if (disposed) throw new ObjectDisposedException(nameof(NativeZone3DRenderSurface));
             if (!Village3DProjection.Finite(exposure) || exposure <= 0 || !Village3DProjection.Finite(ambient) || ambient < 0
@@ -102,6 +102,10 @@ namespace CavesOfOoo.Rendering
                 if (material.HasProperty("_SunStrength")) material.SetFloat("_SunStrength", sunlight);
             }
             Sun.color = color; Sun.shadowStrength = strength; Sun.shadowBias = bias; Sun.shadowNormalBias = normalBias;
+            // URP otherwise discards Light bias fields in favor of pipeline-wide
+            // defaults. Opt in only for the authored owned profile; ordinary
+            // callers retain their inherited policy and no asset is modified.
+            Sun.GetUniversalAdditionalLightData().usePipelineSettings = !useLocalShadowBias;
             Sun.transform.rotation = Quaternion.Euler(euler); cameraAltitude = altitude; targetFilter = filter;
             if (target != null) target.filterMode = filter;
         }

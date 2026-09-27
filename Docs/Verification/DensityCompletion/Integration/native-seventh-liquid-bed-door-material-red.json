@@ -1,0 +1,158 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "118a333bb64b4b4ca482c1cd5117e122",
+  "run": {
+    "id": "2",
+    "testcasecount": "494",
+    "result": "Failed(Child)",
+    "total": "494",
+    "passed": "460",
+    "failed": "34",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 01:41:16Z",
+    "end-time": "2026-09-27 01:41:50Z",
+    "duration": "34.2623674"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(\"Overworld.10.10.0\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(\"Overworld.5.9.0\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(\"Overworld.15.15.0\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(\"Overworld.16.1.0\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorInvalidationTests.StationaryNativeOpenAndCloseRefreshExistingGameplayLightCache",
+      "message": "  Compute alone may retain an old cache because native door state is outside its key.\n  Expected: 0.74523818492889404d +/- 9.9999997473787516E-05d\n  But was:  0.05000000074505806d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorMenuTests.ExplicitOrdinaryDoorStateChangeCostsExactlyOneAction(True)",
+      "message": "  Expected: greater than 10\n  But was:  10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorMenuTests.ExplicitOrdinaryDoorStateChangeCostsExactlyOneAction(False)",
+      "message": "  Expected: greater than 10\n  But was:  10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorRenderingTests.ExactNativeDoorUsesItsSavedStateAndAxisWithoutMutatingAnything(False,0)",
+      "message": "  unmodeled-native-blueprint\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorRenderingTests.ExactNativeDoorUsesItsSavedStateAndAxisWithoutMutatingAnything(False,1)",
+      "message": "  unmodeled-native-blueprint\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorRenderingTests.ExactNativeDoorUsesItsSavedStateAndAxisWithoutMutatingAnything(False,2)",
+      "message": "  unmodeled-native-blueprint\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorRenderingTests.ExactNativeDoorUsesItsSavedStateAndAxisWithoutMutatingAnything(False,3)",
+      "message": "  unmodeled-native-blueprint\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorRenderingTests.ExactNativeDoorUsesItsSavedStateAndAxisWithoutMutatingAnything(True,0)",
+      "message": "  unmodeled-native-blueprint\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorRenderingTests.ExactNativeDoorUsesItsSavedStateAndAxisWithoutMutatingAnything(True,1)",
+      "message": "  unmodeled-native-blueprint\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorRenderingTests.ExactNativeDoorUsesItsSavedStateAndAxisWithoutMutatingAnything(True,2)",
+      "message": "  unmodeled-native-blueprint\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorRenderingTests.ExactNativeDoorUsesItsSavedStateAndAxisWithoutMutatingAnything(True,3)",
+      "message": "  unmodeled-native-blueprint\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorRenderingTests.RealCloseAndOpenUpdateVisibleModelAndKeepNativeOwnerOutsideStillleaf(0)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityGeneratedDoorRenderingTests.RealCloseAndOpenUpdateVisibleModelAndKeepNativeOwnerOutsideStillleaf(1)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityMaterialUnitTests.ActualPorousMaterialLosesRatherThanCreatesMoisture(\"PeatBog\",25.0f)",
+      "message": "  Expected: in range (0,1)\n  But was:  1.38999999f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityMaterialUnitTests.ActualPorousMaterialLosesRatherThanCreatesMoisture(\"PeatBog\",100.0f)",
+      "message": "  Expected: in range (0,1)\n  But was:  4.9000001f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityMaterialUnitTests.ActualPorousMaterialLosesRatherThanCreatesMoisture(\"SteamVent\",25.0f)",
+      "message": "  Expected: in range (0,1)\n  But was:  1.49000001f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityMaterialUnitTests.ActualPorousMaterialLosesRatherThanCreatesMoisture(\"SteamVent\",100.0f)",
+      "message": "  Expected: in range (0,1)\n  But was:  5.9000001f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityMaterialUnitTests.ActualTarRequiresPositiveThresholdCrossingToIgnite(True)",
+      "message": "  temp=180 volatility=30 material=Liquid,Tar,Fuel\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityMaterialUnitTests.AuthoredFractionalPropertiesMatchTheirExistingConsumers(\"TarSeep\",\"Volatility\",0.3f)",
+      "message": "  Expected: 0.30000001192092896d +/- 9.9999997473787516E-05d\n  But was:  30.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityMaterialUnitTests.AuthoredFractionalPropertiesMatchTheirExistingConsumers(\"PeatBog\",\"Porosity\",0.8f)",
+      "message": "  Expected: 0.80000001192092896d +/- 9.9999997473787516E-05d\n  But was:  80.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityMaterialUnitTests.AuthoredFractionalPropertiesMatchTheirExistingConsumers(\"SteamVent\",\"Porosity\",1.0f)",
+      "message": "  Expected: 1.0d +/- 9.9999997473787516E-05d\n  But was:  100.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityMaterialUnitTests.AuthoredFractionalPropertiesMatchTheirExistingConsumers(\"FrostVent\",\"Brittleness\",0.7f)",
+      "message": "  Expected: 0.69999998807907104d +/- 9.9999997473787516E-05d\n  But was:  70.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityMaterialUnitTests.AuthoredFractionalPropertiesMatchTheirExistingConsumers(\"IceSheet\",\"Brittleness\",0.9f)",
+      "message": "  Expected: 0.89999997615814209d +/- 9.9999997473787516E-05d\n  But was:  90.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityMaterialUnitTests.NativeBrittlenessUsesPartialOrCatastrophicExistingConsumer(\"FrostVent\",False)",
+      "message": "  Expected: in range (75,85)\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityMaterialUnitTests.TarIgnitionRequiresAuthoredFlammabilityAsWellAsThermalCrossing(True)",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityPouredLiquidRenderingTests.EveryActualRegisteredLiquidHasItsExactColorAndCachedFlatNativeAsset",
+      "message": "  Expected: RGBA(0.330, 1.000, 0.330, 1.000)\n  But was:  RGBA(0.330, 1.000, 0.330, 1.000)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeSeventhGrassTests.ActualGrassKeepsHeightButHasAReadableBroadFootprint(0)",
+      "message": "  Actual sixth image read as narrow needles.\n  Expected: in range (0.89,1)\n  But was:  0.558259964f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeSeventhGrassTests.ActualGrassKeepsHeightButHasAReadableBroadFootprint(1)",
+      "message": "  Actual sixth image read as narrow needles.\n  Expected: in range (0.89,1)\n  But was:  0.557989955f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeSeventhGrassTests.ActualGrassKeepsHeightButHasAReadableBroadFootprint(2)",
+      "message": "  Actual sixth image read as narrow needles.\n  Expected: in range (0.89,1)\n  But was:  0.569260001f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeSeventhGrassTests.ActualGrassKeepsHeightButHasAReadableBroadFootprint(3)",
+      "message": "  Actual sixth image read as narrow needles.\n  Expected: in range (0.89,1)\n  But was:  0.55223f\n"
+    }
+  ]
+}

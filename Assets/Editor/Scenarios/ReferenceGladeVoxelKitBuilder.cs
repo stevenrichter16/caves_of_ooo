@@ -17,7 +17,7 @@ namespace CavesOfOoo.Editor
         [Serializable]sealed class Box{public Vector3 center,size;public int color;}
         [Serializable]sealed class Model{public string id,family;public int variant;public Box[] boxes;}
         [Serializable]sealed class Kit{public int schemaVersion;public string[] palette;public Model[] models;}
-        [Serializable]sealed class Report{public string status,sourceSha256,error;public int models,boxes,triangles;public string[] palette,actorPaintAssets;}
+        [Serializable]sealed class Report{public string status,sourceSha256,error;public int models,boxes,triangles;public string[] palette,actorPaintAssets;public int[] actorVertexCounts;}
         public static void Run(string reportPath="Docs/Verification/DensityCompletion/ReferenceGlade/Art/native-kit-import.json")
         {
             var report=new Report();GameObject primitive=null;
@@ -61,8 +61,9 @@ namespace CavesOfOoo.Editor
                     entries.Add(new ReferenceGladeVoxelLibrary.Entry{Id=model.id,Prefab=prefab,Mesh=mesh,Spec=new SpawnRing3DCatalog.Model{id=model.id,path=prefabPath,kind=model.family=="ground"?"ground":"entity",materialFamily="reference-glade-palette",rigFamily="none",boundsCenter=mesh.bounds.center,boundsSize=mesh.bounds.size,triangles=triangles.Count/3,clips=Array.Empty<string>(),sockets=Array.Empty<string>()}});
                     report.boxes+=model.boxes.Length;report.triangles+=triangles.Count/3;
                 }
-                var actorPaints=BuildActorPaints(ring);
+                var actorPaints=BuildActorPaints(ring,cube);
                 report.actorPaintAssets=actorPaints.Select(p=>AssetDatabase.GetAssetPath(p.Painted)).ToArray();
+                report.actorVertexCounts=actorPaints.Select(p=>p.Painted.vertexCount).ToArray();
                 string libraryPath=Folder+"/Library.asset";var library=AssetDatabase.LoadAssetAtPath<ReferenceGladeVoxelLibrary>(libraryPath);
                 if(library==null){RefuseWrongType(libraryPath);library=ScriptableObject.CreateInstance<ReferenceGladeVoxelLibrary>();AssetDatabase.CreateAsset(library,libraryPath);}
                 library.Entries=entries.ToArray();library.Material=material;library.ActorPaints=actorPaints;library.Validate();EditorUtility.SetDirty(library);AssetDatabase.SaveAssets();report.status="passed";report.models=entries.Count;report.palette=kit.palette;
@@ -70,11 +71,11 @@ namespace CavesOfOoo.Editor
             catch(Exception error){report.status="failed";report.error=error.ToString();throw;}
             finally{if(primitive!=null)UnityEngine.Object.DestroyImmediate(primitive);Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(reportPath)));File.WriteAllText(reportPath,JsonUtility.ToJson(report,true));}
         }
-        static ReferenceGladeVoxelLibrary.ActorPaint[] BuildActorPaints(SpawnRing3DLibrary ring)
+        static ReferenceGladeVoxelLibrary.ActorPaint[] BuildActorPaints(SpawnRing3DLibrary ring,Mesh cube)
         {
             var catalog=Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath);
             if(catalog==null)throw new InvalidOperationException("Adopted native voxel rigs required for scoped paint.");
-            catalog.Validate();var plans=new List<(string id,Mesh source,Vector2[] uv)>();
+            catalog.Validate();var plans=new List<(string id,Mesh source,Vector2[] uv,ReferenceGladeHumanoidMeshBuilder.Plan form)>();
             // Complete every source/bone/color preflight before writing paint assets.
             foreach(string id in ReferenceGladeVoxelLibrary.ActorModelIds)
             {
@@ -85,28 +86,16 @@ namespace CavesOfOoo.Editor
                 var uv=source.uv;var original=source.uv;
                 if(uv.Length!=source.vertexCount)throw new InvalidOperationException("Incomplete adopted rig paint: "+id);
                 bool humanoid=id=="ring-player"||id=="ring-sien"||id=="ring-nam";
+                ReferenceGladeHumanoidMeshBuilder.Plan form=null;
                 if(humanoid)
-                {
-                    var weights=source.boneWeights;int pale=0,body=0;
-                    if(weights.Length!=uv.Length)throw new InvalidOperationException("Incomplete actor weights: "+id);
-                    for(int i=0;i<uv.Length;i++)
-                    {
-                        var w=weights[i];int bone=w.boneIndex0;float max=w.weight0;
-                        if(w.weight1>max){bone=w.boneIndex1;max=w.weight1;}if(w.weight2>max){bone=w.boneIndex2;max=w.weight2;}if(w.weight3>max){bone=w.boneIndex3;max=w.weight3;}
-                        if(bone<0||bone>=skin.bones.Length||skin.bones[bone]==null)throw new InvalidOperationException("Unknown adopted actor bone: "+id);
-                        string name=skin.bones[bone].name;bool accent=name=="Head"||name.StartsWith("Hand.",StringComparison.Ordinal);
-                        int slot=accent?17:id=="ring-player"?16:11;
-                        if(accent)pale++;else body++;uv[i]=new Vector2((slot+.5f)/24f,.5f);
-                    }
-                    if(pale==0||body==0)throw new InvalidOperationException("Actor paint must retain head/hands and body: "+id);
-                }
+                    form=ReferenceGladeHumanoidMeshBuilder.Prepare(id,prefab,skin,source,cube);
                 else
                 {
                     var colors=original.GroupBy(value=>value).OrderByDescending(g=>g.Count()).ThenBy(g=>g.Key.x).ThenBy(g=>g.Key.y).Select(g=>g.Key).ToArray();
                     if(colors.Length!=2)throw new InvalidOperationException("Original Marlback plate/body colors required: "+id);
                     for(int i=0;i<uv.Length;i++)uv[i]=new Vector2(((original[i]==colors[0]?18:21)+.5f)/24f,.5f);
                 }
-                plans.Add((id,source,uv));
+                plans.Add((id,source,uv,form));
             }
             string folder=Folder+"/ActorPaint";Directory.CreateDirectory(folder);AssetDatabase.Refresh();
             var result=new List<ReferenceGladeVoxelLibrary.ActorPaint>();
@@ -114,8 +103,10 @@ namespace CavesOfOoo.Editor
             {
                 string path=folder+"/"+plan.id+".asset";var painted=AssetDatabase.LoadAssetAtPath<Mesh>(path);
                 if(painted==null){RefuseWrongType(path);painted=new Mesh();AssetDatabase.CreateAsset(painted,path);}
-                EditorUtility.CopySerialized(plan.source,painted);painted.name="reference-glade-painted-"+plan.id;painted.uv=plan.uv;EditorUtility.SetDirty(painted);
-                result.Add(new ReferenceGladeVoxelLibrary.ActorPaint{ModelId=plan.id,Source=plan.source,Painted=painted});
+                if(plan.form!=null)plan.form.Fill(painted);
+                else{EditorUtility.CopySerialized(plan.source,painted);painted.uv=plan.uv;}
+                painted.name="reference-glade-painted-"+plan.id;EditorUtility.SetDirty(painted);
+                result.Add(new ReferenceGladeVoxelLibrary.ActorPaint{ModelId=plan.id,Source=plan.source,Painted=painted,AuthoredGeometry=plan.form!=null});
             }
             return result.ToArray();
         }

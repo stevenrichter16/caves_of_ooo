@@ -1,0 +1,78 @@
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
+@@ -98,6 +98,12 @@
+                 var poured = PouredLiquid3DLibrary.Load();
+                 if (poured == null) throw new InvalidOperationException("Poured liquid color library is unavailable.");
+                 poured.Validate(); materials.AddRange(poured.Materials);
++                if (spreadStyle)
++                {
++                    var portable = SpreadPortable3DLibrary.Load();
++                    if (portable == null) throw new InvalidOperationException("Spread portable library is unavailable.");
++                    portable.Validate(); materials.Add(portable.Material);
++                }
+                 ReferenceGladeVoxelLibrary glade=null;
+                 if(referenceGlade || spreadStyle)
+                 {
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
+@@ -60,7 +60,7 @@
+             models=candidates;equipmentIds=new HashSet<string>(d.externalEquipment.models,StringComparer.Ordinal);
+         }
+         public GameObject FindModel(string modelId)
+-        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:SpreadBiomeActorLibrary.Load()?.Find(modelId)?.Prefab ?? PouredLiquid3DLibrary.Load()?.Find(modelId)?.Prefab ?? ReferenceGladeVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? DensityPhase1VoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OlderdeepVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? WellmeetVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? CinderholdVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? SumpholdVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? DrownedLedgerVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? MarrowstyeVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? FirstTentVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? LastCounterVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? GantryVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? TineVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? QuillholdVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? TallyVoxelKitLibrary.Load()?.Find(modelId)?.Prefab;}
++        {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:SpreadPortable3DLibrary.Load()?.Find(modelId)?.Prefab ?? SpreadBiomeActorLibrary.Load()?.Find(modelId)?.Prefab ?? PouredLiquid3DLibrary.Load()?.Find(modelId)?.Prefab ?? ReferenceGladeVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? DensityPhase1VoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SpreadVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? OlderdeepVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? WellmeetVoxelLibrary.Load()?.Find(modelId)?.Prefab ?? CinderholdVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? SumpholdVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? DrownedLedgerVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? MarrowstyeVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? FirstTentVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? LastCounterVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? GantryVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? TineVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? QuillholdVoxelKitLibrary.Load()?.Find(modelId)?.Prefab ?? TallyVoxelKitLibrary.Load()?.Find(modelId)?.Prefab;}
+         public GameObject FindEquipmentModel(string modelId)
+         {if(string.IsNullOrEmpty(modelId))return null;if(equipmentIds==null)Validate();return equipmentIds.Contains(modelId)?EquipmentLibrary.FindModel(modelId):null;}
+     }
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
+@@ -23,6 +23,9 @@
+     public static class SpawnRing3DRecipes
+     {
+         public static SpawnRing3DRecipe Resolve(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot = null)
++            => SpreadPortableWorldRecipes.Refine(zone, entity, ResolveNative(zone, entity, catalog, pilot));
++
++        private static SpawnRing3DRecipe ResolveNative(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot)
+         {
+             if (zone == null || catalog == null || !catalog.SupportsZone(zone)) return Refused(entity, "outside-ring");
+             if (!AreaCompositionScope.Allows(zone)) return Refused(entity,"runtime-place-authority");
+--- a/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
++++ b/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
+@@ -35,6 +35,9 @@
+                 var animals=SpreadBiomeActorLibrary.Load();
+                 if(animals==null)throw new InvalidOperationException("Original Spread animal library missing.");
+                 animals.Validate();foreach(var entry in animals.Entries)generated.Add(entry.Mesh);
++                var portable = SpreadPortable3DLibrary.Load();
++                if (portable == null) throw new InvalidOperationException("Spread portable voxel library missing.");
++                portable.Validate(); foreach (var entry in portable.Entries) generated.Add(entry.Mesh);
+             }
+             // Pool hazards and market stalls can occur in any supported native
+             // zone. Register their already-voxel meshes once per bind, not frame.
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
+@@ -159,7 +159,7 @@
+             zoneIndex=new HashSet<string>(zones,StringComparer.Ordinal);
+         }
+         public Model FindModel(string modelId)
+-        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:SpreadBiomeActorLibrary.Load()?.Find(modelId)?.Spec ?? PouredLiquid3DLibrary.Load()?.Find(modelId)?.Spec ?? ReferenceGladeVoxelLibrary.Load()?.Find(modelId)?.Spec ?? DensityPhase1VoxelLibrary.Load()?.Find(modelId)?.Spec ?? SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Spec ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OlderdeepVoxelLibrary.Load()?.Find(modelId)?.Spec ?? WellmeetVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CinderholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? SumpholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? DrownedLedgerVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? MarrowstyeVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? FirstTentVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? LastCounterVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? GantryVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? TineVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? QuillholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? TallyVoxelKitLibrary.Load()?.Find(modelId)?.Spec;}
++        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:SpreadPortable3DLibrary.Load()?.Find(modelId)?.Spec ?? SpreadBiomeActorLibrary.Load()?.Find(modelId)?.Spec ?? PouredLiquid3DLibrary.Load()?.Find(modelId)?.Spec ?? ReferenceGladeVoxelLibrary.Load()?.Find(modelId)?.Spec ?? DensityPhase1VoxelLibrary.Load()?.Find(modelId)?.Spec ?? SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Spec ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OlderdeepVoxelLibrary.Load()?.Find(modelId)?.Spec ?? WellmeetVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CinderholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? SumpholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? DrownedLedgerVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? MarrowstyeVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? FirstTentVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? LastCounterVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? GantryVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? TineVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? QuillholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? TallyVoxelKitLibrary.Load()?.Find(modelId)?.Spec;}
+         public BlueprintBinding FindBlueprint(string blueprint)
+         {if(string.IsNullOrEmpty(blueprint))return null;if(blueprintIndex==null)Validate();return blueprintIndex.TryGetValue(blueprint,out var value)?value:null;}
+         public FellingOwner FindFellingOwner(string componentId)
+--- a/Assets/Scripts/Presentation/Rendering/SpreadPortableRecipes.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpreadPortableRecipes.cs
+@@ -305,10 +305,13 @@
+         private static bool LiquidColor(string value) => value == "&B" || value == "&C" || value == "&G"
+             || value == "&K" || value == "&R" || value == "&W" || value == "&Y" || value == "&c"
+             || value == "&g" || value == "&m" || value == "&w" || value == "&y";
++        public static bool HandlesBlueprint(string blueprint)
++            => blueprint != null && (Concrete.Contains(blueprint) || blueprint == "SeveredLimb"
++                || blueprint == "DetectiveNotebook" || blueprint == "CrunchyLocket");
+         public static bool TryRecipe(Entity owner, out string modelId)
+         {
+             modelId = null;
+-            if (owner == null || owner.BlueprintName == null || (!Concrete.Contains(owner.BlueprintName) && owner.BlueprintName != "SeveredLimb" && owner.BlueprintName != "DetectiveNotebook" && owner.BlueprintName != "CrunchyLocket")
++            if (owner == null || !HandlesBlueprint(owner.BlueprintName)
+                 || owner.HasTag("Natural") || owner.HasTag("Creature")) return false;
+             var physics = owner.GetPart<PhysicsPart>();
+             var render = owner.GetPart<RenderPart>();

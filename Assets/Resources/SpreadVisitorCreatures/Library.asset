@@ -1,0 +1,666 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd15c91588d64a5eb3063739d432f259, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.SpreadVisitorCreatureLibrary
+  Entries:
+  - Id: spread-visitor-cave-bat
+    Prefab: {fileID: 607741807598027303, guid: e780d15bce4464e2f9e093007aa1f83f, type: 3}
+    Mesh: {fileID: 2278220103244582815, guid: 0011f0fa3d85f4f05a5a6a8b4948388b, type: 3}
+    Spec:
+      id: spread-visitor-cave-bat
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-cave-bat.prefab
+      kind: actor
+      rigFamily: avian
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: CaveBat
+      rigged: 1
+      boundsCenter: {x: -0.00012242388, y: 0.4278859, z: -0.04638216}
+      boundsSize: {x: 1.5549155, y: 0.7613604, z: 0.7058492}
+      triangles: 240
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-cave-slime
+    Prefab: {fileID: 2048175092703111119, guid: af72f05fe697b4000974e3078a95500a, type: 3}
+    Mesh: {fileID: 745367525758806239, guid: a095b6943bb2349a0b94505ab4562582, type: 3}
+    Spec:
+      id: spread-visitor-cave-slime
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-cave-slime.prefab
+      kind: actor
+      rigFamily: gel
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: CaveSlime
+      rigged: 1
+      boundsCenter: {x: 2.18556e-10, y: 0.1972499, z: -0.0024999857}
+      boundsSize: {x: 0.64000005, y: 0.39449987, z: 0.6149999}
+      triangles: 72
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-cave-bear
+    Prefab: {fileID: 4003359069620248713, guid: 2ead77aceff074fa583a242be7e485c1, type: 3}
+    Mesh: {fileID: -6863769525237445524, guid: 0479bbde7311b476cbcf8480b301027d, type: 3}
+    Spec:
+      id: spread-visitor-cave-bear
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-cave-bear.prefab
+      kind: actor
+      rigFamily: quadruped
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: CaveBear
+      rigged: 1
+      boundsCenter: {x: 0.0017575399, y: 0.41704428, z: -0.08612475}
+      boundsSize: {x: 0.68204576, y: 0.91079175, z: 1.1122494}
+      triangles: 228
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-pale-stalker
+    Prefab: {fileID: 5091633358808338048, guid: 526df3ce278dc4a3f81c1469f7ae26c2, type: 3}
+    Mesh: {fileID: -1821221502205990173, guid: c5e7b040aa5bb480597cd47d9d648bad, type: 3}
+    Spec:
+      id: spread-visitor-pale-stalker
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-pale-stalker.prefab
+      kind: actor
+      rigFamily: quadruped
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: PaleStalker
+      rigged: 1
+      boundsCenter: {x: 0.0018447406, y: 0.4767267, z: 0.094766125}
+      boundsSize: {x: 0.36129007, y: 0.998785, z: 1.2757845}
+      triangles: 276
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-desert-prowler
+    Prefab: {fileID: 7173486899639889346, guid: aa9a9aecddd0a49f2863147a6a4e547c, type: 3}
+    Mesh: {fileID: 7575529404320675513, guid: f44ca6a07f9b549cf90118301d62e74d, type: 3}
+    Spec:
+      id: spread-visitor-desert-prowler
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-desert-prowler.prefab
+      kind: actor
+      rigFamily: quadruped
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: DesertProwler
+      rigged: 1
+      boundsCenter: {x: 0.0017398965, y: 0.33608395, z: 0.089527175}
+      boundsSize: {x: 0.5023166, y: 0.77598995, z: 1.353462}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-brittle-hound
+    Prefab: {fileID: 4496034936042448696, guid: a2e522bcacb0b4b9e8f3d63636f291a0, type: 3}
+    Mesh: {fileID: 5339083200935949247, guid: 50a75b102a0d64e0380aa0b3eac26676, type: 3}
+    Spec:
+      id: spread-visitor-brittle-hound
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-brittle-hound.prefab
+      kind: actor
+      rigFamily: quadruped
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: BrittleHound
+      rigged: 1
+      boundsCenter: {x: 0.001823848, y: 0.39574423, z: 0.108268894}
+      boundsSize: {x: 0.3985162, y: 0.8635108, z: 1.2391784}
+      triangles: 300
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-jungle-stalker
+    Prefab: {fileID: 3816900371344183715, guid: 0073bc2eb138449228efbe63d81d7f0c, type: 3}
+    Mesh: {fileID: 2947593322918224748, guid: d81e3778ebfeb4503b417db1de626d29, type: 3}
+    Spec:
+      id: spread-visitor-jungle-stalker
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-jungle-stalker.prefab
+      kind: actor
+      rigFamily: quadruped
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: JungleStalker
+      rigged: 1
+      boundsCenter: {x: 0.0017822308, y: 0.3474929, z: 0.08775176}
+      boundsSize: {x: 0.45329654, y: 0.7875773, z: 1.4530128}
+      triangles: 300
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-scorpion
+    Prefab: {fileID: 1747145945639088518, guid: 6268ca1f2ce4d4f4c9e70617249b7c74, type: 3}
+    Mesh: {fileID: 886003733766250588, guid: 985ab698770b4436da857a3afd9cd0f9, type: 3}
+    Spec:
+      id: spread-visitor-scorpion
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-scorpion.prefab
+      kind: actor
+      rigFamily: arachnid
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: Scorpion
+      rigged: 1
+      boundsCenter: {x: -0.00042788882, y: 0.36295864, z: -0.1477356}
+      boundsSize: {x: 1.1681871, y: 1.0670334, z: 1.4693432}
+      triangles: 468
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-glass-scorpion
+    Prefab: {fileID: 4806164913432180712, guid: 429f9771ed33b4253824c324905c323f, type: 3}
+    Mesh: {fileID: 6242056979331334254, guid: 77480d09d487040e49d502e67926fed4, type: 3}
+    Spec:
+      id: spread-visitor-glass-scorpion
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-glass-scorpion.prefab
+      kind: actor
+      rigFamily: arachnid
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: GlassScorpion
+      rigged: 1
+      boundsCenter: {x: -0.00042788882, y: 0.36295864, z: -0.1477356}
+      boundsSize: {x: 1.1681871, y: 1.0670334, z: 1.4693432}
+      triangles: 480
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-sand-wurm
+    Prefab: {fileID: 4915627027551418870, guid: b52ff08a158b240f2b92b85d87ebdc08, type: 3}
+    Mesh: {fileID: -4511605588380354787, guid: f9317ac86bf4d47d38d401cd68687f35, type: 3}
+    Spec:
+      id: spread-visitor-sand-wurm
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-sand-wurm.prefab
+      kind: actor
+      rigFamily: serpent
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: SandWurm
+      rigged: 1
+      boundsCenter: {x: 0.00000005355505, y: 0.272624, z: -0.10125008}
+      boundsSize: {x: 0.4588321, y: 0.50425786, z: 1.4974993}
+      triangles: 276
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-dune-lurker
+    Prefab: {fileID: 6275988429172807321, guid: 64100c2c80b254749a2066515cc8bee5, type: 3}
+    Mesh: {fileID: 2778078015744358608, guid: 1ad726dbd78b642e7b7434b88d2d821d, type: 3}
+    Spec:
+      id: spread-visitor-dune-lurker
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-dune-lurker.prefab
+      kind: actor
+      rigFamily: grasping
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: DuneLurker
+      rigged: 1
+      boundsCenter: {x: -0.0015448274, y: 0.13413972, z: -0.06677836}
+      boundsSize: {x: 1.385765, y: 0.60672027, z: 0.8635567}
+      triangles: 204
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-canopy-strangler
+    Prefab: {fileID: 8739041909950149047, guid: d8880b54c4bee41588fe207bed132f4f, type: 3}
+    Mesh: {fileID: 1671985428239450546, guid: 63eaf50ed91f84ae99a8c07d73f5ca67, type: 3}
+    Spec:
+      id: spread-visitor-canopy-strangler
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-canopy-strangler.prefab
+      kind: actor
+      rigFamily: rooted
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: CanopyStrangler
+      rigged: 1
+      boundsCenter: {x: 0.0012750626, y: 0.5742715, z: 0.00002110458}
+      boundsSize: {x: 1.5568258, y: 1.128543, z: 1.4086324}
+      triangles: 228
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-skeletal-sentry
+    Prefab: {fileID: 670793830726080788, guid: 5eb88e8bfbd524da0b22414c5b3244bb, type: 3}
+    Mesh: {fileID: 3538433526489672648, guid: febbcb3044ef94a1d9462883becb81e3, type: 3}
+    Spec:
+      id: spread-visitor-skeletal-sentry
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-skeletal-sentry.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: SkeletalSentry
+      rigged: 1
+      boundsCenter: {x: 0.00066683104, y: 0.7988236, z: -0.046672523}
+      boundsSize: {x: 1.086148, y: 1.6323514, z: 0.37951565}
+      triangles: 336
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+  - Id: spread-visitor-stone-golem
+    Prefab: {fileID: 1426158383367651506, guid: 4fa017e546b2541e484f55f2dfd0efb0, type: 3}
+    Mesh: {fileID: 6767273783108716759, guid: 278de1036a6cf40df8ba853beca216c2, type: 3}
+    Spec:
+      id: spread-visitor-stone-golem
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-stone-golem.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: StoneGolem
+      rigged: 1
+      boundsCenter: {x: 0.00066754763, y: 0.7988236, z: -0.061938185}
+      boundsSize: {x: 1.155601, y: 1.6323514, z: 0.44132465}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+  - Id: spread-visitor-obsidian-brute
+    Prefab: {fileID: 7003436237085548847, guid: 562ff78a3a6c4496f845f852e794db8a, type: 3}
+    Mesh: {fileID: -1668178995059290637, guid: ddc2821c169bb40f9b102d731a22d4c8, type: 3}
+    Spec:
+      id: spread-visitor-obsidian-brute
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-obsidian-brute.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: ObsidianBrute
+      rigged: 1
+      boundsCenter: {x: 0.00066754344, y: 0.7988236, z: -0.013751666}
+      boundsSize: {x: 1.155601, y: 1.6323514, z: 0.4453574}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+  - Id: spread-visitor-ancient-guardian
+    Prefab: {fileID: 3849647061075713363, guid: 7b9a901a1baba4cdd886283e4cbfed9f, type: 3}
+    Mesh: {fileID: -701661725177175464, guid: cc97567abf0b348838b44ebaba03ba93, type: 3}
+    Spec:
+      id: spread-visitor-ancient-guardian
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-ancient-guardian.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: AncientGuardian
+      rigged: 1
+      boundsCenter: {x: 0.0006675448, y: 0.7988236, z: -0.029082201}
+      boundsSize: {x: 1.155601, y: 1.6323514, z: 0.41469634}
+      triangles: 300
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+  - Id: spread-visitor-vault-sentinel
+    Prefab: {fileID: 5042382020732945839, guid: 9be2e08b694d94f67bd98d5e0aeadecc, type: 3}
+    Mesh: {fileID: -8582760340531951898, guid: 67ee62229d5a64af88d50f300b342add, type: 3}
+    Spec:
+      id: spread-visitor-vault-sentinel
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-vault-sentinel.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: VaultSentinel
+      rigged: 1
+      boundsCenter: {x: 0.0006675426, y: 0.7988236, z: -0.0049591702}
+      boundsSize: {x: 1.155601, y: 1.6323514, z: 0.4629424}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+  - Id: spread-visitor-brass-husk
+    Prefab: {fileID: 4439410883554035226, guid: 32772923b49954e569e8254a363e5d9a, type: 3}
+    Mesh: {fileID: 5351910664867510610, guid: 9139c37b430dc4667b3e27f3546d1c2d, type: 3}
+    Spec:
+      id: spread-visitor-brass-husk
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-brass-husk.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: BrassHusk
+      rigged: 1
+      boundsCenter: {x: 0.0006675456, y: 0.7988236, z: -0.038853116}
+      boundsSize: {x: 1.155601, y: 1.6323514, z: 0.3951545}
+      triangles: 288
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+  - Id: spread-visitor-ice-wight
+    Prefab: {fileID: 7655768193953751681, guid: b9966ec3ba8d0415fad8915d79c8dbfe, type: 3}
+    Mesh: {fileID: -8354156520851452386, guid: 284aeeb5849d2454dad605b499f4087f, type: 3}
+    Spec:
+      id: spread-visitor-ice-wight
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-ice-wight.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: IceWight
+      rigged: 1
+      boundsCenter: {x: 0.0006675456, y: 0.82132363, z: -0.038853116}
+      boundsSize: {x: 1.155601, y: 1.6773512, z: 0.3951545}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+  - Id: spread-visitor-charred-husk
+    Prefab: {fileID: 3775655204237405904, guid: 6549dd48a5404487a8ef30ebc721255f, type: 3}
+    Mesh: {fileID: -3509691681987495873, guid: cf65d41aff3c447d0a43078a5d3b3323, type: 3}
+    Spec:
+      id: spread-visitor-charred-husk
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-charred-husk.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: CharredHusk
+      rigged: 1
+      boundsCenter: {x: 0.0006675456, y: 0.7988236, z: -0.038853116}
+      boundsSize: {x: 1.155601, y: 1.6323514, z: 0.3951545}
+      triangles: 276
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+  - Id: spread-visitor-sleeping-troll
+    Prefab: {fileID: 9174818626582274450, guid: b23d646e363e447cea298877e2d5d3d5, type: 3}
+    Mesh: {fileID: 4113509496859920060, guid: 8724d9567d41c40bf87c60e616578b80, type: 3}
+    Spec:
+      id: spread-visitor-sleeping-troll
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-sleeping-troll.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: SleepingTroll
+      rigged: 1
+      boundsCenter: {x: 0.00084355957, y: 0.7988236, z: -0.055251617}
+      boundsSize: {x: 1.3178084, y: 1.6323514, z: 0.5045405}
+      triangles: 288
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+  - Id: spread-visitor-spore-shambler
+    Prefab: {fileID: 8799881980197239805, guid: dcda4556bda6b4c42b6c94f40ce9e82f, type: 3}
+    Mesh: {fileID: -6707427942170562918, guid: 77a6a0db6558b44a8a9bace6ff505340, type: 3}
+    Spec:
+      id: spread-visitor-spore-shambler
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-spore-shambler.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: SporeShambler
+      rigged: 1
+      boundsCenter: {x: 0.0006675398, y: 0.8713237, z: 0.02792925}
+      boundsSize: {x: 1.155601, y: 1.7773514, z: 0.5287192}
+      triangles: 300
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+  - Id: spread-visitor-reedfrog
+    Prefab: {fileID: 5831894410196585964, guid: 41573208c678f4a22ace1e1a88d18662, type: 3}
+    Mesh: {fileID: 5831496649370334202, guid: 10359cb573a2b4c8dbbfe0d3c10c142c, type: 3}
+    Spec:
+      id: spread-visitor-reedfrog
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-reedfrog.prefab
+      kind: actor
+      rigFamily: frog
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: Reedfrog
+      rigged: 1
+      boundsCenter: {x: -0.00090027135, y: 0.14900826, z: 0.032283142}
+      boundsSize: {x: 1.481398, y: 0.8343555, z: 1.1976163}
+      triangles: 420
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-bandfrog
+    Prefab: {fileID: 7813731653567215462, guid: 7e354b6f185924cdfbafea81bf391217, type: 3}
+    Mesh: {fileID: -2013275098246898304, guid: 3575e0b11325f48cfb831de316f1af00, type: 3}
+    Spec:
+      id: spread-visitor-bandfrog
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-bandfrog.prefab
+      kind: actor
+      rigFamily: frog
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: Bandfrog
+      rigged: 1
+      boundsCenter: {x: -0.00072339404, y: 0.119738795, z: 0.025941852}
+      boundsSize: {x: 1.1904093, y: 0.67046386, z: 0.96237016}
+      triangles: 408
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-gin-frog
+    Prefab: {fileID: 4268772164793549369, guid: 674ed735e30ed4c9b8ebefbb37d9fed0, type: 3}
+    Mesh: {fileID: -903542308155722911, guid: 3350ab3dbb2564bf68231d37b9aa12c0, type: 3}
+    Spec:
+      id: spread-visitor-gin-frog
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-gin-frog.prefab
+      kind: actor
+      rigFamily: frog
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: GinFrog
+      rigged: 1
+      boundsCenter: {x: -0.00080377114, y: 0.1330431, z: 0.028824303}
+      boundsSize: {x: 1.3226768, y: 0.7449601, z: 1.0693002}
+      triangles: 384
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-summit-singer
+    Prefab: {fileID: 2431778268362421113, guid: 02bcc2768c45d48fcb394687f4fa39a7, type: 3}
+    Mesh: {fileID: 1566541750295851342, guid: 6db63fd00605e4136b579f6fe54417df, type: 3}
+    Spec:
+      id: spread-visitor-summit-singer
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-summit-singer.prefab
+      kind: actor
+      rigFamily: frog
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: SummitSinger
+      rigged: 1
+      boundsCenter: {x: -0.0006108899, y: 0.1011128, z: 0.021906514}
+      boundsSize: {x: 1.0052345, y: 0.56616956, z: 0.8126681}
+      triangles: 480
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-sun-striker
+    Prefab: {fileID: 2429662778073651854, guid: 43619617c88904b31ba7e8c34089271a, type: 3}
+    Mesh: {fileID: 1170765095092564887, guid: 08ebaf9b5ed8f4eb48d867113d172830, type: 3}
+    Spec:
+      id: spread-visitor-sun-striker
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-sun-striker.prefab
+      kind: actor
+      rigFamily: lizard
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: SunStriker
+      rigged: 1
+      boundsCenter: {x: -0.0007904028, y: 0.1124935, z: 0.17646046}
+      boundsSize: {x: 1.0940477, y: 0.56165594, z: 1.3306496}
+      triangles: 468
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-brocchinia-sentinel
+    Prefab: {fileID: 2135730633832328299, guid: 1b2ace7a7ca2f4819a6a52b64df529dd, type: 3}
+    Mesh: {fileID: 5771313067319152155, guid: 59a2080d567004475a68958a87131df9, type: 3}
+    Spec:
+      id: spread-visitor-brocchinia-sentinel
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-brocchinia-sentinel.prefab
+      kind: actor
+      rigFamily: lizard
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: BrocchiniaSentinel
+      rigged: 1
+      boundsCenter: {x: -0.0010305202, y: 0.10808091, z: 0.17649679}
+      boundsSize: {x: 1.1019878, y: 0.5848363, z: 1.330577}
+      triangles: 576
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-visitor-prickle-brow-gecko
+    Prefab: {fileID: 6669228898382822363, guid: c301ddbf4e612417d9cb730cbf422bf3, type: 3}
+    Mesh: {fileID: 8721145365165428489, guid: f62fdca6bb49c465ea1321a095a52427, type: 3}
+    Spec:
+      id: spread-visitor-prickle-brow-gecko
+      path: Assets/Resources/SpreadVisitorCreatures/Actors/spread-visitor-prickle-brow-gecko.prefab
+      kind: actor
+      rigFamily: lizard
+      materialFamily: spread-visitor-palette
+      sourceBlueprint: PrickleBrowGecko
+      rigged: 1
+      boundsCenter: {x: -0.0011241293, y: 0.16691588, z: 0.17650458}
+      boundsSize: {x: 1.0800849, y: 0.6960959, z: 1.3305614}
+      triangles: 648
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  Material: {fileID: 2100000, guid: 37f996d70c1be4bc1a9ce54279e4d98b, type: 2}
+  Palette: {fileID: 2800000, guid: bdaa82a58f9e04e08afcaceddfd72eb0, type: 2}

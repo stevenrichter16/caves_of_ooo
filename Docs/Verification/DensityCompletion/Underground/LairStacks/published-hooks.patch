@@ -1,0 +1,131 @@
+--- a/Assets/Scripts/Gameplay/World/Map/ZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/ZoneManager.cs
+@@ -87,8 +87,13 @@
+             if (success)
+                 OnZoneGenerated(zone, zoneID);
+ 
+-            return success ? zone : null;
+-        }
++            return success && CommitGeneratedZone(zone, zoneID) ? zone : null;
++        }
++
++        /// <summary>Final acceptance after generation callbacks; false discards the staged zone.</summary>
++        protected virtual bool CommitGeneratedZone(Zone zone, string zoneID) => true;
++        /// <summary>Allow bounded owners to retain their already generated native graph.</summary>
++        protected virtual bool CanUnloadZone(string zoneID) => true;
+ 
+         protected virtual void OnZoneGenerated(Zone zone, string zoneID)
+         {
+@@ -110,6 +115,7 @@
+ 
+         public void UnloadZone(string zoneID)
+         {
++            if (!CanUnloadZone(zoneID)) return;
+             CachedZones.Remove(zoneID);
+             if (ActiveZone?.ZoneID == zoneID)
+                 ActiveZone = null;
+--- a/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+@@ -55,6 +55,13 @@
+                 var pilot = new ZoneGenerationPipeline();
+                 pilot.AddBuilder(new MultiCellPilotBuilder());
+                 return pilot;
++            }
++
++            if (LairStacks.TryPlan(this, zoneID, out var lairPlan))
++            {
++                var stack = new ZoneGenerationPipeline();
++                stack.AddBuilder(new LairStackBuilder(this, lairPlan));
++                return stack;
+             }
+ 
+             BiomeType biome = WorldMap.GetBiome(wx, wy);
+@@ -1071,6 +1078,9 @@
+             SetTurnProvider(turnProvider);
+         }
+ 
++        protected override bool CommitGeneratedZone(Zone zone, string zoneID) => LairStacks.CommitGenerated(zone, this);
++        protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID);
++
+         protected override void OnZoneAttached(Zone zone)
+         {
+             AreaCompositionScope.Attach(zone, WorldMap);
+--- a/Assets/Scripts/Gameplay/Save/SaveSystem.cs
++++ b/Assets/Scripts/Gameplay/Save/SaveSystem.cs
+@@ -343,6 +343,7 @@
+         public void Save(SaveWriter writer)
+         {
+             World = LocalPeople.BindForSave(ZoneManager, World);
++            World = LairStacks.BindForSave(ZoneManager, World);
+             writer.WriteHeader(GameVersion);
+             writer.WriteCheck("GameSession.Begin");
+             writer.Write(SaveVersion);
+@@ -414,6 +415,7 @@
+             var tileSnapshot = SessionTileStateSerializer.ReadOptionalAndEnd(state.ZoneManager, reader);
+             tileSnapshot?.Apply();
+ 
++            LairStacks.Restore(state.ZoneManager, state.World);
+             // Parser failures leave the live session untouched. Load-hook or
+             // bootstrap application exceptions are separate from this boundary.
+             state.TurnManager?.Activate();
+--- a/Assets/Scripts/Gameplay/World/Generation/Builders/LairPopulationBuilder.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/Builders/LairPopulationBuilder.cs
+@@ -69,6 +69,11 @@
+ 
+             return true;
+         }
++
++        /// <summary>Reuse the single existing ambush roll on a completed stack's
++        /// final floor without repeating its guard or loose-loot budgets.</summary>
++        internal void BuildAmbushesOnly(Zone zone, EntityFactory factory, System.Random rng)
++            => PlaceAmbushers(zone, factory, rng, GatherOpenCells(zone));
+ 
+         /// <summary>
+         /// Spawn dormant ambush creatures based on biome. Each creature type rolls
+--- a/Assets/Tests/EditMode/Gameplay/Conversations/DensityLocalPeopleReviewTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/Conversations/DensityLocalPeopleReviewTests.cs
+@@ -53,7 +53,14 @@
+             if (withClaim) zone.AddEntity(Factory.CreateEntity("Mogu"), 12, 10);
+             LocalPeople.Apply(zone, manager); manager.SetActiveZone(zone);
+             var loaded = RoundTrip(GameSessionState.Capture("null-world", "test", manager, new TurnManager(), player));
+-            if (!withClaim) { Assert.IsNull(loaded.World); return; }
++            if (!withClaim)
++            {
++                Assert.NotNull(loaded.World);
++                Assert.NotNull(loaded.World.GetPart<LairStackLedgerPart>());
++                Assert.AreEqual(0, loaded.World.GetPart<LairStackLedgerPart>().Count);
++                Assert.IsNull(loaded.World.GetPart<LocalPeopleLedgerPart>());
++                return;
++            }
+             Assert.IsTrue(loaded.World.HasTag("WorldEntity")); Assert.AreEqual(1, loaded.World.GetPart<LocalPeopleLedgerPart>().Count);
+             var fresh = new Zone("Overworld.2.1.0"); fresh.AddEntity(Factory.CreateEntity("Mogu"), 10, 10); LocalPeople.Apply(fresh, loaded.ZoneManager); Assert.IsEmpty(fresh.GetAllEntities());
+         }
+--- a/Assets/Tests/EditMode/Gameplay/World/Generation/DensityUndergroundRoutesAdversarialTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/Generation/DensityUndergroundRoutesAdversarialTests.cs
+@@ -22,7 +22,7 @@
+   [TestCase(true)][TestCase(false)]public void OneSurvivingStairStillGetsRealHorizontalReturnPaths(bool keepUp){zone.RemoveEntity(keepUp?down:up);Assert.True(Build());Assert.True(zone.GenReservedCells.Any(c=>c.x==0));Assert.True(zone.GenReservedCells.Any(c=>c.x==79));}
+   [Test]public void RemovedStairDoesNotGetRecreatedByReservation(){Assert.True(Build());zone.RemoveEntity(up);zone.RemoveEntity(down);Assert.False(Build());Assert.Zero(zone.EntityCount);}
+   [Test]public void OrdinaryPopulationStillSpawnsOffTheProtectedRoute(){Assert.True(Build());var table=new PopulationTable{Name="route countercheck",Entries=new List<PopulationEntry>{new PopulationEntry{BlueprintName="MarlbackScrabbler",MinCount=3,MaxCount=3,Weight=1}}};Assert.True(new PopulationBuilder(table).BuildZone(zone,scope.Factory,new Random(1)));var actors=zone.GetEntitiesWithTag("Creature");Assert.AreEqual(3,actors.Count);foreach(var e in actors)foreach(var c in zone.GetOccupiedCells(e))Assert.False(zone.GenReservedCells.Contains((c.X,c.Y)));}
+-  [TestCase(false)][TestCase(true)]public void DiagnosticHonorsWorldgenChannel(bool enabled){bool before=Diag.IsChannelEnabled("worldgen");string id="Overworld.route-diag-"+Guid.NewGuid().ToString("N");zone.ZoneID=id;try{Diag.SetChannel("worldgen",enabled);Assert.True(Build());var records=DiagQuery.Apply(new DiagQuery.Filter{Kind="UndergroundRoutesReserved",Limit=100}).Records;Assert.AreEqual(enabled?1:0,records.Count(r=>r.PayloadJson!=null&&r.PayloadJson.Contains(id)));}finally{Diag.SetChannel("worldgen",before);}}
++  [TestCase(false)][TestCase(true)]public void DiagnosticHonorsWorldgenChannel(bool enabled){bool before=Diag.IsChannelEnabled("worldgen");string id="Overworld.route-diag-"+Guid.NewGuid().ToString("N");zone.ZoneID=id;try{Diag.SetChannel("worldgen",enabled);using(Diag.WithCause(id)){Assert.True(Build());}var records=DiagQuery.Apply(new DiagQuery.Filter{Kind="UndergroundRoutesReserved",CauseTraceId=id,Limit=100}).Records;Assert.AreEqual(enabled?1:0,records.Count(r=>r.PayloadJson!=null&&r.PayloadJson.Contains(id)));}finally{Diag.SetChannel("worldgen",before);}}
+   string RoomId(OverworldZoneManager m,int depth){for(int x=0;x<20;x++)for(int y=0;y<20;y++){string id=WorldMap.ToZoneID(x,y,depth);if(UndergroundLayoutPlan.Select(m.WorldSeed,id,m.WorldMap.GetBiome(x,y),m.WorldMap.GetPOI(x,y),scope.Factory).IsRoomed)return id;}throw new Exception("roomed control");}
+   [Test]public void SavedCachedRoomDoesNotRegenerateDestroyedStairsOrLoot(){var m=OverworldZoneManager.CreateDetached(scope.Factory,64);var z=m.GetZone(RoomId(m,7));m.SetActiveZone(z);foreach(var e in z.GetReadOnlyEntities().Where(e=>e.HasPart<StairsUpPart>()||e.HasPart<StairsDownPart>()).ToArray())z.RemoveEntity(e);var container=z.GetReadOnlyEntities().FirstOrDefault(e=>e.HasPart<ContainerPart>());if(container!=null)container.GetPart<ContainerPart>().Contents.Clear();var player=scope.Factory.CreateEntity("Player");var c=z.GetReadOnlyEntities().Select(e=>z.GetEntityCell(e)).First(cell=>!cell.BlocksMovement());z.AddEntity(player,c.X,c.Y);int count=z.EntityCount;var oldTurns=TurnManager.Active;try{var turns=new TurnManager();turns.RestoreSavedState(0,true,player,new List<TurnManager.SavedTurnEntry>{new TurnManager.SavedTurnEntry{Entity=player,Energy=1000}});var state=GameSessionState.Capture("underground-layout","test",m,turns,player);using(var stream=new MemoryStream()){state.Save(new SaveWriter(stream));stream.Position=0;var loaded=GameSessionState.Load(new SaveReader(stream,scope.Factory));var saved=loaded.ZoneManager.ActiveZone;Assert.AreSame(saved,loaded.ZoneManager.GetZone(saved.ZoneID));Assert.AreEqual(count,saved.EntityCount);Assert.False(saved.GetReadOnlyEntities().Any(e=>e.HasPart<StairsUpPart>()||e.HasPart<StairsDownPart>()));if(container!=null)Assert.Zero(saved.GetReadOnlyEntities().Single(e=>e.ID==container.ID).GetPart<ContainerPart>().Contents.Count);}}finally{typeof(TurnManager).GetProperty("Active").SetValue(null,oldTurns);}}
+   [Test]public void LowerFirstRoomedFloorKeepsTheExistingReciprocalGraph(){var m=OverworldZoneManager.CreateDetached(scope.Factory,64);string id=RoomId(m,7);var lower=m.GetZone(id);var up=lower.GetReadOnlyEntities().Single(e=>e.HasPart<StairsUpPart>());var before=lower.GetEntityCell(up);var parent=m.GetZone(WorldMap.GetZoneAbove(id));Assert.NotNull(parent);var edge=m.GetConnectionsTo(id,"StairsDown").Single();Assert.AreEqual(before.X,edge.TargetX);Assert.AreEqual(before.Y,edge.TargetY);Assert.True(parent.GetCell(edge.SourceX,edge.SourceY).Occupants.Any(e=>e.HasPart<StairsDownPart>()));Assert.AreSame(lower,m.GetZone(id));Assert.AreSame(up,lower.GetReadOnlyEntities().Single(e=>e.HasPart<StairsUpPart>()));}
+--- a/Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs
++++ b/Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs
+@@ -19,6 +19,7 @@
+         [TestCase("ReferenceGladeNativeBatch")]
+         [TestCase("OriginalEnemyNativeBatch")]
+         [TestCase("DensityThermalNativeBatch")]
++        [TestCase("DensityLairNativeBatch")]
+         public void RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles(string name)
+         {
+             var type = Launcher(name); var callback = Callback(type);
+@@ -43,6 +44,7 @@
+         [TestCase("ReferenceGladeNativeBatch")]
+         [TestCase("OriginalEnemyNativeBatch")]
+         [TestCase("DensityThermalNativeBatch")]
++        [TestCase("DensityLairNativeBatch")]
+         public void NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene(string name)
+         {
+             var type = Launcher(name); var callback = Callback(type);

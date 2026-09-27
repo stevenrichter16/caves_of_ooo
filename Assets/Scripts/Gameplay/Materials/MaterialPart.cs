@@ -14,27 +14,14 @@ namespace CavesOfOoo.Core
         // Blueprint-configurable fields
         public string MaterialID = "Generic";
 
-        /// <summary>
-        /// ALL of these are on a <b>0-100</b> scale, matching how they are
-        /// authored in Objects.json — oil is Combustibility 90, copper is
-        /// Conductivity 100.
-        ///
-        /// <para>This was undocumented, and the codebase drifted into two
-        /// conventions as a result. <c>TilePropagationSystem</c> and
-        /// <c>LiquidCoveredEffect</c> read 0-100; the electricity chain
-        /// here read 0-1 and multiplied charge by the raw value, turning
-        /// every hop along a copper pipe into a hundredfold amplifier
-        /// (a 2.0 source reached "Infinity" in play). A material-reaction
-        /// blueprint had also been authored with MinConductivity 0.5,
-        /// which on the real scale is a gate nothing could ever fail.
-        ///
-        /// If you add a consumer, treat these as STRENGTH inputs on the
-        /// 0-100 scale (divide by 100) — never as a capability gate.
-        /// Capability is answered by material TAGS via
-        /// <see cref="ObjectStatusMatrix.IsConductiveMaterial"/>.</para>
-        /// </summary>
+        // Combustibility and conductivity consumers use percentage strength.
+        // Historical blueprint/save values still mix percentage and fractional
+        // authoring; their normalization is a separate migration, not inferred here.
         public float Combustibility = 0f;
         public float Conductivity = 0f;
+        // These three properties use fractions: 0..1. WetEffect scales uptake
+        // and evaporation with Porosity; ThermalPart lowers ignition by100*Volatility;
+        // shattering below uses .5/.9 Brittleness thresholds.
         public float Porosity = 0f;
         public float Volatility = 0f;
         public float Brittleness = 0f;

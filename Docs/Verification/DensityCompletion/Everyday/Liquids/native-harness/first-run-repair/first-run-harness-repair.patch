@@ -1,0 +1,216 @@
+--- a/Assets/Scripts/Scenarios/Custom/DensityLiquidNativePlayer.cs
++++ b/Assets/Scripts/Scenarios/Custom/DensityLiquidNativePlayer.cs
+@@ -28,7 +28,7 @@
+         private readonly List<Description> _descriptions = new List<Description>();
+         private InputHandler _input;
+         private ScenarioContext _context;
+-        private string _flaskId,_skinId,_waterPuddleId,_waterZoneId,_gameId,_savePath,_checkpointHash,_waterSourceId;
++        private string _flaskId,_skinId,_waterPuddleId,_waterZoneId,_gameId,_savePath,_checkpointHash,_waterSourceId,_waterSourceZoneId;
+         private int _waterSourceRemaining;
+         private int _startingCoins,_savedCoins,_savedTick,_savedEnergy;
+         private bool _started;
+@@ -90,7 +90,7 @@
+             yield return ItemAction(Flask(), FillCommand(water.Entity)); yield return Settled();
+             Check("water_fill_conserves", FlaskVolume() == 12 && FlaskLiquid() == "water"
+                 && water.Entity.GetPart<LiquidPoolPart>().Volume == oldWater - 12 && SingleTurnSince(tick, energy));
+-            _waterSourceId=water.Entity.ID;_waterSourceRemaining=water.Entity.GetPart<LiquidPoolPart>().Volume;
++            _waterSourceId=water.Entity.ID;_waterSourceZoneId=water.Zone.ZoneID;_waterSourceRemaining=water.Entity.GetPart<LiquidPoolPart>().Volume;
+             Observe("water-filled", water.Entity); yield return Capture("water-natural-source-and-filled-flask");
+             PositionAtDryPatch(_input.CurrentZone); yield return Settled();
+             var standing = _input.CurrentZone.GetEntityPosition(_input.PlayerEntity); int px = standing.x + 1, py = standing.y;
+@@ -99,7 +99,7 @@
+             var puddle = ActualPuddle(px, py, "water"); _waterPuddleId = puddle.ID; _waterZoneId = _input.CurrentZone.ZoneID;
+             Check("water_pour_conserves", FlaskVolume() == 0 && FlaskLiquid() == ""
+                 && puddle.GetPart<LiquidPoolPart>().Volume == 12 && SingleTurnSince(tick, energy));
+-            Observe("water-poured", puddle); yield return Capture("water-poured-native-body-owner-"+puddle.ID);
++            Observe("water-poured", puddle); yield return CapturePouredOwner(puddle,"water");
+             tick = Tick(); energy = Energy();
+             yield return ItemAction(Skin(), "FillWaterskin"); yield return Settled();
+             Check("waterskin_draw_conserves", Skin().GetPart<WaterskinPart>().Charges == 3
+@@ -139,7 +139,7 @@
+                 && FlaskVolume() == 9 && FlaskLiquid() == "water" && Skin().GetPart<WaterskinPart>().Charges == 3
+                 && puddle==null && !_input.CurrentZone.GetAllEntities().Any(e=>e.ID==mutationPuddleId)
+                 && _input.CurrentZone.TileState.CoatingTurns(px,py,"water")!=ZoneTileState.Permanent
+-                && _input.CurrentZone.GetAllEntities().Single(e=>e.ID==_waterSourceId).GetPart<LiquidPoolPart>().Volume==_waterSourceRemaining
++                && Manager().GetZone(_waterSourceZoneId).GetAllEntities().Single(e=>e.ID==_waterSourceId).GetPart<LiquidPoolPart>().Volume==_waterSourceRemaining
+                 && TradeSystem.GetDrams(_input.PlayerEntity) == _savedCoins
+                 && Tick() == _savedTick && Energy() == _savedEnergy && HashFile(_savePath) == _checkpointHash);
+             Observe("native-checkpoint-restored", puddle); yield return Capture("restored-real-liquid-state");
+@@ -175,7 +175,7 @@
+             var puddle = ActualPuddle(at.x + 1, at.y, liquid);
+             Check(liquid + "_pour_conserves", FlaskVolume() == 0 && FlaskLiquid() == ""
+                 && puddle.GetPart<LiquidPoolPart>().Volume == 12 && SingleTurnSince(tick, energy));
+-            Observe(liquid + "-poured", puddle); yield return Capture(liquid + "-poured-native-body-owner-"+puddle.ID);
++            Observe(liquid + "-poured", puddle); yield return CapturePouredOwner(puddle,liquid);
+         }
+         private IEnumerator MixedMenuRefusal(Source source)
+         {
+@@ -204,36 +204,51 @@
+         }
+         private Source FindGeneratedSource(string liquid)
+         {
+-            var manager=Manager();int generated=0;
++            var manager=Manager();var checkedZones=new HashSet<string>();
+             foreach(var zone in manager.CachedZones.Values.ToArray())
+-            {var found=SourceIn(zone,liquid);if(found!=null)return found;}
+-            var allowed=liquid=="acid"?new[]{BiomeType.Beating,BiomeType.Sodden}:liquid=="oil"?new[]{BiomeType.Sodden,BiomeType.Beating}:new[]{BiomeType.Spread,BiomeType.Sodden,BiomeType.Stump};
++            {checkedZones.Add(zone.ZoneID);var found=SourceIn(zone,liquid);if(found!=null)return found;}
++            // Actual surface table: acid belongs to Sodden, not Beating. The
++            // former twelve-zone Beating budget could never satisfy this route.
++            var allowed=liquid=="acid"?new[]{BiomeType.Sodden}:liquid=="oil"?new[]{BiomeType.Sodden,BiomeType.Beating}:new[]{BiomeType.Spread,BiomeType.Sodden,BiomeType.Stump};
++            var eligibleColumns=new List<(int x,int y)>();
+             foreach(var biome in allowed)
+             {
+-                int perBiome=0;
+-                for(int y=0;y<WorldMap.Height&&perBiome<12;y++)for(int x=0;x<WorldMap.Width&&perBiome<12;x++)
++                int perBiome=0,limit=liquid=="acid"?64:12;
++                for(int y=0;y<WorldMap.Height&&perBiome<limit;y++)for(int x=0;x<WorldMap.Width&&perBiome<limit;x++)
+                 {
+                     if(manager.WorldMap.GetBiome(x,y)!=biome||manager.WorldMap.GetPOI(x,y)!=null)continue;
+-                    string id=WorldMap.ToZoneID(x,y,0);if(manager.CachedZones.ContainsKey(id))continue;
+-                    generated++;perBiome++;
+-                    var zone=manager.GetZone(id);_descriptions.Add(new Description{subject="generated-source-search",source=id,text=liquid});
++                    eligibleColumns.Add((x,y));string id=WorldMap.ToZoneID(x,y,0);if(!checkedZones.Add(id))continue;
++                    perBiome++;var zone=manager.GetZone(id);_descriptions.Add(new Description{subject="generated-source-search",source=id,text=liquid+"; actual eligible surface table"});
+                     var found=SourceIn(zone,liquid);if(found!=null)return found;
+                 }
+             }
+-            return null;
++            // The actual ordinary underground table also contains acid. Keep
++            // depth one, a fixed32-column bound, and every original safety gate.
++            if(liquid=="acid")foreach(var column in eligibleColumns.Take(32))
++            {
++                string id=WorldMap.ToZoneID(column.x,column.y,1);if(!checkedZones.Add(id))continue;
++                var zone=manager.GetZone(id);_descriptions.Add(new Description{subject="generated-source-search",source=id,text="acid; actual ordinary underground table"});
++                var found=SourceIn(zone,liquid);if(found!=null)return found;
++            }
++            WriteReport();return null;
+         }
+         private Source SourceIn(Zone zone,string liquid)
+         {
+-            if(zone==null)return null;
++            if(zone==null)return null;int matching=0;
+             foreach(var entity in zone.GetAllEntities())
+             {
+-                var pool=entity.GetPart<LiquidPoolPart>();
+-                if(pool==null||pool.LiquidId!=liquid||pool.Volume<12||entity.HasTag("Creature")||entity.GetPart<PhysicsPart>()?.Takeable==true)continue;
+-                if(zone.GetOccupiedCells(entity).Any(c=>!PureCell(zone,c.X,c.Y,liquid)))continue;
+-                if(AdjacentSafeCell(zone,entity)==null)continue;
+-                return new Source{Zone=zone,Entity=entity};
+-            }
+-            return null;
++                var pool=entity.GetPart<LiquidPoolPart>();if(pool==null||pool.LiquidId!=liquid)continue;matching++;
++                var at=zone.GetEntityCell(entity);var physics=entity.GetPart<PhysicsPart>();string reason=null;
++                if(pool.Volume<12)reason="finite volume below12";
++                else if(entity.HasTag("Creature")||physics?.Takeable==true||physics?.InInventory!=null||physics?.Equipped!=null)reason="not an actual ground source";
++                else if(zone.GetOccupiedCells(entity).Any(c=>!PureCell(zone,c.X,c.Y,liquid)))reason="unlike pool, renewing source or active coating";
++                else if(AdjacentSafeCell(zone,entity)==null)reason="no legal dry approach beyond32-cell hostile clearance";
++                var hostile=zone.GetAllEntities().Where(e=>e!=_input.PlayerEntity&&e.HasTag("Creature")&&FactionManager.IsHostile(e,_input.PlayerEntity)).ToArray();
++                int nearest=hostile.Length==0?999:hostile.Min(e=>SpatialQuery.DistanceToCell(zone,e,at.X,at.Y));
++                _descriptions.Add(new Description{subject="source-candidate",source=zone.ZoneID+":"+entity.ID,text=liquid+" "+entity.BlueprintName+" @ "+at.X+","+at.Y+"; volume="+pool.Volume+"; nearestHostileToSource="+nearest+"; "+(reason??"selected"),units=pool.Volume});
++                if(reason==null)return new Source{Zone=zone,Entity=entity};
++            }
++            _descriptions.Add(new Description{subject="source-zone-summary",source=zone.ZoneID,text=liquid+"; matching pools="+matching,units=matching});return null;
+         }
+         private bool PureCell(Zone zone,int x,int y,string liquid)
+         {
+@@ -256,6 +271,30 @@
+         }
+         private void PositionAtDryPatch(Zone zone)
+         {
++            // Acquisition may be in authored Morrowfast, whose separate presenter
++            // does not own these ring models. Carry the same liquid into a real
++            // supported ordinary zone; never widen authored scene authority.
++            var checkedZones=new HashSet<string>();
++            foreach(var candidate in new[]{zone}.Concat(Manager().CachedZones.Values.ToArray()))
++                if(candidate!=null&&checkedZones.Add(candidate.ZoneID)&&TryVisualDryCell(candidate,out var chosen))
++                {TravelTo(candidate,chosen,"supported dry transfer site; held contents unchanged");return;}
++            int generated=0;
++            for(int y=0;y<WorldMap.Height&&generated<24;y++)for(int x=0;x<WorldMap.Width&&generated<24;x++)
++            {
++                if(Manager().WorldMap.GetBiome(x,y)!=BiomeType.Spread||Manager().WorldMap.GetPOI(x,y)!=null)continue;
++                string id=WorldMap.ToZoneID(x,y,0);if(!checkedZones.Add(id))continue;generated++;
++                var candidate=Manager().GetZone(id);
++                if(TryVisualDryCell(candidate,out var chosen)){TravelTo(candidate,chosen,"supported generated dry transfer site; held contents unchanged");return;}
++            }
++            throw new InvalidOperationException("No bounded safe supported dry patch; the audit never clears or stages terrain.");
++        }
++        private bool TryVisualDryCell(Zone zone,out Cell chosen)
++        {
++            chosen=null;
++            var supports=typeof(SpawnRing3DPresenter).GetMethod("SupportsZone",BindingFlags.NonPublic|BindingFlags.Static);
++            Require(supports!=null,"actual ring presenter support predicate");
++            if(!(bool)supports.Invoke(null,new object[]{zone.ZoneID})||!AreaCompositionScope.Allows(zone))
++            {_descriptions.Add(new Description{subject="dry-site-rejected",source=zone.ZoneID,text="outside current ring presenter authority"});return false;}
+             for(int y=3;y<Zone.Height-3;y++)for(int x=3;x<Zone.Width-4;x++)
+             {
+                 bool clear=true;
+@@ -264,9 +303,9 @@
+                     var cell=zone.GetCell(x+dx,y+dy);
+                     if(!SafeStanding(zone,cell)||cell.Occupants.Any(e=>e.HasPart<WellPart>()||e.HasPart<TileStateSourcePart>()))clear=false;
+                 }
+-                if(clear){TravelTo(zone,zone.GetCell(x,y),"dry transfer site");return;}
+-            }
+-            throw new InvalidOperationException("No safe generated dry patch; the audit never clears or stages terrain.");
++                if(clear){chosen=zone.GetCell(x,y);return true;}
++            }
++            _descriptions.Add(new Description{subject="dry-site-rejected",source=zone.ZoneID,text="no dry unobstructed patch with original32-cell hostile clearance"});return false;
+         }
+         private void TravelTo(Zone zone,Cell chosen,string reason)
+         {
+@@ -297,6 +336,13 @@
+             double began=Time.realtimeSinceStartupAsDouble;
+             while(State()!="Normal"||_input.ZoneRenderer?.WorldFx?.HasBlockingFx==true)
+             {Require(Time.realtimeSinceStartupAsDouble-began<8,"input and FX return to normal: "+State());yield return null;}
++            // A labelled same-zone travel shortcut must not leave the previous
++            // merchant Look target framing a different place. Use native keys.
++            if(_input.CameraFollow?.HasOverrideTarget==true)
++            {
++                int tick=Tick(),energy=Energy();yield return Tap(Key.L);Require(State()=="LookMode","native recenter Look");yield return Tap(Key.Escape);
++                Require(State()=="Normal"&&!_input.CameraFollow.HasOverrideTarget&&Tick()==tick&&Energy()==energy,"native recenter returns to player without a turn");
++            }
+             yield return null;
+         }
+         private static string HashFile(string path)
+@@ -411,6 +457,30 @@
+             InputSystem.QueueStateEvent(_keyboard, new KeyboardState()); yield return null;
+             yield return new WaitForSecondsRealtime(.13f);
+         }
++        private IEnumerator CapturePouredOwner(Entity owner,string liquid)
++        {
++            Require(State()=="Normal"&&_input.CurrentZone.GetEntityCell(owner)!=null,"current poured owner before capture");
++            var at=_input.CurrentZone.GetEntityCell(owner);var actorCell=_input.CurrentZone.GetEntityCell(_input.PlayerEntity);int tick=Tick(),energy=Energy();
++            Require(Math.Abs(at.X-actorCell.X)<=1&&Math.Abs(at.Y-actorCell.Y)<=1,"poured visual is adjacent to actual player");
++            yield return Tap(Key.L);Require(State()=="LookMode","native poured-owner look");
++            if(at.X!=actorCell.X)yield return Tap(at.X>actorCell.X?Key.D:Key.A);
++            if(at.Y!=actorCell.Y)yield return Tap(at.Y>actorCell.Y?Key.S:Key.W);
++            yield return new WaitForSecondsRealtime(.2f);yield return new WaitForEndOfFrame();
++            var presenter=_input.ZoneRenderer?.SpawnRing3D;GameObject view=null;string model=null;
++            Require(presenter!=null&&ReferenceEquals(presenter.CurrentZone,_input.CurrentZone)&&presenter.IsRenderedEntity(owner)&&presenter.TryGetEntityView(owner,out view,out model),"exact poured owner has a currently rendered native view");
++            string expected=liquid=="water"?"poured-liquid-42":liquid=="oil"?"poured-liquid-4b":liquid=="acid"?"poured-liquid-47":null;
++            Require(expected!=null&&model==expected,"actual identity-specific model "+liquid+": "+model);
++            var camera=presenter.WorldCamera;var renderers=view.GetComponentsInChildren<Renderer>(true).Where(r=>r.enabled&&r.gameObject.activeInHierarchy&&!r.forceRenderingOff).ToArray();
++            Require(camera!=null&&renderers.Length>0,"native camera and submitted owner geometry");
++            var bounds=renderers[0].bounds;foreach(var renderer in renderers.Skip(1))bounds.Encapsulate(renderer.bounds);
++            float minX=1,minY=1,maxX=0,maxY=0,minDepth=float.PositiveInfinity;
++            foreach(float x in new[]{bounds.min.x,bounds.max.x})foreach(float y in new[]{bounds.min.y,bounds.max.y})foreach(float z in new[]{bounds.min.z,bounds.max.z})
++            {var v=camera.WorldToViewportPoint(new Vector3(x,y,z));minX=Math.Min(minX,v.x);minY=Math.Min(minY,v.y);maxX=Math.Max(maxX,v.x);maxY=Math.Max(maxY,v.y);minDepth=Math.Min(minDepth,v.z);}
++            Require(minDepth>0&&minX>=0&&minY>=0&&maxX<=1&&maxY<=1&&maxX>minX&&maxY>minY,"actual poured mesh bounds must be fully inside native viewport: "+minX+","+minY+".."+maxX+","+maxY);
++            _descriptions.Add(new Description{subject="native-poured-visual-preflight",source=owner.ID,text=liquid+"; model="+model+"; zone="+_input.CurrentZone.ZoneID+"; cell="+at.X+","+at.Y+"; viewport="+minX+","+minY+".."+maxX+","+maxY+"; pixels="+(maxX-minX)*camera.pixelWidth+"x"+(maxY-minY)*camera.pixelHeight});
++            yield return Capture(liquid+"-poured-native-body-owner-"+owner.ID);yield return Tap(Key.Escape);yield return Settled();
++            Require(Tick()==tick&&Energy()==energy,"native visual inspection is free");
++        }
+         private IEnumerator Capture(string name)
+         {
+             yield return new WaitForSecondsRealtime(.15f); yield return new WaitForEndOfFrame();
+@@ -463,8 +533,8 @@
+                 runId = RunId, cases = _audit.Count, failures = Failures, unexpectedErrors = _unexpectedErrors,
+                 complete = Complete, errorsFinalized = _errorsFinalized, seconds = _clock?.Elapsed.TotalSeconds ?? 0,
+                 zone = _input?.CurrentZone?.ZoneID, observations=_observations.ToArray(), nativeKeys=_keys.ToArray(), startingCoins=_startingCoins, checkpointHash=_checkpointHash, fatal = _fatal, audit = _audit.ToArray(), screenshots = _screenshots.ToArray(), descriptions = _descriptions.ToArray(),
+-                canVerify = "Native new game; real generated Sella stock purchased with starting coins; native inventory fill/pour/Examine; finite water/oil/acid quantities, waterskin compatibility, unavailable unlike-liquid menu choices, ordinary scheduler costs, real F5/F6 object graph and checkpoint evidence; screenshots.",
+-                cannotVerify = "Only actor travel is shortened. No source, item, currency, HP or terrain is granted or rewritten by the harness. There is no scheduler bypass or manual NPC scheduling. Generated-source scanning is bounded, not natural discovery/frequency evidence. Unlike actions are intentionally absent from the menu; executed stale-selection refusals are covered by core tests. Screenshots need visual review; no whole-world balance, natural route, cold-start performance or feel claim."
++                canVerify = "Native new game; real generated Sella stock purchased with starting coins; native inventory fill/pour/Examine; finite water/oil/acid quantities, waterskin compatibility, unavailable unlike-liquid menu choices, ordinary scheduler costs, real F5/F6 object graph and checkpoint evidence including the remote original water source; exact poured native owner/model and fully on-screen viewport bounds; screenshots.",
++                cannotVerify = "Only actor travel is shortened. No source, item, currency, HP or terrain is granted or rewritten by the harness. There is no scheduler bypass or manual NPC scheduling. Generated-source scanning is bounded, not natural discovery/frequency evidence. Acid scans real Sodden surface/ordinary underground tables; each matching candidate records refusals. Poured model captures deliberately use supported ordinary zones; authored Morrowfast fallback is not a native-model acceptance claim. Unlike actions are intentionally absent from the menu; executed stale-selection refusals are covered by core tests. Screenshots need visual review; no whole-world balance, natural route, cold-start performance or feel claim."
+             }, true));
+             Debug.Log("[DensityLiquidNative] report=" + ReportPath + " failures=" + Failures);
+         }

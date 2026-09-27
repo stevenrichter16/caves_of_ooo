@@ -1,0 +1,52 @@
+{
+  "status": "published native diagnostic harness completed four of four cases",
+  "files": [
+    {
+      "privatePath": "/tmp/coo-steam-native/DensitySteamNativePlayer.cs",
+      "proposedPath": "Assets/Scripts/Scenarios/Custom/DensitySteamNativePlayer.cs",
+      "sha256": "9b1dafc29e2e9a48e7ce7daefb12a28e30cda6f2fd673111773db74b4bbc3b5f"
+    },
+    {
+      "privatePath": "/tmp/coo-steam-native/DensitySteamNativePlayer.cs.meta",
+      "proposedPath": "Assets/Scripts/Scenarios/Custom/DensitySteamNativePlayer.cs.meta",
+      "sha256": "dcd32f4cf6c50401b04a19f52bd8860a2c44bee1c0cc2ea711fa637f826909ac"
+    },
+    {
+      "privatePath": "/tmp/coo-steam-native/DensitySteamNativeBatch.cs",
+      "proposedPath": "Assets/Editor/Scenarios/DensitySteamNativeBatch.cs",
+      "sha256": "ab6972c41fcf3fd0abe9f6c5d0304a9b6d9545b344a59f0d66f09ae82d9f2fc6"
+    },
+    {
+      "privatePath": "/tmp/coo-steam-native/DensitySteamNativeBatch.cs.meta",
+      "proposedPath": "Assets/Editor/Scenarios/DensitySteamNativeBatch.cs.meta",
+      "sha256": "f4cc0c3b81587dd0c8fe93cf63ab8801da7a1ef673e20272635bd8739a7716a2"
+    }
+  ],
+  "cases": 4,
+  "expectedBaselineFailures": [
+    "hot-steam_neighbor_cooling_wetting",
+    "ambient-steam_neighbor_cooling_wetting",
+    "ambient-steam_lifetime_finishes"
+  ],
+  "controls": "hot/ambient source \u00d7 retained/removed real reaction steam; normal 40HP actor, actual native waits",
+  "scope": "no gameplay changes or scale changes; diagnostic source/probe parameter controls explicitly reported",
+  "offlineCompile": "zero errors against actual current Unity project/engine DLL API; native import/runtime pending",
+  "independentReview": "combat_density: hot/ambient nonvacuity gap repaired with exact preconditions; remaining owner/checkpoint/cooling/lifetime flow had no blocker",
+  "nativeBeforeAfterBoundary": "Prior native unit RED is authoritative; this staged Play microprobe is published with the repair and has not yet run against either version.",
+  "nativeResult": {
+    "runId": "c60045d3558347aca9e198a37748277a",
+    "cases": 4,
+    "checks": 22,
+    "failed": 0,
+    "unexpectedErrors": 0,
+    "seconds": 44.9845082,
+    "complete": true,
+    "reportSha256": "c87dd5badef822f60f131d1f574abea4213705717bfb233117d2d40e1244cf44",
+    "screenshots": 13,
+    "visuallyReviewed": [
+      "hot-steam-controls",
+      "ambient-steam-one-wait"
+    ],
+    "visualBoundary": "Root inspected ordinary40/40 HUD and readable source/reaction log in two captures; eleven uninspected. Pictures do not establish measured thermal numbers."
+  }
+}

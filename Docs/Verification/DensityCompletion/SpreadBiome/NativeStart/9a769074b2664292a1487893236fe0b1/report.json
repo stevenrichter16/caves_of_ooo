@@ -1,0 +1,340 @@
+{
+    "runId": "9a769074b2664292a1487893236fe0b1",
+    "fatal": "",
+    "zone": "Overworld.11.10.0",
+    "checkpointHash": "ff38188d1eeac8e8e8885354131da6d5694df5a0412734961666d9c79fac040d",
+    "firstPlayerID": "2726",
+    "savedGameID": "ea6f75a3f7104727bf078b1b760b96a9",
+    "scenePath": "Assets/Scenes/Main/SampleScene.unity",
+    "canVerify": "Two actual saved-scene bootstraps with zero requested audit seed; ordinary default Spread placement and kit; native N, one paid keyboard movement and F5 checkpoint; native C restores the original saved identity/location/seed/HP/gear/clock/energy through a replacement graph; unchanged saved bytes. No grants, transfers, chosen fixed seeds or direct graph loads.",
+    "cannotVerify": "The audit requests one labelled SceneManager reload while Play remains active; this is not a full application quit/relaunch. The initial scenario is otherwise an ordinary new game. One initial safe cell/step is not combat immunity or biome-wide balance. The separate biome audit owns chunk/POI/lair rendering coverage. Captures require visual inspection.",
+    "complete": true,
+    "errorsFinalized": true,
+    "sceneReloadRequested": true,
+    "cases": 12,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "firstSeed": 37186489,
+    "secondSeed": 37189185,
+    "seconds": 3.591719,
+    "audit": [
+        "PASS ordinary_seed_policy",
+        "PASS ordinary_default_spread_start",
+        "PASS ordinary_kit_and_stats",
+        "PASS initial_cell_connected",
+        "PASS native_N_creates_checkpoint",
+        "PASS native_single_step_paid",
+        "PASS native_F5_updates_checkpoint",
+        "PASS real_scene_reload_creates_distinct_fresh_graph",
+        "PASS second_default_is_actual_spread",
+        "PASS native_C_restores_exact_saved_graph",
+        "PASS continue_keeps_saved_bytes",
+        "PASS ordinary_finish"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/NativeStart/9a769074b2664292a1487893236fe0b1/01-default-native-new-game.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/NativeStart/9a769074b2664292a1487893236fe0b1/02-saved-real-movement.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/NativeStart/9a769074b2664292a1487893236fe0b1/03-real-second-boot-menu.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/NativeStart/9a769074b2664292a1487893236fe0b1/04-native-continue-restored.png"
+    ],
+    "nativeKeys": [
+        {
+            "keys": "N",
+            "sequence": 0,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.11.10.0",
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.11.10.0",
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            }
+        },
+        {
+            "keys": "W",
+            "sequence": 1,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.11.10.0",
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.11.10.0",
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 11,
+                "tick": 20,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "Dovrin Wethand, villager [left hand: fist] misses marlback scrabbler!",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "F5",
+            "sequence": 2,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.11.10.0",
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 11,
+                "tick": 20,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "Dovrin Wethand, villager [left hand: fist] misses marlback scrabbler!",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.11.10.0",
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 11,
+                "tick": 20,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "Dovrin Wethand, villager [left hand: fist] misses marlback scrabbler!",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "Game saved."
+                ]
+            }
+        },
+        {
+            "keys": "C",
+            "sequence": 3,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.11.10.0",
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.11.10.0",
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 11,
+                "tick": 20,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "Dovrin Wethand, villager [left hand: fist] misses marlback scrabbler!",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        }
+    ],
+    "failureState": {
+        "label": "",
+        "state": "",
+        "zone": "",
+        "hp": 0,
+        "maxHp": 0,
+        "x": 0,
+        "y": 0,
+        "tick": 0,
+        "energy": 0,
+        "deathHandled": false,
+        "blockingFx": false,
+        "lastMessages": []
+    },
+    "firstStart": {
+        "label": "first-native-N",
+        "state": "Normal",
+        "zone": "Overworld.11.10.0",
+        "hp": 40,
+        "maxHp": 40,
+        "x": 40,
+        "y": 12,
+        "tick": 10,
+        "energy": 1000,
+        "deathHandled": false,
+        "blockingFx": false,
+        "lastMessages": [
+            "Save detected. Press [C] to continue, [N] for new game.",
+            "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+            "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+            "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+            "Villagers have work for you — press [Q] for your quest log.",
+            "Starting a new game. Initial checkpoint saved."
+        ]
+    },
+    "checkpoint": {
+        "label": "before-native-F5",
+        "state": "Normal",
+        "zone": "Overworld.11.10.0",
+        "hp": 40,
+        "maxHp": 40,
+        "x": 40,
+        "y": 11,
+        "tick": 20,
+        "energy": 1000,
+        "deathHandled": false,
+        "blockingFx": false,
+        "lastMessages": [
+            "Save detected. Press [C] to continue, [N] for new game.",
+            "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+            "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+            "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+            "Villagers have work for you — press [Q] for your quest log.",
+            "Starting a new game. Initial checkpoint saved.",
+            "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+            "Dovrin Wethand, villager [left hand: fist] misses marlback scrabbler!",
+            "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+        ]
+    },
+    "freshSecond": {
+        "label": "second-fresh-before-C",
+        "state": "Normal",
+        "zone": "Overworld.11.10.0",
+        "hp": 40,
+        "maxHp": 40,
+        "x": 40,
+        "y": 12,
+        "tick": 10,
+        "energy": 1000,
+        "deathHandled": false,
+        "blockingFx": false,
+        "lastMessages": [
+            "Save detected. Press [C] to continue, [N] for new game.",
+            "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+            "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+            "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+            "Villagers have work for you — press [Q] for your quest log."
+        ]
+    },
+    "continued": {
+        "label": "after-native-C",
+        "state": "Normal",
+        "zone": "Overworld.11.10.0",
+        "hp": 40,
+        "maxHp": 40,
+        "x": 40,
+        "y": 11,
+        "tick": 20,
+        "energy": 1000,
+        "deathHandled": false,
+        "blockingFx": false,
+        "lastMessages": [
+            "Save detected. Press [C] to continue, [N] for new game.",
+            "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+            "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+            "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+            "Villagers have work for you — press [Q] for your quest log.",
+            "Starting a new game. Initial checkpoint saved.",
+            "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+            "Dovrin Wethand, villager [left hand: fist] misses marlback scrabbler!",
+            "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+        ]
+    }
+}

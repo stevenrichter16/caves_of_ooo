@@ -1,0 +1,261 @@
+--- a/Assets/Scripts/Scenarios/Custom/DensityLairNativePlayer.cs
++++ b/Assets/Scripts/Scenarios/Custom/DensityLairNativePlayer.cs
+@@ -41,6 +41,44 @@
+         private string _bossID, _rewardID, _bossGearBeforeLoad;
+         private int _bossHPBeforeLoad;
+         private string _savePath, _checkpointHash;
++        private readonly List<NativeKeyStep> _nativeKeys = new List<NativeKeyStep>();
++        private NativeState _failureState;
++        [Serializable] private sealed class NativeState
++        {
++            public string label, state, zone; public int hp, maxHp, x, y, tick, energy;
++            public bool deathHandled, blockingFx; public string[] lastMessages;
++        }
++        [Serializable] private sealed class NativeKeyStep
++        { public string keys; public int sequence; public NativeState before, after; }
++        private NativeState Snapshot(string label)
++        {
++            var actor = _input?.PlayerEntity; var zone = _input?.CurrentZone;
++            var cell = actor == null ? null : zone?.GetEntityCell(actor);
++            return new NativeState { label = label, state = _input == null ? "uninitialized" : State(), zone = zone?.ZoneID,
++                hp = actor?.GetStatValue("Hitpoints") ?? -1, maxHp = actor?.GetStat("Hitpoints")?.Max ?? -1,
++                x = cell?.X ?? -1, y = cell?.Y ?? -1, tick = _input?.TurnManager?.TickCount ?? -1,
++                energy = actor == null || _input?.TurnManager == null ? -1 : _input.TurnManager.GetEnergy(actor),
++                deathHandled = actor != null && CombatSystem.IsDeathHandled(actor),
++                blockingFx = _input?.ZoneRenderer?.WorldFx?.HasBlockingFx == true,
++                lastMessages = MessageLog.GetRecentEntries(12).Select(e => e.Text).ToArray() };
++        }
++        private string RuntimeDetails()
++        {
++            var state = Snapshot("precondition");
++            return "state=" + state.state + "; HP=" + state.hp + "/" + state.maxHp
++                + "; dead=" + state.deathHandled + "; zone=" + state.zone + "; cell=" + state.x + "," + state.y
++                + "; FX=" + state.blockingFx + "; messages=" + string.Join(" | ", state.lastMessages);
++        }
++        private IEnumerator WaitForNativeFx()
++        {
++            double began = Time.realtimeSinceStartupAsDouble;
++            while (_input != null && (State() == "WaitingForFxResolution" || _input.ZoneRenderer?.WorldFx?.HasBlockingFx == true))
++            {
++                Require(_input.PlayerEntity.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(_input.PlayerEntity), "actor died while native FX resolved; " + RuntimeDetails());
++                Require(Time.realtimeSinceStartupAsDouble - began < 8, "native FX did not settle; " + RuntimeDetails());
++                yield return null;
++            }
++        }
+         private static readonly string[] RequiredChecks =
+         {
+             "ordinary_player_and_starting_kit", "starting_dagger_equipped_by_keyboard",
+@@ -126,6 +164,7 @@
+             _transcript.AddRange(messages);
+             yield return Capture("03-final-boss-examine");
+             yield return CloseToNormal();
++            yield return ProtectRouteWithStartingControl();
+             yield return WalkIntoReach(cache);
+             int stock = cache.GetPart<ContainerPart>().Contents.Count;
+             Require(stock > 0, "actual stocked reward before taking");
+@@ -235,8 +274,120 @@
+             _routeZones.Add(_input.CurrentZone.ZoneID);
+         }
+ 
++        private bool IsActiveVisibleThreat(Entity entity)
++        {
++            return entity != _input.PlayerEntity && entity.HasTag("Creature")
++                && entity.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(entity)
++                && FactionManager.IsHostile(entity, _input.PlayerEntity)
++                && entity.GetPart<BrainPart>()?.HasGoal<NoFightGoal>() != true
++                && entity.GetEffect<FrozenEffect>()?.Cold > 0 != true
++                && _input.CurrentZone.GetOccupiedCells(entity).Any(c => c.IsVisible);
++        }
++        private ActivatedAbility ReadyAbility(string command, out int slot)
++        {
++            var abilities = _input.PlayerEntity.GetPart<ActivatedAbilitiesPart>();
++            for (int i = 0; i < ActivatedAbilitiesPart.SlotCount; i++)
++            {
++                var ability = abilities?.GetAbilityBySlot(i);
++                if (ability?.Command == command && ability.CooldownRemaining == 0)
++                { slot = i; return ability; }
++            }
++            slot = -1; return null;
++        }
++        private bool ClearCastLine(Entity target, int range, out int dx, out int dy)
++        {
++            dx = dy = 0; var from = Cell();
++            foreach (var at in _input.CurrentZone.GetOccupiedCells(target))
++            {
++                int x = at.X - from.X, y = at.Y - from.Y;
++                if (x != 0 && y != 0 && Math.Abs(x) != Math.Abs(y)) continue;
++                if (Math.Max(Math.Abs(x), Math.Abs(y)) > range) continue;
++                int tx = Math.Sign(x), ty = Math.Sign(y);
++                if (tx == 0 && ty == 0) continue;
++                // Read the same physical first-impact rules without starting any
++                // capture or applying an ability. The actual cast must verify its
++                // cooldown and effect afterward; blocked rays are never forced.
++                Entity first = null;
++                for (int n = 1; n <= range; n++)
++                {
++                    var cell = _input.CurrentZone.GetCell(from.X + tx * n, from.Y + ty * n);
++                    if (cell == null) break;
++                    first = cell.Occupants.FirstOrDefault(e => AbilityTargeting.IsCreatureTarget(e, _input.PlayerEntity))
++                        ?? cell.Occupants.FirstOrDefault(e => e != null && !e.HasTag("Creature") && AbilityTargeting.IsElementalTarget(e, _input.PlayerEntity));
++                    if (first != null || cell.IsSolid()) break;
++                }
++                if (ReferenceEquals(first, target)) { dx = tx; dy = ty; return true; }
++            }
++            return false;
++        }
++        private IEnumerator ProtectRouteWithStartingControl()
++        {
++            // The original dagger-only attempt is retained as a real death.
++            // This separate tactic uses only naturally granted ready starter slots.
++            var from = Cell();
++            var threats = _input.CurrentZone.GetReadOnlyEntities().Where(IsActiveVisibleThreat)
++                .OrderByDescending(e => e.HasTag("Boss"))
++                .ThenBy(e => SpatialQuery.DistanceToCell(_input.CurrentZone, e, from.X, from.Y)).ToArray();
++            foreach (var target in threats)
++            foreach (string command in new[] { "CommandCalm", "CommandRimeGrip" })
++            {
++                int range = command == "CommandCalm" ? 6 : 5;
++                var ability = ReadyAbility(command, out int slot);
++                if (ability == null || !ClearCastLine(target, range, out int dx, out int dy)) continue;
++                int serial = MessageLog.GetRecentEntries(1).LastOrDefault().Serial;
++                yield return Tap((Key)Enum.Parse(typeof(Key), slot == 9 ? "Digit0" : "Digit" + (slot + 1)));
++                Require(State() == "AwaitingDirection", "actual ready starter asks for direction; " + RuntimeDetails());
++                yield return Tap(Direction(dx, dy));
++                Require(State() == "Normal" && ability.CooldownRemaining > 0, "native starting control consumes its real cooldown; " + RuntimeDetails());
++                bool applied = command == "CommandCalm" ? target.GetPart<BrainPart>()?.HasGoal<NoFightGoal>() == true
++                    : target.GetEffect<FrozenEffect>()?.Cold > 0 || CombatSystem.IsDeathHandled(target);
++                Require(applied, "native control actually affected intended owner " + target.ID + "; " + RuntimeDetails());
++                _descriptions.Add(new Description { subject = "actual starter control", source = target.ID,
++                    text = command + " via slot " + slot + "; cooldown=" + ability.CooldownRemaining + "; target=" + target.GetDisplayName() });
++                _transcript.AddRange(MessageLog.GetRecentEntries(16).Where(e => e.Serial > serial).Select(e => e.Text));
++                yield break;
++            }
++        }
++        private bool SafeRouteCell(int x, int y, Entity[] threats)
++        {
++            var cells = _input.CurrentZone.GetOccupiedCells(_input.PlayerEntity, x, y);
++            if (cells.Count == 0 || cells.Any(c => c == null || c.BlocksMovement(_input.PlayerEntity)
++                || c.Occupants.Any(e => e != _input.PlayerEntity && (e.HasTag("Creature") || e.HasPart<TriggerOnStepPart>())))) return false;
++            foreach (var threat in threats)
++                if (cells.Any(c => SpatialQuery.DistanceToCell(_input.CurrentZone, threat, c.X, c.Y) <= 2)) return false;
++            return true;
++        }
++        private List<Cell> SafeRoute(int x, int y)
++        {
++            var origin = Cell(); var start = (origin.X, origin.Y); var end = (x, y);
++            if (start == end) return new List<Cell>();
++            var threats = _input.CurrentZone.GetReadOnlyEntities().Where(IsActiveVisibleThreat).ToArray();
++            if (!SafeRouteCell(x, y, threats)) return null;
++            var previous = new Dictionary<(int, int), (int, int)> { [start] = start };
++            var queue = new Queue<(int, int)>(); queue.Enqueue(start);
++            while (queue.Count > 0)
++            {
++                var at = queue.Dequeue();
++                for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++)
++                {
++                    if (dx == 0 && dy == 0) continue;
++                    var next = (at.Item1 + dx, at.Item2 + dy);
++                    if (previous.ContainsKey(next) || !SafeRouteCell(next.Item1, next.Item2, threats)) continue;
++                    previous[next] = at;
++                    if (next == end)
++                    {
++                        var path = new List<Cell>(); var p = end;
++                        while (p != start) { path.Add(_input.CurrentZone.GetCell(p.x, p.y)); p = previous[p]; }
++                        path.Reverse(); return path;
++                    }
++                    queue.Enqueue(next);
++                }
++            }
++            return null;
++        }
+         private IEnumerator WalkIntoReach(Entity target)
+         {
++            yield return ProtectRouteWithStartingControl();
+             var from = Cell(); Cell best = null; int cost = int.MaxValue;
+             foreach (var owned in _input.CurrentZone.GetOccupiedCells(target))
+                 for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++)
+@@ -244,8 +395,8 @@
+                     if (dx == 0 && dy == 0) continue;
+                     var cell = _input.CurrentZone.GetCell(owned.X + dx, owned.Y + dy);
+                     if (cell == null || cell.BlocksMovement(_input.PlayerEntity) || cell.Objects.Any(e => e.HasPart<TriggerOnStepPart>())) continue;
+-                    var path = FindPath.Search(_input.CurrentZone, from.X, from.Y, cell.X, cell.Y, actor: _input.PlayerEntity);
+-                    if (path.Usable && path.Steps.Count < cost) { best = cell; cost = path.Steps.Count; }
++                    var path = SafeRoute(cell.X, cell.Y);
++                    if (path != null && path.Count < cost) { best = cell; cost = path.Count; }
+                 }
+             Require(best != null, "native walking approach to reward");
+             yield return WalkTo(best.X, best.Y);
+@@ -288,7 +439,8 @@
+         {
+             for(int step=0;step<160;step++)
+             {
+-                Require(State()=="Normal"&&!CombatSystem.IsDeathHandled(_input.PlayerEntity),"live ordinary actor while walking");
++                yield return WaitForNativeFx();
++                Require(State()=="Normal"&&_input.PlayerEntity.GetStatValue("Hitpoints")>0&&!CombatSystem.IsDeathHandled(_input.PlayerEntity),"live ordinary actor while walking; "+RuntimeDetails());
+                 var c=Cell();if(c.X==x&&c.Y==y)yield break;
+                 if (_input.PlayerEntity.GetStat("Hitpoints").Value <= 20 && _startingTonicsUsed < 2)
+                 {
+@@ -301,9 +453,12 @@
+                         _transcript.Add("Keyboard used actual starting healing tonic " + _startingTonicsUsed + " of2; no direct health modification.");
+                     }
+                 }
+-                var path=FindPath.Search(_input.CurrentZone,c.X,c.Y,x,y,actor:_input.PlayerEntity);
+-                Require(path.Usable&&path.Steps.Count>0,"walkable native route");var d=path.Steps[0];
+-                yield return Tap(Direction(d.dx,d.dy)); _keyboardMoves++;
++                yield return ProtectRouteWithStartingControl();
++                c = Cell();
++                var path = SafeRoute(x, y);
++                Require(path != null && path.Count > 0, "safe native route without bumping creature bodies; " + RuntimeDetails());
++                var next = path[0];
++                yield return Tap(Direction(next.X - c.X, next.Y - c.Y)); _keyboardMoves++;
+             }
+             throw new InvalidOperationException("Finite native walking route exceeded160 steps.");
+         }
+@@ -368,10 +523,18 @@
+             double began = Time.realtimeSinceStartupAsDouble;
+             while (_input != null && Time.time - (float)Field(_input, "_lastMoveTime") < _input.MoveRepeatDelay)
+             { Require(Time.realtimeSinceStartupAsDouble - began < 3, "input rate gate reopens"); yield return null; }
++            yield return WaitForNativeFx();
++            var action = new NativeKeyStep { sequence = _nativeKeys.Count, keys = string.Join("+", keys.Select(k => k.ToString())), before = Snapshot("before-key") };
++            _nativeKeys.Add(action);
+             _keyboard.MakeCurrent();
+             InputSystem.QueueStateEvent(_keyboard, new KeyboardState(keys)); yield return null;
+             InputSystem.QueueStateEvent(_keyboard, new KeyboardState()); yield return null;
+             yield return new WaitForSecondsRealtime(.13f);
++            action.after = Snapshot("after-key"); WriteReport();
++            yield return WaitForNativeFx();
++            action.after = Snapshot("after-native-fx"); WriteReport();
++            if (_input?.PlayerEntity != null)
++                Require(_input.PlayerEntity.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(_input.PlayerEntity), "actor died after native key; " + RuntimeDetails());
+         }
+         private IEnumerator Capture(string name)
+         {
+@@ -398,7 +561,7 @@
+                 bool moved = false; object current = null; Exception error = null;
+                 try { moved = stack.Peek().MoveNext(); if (moved) current = stack.Peek().Current; }
+                 catch (Exception caught) { error = caught; }
+-                if (error != null) { _fatal = error.ToString(); Check("native_precondition_failed", false); Debug.LogError("[DensityLairNative] " + error); break; }
++                if (error != null) { _failureState = Snapshot("failure"); _fatal = error.ToString(); Check("native_precondition_failed", false); Debug.LogError("[DensityLairNative] " + error); break; }
+                 if (!moved) { (stack.Pop() as IDisposable)?.Dispose(); continue; }
+                 if (current is IEnumerator nested) { stack.Push(nested); continue; }
+                 yield return current;
+@@ -428,9 +591,9 @@
+                 complete = Complete, errorsFinalized = _errorsFinalized, seconds = _clock?.Elapsed.TotalSeconds ?? 0,
+                 keyboardMoves = _keyboardMoves, startingTonicsUsed = _startingTonicsUsed, routeZones = _routeZones.ToArray(), transcript = _transcript.ToArray(),
+                 startShortcut = _usedStartShortcut, bossID = _bossID, rewardID = _rewardID, checkpointHash = _checkpointHash,
+-                zone = _stagedZone?.ZoneID, fatal = _fatal, audit = _audit.ToArray(), screenshots = _screenshots.ToArray(), descriptions = _descriptions.ToArray(),
++                zone = _input?.CurrentZone?.ZoneID, failureState = _failureState, nativeKeys = _nativeKeys.ToArray(), fatal = _fatal, audit = _audit.ToArray(), screenshots = _screenshots.ToArray(), descriptions = _descriptions.ToArray(),
+                 canVerify = "Actual seed64 Beating lair; ordinary40HP starting actor and equipped dagger; keyboard descent through intermediate/final floors, boss examination, real reward collection, verified changed F5 checkpoint, real post-save keyboard move, F6 graph replacement and owner/gear/HP/energy/depletion restoration, ascent and revisit. Rendered screenshot files require human inspection.",
+-                cannotVerify = "One explicit starting shortcut transfers the unchanged new-game actor to the actual generated surface stair. All later route choices are scripted keyboard input. No direct stat, health, kit, AI or visibility boosts; up to the two actual starting healing tonics may be consumed through the native inventory action. No natural discovery, player judgement, combat balance or enjoyment claim. Death/refusal is recorded as failure and is never bypassed. Save/load and native RNG are not cross-runtime deterministic replay claims."
++                cannotVerify = "One explicit starting shortcut transfers the unchanged new-game actor to the actual generated surface stair. All later route choices are scripted keyboard input. The first dagger-only approach died and remains in its separate failed receipt. This attempt uses real ready starting Calm/Rime Grip through the hotbar and avoids bumping bodies; no direct stat, health, kit, AI or visibility boosts; up to the two actual starting healing tonics may be consumed through the native inventory action. No natural discovery, player judgement, combat balance or enjoyment claim. Death/refusal is recorded as failure and is never bypassed. Save/load and native RNG are not cross-runtime deterministic replay claims."
+             }, true));
+             Debug.Log("[DensityLairNative] report=" + ReportPath + " failures=" + Failures);
+         }
+@@ -454,6 +617,7 @@
+         [Serializable] private sealed class Report
+         {
+             public string runId, zone, fatal, canVerify, cannotVerify;
++            public NativeState failureState; public NativeKeyStep[] nativeKeys;
+             public string[] audit, screenshots;
+             public Description[] descriptions;
+             public int cases, failures, unexpectedErrors;

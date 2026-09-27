@@ -1,0 +1,228 @@
+FFFFFFFFFFFFFF
+======================================================================
+FAIL: test_all_geometry_has_real_bone_ownership_and_bounded_extent (__main__.VisitorSource.test_all_geometry_has_real_bone_ownership_and_bounded_extent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 13, in test_all_geometry_has_real_bone_ownership_and_bounded_extent
+    self.assertEqual(29,len(self.m))
+AssertionError: 29 != 0
+
+======================================================================
+FAIL: test_banded_frog_is_scarlet_on_black_and_summit_has_W (__main__.VisitorSource.test_banded_frog_is_scarlet_on_black_and_summit_has_W)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 30, in test_banded_frog_is_scarlet_on_black_and_summit_has_W
+    bands=self.parts('Bandfrog','scarlet-band');self.assertGreaterEqual(len(bands),3);self.assertTrue(all(b['color']==24 for b in bands));self.assertGreaterEqual(len(self.parts('SummitSinger','dorsal-W')),4)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 8, in parts
+    def parts(self,bp,key):return [b for b in self.get(bp)['boxes'] if key in b['part']]
+                                              ^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 7, in get
+    def get(self,bp):self.assertIn(bp,self.m);return self.m[bp]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Bandfrog' not found in {}
+
+======================================================================
+FAIL: test_bat_has_independent_wings_and_not_ground_arms (__main__.VisitorSource.test_bat_has_independent_wings_and_not_ground_arms)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 35, in test_bat_has_independent_wings_and_not_ground_arms
+    m=self.get('CaveBat');self.assertEqual(2,len([b for b in m['bones'] if b['name'].startswith('Wing')]));self.assertGreaterEqual(len(self.parts('CaveBat','wing-panel')),6)
+      ^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 7, in get
+    def get(self,bp):self.assertIn(bp,self.m);return self.m[bp]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'CaveBat' not found in {}
+
+======================================================================
+FAIL: test_construct_and_undead_distinguishing_structures (__main__.VisitorSource.test_construct_and_undead_distinguishing_structures)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 50, in test_construct_and_undead_distinguishing_structures
+    for bp,part in [('StoneGolem','stone-block'),('ObsidianBrute','obsidian-slab'),('AncientGuardian','shoulder-tower'),('VaultSentinel','inset-face'),('BrassHusk','brass-plate'),('IceWight','ice-ridge'),('CharredHusk','ember-seam'),('SleepingTroll','belly')]:self.assertTrue(self.parts(bp,part))
+                                                                                                                                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 8, in parts
+    def parts(self,bp,key):return [b for b in self.get(bp)['boxes'] if key in b['part']]
+                                              ^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 7, in get
+    def get(self,bp):self.assertIn(bp,self.m);return self.m[bp]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'StoneGolem' not found in {}
+
+======================================================================
+FAIL: test_every_species_has_distinct_geometry_beyond_color (__main__.VisitorSource.test_every_species_has_distinct_geometry_beyond_color)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 23, in test_every_species_has_distinct_geometry_beyond_color
+    self.assertEqual(29,len(self.m));keys=[]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 29 != 0
+
+======================================================================
+FAIL: test_exact29_no_proxy_alias (__main__.VisitorSource.test_exact29_no_proxy_alias)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 9, in test_exact29_no_proxy_alias
+    def test_exact29_no_proxy_alias(self):self.assertEqual(set(EXPECTED),set(self.m));self.assertEqual(29,len({m['id'] for m in self.m.values()}))
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the first set but not the second:
+'CaveSlime'
+'Reedfrog'
+'SunStriker'
+'GinFrog'
+'GlassScorpion'
+'SleepingTroll'
+'AncientGuardian'
+'Bandfrog'
+'BrittleHound'
+'CaveBear'
+'DesertProwler'
+'SporeShambler'
+'PaleStalker'
+'PrickleBrowGecko'
+'BrassHusk'
+'SandWurm'
+'ObsidianBrute'
+'CharredHusk'
+'CanopyStrangler'
+'BrocchiniaSentinel'
+'DuneLurker'
+'IceWight'
+'StoneGolem'
+'SummitSinger'
+'CaveBat'
+'SkeletalSentry'
+'VaultSentinel'
+'JungleStalker'
+'Scorpion'
+
+======================================================================
+FAIL: test_frogs_have_four_limbs_no_tail_and_folded_hindquarters (__main__.VisitorSource.test_frogs_have_four_limbs_no_tail_and_folded_hindquarters)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 28, in test_frogs_have_four_limbs_no_tail_and_folded_hindquarters
+    m=self.get(bp);self.assertEqual(4,len([b for b in m['bones'] if b['name'].startswith('Leg')]));self.assertFalse(any(b['name'].startswith('Tail') for b in m['bones']));self.assertEqual(2,len(self.parts(bp,'thigh')))
+      ^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 7, in get
+    def get(self,bp):self.assertIn(bp,self.m);return self.m[bp]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Reedfrog' not found in {}
+
+======================================================================
+FAIL: test_fungal_and_plant_anatomies_are_distinct (__main__.VisitorSource.test_fungal_and_plant_anatomies_are_distinct)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 46, in test_fungal_and_plant_anatomies_are_distinct
+    self.assertGreaterEqual(len([b for b in self.get('CanopyStrangler')['bones'] if b['name'].startswith('Tendril')]),4);self.assertGreaterEqual(len(self.parts('SporeShambler','spore-sac')),4)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 7, in get
+    def get(self,bp):self.assertIn(bp,self.m);return self.m[bp]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'CanopyStrangler' not found in {}
+
+======================================================================
+FAIL: test_lizards_have_tail_chain_and_specific_eye_spines (__main__.VisitorSource.test_lizards_have_tail_chain_and_specific_eye_spines)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 32, in test_lizards_have_tail_chain_and_specific_eye_spines
+    for bp in ['SunStriker','BrocchiniaSentinel','PrickleBrowGecko']:self.assertGreaterEqual(len([b for b in self.get(bp)['bones'] if b['name'].startswith('Tail')]),4)
+                                                                                                             ^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 7, in get
+    def get(self,bp):self.assertIn(bp,self.m);return self.m[bp]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'SunStriker' not found in {}
+
+======================================================================
+FAIL: test_palette_retains24_and_explicit_semantic_colors (__main__.VisitorSource.test_palette_retains24_and_explicit_semantic_colors)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 11, in test_palette_retains24_and_explicit_semantic_colors
+    base=json.loads(Path('/Users/steven/caves-of-ooo/ArtSource/ReferenceGlade3D/kit.json').read_text())['palette'];self.assertEqual(base,self.k.get('palette',[])[:24]);self.assertEqual(30,len(self.k['palette']))
+                                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['#082C28', '#103E36', '#1A4B40', '#26594A[217 chars]E39'] != []
+
+First list contains 24 additional elements.
+First extra element 0:
+'#082C28'
+
++ []
+- ['#082C28',
+-  '#103E36',
+-  '#1A4B40',
+-  '#26594A',
+-  '#A0A77C',
+-  '#CBC697',
+-  '#647353',
+-  '#235D25',
+-  '#40872C',
+-  '#65AE3D',
+-  '#435A53',
+-  '#62786C',
+-  '#819489',
+-  '#16883B',
+-  '#45CB4B',
+-  '#A0E772',
+-  '#207838',
+-  '#D2D3B4',
+-  '#B77B43',
+-  '#403D28',
+-  '#756C40',
+-  '#A39456',
+-  '#C4B877',
+-  '#243E39']
+
+======================================================================
+FAIL: test_quadrupeds_have_four_paws_and_different_physical_builds (__main__.VisitorSource.test_quadrupeds_have_four_paws_and_different_physical_builds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 40, in test_quadrupeds_have_four_paws_and_different_physical_builds
+    for bp in ['CaveBear','PaleStalker','DesertProwler','BrittleHound','JungleStalker']:self.assertEqual(4,len(self.parts(bp,'paw')))
+                                                                                                               ^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 8, in parts
+    def parts(self,bp,key):return [b for b in self.get(bp)['boxes'] if key in b['part']]
+                                              ^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 7, in get
+    def get(self,bp):self.assertIn(bp,self.m);return self.m[bp]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'CaveBear' not found in {}
+
+======================================================================
+FAIL: test_real_equipped_sentry_has_nine_bones_and_head_socket (__main__.VisitorSource.test_real_equipped_sentry_has_nine_bones_and_head_socket)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 48, in test_real_equipped_sentry_has_nine_bones_and_head_socket
+    m=self.get('SkeletalSentry');self.assertEqual({'Root','Spine','Head','Arm.L','Arm.R','Hand.L','Hand.R','Leg.L','Leg.R'},{b['name'] for b in m['bones']});self.assertEqual({'Equipment.Head','Equipment.Hand.L','Equipment.Hand.R','Equipment.Back'},{s['name'] for s in m['sockets']});self.assertGreaterEqual(len(self.parts('SkeletalSentry','rib')),6)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 7, in get
+    def get(self,bp):self.assertIn(bp,self.m);return self.m[bp]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'SkeletalSentry' not found in {}
+
+======================================================================
+FAIL: test_scorpions_have8legs2claws_and_segmented_stings (__main__.VisitorSource.test_scorpions_have8legs2claws_and_segmented_stings)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 38, in test_scorpions_have8legs2claws_and_segmented_stings
+    names=[b['name'] for b in self.get(bp)['bones']];self.assertEqual(8,len([n for n in names if n.startswith('Leg')]));self.assertEqual(2,len([n for n in names if n.startswith('Arm')]));self.assertGreaterEqual(len([n for n in names if n.startswith('Tail')]),4);self.assertTrue(self.parts(bp,'sting'))
+                              ^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 7, in get
+    def get(self,bp):self.assertIn(bp,self.m);return self.m[bp]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Scorpion' not found in {}
+
+======================================================================
+FAIL: test_wurm_and_ambush_maw_are_not_humanoid (__main__.VisitorSource.test_wurm_and_ambush_maw_are_not_humanoid)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 43, in test_wurm_and_ambush_maw_are_not_humanoid
+    self.assertGreaterEqual(len([b for b in self.get('SandWurm')['bones'] if b['name'].startswith('Segment')]),6);self.assertGreaterEqual(len(self.parts('SandWurm','mouth-rim')),6)
+                                            ^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 7, in get
+    def get(self,bp):self.assertIn(bp,self.m);return self.m[bp]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'SandWurm' not found in {}
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.010s
+
+FAILED (failures=14)

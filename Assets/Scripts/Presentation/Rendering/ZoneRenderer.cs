@@ -1017,10 +1017,13 @@ namespace CavesOfOoo.Rendering
 
                 int cellsRendered = Zone.Width * Zone.Height;
                 PerformanceDiagnostics.RecordZoneRedraw(cellsRendered);
-                for (int x = 0; x < Zone.Width; x++)
+                using (PerformanceMarkers.Zone.RenderCells.Auto())
                 {
-                    for (int y = 0; y < Zone.Height; y++)
-                        RenderCell(x, y);
+                    for (int x = 0; x < Zone.Width; x++)
+                    {
+                        for (int y = 0; y < Zone.Height; y++)
+                            RenderCell(x, y);
+                    }
                 }
 
                 RefreshWaterCache();
@@ -1225,6 +1228,11 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // Relinquish only after the actual current native view submits this
+            // same prioritized element; other coatings/residues retain fallback.
+            if(_spawnRing3DPresenter!=null&&ReferenceEquals(_spawnRing3DPresenter.CurrentZone,CurrentZone)
+                &&_spawnRing3DPresenter.TryGetElementVolume(x,y,out _,out _))
+            {_tileStateTilemap.SetTile(tilePos,null);return;}
             char glyph;
             Color color;
             if (state.Residues.Count > 0)

@@ -6,9 +6,13 @@ Shader "CavesOfOoo/Village3D/Palette"
         [HideInInspector] [NoScaleOffset] _FogLight ("Native Visibility / Local Light", 2D) = "black" {}
         _BaseColor ("Base Color", Color) = (1,1,1,1)
         _Transient ("Visible-Only Owner", Float) = 0
+        [HideInInspector] _CoverHeadwear ("Owned Cosmetic Headwear Cover", Float) = 0
         _AmbientStrength ("Ambient Strength", Range(0,2)) = 0.7
         _SunStrength ("Sun Strength", Range(0,2)) = 0.9
         _Exposure ("Scene Exposure", Range(0,4)) = 1
+        [HideInInspector] [NoScaleOffset] _GroundContact ("Owned Ground Contact", 2D) = "black" {}
+        _GroundContactStrength ("Ground Contact Strength", Range(0,0.38)) = 0
+        _GroundMottleStrength ("Ground Color Variation", Range(0,0.3)) = 0
         _WaveSpeed ("Water Ripple Speed", Float) = 0.8
         _WaveStrength ("Water Ripple Normal Strength", Range(0,0.4)) = 0.09
     }

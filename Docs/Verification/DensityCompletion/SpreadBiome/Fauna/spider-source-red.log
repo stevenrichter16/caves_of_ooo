@@ -1,0 +1,19 @@
+.....F.
+======================================================================
+FAIL: test_spider_colored_leg_joints_have_no_coplanar_overlapping_faces (__main__.Fauna.test_spider_colored_leg_joints_have_no_coplanar_overlapping_faces)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-fauna-joint-repair/test_fauna.py", line 32, in test_spider_colored_leg_joints_have_no_coplanar_overlapping_faces
+    self.assertEqual([],conflicts,'Different colored overlapping coplanar faces flicker under native rasterization.')
+AssertionError: Lists differ: [] != [('upper-Leg.L0', 'bend-Leg.L0', 2, -1), ([585 chars], 1)]
+
+Second list contains 16 additional elements.
+First extra element 0:
+('upper-Leg.L0', 'bend-Leg.L0', 2, -1)
+
+Diff is 685 characters long. Set self.maxDiff to None to see it. : Different colored overlapping coplanar faces flicker under native rasterization.
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.002s
+
+FAILED (failures=1)

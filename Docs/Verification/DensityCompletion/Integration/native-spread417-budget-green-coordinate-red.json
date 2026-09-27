@@ -1,0 +1,46 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "410e1dd352204d599a8d5fbb97c5102e",
+  "run": {
+    "id": "2",
+    "testcasecount": "417",
+    "result": "Failed(Child)",
+    "total": "417",
+    "passed": "411",
+    "failed": "6",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 13:11:35Z",
+    "end-time": "2026-09-27 13:12:27Z",
+    "duration": "51.891515"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.SpreadTransientCoordinateTests.InvalidCoordinateCannotClaimOrEraseAnotherValidCell(80,0,0,1,False)",
+      "message": "  An invalid address cannot claim the valid cell's root.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadTransientCoordinateTests.InvalidCoordinateCannotClaimOrEraseAnotherValidCell(-1,1,79,0,False)",
+      "message": "  An invalid address cannot claim the valid cell's root.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadTransientCoordinateTests.InvalidCoordinateCannotClaimOrEraseAnotherValidCell(17,53687091,1,0,False)",
+      "message": "  An invalid address cannot claim the valid cell's root.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadTransientCoordinateTests.InvalidCoordinateCannotClaimOrEraseAnotherValidCell(80,0,0,1,True)",
+      "message": "  An invalid address cannot retire the valid cell's root.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadTransientCoordinateTests.InvalidCoordinateCannotClaimOrEraseAnotherValidCell(-1,1,79,0,True)",
+      "message": "  An invalid address cannot retire the valid cell's root.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadTransientCoordinateTests.InvalidCoordinateCannotClaimOrEraseAnotherValidCell(17,53687091,1,0,True)",
+      "message": "  An invalid address cannot retire the valid cell's root.\n  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+--- a/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs
++++ b/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs
+@@ -45,7 +45,12 @@
+             if (string.IsNullOrWhiteSpace(SaveGameService.SaveRootOverride))
+                 throw new InvalidOperationException("Completion audit requires its isolated native launcher.");
+             _context = context; _ownedRoot = SaveGameService.SaveRootOverride;_measurePerformance=measurePerformance;_combatOnly=combatOnly;
+-            if (_combatOnly) { _oldDamage = Diag.IsChannelEnabled("damage"); Diag.SetChannel("damage", true); }
++            if (_combatOnly)
++            {
++                _oldDamage = Diag.IsChannelEnabled("damage");
++                _combatOldEvent = Diag.IsChannelEnabled("event");
++                Diag.SetChannel("damage", true); Diag.SetChannel("event", true);
++            }
+             _clock = System.Diagnostics.Stopwatch.StartNew();
+             _oldScenario = Diag.IsChannelEnabled("scenario"); Diag.SetChannel("scenario", true);
+             _oldSettings = InputSystem.settings; _settings = Instantiate(_oldSettings);
+@@ -257,7 +262,18 @@
+                 bool moved = false; object current = null; Exception error = null;
+                 try { moved = stack.Peek().MoveNext(); if (moved) current = stack.Peek().Current; }
+                 catch (Exception caught) { error = caught; }
+-                if (error != null) { _fatal = error.ToString(); Check("native_precondition_failed", false); Debug.LogError("[ReferenceGladeNative] " + error); break; }
++                if (error != null)
++                {
++                    _fatal = error.ToString();
++                    // Dispose nested observation windows so their finally blocks
++                    // preserve real death/refusal evidence before cleanup.
++                    while (stack.Count > 0)
++                    {
++                        try { (stack.Pop() as IDisposable)?.Dispose(); }
++                        catch (Exception disposal) { _fatal += "\nObserver cleanup: " + disposal; }
++                    }
++                    Check("native_precondition_failed", false); Debug.LogError("[ReferenceGladeNative] " + error); break;
++                }
+                 if (!moved) { stack.Pop(); continue; }
+                 if (current is IEnumerator nested) { stack.Push(nested); continue; }
+                 yield return current;
+@@ -290,14 +306,14 @@
+                 profileFrameP95Ms=_frameTimes.Count==0?0:_frameTimes.OrderBy(x=>x).ElementAt((int)((_frameTimes.Count-1)*.95)),
+                 zone = _stagedZone?.ZoneID, fatal = _fatal, audit = _audit.ToArray(), screenshots = _screenshots.ToArray(), descriptions = _descriptions.ToArray(),
+                 canVerify = _combatOnly ? "Actual authored northern encounter; ordinary starting actor and kit; real movement and attack keys; exact diagnostic actor/target/cause correlation, attempted retaliation, exact death attribution and corpse/original-owned-drop provenance, and native animation/frame observation. No direct attack, pose or damage calls." : "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz harvest, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
+-                cannotVerify = _combatOnly ? "One fixed authored encounter and finite script-selected keyboard route. No combat-balance, natural discovery, animation quality or enjoyment claim. Native pose observation and saved frames still need visual assessment; unrelated NPC activity remains enabled." : "Routes are script-selected through real keyboard input. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim."
++                cannotVerify = _combatOnly ? "One fixed authored encounter and finite script-selected keyboard route. At most two original starting healing tonics may be used at or below two-thirds HP through native inventory keys. One ready Rime Grip may be used only after real retaliation. Their actual costs/effects are recorded. The prior dagger-only death remains a separate failed receipt. No combat-balance, natural discovery, animation quality or enjoyment claim. Native pose observation and saved frames still need visual assessment; unrelated NPC activity remains enabled." : "Routes are script-selected through real keyboard input. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim."
+             }, true));
+             Debug.Log("[ReferenceGladeNative] report=" + ReportPath + " failures=" + Failures);
+         }
+         private void Cleanup()
+         {
+             if (_cleaned) return; _cleaned = true;_profiling=false;
+-            if (_combatOnly) Diag.SetChannel("damage", _oldDamage);
++            if (_combatOnly) { Diag.SetChannel("damage", _oldDamage); Diag.SetChannel("event", _combatOldEvent); }
+             if (_keyboard != null) { InputSystem.QueueStateEvent(_keyboard, new KeyboardState()); InputSystem.RemoveDevice(_keyboard); }
+             if (_oldSettings != null) InputSystem.settings = _oldSettings;
+             if (_settings != null) Destroy(_settings);

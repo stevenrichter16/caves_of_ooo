@@ -26,6 +26,11 @@ namespace CavesOfOoo.Diagnostics
             public static readonly ProfilerMarker LateUpdate = new ProfilerMarker("COO.ZoneRenderer.LateUpdate");
             public static readonly ProfilerMarker RenderZone = new ProfilerMarker("COO.ZoneRenderer.RenderZone");
             public static readonly ProfilerMarker RenderCell = new ProfilerMarker("COO.ZoneRenderer.RenderCell");
+            public static readonly ProfilerMarker RenderCells = new ProfilerMarker("COO.ZoneRenderer.RenderCells");
+            public static readonly ProfilerMarker NativeRefresh = new ProfilerMarker("COO.NativePresenter.Refresh");
+            public static readonly ProfilerMarker ContactRefresh = new ProfilerMarker("COO.GroundContact.Refresh");
+            public static readonly ProfilerMarker ContactRasterize = new ProfilerMarker("COO.GroundContact.Rasterize");
+            public static readonly ProfilerMarker ContactUpload = new ProfilerMarker("COO.GroundContact.Upload");
             public static readonly ProfilerMarker ComputeFov = new ProfilerMarker("COO.ZoneRenderer.ComputeFOV");
             public static readonly ProfilerMarker ComputeLightMap = new ProfilerMarker("COO.ZoneRenderer.ComputeLightMap");
             public static readonly ProfilerMarker RenderSidebar = new ProfilerMarker("COO.ZoneRenderer.RenderSidebar");

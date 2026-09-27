@@ -1,0 +1,78 @@
+--- /tmp/coo-glade-combat/ReferenceGladeNativeCombat.before-startup.cs.txt	2026-09-26 21:10:48
++++ /tmp/coo-glade-combat/ReferenceGladeNativeCombat.cs	2026-09-26 21:10:48
+@@ -45,20 +45,51 @@
+             var hostiles = _stagedZone.GetReadOnlyEntities().Where(e => e.HasTag("Creature")
+                 && e.BlueprintName.StartsWith("Marlback", StringComparison.Ordinal)).ToArray();
+             var expected = new[] { ("MarlbackScrabbler", 42, 19), ("MarlbackGleaner", 44, 20), ("MarlbackScrabbler", 22, 5) };
+-            bool sourceValid = hostiles.Length == 3 && expected.All(row => hostiles.Count(e => e.BlueprintName == row.Item1
+-                && _stagedZone.GetEntityCell(e)?.X == row.Item2 && _stagedZone.GetEntityCell(e)?.Y == row.Item3) == 1)
+-                && hostiles.All(e => e.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(e)
+-                    && ReferenceEquals(e.GetPart<BrainPart>()?.CurrentZone, _stagedZone) && _input.TurnManager.IsRegistered(e))
+-                && _stagedZone.GetReadOnlyEntities().Count(e => e.BlueprintName == "Warden") == 1
+-                && _stagedZone.GetReadOnlyEntities().Count(e => e.BlueprintName == "PetDog") == 1;
++            // Bootstrap eagerly captures authored starts, then runs ordinary
++            // NPC turns before the player's first input. Current positions may
++            // already differ; source identity must use those captured starts.
++            foreach (var owner in _stagedZone.GetReadOnlyEntities().Where(e => e.HasTag("Creature")))
++            {
++                var brain = owner.GetPart<BrainPart>();
++                var position = _stagedZone.GetEntityCell(owner);
++                _descriptions.Add(new Description
++                {
++                    subject = "Preflight native creature",
++                    source = owner.ID,
++                    text = owner.BlueprintName + " @ " + position?.X + "," + position?.Y
++                        + "; authoredStart=" + brain?.StartingCellX + "," + brain?.StartingCellY
++                        + "; hasBrain=" + (brain != null)
++                        + "; liveZone=" + ReferenceEquals(brain?.CurrentZone, _stagedZone)
++                        + "; currentZoneMember=" + (position != null)
++                        + "; registered=" + _input.TurnManager.IsRegistered(owner)
++                        + "; HP=" + owner.GetStatValue("Hitpoints")
++                        + "; deathHandled=" + CombatSystem.IsDeathHandled(owner)
++                        + "; actual gear=" + CombatGear(owner)
++                });
++            }
++            var sourceMatches = expected.Select(row => hostiles.Count(e => e.BlueprintName == row.Item1
++                && e.GetPart<BrainPart>()?.StartingCellX == row.Item2
++                && e.GetPart<BrainPart>()?.StartingCellY == row.Item3)).ToArray();
++            int wardens = _stagedZone.GetReadOnlyEntities().Count(e => e.BlueprintName == "Warden");
++            int dogs = _stagedZone.GetReadOnlyEntities().Count(e => e.BlueprintName == "PetDog");
++            bool sourceValid = hostiles.Length == 3 && sourceMatches.All(count => count == 1)
++                && hostiles.All(e => e.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(e)
++                    && _stagedZone.GetEntityCell(e) != null
++                    && ReferenceEquals(e.GetPart<BrainPart>()?.CurrentZone, _stagedZone)
++                    && _input.TurnManager.IsRegistered(e))
++                && wardens == 1 && dogs == 1;
++            _descriptions.Add(new Description
++            {
++                subject = "Exact authored source preflight",
++                source = _stagedZone.ZoneID,
++                text = "Marlback owners=" + hostiles.Length + "; expected blueprint/start matches="
++                    + string.Join(",", sourceMatches) + "; wardens=" + wardens + "; dogs=" + dogs
++                    + "; actual startup tick=" + _input.TurnManager.TickCount + "; sourceValid=" + sourceValid
++            });
+             Check("exact_original_hostiles", sourceValid);
+-            Require(sourceValid, "all three exact authored hostiles and ordinary NPCs before combat turns");
+-            foreach (var owner in hostiles.Concat(_stagedZone.GetReadOnlyEntities().Where(e => e.BlueprintName == "Warden" || e.BlueprintName == "PetDog")))
+-                _descriptions.Add(new Description { subject = "Original native creature", source = owner.ID,
+-                    text = owner.BlueprintName + " @ " + _stagedZone.GetEntityCell(owner).X + "," + _stagedZone.GetEntityCell(owner).Y
+-                        + "; HP=" + owner.GetStatValue("Hitpoints") + "; registered=" + _input.TurnManager.IsRegistered(owner)
+-                        + "; actual gear=" + CombatGear(owner) });
+-            _combatTarget = hostiles.Single(e => _stagedZone.GetEntityCell(e).X == 22 && _stagedZone.GetEntityCell(e).Y == 5);
++            Require(sourceValid, "all three exact authored hostiles and ordinary NPCs before combat keys; see preflight owners");
++            _combatTarget = hostiles.Single(e => e.GetPart<BrainPart>().StartingCellX == 22
++                && e.GetPart<BrainPart>().StartingCellY == 5);
+             _combatTargetID = _combatTarget.ID;
+             var targetInventory = _combatTarget.GetPart<InventoryPart>();
+             Require(targetInventory != null, "authored target has actual inventory ownership");
+@@ -66,7 +97,9 @@
+                 _combatOwnedDropIDs.Add(item.ID);
+             Require(_combatOwnedDropIDs.Count > 0, "authored armed target has actual owned gear before combat");
+             _descriptions.Add(new Description { subject = "Fixed authored encounter selection", source = _combatTargetID,
+-                text = "Northern Scrabbler at22,5 selected before movement; initial physical distance="
++                text = "Northern Scrabbler authored at22,5 selected before keyboard movement; current cell="
++                    + _stagedZone.GetEntityCell(_combatTarget).X + "," + _stagedZone.GetEntityCell(_combatTarget).Y
++                    + "; initial physical distance="
+                     + SpatialQuery.Distance(_stagedZone, actor, _combatTarget) + ". No source changes, travel shortcuts, alternate targets or retries." });
+             var dagger = actor.GetPart<InventoryPart>().Objects.Single(e => e.BlueprintName == "Dagger");
+             yield return ItemAction(dagger, "equip_auto");

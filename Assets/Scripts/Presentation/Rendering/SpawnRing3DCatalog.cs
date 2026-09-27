@@ -158,12 +158,54 @@ namespace CavesOfOoo.Rendering
             modelIndex=modelMap;blueprintIndex=blueprintMap;fellingIndex=ownerMap;
             zoneIndex=new HashSet<string>(zones,StringComparer.Ordinal);
         }
-        public Model FindModel(string modelId)
-        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:ReferenceGladeVoxelLibrary.Load()?.Find(modelId)?.Spec ?? DensityPhase1VoxelLibrary.Load()?.Find(modelId)?.Spec ?? SpreadVoxelLibrary.Load()?.Find(modelId)?.Spec ?? SoddenVoxelLibrary.Load()?.Find(modelId)?.Spec ?? BeatingVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StumpVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OverwritVoxelLibrary.Load()?.Find(modelId)?.Spec ?? GinmereVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CathedralVoxelLibrary.Load()?.Find(modelId)?.Spec ?? StillleafVoxelLibrary.Load()?.Find(modelId)?.Spec ?? OlderdeepVoxelLibrary.Load()?.Find(modelId)?.Spec ?? WellmeetVoxelLibrary.Load()?.Find(modelId)?.Spec ?? CinderholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? SumpholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? DrownedLedgerVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? MarrowstyeVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? FirstTentVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? LastCounterVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? GantryVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? TineVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? QuillholdVoxelKitLibrary.Load()?.Find(modelId)?.Spec ?? TallyVoxelKitLibrary.Load()?.Find(modelId)?.Spec;}
+        private static readonly Func<string,Type,UnityEngine.Object> DefaultExtensionLoader=Resources.Load;
+        // Per-call loader seam observes resource requests without global test state.
+        // The public runtime path uses the same body and Unity's actual loader.
+        public Model FindModel(string modelId) => FindModel(modelId,DefaultExtensionLoader);
+        // Pure guards match each owning Find contract. Skip unrelated resource
+        // loads without caching results or bypassing current asset validation.
+        internal Model FindModel(string modelId,Func<string,Type,UnityEngine.Object> load)
+        {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:
+            (SpreadEnvironmentSource.IsModelId(modelId) ? LoadExtension<SpreadEnvironment3DLibrary>(load, SpreadEnvironment3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+            ?? (SpreadVisitorCreatureSource.Find(modelId)!=null ? LoadExtension<SpreadVisitorCreatureLibrary>(load, SpreadVisitorCreatureLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+            ?? (modelId.StartsWith("spread-creature-",StringComparison.Ordinal) ? LoadExtension<SpreadCreature3DLibrary>(load, SpreadCreature3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+            ?? (SpreadScenerySource.IsModelId(modelId) ? LoadExtension<SpreadScenery3DLibrary>(load, SpreadScenery3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+            ?? (modelId.StartsWith("spread-portable-",StringComparison.Ordinal) ? LoadExtension<SpreadPortable3DLibrary>(load, SpreadPortable3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+            ?? (modelId.StartsWith("spread-person-",StringComparison.Ordinal) ? LoadExtension<SpreadBiomeHumanoidLibrary>(load, SpreadBiomeHumanoidLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+            ?? (modelId.StartsWith("spread-biome-",StringComparison.Ordinal) ? LoadExtension<SpreadBiomeActorLibrary>(load, SpreadBiomeActorLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+            ?? (modelId.StartsWith("poured-liquid-",StringComparison.Ordinal) ? LoadExtension<PouredLiquid3DLibrary>(load, PouredLiquid3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+            ?? LoadExtension<ReferenceGladeVoxelLibrary>(load, ReferenceGladeVoxelLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<DensityPhase1VoxelLibrary>(load, DensityPhase1VoxelLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<SpreadVoxelLibrary>(load, SpreadVoxelLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<SoddenVoxelLibrary>(load, SoddenVoxelLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<BeatingVoxelLibrary>(load, BeatingVoxelLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<StumpVoxelLibrary>(load, StumpVoxelLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<OverwritVoxelLibrary>(load, OverwritVoxelLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<GinmereVoxelLibrary>(load, GinmereVoxelLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<CathedralVoxelLibrary>(load, CathedralVoxelLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<StillleafVoxelLibrary>(load, StillleafVoxelLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<OlderdeepVoxelLibrary>(load, OlderdeepVoxelLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<WellmeetVoxelLibrary>(load, WellmeetVoxelLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<CinderholdVoxelKitLibrary>(load, CinderholdVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<SumpholdVoxelKitLibrary>(load, SumpholdVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<DrownedLedgerVoxelKitLibrary>(load, DrownedLedgerVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<MarrowstyeVoxelKitLibrary>(load, MarrowstyeVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<FirstTentVoxelKitLibrary>(load, FirstTentVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<LastCounterVoxelKitLibrary>(load, LastCounterVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<GantryVoxelKitLibrary>(load, GantryVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<TineVoxelKitLibrary>(load, TineVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<QuillholdVoxelKitLibrary>(load, QuillholdVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Spec
+            ?? LoadExtension<TallyVoxelKitLibrary>(load, TallyVoxelKitLibrary.ResourcePath)?.Find(modelId)?.Spec;}
+        private static T LoadExtension<T>(Func<string,Type,UnityEngine.Object> load,string path) where T:UnityEngine.Object
+            => load(path,typeof(T)) as T;
         public BlueprintBinding FindBlueprint(string blueprint)
         {if(string.IsNullOrEmpty(blueprint))return null;if(blueprintIndex==null)Validate();return blueprintIndex.TryGetValue(blueprint,out var value)?value:null;}
         public FellingOwner FindFellingOwner(string componentId)
         {if(string.IsNullOrEmpty(componentId))return null;if(fellingIndex==null)Validate();return fellingIndex.TryGetValue(componentId,out var value)?value:null;}
+        // Address-only compatibility remains finite; the receiving-world overload
+        // derives extra eligibility from its exact managed map/lair ownership.
+        public bool SupportsZone(Zone zone)
+            => zone != null && (SpreadPresentationScope.IsActive(zone) || SupportsZone(zone.ZoneID));
         public bool SupportsZone(string zoneId)
         {if(string.IsNullOrEmpty(zoneId))return false;if(zoneIndex==null)Validate();return zoneIndex.Contains(zoneId)||(GrovelandsCompositionPlan.IsWildernessZone(zoneId) || SpreadCompositionPlan.IsWildernessZone(zoneId) || SoddenCompositionPlan.IsWildernessZone(zoneId) || BeatingCompositionPlan.IsWildernessZone(zoneId) || StumpCompositionPlan.IsWildernessZone(zoneId) || OverwritCompositionPlan.IsWildernessZone(zoneId) || GinmereCompositionPlan.IsSupportedZone(zoneId) || CathedralCompositionPlan.IsSupportedZone(zoneId) || StillleafCompositionPlan.IsSupportedZone(zoneId) || OlderdeepCompositionPlan.IsSupportedZone(zoneId) || WellmeetCompositionPlan.IsSupportedZone(zoneId) || CinderholdCompositionPlan.IsSupportedZone(zoneId) || SumpholdCompositionPlan.IsSupportedZone(zoneId) || DrownedLedgerCompositionPlan.IsSupportedZone(zoneId) || MarrowstyeCompositionPlan.IsSupportedZone(zoneId) || FirstTentCompositionPlan.IsSupportedZone(zoneId) || LastCounterCompositionPlan.IsSupportedZone(zoneId) || GantryCompositionPlan.IsSupportedZone(zoneId) || TineCompositionPlan.IsSupportedZone(zoneId) || QuillholdCompositionPlan.IsSupportedZone(zoneId) || TallyCompositionPlan.IsSupportedZone(zoneId));}
         static bool SameNames(string[] values,string[] expected)

@@ -1,0 +1,26 @@
+test_grass_is_a_broad_low_tuft_in_the_current_fixed_view (test_seventh_feedback.SeventhFeedbackTests.test_grass_is_a_broad_low_tuft_in_the_current_fixed_view) ... FAIL
+test_grass_keeps_clear_low_fingers_below_the_reed_hierarchy (test_seventh_feedback.SeventhFeedbackTests.test_grass_keeps_clear_low_fingers_below_the_reed_hierarchy) ... FAIL
+test_other_thirtysix_models_and_palette_are_exact (test_seventh_feedback.SeventhFeedbackTests.test_other_thirtysix_models_and_palette_are_exact) ... ok
+
+======================================================================
+FAIL: test_grass_is_a_broad_low_tuft_in_the_current_fixed_view (test_seventh_feedback.SeventhFeedbackTests.test_grass_is_a_broad_low_tuft_in_the_current_fixed_view)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c14-seventh/ArtSource/ReferenceGlade3D/test_seventh_feedback.py", line 10, in test_grass_is_a_broad_low_tuft_in_the_current_fixed_view
+    self.assertGreaterEqual(width,.89,m['id']);self.assertLessEqual(width,1.0,m['id'])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.55826 not greater than or equal to 0.89 : reference-glade-green-grass-0
+
+======================================================================
+FAIL: test_grass_keeps_clear_low_fingers_below_the_reed_hierarchy (test_seventh_feedback.SeventhFeedbackTests.test_grass_keeps_clear_low_fingers_below_the_reed_hierarchy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c14-seventh/ArtSource/ReferenceGlade3D/test_seventh_feedback.py", line 14, in test_grass_keeps_clear_low_fingers_below_the_reed_hierarchy
+    self.assertGreaterEqual(top,.40);self.assertLessEqual(top,.425,m['id'])
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.43800000000000006 not less than or equal to 0.425 : reference-glade-green-grass-0
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.013s
+
+FAILED (failures=2)

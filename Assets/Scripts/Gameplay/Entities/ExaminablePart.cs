@@ -99,6 +99,10 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrWhiteSpace(Text))
                 baseLine += " " + Text.Trim();
 
+            var carriedReward = ParentEntity?.GetPart<LegendaryIdentityPart>()?.DescribeCarriedReward();
+            if (!string.IsNullOrWhiteSpace(carriedReward))
+                baseLine += "\n" + carriedReward;
+
             var directions = ParentEntity?.GetPart<RegionalSignpostPart>()?.GetDirectionsText();
             if (!string.IsNullOrWhiteSpace(directions))
                 baseLine += "\n" + directions;

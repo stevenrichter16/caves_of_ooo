@@ -1,0 +1,6668 @@
+[
+  {
+    "blueprint": "Item",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": ""
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Bone",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": ""
+    },
+    "render": {
+      "RenderString": ",",
+      "ColorString": "&W",
+      "DisplayName": "bone",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "GoldCoin",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Shiny": ""
+    },
+    "render": {
+      "RenderString": "$",
+      "ColorString": "&Y",
+      "DisplayName": "gold coin",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "InkVial",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": ""
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&B",
+      "DisplayName": "vial of ink",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "InkVial",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "MeleeWeapon",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": ""
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Dagger",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&c",
+      "DisplayName": "dagger",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d4",
+      "PenBonus": "1",
+      "MaxStrengthBonus": "3",
+      "Attributes": "Piercing"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "CreatureCorpse",
+    "takeable": true,
+    "itemTagged": false,
+    "creature": false,
+    "tags": {
+      "Corpse": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&r",
+      "DisplayName": "corpse",
+      "RenderLayer": "3"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Material",
+      "Physics",
+      "Render"
+    ]
+  },
+  {
+    "blueprint": "MarlbackCorpse",
+    "takeable": true,
+    "itemTagged": false,
+    "creature": false,
+    "tags": {
+      "Corpse": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&r",
+      "DisplayName": "marlback remains",
+      "RenderLayer": "3"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Material",
+      "Physics",
+      "Render"
+    ]
+  },
+  {
+    "blueprint": "FoodItem",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": ""
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Examinable",
+      "Food",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Starapple",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&R",
+      "DisplayName": "starapple",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {
+      "Into": "RoastedStarapple"
+    },
+    "parts": [
+      "Commerce",
+      "Cookable",
+      "Examinable",
+      "Food",
+      "Material",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "TonicItem",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": ""
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "HealingTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&G",
+      "DisplayName": "healing tonic",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "PoisonTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&g",
+      "DisplayName": "poison tonic",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "StatusTonic",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "FireTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&R",
+      "DisplayName": "fire tonic",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "StatusTonic",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "ForgedWeapon",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "1",
+      "Forged": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&Y",
+      "DisplayName": "forged weapon",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d2"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "TinkerItem"
+    ]
+  },
+  {
+    "blueprint": "WeaponComponentItem",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "WeaponComponent": ""
+    },
+    "render": {
+      "RenderString": "]",
+      "ColorString": "&w",
+      "DisplayName": "weapon component",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "SteelBladeComponent",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "WeaponComponent": ""
+    },
+    "render": {
+      "RenderString": "]",
+      "ColorString": "&C",
+      "DisplayName": "steel blade",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker",
+      "WeaponComponent"
+    ]
+  },
+  {
+    "blueprint": "IronSpikeComponent",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "WeaponComponent": ""
+    },
+    "render": {
+      "RenderString": "]",
+      "ColorString": "&w",
+      "DisplayName": "iron spike",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker",
+      "WeaponComponent"
+    ]
+  },
+  {
+    "blueprint": "OakHaftComponent",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "WeaponComponent": ""
+    },
+    "render": {
+      "RenderString": "]",
+      "ColorString": "&y",
+      "DisplayName": "oak haft",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker",
+      "WeaponComponent"
+    ]
+  },
+  {
+    "blueprint": "WillowHaftComponent",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "WeaponComponent": ""
+    },
+    "render": {
+      "RenderString": "]",
+      "ColorString": "&g",
+      "DisplayName": "willow haft",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker",
+      "WeaponComponent"
+    ]
+  },
+  {
+    "blueprint": "LeatherBindingComponent",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "WeaponComponent": ""
+    },
+    "render": {
+      "RenderString": "]",
+      "ColorString": "&y",
+      "DisplayName": "leather binding",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker",
+      "WeaponComponent"
+    ]
+  },
+  {
+    "blueprint": "SerratedEdgeComponent",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "WeaponComponent": ""
+    },
+    "render": {
+      "RenderString": "]",
+      "ColorString": "&R",
+      "DisplayName": "serrated edge kit",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker",
+      "WeaponComponent"
+    ]
+  },
+  {
+    "blueprint": "ReagentItem",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&g",
+      "DisplayName": "reagent",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "FireMoss",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&R",
+      "DisplayName": "fire-moss",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "LampOil",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&w",
+      "DisplayName": "lamp oil",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "EmberFruit",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&r",
+      "DisplayName": "ember-fruit",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "FrostLichen",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&c",
+      "DisplayName": "frost lichen",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "GlacierSalt",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&C",
+      "DisplayName": "glacier salt",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "GlimmerBrine",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&G",
+      "DisplayName": "glimmer-brine",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "SparkRoot",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&Y",
+      "DisplayName": "spark-root",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "VenomGland",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&g",
+      "DisplayName": "venom gland",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "BogSap",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&y",
+      "DisplayName": "bog sap",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "CandyHeartRoot",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&M",
+      "DisplayName": "heartroot",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "MendleafSprig",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&G",
+      "DisplayName": "mendleaf sprig",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "StoneburrSeed",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&w",
+      "DisplayName": "stoneburr seed",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "BlastcapSpore",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&O",
+      "DisplayName": "blastcap spore",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "CandyCarrotSeed",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": ""
+    },
+    "render": {
+      "RenderString": ",",
+      "ColorString": "&O",
+      "DisplayName": "gladroot seed",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Seed",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "EmberwheatSeed",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": ""
+    },
+    "render": {
+      "RenderString": ",",
+      "ColorString": "&W",
+      "DisplayName": "emberwheat seed",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Seed",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "CandyCarrot",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&O",
+      "DisplayName": "gladroot",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Food",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "WateringGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "\"",
+      "ColorString": "&B",
+      "DisplayName": "watering grimoire",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Emberwheat",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&W",
+      "DisplayName": "emberwheat sheaf",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Food",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "BrewedTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "1",
+      "Alchemy": ""
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&M",
+      "DisplayName": "strange brew",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "InertSludge",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": ""
+    },
+    "render": {
+      "RenderString": "~",
+      "ColorString": "&K",
+      "DisplayName": "inert sludge",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "AcidTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&G",
+      "DisplayName": "acid tonic",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "StatusTonic",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "LightningTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&Y",
+      "DisplayName": "lightning tonic",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "StatusTonic",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "FrostTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&C",
+      "DisplayName": "frost tonic",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "StatusTonic",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "WaterTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&B",
+      "DisplayName": "water tonic",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "StatusTonic",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "BleedTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&r",
+      "DisplayName": "bleed tonic",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "StatusTonic",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "CharredTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&K",
+      "DisplayName": "charred tonic",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "StatusTonic",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "Antidote",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&g",
+      "DisplayName": "antidote",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "CureTonic",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "BurnSalve",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&C",
+      "DisplayName": "burn salve",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "CureTonic",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "Panacea",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&Y",
+      "DisplayName": "panacea",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "CureTonic",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "ArmorItem",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": ""
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y"
+    },
+    "equippable": {
+      "Slot": "Body"
+    },
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Equippable",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "LeatherArmor",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "[",
+      "ColorString": "&w",
+      "DisplayName": "leather armor",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Body"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "3",
+      "DV": "-1"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Material",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "ChainMail",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "[",
+      "ColorString": "&C",
+      "DisplayName": "chain mail",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Body"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "5",
+      "DV": "-2"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Material",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "LongSword",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&y",
+      "DisplayName": "long sword",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d8",
+      "PenBonus": "2",
+      "Attributes": "Cutting LongBlades"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "Battleaxe",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2",
+      "TwoHanded": ""
+    },
+    "render": {
+      "RenderString": "P",
+      "ColorString": "&W",
+      "DisplayName": "battleaxe",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand",
+      "UsesSlots": "Hand,Hand"
+    },
+    "weapon": {
+      "BaseDamage": "2d6",
+      "PenBonus": "3",
+      "Attributes": "Cutting Axe"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "Greatsword",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "3",
+      "TwoHanded": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&C",
+      "DisplayName": "greatsword",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand",
+      "UsesSlots": "Hand,Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d12",
+      "PenBonus": "4",
+      "Attributes": "Cutting LongBlades"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "ShortSword",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&w",
+      "DisplayName": "short sword",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d6",
+      "PenBonus": "1",
+      "Attributes": "Cutting LongBlades"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "Mace",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&w",
+      "DisplayName": "mace",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d8+1",
+      "PenBonus": "3",
+      "Attributes": "Bludgeoning Cudgel"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "Spear",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&W",
+      "DisplayName": "spear",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d6+1",
+      "PenBonus": "2",
+      "Attributes": "Piercing"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "Hatchet",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "P",
+      "ColorString": "&y",
+      "DisplayName": "hatchet",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d6",
+      "PenBonus": "2",
+      "Attributes": "Cutting Axe"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Claymore",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "3",
+      "TwoHanded": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&M",
+      "DisplayName": "claymore",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand",
+      "UsesSlots": "Hand,Hand"
+    },
+    "weapon": {
+      "BaseDamage": "2d8",
+      "PenBonus": "4",
+      "Attributes": "Cutting LongBlades"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Cudgel",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&y",
+      "DisplayName": "cudgel",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d4+2",
+      "PenBonus": "2",
+      "Attributes": "Bludgeoning Cudgel"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Buckler",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": ")",
+      "ColorString": "&w",
+      "DisplayName": "buckler",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "1",
+      "DV": "1"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "IronHelmet",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "[",
+      "ColorString": "&y",
+      "DisplayName": "iron helmet",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Head"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "2",
+      "DV": "0"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "LeatherBoots",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "[",
+      "ColorString": "&w",
+      "DisplayName": "leather boots",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Feet"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "1",
+      "DV": "0"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "LeatherGloves",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "[",
+      "ColorString": "&w",
+      "DisplayName": "leather gloves",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Handwear"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "1",
+      "DV": "0"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "LeatherCap",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "[",
+      "ColorString": "&y",
+      "DisplayName": "leather cap",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Head"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "1",
+      "DV": "0"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "IronshodBoots",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "[",
+      "ColorString": "&w",
+      "DisplayName": "ironshod boots",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Feet"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "2",
+      "DV": "0",
+      "SpeedPenalty": "5"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "WardedCloak",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "[",
+      "ColorString": "&M",
+      "DisplayName": "warded cloak",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Back"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "0",
+      "DV": "2"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "IronBuckler",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "[",
+      "ColorString": "&W",
+      "DisplayName": "iron buckler",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "2",
+      "DV": "1"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "PlateArmor",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "3"
+    },
+    "render": {
+      "RenderString": "[",
+      "ColorString": "&Y",
+      "DisplayName": "plate armor",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Body"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "8",
+      "DV": "-3"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Cloak",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "(",
+      "ColorString": "&b",
+      "DisplayName": "cloak",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Back"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "1",
+      "DV": "1"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "SpeedTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&B",
+      "DisplayName": "speed tonic",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "StrengthTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&R",
+      "DisplayName": "strength tonic",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "StoneskinTonic",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tonic": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&w",
+      "DisplayName": "stoneskin tonic",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker",
+      "StatusTonic",
+      "Tonic"
+    ]
+  },
+  {
+    "blueprint": "Mushroom",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&y",
+      "DisplayName": "mushroom",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {
+      "Into": "RoastedMushroom"
+    },
+    "parts": [
+      "Commerce",
+      "Cookable",
+      "Examinable",
+      "Food",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "DriedMeat",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&r",
+      "DisplayName": "dried meat",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Food",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "LoanerDagger",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "1",
+      "Rentable": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&y",
+      "DisplayName": "loaner dagger",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d4",
+      "PenBonus": "1",
+      "Attributes": "Piercing"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "LoanerSpear",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "1",
+      "Rentable": ""
+    },
+    "render": {
+      "RenderString": "|",
+      "ColorString": "&y",
+      "DisplayName": "loaner spear",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d6+1",
+      "PenBonus": "2",
+      "Attributes": "Piercing"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "LoanerLongsword",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2",
+      "Rentable": ""
+    },
+    "render": {
+      "RenderString": "(",
+      "ColorString": "&Y",
+      "DisplayName": "loaner longsword",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d8+1",
+      "PenBonus": "3",
+      "Attributes": "Cutting LongBlades"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Warhammer",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2",
+      "TwoHanded": ""
+    },
+    "render": {
+      "RenderString": "T",
+      "ColorString": "&w",
+      "DisplayName": "warhammer",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand",
+      "UsesSlots": "Hand,Hand"
+    },
+    "weapon": {
+      "BaseDamage": "2d4+1",
+      "PenBonus": "5",
+      "Attributes": "Bludgeoning Cudgel"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "ChoirSpine",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "1",
+      "RotChoir": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&G",
+      "DisplayName": "choir spine",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d4+1",
+      "PenBonus": "1",
+      "Attributes": "Piercing"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "OldWorldPipe",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&K",
+      "DisplayName": "old world pipe",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d6",
+      "PenBonus": "2",
+      "Attributes": "Bludgeoning Cudgel"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "Sporeblade",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2",
+      "RotChoir": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&g",
+      "DisplayName": "sporeblade",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d8+1",
+      "PenBonus": "3",
+      "Attributes": "Cutting LongBlades"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "FlamingSword",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&R",
+      "DisplayName": "flaming sword",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d8",
+      "PenBonus": "2",
+      "Attributes": "Cutting Fire LongBlades",
+      "OnHitEffectsRaw": "Burning,30,,5,1.0"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "LightSource",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "IceSword",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&C",
+      "DisplayName": "ice sword",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d8",
+      "PenBonus": "2",
+      "Attributes": "Cutting Ice LongBlades",
+      "OnHitEffectsRaw": "Frozen,30,,3,1.0"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "LightSource",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "CryoLance",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&C",
+      "DisplayName": "cryolance",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d6+2",
+      "PenBonus": "3",
+      "Attributes": "Piercing Ice LongBlades",
+      "OnHitEffectsRaw": "Frozen,30,,3,1.0"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "EmberSpear",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&R",
+      "DisplayName": "ember spear",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d6+1",
+      "PenBonus": "2",
+      "Attributes": "Piercing Fire",
+      "OnHitEffectsRaw": "Burning,30,,5,1.0"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "AcidicDagger",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&G",
+      "DisplayName": "acidic dagger",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d4+1",
+      "PenBonus": "1",
+      "MaxStrengthBonus": "3",
+      "Attributes": "Piercing Acid",
+      "OnHitEffectsRaw": "Acidic,30,,5,1.0"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "VenomDagger",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&G",
+      "DisplayName": "poison dagger",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d4+1",
+      "PenBonus": "1",
+      "MaxStrengthBonus": "3",
+      "Attributes": "Piercing Poison",
+      "OnHitEffectsRaw": "Poisoned,50,1d4,6,0"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "ThunderHammer",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&Y",
+      "DisplayName": "thunder hammer",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d8+1",
+      "PenBonus": "3",
+      "Attributes": "Bludgeoning Lightning Cudgel",
+      "OnHitEffectsRaw": "Electrified,30,,3,1.0"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "LightSource",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "EchoKnife",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2",
+      "Palimpsest": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&b",
+      "DisplayName": "echo knife",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d4+3",
+      "PenBonus": "1",
+      "HitBonus": "3",
+      "Attributes": "Cutting Sonic"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "TemporalShard",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2",
+      "Palimpsest": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&B",
+      "DisplayName": "temporal shard",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d6+2",
+      "PenBonus": "2",
+      "HitBonus": "2",
+      "Attributes": "Piercing"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "SeveranceEdge",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2",
+      "PaleCuration": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&C",
+      "DisplayName": "severance edge",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d8",
+      "PenBonus": "3",
+      "Attributes": "Cutting LongBlades"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "GlassblownStiletto",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2",
+      "GlassblownRemnant": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&R",
+      "DisplayName": "glassblown stiletto",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d4+2",
+      "PenBonus": "2",
+      "HitBonus": "3",
+      "MaxStrengthBonus": "2",
+      "Attributes": "Piercing"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "DissolutionMaul",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "3",
+      "TwoHanded": "",
+      "RotChoir": ""
+    },
+    "render": {
+      "RenderString": "T",
+      "ColorString": "&g",
+      "DisplayName": "dissolution maul",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand",
+      "UsesSlots": "Hand,Hand"
+    },
+    "weapon": {
+      "BaseDamage": "2d6+2",
+      "PenBonus": "5",
+      "Attributes": "Bludgeoning Cudgel Acid",
+      "OnHitEffectsRaw": "Acidic,40,,5,1.5"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "FirstRootGlaive",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "3",
+      "TwoHanded": "",
+      "RotChoir": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&G",
+      "DisplayName": "first root glaive",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand",
+      "UsesSlots": "Hand,Hand"
+    },
+    "weapon": {
+      "BaseDamage": "2d6+1",
+      "PenBonus": "4",
+      "Attributes": "Cutting Glaive"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "PalimpsestBlade",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "3",
+      "Palimpsest": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&M",
+      "DisplayName": "palimpsest blade",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d10+1",
+      "PenBonus": "4",
+      "HitBonus": "1",
+      "Attributes": "Cutting LongBlades"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "PruningWrit",
+    "takeable": true,
+    "itemTagged": false,
+    "creature": false,
+    "tags": {
+      "NoTrade": ""
+    },
+    "render": {
+      "RenderString": "=",
+      "ColorString": "&Y",
+      "DisplayName": "pruning writ",
+      "RenderLayer": "3"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Examinable",
+      "Physics",
+      "Render"
+    ]
+  },
+  {
+    "blueprint": "BreacherCleaver",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": ")",
+      "ColorString": "&M",
+      "DisplayName": "wedge-cleaver",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d10",
+      "PenBonus": "2",
+      "Attributes": "Cutting Axe"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "LanternOil",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&y",
+      "DisplayName": "flask of lantern oil",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Fuel",
+      "Material",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "RawMeat",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&r",
+      "DisplayName": "raw meat",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {
+      "Into": "CookedMeat"
+    },
+    "parts": [
+      "Commerce",
+      "Cookable",
+      "Examinable",
+      "Food",
+      "Material",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "CookedMeat",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&R",
+      "DisplayName": "cooked meat",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Food",
+      "Material",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "RoastedStarapple",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&Y",
+      "DisplayName": "roasted starapple",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Food",
+      "Material",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "Torch",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&W",
+      "DisplayName": "torch",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Fuel",
+      "LightSource",
+      "LightSourceFlicker",
+      "Material",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal",
+      "TorchLight"
+    ]
+  },
+  {
+    "blueprint": "SilverSand",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": ".",
+      "ColorString": "&W",
+      "DisplayName": "silver sand",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "WellMaintenanceManual",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "well maintenance manual",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "IronKey",
+    "takeable": true,
+    "itemTagged": false,
+    "creature": false,
+    "tags": {
+      "NoTrade": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&y",
+      "DisplayName": "iron key",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Key",
+      "Physics",
+      "Render"
+    ]
+  },
+  {
+    "blueprint": "StillleafKey",
+    "takeable": true,
+    "itemTagged": false,
+    "creature": false,
+    "tags": {
+      "NoTrade": ""
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&W",
+      "DisplayName": "Stillleaf keeper's key",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Key",
+      "Physics",
+      "Render"
+    ]
+  },
+  {
+    "blueprint": "StillleafRegister",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "NoTrade": ""
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&Y",
+      "DisplayName": "the Stillleaf register",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker",
+      "StillleafRegister"
+    ]
+  },
+  {
+    "blueprint": "PurifyWaterGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&M",
+      "DisplayName": "Water-Keeper's Grimoire",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "GrimoireCopy",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "GrimoireCopy": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&c",
+      "DisplayName": "grimoire copy",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "RiteGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&c",
+      "DisplayName": "rite grimoire",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "MendingRiteGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&Y",
+      "DisplayName": "Mending Rite Grimoire",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "OvenBuildersGuide",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&R",
+      "DisplayName": "oven builder's guide",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "FireClay",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "*",
+      "ColorString": "&R",
+      "DisplayName": "fire clay",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "KindleRiteGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&W",
+      "DisplayName": "Kindle Rite Grimoire",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "KindleGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&R",
+      "DisplayName": "Grimoire of Kindle",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "QuenchGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&B",
+      "DisplayName": "Grimoire of Quench",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "ConflagrationGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "3"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&W",
+      "DisplayName": "Grimoire of Conflagration",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "IceLanceGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&C",
+      "DisplayName": "Grimoire of Ice Lance",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "AcidSprayGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&g",
+      "DisplayName": "Grimoire of Acid Spray",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "ArcBoltGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&Y",
+      "DisplayName": "Grimoire of Arc Bolt",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "RimeNovaGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "3"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&b",
+      "DisplayName": "Grimoire of Rime Nova",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "ThunderclapGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "3"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&W",
+      "DisplayName": "Grimoire of Thunderclap",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "EmberVeinGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "3"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&r",
+      "DisplayName": "Grimoire of Ember Vein",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "KindleFlameGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&y",
+      "DisplayName": "Grimoire of Kindle Flame",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "DryingBreezeGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&W",
+      "DisplayName": "Grimoire of Drying Breeze",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "HearthwarmGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&r",
+      "DisplayName": "Grimoire of Hearthwarm",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "ConjureWaterGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&B",
+      "DisplayName": "Grimoire of Conjure Water",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "ChillDraftGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&C",
+      "DisplayName": "Grimoire of Chill Draft",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "WardGleamGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&Y",
+      "DisplayName": "Grimoire of Ward Gleam",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "SchematicHonedEdge",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Schematic": ""
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&c",
+      "DisplayName": "schematic: honed edge",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Schematic",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "SchematicReinforcedPlating",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Schematic": ""
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&c",
+      "DisplayName": "schematic: reinforced plating",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Schematic",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "SchematicDuelistCut",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "2",
+      "Schematic": ""
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&c",
+      "DisplayName": "schematic: duelist's cut",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Schematic",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "LanternOilRecipe",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "lantern oil recipe",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "WardOil",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&y",
+      "DisplayName": "ward oil",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "PaleSalt",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Mineral": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "*",
+      "ColorString": "&W",
+      "DisplayName": "pale-salt",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "ChoirIron",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Mineral": "",
+      "Tier": "3"
+    },
+    "render": {
+      "RenderString": "*",
+      "ColorString": "&y",
+      "DisplayName": "choir-iron ore",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "WildBerries",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&r",
+      "DisplayName": "wild berries",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Food",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Honeycomb",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&Y",
+      "DisplayName": "honeycomb",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Food",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "GlowQuartz",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Mineral": "",
+      "Tier": "2"
+    },
+    "render": {
+      "RenderString": "*",
+      "ColorString": "&C",
+      "DisplayName": "glow-quartz",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "PoisonGasGrenade",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": ""
+    },
+    "render": {
+      "RenderString": "g",
+      "ColorString": "&G",
+      "DisplayName": "poison gas grenade",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "GasGrenade",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "SleepGasGrenade",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": ""
+    },
+    "render": {
+      "RenderString": "g",
+      "ColorString": "&B",
+      "DisplayName": "sleep gas grenade",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "GasGrenade",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "StunGasGrenade",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": ""
+    },
+    "render": {
+      "RenderString": "g",
+      "ColorString": "&Y",
+      "DisplayName": "stun gas grenade",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "GasGrenade",
+      "Handling",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "StormAnvilGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&Y",
+      "DisplayName": "Rite of the Storm Anvil",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "GrimoireCharge",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "HangingBoltGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&Y",
+      "DisplayName": "Rite of the Hanging Bolt",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "GrimoireCharge",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "RenderedSteamGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&W",
+      "DisplayName": "Rite of Rendered Steam",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "GrimoireCharge",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "ScaldingVeilGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&W",
+      "DisplayName": "Rite of the Scalding Veil",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "GrimoireCharge",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "FulminationGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&Y",
+      "DisplayName": "Fulmination",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "GrimoireCharge",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "ShatteredRimeGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&C",
+      "DisplayName": "Rite of the Shattered Rime",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "GrimoireCharge",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "StillHeartGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&c",
+      "DisplayName": "Rite of the Still Heart",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "GrimoireCharge",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "VerdigrisBloomGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&g",
+      "DisplayName": "Rite of the Verdigris Bloom",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "GrimoireCharge",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "HollowCoinGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&W",
+      "DisplayName": "Rite of the Hollow Coin",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "GrimoireCharge",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "SunderingWordGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&K",
+      "DisplayName": "Rite of the Sundering Word",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "GrimoireCharge",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "BloodletterLedgerGrimoire",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Grimoire": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "+",
+      "ColorString": "&r",
+      "DisplayName": "Rite of the Bloodletter's Ledger",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Grimoire",
+      "GrimoireCharge",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "SaltbriarSprig",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&w",
+      "DisplayName": "saltbriar sprig",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Food",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "FrogOil",
+    "takeable": true,
+    "itemTagged": false,
+    "creature": false,
+    "tags": {
+      "Commerce": ""
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&w",
+      "DisplayName": "frog oil",
+      "RenderLayer": "3"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render"
+    ]
+  },
+  {
+    "blueprint": "SealedBogTakenBody",
+    "takeable": true,
+    "itemTagged": false,
+    "creature": false,
+    "tags": {
+      "NoTrade": ""
+    },
+    "render": {
+      "RenderString": "&",
+      "ColorString": "&K",
+      "DisplayName": "sealed bog-taken body",
+      "RenderLayer": "3"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Examinable",
+      "Physics",
+      "Render"
+    ]
+  },
+  {
+    "blueprint": "WovenDoll",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": ""
+    },
+    "render": {
+      "RenderString": "i",
+      "ColorString": "&y",
+      "DisplayName": "woven doll",
+      "RenderLayer": "3"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "GroveRed",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&R",
+      "DisplayName": "grove-red",
+      "RenderLayer": "3"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "ShamblerSporeSac",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "Alchemy": "",
+      "Reagent": ""
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&M",
+      "DisplayName": "shambler spore-sac",
+      "RenderLayer": "3"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Reagent",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Tepuibone",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Mineral": "",
+      "Tier": "3"
+    },
+    "render": {
+      "RenderString": "*",
+      "ColorString": "&W",
+      "DisplayName": "tepuibone",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "MemoryMarble",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Mineral": "",
+      "Tier": "3"
+    },
+    "render": {
+      "RenderString": "*",
+      "ColorString": "&C",
+      "DisplayName": "memory-marble",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "MuteStone",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Mineral": "",
+      "Tier": "3"
+    },
+    "render": {
+      "RenderString": "*",
+      "ColorString": "&K",
+      "DisplayName": "mute-stone",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "ChoirCutting",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "3"
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&G",
+      "DisplayName": "cutting of the Choir",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex01",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of From the Reading: the Felling, collated",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex02",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of The telling of the man who said no",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex03",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of Internal memorandum: the founding provisions",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex04",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of The oath of the cloth",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex05",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of Readings from a plaque-wall",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex06",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of Standard contract of carriage (short form)",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex07",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of File: OTHREN. Selected entries.",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex08",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of HAVE YOU THOUGHT ABOUT BEING KEPT?",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex09",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of The dimming song",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex10",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of Transcript of a reading: the scribe Ollun, folio three",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex11",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of The sign at the grove-edge",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex12",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of How they tell it in Sill",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Codex13",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Tier": "1",
+      "ReadableDocument": "true"
+    },
+    "render": {
+      "RenderString": "?",
+      "ColorString": "&y",
+      "DisplayName": "copy of Condition report: the First Account",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Physics",
+      "ReadableDocument",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "Waterskin",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "true",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&c",
+      "DisplayName": "waterskin",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "Physics",
+      "Render",
+      "Waterskin"
+    ]
+  },
+  {
+    "blueprint": "RoastedMushroom",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Food": "",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "%",
+      "ColorString": "&Y",
+      "DisplayName": "roasted mushroom",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Food",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "TemperedLongSword",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "4"
+    },
+    "render": {
+      "RenderString": "/",
+      "ColorString": "&W",
+      "DisplayName": "tempered long sword",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand"
+    },
+    "weapon": {
+      "BaseDamage": "1d10+1",
+      "PenBonus": "4",
+      "Attributes": "Cutting LongBlades"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "CounterweightMaul",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "MeleeWeapon": "",
+      "Tier": "4",
+      "TwoHanded": ""
+    },
+    "render": {
+      "RenderString": "T",
+      "ColorString": "&Y",
+      "DisplayName": "counterweight maul",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Hand",
+      "UsesSlots": "Hand,Hand"
+    },
+    "weapon": {
+      "BaseDamage": "2d6+2",
+      "PenBonus": "6",
+      "Attributes": "Bludgeoning Cudgel"
+    },
+    "armor": {},
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Handling",
+      "Material",
+      "MeleeWeapon",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "FineRingMail",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "4"
+    },
+    "render": {
+      "RenderString": "[",
+      "ColorString": "&W",
+      "DisplayName": "fine-ring mail",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Body"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "6",
+      "DV": "-1"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Material",
+      "Physics",
+      "Render",
+      "Stacker",
+      "Thermal"
+    ]
+  },
+  {
+    "blueprint": "RivetedPlate",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "",
+      "Armor": "",
+      "Tier": "4"
+    },
+    "render": {
+      "RenderString": "[",
+      "ColorString": "&C",
+      "DisplayName": "riveted plate",
+      "RenderLayer": "5"
+    },
+    "equippable": {
+      "Slot": "Body"
+    },
+    "weapon": {},
+    "armor": {
+      "AV": "9",
+      "DV": "-4"
+    },
+    "container": {},
+    "liquidVessel": {},
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Armor",
+      "Commerce",
+      "Equippable",
+      "Examinable",
+      "Material",
+      "Physics",
+      "Render",
+      "Stacker"
+    ]
+  },
+  {
+    "blueprint": "LiquidFlask",
+    "takeable": true,
+    "itemTagged": true,
+    "creature": false,
+    "tags": {
+      "Item": "true",
+      "Tier": "1"
+    },
+    "render": {
+      "RenderString": "!",
+      "ColorString": "&c",
+      "DisplayName": "liquid flask",
+      "RenderLayer": "5"
+    },
+    "equippable": {},
+    "weapon": {},
+    "armor": {},
+    "container": {},
+    "liquidVessel": {
+      "Capacity": "12",
+      "Volume": "0",
+      "LiquidId": ""
+    },
+    "corpse": {},
+    "harvest": {},
+    "cook": {},
+    "parts": [
+      "Commerce",
+      "Examinable",
+      "Handling",
+      "LiquidVessel",
+      "Physics",
+      "Render"
+    ]
+  }
+]

@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="13" result="Failed" start-time="2026-09-26T23:17:58.9965710Z" end-time="2026-09-26T23:17:59.3908240Z" duration="0.394163" total="13" passed="1" failed="12" inconclusive="0" skipped="0" warnings="0" asserts="37" random-seed="113485280">
+  <command-line><![CDATA[/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-density-liquid-vessel/verification/red.xml --where "class =~ /DensityLiquidVesselTests/"]]></command-line>
+  <filter>
+    <class re="1">DensityLiquidVesselTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1016" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-09-26T23:17:58.9965710Z" end-time="2026-09-26T23:17:59.3908240Z" duration="0.394163" total="13" passed="1" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="37">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="15620" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1017" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-09-26T23:17:58.9988030Z" end-time="2026-09-26T23:17:59.3907810Z" duration="0.391971" total="13" passed="1" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="37">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1018" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-09-26T23:17:58.9990130Z" end-time="2026-09-26T23:17:59.3907320Z" duration="0.391712" total="13" passed="1" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="37">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="DensityLiquidVesselTests" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-09-26T23:17:58.9994600Z" end-time="2026-09-26T23:17:59.3906740Z" duration="0.391207" total="13" passed="1" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="37">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1004" name="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-26T23:17:59.0007430Z" end-time="2026-09-26T23:17:59.1631870Z" duration="0.162442" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(&quot;water&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(&quot;water&quot;)" methodname="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="1632425832" result="Failed" start-time="2026-09-26T23:17:59.0009570Z" end-time="2026-09-26T23:17:59.1147200Z" duration="0.113789" asserts="2">
+              <failure>
+                <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(String id) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 34
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(String id) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 34
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(&quot;oil&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(&quot;oil&quot;)" methodname="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="1704809692" result="Failed" start-time="2026-09-26T23:17:59.1154560Z" end-time="2026-09-26T23:17:59.1401760Z" duration="0.024720" asserts="2">
+              <failure>
+                <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(String id) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 34
+   at InvokeStub_DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(String id) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 34
+   at InvokeStub_DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(&quot;acid&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(&quot;acid&quot;)" methodname="ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="725919051" result="Failed" start-time="2026-09-26T23:17:59.1402120Z" end-time="2026-09-26T23:17:59.1625850Z" duration="0.022373" asserts="2">
+              <failure>
+                <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(String id) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 34
+   at InvokeStub_DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(String id) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 34
+   at InvokeStub_DensityLiquidVesselTests.ActualSelectedPoolFillsVesselWithoutChangingIdentityOrCreatingVolume(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1015" name="ExistingPureWaterSkinLoopRemainsValid" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.ExistingPureWaterSkinLoopRemainsValid" methodname="ExistingPureWaterSkinLoopRemainsValid" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="474663129" result="Passed" start-time="2026-09-26T23:17:59.1633730Z" end-time="2026-09-26T23:17:59.2078200Z" duration="0.044446" asserts="8" />
+          <test-case id="1005" name="FillPartialVolumeAndPourGroundConserveBothSides" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.FillPartialVolumeAndPourGroundConserveBothSides" methodname="FillPartialVolumeAndPourGroundConserveBothSides" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="1896884171" result="Failed" start-time="2026-09-26T23:17:59.2079320Z" end-time="2026-09-26T23:17:59.2280110Z" duration="0.020079" asserts="2">
+            <failure>
+              <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.FillPartialVolumeAndPourGroundConserveBothSides() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 35
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.FillPartialVolumeAndPourGroundConserveBothSides() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 35
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1014" name="FreshWaterSkinCannotDrawAnOverlappingUnsafePool" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.FreshWaterSkinCannotDrawAnOverlappingUnsafePool" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T23:17:59.2280320Z" end-time="2026-09-26T23:17:59.2694970Z" duration="0.041464" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1012" name="FreshWaterSkinCannotDrawAnOverlappingUnsafePool(False)" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.FreshWaterSkinCannotDrawAnOverlappingUnsafePool(False)" methodname="FreshWaterSkinCannotDrawAnOverlappingUnsafePool" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="278859750" result="Failed" start-time="2026-09-26T23:17:59.2280470Z" end-time="2026-09-26T23:17:59.2491470Z" duration="0.021100" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.FreshWaterSkinCannotDrawAnOverlappingUnsafePool(Boolean tileOnly) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 42
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.FreshWaterSkinCannotDrawAnOverlappingUnsafePool(Boolean tileOnly) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 42
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1013" name="FreshWaterSkinCannotDrawAnOverlappingUnsafePool(True)" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.FreshWaterSkinCannotDrawAnOverlappingUnsafePool(True)" methodname="FreshWaterSkinCannotDrawAnOverlappingUnsafePool" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="305943329" result="Failed" start-time="2026-09-26T23:17:59.2492180Z" end-time="2026-09-26T23:17:59.2694670Z" duration="0.020249" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.FreshWaterSkinCannotDrawAnOverlappingUnsafePool(Boolean tileOnly) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 42
+   at InvokeStub_DensityLiquidVesselTests.FreshWaterSkinCannotDrawAnOverlappingUnsafePool(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.FreshWaterSkinCannotDrawAnOverlappingUnsafePool(Boolean tileOnly) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 42
+   at InvokeStub_DensityLiquidVesselTests.FreshWaterSkinCannotDrawAnOverlappingUnsafePool(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1006" name="LikeLiquidPourMergesWithoutDuplicateGroundPool" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.LikeLiquidPourMergesWithoutDuplicateGroundPool" methodname="LikeLiquidPourMergesWithoutDuplicateGroundPool" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="31890594" result="Failed" start-time="2026-09-26T23:17:59.2695090Z" end-time="2026-09-26T23:17:59.2919580Z" duration="0.022448" asserts="2">
+            <failure>
+              <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.LikeLiquidPourMergesWithoutDuplicateGroundPool() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 36
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.LikeLiquidPourMergesWithoutDuplicateGroundPool() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 36
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1011" name="PourAtFeetUsesExistingContactLiquidAndDoesNotDrink" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.PourAtFeetUsesExistingContactLiquidAndDoesNotDrink" methodname="PourAtFeetUsesExistingContactLiquidAndDoesNotDrink" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="132041671" result="Failed" start-time="2026-09-26T23:17:59.2919830Z" end-time="2026-09-26T23:17:59.3127150Z" duration="0.020732" asserts="2">
+            <failure>
+              <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.PourAtFeetUsesExistingContactLiquidAndDoesNotDrink() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 41
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.PourAtFeetUsesExistingContactLiquidAndDoesNotDrink() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 41
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1010" name="PureWaterPourCannotBecomePickableWaterInsideAnAcidPool" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.PureWaterPourCannotBecomePickableWaterInsideAnAcidPool" methodname="PureWaterPourCannotBecomePickableWaterInsideAnAcidPool" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="911499906" result="Failed" start-time="2026-09-26T23:17:59.3127370Z" end-time="2026-09-26T23:17:59.3303620Z" duration="0.017625" asserts="2">
+            <failure>
+              <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.PureWaterPourCannotBecomePickableWaterInsideAnAcidPool() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 40
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.PureWaterPourCannotBecomePickableWaterInsideAnAcidPool() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 40
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1009" name="SourceIdentityChangeCannotSilentlySubstituteAnotherLiquid" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.SourceIdentityChangeCannotSilentlySubstituteAnotherLiquid" methodname="SourceIdentityChangeCannotSilentlySubstituteAnotherLiquid" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="611396204" result="Failed" start-time="2026-09-26T23:17:59.3303930Z" end-time="2026-09-26T23:17:59.3495940Z" duration="0.019201" asserts="2">
+            <failure>
+              <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.SourceIdentityChangeCannotSilentlySubstituteAnotherLiquid() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 39
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.SourceIdentityChangeCannotSilentlySubstituteAnotherLiquid() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 39
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1008" name="StaleSourceSelectionRefusesInsteadOfUsingDifferentNearbyPool" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.StaleSourceSelectionRefusesInsteadOfUsingDifferentNearbyPool" methodname="StaleSourceSelectionRefusesInsteadOfUsingDifferentNearbyPool" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="1383287549" result="Failed" start-time="2026-09-26T23:17:59.3496650Z" end-time="2026-09-26T23:17:59.3688190Z" duration="0.019153" asserts="2">
+            <failure>
+              <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.StaleSourceSelectionRefusesInsteadOfUsingDifferentNearbyPool() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 38
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.StaleSourceSelectionRefusesInsteadOfUsingDifferentNearbyPool() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 38
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1007" name="UnlikeLiquidCannotReplaceOrCleanseVessel" fullname="CavesOfOoo.Tests.DensityLiquidVesselTests.UnlikeLiquidCannotReplaceOrCleanseVessel" methodname="UnlikeLiquidCannotReplaceOrCleanseVessel" classname="CavesOfOoo.Tests.DensityLiquidVesselTests" runstate="Runnable" seed="7080997" result="Failed" start-time="2026-09-26T23:17:59.3688770Z" end-time="2026-09-26T23:17:59.3904840Z" duration="0.021607" asserts="2">
+            <failure>
+              <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.UnlikeLiquidCannotReplaceOrCleanseVessel() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 37
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  general liquid carry/pour Part is missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselTests.Flask(String id, Int32 volume, Int32 capacity) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 26
+   at CavesOfOoo.Tests.DensityLiquidVesselTests.UnlikeLiquidCannotReplaceOrCleanseVessel() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselTests.cs:line 37
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

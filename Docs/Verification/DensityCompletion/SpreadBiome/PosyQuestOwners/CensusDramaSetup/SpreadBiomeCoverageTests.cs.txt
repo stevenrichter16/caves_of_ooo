@@ -1,0 +1,277 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using CavesOfOoo.Rendering;
+using System.IO.Compression;
+using NUnit.Framework;
+using UnityEngine;
+
+namespace CavesOfOoo.Tests
+{
+    // Native imported geometry on actual generated graphs. Full-reveal here is
+    // a labelled asset census; it is not a natural-discovery or Play witness.
+    public sealed class SpreadBiomeCoverageTests
+    {
+        private static readonly System.Reflection.MethodInfo EquipmentStyleAudit = typeof(SpawnRing3DPresenter).GetMethod("TryGetApprovedEquipmentStyle");
+        private static readonly System.Reflection.MethodInfo StyleAudit = typeof(SpawnRing3DPresenter).GetMethod("TryGetApprovedStyle");
+        [TestCase("Overworld.11.10.0")]
+        [TestCase("Overworld.12.10.0")]
+        [TestCase("Overworld.10.10.0")]
+        [TestCase("Overworld.15.6.0")]
+        public void RepresentativeActualOwnersAndTheirGearHaveDrawnBodies(string address)
+        {
+            using (var drama = new CensusDramaScope())
+            using (var f = new SpawnRing3DIntegrationFixture())
+            {
+                f.Manager = OverworldZoneManager.CreateDetached(f.Factory, 64);
+                var report = new Census { seed = 64, label = address };
+                Inspect(f, address, report);
+                Write(report);
+                Assert.IsEmpty(report.failures, string.Join("\n", report.failures.Take(45)));
+                Assert.Greater(report.owners.Count, 100, "A blank fixture cannot establish coverage.");
+            }
+        }
+
+        [TestCase(64)] [TestCase(1)] [TestCase(1729)]
+        [Category("SpreadBiomeFullCoverage")]
+        public void EveryActualSurfaceAndCommittedLairHasNativeGeometry(int seed)
+        {
+            using (var drama = new CensusDramaScope())
+            using (var f = new SpawnRing3DIntegrationFixture())
+            {
+                f.Manager = OverworldZoneManager.CreateDetached(f.Factory, seed);
+                LoadoutPart.Rng = new System.Random(seed);
+                TraderPart.Rng = new System.Random(seed ^ 0x291B);
+                var report = new Census { seed = seed, label = "all-current-Spread" };
+                for (int y = 0; y < WorldMap.Height; y++) for (int x = 0; x < WorldMap.Width; x++)
+                {
+                    if (f.Manager.WorldMap.GetBiome(x, y) != BiomeType.Spread) continue;
+                    string id = WorldMap.ToZoneID(x, y, 0);
+                    Inspect(f, id, report); report.surfaces++;
+                    if (f.Manager.WorldMap.GetPOI(x, y)?.Type != POIType.Lair) continue;
+                    var stack = LairStacks.Inspect(f.Manager, id);
+                    if (stack == null || stack.Legacy) { report.failures.Add(id + ": no current lair stack"); continue; }
+                    for (int depth = 1; depth <= stack.FinalDepth; depth++)
+                    { Inspect(f, stack.ZoneAt(depth), report); report.lairFloors++; }
+                }
+                Write(report);
+                Assert.AreEqual(142, report.surfaces, "Current authored Spread address pin.");
+                Assert.IsEmpty(report.failures, string.Join("\n", report.failures.Take(70)));
+            }
+        }
+
+        // The real bootstrap loads/registers every authored drama before any
+        // village is generated. Isolate both registries so this census neither
+        // inherits a prior fixture's omissions nor changes its active stories.
+        private sealed class CensusDramaScope : IDisposable
+        {
+            const System.Reflection.BindingFlags Flags = System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic;
+            readonly Dictionary<string, HouseDramaData> loader;
+            readonly Dictionary<string, ActiveDrama> runtime;
+            readonly Dictionary<string, HouseDramaData> oldLoader;
+            readonly Dictionary<string, ActiveDrama> oldRuntime;
+            readonly System.Reflection.FieldInfo loaded;
+            readonly bool oldLoaded;
+            bool disposed;
+            internal CensusDramaScope()
+            {
+                loader = (Dictionary<string, HouseDramaData>)typeof(HouseDramaLoader).GetField("_dramas", Flags).GetValue(null);
+                runtime = (Dictionary<string, ActiveDrama>)typeof(HouseDramaRuntime).GetField("_dramas", Flags).GetValue(null);
+                loaded = typeof(HouseDramaLoader).GetField("_loaded", Flags);
+                oldLoader = new Dictionary<string, HouseDramaData>(loader);
+                oldRuntime = new Dictionary<string, ActiveDrama>(runtime);
+                oldLoaded = (bool)loaded.GetValue(null);
+                try
+                {
+                    // Detach original ActiveDrama objects before generation can
+                    // activate/mutate stories. LoadAll creates fresh definitions.
+                    loader.Clear(); runtime.Clear();
+                    HouseDramaLoader.LoadAll();
+                    foreach (var definition in HouseDramaLoader.GetAll())
+                        HouseDramaRuntime.RegisterDrama(definition);
+                    Assert.Greater(runtime.Count, 0, "Ordinary bootstrap drama content must participate in coverage.");
+                    CollectionAssert.AreEquivalent(loader.Keys, runtime.Keys);
+                }
+                catch { Dispose(); throw; }
+            }
+            public void Dispose()
+            {
+                if (disposed) return;
+                disposed = true;
+                loader.Clear(); foreach (var pair in oldLoader) loader.Add(pair.Key, pair.Value);
+                runtime.Clear(); foreach (var pair in oldRuntime) runtime.Add(pair.Key, pair.Value);
+                loaded.SetValue(null, oldLoaded);
+                Assert.AreEqual(oldLoaded, loaded.GetValue(null));
+                Assert.AreEqual(oldLoader.Count, loader.Count); Assert.AreEqual(oldRuntime.Count, runtime.Count);
+                foreach (var pair in oldLoader) Assert.AreSame(pair.Value, loader[pair.Key]);
+                foreach (var pair in oldRuntime) Assert.AreSame(pair.Value, runtime[pair.Key]);
+            }
+        }
+
+        private static void Inspect(SpawnRing3DIntegrationFixture f, string id, Census report)
+        {
+            var zone = f.Manager.GetZone(id);
+            if (zone == null) { report.failures.Add(id + ": generation refused"); return; }
+            Assert.True(SpreadPresentationScope.IsActive(zone), id + ": actual attached Spread authority");
+            var owners = zone.GetReadOnlyEntities().ToArray();
+            var positions = owners.Select(zone.GetEntityPosition).ToArray();
+            int version = zone.EntityVersion;
+            string tiles = zone.TileState.ToSaveString();
+            var equipmentBefore = owners.Select(GearIdentity).ToArray();
+            f.Zone = zone; f.Manager.SetActiveZone(zone); f.Reveal(); f.Set("FullReveal", true);
+            f.Light = new LightMap(); f.Bind(zone); f.Refresh();
+            var presenter = (SpawnRing3DPresenter)f.Presenter;
+            if (!presenter.IsReady || !presenter.PresentationVisible)
+            { report.failures.Add(id + ": presenter unavailable: " + presenter.Failure); return; }
+            if (presenter.VoxelMissingMeshCount != 0)
+                report.failures.Add(id + ": missing imported voxel meshes=" + presenter.VoxelMissingMeshCount);
+            foreach (var owner in owners)
+            {
+                var render = owner.GetPart<RenderPart>();
+                var row = new Owner { zone = id, id = owner.ID, blueprint = owner.BlueprintName };
+                report.owners.Add(row);
+                if (render == null || !render.Visible)
+                { row.exclusion = render == null ? "no-render-part" : "native-render-hidden"; continue; }
+                row.drawn = f.Find(owner, out var view, out string model) && presenter.IsRenderedEntity(owner)
+                    && Submitted(view);
+                row.model = model;
+                InspectStyle(presenter, owner, row, report);
+                if (!row.drawn) report.failures.Add(id + ": undrawn " + owner.BlueprintName + "#" + owner.ID);
+                if (owner.HasTag("Creature") || owner.HasTag("Player"))
+                {
+                    var animator = view == null ? null : view.GetComponentInChildren<Animator>(true);
+                    row.animated = animator != null && animator.runtimeAnimatorController != null
+                        && animator.runtimeAnimatorController.animationClips.Length > 0;
+                    if (!row.animated) report.failures.Add(id + ": unanimated " + owner.BlueprintName + "#" + owner.ID);
+                    InspectGear(f, owner, view, row, report);
+                }
+            }
+            Assert.AreEqual(version, zone.EntityVersion, id + ": rendering mutated native owners");
+            Assert.AreEqual(tiles, zone.TileState.ToSaveString(), id + ": rendering mutated terrain state");
+            CollectionAssert.AreEquivalent(owners, zone.GetReadOnlyEntities(), id);
+            CollectionAssert.AreEqual(positions, owners.Select(zone.GetEntityPosition), id);
+            CollectionAssert.AreEqual(equipmentBefore, owners.Select(GearIdentity), id + ": rendering changed equipment links");
+        }
+
+        // The native geometry census must not confuse a still-drawn legacy
+        // asset with adoption of the requested approved biome presentation.
+        private static void InspectStyle(SpawnRing3DPresenter presenter, Entity owner, Owner row, Census report)
+        {
+            var method = StyleAudit;
+            if (method == null) { row.styleFailure = "missing-style-evidence-api"; }
+            else
+            {
+                object[] args = { owner, null };
+                row.approvedStyle = (bool)method.Invoke(presenter, args);
+                var proof = args[1];
+                if (proof == null) row.styleFailure = "missing-style-evidence";
+                else
+                {
+                    var type = proof.GetType();
+                    row.styleFailure = (string)type.GetField("Failure").GetValue(proof);
+                    var sourceMesh = (Mesh)type.GetField("ExpectedMesh").GetValue(proof);
+                    var sourceMaterial = (Material)type.GetField("ExpectedMaterial").GetValue(proof);
+                    var submittedMesh = (Mesh)type.GetField("SubmittedMesh").GetValue(proof);
+                    var submittedMaterial = (Material)type.GetField("SubmittedMaterial").GetValue(proof);
+                    row.expectedMesh = sourceMesh == null ? null : UnityEditor.AssetDatabase.GetAssetPath(sourceMesh);
+                    row.expectedMaterial = sourceMaterial == null ? null : UnityEditor.AssetDatabase.GetAssetPath(sourceMaterial);
+                    row.submittedMesh = submittedMesh == null ? null : submittedMesh.name;
+                    row.submittedMaterial = submittedMaterial == null ? null : submittedMaterial.name;
+                    row.batched = (bool)type.GetField("Batched").GetValue(proof);
+                    var count=type.GetProperty("PieceCount");var getPiece=type.GetMethod("GetPiece");
+                    int pieces=count==null?0:(int)count.GetValue(proof);
+                    for(int index=0;index<pieces&&getPiece!=null;index++)
+                    {
+                        object piece=getPiece.Invoke(proof,new object[]{index});var pt=piece.GetType();
+                        var expected=(Mesh)pt.GetField("ExpectedMesh").GetValue(piece);var source=(Material)pt.GetField("ExpectedMaterial").GetValue(piece);
+                        var submitted=(Mesh)pt.GetField("SubmittedMesh").GetValue(piece);var material=(Material)pt.GetField("SubmittedMaterial").GetValue(piece);
+                        row.stylePieces.Add(new StylePiece{expectedMesh=expected==null?null:UnityEditor.AssetDatabase.GetAssetPath(expected),
+                            expectedMaterial=source==null?null:UnityEditor.AssetDatabase.GetAssetPath(source),submittedMesh=submitted==null?null:submitted.name,
+                            submittedMaterial=material==null?null:material.name,sourceSubmesh=(int)pt.GetField("SourceSubmesh").GetValue(piece),submittedSubmesh=(int)pt.GetField("SubmittedSubmesh").GetValue(piece)});
+                        if(row.approvedStyle&&(expected==null||source==null||submitted==null||material==null))
+                        {row.approvedStyle=false;row.styleFailure="incomplete-positive-style-piece";}
+                    }
+                    if(row.approvedStyle&&(pieces<1||row.stylePieces.Count!=pieces))
+                    {row.approvedStyle=false;row.styleFailure="missing-all-piece-style-evidence";}
+                    if (row.approvedStyle && (sourceMesh == null || sourceMaterial == null || submittedMesh == null || submittedMaterial == null))
+                    { row.approvedStyle = false; row.styleFailure = "incomplete-positive-evidence"; }
+                }
+            }
+            if (!row.approvedStyle) report.failures.Add(row.zone + ": unconverted style " + owner.BlueprintName + "#" + owner.ID + ":" + row.styleFailure);
+        }
+
+        private static string GearIdentity(Entity owner)
+        {
+            var inventory = owner.GetPart<InventoryPart>();
+            if (inventory == null) return "";
+            string body = string.Join("|", owner.GetPart<Body>()?.GetBody()?.GetParts()
+                .OrderBy(p => p.ID).Select(p => p.ID + ":" + p._Equipped?.ID) ?? Enumerable.Empty<string>());
+            string slots = string.Join("|", inventory.EquippedItems.OrderBy(p => p.Key).Select(p => p.Key + ":" + p.Value?.ID));
+            string carried = string.Join("|", inventory.Objects.OrderBy(e => e.ID).Select(e => e.ID + ":" + e.GetPart<PhysicsPart>()?.InInventory?.ID));
+            return body + ";slots=" + slots + ";carried=" + carried + ";links="
+                + string.Join("|", inventory.GetAllEquipped().OrderBy(e => e.ID).Select(e =>
+                    e.ID + ":" + e.GetPart<PhysicsPart>()?.Equipped?.ID + ":" + e.GetPart<PhysicsPart>()?.InInventory?.ID));
+        }
+        private static void InspectGear(SpawnRing3DIntegrationFixture f, Entity owner, GameObject body, Owner row, Census report)
+        {
+            var inventory = owner.GetPart<InventoryPart>(); if (inventory == null) return;
+            var roots = new HashSet<GameObject>();
+            foreach (var item in inventory.GetAllEquipped().Distinct())
+            {
+                var gear = new Gear { id = item.ID, blueprint = item.BlueprintName }; row.gear.Add(gear);
+                var render = item.GetPart<RenderPart>();
+                if (render == null || !render.Visible || item.HasTag("Natural") || item.HasTag("NaturalWeapon"))
+                { gear.exclusion = "native-hidden-or-natural-equipment"; continue; }
+                gear.drawn = ReferenceEquals(item.GetPart<PhysicsPart>()?.Equipped, owner)
+                    && f.Equipment(owner, item, out var view) && view != null && body != null
+                    && view.transform.IsChildOf(body.transform) && Submitted(view) && roots.Add(view);
+                if (!gear.drawn) report.failures.Add(row.zone + ": missing/shared attachment " + owner.BlueprintName + "/" + item.BlueprintName + "#" + item.ID);
+                object[] evidenceArgs = { owner, item, null };
+                gear.approvedStyle = EquipmentStyleAudit != null && (bool)EquipmentStyleAudit.Invoke(f.Presenter,evidenceArgs);
+                var proof = evidenceArgs[2];
+                if (proof == null) gear.styleFailure = "missing-equipment-style-evidence";
+                else
+                {
+                    var type = proof.GetType();
+                    gear.styleFailure = (string)type.GetField("Failure").GetValue(proof);
+                    var mesh = (Mesh)type.GetField("ExpectedMesh").GetValue(proof);
+                    var material = (Material)type.GetField("ExpectedMaterial").GetValue(proof);
+                    var submittedMesh = (Mesh)type.GetField("SubmittedMesh").GetValue(proof);
+                    var submittedMaterial = (Material)type.GetField("SubmittedMaterial").GetValue(proof);
+                    gear.expectedMesh = mesh == null ? null : UnityEditor.AssetDatabase.GetAssetPath(mesh);
+                    gear.expectedMaterial = material == null ? null : UnityEditor.AssetDatabase.GetAssetPath(material);
+                    gear.submittedMesh = submittedMesh == null ? null : submittedMesh.name;
+                    gear.submittedMaterial = submittedMaterial == null ? null : submittedMaterial.name;
+                    if (gear.approvedStyle && (mesh == null || material == null || submittedMesh == null || submittedMaterial == null))
+                    { gear.approvedStyle = false; gear.styleFailure = "incomplete-positive-equipment-evidence"; }
+                }
+                if (!gear.approvedStyle) report.failures.Add(row.zone + ": unconverted equipment " + owner.BlueprintName + "/" + item.BlueprintName + "#" + item.ID + ":" + gear.styleFailure);
+            }
+        }
+        private static bool Submitted(GameObject root)
+        {
+            if (root == null || !root.activeInHierarchy) return false;
+            return root.GetComponentsInChildren<Renderer>(true).Any(r => r.enabled && !r.forceRenderingOff
+                && r.gameObject.activeInHierarchy && r.sharedMaterials.Length > 0 && r.sharedMaterials.All(m => m != null)
+                && ((r is SkinnedMeshRenderer skin && skin.sharedMesh != null && skin.sharedMesh.vertexCount > 0)
+                    || (r.GetComponent<MeshFilter>()?.sharedMesh?.vertexCount ?? 0) > 0));
+        }
+        private static void Write(Census report)
+        {
+            string directory = Path.GetFullPath(Path.Combine(Application.dataPath, "../Docs/Verification/DensityCompletion/SpreadBiome/NativeCoverage"));
+            Directory.CreateDirectory(directory);
+            using (var file = File.Create(Path.Combine(directory, report.seed + "-" + report.label + "-" + Guid.NewGuid().ToString("N") + ".json.gz")))
+            using (var compressed = new GZipStream(file, CompressionMode.Compress))
+            using (var writer = new StreamWriter(compressed)) writer.Write(JsonUtility.ToJson(report, true));
+        }
+        [Serializable] private sealed class Census
+        { public int seed, surfaces, lairFloors; public string label; public List<Owner> owners = new List<Owner>(); public List<string> failures = new List<string>(); }
+        [Serializable] private sealed class Owner
+        { public string zone, id, blueprint, model, exclusion, styleFailure, expectedMesh, expectedMaterial, submittedMesh, submittedMaterial; public bool drawn, animated, approvedStyle, batched; public List<StylePiece> stylePieces=new List<StylePiece>(); public List<Gear> gear = new List<Gear>(); }
+        [Serializable] private sealed class StylePiece { public string expectedMesh,expectedMaterial,submittedMesh,submittedMaterial; public int sourceSubmesh,submittedSubmesh; }
+        [Serializable] private sealed class Gear { public string id, blueprint, exclusion, styleFailure, expectedMesh, expectedMaterial, submittedMesh, submittedMaterial; public bool drawn, approvedStyle; }
+    }
+}

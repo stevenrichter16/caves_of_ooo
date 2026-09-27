@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "id": "spread-lair-creatures",
+  "palette": [
+    "#082C28",
+    "#103E36",
+    "#1A4B40",
+    "#26594A",
+    "#A0A77C",
+    "#CBC697",
+    "#647353",
+    "#235D25",
+    "#40872C",
+    "#65AE3D",
+    "#435A53",
+    "#62786C",
+    "#819489",
+    "#16883B",
+    "#45CB4B",
+    "#A0E772",
+    "#207838",
+    "#D2D3B4",
+    "#B77B43",
+    "#403D28",
+    "#756C40",
+    "#A39456",
+    "#C4B877",
+    "#243E39"
+  ],
+  "models": [
+    {
+      "id": "spread-creature-giant-spider",
+      "sourceBlueprint": "GiantSpider",
+      "path": "models/spread-creature-giant-spider.fbx",
+      "rigFamily": "arachnid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "Leg.L0",
+        "Leg.L1",
+        "Leg.L2",
+        "Leg.L3",
+        "Leg.R0",
+        "Leg.R1",
+        "Leg.R2",
+        "Leg.R3"
+      ],
+      "triangles": 504,
+      "boundsBlender": {
+        "min": [
+          -0.5950000286102295,
+          -0.4870000183582306,
+          0.0
+        ],
+        "max": [
+          0.5950000286102295,
+          0.45499998331069946,
+          0.4985000193119049
+        ]
+      },
+      "sha256": "dbf88089f97201590f48797349cc02c8ed8b4b27ff5a88716b1863cd37f0e7c6",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-creature-jungle-ape",
+      "sourceBlueprint": "JungleApe",
+      "path": "models/spread-creature-jungle-ape.fbx",
+      "rigFamily": "ape",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "Arm.L",
+        "Hand.L",
+        "Leg.L",
+        "Arm.R",
+        "Hand.R",
+        "Leg.R"
+      ],
+      "triangles": 300,
+      "boundsBlender": {
+        "min": [
+          -0.5899999737739563,
+          -0.4100000262260437,
+          0.0
+        ],
+        "max": [
+          0.5899999737739563,
+          0.2900000214576721,
+          1.3250000476837158
+        ]
+      },
+      "sha256": "cf65e010b4d928e97aa0a053e5d0f79b4d991bfdd01f9c6756c19f07b3edee5b",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-creature-mimic-closed",
+      "sourceBlueprint": "MimicChest",
+      "path": "models/spread-creature-mimic-closed.fbx",
+      "rigFamily": "mimic",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head"
+      ],
+      "triangles": 132,
+      "boundsBlender": {
+        "min": [
+          -0.3700000047683716,
+          -0.3395000100135803,
+          -0.015000000596046448
+        ],
+        "max": [
+          0.3700000047683716,
+          0.3050000071525574,
+          0.6075000166893005
+        ]
+      },
+      "sha256": "cbaebb7995a4acaae8e887b7013cc52f19ef3f0e73c6af9355640569e2e4d785",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-creature-mimic-awake",
+      "sourceBlueprint": "MimicChest",
+      "path": "models/spread-creature-mimic-awake.fbx",
+      "rigFamily": "mimic",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "Arm.L",
+        "Arm.R"
+      ],
+      "triangles": 324,
+      "boundsBlender": {
+        "min": [
+          -0.48500001430511475,
+          -0.5699999928474426,
+          -0.015000000596046448
+        ],
+        "max": [
+          0.48500001430511475,
+          0.3050000071525574,
+          0.75
+        ]
+      },
+      "sha256": "ce7776b0f427073addc9f5c6150ea5070dbdc9c7b1ba0da1b3821c0fef3f6b37",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-creature-glowmaw",
+      "sourceBlueprint": "Glowmaw",
+      "path": "models/spread-creature-glowmaw.fbx",
+      "rigFamily": "grasping",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "Arm.L0",
+        "Arm.L1",
+        "Arm.R0",
+        "Arm.R1"
+      ],
+      "triangles": 288,
+      "boundsBlender": {
+        "min": [
+          -0.45249998569488525,
+          -0.3125,
+          0.0
+        ],
+        "max": [
+          0.45249998569488525,
+          0.3400000035762787,
+          0.57750004529953
+        ]
+      },
+      "sha256": "6af290a924608c0cca3dba39ae614ab4dbd807bf4cc4fe06218efc613c42de62",
+      "status": "private-source-not-native-adopted"
+    }
+  ]
+}

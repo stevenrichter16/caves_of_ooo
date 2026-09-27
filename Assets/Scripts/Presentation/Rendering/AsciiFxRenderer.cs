@@ -44,6 +44,7 @@ namespace CavesOfOoo.Rendering
         private Zone _currentZone;
         private bool _hadVisibleFxLastFrame;
         internal bool CoordinatorOwned { get; set; }
+        internal SpreadParticleFrame NativeFrame { get; set; }
         public bool ClipToFieldOfView { get; set; } = true;
         /// <summary>Native presentation shrinks aura decoration and static state markers.
         /// Explicit particles and floating readouts retain their normal size.</summary>
@@ -96,6 +97,7 @@ namespace CavesOfOoo.Rendering
 
         public void ClearAll()
         {
+            NativeFrame?.Clear();
             _projectiles.Clear();
             _bursts.Clear();
             _particles.Clear();
@@ -594,59 +596,65 @@ namespace CavesOfOoo.Rendering
 
         private void Render()
         {
-            using (PerformanceMarkers.Fx.Render.Auto())
+            var frame = NativeFrame;
+            frame?.BeginFrame(_currentZone);
+            try
             {
-                if (_tilemap == null)
-                    return;
+                using (PerformanceMarkers.Fx.Render.Auto())
+                {
+                    if (_tilemap == null)
+                        return;
 
-                bool hasVisibleFx = _projectiles.Count > 0 || _bursts.Count > 0 || _particles.Count > 0 ||
-                                    _beams.Count > 0 || _chargeOrbits.Count > 0 || _ringWaves.Count > 0 ||
-                                    _chainArcs.Count > 0 || _columnRises.Count > 0 ||
-                                    _dustMotes.Count > 0 || (SpellFxSettings.Mode == SpellFxMode.Off && _auras.Count > 0);
-                if (!hasVisibleFx && !_hadVisibleFxLastFrame)
-                    return;
+                    bool hasVisibleFx = _projectiles.Count > 0 || _bursts.Count > 0 || _particles.Count > 0 ||
+                                        _beams.Count > 0 || _chargeOrbits.Count > 0 || _ringWaves.Count > 0 ||
+                                        _chainArcs.Count > 0 || _columnRises.Count > 0 ||
+                                        _dustMotes.Count > 0 || (SpellFxSettings.Mode == SpellFxMode.Off && _auras.Count > 0);
+                    if (!hasVisibleFx && !_hadVisibleFxLastFrame)
+                        return;
 
-                _tilemap.ClearAllTiles();
-                PerformanceDiagnostics.RecordTilemapClear();
+                    _tilemap.ClearAllTiles();
+                    PerformanceDiagnostics.RecordTilemapClear();
 
-                if (SpellFxSettings.Mode == SpellFxMode.Off)
-                    foreach (var aura in _auras.Values)
-                    {
-                        var at = _currentZone.GetEntityCell(aura.Anchor);
-                        var config = GetThemeConfig(aura.Theme);
-                        if (at != null && config.AuraGlyphs.Length > 0 && config.AuraColors.Length > 0)
-                            RenderGlyphAt(at.X, at.Y, config.AuraGlyphs[0], config.AuraColors[0], isAura: true);
-                    }
+                    if (SpellFxSettings.Mode == SpellFxMode.Off)
+                        foreach (var aura in _auras.Values)
+                        {
+                            var at = _currentZone.GetEntityCell(aura.Anchor);
+                            var config = GetThemeConfig(aura.Theme);
+                            if (at != null && config.AuraGlyphs.Length > 0 && config.AuraColors.Length > 0)
+                                RenderGlyphAt(at.X, at.Y, config.AuraGlyphs[0], config.AuraColors[0], isAura: true);
+                        }
 
-                for (int i = 0; i < _particles.Count; i++)
-                    RenderParticle(_particles[i]);
+                    for (int i = 0; i < _particles.Count; i++)
+                        RenderParticle(_particles[i]);
 
-                for (int i = 0; i < _dustMotes.Count; i++)
-                    RenderDustMote(_dustMotes[i]);
+                    for (int i = 0; i < _dustMotes.Count; i++)
+                        RenderDustMote(_dustMotes[i]);
 
-                for (int i = 0; i < _ringWaves.Count; i++)
-                    RenderRingWave(_ringWaves[i]);
+                    for (int i = 0; i < _ringWaves.Count; i++)
+                        RenderRingWave(_ringWaves[i]);
 
-                for (int i = 0; i < _chargeOrbits.Count; i++)
-                    RenderChargeOrbit(_chargeOrbits[i]);
+                    for (int i = 0; i < _chargeOrbits.Count; i++)
+                        RenderChargeOrbit(_chargeOrbits[i]);
 
-                for (int i = 0; i < _beams.Count; i++)
-                    RenderBeam(_beams[i]);
+                    for (int i = 0; i < _beams.Count; i++)
+                        RenderBeam(_beams[i]);
 
-                for (int i = 0; i < _chainArcs.Count; i++)
-                    RenderChainArc(_chainArcs[i]);
+                    for (int i = 0; i < _chainArcs.Count; i++)
+                        RenderChainArc(_chainArcs[i]);
 
-                for (int i = 0; i < _columnRises.Count; i++)
-                    RenderColumnRise(_columnRises[i]);
+                    for (int i = 0; i < _columnRises.Count; i++)
+                        RenderColumnRise(_columnRises[i]);
 
-                for (int i = 0; i < _projectiles.Count; i++)
-                    RenderProjectile(_projectiles[i]);
+                    for (int i = 0; i < _projectiles.Count; i++)
+                        RenderProjectile(_projectiles[i]);
 
-                for (int i = 0; i < _bursts.Count; i++)
-                    RenderBurst(_bursts[i]);
+                    for (int i = 0; i < _bursts.Count; i++)
+                        RenderBurst(_bursts[i]);
 
-                _hadVisibleFxLastFrame = hasVisibleFx;
+                    _hadVisibleFxLastFrame = hasVisibleFx;
+                }
             }
+            finally { frame?.EndFrame(); }
         }
 
         private void RenderChargeOrbit(ChargeOrbitFxInstance orbit)
@@ -833,6 +841,8 @@ namespace CavesOfOoo.Rendering
                 return;
 
             Vector3Int tilePos = new Vector3Int(x, Zone.Height - 1 - y, 0);
+            if (NativeFrame?.TryDraw(x, y, glyph, colorString) == true)
+            { _tilemap.SetTile(tilePos, null); return; }
             _tilemap.SetTile(tilePos, tile);
             _tilemap.SetTileFlags(tilePos, TileFlags.None);
             // Reset every draw: explicit feedback can reuse an aura cell within

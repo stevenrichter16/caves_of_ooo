@@ -1,0 +1,42 @@
+--- Assets/Tests/EditMode/Presentation/Rendering/SpreadCommonTerrainTests.cs
++++ Assets/Tests/EditMode/Presentation/Rendering/SpreadCommonTerrainTests.cs
+@@ -1,5 +1,6 @@
+ using System;
+ using System.Linq;
++using System.Reflection;
+ using CavesOfOoo.Core;
+ using CavesOfOoo.Storylets;
+ using CavesOfOoo.Rendering;
+@@ -30,7 +31,31 @@
+   {using(var f=new SpawnRing3DIntegrationFixture("Overworld.12.10.0")){var e=f.Add(bp);var physics=e.GetPart<PhysicsPart>();bool solid=physics?.Solid==true;string id=e.ID;f.Refresh();Approved(f,e,family);Assert.AreEqual(id,e.ID);Assert.AreEqual(solid,physics?.Solid==true);}}
+   [TestCase("visual")][TestCase("hidden")][TestCase("foreign")]
+   public void CustomHiddenAndForeignOwnersCannotAcquireTheScopedAlias(string state)
+-  {using(var f=new SpawnRing3DIntegrationFixture("Overworld.12.10.0")){var e=f.Add("Bush");if(state=="visual")e.GetPart<RenderPart>().VisualID="unrelated-custom-owner";else if(state=="hidden")e.GetPart<RenderPart>().Visible=false;else f.Manager.WorldMap.Tiles[12,10]=BiomeType.Sodden;f.Refresh();var recipe=SpawnRing3DRecipes.Resolve(f.Zone,e,f.Library.Definition);Assert.False(recipe.ModelId?.StartsWith("reference-glade-",StringComparison.Ordinal)==true);Assert.False(Presenter(f).TryGetApprovedStyle(e,out _));}}
++  {
++   using(var f=new SpawnRing3DIntegrationFixture("Overworld.12.10.0"))
++   {
++    var e=f.Add("Bush");var render=e.GetPart<RenderPart>();
++    if(state=="visual")render.VisualID="unrelated-custom-owner";
++    else if(state=="hidden")render.Visible=false;
++    else f.Manager.WorldMap.Tiles[12,10]=BiomeType.Sodden;
++    f.Refresh();var recipe=SpawnRing3DRecipes.Resolve(f.Zone,e,f.Library.Definition);
++    Assert.False(recipe.ModelId?.StartsWith("reference-glade-",StringComparison.Ordinal)==true,"Custom identity must never acquire the common-form alias.");
++    if(state!="visual"){Assert.False(Presenter(f).TryGetApprovedStyle(e,out _));return;}
++
++    // Common-form replacement refuses custom identity. The later palette-only
++    // adoption still preserves a successful native source in the receiving biome.
++    var method=typeof(SpawnRing3DRecipes).GetMethod("ResolveNative",BindingFlags.Static|BindingFlags.NonPublic);Assert.NotNull(method);
++    var native=(SpawnRing3DRecipe)method.Invoke(null,new object[]{f.Zone,e,f.Library.Definition,null});
++    Assert.IsNull(native.Failure);Assert.NotNull(native.ModelId);Assert.AreEqual(native,recipe);
++    Assert.AreEqual("unrelated-custom-owner",render.VisualID);Assert.AreSame(e,recipe.Owner);
++    var entry=SpreadNativeStyle3DLibrary.Load().ForOwner(f.Zone,recipe);Assert.NotNull(entry);
++    Assert.AreSame(f.Library.FindModel(native.ModelId),entry.SourcePrefab);
++    Assert.True(Presenter(f).TryGetApprovedStyle(e,out var proof),proof.Failure);
++    Assert.AreEqual(native.ModelId,proof.ModelId);Assert.AreSame(entry.Mesh,proof.ExpectedMesh);
++    Assert.AreSame(entry.Material,proof.ExpectedMaterial);Assert.True(proof.Batched);Assert.Greater(proof.SubmittedMesh.vertexCount,0);
++    render.VisualID=null;f.Refresh();Approved(f,e,"green-grass");
++   }
++  }
+   [Test]public void ExistingAuthoredGladeWallStateAndNativeDoorIdentityRemainAuthoritative()
+   {
+    using(var f=new SpawnRing3DIntegrationFixture(ReferenceGladePlan.ZoneID))

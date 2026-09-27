@@ -1,0 +1,22 @@
+.FF
+======================================================================
+FAIL: test_reeds_have_seven_flat_block_finger_tops (__main__.FifthFeedbackTests.test_reeds_have_seven_flat_block_finger_tops)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c14-fifth/test_fifth_feedback.py", line 10, in test_reeds_have_seven_flat_block_finger_tops
+    self.assertGreaterEqual(len(tops),7,m['id'])
+AssertionError: 0 not greater than or equal to 7 : reference-glade-pale-reeds-0
+
+======================================================================
+FAIL: test_reeds_no_longer_repeat_three_tier_cones_on_every_stalk (__main__.FifthFeedbackTests.test_reeds_no_longer_repeat_three_tier_cones_on_every_stalk)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c14-fifth/test_fifth_feedback.py", line 13, in test_reeds_no_longer_repeat_three_tier_cones_on_every_stalk
+    if m['family']=='pale-reeds':self.assertLessEqual(len(m['boxes']),24,m['id'])
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 35 not less than or equal to 24 : reference-glade-pale-reeds-0
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.012s
+
+FAILED (failures=2)

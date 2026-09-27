@@ -1,0 +1,42 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "62c2d09e42b3489ea6afd8fba34fb332",
+  "run": {
+    "id": "2",
+    "testcasecount": "9",
+    "result": "Failed(Child)",
+    "total": "9",
+    "passed": "4",
+    "failed": "5",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-26 23:54:49Z",
+    "end-time": "2026-09-26 23:54:52Z",
+    "duration": "2.8690512"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeGroundProfileTests.ActualGpuFragmentAddsStableBroadVariationOnlyWhenEnabled(False)",
+      "message": "  Enabled ground must have visible low-contrast spatial variation on the GPU.\n  Expected: greater than 0.0080000000000000002d\n  But was:  0.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeGroundProfileTests.ActualGpuFragmentAddsStableBroadVariationOnlyWhenEnabled(True)",
+      "message": "  Enabled ground must have visible low-contrast spatial variation on the GPU.\n  Expected: greater than 0.0080000000000000002d\n  But was:  0.0d\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeGroundProfileTests.AuthorityReversalRebuildsTheProfileWithoutChangingNativeOwners",
+      "message": "  Palette shader needs a default-zero scoped ground control.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeGroundProfileTests.NativeFogAndIndexedActorPropertiesSurviveProfileRefresh",
+      "message": "  Palette shader needs a default-zero scoped ground control.\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeGroundProfileTests.OnlyOwnedGladePaletteEnablesGroundMottling",
+      "message": "  Palette shader needs a default-zero scoped ground control.\n  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

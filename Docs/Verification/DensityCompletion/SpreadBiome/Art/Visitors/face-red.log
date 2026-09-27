@@ -1,0 +1,19 @@
+......F........
+======================================================================
+FAIL: test_exposed_different_color_faces_do_not_share_a_raster_plane (__main__.VisitorSource.test_exposed_different_color_faces_do_not_share_a_raster_plane)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-spread-visitors/test_visitors.py", line 53, in test_exposed_different_color_faces_do_not_share_a_raster_plane
+    self.assertEqual([],overlaps(),"Coplanar colored surfaces reproduce the earlier native spider shadow seam.")
+AssertionError: Lists differ: [] != [{'blueprint': 'CaveBat', 'a': 'fur-body',[2811 chars]rue}]
+
+Second list contains 20 additional elements.
+First extra element 0:
+{'blueprint': 'CaveBat', 'a': 'fur-body', 'b': 'hanging-foot-L', 'axis': 2, 'side': 1, 'area': 0.001150000000000001, 'sameBone': False}
+
+Diff is 3403 characters long. Set self.maxDiff to None to see it. : Coplanar colored surfaces reproduce the earlier native spider shadow seam.
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.105s
+
+FAILED (failures=1)

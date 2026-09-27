@@ -1,0 +1,46 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "8e463a75a49149d09a58770317cc8fff",
+  "run": {
+    "id": "2",
+    "testcasecount": "242",
+    "result": "Failed(Child)",
+    "total": "242",
+    "passed": "236",
+    "failed": "6",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 00:37:58Z",
+    "end-time": "2026-09-27 00:38:16Z",
+    "duration": "17.4612913"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeActorPaintTests.LocalActorPaintIsPersistentScopedAndPreservesTheActualAdoptedRig(\"Player\")",
+      "message": "  Only the three humanoids have authored local silhouettes; morphology is pinned separately.\n  Expected: not equal to 2116\n  But was:  2116\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeActorPaintTests.LocalActorPaintIsPersistentScopedAndPreservesTheActualAdoptedRig(\"Warden\")",
+      "message": "  Only the three humanoids have authored local silhouettes; morphology is pinned separately.\n  Expected: not equal to 2116\n  But was:  2116\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeActorPaintTests.LocalActorPaintIsPersistentScopedAndPreservesTheActualAdoptedRig(\"Villager\")",
+      "message": "  Only the three humanoids have authored local silhouettes; morphology is pinned separately.\n  Expected: not equal to 2116\n  But was:  2116\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeHumanoidFormTests.ActualLocalHumanoidHasSmallHeadShortTorsoAndSeparatedLegs(\"Player\")",
+      "message": "  Large pale hood still dominates the visible body.\n  Expected: less than 0.280000001f\n  But was:  0.599999845f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeHumanoidFormTests.ActualLocalHumanoidHasSmallHeadShortTorsoAndSeparatedLegs(\"Warden\")",
+      "message": "  Large pale hood still dominates the visible body.\n  Expected: less than 0.280000001f\n  But was:  0.599999368f\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.ReferenceGladeHumanoidFormTests.ActualLocalHumanoidHasSmallHeadShortTorsoAndSeparatedLegs(\"Villager\")",
+      "message": "  Large pale hood still dominates the visible body.\n  Expected: less than 0.280000001f\n  But was:  0.599999368f\n"
+    }
+  ]
+}

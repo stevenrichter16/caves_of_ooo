@@ -1,0 +1,41 @@
+--- Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs
++++ Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs
+@@ -165,7 +165,13 @@
+                 {
+                     var safe=BiomeSafePath(_input.CurrentZone,c,_input.CurrentZone.GetCell(x,y));
+                     _biomeSteps.Add("safe-route "+_input.CurrentZone.ZoneID+"@"+c.X+","+c.Y+" -> "+x+","+y+" steps="+(safe==null?-1:safe.Count));
+-                    if(safe==null||safe.Count==0)BiomeRouteDiagnostic(_input.CurrentZone,_input.CurrentZone.GetCell(x,y));
++                    if(safe==null||safe.Count==0)
++                    {
++                        BiomeRouteDiagnostic(_input.CurrentZone,_input.CurrentZone.GetCell(x,y));
++                        int castsBefore=_biomeDefensiveCalmUses;
++                        yield return BiomeCalmBlockingThreat();
++                        if(_biomeDefensiveCalmUses>castsBefore)continue;
++                    }
+                     Require(safe!=null&&safe.Count>0,"finite route using unchanged biome footprint/hazard/threat predicates");
+                     d=safe[0];
+                     Require(BiomeSafe(_input.CurrentZone,_input.CurrentZone.GetCell(c.X+d.dx,c.Y+d.dy),2),"next actual footprint remains safe");
+@@ -325,12 +331,12 @@
+                 runId = RunId, cases = _audit.Count, failures = Failures, unexpectedErrors = _unexpectedErrors,
+                 complete = Complete, errorsFinalized = _errorsFinalized, seconds = _clock?.Elapsed.TotalSeconds ?? 0,
+                 mode=_biomeOnly?"native-spread-biome-route":_combatOnly?"native-keyboard-combat":_measurePerformance?"movement-profile":"visual-content-route",
+-                combatSteps=_combatSteps.ToArray(),combatState=CombatState(),biomeSteps=_biomeSteps.ToArray(),biomeShortcuts=_biomeShortcuts,
++                combatSteps=_combatSteps.ToArray(),combatState=CombatState(),biomeSteps=_biomeSteps.ToArray(),biomeShortcuts=_biomeShortcuts,biomeDefensiveCalmUses=_biomeDefensiveCalmUses,
+                 profileSeconds=_profileSeconds,profileFrames=_frameTimes.Count,profileFrameMeanMs=_frameTimes.Count==0?0:_frameTimes.Average(),
+                 profileFrameP95Ms=_frameTimes.Count==0?0:_frameTimes.OrderBy(x=>x).ElementAt((int)((_frameTimes.Count-1)*.95)),
+                 zone = _stagedZone?.ZoneID, fatal = _fatal, audit = _audit.ToArray(), screenshots = _screenshots.ToArray(), descriptions = _descriptions.ToArray(),
+                 canVerify = _biomeOnly ? "Real isolated seed64 starting graph; original dagger drop/pickup; native F5, movement, F6 replacement and unchanged saved bytes; real keyboard Spread border exit/return; actual finite harvest, one paid action and saved depletion; generated village door and committed lair stairs; current-owner submitted profile/body observation; foreign-biome negative profile; finite60-second editor keyboard movement sample." : _combatOnly ? "Actual authored northern encounter; ordinary starting actor and kit; real movement and attack keys; exact diagnostic actor/target/cause correlation, attempted retaliation, exact death attribution and corpse/original-owned-drop provenance, and native animation/frame observation. No direct attack, pose or damage calls." : "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz harvest, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
+-                cannotVerify = _biomeOnly ? "Four explicitly logged actor travel shortcuts cover actual generated POI, lair, foreign control and original return. Source selection is script-selected and first-floor generation is preflighted; no natural acquisition, discovery, combat balance or all-chunk visual coverage claim. Ordinary scheduler remains active; no grants, reseeding or forced models. Native screenshots require visual inspection. Frame times describe this editor run, not standalone build performance or allocations. Separate census and normal randomized N/Continue gates remain necessary." : _combatOnly ? "One fixed authored encounter and finite script-selected keyboard route. At most two original starting healing tonics may be used at or below two-thirds HP through native inventory keys. One ready Rime Grip may be used only after real retaliation. Their actual costs/effects are recorded. The prior dagger-only death remains a separate failed receipt. No combat-balance, natural discovery, animation quality or enjoyment claim. Native pose observation and saved frames still need visual assessment; unrelated NPC activity remains enabled." : "Routes are script-selected through real keyboard input. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim."
++                cannotVerify = _biomeOnly ? "Four explicitly logged actor travel shortcuts cover actual generated POI, lair, foreign control and original return. Source selection is script-selected and first-floor generation is preflighted; no natural acquisition, discovery, combat balance or all-chunk visual coverage claim. At most eight actual original Calm casts may defend against a threat trapping the safe route; exact owner, payment, cooldown and live pacification are recorded. No Rime, cooldown waits or scripted combat. Ordinary scheduler remains active; no grants, reseeding or forced models. Native screenshots require visual inspection. Frame times describe this editor run, not standalone build performance or allocations. Separate census and normal randomized N/Continue gates remain necessary." : _combatOnly ? "One fixed authored encounter and finite script-selected keyboard route. At most two original starting healing tonics may be used at or below two-thirds HP through native inventory keys. One ready Rime Grip may be used only after real retaliation. Their actual costs/effects are recorded. The prior dagger-only death remains a separate failed receipt. No combat-balance, natural discovery, animation quality or enjoyment claim. Native pose observation and saved frames still need visual assessment; unrelated NPC activity remains enabled." : "Routes are script-selected through real keyboard input. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim."
+             }, true));
+             Debug.Log("[ReferenceGladeNative] report=" + ReportPath + " failures=" + Failures);
+         }
+@@ -355,7 +361,7 @@
+         {
+             public string runId, zone, fatal, canVerify, cannotVerify, mode, combatState;
+             public string[] combatSteps,biomeSteps;
+-            public int biomeShortcuts;
++            public int biomeShortcuts,biomeDefensiveCalmUses;
+             public string[] audit, screenshots;
+             public Description[] descriptions;
+             public int cases, failures, unexpectedErrors;

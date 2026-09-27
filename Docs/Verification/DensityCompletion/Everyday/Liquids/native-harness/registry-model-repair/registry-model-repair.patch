@@ -1,0 +1,13 @@
+--- a/DensityLiquidNativePlayer.cs
++++ b/DensityLiquidNativePlayer.cs
+@@ -468,7 +468,9 @@
+             yield return new WaitForSecondsRealtime(.2f);yield return new WaitForEndOfFrame();
+             var presenter=_input.ZoneRenderer?.SpawnRing3D;GameObject view=null;string model=null;
+             Require(presenter!=null&&ReferenceEquals(presenter.CurrentZone,_input.CurrentZone)&&presenter.IsRenderedEntity(owner)&&presenter.TryGetEntityView(owner,out view,out model),"exact poured owner has a currently rendered native view");
+-            string expected=liquid=="water"?"poured-liquid-42":liquid=="oil"?"poured-liquid-4b":liquid=="acid"?"poured-liquid-47":null;
++            var definition=LiquidRegistry.Get(liquid);
++            Require(definition!=null&&definition.Id==liquid&&owner.GetPart<LiquidPoolPart>()?.LiquidId==liquid,"known exact poured liquid before model comparison");
++            string expected=PouredLiquid3DLibrary.ModelId(definition.Color);
+             Require(expected!=null&&model==expected,"actual identity-specific model "+liquid+": "+model);
+             var camera=presenter.WorldCamera;var renderers=view.GetComponentsInChildren<Renderer>(true).Where(r=>r.enabled&&r.gameObject.activeInHierarchy&&!r.forceRenderingOff).ToArray();
+             Require(camera!=null&&renderers.Length>0,"native camera and submitted owner geometry");

@@ -3,11 +3,17 @@
 **Status:** planned, 19 September 2026. User direction: "increase the drop rates for weapons, armor, offensive items. Right now in the game there is mainly crafting items, which are nice but the player should be able to find already created items." CoO-original tuning; no Qud parity claim.
 
 **Implementation update (26 September 2026):** Density Phase 1 tranche 2
-ships the weapon/offensive-consumable slice: tiered nested finds in containers,
-consumables in humanoid death loot, and a non-crafted T3 rack. Armor pools,
-hostile-loadout expansion and the full economic balance pass remain planned.
-See [the living implementation record](DENSITY-PHASE-1.md#t22-tiered-finds-for-stranded-weapons-and-tonics).
-The measurements below describe the original baseline, not a fresh census.
+shipped the weapon/offensive-consumable slice. The completion integration now
+also implements three armor pools, their15 eligible container references and
+nine visibly equipped hostile loadouts. The scope-only census records armor
+units19→59, stocked commerce value11,706→14,013 and neutral sale value3,809→4,615.
+These are stocked-content measurements, not proof that every locked container
+was opened or that the economy is balanced. Native content/loadout checks pass;
+representative campaign tuning remains open.
+See [the current armor/loadout record](DENSITY-LOOT-COMPLETION.md),
+[the completion plan](DENSITY-COMPLETION-PLAN.md) and
+[the shipped Phase1 record](DENSITY-PHASE-1.md#t22-tiered-finds-for-stranded-weapons-and-tonics).
+The baseline tables below remain historical measurements.
 
 ## Goal
 

@@ -13,14 +13,23 @@ namespace CavesOfOoo.Tests
             using(var f=new SpawnRing3DIntegrationFixture(ReferenceGladePlan.ZoneID))
             {
                 var before=f.Get<NativeZone3DRenderSurface>("ActiveSurface");var oldRoot=f.View(f.Player);
+                var localMesh=oldRoot.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+                var source=f.Library.FindModel("ring-player").GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+                var ordinaryMesh=Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath).Resolve(source);
+                Assert.AreNotSame(ordinaryMesh,localMesh);
                 f.Manager.WorldMap.Tiles[11,10]=BiomeType.Sodden;Assert.IsFalse(ReferenceGladePlan.IsActive(f.Zone));
                 Update(f,entry);var ordinary=f.Get<NativeZone3DRenderSurface>("ActiveSurface");
                 Assert.NotNull(ordinary);Assert.AreNotSame(before,ordinary,"A stale glade profile must not survive loss of authority.");
                 Assert.IsTrue(oldRoot==null);Assert.AreEqual(Vector3.one,f.View(f.Player).transform.localScale);
+                Assert.AreSame(ordinaryMesh,f.View(f.Player).GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh);
                 Assert.AreEqual(2.2f,ordinary.MaterialFor(f.Library.WorldMaterial).GetFloat("_Exposure"));
                 f.Manager.WorldMap.Tiles[11,10]=BiomeType.Spread;Assert.IsTrue(ReferenceGladePlan.IsActive(f.Zone));
                 Update(f,entry);var restored=f.Get<NativeZone3DRenderSurface>("ActiveSurface");
-                Assert.NotNull(restored);Assert.AreNotSame(ordinary,restored);Assert.Less(f.View(f.Player).transform.localScale.x,.6f);
+                Assert.NotNull(restored);Assert.AreNotSame(ordinary,restored);
+                var recovered=f.View(f.Player);Assert.AreSame(localMesh,recovered.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh);
+                var visible=ReferenceGladeHumanoidFormTests.VisibleBodyBounds(recovered);
+                Assert.That(visible.size.y,Is.InRange(1.20f,1.36f));Assert.LessOrEqual(visible.size.x,1.11f);
+                Assert.True(f.Pick(f.Player,out _));
                 Assert.That(restored.MaterialFor(f.Library.WorldMaterial).GetFloat("_Exposure"),Is.InRange(1.1f,1.8f));
             }
         }
@@ -57,9 +66,12 @@ namespace CavesOfOoo.Tests
             using(var f=new SpawnRing3DIntegrationFixture(ReferenceGladePlan.ZoneID))
             {
                 var e=blueprint=="Player"?f.Player:f.Add(blueprint);f.CleanGear(e);f.Refresh();var root=f.View(e);
-                Assert.Less(root.transform.localScale.x,.8f);Assert.NotNull(root.GetComponentInChildren<Animator>());
-                var renderers=root.GetComponentsInChildren<Renderer>();var bounds=renderers[0].bounds;foreach(var r in renderers)bounds.Encapsulate(r.bounds);
-                Assert.LessOrEqual(bounds.size.y,1.05f);Assert.LessOrEqual(bounds.size.x,.95f);
+                Assert.Less(root.transform.localScale.x,1f);Assert.NotNull(root.GetComponentInChildren<Animator>());
+                var bounds=ReferenceGladeHumanoidFormTests.VisibleBodyBounds(root);
+                // Fourth screenshot refinement enlarges only the three humanoid
+                // rigs and the original low/wide Marlbacks; native bodies stay fixed.
+                bool marlback=blueprint.StartsWith("Marlback");
+                Assert.LessOrEqual(bounds.size.y,marlback ? .91f : 1.36f);Assert.LessOrEqual(bounds.size.x,marlback ? 1.03f : 1.11f);
                 Assert.IsTrue(f.Pick(e,out var point));int version=f.Zone.EntityVersion;var original=f.Zone.GetEntityPosition(e);
                 f.Refresh();Assert.AreEqual(version,f.Zone.EntityVersion);Assert.AreEqual(original,f.Zone.GetEntityPosition(e));
                 e.GetPart<RenderPart>().Visible=false;f.Refresh(f.Dirty(e));Assert.IsFalse(f.Rendered(e));
@@ -70,7 +82,7 @@ namespace CavesOfOoo.Tests
             using(var f=new SpawnRing3DIntegrationFixture(ReferenceGladePlan.ZoneID))
             {
                 f.CleanGear(f.Player);var item=f.Equip(f.Player,"Dagger");f.Refresh();Assert.IsTrue(f.Equipment(f.Player,item,out var gear));
-                var actor=f.View(f.Player);Assert.IsTrue(gear.transform.IsChildOf(actor.transform));Assert.Less(actor.transform.localScale.x,.6f);
+                var actor=f.View(f.Player);Assert.IsTrue(gear.transform.IsChildOf(actor.transform));Assert.Less(actor.transform.localScale.x,1f); // Actual visible height/width are independently pinned; culling bounds no longer set scale.
                 Assert.AreSame(f.Player,item.GetPart<PhysicsPart>().Equipped);Assert.IsTrue(f.Pick(f.Player,out var point));
             }
             using(var f=new SpawnRing3DIntegrationFixture())Assert.AreEqual(Vector3.one,f.View(f.Player).transform.localScale);

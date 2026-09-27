@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b81e4a6b50247a7942820d41367a130, type: 3}
+  m_Name: ActorLibrary
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.SpreadBiomeActorLibrary
+  Entries:
+  - Id: spread-biome-magpie
+    Prefab: {fileID: 8362252455831421104, guid: 00e9baf942cf9414887f666e64ab5e92, type: 3}
+    Mesh: {fileID: -2694594673777470037, guid: fd77857915646424a84dc19254b2d48e, type: 3}
+    Spec:
+      id: spread-biome-magpie
+      path: Assets/Resources/SpreadBiome3D/Actors/spread-biome-magpie.prefab
+      kind: actor
+      rigFamily: avian
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Magpie
+      rigged: 1
+      boundsCenter: {x: 0.00083893014, y: 0.3602533, z: 0.05999829}
+      boundsSize: {x: 0.81413424, y: 0.75702417, z: 1.1332507}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-biome-pet-dog
+    Prefab: {fileID: 9132731577120185791, guid: c1ccccfe7e20c4b788a4c26880fa189f, type: 3}
+    Mesh: {fileID: 264977572187281772, guid: c26c792a4c90b4df09b44349615deee2, type: 3}
+    Spec:
+      id: spread-biome-pet-dog
+      path: Assets/Resources/SpreadBiome3D/Actors/spread-biome-pet-dog.prefab
+      kind: actor
+      rigFamily: quadruped
+      materialFamily: reference-glade-palette
+      sourceBlueprint: PetDog
+      rigged: 1
+      boundsCenter: {x: 0.0012973044, y: 0.39564657, z: -0.020720039}
+      boundsSize: {x: 0.3525947, y: 0.79129326, z: 1.1342384}
+      triangles: 276
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: spread-biome-viper
+    Prefab: {fileID: 6858822792302253863, guid: 590aa976c0cc84a8a9beafa68c388009, type: 3}
+    Mesh: {fileID: -5207515584968568059, guid: d3e0722d4a2954aa591789f149a527fb, type: 3}
+    Spec:
+      id: spread-biome-viper
+      path: Assets/Resources/SpreadBiome3D/Actors/spread-biome-viper.prefab
+      kind: actor
+      rigFamily: serpent
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Viper
+      rigged: 1
+      boundsCenter: {x: 0.023153212, y: 0.12695055, z: 0.034798898}
+      boundsSize: {x: 0.69191164, y: 0.1646665, z: 1.1295974}
+      triangles: 552
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []

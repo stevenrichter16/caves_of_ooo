@@ -1,0 +1,28 @@
+{
+  "status": "private source/runtime/builder ready; native import and renderer integration pending",
+  "families": 27,
+  "models": 56,
+  "boxes": 688,
+  "vertices": 16512,
+  "triangles": 8256,
+  "sourceSha256": "486cd629f7e3a0179eec0bba35737712860be93785ac6f489546991ec054379a",
+  "standalone": {
+    "total": 147,
+    "passed": 147,
+    "failed": 0,
+    "fixtures": {
+      "recipes": 86,
+      "adversarial": 24,
+      "source": 37
+    }
+  },
+  "nativeReferenceCompile": {
+    "tests": "passed zero errors",
+    "editor": "passed zero errors"
+  },
+  "nativeAssetFixture": {
+    "cases": 63,
+    "actualUnityRun": "pending"
+  },
+  "evidenceBoundary": "Standalone proves pure recipe/source behavior; native-reference compilation proves APIs. Offline preview shows source silhouettes only. No actual imported asset, receiving-zone integration, native visual quality or complete-biome closure claimed."
+}

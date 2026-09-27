@@ -64,3 +64,14 @@ Published-source rerun: **68/68 GREEN**, 3.414518 seconds. Its report is byte-id
 
 
 Native follow-up found67/68 passing: Unity rejects the serialized root `null` with ArgumentException before the helper reaches its explicit selection validation. The standalone JSON adapter returns null. Preserve this native RED, and normalize JSON parse errors to the helper's InvalidOperationException contract without accepting or rescanning malformed input. Two additional malformed JSON cases failed first in the private runner; after the narrow repair the full census/audit set is **70/70 GREEN**. The measurement report remains byte-identical. Native retest belongs to root; `FinalCensus/parser-normalization.json` records both histories.
+
+
+## Post-foundation shared snapshot while native preview remains active
+
+An isolated copy of the current shared rules/content passes **71/71 standalone census cases**, including all whole-lair-stack measurements. The same 150 recorded zone rows and 161 total sources remain in the same order; no classifications changed. Receipts, raw data, XML and source hashes are preserved under `FinalCensus/PostFoundation`. This is a fresh measured snapshot, not a new native or campaign acceptance claim.
+
+The recorded surface/depth cohort now contains 394 containers: 37 locked skips, 357 actual opening events, zero refused attempts and zero blocked approaches. Its 120 wilderness and 15 ordinary underground rows are unchanged. The 15 *surface* lair rows have 66→15 containers and generated commerce 1,357→137 because the new lairs place rewards below ground. Those surface-only differences do not measure whole-lair reward loss. Ten shops add 40 total commerce from the five real liquid flasks; the designed starter grant stays unchanged.
+
+The separately denominated whole-world study covers all 18 actual lair columns across the same five worlds. Old single-floor versus new complete stacks: 18→39 floors, 111→117 creatures, and exactly 18 bosses in each. Total container owners, including mimics, are 81→55; ordinary cache counts are 66→39. Cache plus ground commerce is 2,487→2,411 (−3.1%), within the prior bounded budget, while carried gear is counted separately. This study compares the current content under explicit old/new layout modes; it does not rewrite the archived historical sample or prove sale income, acquisition, encounter balance or ordinary walking routes.
+
+The snapshot precedes the private late-villager door-capability/lighting follow-up. Refresh these receipts if final integrated source changes affect the measured generation. The runner first needed its omitted test support and authored non-Content JSON copied into the isolated workspace; those setup errors are not production regression evidence.

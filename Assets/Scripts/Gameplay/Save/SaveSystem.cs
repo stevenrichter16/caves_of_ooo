@@ -343,6 +343,7 @@ namespace CavesOfOoo.Core
         public void Save(SaveWriter writer)
         {
             World = LocalPeople.BindForSave(ZoneManager, World);
+            World = LairStacks.BindForSave(ZoneManager, World);
             writer.WriteHeader(GameVersion);
             writer.WriteCheck("GameSession.Begin");
             writer.Write(SaveVersion);
@@ -414,6 +415,7 @@ namespace CavesOfOoo.Core
             var tileSnapshot = SessionTileStateSerializer.ReadOptionalAndEnd(state.ZoneManager, reader);
             tileSnapshot?.Apply();
 
+            LairStacks.Restore(state.ZoneManager, state.World);
             // Parser failures leave the live session untouched. Load-hook or
             // bootstrap application exceptions are separate from this boundary.
             state.TurnManager?.Activate();
@@ -1917,7 +1919,10 @@ namespace CavesOfOoo.Core
                 FieldInfo field = fields[i];
                 if (field.IsStatic || field.IsInitOnly || Attribute.IsDefined(field, typeof(NonSerializedAttribute)))
                     continue;
-                if (field.Name == nameof(Part.ParentEntity) || field.Name == nameof(Effect.Owner))
+                // Entity owner backlinks are rebound by their load hooks. Furniture
+                // Owner strings are authored access rules and must survive saves.
+                if (field.Name == nameof(Part.ParentEntity)
+                    || (field.Name == nameof(Effect.Owner) && field.FieldType == typeof(Entity)))
                     continue;
                 if (include != null && !include(field))
                     continue;

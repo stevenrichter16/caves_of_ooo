@@ -1,5 +1,5 @@
 {
-  "status": "private, not published; root review and native acceptance required",
+  "status": "published C10.2; root native acceptance pending; C11.3 remains private",
   "privateRoot": "/tmp/coo-density-lair-stack",
   "newFiles": {
     "LairStacks.cs": "Assets/Scripts/Gameplay/World/Generation/LairStacks.cs",
@@ -23,7 +23,7 @@
     "DensityLocalPeopleReviewTests.cs": "Assets/Tests/EditMode/Gameplay/Conversations/DensityLocalPeopleReviewTests.cs",
     "DensityUndergroundRoutesAdversarialTests.cs": "Assets/Tests/EditMode/Gameplay/World/Generation/DensityUndergroundRoutesAdversarialTests.cs"
   },
-  "standaloneEvidence": "500/500 affected checks; 140 new C10.2 tests plus 360 existing; repeated after final formatting",
+  "standaloneEvidence": "516/516 affected checks; 156 new C10.2 tests plus 360 existing. Independent callback review:16cases/12RED+4controls\u219216GREEN.",
   "privateHookPatch": "/tmp/coo-density-lair-stack/reviewed-hook-candidate.patch",
   "warnings": [
     "Apply only reviewed narrow hunks to current files; do not replace private managers wholesale because they contain standalone StableHash adapters.",
@@ -34,7 +34,7 @@
   "nativeCompilerEvidence": "Actual Unity runtime/editor reference-set compilation succeeds with zero errors; no Unity execution.",
   "privateSourceSha256": {
     "LairStacks.cs": "6369d2af456e674d7245ecf078602d516f2dc592e6e332a49d69d5abdae94c36",
-    "LairRewardBudget.cs": "ecea0e03607e3e0324d6751dbb17efc6b98ed7869d16a1bbed4179b00bb66572",
+    "LairRewardBudget.cs": "107a1ca023e46360be5dc9d07696e5b3c115524bf6055cfbc7ca4a1ba51c0a58",
     "LairStackBuilder.cs": "8fa03f7f7edec53195b2483881ea79d3e21744b28a7f07178d82443ed25ec552",
     "DensityLairStackTests.cs": "421688a4065fcfde3e9f7e7caf5593a5f0cb4501361dea79128cd77ecb81e31a",
     "DensityLairStackAdversarialTests.cs": "8d0c0a1fdb8e921d10992c04f81d8bd90d61a2c8de5ef39800aa7238ce0fed71",
@@ -42,7 +42,7 @@
     "DensityLairStackCensusTests.cs": "4c815a236a3f2511176528741807c141b48783b15541fb4ad9623786682184e5",
     "DensityLairRewardBudgetTests.cs": "a0f489f8a1e413f3929f05123254f0970bf1c90f427245ca516915d27f72b931",
     "DensityLairRewardIntegrationTests.cs": "f83340f0c6c69306c5240a77b326838b6f97ecb1df0aa1008873dc126aac7bf8",
-    "DensityLairPacingTests.cs": "96a03ee3584537ef9d97d3865e07c700b33ea065aa064f5434f79bad29a5d332",
+    "DensityLairPacingTests.cs": "6621773894118e018db11026095f0adf5466f5ce602747eae6f1368573c32aa8",
     "Native/DensityLairNativePlayer.cs": "d74c7f66fc86b2f4aaa974bcd96d52ed02829d97814e0d4eaeaddfdbcd96426e",
     "Native/DensityLairNativeBatch.cs": "6d821455ada02343361964ebfb30ba70054f2adf2a52c4cec3098888627777f5",
     "ZoneManager.cs": "a098b46dd79223489f4bc3b1f1300abf9e62a8de0b24961317495f0fb13e3a88",
@@ -51,5 +51,38 @@
     "LairPopulationBuilder.cs": "df873500516188571dc8edb033e5a14e6bb9f0450231181fc9053e0dde1c309f",
     "DensityLocalPeopleReviewTests.cs": "c0f9d3cf93619db3f264d6a4e308972ff32dc38983cb233d2e33a7fa26107dbf",
     "DensityUndergroundRoutesAdversarialTests.cs": "3a318d2b9d4571d6f887dda4397dd7771078c4712111330596e3f12ce8a11a2a"
-  }
+  },
+  "nativeLauncherOverride": {
+    "source": "/tmp/coo-density-lair-native-review/DensityLairNativeBatch.cs",
+    "basis": "Current OriginalEnemyNativeBatch update retry and immediate start-scene/view restore; four source-contract RED to GREEN, native fixture adds two cases",
+    "sha256": "89681b96b8fac81d1d593fc0878a41a3d5e4807c9211ecda3988452ceff5b72f"
+  },
+  "publishedSourceSha256": {
+    "Assets/Scripts/Gameplay/World/Generation/LairStacks.cs": "6369d2af456e674d7245ecf078602d516f2dc592e6e332a49d69d5abdae94c36",
+    "Assets/Scripts/Gameplay/World/Generation/LairRewardBudget.cs": "107a1ca023e46360be5dc9d07696e5b3c115524bf6055cfbc7ca4a1ba51c0a58",
+    "Assets/Scripts/Gameplay/World/Generation/Builders/LairStackBuilder.cs": "8fa03f7f7edec53195b2483881ea79d3e21744b28a7f07178d82443ed25ec552",
+    "Assets/Tests/EditMode/Gameplay/World/Generation/DensityLairStackTests.cs": "421688a4065fcfde3e9f7e7caf5593a5f0cb4501361dea79128cd77ecb81e31a",
+    "Assets/Tests/EditMode/Gameplay/World/Generation/DensityLairStackAdversarialTests.cs": "8d0c0a1fdb8e921d10992c04f81d8bd90d61a2c8de5ef39800aa7238ce0fed71",
+    "Assets/Tests/EditMode/Gameplay/World/Generation/DensityLairStackReviewTests.cs": "9f16a02d67ae017ad32d751f401f6ee264b6c714ed695f094d98dccbac864c41",
+    "Assets/Tests/EditMode/Gameplay/World/Generation/DensityLairStackCensusTests.cs": "4c815a236a3f2511176528741807c141b48783b15541fb4ad9623786682184e5",
+    "Assets/Tests/EditMode/Gameplay/World/Generation/DensityLairRewardBudgetTests.cs": "a0f489f8a1e413f3929f05123254f0970bf1c90f427245ca516915d27f72b931",
+    "Assets/Tests/EditMode/Gameplay/World/Generation/DensityLairRewardIntegrationTests.cs": "f83340f0c6c69306c5240a77b326838b6f97ecb1df0aa1008873dc126aac7bf8",
+    "Assets/Tests/EditMode/Gameplay/World/Generation/DensityLairPacingTests.cs": "6621773894118e018db11026095f0adf5466f5ce602747eae6f1368573c32aa8",
+    "Assets/Scripts/Scenarios/Custom/DensityLairNativePlayer.cs": "10d3ebebf28b802947cb1c75de0c523d10bc552207af40984a230ad6411119d2",
+    "Assets/Editor/Scenarios/DensityLairNativeBatch.cs": "89681b96b8fac81d1d593fc0878a41a3d5e4807c9211ecda3988452ceff5b72f",
+    "Assets/Scripts/Gameplay/World/Map/ZoneManager.cs": "9cb7c167111af00e70a0bc0da8f16b59e14c4ec6e908705d5b446c3f03d5d076",
+    "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs": "60731af662a3dbe7332967983d320d798c163b53096f3b8f8b4cc2d201951e52",
+    "Assets/Scripts/Gameplay/Save/SaveSystem.cs": "35dd2704f7b9bd130dce61f290cf61d2a643bf74276d658e2656dbdda5913aaf",
+    "Assets/Scripts/Gameplay/World/Generation/Builders/LairPopulationBuilder.cs": "df873500516188571dc8edb033e5a14e6bb9f0450231181fc9053e0dde1c309f",
+    "Assets/Tests/EditMode/Gameplay/Conversations/DensityLocalPeopleReviewTests.cs": "c0f9d3cf93619db3f264d6a4e308972ff32dc38983cb233d2e33a7fa26107dbf",
+    "Assets/Tests/EditMode/Gameplay/World/Generation/DensityUndergroundRoutesAdversarialTests.cs": "3a318d2b9d4571d6f887dda4397dd7771078c4712111330596e3f12ce8a11a2a",
+    "Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs": "10a546469b61c68b54c8725b396e216203dc45a27cf136c07033bb1c1391b2af"
+  },
+  "nativeDriverOverride": {
+    "source": "/tmp/coo-density-lair-native-review/DensityLairNativePlayer.cs",
+    "sha256": "10d3ebebf28b802947cb1c75de0c523d10bc552207af40984a230ad6411119d2",
+    "evidence": "Actual first Play failed from ordinary combat death after seven checks; preserved receipt b82b480a3be8462a89450980f436f40f. Reviewed retry uses actual starting Calm/Rime Grip, native FX waits, creature/trap-avoiding routes, and per-key HP/state/messages; runtime-reference compile zero errors; independent source reread clear. Four earlier save-proof source checks remain GREEN. Native retry pending."
+  },
+  "nativeFocusedEvidence": "Root native422/422 GREEN across C10/C11/glade/save scopes; first ordinary lair Play failed honestly from combat death; retry pending.",
+  "nativeRouteEvidence": "Actual Play ec7f98d1d263442babe5d065ca47fa87:14/14 PASS,0errors,32moves,0tonics; real starting Calm/Rime Grip; reward/F5\u2192mutation\u2192F6/ascent/revisit; exact restoration. Prior dagger death preserved."
 }

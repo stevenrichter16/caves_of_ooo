@@ -1,0 +1,42 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "1b5d6c2d56e64e228c657ff052dea3e4",
+  "run": {
+    "id": "2",
+    "testcasecount": "101",
+    "result": "Failed(Child)",
+    "total": "101",
+    "passed": "96",
+    "failed": "5",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 04:42:06Z",
+    "end-time": "2026-09-27 04:42:25Z",
+    "duration": "18.3202935"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.SpreadEffectiveShadowBiasTests.ActualApprovedProfileUsesItsOwnedShadowBiasRatherThanPipelineDefaults(\"Overworld.11.10.0\")",
+      "message": "  surface\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadEffectiveShadowBiasTests.ActualApprovedProfileUsesItsOwnedShadowBiasRatherThanPipelineDefaults(\"Overworld.12.10.0\")",
+      "message": "  surface\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadEffectiveShadowBiasTests.ActualApprovedProfileUsesItsOwnedShadowBiasRatherThanPipelineDefaults(\"Overworld.10.10.0\")",
+      "message": "  surface\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadEffectiveShadowBiasTests.AuthorityLossAndReturnRebuildOnlyTheOwnedLightPolicy",
+      "message": "  surface\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadEffectiveShadowBiasTests.OrdinaryForeignProfileKeepsInheritedPipelineShadowPolicy",
+      "message": "  surface\n  Expected: not null\n  But was:  null\n"
+    }
+  ]
+}

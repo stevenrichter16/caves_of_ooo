@@ -1,0 +1,155 @@
+--- a/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeCombat.cs
++++ b/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeCombat.cs
+@@ -16,7 +16,11 @@
+     public sealed partial class ReferenceGladeNativePlayer
+     {
+         private bool _combatOnly, _oldDamage, _combatAttempt, _combatDamage, _combatLethal, _combatResponse;
+-        private bool _combatPoseObserved, _combatPoseCaptured;
++        private bool _combatPoseObserved, _combatPoseCaptured, _combatOldEvent;
++        private const int MaxStartingTonicUses = 2;
++        private int _combatTonicsUsed, _combatRimeUses;
++        private ActivatedAbility _combatStartingRime;
++        private readonly Dictionary<string, Entity> _combatStartingTonics = new Dictionary<string, Entity>(StringComparer.Ordinal);
+         private int _combatMoves, _combatAttacks, _combatDeathX, _combatDeathY;
+         private Entity _combatTarget;
+         private string _combatTargetID, _combatLastState;
+@@ -42,6 +46,14 @@
+                 && actor.GetStatValue("Intelligence") == 10 && actor.GetStatValue("Willpower") == 10
+                 && actor.GetStatValue("Level") == 1 && !DebugInvincibility.IsEnabled(actor)
+                 && Cell().X == 40 && Cell().Y == 12);
++            foreach (var item in actor.GetPart<InventoryPart>().Objects.Where(e => e.BlueprintName == "HealingTonic"))
++                _combatStartingTonics.Add(item.ID, item);
++            Require(CombatStartingTonicUnits() == MaxStartingTonicUses, "exact ordinary two starting tonic units");
++            for (int slot = 0; slot < ActivatedAbilitiesPart.SlotCount; slot++)
++            {
++                var ability = actor.GetPart<ActivatedAbilitiesPart>()?.GetAbilityBySlot(slot);
++                if (ability?.Command == "CommandRimeGrip") _combatStartingRime = ability;
++            }
+             var hostiles = _stagedZone.GetReadOnlyEntities().Where(e => e.HasTag("Creature")
+                 && e.BlueprintName.StartsWith("Marlback", StringComparison.Ordinal)).ToArray();
+             var expected = new[] { ("MarlbackScrabbler", 42, 19), ("MarlbackGleaner", 44, 20), ("MarlbackScrabbler", 22, 5) };
+@@ -130,6 +142,8 @@
+             for (int attempt = 0; !CombatSystem.IsDeathHandled(_combatTarget); attempt++)
+             {
+                 Require(attempt < 40, "finite40-key combat bound");
++                CombatRequireLiveTarget();
++                yield return CombatUseStartingSupport();
+                 CombatRequireLiveTarget();
+                 if (SpatialQuery.Distance(_stagedZone, actor, _combatTarget) > 1)
+                 {
+@@ -175,13 +189,106 @@
+             yield return Capture("04-player-defeat-outcome");
+         }
+ 
++        private int CombatStartingTonicUnits()
++        {
++            var actor = _input.PlayerEntity;
++            var inventory = actor.GetPart<InventoryPart>();
++            return _combatStartingTonics.Where(pair => pair.Value.ID == pair.Key && inventory.Objects.Contains(pair.Value)
++                && pair.Value.GetPart<PhysicsPart>()?.InInventory == actor
++                && pair.Value.GetPart<PhysicsPart>()?.Equipped == null)
++                .Sum(pair => pair.Value.GetPart<StackerPart>()?.StackCount ?? 1);
++        }
++
++        private IEnumerator CombatUseStartingSupport()
++        {
++            // Real starting controls are used only after this exact owner has
++            // already demonstrated retaliation. No cooldown or world state is set.
++            if (_combatResponse && _combatRimeUses == 0 && _combatStartingRime?.CooldownRemaining == 0
++                && _combatTarget.GetStatValue("Hitpoints") > CavesOfOoo.Skills.Cryomancy_RimeGrip.GRIP_DAMAGE
++                && _combatTarget.GetEffect<FrozenEffect>()?.Cold > 0 != true
++                && SpatialQuery.Distance(_stagedZone, _input.PlayerEntity, _combatTarget) == 1
++                && FactionManager.IsHostile(_combatTarget, _input.PlayerEntity))
++            {
++                var actor = _input.PlayerEntity;
++                var origin = Cell();
++                var targetCell = SpatialQuery.ClosestCell(_stagedZone, _combatTarget, origin.X, origin.Y);
++                var first = targetCell.Occupants.FirstOrDefault(e => AbilityTargeting.IsCreatureTarget(e, actor))
++                    ?? targetCell.Occupants.FirstOrDefault(e => e != null && !e.HasTag("Creature")
++                        && AbilityTargeting.IsElementalTarget(e, actor));
++                int slot = -1;
++                for (int i = 0; i < ActivatedAbilitiesPart.SlotCount; i++)
++                    if (ReferenceEquals(actor.GetPart<ActivatedAbilitiesPart>()?.GetAbilityBySlot(i), _combatStartingRime)) slot = i;
++                if (slot >= 0 && targetCell.IsVisible && _combatTarget.GetPart<RenderPart>()?.Visible == true
++                    && ReferenceEquals(first, _combatTarget))
++                {
++                    string before = CombatState();
++                    Diag.Record("scenario", ReferenceGladeCombatEvidence.SupportMarkerKind, actor, _combatTarget,
++                        new { runId = RunId, action = "starting_rime_grip", before, slot });
++                    string marker = Diag.Snapshot(1).Single().TraceId;
++                    try
++                    {
++                        yield return Tap((Key)Enum.Parse(typeof(Key), slot == 9 ? "Digit0" : "Digit" + (slot + 1)));
++                        Require(State() == "AwaitingDirection", "actual initial ready Rime asks for direction");
++                        yield return Tap(Direction(Math.Sign(targetCell.X - origin.X), Math.Sign(targetCell.Y - origin.Y)));
++                        yield return CombatWaitForFx();
++                        Require(Diag.Snapshot(Diag.BufferCapacity).Any(row => row.TraceId == marker)
++                            && _combatStartingRime.CooldownRemaining > 0
++                            && (_combatTarget.GetEffect<FrozenEffect>()?.Cold > 0 || CombatSystem.IsDeathHandled(_combatTarget)),
++                            "actual Rime cooldown and exact original owner effect; " + CombatState());
++                        _combatRimeUses++;
++                    }
++                    finally { CombatRecordSupport(marker, "starting_rime_grip", before); }
++                    // A naturally lethal spell cannot substitute for the stronger
++                    // melee kill receipt, even if other ordinary effects intervened.
++                    CombatRequireLiveTarget();
++                }
++            }
++            var player = _input.PlayerEntity;
++            var hp = player.GetStat("Hitpoints");
++            if (_combatTonicsUsed >= MaxStartingTonicUses || hp.Value * 3 > hp.Max * 2) yield break;
++            var tonic = _combatStartingTonics.Where(pair => pair.Value.ID == pair.Key
++                && player.GetPart<InventoryPart>().Objects.Contains(pair.Value)
++                && pair.Value.GetPart<PhysicsPart>()?.InInventory == player
++                && pair.Value.GetPart<PhysicsPart>()?.Equipped == null).Select(pair => pair.Value).FirstOrDefault();
++            if (tonic == null) yield break;
++            int beforeUnits = CombatStartingTonicUnits();
++            string beforeState = CombatState();
++            Diag.Record("scenario", ReferenceGladeCombatEvidence.SupportMarkerKind, player, player,
++                new { runId = RunId, action = "starting_healing_tonic", tonic = tonic.ID, beforeUnits, beforeState });
++            string tonicMarker = Diag.Snapshot(1).Single().TraceId;
++            try
++            {
++                yield return ItemAction(tonic, "ApplyTonic");
++                yield return CombatWaitForFx();
++                if (State() == "InventoryOpen") yield return Tap(Key.I);
++                yield return CombatWaitForFx();
++                Require(ReferenceGladeCombatEvidence.HasConsumedTonic(Diag.Snapshot(Diag.BufferCapacity),
++                    tonicMarker, player.ID, tonic.ID, beforeUnits, CombatStartingTonicUnits()),
++                    "one actual original tonic unit and fresh exact native application; " + CombatState());
++                _combatTonicsUsed++;
++            }
++            finally { CombatRecordSupport(tonicMarker, "starting_healing_tonic", beforeState); }
++            yield return CombatDismissEarnedAdvancement();
++        }
++
++        private void CombatRecordSupport(string marker, string action, string before)
++        {
++            var rows = Diag.Snapshot(Diag.BufferCapacity);
++            _combatSteps.Add(JsonConvert.SerializeObject(new { marker, action, before, after = CombatState(),
++                windowValid = rows.Any(row => row.TraceId == marker),
++                remainingOriginalTonicUnits = CombatStartingTonicUnits(), startingTonicsUsed = _combatTonicsUsed,
++                startingRimeUses = _combatRimeUses, records = rows.SkipWhile(row => row.TraceId != marker).ToArray() }));
++        }
++
+         private void CombatRequireLiveTarget()
+         {
+             Require(_clock.Elapsed.TotalSeconds < 180 && State() == "Normal"
+                 && _input.PlayerEntity.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(_input.PlayerEntity),
+                 "live ordinary combat actor within deadline; " + CombatState());
+             Require(_combatTarget.ID == _combatTargetID && _combatTarget.GetStatValue("Hitpoints") > 0
+-                && !CombatSystem.IsDeathHandled(_combatTarget) && _stagedZone.GetEntityCell(_combatTarget) != null,
++                && !CombatSystem.IsDeathHandled(_combatTarget) && _stagedZone.GetEntityCell(_combatTarget) != null
++                && ReferenceEquals(_combatTarget.GetPart<BrainPart>()?.CurrentZone, _stagedZone)
++                && _input.TurnManager.IsRegistered(_combatTarget),
+                 "same original target remains alive; NPC defeat is not player success");
+         }
+ 
+@@ -351,6 +458,7 @@
+                 + "; dead=" + CombatSystem.IsDeathHandled(actor) + "; target=" + _combatTargetID + "@" + targetAt?.X + "," + targetAt?.Y
+                 + "; targetHP=" + _combatTarget?.GetStatValue("Hitpoints") + "; tick=" + _input.TurnManager.TickCount
+                 + "; energy=" + _input.TurnManager.GetEnergy(actor) + "; moves=" + _combatMoves + "; attacks=" + _combatAttacks
++                + "; startingTonicsUsed=" + _combatTonicsUsed + "; startingRimeUses=" + _combatRimeUses
+                 + "; actualGear=" + CombatGear(actor) + "; stats=" + CombatStats(actor)
+                 + "; messages=" + string.Join(" | ", MessageLog.GetRecentEntries(12).Select(e => e.Text));
+             return _combatLastState;

@@ -1,0 +1,119 @@
+{
+    "runId": "bfaf10843a4f4d88b2e4b76ae043675e",
+    "fatal": "System.InvalidOperationException: Density completion precondition: actual current native door model: initial\n  at CavesOfOoo.Scenarios.Custom.DensityDoorNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityDoorNativePlayer.cs:264 \n  at CavesOfOoo.Scenarios.Custom.DensityDoorNativePlayer.ObserveDoor (System.String label) [0x00162] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityDoorNativePlayer.cs:138 \n  at CavesOfOoo.Scenarios.Custom.DensityDoorNativePlayer+<RunAudit>d__58.MoveNext () [0x003cf] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityDoorNativePlayer.cs:107 \n  at CavesOfOoo.Scenarios.Custom.DensityDoorNativePlayer+<RunSafely>d__76.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityDoorNativePlayer.cs:277 ",
+    "zone": "Overworld.16.1.0",
+    "doorID": "5009",
+    "checkpointHash": "",
+    "canVerify": "Actual ordinary VillageBuilder+late-placement source, saved real aperture axis and native owner; native menu close/open cost one stationary action; bump opens before a later movement; actual threshold traversal; exact open/closed borrowed model identity; real F5/native-open-mutation/F6 replacement graph with closed-state/orientation restoration.",
+    "cannotVerify": "One labelled start-position shortcut and bounded source search. No door, key, money, injury, HP, equipment or permission grants; no manual scheduler bypass or NPC schedule injection. Core/native unit tests separately cover optional locks, occupied/foreign/refused actions and actor paths. This replay does not establish NPC autonomous door use, stationary FOV/light-cache correctness, natural discovery frequency or visual quality; captures need human review.",
+    "complete": false,
+    "errorsFinalized": true,
+    "startShortcut": true,
+    "cases": 4,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "walks": 0,
+    "ordinaryZonesInspected": 1,
+    "seconds": 1.4668752999999999,
+    "audit": [
+        "PASS ordinary_start",
+        "PASS actual_generated_open_door",
+        "PASS labelled_single_start",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Everyday/Doors/Native/bfaf10843a4f4d88b2e4b76ae043675e/01-real-generated-open-door.png"
+    ],
+    "candidates": [
+        "Overworld.16.1.0:ordinary recorded-aperture pipeline inspected",
+        "Overworld.16.1.0:5009@59,7:selected actual generated aperture axis=1 outside=58,7 inside=60,7"
+    ],
+    "nativeKeys": [
+        {
+            "keys": "N",
+            "sequence": 0,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.2.6.0",
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.2.6.0",
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            }
+        }
+    ],
+    "failureState": {
+        "label": "failure",
+        "state": "Normal",
+        "zone": "Overworld.16.1.0",
+        "hp": 40,
+        "maxHp": 40,
+        "x": 58,
+        "y": 7,
+        "tick": 10,
+        "energy": 1000,
+        "deathHandled": false,
+        "blockingFx": false,
+        "lastMessages": [
+            "Save detected. Press [C] to continue, [N] for new game.",
+            "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+            "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+            "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+            "Villagers have work for you — press [Q] for your quest log.",
+            "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+            "Starting a new game. Initial checkpoint saved.",
+            "Autosaved."
+        ]
+    },
+    "doors": [
+        {
+            "label": "initial",
+            "id": "5009",
+            "zone": "Overworld.16.1.0",
+            "model": "",
+            "x": 59,
+            "y": 7,
+            "quarter": 1,
+            "tick": 10,
+            "energy": 1000,
+            "open": true,
+            "present": true,
+            "drawn": false
+        }
+    ]
+}

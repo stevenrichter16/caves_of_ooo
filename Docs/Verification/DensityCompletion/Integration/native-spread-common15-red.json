@@ -1,0 +1,66 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "128b3c19ea37438b843fd74566ef13ab",
+  "run": {
+    "id": "2",
+    "testcasecount": "15",
+    "result": "Failed(Child)",
+    "total": "15",
+    "passed": "4",
+    "failed": "11",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 04:11:52Z",
+    "end-time": "2026-09-27 04:11:59Z",
+    "duration": "6.9128264"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.SpreadCommonTerrainTests.ExistingNativeFamiliesKeepTheirOwnerWithDistinctApprovedForms(\"Bush\",\"green-grass\")",
+      "message": "  Expected: String starting with \"reference-glade-green-grass-\"\n  But was:  \"ring-bush-2\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCommonTerrainTests.ExistingNativeFamiliesKeepTheirOwnerWithDistinctApprovedForms(\"Reeds\",\"pale-reeds\")",
+      "message": "  Expected: String starting with \"reference-glade-pale-reeds-\"\n  But was:  \"spread-reeds-1\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCommonTerrainTests.ExistingNativeFamiliesKeepTheirOwnerWithDistinctApprovedForms(\"Wall\",\"low-wall\")",
+      "message": "  Expected: String starting with \"reference-glade-low-wall-\"\n  But was:  \"ring-wall-0\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCommonTerrainTests.ExistingNativeFamiliesKeepTheirOwnerWithDistinctApprovedForms(\"Chest\",\"chest\")",
+      "message": "  Expected: String starting with \"reference-glade-chest-\"\n  But was:  \"ring-chest\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCommonTerrainTests.ExistingNativeFamiliesKeepTheirOwnerWithDistinctApprovedForms(\"WoodenBarrel\",\"barrel\")",
+      "message": "  Expected: String starting with \"reference-glade-barrel-\"\n  But was:  \"ring-wooden-barrel\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCommonTerrainTests.ExistingNativeFamiliesKeepTheirOwnerWithDistinctApprovedForms(\"MushroomRing\",\"mushroom-ring\")",
+      "message": "  Expected: String starting with \"reference-glade-mushroom-ring-\"\n  But was:  \"ring-mushroom-ring\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCommonTerrainTests.NativeQuestRefusalIsNotRescuedByCommonStyle",
+      "message": "  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCommonTerrainTests.RealGeneratedGrassUsesApprovedGroundAcrossWildernessAndPoi(\"Overworld.12.10.0\")",
+      "message": "  Expected: String starting with \"reference-glade-ground-\"\n  But was:  \"ring-grass-3\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCommonTerrainTests.RealGeneratedGrassUsesApprovedGroundAcrossWildernessAndPoi(\"Overworld.10.10.0\")",
+      "message": "  Expected: String starting with \"reference-glade-ground-\"\n  But was:  \"ring-grass-1\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCommonTerrainTests.RealGeneratedGrassUsesApprovedGroundAcrossWildernessAndPoi(\"Overworld.4.9.0\")",
+      "message": "  Expected: String starting with \"reference-glade-ground-\"\n  But was:  \"ring-grass-2\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCommonTerrainTests.ScopedContactFollowsCurrentVisiblePlantAndReleasesOnAuthorityLoss",
+      "message": "  Expected: not null\n  But was:  null\n"
+    }
+  ]
+}

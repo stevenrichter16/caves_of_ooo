@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
 using CavesOfOoo.Storylets;
 using UnityEngine;
 
 namespace CavesOfOoo.Rendering
 {
     /// <summary>Read-only presentation of the eight native surface neighbours of
-    /// Morrowfast. Simulation membership, collision, equipment and water remain
+    /// Morrowfast and map-authorized Spread surfaces/lair floors. Simulation membership, collision, equipment and water remain
     /// owned by the native zone. Unknown content retains its native fallback.</summary>
     [ExecuteAlways, DefaultExecutionOrder(900)]
     public sealed class SpawnRing3DPresenter : MonoBehaviour
@@ -17,7 +18,7 @@ namespace CavesOfOoo.Rendering
             public Entity Owner;
             public string ModelId;
             public int AuthoredQuarterTurns;
-            public GameObject Root;
+            public GameObject Root, SourcePrefab;
             public Renderer[] Renderers;
             public Collider[] Colliders;
             public Animator Animator;
@@ -30,6 +31,7 @@ namespace CavesOfOoo.Rendering
         }
         private readonly Dictionary<Entity, SpawnRing3DRecipe> recipes = new Dictionary<Entity, SpawnRing3DRecipe>();
         private readonly Dictionary<Entity, View> views = new Dictionary<Entity, View>();
+        private readonly Dictionary<Entity,bool> staticStyles = new Dictionary<Entity,bool>();
         private readonly Dictionary<Collider, View> byCollider = new Dictionary<Collider, View>();
         private readonly HashSet<Entity> seen = new HashSet<Entity>();
         private readonly List<Entity> removed = new List<Entity>();
@@ -38,15 +40,24 @@ namespace CavesOfOoo.Rendering
         private VoxelWorldPresentation voxel;
         private MultiCellPilot3DLibrary pilotLibrary;
         private ReferenceGladeVoxelLibrary gladeLibrary;
+        private SpreadVisitorPaintLibrary visitorPaintLibrary;
+        private SpreadVisitorCreatureLibrary visitorCreatureLibrary;
+        private SpreadBiomeHumanoidLibrary humanoidLibrary;
+        private SpreadNativeStyle3DLibrary nativeStyleLibrary;
+        private SpreadBiomeStyleCatalog approvedStyle;
+        private MaterialPropertyBlock styleProperties;
+        private readonly List<Material> styleMaterials=new List<Material>(4);
         private SpawnRing3DCatalog definition;
         private NativeZone3DRenderSurface surface;
         private NativeSpellFxLibrary spellLibrary;
         private SpawnRing3DGroundPatches ground;
+        private ReferenceGladeGroundContact groundContact;
         private Village3DEquipmentViews equipment;
         private NativeQuestCueViews questCues;
+        private SpreadTransientVolumes transientVolumes;
         private Camera source;
         private bool requestedVisible = true, hooks;
-        private bool boundReferenceGlade;
+        private bool boundReferenceGlade, boundSpreadStyle;
         public Zone CurrentZone { get; private set; }
         public Camera WorldCamera => surface?.WorldCamera;
         public bool IsReady { get; private set; }
@@ -58,7 +69,8 @@ namespace CavesOfOoo.Rendering
         // Model choice, ground palette and actor scale are captured at Bind. A
         // managed map change must rebuild that owned presentation as one unit.
         private bool GladeAuthorityMatches => CurrentZone == null
-            || boundReferenceGlade == ReferenceGladePlan.IsActive(CurrentZone);
+            || (boundReferenceGlade == ReferenceGladePlan.IsActive(CurrentZone)
+                && boundSpreadStyle == SpreadPresentationScope.IsActive(CurrentZone));
         private bool PresentationRequested => GladeAuthorityMatches && IsReady && requestedVisible && Village3DSettings.Enabled && source != null && isActiveAndEnabled && AreaCompositionScope.Allows(CurrentZone);
         public bool PresentationVisible => PresentationRequested && surface != null && surface.IsVisible;
         public NativeZone3DRenderSurface ActiveSurface => PresentationVisible ? surface : null;
@@ -70,12 +82,13 @@ namespace CavesOfOoo.Rendering
         public void Bind(Zone zone, Camera sourceCamera)
         {
             bool referenceGlade = ReferenceGladePlan.IsActive(zone);
+            bool spreadStyle = SpreadPresentationScope.IsActive(zone);
             if(zone!=null&&!AreaCompositionScope.Allows(zone))
-            {Release();CurrentZone=zone;source=sourceCamera;boundReferenceGlade=referenceGlade;return;}
-            if (ReferenceEquals(CurrentZone, zone) && boundReferenceGlade == referenceGlade && (IsReady || Failure != null))
+            {Release();CurrentZone=zone;source=sourceCamera;boundReferenceGlade=referenceGlade;boundSpreadStyle=spreadStyle;return;}
+            if (ReferenceEquals(CurrentZone, zone) && boundReferenceGlade == referenceGlade && boundSpreadStyle == spreadStyle && (IsReady || Failure != null))
             { source = sourceCamera; SyncCamera(); return; }
-            Release(); CurrentZone = zone; source = sourceCamera; boundReferenceGlade = referenceGlade;
-            if (!Village3DSettings.Enabled || zone == null || source == null || !SupportsZone(zone.ZoneID)) return;
+            Release(); CurrentZone = zone; source = sourceCamera; boundReferenceGlade = referenceGlade; boundSpreadStyle = spreadStyle;
+            if (!Village3DSettings.Enabled || zone == null || source == null || !(spreadStyle || SupportsZone(zone.ZoneID))) return;
             if (zone.ZoneID == FellingSiteBuilder.ZoneID && !FellingSceneRuntime.IsActive(zone)) return;
             try
             {
@@ -92,23 +105,52 @@ namespace CavesOfOoo.Rendering
                 var materials = new List<Material> { library.WorldMaterial, library.WaterMaterial,
                     library.EquipmentLibrary.WorldMaterial, library.EquipmentLibrary.WaterMaterial };
                 if (pilotLibrary != null) { materials.Add(pilotLibrary.WorldMaterial); materials.Add(pilotLibrary.TarMaterial); materials.Add(pilotLibrary.GroundMaterial); }
+                var poured = PouredLiquid3DLibrary.Load();
+                if (poured == null) throw new InvalidOperationException("Poured liquid color library is unavailable.");
+                poured.Validate(); materials.AddRange(poured.Materials);
+                if (spreadStyle)
+                {
+                    var portable = SpreadPortable3DLibrary.Load();
+                    if (portable == null) throw new InvalidOperationException("Spread portable library is unavailable.");
+                    portable.Validate(); materials.Add(portable.Material);
+                }
                 ReferenceGladeVoxelLibrary glade=null;
-                if(ReferenceGladePlan.IsActive(zone))
+                if(referenceGlade || spreadStyle)
                 {
                     glade=ReferenceGladeVoxelLibrary.Load();if(glade==null)throw new InvalidOperationException("Reference glade kit is unavailable.");
                     glade.Validate();gladeLibrary=glade;materials.Add(glade.Material);
+                    if(spreadStyle){humanoidLibrary=SpreadBiomeHumanoidLibrary.Load();if(humanoidLibrary==null)throw new InvalidOperationException("Scoped humanoid library missing.");humanoidLibrary.Validate();}
+                }
+                if(spreadStyle)
+                {
+                    // Unity native handles must be created on this main-thread
+                    // bind, never in a MonoBehaviour constructor/field initializer.
+                    visitorPaintLibrary=SpreadVisitorPaintLibrary.Load();
+                    if(visitorPaintLibrary==null)throw new InvalidOperationException("Scoped existing visitor palette library missing.");
+                    visitorPaintLibrary.Validate();
+                    nativeStyleLibrary=SpreadNativeStyle3DLibrary.Load();if(nativeStyleLibrary==null)throw new InvalidOperationException("Native static style library missing.");nativeStyleLibrary.EnsureReady();
+                    visitorCreatureLibrary=SpreadVisitorCreatureLibrary.Load();
+                    if(visitorCreatureLibrary==null)throw new InvalidOperationException("Original visitor library missing.");
+                    visitorCreatureLibrary.Validate();materials.Add(visitorCreatureLibrary.Material);
+                    styleProperties=new MaterialPropertyBlock();
+                    approvedStyle=new SpreadBiomeStyleCatalog(glade,SpreadBiomeActorLibrary.Load(),humanoidLibrary,SpreadPortable3DLibrary.Load(),poured,SpreadScenery3DLibrary.Load(),SpreadCreature3DLibrary.Load(),SpreadEnvironment3DLibrary.Load(),visitorPaintLibrary,nativeStyleLibrary,visitorCreatureLibrary);
                 }
                 surface = new NativeZone3DRenderSurface(transform, library.Renderer, library.RendererIndex,
                     library.CompositeMaterial, materials.ToArray(), 2.2f);
                 if (glade != null)
                 {
                     surface.ConfigureLighting(1.45f, .65f, .9f, new Color(1f, .98f, .92f),
-                        new Vector3(55, -145, 0), .68f, .008f, .018f, 18f, FilterMode.Bilinear);
+                        new Vector3(55, -145, 0), .68f, .008f, .018f, 18f, FilterMode.Bilinear, useLocalShadowBias: true);
                     surface.ConfigureAmbientProbe(new Color(.28f, .32f, .30f));
+                    // Borrowed source assets and all ordinary palettes remain at
+                    // the shader's zero default. Only this owned glade clone varies.
+                    surface.MaterialFor(glade.Material).SetFloat("_GroundMottleStrength", .24f);
                 }
                 questCues = new NativeQuestCueViews(surface, library.WorldMaterial, 16);
-                ground = new SpawnRing3DGroundPatches(surface, library, pilotLibrary, voxel, glade);
-                equipment = new Village3DEquipmentViews(library.EquipmentLibrary, go => PrepareModel(go, true));
+                ground = new SpawnRing3DGroundPatches(surface, library, pilotLibrary, voxel, glade,nativeStyleLibrary);
+                if (glade != null && (referenceGlade || spreadStyle)) groundContact = new ReferenceGladeGroundContact(glade,surface.MaterialFor(glade.Material),spreadStyle?SpreadEnvironment3DLibrary.Load():null);
+                if(spreadStyle)transientVolumes=new SpreadTransientVolumes(surface,library.WorldMaterial,(x,y)=>ground.HasWater(x,y));
+                equipment = new Village3DEquipmentViews(library.EquipmentLibrary, go => PrepareModel(go, true), spreadStyle);
                 IsReady = true; Subscribe(); Refresh(null); SyncCamera();
             }
             catch (Exception e)
@@ -131,6 +173,8 @@ namespace CavesOfOoo.Rendering
         /// dirtyCells checks the complete ground fingerprint; no seed is replayed.</summary>
         public void Refresh(LightMap light, HashSet<int> dirtyCells = null)
         {
+            using (PerformanceMarkers.Zone.NativeRefresh.Auto())
+            {
             if (CurrentZone != null && source != null && !GladeAuthorityMatches)
                 Bind(CurrentZone, source);
             if (!IsReady || CurrentZone == null) return;
@@ -146,6 +190,7 @@ namespace CavesOfOoo.Rendering
                 Release(); CurrentZone = zone; source = camera; Failure = e.Message;
                 Debug.LogWarning("[SpawnRing3D] Native presentation retained: " + Failure);
             }
+            }
         }
         private void RefreshCurrent(LightMap light, HashSet<int> dirtyCells)
         {
@@ -155,13 +200,15 @@ namespace CavesOfOoo.Rendering
                 var recipe = SpawnRing3DRecipes.Resolve(CurrentZone, entity, definition, pilotLibrary?.Definition);
                 if (recipe.ModelId == null) continue;
                 seen.Add(entity);
+                if(nativeStyleLibrary!=null){bool styled=nativeStyleLibrary.ForOwner(CurrentZone,recipe)!=null;
+                    if(!staticStyles.TryGetValue(entity,out bool previousStyle)||previousStyle!=styled)Mark(recipe);staticStyles[entity]=styled;}
                 if (recipes.TryGetValue(entity, out var previous) && !SameGeometry(previous, recipe))
                 { Mark(previous); Mark(recipe); }
                 else if (!recipes.ContainsKey(entity)) Mark(recipe);
                 recipes[entity] = recipe;
                 if (recipe.Batched)
                 { if (views.TryGetValue(entity, out var old)) RemoveView(old); continue; }
-                if (!views.TryGetValue(entity, out var view) || view.ModelId != recipe.ModelId)
+                if (!views.TryGetValue(entity, out var view) || view.ModelId != recipe.ModelId || view.SourcePrefab != PrefabFor(recipe))
                 { if (view != null) RemoveView(view); view = AddView(recipe); }
                 // Apply an authored rest-facing only when that recipe changes;
                 // ordinary movement, combat and cast facing retain their pose.
@@ -178,11 +225,13 @@ namespace CavesOfOoo.Rendering
             foreach (var pair in recipes) if (!seen.Contains(pair.Key)) removed.Add(pair.Key);
             foreach (var entity in removed)
             {
-                Mark(recipes[entity]); recipes.Remove(entity);
+                Mark(recipes[entity]); recipes.Remove(entity); staticStyles.Remove(entity);
                 if (views.TryGetValue(entity, out var view)) RemoveView(view);
             }
             ground.Refresh(CurrentZone, recipes, dirtyCells);
+            groundContact?.Refresh(CurrentZone, recipes, FullReveal);
             surface.UpdateFog(CurrentZone, light, FullReveal);
+            transientVolumes?.Refresh(CurrentZone);
             RefreshEquipment(true); SyncCamera();
         }
         private static bool SameGeometry(SpawnRing3DRecipe a, SpawnRing3DRecipe b)
@@ -191,30 +240,44 @@ namespace CavesOfOoo.Rendering
         {
             if (recipe.Batched && Village3DProjection.TryWorldToCell(recipe.Position, out int x, out int y)) ground.Mark(x, y);
         }
+        private GameObject PrefabFor(SpawnRing3DRecipe recipe)
+            => recipe.Owner.HasPart<MultiCellPilotPropPart>() ? pilotLibrary?.FindModel(recipe.ModelId)
+                : nativeStyleLibrary?.ForOwner(CurrentZone,recipe)?.Prefab ?? library.FindModel(recipe.ModelId);
         private View AddView(SpawnRing3DRecipe recipe)
         {
-            var prefab = recipe.Owner.HasPart<MultiCellPilotPropPart>() ? pilotLibrary?.FindModel(recipe.ModelId) : library.FindModel(recipe.ModelId);
+            var prefab = PrefabFor(recipe);
             if (prefab == null) throw new InvalidOperationException("Missing ring model " + recipe.ModelId);
             var root = Instantiate(prefab, surface.ContentRoot, false); root.name = recipe.ComponentId ?? recipe.ModelId;
             root.transform.position = recipe.Position;
             if(recipe.QuarterTurns!=0)root.transform.localRotation=Quaternion.Euler(0,recipe.QuarterTurns*90,0);
-            PrepareModel(root, recipe.Transient);
-            if (ReferenceGladePlan.IsActive(CurrentZone) && (recipe.Owner.HasTag("Creature") || recipe.Owner.HasTag("Player")))
+            PrepareModel(root, recipe.Transient, recipe.ModelId);
+            if ((boundReferenceGlade || boundSpreadStyle) && (recipe.Owner.HasTag("Creature") || recipe.Owner.HasTag("Player")))
             {
-                // Measure the actual adopted voxel rig, not its finer source bounds.
+                // Measure visible geometry for the three authored body forms.
+                // Their wider animation/culling envelope is preserved separately.
                 // Scaling the root keeps animation, equipment and picking together.
                 var renderers = root.GetComponentsInChildren<Renderer>(true);
                 if (renderers.Length > 0)
                 {
-                    var bounds = renderers[0].bounds;
-                    for (int i = 1; i < renderers.Length; i++) bounds.Encapsulate(renderers[i].bounds);
+                    var bounds = PresentationBounds(renderers[0]);
+                    for (int i = 1; i < renderers.Length; i++) bounds.Encapsulate(PresentationBounds(renderers[i]));
                     bool marlback = recipe.Owner.BlueprintName?.StartsWith("Marlback", StringComparison.Ordinal) == true;
-                    float scale = Mathf.Min(1f, Mathf.Min((marlback ? .62f : .9f) / Mathf.Max(.01f,bounds.size.y),
-                        (marlback ? .84f : .68f) / Mathf.Max(.01f,bounds.size.x)));
+                    bool inspectionHumanoid = recipe.ModelId == "ring-player" || recipe.ModelId == "ring-sien" || recipe.ModelId == "ring-nam" || humanoidLibrary?.Find(recipe.ModelId)!=null;
+                    // Native screenshot review measures these exact three rigs
+                    // against the existing compensated camera. Other creatures
+                    // retain their smaller profile, including the passive moth.
+                    float maxHeight = marlback ? .90f : inspectionHumanoid ? 1.35f : .9f;
+                    float maxWidth = marlback ? 1.02f : inspectionHumanoid ? 1.1f : .68f;
+                    if(recipe.ModelId.StartsWith("spread-creature-",StringComparison.Ordinal))
+                    {maxHeight=recipe.ModelId=="spread-creature-jungle-ape"?1.25f:.9f;maxWidth=recipe.ModelId=="spread-creature-giant-spider"?1.15f:1.12f;}
+                    var visitor=SpreadVisitorCreatureSource.Find(recipe.ModelId);
+                    if(visitor!=null){maxHeight=visitor.MaxHeight;maxWidth=visitor.MaxWidth;}
+                    float scale = Mathf.Min(1f, Mathf.Min(maxHeight / Mathf.Max(.01f,bounds.size.y),
+                        maxWidth / Mathf.Max(.01f,bounds.size.x)));
                     root.transform.localScale *= scale;
                 }
             }
-            var view = new View { Owner = recipe.Owner, ModelId = recipe.ModelId, Root = root, Target = recipe.Position,
+            var view = new View { Owner = recipe.Owner, ModelId = recipe.ModelId, Root = root, SourcePrefab = prefab, Target = recipe.Position,
                 AuthoredQuarterTurns=recipe.QuarterTurns,
                 AuthoredIdleFacing=recipe.ModelId.StartsWith("cathedral-elder-",StringComparison.Ordinal),
                 Transient = recipe.Transient, Renderers = root.GetComponentsInChildren<Renderer>(true),
@@ -229,8 +292,8 @@ namespace CavesOfOoo.Rendering
             }
             else
             {
-                Bounds bounds = view.Renderers[0].bounds;
-                for (int i = 1; i < view.Renderers.Length; i++) bounds.Encapsulate(view.Renderers[i].bounds);
+                Bounds bounds = PresentationBounds(view.Renderers[0]);
+                for (int i = 1; i < view.Renderers.Length; i++) bounds.Encapsulate(PresentationBounds(view.Renderers[i]));
                 var collider = root.AddComponent<BoxCollider>(); collider.isTrigger = true;
                 collider.center = root.transform.InverseTransformPoint(bounds.center);
                 collider.size = Abs(root.transform.InverseTransformVector(new Vector3(bounds.size.x, 0, 0)))
@@ -241,6 +304,21 @@ namespace CavesOfOoo.Rendering
             foreach (var collider in view.Colliders) byCollider.Add(collider, view);
             if (view.Animator != null) { view.Animator.applyRootMotion = false; view.Animator.cullingMode = AnimatorCullingMode.CullCompletely; view.Cast = new NativeSpellCastPlayer(view.Animator); }
             views.Add(recipe.Owner, view); return view;
+        }
+        // Only the exact three glade body forms decouple visible proportions
+        // and picking from the retained imported animation/culling envelope.
+        // Borrowed meshes, bones, renderer.localBounds and other actors stay put.
+        private Bounds PresentationBounds(Renderer renderer)
+        {
+            if(renderer is SkinnedMeshRenderer skin&&(gladeLibrary?.IsAuthoredHumanoidMesh(skin.sharedMesh)==true||humanoidLibrary?.ContainsMesh(skin.sharedMesh)==true||visitorCreatureLibrary?.ContainsMesh(skin.sharedMesh)==true))
+            {
+                var bounds=skin.sharedMesh.bounds;var matrix=skin.localToWorldMatrix;
+                var extents=Abs(matrix.MultiplyVector(new Vector3(bounds.extents.x,0,0)))
+                    +Abs(matrix.MultiplyVector(new Vector3(0,bounds.extents.y,0)))
+                    +Abs(matrix.MultiplyVector(new Vector3(0,0,bounds.extents.z)));
+                return new Bounds(matrix.MultiplyPoint3x4(bounds.center),extents*2);
+            }
+            return renderer.bounds;
         }
         private static Vector3 Abs(Vector3 v) => new Vector3(Mathf.Abs(v.x), Mathf.Abs(v.y), Mathf.Abs(v.z));
         private void RemoveView(View view)
@@ -281,12 +359,98 @@ namespace CavesOfOoo.Rendering
             foreach (var view in views.Values)
                 if (view.Animator != null && CurrentZone.GetEntityCell(view.Owner) != null) equipment.Sync(view.Owner, view.Root);
             equipment.EndSync();
+            RefreshHeadwearCover();
+        }
+        private void RefreshHeadwearCover()
+        {
+            if (!boundSpreadStyle || humanoidLibrary == null || styleProperties == null) return;
+            foreach (var view in views.Values)
+            {
+                var adopted = humanoidLibrary.Find(view.ModelId);
+                if (adopted == null) continue;
+                bool covered = false;
+                var inventory = view.Owner.GetPart<InventoryPart>();
+                if (inventory != null && ReferenceEquals(inventory.ParentEntity, view.Owner))
+                    foreach (var item in inventory.GetAllEquipped())
+                        if (SpreadEquipmentRecipes.TryRecipe(view.Owner, item, out var recipe)
+                            && recipe.Slot == "Head" && TryGetApprovedEquipmentStyle(view.Owner, item, out _))
+                        { covered = true; break; }
+                foreach (var renderer in view.Renderers)
+                {
+                    if (!(renderer is SkinnedMeshRenderer skin) || skin.sharedMesh != adopted.Mesh
+                        || !skin.sharedMesh.HasVertexAttribute(UnityEngine.Rendering.VertexAttribute.TexCoord1)) continue;
+                    // Merge the root block and only existing indexed overrides.
+                    // A new indexed block would replace the entire root block,
+                    // losing its native visibility, SH and tint properties.
+                    renderer.GetPropertyBlock(styleProperties);
+                    styleProperties.SetFloat("_CoverHeadwear", covered ? 1 : 0);
+                    renderer.SetPropertyBlock(styleProperties);
+                    for (int i = 0; i < skin.sharedMesh.subMeshCount; i++)
+                    {
+                        renderer.GetPropertyBlock(styleProperties, i);
+                        if (styleProperties.isEmpty) continue;
+                        styleProperties.SetFloat("_CoverHeadwear", covered ? 1 : 0);
+                        renderer.SetPropertyBlock(styleProperties, i);
+                    }
+                }
+            }
         }
         public bool TryGetEquipmentView(Entity actor, Entity item, out GameObject root)
         { root = null; return equipment != null && equipment.TryGet(actor, item, out root); }
+        /// <summary>Side-effect-free proof of this owner's currently committed
+        /// approved mesh/palette. Does not refresh, load art, consume RNG or draw
+        /// a proxy. Unknown legacy styles remain explicit coverage gaps.</summary>
+        public bool TryGetApprovedStyle(Entity owner,out SpreadBiomeStyleEvidence evidence)
+        {
+            evidence=new SpreadBiomeStyleEvidence(null,"outside-current-approved-scope",false);
+            if(!IsReady||approvedStyle==null||!boundSpreadStyle||!SpreadPresentationScope.IsActive(CurrentZone)||!GladeAuthorityMatches)return false;
+            if(owner==null||!recipes.TryGetValue(owner,out var recipe))
+            {evidence=new SpreadBiomeStyleEvidence(null,"no-committed-owner",false);return false;}
+            var current=SpawnRing3DRecipes.Resolve(CurrentZone,owner,definition,pilotLibrary?.Definition);
+            if(current.ModelId==null||!ReferenceEquals(current.Owner,owner)||!SameGeometry(current,recipe)||current.Transient!=recipe.Transient||!IsRenderedEntity(owner))
+            {evidence=new SpreadBiomeStyleEvidence(recipe.ModelId,"stale-or-hidden-owner",recipe.Batched);return false;}
+            if(nativeStyleLibrary?.Find(recipe.ModelId)!=null&&nativeStyleLibrary.ForOwner(CurrentZone,recipe)==null)
+            {evidence=new SpreadBiomeStyleEvidence(recipe.ModelId,"unapproved-static-owner",recipe.Batched);return false;}
+            if(!approvedStyle.TryGet(recipe.ModelId,out var expected))
+            {evidence=new SpreadBiomeStyleEvidence(recipe.ModelId,"unmapped-style-source",recipe.Batched);return false;}
+            if(recipe.Batched)return ground.TryGetApprovedStyle(owner,recipe,expected,styleProperties,styleMaterials,out evidence);
+            if(!views.TryGetValue(owner,out var view)||view.Root==null||view.Renderers.Length!=1)
+            {evidence=new SpreadBiomeStyleEvidence(recipe.ModelId,"unsupported-body-fragment-layout",false,expected.Mesh,expected.Material);return false;}
+            var renderer=view.Renderers[0];
+            if(renderer==null||!renderer.enabled||renderer.forceRenderingOff||!renderer.gameObject.activeInHierarchy)
+            {evidence=new SpreadBiomeStyleEvidence(recipe.ModelId,"submitted-body-not-drawn",false,expected.Mesh,expected.Material);return false;}
+            Mesh submitted=renderer is SkinnedMeshRenderer skin?skin.sharedMesh:renderer.GetComponent<MeshFilter>()?.sharedMesh;
+            if(submitted==null||submitted.vertexCount==0||submitted.subMeshCount!=expected.Materials.Length||submitted.GetIndexCount(0)==0||submitted!=expected.Mesh)
+            {evidence=new SpreadBiomeStyleEvidence(recipe.ModelId,"submitted-mesh-mismatch",false,expected.Mesh,expected.Material,submitted);return false;}
+            SpreadBiomeStylePieceEvidence[] pieces=expected.Materials.Length>1?new SpreadBiomeStylePieceEvidence[expected.Materials.Length]:null;Material first=null;
+            for(int slot=0;slot<expected.Materials.Length;slot++){
+                var borrowed=expected.Materials[slot];if(submitted.GetIndexCount(slot)==0){evidence=new SpreadBiomeStyleEvidence(recipe.ModelId,"submitted-mesh-mismatch",false,expected.Mesh,borrowed,submitted);return false;}
+                if(!SpreadBiomeStyleCatalog.PaletteMatches(renderer,surface.MaterialFor(borrowed),borrowed,styleProperties,styleMaterials,out var material,slot,expected.Materials.Length))
+                {evidence=new SpreadBiomeStyleEvidence(recipe.ModelId,"submitted-palette-mismatch",false,expected.Mesh,borrowed,submitted);return false;}
+                if(slot==0)first=material;if(pieces!=null)pieces[slot]=new SpreadBiomeStylePieceEvidence(expected.Mesh,borrowed,submitted,material,slot,slot);
+            }
+            evidence=new SpreadBiomeStyleEvidence(recipe.ModelId,null,false,expected.Mesh,expected.Material,submitted,first,pieces);return true;
+        }
+
+        /// <summary>Read-only proof for one native equipped item. Every visible
+        /// child mesh, palette and actual bone is checked; evidence returns one
+        /// representative pair after all fitted pieces pass.</summary>
+        public bool TryGetApprovedEquipmentStyle(Entity actor, Entity item, out SpreadBiomeStyleEvidence evidence)
+        {
+            evidence = new SpreadBiomeStyleEvidence(null,"outside-current-equipment-scope",false);
+            if (!IsReady || !boundSpreadStyle || !SpreadPresentationScope.IsActive(CurrentZone)
+                || !GladeAuthorityMatches || equipment == null || actor == null || !IsRenderedEntity(actor)) return false;
+            var current = SpawnRing3DRecipes.Resolve(CurrentZone,actor,definition,pilotLibrary?.Definition);
+            if (current.ModelId == null || !ReferenceEquals(current.Owner,actor) || !recipes.TryGetValue(actor,out var committed)
+                || !SameGeometry(current,committed))
+            { evidence = new SpreadBiomeStyleEvidence(null,"stale-equipment-actor",false); return false; }
+            return equipment.TryGetApprovedStyle(actor,item,surface,styleProperties,styleMaterials,out evidence);
+        }
+
         public bool TryGetEntityView(Entity entity, out GameObject root, out string modelId)
         {
             root = null; modelId = null;
+            if(TryGetGasVolume(entity,out root,out var gas)){modelId="spread-gas-"+gas.Kind;return true;}
             if (entity == null || CurrentZone?.GetEntityCell(entity) == null || !recipes.TryGetValue(entity, out var recipe)) return false;
             if (recipe.Batched)
             { var cell = CurrentZone.GetEntityCell(entity); root = ground.RootFor(cell.X, cell.Y); }
@@ -306,9 +470,16 @@ namespace CavesOfOoo.Rendering
             questCues?.Sync(ref view.QuestCue,view.Owner,view.Root,view.Renderers,CurrentZone,
                 StoryletPart.LocalPlayer,view.Drawn,FullReveal,surface?.WorldCamera);
         }
-        public bool IsAuthoredEntity(Entity entity) => PresentationVisible && entity != null && CurrentZone.GetEntityCell(entity) != null && recipes.ContainsKey(entity);
+        /// <summary>Read-only exact current gas output. Unknown/custom/stale or
+        /// unsubmitted sources never suppress their native fallback.</summary>
+        public bool TryGetGasVolume(Entity entity,out GameObject root,out SpreadTransientSample sample)
+        {root=null;sample=default;return PresentationVisible&&transientVolumes!=null&&transientVolumes.TryGetGas(entity,out root,out sample);}
+        public bool TryGetElementVolume(int x,int y,out GameObject root,out SpreadTransientSample sample)
+        {root=null;sample=default;return PresentationVisible&&transientVolumes!=null&&transientVolumes.TryGetElement(x,y,out root,out sample);}
+        public bool IsAuthoredEntity(Entity entity) => PresentationVisible && entity != null && CurrentZone.GetEntityCell(entity) != null && (recipes.ContainsKey(entity)||TryGetGasVolume(entity,out _,out _));
         public bool IsRenderedEntity(Entity entity)
         {
+            if(TryGetGasVolume(entity,out _,out _))return true;
             if (!IsAuthoredEntity(entity)) return false;
             if (entity.GetPart<RenderPart>()?.Visible == false) return false;
             if (views.TryGetValue(entity, out var view)) return view.Drawn && view.Root != null && view.Root.activeInHierarchy;
@@ -321,6 +492,7 @@ namespace CavesOfOoo.Rendering
         {
             bool wasVisible = surface != null && surface.IsVisible;
             surface?.Sync(source, PresentationRequested, Village3DSettings.LowDetail);
+            groundContact?.SetEnabled(PresentationVisible && !Village3DSettings.LowDetail);
             if (wasVisible && !PresentationVisible) foreach (var view in views.Values) Interrupt(view);
         }
         private void LateUpdate()
@@ -461,15 +633,18 @@ namespace CavesOfOoo.Rendering
             foreach (var view in views.Values) view.Cast?.Dispose();
             spellLibrary = null;
             voxel = null;
+            transientVolumes?.Dispose(); transientVolumes=null;
             questCues?.Dispose(); questCues = null;
+            groundContact?.Dispose(); groundContact = null;
             equipment?.Dispose(); equipment = null; ground?.Dispose(); ground = null; surface?.Dispose(); surface = null;
-            recipes.Clear(); views.Clear(); byCollider.Clear(); seen.Clear(); removed.Clear();
-            CurrentZone = null; source = null; library = null; pilotLibrary = null; gladeLibrary = null; definition = null;
+            recipes.Clear(); staticStyles.Clear(); views.Clear(); byCollider.Clear(); seen.Clear(); removed.Clear();
+            CurrentZone = null; source = null; library = null; pilotLibrary = null; gladeLibrary = null; visitorPaintLibrary = null; visitorCreatureLibrary = null; humanoidLibrary = null; nativeStyleLibrary = null; approvedStyle = null; styleProperties?.Clear(); styleProperties = null; styleMaterials.Clear(); definition = null;
         }
-        private void PrepareModel(GameObject root, bool transient)
+        private void PrepareModel(GameObject root, bool transient, string modelId = null)
         {
             voxel?.Apply(root);
             gladeLibrary?.ApplyActorPaint(root);
+            visitorPaintLibrary?.Apply(root, modelId);
             surface.PrepareModel(root, transient);
         }
         private static void DestroyOwned(UnityEngine.Object value)

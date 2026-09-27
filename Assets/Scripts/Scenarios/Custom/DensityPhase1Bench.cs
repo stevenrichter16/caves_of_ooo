@@ -103,6 +103,7 @@ namespace CavesOfOoo.Scenarios.Custom
         private void AuditLairs(EntityFactory factory)
         {
             int generated = 0, bosses = 0, trapZones = 0, safeTrapZones = 0, ambushers = 0, withoutAmbusher = 0;
+            int approaches = 0, clearApproaches = 0;
             for (int seed = 1; seed <= 100 && (ambushers == 0 || withoutAmbusher == 0); seed++)
             {
                 var manager = OverworldZoneManager.CreateDetached(factory, seed);
@@ -110,8 +111,21 @@ namespace CavesOfOoo.Scenarios.Custom
                 {
                     if (manager.WorldMap.GetBiome(x, y) != BiomeType.Beating
                         || manager.WorldMap.GetPOI(x, y)?.Type != POIType.Lair) continue;
-                    var zone = manager.GetZone($"Overworld.{x}.{y}.0");
-                    Require(zone != null, "native generated Beating lair");
+                    string surfaceID = $"Overworld.{x}.{y}.0";
+                    Require(manager.GetZone(surfaceID) != null, "native generated Beating lair");
+                    var stack = LairStacks.Inspect(manager, surfaceID);
+                    Require(stack != null && !stack.Legacy && stack.FinalDepth >= 1 && stack.FinalDepth <= 2,
+                        "native generated lair stack");
+                    for (int depth = 0; depth < stack.FinalDepth; depth++)
+                    {
+                        var approach = manager.GetZone(stack.ZoneAt(depth));
+                        Require(approach != null, "native generated lair approach");
+                        approaches++;
+                        if (!approach.GetAllEntities().Any(e => e.HasTag("Trap") || e.BlueprintName == stack.BossBlueprint))
+                            clearApproaches++;
+                    }
+                    var zone = manager.GetZone(stack.ZoneAt(stack.FinalDepth));
+                    Require(zone != null, "native generated final lair floor");
                     generated++;
                     var entities = zone.GetAllEntities();
                     if (entities.Count(e => e.BlueprintName == "DesertProwler") == 1) bosses++;
@@ -133,6 +147,8 @@ namespace CavesOfOoo.Scenarios.Custom
             Measure("lair_unoccupied_traps", safeTrapZones, generated, safeTrapZones == generated);
             Measure("lair_ambusher_observed", ambushers, 1, ambushers >= 1);
             Measure("lair_no_ambusher_control", withoutAmbusher, 1, withoutAmbusher >= 1);
+            Measure("lair_approaches_do_not_duplicate_boss_or_traps", clearApproaches, approaches,
+                approaches > 0 && clearApproaches == approaches);
         }
 
         private void Measure(string name, int actual, int expected, bool passed)

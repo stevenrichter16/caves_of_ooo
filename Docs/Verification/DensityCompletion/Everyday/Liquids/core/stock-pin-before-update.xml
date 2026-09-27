@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="93" result="Failed" start-time="2026-09-26T23:43:53.7484140Z" end-time="2026-09-26T23:43:54.2060670Z" duration="0.457642" total="18" passed="12" failed="6" inconclusive="0" skipped="0" warnings="0" asserts="145" random-seed="1351061076">
+  <command-line><![CDATA[/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-density-liquid-vessel/verification/stock-pin-before-update.xml --where "class =~ /MorrowfastMerchantRestockTests/"]]></command-line>
+  <filter>
+    <class re="1">MorrowfastMerchantRestockTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1122" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-09-26T23:43:53.7484140Z" end-time="2026-09-26T23:43:54.2060670Z" duration="0.457642" total="18" passed="12" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="145">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="25181" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1123" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-09-26T23:43:53.7499850Z" end-time="2026-09-26T23:43:54.2060650Z" duration="0.456077" total="18" passed="12" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="145">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1124" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="93" result="Failed" site="Child" start-time="2026-09-26T23:43:53.7500970Z" end-time="2026-09-26T23:43:54.2060630Z" duration="0.455964" total="18" passed="12" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="145">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1096" name="MorrowfastMerchantRestockTests" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-09-26T23:43:53.7504320Z" end-time="2026-09-26T23:43:54.2060470Z" duration="0.455613" total="18" passed="12" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="145">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1099" name="ActualMerchantDeclaresItsOwnRealNonemptyStockTable" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ActualMerchantDeclaresItsOwnRealNonemptyStockTable" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T23:43:53.7512760Z" end-time="2026-09-26T23:43:53.8905910Z" duration="0.139314" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="14">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1097" name="ActualMerchantDeclaresItsOwnRealNonemptyStockTable(False)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ActualMerchantDeclaresItsOwnRealNonemptyStockTable(False)" methodname="ActualMerchantDeclaresItsOwnRealNonemptyStockTable" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="1439652911" result="Passed" start-time="2026-09-26T23:43:53.7513540Z" end-time="2026-09-26T23:43:53.8530660Z" duration="0.101738" asserts="7" />
+            <test-case id="1098" name="ActualMerchantDeclaresItsOwnRealNonemptyStockTable(True)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ActualMerchantDeclaresItsOwnRealNonemptyStockTable(True)" methodname="ActualMerchantDeclaresItsOwnRealNonemptyStockTable" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="1264877554" result="Failed" start-time="2026-09-26T23:43:53.8537140Z" end-time="2026-09-26T23:43:53.8901530Z" duration="0.036440" asserts="7">
+              <failure>
+                <message><![CDATA[  Expected: equivalent to < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat", "DriedMeat", "DriedMeat", "HealingTonic", "HealingTonic", "BurnSalve", "BurnSalve", "WaterTonic", "WaterTonic", "WaterTonic", "Waterskin" >
+  But was:  < "LiquidFlask", "Waterskin", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom"... >
+  Extra (1): < "LiquidFlask" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ActualMerchantDeclaresItsOwnRealNonemptyStockTable(Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 50
+   at InvokeStub_MorrowfastMerchantRestockTests.ActualMerchantDeclaresItsOwnRealNonemptyStockTable(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: equivalent to < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat", "DriedMeat", "DriedMeat", "HealingTonic", "HealingTonic", "BurnSalve", "BurnSalve", "WaterTonic", "WaterTonic", "WaterTonic", "Waterskin" >
+  But was:  < "LiquidFlask", "Waterskin", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom"... >
+  Extra (1): < "LiquidFlask" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ActualMerchantDeclaresItsOwnRealNonemptyStockTable(Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 50
+   at InvokeStub_MorrowfastMerchantRestockTests.ActualMerchantDeclaresItsOwnRealNonemptyStockTable(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1107" name="BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T23:43:53.8908180Z" end-time="2026-09-26T23:43:53.9416150Z" duration="0.050796" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="27">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1105" name="BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant(False)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant(False)" methodname="BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="1861958999" result="Passed" start-time="2026-09-26T23:43:53.8908510Z" end-time="2026-09-26T23:43:53.9247180Z" duration="0.033867" asserts="14" />
+            <test-case id="1106" name="BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant(True)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant(True)" methodname="BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="437329239" result="Failed" start-time="2026-09-26T23:43:53.9247530Z" end-time="2026-09-26T23:43:53.9415910Z" duration="0.016838" asserts="13">
+              <failure>
+                <message><![CDATA[  Expected: equivalent to < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat", "DriedMeat", "DriedMeat", "HealingTonic", "HealingTonic", "BurnSalve", "BurnSalve", "WaterTonic", "WaterTonic", "WaterTonic", "Waterskin" >
+  But was:  < "LiquidFlask", "Waterskin", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom"... >
+  Extra (1): < "LiquidFlask" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.AssertStock(Entity merchant, Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 176
+   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant(Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 78
+   at InvokeStub_MorrowfastMerchantRestockTests.BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: equivalent to < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat", "DriedMeat", "DriedMeat", "HealingTonic", "HealingTonic", "BurnSalve", "BurnSalve", "WaterTonic", "WaterTonic", "WaterTonic", "Waterskin" >
+  But was:  < "LiquidFlask", "Waterskin", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom"... >
+  Extra (1): < "LiquidFlask" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.AssertStock(Entity merchant, Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 176
+   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant(Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 78
+   at InvokeStub_MorrowfastMerchantRestockTests.BuyingOutThenRevisitingAfterTheIntervalRefillsTheSameLivingMerchant(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1116" name="CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T23:43:53.9416240Z" end-time="2026-09-26T23:43:53.9858870Z" duration="0.044263" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="23">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1114" name="CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad(False)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad(False)" methodname="CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="1595635476" result="Passed" start-time="2026-09-26T23:43:53.9416330Z" end-time="2026-09-26T23:43:53.9653450Z" duration="0.023712" asserts="11" />
+            <test-case id="1115" name="CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad(True)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad(True)" methodname="CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="1736226936" result="Failed" start-time="2026-09-26T23:43:53.9653760Z" end-time="2026-09-26T23:43:53.9858680Z" duration="0.020492" asserts="12">
+              <failure>
+                <message><![CDATA[  Expected: equivalent to < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat", "DriedMeat", "DriedMeat", "HealingTonic", "HealingTonic", "BurnSalve", "BurnSalve", "WaterTonic", "WaterTonic", "WaterTonic", "Waterskin" >
+  But was:  < "LiquidFlask", "Waterskin", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom"... >
+  Extra (1): < "LiquidFlask" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.AssertStock(Entity merchant, Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 176
+   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad(Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 115
+   at InvokeStub_MorrowfastMerchantRestockTests.CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: equivalent to < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat", "DriedMeat", "DriedMeat", "HealingTonic", "HealingTonic", "BurnSalve", "BurnSalve", "WaterTonic", "WaterTonic", "WaterTonic", "Waterskin" >
+  But was:  < "LiquidFlask", "Waterskin", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom"... >
+  Extra (1): < "LiquidFlask" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.AssertStock(Entity merchant, Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 176
+   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad(Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 115
+   at InvokeStub_MorrowfastMerchantRestockTests.CurrentSaveGraphRetainsDeclarationAndRemainingStockWithoutRefillingOnLoad(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1110" name="ExactIntervalDoesNotRefillButNextTurnDoes" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ExactIntervalDoesNotRefillButNextTurnDoes" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T23:43:53.9858960Z" end-time="2026-09-26T23:43:54.0211530Z" duration="0.035257" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="23">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1108" name="ExactIntervalDoesNotRefillButNextTurnDoes(False)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ExactIntervalDoesNotRefillButNextTurnDoes(False)" methodname="ExactIntervalDoesNotRefillButNextTurnDoes" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="665139961" result="Passed" start-time="2026-09-26T23:43:53.9859040Z" end-time="2026-09-26T23:43:54.0044470Z" duration="0.018543" asserts="11" />
+            <test-case id="1109" name="ExactIntervalDoesNotRefillButNextTurnDoes(True)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ExactIntervalDoesNotRefillButNextTurnDoes(True)" methodname="ExactIntervalDoesNotRefillButNextTurnDoes" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="318935431" result="Failed" start-time="2026-09-26T23:43:54.0044850Z" end-time="2026-09-26T23:43:54.0211330Z" duration="0.016648" asserts="12">
+              <failure>
+                <message><![CDATA[  Expected: equivalent to < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat", "DriedMeat", "DriedMeat", "HealingTonic", "HealingTonic", "BurnSalve", "BurnSalve", "WaterTonic", "WaterTonic", "WaterTonic", "Waterskin" >
+  But was:  < "LiquidFlask", "Waterskin", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom"... >
+  Extra (1): < "LiquidFlask" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.AssertStock(Entity merchant, Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 176
+   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ExactIntervalDoesNotRefillButNextTurnDoes(Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 91
+   at InvokeStub_MorrowfastMerchantRestockTests.ExactIntervalDoesNotRefillButNextTurnDoes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: equivalent to < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat", "DriedMeat", "DriedMeat", "HealingTonic", "HealingTonic", "BurnSalve", "BurnSalve", "WaterTonic", "WaterTonic", "WaterTonic", "Waterskin" >
+  But was:  < "LiquidFlask", "Waterskin", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom"... >
+  Extra (1): < "LiquidFlask" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.AssertStock(Entity merchant, Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 176
+   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.ExactIntervalDoesNotRefillButNextTurnDoes(Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 91
+   at InvokeStub_MorrowfastMerchantRestockTests.ExactIntervalDoesNotRefillButNextTurnDoes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1104" name="InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-26T23:43:54.0211820Z" end-time="2026-09-26T23:43:54.0960090Z" duration="0.074827" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="30">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1100" name="InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(False,False)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(False,False)" methodname="InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="1215980057" result="Passed" start-time="2026-09-26T23:43:54.0212060Z" end-time="2026-09-26T23:43:54.0439630Z" duration="0.022757" asserts="14" />
+            <test-case id="1101" name="InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(False,True)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(False,True)" methodname="InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="1278712914" result="Passed" start-time="2026-09-26T23:43:54.0440090Z" end-time="2026-09-26T23:43:54.0615880Z" duration="0.017579" asserts="14" />
+            <test-case id="1102" name="InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(True,False)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(True,False)" methodname="InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="483769875" result="Failed" start-time="2026-09-26T23:43:54.0616170Z" end-time="2026-09-26T23:43:54.0797770Z" duration="0.018161" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: equivalent to < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat", "DriedMeat", "DriedMeat", "HealingTonic", "HealingTonic", "BurnSalve", "BurnSalve", "WaterTonic", "WaterTonic", "WaterTonic", "Waterskin" >
+  But was:  < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat"... >
+  Extra (1): < "LiquidFlask" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.AssertStock(Entity merchant, Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 176
+   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(Boolean food, Boolean wired) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 61
+   at InvokeStub_MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: equivalent to < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat", "DriedMeat", "DriedMeat", "HealingTonic", "HealingTonic", "BurnSalve", "BurnSalve", "WaterTonic", "WaterTonic", "WaterTonic", "Waterskin" >
+  But was:  < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat"... >
+  Extra (1): < "LiquidFlask" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.AssertStock(Entity merchant, Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 176
+   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(Boolean food, Boolean wired) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 61
+   at InvokeStub_MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1103" name="InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(True,True)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(True,True)" methodname="InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="57937855" result="Failed" start-time="2026-09-26T23:43:54.0798110Z" end-time="2026-09-26T23:43:54.0959380Z" duration="0.016127" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: equivalent to < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat", "DriedMeat", "DriedMeat", "HealingTonic", "HealingTonic", "BurnSalve", "BurnSalve", "WaterTonic", "WaterTonic", "WaterTonic", "Waterskin" >
+  But was:  < "LiquidFlask", "Waterskin", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom"... >
+  Extra (1): < "LiquidFlask" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.AssertStock(Entity merchant, Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 176
+   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(Boolean food, Boolean wired) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 61
+   at InvokeStub_MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: equivalent to < "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "DriedMeat", "DriedMeat", "DriedMeat", "DriedMeat", "HealingTonic", "HealingTonic", "BurnSalve", "BurnSalve", "WaterTonic", "WaterTonic", "WaterTonic", "Waterskin" >
+  But was:  < "LiquidFlask", "Waterskin", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom", "Mushroom"... >
+  Extra (1): < "LiquidFlask" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.AssertStock(Entity merchant, Boolean food) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 176
+   at CavesOfOoo.Tests.MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(Boolean food, Boolean wired) in /tmp/coo-density-liquid-vessel/Assets/Tests/MorrowfastMerchantRestockTests.cs:line 61
+   at InvokeStub_MorrowfastMerchantRestockTests.InitialStockKeepsExactExistingQuantitiesWithOrWithoutTraderFactory(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1121" name="LegacyVillagePurseAndExistingDeclaredChoirMerchantRetainTheirEligibility" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.LegacyVillagePurseAndExistingDeclaredChoirMerchantRetainTheirEligibility" methodname="LegacyVillagePurseAndExistingDeclaredChoirMerchantRetainTheirEligibility" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="994345732" result="Passed" start-time="2026-09-26T23:43:54.0960600Z" end-time="2026-09-26T23:43:54.1175960Z" duration="0.021537" asserts="7" />
+          <test-case id="1120" name="NonVillageTraderWithEmptyDeclarationStillDoesNotQualify" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.NonVillageTraderWithEmptyDeclarationStillDoesNotQualify" methodname="NonVillageTraderWithEmptyDeclarationStillDoesNotQualify" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="1962196508" result="Passed" start-time="2026-09-26T23:43:54.1176230Z" end-time="2026-09-26T23:43:54.1341690Z" duration="0.016547" asserts="3" />
+          <test-suite type="ParameterizedMethod" id="1119" name="OrdinaryStillcordAndForgedStockPropertyDoNotBecomeRestockingMerchants" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.OrdinaryStillcordAndForgedStockPropertyDoNotBecomeRestockingMerchants" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-26T23:43:54.1341990Z" end-time="2026-09-26T23:43:54.1683560Z" duration="0.034157" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="10">
+            <test-case id="1117" name="OrdinaryStillcordAndForgedStockPropertyDoNotBecomeRestockingMerchants(False)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.OrdinaryStillcordAndForgedStockPropertyDoNotBecomeRestockingMerchants(False)" methodname="OrdinaryStillcordAndForgedStockPropertyDoNotBecomeRestockingMerchants" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="1407941829" result="Passed" start-time="2026-09-26T23:43:54.1342090Z" end-time="2026-09-26T23:43:54.1510170Z" duration="0.016808" asserts="5" />
+            <test-case id="1118" name="OrdinaryStillcordAndForgedStockPropertyDoNotBecomeRestockingMerchants(True)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.OrdinaryStillcordAndForgedStockPropertyDoNotBecomeRestockingMerchants(True)" methodname="OrdinaryStillcordAndForgedStockPropertyDoNotBecomeRestockingMerchants" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="1063709370" result="Passed" start-time="2026-09-26T23:43:54.1510470Z" end-time="2026-09-26T23:43:54.1683380Z" duration="0.017291" asserts="5" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1113" name="StockAboveTheLowWaterMarkAndRichPurseArePreserved" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.StockAboveTheLowWaterMarkAndRichPurseArePreserved" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-26T23:43:54.1683650Z" end-time="2026-09-26T23:43:54.2059720Z" duration="0.037607" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <test-case id="1111" name="StockAboveTheLowWaterMarkAndRichPurseArePreserved(False)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.StockAboveTheLowWaterMarkAndRichPurseArePreserved(False)" methodname="StockAboveTheLowWaterMarkAndRichPurseArePreserved" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="2131004719" result="Passed" start-time="2026-09-26T23:43:54.1683750Z" end-time="2026-09-26T23:43:54.1891770Z" duration="0.020803" asserts="4" />
+            <test-case id="1112" name="StockAboveTheLowWaterMarkAndRichPurseArePreserved(True)" fullname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests.StockAboveTheLowWaterMarkAndRichPurseArePreserved(True)" methodname="StockAboveTheLowWaterMarkAndRichPurseArePreserved" classname="CavesOfOoo.Tests.MorrowfastMerchantRestockTests" runstate="Runnable" seed="553491500" result="Passed" start-time="2026-09-26T23:43:54.1892120Z" end-time="2026-09-26T23:43:54.2059380Z" duration="0.016726" asserts="4" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

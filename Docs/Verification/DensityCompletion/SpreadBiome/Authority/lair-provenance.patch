@@ -1,0 +1,70 @@
+--- a/Assets/Scripts/Gameplay/World/Generation/LairStacks.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/LairStacks.cs
+@@ -119,6 +119,48 @@
+     public static class LairStacks
+     {
+         private static readonly ConditionalWeakTable<OverworldZoneManager, LairStackLedgerPart> Ledgers = new ConditionalWeakTable<OverworldZoneManager, LairStackLedgerPart>();
++        // Derived provenance, not another saved graph. Exact committed zones
++        // and successfully restored graphs may be styled after their mutable
++        // bosses, caches or stairs are gone; lookalike cached objects may not.
++        private sealed class CommittedFloor
++        {
++            internal OverworldZoneManager Manager;
++            internal LairStackLedgerPart Ledger;
++            internal string SurfaceID, ZoneID;
++            internal int Depth;
++        }
++        private static readonly ConditionalWeakTable<Zone, CommittedFloor> CommittedFloors =
++            new ConditionalWeakTable<Zone, CommittedFloor>();
++
++        private static void BindCommittedFloor(Zone zone, OverworldZoneManager manager,
++            LairStackLedgerPart ledger, LairStackRecord record, int depth)
++        {
++            if (record.Legacy)
++                return;
++            CommittedFloors.Remove(zone);
++            CommittedFloors.Add(zone, new CommittedFloor
++            {
++                Manager = manager, Ledger = ledger, SurfaceID = record.SurfaceID,
++                ZoneID = zone.ZoneID, Depth = depth
++            });
++        }
++
++        /// <summary>Read-only derived provenance for presentation. This neither
++        /// initializes/adopts a ledger nor inspects mutable gameplay owners.</summary>
++        internal static bool IsCommittedFloor(OverworldZoneManager manager, Zone zone, BiomeType biome)
++        {
++            return manager != null && zone != null
++                && CommittedFloors.TryGetValue(zone, out var source)
++                && ReferenceEquals(source.Manager, manager) && source.ZoneID == zone.ZoneID
++                && manager.CachedZones != null && manager.CachedZones.TryGetValue(zone.ZoneID, out var cached)
++                && ReferenceEquals(cached, zone)
++                && Ledgers.TryGetValue(manager, out var ledger) && ReferenceEquals(ledger, source.Ledger)
++                && ledger.Records.TryGetValue(source.SurfaceID, out var record)
++                && !record.Legacy && record.Biome == biome
++                && source.Depth > 0 && source.Depth <= record.FinalDepth
++                && (record.GeneratedMask & (1 << source.Depth)) != 0;
++        }
++
+         private sealed class Pending
+         {
+             public LairStackRecord Plan;
+@@ -222,6 +264,7 @@
+                 foreach (var edge in manager.GetConnections(zone.ZoneID).ToArray())
+                     if (edge.SourceZoneID == zone.ZoneID && edge.Type == "StairsDown")
+                         manager.RemoveConnection(edge);
++            BindCommittedFloor(zone, manager, ledger, next, p.Depth);
+             Record("LairFloorCommitted", zone.ZoneID, new
+             {
+                 surface = next.SurfaceID,
+@@ -437,6 +480,10 @@
+             ledger.RuntimeOwner = manager;
+             Ledgers.Remove(manager);
+             Ledgers.Add(manager, ledger);
++            foreach (var record in ledger.Records.Values)
++                for (int depth = 0; depth <= record.FinalDepth; depth++)
++                    if ((record.GeneratedMask & (1 << depth)) != 0)
++                        BindCommittedFloor(manager.CachedZones[record.ZoneAt(depth)], manager, ledger, record, depth);
+         }
+         private static void Record(string kind, string zone, object payload)
+         {

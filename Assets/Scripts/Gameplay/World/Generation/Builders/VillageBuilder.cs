@@ -17,6 +17,18 @@ namespace CavesOfOoo.Core
         private BiomeType _biome;
         private PointOfInterest _poi;
         private SettlementManager _settlementManager;
+        internal readonly struct DoorAperture
+        {
+            internal readonly int X,Y,InDX,InDY;
+            internal readonly Entity FlankA,FlankB;
+            internal DoorAperture(int x,int y,int dx,int dy,Entity a,Entity b)
+            {X=x;Y=y;InDX=dx;InDY=dy;FlankA=a;FlankB=b;}
+        }
+        private readonly List<DoorAperture> _doorApertures = new List<DoorAperture>();
+        internal IReadOnlyList<DoorAperture> DoorApertures => _doorApertures;
+        internal Zone ApertureSourceZone { get; private set; }
+        internal int ApertureRevision { get; private set; }
+
 
         // Biome palette
         private string _floorBlueprint;
@@ -103,6 +115,9 @@ namespace CavesOfOoo.Core
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
+            ApertureSourceZone=zone;
+            ApertureRevision++;
+            _doorApertures.Clear();
             // 1. Fill the zone with biome-appropriate floor
             FillWithFloor(zone, factory);
 
@@ -276,7 +291,18 @@ namespace CavesOfOoo.Core
                     if (cell.Objects[i].HasTag("Wall"))
                         zone.RemoveEntity(cell.Objects[i]);
                 }
+                int inDX=side==2?1:side==3?-1:0;
+                int inDY=side==0?1:side==1?-1:0;
+                var a=ApertureWall(zone.GetCell(doorX-inDY,doorY+inDX));
+                var b=ApertureWall(zone.GetCell(doorX+inDY,doorY-inDX));
+                if(a!=null&&b!=null)_doorApertures.Add(new DoorAperture(doorX,doorY,inDX,inDY,a,b));
             }
+        }
+
+        private static Entity ApertureWall(Cell cell)
+        {
+            if(cell!=null)foreach(var entity in cell.Occupants)if(entity.HasTag("Wall"))return entity;
+            return null;
         }
 
         private void CarvePath(Zone zone, EntityFactory factory, int x1, int y1, int x2, int y2)

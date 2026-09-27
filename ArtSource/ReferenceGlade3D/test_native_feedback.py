@@ -12,10 +12,10 @@ class NativeFeedbackTests(unittest.TestCase):
    stems=[b for b in m['boxes'] if b['size']['y']>.3]
    self.assertEqual(7,len(stems))
    for b in stems:self.assertGreaterEqual(b['size']['x'],.11);self.assertIn(b['color'],[4,5])
- def test_grass_has_three_taller_open_sprouts_without_a_wide_mat_base(self):
+ def test_grass_has_seven_upright_fingers_without_a_wide_mat_base(self):
   for m in self.models('green-grass'):
-   stems=[b for b in m['boxes'] if b['size']['y']>.25]
-   self.assertEqual(3,len(stems));self.assertTrue(all(b['color'] in [8,9] for b in stems))
+   stems=[b for b in m['boxes'] if b['size']['y']>.23]
+   self.assertEqual(7,len(stems));self.assertTrue(all(b['color'] in [8,9] for b in stems))
    self.assertGreaterEqual(max(b['center']['y']+b['size']['y']/2 for b in m['boxes']),.40)
    self.assertFalse(any(b['size']['x']>.25 and b['size']['z']>.2 for b in m['boxes']))
  def test_stone_wall_has_a_broad_dimensional_cross_section(self):

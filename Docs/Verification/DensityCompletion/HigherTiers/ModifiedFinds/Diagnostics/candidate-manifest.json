@@ -1,0 +1,40 @@
+{
+  "status": "PRIVATE READY; independent review clear,98 affectedGREEN,128 matched source/seed signatures; runtime and separate actual-NUnit test compiler zero errors; native execution pending.",
+  "files": {
+    "FoundEquipmentEnhancements.cs": {
+      "destination": "Assets/Scripts/Gameplay/World/Generation/FoundEquipmentEnhancements.cs",
+      "beforeSha256": "1985dfd0bdd5760c49ffa3c9c0e327208b0e0ba6b6b9552151f31fe46564d360",
+      "candidateSha256": "5b964a51fe35acf04924c59b5b1cb85439b5cbc5b400b3211baa715d0256b04a"
+    },
+    "LootStocker.cs": {
+      "destination": "Assets/Scripts/Gameplay/World/Generation/LootStocker.cs",
+      "beforeSha256": "1d1aa0561e1a7e8827c7971ce2771f475cf7874ae28338f308f5c3526eefe543",
+      "candidateSha256": "73c3593cedc3c891f79a4b8c7c0bd94a17bc6dd091c82dd832682e48178cf6e1"
+    },
+    "DensityModifiedFindDiagnosticsTests.cs": {
+      "destination": "Assets/Tests/EditMode/Gameplay/World/DensityModifiedFindDiagnosticsTests.cs",
+      "candidateSha256": "2691e3b9af14f40e94baa7028f529f57acf8c2b4da885ed4da26ab0864ba6737"
+    },
+    "DensityModifiedFindDiagnosticsTests.cs.meta": {
+      "destination": "Assets/Tests/EditMode/Gameplay/World/DensityModifiedFindDiagnosticsTests.cs.meta",
+      "candidateSha256": "8cfac59e71f05dc60767626ad17552dc65fb40892c4a216ba978ba9238803253"
+    }
+  },
+  "evidence": {
+    "initial": "diagnostic-red.xml:44total,37failed,7passed",
+    "focused": "diagnostic-green.xml:44passed",
+    "affected": "diagnostic-regression-green.xml:98passed",
+    "dispatchCountercheck": "dispatch-countercheck-red.xml:44total,2expectedfailed,42passed",
+    "sourceBefore": "source-signature-before.xml + .txt:128rows",
+    "sourceAfter": "source-signature-after.xml + .txt:128rows",
+    "sourceSHA256": "30af059ff2b3d262c072fa5b08f6867ebfa5b31040b198138371bd3082b7fa75",
+    "runtime": "runtime.log",
+    "nativeTestCompile": "tests-native.log",
+    "review": "independent-review.md"
+  },
+  "limits": [
+    "No shared Assets publication yet",
+    "No native Unity test execution",
+    "No content, chance, price, save schema, gameplay RNG or source data changes"
+  ]
+}

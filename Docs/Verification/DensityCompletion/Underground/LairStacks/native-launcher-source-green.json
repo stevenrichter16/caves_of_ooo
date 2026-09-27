@@ -1,0 +1,9 @@
+{
+  "kind": "source contract only; native counterpart root-owned",
+  "checks": {
+    "keepsOneUpdateRetry": true,
+    "clearsRetryWhenNoRestorePending": true,
+    "clearsRetryAfterEditorSettles": true,
+    "restoresStartAndViewBeforeExit": true
+  }
+}

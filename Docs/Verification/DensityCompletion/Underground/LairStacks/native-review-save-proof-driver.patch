@@ -1,0 +1,131 @@
+--- a/Assets/Scripts/Scenarios/Custom/DensityLairNativePlayer.cs
++++ b/Assets/Scripts/Scenarios/Custom/DensityLairNativePlayer.cs
+@@ -40,6 +40,17 @@
+         private int _keyboardMoves, _startingTonicsUsed;
+         private string _bossID, _rewardID, _bossGearBeforeLoad;
+         private int _bossHPBeforeLoad;
++        private string _savePath, _checkpointHash;
++        private static readonly string[] RequiredChecks =
++        {
++            "ordinary_player_and_starting_kit", "starting_dagger_equipped_by_keyboard",
++            "single_labelled_start_shortcut", "surface_stairs_and_no_early_boss",
++            "keyboard_descends_to_intermediate", "one_final_boss_and_claimed_reward",
++            "boss_examine_through_native_menu", "reward_taken_by_keyboard",
++            "checkpoint_saved_by_keyboard", "checkpoint_mutation_by_keyboard",
++            "native_save_load_preserves_real_owners_and_depletion", "keyboard_returns_to_surface",
++            "keyboard_revisit_never_refills_or_duplicates", "ordinary_living_actor_after_route"
++        };
+         private readonly List<string> _routeZones = new List<string>();
+         private readonly List<string> _transcript = new List<string>();
+         private OverworldZoneManager Manager => (OverworldZoneManager)_input.ZoneManager;
+@@ -130,15 +141,50 @@
+             _bossGearBeforeLoad = GearIdentity(boss);
+             string inventory = GearIdentity(_input.PlayerEntity);
+             var atSave = Cell(); int sx = atSave.X, sy = atSave.Y;
++            var checkpoint = SaveGameService.GetSaveInfo("Quick");
++            Require(checkpoint != null, "ordinary new-game checkpoint metadata");
++            string gameID = checkpoint.GameID;
++            _savePath = Path.Combine(_ownedRoot, gameID, "Quick.sav.gz");
++            string previousHash = HashFile(_savePath);
++            long serial = MessageLog.NextSerialValue;
++            int savedTick = _input.TurnManager.TickCount;
++            int savedEnergy = _input.TurnManager.GetEnergy(_input.PlayerEntity);
++            int savedHP = _input.PlayerEntity.GetStatValue("Hitpoints");
++            string savedPlayerID = _input.PlayerEntity.ID;
+             yield return Tap(Key.F5);
++            _checkpointHash = HashFile(_savePath);
++            Check("checkpoint_saved_by_keyboard", MessageLog.GetLast() == "Game saved."
++                && MessageLog.NextSerialValue > serial && _checkpointHash != previousHash
++                && SaveGameService.GetSaveInfo("Quick")?.GameID == gameID
++                && SaveGameService.GetSaveInfo("Quick")?.ActiveZoneID == _input.CurrentZone.ZoneID);
++            // A legal one-cell native move changes the live graph after the save.
++            // No transfer, state rewrite, idle-loop or fake checkpoint is used.
++            var mutation = CheckpointStep(sx, sy);
++            Require(mutation != null, "safe adjacent checkpoint-proof step");
++            yield return Tap(Direction(mutation.X - sx, mutation.Y - sy));
++            _keyboardMoves++;
++            Check("checkpoint_mutation_by_keyboard", Cell().X == mutation.X && Cell().Y == mutation.Y
++                && (Cell().X != sx || Cell().Y != sy)
++                && _input.TurnManager.GetEnergy(_input.PlayerEntity) == savedEnergy - TurnManager.ActionThreshold
++                    + (_input.TurnManager.TickCount - savedTick) * _input.PlayerEntity.GetStatValue("Speed", TurnManager.DefaultSpeed)
++                && HashFile(_savePath) == _checkpointHash);
++            var oldPlayer = _input.PlayerEntity;
+             yield return Tap(Key.F6);
+-            yield return new WaitForSecondsRealtime(.5f);
++            double loadBegan = Time.realtimeSinceStartupAsDouble;
++            while (ReferenceEquals(oldPlayer, _input.PlayerEntity))
++            {
++                Require(Time.realtimeSinceStartupAsDouble - loadBegan < 8, "F6 replaces the saved player graph");
++                yield return null;
++            }
++            yield return CloseToNormal();
+             boss = CurrentOwner(_bossID); cache = CurrentOwner(_rewardID);
+             Check("native_save_load_preserves_real_owners_and_depletion", boss != null && cache != null
+                 && Plan.BossID == _bossID && Plan.RewardID == _rewardID
+                 && boss.GetStat("Hitpoints").Value == _bossHPBeforeLoad && GearIdentity(boss) == _bossGearBeforeLoad
+                 && cache.GetPart<ContainerPart>().Contents.Count == 0 && GearIdentity(_input.PlayerEntity) == inventory
+-                && Cell().X == sx && Cell().Y == sy);
++                && _input.PlayerEntity.ID == savedPlayerID && _input.PlayerEntity.GetStatValue("Hitpoints") == savedHP
++                && _input.TurnManager.TickCount == savedTick && _input.TurnManager.GetEnergy(_input.PlayerEntity) == savedEnergy
++                && HashFile(_savePath) == _checkpointHash && Cell().X == sx && Cell().Y == sy);
+             yield return Capture("05-loaded-final-floor");
+             yield return Traverse(false);
+             Require(_input.CurrentZone.ZoneID == "Overworld.10.17.1", "keyboard ascends intermediate");
+@@ -205,6 +251,26 @@
+             yield return WalkTo(best.X, best.Y);
+         }
+ 
++        private Cell CheckpointStep(int x, int y)
++        {
++            foreach (var direction in new[] { (1, 0), (-1, 0), (0, 1), (0, -1) })
++            {
++                var cell = _input.CurrentZone.GetCell(x + direction.Item1, y + direction.Item2);
++                if (cell == null || cell.BlocksMovement(_input.PlayerEntity)
++                    || cell.Occupants.Any(e => e.HasTag("Creature") || e.HasPart<TriggerOnStepPart>()
++                        || e.HasPart<LiquidPoolPart>() || e.HasPart<GasPoolPart>() || e.HasPart<CampfirePart>())
++                    || _input.CurrentZone.TileState.Heat(cell.X, cell.Y) > 0
++                    || _input.CurrentZone.TileState.Get(cell.X, cell.Y)?.Coatings?.Any(c => c.Turns > 0) == true)
++                    continue;
++                return cell;
++            }
++            return null;
++        }
++        private static string HashFile(string path)
++        {
++            using (var hash = System.Security.Cryptography.SHA256.Create())
++                return BitConverter.ToString(hash.ComputeHash(File.ReadAllBytes(path))).Replace("-", "").ToLowerInvariant();
++        }
+         private IEnumerator CloseToNormal()
+         {
+             for (int i = 0; State() != "Normal" && i < 4; i++) yield return Tap(Key.Escape);
+@@ -351,7 +417,8 @@
+             Diag.Record("scenario", "DensityLairNativeSummary", payload: new
+             { runId = RunId, cases = _audit.Count, failures = Failures, complete = Complete, errorsFinalized = _errorsFinalized, screenshots = _screenshots.Count });
+         }
+-        private bool Complete => Finished && _errorsFinalized && Failures == 0 && _audit.Count == 12 && _screenshots.Count >= 7;
++        private bool Complete => Finished && _errorsFinalized && Failures == 0 && _audit.Count == RequiredChecks.Length
++            && RequiredChecks.All(name => _audit.Contains("PASS " + name)) && _screenshots.Count >= 7;
+         private void WriteReport()
+         {
+             Directory.CreateDirectory(DirectoryPath); ReportPath = Path.Combine(DirectoryPath, "report.json");
+@@ -360,9 +427,9 @@
+                 runId = RunId, cases = _audit.Count, failures = Failures, unexpectedErrors = _unexpectedErrors,
+                 complete = Complete, errorsFinalized = _errorsFinalized, seconds = _clock?.Elapsed.TotalSeconds ?? 0,
+                 keyboardMoves = _keyboardMoves, startingTonicsUsed = _startingTonicsUsed, routeZones = _routeZones.ToArray(), transcript = _transcript.ToArray(),
+-                startShortcut = _usedStartShortcut, bossID = _bossID, rewardID = _rewardID,
++                startShortcut = _usedStartShortcut, bossID = _bossID, rewardID = _rewardID, checkpointHash = _checkpointHash,
+                 zone = _stagedZone?.ZoneID, fatal = _fatal, audit = _audit.ToArray(), screenshots = _screenshots.ToArray(), descriptions = _descriptions.ToArray(),
+-                canVerify = "Actual seed64 Beating lair; ordinary40HP starting actor and equipped dagger; keyboard descent through intermediate/final floors, boss examination, real reward collection, F5/F6 owner/gear/HP/depletion preservation, ascent and revisit. Rendered screenshot files require human inspection.",
++                canVerify = "Actual seed64 Beating lair; ordinary40HP starting actor and equipped dagger; keyboard descent through intermediate/final floors, boss examination, real reward collection, verified changed F5 checkpoint, real post-save keyboard move, F6 graph replacement and owner/gear/HP/energy/depletion restoration, ascent and revisit. Rendered screenshot files require human inspection.",
+                 cannotVerify = "One explicit starting shortcut transfers the unchanged new-game actor to the actual generated surface stair. All later route choices are scripted keyboard input. No direct stat, health, kit, AI or visibility boosts; up to the two actual starting healing tonics may be consumed through the native inventory action. No natural discovery, player judgement, combat balance or enjoyment claim. Death/refusal is recorded as failure and is never bypassed. Save/load and native RNG are not cross-runtime deterministic replay claims."
+             }, true));
+             Debug.Log("[DensityLairNative] report=" + ReportPath + " failures=" + Failures);
+@@ -394,7 +461,7 @@
+             public double seconds;
+             public int keyboardMoves, startingTonicsUsed;
+             public string[] routeZones, transcript;
+-            public string bossID, rewardID;
++            public string bossID, rewardID, checkpointHash;
+             public bool startShortcut;
+         }
+     }

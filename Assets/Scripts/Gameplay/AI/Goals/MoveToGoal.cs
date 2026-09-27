@@ -54,10 +54,12 @@ namespace CavesOfOoo.Core
             if (_pathStep < _path.Count)
             {
                 var (dx, dy) = _path[_pathStep];
-                if (MovementSystem.TryMove(ParentEntity, CurrentZone, dx, dy))
+                var move = MovementSystem.TryMoveDetailed(ParentEntity, CurrentZone, dx, dy);
+                if (move.Moved)
                 {
                     _pathStep++;
                 }
+                else if (move.ActionPerformed) return;
                 else
                 {
                     // Step blocked — recompute from current position
@@ -71,10 +73,9 @@ namespace CavesOfOoo.Core
                     else if (_pathStep < _path.Count)
                     {
                         var (rdx, rdy) = _path[_pathStep];
-                        if (MovementSystem.TryMove(ParentEntity, CurrentZone, rdx, rdy))
-                            _pathStep++;
-                        else
-                            FailToParent();
+                        var retry = MovementSystem.TryMoveDetailed(ParentEntity, CurrentZone, rdx, rdy);
+                        if (retry.Moved) _pathStep++;
+                        else if (!retry.ActionPerformed) FailToParent();
                     }
                 }
             }

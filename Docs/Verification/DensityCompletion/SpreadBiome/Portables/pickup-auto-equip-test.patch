@@ -1,0 +1,22 @@
+--- /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadPortableIntegrationTests.cs	2026-09-26 22:29:22
++++ /tmp/coo-portable-hooks/SpreadPortableIntegrationTests.cs	2026-09-26 22:54:32
+@@ -67,9 +67,18 @@
+         {
+             using(var f=new SpawnRing3DIntegrationFixture(Spread))
+             {
++                // This fixture creates the bare blueprint, so its free native hand
++                // auto-equips a positive single dagger during PickupCommand.
++                Assert.IsEmpty(f.Player.GetPart<InventoryPart>().Objects);
++                Assert.IsEmpty(f.Player.GetPart<InventoryPart>().EquippedItems);
+                 var item=Add(f,"Dagger");string id=item.ID;f.Approach(item);f.Refresh();Exact(f,item);var old=f.View(item);
+                 Assert.True(InventorySystem.Pickup(f.Player,item,f.Zone));f.Refresh();Assert.False(f.Authored(item));SpawnRing3DIntegrationFixture.Hidden(old);
+-                Assert.AreSame(f.Player,item.GetPart<PhysicsPart>().InInventory);Assert.True(InventorySystem.Drop(f.Player,item,f.Zone));f.Refresh();Exact(f,item);
++                Assert.IsNull(item.GetPart<PhysicsPart>().InInventory);
++                Assert.AreSame(f.Player,item.GetPart<PhysicsPart>().Equipped);
++                Assert.AreSame(item,f.Player.GetPart<InventoryPart>().FindEquippedBodyPart(item)._Equipped);
++                Assert.AreEqual(1,item.GetPart<StackerPart>().StackCount);
++                Assert.True(InventorySystem.Drop(f.Player,item,f.Zone));f.Refresh();Exact(f,item);
++                Assert.IsNull(item.GetPart<PhysicsPart>().Equipped);Assert.IsNull(item.GetPart<PhysicsPart>().InInventory);
+                 var render=item.GetPart<RenderPart>();old=f.View(item);render.Visible=false;f.Refresh();Assert.False(f.Authored(item));SpawnRing3DIntegrationFixture.Hidden(old);
+                 render.Visible=true;f.Refresh();Exact(f,item);
+                 var loaded=f.RoundTrip();f.BindLoaded(loaded);var restored=f.Zone.GetReadOnlyEntities().Single(e=>e.ID==id);

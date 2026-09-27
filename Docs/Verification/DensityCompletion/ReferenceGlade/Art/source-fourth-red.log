@@ -1,0 +1,43 @@
+test_floor_pebbles_have_visible_square_sides_without_panels (test_fourth_feedback.FourthFeedbackTests.test_floor_pebbles_have_visible_square_sides_without_panels) ... FAIL
+test_grass_has_chunky_bright_blades_and_small_shaded_bases (test_fourth_feedback.FourthFeedbackTests.test_grass_has_chunky_bright_blades_and_small_shaded_bases) ... FAIL
+test_gravel_is_raised_square_fragments_instead_of_fine_dots (test_fourth_feedback.FourthFeedbackTests.test_gravel_is_raised_square_fragments_instead_of_fine_dots) ... FAIL
+test_quiet_palette_and_prop_hierarchy_remain (test_fourth_feedback.FourthFeedbackTests.test_quiet_palette_and_prop_hierarchy_remain) ... ok
+test_reeds_are_vertical_tapering_shoots_without_horizontal_canopies (test_fourth_feedback.FourthFeedbackTests.test_reeds_are_vertical_tapering_shoots_without_horizontal_canopies) ... FAIL
+
+======================================================================
+FAIL: test_floor_pebbles_have_visible_square_sides_without_panels (test_fourth_feedback.FourthFeedbackTests.test_floor_pebbles_have_visible_square_sides_without_panels)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c14-fourth/test_fourth_feedback.py", line 25, in test_floor_pebbles_have_visible_square_sides_without_panels
+    self.assertGreaterEqual(min(q['size']['x'],q['size']['z']),.09)
+AssertionError: 0.06 not greater than or equal to 0.09
+
+======================================================================
+FAIL: test_grass_has_chunky_bright_blades_and_small_shaded_bases (test_fourth_feedback.FourthFeedbackTests.test_grass_has_chunky_bright_blades_and_small_shaded_bases)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c14-fourth/test_fourth_feedback.py", line 17, in test_grass_has_chunky_bright_blades_and_small_shaded_bases
+    for q in stems:self.assertGreaterEqual(min(q['size']['x'],q['size']['z']),.105)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.07 not greater than or equal to 0.105
+
+======================================================================
+FAIL: test_gravel_is_raised_square_fragments_instead_of_fine_dots (test_fourth_feedback.FourthFeedbackTests.test_gravel_is_raised_square_fragments_instead_of_fine_dots)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c14-fourth/test_fourth_feedback.py", line 31, in test_gravel_is_raised_square_fragments_instead_of_fine_dots
+    self.assertGreaterEqual(sum(min(q['size']['x'],q['size']['z'])>=.09 and q['size']['y']>=.055 for q in m['boxes']),18)
+AssertionError: 13 not greater than or equal to 18
+
+======================================================================
+FAIL: test_reeds_are_vertical_tapering_shoots_without_horizontal_canopies (test_fourth_feedback.FourthFeedbackTests.test_reeds_are_vertical_tapering_shoots_without_horizontal_canopies)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c14-fourth/test_fourth_feedback.py", line 9, in test_reeds_are_vertical_tapering_shoots_without_horizontal_canopies
+    self.assertGreaterEqual(vertical/total,.93,m['id'])
+AssertionError: 0.7338893573058294 not greater than or equal to 0.93 : reference-glade-pale-reeds-0
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.031s
+
+FAILED (failures=4)

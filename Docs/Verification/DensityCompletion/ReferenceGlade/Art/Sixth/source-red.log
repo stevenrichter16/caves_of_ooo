@@ -1,0 +1,23 @@
+FF.
+======================================================================
+FAIL: test_grass_has_no_repeated_leaf_ladders (__main__.SixthFeedbackTests.test_grass_has_no_repeated_leaf_ladders)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c14-sixth/test_sixth_feedback.py", line 11, in test_grass_has_no_repeated_leaf_ladders
+    if m['family']=='green-grass':self.assertLessEqual(len(m['boxes']),21,m['id'])
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 27 not less than or equal to 21 : reference-glade-green-grass-0
+
+======================================================================
+FAIL: test_grass_has_seven_separate_upright_fingers (__main__.SixthFeedbackTests.test_grass_has_seven_separate_upright_fingers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-c14-sixth/test_sixth_feedback.py", line 8, in test_grass_has_seven_separate_upright_fingers
+    if m['family']=='green-grass':self.assertEqual(7,sum(b['size']['y']>.23 for b in m['boxes']),m['id'])
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 7 != 3 : reference-glade-green-grass-0
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.010s
+
+FAILED (failures=2)

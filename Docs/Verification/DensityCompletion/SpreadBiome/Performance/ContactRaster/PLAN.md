@@ -1,0 +1,7 @@
+# Exact contact raster work reduction
+
+Actual post-lookup native witness: a9af7a901cfb42678a896c09ec0f782b. Across251 completed redraws, raster mean16.753ms/p9521.355; upload .619/.844. Parent owns native tests/publication/Play. No change to appearance, visibility, source extraction, work admission or mask dimensions.
+
+Test first: preserve SHA-pinned pre-change helper as independent test oracle. Add private internal per-call out evaluatedSamples observation, same original body and public delegate. Actual count RED must prove repeated opaque output still incurs unnecessary sample computation; unsaturated overlap is paired control. Whole batch and original write budget stay checked before output, even for duplicate/opaque footprints. Add full128k-byte equivalence across translated, yawed, random, malformed/overbudget and actual native placed geometry. Native current source tests use actual presenter contact placements and submitted texture after refresh, not copied source fixtures. No global counter, cache, time threshold or visible setting.
+
+Minimum repair: after unchanged complete preflight skip a target pixel already255, then hoist row-constant pz/dz/index work without changing float expression order of remaining pixel calculations. Pure RED/GREEN first; native exact-current placements and existing45 contact tests afterward. Matched native marker performance, not operation counts alone, determines usefulness.

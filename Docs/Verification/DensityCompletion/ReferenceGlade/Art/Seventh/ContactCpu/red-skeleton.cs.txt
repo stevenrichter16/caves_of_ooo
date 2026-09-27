@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+namespace CavesOfOoo.Rendering
+{
+    /// <summary>Pure mesh-base extraction and bounded soft-ground raster math.
+    /// Input arrays are borrowed; only the explicitly supplied byte field is written.</summary>
+    internal static class ReferenceGladeContactGeometry
+    {
+        internal const int SamplesPerCell=8,Width=80*SamplesPerCell,Height=25*SamplesPerCell;
+        internal const float BlurRadius=.18f,MinimumBase=-.005f,MaximumBase=.08f,BroadFloorSize=.8f;
+        internal const int MaximumMeshVertices=65536,MaximumMeshFootprints=512,MaximumFootprints=32768,MaximumRasterWrites=1000000;
+        internal readonly struct Footprint
+        {
+            internal readonly float MinX,MaxX,MinZ,MaxZ;
+            internal Footprint(float minX,float maxX,float minZ,float maxZ){MinX=minX;MaxX=maxX;MinZ=minZ;MaxZ=maxZ;}
+        }
+        internal readonly struct Placed
+        {
+            internal readonly Footprint Shape;internal readonly float X,Z;internal readonly int QuarterTurns;
+            internal Placed(Footprint shape,float x,float z,int quarterTurns=0){Shape=shape;X=x;Z=z;QuarterTurns=quarterTurns;}
+        }
+        internal static Footprint[] Extract(float[] xyz,int[] triangles)=>Array.Empty<Footprint>();
+        internal static bool Rasterize(IReadOnlyList<Placed> placed,byte[] target,int maximumWrites=MaximumRasterWrites)
+        {Array.Clear(target,0,target.Length);return true;}
+    }
+}

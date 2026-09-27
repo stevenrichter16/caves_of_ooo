@@ -1,0 +1,73 @@
+--- before
++++ after
+@@ -81,29 +81,34 @@
+         void PrepareLane()
+         {
+             var manager=input.ZoneManager as OverworldZoneManager;Require(manager!=null&&manager.WorldSeed==64,"owned seed64 world");
+-            int tried=0;Zone selected=null;
+-            for(int wy=0;wy<WorldMap.Height&&selected==null;wy++)for(int wx=0;wx<WorldMap.Width&&selected==null;wx++)
++            const int MaxCandidateZones=24,MinimumHostileDistance=32;
++            int tried=0,bestDistance=-1,bestHostiles=int.MaxValue;Zone selected=null;
++            for(int wy=0;wy<WorldMap.Height&&tried<MaxCandidateZones;wy++)for(int wx=0;wx<WorldMap.Width&&tried<MaxCandidateZones;wx++)
+             {
+                 if(manager.WorldMap.GetBiome(wx,wy)!=BiomeType.Spread||manager.WorldMap.GetPOI(wx,wy)!=null)continue;
+-                if(++tried>6)break;
+-                var zone=manager.GetZone(WorldMap.ToZoneID(wx,wy,0));if(zone==null)continue;
+-                for(int y=4;y<Zone.Height-4&&selected==null;y++)for(int x=4;x<Zone.Width-5&&selected==null;x++)
++                tried++;var zone=manager.GetZone(WorldMap.ToZoneID(wx,wy,0));if(zone==null)continue;
++                var hostiles=zone.GetAllEntities().Where(e=>e.HasTag("Creature")&&e!=input.PlayerEntity
++                    &&(FactionManager.IsHostile(e,input.PlayerEntity)||FactionManager.IsHostile(input.PlayerEntity,e))).ToArray();
++                for(int y=4;y<Zone.Height-4;y++)for(int x=4;x<Zone.Width-5;x++)
+                 {
++                    int distance=hostiles.Length==0?Zone.Width:hostiles.Min(e=>SpatialQuery.DistanceToCell(zone,e,x,y));
++                    if(distance<MinimumHostileDistance||distance<bestDistance||(distance==bestDistance&&hostiles.Length>=bestHostiles))continue;
+                     bool clear=true;
+                     for(int dy=-2;dy<=2&&clear;dy++)for(int dx=-2;dx<=3&&clear;dx++)
+                     {
+                         var cell=zone.GetCell(x+dx,y+dy);
+                         if(cell==null||cell.BlocksMovement()||cell.Occupants.Any(e=>e.HasTag("Creature")||e.HasTag("Trap")||e.HasPart<LiquidPoolPart>()||e.HasPart<GasPoolPart>()||e.HasPart<ThermalPart>()||e.HasPart<StairsUpPart>()||e.HasPart<StairsDownPart>()||!WorldInteractionSystem.IsTerrain(e)))clear=false;
+                     }
+-                    if(clear){selected=zone;originX=x;originY=y;}
++                    if(clear){selected=zone;originX=x;originY=y;bestDistance=distance;bestHostiles=hostiles.Length;}
+                 }
+             }
+-            Require(selected!=null,"bounded generated Spread lane without clearing scenery");
++            Require(selected!=null,"bounded generated lane at least32 native cells from all current hostile bodies; no scenery/actor removal");
+             zoneId=selected.ZoneID;targetX=originX+1;targetY=originY;var old=input.CurrentZone;
+             Require(old.TryTransferEntityTo(input.PlayerEntity,selected,originX,originY),"explicit travel shortcut preserves actual actor");
+             if(!ReferenceEquals(old,selected))typeof(InputHandler).GetMethod("HandleZoneTransition",Private).Invoke(input,new object[]{new ZoneTransitionResult{Success=true,NewZone=selected,NewPlayerX=originX,NewPlayerY=originY}});
+             input.CameraFollow?.SnapToPlayer();ZoneRenderHooks.MarkFullDirty("DensityThermalBaselineTravel");
+             CheckResult("explicit_factory_staging_not_natural_discovery",input.CurrentZone.ZoneID==zoneId);
++            Diag.Record("scenario","DensityThermalLaneSelected",payload:new{zoneId,originX,originY,tried,bestDistance,bestHostiles,minimum=MinimumHostileDistance});
+         }
+         void StageSupplies()
+         {
+@@ -174,6 +179,11 @@
+         {
+             caseName="steam-after-water";StageTarget("OilSeep");yield return Cast("CommandFlamingHands");
+             Require(target.HasEffect<BurningEffect>(),"real native thermal cast ignites actual OilSeep");Observe("thermal-ignited");
++            // ConjureWater's real endpoint is two cells away. Retreat using an
++            // ordinary movement action so the existing source is that endpoint.
++            yield return Tap(Key.A);yield return Settled();
++            Require(Position()==(originX-1,originY)&&targetX-Position().x==2,"native retreat aligns actual water endpoint with burning source");
++            Observe("native-retreat-aligns-water-endpoint");
+             var oldClouds=new HashSet<string>(input.CurrentZone.GetAllEntities().Where(e=>e.BlueprintName=="SteamCloud").Select(e=>e.ID));
+             yield return Cast("CommandConjureWater");Observe("water-on-burning-source");
+             bool sawSteam=target.HasEffect<SteamEffect>()||NearbySteamClouds().Any(e=>!oldClouds.Contains(e.ID));
+@@ -247,6 +257,7 @@
+                 tileHeat=input.CurrentZone.TileState.Heat(targetX,targetY),tileState=JsonUtility.ToJson(input.CurrentZone.TileState.Get(targetX,targetY)),
+                 targetCellOccupants=input.CurrentZone.GetOccupants(targetX,targetY).Select(e=>e.BlueprintName+":"+e.ID).ToArray(),
+                 steamClouds=NearbySteamClouds().Select(e=>e.ID+":"+(e.GetPart<LifespanPart>()?.TurnsRemaining??-1)).ToArray(),
++                wholeZoneHostiles=input.CurrentZone.GetAllEntities().Where(e=>e!=p&&e.HasTag("Creature")&&(FactionManager.IsHostile(e,p)||FactionManager.IsHostile(p,e))).Select(e=>e.BlueprintName+":"+e.ID+":distance="+SpatialQuery.Distance(input.CurrentZone,p,e)).ToArray(),
+                 nearbyCreatures=input.CurrentZone.GetAllEntities().Where(e=>e!=p&&e.HasTag("Creature")).Where(e=>{var at=input.CurrentZone.GetEntityPosition(e);return Math.Max(Math.Abs(at.x-pos.x),Math.Abs(at.y-pos.y))<=5;}).Select(e=>e.BlueprintName+":"+e.ID).ToArray(),
+                 lastMessage=MessageLog.GetLast(),waterUnits=Units("WaterTonic"),salveUnits=Units("BurnSalve")});WriteReport();
+         }
+@@ -320,7 +331,7 @@
+         [Serializable] public sealed class Check{public string name;public bool passed;}
+         [Serializable] public sealed class Observation
+         {
+-            public string caseName,phase,zone,targetId,targetBlueprint,lastMessage,tileState;public string[] steamClouds,nearbyCreatures,targetCellOccupants;
++            public string caseName,phase,zone,targetId,targetBlueprint,lastMessage,tileState;public string[] steamClouds,nearbyCreatures,targetCellOccupants,wholeZoneHostiles;
+             public int sequence,playerX,playerY,targetX,targetY,hp,maxHp,strength,agility,toughness,heatResistance,tick,energy,fireCooldown,waterCooldown,targetHp,playerBurnTurns,targetBurnTurns,tileHeat,waterUnits,salveUnits;
+             public bool targetPresent;public float temperature,flameTemperature,effectiveFlame,volatility,combustibility,playerBurn,playerWet,targetBurn,targetWet,targetSteam;
+         }

@@ -70,6 +70,11 @@ namespace CavesOfOoo.Core
             return true;
         }
 
+        /// <summary>Reuse the single existing ambush roll on a completed stack's
+        /// final floor without repeating its guard or loose-loot budgets.</summary>
+        internal void BuildAmbushesOnly(Zone zone, EntityFactory factory, System.Random rng)
+            => PlaceAmbushers(zone, factory, rng, GatherOpenCells(zone));
+
         /// <summary>
         /// Spawn dormant ambush creatures based on biome. Each creature type rolls
         /// independently so a lair can have any combination. Mimics appear in all

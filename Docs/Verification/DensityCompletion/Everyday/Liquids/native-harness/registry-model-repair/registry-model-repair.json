@@ -1,0 +1,11 @@
+{
+  "status": "private harness-only correction after preserved native6-pass/1-failure; no shared writes",
+  "runId": "87d076a84c094281a9334ac067a5ca43",
+  "rootCause": "water registry Color=&c; actual model poured-liquid-63 was correct, hardcoded expected42 was wrong",
+  "source": "Overworld.2.6.0; actual poured owner4614 water/~ /&c Volume12",
+  "sharedBeforeSha256": "c0fc31a1969d205ab66a8ccadeae7166c07771e93c63b74b839ffc597b153b71",
+  "candidateSha256": "db20e22abbf528ad2dcb3aaa5e9679c4399902f6fd4e688f603b505a229e7d2b",
+  "compileErrors": 0,
+  "scope": "Replace hardcoded liquid swatch model expectation with the exact current registry definition; no optional guard or source/quantity/gameplay changes",
+  "restorationBoundary": "Parent observed settings, preferences and scene restored but ordinary ReferenceGlade Play reentered without audit driver; playing state differed. Cause unresolved; no exact-restoration claim."
+}

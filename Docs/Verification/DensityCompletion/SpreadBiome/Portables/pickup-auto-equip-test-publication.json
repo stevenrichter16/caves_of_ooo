@@ -1,0 +1,12 @@
+{
+  "publishedUTC": "2026-09-27T03:55:41.325417+00:00",
+  "scope": "one test fixture only; production unchanged",
+  "file": "Assets/Tests/EditMode/Presentation/Rendering/SpreadPortableIntegrationTests.cs",
+  "beforeSha256": "9b9c9bd231a9b3ba517d76c5af78fe391f04fc8f47a854bc98fc50f7f6569c8d",
+  "afterSha256": "cd4eecd85c133a2692c442208ef96994f98117ae05d4b6cf77424960056fd5ed",
+  "actualNativeRed": "Integration/native-portable-live-humanoid-style-red.xml.gz; ActualPickupDropHiddenRemovalAndSaveKeepExactIdentity line72",
+  "correction": "Bare Player blueprint has no carried or equipped starter kit; native PickupCommand auto-equips the exact one-unit Dagger. Assert equipped actor/body identity, then Drop uses its actual unequip path. Countercontrols distinguish occupied hands and a real stack merge.",
+  "privateCoreTests": "3/3 GREEN",
+  "referenceCompileErrors": 0,
+  "nativeRerun": "pending root"
+}

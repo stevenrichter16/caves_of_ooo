@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-doors/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="67" result="Failed" start-time="2026-09-27T00:38:11.3795530Z" end-time="2026-09-27T00:38:12.2176820Z" duration="0.838084" total="67" passed="51" failed="16" inconclusive="0" skipped="0" warnings="0" asserts="214" random-seed="1348440169">
+  <command-line><![CDATA[/private/tmp/coo-density-doors/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-density-doors/verification/content-red.xml --where "class =~ /DensityGeneratedDoor/"]]></command-line>
+  <filter>
+    <class re="1">DensityGeneratedDoor</class>
+  </filter>
+  <test-suite type="Assembly" id="1087" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-doors/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="67" result="Failed" site="Child" start-time="2026-09-27T00:38:11.3795530Z" end-time="2026-09-27T00:38:12.2176820Z" duration="0.838084" total="67" passed="51" failed="16" warnings="0" inconclusive="0" skipped="0" asserts="214">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-density-doors/Tools/EditModeRunner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-density-doors/Tools/EditModeRunner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="40420" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1088" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="67" result="Failed" site="Child" start-time="2026-09-27T00:38:11.3813540Z" end-time="2026-09-27T00:38:12.2176680Z" duration="0.836306" total="67" passed="51" failed="16" warnings="0" inconclusive="0" skipped="0" asserts="214">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1089" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="67" result="Failed" site="Child" start-time="2026-09-27T00:38:11.3814920Z" end-time="2026-09-27T00:38:12.2176410Z" duration="0.836141" total="67" passed="51" failed="16" warnings="0" inconclusive="0" skipped="0" asserts="214">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1034" name="DensityGeneratedDoorAdversarialTests" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" testcasecount="23" result="Passed" start-time="2026-09-27T00:38:11.3818820Z" end-time="2026-09-27T00:38:11.4488590Z" duration="0.066976" total="23" passed="23" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="57">
+          <test-case id="1062" name="ApproachPathStopsAfterOpening" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.ApproachPathStopsAfterOpening" methodname="ApproachPathStopsAfterOpening" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="740972890" result="Passed" start-time="2026-09-27T00:38:11.3829220Z" end-time="2026-09-27T00:38:11.4334050Z" duration="0.050511" asserts="3" />
+          <test-suite type="ParameterizedMethod" id="1053" name="ExactOwnerPermissionIsNotADisplayNameMatch" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.ExactOwnerPermissionIsNotADisplayNameMatch" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T00:38:11.4340730Z" end-time="2026-09-27T00:38:11.4360810Z" duration="0.002007" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <test-case id="1051" name="ExactOwnerPermissionIsNotADisplayNameMatch(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.ExactOwnerPermissionIsNotADisplayNameMatch(True)" methodname="ExactOwnerPermissionIsNotADisplayNameMatch" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="1749008998" result="Passed" start-time="2026-09-27T00:38:11.4341530Z" end-time="2026-09-27T00:38:11.4352080Z" duration="0.001055" asserts="2" />
+            <test-case id="1052" name="ExactOwnerPermissionIsNotADisplayNameMatch(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.ExactOwnerPermissionIsNotADisplayNameMatch(False)" methodname="ExactOwnerPermissionIsNotADisplayNameMatch" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="1693247809" result="Passed" start-time="2026-09-27T00:38:11.4352310Z" end-time="2026-09-27T00:38:11.4357760Z" duration="0.000546" asserts="2" />
+          </test-suite>
+          <test-case id="1061" name="GreedyAwayStopsAfterOpening" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.GreedyAwayStopsAfterOpening" methodname="GreedyAwayStopsAfterOpening" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="2121506758" result="Passed" start-time="2026-09-27T00:38:11.4362560Z" end-time="2026-09-27T00:38:11.4366580Z" duration="0.000402" asserts="3" />
+          <test-suite type="ParameterizedMethod" id="1037" name="HybridAuthoredAuthorityCannotBeClaimedByOrdinaryDoor" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.HybridAuthoredAuthorityCannotBeClaimedByOrdinaryDoor" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T00:38:11.4366800Z" end-time="2026-09-27T00:38:11.4371060Z" duration="0.000426" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <test-case id="1035" name="HybridAuthoredAuthorityCannotBeClaimedByOrdinaryDoor(&quot;morrowfast&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.HybridAuthoredAuthorityCannotBeClaimedByOrdinaryDoor(&quot;morrowfast&quot;)" methodname="HybridAuthoredAuthorityCannotBeClaimedByOrdinaryDoor" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="1591026774" result="Passed" start-time="2026-09-27T00:38:11.4366880Z" end-time="2026-09-27T00:38:11.4369280Z" duration="0.000240" asserts="3" />
+            <test-case id="1036" name="HybridAuthoredAuthorityCannotBeClaimedByOrdinaryDoor(&quot;archive&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.HybridAuthoredAuthorityCannotBeClaimedByOrdinaryDoor(&quot;archive&quot;)" methodname="HybridAuthoredAuthorityCannotBeClaimedByOrdinaryDoor" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="1118364253" result="Passed" start-time="2026-09-27T00:38:11.4369410Z" end-time="2026-09-27T00:38:11.4370730Z" duration="0.000132" asserts="3" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1050" name="InvalidAuthorityDoesNotOpenOrMove" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-09-27T00:38:11.4371330Z" end-time="2026-09-27T00:38:11.4442560Z" duration="0.007122" total="12" passed="12" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <test-case id="1038" name="InvalidAuthorityDoesNotOpenOrMove(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove(&quot;takeable&quot;)" methodname="InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="662425100" result="Passed" start-time="2026-09-27T00:38:11.4371400Z" end-time="2026-09-27T00:38:11.4373640Z" duration="0.000224" asserts="2" />
+            <test-case id="1039" name="InvalidAuthorityDoesNotOpenOrMove(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove(&quot;carried&quot;)" methodname="InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="1269363186" result="Passed" start-time="2026-09-27T00:38:11.4373840Z" end-time="2026-09-27T00:38:11.4375060Z" duration="0.000122" asserts="2" />
+            <test-case id="1040" name="InvalidAuthorityDoesNotOpenOrMove(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove(&quot;equipped&quot;)" methodname="InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="222600171" result="Passed" start-time="2026-09-27T00:38:11.4375420Z" end-time="2026-09-27T00:38:11.4376300Z" duration="0.000088" asserts="2" />
+            <test-case id="1041" name="InvalidAuthorityDoesNotOpenOrMove(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove(&quot;creature&quot;)" methodname="InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="803241599" result="Passed" start-time="2026-09-27T00:38:11.4376440Z" end-time="2026-09-27T00:38:11.4395770Z" duration="0.001933" asserts="2" />
+            <test-case id="1042" name="InvalidAuthorityDoesNotOpenOrMove(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove(&quot;removed&quot;)" methodname="InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="1331538037" result="Passed" start-time="2026-09-27T00:38:11.4396330Z" end-time="2026-09-27T00:38:11.4403450Z" duration="0.000712" asserts="2" />
+            <test-case id="1043" name="InvalidAuthorityDoesNotOpenOrMove(&quot;part-removed&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove(&quot;part-removed&quot;)" methodname="InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="279984117" result="Passed" start-time="2026-09-27T00:38:11.4403620Z" end-time="2026-09-27T00:38:11.4405240Z" duration="0.000161" asserts="2" />
+            <test-case id="1044" name="InvalidAuthorityDoesNotOpenOrMove(&quot;part-replaced&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove(&quot;part-replaced&quot;)" methodname="InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="828677576" result="Passed" start-time="2026-09-27T00:38:11.4405370Z" end-time="2026-09-27T00:38:11.4406030Z" duration="0.000066" asserts="2" />
+            <test-case id="1045" name="InvalidAuthorityDoesNotOpenOrMove(&quot;actor-removed&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove(&quot;actor-removed&quot;)" methodname="InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="2059853888" result="Passed" start-time="2026-09-27T00:38:11.4406130Z" end-time="2026-09-27T00:38:11.4406790Z" duration="0.000066" asserts="2" />
+            <test-case id="1046" name="InvalidAuthorityDoesNotOpenOrMove(&quot;actor-clone&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove(&quot;actor-clone&quot;)" methodname="InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="1749513347" result="Passed" start-time="2026-09-27T00:38:11.4406890Z" end-time="2026-09-27T00:38:11.4407490Z" duration="0.000060" asserts="2" />
+            <test-case id="1047" name="InvalidAuthorityDoesNotOpenOrMove(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove(&quot;dead&quot;)" methodname="InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="1051863840" result="Passed" start-time="2026-09-27T00:38:11.4407650Z" end-time="2026-09-27T00:38:11.4408390Z" duration="0.000074" asserts="2" />
+            <test-case id="1048" name="InvalidAuthorityDoesNotOpenOrMove(&quot;zero-hp&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove(&quot;zero-hp&quot;)" methodname="InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="423910356" result="Passed" start-time="2026-09-27T00:38:11.4408530Z" end-time="2026-09-27T00:38:11.4409230Z" duration="0.000070" asserts="2" />
+            <test-case id="1049" name="InvalidAuthorityDoesNotOpenOrMove(&quot;stunned&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.InvalidAuthorityDoesNotOpenOrMove(&quot;stunned&quot;)" methodname="InvalidAuthorityDoesNotOpenOrMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="1371804088" result="Passed" start-time="2026-09-27T00:38:11.4409370Z" end-time="2026-09-27T00:38:11.4442230Z" duration="0.003286" asserts="2" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1060" name="LegacyUnlockDetailedResultIsOneStationaryAction" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.LegacyUnlockDetailedResultIsOneStationaryAction" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T00:38:11.4442690Z" end-time="2026-09-27T00:38:11.4457870Z" duration="0.001518" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <test-case id="1058" name="LegacyUnlockDetailedResultIsOneStationaryAction(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.LegacyUnlockDetailedResultIsOneStationaryAction(True)" methodname="LegacyUnlockDetailedResultIsOneStationaryAction" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="511070689" result="Passed" start-time="2026-09-27T00:38:11.4442870Z" end-time="2026-09-27T00:38:11.4454860Z" duration="0.001199" asserts="4" />
+            <test-case id="1059" name="LegacyUnlockDetailedResultIsOneStationaryAction(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.LegacyUnlockDetailedResultIsOneStationaryAction(False)" methodname="LegacyUnlockDetailedResultIsOneStationaryAction" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="1972174847" result="Passed" start-time="2026-09-27T00:38:11.4455290Z" end-time="2026-09-27T00:38:11.4457600Z" duration="0.000231" asserts="4" />
+          </test-suite>
+          <test-case id="1057" name="MovementRootDoesNotForbidExplicitStationaryDoorAction" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.MovementRootDoesNotForbidExplicitStationaryDoorAction" methodname="MovementRootDoesNotForbidExplicitStationaryDoorAction" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="815741737" result="Passed" start-time="2026-09-27T00:38:11.4458040Z" end-time="2026-09-27T00:38:11.4461460Z" duration="0.000342" asserts="3" />
+          <test-suite type="ParameterizedMethod" id="1056" name="OffsetCreatureBodyPreventsClosingEvenWithAnchorElsewhere" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.OffsetCreatureBodyPreventsClosingEvenWithAnchorElsewhere" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T00:38:11.4461620Z" end-time="2026-09-27T00:38:11.4488090Z" duration="0.002647" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <test-case id="1054" name="OffsetCreatureBodyPreventsClosingEvenWithAnchorElsewhere(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.OffsetCreatureBodyPreventsClosingEvenWithAnchorElsewhere(False)" methodname="OffsetCreatureBodyPreventsClosingEvenWithAnchorElsewhere" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="1962229853" result="Passed" start-time="2026-09-27T00:38:11.4461710Z" end-time="2026-09-27T00:38:11.4484030Z" duration="0.002232" asserts="3" />
+            <test-case id="1055" name="OffsetCreatureBodyPreventsClosingEvenWithAnchorElsewhere(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests.OffsetCreatureBodyPreventsClosingEvenWithAnchorElsewhere(True)" methodname="OffsetCreatureBodyPreventsClosingEvenWithAnchorElsewhere" classname="CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests" runstate="Runnable" seed="1177488432" result="Passed" start-time="2026-09-27T00:38:11.4484600Z" end-time="2026-09-27T00:38:11.4487880Z" duration="0.000328" asserts="3" />
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1063" name="DensityGeneratedDoorContentTests" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-09-27T00:38:11.4491760Z" end-time="2026-09-27T00:38:12.0508850Z" duration="0.601704" total="18" passed="2" failed="16" warnings="0" inconclusive="0" skipped="0" asserts="27">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1064" name="ActualDoorBlueprintIsAnInitiallyOpenNonportableWorldOwner" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualDoorBlueprintIsAnInitiallyOpenNonportableWorldOwner" methodname="ActualDoorBlueprintIsAnInitiallyOpenNonportableWorldOwner" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="173459656" result="Failed" start-time="2026-09-27T00:38:11.4492350Z" end-time="2026-09-27T00:38:11.4990830Z" duration="0.049848" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualDoorBlueprintIsAnInitiallyOpenNonportableWorldOwner() in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 25
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualDoorBlueprintIsAnInitiallyOpenNonportableWorldOwner() in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 25
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1070" name="ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-27T00:38:11.4991630Z" end-time="2026-09-27T00:38:11.6267650Z" duration="0.127601" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="10">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1065" name="ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(1)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(1)" methodname="ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="846156764" result="Failed" start-time="2026-09-27T00:38:11.4991880Z" end-time="2026-09-27T00:38:11.5301740Z" duration="0.030986" asserts="2">
+              <failure>
+                <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Int32 seed) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 30
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Int32 seed) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 30
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1066" name="ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(64)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(64)" methodname="ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="1622244368" result="Failed" start-time="2026-09-27T00:38:11.5302060Z" end-time="2026-09-27T00:38:11.5525780Z" duration="0.022373" asserts="2">
+              <failure>
+                <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Int32 seed) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 30
+   at InvokeStub_DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Int32 seed) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 30
+   at InvokeStub_DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1067" name="ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(1729)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(1729)" methodname="ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="1397667694" result="Failed" start-time="2026-09-27T00:38:11.5526060Z" end-time="2026-09-27T00:38:11.5834860Z" duration="0.030880" asserts="2">
+              <failure>
+                <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Int32 seed) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 30
+   at InvokeStub_DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Int32 seed) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 30
+   at InvokeStub_DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1068" name="ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(2026)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(2026)" methodname="ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="2029079142" result="Failed" start-time="2026-09-27T00:38:11.5835120Z" end-time="2026-09-27T00:38:11.6055130Z" duration="0.022002" asserts="2">
+              <failure>
+                <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Int32 seed) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 30
+   at InvokeStub_DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Int32 seed) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 30
+   at InvokeStub_DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1069" name="ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(729490642)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(729490642)" methodname="ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="1070727465" result="Failed" start-time="2026-09-27T00:38:11.6055450Z" end-time="2026-09-27T00:38:11.6267460Z" duration="0.021202" asserts="2">
+              <failure>
+                <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Int32 seed) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 30
+   at InvokeStub_DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Int32 seed) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 30
+   at InvokeStub_DensityGeneratedDoorContentTests.ActualRoomSourcesGainDoorsWithoutChangingInitialTopologyOrRng(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1078" name="AuthoredCompositionPipelinesDoNotGainGenericDoors" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.AuthoredCompositionPipelinesDoNotGainGenericDoors" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T00:38:11.6267750Z" end-time="2026-09-27T00:38:11.7638340Z" duration="0.137057" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <test-case id="1076" name="AuthoredCompositionPipelinesDoNotGainGenericDoors(&quot;Overworld.14.9.0&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.AuthoredCompositionPipelinesDoNotGainGenericDoors(&quot;Overworld.14.9.0&quot;)" methodname="AuthoredCompositionPipelinesDoNotGainGenericDoors" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="70028870" result="Passed" start-time="2026-09-27T00:38:11.6267850Z" end-time="2026-09-27T00:38:11.7248040Z" duration="0.098018" asserts="1" />
+            <test-case id="1077" name="AuthoredCompositionPipelinesDoNotGainGenericDoors(&quot;Overworld.8.16.0&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.AuthoredCompositionPipelinesDoNotGainGenericDoors(&quot;Overworld.8.16.0&quot;)" methodname="AuthoredCompositionPipelinesDoNotGainGenericDoors" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="1177170248" result="Passed" start-time="2026-09-27T00:38:11.7248350Z" end-time="2026-09-27T00:38:11.7638100Z" duration="0.038975" asserts="1" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1086" name="DoorStateAndOwnershipRoundTripAsOrdinaryPartState" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.DoorStateAndOwnershipRoundTripAsOrdinaryPartState" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T00:38:11.7638440Z" end-time="2026-09-27T00:38:11.8090270Z" duration="0.045182" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1084" name="DoorStateAndOwnershipRoundTripAsOrdinaryPartState(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.DoorStateAndOwnershipRoundTripAsOrdinaryPartState(False)" methodname="DoorStateAndOwnershipRoundTripAsOrdinaryPartState" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="1214193280" result="Failed" start-time="2026-09-27T00:38:11.7638540Z" end-time="2026-09-27T00:38:11.7856700Z" duration="0.021815" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.DoorStateAndOwnershipRoundTripAsOrdinaryPartState(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 58
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.DoorStateAndOwnershipRoundTripAsOrdinaryPartState(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 58
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1085" name="DoorStateAndOwnershipRoundTripAsOrdinaryPartState(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.DoorStateAndOwnershipRoundTripAsOrdinaryPartState(True)" methodname="DoorStateAndOwnershipRoundTripAsOrdinaryPartState" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="1607193393" result="Failed" start-time="2026-09-27T00:38:11.7856890Z" end-time="2026-09-27T00:38:11.8089970Z" duration="0.023308" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.DoorStateAndOwnershipRoundTripAsOrdinaryPartState(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 58
+   at InvokeStub_DensityGeneratedDoorContentTests.DoorStateAndOwnershipRoundTripAsOrdinaryPartState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.DoorStateAndOwnershipRoundTripAsOrdinaryPartState(Boolean open) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 58
+   at InvokeStub_DensityGeneratedDoorContentTests.DoorStateAndOwnershipRoundTripAsOrdinaryPartState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1075" name="FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-27T00:38:11.8090400Z" end-time="2026-09-27T00:38:11.9443350Z" duration="0.135294" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1071" name="FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(&quot;Overworld.10.10.0&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(&quot;Overworld.10.10.0&quot;)" methodname="FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="906618973" result="Failed" start-time="2026-09-27T00:38:11.8090570Z" end-time="2026-09-27T00:38:11.8471880Z" duration="0.038131" asserts="1">
+              <failure>
+                <message><![CDATA[  the real routed pipeline must place doors: Overworld.10.10.0
+  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 38
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  the real routed pipeline must place doors: Overworld.10.10.0
+  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 38
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1072" name="FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(&quot;Overworld.5.9.0&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(&quot;Overworld.5.9.0&quot;)" methodname="FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="32738114" result="Failed" start-time="2026-09-27T00:38:11.8472210Z" end-time="2026-09-27T00:38:11.8745100Z" duration="0.027289" asserts="1">
+              <failure>
+                <message><![CDATA[  the real routed pipeline must place doors: Overworld.5.9.0
+  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 38
+   at InvokeStub_DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  the real routed pipeline must place doors: Overworld.5.9.0
+  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 38
+   at InvokeStub_DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1073" name="FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(&quot;Overworld.15.15.0&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(&quot;Overworld.15.15.0&quot;)" methodname="FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="1748660896" result="Failed" start-time="2026-09-27T00:38:11.8745440Z" end-time="2026-09-27T00:38:11.9152180Z" duration="0.040674" asserts="1">
+              <failure>
+                <message><![CDATA[  the real routed pipeline must place doors: Overworld.15.15.0
+  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 38
+   at InvokeStub_DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  the real routed pipeline must place doors: Overworld.15.15.0
+  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 38
+   at InvokeStub_DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1074" name="FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(&quot;Overworld.16.1.0&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(&quot;Overworld.16.1.0&quot;)" methodname="FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="1361737089" result="Failed" start-time="2026-09-27T00:38:11.9152440Z" end-time="2026-09-27T00:38:11.9443150Z" duration="0.029071" asserts="1">
+              <failure>
+                <message><![CDATA[  the real routed pipeline must place doors: Overworld.16.1.0
+  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 38
+   at InvokeStub_DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  the real routed pipeline must place doors: Overworld.16.1.0
+  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(String id) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 38
+   at InvokeStub_DensityGeneratedDoorContentTests.FullGenericVillagePipelineProvidesRealDoorsAndCapableResidents(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1083" name="LatePlacementCannotInventOrClaimAnInvalidAperture" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-27T00:38:11.9443510Z" end-time="2026-09-27T00:38:12.0507720Z" duration="0.106420" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1079" name="LatePlacementCannotInventOrClaimAnInvalidAperture(&quot;missing-blueprint&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(&quot;missing-blueprint&quot;)" methodname="LatePlacementCannotInventOrClaimAnInvalidAperture" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="1765717043" result="Failed" start-time="2026-09-27T00:38:11.9443680Z" end-time="2026-09-27T00:38:11.9682280Z" duration="0.023860" asserts="2">
+              <failure>
+                <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 53
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 53
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1080" name="LatePlacementCannotInventOrClaimAnInvalidAperture(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(&quot;foreign-zone&quot;)" methodname="LatePlacementCannotInventOrClaimAnInvalidAperture" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="412539719" result="Failed" start-time="2026-09-27T00:38:11.9682510Z" end-time="2026-09-27T00:38:11.9888590Z" duration="0.020609" asserts="2">
+              <failure>
+                <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 53
+   at InvokeStub_DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 53
+   at InvokeStub_DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1081" name="LatePlacementCannotInventOrClaimAnInvalidAperture(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(&quot;reserved&quot;)" methodname="LatePlacementCannotInventOrClaimAnInvalidAperture" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="1152235660" result="Failed" start-time="2026-09-27T00:38:11.9888880Z" end-time="2026-09-27T00:38:12.0152500Z" duration="0.026362" asserts="2">
+              <failure>
+                <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 53
+   at InvokeStub_DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 53
+   at InvokeStub_DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1082" name="LatePlacementCannotInventOrClaimAnInvalidAperture(&quot;all-walls-cleared&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(&quot;all-walls-cleared&quot;)" methodname="LatePlacementCannotInventOrClaimAnInvalidAperture" classname="CavesOfOoo.Tests.DensityGeneratedDoorContentTests" runstate="Runnable" seed="439517670" result="Failed" start-time="2026-09-27T00:38:12.0153430Z" end-time="2026-09-27T00:38:12.0507360Z" duration="0.035393" asserts="2">
+              <failure>
+                <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 53
+   at InvokeStub_DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  late placement must use actual ordinary room aperture provenance
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.Placement(VillageBuilder source) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 19
+   at CavesOfOoo.Tests.DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(String fault) in /tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorContentTests.cs:line 53
+   at InvokeStub_DensityGeneratedDoorContentTests.LatePlacementCannotInventOrClaimAnInvalidAperture(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1000" name="DensityGeneratedDoorTests" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="26" result="Passed" start-time="2026-09-27T00:38:12.0509280Z" end-time="2026-09-27T00:38:12.2176220Z" duration="0.166693" total="26" passed="26" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="130">
+          <test-suite type="ParameterizedMethod" id="1022" name="ActorAwarePathPlansOnlyThroughOperableDoor" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.ActorAwarePathPlansOnlyThroughOperableDoor" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T00:38:12.0510320Z" end-time="2026-09-27T00:38:12.0542020Z" duration="0.003170" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1020" name="ActorAwarePathPlansOnlyThroughOperableDoor(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.ActorAwarePathPlansOnlyThroughOperableDoor(True)" methodname="ActorAwarePathPlansOnlyThroughOperableDoor" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="173557019" result="Passed" start-time="2026-09-27T00:38:12.0510460Z" end-time="2026-09-27T00:38:12.0530370Z" duration="0.001991" asserts="6" />
+            <test-case id="1021" name="ActorAwarePathPlansOnlyThroughOperableDoor(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.ActorAwarePathPlansOnlyThroughOperableDoor(False)" methodname="ActorAwarePathPlansOnlyThroughOperableDoor" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="616386613" result="Passed" start-time="2026-09-27T00:38:12.0530580Z" end-time="2026-09-27T00:38:12.0541530Z" duration="0.001095" asserts="6" />
+          </test-suite>
+          <test-case id="1032" name="ClosedDoorAsGoalStillNeedsPermission" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosedDoorAsGoalStillNeedsPermission" methodname="ClosedDoorAsGoalStillNeedsPermission" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="887210982" result="Passed" start-time="2026-09-27T00:38:12.0542970Z" end-time="2026-09-27T00:38:12.0633340Z" duration="0.009037" asserts="3" />
+          <test-case id="1015" name="ClosingRefusesActorStandingInDoorway" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesActorStandingInDoorway" methodname="ClosingRefusesActorStandingInDoorway" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1788246747" result="Passed" start-time="2026-09-27T00:38:12.0633790Z" end-time="2026-09-27T00:38:12.0639510Z" duration="0.000572" asserts="4" />
+          <test-suite type="ParameterizedMethod" id="1014" name="ClosingRefusesLooseObjectsButPermitsGround" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesLooseObjectsButPermitsGround" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T00:38:12.0639690Z" end-time="2026-09-27T00:38:12.0648160Z" duration="0.000846" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <test-case id="1012" name="ClosingRefusesLooseObjectsButPermitsGround(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesLooseObjectsButPermitsGround(True)" methodname="ClosingRefusesLooseObjectsButPermitsGround" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="2071910981" result="Passed" start-time="2026-09-27T00:38:12.0640350Z" end-time="2026-09-27T00:38:12.0644220Z" duration="0.000386" asserts="4" />
+            <test-case id="1013" name="ClosingRefusesLooseObjectsButPermitsGround(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.ClosingRefusesLooseObjectsButPermitsGround(False)" methodname="ClosingRefusesLooseObjectsButPermitsGround" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="977984189" result="Passed" start-time="2026-09-27T00:38:12.0644370Z" end-time="2026-09-27T00:38:12.0647880Z" duration="0.000351" asserts="4" />
+          </test-suite>
+          <test-case id="1019" name="DetailedMoveCanReportOpeningWithoutPretendingToMove" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.DetailedMoveCanReportOpeningWithoutPretendingToMove" methodname="DetailedMoveCanReportOpeningWithoutPretendingToMove" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1429098922" result="Passed" start-time="2026-09-27T00:38:12.0648640Z" end-time="2026-09-27T00:38:12.0721150Z" duration="0.007251" asserts="9" />
+          <test-case id="1024" name="GreedyNpcFallbackStopsAfterItsDoorAction" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.GreedyNpcFallbackStopsAfterItsDoorAction" methodname="GreedyNpcFallbackStopsAfterItsDoorAction" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="446252278" result="Passed" start-time="2026-09-27T00:38:12.0745560Z" end-time="2026-09-27T00:38:12.0773510Z" duration="0.002795" asserts="5" />
+          <test-suite type="ParameterizedMethod" id="1011" name="InvalidRequestsAreUnchangedAndUnconsumed" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-27T00:38:12.0774350Z" end-time="2026-09-27T00:38:12.0868180Z" duration="0.009383" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <test-case id="1005" name="InvalidRequestsAreUnchangedAndUnconsumed(&quot;same_state&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(&quot;same_state&quot;)" methodname="InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="327083930" result="Passed" start-time="2026-09-27T00:38:12.0774690Z" end-time="2026-09-27T00:38:12.0802830Z" duration="0.002814" asserts="4" />
+            <test-case id="1006" name="InvalidRequestsAreUnchangedAndUnconsumed(&quot;distant&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(&quot;distant&quot;)" methodname="InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1545211068" result="Passed" start-time="2026-09-27T00:38:12.0804360Z" end-time="2026-09-27T00:38:12.0825070Z" duration="0.002072" asserts="4" />
+            <test-case id="1007" name="InvalidRequestsAreUnchangedAndUnconsumed(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(&quot;dead&quot;)" methodname="InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="531071039" result="Passed" start-time="2026-09-27T00:38:12.0825890Z" end-time="2026-09-27T00:38:12.0837420Z" duration="0.001152" asserts="4" />
+            <test-case id="1008" name="InvalidRequestsAreUnchangedAndUnconsumed(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(&quot;removed&quot;)" methodname="InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1577682746" result="Passed" start-time="2026-09-27T00:38:12.0837730Z" end-time="2026-09-27T00:38:12.0842840Z" duration="0.000512" asserts="4" />
+            <test-case id="1009" name="InvalidRequestsAreUnchangedAndUnconsumed(&quot;foreign_zone&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(&quot;foreign_zone&quot;)" methodname="InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1206415166" result="Passed" start-time="2026-09-27T00:38:12.0842960Z" end-time="2026-09-27T00:38:12.0855010Z" duration="0.001205" asserts="4" />
+            <test-case id="1010" name="InvalidRequestsAreUnchangedAndUnconsumed(&quot;locked&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.InvalidRequestsAreUnchangedAndUnconsumed(&quot;locked&quot;)" methodname="InvalidRequestsAreUnchangedAndUnconsumed" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="954412665" result="Passed" start-time="2026-09-27T00:38:12.0855350Z" end-time="2026-09-27T00:38:12.0867940Z" duration="0.001259" asserts="4" />
+          </test-suite>
+          <test-case id="1004" name="MenuOpenAndCloseChangeOneOwnerWithoutMovement" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.MenuOpenAndCloseChangeOneOwnerWithoutMovement" methodname="MenuOpenAndCloseChangeOneOwnerWithoutMovement" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="473698812" result="Passed" start-time="2026-09-27T00:38:12.0873070Z" end-time="2026-09-27T00:38:12.0923860Z" duration="0.005079" asserts="8" />
+          <test-case id="1023" name="NpcMoveGoalOpensAndOnlyMovesOnTheFollowingAction" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.NpcMoveGoalOpensAndOnlyMovesOnTheFollowingAction" methodname="NpcMoveGoalOpensAndOnlyMovesOnTheFollowingAction" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="992306949" result="Passed" start-time="2026-09-27T00:38:12.0935280Z" end-time="2026-09-27T00:38:12.0978210Z" duration="0.004293" asserts="5" />
+          <test-suite type="ParameterizedMethod" id="1018" name="NpcPermissionIsExplicit" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.NpcPermissionIsExplicit" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T00:38:12.0980160Z" end-time="2026-09-27T00:38:12.0998710Z" duration="0.001855" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <test-case id="1016" name="NpcPermissionIsExplicit(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.NpcPermissionIsExplicit(True)" methodname="NpcPermissionIsExplicit" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1440783810" result="Passed" start-time="2026-09-27T00:38:12.0980630Z" end-time="2026-09-27T00:38:12.0988410Z" duration="0.000778" asserts="4" />
+            <test-case id="1017" name="NpcPermissionIsExplicit(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.NpcPermissionIsExplicit(False)" methodname="NpcPermissionIsExplicit" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1624591242" result="Passed" start-time="2026-09-27T00:38:12.0990570Z" end-time="2026-09-27T00:38:12.0998350Z" duration="0.000779" asserts="4" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1003" name="OpenStateControlsRealCollisionAndSight" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.OpenStateControlsRealCollisionAndSight" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T00:38:12.0998950Z" end-time="2026-09-27T00:38:12.1685750Z" duration="0.068679" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+            <test-case id="1001" name="OpenStateControlsRealCollisionAndSight(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.OpenStateControlsRealCollisionAndSight(False)" methodname="OpenStateControlsRealCollisionAndSight" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="307209282" result="Passed" start-time="2026-09-27T00:38:12.1166570Z" end-time="2026-09-27T00:38:12.1645460Z" duration="0.047889" asserts="7" />
+            <test-case id="1002" name="OpenStateControlsRealCollisionAndSight(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.OpenStateControlsRealCollisionAndSight(True)" methodname="OpenStateControlsRealCollisionAndSight" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1019020920" result="Passed" start-time="2026-09-27T00:38:12.1647380Z" end-time="2026-09-27T00:38:12.1669010Z" duration="0.002163" asserts="7" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1031" name="PathNeverTreatsDoorPermissionAsPermissionForOtherBlockers" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.PathNeverTreatsDoorPermissionAsPermissionForOtherBlockers" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27T00:38:12.1685950Z" end-time="2026-09-27T00:38:12.1897990Z" duration="0.021204" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1028" name="PathNeverTreatsDoorPermissionAsPermissionForOtherBlockers(&quot;locked&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.PathNeverTreatsDoorPermissionAsPermissionForOtherBlockers(&quot;locked&quot;)" methodname="PathNeverTreatsDoorPermissionAsPermissionForOtherBlockers" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1451316127" result="Passed" start-time="2026-09-27T00:38:12.1702700Z" end-time="2026-09-27T00:38:12.1832050Z" duration="0.012935" asserts="4" />
+            <test-case id="1029" name="PathNeverTreatsDoorPermissionAsPermissionForOtherBlockers(&quot;foreign-owner&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.PathNeverTreatsDoorPermissionAsPermissionForOtherBlockers(&quot;foreign-owner&quot;)" methodname="PathNeverTreatsDoorPermissionAsPermissionForOtherBlockers" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1026401822" result="Passed" start-time="2026-09-27T00:38:12.1842040Z" end-time="2026-09-27T00:38:12.1859690Z" duration="0.001765" asserts="4" />
+            <test-case id="1030" name="PathNeverTreatsDoorPermissionAsPermissionForOtherBlockers(&quot;solid-companion&quot;)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.PathNeverTreatsDoorPermissionAsPermissionForOtherBlockers(&quot;solid-companion&quot;)" methodname="PathNeverTreatsDoorPermissionAsPermissionForOtherBlockers" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="1796606845" result="Passed" start-time="2026-09-27T00:38:12.1861150Z" end-time="2026-09-27T00:38:12.1896550Z" duration="0.003541" asserts="4" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1027" name="PhysicalPlacementNeverAssumesADoorWillBeOpened" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.PhysicalPlacementNeverAssumesADoorWillBeOpened" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T00:38:12.1899190Z" end-time="2026-09-27T00:38:12.2030140Z" duration="0.013094" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="11">
+            <test-case id="1025" name="PhysicalPlacementNeverAssumesADoorWillBeOpened(False)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.PhysicalPlacementNeverAssumesADoorWillBeOpened(False)" methodname="PhysicalPlacementNeverAssumesADoorWillBeOpened" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="602457520" result="Passed" start-time="2026-09-27T00:38:12.1899610Z" end-time="2026-09-27T00:38:12.1976090Z" duration="0.007648" asserts="5" />
+            <test-case id="1026" name="PhysicalPlacementNeverAssumesADoorWillBeOpened(True)" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.PhysicalPlacementNeverAssumesADoorWillBeOpened(True)" methodname="PhysicalPlacementNeverAssumesADoorWillBeOpened" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="644503954" result="Passed" start-time="2026-09-27T00:38:12.1977190Z" end-time="2026-09-27T00:38:12.2021190Z" duration="0.004400" asserts="6" />
+          </test-suite>
+          <test-case id="1033" name="StepGoalDoesNotConsumeItsMovementWhenItOnlyOpensDoor" fullname="CavesOfOoo.Tests.DensityGeneratedDoorTests.StepGoalDoesNotConsumeItsMovementWhenItOnlyOpensDoor" methodname="StepGoalDoesNotConsumeItsMovementWhenItOnlyOpensDoor" classname="CavesOfOoo.Tests.DensityGeneratedDoorTests" runstate="Runnable" seed="190546377" result="Passed" start-time="2026-09-27T00:38:12.2031430Z" end-time="2026-09-27T00:38:12.2175400Z" duration="0.014397" asserts="7" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

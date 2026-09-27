@@ -1,0 +1,35 @@
+using System;
+using System.Linq;
+using CavesOfOoo.Core;
+using NUnit.Framework;
+namespace CavesOfOoo.Tests
+{
+ public sealed class SpreadEquipmentFitOwnershipTests
+ {
+  [TestCase("Farmer","LeatherGloves")][TestCase("Scribe","LeatherGloves")][TestCase("Elder","LeatherCap")][TestCase("MarlbackBreacher","IronHelmet")]
+  public void FreshDuplicateMergesAndItsConsumedReferenceCannotEquip(string actorName,string itemName)
+  {
+   using(var scope=new DensityLootTestScope())
+   {
+    var actor=scope.Factory.CreateEntity(actorName);var inv=actor.GetPart<InventoryPart>();
+    var original=inv.GetAllEquipped().Single(x=>x.BlueprintName==itemName);
+    foreach(var e in inv.GetAllEquipped().ToArray())Assert.True(InventorySystem.UnequipItem(actor,e));
+    var fresh=scope.Factory.CreateEntity(itemName);Assert.True(inv.AddObject(fresh));
+    Assert.False(inv.Contains(fresh));Assert.True(inv.Contains(original));Assert.False(InventorySystem.Equip(actor,fresh));
+    Assert.AreEqual(2,original.GetPart<StackerPart>().StackCount);
+    Assert.True(InventorySystem.Equip(actor,original));var equipped=inv.GetAllEquipped().Single(x=>x.BlueprintName==itemName);
+    Assert.AreNotSame(original,equipped);Assert.AreEqual(1,original.GetPart<StackerPart>().StackCount);Assert.AreSame(actor,equipped.GetPart<PhysicsPart>().Equipped);
+   }
+  }
+  [TestCase("Farmer","LeatherGloves")][TestCase("Scribe","LeatherGloves")][TestCase("Elder","LeatherCap")][TestCase("MarlbackBreacher","IronHelmet")]
+  public void ReusingTheActualExistingCarriedSpecimenKeepsItsIdentity(string actorName,string itemName)
+  {
+   using(var scope=new DensityLootTestScope())
+   {
+    var actor=scope.Factory.CreateEntity(actorName);var inv=actor.GetPart<InventoryPart>();var original=inv.GetAllEquipped().Single(x=>x.BlueprintName==itemName);
+    foreach(var e in inv.GetAllEquipped().ToArray())Assert.True(InventorySystem.UnequipItem(actor,e));
+    Assert.True(inv.Contains(original));Assert.True(InventorySystem.Equip(actor,original));Assert.AreSame(original,inv.GetAllEquipped().Single(x=>x.BlueprintName==itemName));
+   }
+  }
+ }
+}

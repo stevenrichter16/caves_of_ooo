@@ -1,0 +1,20 @@
+--- a/Assets/Scripts/Presentation/Rendering/SpreadParticleFrame.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpreadParticleFrame.cs
+@@ -28,7 +28,7 @@
+   /// Refusals remove an earlier native mark at this cell, preserving last draw.</summary>
+   public bool TryDraw(int x,int y,char glyph,string color)
+   {
+-   if(disposed)return false;int key=y*Zone.Width+x;
++   if(disposed||zone==null||!zone.InBounds(x,y))return false;int key=y*Zone.Width+x;
+    if(!frame||!SpreadParticleSource.TrySample(zone,x,y,glyph,color,out var sample)){Forget(key);return false;}
+    if(!views.TryGetValue(key,out var view))
+    {
+@@ -58,7 +58,7 @@
+   }
+   public void EndFrame(){if(disposed)return;remove.Clear();foreach(var p in views)if(!seen.Contains(p.Key))remove.Add(p.Key);foreach(int key in remove)Forget(key);frame=false;}
+   public bool TryGet(int x,int y,out GameObject root)
+-  {root=null;if(disposed||!views.TryGetValue(y*Zone.Width+x,out var view)||!Valid(view))return false;root=view.Root;return true;}
++  {root=null;if(disposed||zone==null||!zone.InBounds(x,y)||!views.TryGetValue(y*Zone.Width+x,out var view)||!Valid(view))return false;root=view.Root;return true;}
+   bool Valid(View view)
+   {
+    var s=view.Sample;

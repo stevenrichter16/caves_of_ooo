@@ -1,0 +1,45 @@
+{
+  "status": "private test-only; native RED pending after reviewed core import, before rendering/menu production hunks",
+  "files": [
+    {
+      "privatePath": "/tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorRenderingTests.cs",
+      "proposedPath": "Assets/Tests/EditMode/Presentation/Rendering/DensityGeneratedDoorRenderingTests.cs",
+      "sha256": "1f03e55698397eea98baf415ce6f45cbc5a5ea1b39e67cea332f9a751b7fb506"
+    },
+    {
+      "privatePath": "/tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorRenderingTests.cs.meta",
+      "proposedPath": "Assets/Tests/EditMode/Presentation/Rendering/DensityGeneratedDoorRenderingTests.cs.meta",
+      "sha256": "dd1b4b28f624dfd57529be0d679bfe1925eddac4c1d0b716e881808b124a467e"
+    },
+    {
+      "privatePath": "/tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorMenuTests.cs",
+      "proposedPath": "Assets/Tests/EditMode/Presentation/Input/DensityGeneratedDoorMenuTests.cs",
+      "sha256": "d56482bf6b76624775078b4a6b841cc479cbd096348bf9ffbfc1bcaa9487740f"
+    },
+    {
+      "privatePath": "/tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorMenuTests.cs.meta",
+      "proposedPath": "Assets/Tests/EditMode/Presentation/Input/DensityGeneratedDoorMenuTests.cs.meta",
+      "sha256": "97cff0c9e8847f56e57fc64181faa2e3420b6653e1fa17b4846feffc94d27401"
+    },
+    {
+      "privatePath": "/tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorInvalidationTests.cs",
+      "proposedPath": "Assets/Tests/EditMode/Presentation/Rendering/DensityGeneratedDoorInvalidationTests.cs",
+      "sha256": "7dd57caf8231e8c23b9ac0eb7e3a21a4959ad285e7cb28fff609e14db7d50eed"
+    },
+    {
+      "privatePath": "/tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorInvalidationTests.cs.meta",
+      "proposedPath": "Assets/Tests/EditMode/Presentation/Rendering/DensityGeneratedDoorInvalidationTests.cs.meta",
+      "sha256": "de63cc5a2ea19101ee75504136fe3713e9d48695011bd67b4eb90e1b40764274"
+    }
+  ],
+  "renderCases": 26,
+  "menuCases": 4,
+  "expectedMenuRed": "2 positive payment failures +2 refusal controls",
+  "renderRedBoundary": "10 exact-model/live-view positives should fail before recipe; cached-global-registration is separately asserted,15 refusal controls should pass; report observed counts, not this expectation",
+  "nativeReferenceCompile": "zero errors, includes all then-current shared tests and both new fixtures against private Door runtime",
+  "sharedChanges": "none",
+  "rendererImplementation": "unwritten pending native RED",
+  "menuImplementation": "unwritten pending native RED",
+  "stationaryCacheCases": 2,
+  "stationaryCacheBoundary": "Acceptance controls added after core FullDirty implementation; no claim of a separately observed FOV/light bug."
+}

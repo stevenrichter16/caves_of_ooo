@@ -1,0 +1,110 @@
+{
+  "status": "Private reviewed candidate; shared Assets frozen; ordinary-ring registration awaits additional native RED",
+  "files": [
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/HouseDramaZoneBuilder.cs",
+      "beforeSha256": "c1573a7a537a4b37a2bf768dcda566821d6289eeacd2542fe838c884547f6a32",
+      "candidateSha256": "1808a5f9e39855c0485b9cca0d8b9608ccbaf31d570f072c0fa3c14f0da4f040",
+      "privatePath": "/tmp/coo-density-doors/Assets/Scripts/Gameplay/World/Generation/Builders/HouseDramaZoneBuilder.cs"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+      "beforeSha256": "42cfe40db01e09964abb930482a9a7bf4c2e6b3d4a17c54cbe64fd022f90ff9e",
+      "candidateSha256": "48224890ed86fda7f8cf7112a8c9f0c0a617b4c8005e6df7f8731630885af05a",
+      "privatePath": "/tmp/coo-density-doors/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Map/Zone.cs",
+      "beforeSha256": "e6fe1a53fc5f3a3b198a4f4f2c7bb7cdb9bbca4185c7dfe9b7ec54860c7fa823",
+      "candidateSha256": "a3c8efb0496cd2f066ddbcdf5bd3d3ae2ffd8e834f0f25138040123ef03cee46",
+      "privatePath": "/tmp/coo-density-doors/Assets/Scripts/Gameplay/World/Map/Zone.cs"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/DoorPart.cs",
+      "beforeSha256": "fc5da5d4a77ea2de6d2b3f0f2f1ac8289148c265d21854a8c00345693bf34f50",
+      "candidateSha256": "ea8038547e8af1fd4c921facb15a5e26b5b2b11b691457d47ddbff740e86f976",
+      "privatePath": "/tmp/coo-density-doors/Assets/Scripts/Gameplay/World/DoorPart.cs"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/LightMap.cs",
+      "beforeSha256": "07765bc836eae32e2cadcccc5346ee9189b5c65cc7ae406b6a3746d354959419",
+      "candidateSha256": "c3af086ab50551fb818791179d04471d0f467870aca628e7135482e549d7b6ea",
+      "privatePath": "/tmp/coo-density-doors/Assets/Scripts/Gameplay/World/LightMap.cs"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Input/InputHandler.cs",
+      "beforeSha256": "6c2d33ef8aecafe94c8e7c3e4b71e0976219a912448b9c0ab1f3d74fcf9b2593",
+      "candidateSha256": "7b8e76b417dd6c1ace2752173c0f1066439ff96687f5853ae035d73be2e7bfff",
+      "privatePath": "/tmp/coo-density-doors/Assets/Scripts/Presentation/Input/InputHandler.cs"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs",
+      "privatePath": "/tmp/coo-density-doors/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs",
+      "beforeSha256": "e71ff7e6909c15a59e35dc608deca96c473394c185853908cb16778462d5d7e0",
+      "candidateSha256": "32cac72d83670c80724cd42e92e27e07764ab5fd17bfa9b7be9cff92e532f182",
+      "state": "ready after10 actual native recipe RED"
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs",
+      "privatePath": "/tmp/coo-density-doors/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs",
+      "beforeSha256": "2666c352b29f2e148af69dac63278a2ac69a1e0175e71e4ffeb9ec0909b76c72",
+      "candidateSha256": "3ff20857b14f6aea7000a57925b39d1aa91a8b8acee604e783c6deaf480fb660",
+      "state": "HOLD until added ordinary-ring native RED"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/DensityGeneratedDoorRenderingTests.cs",
+      "privatePath": "/tmp/coo-density-doors/Assets/Tests/EditMode/Presentation/Rendering/DensityGeneratedDoorRenderingTests.cs",
+      "beforeSha256": "1f03e55698397eea98baf415ce6f45cbc5a5ea1b39e67cea332f9a751b7fb506",
+      "candidateSha256": "5ff4faf2162e477cf88c484f8dcca020f3d01766e3edb5e4c9a469c4ad89454a",
+      "state": "test-only next window: retain26 existing + ordinary ring positive + malformed footprint refusal"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/DensityGeneratedDoorNativeFollowupTests.cs",
+      "privatePath": "/tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs",
+      "beforeSha256": null,
+      "candidateSha256": "c418dee80ebc566e371e2c92e71effb0846b6a3ae56cfaeb7cc6aa87ed837458",
+      "state": "new15-case source/light fixture"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/DensityGeneratedDoorNativeFollowupTests.cs.meta",
+      "privatePath": "/tmp/coo-density-doors/Assets/Tests/DensityGeneratedDoorNativeFollowupTests.cs.meta",
+      "beforeSha256": null,
+      "candidateSha256": "f7f3ea922984d202651fec767497d45deb8fcbc61291c509ab72925661ec87d6",
+      "state": "new stable GUID"
+    }
+  ],
+  "evidence": {
+    "coreRed": {
+      "total": 13,
+      "passed": 4,
+      "failed": 9,
+      "skipped": 0
+    },
+    "lockLightRed": {
+      "total": 2,
+      "passed": 1,
+      "failed": 1,
+      "skipped": 0
+    },
+    "finalCore": {
+      "total": 104,
+      "passed": 104,
+      "failed": 0,
+      "skipped": 0
+    },
+    "existingBefore": {
+      "total": 329,
+      "passed": 329,
+      "failed": 0,
+      "skipped": 0
+    },
+    "existingAfter": {
+      "total": 329,
+      "passed": 329,
+      "failed": 0,
+      "skipped": 0
+    },
+    "nativeRuntimeCompileErrors": 0,
+    "independentReview": "combat_density: all six core/menu hunks reviewed, no concrete blocker. render_completion: art candidate compiled/reviewed; ordinary-ring test premise corrected."
+  }
+}

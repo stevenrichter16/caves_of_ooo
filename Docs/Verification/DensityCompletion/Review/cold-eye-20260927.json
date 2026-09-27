@@ -1,0 +1,28 @@
+{
+  "status": "Bounded independent review complete; C15 transient followup and native closure open",
+  "writtenUtc": "2026-09-27T06:04:36.595536+00:00",
+  "base": "6b3f8939",
+  "review": "Docs/Verification/DensityCompletion/Review/cold-eye-20260927.md",
+  "sha256": "a10f0aa37eea9e53fcb5a019d8b5f3b486bae85b5be910fbc5185d11a3e55ec5",
+  "sharedAssetsChanged": false,
+  "unityCalled": false,
+  "staged": false,
+  "findings": [
+    {
+      "id": "C15-transients",
+      "severity": "incomplete-acceptance",
+      "status": "root-authorized separate private TDD followup"
+    },
+    {
+      "id": "private29-nan-uv-y",
+      "severity": "private-candidate validation bug",
+      "status": "paired core RED1/control5 then GREEN6; native4 pending"
+    },
+    {
+      "id": "final-native-closure",
+      "severity": "verification-boundary",
+      "status": "pending concurrent import/adoption/live gates"
+    }
+  ],
+  "ownershipManifest": "Docs/Verification/DensityCompletion/Review/ownership-20260927.json"
+}

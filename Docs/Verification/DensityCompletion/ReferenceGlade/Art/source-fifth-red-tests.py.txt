@@ -1,0 +1,17 @@
+import json,unittest
+from pathlib import Path
+ROOT=Path(__file__).parent
+class FifthFeedbackTests(unittest.TestCase):
+ def kit(self):return json.loads((ROOT/'kit.json').read_text())
+ def test_reeds_have_seven_flat_block_finger_tops(self):
+  for m in self.kit()['models']:
+   if m['family']!='pale-reeds':continue
+   tops=[b for b in m['boxes'] if b['center']['y']>.40 and b['size']['y']<=.08 and min(b['size']['x'],b['size']['z'])>=.11]
+   self.assertGreaterEqual(len(tops),7,m['id'])
+ def test_reeds_no_longer_repeat_three_tier_cones_on_every_stalk(self):
+  for m in self.kit()['models']:
+   if m['family']=='pale-reeds':self.assertLessEqual(len(m['boxes']),24,m['id'])
+ def test_other_thirtysix_models_and_palette_stay_identical(self):
+  a=json.loads((ROOT/'before-kit.json').read_text());b=self.kit();self.assertEqual(a['palette'],b['palette'])
+  self.assertEqual([m for m in a['models'] if m['family']!='pale-reeds'],[m for m in b['models'] if m['family']!='pale-reeds'])
+if __name__=='__main__':unittest.main()

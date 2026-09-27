@@ -1,0 +1,61 @@
+{
+  "status": "published under root narrow authorization; shared Assets frozen after this batch",
+  "tests": {
+    "initialRed": "6fail/5controls",
+    "edgeDiagRed": "9fail/5controls",
+    "firstGreen": "14/14",
+    "semanticRed": "9fail/14controls",
+    "finalGreen": "23/23",
+    "nearbyBefore": "87/87",
+    "nearbyFirstCandidate": "86/87 (GroveSign removed)",
+    "nearbyFinal": "87/87"
+  },
+  "native": "connectivity23 pending; bootstrap10 intentionally test-only before integration",
+  "manifest": [
+    {
+      "source": "/tmp/coo-spread-connectivity/ConnectivityBuilder.cs",
+      "target": "Assets/Scripts/Gameplay/World/Generation/Builders/ConnectivityBuilder.cs",
+      "sha256": "724718b4f014fb9314528b0f13bb6e7e69303f0a1a380360dd71bf5d72110dbf",
+      "expectedBeforeSha256": "dda0cedf2fa892ffa0e3f67e51d0dbc48a4b3e7923936db5e5cce6626dbe891c"
+    },
+    {
+      "source": "/tmp/coo-spread-connectivity/ConnectivityProgressTests.cs",
+      "target": "Assets/Tests/EditMode/Gameplay/World/ConnectivityProgressTests.cs",
+      "sha256": "26b71d3d0fb461d053ef25825e2bd48411914adebd91d1c79945aaedcef64107",
+      "expectedBeforeSha256": null,
+      "publishedInitialSha256": "9491cdecd9c6cb9c9a9b7fdedb15811efeb406431cbd56b6e1f3159a08ce994a"
+    },
+    {
+      "source": "/tmp/coo-spread-connectivity/connectivity-source.json",
+      "target": "Docs/Verification/DensityCompletion/SpreadBiome/connectivity-source.json",
+      "sha256": "6b1b2d701957c5c6b743306721c2d678f820011d4829467e39458e80eb70d150",
+      "expectedBeforeSha256": null
+    },
+    {
+      "source": "/tmp/coo-spread-connectivity/ConnectivityProgressTests.cs.meta",
+      "target": "Assets/Tests/EditMode/Gameplay/World/ConnectivityProgressTests.cs.meta",
+      "sha256": "2d995b45f66dd28a27c67aef051a64828d9eb1bcb5538116efa07057815da458",
+      "expectedBeforeSha256": null
+    },
+    {
+      "source": "/tmp/coo-spread-connectivity/DENSITY-SPREAD-START.md",
+      "target": "Docs/DENSITY-SPREAD-START.md",
+      "sha256": "0191585dbef8530d451c41b435d8698059458a6cc6876af888260342fe5c9507",
+      "expectedBeforeSha256": null
+    },
+    {
+      "source": "/tmp/coo-spread-starter/DensitySpreadBootstrapNativeTests.cs",
+      "target": "Assets/Tests/EditMode/Gameplay/World/DensitySpreadBootstrapNativeTests.cs",
+      "sha256": "2fb472929ac264a80b75defe3338d827c78314bfb6596e083bc65ab1f61d7813",
+      "expectedBeforeSha256": null
+    },
+    {
+      "source": "/tmp/coo-spread-starter/DensitySpreadBootstrapNativeTests.cs.meta",
+      "target": "Assets/Tests/EditMode/Gameplay/World/DensitySpreadBootstrapNativeTests.cs.meta",
+      "sha256": "5d002b5dba9964aed7bd688f80e69cba9618d2446258071110d4532715dfac0a",
+      "expectedBeforeSha256": null
+    }
+  ],
+  "contentSha256": "fe86cad007e60220fda8dfb6f26039c07b48bfad145ecf6c24d0c8b125856393",
+  "parserRepair": "Native test assembly lacks Newtonsoft; typed JsonUtility fixture repair recorded separately. Repaired standalone23/23GREEN; native pending."
+}

@@ -227,3 +227,18 @@ village POIs and the real merchant trade path. No prose change was requested.
 
 Published-source combined C7+C14/world regression verification is **248/248 GREEN**
 (126 C7 plus122 glade/world). Native acceptance remains separately reported above.
+
+
+## Native acceptance preparation (2026-09-27)
+
+The verified source sweep and bounded keyboard route are recorded in [NativeAcceptance/PLAN.md](Verification/DensityCompletion/Ambience/NativeAcceptance/PLAN.md), before driver implementation. The planned route uses an ordinary new player, a real edge-created Merchant, actual conversation/trade, edge revisit, F5 / real stock mutation / F6, and one actual generated contextual speaker. Labelled approach travel is disclosed; no actors, money, stock, effects or ambient counters are granted or reset. Existing core refusals remain separate from one native journey.
+
+Stock is subject to the existing restock policy: entry after **more than300 scheduler ticks**, with shelf refill below the **three-item** low-water threshold. The planned short revisit checks a not-yet-due stock snapshot; it does not assert permanently finite merchant stock. Traveller creation remains capped and receipt-backed. The shared20-action remark budget, silent characters and exact existing lines are unchanged.
+
+The initial private test-first launcher cleanup extension named `DensityTravellerNativeBatch` before it existed. Root subsequently published the reviewed driver/launcher after its gate. This preparation changed no gameplay mechanics and made no editor calls; the actual first journey and remaining acceptance are recorded below.
+
+
+The private driver/launcher is now written, with zero errors in full current-runtime, editor-reference and test-reference compilation. Independent review found no concrete source-flow blocker. Before native execution, source inspection corrected one premise: ordinary Item descendants inherit Stacker. The route therefore uses an actual instance/whole stack with no compatible destination merge target, then checks exact combined IDs/counts and stack-aware payment. At that private checkpoint, the actual native journey and image review were pending; root later ran the journey below. No gameplay mechanic was changed.
+
+
+Native C7 first run `1a4e51d9fab649ee942efefca624c37f` passed the first10 actual checks (entry/scheduler, dialogue/trade, revisit and real F5-sale-F6 graph restoration), then stopped after16.903s because the harness demanded an already-live context from freshly generated inactive residents. Root reviewed the actual talk/trade/restored images and preserved exact cleanup. This is partial acceptance. The [updated source sweep](Verification/DensityCompletion/Ambience/NativeAcceptance/PLAN.md) traces genuine Scribe seating and Farmer well visits to ordinary scheduled turns. A bounded private harness repair will activate an actual usable-seating village and observe native waits/movement, without forcing NPC goals, time, probability or a remark. No gameplay change follows from this false precondition.

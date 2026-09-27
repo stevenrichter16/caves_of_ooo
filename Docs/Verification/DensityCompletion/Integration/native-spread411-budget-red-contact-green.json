@@ -1,0 +1,38 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "e0de21ed53594e41b9cb017c4e3fcbb3",
+  "run": {
+    "id": "2",
+    "testcasecount": "411",
+    "result": "Failed(Child)",
+    "total": "411",
+    "passed": "407",
+    "failed": "4",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 13:02:05Z",
+    "end-time": "2026-09-27 13:02:58Z",
+    "duration": "53.6416137"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.SpreadTransientBudgetTests.FullPriorParticleFrameAdmitsNewCellsBeforeCurrentEndFrame",
+      "message": "  New current cell 700\n  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadTransientBudgetTests.FullRetiredElementSetAdmitsNewCellsOnTheSameRefresh",
+      "message": "  Expected: 512\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadTransientBudgetTests.FullRetiredGasSetAdmitsNewOwnersOnTheSameRefresh",
+      "message": "  Retired views cannot occupy the limit during admission of current sources.\n  Expected: 512\n  But was:  0\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadTransientBudgetTests.MixedNewAndRetainedParticleCellsNeverRecycleACurrentFrameView",
+      "message": "  Interleaved current cell 700\n  Expected: True\n  But was:  False\n"
+    }
+  ]
+}

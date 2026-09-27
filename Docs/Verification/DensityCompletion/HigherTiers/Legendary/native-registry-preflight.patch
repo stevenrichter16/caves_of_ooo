@@ -1,0 +1,63 @@
+--- /tmp/coo-density-legendary/Native/DensityFindsNativePlayer.before-registry.cs.txt	2026-09-26 19:55:59
++++ Assets/Scripts/Scenarios/Custom/DensityFindsNativePlayer.cs	2026-09-26 19:55:59
+@@ -86,7 +86,7 @@
+                 yield return null;
+             }
+         }
+-        private static readonly string[] RequiredChecks = { "ordinary_start", "actual_unforced_sources", "stamped_key_taken", "real_key_unlocks", "modified_item_acquired", "modified_item_equipped", "real_guardian_defeated", "keeper_actual_reward_inspected", "real_keeper_defeated", "same_legendary_item_acquired", "legendary_item_equipped", "ordinary_finish", "checkpoint_saved", "checkpoint_mutated", "checkpoint_restores_acquired_graph", "loaded_sources_preserve_depletion", "modified_item_inspected", "legendary_item_inspected" };
++        private static readonly string[] RequiredChecks = { "production_enhancement_registry", "ordinary_start", "actual_unforced_sources", "stamped_key_taken", "real_key_unlocks", "modified_item_acquired", "modified_item_equipped", "real_guardian_defeated", "keeper_actual_reward_inspected", "real_keeper_defeated", "same_legendary_item_acquired", "legendary_item_equipped", "ordinary_finish", "checkpoint_saved", "checkpoint_mutated", "checkpoint_restores_acquired_graph", "loaded_sources_preserve_depletion", "modified_item_inspected", "legendary_item_inspected" };
+         private readonly List<string> _routeZones = new List<string>();
+         private readonly List<string> _transcript = new List<string>();
+         private OverworldZoneManager Manager => (OverworldZoneManager)_input.ZoneManager;
+@@ -118,6 +118,7 @@
+             Require(_input != null, "native input");
+             var boot = (BootMenuController)Field(_input, "_bootMenuController");
+             Require(boot != null && boot.IsActive, "isolated new-game menu");
++            VerifyProductionEnhancements();
+             yield return Tap(Key.N);
+             Require(State() == "Normal" && Manager.WorldSeed == 1, "ordinary seed1 new game");
+             Check("ordinary_start", !DevMode.Enabled && !_input.PlayerEntity.HasPart<BitLockerPart>()
+@@ -193,6 +194,28 @@
+                 && !_input.PlayerEntity.HasTag("Invulnerable") && !CombatSystem.IsDeathHandled(_input.PlayerEntity)
+                 && _input.PlayerEntity.GetStatValue("Hitpoints") > 0 && _starts == 2 && _startingTonicsUsed <= 2);
+             Observe("complete-ordinary-acquisition"); yield return Capture("08-restored-acquired-gear");
++        }
++
++        private void VerifyProductionEnhancements()
++        {
++            // Use the production lazy-init path without repairing test pollution.
++            // A disabled domain reload can retain a fixture's intentionally empty
++            // or stub-only registry; such a run cannot measure source chance.
++            EnhancementFactory.EnsureInitialized();
++            var required = new[] { typeof(EnhancementSerrated), typeof(EnhancementPaleSalt),
++                typeof(EnhancementChoirIron), typeof(EnhancementLacquered), typeof(EnhancementGlowQuartz) };
++            var missing = new List<string>();
++            foreach (var expected in required)
++            {
++                bool found = EnhancementFactory.TryGet(expected.Name, out var actual);
++                _descriptions.Add(new Description { subject = "Production enhancement preflight",
++                    source = expected.FullName, text = found ? actual.AssemblyQualifiedName : "MISSING" });
++                if (!found || actual != expected) missing.Add(expected.FullName);
++            }
++            WriteReport();
++            Require(missing.Count == 0, "enhancement registry is contaminated or incomplete before world generation: "
++                + string.Join(", ", missing) + ". Run in a fresh domain; do not reinterpret unmarked items as chance misses.");
++            Check("production_enhancement_registry", true);
+         }
+ 
+         private IEnumerator FindModifiedSource()
+@@ -216,8 +239,13 @@
+                     foreach (var item in chest.GetPart<ContainerPart>().Contents.Where(e => e.GetTag("Tier") == "4"))
+                     {
+                         hadFind = true;
+-                        if (!item.Properties.ContainsKey(FoundEquipmentEnhancements.RollMarker) || ItemEnhancing.CountEnhancements(item) != 1)
++                        if (!item.Properties.ContainsKey(FoundEquipmentEnhancements.RollMarker))
++                        { Candidate(zoneID, "missing-enhancement-roll-marker", chest, item); continue; }
++                        int enhancements = ItemEnhancing.CountEnhancements(item);
++                        if (enhancements == 0)
+                         { Candidate(zoneID, "ordinary-chance-miss", chest, item); continue; }
++                        if (enhancements != 1)
++                        { Candidate(zoneID, "unexpected-enhancement-count", chest, item); continue; }
+                         var at = zone.GetEntityCell(chest);
+                         var key = zone.GetCell(at.X + 2, at.Y + 1)?.Occupants.SingleOrDefault(e => e.BlueprintName == "IronKey");
+                         var guard = zone.GetCell(at.X + 3, at.Y)?.Occupants.SingleOrDefault(e => e.BlueprintName == "VaultSentinel");

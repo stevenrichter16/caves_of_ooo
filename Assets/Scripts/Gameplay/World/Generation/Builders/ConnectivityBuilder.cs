@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -38,7 +39,7 @@ namespace CavesOfOoo.Core
                     if (!zone.GetCell(x, y).BlocksMovement())
                     { startX = x; startY = y; }
 
-            if (startX < 0) return false; // No passable cells at all
+            if (startX < 0) return Reject(zone, "no-passable-cell");
 
             // Flood fill to find the main reachable region
             var reachable = FloodFill(zone, startX, startY);
@@ -54,13 +55,20 @@ namespace CavesOfOoo.Core
 
                 if (ux < 0) break;
 
+                int beforeCount = CountReachable(reachable);
                 CarvePath(zone, factory, rng, reachable, ux, uy);
                 reachable = FloodFill(zone, startX, startY);
+                // A protected owner (for example a creature) may prevent
+                // carving. The pipeline can retry; this builder must not spin.
+                if (CountReachable(reachable) <= beforeCount)
+                    return Reject(zone, "no-progress");
             }
 
             // Ensure passable edge cells for zone transitions (like Qud's ForceConnections)
-            EnsureEdgeConnectivity(zone, factory, rng, reachable, startX, startY);
+            if (!EnsureEdgeConnectivity(zone, factory, rng, reachable, startX, startY))
+                return Reject(zone, "edge-blocked");
 
+            Diag.Record("worldgen", "ConnectivityConnected", payload: new { zoneID = zone.ZoneID });
             return true;
         }
 
@@ -68,24 +76,35 @@ namespace CavesOfOoo.Core
         /// Ensure at least one passable cell on each zone edge, connected to the main area.
         /// Like Qud's CaveNorthMouth/SouthMouth/EastMouth/WestMouth + ForceConnections.
         /// </summary>
-        private void EnsureEdgeConnectivity(Zone zone, EntityFactory factory, System.Random rng,
+        private bool EnsureEdgeConnectivity(Zone zone, EntityFactory factory, System.Random rng,
             bool[,] reachable, int mainX, int mainY)
         {
-            // For each edge, pick a connection point and carve to it if needed
-            // North edge (y=0): pick random x
-            CarveToEdge(zone, factory, rng, reachable, rng.Next(2, Zone.Width - 2), 0);
-            reachable = FloodFill(zone, mainX, mainY);
+            // Keep the existing edge order and RNG draws. Verify each actual
+            // requested mouth after carving; protected owners are never erased.
+            int edgeX = rng.Next(2, Zone.Width - 2), edgeY = 0;
+            for (int edge = 0; edge < 4; edge++)
+            {
+                if (edge == 1) { edgeX = rng.Next(2, Zone.Width - 2); edgeY = Zone.Height - 1; }
+                if (edge == 2) { edgeX = 0; edgeY = rng.Next(2, Zone.Height - 2); }
+                if (edge == 3) { edgeX = Zone.Width - 1; edgeY = rng.Next(2, Zone.Height - 2); }
+                CarveToEdge(zone, factory, rng, reachable, edgeX, edgeY);
+                reachable = FloodFill(zone, mainX, mainY);
+                if (!reachable[edgeX, edgeY]) return false;
+            }
+            return true;
+        }
 
-            // South edge (y=Height-1)
-            CarveToEdge(zone, factory, rng, reachable, rng.Next(2, Zone.Width - 2), Zone.Height - 1);
-            reachable = FloodFill(zone, mainX, mainY);
+        private static int CountReachable(bool[,] reachable)
+        {
+            int count = 0;
+            foreach (bool value in reachable) if (value) count++;
+            return count;
+        }
 
-            // West edge (x=0)
-            CarveToEdge(zone, factory, rng, reachable, 0, rng.Next(2, Zone.Height - 2));
-            reachable = FloodFill(zone, mainX, mainY);
-
-            // East edge (x=Width-1)
-            CarveToEdge(zone, factory, rng, reachable, Zone.Width - 1, rng.Next(2, Zone.Height - 2));
+        private static bool Reject(Zone zone, string reason)
+        {
+            Diag.Record("worldgen", "ConnectivityRejected", payload: new { zoneID = zone.ZoneID, reason });
+            return false;
         }
 
         /// <summary>
@@ -249,16 +268,33 @@ namespace CavesOfOoo.Core
             }
         }
 
+        // Physical solidity alone does not make authored gameplay content
+        // disposable terrain. A blocked route may be rejected, never "repaired"
+        // by removing its people, laws, loot, portable items or transitions.
+        private static bool IsProtectedOwner(Entity owner)
+        {
+            return owner.HasTag("Creature") || owner.HasTag("Furniture") || owner.HasTag("Item")
+                || owner.HasPart<ContainerPart>() || owner.HasPart<StairsDownPart>()
+                || owner.HasPart<StairsUpPart>() || owner.HasPart<DoorPart>()
+                || owner.HasPart<MorrowfastDoorPart>() || owner.HasPart<SealedLibraryBarrierPart>();
+        }
+
         private void ClearAndFloor(Zone zone, EntityFactory factory, int x, int y)
         {
             var cell = zone.GetCell(x, y);
             if (cell == null) return;
 
-            // Remove wall/solid entities
-            for (int i = cell.Objects.Count - 1; i >= 0; i--)
+            // Match physical occupancy used by FloodFill, including a body's
+            // secondary cells. Snapshot before removal since Zone owns all of
+            // an entity's occupied cells. Generated creatures are never terrain.
+            var occupants = new List<Entity>(cell.Occupants);
+            for (int i = occupants.Count - 1; i >= 0; i--)
             {
-                if (cell.Objects[i].HasTag("Wall") || cell.Objects[i].HasTag("Solid"))
-                    zone.RemoveEntity(cell.Objects[i]);
+                var owner = occupants[i];
+                if (owner == null || IsProtectedOwner(owner)) continue;
+                if (owner.HasTag("Wall") || owner.HasTag("Solid")
+                    || owner.GetPart<PhysicsPart>()?.Solid == true)
+                    zone.RemoveEntity(owner);
             }
 
             // Place floor if cell is now empty

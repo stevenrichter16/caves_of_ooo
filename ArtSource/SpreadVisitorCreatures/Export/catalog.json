@@ -1,0 +1,1285 @@
+{
+  "schemaVersion": 1,
+  "id": "spread-visitors",
+  "palette": [
+    "#082C28",
+    "#103E36",
+    "#1A4B40",
+    "#26594A",
+    "#A0A77C",
+    "#CBC697",
+    "#647353",
+    "#235D25",
+    "#40872C",
+    "#65AE3D",
+    "#435A53",
+    "#62786C",
+    "#819489",
+    "#16883B",
+    "#45CB4B",
+    "#A0E772",
+    "#207838",
+    "#D2D3B4",
+    "#B77B43",
+    "#403D28",
+    "#756C40",
+    "#A39456",
+    "#C4B877",
+    "#243E39",
+    "#C84332",
+    "#151C1C",
+    "#37476B",
+    "#D99B43",
+    "#95CBCB",
+    "#866C98"
+  ],
+  "models": [
+    {
+      "id": "spread-visitor-cave-bat",
+      "sourceBlueprint": "CaveBat",
+      "path": "models/spread-visitor-cave-bat.fbx",
+      "rigFamily": "avian",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "Wing.L",
+        "Leg.L",
+        "Wing.R",
+        "Leg.R"
+      ],
+      "triangles": 240,
+      "boundsBlender": {
+        "min": [
+          -0.7200000286102295,
+          -0.2535800039768219,
+          0.10000000894069672
+        ],
+        "max": [
+          0.7200000286102295,
+          0.226500004529953,
+          0.7599999904632568
+        ]
+      },
+      "sha256": "0a82a65bb8fce0049599cee0dfb79f26749dff25f7100e6d54bcdc89deba4546",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-cave-slime",
+      "sourceBlueprint": "CaveSlime",
+      "path": "models/spread-visitor-cave-slime.fbx",
+      "rigFamily": "gel",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body"
+      ],
+      "triangles": 72,
+      "boundsBlender": {
+        "min": [
+          -0.3199999928474426,
+          -0.3100000023841858,
+          0.0
+        ],
+        "max": [
+          0.3199999928474426,
+          0.3050000071525574,
+          0.3944999873638153
+        ]
+      },
+      "sha256": "7103a21002d10ad29ec0434a330d657c477d32c91c886b3b458a5f4ab9d1e6c9",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-cave-bear",
+      "sourceBlueprint": "CaveBear",
+      "path": "models/spread-visitor-cave-bear.fbx",
+      "rigFamily": "quadruped",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R"
+      ],
+      "triangles": 228,
+      "boundsBlender": {
+        "min": [
+          -0.30730000138282776,
+          -0.6331999897956848,
+          0.0
+        ],
+        "max": [
+          0.30730000138282776,
+          0.4699999988079071,
+          0.8500000238418579
+        ]
+      },
+      "sha256": "0035e4b4c92414b1d49bf634094a8da5e26415614a17b2f3185aab44f43af440",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-pale-stalker",
+      "sourceBlueprint": "PaleStalker",
+      "path": "models/spread-visitor-pale-stalker.fbx",
+      "rigFamily": "quadruped",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R",
+        "Tail.0",
+        "Tail.1",
+        "Tail.2"
+      ],
+      "triangles": 276,
+      "boundsBlender": {
+        "min": [
+          -0.16660000383853912,
+          -0.5149999856948853,
+          0.0
+        ],
+        "max": [
+          0.16660000383853912,
+          0.7233999967575073,
+          0.9549999833106995
+        ]
+      },
+      "sha256": "9aa93687e9ce398750177ddbde04421f6f5ee9f90b2108b2162fabd448eccec9",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-desert-prowler",
+      "sourceBlueprint": "DesertProwler",
+      "path": "models/spread-visitor-desert-prowler.fbx",
+      "rigFamily": "quadruped",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R",
+        "Tail.0",
+        "Tail.1",
+        "Tail.2"
+      ],
+      "triangles": 252,
+      "boundsBlender": {
+        "min": [
+          -0.20759999752044678,
+          -0.5778000354766846,
+          0.0
+        ],
+        "max": [
+          0.20759999752044678,
+          0.7569999694824219,
+          0.7049999833106995
+        ]
+      },
+      "sha256": "9a0e77bcf955e21638818b9c8773b65e01c6eddf5c144dc80b3ab5bc5aba62c8",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-brittle-hound",
+      "sourceBlueprint": "BrittleHound",
+      "path": "models/spread-visitor-brittle-hound.fbx",
+      "rigFamily": "quadruped",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R",
+        "Tail.0",
+        "Tail.1",
+        "Tail.2"
+      ],
+      "triangles": 300,
+      "boundsBlender": {
+        "min": [
+          -0.17479999363422394,
+          -0.5005999803543091,
+          0.0
+        ],
+        "max": [
+          0.17479999363422394,
+          0.7186000347137451,
+          0.8274999856948853
+        ]
+      },
+      "sha256": "6e13d3f757771359f6792fe8631977b6ef6f92e21c17cb8e331bbea374e71343",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-jungle-stalker",
+      "sourceBlueprint": "JungleStalker",
+      "path": "models/spread-visitor-jungle-stalker.fbx",
+      "rigFamily": "quadruped",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R",
+        "Tail.0",
+        "Tail.1",
+        "Tail.2"
+      ],
+      "triangles": 300,
+      "boundsBlender": {
+        "min": [
+          -0.19120000302791595,
+          -0.6306000351905823,
+          0.0
+        ],
+        "max": [
+          0.19120000302791595,
+          0.8049999475479126,
+          0.7249999642372131
+        ]
+      },
+      "sha256": "a3be5737f9ed23d585d03b60be0f2693ec967697f49184eaea9a17571495dafe",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-scorpion",
+      "sourceBlueprint": "Scorpion",
+      "path": "models/spread-visitor-scorpion.fbx",
+      "rigFamily": "arachnid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "Leg.L0",
+        "Leg.L1",
+        "Leg.L2",
+        "Leg.L3",
+        "Arm.L",
+        "Leg.R0",
+        "Leg.R1",
+        "Leg.R2",
+        "Leg.R3",
+        "Arm.R",
+        "Tail.0",
+        "Tail.1",
+        "Tail.2",
+        "Tail.3",
+        "Tail.4"
+      ],
+      "triangles": 468,
+      "boundsBlender": {
+        "min": [
+          -0.44999998807907104,
+          -0.7649999856948853,
+          0.0
+        ],
+        "max": [
+          0.44999998807907104,
+          0.4950000047683716,
+          0.815000057220459
+        ]
+      },
+      "sha256": "c2222983dc9fdd87bf4a97af7f7e3c2e51cd76c33b5e1d6ccc61234e64812695",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-glass-scorpion",
+      "sourceBlueprint": "GlassScorpion",
+      "path": "models/spread-visitor-glass-scorpion.fbx",
+      "rigFamily": "arachnid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "Leg.L0",
+        "Leg.L1",
+        "Leg.L2",
+        "Leg.L3",
+        "Arm.L",
+        "Leg.R0",
+        "Leg.R1",
+        "Leg.R2",
+        "Leg.R3",
+        "Arm.R",
+        "Tail.0",
+        "Tail.1",
+        "Tail.2",
+        "Tail.3",
+        "Tail.4"
+      ],
+      "triangles": 480,
+      "boundsBlender": {
+        "min": [
+          -0.44999998807907104,
+          -0.7649999856948853,
+          0.0
+        ],
+        "max": [
+          0.44999998807907104,
+          0.4950000047683716,
+          0.815000057220459
+        ]
+      },
+      "sha256": "19331db48332951a7d4f5fe9e944f3eb37144dd7fe813b20f408c47e1f7c55cb",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-sand-wurm",
+      "sourceBlueprint": "SandWurm",
+      "path": "models/spread-visitor-sand-wurm.fbx",
+      "rigFamily": "serpent",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Segment.0",
+        "Segment.1",
+        "Segment.2",
+        "Segment.3",
+        "Segment.4",
+        "Segment.5",
+        "Segment.6",
+        "Head"
+      ],
+      "triangles": 276,
+      "boundsBlender": {
+        "min": [
+          -0.22749999165534973,
+          -0.8500000238418579,
+          0.022499997168779373
+        ],
+        "max": [
+          0.22749999165534973,
+          0.6474999785423279,
+          0.512939989566803
+        ]
+      },
+      "sha256": "896c01e3b8e133529f35b9d257dd3f35228fc007da25320a8fb86bbf27129520",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-dune-lurker",
+      "sourceBlueprint": "DuneLurker",
+      "path": "models/spread-visitor-dune-lurker.fbx",
+      "rigFamily": "grasping",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "Arm.L0",
+        "Arm.L1",
+        "Arm.R0",
+        "Arm.R1"
+      ],
+      "triangles": 204,
+      "boundsBlender": {
+        "min": [
+          -0.5300000309944153,
+          -0.4000000059604645,
+          0.009999997913837433
+        ],
+        "max": [
+          0.5300000309944153,
+          0.3649999797344208,
+          0.4375
+        ]
+      },
+      "sha256": "52b1a8063f20dbc3c00c1a4c2000880ab187aab2d5851e93f4e0acaabafbfcf1",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-canopy-strangler",
+      "sourceBlueprint": "CanopyStrangler",
+      "path": "models/spread-visitor-canopy-strangler.fbx",
+      "rigFamily": "rooted",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Tendril.0",
+        "Tendril.1",
+        "Tendril.2",
+        "Tendril.3"
+      ],
+      "triangles": 228,
+      "boundsBlender": {
+        "min": [
+          -0.4025000035762787,
+          -0.4050000309944153,
+          0.009999990463256836
+        ],
+        "max": [
+          0.4025000035762787,
+          0.4050000309944153,
+          1.0750000476837158
+        ]
+      },
+      "sha256": "0f5a4279ed058878ddbe6c0540a8ba993d0821731faed5d07353d8b4afbb1ae5",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-skeletal-sentry",
+      "sourceBlueprint": "SkeletalSentry",
+      "path": "models/spread-visitor-skeletal-sentry.fbx",
+      "rigFamily": "humanoid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "bones": [
+        "Root",
+        "Spine",
+        "Head",
+        "Arm.L",
+        "Hand.L",
+        "Leg.L",
+        "Arm.R",
+        "Hand.R",
+        "Leg.R"
+      ],
+      "triangles": 336,
+      "boundsBlender": {
+        "min": [
+          -0.4724999964237213,
+          -0.22499999403953552,
+          0.0
+        ],
+        "max": [
+          0.4724999964237213,
+          0.12049999088048935,
+          1.6150000095367432
+        ]
+      },
+      "sha256": "13b0ddb164d72ec61b92fbb08afd8e0e9c059f341ff3b7554a090dddfb3d7b36",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-stone-golem",
+      "sourceBlueprint": "StoneGolem",
+      "path": "models/spread-visitor-stone-golem.fbx",
+      "rigFamily": "humanoid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "bones": [
+        "Root",
+        "Spine",
+        "Head",
+        "Arm.L",
+        "Hand.L",
+        "Leg.L",
+        "Arm.R",
+        "Hand.R",
+        "Leg.R"
+      ],
+      "triangles": 264,
+      "boundsBlender": {
+        "min": [
+          -0.4724999964237213,
+          -0.2800000011920929,
+          0.0
+        ],
+        "max": [
+          0.4724999964237213,
+          0.15000000596046448,
+          1.6150000095367432
+        ]
+      },
+      "sha256": "f92310b107f69e172b2b9b5767ae63c5c7bc868bc27775bef13853b3f1db4821",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-obsidian-brute",
+      "sourceBlueprint": "ObsidianBrute",
+      "path": "models/spread-visitor-obsidian-brute.fbx",
+      "rigFamily": "humanoid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "bones": [
+        "Root",
+        "Spine",
+        "Head",
+        "Arm.L",
+        "Hand.L",
+        "Leg.L",
+        "Arm.R",
+        "Hand.R",
+        "Leg.R"
+      ],
+      "triangles": 264,
+      "boundsBlender": {
+        "min": [
+          -0.5049999952316284,
+          -0.22499999403953552,
+          0.0
+        ],
+        "max": [
+          0.5049999952316284,
+          0.20499999821186066,
+          1.6150000095367432
+        ]
+      },
+      "sha256": "a42ba98dab990786a8a60aa30356bc729179e696605fdc5caf6efbea86dc338c",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-ancient-guardian",
+      "sourceBlueprint": "AncientGuardian",
+      "path": "models/spread-visitor-ancient-guardian.fbx",
+      "rigFamily": "humanoid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "bones": [
+        "Root",
+        "Spine",
+        "Head",
+        "Arm.L",
+        "Hand.L",
+        "Leg.L",
+        "Arm.R",
+        "Hand.R",
+        "Leg.R"
+      ],
+      "triangles": 300,
+      "boundsBlender": {
+        "min": [
+          -0.4724999964237213,
+          -0.22499999403953552,
+          0.0
+        ],
+        "max": [
+          0.4724999964237213,
+          0.17500001192092896,
+          1.6150000095367432
+        ]
+      },
+      "sha256": "a67dffa64c431fb5fc00de8bf3a05d02251c5a7d29892e95802d40df241ce6d7",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-vault-sentinel",
+      "sourceBlueprint": "VaultSentinel",
+      "path": "models/spread-visitor-vault-sentinel.fbx",
+      "rigFamily": "humanoid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "bones": [
+        "Root",
+        "Spine",
+        "Head",
+        "Arm.L",
+        "Hand.L",
+        "Leg.L",
+        "Arm.R",
+        "Hand.R",
+        "Leg.R"
+      ],
+      "triangles": 252,
+      "boundsBlender": {
+        "min": [
+          -0.4724999964237213,
+          -0.22499999403953552,
+          0.0
+        ],
+        "max": [
+          0.4724999964237213,
+          0.22499999403953552,
+          1.6150000095367432
+        ]
+      },
+      "sha256": "3cc00e41a6ceecb6193c69850895997305d2a4602e7cf3a84f26d02597fef176",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-brass-husk",
+      "sourceBlueprint": "BrassHusk",
+      "path": "models/spread-visitor-brass-husk.fbx",
+      "rigFamily": "humanoid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "bones": [
+        "Root",
+        "Spine",
+        "Head",
+        "Arm.L",
+        "Hand.L",
+        "Leg.L",
+        "Arm.R",
+        "Hand.R",
+        "Leg.R"
+      ],
+      "triangles": 288,
+      "boundsBlender": {
+        "min": [
+          -0.4724999964237213,
+          -0.22499999403953552,
+          0.0
+        ],
+        "max": [
+          0.4724999964237213,
+          0.15000000596046448,
+          1.6150000095367432
+        ]
+      },
+      "sha256": "54886bc2365060fc982821360216fea42c0c7740c09919091323177184eb95f6",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-ice-wight",
+      "sourceBlueprint": "IceWight",
+      "path": "models/spread-visitor-ice-wight.fbx",
+      "rigFamily": "humanoid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "bones": [
+        "Root",
+        "Spine",
+        "Head",
+        "Arm.L",
+        "Hand.L",
+        "Leg.L",
+        "Arm.R",
+        "Hand.R",
+        "Leg.R"
+      ],
+      "triangles": 264,
+      "boundsBlender": {
+        "min": [
+          -0.4724999964237213,
+          -0.22499999403953552,
+          0.0
+        ],
+        "max": [
+          0.4724999964237213,
+          0.15000000596046448,
+          1.659999966621399
+        ]
+      },
+      "sha256": "88a7f4dfd22f5cd0f80c75baf6d7a013db70f11b79bab37bef402672d7563c81",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-charred-husk",
+      "sourceBlueprint": "CharredHusk",
+      "path": "models/spread-visitor-charred-husk.fbx",
+      "rigFamily": "humanoid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "bones": [
+        "Root",
+        "Spine",
+        "Head",
+        "Arm.L",
+        "Hand.L",
+        "Leg.L",
+        "Arm.R",
+        "Hand.R",
+        "Leg.R"
+      ],
+      "triangles": 276,
+      "boundsBlender": {
+        "min": [
+          -0.4724999964237213,
+          -0.22499999403953552,
+          0.0
+        ],
+        "max": [
+          0.4724999964237213,
+          0.15000000596046448,
+          1.6150000095367432
+        ]
+      },
+      "sha256": "756dacf510ec32ef0b6c5fb82d7ddde1d1692f1ef2a6deaaf196b35b23e39108",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-sleeping-troll",
+      "sourceBlueprint": "SleepingTroll",
+      "path": "models/spread-visitor-sleeping-troll.fbx",
+      "rigFamily": "humanoid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "bones": [
+        "Root",
+        "Spine",
+        "Head",
+        "Arm.L",
+        "Hand.L",
+        "Leg.L",
+        "Arm.R",
+        "Hand.R",
+        "Leg.R"
+      ],
+      "triangles": 288,
+      "boundsBlender": {
+        "min": [
+          -0.5199999809265137,
+          -0.3050000071525574,
+          0.0
+        ],
+        "max": [
+          0.5199999809265137,
+          0.15000000596046448,
+          1.6150000095367432
+        ]
+      },
+      "sha256": "6db6db9dada7d1e93f68ecd8c4a141f0eb0eb8398281697bb501f3c5e65035f7",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-spore-shambler",
+      "sourceBlueprint": "SporeShambler",
+      "path": "models/spread-visitor-spore-shambler.fbx",
+      "rigFamily": "humanoid",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [
+        "Equipment.Head",
+        "Equipment.Hand.L",
+        "Equipment.Hand.R",
+        "Equipment.Back"
+      ],
+      "bones": [
+        "Root",
+        "Spine",
+        "Head",
+        "Arm.L",
+        "Hand.L",
+        "Leg.L",
+        "Arm.R",
+        "Hand.R",
+        "Leg.R"
+      ],
+      "triangles": 300,
+      "boundsBlender": {
+        "min": [
+          -0.4724999964237213,
+          -0.22499999403953552,
+          0.0
+        ],
+        "max": [
+          0.4724999964237213,
+          0.28999999165534973,
+          1.7600001096725464
+        ]
+      },
+      "sha256": "843220d26f48dc18af1b6eea7b7693411cb0a019a3bdeaac27d2194e261d8d4d",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-reedfrog",
+      "sourceBlueprint": "Reedfrog",
+      "path": "models/spread-visitor-reedfrog.fbx",
+      "rigFamily": "frog",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R"
+      ],
+      "triangles": 420,
+      "boundsBlender": {
+        "min": [
+          -0.42000001668930054,
+          -0.45920002460479736,
+          0.0
+        ],
+        "max": [
+          0.42000001668930054,
+          0.397599995136261,
+          0.4787999987602234
+        ]
+      },
+      "sha256": "32a55655b66484c382f0b74afc012892d4fa9ef2aa26d24b76bbac7d59c7349a",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-bandfrog",
+      "sourceBlueprint": "Bandfrog",
+      "path": "models/spread-visitor-bandfrog.fbx",
+      "rigFamily": "frog",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R"
+      ],
+      "triangles": 408,
+      "boundsBlender": {
+        "min": [
+          -0.3375000059604645,
+          -0.36900001764297485,
+          0.0
+        ],
+        "max": [
+          0.3375000059604645,
+          0.31949999928474426,
+          0.38475000858306885
+        ]
+      },
+      "sha256": "cb40dddb8c07b84d638ef2ad8393d6e17cccfa612982a2c4ad980da4bb97938f",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-gin-frog",
+      "sourceBlueprint": "GinFrog",
+      "path": "models/spread-visitor-gin-frog.fbx",
+      "rigFamily": "frog",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R"
+      ],
+      "triangles": 384,
+      "boundsBlender": {
+        "min": [
+          -0.375,
+          -0.4099999964237213,
+          0.0
+        ],
+        "max": [
+          0.375,
+          0.35500001907348633,
+          0.42750000953674316
+        ]
+      },
+      "sha256": "37805ddfe6458a56b0f4de84f79f804b5621a0c3be7862e6a0d165c2b799b96a",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-summit-singer",
+      "sourceBlueprint": "SummitSinger",
+      "path": "models/spread-visitor-summit-singer.fbx",
+      "rigFamily": "frog",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R"
+      ],
+      "triangles": 480,
+      "boundsBlender": {
+        "min": [
+          -0.2849999964237213,
+          -0.311599999666214,
+          0.0
+        ],
+        "max": [
+          0.2849999964237213,
+          0.26980000734329224,
+          0.3249000012874603
+        ]
+      },
+      "sha256": "ab7165e4c9a86c768cb6718c72ef9c49dc6e784137dc91458456e467f185ab34",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-sun-striker",
+      "sourceBlueprint": "SunStriker",
+      "path": "models/spread-visitor-sun-striker.fbx",
+      "rigFamily": "lizard",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R",
+        "Tail.0",
+        "Tail.1",
+        "Tail.2",
+        "Tail.3",
+        "Tail.4"
+      ],
+      "triangles": 468,
+      "boundsBlender": {
+        "min": [
+          -0.3700000047683716,
+          -0.4597499966621399,
+          0.0
+        ],
+        "max": [
+          0.3700000047683716,
+          0.8374999761581421,
+          0.3160000145435333
+        ]
+      },
+      "sha256": "0d016a8013c3ce1e0f95695880420b4d911bd319d55bcc0a47ae4d92a6f697bb",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-brocchinia-sentinel",
+      "sourceBlueprint": "BrocchiniaSentinel",
+      "path": "models/spread-visitor-brocchinia-sentinel.fbx",
+      "rigFamily": "lizard",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R",
+        "Tail.0",
+        "Tail.1",
+        "Tail.2",
+        "Tail.3",
+        "Tail.4"
+      ],
+      "triangles": 576,
+      "boundsBlender": {
+        "min": [
+          -0.3790000081062317,
+          -0.4597499966621399,
+          0.0
+        ],
+        "max": [
+          0.3790000081062317,
+          0.8374999761581421,
+          0.3164999783039093
+        ]
+      },
+      "sha256": "a55f4a70f7b473aea2ae8ec9657b7bdc05012bd464581854ad62fae36d36d9a0",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-visitor-prickle-brow-gecko",
+      "sourceBlueprint": "PrickleBrowGecko",
+      "path": "models/spread-visitor-prickle-brow-gecko.fbx",
+      "rigFamily": "lizard",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R",
+        "Tail.0",
+        "Tail.1",
+        "Tail.2",
+        "Tail.3",
+        "Tail.4"
+      ],
+      "triangles": 648,
+      "boundsBlender": {
+        "min": [
+          -0.3790000081062317,
+          -0.4597499966621399,
+          0.0
+        ],
+        "max": [
+          0.3790000081062317,
+          0.8374999761581421,
+          0.49000000953674316
+        ]
+      },
+      "sha256": "7897396118d3f1f90677f9cc52a272534d9942922c7d0c41ef2d4e15bec9b8fb",
+      "status": "private-source-not-native-adopted"
+    }
+  ]
+}

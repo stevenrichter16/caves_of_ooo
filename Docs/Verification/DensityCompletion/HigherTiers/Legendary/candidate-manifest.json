@@ -1,0 +1,30 @@
+{
+  "status": "Published after actual C10.2 native14/14 route; native C11.3 tests/acquisition pending.",
+  "newFiles": {
+    "LegendaryLairEncounters.cs": "Assets/Scripts/Gameplay/World/Generation/LegendaryLairEncounters.cs",
+    "DensityLegendaryLairTests.cs": "Assets/Tests/EditMode/Gameplay/World/Generation/DensityLegendaryLairTests.cs"
+  },
+  "narrowHooks": {
+    "OverworldZoneManager.cs": "after generation callbacks, before C10.2 commit",
+    "ExaminablePart.cs": "optional live carried-reward description",
+    "LairStacks.cs": "non-consuming actual pending final-boss query sharing existing all-owner/route commit preflight"
+  },
+  "sourceSha256": {
+    "LegendaryLairEncounters.cs": "e298c24a3bbf90c0fb12c93d1c425c32980a8b04fea60f068dcebd929279dcb1",
+    "OverworldZoneManager.cs": "63e2db110f80a77757dfe3e629bac7a4ffbb0160aafc587c7769e3a6a9a919bb",
+    "DensityLegendaryLairTests.cs": "e2a39addd2f1941369bd58f0fa2b254e1d116c656fce1f8968c8f3f7adf1290e",
+    "ExaminablePart.cs": "c6e92e7bcca2a41dd60e2694f62d0d2a1c827dfd33c13a73788e012dbf0f9034",
+    "LairStacks.cs": "c360a1a4332e6db1c24df173e8995cad6ef9b9accebc07350893cf4ce9b62527"
+  },
+  "immutableC10Candidate": "/tmp/coo-density-lair-stack; not edited",
+  "verification": "775/775 affected standalone GREEN, including42 new cases; eight staged-provenance RED cases repaired; independent reread clear; runtime compiler zero errors; no native run",
+  "publishedSourceSha256": {
+    "Assets/Scripts/Gameplay/World/Generation/LegendaryLairEncounters.cs": "e298c24a3bbf90c0fb12c93d1c425c32980a8b04fea60f068dcebd929279dcb1",
+    "Assets/Tests/EditMode/Gameplay/World/Generation/DensityLegendaryLairTests.cs": "e2a39addd2f1941369bd58f0fa2b254e1d116c656fce1f8968c8f3f7adf1290e",
+    "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs": "7ac231ce15d5ab44bd4e773dce18e7f878a8daf84c76f42075fa738745691dac",
+    "Assets/Scripts/Gameplay/Entities/ExaminablePart.cs": "c6e92e7bcca2a41dd60e2694f62d0d2a1c827dfd33c13a73788e012dbf0f9034",
+    "Assets/Scripts/Gameplay/World/Generation/LairStacks.cs": "c360a1a4332e6db1c24df173e8995cad6ef9b9accebc07350893cf4ce9b62527",
+    "Assets/Scripts/Scenarios/Custom/DensityFindsNativePlayer.cs": "8743639685ac51b69b3eeff04684dea671e27ec85c789fc8a86c7fd459946588",
+    "Assets/Editor/Scenarios/DensityFindsNativeBatch.cs": "88e2e7242f8a7c8b281af2beda4445eb6174d485eec08704574a8f359e052286"
+  }
+}

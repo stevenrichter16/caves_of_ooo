@@ -1,0 +1,72 @@
+// C#6 execute_code body. Isolated adopted-asset review; no scene or source writes.
+var folder="/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/SpreadBiome/Art/Pools/NativeComparison/"+System.Guid.NewGuid().ToString("N");
+System.IO.Directory.CreateDirectory(folder);
+System.Action<bool,string> require=(yes,why)=>{if(!yes)throw new System.InvalidOperationException(why);};
+System.Func<string,string> hash=path=>{using(var sha=System.Security.Cryptography.SHA256.Create())return System.BitConverter.ToString(sha.ComputeHash(System.IO.File.ReadAllBytes(path))).Replace("-","").ToLowerInvariant();};
+System.Func<string,string> quote=s=>"\""+(s??"").Replace("\\","\\\\").Replace("\"","\\\"").Replace("\n","\\n").Replace("\r","\\r")+"\"";
+require(!UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode&&!UnityEditor.EditorApplication.isCompiling,"Idle editor required");
+var main=UnityEngine.SceneManagement.SceneManager.GetActiveScene();bool mainDirty=main.isDirty;
+var lib=CavesOfOoo.Rendering.SpreadNativeStyle3DLibrary.Load();require(lib!=null,"Adopted library missing");lib.Validate();
+var ring=UnityEngine.Resources.Load<CavesOfOoo.Rendering.SpawnRing3DLibrary>(CavesOfOoo.Rendering.SpawnRing3DLibrary.ResourcePath);var glade=CavesOfOoo.Rendering.ReferenceGladeVoxelLibrary.Load();
+var voxel=UnityEngine.Resources.Load<CavesOfOoo.Rendering.VoxelWorldMeshCatalog>(CavesOfOoo.Rendering.VoxelWorldMeshCatalog.ResourcePath);require(voxel!=null,"Actual voxel catalog required");
+var entries=System.Linq.Enumerable.Range(0,4).Select(i=>lib.Find("ring-spray-pool-"+i)).ToArray();
+var borrowedMaterials=new[]{ring.WorldMaterial,ring.WaterMaterial,glade.Material};
+var materialJson=borrowedMaterials.Select(m=>new{material=m,shader=m.shader,map=m.GetTexture("_BaseMap"),color=m.GetColor("_BaseColor"),scale=m.GetTextureScale("_BaseMap"),offset=m.GetTextureOffset("_BaseMap"),dirty=UnityEditor.EditorUtility.IsDirty(m),wave=m.HasProperty("_WaveSpeed")?m.GetFloat("_WaveSpeed"):0f,strength=m.HasProperty("_WaveStrength")?m.GetFloat("_WaveStrength"):0f}).ToArray();
+var meshes=entries.SelectMany(e=>e.SourceMeshes.Concat(new[]{e.Mesh}).Concat(e.SourcePrefab.GetComponentsInChildren<UnityEngine.MeshFilter>(true).Select(f=>f.sharedMesh))).Distinct().ToArray();
+var buffers=meshes.Select(m=>new{mesh=m,vertices=m.vertices,normals=m.normals,uv=m.uv,submeshes=m.subMeshCount,indices=System.Linq.Enumerable.Range(0,m.subMeshCount).Select(i=>m.GetIndices(i)).ToArray()}).ToArray();
+var assets=entries.SelectMany(e=>new UnityEngine.Object[]{e.SourcePrefab,e.Prefab,e.Mesh}).Concat(borrowedMaterials).Concat(meshes).Concat(new UnityEngine.Object[]{lib,glade}).ToArray();
+var paths=new System.Collections.Generic.HashSet<string>();foreach(var asset in assets){string path=UnityEditor.AssetDatabase.GetAssetPath(asset);require(!string.IsNullOrEmpty(path),"Persistent reviewed source required");foreach(string dependency in UnityEditor.AssetDatabase.GetDependencies(path,true))if(System.IO.File.Exists(dependency)){paths.Add(dependency);if(System.IO.File.Exists(dependency+".meta"))paths.Add(dependency+".meta");}}
+var hashes=paths.ToDictionary(path=>path,path=>hash(path));
+var oldRT=UnityEngine.RenderTexture.active;bool oldAsync=UnityEditor.ShaderUtil.allowAsyncCompilation;
+var preview=default(UnityEngine.SceneManagement.Scene);UnityEngine.GameObject root=null;UnityEngine.RenderTexture target=null;CavesOfOoo.Rendering.NativeZone3DRenderSurface surface=null;
+var images=new System.Collections.Generic.List<string>();var observations=new System.Collections.Generic.List<string>();string error=null;bool preserved=false,restored=false;
+try{
+ UnityEditor.ShaderUtil.allowAsyncCompilation=false;preview=UnityEditor.SceneManagement.EditorSceneManager.NewPreviewScene();root=new UnityEngine.GameObject("Owned four mixed-pool native gallery");UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(root,preview);
+ target=new UnityEngine.RenderTexture(1024,1024,24,UnityEngine.RenderTextureFormat.ARGB32,UnityEngine.RenderTextureReadWrite.sRGB){antiAliasing=1,filterMode=UnityEngine.FilterMode.Bilinear};require(target.Create(),"Target allocation failed");
+ surface=new CavesOfOoo.Rendering.NativeZone3DRenderSurface(root.transform,ring.Renderer,ring.RendererIndex,ring.CompositeMaterial,borrowedMaterials,1.45f);
+ surface.ConfigureLighting(1.45f,.65f,.9f,new UnityEngine.Color(1,.98f,.92f),new UnityEngine.Vector3(55,-145,0),.68f,.008f,.018f,18,UnityEngine.FilterMode.Bilinear,true);surface.ConfigureAmbientProbe(new UnityEngine.Color(.28f,.32f,.30f));
+ var sourceObject=new UnityEngine.GameObject("Owned source camera");sourceObject.transform.SetParent(root.transform,false);var source=sourceObject.AddComponent<UnityEngine.Camera>();source.enabled=false;source.orthographic=true;source.orthographicSize=4;source.aspect=1;source.targetTexture=target;source.transform.position=new UnityEngine.Vector3(40,12,-10);surface.Sync(source,true,false);
+ var camera=surface.WorldCamera;camera.enabled=false;camera.scene=preview;camera.overrideSceneCullingMask=UnityEditor.SceneManagement.EditorSceneManager.GetSceneCullingMask(preview);camera.backgroundColor=new UnityEngine.Color(.02f,.075f,.075f,1);camera.clearFlags=UnityEngine.CameraClearFlags.SolidColor;camera.rect=new UnityEngine.Rect(0,0,1,1);camera.aspect=1;
+ var fog=new UnityEngine.Color32[surface.FogTexture.width*surface.FogTexture.height];for(int i=0;i<fog.Length;i++)fog[i]=new UnityEngine.Color32(255,255,255,255);surface.FogTexture.SetPixels32(fog);surface.FogTexture.Apply(false,false);
+ System.Action<string,UnityEngine.Bounds,bool> capture=(name,bounds,close)=>{
+  float extent=UnityEngine.Mathf.Max(bounds.size.x,UnityEngine.Mathf.Max(bounds.size.y,bounds.size.z));camera.orthographicSize=extent*(close?.78f:.70f);camera.transform.position=bounds.center+(close?new UnityEngine.Vector3(-.65f,.75f,-.85f):new UnityEngine.Vector3(0,1,-1)).normalized*(extent*4+3);camera.transform.LookAt(bounds.center);camera.ResetProjectionMatrix();bool framed=false;
+  for(int retry=0;retry<6;retry++){framed=true;for(int x=0;x<2;x++)for(int y=0;y<2;y++)for(int z=0;z<2;z++){var p=camera.WorldToViewportPoint(new UnityEngine.Vector3(x==0?bounds.min.x:bounds.max.x,y==0?bounds.min.y:bounds.max.y,z==0?bounds.min.z:bounds.max.z));framed&=p.z>0&&p.x>.03f&&p.x<.97f&&p.y>.03f&&p.y<.97f;}if(framed)break;camera.orthographicSize*=1.2f;camera.ResetProjectionMatrix();}require(framed,"Both pool materials must be fully framed");
+  var request=new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest{destination=target};require(UnityEngine.Rendering.RenderPipeline.SupportsRenderRequest(camera,request),"Native capture unsupported");UnityEngine.RenderTexture.active=target;UnityEngine.GL.Clear(true,true,camera.backgroundColor);UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(camera,request);UnityEngine.RenderTexture.active=target;
+  var pixels=new UnityEngine.Texture2D(1024,1024,UnityEngine.TextureFormat.RGBA32,false,false);try{pixels.ReadPixels(new UnityEngine.Rect(0,0,1024,1024),0,0);pixels.Apply(false,false);var values=pixels.GetPixels32();var background=values[0];int nonbackground=values.Count(c=>System.Math.Abs(c.r-background.r)+System.Math.Abs(c.g-background.g)+System.Math.Abs(c.b-background.b)>12);require(nonbackground>256,"Empty GPU frame");string file=folder+"/"+name+".png";System.IO.File.WriteAllBytes(file,UnityEngine.ImageConversion.EncodeToPNG(pixels));images.Add(file);observations.Add("{\"file\":"+quote(name+".png")+",\"nonBackgroundPixels\":"+nonbackground+",\"bounds\":"+UnityEngine.JsonUtility.ToJson(bounds)+",\"cameraSize\":"+camera.orthographicSize.ToString("R",System.Globalization.CultureInfo.InvariantCulture)+"}");}finally{UnityEngine.Object.DestroyImmediate(pixels);}
+ };
+ var instances=new System.Collections.Generic.List<UnityEngine.GameObject>();
+ for(int i=0;i<4;i++){
+  var e=entries[i];require(e!=null&&e.Materials.Length==2&&e.Mesh.subMeshCount==2&&e.Materials[0]==ring.WorldMaterial&&e.Materials[1]==ring.WaterMaterial,"Exact mixed source slots required");
+  var stages=new UnityEngine.GameObject[3];var framing=new UnityEngine.Bounds();
+  for(int stage=0;stage<3;stage++){
+   var instance=UnityEngine.Object.Instantiate(stage==2?e.Prefab:e.SourcePrefab,surface.ContentRoot,false);stages[stage]=instance;instance.transform.position=new UnityEngine.Vector3(40,0,12);
+   var renderers=instance.GetComponentsInChildren<UnityEngine.MeshRenderer>(true);
+   require(renderers.Length==(stage==2?1:2),"Both distinct source material owners must be retained");
+   if(stage==2){require(instance.GetComponent<UnityEngine.MeshFilter>().sharedMesh==e.Mesh,"Adopted mesh identity differs");instances.Add(instance);}
+   else {
+    var originals=e.SourcePrefab.GetComponentsInChildren<UnityEngine.MeshRenderer>(true);
+    for(int r=0;r<renderers.Length;r++){
+     var filter=renderers[r].GetComponent<UnityEngine.MeshFilter>();var raw=originals[r].GetComponent<UnityEngine.MeshFilter>().sharedMesh;
+     require(filter.sharedMesh==raw,"Raw mesh identity differs before optional voxel substitution");
+     if(stage==1){var resolved=voxel.Resolve(raw);require(e.SourceMeshes.Contains(resolved),"Actual selected voxel source missing");filter.sharedMesh=resolved;}
+    }
+   }
+   surface.PrepareModel(instance,true);
+   var materialSet=renderers.SelectMany(r=>r.sharedMaterials).Distinct().ToArray();require(materialSet.Length==2&&materialSet.Contains(surface.MaterialFor(ring.WorldMaterial))&&materialSet.Contains(surface.MaterialFor(ring.WaterMaterial)),"Both exact world/water materials required at every source stage");
+   foreach(var renderer in renderers){require(renderer.enabled&&!renderer.forceRenderingOff,"Disabled comparison source");var bounds=renderer.bounds;if(stage==0&&renderer==renderers[0])framing=bounds;else framing.Encapsulate(bounds);}
+   instance.SetActive(false);
+  }
+  // One union bound gives all three stages the same actual native camera.
+  for(int stage=0;stage<3;stage++){stages[stage].SetActive(true);capture(e.Id+new[]{"-raw-source","-current-voxel","-spread-adopted"}[stage],framing,true);stages[stage].SetActive(false);}
+ }
+ var allBounds=new UnityEngine.Bounds();for(int i=0;i<instances.Count;i++){var instance=instances[i];instance.SetActive(true);instance.transform.position=new UnityEngine.Vector3(38.5f+(i%2)*3,0,10.5f+(i/2)*3);var bounds=instance.GetComponent<UnityEngine.MeshRenderer>().bounds;if(i==0)allBounds=bounds;else allBounds.Encapsulate(bounds);}
+ // Ground is a separate owned adopted mesh and cannot stand in for a pool's exact two-slot proof.
+ var ground=glade.Entries.Single(e=>e.Id=="reference-glade-ground-0");for(int x=37;x<=42;x++)for(int z=9;z<=15;z++){var tile=UnityEngine.Object.Instantiate(ground.Prefab,surface.ContentRoot,false);tile.transform.position=new UnityEngine.Vector3(x+.5f,-.035f,z+.5f);surface.PrepareModel(tile,true);}
+ capture("all-four-world-angle",allBounds,false);
+ foreach(var row in buffers){require(row.mesh.vertices.SequenceEqual(row.vertices)&&row.mesh.normals.SequenceEqual(row.normals)&&row.mesh.uv.SequenceEqual(row.uv)&&row.mesh.subMeshCount==row.submeshes,"Borrowed mesh buffers changed");for(int sub=0;sub<row.submeshes;sub++)require(row.mesh.GetIndices(sub).SequenceEqual(row.indices[sub]),"Borrowed index buffer changed");}
+ foreach(var row in materialJson){var m=row.material;require(m.shader==row.shader&&m.GetTexture("_BaseMap")==row.map&&m.GetColor("_BaseColor")==row.color&&m.GetTextureScale("_BaseMap")==row.scale&&m.GetTextureOffset("_BaseMap")==row.offset&&UnityEditor.EditorUtility.IsDirty(m)==row.dirty,"Borrowed palette semantics/dirty flag changed");if(m.HasProperty("_WaveSpeed"))require(m.GetFloat("_WaveSpeed")==row.wave&&m.GetFloat("_WaveStrength")==row.strength,"Borrowed water ripple settings changed");}
+ preserved=hashes.All(p=>System.IO.File.Exists(p.Key)&&hash(p.Key)==p.Value);require(preserved,"Persistent source bytes changed");require(images.Count==13,"All four matched raw/voxel/adopted comparisons and arrangement required");
+}catch(System.Exception e){error=e.ToString();}
+finally{UnityEngine.RenderTexture.active=oldRT;UnityEditor.ShaderUtil.allowAsyncCompilation=oldAsync;if(surface!=null)surface.Dispose();if(root!=null)UnityEngine.Object.DestroyImmediate(root);if(target!=null){target.Release();UnityEngine.Object.DestroyImmediate(target);}if(preview.IsValid())UnityEditor.SceneManagement.EditorSceneManager.ClosePreviewScene(preview);var current=UnityEngine.SceneManagement.SceneManager.GetActiveScene();restored=current.handle==main.handle&&current.path==main.path&&current.isDirty==mainDirty;}
+System.IO.File.WriteAllText(folder+"/report.json","{\"success\":"+(error==null&&preserved&&restored).ToString().ToLowerInvariant()+",\"error\":"+quote(error)+",\"sourceUnchanged\":"+preserved.ToString().ToLowerInvariant()+",\"sceneRestored\":"+restored.ToString().ToLowerInvariant()+",\"frames\":["+string.Join(",",observations)+"]}");
+return new{folder,images=images.ToArray(),error,sourceUnchanged=preserved,sceneRestored=restored,canVerify="Thirteen actual GPU previews: four matched raw/voxel/adopted triplets with a fixed camera per triplet and final four-adopted arrangement; exact persistent geometry/material identities, unchanged source buffers/files, native water settings and complete union-bounds framing.",cannotVerify="Staged fully lit preview, not generated-world occurrence, live ripple movement, FOV behavior or real biome appearance. Raw/current/adopted shape and both semantic pieces must still be inspected visually; nonbackground pixels alone do not prove readability or ripple motion."};

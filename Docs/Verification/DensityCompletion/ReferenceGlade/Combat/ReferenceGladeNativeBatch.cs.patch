@@ -1,0 +1,34 @@
+--- /tmp/coo-glade-combat/ReferenceGladeNativeBatch.cs.before.txt	2026-09-26 20:31:15
++++ /tmp/coo-glade-combat/ReferenceGladeNativeBatch.cs	2026-09-26 20:31:15
+@@ -26,12 +26,13 @@
+         }
+         public static void Run() => LaunchCore(true);
+         public static void LaunchProfile() => LaunchCore(false,true);
++        public static void LaunchCombat() => LaunchCore(false,false,true);
+         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Native Audit")]
+         public static void Launch() => LaunchCore(false);
+         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Native Audit", true)]
+         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
+ 
+-        private static void LaunchCore(bool exitEditor,bool profile=false)
++        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false)
+         {
+             if (EditorApplication.isPlayingOrWillChangePlaymode)
+                 throw new InvalidOperationException("Exit Play before launching the completion audit.");
+@@ -49,6 +50,7 @@
+             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
+             SessionState.SetInt(Prefix + "seed", 64);
+             SessionState.SetBool(Prefix+"profile",profile);
++            SessionState.SetBool(Prefix+"combat",combat);
+             SessionState.SetBool(Prefix + "active", true);
+             SessionState.SetBool(Prefix + "restoreScenes", false);
+             SessionState.SetBool(Prefix + "exitEditor", exitEditor);
+@@ -76,7 +78,7 @@
+         {
+             GameBootstrap.OnAfterBootstrap -= Apply;
+             new GameObject("Reference Glade Native Audit").AddComponent<ReferenceGladeNativePlayer>()
+-                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"profile",false));
++                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"profile",false),SessionState.GetBool(Prefix+"combat",false));
+         }
+         private static void Poll()
+         {

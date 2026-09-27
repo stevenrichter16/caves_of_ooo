@@ -1,0 +1,68 @@
+using System;
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Rendering;
+using NUnit.Framework;
+using UnityEngine;
+namespace CavesOfOoo.Tests
+{
+ public sealed class SpreadNativeStyleMixedMaterialTests
+ {
+  [TestCase(0)][TestCase(1)][TestCase(2)][TestCase(3)]
+  public void SprayPoolPreservesEveryActualSourceMaterialGeometryUvAndTriangle(int variant)
+  {
+   var library=SpreadNativeStyle3DLibrary.Load();Assert.NotNull(library);library.Validate();var e=library.Find("ring-spray-pool-"+variant);Assert.NotNull(e);Assert.True(e.SemanticColors);
+   var ring=Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath);var voxel=Resources.Load<VoxelWorldMeshCatalog>(VoxelWorldMeshCatalog.ResourcePath);
+   CollectionAssert.AreEqual(new[]{ring.WorldMaterial,ring.WaterMaterial},e.Materials);Assert.AreEqual(2,e.Mesh.subMeshCount);
+   CollectionAssert.AreEqual(e.Materials,e.Prefab.GetComponent<MeshRenderer>().sharedMaterials);Assert.AreSame(e.Materials[0],e.Material);
+   var vertices=new System.Collections.Generic.List<Vector3>();var uv=new System.Collections.Generic.List<Vector2>();var indices=new[]{new System.Collections.Generic.List<int>(),new System.Collections.Generic.List<int>()};
+   foreach(var renderer in e.SourcePrefab.GetComponentsInChildren<MeshRenderer>(true).Where(r=>r.enabled)){
+    var source=voxel.Resolve(renderer.GetComponent<MeshFilter>().sharedMesh);Assert.AreNotSame(e.Mesh,source);var matrix=e.SourcePrefab.transform.worldToLocalMatrix*renderer.transform.localToWorldMatrix;int offset=vertices.Count;
+    vertices.AddRange(source.vertices.Select(v=>matrix.MultiplyPoint3x4(v)));uv.AddRange(source.uv);
+    for(int sub=0;sub<source.subMeshCount;sub++){int slot=Array.IndexOf(e.Materials,renderer.sharedMaterials[sub]);Assert.GreaterOrEqual(slot,0);var t=source.GetIndices(sub);for(int i=0;i<t.Length;i+=3){indices[slot].Add(offset+t[i]);indices[slot].Add(offset+t[i+(matrix.determinant<0?2:1)]);indices[slot].Add(offset+t[i+(matrix.determinant<0?1:2)]);}}
+   }
+   Assert.AreEqual(vertices.Count,e.Mesh.vertexCount);var actual=e.Mesh.vertices;for(int i=0;i<actual.Length;i++)Assert.Less((vertices[i]-actual[i]).sqrMagnitude,1e-10f);
+   CollectionAssert.AreEqual(uv,e.Mesh.uv);for(int i=0;i<2;i++)CollectionAssert.AreEqual(indices[i],e.Mesh.GetIndices(i));
+  }
+  [TestCase("geometry-disabled")][TestCase("water-disabled")][TestCase("water-mesh")][TestCase("water-material")][TestCase("water-root-tint")][TestCase("water-slot-tint")]
+  public void ExactEvidenceRequiresBothCurrentlySubmittedPieces(string change)
+  {
+   using(var f=new SpawnRing3DIntegrationFixture("Overworld.12.10.0")){
+    var pool=f.Add("SprayPool");f.Refresh();var presenter=(SpawnRing3DPresenter)f.Presenter;Assert.True(presenter.TryGetApprovedStyle(pool,out var proof),proof.Failure);Assert.AreEqual(2,proof.PieceCount);
+    var ring=f.Library;int n=change=="geometry-disabled"?0:1;var piece=proof.GetPiece(n);Assert.AreSame(n==0?ring.WorldMaterial:ring.WaterMaterial,piece.ExpectedMaterial);
+    var renderer=f.View(pool).GetComponentsInChildren<MeshRenderer>(true).Single(r=>r.GetComponent<MeshFilter>().sharedMesh==piece.SubmittedMesh&&r.sharedMaterial==piece.SubmittedMaterial);
+    var filter=renderer.GetComponent<MeshFilter>();var mesh=filter.sharedMesh;var material=renderer.sharedMaterial;var properties=new MaterialPropertyBlock();int index=change=="water-slot-tint"?0:-1;
+    if(index<0)renderer.GetPropertyBlock(properties);else renderer.GetPropertyBlock(properties,index);
+    try{
+     if(change.EndsWith("disabled"))renderer.enabled=false;else if(change=="water-mesh")filter.sharedMesh=null;else if(change=="water-material")renderer.sharedMaterial=ring.WorldMaterial;
+     else {var wrong=new MaterialPropertyBlock();if(index<0)renderer.GetPropertyBlock(wrong);else renderer.GetPropertyBlock(wrong,index);wrong.SetColor("_BaseColor",Color.magenta);if(index<0)renderer.SetPropertyBlock(wrong);else renderer.SetPropertyBlock(wrong,index);}
+     Assert.False(presenter.TryGetApprovedStyle(pool,out _),change+" cannot approve only the surviving fragment");
+    }finally{renderer.enabled=true;filter.sharedMesh=mesh;renderer.sharedMaterial=material;if(index<0)renderer.SetPropertyBlock(properties);else renderer.SetPropertyBlock(properties,index);}
+    Assert.True(presenter.TryGetApprovedStyle(pool,out var restored),restored.Failure);Assert.AreEqual(2,restored.PieceCount);
+   }
+  }
+  [Test]public void HiddenRemovedOrPortableMixedOwnerNeverBorrowsItsNeighbor()
+  {
+   using(var f=new SpawnRing3DIntegrationFixture("Overworld.12.10.0")){
+    var pool=f.Add("SprayPool");f.Add("SprayPool");f.Refresh();var p=(SpawnRing3DPresenter)f.Presenter;Assert.True(p.TryGetApprovedStyle(pool,out _));
+    pool.GetPart<PhysicsPart>().Takeable=true;f.Refresh();Assert.False(p.TryGetApprovedStyle(pool,out _));pool.GetPart<PhysicsPart>().Takeable=false;f.Refresh();Assert.True(p.TryGetApprovedStyle(pool,out _));
+    pool.GetPart<RenderPart>().Visible=false;f.Refresh();Assert.False(p.TryGetApprovedStyle(pool,out _));pool.GetPart<RenderPart>().Visible=true;f.Refresh();Assert.True(p.TryGetApprovedStyle(pool,out _));
+    f.Zone.RemoveEntity(pool);f.Refresh();Assert.False(p.TryGetApprovedStyle(pool,out _));
+   }
+  }
+  [Test]public void OrdinaryForeignPoolRetainsBothOriginalNativeFragments()
+  {
+   using(var f=new SpawnRing3DIntegrationFixture("Overworld.2.5.0")){
+    var pool=f.Add("SprayPool");f.Refresh();var recipe=SpawnRing3DRecipes.Resolve(f.Zone,pool,f.Library.Definition);Assert.IsNull(recipe.Failure);Assert.That(recipe.ModelId,Does.StartWith("ring-spray-pool-"));
+    var originals=f.Library.FindModel(recipe.ModelId).GetComponentsInChildren<MeshRenderer>(true);Assert.AreEqual(2,originals.Length);CollectionAssert.AreEquivalent(new[]{f.Library.WorldMaterial,f.Library.WaterMaterial},originals.Select(r=>r.sharedMaterial));
+    Assert.True(f.Rendered(pool));Assert.False(((SpawnRing3DPresenter)f.Presenter).TryGetApprovedStyle(pool,out _));
+   }
+  }
+  [Test]public void MissingSemanticSlotFailsLibraryPreflight()
+  {
+   var original=SpreadNativeStyle3DLibrary.Load();Assert.NotNull(original);original.Validate();var copy=UnityEngine.Object.Instantiate(original);
+   try{var e=copy.Entries.Single(x=>x.Id=="ring-spray-pool-0");Assert.AreNotSame(original.Find(e.Id),e);e.Materials=new[]{e.Material};Assert.Throws<InvalidOperationException>(()=>copy.Validate());original.Validate();}
+   finally{UnityEngine.Object.DestroyImmediate(copy);}
+  }
+ }
+}

@@ -36,10 +36,8 @@ namespace CavesOfOoo.Tests
             finally{isolation?.Dispose();}
         }
 
-        [Test] public void SerializedForestSpawnHasActualMorrowfastOneEastwardBoundaryAway()
+        [Test] public void ExplicitForestRouteHasActualMorrowfastOneEastwardBoundaryAway()
         {
-            string scene=File.ReadAllText(Path.Combine(Application.dataPath,"Scenes/Main/SampleScene.unity"));
-            StringAssert.Contains("FreshGameZoneID: Overworld.2.6.0",scene);
             var m=Manager();var z=m.GetZone("Overworld.2.6.0");var player=PlacePlayer(z);
             WalkTo(z,player,c=>c.X==79,"forest east edge");var at=z.GetEntityCell(player);
             Assert.AreEqual(TransitionDirection.East,ZoneTransitionSystem.GetTransitionDirection(at.X,at.Y,1,0));

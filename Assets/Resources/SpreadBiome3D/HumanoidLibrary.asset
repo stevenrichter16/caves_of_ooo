@@ -1,0 +1,1524 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9884e93aca1a450ca50ddbc9ffd7bc08, type: 3}
+  m_Name: HumanoidLibrary
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.SpreadBiomeHumanoidLibrary
+  Entries:
+  - Id: spread-person-elder
+    Blueprint: Elder
+    Prefab: {fileID: 3161446375283859730, guid: a4a1511f153f64335a863f9f65bde865, type: 3}
+    Mesh: {fileID: 4300000, guid: fe03d5124484d428bac78554cb0c0cb0, type: 2}
+    Spec:
+      id: spread-person-elder
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-elder.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Elder
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-villager
+    Blueprint: Villager
+    Prefab: {fileID: 4011642614106450676, guid: fd70d150ac317440698da07a7f15995b, type: 3}
+    Mesh: {fileID: 4300000, guid: 65917e8bc68bb471da81a1bf6f416fb3, type: 2}
+    Spec:
+      id: spread-person-villager
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-villager.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Villager
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 240
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-weaponsmith
+    Blueprint: Weaponsmith
+    Prefab: {fileID: 809445933153539054, guid: bda35d7aa8fad4aad9c6329d8d178f11, type: 3}
+    Mesh: {fileID: 4300000, guid: 493d4419c30954169b09cfa447b5c0d5, type: 2}
+    Spec:
+      id: spread-person-weaponsmith
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-weaponsmith.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Weaponsmith
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-armorer
+    Blueprint: Armorer
+    Prefab: {fileID: 9037800741005298165, guid: 58151fef62c184e1aa1cc6a909a69ab1, type: 3}
+    Mesh: {fileID: 4300000, guid: ea0fa27b69f4443aaae4608291afada1, type: 2}
+    Spec:
+      id: spread-person-armorer
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-armorer.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Armorer
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-apothecary
+    Blueprint: Apothecary
+    Prefab: {fileID: 4130822575541936742, guid: 4273bfa73aa044ef3826617dff91332e, type: 3}
+    Mesh: {fileID: 4300000, guid: dd82228ee587e484abc0cbd69bd91f7a, type: 2}
+    Spec:
+      id: spread-person-apothecary
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-apothecary.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Apothecary
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 276
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-arcanist
+    Blueprint: Arcanist
+    Prefab: {fileID: 6552164739175300835, guid: 9d00f874e653e4d9696347d06f4b15d7, type: 3}
+    Mesh: {fileID: 4300000, guid: ee16a98b5d95b47718e0ec7c2a480ae7, type: 2}
+    Spec:
+      id: spread-person-arcanist
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-arcanist.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Arcanist
+      rigged: 1
+      boundsCenter: {x: 0.00000002207424, y: 0.7899996, z: -0.2524998}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.8549997}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-provisioner
+    Blueprint: Provisioner
+    Prefab: {fileID: 809027167546972685, guid: 186bd36e90aa84f5bad1bc596ae5403e, type: 3}
+    Mesh: {fileID: 4300000, guid: d497211aa30bf4662b3c340cd7e8b3d8, type: 2}
+    Spec:
+      id: spread-person-provisioner
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-provisioner.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Provisioner
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-cave-hermit
+    Blueprint: CaveHermit
+    Prefab: {fileID: 4469920489768087423, guid: 1ec440e3d4380437aab0845122c40d18, type: 3}
+    Mesh: {fileID: 4300000, guid: b22f95e9d3b57405fac19b508468a843, type: 2}
+    Spec:
+      id: spread-person-cave-hermit
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-cave-hermit.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: CaveHermit
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-desert-hermit
+    Blueprint: DesertHermit
+    Prefab: {fileID: 4363492677252946418, guid: 3339a4a9c8243484e832b5b173f34bca, type: 3}
+    Mesh: {fileID: 4300000, guid: 26a9eece845504b4fb49898d5ab55968, type: 2}
+    Spec:
+      id: spread-person-desert-hermit
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-desert-hermit.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: DesertHermit
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-jungle-hermit
+    Blueprint: JungleHermit
+    Prefab: {fileID: 1002340790859315082, guid: b0c9ab99a8a5d4328933b0a58d6216b7, type: 3}
+    Mesh: {fileID: 4300000, guid: c10bc605afa8b44a093ccff053a4b3f6, type: 2}
+    Spec:
+      id: spread-person-jungle-hermit
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-jungle-hermit.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: JungleHermit
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-ruins-hermit
+    Blueprint: RuinsHermit
+    Prefab: {fileID: 8750163569262488444, guid: c6dd26b595ae141edba0ff21a5a58d64, type: 3}
+    Mesh: {fileID: 4300000, guid: 44a34773e356f40039b189514f8d3a45, type: 2}
+    Spec:
+      id: spread-person-ruins-hermit
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-ruins-hermit.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: RuinsHermit
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-marceline
+    Blueprint: Marceline
+    Prefab: {fileID: 753557702902726934, guid: 8df3a1cb1f47c423e81f1a7fe28e3533, type: 3}
+    Mesh: {fileID: 4300000, guid: 86fa7de6f1ce343d3b27d9b80d4f5362, type: 2}
+    Spec:
+      id: spread-person-marceline
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-marceline.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Marceline
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-village-child
+    Blueprint: VillageChild
+    Prefab: {fileID: 4050699152049486997, guid: 5af44439818434d7988cee564fa06911, type: 3}
+    Mesh: {fileID: 4300000, guid: bad471a613ac44349b32e9d50d0bbd0f, type: 2}
+    Spec:
+      id: spread-person-village-child
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-village-child.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: VillageChild
+      rigged: 1
+      boundsCenter: {x: 0.00000001009732, y: 0.55299973, z: -0.11549985}
+      boundsSize: {x: 0.8527389, y: 1.3719994, z: 1.1759998}
+      triangles: 240
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-tinker
+    Blueprint: Tinker
+    Prefab: {fileID: 7017946248885182798, guid: 21d63f0786a3f4bf99ece0db47658538, type: 3}
+    Mesh: {fileID: 4300000, guid: f79474b3534534d7c83c5b7381fc1162, type: 2}
+    Spec:
+      id: spread-person-tinker
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-tinker.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Tinker
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-merchant
+    Blueprint: Merchant
+    Prefab: {fileID: 1736935830358660724, guid: a6690a461fa6b418fb49e631f644726b, type: 3}
+    Mesh: {fileID: 4300000, guid: 898cf5183477545d2a41a49862c4e6ef, type: 2}
+    Spec:
+      id: spread-person-merchant
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-merchant.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Merchant
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-quartermaster
+    Blueprint: Quartermaster
+    Prefab: {fileID: 8032868096040070855, guid: cb850baff721c4c3f83bdeee97d3a2a2, type: 3}
+    Mesh: {fileID: 4300000, guid: 11128d02cebc147e0be8baaa6f57fd06, type: 2}
+    Spec:
+      id: spread-person-quartermaster
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-quartermaster.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Quartermaster
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-palimpsest-echo
+    Blueprint: PalimpsestEcho
+    Prefab: {fileID: 2067043740693968101, guid: 6acf49850caea4d18954c3faac36daef, type: 3}
+    Mesh: {fileID: 4300000, guid: 9c7778ee6e84d4d73a65b72268ef5af4, type: 2}
+    Spec:
+      id: spread-person-palimpsest-echo
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-palimpsest-echo.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: PalimpsestEcho
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-saccharine-envoy
+    Blueprint: SaccharineEnvoy
+    Prefab: {fileID: 7486594367829714463, guid: c8c459185d89b48fc9bf564aa3651413, type: 3}
+    Mesh: {fileID: 4300000, guid: 5e8f59e2bf60f44bf8c76b83fa4ff735, type: 2}
+    Spec:
+      id: spread-person-saccharine-envoy
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-saccharine-envoy.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: SaccharineEnvoy
+      rigged: 1
+      boundsCenter: {x: 0.00000002207424, y: 0.7899996, z: -0.2524998}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.8549997}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-concord-factor
+    Blueprint: ConcordFactor
+    Prefab: {fileID: 6526990446056950704, guid: dea05d71a502746ea9fd0c324e5e2bf2, type: 3}
+    Mesh: {fileID: 4300000, guid: 1e07b13c248a643b0b3ad232a381bc75, type: 2}
+    Spec:
+      id: spread-person-concord-factor
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-concord-factor.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: ConcordFactor
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-pale-curator
+    Blueprint: PaleCurator
+    Prefab: {fileID: 1646647336420138460, guid: 17099aeda6db14fee96d621869a65811, type: 3}
+    Mesh: {fileID: 4300000, guid: 4e8b9ad6efb9f4a9fb8dd1c4d3011196, type: 2}
+    Spec:
+      id: spread-person-pale-curator
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-pale-curator.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: PaleCurator
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-glassblown-drifter
+    Blueprint: GlassblownDrifter
+    Prefab: {fileID: 4375566955344052623, guid: ba23d7f8c12094d36b3c9f973003757d, type: 3}
+    Mesh: {fileID: 4300000, guid: 30ef87617b2f646faa4dc1c6b76da86d, type: 2}
+    Spec:
+      id: spread-person-glassblown-drifter
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-glassblown-drifter.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: GlassblownDrifter
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-desert-bandit
+    Blueprint: DesertBandit
+    Prefab: {fileID: 8382791244197195382, guid: e661b3cec28f1453897ef38d1cca3de9, type: 3}
+    Mesh: {fileID: 4300000, guid: 0ac1633acbf654229997afbbb32f4397, type: 2}
+    Spec:
+      id: spread-person-desert-bandit
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-desert-bandit.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: DesertBandit
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 276
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-ruin-scavenger
+    Blueprint: RuinScavenger
+    Prefab: {fileID: 7722835548192811224, guid: ac73d65ccbbad463ba5cb64f023cb131, type: 3}
+    Mesh: {fileID: 4300000, guid: 9276f845db5e14593be729b2704b6402, type: 2}
+    Spec:
+      id: spread-person-ruin-scavenger
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-ruin-scavenger.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: RuinScavenger
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-mogu
+    Blueprint: Mogu
+    Prefab: {fileID: 6768643677741287688, guid: 687e1b09de60d4242ba990acc8ef1468, type: 3}
+    Mesh: {fileID: 4300000, guid: d52e19f1e1e6c4305a59333ea90e256c, type: 2}
+    Spec:
+      id: spread-person-mogu
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-mogu.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Mogu
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-grib
+    Blueprint: Grib
+    Prefab: {fileID: 6276963361733997955, guid: c7d52ba38cc8a4bdfaf5bf151c5c7fef, type: 3}
+    Mesh: {fileID: 4300000, guid: 5bb83497253354177a350c4bf1c2eea0, type: 2}
+    Spec:
+      id: spread-person-grib
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-grib.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Grib
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-nam
+    Blueprint: Nam
+    Prefab: {fileID: 6620233429960193045, guid: f8c50547196c94eb3ad1fb02451a8fca, type: 3}
+    Mesh: {fileID: 4300000, guid: eaaff7e21c4164189b8777af7a8d73ad, type: 2}
+    Spec:
+      id: spread-person-nam
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-nam.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Nam
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 240
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-sien
+    Blueprint: Sien
+    Prefab: {fileID: 1529962663276769784, guid: f46608e25e31d4f78831092ecc66e73d, type: 3}
+    Mesh: {fileID: 4300000, guid: 644aa28dc097c4a8bb85e909319d8e7c, type: 2}
+    Spec:
+      id: spread-person-sien
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-sien.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Sien
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-sopp
+    Blueprint: Sopp
+    Prefab: {fileID: 4000545499372570342, guid: 1090c2c1bdac744428d8ef46bf47f066, type: 3}
+    Mesh: {fileID: 4300000, guid: 6ce39fc6ecc494908b4437e430aaa4bf, type: 2}
+    Spec:
+      id: spread-person-sopp
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-sopp.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Sopp
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 276
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-warden
+    Blueprint: Warden
+    Prefab: {fileID: 829204141122278572, guid: fe54b3d38a2be4da38a99883db9f38e1, type: 3}
+    Mesh: {fileID: 4300000, guid: 2b2957226c5b64a37a8ab7c3e7552e89, type: 2}
+    Spec:
+      id: spread-person-warden
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-warden.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Warden
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-well-keeper
+    Blueprint: WellKeeper
+    Prefab: {fileID: 4247889970663590485, guid: 3fefc1ecc9504467fac97c84dc2c4186, type: 3}
+    Mesh: {fileID: 4300000, guid: 41990b010b6c5424e9a8f0ecd7af8e8c, type: 2}
+    Spec:
+      id: spread-person-well-keeper
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-well-keeper.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: WellKeeper
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-farmer
+    Blueprint: Farmer
+    Prefab: {fileID: 404305922091672894, guid: e5fb8ab397c2a49b0b80c141ca0bf751, type: 3}
+    Mesh: {fileID: 4300000, guid: ed36389badac34a4db20c737563a9410, type: 2}
+    Spec:
+      id: spread-person-farmer
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-farmer.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Farmer
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7699995, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9999993, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-innkeeper
+    Blueprint: Innkeeper
+    Prefab: {fileID: 5850583898613793907, guid: 53546b2d7d60b491191186aa70eeef96, type: 3}
+    Mesh: {fileID: 4300000, guid: d0892a1d3889d47d39549d68576d12c3, type: 2}
+    Spec:
+      id: spread-person-innkeeper
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-innkeeper.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Innkeeper
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-undertaker
+    Blueprint: Undertaker
+    Prefab: {fileID: 5851539259953914255, guid: 9f871902bfff64d929d76068e5da48f5, type: 3}
+    Mesh: {fileID: 4300000, guid: d6ea6cad9dca149bfa01e7c35b94324c, type: 2}
+    Spec:
+      id: spread-person-undertaker
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-undertaker.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Undertaker
+      rigged: 1
+      boundsCenter: {x: 0.00000002207424, y: 0.7899996, z: -0.2524998}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.8549997}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-scribe
+    Blueprint: Scribe
+    Prefab: {fileID: 3158236671137902211, guid: ea2af7794dacb4585ad10122fa18c877, type: 3}
+    Mesh: {fileID: 4300000, guid: ada7bd2d5c8444b8ebc7562d8b813457, type: 2}
+    Spec:
+      id: spread-person-scribe
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-scribe.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Scribe
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-ambush-bandit
+    Blueprint: AmbushBandit
+    Prefab: {fileID: 5891632678881632121, guid: da2dfde6e65a141c9ac4f767a725d88f, type: 3}
+    Mesh: {fileID: 4300000, guid: dff10e4b9710c48b4933615da7c80a04, type: 2}
+    Spec:
+      id: spread-person-ambush-bandit
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-ambush-bandit.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: AmbushBandit
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 276
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-rune-cultist
+    Blueprint: RuneCultist
+    Prefab: {fileID: 655469122238473884, guid: 7851406f6dc6d4cd4b67f93cf79b652e, type: 3}
+    Mesh: {fileID: 4300000, guid: fa7fe4e63a00c4ad2ab26570d6545e4a, type: 2}
+    Spec:
+      id: spread-person-rune-cultist
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-rune-cultist.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: RuneCultist
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-tent-right-host
+    Blueprint: TentRightHost
+    Prefab: {fileID: 3700438764535383723, guid: 1ed538f88bb014866a4ba1d01ba44a61, type: 3}
+    Mesh: {fileID: 4300000, guid: 00171322bb21e439594d23fd611557da, type: 2}
+    Spec:
+      id: spread-person-tent-right-host
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-tent-right-host.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: TentRightHost
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-salt-master
+    Blueprint: SaltMaster
+    Prefab: {fileID: 1159486143780827519, guid: 2157f2b95930e425080a61214e01532e, type: 3}
+    Mesh: {fileID: 4300000, guid: 17769a65594a442cda30c75b54715692, type: 2}
+    Spec:
+      id: spread-person-salt-master
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-salt-master.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: SaltMaster
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-recension-scribe
+    Blueprint: RecensionScribe
+    Prefab: {fileID: 2083930826747542972, guid: 83591b1050fe641908ec73fc4d28b2b3, type: 3}
+    Mesh: {fileID: 4300000, guid: c7e1b8e9e33da44dc818382730071d07, type: 2}
+    Spec:
+      id: spread-person-recension-scribe
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-recension-scribe.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: RecensionScribe
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-stillleaf-searcher
+    Blueprint: StillleafSearcher
+    Prefab: {fileID: 4385525801921965793, guid: 63e1870b9e0db4f96955621a286e5cf1, type: 3}
+    Mesh: {fileID: 4300000, guid: a611193bf04ce4be5b9dfd6b9a53214c, type: 2}
+    Spec:
+      id: spread-person-stillleaf-searcher
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-stillleaf-searcher.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: StillleafSearcher
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 276
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-curation-sorter
+    Blueprint: CurationSorter
+    Prefab: {fileID: 466228828952227749, guid: 9f29e6f6f85604cdbb04956a7b2ab844, type: 3}
+    Mesh: {fileID: 4300000, guid: d2b87a03ba5394e619e28ff760b63ae8, type: 2}
+    Spec:
+      id: spread-person-curation-sorter
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-curation-sorter.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: CurationSorter
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-stillleaf-indexer
+    Blueprint: StillleafIndexer
+    Prefab: {fileID: 8766758676243890049, guid: cae9fb1908e554c99af5156b8c032d35, type: 3}
+    Mesh: {fileID: 4300000, guid: 7a37adf7452e4491ba0ca394f83e9ff3, type: 2}
+    Spec:
+      id: spread-person-stillleaf-indexer
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-stillleaf-indexer.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: StillleafIndexer
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-peat-cutter
+    Blueprint: PeatCutter
+    Prefab: {fileID: 6670559890949144382, guid: 04baabeb42fb34897bf1be13670ac6b5, type: 3}
+    Mesh: {fileID: 4300000, guid: f405de1f247c7406fafee053b20d06c2, type: 2}
+    Spec:
+      id: spread-person-peat-cutter
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-peat-cutter.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: PeatCutter
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7699995, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9999993, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-filer-clerk
+    Blueprint: FilerClerk
+    Prefab: {fileID: 4073450351257895913, guid: 437febc1d2af74f03ad21863ea058b8a, type: 3}
+    Mesh: {fileID: 4300000, guid: 96fff650744814855b00917db61b2931, type: 2}
+    Spec:
+      id: spread-person-filer-clerk
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-filer-clerk.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: FilerClerk
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-encased-elder
+    Blueprint: EncasedElder
+    Prefab: {fileID: 3609270101573304870, guid: c39ee1816a08a4a95a6eeae7af72d9e1, type: 3}
+    Mesh: {fileID: 4300000, guid: f1e57f03156214d0d83c2f9f7c2dfbdd, type: 2}
+    Spec:
+      id: spread-person-encased-elder
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-encased-elder.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: EncasedElder
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-catacomb-warden
+    Blueprint: CatacombWarden
+    Prefab: {fileID: 5759000268706757164, guid: 27165146d4fed4c148e20a747f3586d5, type: 3}
+    Mesh: {fileID: 4300000, guid: 547cb60d42df84d3780d77e0e051be2e, type: 2}
+    Spec:
+      id: spread-person-catacomb-warden
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-catacomb-warden.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: CatacombWarden
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-plaque-tender
+    Blueprint: PlaqueTender
+    Prefab: {fileID: 1361021441699519701, guid: 6795b8ec610124aadb5c6815a0e14075, type: 3}
+    Mesh: {fileID: 4300000, guid: b61c9b78f8cc0458dbfed76b74f16cd2, type: 2}
+    Spec:
+      id: spread-person-plaque-tender
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-plaque-tender.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: PlaqueTender
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-founding-listener
+    Blueprint: FoundingListener
+    Prefab: {fileID: 5325354007067694829, guid: cbececbc4130740bb8cf3d411906c62f, type: 3}
+    Mesh: {fileID: 4300000, guid: 5c8066739e7e64b54aee187a1388adc0, type: 2}
+    Spec:
+      id: spread-person-founding-listener
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-founding-listener.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: FoundingListener
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-founding-plaque-tender
+    Blueprint: FoundingPlaqueTender
+    Prefab: {fileID: 109018030803214309, guid: b2a6ace81084d4782967d81cd8ccbf2c, type: 3}
+    Mesh: {fileID: 4300000, guid: 20bd8af3dde0c4ddb876840264c7eaf9, type: 2}
+    Spec:
+      id: spread-person-founding-plaque-tender
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-founding-plaque-tender.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: FoundingPlaqueTender
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 252
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-gantry-registrar
+    Blueprint: GantryRegistrar
+    Prefab: {fileID: 7042105608803229744, guid: e284c3f0d395d4f4099fd8497f3ad922, type: 3}
+    Mesh: {fileID: 4300000, guid: 60cc8de1bedee45f2b5b291591d13c01, type: 2}
+    Spec:
+      id: spread-person-gantry-registrar
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-gantry-registrar.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: GantryRegistrar
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7899996, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9599991, z: 1.6799996}
+      triangles: 264
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-soot-gremlin
+    Blueprint: SootGremlin
+    Prefab: {fileID: 7562728825779086532, guid: 636f9e56d32964da293d3602cff485da, type: 3}
+    Mesh: {fileID: 4300000, guid: 247df70d1008846839cd7b4bf3b9715a, type: 2}
+    Spec:
+      id: spread-person-soot-gremlin
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-soot-gremlin.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: SootGremlin
+      rigged: 1
+      boundsCenter: {x: 0.000000010796701, y: 0.5965996, z: -0.123499826}
+      boundsSize: {x: 0.92583084, y: 1.4971992, z: 1.2729996}
+      triangles: 288
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-dirt-gnome
+    Blueprint: DirtGnome
+    Prefab: {fileID: 6444410559999377865, guid: bc8ab9d71e08a48feb73884a702a8f7c, type: 3}
+    Mesh: {fileID: 4300000, guid: 9dac7aa855b2747a7a4457fe8696f399, type: 2}
+    Spec:
+      id: spread-person-dirt-gnome
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-dirt-gnome.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: DirtGnome
+      rigged: 1
+      boundsCenter: {x: 0.000000011080824, y: 0.61229956, z: -0.12674983}
+      boundsSize: {x: 0.9501948, y: 1.5365992, z: 1.3064996}
+      triangles: 288
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  Material: {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}

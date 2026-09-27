@@ -1,0 +1,53 @@
+{
+  "status": "native unit and bounded scheduling Play GREEN",
+  "changedRuntimeFiles": [
+    "Assets/Scripts/Gameplay/Materials/MaterialSimSystem.cs"
+  ],
+  "beforeSha256": "0e3d30d55c1aa3de1bfa60b8dad6fa9f1217f23db2d226b43d5d1bcabe6ac059",
+  "afterSha256": "4cf9058ccfddfa252c7a0196b3b99b66c2ec697ff0ac5d2f6692a858b3a880dc",
+  "scope": "existing steam effect turn admission and current-owner checks only; no scales, damage, steam-cloud behavior or save fields changed",
+  "privateFocused": {
+    "passed": 34,
+    "failed": 0
+  },
+  "sameCorpus": {
+    "beforeTotal": 259,
+    "beforePassed": 244,
+    "beforeFailed": 15,
+    "afterTotal": 259,
+    "afterPassed": 259,
+    "afterFailed": 0,
+    "newlyFailing": 0,
+    "newlyPassing": 15
+  },
+  "nativeRed": {
+    "total": 34,
+    "failed": 15,
+    "passedControls": 19,
+    "receipt": "Integration/native-moth-door-steam-sixth-gates"
+  },
+  "independentReview": "render_completion and root: no blocking defect in scoped diff",
+  "nativeGreen": {
+    "steamCases": 34,
+    "steamPassed": 34,
+    "saveControlsPassed": 24,
+    "receipt": "Integration/native-steam-sixth-first.xml.gz",
+    "combinedRunBoundary": "242 combined cases include six unrelated pending art failures; no all-green claim for combined run"
+  },
+  "nativePlay": {
+    "runId": "c60045d3558347aca9e198a37748277a",
+    "cases": 4,
+    "checks": 22,
+    "failed": 0,
+    "unexpectedErrors": 0,
+    "seconds": 44.9845082,
+    "complete": true,
+    "reportSha256": "c87dd5badef822f60f131d1f574abea4213705717bfb233117d2d40e1244cf44",
+    "screenshots": 13,
+    "visuallyReviewed": [
+      "hot-steam-controls",
+      "ambient-steam-one-wait"
+    ],
+    "visualBoundary": "Root inspected ordinary40/40 HUD and readable source/reaction log in two captures; eleven uninspected. Pictures do not establish measured thermal numbers."
+  }
+}

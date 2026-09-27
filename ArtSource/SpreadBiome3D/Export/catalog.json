@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "id": "spread-biome-animals",
+  "palette": [
+    "#082C28",
+    "#103E36",
+    "#1A4B40",
+    "#26594A",
+    "#A0A77C",
+    "#CBC697",
+    "#647353",
+    "#235D25",
+    "#40872C",
+    "#65AE3D",
+    "#435A53",
+    "#62786C",
+    "#819489",
+    "#16883B",
+    "#45CB4B",
+    "#A0E772",
+    "#207838",
+    "#D2D3B4",
+    "#B77B43",
+    "#403D28",
+    "#756C40",
+    "#A39456",
+    "#C4B877",
+    "#243E39"
+  ],
+  "models": [
+    {
+      "id": "spread-biome-magpie",
+      "sourceBlueprint": "Magpie",
+      "path": "models/spread-biome-magpie.fbx",
+      "rigFamily": "avian",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "Wing.L",
+        "Leg.L",
+        "Wing.R",
+        "Leg.R",
+        "Tail"
+      ],
+      "triangles": 252,
+      "boundsBlender": {
+        "min": [
+          -0.2225000113248825,
+          -0.4650000035762787,
+          0.0
+        ],
+        "max": [
+          0.2225000113248825,
+          0.6100000143051147,
+          0.67249995470047
+        ]
+      },
+      "sha256": "58e037e75224c66acf66bca76bee9de5fa23e81f37d53472c18625567a279320",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-biome-pet-dog",
+      "sourceBlueprint": "PetDog",
+      "path": "models/spread-biome-pet-dog.fbx",
+      "rigFamily": "quadruped",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R",
+        "Tail"
+      ],
+      "triangles": 276,
+      "boundsBlender": {
+        "min": [
+          -0.17499999701976776,
+          -0.54749995470047,
+          0.0
+        ],
+        "max": [
+          0.17499999701976776,
+          0.4699999988079071,
+          0.73499995470047
+        ]
+      },
+      "sha256": "f87a86f75614220dba7907f8f60c5bf11144deafbcb17589e0bdb6de9132de4d",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-biome-viper",
+      "sourceBlueprint": "Viper",
+      "path": "models/spread-biome-viper.fbx",
+      "rigFamily": "serpent",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "Coil.0",
+        "Coil.1",
+        "Coil.2",
+        "Coil.3",
+        "Coil.4",
+        "Coil.5",
+        "Coil.6",
+        "Coil.7",
+        "Coil.8",
+        "Coil.9",
+        "Coil.10",
+        "Coil.11",
+        "Coil.12",
+        "Coil.13",
+        "Coil.14",
+        "Coil.15",
+        "Coil.16",
+        "Coil.17",
+        "Coil.18",
+        "Coil.19"
+      ],
+      "triangles": 552,
+      "boundsBlender": {
+        "min": [
+          -0.28949999809265137,
+          -0.5300000309944153,
+          0.04750000312924385
+        ],
+        "max": [
+          0.31200000643730164,
+          0.5587999820709229,
+          0.17999999225139618
+        ]
+      },
+      "sha256": "d6281e3ff30b6f72c39b798f21a5d092810cf14ee6f193d1a34bd2108abc65bd",
+      "status": "private-source-not-native-adopted"
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "status": "71/71 standalone current shared snapshot; native maps and campaign balance unproved",
+  "blueprintSha256": "fe86cad007e60220fda8dfb6f26039c07b48bfad145ecf6c24d0c8b125856393",
+  "lootSha256": "4b08580335e29baa9a51a5dddd4139e90687f93c132538b64c1fae0afd140f79",
+  "identicalRecordedRows": 150,
+  "classificationChanges": [],
+  "before": {
+    "containers": 445,
+    "locked": 39,
+    "opened": 406,
+    "openingAttempts": 406,
+    "refused": 0,
+    "noApproach": 0,
+    "commerce": 15642.0,
+    "saleQuote": 5157.0,
+    "armorUnits": 63,
+    "count": 161
+  },
+  "current": {
+    "containers": 394,
+    "locked": 37,
+    "opened": 357,
+    "openingAttempts": 357,
+    "refused": 0,
+    "noApproach": 0,
+    "commerce": 14462.0,
+    "saleQuote": 4765.0,
+    "armorUnits": 54,
+    "count": 161
+  },
+  "groups": {
+    "Wilderness": {
+      "before": {
+        "containers": 331,
+        "locked": 24,
+        "opened": 307,
+        "openingAttempts": 307,
+        "refused": 0,
+        "noApproach": 0,
+        "commerce": 10823.0,
+        "saleQuote": 3565.0,
+        "armorUnits": 36,
+        "count": 120
+      },
+      "current": {
+        "containers": 331,
+        "locked": 24,
+        "opened": 307,
+        "openingAttempts": 307,
+        "refused": 0,
+        "noApproach": 0,
+        "commerce": 10823.0,
+        "saleQuote": 3565.0,
+        "armorUnits": 36,
+        "count": 120
+      }
+    },
+    "Lair": {
+      "before": {
+        "containers": 66,
+        "locked": 3,
+        "opened": 63,
+        "openingAttempts": 63,
+        "refused": 0,
+        "noApproach": 0,
+        "commerce": 1357.0,
+        "saleQuote": 448.0,
+        "armorUnits": 9,
+        "count": 15
+      },
+      "current": {
+        "containers": 15,
+        "locked": 1,
+        "opened": 14,
+        "openingAttempts": 14,
+        "refused": 0,
+        "noApproach": 0,
+        "commerce": 137.0,
+        "saleQuote": 46.0,
+        "armorUnits": 0,
+        "count": 15
+      }
+    },
+    "Underground": {
+      "before": {
+        "containers": 48,
+        "locked": 12,
+        "opened": 36,
+        "openingAttempts": 36,
+        "refused": 0,
+        "noApproach": 0,
+        "commerce": 1658.0,
+        "saleQuote": 542.0,
+        "armorUnits": 13,
+        "count": 15
+      },
+      "current": {
+        "containers": 48,
+        "locked": 12,
+        "opened": 36,
+        "openingAttempts": 36,
+        "refused": 0,
+        "noApproach": 0,
+        "commerce": 1658.0,
+        "saleQuote": 542.0,
+        "armorUnits": 13,
+        "count": 15
+      }
+    },
+    "Shop": {
+      "before": {
+        "containers": 0,
+        "locked": 0,
+        "opened": 0,
+        "openingAttempts": 0,
+        "refused": 0,
+        "noApproach": 0,
+        "commerce": 1750.0,
+        "saleQuote": 585.0,
+        "armorUnits": 5,
+        "count": 10
+      },
+      "current": {
+        "containers": 0,
+        "locked": 0,
+        "opened": 0,
+        "openingAttempts": 0,
+        "refused": 0,
+        "noApproach": 0,
+        "commerce": 1790.0,
+        "saleQuote": 595.0,
+        "armorUnits": 5,
+        "count": 10
+      }
+    },
+    "DesignedStarterGrant": {
+      "before": {
+        "containers": 0,
+        "locked": 0,
+        "opened": 0,
+        "openingAttempts": 0,
+        "refused": 0,
+        "noApproach": 0,
+        "commerce": 54.0,
+        "saleQuote": 17.0,
+        "armorUnits": 0,
+        "count": 1
+      },
+      "current": {
+        "containers": 0,
+        "locked": 0,
+        "opened": 0,
+        "openingAttempts": 0,
+        "refused": 0,
+        "noApproach": 0,
+        "commerce": 54.0,
+        "saleQuote": 17.0,
+        "armorUnits": 0,
+        "count": 1
+      }
+    }
+  },
+  "wholeStacks": {
+    "old-single-floor": {
+      "columns": 18,
+      "floors": 18,
+      "creatures": 111,
+      "bosses": 18,
+      "containers": 81,
+      "traps": 27,
+      "cacheCommerce": 1712.0,
+      "carriedCommerce": 1077.0,
+      "groundCommerce": 775.0
+    },
+    "new-whole-stack": {
+      "columns": 18,
+      "floors": 39,
+      "creatures": 117,
+      "bosses": 18,
+      "containers": 55,
+      "traps": 25,
+      "cacheCommerce": 2151.0,
+      "carriedCommerce": 966.0,
+      "groundCommerce": 260.0
+    }
+  },
+  "limits": [
+    "Same historical150 recorded zone rows and161 all sources; surface lair reductions must be paired with full new stack census",
+    "Generated commerce includes inaccessible stock; exact opening counters exclude locked containers",
+    "Standalone stable-hash maps differ from Unity; no travel, gameplay balance or natural discovery claim",
+    "Current snapshot precedes private late HouseDrama/door lighting followup, so final integration must refresh if source changes affect census"
+  ],
+  "setupCorrections": "Private runner initially omitted TestSupport and non-Content authored JSON resources. Those were copied read-only from the same shared snapshot; setup errors are not production RED evidence."
+}

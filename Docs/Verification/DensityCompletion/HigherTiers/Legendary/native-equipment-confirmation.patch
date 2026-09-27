@@ -1,0 +1,60 @@
+--- published-before
++++ reviewed-repair
+@@ -52,7 +52,7 @@
+         private NativeState _failureState;
+         [Serializable] private sealed class NativeState
+         {
+-            public string label, state, zone; public int hp, maxHp, x, y, tick, energy;
++            public string label, state, zone, pendingEquipmentID, inventoryStatus, inventoryActionItemID; public string[] pendingDisplacements; public int hp, maxHp, x, y, tick, energy;
+             public bool deathHandled, blockingFx; public string[] lastMessages;
+         }
+         [Serializable] private sealed class NativeKeyStep
+@@ -61,12 +61,21 @@
+         {
+             var actor = _input?.PlayerEntity; var zone = _input?.CurrentZone;
+             var cell = actor == null ? null : zone?.GetEntityCell(actor);
++            var inventory = _input?.InventoryUI;
++            var confirmation = inventory == null ? null : Field(inventory, "_displaceConfirm");
++            var itemActions = inventory == null ? null : Field(inventory, "_itemActionPopup");
+             return new NativeState { label = label, state = _input == null ? "uninitialized" : State(), zone = zone?.ZoneID,
+                 hp = actor?.GetStatValue("Hitpoints") ?? -1, maxHp = actor?.GetStat("Hitpoints")?.Max ?? -1,
+                 x = cell?.X ?? -1, y = cell?.Y ?? -1, tick = _input?.TurnManager?.TickCount ?? -1,
+                 energy = actor == null || _input?.TurnManager == null ? -1 : _input.TurnManager.GetEnergy(actor),
+                 deathHandled = actor != null && CombatSystem.IsDeathHandled(actor),
+                 blockingFx = _input?.ZoneRenderer?.WorldFx?.HasBlockingFx == true,
++                pendingEquipmentID = confirmation == null ? null : ((Entity)Field(confirmation, "ItemToEquip"))?.ID,
++                pendingDisplacements = confirmation == null ? Array.Empty<string>()
++                    : ((List<InventorySystem.Displacement>)Field(confirmation, "Displacements"))
++                        .Select(d => (d.Item?.ID ?? "missing-item") + "@" + (d.BodyPart == null ? "missing-part" : d.BodyPart.ID.ToString())).ToArray(),
++                inventoryStatus = inventory == null ? null : (string)Field(inventory, "_actionStatus"),
++                inventoryActionItemID = itemActions == null ? null : ((Entity)Field(itemActions, "Item"))?.ID,
+                 lastMessages = MessageLog.GetRecentEntries(12).Select(e => e.Text).ToArray() };
+         }
+         private string RuntimeDetails()
+@@ -314,8 +323,24 @@
+         {
+             Require(Owned().Contains(item), "equip an actual earned/starting entity");
+             if (item.GetPart<PhysicsPart>()?.Equipped == _input.PlayerEntity) yield break;
+-            yield return ItemAction(item, "equip_auto"); yield return CloseToNormal();
+-            Require(item.GetPart<PhysicsPart>()?.Equipped == _input.PlayerEntity, "native equipment success " + item.BlueprintName);
++            yield return ItemAction(item, "equip_auto");
++            object confirmation = InvField<object>("_displaceConfirm");
++            if (confirmation != null)
++            {
++                Require(State() == "InventoryOpen" && ReferenceEquals(Field(confirmation, "ItemToEquip"), item),
++                    "actual replacement confirmation belongs to requested item");
++                var displaced = (List<InventorySystem.Displacement>)Field(confirmation, "Displacements");
++                Require(displaced.Count > 0 && displaced.All(d => d.Item != null && Owned().Contains(d.Item)
++                    && d.BodyPart != null && ReferenceEquals(d.BodyPart.Equipped, d.Item)),
++                    "replacement confirmation names real owned equipment");
++                _descriptions.Add(new Description { subject = "Native equipment replacement confirmation", source = item.ID,
++                    text = string.Join(" | ", displaced.Select(d => d.Item.ID + " " + d.Item.GetDisplayName() + " @ " + d.BodyPart.ID)) });
++                yield return Tap(Key.Y);
++                Require(InvField<object>("_displaceConfirm") == null, "native Y completes replacement; " + InvField<string>("_actionStatus"));
++            }
++            Require(item.GetPart<PhysicsPart>()?.Equipped == _input.PlayerEntity,
++                "native equipment success " + item.BlueprintName + "; " + InvField<string>("_actionStatus"));
++            yield return CloseToNormal();
+         }
+         private IEnumerator InspectActual(Entity item, string check)
+         {

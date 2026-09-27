@@ -1,0 +1,4160 @@
+{
+  "sourceSha256": "fe86cad007e60220fda8dfb6f26039c07b48bfad145ecf6c24d0c8b125856393",
+  "scope": "Source candidates only: not actual native binding/render acceptance, inherited Item hierarchy only; reachability and other takeable fixtures are separate census.",
+  "itemDefinitions": 179,
+  "withCandidate": 149,
+  "withoutCandidate": [
+    "Item",
+    "MeleeWeapon",
+    "FoodItem",
+    "TonicItem",
+    "WeaponComponentItem",
+    "ReagentItem",
+    "ArmorItem",
+    "BreacherCleaver",
+    "StillleafRegister",
+    "MemoryMarble",
+    "MuteStone",
+    "ChoirCutting",
+    "Codex01",
+    "Codex02",
+    "Codex03",
+    "Codex04",
+    "Codex05",
+    "Codex06",
+    "Codex07",
+    "Codex08",
+    "Codex09",
+    "Codex10",
+    "Codex11",
+    "Codex12",
+    "Codex13",
+    "RoastedMushroom",
+    "TemperedLongSword",
+    "CounterweightMaul",
+    "FineRingMail",
+    "RivetedPlate"
+  ],
+  "removedCandidateBlueprints": [
+    "WarlordCleaver"
+  ],
+  "forms": {
+    "bone": 1,
+    "coin": 1,
+    "vial": 6,
+    "knife": 6,
+    "fruit": 4,
+    "tonic": 16,
+    "sword": 11,
+    "blade-component": 3,
+    "haft-component": 2,
+    "binding": 1,
+    "herb": 4,
+    "crystal": 7,
+    "root": 4,
+    "sac": 3,
+    "seed": 4,
+    "book": 38,
+    "sheaf": 1,
+    "coat": 3,
+    "axe": 3,
+    "club": 4,
+    "polearm": 5,
+    "shield": 2,
+    "helmet": 2,
+    "boots": 2,
+    "gloves": 1,
+    "cloak": 2,
+    "mushroom": 1,
+    "meat": 3,
+    "hammer": 3,
+    "shard": 1,
+    "torch": 1,
+    "honeycomb": 1,
+    "grenade": 3,
+    "doll": 1
+  },
+  "rows": [
+    {
+      "blueprint": "Item",
+      "displayName": "",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Bone",
+      "displayName": "bone",
+      "glyph": ",",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Bone",
+        "form": "bone",
+        "path": "ArtSource/World3D/item-candidates/models/item-Bone.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "GoldCoin",
+      "displayName": "gold coin",
+      "glyph": "$",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-GoldCoin",
+        "form": "coin",
+        "path": "ArtSource/World3D/item-candidates/models/item-GoldCoin.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "InkVial",
+      "displayName": "vial of ink",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-InkVial",
+        "form": "vial",
+        "path": "ArtSource/World3D/item-candidates/models/item-InkVial.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "InkVial",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "MeleeWeapon",
+      "displayName": "",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Dagger",
+      "displayName": "dagger",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Dagger",
+        "form": "knife",
+        "path": "ArtSource/World3D/item-candidates/models/item-Dagger.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "FoodItem",
+      "displayName": "",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Examinable",
+        "Food",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Starapple",
+      "displayName": "starapple",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Starapple",
+        "form": "fruit",
+        "path": "ArtSource/World3D/item-candidates/models/item-Starapple.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Cookable",
+        "Examinable",
+        "Food",
+        "Material",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "TonicItem",
+      "displayName": "",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "HealingTonic",
+      "displayName": "healing tonic",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-HealingTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-HealingTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "PoisonTonic",
+      "displayName": "poison tonic",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-PoisonTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-PoisonTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "StatusTonic",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "FireTonic",
+      "displayName": "fire tonic",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-FireTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-FireTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "StatusTonic",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "ForgedWeapon",
+      "displayName": "forged weapon",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ForgedWeapon",
+        "form": "sword",
+        "path": "ArtSource/World3D/item-candidates/models/item-ForgedWeapon.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "TinkerItem"
+      ]
+    },
+    {
+      "blueprint": "WeaponComponentItem",
+      "displayName": "weapon component",
+      "glyph": "]",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "SteelBladeComponent",
+      "displayName": "steel blade",
+      "glyph": "]",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-SteelBladeComponent",
+        "form": "blade-component",
+        "path": "ArtSource/World3D/item-candidates/models/item-SteelBladeComponent.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker",
+        "WeaponComponent"
+      ]
+    },
+    {
+      "blueprint": "IronSpikeComponent",
+      "displayName": "iron spike",
+      "glyph": "]",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-IronSpikeComponent",
+        "form": "blade-component",
+        "path": "ArtSource/World3D/item-candidates/models/item-IronSpikeComponent.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker",
+        "WeaponComponent"
+      ]
+    },
+    {
+      "blueprint": "OakHaftComponent",
+      "displayName": "oak haft",
+      "glyph": "]",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-OakHaftComponent",
+        "form": "haft-component",
+        "path": "ArtSource/World3D/item-candidates/models/item-OakHaftComponent.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker",
+        "WeaponComponent"
+      ]
+    },
+    {
+      "blueprint": "WillowHaftComponent",
+      "displayName": "willow haft",
+      "glyph": "]",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-WillowHaftComponent",
+        "form": "haft-component",
+        "path": "ArtSource/World3D/item-candidates/models/item-WillowHaftComponent.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker",
+        "WeaponComponent"
+      ]
+    },
+    {
+      "blueprint": "LeatherBindingComponent",
+      "displayName": "leather binding",
+      "glyph": "]",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LeatherBindingComponent",
+        "form": "binding",
+        "path": "ArtSource/World3D/item-candidates/models/item-LeatherBindingComponent.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker",
+        "WeaponComponent"
+      ]
+    },
+    {
+      "blueprint": "SerratedEdgeComponent",
+      "displayName": "serrated edge kit",
+      "glyph": "]",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-SerratedEdgeComponent",
+        "form": "blade-component",
+        "path": "ArtSource/World3D/item-candidates/models/item-SerratedEdgeComponent.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker",
+        "WeaponComponent"
+      ]
+    },
+    {
+      "blueprint": "ReagentItem",
+      "displayName": "reagent",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "FireMoss",
+      "displayName": "fire-moss",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-FireMoss",
+        "form": "herb",
+        "path": "ArtSource/World3D/item-candidates/models/item-FireMoss.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "LampOil",
+      "displayName": "lamp oil",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LampOil",
+        "form": "vial",
+        "path": "ArtSource/World3D/item-candidates/models/item-LampOil.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "EmberFruit",
+      "displayName": "ember-fruit",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-EmberFruit",
+        "form": "fruit",
+        "path": "ArtSource/World3D/item-candidates/models/item-EmberFruit.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "FrostLichen",
+      "displayName": "frost lichen",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-FrostLichen",
+        "form": "herb",
+        "path": "ArtSource/World3D/item-candidates/models/item-FrostLichen.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "GlacierSalt",
+      "displayName": "glacier salt",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-GlacierSalt",
+        "form": "crystal",
+        "path": "ArtSource/World3D/item-candidates/models/item-GlacierSalt.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "GlimmerBrine",
+      "displayName": "glimmer-brine",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-GlimmerBrine",
+        "form": "vial",
+        "path": "ArtSource/World3D/item-candidates/models/item-GlimmerBrine.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "SparkRoot",
+      "displayName": "spark-root",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-SparkRoot",
+        "form": "root",
+        "path": "ArtSource/World3D/item-candidates/models/item-SparkRoot.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "VenomGland",
+      "displayName": "venom gland",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-VenomGland",
+        "form": "sac",
+        "path": "ArtSource/World3D/item-candidates/models/item-VenomGland.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "BogSap",
+      "displayName": "bog sap",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-BogSap",
+        "form": "vial",
+        "path": "ArtSource/World3D/item-candidates/models/item-BogSap.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "CandyHeartRoot",
+      "displayName": "heartroot",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-CandyHeartRoot",
+        "form": "root",
+        "path": "ArtSource/World3D/item-candidates/models/item-CandyHeartRoot.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "MendleafSprig",
+      "displayName": "mendleaf sprig",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-MendleafSprig",
+        "form": "herb",
+        "path": "ArtSource/World3D/item-candidates/models/item-MendleafSprig.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "StoneburrSeed",
+      "displayName": "stoneburr seed",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-StoneburrSeed",
+        "form": "seed",
+        "path": "ArtSource/World3D/item-candidates/models/item-StoneburrSeed.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "BlastcapSpore",
+      "displayName": "blastcap spore",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-BlastcapSpore",
+        "form": "seed",
+        "path": "ArtSource/World3D/item-candidates/models/item-BlastcapSpore.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "CandyCarrotSeed",
+      "displayName": "gladroot seed",
+      "glyph": ",",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-CandyCarrotSeed",
+        "form": "seed",
+        "path": "ArtSource/World3D/item-candidates/models/item-CandyCarrotSeed.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Seed",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "EmberwheatSeed",
+      "displayName": "emberwheat seed",
+      "glyph": ",",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-EmberwheatSeed",
+        "form": "seed",
+        "path": "ArtSource/World3D/item-candidates/models/item-EmberwheatSeed.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Seed",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "CandyCarrot",
+      "displayName": "gladroot",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-CandyCarrot",
+        "form": "root",
+        "path": "ArtSource/World3D/item-candidates/models/item-CandyCarrot.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Food",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "WateringGrimoire",
+      "displayName": "watering grimoire",
+      "glyph": "\"",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-WateringGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-WateringGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Emberwheat",
+      "displayName": "emberwheat sheaf",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Emberwheat",
+        "form": "sheaf",
+        "path": "ArtSource/World3D/item-candidates/models/item-Emberwheat.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Food",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "BrewedTonic",
+      "displayName": "strange brew",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-BrewedTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-BrewedTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "InertSludge",
+      "displayName": "inert sludge",
+      "glyph": "~",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-InertSludge",
+        "form": "sac",
+        "path": "ArtSource/World3D/item-candidates/models/item-InertSludge.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "AcidTonic",
+      "displayName": "acid tonic",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-AcidTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-AcidTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "StatusTonic",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "LightningTonic",
+      "displayName": "lightning tonic",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LightningTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-LightningTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "StatusTonic",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "FrostTonic",
+      "displayName": "frost tonic",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-FrostTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-FrostTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "StatusTonic",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "WaterTonic",
+      "displayName": "water tonic",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-WaterTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-WaterTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "StatusTonic",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "BleedTonic",
+      "displayName": "bleed tonic",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-BleedTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-BleedTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "StatusTonic",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "CharredTonic",
+      "displayName": "charred tonic",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-CharredTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-CharredTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "StatusTonic",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "Antidote",
+      "displayName": "antidote",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Antidote",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-Antidote.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "CureTonic",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "BurnSalve",
+      "displayName": "burn salve",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-BurnSalve",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-BurnSalve.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "CureTonic",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "Panacea",
+      "displayName": "panacea",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Panacea",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-Panacea.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "CureTonic",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "ArmorItem",
+      "displayName": "",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": {
+        "Slot": "Body"
+      },
+      "parts": [
+        "Armor",
+        "Equippable",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "LeatherArmor",
+      "displayName": "leather armor",
+      "glyph": "[",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LeatherArmor",
+        "form": "coat",
+        "path": "ArtSource/World3D/item-candidates/models/item-LeatherArmor.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Body"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Material",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "ChainMail",
+      "displayName": "chain mail",
+      "glyph": "[",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ChainMail",
+        "form": "coat",
+        "path": "ArtSource/World3D/item-candidates/models/item-ChainMail.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Body"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Material",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "LongSword",
+      "displayName": "long sword",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LongSword",
+        "form": "sword",
+        "path": "ArtSource/World3D/item-candidates/models/item-LongSword.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "Battleaxe",
+      "displayName": "battleaxe",
+      "glyph": "P",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Battleaxe",
+        "form": "axe",
+        "path": "ArtSource/World3D/item-candidates/models/item-Battleaxe.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand",
+        "UsesSlots": "Hand,Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "Greatsword",
+      "displayName": "greatsword",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Greatsword",
+        "form": "sword",
+        "path": "ArtSource/World3D/item-candidates/models/item-Greatsword.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand",
+        "UsesSlots": "Hand,Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "ShortSword",
+      "displayName": "short sword",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ShortSword",
+        "form": "sword",
+        "path": "ArtSource/World3D/item-candidates/models/item-ShortSword.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "Mace",
+      "displayName": "mace",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Mace",
+        "form": "club",
+        "path": "ArtSource/World3D/item-candidates/models/item-Mace.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "Spear",
+      "displayName": "spear",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Spear",
+        "form": "polearm",
+        "path": "ArtSource/World3D/item-candidates/models/item-Spear.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "Hatchet",
+      "displayName": "hatchet",
+      "glyph": "P",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Hatchet",
+        "form": "axe",
+        "path": "ArtSource/World3D/item-candidates/models/item-Hatchet.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Claymore",
+      "displayName": "claymore",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Claymore",
+        "form": "sword",
+        "path": "ArtSource/World3D/item-candidates/models/item-Claymore.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand",
+        "UsesSlots": "Hand,Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Cudgel",
+      "displayName": "cudgel",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Cudgel",
+        "form": "club",
+        "path": "ArtSource/World3D/item-candidates/models/item-Cudgel.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Buckler",
+      "displayName": "buckler",
+      "glyph": ")",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Buckler",
+        "form": "shield",
+        "path": "ArtSource/World3D/item-candidates/models/item-Buckler.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "IronHelmet",
+      "displayName": "iron helmet",
+      "glyph": "[",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-IronHelmet",
+        "form": "helmet",
+        "path": "ArtSource/World3D/item-candidates/models/item-IronHelmet.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Head"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "LeatherBoots",
+      "displayName": "leather boots",
+      "glyph": "[",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LeatherBoots",
+        "form": "boots",
+        "path": "ArtSource/World3D/item-candidates/models/item-LeatherBoots.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Feet"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "LeatherGloves",
+      "displayName": "leather gloves",
+      "glyph": "[",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LeatherGloves",
+        "form": "gloves",
+        "path": "ArtSource/World3D/item-candidates/models/item-LeatherGloves.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Handwear"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "LeatherCap",
+      "displayName": "leather cap",
+      "glyph": "[",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LeatherCap",
+        "form": "helmet",
+        "path": "ArtSource/World3D/item-candidates/models/item-LeatherCap.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Head"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "IronshodBoots",
+      "displayName": "ironshod boots",
+      "glyph": "[",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-IronshodBoots",
+        "form": "boots",
+        "path": "ArtSource/World3D/item-candidates/models/item-IronshodBoots.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Feet"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "WardedCloak",
+      "displayName": "warded cloak",
+      "glyph": "[",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-WardedCloak",
+        "form": "cloak",
+        "path": "ArtSource/World3D/item-candidates/models/item-WardedCloak.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Back"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "IronBuckler",
+      "displayName": "iron buckler",
+      "glyph": "[",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-IronBuckler",
+        "form": "shield",
+        "path": "ArtSource/World3D/item-candidates/models/item-IronBuckler.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "PlateArmor",
+      "displayName": "plate armor",
+      "glyph": "[",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-PlateArmor",
+        "form": "coat",
+        "path": "ArtSource/World3D/item-candidates/models/item-PlateArmor.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Body"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Cloak",
+      "displayName": "cloak",
+      "glyph": "(",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Cloak",
+        "form": "cloak",
+        "path": "ArtSource/World3D/item-candidates/models/item-Cloak.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Back"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "SpeedTonic",
+      "displayName": "speed tonic",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-SpeedTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-SpeedTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "StrengthTonic",
+      "displayName": "strength tonic",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-StrengthTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-StrengthTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "StoneskinTonic",
+      "displayName": "stoneskin tonic",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-StoneskinTonic",
+        "form": "tonic",
+        "path": "ArtSource/World3D/item-candidates/models/item-StoneskinTonic.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker",
+        "StatusTonic",
+        "Tonic"
+      ]
+    },
+    {
+      "blueprint": "Mushroom",
+      "displayName": "mushroom",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Mushroom",
+        "form": "mushroom",
+        "path": "ArtSource/World3D/item-candidates/models/item-Mushroom.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Cookable",
+        "Examinable",
+        "Food",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "DriedMeat",
+      "displayName": "dried meat",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-DriedMeat",
+        "form": "meat",
+        "path": "ArtSource/World3D/item-candidates/models/item-DriedMeat.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Food",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "LoanerDagger",
+      "displayName": "loaner dagger",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LoanerDagger",
+        "form": "knife",
+        "path": "ArtSource/World3D/item-candidates/models/item-LoanerDagger.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "LoanerSpear",
+      "displayName": "loaner spear",
+      "glyph": "|",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LoanerSpear",
+        "form": "polearm",
+        "path": "ArtSource/World3D/item-candidates/models/item-LoanerSpear.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "LoanerLongsword",
+      "displayName": "loaner longsword",
+      "glyph": "(",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LoanerLongsword",
+        "form": "sword",
+        "path": "ArtSource/World3D/item-candidates/models/item-LoanerLongsword.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Warhammer",
+      "displayName": "warhammer",
+      "glyph": "T",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Warhammer",
+        "form": "hammer",
+        "path": "ArtSource/World3D/item-candidates/models/item-Warhammer.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand",
+        "UsesSlots": "Hand,Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "ChoirSpine",
+      "displayName": "choir spine",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ChoirSpine",
+        "form": "club",
+        "path": "ArtSource/World3D/item-candidates/models/item-ChoirSpine.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "OldWorldPipe",
+      "displayName": "old world pipe",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-OldWorldPipe",
+        "form": "club",
+        "path": "ArtSource/World3D/item-candidates/models/item-OldWorldPipe.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "Sporeblade",
+      "displayName": "sporeblade",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Sporeblade",
+        "form": "sword",
+        "path": "ArtSource/World3D/item-candidates/models/item-Sporeblade.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "FlamingSword",
+      "displayName": "flaming sword",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-FlamingSword",
+        "form": "sword",
+        "path": "ArtSource/World3D/item-candidates/models/item-FlamingSword.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "LightSource",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "IceSword",
+      "displayName": "ice sword",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-IceSword",
+        "form": "sword",
+        "path": "ArtSource/World3D/item-candidates/models/item-IceSword.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "LightSource",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "CryoLance",
+      "displayName": "cryolance",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-CryoLance",
+        "form": "polearm",
+        "path": "ArtSource/World3D/item-candidates/models/item-CryoLance.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "EmberSpear",
+      "displayName": "ember spear",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-EmberSpear",
+        "form": "polearm",
+        "path": "ArtSource/World3D/item-candidates/models/item-EmberSpear.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "AcidicDagger",
+      "displayName": "acidic dagger",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-AcidicDagger",
+        "form": "knife",
+        "path": "ArtSource/World3D/item-candidates/models/item-AcidicDagger.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "VenomDagger",
+      "displayName": "poison dagger",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-VenomDagger",
+        "form": "knife",
+        "path": "ArtSource/World3D/item-candidates/models/item-VenomDagger.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "ThunderHammer",
+      "displayName": "thunder hammer",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ThunderHammer",
+        "form": "hammer",
+        "path": "ArtSource/World3D/item-candidates/models/item-ThunderHammer.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "LightSource",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "EchoKnife",
+      "displayName": "echo knife",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-EchoKnife",
+        "form": "knife",
+        "path": "ArtSource/World3D/item-candidates/models/item-EchoKnife.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "TemporalShard",
+      "displayName": "temporal shard",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-TemporalShard",
+        "form": "shard",
+        "path": "ArtSource/World3D/item-candidates/models/item-TemporalShard.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "SeveranceEdge",
+      "displayName": "severance edge",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-SeveranceEdge",
+        "form": "sword",
+        "path": "ArtSource/World3D/item-candidates/models/item-SeveranceEdge.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "GlassblownStiletto",
+      "displayName": "glassblown stiletto",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-GlassblownStiletto",
+        "form": "knife",
+        "path": "ArtSource/World3D/item-candidates/models/item-GlassblownStiletto.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "DissolutionMaul",
+      "displayName": "dissolution maul",
+      "glyph": "T",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-DissolutionMaul",
+        "form": "hammer",
+        "path": "ArtSource/World3D/item-candidates/models/item-DissolutionMaul.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand",
+        "UsesSlots": "Hand,Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "FirstRootGlaive",
+      "displayName": "first root glaive",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-FirstRootGlaive",
+        "form": "polearm",
+        "path": "ArtSource/World3D/item-candidates/models/item-FirstRootGlaive.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand",
+        "UsesSlots": "Hand,Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "PalimpsestBlade",
+      "displayName": "palimpsest blade",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-PalimpsestBlade",
+        "form": "sword",
+        "path": "ArtSource/World3D/item-candidates/models/item-PalimpsestBlade.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "BreacherCleaver",
+      "displayName": "wedge-cleaver",
+      "glyph": ")",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "LanternOil",
+      "displayName": "flask of lantern oil",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LanternOil",
+        "form": "vial",
+        "path": "ArtSource/World3D/item-candidates/models/item-LanternOil.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Fuel",
+        "Material",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "RawMeat",
+      "displayName": "raw meat",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-RawMeat",
+        "form": "meat",
+        "path": "ArtSource/World3D/item-candidates/models/item-RawMeat.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Cookable",
+        "Examinable",
+        "Food",
+        "Material",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "CookedMeat",
+      "displayName": "cooked meat",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-CookedMeat",
+        "form": "meat",
+        "path": "ArtSource/World3D/item-candidates/models/item-CookedMeat.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Food",
+        "Material",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "RoastedStarapple",
+      "displayName": "roasted starapple",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-RoastedStarapple",
+        "form": "fruit",
+        "path": "ArtSource/World3D/item-candidates/models/item-RoastedStarapple.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Food",
+        "Material",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "Torch",
+      "displayName": "torch",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Torch",
+        "form": "torch",
+        "path": "ArtSource/World3D/item-candidates/models/item-Torch.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Fuel",
+        "LightSource",
+        "LightSourceFlicker",
+        "Material",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal",
+        "TorchLight"
+      ]
+    },
+    {
+      "blueprint": "SilverSand",
+      "displayName": "silver sand",
+      "glyph": ".",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-SilverSand",
+        "form": "crystal",
+        "path": "ArtSource/World3D/item-candidates/models/item-SilverSand.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "WellMaintenanceManual",
+      "displayName": "well maintenance manual",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-WellMaintenanceManual",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-WellMaintenanceManual.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "StillleafRegister",
+      "displayName": "the Stillleaf register",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker",
+        "StillleafRegister"
+      ]
+    },
+    {
+      "blueprint": "PurifyWaterGrimoire",
+      "displayName": "Water-Keeper's Grimoire",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-PurifyWaterGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-PurifyWaterGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "GrimoireCopy",
+      "displayName": "grimoire copy",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-GrimoireCopy",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-GrimoireCopy.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "RiteGrimoire",
+      "displayName": "rite grimoire",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-RiteGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-RiteGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "MendingRiteGrimoire",
+      "displayName": "Mending Rite Grimoire",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-MendingRiteGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-MendingRiteGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "OvenBuildersGuide",
+      "displayName": "oven builder's guide",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-OvenBuildersGuide",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-OvenBuildersGuide.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "FireClay",
+      "displayName": "fire clay",
+      "glyph": "*",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-FireClay",
+        "form": "crystal",
+        "path": "ArtSource/World3D/item-candidates/models/item-FireClay.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "KindleRiteGrimoire",
+      "displayName": "Kindle Rite Grimoire",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-KindleRiteGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-KindleRiteGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "KindleGrimoire",
+      "displayName": "Grimoire of Kindle",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-KindleGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-KindleGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "QuenchGrimoire",
+      "displayName": "Grimoire of Quench",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-QuenchGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-QuenchGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "ConflagrationGrimoire",
+      "displayName": "Grimoire of Conflagration",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ConflagrationGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-ConflagrationGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "IceLanceGrimoire",
+      "displayName": "Grimoire of Ice Lance",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-IceLanceGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-IceLanceGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "AcidSprayGrimoire",
+      "displayName": "Grimoire of Acid Spray",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-AcidSprayGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-AcidSprayGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "ArcBoltGrimoire",
+      "displayName": "Grimoire of Arc Bolt",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ArcBoltGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-ArcBoltGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "RimeNovaGrimoire",
+      "displayName": "Grimoire of Rime Nova",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-RimeNovaGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-RimeNovaGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "ThunderclapGrimoire",
+      "displayName": "Grimoire of Thunderclap",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ThunderclapGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-ThunderclapGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "EmberVeinGrimoire",
+      "displayName": "Grimoire of Ember Vein",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-EmberVeinGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-EmberVeinGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "KindleFlameGrimoire",
+      "displayName": "Grimoire of Kindle Flame",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-KindleFlameGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-KindleFlameGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "DryingBreezeGrimoire",
+      "displayName": "Grimoire of Drying Breeze",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-DryingBreezeGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-DryingBreezeGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "HearthwarmGrimoire",
+      "displayName": "Grimoire of Hearthwarm",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-HearthwarmGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-HearthwarmGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "ConjureWaterGrimoire",
+      "displayName": "Grimoire of Conjure Water",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ConjureWaterGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-ConjureWaterGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "ChillDraftGrimoire",
+      "displayName": "Grimoire of Chill Draft",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ChillDraftGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-ChillDraftGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "WardGleamGrimoire",
+      "displayName": "Grimoire of Ward Gleam",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-WardGleamGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-WardGleamGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "SchematicHonedEdge",
+      "displayName": "schematic: honed edge",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-SchematicHonedEdge",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-SchematicHonedEdge.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Schematic",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "SchematicReinforcedPlating",
+      "displayName": "schematic: reinforced plating",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-SchematicReinforcedPlating",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-SchematicReinforcedPlating.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Schematic",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "SchematicDuelistCut",
+      "displayName": "schematic: duelist's cut",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-SchematicDuelistCut",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-SchematicDuelistCut.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Schematic",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "LanternOilRecipe",
+      "displayName": "lantern oil recipe",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-LanternOilRecipe",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-LanternOilRecipe.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "WardOil",
+      "displayName": "ward oil",
+      "glyph": "!",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-WardOil",
+        "form": "vial",
+        "path": "ArtSource/World3D/item-candidates/models/item-WardOil.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "PaleSalt",
+      "displayName": "pale-salt",
+      "glyph": "*",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-PaleSalt",
+        "form": "crystal",
+        "path": "ArtSource/World3D/item-candidates/models/item-PaleSalt.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "ChoirIron",
+      "displayName": "choir-iron ore",
+      "glyph": "*",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ChoirIron",
+        "form": "crystal",
+        "path": "ArtSource/World3D/item-candidates/models/item-ChoirIron.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "WildBerries",
+      "displayName": "wild berries",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-WildBerries",
+        "form": "fruit",
+        "path": "ArtSource/World3D/item-candidates/models/item-WildBerries.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Food",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Honeycomb",
+      "displayName": "honeycomb",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Honeycomb",
+        "form": "honeycomb",
+        "path": "ArtSource/World3D/item-candidates/models/item-Honeycomb.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Food",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "GlowQuartz",
+      "displayName": "glow-quartz",
+      "glyph": "*",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-GlowQuartz",
+        "form": "crystal",
+        "path": "ArtSource/World3D/item-candidates/models/item-GlowQuartz.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "PoisonGasGrenade",
+      "displayName": "poison gas grenade",
+      "glyph": "g",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-PoisonGasGrenade",
+        "form": "grenade",
+        "path": "ArtSource/World3D/item-candidates/models/item-PoisonGasGrenade.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "GasGrenade",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "SleepGasGrenade",
+      "displayName": "sleep gas grenade",
+      "glyph": "g",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-SleepGasGrenade",
+        "form": "grenade",
+        "path": "ArtSource/World3D/item-candidates/models/item-SleepGasGrenade.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "GasGrenade",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "StunGasGrenade",
+      "displayName": "stun gas grenade",
+      "glyph": "g",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-StunGasGrenade",
+        "form": "grenade",
+        "path": "ArtSource/World3D/item-candidates/models/item-StunGasGrenade.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "GasGrenade",
+        "Handling",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "StormAnvilGrimoire",
+      "displayName": "Rite of the Storm Anvil",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-StormAnvilGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-StormAnvilGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "GrimoireCharge",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "HangingBoltGrimoire",
+      "displayName": "Rite of the Hanging Bolt",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-HangingBoltGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-HangingBoltGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "GrimoireCharge",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "RenderedSteamGrimoire",
+      "displayName": "Rite of Rendered Steam",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-RenderedSteamGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-RenderedSteamGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "GrimoireCharge",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "ScaldingVeilGrimoire",
+      "displayName": "Rite of the Scalding Veil",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ScaldingVeilGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-ScaldingVeilGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "GrimoireCharge",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "FulminationGrimoire",
+      "displayName": "Fulmination",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-FulminationGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-FulminationGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "GrimoireCharge",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "ShatteredRimeGrimoire",
+      "displayName": "Rite of the Shattered Rime",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ShatteredRimeGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-ShatteredRimeGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "GrimoireCharge",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "StillHeartGrimoire",
+      "displayName": "Rite of the Still Heart",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-StillHeartGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-StillHeartGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "GrimoireCharge",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "VerdigrisBloomGrimoire",
+      "displayName": "Rite of the Verdigris Bloom",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-VerdigrisBloomGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-VerdigrisBloomGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "GrimoireCharge",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "HollowCoinGrimoire",
+      "displayName": "Rite of the Hollow Coin",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-HollowCoinGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-HollowCoinGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "GrimoireCharge",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "SunderingWordGrimoire",
+      "displayName": "Rite of the Sundering Word",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-SunderingWordGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-SunderingWordGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "GrimoireCharge",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "BloodletterLedgerGrimoire",
+      "displayName": "Rite of the Bloodletter's Ledger",
+      "glyph": "+",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-BloodletterLedgerGrimoire",
+        "form": "book",
+        "path": "ArtSource/World3D/item-candidates/models/item-BloodletterLedgerGrimoire.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Grimoire",
+        "GrimoireCharge",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "SaltbriarSprig",
+      "displayName": "saltbriar sprig",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-SaltbriarSprig",
+        "form": "root",
+        "path": "ArtSource/World3D/item-candidates/models/item-SaltbriarSprig.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Food",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "WovenDoll",
+      "displayName": "woven doll",
+      "glyph": "i",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-WovenDoll",
+        "form": "doll",
+        "path": "ArtSource/World3D/item-candidates/models/item-WovenDoll.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "GroveRed",
+      "displayName": "grove-red",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-GroveRed",
+        "form": "herb",
+        "path": "ArtSource/World3D/item-candidates/models/item-GroveRed.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "ShamblerSporeSac",
+      "displayName": "shambler spore-sac",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-ShamblerSporeSac",
+        "form": "sac",
+        "path": "ArtSource/World3D/item-candidates/models/item-ShamblerSporeSac.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Reagent",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Tepuibone",
+      "displayName": "tepuibone",
+      "glyph": "*",
+      "natural": false,
+      "takeable": "true",
+      "candidate": {
+        "id": "item-Tepuibone",
+        "form": "crystal",
+        "path": "ArtSource/World3D/item-candidates/models/item-Tepuibone.fbx",
+        "status": "candidate-not-integrated"
+      },
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "MemoryMarble",
+      "displayName": "memory-marble",
+      "glyph": "*",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "MuteStone",
+      "displayName": "mute-stone",
+      "glyph": "*",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "ChoirCutting",
+      "displayName": "cutting of the Choir",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex01",
+      "displayName": "copy of From the Reading: the Felling, collated",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex02",
+      "displayName": "copy of The telling of the man who said no",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex03",
+      "displayName": "copy of Internal memorandum: the founding provisions",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex04",
+      "displayName": "copy of The oath of the cloth",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex05",
+      "displayName": "copy of Readings from a plaque-wall",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex06",
+      "displayName": "copy of Standard contract of carriage (short form)",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex07",
+      "displayName": "copy of File: OTHREN. Selected entries.",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex08",
+      "displayName": "copy of HAVE YOU THOUGHT ABOUT BEING KEPT?",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex09",
+      "displayName": "copy of The dimming song",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex10",
+      "displayName": "copy of Transcript of a reading: the scribe Ollun, folio three",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex11",
+      "displayName": "copy of The sign at the grove-edge",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex12",
+      "displayName": "copy of How they tell it in Sill",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "Codex13",
+      "displayName": "copy of Condition report: the First Account",
+      "glyph": "?",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Physics",
+        "ReadableDocument",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "RoastedMushroom",
+      "displayName": "roasted mushroom",
+      "glyph": "%",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": null,
+      "parts": [
+        "Commerce",
+        "Examinable",
+        "Food",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "TemperedLongSword",
+      "displayName": "tempered long sword",
+      "glyph": "/",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": {
+        "Slot": "Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "CounterweightMaul",
+      "displayName": "counterweight maul",
+      "glyph": "T",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": {
+        "Slot": "Hand",
+        "UsesSlots": "Hand,Hand"
+      },
+      "parts": [
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Handling",
+        "Material",
+        "MeleeWeapon",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    },
+    {
+      "blueprint": "FineRingMail",
+      "displayName": "fine-ring mail",
+      "glyph": "[",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": {
+        "Slot": "Body"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Material",
+        "Physics",
+        "Render",
+        "Stacker",
+        "Thermal"
+      ]
+    },
+    {
+      "blueprint": "RivetedPlate",
+      "displayName": "riveted plate",
+      "glyph": "[",
+      "natural": false,
+      "takeable": "true",
+      "candidate": null,
+      "equippable": {
+        "Slot": "Body"
+      },
+      "parts": [
+        "Armor",
+        "Commerce",
+        "Equippable",
+        "Examinable",
+        "Material",
+        "Physics",
+        "Render",
+        "Stacker"
+      ]
+    }
+  ]
+}

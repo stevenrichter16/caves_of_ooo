@@ -1,0 +1,35 @@
+// C#6 execute_code body. Root-only bounded import, no gameplay or global save.
+if(UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode||UnityEditor.EditorApplication.isCompiling)throw new System.InvalidOperationException("Idle Edit mode required");
+System.Func<string,string> hashText=text=>{using(var h=System.Security.Cryptography.SHA256.Create())return System.BitConverter.ToString(h.ComputeHash(System.Text.Encoding.UTF8.GetBytes(text))).Replace("-","").ToLowerInvariant();};
+System.Func<string,string> hashFile=path=>{using(var h=System.Security.Cryptography.SHA256.Create())using(var stream=System.IO.File.OpenRead(path))return System.BitConverter.ToString(h.ComputeHash(stream)).Replace("-","").ToLowerInvariant();};
+var scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene();bool sceneDirty=scene.isDirty;
+var ids=System.Linq.Enumerable.Range(0,4).Select(i=>"ring-spray-pool-"+i).ToArray();
+var paths=ids.Select(id=>"Assets/Art3D/SpawnRing/Models/"+id+".fbx").ToArray();
+var adopted=CavesOfOoo.Rendering.SpreadNativeStyle3DLibrary.Load();adopted.Validate();
+// Prove the complete current accepted graph and all864 retained outputs before
+// the first voxel write, then repeat fresh-source preflight during adoption.
+CavesOfOoo.Editor.SpreadNativeStyleBuilder.ValidateSelectedImport(ids);
+var dirty=UnityEngine.Resources.FindObjectsOfTypeAll<UnityEngine.Object>()
+ .Where(o=>o!=null&&UnityEditor.EditorUtility.IsPersistent(o)&&UnityEditor.EditorUtility.IsDirty(o))
+ .Select(o=>new {owner=o,id=o.GetInstanceID(),path=UnityEditor.AssetDatabase.GetAssetPath(o),dirty=UnityEditor.EditorUtility.IsDirty(o),content=UnityEditor.EditorJsonUtility.ToJson(o)}).ToArray();
+var voxel=UnityEngine.Resources.Load<CavesOfOoo.Rendering.VoxelWorldMeshCatalog>(CavesOfOoo.Rendering.VoxelWorldMeshCatalog.ResourcePath);voxel.Validate();
+var selectedVoxel=voxel.Bindings.Where(b=>paths.Contains(UnityEditor.AssetDatabase.GetAssetPath(b.Source))).ToArray();
+if(selectedVoxel.Length!=8)throw new System.InvalidOperationException("Expected exactly eight current voxel targets before import");
+var writePaths=new System.Collections.Generic.HashSet<string>(selectedVoxel.Select(b=>UnityEditor.AssetDatabase.GetAssetPath(b.Voxel)),System.StringComparer.Ordinal);
+writePaths.Add(UnityEditor.AssetDatabase.GetAssetPath(voxel));writePaths.Add(UnityEditor.AssetDatabase.GetAssetPath(adopted));
+foreach(var id in ids){writePaths.Add("Assets/Resources/SpreadNativeStyle3D/"+id+".asset");writePaths.Add("Assets/Resources/SpreadNativeStyle3D/"+id+".prefab");}
+foreach(var original in dirty)if(writePaths.Contains(original.path))throw new System.InvalidOperationException("Selected output already has unsaved edits: "+original.path);
+var dirtyFiles=dirty.Select(o=>o.path).Where(p=>!string.IsNullOrEmpty(p)&&System.IO.File.Exists(p)).Distinct().ToDictionary(p=>p,p=>hashFile(p));
+var dirtyBefore=dirty.Select(o=>new {o.id,o.path,o.dirty,contentSha256=hashText(o.content)}).ToArray();
+var report=CavesOfOoo.Editor.VoxelWorldMeshBuilder.Build("Docs/Verification/DensityCompletion/SpreadBiome/Art/Pools/native-eight-voxel-import.json",paths);
+if(report.status!="passed"||report.meshCount!=8||!report.borrowedAssetsUnchanged||!report.existingGuidsPreserved)throw new System.InvalidOperationException("Bounded eight-mesh source import failed");
+// Finite sequential scope; unexpected write failure has no automatic rollback.
+// Preserve the exact before checkpoint for recovery if either stage fails.
+CavesOfOoo.Editor.SpreadNativeStyleBuilder.RunSelected(ids);
+adopted.Validate();
+foreach(var original in dirty)if(original.owner==null||UnityEditor.EditorUtility.IsDirty(original.owner)!=original.dirty||UnityEditor.EditorJsonUtility.ToJson(original.owner)!=original.content)throw new System.InvalidOperationException("Unrelated dirty persistent object changed: "+original.path);
+foreach(var original in dirtyFiles)if(!System.IO.File.Exists(original.Key)||hashFile(original.Key)!=original.Value)throw new System.InvalidOperationException("Unrelated dirty persistent file changed: "+original.Key);
+var afterDirty=UnityEngine.Resources.FindObjectsOfTypeAll<UnityEngine.Object>().Where(o=>o!=null&&UnityEditor.EditorUtility.IsPersistent(o)&&UnityEditor.EditorUtility.IsDirty(o)).Select(o=>o.GetInstanceID()).OrderBy(i=>i).ToArray();
+if(!afterDirty.SequenceEqual(dirty.Select(o=>o.id).OrderBy(i=>i)))throw new System.InvalidOperationException("Persistent dirty object inventory changed");
+var now=UnityEngine.SceneManagement.SceneManager.GetActiveScene();if(now.handle!=scene.handle||now.path!=scene.path||now.isDirty!=sceneDirty)throw new System.InvalidOperationException("Art import changed the current scene");
+return new {sourceMeshes=report.meshCount,selectedModels=ids,adoptedEntries=adopted.Entries.Length,sceneUnchanged=true,unrelatedDirtyPreserved=true,dirtyBefore=dirtyBefore,borrowedSourceFilesUnchanged=report.borrowedAssetsUnchanged,existingGuidsPreserved=report.existingGuidsPreserved};

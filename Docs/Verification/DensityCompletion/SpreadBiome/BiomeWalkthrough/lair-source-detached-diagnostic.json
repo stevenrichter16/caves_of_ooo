@@ -1,0 +1,92 @@
+{
+  "mode": "detached seed64 source diagnostic, not replay of failed save graph",
+  "rows": [
+    {
+      "zone": "Overworld.8.12.0",
+      "depth": 0,
+      "legacy": false,
+      "finalDepth": 1,
+      "stair": "4622",
+      "blueprint": "StairsDown",
+      "x": 44,
+      "y": 12,
+      "place": true,
+      "occupants": [
+        {
+          "id": "4505",
+          "name": "Grass",
+          "creature": false,
+          "takeable": false,
+          "trigger": false,
+          "liquid": false,
+          "gas": false
+        },
+        {
+          "id": "4622",
+          "name": "StairsDown",
+          "creature": false,
+          "takeable": false,
+          "trigger": false,
+          "liquid": false,
+          "gas": false
+        }
+      ],
+      "state": null,
+      "nearby": [
+        {
+          "id": "4627",
+          "blueprint": "GiantSpider",
+          "hostile": false,
+          "distance": 7
+        },
+        {
+          "id": "4628",
+          "blueprint": "GiantSpider",
+          "hostile": false,
+          "distance": 7
+        }
+      ]
+    },
+    {
+      "zone": "Overworld.8.12.1",
+      "depth": 1,
+      "legacy": false,
+      "finalDepth": 1,
+      "stair": "6975",
+      "blueprint": "StairsUp",
+      "x": 36,
+      "y": 12,
+      "place": true,
+      "occupants": [
+        {
+          "id": "6919",
+          "name": "Grass",
+          "creature": false,
+          "takeable": false,
+          "trigger": false,
+          "liquid": false,
+          "gas": false
+        },
+        {
+          "id": "6975",
+          "name": "StairsUp",
+          "creature": false,
+          "takeable": false,
+          "trigger": false,
+          "liquid": false,
+          "gas": false
+        }
+      ],
+      "state": null,
+      "nearby": [
+        {
+          "id": "6976",
+          "blueprint": "MarlbackWallkeeper",
+          "hostile": false,
+          "distance": 2
+        }
+      ]
+    }
+  ],
+  "code": "var testType=System.AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType(\"CavesOfOoo.Tests.SpawnRing3DIntegrationFixture\")).First(t=>t!=null);var f=System.Activator.CreateInstance(testType,System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.Public|System.Reflection.BindingFlags.NonPublic,null,new object[]{\"Overworld.12.10.0\",false},null);var rows=new System.Collections.Generic.List<object>();\ntry{\nvar factory=(CavesOfOoo.Data.EntityFactory)testType.GetField(\"Factory\").GetValue(f);var player=(CavesOfOoo.Core.Entity)testType.GetField(\"Player\").GetValue(f);\nvar manager=CavesOfOoo.Core.OverworldZoneManager.CreateDetached(factory,64);\nfor(int y=0;y<CavesOfOoo.Core.WorldMap.Height;y++)for(int x=0;x<CavesOfOoo.Core.WorldMap.Width;x++){\nif(manager.WorldMap.GetBiome(x,y)!=CavesOfOoo.Core.BiomeType.Spread||manager.WorldMap.GetPOI(x,y)==null||manager.WorldMap.GetPOI(x,y).Type!=CavesOfOoo.Core.POIType.Lair)continue;\nvar surface=manager.GetZone(CavesOfOoo.Core.WorldMap.ToZoneID(x,y,0));var plan=CavesOfOoo.Core.LairStacks.Inspect(manager,surface.ZoneID);\nif(plan==null){rows.Add(new{surface=surface.ZoneID,error=\"no-plan\"});continue;}\nfor(int depth=0;depth<=System.Math.Min(1,plan.FinalDepth);depth++){\nvar zone=manager.GetZone(plan.ZoneAt(depth));\nforeach(var stair in zone.GetReadOnlyEntities().Where(e=>depth==0?e.HasPart<CavesOfOoo.Core.StairsDownPart>():e.HasPart<CavesOfOoo.Core.StairsUpPart>())){\nvar at=zone.GetEntityCell(stair);var state=zone.TileState.Get(at.X,at.Y);\nrows.Add(new{zone=zone.ZoneID,depth,legacy=plan.Legacy,finalDepth=plan.FinalDepth,stair=stair.ID,blueprint=stair.BlueprintName,x=at.X,y=at.Y,place=zone.CanPlaceFootprint(player,at.X,at.Y),occupants=at.Occupants.Select(e=>new{id=e.ID,name=e.BlueprintName,creature=e.HasTag(\"Creature\"),takeable=e.GetPart<CavesOfOoo.Core.PhysicsPart>()!=null&&e.GetPart<CavesOfOoo.Core.PhysicsPart>().Takeable,trigger=e.HasPart<CavesOfOoo.Core.TriggerOnStepPart>(),liquid=e.HasPart<CavesOfOoo.Core.LiquidPoolPart>(),gas=e.HasPart<CavesOfOoo.Core.GasPoolPart>()}).ToArray(),state=state==null?null:UnityEngine.JsonUtility.ToJson(state),nearby=zone.GetReadOnlyEntities().Where(e=>e.HasTag(\"Creature\")&&CavesOfOoo.Core.SpatialQuery.DistanceToCell(zone,e,at.X,at.Y)<=10).Select(e=>new{id=e.ID,blueprint=e.BlueprintName,hostile=CavesOfOoo.Core.FactionManager.IsHostile(e,player),distance=CavesOfOoo.Core.SpatialQuery.DistanceToCell(zone,e,at.X,at.Y)}).ToArray()});\n}}}\n}finally{((System.IDisposable)f).Dispose();}return rows;"
+}

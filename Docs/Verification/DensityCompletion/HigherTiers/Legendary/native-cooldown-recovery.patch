@@ -1,0 +1,76 @@
+--- a/Assets/Scripts/Scenarios/Custom/DensityFindsNativePlayer.cs
++++ b/Assets/Scripts/Scenarios/Custom/DensityFindsNativePlayer.cs
+@@ -599,6 +599,61 @@
+                 }
+             }
+             return null;
++        }
++        private int _controlRecoveryActions;
++        private ActivatedAbility[] CoolingStartingControls()
++        {
++            var abilities = _input.PlayerEntity.GetPart<ActivatedAbilitiesPart>();
++            return Enumerable.Range(0, ActivatedAbilitiesPart.SlotCount)
++                .Select(slot => abilities?.GetAbilityBySlot(slot))
++                .Where(ability => ability != null && ability.CooldownRemaining > 0
++                    && (ability.Command == "CommandCalm" || ability.Command == "CommandRimeGrip")).ToArray();
++        }
++        private IEnumerator RecoverStartingControl()
++        {
++            Require(_controlRecoveryActions < 12, "bounded12 native recovery actions; " + RuntimeDetails());
++            var cooling = CoolingStartingControls();
++            Require(cooling.Length > 0, "a real starting control is cooling down; " + RuntimeDetails());
++            var actor = _input.PlayerEntity; var from = Cell();
++            var threats = _input.CurrentZone.GetReadOnlyEntities().Where(IsActiveVisibleThreat).ToArray();
++            bool waiting = SafeRouteCell(from.X, from.Y, threats);
++            Cell retreat = null;
++            if (!waiting)
++            {
++                // Keep the same two-cell threat exclusion. A retreat that cannot
++                // satisfy it is refused, rather than stepping through danger.
++                var candidates = new List<Cell>();
++                for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++)
++                {
++                    if (dx == 0 && dy == 0 || !SafeRouteCell(from.X + dx, from.Y + dy, threats)) continue;
++                    candidates.Add(_input.CurrentZone.GetCell(from.X + dx, from.Y + dy));
++                }
++                retreat = candidates.OrderByDescending(c => threats.Length == 0 ? 0
++                    : threats.Min(e => SpatialQuery.DistanceToCell(_input.CurrentZone, e, c.X, c.Y)))
++                    .ThenBy(c => c.X).ThenBy(c => c.Y).FirstOrDefault();
++                Require(retreat != null, "no permitted native wait or retreat while controls recover; " + RuntimeDetails());
++            }
++            int tick = _input.TurnManager.TickCount, energy = _input.TurnManager.GetEnergy(actor);
++            int speed = actor.GetStatValue("Speed", TurnManager.DefaultSpeed);
++            int[] before = cooling.Select(ability => ability.CooldownRemaining).ToArray();
++            _descriptions.Add(new Description { subject = "Native control recovery action", source = actor.ID,
++                text = (waiting ? "ordinary stationary wait" : "ordinary retreat to " + retreat.X + "," + retreat.Y)
++                    + "; origin=" + from.X + "," + from.Y + "; cooling="
++                    + string.Join(",", cooling.Select(ability => ability.Command + ":" + ability.CooldownRemaining)) });
++            yield return Tap(waiting ? Key.Period : Direction(retreat.X - from.X, retreat.Y - from.Y));
++            yield return DismissEarnedAdvancement();
++            _controlRecoveryActions++;
++            if (!waiting) _keyboardMoves++;
++            Require(ReferenceEquals(actor, _input.PlayerEntity) && State() == "Normal"
++                && actor.GetStatValue("Hitpoints") > 0 && !CombatSystem.IsDeathHandled(actor),
++                "ordinary actor survives real control recovery; " + RuntimeDetails());
++            Require(waiting ? ReferenceEquals(Cell(), from) : Cell().X == retreat.X && Cell().Y == retreat.Y,
++                "native recovery key performs its actual wait or retreat");
++            Require(_input.TurnManager.TickCount > tick && _input.TurnManager.GetEnergy(actor)
++                == energy - TurnManager.ActionThreshold + (_input.TurnManager.TickCount - tick) * speed,
++                "native recovery spends exactly one ordinary scheduler action");
++            Require(cooling.Where((ability, index) => ability.CooldownRemaining < before[index]).Any(),
++                "real starting cooldown advances through the scheduler");
+         }
+         private bool CanUseReadyControlFrom(Cell from)
+         {
+@@ -650,6 +705,11 @@
+                 if (path != null && path.Count == 0 && goal == "ready native control casting line")
+                 {
+                     yield return ProtectRouteWithStartingControl();
++                    continue;
++                }
++                if (path == null && CoolingStartingControls().Length > 0)
++                {
++                    yield return RecoverStartingControl();
+                     continue;
+                 }
+                 Require(path != null && path.Count > 0, "safe native reach or control-position route; " + RuntimeDetails());

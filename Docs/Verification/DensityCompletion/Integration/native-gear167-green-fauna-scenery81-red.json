@@ -1,0 +1,274 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "d905291cee9942ff8d71a2b898c61f4d",
+  "run": {
+    "id": "2",
+    "testcasecount": "248",
+    "result": "Failed(Child)",
+    "total": "248",
+    "passed": "185",
+    "failed": "63",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 04:33:04Z",
+    "end-time": "2026-09-27 04:33:35Z",
+    "duration": "30.7345429"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.CurrentManagedSpreadAnimalHasItsOwnActualRiggedBody(\"GiantSpider\")",
+      "message": "  Expected: \"spread-creature-giant-spider\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.CurrentManagedSpreadAnimalHasItsOwnActualRiggedBody(\"JungleApe\")",
+      "message": "  Expected: \"spread-creature-jungle-ape\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.CurrentManagedSpreadAnimalHasItsOwnActualRiggedBody(\"MimicChest\")",
+      "message": "  Expected: \"spread-creature-mimic-closed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.CurrentManagedSpreadAnimalHasItsOwnActualRiggedBody(\"Glowmaw\")",
+      "message": "  Expected: \"spread-creature-glowmaw\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.MimicDisguiseTracksTheActualDormantGoalWithoutMutatingIt",
+      "message": "  Expected: \"spread-creature-mimic-closed\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.MovementHideAndRemovalFollowTheActualOwnerWithoutChangingSharedGeometry(\"GiantSpider\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.MovementHideAndRemovalFollowTheActualOwnerWithoutChangingSharedGeometry(\"JungleApe\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.MovementHideAndRemovalFollowTheActualOwnerWithoutChangingSharedGeometry(\"MimicChest\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.MovementHideAndRemovalFollowTheActualOwnerWithoutChangingSharedGeometry(\"Glowmaw\")",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.PersistentOriginalBodyHasActualFiveMovingClipsAndCorrectAnatomy(\"GiantSpider\",0.3f,0.75f)",
+      "message": "  Actual adopted persistent body is required, not source JSON.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.PersistentOriginalBodyHasActualFiveMovingClipsAndCorrectAnatomy(\"JungleApe\",1.05f,1.5f)",
+      "message": "  Actual adopted persistent body is required, not source JSON.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.PersistentOriginalBodyHasActualFiveMovingClipsAndCorrectAnatomy(\"MimicChest\",0.4f,0.8f)",
+      "message": "  Actual adopted persistent body is required, not source JSON.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.PersistentOriginalBodyHasActualFiveMovingClipsAndCorrectAnatomy(\"MimicAwake\",0.55f,0.95f)",
+      "message": "  Actual adopted persistent body is required, not source JSON.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadCreatureArtTests.PersistentOriginalBodyHasActualFiveMovingClipsAndCorrectAnatomy(\"Glowmaw\",0.4f,0.85f)",
+      "message": "  Actual adopted persistent body is required, not source JSON.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.ActualCommittedSpreadLairFloorUsesSameCurrentOwnerContract",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.CurrentOwnerAuthorityLossCannotBorrowItsPriorModel(\"hidden\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.CurrentOwnerAuthorityLossCannotBorrowItsPriorModel(\"removed\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.CurrentOwnerAuthorityLossCannotBorrowItsPriorModel(\"same-id-clone\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.CurrentOwnerAuthorityLossCannotBorrowItsPriorModel(\"foreign-biome\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.CurrentOwnerAuthorityLossCannotBorrowItsPriorModel(\"foreign-render\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.LanternSwitchAndSavedDisabledStateRetainTheActualNativeOwner",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.LiveCustomAppearanceOrPortableMutationRefusesSceneryClaim(\"visual-id\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.LiveCustomAppearanceOrPortableMutationRefusesSceneryClaim(\"visual-variant\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.LiveCustomAppearanceOrPortableMutationRefusesSceneryClaim(\"glyph\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.LiveCustomAppearanceOrPortableMutationRefusesSceneryClaim(\"portable\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"BerryBush\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"Signpost\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"HollowStump\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"Beehive\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"RiverShrine\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"FlowerField\")",
+      "message": "  Expected: \"unmodeled-native-blueprint\"\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"StoneFloor\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"StoneWall\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"Chair\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"Bed\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"Well\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"Oven\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"WatchLantern\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"CampfireGroundMarker\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"WellGroundMarker\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"OvenGroundMarker\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"LanternGroundMarker\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"Shrine\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"AlchemyShelf\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"AlchemyStill\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"TinkersForge\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"PressurePlate\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"BearTrap\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"FireTrap\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"SpikeTrap\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"WeaponRack\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.MissingNativeOwnerReceivesExactApprovedModelWithoutGameplayMutation(\"OldStump\")",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.OnlyRealFloorSuppressesOneCellsFallbackGround(\"StoneFloor\",True)",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.OnlyRealFloorSuppressesOneCellsFallbackGround(\"CampfireGroundMarker\",False)",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.PriorSuccessOrNamedRefusalIsReturnedUnchangedInAnActiveSpreadZone(\"existing-model\")",
+      "message": "  Missing narrow scenery refinement is intentional RED before integration.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.PriorSuccessOrNamedRefusalIsReturnedUnchangedInAnActiveSpreadZone(\"native-render-hidden\")",
+      "message": "  Missing narrow scenery refinement is intentional RED before integration.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.PriorSuccessOrNamedRefusalIsReturnedUnchangedInAnActiveSpreadZone(\"missing-native-quest-markers\")",
+      "message": "  Missing narrow scenery refinement is intentional RED before integration.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.PriorSuccessOrNamedRefusalIsReturnedUnchangedInAnActiveSpreadZone(\"runtime-place-authority\")",
+      "message": "  Missing narrow scenery refinement is intentional RED before integration.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.PriorSuccessOrNamedRefusalIsReturnedUnchangedInAnActiveSpreadZone(\"reskinned-native-actor\")",
+      "message": "  Missing narrow scenery refinement is intentional RED before integration.\n  Expected: not null\n  But was:  null\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.RealNativeHarvestConsumesSourceAndRelinquishesItsExactView",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.RealNativeStepConsumesTrapAndRelinquishesItsExactView",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.UntouchedGeneratedWildernessAndVillageOwnersUseTheSameExactContract(False)",
+      "message": "  Expected: null\n  But was:  \"unmodeled-native-blueprint\"\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadSceneryIntegrationTests.UntouchedGeneratedWildernessAndVillageOwnersUseTheSameExactContract(True)",
+      "message": "  No factory-created scenery substitutes enter this generated-source test.\n  Expected: greater than 0\n  But was:  0\n"
+    }
+  ]
+}

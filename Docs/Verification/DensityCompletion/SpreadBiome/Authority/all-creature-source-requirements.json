@@ -1,0 +1,2677 @@
+[
+  {
+    "blueprint": "MarlbackScrabbler",
+    "faction": "OutlandRaiders",
+    "glyph": "s",
+    "color": "&w",
+    "tier": "1",
+    "naturalWeapon": "MarlbackRake",
+    "loadout": {
+      "Equip": "LeatherCap:35;LeatherGloves:20",
+      "Carry": "",
+      "Pick": "1;Dagger;Hatchet;Cudgel"
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "70",
+      "CorpseBlueprint": "MarlbackCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-snapjaw",
+        "rigged": true,
+        "rigFamily": "humanoid",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": [
+          "Equipment.Head",
+          "Equipment.Hand.L",
+          "Equipment.Hand.R",
+          "Equipment.Back"
+        ]
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Player",
+    "faction": null,
+    "glyph": "@",
+    "color": "&Y",
+    "tier": null,
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-player",
+        "rigged": true,
+        "rigFamily": "humanoid",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": [
+          "Equipment.Head",
+          "Equipment.Hand.L",
+          "Equipment.Hand.R",
+          "Equipment.Back"
+        ]
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "MarlbackGleaner",
+    "faction": "OutlandRaiders",
+    "glyph": "s",
+    "color": "&r",
+    "tier": "2",
+    "naturalWeapon": "MarlbackRake",
+    "loadout": {
+      "Equip": "LeatherGloves:50;LeatherArmor:25",
+      "Carry": "",
+      "Pick": "1;Dagger;ShortSword"
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "70",
+      "CorpseBlueprint": "MarlbackCorpse"
+    },
+    "tactics": {
+      "SkillClasses": "ShortBlades_Shank;LongBlades_Lunge",
+      "AbilityChance": "45",
+      "AssistAllies": "true",
+      "AssistRadius": "6"
+    },
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-marlback-gleaner",
+        "rigged": true,
+        "rigFamily": "humanoid",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": [
+          "Equipment.Head",
+          "Equipment.Hand.L",
+          "Equipment.Hand.R",
+          "Equipment.Back"
+        ]
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "MarlbackTunnelguard",
+    "faction": "OutlandRaiders",
+    "glyph": "s",
+    "color": "&R",
+    "tier": "2",
+    "naturalWeapon": "MarlbackGuardRake",
+    "loadout": {
+      "Equip": "Spear;LeatherBoots:50;LeatherCap:25",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "70",
+      "CorpseBlueprint": "MarlbackCorpse"
+    },
+    "tactics": {
+      "SkillClasses": "ShortBlades_Shank",
+      "AbilityChance": "45",
+      "AssistAllies": "true",
+      "AssistRadius": "6"
+    },
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-marlback-tunnelguard",
+        "rigged": true,
+        "rigFamily": "humanoid",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": [
+          "Equipment.Head",
+          "Equipment.Hand.L",
+          "Equipment.Hand.R",
+          "Equipment.Back"
+        ]
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Elder",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&M",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherCap;LeatherBoots",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {
+      "StockTable": "ElderStock",
+      "Drams": "90"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Villager",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&g",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "VillagerStock",
+      "Drams": "35"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Weaponsmith",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&r",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherGloves;LeatherBoots",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {
+      "StockTable": "WeaponsmithStock",
+      "Drams": "140"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Armorer",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&w",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "ArmorerStock",
+      "Drams": "140"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Apothecary",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&G",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "ApothecaryStock",
+      "Drams": "120"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Arcanist",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&M",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "ArcanistStock",
+      "Drams": "130"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Provisioner",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&Y",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "ProvisionerStock",
+      "Drams": "110"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "CaveHermit",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&c",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "HermitStock",
+      "Drams": "50"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-cave-hermit",
+        "rigged": true,
+        "rigFamily": "humanoid",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": [
+          "Equipment.Head",
+          "Equipment.Hand.L",
+          "Equipment.Hand.R",
+          "Equipment.Back"
+        ]
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "DesertHermit",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&Y",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "HermitStock",
+      "Drams": "50"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "JungleHermit",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&G",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "HermitStock",
+      "Drams": "50"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "RuinsHermit",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&W",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "HermitStock",
+      "Drams": "50"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Marceline",
+    "faction": "Villagers",
+    "glyph": "M",
+    "color": "&K",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "MarcelineStock",
+      "Drams": "120"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Magpie",
+    "faction": "Villagers",
+    "glyph": "b",
+    "color": "&K",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "PetDog",
+    "faction": "Villagers",
+    "glyph": "d",
+    "color": "&y",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "VillageChild",
+    "faction": "Villagers",
+    "glyph": "c",
+    "color": "&Y",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Tinker",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&c",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "Dagger;LeatherGloves",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {
+      "StockTable": "TinkerStock",
+      "Drams": "90"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Merchant",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&W",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "ShortSword;LeatherBoots",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {
+      "StockTable": "MerchantStock",
+      "Drams": "150"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Quartermaster",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&Y",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "Spear;LeatherArmor;LeatherBoots",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {
+      "StockTable": "QuartermasterStock",
+      "Drams": "160"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "ChoirTendril",
+    "faction": "RotChoir",
+    "glyph": "F",
+    "color": "&G",
+    "tier": "3",
+    "naturalWeapon": "ChoirLash",
+    "loadout": {},
+    "trader": {
+      "StockTable": "ChoirStock",
+      "Drams": "70"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-choir-tendril",
+        "rigged": true,
+        "rigFamily": "rooted",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "PalimpsestEcho",
+    "faction": "Palimpsest",
+    "glyph": "@",
+    "color": "&B",
+    "tier": "3",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "EchoStock",
+      "Drams": "80"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "SaccharineEnvoy",
+    "faction": "SaccharineConcord",
+    "glyph": "@",
+    "color": "&Y",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "EnvoyStock",
+      "Drams": "100"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "ConcordFactor",
+    "faction": "SaccharineConcord",
+    "glyph": "@",
+    "color": "&W",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "PaleCurator",
+    "faction": "PaleCuration",
+    "glyph": "@",
+    "color": "&w",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "CuratorStock",
+      "Drams": "90"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "GlassblownDrifter",
+    "faction": "GlassblownRemnant",
+    "glyph": "@",
+    "color": "&R",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "DrifterStock",
+      "Drams": "80"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "CaveBat",
+    "faction": "Beasts",
+    "glyph": "b",
+    "color": "&K",
+    "tier": "1",
+    "naturalWeapon": "BatBite",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "CaveSlime",
+    "faction": "Beasts",
+    "glyph": "j",
+    "color": "&g",
+    "tier": "1",
+    "naturalWeapon": "SlimePseudopod",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "BogSap",
+      "HarvestMin": "1",
+      "HarvestMax": "1",
+      "HarvestChance": "100"
+    },
+    "tactics": {
+      "SkillClasses": "Corrosion_AcidSpray",
+      "AbilityChance": "60",
+      "AssistAllies": "false",
+      "AssistRadius": "6"
+    },
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "CaveBear",
+    "faction": "Beasts",
+    "glyph": "B",
+    "color": "&y",
+    "tier": "2",
+    "naturalWeapon": "CaveBearClaw",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "RawMeat",
+      "HarvestMin": "2",
+      "HarvestMax": "3",
+      "HarvestChance": "100"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Glowmaw",
+    "faction": "Beasts",
+    "glyph": "O",
+    "color": "&Y",
+    "tier": "1",
+    "naturalWeapon": "GlowmawBite",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "EmberFruit",
+      "HarvestMin": "1",
+      "HarvestMax": "1",
+      "HarvestChance": "100"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Scorpion",
+    "faction": "Beasts",
+    "glyph": "x",
+    "color": "&W",
+    "tier": "1",
+    "naturalWeapon": "ScorpionSting",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "VenomGland",
+      "HarvestMin": "1",
+      "HarvestMax": "1",
+      "HarvestChance": "75"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "DesertBandit",
+    "faction": "OutlandRaiders",
+    "glyph": "h",
+    "color": "&y",
+    "tier": "1",
+    "naturalWeapon": "BanditBlade",
+    "loadout": {
+      "Equip": "ShortSword;LeatherCap:40;LeatherBoots:20",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {
+      "SkillClasses": "LongBlades_Lunge",
+      "AbilityChance": "45",
+      "AssistAllies": "true",
+      "AssistRadius": "6"
+    },
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "SandWurm",
+    "faction": "Beasts",
+    "glyph": "W",
+    "color": "&W",
+    "tier": "2",
+    "naturalWeapon": "WurmBite",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "RawMeat",
+      "HarvestMin": "2",
+      "HarvestMax": "3",
+      "HarvestChance": "100"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "GiantSpider",
+    "faction": "Beasts",
+    "glyph": "S",
+    "color": "&G",
+    "tier": "1",
+    "naturalWeapon": "SpiderBite",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "VenomGland",
+      "HarvestMin": "1",
+      "HarvestMax": "1",
+      "HarvestChance": "75"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Viper",
+    "faction": "Beasts",
+    "glyph": "~",
+    "color": "&g",
+    "tier": "1",
+    "naturalWeapon": "ViperBite",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "VenomGland",
+      "HarvestMin": "1",
+      "HarvestMax": "1",
+      "HarvestChance": "75"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "JungleApe",
+    "faction": "Beasts",
+    "glyph": "A",
+    "color": "&G",
+    "tier": "2",
+    "naturalWeapon": "ApeFist",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "RawMeat",
+      "HarvestMin": "2",
+      "HarvestMax": "3",
+      "HarvestChance": "100"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "RuinScavenger",
+    "faction": "Beasts",
+    "glyph": "r",
+    "color": "&K",
+    "tier": "1",
+    "naturalWeapon": "ScavengerClaw",
+    "loadout": {
+      "Equip": "LeatherGloves:50;LeatherCap:25",
+      "Carry": "",
+      "Pick": "1;Dagger;Cudgel;OldWorldPipe"
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "SkeletalSentry",
+    "faction": "Beasts",
+    "glyph": "Z",
+    "color": "&w",
+    "tier": "2",
+    "naturalWeapon": "BoneBlade",
+    "loadout": {
+      "Equip": "IronHelmet",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "Bone",
+      "HarvestMin": "1",
+      "HarvestMax": "2",
+      "HarvestChance": "100"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "StoneGolem",
+    "faction": "Beasts",
+    "glyph": "G",
+    "color": "&y",
+    "tier": "3",
+    "naturalWeapon": "GolemFist",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "GlowQuartz",
+      "HarvestMin": "1",
+      "HarvestMax": "1",
+      "HarvestChance": "35"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "PaleStalker",
+    "faction": "Beasts",
+    "glyph": "p",
+    "color": "&C",
+    "tier": "4",
+    "naturalWeapon": "StalkerTalon",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "ObsidianBrute",
+    "faction": "Beasts",
+    "glyph": "O",
+    "color": "&m",
+    "tier": "5",
+    "naturalWeapon": "ObsidianFist",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "GlowQuartz",
+      "HarvestMin": "1",
+      "HarvestMax": "2",
+      "HarvestChance": "35"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "MarlbackWallkeeper",
+    "faction": "OutlandRaiders",
+    "glyph": "S",
+    "color": "&R",
+    "tier": "2",
+    "naturalWeapon": "MarlbackRake",
+    "loadout": {
+      "Equip": "LongSword;LeatherArmor;LeatherCap;LeatherBoots:35",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "70",
+      "CorpseBlueprint": "MarlbackCorpse"
+    },
+    "tactics": {
+      "SkillClasses": "LongBlades_Lunge",
+      "AbilityChance": "55",
+      "AssistAllies": "true",
+      "AssistRadius": "6"
+    },
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-marlback-wallkeeper",
+        "rigged": true,
+        "rigFamily": "humanoid",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": [
+          "Equipment.Head",
+          "Equipment.Hand.L",
+          "Equipment.Hand.R",
+          "Equipment.Back"
+        ]
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "MarlbackBreacher",
+    "faction": "OutlandRaiders",
+    "glyph": "S",
+    "color": "&M",
+    "tier": "3",
+    "naturalWeapon": "BreacherCleaver",
+    "loadout": {
+      "Equip": "BreacherCleaver;LeatherArmor;IronHelmet;IronshodBoots",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "70",
+      "CorpseBlueprint": "MarlbackCorpse"
+    },
+    "tactics": {
+      "SkillClasses": "Axe_Berserk",
+      "AbilityChance": "55",
+      "AssistAllies": "true",
+      "AssistRadius": "6"
+    },
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-snapjaw-warlord",
+        "rigged": true,
+        "rigFamily": "humanoid",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": [
+          "Equipment.Head",
+          "Equipment.Hand.L",
+          "Equipment.Hand.R",
+          "Equipment.Back"
+        ]
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Mosshulk",
+    "faction": "Beasts",
+    "glyph": "M",
+    "color": "&g",
+    "tier": "3",
+    "naturalWeapon": "MosshulkSlam",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "MendleafSprig",
+      "HarvestMin": "2",
+      "HarvestMax": "2",
+      "HarvestChance": "100"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-mosshulk",
+        "rigged": true,
+        "rigFamily": "fungal",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "DesertProwler",
+    "faction": "Beasts",
+    "glyph": "D",
+    "color": "&W",
+    "tier": "2",
+    "naturalWeapon": "ProwlerClaw",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "DuneLurker",
+    "faction": "Beasts",
+    "glyph": "d",
+    "color": "&y",
+    "tier": "3",
+    "naturalWeapon": "LurkerMaw",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "BrittleHound",
+    "faction": "Beasts",
+    "glyph": "b",
+    "color": "&W",
+    "tier": "3",
+    "naturalWeapon": "BrittleFangs",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "JungleStalker",
+    "faction": "Beasts",
+    "glyph": "J",
+    "color": "&G",
+    "tier": "2",
+    "naturalWeapon": "StalkerClaw",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Rotling",
+    "faction": "Beasts",
+    "glyph": "r",
+    "color": "&g",
+    "tier": "1",
+    "naturalWeapon": "RotlingClaw",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-rotling",
+        "rigged": true,
+        "rigFamily": "fungal",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "CanopyStrangler",
+    "faction": "Beasts",
+    "glyph": "C",
+    "color": "&G",
+    "tier": "3",
+    "naturalWeapon": "StranglerLash",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "AncientGuardian",
+    "faction": "Beasts",
+    "glyph": "H",
+    "color": "&w",
+    "tier": "3",
+    "naturalWeapon": "GuardianFist",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "VaultSentinel",
+    "faction": "Beasts",
+    "glyph": "V",
+    "color": "&W",
+    "tier": "3",
+    "naturalWeapon": "SentinelHalberd",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "GlowQuartz",
+      "HarvestMin": "1",
+      "HarvestMax": "1",
+      "HarvestChance": "35"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "BrassHusk",
+    "faction": "Palimpsest",
+    "glyph": "H",
+    "color": "&y",
+    "tier": "2",
+    "naturalWeapon": "HuskFist",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "GlassScorpion",
+    "faction": "SaccharineConcord",
+    "glyph": "s",
+    "color": "&W",
+    "tier": "1",
+    "naturalWeapon": "GlassSting",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "SporeShambler",
+    "faction": "RotChoir",
+    "glyph": "f",
+    "color": "&g",
+    "tier": "2",
+    "naturalWeapon": "SporeTouch",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "ShamblerSporeSac",
+      "HarvestMin": "1",
+      "HarvestMax": "1",
+      "HarvestChance": "100"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Mogu",
+    "faction": "RotChoir",
+    "glyph": "M",
+    "color": "&g",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "GnomeStock",
+      "Drams": "30"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-mogu",
+        "rigged": true,
+        "rigFamily": "humanoid",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": [
+          "Equipment.Head",
+          "Equipment.Hand.L",
+          "Equipment.Hand.R",
+          "Equipment.Back"
+        ]
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Grib",
+    "faction": "RotChoir",
+    "glyph": "G",
+    "color": "&G",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "GnomeStock",
+      "Drams": "30"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-grib",
+        "rigged": true,
+        "rigFamily": "humanoid",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": [
+          "Equipment.Head",
+          "Equipment.Hand.L",
+          "Equipment.Hand.R",
+          "Equipment.Back"
+        ]
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Nam",
+    "faction": "RotChoir",
+    "glyph": "N",
+    "color": "&y",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "GnomeStock",
+      "Drams": "30"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-nam",
+        "rigged": true,
+        "rigFamily": "humanoid",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": [
+          "Equipment.Head",
+          "Equipment.Hand.L",
+          "Equipment.Hand.R",
+          "Equipment.Back"
+        ]
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Sien",
+    "faction": "RotChoir",
+    "glyph": "S",
+    "color": "&W",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "GnomeStock",
+      "Drams": "30"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-sien",
+        "rigged": true,
+        "rigFamily": "humanoid",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": [
+          "Equipment.Head",
+          "Equipment.Hand.L",
+          "Equipment.Hand.R",
+          "Equipment.Back"
+        ]
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Sopp",
+    "faction": "RotChoir",
+    "glyph": "s",
+    "color": "&K",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "GnomeStock",
+      "Drams": "30"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-sopp",
+        "rigged": true,
+        "rigFamily": "humanoid",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": [
+          "Equipment.Head",
+          "Equipment.Hand.L",
+          "Equipment.Hand.R",
+          "Equipment.Back"
+        ]
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "IceWight",
+    "faction": "Beasts",
+    "glyph": "W",
+    "color": "&C",
+    "tier": "2",
+    "naturalWeapon": "WightTouch",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {
+      "SkillClasses": "Cryomancy_IceLance",
+      "AbilityChance": "60",
+      "AssistAllies": "false",
+      "AssistRadius": "6"
+    },
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "CharredHusk",
+    "faction": "Beasts",
+    "glyph": "H",
+    "color": "&r",
+    "tier": "2",
+    "naturalWeapon": "HuskTouch",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "Bone",
+      "HarvestMin": "1",
+      "HarvestMax": "2",
+      "HarvestChance": "100"
+    },
+    "tactics": {
+      "SkillClasses": "Pyromancy_EmberSpit",
+      "AbilityChance": "60",
+      "AssistAllies": "false",
+      "AssistRadius": "6"
+    },
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Warden",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&r",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LongSword;LeatherArmor;LeatherBoots",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {
+      "StockTable": "WardenStock",
+      "Drams": "70"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "WellKeeper",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&C",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherBoots;LeatherCap",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {
+      "StockTable": "WellKeeperStock",
+      "Drams": "50"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Farmer",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&Y",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherBoots;LeatherGloves",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {
+      "StockTable": "FarmerStock",
+      "Drams": "45"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Innkeeper",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&B",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "InnkeeperStock",
+      "Drams": "80"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Undertaker",
+    "faction": "Villagers",
+    "glyph": "U",
+    "color": "&K",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {
+      "StockTable": "UndertakerStock",
+      "Drams": "55"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Scribe",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&M",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherGloves;LeatherCap",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {
+      "StockTable": "ScribeStock",
+      "Drams": "85"
+    },
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "SleepingTroll",
+    "faction": "OutlandRaiders",
+    "glyph": "T",
+    "color": "&g",
+    "tier": "2",
+    "naturalWeapon": "TrollFist",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "MimicChest",
+    "faction": "OutlandRaiders",
+    "glyph": "=",
+    "color": "&Y",
+    "tier": "1",
+    "naturalWeapon": "MimicBite",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "AmbushBandit",
+    "faction": "OutlandRaiders",
+    "glyph": "b",
+    "color": "&r",
+    "tier": "1",
+    "naturalWeapon": "BanditBlade",
+    "loadout": {
+      "Equip": "ShortSword;LeatherArmor:35;LeatherBoots:25",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {
+      "SkillClasses": "LongBlades_Lunge",
+      "AbilityChance": "45",
+      "AssistAllies": "true",
+      "AssistRadius": "6"
+    },
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "RuneCultist",
+    "faction": "Cultists",
+    "glyph": "c",
+    "color": "&M",
+    "tier": "2",
+    "naturalWeapon": "CultistKnife",
+    "loadout": {
+      "Equip": "Dagger;LeatherGloves:50;Cloak:30",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {
+      "SkillClasses": "Cryomancy_IceLance",
+      "AbilityChance": "60",
+      "AssistAllies": "true",
+      "AssistRadius": "6"
+    },
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "SunStriker",
+    "faction": "Beasts",
+    "glyph": "l",
+    "color": "&Y",
+    "tier": "1",
+    "naturalWeapon": "DefaultBite",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "RawMeat",
+      "HarvestMin": "1",
+      "HarvestMax": "2",
+      "HarvestChance": "100"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "TentRightHost",
+    "faction": "TentRight",
+    "glyph": "@",
+    "color": "&y",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherBoots;LeatherCap",
+      "Carry": "Dagger",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "SaltMaster",
+    "faction": "TentRight",
+    "glyph": "@",
+    "color": "&W",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherGloves;LeatherBoots",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Reedfrog",
+    "faction": "Beasts",
+    "glyph": "f",
+    "color": "&G",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "FrogOil",
+      "HarvestMin": "1",
+      "HarvestMax": "2",
+      "HarvestChance": "80"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Bandfrog",
+    "faction": "Beasts",
+    "glyph": "f",
+    "color": "&R",
+    "tier": "1",
+    "naturalWeapon": "DefaultBite",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "MawToad",
+    "faction": "Beasts",
+    "glyph": "t",
+    "color": "&w",
+    "tier": "2",
+    "naturalWeapon": "DefaultBite",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "FrogOil",
+      "HarvestMin": "2",
+      "HarvestMax": "4",
+      "HarvestChance": "90"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-maw-toad",
+        "rigged": true,
+        "rigFamily": "frog",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "GinFrog",
+    "faction": "Beasts",
+    "glyph": "f",
+    "color": "&Y",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "RecensionScribe",
+    "faction": "Palimpsest",
+    "glyph": "@",
+    "color": "&c",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherGloves;LeatherBoots",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "StillleafSearcher",
+    "faction": "Palimpsest",
+    "glyph": "@",
+    "color": "&C",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherGloves;LeatherBoots",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "CurationSorter",
+    "faction": "PaleCuration",
+    "glyph": "@",
+    "color": "&C",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherGloves;LeatherCap",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "StillleafIndexer",
+    "faction": "PaleCuration",
+    "glyph": "@",
+    "color": "&W",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherGloves;LeatherCap",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "PeatCutter",
+    "faction": "Villagers",
+    "glyph": "@",
+    "color": "&w",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherBoots;LeatherGloves",
+      "Carry": "Dagger",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "FilerClerk",
+    "faction": "PaleCuration",
+    "glyph": "@",
+    "color": "&C",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "EncasedElder",
+    "faction": "RotChoir",
+    "glyph": "@",
+    "color": "&Y",
+    "tier": "3",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "CatacombWarden",
+    "faction": "CatacombFolk",
+    "glyph": "@",
+    "color": "&c",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "PlaqueTender",
+    "faction": "CatacombFolk",
+    "glyph": "@",
+    "color": "&W",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "SariSnake",
+    "faction": "Beasts",
+    "glyph": "s",
+    "color": "&r",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "VenomGland",
+      "HarvestMin": "1",
+      "HarvestMax": "1",
+      "HarvestChance": "100"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-sari-snake",
+        "rigged": true,
+        "rigFamily": "serpent",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Wardline",
+    "faction": "Beasts",
+    "glyph": "s",
+    "color": "&g",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-wardline",
+        "rigged": true,
+        "rigFamily": "serpent",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "CascadeFather",
+    "faction": "Beasts",
+    "glyph": "f",
+    "color": "&C",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-cascade-father",
+        "rigged": true,
+        "rigFamily": "frog",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "GlasspaneFrog",
+    "faction": "Beasts",
+    "glyph": "f",
+    "color": "&G",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-glasspane-frog",
+        "rigged": true,
+        "rigFamily": "frog",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "YellowfootWayfarer",
+    "faction": "Beasts",
+    "glyph": "t",
+    "color": "&w",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-yellowfoot-wayfarer",
+        "rigged": true,
+        "rigFamily": "tortoise",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "Shambler",
+    "faction": "Beasts",
+    "glyph": "z",
+    "color": "&m",
+    "tier": "2",
+    "naturalWeapon": "DefaultTendril",
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse",
+      "HarvestBlueprint": "ShamblerSporeSac",
+      "HarvestMin": "1",
+      "HarvestMax": "1",
+      "HarvestChance": "80"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-shambler",
+        "rigged": true,
+        "rigFamily": "fungal",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "GroveLanternMoth",
+    "faction": "Beasts",
+    "glyph": "m",
+    "color": "&Y",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-grove-lantern-moth",
+        "rigged": true,
+        "rigFamily": "avian",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "SummitSinger",
+    "faction": "Beasts",
+    "glyph": "f",
+    "color": "&y",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "BrocchiniaSentinel",
+    "faction": "Beasts",
+    "glyph": "l",
+    "color": "&g",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "SkySari",
+    "faction": "Beasts",
+    "glyph": "E",
+    "color": "&W",
+    "tier": "4",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-sky-sari",
+        "rigged": true,
+        "rigFamily": "avian",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "PrickleBrowGecko",
+    "faction": "Beasts",
+    "glyph": "l",
+    "color": "&B",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "HelmwoodFrog",
+    "faction": "Beasts",
+    "glyph": "f",
+    "color": "&y",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [
+      {
+        "id": "ring-helmwood-frog",
+        "rigged": true,
+        "rigFamily": "frog",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Interact",
+          "Attack",
+          "Hit"
+        ],
+        "sockets": []
+      }
+    ],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "FoundingListener",
+    "faction": "CatacombFolk",
+    "glyph": "@",
+    "color": "&y",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "FoundingPlaqueTender",
+    "faction": "CatacombFolk",
+    "glyph": "@",
+    "color": "&W",
+    "tier": "2",
+    "naturalWeapon": null,
+    "loadout": {},
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "GantryRegistrar",
+    "faction": "PaleCuration",
+    "glyph": "@",
+    "color": "&w",
+    "tier": "1",
+    "naturalWeapon": null,
+    "loadout": {
+      "Equip": "LeatherGloves;LeatherBoots",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "100",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "SootGremlin",
+    "faction": "OutlandRaiders",
+    "glyph": "s",
+    "color": "&K",
+    "tier": "1",
+    "naturalWeapon": "ScavengerClaw",
+    "loadout": {
+      "Equip": "Dagger;LeatherCap:20",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "70",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  },
+  {
+    "blueprint": "DirtGnome",
+    "faction": "OutlandRaiders",
+    "glyph": "g",
+    "color": "&y",
+    "tier": "1",
+    "naturalWeapon": "ScavengerClaw",
+    "loadout": {
+      "Equip": "Dagger;LeatherCap:20",
+      "Carry": "",
+      "Pick": ""
+    },
+    "trader": {},
+    "corpse": {
+      "CorpseChance": "70",
+      "CorpseBlueprint": "CreatureCorpse"
+    },
+    "tactics": {},
+    "body": {},
+    "currentBaseCatalogModels": [],
+    "catalogCoverageMeaning": "Direct base SpawnRing catalog only; regional libraries/recipes may add coverage. This is source design coverage, not native acceptance."
+  }
+]

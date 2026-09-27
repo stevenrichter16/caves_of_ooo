@@ -1,0 +1,2633 @@
+{
+    "runId": "6e90df1471fa47f28f38f8b226946824",
+    "zone": "Overworld.8.1.9",
+    "fatal": "System.InvalidOperationException: Density completion precondition: native combined inventory/equipment item list\n  at CavesOfOoo.Scenarios.Custom.DensityFindsNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityFindsNativePlayer.cs:930 \n  at CavesOfOoo.Scenarios.Custom.DensityFindsNativePlayer+<ItemAction>d__117.MoveNext () [0x000bc] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityFindsNativePlayer.cs:872 \n  at CavesOfOoo.Scenarios.Custom.DensityFindsNativePlayer+<RunSafely>d__126.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityFindsNativePlayer.cs:943 ",
+    "canVerify": "Fixed seed1 actual modified deep reliquary and unforced named final keeper; native key pickup, unlock, collection, equipment, inspection, ordinary active-AI fights, same actual rewards and real F5/mutate/F6 proof. Actual starting Calm/Rime Grip may pacify/freeze targets through native hotbar use; this is an acquisition audit, not a duel. All candidate outcomes recorded.",
+    "cannotVerify": "Two explicitly labelled content-stage starts shorten travel to real source entrances. No source/gear/currency/stat/health grant or modifier roll override. Starting stats are ordinary; naturally earned XP/equipment remain real. First combat failure is retained with no reseed/retry. Bounded generated-source selection is not discovery, frequency, natural progression or combat-balance evidence. Screenshots still need visual review.",
+    "failureState": {
+        "label": "failure",
+        "state": "InventoryOpen",
+        "zone": "Overworld.8.1.9",
+        "pendingEquipmentID": "",
+        "inventoryStatus": "",
+        "inventoryActionItemID": "",
+        "announcement": "",
+        "pendingDisplacements": [],
+        "nearbyCreatures": [
+            "19885:MarlbackScrabbler@16,7;HP=15;visible=False;noFight=False;cold=0",
+            "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+        ],
+        "controlCooldowns": [
+            "CommandRimeGrip:0",
+            "CommandCalm:14"
+        ],
+        "hp": 40,
+        "maxHp": 40,
+        "x": 21,
+        "y": 10,
+        "tick": 70,
+        "energy": 1000,
+        "deathHandled": false,
+        "blockingFx": false,
+        "lastMessages": [
+            "Autosaved.",
+            "Calm - choose a direction.",
+            "vault sentinel becomes peaceful.",
+            "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+            "You pick up iron key.",
+            "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+            "You unlocks the locked chest.",
+            "You open the locked chest. It contains 3 item(s).",
+            "You take counterweight maul from the locked chest.",
+            "You take Rite of the Hollow Coin from the locked chest.",
+            "You take gold coin (x11) from the locked chest.",
+            "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+        ]
+    },
+    "nativeKeys": [
+        {
+            "keys": "N",
+            "sequence": 0,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            }
+        },
+        {
+            "keys": "I",
+            "sequence": 1,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "InventoryOpen",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            }
+        },
+        {
+            "keys": "Tab",
+            "sequence": 2,
+            "before": {
+                "label": "before-key",
+                "state": "InventoryOpen",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "InventoryOpen",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            }
+        },
+        {
+            "keys": "DownArrow",
+            "sequence": 3,
+            "before": {
+                "label": "before-key",
+                "state": "InventoryOpen",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "InventoryOpen",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            }
+        },
+        {
+            "keys": "Enter",
+            "sequence": 4,
+            "before": {
+                "label": "before-key",
+                "state": "InventoryOpen",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "InventoryOpen",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "2480",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            }
+        },
+        {
+            "keys": "DownArrow",
+            "sequence": 5,
+            "before": {
+                "label": "before-key",
+                "state": "InventoryOpen",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "2480",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "InventoryOpen",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "2480",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            }
+        },
+        {
+            "keys": "Enter",
+            "sequence": 6,
+            "before": {
+                "label": "before-key",
+                "state": "InventoryOpen",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "2480",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "InventoryOpen",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger."
+                ]
+            }
+        },
+        {
+            "keys": "Escape",
+            "sequence": 7,
+            "before": {
+                "label": "before-key",
+                "state": "InventoryOpen",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.2.6.0",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 40,
+                "y": 12,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger."
+                ]
+            }
+        },
+        {
+            "keys": "Digit6",
+            "sequence": 8,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=False;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 24,
+                "y": 11,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "AwaitingDirection",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=False;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 24,
+                "y": 11,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction."
+                ]
+            }
+        },
+        {
+            "keys": "Numpad7",
+            "sequence": 9,
+            "before": {
+                "label": "before-key",
+                "state": "AwaitingDirection",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=False;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:0"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 24,
+                "y": 11,
+                "tick": 10,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:19"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 24,
+                "y": 11,
+                "tick": 20,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "A",
+            "sequence": 10,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:19"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 24,
+                "y": 11,
+                "tick": 20,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@14,4;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:18"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 23,
+                "y": 11,
+                "tick": 30,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "L",
+            "sequence": 11,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@14,4;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:18"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 23,
+                "y": 11,
+                "tick": 30,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@14,4;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:18"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 23,
+                "y": 11,
+                "tick": 30,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "A",
+            "sequence": 12,
+            "before": {
+                "label": "before-key",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@14,4;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:18"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 23,
+                "y": 11,
+                "tick": 30,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@14,4;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:18"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 23,
+                "y": 11,
+                "tick": 30,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "Enter",
+            "sequence": 13,
+            "before": {
+                "label": "before-key",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@14,4;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:18"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 23,
+                "y": 11,
+                "tick": 30,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "WorldActionMenuOpen",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@14,4;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:18"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 23,
+                "y": 11,
+                "tick": 30,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "G",
+            "sequence": 14,
+            "before": {
+                "label": "before-key",
+                "state": "WorldActionMenuOpen",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@14,4;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:18"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 23,
+                "y": 11,
+                "tick": 30,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Save detected. Press [C] to continue, [N] for new game.",
+                    "Move with WASD/arrows; bump enemies to attack. [I]nventory, [C] talk, [G]et, [L]ook.",
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,5;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:17"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 23,
+                "y": 11,
+                "tick": 40,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "Escape",
+            "sequence": 15,
+            "before": {
+                "label": "before-key",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,5;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:17"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 23,
+                "y": 11,
+                "tick": 40,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,5;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:17"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 23,
+                "y": 11,
+                "tick": 40,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "Numpad7",
+            "sequence": 16,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,5;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:17"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 23,
+                "y": 11,
+                "tick": 40,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,6;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:16"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 22,
+                "y": 10,
+                "tick": 50,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "A",
+            "sequence": 17,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,6;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:16"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 22,
+                "y": 10,
+                "tick": 50,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "L",
+            "sequence": 18,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "A",
+            "sequence": 19,
+            "before": {
+                "label": "before-key",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "Enter",
+            "sequence": 20,
+            "before": {
+                "label": "before-key",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "WorldActionMenuOpen",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "U",
+            "sequence": 21,
+            "before": {
+                "label": "before-key",
+                "state": "WorldActionMenuOpen",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "[X] skills, [M] abilities, [F5] save, [F1] full controls.",
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest."
+                ]
+            }
+        },
+        {
+            "keys": "Escape",
+            "sequence": 22,
+            "before": {
+                "label": "before-key",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest."
+                ]
+            }
+        },
+        {
+            "keys": "L",
+            "sequence": 23,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest."
+                ]
+            }
+        },
+        {
+            "keys": "A",
+            "sequence": 24,
+            "before": {
+                "label": "before-key",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest."
+                ]
+            }
+        },
+        {
+            "keys": "Enter",
+            "sequence": 25,
+            "before": {
+                "label": "before-key",
+                "state": "LookMode",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "WorldActionMenuOpen",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest."
+                ]
+            }
+        },
+        {
+            "keys": "O",
+            "sequence": 26,
+            "before": {
+                "label": "before-key",
+                "state": "WorldActionMenuOpen",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "PickupOpen",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest.",
+                    "You open the locked chest. It contains 3 item(s)."
+                ]
+            }
+        },
+        {
+            "keys": "Tab",
+            "sequence": 27,
+            "before": {
+                "label": "before-key",
+                "state": "PickupOpen",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@15,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:15"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 60,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Villagers have work for you — press [Q] for your quest log.",
+                    "Morrowfast lies one chunk east. Farra in its square can use help with the tagged supply basket near this field's east edge. Open the basket and carry its cloth into town. [C] then a direction opens nearby actions; [Q] keeps accepted work.",
+                    "Starting a new game. Initial checkpoint saved.",
+                    "You equip dagger.",
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest.",
+                    "You open the locked chest. It contains 3 item(s)."
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@16,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:14"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 70,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest.",
+                    "You open the locked chest. It contains 3 item(s).",
+                    "You take counterweight maul from the locked chest.",
+                    "You take Rite of the Hollow Coin from the locked chest.",
+                    "You take gold coin (x11) from the locked chest.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "I",
+            "sequence": 28,
+            "before": {
+                "label": "before-key",
+                "state": "Normal",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@16,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:14"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 70,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest.",
+                    "You open the locked chest. It contains 3 item(s).",
+                    "You take counterweight maul from the locked chest.",
+                    "You take Rite of the Hollow Coin from the locked chest.",
+                    "You take gold coin (x11) from the locked chest.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "InventoryOpen",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@16,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:14"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 70,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest.",
+                    "You open the locked chest. It contains 3 item(s).",
+                    "You take counterweight maul from the locked chest.",
+                    "You take Rite of the Hollow Coin from the locked chest.",
+                    "You take gold coin (x11) from the locked chest.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        },
+        {
+            "keys": "Tab",
+            "sequence": 29,
+            "before": {
+                "label": "before-key",
+                "state": "InventoryOpen",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@16,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:14"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 70,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest.",
+                    "You open the locked chest. It contains 3 item(s).",
+                    "You take counterweight maul from the locked chest.",
+                    "You take Rite of the Hollow Coin from the locked chest.",
+                    "You take gold coin (x11) from the locked chest.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            },
+            "after": {
+                "label": "after-native-fx",
+                "state": "InventoryOpen",
+                "zone": "Overworld.8.1.9",
+                "pendingEquipmentID": "",
+                "inventoryStatus": "",
+                "inventoryActionItemID": "",
+                "announcement": "",
+                "pendingDisplacements": [],
+                "nearbyCreatures": [
+                    "19885:MarlbackScrabbler@16,7;HP=15;visible=False;noFight=False;cold=0",
+                    "19869:VaultSentinel@23,10;HP=60;visible=True;noFight=True;cold=0"
+                ],
+                "controlCooldowns": [
+                    "CommandRimeGrip:0",
+                    "CommandCalm:14"
+                ],
+                "hp": 40,
+                "maxHp": 40,
+                "x": 21,
+                "y": 10,
+                "tick": 70,
+                "energy": 1000,
+                "deathHandled": false,
+                "blockingFx": false,
+                "lastMessages": [
+                    "Autosaved.",
+                    "Calm - choose a direction.",
+                    "vault sentinel becomes peaceful.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You pick up iron key.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+                    "You unlocks the locked chest.",
+                    "You open the locked chest. It contains 3 item(s).",
+                    "You take counterweight maul from the locked chest.",
+                    "You take Rite of the Hollow Coin from the locked chest.",
+                    "You take gold coin (x11) from the locked chest.",
+                    "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+                ]
+            }
+        }
+    ],
+    "routeMeleeWindows": [],
+    "candidates": [
+        {
+            "seed": 1,
+            "zone": "Overworld.8.0.9",
+            "reason": "no-reliquary-find",
+            "ownerID": "",
+            "ownerBlueprint": "",
+            "itemID": "",
+            "itemBlueprint": "",
+            "modifiers": ""
+        },
+        {
+            "seed": 1,
+            "zone": "Overworld.9.0.9",
+            "reason": "no-reliquary-find",
+            "ownerID": "",
+            "ownerBlueprint": "",
+            "itemID": "",
+            "itemBlueprint": "",
+            "modifiers": ""
+        },
+        {
+            "seed": 1,
+            "zone": "Overworld.10.0.9",
+            "reason": "no-reliquary-find",
+            "ownerID": "",
+            "ownerBlueprint": "",
+            "itemID": "",
+            "itemBlueprint": "",
+            "modifiers": ""
+        },
+        {
+            "seed": 1,
+            "zone": "Overworld.11.0.9",
+            "reason": "no-reliquary-find",
+            "ownerID": "",
+            "ownerBlueprint": "",
+            "itemID": "",
+            "itemBlueprint": "",
+            "modifiers": ""
+        },
+        {
+            "seed": 1,
+            "zone": "Overworld.12.0.9",
+            "reason": "excluded-authored-or-POI",
+            "ownerID": "",
+            "ownerBlueprint": "",
+            "itemID": "",
+            "itemBlueprint": "",
+            "modifiers": ""
+        },
+        {
+            "seed": 1,
+            "zone": "Overworld.7.1.9",
+            "reason": "no-reliquary-find",
+            "ownerID": "",
+            "ownerBlueprint": "",
+            "itemID": "",
+            "itemBlueprint": "",
+            "modifiers": ""
+        },
+        {
+            "seed": 1,
+            "zone": "Overworld.8.1.9",
+            "reason": "selected-first-real-modified-source",
+            "ownerID": "19855",
+            "ownerBlueprint": "LockedChest",
+            "itemID": "19868",
+            "itemBlueprint": "CounterweightMaul",
+            "modifiers": "EnhancementGlowQuartz:1"
+        },
+        {
+            "seed": 1,
+            "zone": "Overworld.12.0.0",
+            "reason": "ineligible-keeper-family-or-tier",
+            "ownerID": "",
+            "ownerBlueprint": "",
+            "itemID": "",
+            "itemBlueprint": "",
+            "modifiers": ""
+        },
+        {
+            "seed": 1,
+            "zone": "Overworld.18.2.1",
+            "reason": "selected-first-unforced-keeper",
+            "ownerID": "22245",
+            "ownerBlueprint": "MarlbackWallkeeper",
+            "itemID": "",
+            "itemBlueprint": "",
+            "modifiers": ""
+        }
+    ],
+    "stageStarts": 1,
+    "generatedZones": 6,
+    "audit": [
+        "PASS production_enhancement_registry",
+        "PASS ordinary_start",
+        "PASS actual_unforced_sources",
+        "PASS stamped_key_taken",
+        "PASS real_key_unlocks",
+        "PASS modified_item_acquired",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/HigherTiers/NativeAcquisition/6e90df1471fa47f28f38f8b226946824/01-real-reliquary-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/HigherTiers/NativeAcquisition/6e90df1471fa47f28f38f8b226946824/02-modified-cache-open.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Production enhancement preflight",
+            "source": "CavesOfOoo.Core.EnhancementSerrated",
+            "text": "CavesOfOoo.Core.EnhancementSerrated, CavesOfOoo, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "units": 0
+        },
+        {
+            "subject": "Production enhancement preflight",
+            "source": "CavesOfOoo.Core.EnhancementPaleSalt",
+            "text": "CavesOfOoo.Core.EnhancementPaleSalt, CavesOfOoo, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "units": 0
+        },
+        {
+            "subject": "Production enhancement preflight",
+            "source": "CavesOfOoo.Core.EnhancementChoirIron",
+            "text": "CavesOfOoo.Core.EnhancementChoirIron, CavesOfOoo, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "units": 0
+        },
+        {
+            "subject": "Production enhancement preflight",
+            "source": "CavesOfOoo.Core.EnhancementLacquered",
+            "text": "CavesOfOoo.Core.EnhancementLacquered, CavesOfOoo, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "units": 0
+        },
+        {
+            "subject": "Production enhancement preflight",
+            "source": "CavesOfOoo.Core.EnhancementGlowQuartz",
+            "text": "CavesOfOoo.Core.EnhancementGlowQuartz, CavesOfOoo, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "units": 0
+        },
+        {
+            "subject": "ordinary-start",
+            "source": "Overworld.2.6.0",
+            "text": "HP=40/40; AV=0; DV=7; level=1; strength=18; agility=18; toughness=18; tick=10; actualGear=2480:Dagger:1|2481:HealingTonic:2|2482:DriedMeat:2|2483:WateringGrimoire:1|2484:CandyCarrotSeed:4|2485:EmberwheatSeed:2",
+            "units": 0
+        },
+        {
+            "subject": "Labelled content-stage start",
+            "source": "Overworld.8.1.9",
+            "text": "actual reliquary entrance; stage1 of2 @ 24,11",
+            "units": 0
+        },
+        {
+            "subject": "reliquary-arrival",
+            "source": "Overworld.8.1.9",
+            "text": "HP=40/40; AV=0; DV=7; level=1; strength=18; agility=18; toughness=18; tick=10; actualGear=2480:Dagger:1|2481:HealingTonic:2|2482:DriedMeat:2|2483:WateringGrimoire:1|2484:CandyCarrotSeed:4|2485:EmberwheatSeed:2",
+            "units": 0
+        },
+        {
+            "subject": "actual starter control",
+            "source": "19869",
+            "text": "CommandCalm via slot 5; cooldown=19; target=vault sentinel",
+            "units": 0
+        },
+        {
+            "subject": "Replanned native approach",
+            "source": "19872",
+            "text": "current owner reach; origin=24,11; path=23,11",
+            "units": 0
+        },
+        {
+            "subject": "Replanned native approach",
+            "source": "19855",
+            "text": "current owner reach; origin=23,11; path=22,10/21,10",
+            "units": 0
+        },
+        {
+            "subject": "Replanned native approach",
+            "source": "19855",
+            "text": "current owner reach; origin=22,10; path=21,10",
+            "units": 0
+        }
+    ],
+    "cases": 7,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "errorsFinalized": true,
+    "seconds": 7.1490718,
+    "keyboardMoves": 3,
+    "startingTonicsUsed": 0,
+    "routeZones": [
+        "Overworld.8.1.9"
+    ],
+    "transcript": [
+        "Calm - choose a direction.",
+        "vault sentinel becomes peaceful.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    ],
+    "bossID": "",
+    "rewardID": "",
+    "checkpointHash": "",
+    "startShortcut": true
+}

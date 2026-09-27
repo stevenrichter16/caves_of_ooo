@@ -1,0 +1,57 @@
+{
+  "status": "Published approved exact six files; Assets frozen; native 37-case helper and live keyboard route pending",
+  "nativeRed": "2aa7b709ab8f427f8ba335fa6e2e9cfc",
+  "scope": "harness-only original Calm; no frozen/combat/waits or gameplay rules changed",
+  "tests": {
+    "new": 37,
+    "existingNoFightControls": 8,
+    "total": 45,
+    "passed": 45,
+    "compileRed": "helper absent",
+    "adversarialRed": {
+      "failed": 4,
+      "controlsPassed": 41
+    }
+  },
+  "files": [
+    {
+      "source": "/tmp/coo-biome-calm/ReferenceGladeRouteControl.cs",
+      "target": "Assets/Scripts/Scenarios/Core/ReferenceGladeRouteControl.cs",
+      "beforeSha256": null,
+      "sha256": "a7b4fa08f051cfdcd0724226638873ce57e845ae943d071e2e9347dc8e408d9c"
+    },
+    {
+      "source": "/tmp/coo-biome-calm/ReferenceGladeRouteControlTests.cs",
+      "target": "Assets/Tests/EditMode/Gameplay/Scenarios/ReferenceGladeRouteControlTests.cs",
+      "beforeSha256": null,
+      "sha256": "6a7df38163f0c08f9c9496aa99dc11601d3795181971ad1e8b3c02a96d7245d8"
+    },
+    {
+      "source": "/tmp/coo-biome-calm/ReferenceGladeNativeBiome.cs",
+      "target": "Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeBiome.cs",
+      "beforeSha256": "c78e076770e92bd55b89d0854616600c1a52c2d5d544ba6344cdd1d74efb2049",
+      "sha256": "84b4ea67458c6bd5c18f9d3ed564d1a59f5c7d0c61404d60fb03686e02fee233"
+    },
+    {
+      "source": "/tmp/coo-biome-calm/ReferenceGladeNativePlayer.cs",
+      "target": "Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs",
+      "beforeSha256": "3f0cbe658c8dbcf33023ae9f5300214f71c43782a8978fc856fc796ec865bcbb",
+      "sha256": "ed4bb53333623d4fba3543711711af1e4527e2c914323e5a36f60aff131e880c"
+    },
+    {
+      "source": "/tmp/coo-biome-calm/ReferenceGladeRouteControl.cs.meta",
+      "target": "Assets/Scripts/Scenarios/Core/ReferenceGladeRouteControl.cs.meta",
+      "beforeSha256": null,
+      "sha256": "00ea5f7a214879ab794f19e729f4ff97c7cc2d72737eed6fbce03515148b47f1"
+    },
+    {
+      "source": "/tmp/coo-biome-calm/ReferenceGladeRouteControlTests.cs.meta",
+      "target": "Assets/Tests/EditMode/Gameplay/Scenarios/ReferenceGladeRouteControlTests.cs.meta",
+      "beforeSha256": null,
+      "sha256": "2ede2de0eda0cb7bdb426567dbc5b7fbbfc92d549227c77a15116387dc804044"
+    }
+  ],
+  "publishedAtUtc": "2026-09-27T05:14:32.887048+00:00",
+  "review": "Root + combat_density bounded read clear after four assertion RED and45 affected GREEN",
+  "compiles": "Full current Unity-reference runtime and native-reference37-case fixture compile: zero errors; no Unity run performed by agent"
+}

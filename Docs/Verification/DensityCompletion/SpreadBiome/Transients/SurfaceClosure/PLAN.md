@@ -1,0 +1,11 @@
+# Final authored transient mark and semantic signal closure
+
+Private test-first followup; no shared Assets writes until root opens a window after the current gas/element/particle GREEN.
+
+Verified current sources: Objects TileStateSource emits oil/water and petals; Pyromancy/TilePropagation/actual oil reactions emit embers; Zone.ProjectPool and vessel pours can write all26 initialized LiquidRegistry IDs (ice is registered). Existing mark priority is first residue; otherwise any oil layer; otherwise any ice coating or the first coating; only a single permanent water layer with actual represented-water proof is suppressed; charge/heat/cold/cloud then follow. Existing residue colors are embers(1,.45,.1), otherauthoredpetals(.6,.6,.6); oil(.35,.25,.45); ice(.85,.95,1); otherliquids(.3,.55,.95). Preserve these exact old mark tints, not a newly invented registry liquid tint, for this bounded closure.
+
+Add read-only TrySurfaceMark beside unchanged TryElement. It selects the exact actual prioritized layer and returns raw Turns (includingPermanent) plus known authoredidentity. Unknown residues/coatings/malformed layers refuse to retain current fallback. Pure RED includes all26 real liquiddefinitions, actualTileReaction oil+heat→embers+smoke andwater+heat→steam, paired known/unknown/hidden/foreign/representedwater, unchangedstate. Volume sampling tries surface first then currentelement; low-ground voxel flecks share the existing ownership/material/fog/disposal lane and finite budget. No pool/entity/simulation changes or persistent assetlibrary.
+
+Three meaningful existing behavioral glyphs need independent shape RED: !alert, zsleep, Vdownwarddrop. Preserve actual source clock/color/cell; add voxel exclamation, smallzigzag anddownchevron geometry. Digits stay readableUI. Existing lettersusedonlyasdecorative motifs retainordinaryspark unless explicitlyclaimed.
+
+Native actual reaction image should show currentemberflecks instead of higherpriorityASCII; compare reactionstate and exactnativeRGB. Existing first-slice tests that called knowncoating/residue unsupported must become exactpriority controls, not be deleted. First gallery remains a preserved before-surface-slice artifact.

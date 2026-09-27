@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="75" result="Failed" start-time="2026-09-26T23:42:22.7748120Z" end-time="2026-09-26T23:42:23.1947310Z" duration="0.419899" total="11" passed="1" failed="10" inconclusive="0" skipped="0" warnings="0" asserts="18" random-seed="695277094">
+  <command-line><![CDATA[/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-density-liquid-vessel/verification/content-red.xml --where "class =~ /DensityLiquidVesselContent/"]]></command-line>
+  <filter>
+    <class re="1">DensityLiquidVesselContent</class>
+  </filter>
+  <test-suite type="Assembly" id="1096" name="EditModeRunner.dll" fullname="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="75" result="Failed" site="Child" start-time="2026-09-26T23:42:22.7748120Z" end-time="2026-09-26T23:42:23.1947310Z" duration="0.419899" total="11" passed="1" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="18">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-density-liquid-vessel/Tools/EditModeRunner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="24459" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1097" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="75" result="Failed" site="Child" start-time="2026-09-26T23:42:22.7784100Z" end-time="2026-09-26T23:42:23.1947280Z" duration="0.416315" total="11" passed="1" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="18">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1098" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="75" result="Failed" site="Child" start-time="2026-09-26T23:42:22.7785660Z" end-time="2026-09-26T23:42:23.1947230Z" duration="0.416156" total="11" passed="1" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="18">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1081" name="DensityLiquidVesselContentTests" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-09-26T23:42:22.7790480Z" end-time="2026-09-26T23:42:23.1946960Z" duration="0.415647" total="11" passed="1" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="18">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1090" name="ActualFactoryMerchantOwnsTheFlaskAndCanSellIt" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualFactoryMerchantOwnsTheFlaskAndCanSellIt" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T23:42:22.7829940Z" end-time="2026-09-26T23:42:22.9361520Z" duration="0.153157" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1088" name="ActualFactoryMerchantOwnsTheFlaskAndCanSellIt(&quot;Provisioner&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualFactoryMerchantOwnsTheFlaskAndCanSellIt(&quot;Provisioner&quot;)" methodname="ActualFactoryMerchantOwnsTheFlaskAndCanSellIt" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" seed="1886232676" result="Failed" start-time="2026-09-26T23:42:22.7832510Z" end-time="2026-09-26T23:42:22.9101100Z" duration="0.126887" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.AssertPurchasable(Entity merchant) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 80
+   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualFactoryMerchantOwnsTheFlaskAndCanSellIt(String blueprint) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 65
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.AssertPurchasable(Entity merchant) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 80
+   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualFactoryMerchantOwnsTheFlaskAndCanSellIt(String blueprint) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 65
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1089" name="ActualFactoryMerchantOwnsTheFlaskAndCanSellIt(&quot;WellKeeper&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualFactoryMerchantOwnsTheFlaskAndCanSellIt(&quot;WellKeeper&quot;)" methodname="ActualFactoryMerchantOwnsTheFlaskAndCanSellIt" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" seed="1739302632" result="Failed" start-time="2026-09-26T23:42:22.9107320Z" end-time="2026-09-26T23:42:22.9356650Z" duration="0.024933" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.AssertPurchasable(Entity merchant) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 80
+   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualFactoryMerchantOwnsTheFlaskAndCanSellIt(String blueprint) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 65
+   at InvokeStub_DensityLiquidVesselContentTests.ActualFactoryMerchantOwnsTheFlaskAndCanSellIt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.AssertPurchasable(Entity merchant) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 80
+   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualFactoryMerchantOwnsTheFlaskAndCanSellIt(String blueprint) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 65
+   at InvokeStub_DensityLiquidVesselContentTests.ActualFactoryMerchantOwnsTheFlaskAndCanSellIt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1082" name="ActualFlaskIsEmptyReusableTradeableAndNotAnAlchemyOrDrinkItem" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualFlaskIsEmptyReusableTradeableAndNotAnAlchemyOrDrinkItem" methodname="ActualFlaskIsEmptyReusableTradeableAndNotAnAlchemyOrDrinkItem" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" seed="1179564365" result="Failed" start-time="2026-09-26T23:42:22.9364610Z" end-time="2026-09-26T23:42:22.9574890Z" duration="0.021028" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualFlaskIsEmptyReusableTradeableAndNotAnAlchemyOrDrinkItem() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 40
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[[Error] EntityFactory: unknown blueprint 'LiquidFlask'
+]]></output>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualFlaskIsEmptyReusableTradeableAndNotAnAlchemyOrDrinkItem() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 40
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1095" name="ActualLootRegistryStillValidatesAllReferencedBlueprints" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualLootRegistryStillValidatesAllReferencedBlueprints" methodname="ActualLootRegistryStillValidatesAllReferencedBlueprints" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" seed="1387651133" result="Passed" start-time="2026-09-26T23:42:22.9575230Z" end-time="2026-09-26T23:42:22.9807180Z" duration="0.023195" asserts="1" />
+          <test-case id="1083" name="ActualPuddleTemplateIsEmptyNonportableAndNonrenewing" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualPuddleTemplateIsEmptyNonportableAndNonrenewing" methodname="ActualPuddleTemplateIsEmptyNonportableAndNonrenewing" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" seed="1898890823" result="Failed" start-time="2026-09-26T23:42:22.9807520Z" end-time="2026-09-26T23:42:23.0024580Z" duration="0.021706" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualPuddleTemplateIsEmptyNonportableAndNonrenewing() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 50
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[[Error] EntityFactory: unknown blueprint 'PouredLiquidPool'
+]]></output>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.ActualPuddleTemplateIsEmptyNonportableAndNonrenewing() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 50
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1093" name="AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-26T23:42:23.0024830Z" end-time="2026-09-26T23:42:23.0812450Z" duration="0.078762" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1091" name="AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory(False)" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory(False)" methodname="AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" seed="1320896675" result="Failed" start-time="2026-09-26T23:42:23.0024970Z" end-time="2026-09-26T23:42:23.0543380Z" duration="0.051842" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.AssertPurchasable(Entity merchant) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 80
+   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory(Boolean wired) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 68
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.AssertPurchasable(Entity merchant) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 80
+   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory(Boolean wired) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 68
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1092" name="AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory(True)" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory(True)" methodname="AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" seed="275827987" result="Failed" start-time="2026-09-26T23:42:23.0544180Z" end-time="2026-09-26T23:42:23.0811330Z" duration="0.026715" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.AssertPurchasable(Entity merchant) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 80
+   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory(Boolean wired) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 68
+   at InvokeStub_DensityLiquidVesselContentTests.AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.AssertPurchasable(Entity merchant) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 80
+   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory(Boolean wired) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 68
+   at InvokeStub_DensityLiquidVesselContentTests.AuthoredStartingMerchantGetsExactlyOneFlaskWithOrWithoutGlobalTraderFactory(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1087" name="EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-26T23:42:23.0814030Z" end-time="2026-09-26T23:42:23.1644210Z" duration="0.083017" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1084" name="EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(&quot;MorrowfastProvisionerStock&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(&quot;MorrowfastProvisionerStock&quot;)" methodname="EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" seed="815900230" result="Failed" start-time="2026-09-26T23:42:23.0814380Z" end-time="2026-09-26T23:42:23.1099940Z" duration="0.028557" asserts="2">
+              <failure>
+                <message><![CDATA[  0
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(String table) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 61
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  0
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(String table) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 61
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1085" name="EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(&quot;ProvisionerStock&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(&quot;ProvisionerStock&quot;)" methodname="EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" seed="735598537" result="Failed" start-time="2026-09-26T23:42:23.1100490Z" end-time="2026-09-26T23:42:23.1352900Z" duration="0.025241" asserts="2">
+              <failure>
+                <message><![CDATA[  0
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(String table) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 61
+   at InvokeStub_DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  0
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(String table) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 61
+   at InvokeStub_DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1086" name="EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(&quot;WellKeeperStock&quot;)" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(&quot;WellKeeperStock&quot;)" methodname="EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" seed="593043541" result="Failed" start-time="2026-09-26T23:42:23.1355700Z" end-time="2026-09-26T23:42:23.1643570Z" duration="0.028787" asserts="2">
+              <failure>
+                <message><![CDATA[  0
+  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(String table) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 61
+   at InvokeStub_DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  0
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(String table) in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 61
+   at InvokeStub_DensityLiquidVesselContentTests.EachActualSupplyTableGuaranteesExactlyOneEmptyFlaskWithoutLosingTheWaterSkin(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1094" name="NaturalChoirAndCraftRentalTablesDoNotGainManufacturedFlasks" fullname="CavesOfOoo.Tests.DensityLiquidVesselContentTests.NaturalChoirAndCraftRentalTablesDoNotGainManufacturedFlasks" methodname="NaturalChoirAndCraftRentalTablesDoNotGainManufacturedFlasks" classname="CavesOfOoo.Tests.DensityLiquidVesselContentTests" runstate="Runnable" seed="803665912" result="Failed" start-time="2026-09-26T23:42:23.1644560Z" end-time="2026-09-26T23:42:23.1946030Z" duration="0.030147" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: equivalent to < "MorrowfastProvisionerStock", "ProvisionerStock", "WellKeeperStock" >
+  But was:  <empty>
+  Missing (3): < "MorrowfastProvisionerStock", "ProvisionerStock", "WellKeeperStock" >
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.NaturalChoirAndCraftRentalTablesDoNotGainManufacturedFlasks() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 73
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: equivalent to < "MorrowfastProvisionerStock", "ProvisionerStock", "WellKeeperStock" >
+  But was:  <empty>
+  Missing (3): < "MorrowfastProvisionerStock", "ProvisionerStock", "WellKeeperStock" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityLiquidVesselContentTests.NaturalChoirAndCraftRentalTablesDoNotGainManufacturedFlasks() in /tmp/coo-density-liquid-vessel/Assets/Tests/DensityLiquidVesselContentTests.cs:line 73
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

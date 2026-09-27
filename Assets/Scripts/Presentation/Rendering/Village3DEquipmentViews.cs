@@ -34,7 +34,8 @@ namespace CavesOfOoo.Rendering
         private sealed class ItemView
         {
             public GameObject Root;
-            public string ModelId, SocketName;
+            public string ModelId, SocketName, AttachmentKey;
+            public Transform[] Targets;
             public Village3DEquipmentFallback Failure;
         }
         private sealed class ActorView
@@ -51,9 +52,13 @@ namespace CavesOfOoo.Rendering
             public readonly List<Entity> RemovedItems = new List<Entity>(8);
             public readonly List<BodyPart> BodyParts = new List<BodyPart>(16);
             public Village3DEquipmentFallback NullItemFailure;
+            public SpreadEquipmentRig Rig;
         }
         private readonly Village3DLibrary library;
         private readonly Action<GameObject> prepareModel;
+        private readonly bool spread;
+        private readonly SpreadPortable3DLibrary portable;
+        private readonly SpreadEquipment3DLibrary worn;
         private readonly Dictionary<Entity, ActorView> actors = new Dictionary<Entity, ActorView>();
         private readonly HashSet<Entity> seenActors = new HashSet<Entity>();
         private readonly List<Entity> removedActors = new List<Entity>(16);
@@ -62,11 +67,18 @@ namespace CavesOfOoo.Rendering
         private int lastVersion, syncVersion;
         private bool forceScan, hasSnapshot;
 
-        public Village3DEquipmentViews(Village3DLibrary library, Action<GameObject> prepareModel)
+        public Village3DEquipmentViews(Village3DLibrary library, Action<GameObject> prepareModel, bool spread = false)
         {
             this.library = library ?? throw new ArgumentNullException(nameof(library));
             this.prepareModel = prepareModel ?? throw new ArgumentNullException(nameof(prepareModel));
             readOnlyFallbacks = fallbacks.AsReadOnly();
+            this.spread = spread;
+            if (spread)
+            {
+                portable = SpreadPortable3DLibrary.Load(); worn = SpreadEquipment3DLibrary.Load();
+                if (portable == null || worn == null) throw new InvalidOperationException("Scoped equipment libraries missing.");
+                portable.Validate(); worn.Validate();
+            }
         }
         public int FallbackCount => fallbacks.Count;
         public IReadOnlyList<Village3DEquipmentFallback> Fallbacks => readOnlyFallbacks;
@@ -88,7 +100,7 @@ namespace CavesOfOoo.Rendering
             }
             if (state.Root != actorRoot)
             {
-                ClearItems(state); state.Sockets.Clear(); state.Root = actorRoot; state.HasSnapshot = false;
+                ClearItems(state); state.Rig?.Dispose(); state.Rig = spread ? new SpreadEquipmentRig(actor, actorRoot) : null; state.Sockets.Clear(); state.Root = actorRoot; state.HasSnapshot = false;
                 foreach (var transform in actorRoot.GetComponentsInChildren<Transform>(true))
                     if ((transform.name == HandLeft || transform.name == HandRight || transform.name == Head || transform.name == Back)
                         && !state.Sockets.ContainsKey(transform.name)) state.Sockets.Add(transform.name, transform);
@@ -121,6 +133,7 @@ namespace CavesOfOoo.Rendering
                         }
                         if (occupied == null) { Fail(state, item, view, "missing-native-body-slot"); continue; }
                     }
+                    if (spread) { SyncSpread(state, item, view, occupied); continue; }
                     var equip = item.GetPart<EquippablePart>();
                     string slot = occupied?.Type ?? equip?.Slot;
                     if (equip == null || !TryModel(item, slot, out string modelId))
@@ -161,7 +174,7 @@ namespace CavesOfOoo.Rendering
         {
             removedActors.Clear();
             foreach (var pair in actors) if (!seenActors.Contains(pair.Key) || pair.Value.Root == null) removedActors.Add(pair.Key);
-            foreach (var actor in removedActors) { ClearItems(actors[actor]); actors.Remove(actor); }
+            foreach (var actor in removedActors) { ClearItems(actors[actor]); actors[actor].Rig?.Dispose(); actors.Remove(actor); }
             fallbacks.Clear();
             foreach (var state in actors.Values)
             {
@@ -178,6 +191,113 @@ namespace CavesOfOoo.Rendering
             if (actor == null || item == null || !actors.TryGetValue(actor, out var state)
                 || !state.Items.TryGetValue(item, out var view) || view.Root == null) return false;
             root = view.Root; return true;
+        }
+        /// <summary>Verifies every submitted child; evidence returns one
+        /// representative mesh/material only after all current pieces match.</summary>
+        public bool TryGetApprovedStyle(Entity actor, Entity item, NativeZone3DRenderSurface surface,
+            MaterialPropertyBlock scratch, List<Material> materials, out SpreadBiomeStyleEvidence evidence)
+        {
+            evidence = new SpreadBiomeStyleEvidence(null,"no-current-scoped-equipment",false);
+            if (!spread || surface == null || !TryGet(actor,item,out var root)
+                || !actors.TryGetValue(actor,out var state) || state.Rig?.Supported != true
+                || !SpreadEquipmentRecipes.TryRecipe(actor,item,out var recipe)) return false;
+            var view = state.Items[item];
+            if (view.ModelId != recipe.ModelId || view.AttachmentKey != recipe.AttachmentKey || root == null || !root.transform.IsChildOf(state.Root.transform))
+            { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"stale-equipped-form",false); return false; }
+            Mesh expected = recipe.Slot == "Hand" ? portable.Find(recipe.ModelId)?.Mesh : worn.Find(recipe.ModelId)?.Mesh;
+            if (expected == null) { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"unmapped-equipped-form",false); return false; }
+            int pieces = recipe.Pieces;
+            if (recipe.Slot == "Handwear")
+            {
+                var current = actor.GetPart<Body>().GetParts(); pieces = 0;
+                if (SpreadEquipmentRig.HasHand(current,"L")) pieces++;
+                if (SpreadEquipmentRig.HasHand(current,"R")) pieces++;
+            }
+            var renderers = root.GetComponentsInChildren<Renderer>(true); Material representative = null;
+            if (pieces == 0 || renderers.Length != pieces)
+            { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"equipped-piece-count",false,expected,portable.Material); return false; }
+            if (view.Targets == null || view.Targets.Length != pieces)
+            { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"stale-equipped-targets",false,expected,portable.Material); return false; }
+            var seenBones = new HashSet<Transform>(); int pieceIndex = 0;
+            foreach (var renderer in renderers)
+            {
+                string failure = null;
+                Mesh submitted = renderer is SkinnedMeshRenderer skin ? skin.sharedMesh : renderer.GetComponent<MeshFilter>()?.sharedMesh;
+                if (!renderer.enabled || renderer.forceRenderingOff || !renderer.gameObject.activeInHierarchy) failure = "equipped-piece-not-drawn";
+                else if (submitted != expected || submitted.vertexCount == 0 || submitted.subMeshCount != 1 || submitted.GetIndexCount(0) == 0) failure = "equipped-mesh-mismatch";
+                else if (renderer is SkinnedMeshRenderer skinned)
+                {
+                    var bones = skinned.bones;
+                    if (bones.Length != 1 || !state.Rig.Owns(bones[0]) || bones[0] != view.Targets[pieceIndex] || !seenBones.Add(bones[0]) || skinned.rootBone != bones[0]
+                        || !bones[0].gameObject.activeInHierarchy) failure = "equipped-bone-mismatch";
+                }
+                else if (!state.Rig.Owns(root.transform.parent) || root.transform.parent != view.Targets[0]) failure = "equipped-grip-mismatch";
+                Material actual = null;
+                if (failure == null && !SpreadBiomeStyleCatalog.PaletteMatches(renderer,surface.MaterialFor(portable.Material),portable.Material,scratch,materials,out actual)) failure = "equipped-palette-mismatch";
+                if (failure != null)
+                { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,failure,false,expected,portable.Material,submitted,actual); return false; }
+                representative = actual; pieceIndex++;
+            }
+            evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,null,false,expected,portable.Material,expected,representative); return true;
+        }
+        private void SyncSpread(ActorView state, Entity item, ItemView view, BodyPart occupied)
+        {
+            if (!SpreadEquipmentRecipes.TryRecipe(state.Actor, item, out var recipe))
+            { Fail(state, item, view, "invalid-scoped-equipment-owner"); return; }
+            if (state.Rig?.Supported != true)
+            { Fail(state, item, view, "unsupported-anatomical-rig"); return; }
+            string socketName;
+            var targets = new List<Transform>(2);
+            if (recipe.Slot == "Hand")
+            {
+                socketName = HandSocket(occupied, state.UsedSockets);
+                if (!state.UsedSockets.Add(socketName)) { Fail(state,item,view,"occupied-rig-socket"); return; }
+                targets.Add(state.Rig.Held(socketName.EndsWith(".L",StringComparison.Ordinal) ? "L" : "R"));
+            }
+            else if (recipe.Pieces == 2)
+            {
+                socketName = recipe.Slot;
+                foreach (string side in new[] { "L", "R" })
+                    if (recipe.Slot != "Handwear" || SpreadEquipmentRig.HasHand(state.BodyParts, side)) targets.Add(state.Rig.Worn(recipe.Slot, side));
+            }
+            else { socketName = recipe.Slot; targets.Add(state.Rig.Worn(recipe.Slot,null)); }
+            if (targets.Count == 0 || targets.Exists(t => t == null)) { Fail(state,item,view,"missing-anatomical-attachment"); return; }
+            // Include actual surviving-side membership in the cached identity.
+            foreach (var target in targets) socketName += "/" + target.name;
+            if (view.Root != null && view.ModelId == recipe.ModelId && view.SocketName == socketName && view.AttachmentKey == recipe.AttachmentKey)
+            { view.Failure = null; return; }
+            DisposeView(view);
+            if (recipe.Slot == "Hand")
+            {
+                var entry = portable.Find(recipe.ModelId);
+                if (entry == null) { Fail(state,item,view,"missing-scoped-held-model"); return; }
+                view.Root = Object.Instantiate(entry.Prefab,targets[0],false);
+                var bounds = entry.Mesh.bounds;
+                bool shield = item.BlueprintName == "Buckler" || item.BlueprintName == "IronBuckler";
+                bool pole = item.BlueprintName == "Spear" || item.BlueprintName == "LoanerSpear" || item.BlueprintName == "EmberSpear" || item.BlueprintName == "CryoLance" || item.BlueprintName == "FirstRootGlaive";
+                var rotation = Quaternion.Euler(shield ? 70f : -50f,0,0);
+                var grip = shield ? bounds.center : new Vector3(0,bounds.center.y,bounds.min.z + bounds.size.z * (pole ? .40f : .15f));
+                view.Root.transform.localRotation = rotation; view.Root.transform.localPosition = -(rotation * grip);
+                view.Root.transform.localScale = Vector3.one;
+            }
+            else
+            {
+                var entry = worn.Find(recipe.ModelId);
+                if (entry == null || entry.Slot != recipe.Slot) { Fail(state,item,view,"missing-fitted-equipment-model"); return; }
+                view.Root = new GameObject(recipe.ModelId); view.Root.transform.SetParent(state.Root.transform,false);
+                foreach (var target in targets)
+                {
+                    var piece = new GameObject(target.name); piece.transform.SetParent(view.Root.transform,false);
+                    var renderer = piece.AddComponent<SkinnedMeshRenderer>(); renderer.sharedMesh = entry.Mesh;
+                    renderer.sharedMaterial = worn.Material; renderer.bones = new[] { target }; renderer.rootBone = target;
+                    renderer.updateWhenOffscreen = true; renderer.localBounds = new Bounds(Vector3.zero,Vector3.one*4);
+                    renderer.quality = SkinQuality.Bone1;
+                }
+            }
+            view.Root.name = recipe.ModelId + " [" + item.ID + "]"; view.Root.hideFlags = HideFlags.DontSave;
+            try { prepareModel(view.Root); }
+            catch { DisposeView(view); throw; }
+            view.ModelId = recipe.ModelId; view.SocketName = socketName; view.Targets = targets.ToArray(); view.AttachmentKey = recipe.AttachmentKey; view.Failure = null;
         }
         private static void Fail(ActorView actor, Entity item, ItemView view, string reason)
         {
@@ -235,7 +355,7 @@ namespace CavesOfOoo.Rendering
                 view.Root.SetActive(false);
                 if (Application.isPlaying) Object.Destroy(view.Root); else Object.DestroyImmediate(view.Root);
             }
-            view.Root = null; view.ModelId = view.SocketName = null;
+            view.Root = null; view.ModelId = view.SocketName = view.AttachmentKey = null; view.Targets = null;
         }
         private static void ClearItems(ActorView state)
         {
@@ -245,7 +365,7 @@ namespace CavesOfOoo.Rendering
         }
         public void Dispose()
         {
-            foreach (var state in actors.Values) ClearItems(state);
+            foreach (var state in actors.Values) { ClearItems(state); state.Rig?.Dispose(); }
             actors.Clear(); seenActors.Clear(); removedActors.Clear(); fallbacks.Clear(); hasSnapshot = false;
         }
     }

@@ -20,7 +20,9 @@ namespace CavesOfOoo.Core
 
         public override void TakeAction()
         {
-            if (!MovementSystem.TryMove(ParentEntity, CurrentZone, DX, DY))
+            var move = MovementSystem.TryMoveDetailed(ParentEntity, CurrentZone, DX, DY);
+            if (move.ActionPerformed) return;
+            if (!move.Moved)
             {
                 FailToParent();
                 return;

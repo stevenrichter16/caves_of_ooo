@@ -1,0 +1,50 @@
+{
+    "runId": "b82b480a3be8462a89450980f436f40f",
+    "zone": "Overworld.10.17.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: live ordinary actor while walking\n  at CavesOfOoo.Scenarios.Custom.DensityLairNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityLairNativePlayer.cs:386 \n  at CavesOfOoo.Scenarios.Custom.DensityLairNativePlayer+<WalkTo>d__64.MoveNext () [0x00039] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityLairNativePlayer.cs:291 \n  at CavesOfOoo.Scenarios.Custom.DensityLairNativePlayer+<RunSafely>d__76.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DensityLairNativePlayer.cs:399 ",
+    "canVerify": "Actual seed64 Beating lair; ordinary40HP starting actor and equipped dagger; keyboard descent through intermediate/final floors, boss examination, real reward collection, verified changed F5 checkpoint, real post-save keyboard move, F6 graph replacement and owner/gear/HP/energy/depletion restoration, ascent and revisit. Rendered screenshot files require human inspection.",
+    "cannotVerify": "One explicit starting shortcut transfers the unchanged new-game actor to the actual generated surface stair. All later route choices are scripted keyboard input. No direct stat, health, kit, AI or visibility boosts; up to the two actual starting healing tonics may be consumed through the native inventory action. No natural discovery, player judgement, combat balance or enjoyment claim. Death/refusal is recorded as failure and is never bypassed. Save/load and native RNG are not cross-runtime deterministic replay claims.",
+    "audit": [
+        "PASS ordinary_player_and_starting_kit",
+        "PASS starting_dagger_equipped_by_keyboard",
+        "PASS single_labelled_start_shortcut",
+        "PASS surface_stairs_and_no_early_boss",
+        "PASS keyboard_descends_to_intermediate",
+        "PASS one_final_boss_and_claimed_reward",
+        "PASS boss_examine_through_native_menu",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Underground/LairStacks/Native/b82b480a3be8462a89450980f436f40f/01-generated-beating-surface.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Underground/LairStacks/Native/b82b480a3be8462a89450980f436f40f/02-intermediate-floor.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/Underground/LairStacks/Native/b82b480a3be8462a89450980f436f40f/03-final-boss-examine.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Scenario start shortcut",
+            "source": "actual generated seed64 Beating lair",
+            "text": "Ordinary new-game actor transferred once to the real surface down stair at Overworld.10.17.0:44,12. No later transfers or stat/kit changes.",
+            "units": 0
+        }
+    ],
+    "cases": 8,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "errorsFinalized": true,
+    "seconds": 7.190873099999999,
+    "keyboardMoves": 11,
+    "startingTonicsUsed": 0,
+    "routeZones": [
+        "Overworld.10.17.0",
+        "Overworld.10.17.1",
+        "Overworld.10.17.2"
+    ],
+    "transcript": [
+        "You see a desert prowler."
+    ],
+    "bossID": "9496",
+    "rewardID": "9497",
+    "checkpointHash": "",
+    "startShortcut": true
+}

@@ -54,3 +54,25 @@ content, preserve original enemy replacements, add a launchable scene, and verif
 movement, blocking, combat, loot, persistence and world exits. Use scoped assets
 and existing render contracts; never treat a detached beauty render as in-game
 acceptance. Continue the earlier completion milestones alongside this addition.
+
+Latest user addition: execute C15. Expand the approved reference-glade appearance
+throughout the existing Spread biome, all chunks and all environmental, actor,
+player and object categories. Inventory generation and dynamic content first;
+create original models for missing coverage. Use actual map/zone authority,
+retain native procedural and authored layouts, and give normal fresh campaigns
+a safe Spread start. Preserve Continue semantics. Demonstrate real chunk travel,
+interaction, foreign-biome controls, save/load and complete native model coverage;
+a single styled scenario or a hard-coded address list is insufficient.
+
+Priority clarification (27 September): finish and verify the complete Spread biome
+with its new graphical style first, including actual ordinary Play after the
+reported2D fallback. Then continue the remaining content-filling milestones in
+the existing plan. The user explicitly authorized stopping the active Play
+session for import/testing; preserve their current save and preference baseline.
+
+Further user direction (27 September): once the biome graphics are verified,
+continue the content pass by auditing coded-but-incomplete mechanics, content
+and systems. Trace their ordinary sources, reachable interactions, world
+integration and save support; close verified gaps rather than stopping when the
+initial content list is exhausted. Preserve existing design constraints and
+record any new work in the living plan before test-first implementation.

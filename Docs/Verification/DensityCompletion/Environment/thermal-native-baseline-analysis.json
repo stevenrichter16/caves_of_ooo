@@ -1,0 +1,1442 @@
+{
+  "sourceReport": "Docs/Verification/DensityCompletion/Environment/NativeThermalBaseline/da16bf85c81741e2adccccdb9a544eaa/report.json",
+  "sourceSha256": "aac8850838fc87e46ccf73d20ccc80d60a27e33c68ab3996d11cb11c0de73025",
+  "nativeResult": {
+    "routes": 8,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "seconds": 56.905679799999994,
+    "screenshots": 19,
+    "zone": "Overworld.7.2.0"
+  },
+  "observations": [
+    {
+      "sequence": 0,
+      "caseName": "setup",
+      "phase": "initial-staging",
+      "targetId": "",
+      "targetBlueprint": "",
+      "targetPresent": false,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 0.0,
+      "effectiveFlame": 0.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 1,
+      "caseName": "oil-dry",
+      "phase": "source-staged",
+      "targetId": "55241",
+      "targetBlueprint": "OilSlick",
+      "targetPresent": true,
+      "targetHp": 6,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSlick:55241"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 20.0,
+      "effectiveFlame": 250.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 2,
+      "caseName": "oil-dry",
+      "phase": "before-native-CommandFlamingHands",
+      "targetId": "55241",
+      "targetBlueprint": "OilSlick",
+      "targetPresent": true,
+      "targetHp": 6,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSlick:55241"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 20.0,
+      "effectiveFlame": 250.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 3,
+      "caseName": "oil-dry",
+      "phase": "after-cast",
+      "targetId": "55241",
+      "targetBlueprint": "OilSlick",
+      "targetPresent": true,
+      "targetHp": 5,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSlick:55241"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 216.10000610351562,
+      "effectiveFlame": 250.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=75"
+      ]
+    },
+    {
+      "sequence": 4,
+      "caseName": "oil-dry",
+      "phase": "entered-source",
+      "targetId": "55241",
+      "targetBlueprint": "OilSlick",
+      "targetPresent": true,
+      "targetHp": 5,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSlick:55241",
+        "Player:2528"
+      ],
+      "hp": 28,
+      "playerWet": 0.0,
+      "temperature": 212.2779998779297,
+      "effectiveFlame": 250.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 5,
+      "caseName": "oil-dry",
+      "phase": "escaped-source",
+      "targetId": "55241",
+      "targetBlueprint": "OilSlick",
+      "targetPresent": true,
+      "targetHp": 5,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSlick:55241"
+      ],
+      "hp": 28,
+      "playerWet": 0.0,
+      "temperature": 208.53244018554688,
+      "effectiveFlame": 250.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 7,
+      "caseName": "inert-dry",
+      "phase": "source-staged",
+      "targetId": "55242",
+      "targetBlueprint": "StoneFloor",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "StoneFloor:55242"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 0.0,
+      "effectiveFlame": 0.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 8,
+      "caseName": "inert-dry",
+      "phase": "before-native-CommandFlamingHands",
+      "targetId": "55242",
+      "targetBlueprint": "StoneFloor",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "StoneFloor:55242"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 0.0,
+      "effectiveFlame": 0.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 9,
+      "caseName": "inert-dry",
+      "phase": "after-cast",
+      "targetId": "55242",
+      "targetBlueprint": "StoneFloor",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "StoneFloor:55242"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 0.0,
+      "effectiveFlame": 0.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=75"
+      ]
+    },
+    {
+      "sequence": 10,
+      "caseName": "inert-dry",
+      "phase": "entered-source",
+      "targetId": "55242",
+      "targetBlueprint": "StoneFloor",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "StoneFloor:55242",
+        "Player:2528"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 0.0,
+      "effectiveFlame": 0.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 11,
+      "caseName": "inert-dry",
+      "phase": "escaped-source",
+      "targetId": "55242",
+      "targetBlueprint": "StoneFloor",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "StoneFloor:55242"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 0.0,
+      "effectiveFlame": 0.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=75"
+      ]
+    },
+    {
+      "sequence": 13,
+      "caseName": "oil-wet",
+      "phase": "source-staged",
+      "targetId": "55243",
+      "targetBlueprint": "OilSlick",
+      "targetPresent": true,
+      "targetHp": 6,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSlick:55243"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 20.0,
+      "effectiveFlame": 250.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 14,
+      "caseName": "oil-wet",
+      "phase": "before-native-CommandFlamingHands",
+      "targetId": "55243",
+      "targetBlueprint": "OilSlick",
+      "targetPresent": true,
+      "targetHp": 6,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSlick:55243"
+      ],
+      "hp": 40,
+      "playerWet": 1.0,
+      "temperature": 20.0,
+      "effectiveFlame": 250.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 15,
+      "caseName": "oil-wet",
+      "phase": "after-cast",
+      "targetId": "55243",
+      "targetBlueprint": "OilSlick",
+      "targetPresent": true,
+      "targetHp": 4,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSlick:55243"
+      ],
+      "hp": 40,
+      "playerWet": 1.0,
+      "temperature": 216.10000610351562,
+      "effectiveFlame": 250.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 16,
+      "caseName": "oil-wet",
+      "phase": "entered-source",
+      "targetId": "55243",
+      "targetBlueprint": "OilSlick",
+      "targetPresent": true,
+      "targetHp": 4,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSlick:55243",
+        "Player:2528"
+      ],
+      "hp": 28,
+      "playerWet": 0.9900000095367432,
+      "temperature": 212.2779998779297,
+      "effectiveFlame": 250.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=72"
+      ]
+    },
+    {
+      "sequence": 17,
+      "caseName": "oil-wet",
+      "phase": "escaped-source",
+      "targetId": "55243",
+      "targetBlueprint": "OilSlick",
+      "targetPresent": true,
+      "targetHp": 4,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSlick:55243"
+      ],
+      "hp": 28,
+      "playerWet": 0.9800000190734863,
+      "temperature": 208.53244018554688,
+      "effectiveFlame": 250.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=72"
+      ]
+    },
+    {
+      "sequence": 19,
+      "caseName": "bush-dry",
+      "phase": "source-staged",
+      "targetId": "55244",
+      "targetBlueprint": "Bush",
+      "targetPresent": true,
+      "targetHp": 6,
+      "targetCellOccupants": [
+        "Grass:27819",
+        "Bush:55244"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 25.0,
+      "effectiveFlame": 320.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 20,
+      "caseName": "bush-dry",
+      "phase": "before-native-CommandFlamingHands",
+      "targetId": "55244",
+      "targetBlueprint": "Bush",
+      "targetPresent": true,
+      "targetHp": 6,
+      "targetCellOccupants": [
+        "Grass:27819",
+        "Bush:55244"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 25.0,
+      "effectiveFlame": 320.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 21,
+      "caseName": "bush-dry",
+      "phase": "after-cast",
+      "targetId": "55244",
+      "targetBlueprint": "Bush",
+      "targetPresent": false,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27819"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 388.13751220703125,
+      "effectiveFlame": 320.0,
+      "targetBurn": 1.5,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 22,
+      "caseName": "bush-dry",
+      "phase": "wait-1",
+      "targetId": "55244",
+      "targetBlueprint": "Bush",
+      "targetPresent": false,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27819"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 388.13751220703125,
+      "effectiveFlame": 320.0,
+      "targetBurn": 1.5,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 23,
+      "caseName": "bush-dry",
+      "phase": "wait-2",
+      "targetId": "55244",
+      "targetBlueprint": "Bush",
+      "targetPresent": false,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27819"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 388.13751220703125,
+      "effectiveFlame": 320.0,
+      "targetBurn": 1.5,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=72"
+      ]
+    },
+    {
+      "sequence": 24,
+      "caseName": "bush-dry",
+      "phase": "wait-3",
+      "targetId": "55244",
+      "targetBlueprint": "Bush",
+      "targetPresent": false,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27819"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 388.13751220703125,
+      "effectiveFlame": 320.0,
+      "targetBurn": 1.5,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 25,
+      "caseName": "bush-dry",
+      "phase": "wait-4",
+      "targetId": "55244",
+      "targetBlueprint": "Bush",
+      "targetPresent": false,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27819"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 388.13751220703125,
+      "effectiveFlame": 320.0,
+      "targetBurn": 1.5,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 27,
+      "caseName": "bush-wet",
+      "phase": "source-staged",
+      "targetId": "55245",
+      "targetBlueprint": "Bush",
+      "targetPresent": true,
+      "targetHp": 6,
+      "targetCellOccupants": [
+        "Grass:27819",
+        "Bush:55245"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 25.0,
+      "effectiveFlame": 320.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 28,
+      "caseName": "bush-wet",
+      "phase": "before-native-CommandConjureWater",
+      "targetId": "55245",
+      "targetBlueprint": "Bush",
+      "targetPresent": true,
+      "targetHp": 6,
+      "targetCellOccupants": [
+        "Grass:27819",
+        "Bush:55245"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 25.0,
+      "effectiveFlame": 320.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 29,
+      "caseName": "bush-wet",
+      "phase": "wet-target-before-fire",
+      "targetId": "55245",
+      "targetBlueprint": "Bush",
+      "targetPresent": true,
+      "targetHp": 6,
+      "targetCellOccupants": [
+        "Grass:27819",
+        "Bush:55245",
+        "WaterPuddle:55246"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 25.0,
+      "effectiveFlame": 320.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.49000000953674316,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=75"
+      ]
+    },
+    {
+      "sequence": 30,
+      "caseName": "bush-wet",
+      "phase": "before-native-CommandFlamingHands",
+      "targetId": "55245",
+      "targetBlueprint": "Bush",
+      "targetPresent": true,
+      "targetHp": 6,
+      "targetCellOccupants": [
+        "Grass:27819",
+        "Bush:55245",
+        "WaterPuddle:55246"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 25.0,
+      "effectiveFlame": 320.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.48000001907348633,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 31,
+      "caseName": "bush-wet",
+      "phase": "after-cast",
+      "targetId": "55245",
+      "targetBlueprint": "Bush",
+      "targetPresent": true,
+      "targetHp": 5,
+      "targetCellOccupants": [
+        "Grass:27819",
+        "Bush:55245",
+        "WaterPuddle:55246"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 310.0,
+      "effectiveFlame": 320.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 32,
+      "caseName": "bush-wet",
+      "phase": "wait-1",
+      "targetId": "55245",
+      "targetBlueprint": "Bush",
+      "targetPresent": true,
+      "targetHp": 5,
+      "targetCellOccupants": [
+        "Grass:27819",
+        "Bush:55245",
+        "WaterPuddle:55246"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 295.75,
+      "effectiveFlame": 320.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 33,
+      "caseName": "bush-wet",
+      "phase": "wait-2",
+      "targetId": "55245",
+      "targetBlueprint": "Bush",
+      "targetPresent": true,
+      "targetHp": 5,
+      "targetCellOccupants": [
+        "Grass:27819",
+        "Bush:55245",
+        "WaterPuddle:55246"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 282.2124938964844,
+      "effectiveFlame": 320.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 34,
+      "caseName": "bush-wet",
+      "phase": "wait-3",
+      "targetId": "55245",
+      "targetBlueprint": "Bush",
+      "targetPresent": true,
+      "targetHp": 5,
+      "targetCellOccupants": [
+        "Grass:27819",
+        "Bush:55245",
+        "WaterPuddle:55246"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 269.35186767578125,
+      "effectiveFlame": 320.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=72"
+      ]
+    },
+    {
+      "sequence": 35,
+      "caseName": "bush-wet",
+      "phase": "wait-4",
+      "targetId": "55245",
+      "targetBlueprint": "Bush",
+      "targetPresent": true,
+      "targetHp": 5,
+      "targetCellOccupants": [
+        "Grass:27819",
+        "Bush:55245",
+        "WaterPuddle:55246"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 257.13427734375,
+      "effectiveFlame": 320.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 37,
+      "caseName": "tar-thermal",
+      "phase": "source-staged",
+      "targetId": "55247",
+      "targetBlueprint": "TarSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "TarSeep:55247"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 20.0,
+      "effectiveFlame": -2800.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 38,
+      "caseName": "tar-thermal",
+      "phase": "before-native-CommandFlamingHands",
+      "targetId": "55247",
+      "targetBlueprint": "TarSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "TarSeep:55247"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 20.0,
+      "effectiveFlame": -2800.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 39,
+      "caseName": "tar-thermal",
+      "phase": "after-thermal-input",
+      "targetId": "55247",
+      "targetBlueprint": "TarSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "TarSeep:55247"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 137.6999969482422,
+      "effectiveFlame": -2800.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 40,
+      "caseName": "tar-thermal",
+      "phase": "wait-1",
+      "targetId": "55247",
+      "targetBlueprint": "TarSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "TarSeep:55247"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 135.4459991455078,
+      "effectiveFlame": -2800.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=72"
+      ]
+    },
+    {
+      "sequence": 41,
+      "caseName": "tar-thermal",
+      "phase": "wait-2",
+      "targetId": "55247",
+      "targetBlueprint": "TarSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "TarSeep:55247"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 133.23707580566406,
+      "effectiveFlame": -2800.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=71"
+      ]
+    },
+    {
+      "sequence": 42,
+      "caseName": "tar-thermal",
+      "phase": "wait-3",
+      "targetId": "55247",
+      "targetBlueprint": "TarSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "TarSeep:55247"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 131.0723419189453,
+      "effectiveFlame": -2800.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=71"
+      ]
+    },
+    {
+      "sequence": 44,
+      "caseName": "oil-seep-thermal",
+      "phase": "source-staged",
+      "targetId": "55248",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55248"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 25.0,
+      "effectiveFlame": 200.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 45,
+      "caseName": "oil-seep-thermal",
+      "phase": "before-native-CommandFlamingHands",
+      "targetId": "55248",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55248"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 25.0,
+      "effectiveFlame": 200.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 46,
+      "caseName": "oil-seep-thermal",
+      "phase": "after-thermal-input",
+      "targetId": "55248",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55248"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 443.95001220703125,
+      "effectiveFlame": 200.0,
+      "targetBurn": 4.300000190734863,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 47,
+      "caseName": "oil-seep-thermal",
+      "phase": "wait-1",
+      "targetId": "55248",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55248"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 549.1323852539062,
+      "effectiveFlame": 200.0,
+      "targetBurn": 5.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=72"
+      ]
+    },
+    {
+      "sequence": 48,
+      "caseName": "oil-seep-thermal",
+      "phase": "wait-2",
+      "targetId": "55248",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55248"
+      ],
+      "hp": 37,
+      "playerWet": 0.0,
+      "temperature": 954.9030151367188,
+      "effectiveFlame": 200.0,
+      "targetBurn": 5.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=71"
+      ]
+    },
+    {
+      "sequence": 49,
+      "caseName": "oil-seep-thermal",
+      "phase": "wait-3",
+      "targetId": "55248",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55248"
+      ],
+      "hp": 33,
+      "playerWet": 0.0,
+      "temperature": 1306.1019287109375,
+      "effectiveFlame": 200.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=71"
+      ]
+    },
+    {
+      "sequence": 51,
+      "caseName": "steam-after-water",
+      "phase": "source-staged",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 25.0,
+      "effectiveFlame": 200.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 52,
+      "caseName": "steam-after-water",
+      "phase": "before-native-CommandFlamingHands",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 25.0,
+      "effectiveFlame": 200.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 53,
+      "caseName": "steam-after-water",
+      "phase": "thermal-ignited",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 443.95001220703125,
+      "effectiveFlame": 200.0,
+      "targetBurn": 4.300000190734863,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 54,
+      "caseName": "steam-after-water",
+      "phase": "native-retreat-aligns-water-endpoint",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 549.1323852539062,
+      "effectiveFlame": 200.0,
+      "targetBurn": 5.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=75"
+      ]
+    },
+    {
+      "sequence": 55,
+      "caseName": "steam-after-water",
+      "phase": "before-native-CommandConjureWater",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 549.1323852539062,
+      "effectiveFlame": 200.0,
+      "targetBurn": 5.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.0,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=75"
+      ]
+    },
+    {
+      "sequence": 56,
+      "caseName": "steam-after-water",
+      "phase": "water-on-burning-source",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249",
+        "WaterPuddle:55250",
+        "SteamCloud:55251",
+        "SteamCloud:55252"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 646.9227294921875,
+      "effectiveFlame": 200.0,
+      "targetBurn": 3.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.8999999761581421,
+      "steamClouds": [
+        "55251:2",
+        "55252:3"
+      ],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=75"
+      ]
+    },
+    {
+      "sequence": 57,
+      "caseName": "steam-after-water",
+      "phase": "steam-wait-1",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249",
+        "WaterPuddle:55250",
+        "SteamCloud:55251",
+        "SteamCloud:55252"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 720.1740112304688,
+      "effectiveFlame": 200.0,
+      "targetBurn": 5.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.7999999523162842,
+      "steamClouds": [
+        "55251:1",
+        "55252:2"
+      ],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=76"
+      ]
+    },
+    {
+      "sequence": 58,
+      "caseName": "steam-after-water",
+      "phase": "steam-wait-2",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249",
+        "WaterPuddle:55250",
+        "SteamCloud:55252"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 706.2705078125,
+      "effectiveFlame": 200.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.6999999284744263,
+      "steamClouds": [
+        "55252:1"
+      ],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=75"
+      ]
+    },
+    {
+      "sequence": 59,
+      "caseName": "steam-after-water",
+      "phase": "steam-wait-3",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249",
+        "WaterPuddle:55250"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 692.6450805664062,
+      "effectiveFlame": 200.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.5999999046325684,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 60,
+      "caseName": "steam-after-water",
+      "phase": "steam-wait-4",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249",
+        "WaterPuddle:55250"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 679.2921752929688,
+      "effectiveFlame": 200.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.49999991059303284,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 61,
+      "caseName": "steam-after-water",
+      "phase": "steam-wait-5",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249",
+        "WaterPuddle:55250"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 666.2063598632812,
+      "effectiveFlame": 200.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.3999999165534973,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=74"
+      ]
+    },
+    {
+      "sequence": 62,
+      "caseName": "steam-after-water",
+      "phase": "steam-wait-6",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249",
+        "WaterPuddle:55250"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 653.3822631835938,
+      "effectiveFlame": 200.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.2999999225139618,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=75"
+      ]
+    },
+    {
+      "sequence": 63,
+      "caseName": "steam-after-water",
+      "phase": "steam-wait-7",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249",
+        "WaterPuddle:55250"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 640.8146362304688,
+      "effectiveFlame": 200.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.19999992847442627,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    },
+    {
+      "sequence": 64,
+      "caseName": "steam-after-water",
+      "phase": "steam-wait-8",
+      "targetId": "55249",
+      "targetBlueprint": "OilSeep",
+      "targetPresent": true,
+      "targetHp": 0,
+      "targetCellOccupants": [
+        "Grass:27818",
+        "OilSeep:55249",
+        "WaterPuddle:55250"
+      ],
+      "hp": 40,
+      "playerWet": 0.0,
+      "temperature": 628.4983520507812,
+      "effectiveFlame": 200.0,
+      "targetBurn": 0.0,
+      "targetWet": 0.0,
+      "targetSteam": 0.09999992698431015,
+      "steamClouds": [],
+      "wholeZoneHostiles": [
+        "Viper:28853:distance=73"
+      ]
+    }
+  ],
+  "findings": {
+    "dryBush": "targetPresent=false, targetHP=0 and target absent from occupants immediately after cast. Retained reference temperature388.138/burn1.5 on later rows is not a live fire or tick failure.",
+    "wetBush": "present throughout; after cast HP5, temperature310 below ignition320, no burn; cools257.131 after4waits. Source moisture0.48 before fire is real native control.",
+    "oilContact": "dry/wet player both40→28 on entry and stay28 on exit; inert stays40. Present OilSlick is not BurningEffect at entry; this measures the existing source/contact route, not a generic wet-fire protection rule.",
+    "tar": "present TarSeep keeps effectiveFlame−2800 from Volatility30 and no burn while warming20→137.7; native evidence confirms arithmetic pathology, not a chosen corrected balance value.",
+    "oilSeep": "present source burns4.3→5, temperature443.95→1306.10 over3waits, then no BurningEffect; source remains. Player33 after3waits with no nearby creature/remoteViper70+ cells; do not call it an absent-source artifact.",
+    "steam": "exact source hit after native retreat; present source burn5→3 after water, back5 onwait1, absent bywait2. Steam density0.9→0.1 over8waits; spawned clouds lifetimes2/3 and allgonebywait3. Hot source temperaturestill628.498 atwait8.",
+    "steamLimit": "This scene source remains thermally displaced, so existing passive EndTurn already decays its status. It does not probe ambient steam-only lifetime or missing nonburning BeginTakeAction neighbor cooling/wetting; private regression tests provide that evidence."
+  },
+  "boundary": "Eight positive route checks establish exercised controls, not global material balance, natural acquisition, general extinguishing, complete steam dissipation, long-session behavior or renderer fidelity.19captures need independent visual inspection."
+}

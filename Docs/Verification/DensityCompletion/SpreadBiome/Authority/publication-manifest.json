@@ -1,0 +1,47 @@
+{
+  "status": "Published after full exact preimage verification; standalone tests/actual-reference compile and independent review GREEN. Actual native current-source execution pending.",
+  "files": [
+    {
+      "source": "/tmp/coo-spread-authority/SpreadPresentationScope.cs",
+      "destination": "Assets/Scripts/Gameplay/World/Generation/SpreadPresentationScope.cs",
+      "sha256": "8c3151a7e3d958f1a16eb51209d47dc76a9e6505a532e8d5b1ae0b7d168949d1",
+      "previousSha256": null
+    },
+    {
+      "source": "/tmp/coo-spread-authority/SpreadPresentationScope.cs.meta",
+      "destination": "Assets/Scripts/Gameplay/World/Generation/SpreadPresentationScope.cs.meta",
+      "sha256": "e95932ddfe97dd14d5a038ce5b057f07fefcad4629d7fc834f7fcafdf32b8e46",
+      "previousSha256": null
+    },
+    {
+      "source": "/tmp/coo-spread-authority/SpreadPresentationScopeTests.cs",
+      "destination": "Assets/Tests/EditMode/Gameplay/World/Generation/SpreadPresentationScopeTests.cs",
+      "sha256": "4a34fd2f17c389c40a6113c770f1cb4caab3f8344cb8a65ab26dd400a55e4f8c",
+      "previousSha256": null
+    },
+    {
+      "source": "/tmp/coo-spread-authority/SpreadPresentationScopeTests.cs.meta",
+      "destination": "Assets/Tests/EditMode/Gameplay/World/Generation/SpreadPresentationScopeTests.cs.meta",
+      "sha256": "4ff6683c7d1acd2cfa5596870ac9d511ea921d71393cdf024104f4af64b1e457",
+      "previousSha256": null
+    },
+    {
+      "source": "/tmp/coo-spread-authority/LairStacks.cs",
+      "destination": "Assets/Scripts/Gameplay/World/Generation/LairStacks.cs",
+      "sha256": "76dc2a773599d1ca6adbfef65b358deeec7c295c0d6ccdee9eb141d367ce1790",
+      "previousSha256": "c360a1a4332e6db1c24df173e8995cad6ef9b9accebc07350893cf4ce9b62527"
+    }
+  ],
+  "existingPatch": "lair-provenance.patch",
+  "evidence": {
+    "focused": "authority-green.xml:39/39",
+    "affected": "affected-green.xml:263/263",
+    "initialRed": "authority-red.xml:19 failures/13 controls",
+    "commitCounter": "commit-hook-counter-red.xml:2/2 intended failures",
+    "restoreCounter": "restore-hook-counter-red.xml:1 intended failure/1 surface control",
+    "runtimeCompile": "runtime.log:zero errors",
+    "nativeReferenceTestCompile": "native-tests.log:zero errors"
+  },
+  "noNewSaveFields": true,
+  "noManagerOrSaveHooks": true
+}

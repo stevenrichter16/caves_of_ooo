@@ -21,8 +21,8 @@ namespace CavesOfOoo
         [Header("References")]
         public ZoneRenderer ZoneRenderer;
 
-        [Tooltip("Destination for fresh games only; continuing a save uses its saved location.")]
-        public string FreshGameZoneID = MorrowfastSceneRuntime.ZoneID;
+        [Tooltip("Fresh games: leave empty for a safe generated Spread start, or set an explicit scenario destination. Continue uses the saved location.")]
+        public string FreshGameZoneID = "";
         [Min(0.1f)] public float GameplayZoomMultiplier = 1f;
 
         /// <summary>
@@ -328,7 +328,11 @@ namespace CavesOfOoo
                     }
                     GivePlayerFarmingStarterKit();
                     GivePlayerStartingSpells();
-                    PlacePlayerInOpenCell();
+                    if (!PlacePlayerInOpenCell())
+                    {
+                        Debug.LogError("[Bootstrap] FAILED: No safe connected fresh-game start is available");
+                        return false;
+                    }
                     EnsureFarmPlotAtSpawn();
                     if (DevMode.Enabled)
                     {
@@ -1312,20 +1316,29 @@ namespace CavesOfOoo
         }
 
         /// <summary>
-        /// Create the fresh world at the scene's configured starting chunk. Loading a
-        /// saved graph uses ApplyLoadedGame and never calls this start selection.
+        /// Create the ordinary Spread candidate or the scene's explicit fresh
+        /// destination. Actual safe placement can fall through candidates later.
+        /// Loading a saved graph uses ApplyLoadedGame, outside this selection.
         /// </summary>
         private bool GenerateStartingZone()
         {
             _zoneManager = new OverworldZoneManager(_factory, NativeAuditBootstrapSettings.ResolveSeed());
-            _zone = _zoneManager.GetZone(FreshGameZoneID);
-            _zoneManager.SetActiveZone(_zone);
+            _zone = null;
+            foreach (string id in FreshGameStart.CandidateZoneIds(_zoneManager, FreshGameZoneID))
+            {
+                var candidate = _zoneManager.GetZone(id);
+                if (candidate == null || !string.Equals(candidate.ZoneID, id, StringComparison.Ordinal))
+                    continue;
+                _zone = candidate;
+                break;
+            }
             if (_zone == null)
             {
-                Debug.LogError("[Bootstrap] FAILED: Zone generation returned null");
+                Debug.LogError("[Bootstrap] FAILED: No configured fresh-game zone generated successfully");
                 return false;
             }
 
+            _zoneManager.SetActiveZone(_zone);
             if (MorrowfastSceneRuntime.IsActive(_zone)
                 && MorrowfastStartingGarden.Ensure(_zone) != FarmPlotSeeder.MIN_PLANTABLE_CELLS)
             {
@@ -1337,41 +1350,19 @@ namespace CavesOfOoo
             return true;
         }
 
-        private const int MorrowfastStartX = 40;
-        private const int MorrowfastStartY = 23;
-
         /// <summary>
-        /// Place a fresh character just inside Morrowfast's southern road,
-        /// searching outward if occupied. Other zones retain the center search.
+        /// Only an unplaced living character may select a new start. Preserve
+        /// explicit scenario destinations; the empty setting can fall through
+        /// unsafe/generated failures to another actual Spread chunk. Refusal
+        /// aborts startup before turn, render and save registration.
         /// </summary>
-        private void PlacePlayerInOpenCell()
+        private bool PlacePlayerInOpenCell()
         {
-            bool morrowfast = MorrowfastSceneRuntime.IsActive(_zone);
-            int cx = morrowfast ? MorrowfastStartX : Zone.Width / 2;
-            int cy = morrowfast ? MorrowfastStartY : Zone.Height / 2;
-
-            for (int radius = 0; radius < Math.Max(Zone.Width, Zone.Height); radius++)
-            {
-                for (int dx = -radius; dx <= radius; dx++)
-                {
-                    for (int dy = -radius; dy <= radius; dy++)
-                    {
-                        if (Math.Abs(dx) != radius && Math.Abs(dy) != radius) continue;
-                        int x = cx + dx;
-                        int y = cy + dy;
-                        if (!_zone.InBounds(x, y)) continue;
-                        var cell = _zone.GetCell(x, y);
-                        if (cell != null && cell.IsPassable())
-                        {
-                            _zone.AddEntity(_player, x, y);
-                            return;
-                        }
-                    }
-                }
-            }
-
-            // Fallback: retain the preferred starting cell if no open cell exists
-            _zone.AddEntity(_player, cx, cy);
+            if (!FreshGameStart.TryPlace(_zoneManager, _player, FreshGameZoneID, out var placedZone))
+                return false;
+            _zone = placedZone;
+            _zoneManager.SetActiveZone(_zone);
+            return true;
         }
 
         /// <summary>

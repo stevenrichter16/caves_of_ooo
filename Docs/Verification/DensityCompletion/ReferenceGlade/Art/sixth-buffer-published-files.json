@@ -1,0 +1,35 @@
+{
+  "scope": "Repair six actual native failures by writing three authored humanoid mesh buffers directly; new fresh/reimport controls; no other render profile or source changes.",
+  "files": [
+    {
+      "path": "Assets/Editor/Scenarios/ReferenceGladeHumanoidMeshBuilder.cs",
+      "sha256": "fb8d3508f18f95b6a317863b7c9ba7510ee13d0760677e27cfb2f53003e359ec"
+    },
+    {
+      "path": "Assets/Editor/Scenarios/ReferenceGladeVoxelKitBuilder.cs",
+      "sha256": "5ae7e086e32ca3c39ed7d4565670eee130ed0cef9c5345fee71a221029fb6bf5"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeHumanoidImportTests.cs",
+      "sha256": "4bc03310689583b138476f030b9445c4d547885dd13f1228f298eaeaf1d9eb7f"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/ReferenceGladeHumanoidImportTests.cs.meta",
+      "sha256": "8a3d066c8c240549e565fdadf3f8c913f433954cc0f43b10e8ea7a02eac8175c"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/ReferenceGlade/Art/Sixth/buffer-compile.log",
+      "sha256": "307639ffe6194e20aec2910bea0ce2b5822da295a8a3997eae8b9e12ae671fbf"
+    },
+    {
+      "path": "Docs/Verification/DensityCompletion/ReferenceGlade/Art/Sixth/native-buffer-red.json",
+      "sha256": "4fd037b6c9e51a7ad731658d4a7c6593912ff21edb26f71254f8437fc22c277c"
+    },
+    {
+      "path": "Docs/DENSITY-REFERENCE-GLADE-ART.md",
+      "sha256": "8b1b88d01d61cd51ddb21c5fe89aa1bd5e285ea3f78de960f121d30c71e23e6f"
+    }
+  ],
+  "mergeAppend": "Docs/DENSITY-REFERENCE-GLADE-ART.md from private doc-append.md",
+  "independentReview": "Read-only combat review found no blocker in direct buffer ownership/index format/persistent identity/temporary cleanup. Native execution pending."
+}
