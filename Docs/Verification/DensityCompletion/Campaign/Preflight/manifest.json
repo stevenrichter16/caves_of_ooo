@@ -1,0 +1,71 @@
+{
+  "status": "private runtime/editor/tests compile0; helper20GREEN after RED; independent bounded helper/player/launcher review clear; ready for root coordinated publication",
+  "files": [
+    {
+      "source": "/tmp/coo-c12-campaign-native/DensityCampaignNativeEvidence.cs",
+      "target": "Assets/Scripts/Scenarios/Custom/DensityCampaignNativeEvidence.cs",
+      "expectedBeforeSha256": null,
+      "sha256": "c9b96627a99804074b15d952a510503db3603ef47a12cdfd116854bc7f1f5940"
+    },
+    {
+      "source": "/tmp/coo-c12-campaign-native/DensityCampaignNativeEvidence.cs.meta",
+      "target": "Assets/Scripts/Scenarios/Custom/DensityCampaignNativeEvidence.cs.meta",
+      "expectedBeforeSha256": null,
+      "sha256": "0bf9558c8e4e59c85b9df28503bd30fce6a22abec1b7346b3b559ef38bacdd7e"
+    },
+    {
+      "source": "/tmp/coo-c12-campaign-native/DensityCampaignNativePlayer.cs",
+      "target": "Assets/Scripts/Scenarios/Custom/DensityCampaignNativePlayer.cs",
+      "expectedBeforeSha256": null,
+      "sha256": "24da7c5237b694bf19b79b025d0c6962529a74355bcbe391ddb2b83602e5bf6c"
+    },
+    {
+      "source": "/tmp/coo-c12-campaign-native/DensityCampaignNativePlayer.cs.meta",
+      "target": "Assets/Scripts/Scenarios/Custom/DensityCampaignNativePlayer.cs.meta",
+      "expectedBeforeSha256": null,
+      "sha256": "55891c3bd8a432d9f373af3f24aa80fddf789f87a98f120bfd148fa58fcfc59d"
+    },
+    {
+      "source": "/tmp/coo-c12-campaign-native/DensityCampaignNativeBatch.cs",
+      "target": "Assets/Editor/Scenarios/DensityCampaignNativeBatch.cs",
+      "expectedBeforeSha256": null,
+      "sha256": "ae3b4e31812dc3ff6ec4ffee8480f349a42cd0b19084d5857ccf49752911439e"
+    },
+    {
+      "source": "/tmp/coo-c12-campaign-native/DensityCampaignNativeBatch.cs.meta",
+      "target": "Assets/Editor/Scenarios/DensityCampaignNativeBatch.cs.meta",
+      "expectedBeforeSha256": null,
+      "sha256": "81c652ccf4f4d1c4edb7e1c43895d5064c186e14b2456a00137f90811116a40c"
+    },
+    {
+      "source": "/tmp/coo-c12-campaign-native/DensityCampaignNativeEvidenceTests.cs",
+      "target": "Assets/Tests/EditMode/Gameplay/Combat/DensityCampaignNativeEvidenceTests.cs",
+      "expectedBeforeSha256": null,
+      "sha256": "22304ae553082d9fb6b7778a5dae314b26024a7b90c5381ed131cfc7b78dfa11"
+    },
+    {
+      "source": "/tmp/coo-c12-campaign-native/DensityCampaignNativeEvidenceTests.cs.meta",
+      "target": "Assets/Tests/EditMode/Gameplay/Combat/DensityCampaignNativeEvidenceTests.cs.meta",
+      "expectedBeforeSha256": null,
+      "sha256": "a49ed446041eb3b638cd51282b32402d80e1dcc8661e5dd05ababa3e5741c3ed"
+    },
+    {
+      "source": "/tmp/coo-c12-campaign-native/NativeDensitySceneRestorationTests.cs",
+      "target": "Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs",
+      "expectedBeforeSha256": "7743222949b738746e0ed17075c407a43db0b03e05435f0a70a97244cf9628aa",
+      "sha256": "8d0cbd17b187ced11af71932bd4c8ffbef1929ee8cfd611cd8413258d1dd20ea"
+    }
+  ],
+  "scope": "measurement only; normal seed1 N and real worldmap/ground journey, no actor/source/stat/stock/RNG/travel grants",
+  "launch": "CavesOfOoo.Editor.DensityCampaignNativeBatch.Launch()",
+  "tests": "DensityCampaignNativeEvidenceTests20 + exact2 NativeDensitySceneRestorationTests(DensityCampaignNativeBatch) missing-launcher cases",
+  "red": "missing-helper compileRED; pure-rest energy counter19PASS1RED then20GREEN",
+  "native": "unrun; source chance, route affordability/injury/lock/path/UI and actual visual gates pending",
+  "peerReview": "combat_density: pure rest energy counter executed RED\u2192GREEN; ApplyTonic free-action cost corrected in measurement; no other concrete false-positive blocker in actual map/ground, whole-stack/container conservation, injury/rest, depletion and replacement save. Native route/source/survival remain unrun.",
+  "compile": {
+    "runtimeErrors": 0,
+    "editorErrors": 0,
+    "testErrors": 0
+  },
+  "menuCorrection": "Uses actual offered PickCell for a lower terrain owner even when SelectedCellIsPile is false, following independently reviewed C8 native gap; no game/menu authority edits."
+}

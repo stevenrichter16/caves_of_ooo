@@ -1,0 +1,178 @@
+{
+  "status": "incomplete; further native iteration deferred; no gameplay change",
+  "date": "2026-09-27",
+  "runId": "304ac275c71e4497bf667af6d5585265",
+  "reportPath": "Docs/Verification/DensityCompletion/Campaign/NativeAcceptance/304ac275c71e4497bf667af6d5585265/report.json",
+  "reportSha256": "c190e2973d03666d849e9bc39319d9e6a007583b585dc37895fc9bc71c3475d0",
+  "raw": {
+    "complete": false,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "seconds": 25.8806315,
+    "audit": [
+      "PASS ordinary_start",
+      "PASS original_dagger_equipped",
+      "PASS native_map_town",
+      "PASS purchased_empty_water",
+      "PASS filled_actual_well",
+      "FAIL native_precondition_failed"
+    ],
+    "requiredChecks": [
+      "ordinary_start",
+      "native_map_town",
+      "purchased_empty_water",
+      "filled_actual_well",
+      "original_dagger_equipped",
+      "actual_finished_find",
+      "real_encounter_damage",
+      "earned_sale",
+      "affordable_resupply",
+      "actual_injury_recovery",
+      "revisited_depleted_source",
+      "checkpoint_saved",
+      "real_unsaved_transaction",
+      "replacement_resource_graph",
+      "ordinary_finish"
+    ],
+    "localInputs": 63,
+    "mapSteps": 13,
+    "rests": 0,
+    "opened": 3,
+    "originalTonicsUsed": 0,
+    "completedPlayerTurns": 76,
+    "pureClock": 130,
+    "checkpointHash": null
+  },
+  "passedRequiredChecks": [
+    "ordinary_start",
+    "original_dagger_equipped",
+    "native_map_town",
+    "purchased_empty_water",
+    "filled_actual_well"
+  ],
+  "unmetRequiredChecks": [
+    "actual_finished_find",
+    "real_encounter_damage",
+    "earned_sale",
+    "affordable_resupply",
+    "actual_injury_recovery",
+    "revisited_depleted_source",
+    "checkpoint_saved",
+    "real_unsaved_transaction",
+    "replacement_resource_graph",
+    "ordinary_finish"
+  ],
+  "actualCohort": {
+    "visitedCandidateZones": [
+      "Overworld.7.6.0",
+      "Overworld.6.7.0"
+    ],
+    "openedContainerIds": [
+      "8952",
+      "8954",
+      "11108"
+    ],
+    "boundsExhausted": false,
+    "contentsAcquired": false,
+    "reasonUnselected": "Only Commerce-bearing MeleeWeapon or Armor qualifying whole items were eligible; three observed stocks contained gold, lichen and meat."
+  },
+  "finalObservation": {
+    "phase": "native_precondition_failed",
+    "player": "2709",
+    "zone": "Overworld.6.7.0",
+    "x": 38,
+    "y": 17,
+    "hp": 40,
+    "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+    "tick": 900,
+    "energy": 1000,
+    "drams": 27,
+    "gear": "2711:HealingTonic:2:owner=2709|2712:DriedMeat:2:owner=2709|2713:WateringGrimoire:1:owner=2709|2714:CandyCarrotSeed:4:owner=2709|2715:EmberwheatSeed:2:owner=2709|6744:Waterskin:1:owner=2709;slots=12:2710;body=12:2710;links=2710:2709",
+    "water": 3,
+    "sourceZone": null,
+    "container": null,
+    "depletedContents": null,
+    "localInputs": 63,
+    "mapSteps": 13,
+    "rests": 0,
+    "completedTurns": 76,
+    "pureClock": 130,
+    "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+  },
+  "nativeTests": {
+    "path": "Docs/Verification/DensityCompletion/Campaign/native52-green.json",
+    "passed": 52,
+    "failed": 0,
+    "composition": "20 campaign helper + 32 launcher restoration; prior native52 selection had50 pass and2 expected missing-launcher failures"
+  },
+  "diagnosis": {
+    "classification": "audit policy limitation, not demonstrated gameplay defect",
+    "player": [
+      38,
+      17
+    ],
+    "nearThreat": {
+      "id": "11105",
+      "anchor": [
+        38,
+        15
+      ]
+    },
+    "auditClearance": 3,
+    "immediateDestinationsAllWithinClearance": true,
+    "physicalNeighborsIndividuallyLogged": false,
+    "source": "Assets/Scripts/Scenarios/Custom/DensityCampaignNativePlayer.cs",
+    "sourceSha256": "24da7c5237b694bf19b79b025d0c6962529a74355bcbe391ddb2b83602e5bf6c",
+    "sourceSites": [
+      "RunAudit lines75-91: finished-weapon/armor selection precedes Encounter",
+      "PathTo lines312-331: Safe clearance3 for all candidates",
+      "Safe lines396-404: current physical/hazard and hostile-distance refusal"
+    ],
+    "claim": "The reported nearby hostile alone rejects every immediate audit step; no physically impossible route or engine movement failure is established."
+  },
+  "errorBoundary": "Raw report counts one unexpected error; archived actual log contains the audit fatal InvalidOperationException/Debug.LogError for this same refusal. Retain counts; do not relabel the run zero-error.",
+  "restoration": {
+    "before": {
+      "playing": false,
+      "scene": "Assets/Scenes/Main/ReferenceGlade.unity",
+      "startScene": "Assets/Scenes/Main/ReferenceGlade.unity",
+      "seed": 0,
+      "saveRoot": null,
+      "hadLastGame": true,
+      "lastGame": "ef3c7f38c80f44febc6775d2fa3d7847",
+      "runInBackground": true,
+      "inputSettings": ""
+    },
+    "after": {
+      "playing": false,
+      "scene": "Assets/Scenes/Main/ReferenceGlade.unity",
+      "startScene": "Assets/Scenes/Main/ReferenceGlade.unity",
+      "seed": 0,
+      "saveRoot": null,
+      "hadLastGame": true,
+      "lastGame": "ef3c7f38c80f44febc6775d2fa3d7847",
+      "runInBackground": true,
+      "inputSettings": ""
+    },
+    "exactMatch": true
+  },
+  "visualReview": {
+    "reviewer": "root",
+    "file": "Docs/Verification/DensityCompletion/Campaign/NativeAcceptance/304ac275c71e4497bf667af6d5585265/01-ordinary-start.png",
+    "scope": "Approved voxel Spread ground/reeds/ruins/actors;40HP; normal new-game log. Sidebar clips long text as already known. Other two archived frames not claimed reviewed in this closeout."
+  },
+  "nextAcceptance": "Deferred. If prioritized later, explicitly permit a measured real original ability/combat/retreat response before the find gate, or separately approve a narrower earned consumable/material sale witness. No implementation/retry now; do not force loot, grant stats/resources, reroll desired outcomes or turn this audit clearance into game rules.",
+  "cannotVerify": [
+    "completed campaign resource/recovery/save loop",
+    "earned income or affordable replacement after sale",
+    "all six candidate zones or four-open cohort exhausted",
+    "finished-gear frequency or scarcity",
+    "global pathfinding/combat/economy defect",
+    "campaign balance/enjoyment",
+    "later full integration suite result"
+  ],
+  "Q1": "Clock/action symmetry follows real map/local/rest/free-tonic APIs; exact failed-run restoration observed.",
+  "Q2": "Observed stock, exact acquired ownership, quotes and actual spendable purse remain distinct; safety clearance is audit-only.",
+  "Q3": "Missing API/pure-rest/native launcher RED preserved;20 helpers and52 native checks green. Live incomplete stages are not inferred from helper success.",
+  "Q4": "Raw canVerify is intended capability text; actual audit/complete/transitions govern. Surface-only weapon/armor filter, two zones and three opens are explicit."
+}

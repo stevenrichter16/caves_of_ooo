@@ -76,3 +76,11 @@ and systems. Trace their ordinary sources, reachable interactions, world
 integration and save support; close verified gaps rather than stopping when the
 initial content list is exhausted. Preserve existing design constraints and
 record any new work in the living plan before test-first implementation.
+
+Importance rule (27 September): when work stalls, reassess its concrete impact
+on ordinary play. Distinguish a confirmed gameplay defect from an automation
+limitation. If continued work is not significantly valuable, preserve the
+evidence, note the remaining limitation and move on. In particular, do not keep
+extending the dog-fetching demonstration after its core repair is verified.
+An unfinished audit remains unfinished; do not manufacture a successful route
+with grants, teleports, changed game balance or unbounded retries.

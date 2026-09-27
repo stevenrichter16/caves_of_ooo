@@ -29,6 +29,7 @@ namespace CavesOfOoo.Tests
         [TestCase("DensityTravellerNativeBatch")]
         [TestCase("DensityCorpseHarvestNativeBatch")]
         [TestCase("DensityCombatNativeBatch")]
+        [TestCase("DensityCampaignNativeBatch")]
         [TestCase("DensityHotSteamNativeBatch")]
         [TestCase("DensityPetNativeBatch")]
         public void RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles(string name)
@@ -65,6 +66,7 @@ namespace CavesOfOoo.Tests
         [TestCase("DensityTravellerNativeBatch")]
         [TestCase("DensityCorpseHarvestNativeBatch")]
         [TestCase("DensityCombatNativeBatch")]
+        [TestCase("DensityCampaignNativeBatch")]
         [TestCase("DensityHotSteamNativeBatch")]
         [TestCase("DensityPetNativeBatch")]
         public void NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene(string name)

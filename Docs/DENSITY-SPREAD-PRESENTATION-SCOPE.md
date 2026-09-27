@@ -1,6 +1,6 @@
 # C15: map-owned Spread presentation scope
 
-Status: published after exact source preimage checks; independently reviewed by root and standalone_verify. Native execution and renderer integration pending. This is CoO world authority, not Qud parity. It enables the renderer to ask whether a real current graph belongs to the Spread style; it changes no layout, population, actor, item, loot or save data.
+Status: published and integrated in the completed C15 checkpoint `5453b3f6`; independently reviewed by root and standalone_verify. Normal startup, actual chunk/POI/lair travel and the unfiltered native19709/19709 sweep are recorded in `DENSITY-COMPLETION-PLAN.md`. This is CoO world authority, not Qud parity. It enables the renderer to ask whether a real current graph belongs to the Spread style; it changes no layout, population, actor, item, loot or save data.
 
 ## Sweep corrections
 
@@ -33,7 +33,8 @@ These tests prove eligibility and exact ownership, not rendering, native perform
 - Closed: a depth/type-only check would allow borrowed same-address graphs; exact derived commit/restore references prevent it.
 - Closed: lazy ledger lookup would mutate ordinary rendering queries; read-only TryGetValue controls prevent it.
 - Closed: failed restore must not bind partial floor authority; all saved floor membership is validated before binding.
-- Pending native: whole-biome renderer/profile switching, actual save input and visual family closure. No image acceptance claimed here.
+- Closed by C15: renderer/profile switching, actual save input and the recorded visual family corpus. The actual biome route `ec0fae7a14d44a4795224202908d99ac` passes23/23 and the final full native sweep passes19709/19709. The underlying source-scope tests alone do not establish image quality.
+- Explicit boundary: ordinary underground caves remain outside this surface-biome presentation contract. The later C2 combat captures at `Overworld.8.0.1` show the existing2D cave renderer; they are not evidence of a failed Spread surface startup, nor are they claimed as3D cave acceptance. Extending the underground art is separate work.
 
 ## Files
 
