@@ -15,6 +15,7 @@ namespace CavesOfOoo.Core
             { "dies", "die" }, { "heals", "heal" }, { "takes", "take" }, { "feels", "feel" },
             { "resists", "resist" }, { "recovers", "recover" }, { "collapses", "collapse" },
             { "shakes", "shake" }, { "stumbles", "stumble" }, { "moves", "move" },
+            { "stops", "stop" }, { "smolders", "smolder" },
             { "drinks", "drink" }, { "eats", "eat" }, { "brews", "brew" }, { "crafts", "craft" },
             { "disassembles", "disassemble" }, { "finishes", "finish" }, { "separates", "separate" },
             { "plants", "plant" }, { "springs", "spring" }, { "steps", "step" }, { "brushes", "brush" },

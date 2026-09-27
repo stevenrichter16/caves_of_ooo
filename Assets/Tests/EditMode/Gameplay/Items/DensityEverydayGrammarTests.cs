@@ -30,6 +30,29 @@ namespace CavesOfOoo.Tests
         {MessageLog.Add(text);Assert.AreSame(text,MessageLog.GetLast());}
         [Test]public void AnnouncementProse_RemainsRawInLogQueueAndCallback()
         {const string text="you is an intentionally recorded voice.";string published=null;MessageLog.OnMessage=m=>published=m;MessageLog.AddAnnouncement(text);Assert.AreSame(text,MessageLog.GetLast());Assert.AreSame(text,MessageLog.ConsumeAnnouncement());Assert.AreSame(text,published);}
+        [TestCase(false, false)][TestCase(false, true)]
+        [TestCase(true, false)][TestCase(true, true)]
+        public void ActualBleedingAndSmolderingLifecycle_UsesItsDisplayedSubject(bool smoldering, bool playerSubject)
+        {
+            var target = new Entity();
+            target.SetTag("Creature", "");
+            target.AddPart(new RenderPart { DisplayName = playerSubject ? "you" : "Sella" });
+            var effects = new StatusEffectsPart(); target.AddPart(effects);
+            Effect effect = smoldering ? (Effect)new SmolderingEffect() : new BleedingEffect();
+            string published = null; MessageLog.OnMessage = message => published = message;
+            Assert.True(target.ForceApplyEffect(effect));
+            string subject = playerSubject ? "You" : "Sella";
+            string applied = smoldering ? (playerSubject ? " smolder." : " smolders.")
+                : (playerSubject ? " are bleeding!" : " is bleeding!");
+            string applicationMessage = MessageLog.GetLast();
+            Assert.True(effects.RemoveEffect(effect));
+            Assert.AreEqual(0, effects.EffectCount, "Removal must actually occur.");
+            string removed = subject + (playerSubject ? " stop " : " stops ")
+                + (smoldering ? "smoldering." : "bleeding.");
+            CollectionAssert.AreEqual(new[] { subject + applied, removed, removed },
+                new[] { applicationMessage, MessageLog.GetLast(), published });
+        }
+
         [Test]public void RealParchedEffect_PlayerAndNpcAreDistinct()
         {
             var player=new Entity();player.AddPart(new RenderPart{DisplayName="you"});player.AddPart(new StatusEffectsPart());

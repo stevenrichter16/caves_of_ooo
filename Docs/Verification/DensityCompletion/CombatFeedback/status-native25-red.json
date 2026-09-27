@@ -1,0 +1,30 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "78876ce1937a4a4d80c2043a3c4ca829",
+  "run": {
+    "id": "2",
+    "testcasecount": "25",
+    "result": "Failed(Child)",
+    "total": "25",
+    "passed": "23",
+    "failed": "2",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 14:43:47Z",
+    "end-time": "2026-09-27 14:43:47Z",
+    "duration": "0.190248"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DensityEverydayGrammarTests.ActualBleedingAndSmolderingLifecycle_UsesItsDisplayedSubject(False,True)",
+      "message": "  Expected and actual are both <System.String[3]>\n  Values differ at index [1]\n  Expected string length 18 but was 19. Strings differ at index 8.\n  Expected: \"You stop bleeding.\"\n  But was:  \"You stops bleeding.\"\n  -------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityEverydayGrammarTests.ActualBleedingAndSmolderingLifecycle_UsesItsDisplayedSubject(True,True)",
+      "message": "  Expected and actual are both <System.String[3]>\n  Values differ at index [0]\n  Expected string length 12 but was 13. Strings differ at index 11.\n  Expected: \"You smolder.\"\n  But was:  \"You smolders.\"\n  ----------------------^\n"
+    }
+  ]
+}
