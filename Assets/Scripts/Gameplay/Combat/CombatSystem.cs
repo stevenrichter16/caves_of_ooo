@@ -239,6 +239,10 @@ namespace CavesOfOoo.Core
             // it swings at full accuracy, matching Qud's real mechanic.
 
             string attackerName = attacker.GetDisplayName();
+            // The explicit subject survives weapon/hand qualifiers and critical
+            // adverbs; the generic log normalizer only sees immediate verbs.
+            bool playerSubject = string.Equals(attackerName, "you", StringComparison.OrdinalIgnoreCase);
+            string baseHitVerb = playerSubject ? "hit" : "hits";
             string defenderName = defender.GetDisplayName();
             string srcTag = attackSourceDesc != null ? $" {attackSourceDesc}" : "";
 
@@ -283,7 +287,7 @@ namespace CavesOfOoo.Core
 
             if (willMiss)
             {
-                MessageLog.Add($"{attackerName}{srcTag} misses {defenderName}!");
+                MessageLog.Add($"{attackerName}{srcTag} {(playerSubject ? "miss" : "misses")} {defenderName}!");
 
                 // Miss indicator: brief gray dash at defender position
                 Cell defenderCell = zone.GetEntityCell(defender);
@@ -382,7 +386,7 @@ namespace CavesOfOoo.Core
 
             if (penetrations == 0)
             {
-                MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} but fails to penetrate!");
+                MessageLog.Add($"{attackerName}{srcTag} {baseHitVerb} {defenderName}{partDesc} but {(playerSubject ? "fail" : "fails")} to penetrate!");
                 return;
             }
 
@@ -428,7 +432,7 @@ namespace CavesOfOoo.Core
 
             if (damage.Amount <= 0)
             {
-                MessageLog.Add($"{attackerName}{srcTag} hits {defenderName}{partDesc} but deals no damage!");
+                MessageLog.Add($"{attackerName}{srcTag} {baseHitVerb} {defenderName}{partDesc} but {(playerSubject ? "deal" : "deals")} no damage!");
                 return;
             }
 
@@ -475,7 +479,7 @@ namespace CavesOfOoo.Core
             // order reads "X is killed by Y!" then "Y hits X for N damage!".
             // The hit line still uses post-resistance actualDamage so the
             // number is honest.
-            string hitVerb = naturalTwenty ? $"{CRITICAL_HIT_TAG}LY hits" : "hits";
+            string hitVerb = naturalTwenty ? $"{CRITICAL_HIT_TAG}LY {baseHitVerb}" : baseHitVerb;
             MessageLog.Add($"{attackerName}{srcTag} {hitVerb} {defenderName}{partDesc} for {actualDamage} damage!{(hpAfter > 0 ? $" ({hpAfter} HP remaining)" : "")}");
 
             // Pass 4 §4A: hit-stop on big moments. Brief Time.timeScale=0

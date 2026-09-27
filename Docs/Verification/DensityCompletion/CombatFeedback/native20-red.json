@@ -1,0 +1,54 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "1c3216d5d4cf435f9c37e30067dc7fc3",
+  "run": {
+    "id": "2",
+    "testcasecount": "20",
+    "result": "Failed(Child)",
+    "total": "20",
+    "passed": "12",
+    "failed": "8",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 14:29:46Z",
+    "end-time": "2026-09-27 14:29:47Z",
+    "duration": "0.4940669"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.DensityQualifiedCombatFeedbackTests.ActualCombatUsesItsSubjectsVerbAndRetainsOutcome(\"miss\",True,True)",
+      "message": "  Expected string length 45 but was 47. Strings differ at index 28.\n  Expected: \"You [left hand: dagger] miss practice target!\"\n  But was:  \"You [left hand: dagger] misses practice target!\"\n  ---------------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityQualifiedCombatFeedbackTests.ActualCombatUsesItsSubjectsVerbAndRetainsOutcome(\"blocked\",True,False)",
+      "message": "  Expected string length 46 but was 47. Strings differ at index 32.\n  Expected: \"You hit practice target but fail to penetrate!\"\n  But was:  \"You hit practice target but fails to penetrate!\"\n  -------------------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityQualifiedCombatFeedbackTests.ActualCombatUsesItsSubjectsVerbAndRetainsOutcome(\"blocked\",True,True)",
+      "message": "  Expected string length 66 but was 68. Strings differ at index 27.\n  Expected: \"...ft hand: dagger] hit practice target but fail to penetrate!\"\n  But was:  \"...ft hand: dagger] hits practice target but fails to penetrate!\"\n  ----------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityQualifiedCombatFeedbackTests.ActualCombatUsesItsSubjectsVerbAndRetainsOutcome(\"zero\",True,False)",
+      "message": "  Expected string length 43 but was 44. Strings differ at index 32.\n  Expected: \"You hit practice target but deal no damage!\"\n  But was:  \"You hit practice target but deals no damage!\"\n  -------------------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityQualifiedCombatFeedbackTests.ActualCombatUsesItsSubjectsVerbAndRetainsOutcome(\"zero\",True,True)",
+      "message": "  Expected string length 63 but was 65. Strings differ at index 27.\n  Expected: \"...[left hand: dagger] hit practice target but deal no damage!\"\n  But was:  \"...[left hand: dagger] hits practice target but deals no damage!\"\n  -------------------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityQualifiedCombatFeedbackTests.ActualCombatUsesItsSubjectsVerbAndRetainsOutcome(\"hit\",True,True)",
+      "message": "  Expected string length 76 but was 77. Strings differ at index 27.\n  Expected: \"...dagger] hit practice target for 2 damage! (997 HP remaining)\"\n  But was:  \"...dagger] hits practice target for 2 damage! (997 HP remaining)\"\n  -------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityQualifiedCombatFeedbackTests.ActualCombatUsesItsSubjectsVerbAndRetainsOutcome(\"critical\",True,False)",
+      "message": "  Expected string length 67 but was 68. Strings differ at index 18.\n  Expected: \"...TICALLY hit practice target for 2 damage! (997 HP remaining)\"\n  But was:  \"...TICALLY hits practice target for 2 damage! (997 HP remaining)\"\n  -------------------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.DensityQualifiedCombatFeedbackTests.ActualCombatUsesItsSubjectsVerbAndRetainsOutcome(\"critical\",True,True)",
+      "message": "  Expected string length 87 but was 88. Strings differ at index 38.\n  Expected: \"...TICALLY hit practice target for 2 damage! (997 HP remaining)\"\n  But was:  \"...TICALLY hits practice target for 2 damage! (997 HP remaining)\"\n  -------------------------^\n"
+    }
+  ]
+}
