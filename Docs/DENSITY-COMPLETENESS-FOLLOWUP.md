@@ -1,6 +1,6 @@
 # Coded-system completeness follow-up
 
-Status: candidate audit queued after the user-priority Spread presentation gate. These are source observations, not confirmed defects or completed features. Follow `DENSITY-EXECUTION-PROMPT.md` and the test-first workflow before production changes.
+Status: Spread acceptance is complete and published; the live-system audit is active. Weakened stacking is published/native GREEN; pet retrieval and hot steam are separate active plans. Remaining initial observations below are classified by their recorded evidence. Follow `DENSITY-EXECUTION-PROMPT.md` and the test-first workflow before production changes.
 
 ## Audit method
 
@@ -96,3 +96,13 @@ keyboard acquisition of that book, long-run combat balance, historical corrupted
 snapshot reconstruction, or the separately documented pre-existing effective-stat
 message wording. The full integrated follow-up regression and main push remain
 pending; no content-source or player-ability grant was added for this repair.
+
+## Effective Strength feedback follow-up plan
+
+The already-recorded numeric feedback gap is being closed separately after the stacking repair. Source verification: Weakened uses the actual `Stat.Penalty` and the UI/mechanics read effective `Stat.Value`, but application prints `BaseValue` and `BaseValue-StrPenalty`, while removal prints BaseValue. Bonuses, other penalties and minimum/maximum clamping therefore make the current message inaccurate. Current test/source searches found no consumer depending on the old prose. The existing narrow player normalizer already handles immediate `is` and `recovers` and leaves named subjects alone.
+
+Plan before production: record effective value before changing the existing penalty; report its actual resulting effective value. On removal, report effective value after the unchanged subtraction. Use immediate subject verbs for both player/named actors, and describe indefinite duration without negative turns. Add paired actual apply/remove cases for plain, independently modified, minimum-clamped and maximum-clamped Strength; each asserts true stat accounting and UI-observed text. Keep stacking arithmetic, source reachability, effect lifecycle, RNG and save fields unchanged. Run the existing weakening/adversarial/challenge plus everyday-grammar native suite. No new Play acquisition claim is needed for this numeric log correction.
+
+Executed: ten new requested-output assertions ran RED while all37 existing weakening controls passed (`feedback-native47-red.xml.gz`, job `a8c52ba0049241aba828c89219f66577`). The plain-stat pair checks consistent new prose; modified and clamped pairs expose inaccurate old numbers, and the indefinite pair exposes negative-turn wording. These are ten cases, not ten distinct bugs. Application now captures `str.Value` before adding the unchanged penalty and reports the resulting `str.Value`; removal reports that effective value after the unchanged subtraction. The duration label says `until removed` for indefinite effects, refining the pre-fix test wording `until it wears off` to avoid promising automatic expiration. No arithmetic or save field changed.
+
+Native139/139 PASS, zero skipped/failed (job `505750dde9824fa38ecfb10a91bb68d4`,0.9092407seconds) covers47 weakening cases, challenge controls, everyday grammar and status lifecycle. Q1–Q4: application/removal read the same effective stat as gameplay, preserve unrelated modifiers and min/max rules, pair player/named subjects and actual UI callback output, and retain already-tested quote protection. Sources, stacking and saves are unchanged. The earlier numeric-message limitation is now resolved for these apply/remove messages; arbitrary stat replacement remains outside the stacking contract. No extra keyboard acquisition, new visual result or balance claim is made.

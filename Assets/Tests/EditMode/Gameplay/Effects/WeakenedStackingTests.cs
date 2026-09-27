@@ -50,6 +50,43 @@ namespace CavesOfOoo.Tests
         static void Tick(Entity e)
         {var end=GameEvent.New("EndTurn");try{e.FireEvent(end);}finally{end.Release();}}
 
+        [TestCase(16,0,0,16,13,"you",4)]
+        [TestCase(16,0,0,16,13,"Sella",4)]
+        [TestCase(16,2,4,14,11,"you",4)]
+        [TestCase(16,2,4,14,11,"Sella",4)]
+        [TestCase(2,0,0,2,1,"you",4)]
+        [TestCase(2,0,0,2,1,"Sella",4)]
+        [TestCase(100,4,0,100,100,"you",4)]
+        [TestCase(100,4,0,100,100,"Sella",4)]
+        [TestCase(16,2,4,14,11,"you",-1)]
+        [TestCase(16,2,4,14,11,"Sella",-1)]
+        public void ActualStrengthFeedbackUsesEffectiveValuesAndPreservesIndependentModifiers(
+            int basis,int bonus,int penalty,int before,int after,string name,int duration)
+        {
+            var target=Actor(name,basis);var strength=target.GetStat("Strength");
+            strength.Bonus=bonus;strength.Penalty=penalty;
+            Assert.AreEqual(before,strength.Value);
+            string published=null;var previous=MessageLog.OnMessage;
+            try
+            {
+                MessageLog.OnMessage=line=>published=line;
+                Apply(target,3,duration);Assert.AreEqual(after,strength.Value);
+                string applied=MessageLog.GetLast(),appliedUi=published;
+                Assert.True(target.RemoveEffect<WeakenedEffect>());
+                Assert.AreEqual(before,strength.Value);Assert.AreEqual(penalty,strength.Penalty);
+                Assert.AreEqual(bonus,strength.Bonus);Assert.False(target.HasEffect<WeakenedEffect>());
+                string subject=name=="you"?"You":name;
+                string durationText=duration==-1?"until removed":"for 4 turns";
+                string expectedApply=subject+(name=="you"?" are":" is")
+                    +" weakened: Strength "+before+" to "+after+" "+durationText+".";
+                string expectedRemove=subject+(name=="you"?" recover":" recovers")
+                    +" from weakness: Strength "+before+".";
+                CollectionAssert.AreEqual(new[]{expectedApply,expectedApply,expectedRemove,expectedRemove},
+                    new[]{applied,appliedUi,MessageLog.GetLast(),published});
+            }
+            finally {MessageLog.OnMessage=previous;}
+        }
+
         [TestCase(5)][TestCase(3)][TestCase(1)]
         public void ReapplicationKeepsOnlyStrongestOwnedPenalty(int incoming)
         {

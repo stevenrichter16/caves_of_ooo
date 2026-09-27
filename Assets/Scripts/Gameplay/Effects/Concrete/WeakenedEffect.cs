@@ -25,8 +25,10 @@ namespace CavesOfOoo.Core
         {
             var str = target.GetStat("Strength");
             if (str == null) return;
+            int before = str.Value;
             str.Penalty += StrPenalty;
-            MessageLog.Add($"Strength of {target.GetDisplayName()} weakened from {str.BaseValue} to {str.BaseValue - StrPenalty} for {Duration} turns.");
+            string durationText = Duration == DURATION_INDEFINITE ? "until removed" : $"for {Duration} turns";
+            MessageLog.Add($"{target.GetDisplayName()} is weakened: Strength {before} to {str.Value} {durationText}.");
         }
 
         public override void OnRemove(Entity target)
@@ -34,7 +36,7 @@ namespace CavesOfOoo.Core
             var str = target.GetStat("Strength");
             if (str == null) return;
             str.Penalty -= StrPenalty;
-            MessageLog.Add($"Strength of {target.GetDisplayName()} reset to  {str.BaseValue}.");
+            MessageLog.Add($"{target.GetDisplayName()} recovers from weakness: Strength {str.Value}.");
         }
 
         public override bool OnStack(Effect incoming)

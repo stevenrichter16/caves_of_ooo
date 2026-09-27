@@ -1,0 +1,62 @@
+{
+  "authority": "/Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml",
+  "job": "a8c52ba0049241aba828c89219f66577",
+  "run": {
+    "id": "2",
+    "testcasecount": "47",
+    "result": "Failed(Child)",
+    "total": "47",
+    "passed": "37",
+    "failed": "10",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 14:49:27Z",
+    "end-time": "2026-09-27 14:49:27Z",
+    "duration": "0.8963055"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ActualStrengthFeedbackUsesEffectiveValuesAndPreservesIndependentModifiers(16,0,0,16,13,\"you\",4)",
+      "message": "  Expected and actual are both <System.String[4]>\n  Values differ at index [0]\n  Expected string length 48 but was 51. Strings differ at index 0.\n  Expected: \"You are weakened: Strength 16 to 13 for 4 turns.\"\n  But was:  \"Strength of you weakened from 16 to 13 for 4 turns.\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ActualStrengthFeedbackUsesEffectiveValuesAndPreservesIndependentModifiers(16,0,0,16,13,\"Sella\",4)",
+      "message": "  Expected and actual are both <System.String[4]>\n  Values differ at index [0]\n  Expected string length 49 but was 53. Strings differ at index 1.\n  Expected: \"Sella is weakened: Strength 16 to 13 for 4 turns.\"\n  But was:  \"Strength of Sella weakened from 16 to 13 for 4 turns.\"\n  ------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ActualStrengthFeedbackUsesEffectiveValuesAndPreservesIndependentModifiers(16,2,4,14,11,\"you\",4)",
+      "message": "  Expected and actual are both <System.String[4]>\n  Values differ at index [0]\n  Expected string length 48 but was 51. Strings differ at index 0.\n  Expected: \"You are weakened: Strength 14 to 11 for 4 turns.\"\n  But was:  \"Strength of you weakened from 16 to 13 for 4 turns.\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ActualStrengthFeedbackUsesEffectiveValuesAndPreservesIndependentModifiers(16,2,4,14,11,\"Sella\",4)",
+      "message": "  Expected and actual are both <System.String[4]>\n  Values differ at index [0]\n  Expected string length 49 but was 53. Strings differ at index 1.\n  Expected: \"Sella is weakened: Strength 14 to 11 for 4 turns.\"\n  But was:  \"Strength of Sella weakened from 16 to 13 for 4 turns.\"\n  ------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ActualStrengthFeedbackUsesEffectiveValuesAndPreservesIndependentModifiers(2,0,0,2,1,\"you\",4)",
+      "message": "  Expected and actual are both <System.String[4]>\n  Values differ at index [0]\n  Expected string length 46 but was 50. Strings differ at index 0.\n  Expected: \"You are weakened: Strength 2 to 1 for 4 turns.\"\n  But was:  \"Strength of you weakened from 2 to -1 for 4 turns.\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ActualStrengthFeedbackUsesEffectiveValuesAndPreservesIndependentModifiers(2,0,0,2,1,\"Sella\",4)",
+      "message": "  Expected and actual are both <System.String[4]>\n  Values differ at index [0]\n  Expected string length 47 but was 52. Strings differ at index 1.\n  Expected: \"Sella is weakened: Strength 2 to 1 for 4 turns.\"\n  But was:  \"Strength of Sella weakened from 2 to -1 for 4 turns.\"\n  ------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ActualStrengthFeedbackUsesEffectiveValuesAndPreservesIndependentModifiers(100,4,0,100,100,\"you\",4)",
+      "message": "  Expected and actual are both <System.String[4]>\n  Values differ at index [0]\n  Expected string length 50 but was 52. Strings differ at index 0.\n  Expected: \"You are weakened: Strength 100 to 100 for 4 turns.\"\n  But was:  \"Strength of you weakened from 100 to 97 for 4 turns.\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ActualStrengthFeedbackUsesEffectiveValuesAndPreservesIndependentModifiers(100,4,0,100,100,\"Sella\",4)",
+      "message": "  Expected and actual are both <System.String[4]>\n  Values differ at index [0]\n  Expected string length 51 but was 54. Strings differ at index 1.\n  Expected: \"Sella is weakened: Strength 100 to 100 for 4 turns.\"\n  But was:  \"Strength of Sella weakened from 100 to 97 for 4 turns.\"\n  ------------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ActualStrengthFeedbackUsesEffectiveValuesAndPreservesIndependentModifiers(16,2,4,14,11,\"you\",-1)",
+      "message": "  Expected and actual are both <System.String[4]>\n  Values differ at index [0]\n  Expected string length 55 but was 52. Strings differ at index 0.\n  Expected: \"You are weakened: Strength 14 to 11 until it wears off.\"\n  But was:  \"Strength of you weakened from 16 to 13 for -1 turns.\"\n  -----------^\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.WeakenedStackingTests.ActualStrengthFeedbackUsesEffectiveValuesAndPreservesIndependentModifiers(16,2,4,14,11,\"Sella\",-1)",
+      "message": "  Expected and actual are both <System.String[4]>\n  Values differ at index [0]\n  Expected string length 56 but was 54. Strings differ at index 1.\n  Expected: \"Sella is weakened: Strength 14 to 11 until it wears off.\"\n  But was:  \"Strength of Sella weakened from 16 to 13 for -1 turns.\"\n  ------------^\n"
+    }
+  ]
+}
