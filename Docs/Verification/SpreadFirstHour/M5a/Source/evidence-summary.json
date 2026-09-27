@@ -1,0 +1,54 @@
+{
+  "nativeInitialRed": "Docs/Verification/SpreadFirstHour/M5a/source-native-red.json",
+  "privateRunnerBoundary": "Isolated standalone production-source runner, deterministic hash substitution; not native Unity execution.",
+  "runs": [
+    {
+      "path": "/tmp/coo-first-hour-e2-source/callback-before.xml",
+      "sha256": "e072f010e6d36c04fbeb74c65f4704c36a5eccc46577c3ccef7be70718ed09f8",
+      "total": "36",
+      "passed": "35",
+      "failed": "1",
+      "failedTests": [
+        "CavesOfOoo.Tests.SpreadLatchcoilSourceTests.StagingCallbackCannotSmuggleChangedAuthorityOwnerOrBlockedRoute(\"awake\")"
+      ]
+    },
+    {
+      "path": "/tmp/coo-first-hour-e2-source/shape-before.xml",
+      "sha256": "3f3e733f39448293ce55bcd1e5c5987978b978c93dafe36b68cece79bd243f71",
+      "total": "37",
+      "passed": "36",
+      "failed": "1",
+      "failedTests": [
+        "CavesOfOoo.Tests.SpreadLatchcoilSourceTests.StagingCallbackCannotSmuggleChangedAuthorityOwnerOrBlockedRoute(\"footprint\")"
+      ]
+    },
+    {
+      "path": "/tmp/coo-first-hour-e2-source/final-review-before.xml",
+      "sha256": "d721eeb7eeb10e208b53fe4c7aaf8cf03ddf6777d28d634c521263afdd6578a2",
+      "total": "40",
+      "passed": "38",
+      "failed": "2",
+      "failedTests": [
+        "CavesOfOoo.Tests.SpreadLatchcoilSourceTests.ActualFamilySelectionCommitAndRefusalAreDiagnosedWithoutChangingThePairRecord",
+        "CavesOfOoo.Tests.SpreadLatchcoilSourceTests.SavedOptionalOverlapOrAdjacencyCannotTakeOverTheOriginalPair(False)"
+      ]
+    },
+    {
+      "path": "/tmp/coo-first-hour-e2-source/final-review-green.xml",
+      "sha256": "b4f4e1a21d995bed9f8c8e6f576721eb1beb51accaa3a61676dea8d1661d3367",
+      "total": "88",
+      "passed": "88",
+      "failed": "0",
+      "failedTests": []
+    },
+    {
+      "path": "/tmp/coo-first-hour-e2-source/census.xml",
+      "sha256": "2b7e88e80d57328232aef4389e7d3e9d77380f5460fc293816450c497d8acad4",
+      "total": "1",
+      "passed": "1",
+      "failed": "0",
+      "failedTests": []
+    }
+  ],
+  "unchangedE1Files": true
+}

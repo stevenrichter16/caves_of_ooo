@@ -1,0 +1,187 @@
+{
+  "scope": "Final current E2 lifecycle package after native-wire fixture correction",
+  "sourcePaths": [
+    {
+      "path": "Assets/Scripts/Gameplay/AI/AIAmbushPart.cs",
+      "sha256": "1f3c43650ae272d4fd8aefe2aef8da89adae9b462d609263ef97445c9fa916d9"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/Goals/DormantGoal.cs",
+      "sha256": "1a218bc35cadf4da09b912ba96d0a94638a3e183f45f056a4a8258d138a5bd5e"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveTests.cs",
+      "sha256": "582e38380bac24411fb2e35dad086db1584d692e961c44acba53b95179f38ac5"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveTests.cs.meta",
+      "sha256": "ca1c3f11e307bb327e9968bed9acf0d2b5f8637586def90f6e018e921e686405"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveAdversarialTests.cs",
+      "sha256": "18c10f10e312ad80c442b81a4a73af05c877eabf96ebc3084d12f26288f6765c"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveAdversarialTests.cs.meta",
+      "sha256": "4af6e926159f591f9ecf05318986d91e526ad4cf472d15e8335ab59717f84c18"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushLegacyBytes.cs",
+      "sha256": "335b1211f99ec95e7002f5b0382fe833253cc9f75957145123a1c655483c0217"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushLegacyBytes.cs.meta",
+      "sha256": "34192ccb93b7195d55f90ce4e7c23d15837395729636792b968cc8a392de13e7"
+    }
+  ],
+  "evidencePaths": [
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/AIAmbushPart.cs.before.txt",
+      "sha256": "e611a84e5460588553cc19caaf7862a2453de91f5c08c8ba206b774bb1221cdb"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/CavesOfOoo-native-compile.log",
+      "sha256": "9e592066414ea33bfdf549243743f852627efb3beae4da038e51ad8c84328e18"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/DormantGoal.cs.before.txt",
+      "sha256": "e6e3001eef07fe74f918ddca7ad813369f25bb9921b90f0d14aca8b2c6f51054"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/EditModeTests-native-compile.log",
+      "sha256": "7b9e630bf575c2b76790f77d9dc5fc1452e5aa79a2b429840e0ad4fa4015a633"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/NATIVE-LEGACY-CAPTURE.md",
+      "sha256": "7d6e91837725de54ca8845b030d7ebf4123d0ea510d653251690218519fe3350"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/NativeLegacyBytes/AsleepRoundTripRetainsExactlyOneDormantGoalAfterEachTurn.bin.gz",
+      "sha256": "809634a671bc1c536745c14dcd72d7f1c8bfb7cf1cd6f98a34594f9e578cf8b1"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/NativeLegacyBytes/DamageBetweenLastSleepTickAndSaveStillWakesAfterLoad.bin.gz",
+      "sha256": "379bf01112dc1982a067c3f03746ebff055bfd39a042f9d5c6ce94138ddbb9d2"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/NativeLegacyBytes/ExistingAmbusherRetainsItsSingleSavedSleep__AmbushBandit__.bin.gz",
+      "sha256": "e0a3d30786d9f9f186d80d1ac99da45539a6e108ea6376a3f6d1ffcf25212497"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/NativeLegacyBytes/ExistingAmbusherRetainsItsSingleSavedSleep__MimicChest__.bin.gz",
+      "sha256": "068652c31fe4abd28b6cbef4ff5fabdd06b06293389b9ae36fbb2ee4201db9c1"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/NativeLegacyBytes/ExistingAmbusherRetainsItsSingleSavedSleep__SleepingTroll__.bin.gz",
+      "sha256": "7f1d52bbc2acea7c1dec15943adb08b31cb9e112535bc2319da2aaa0dd6a4b27"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/NativeLegacyBytes/FullyAwakeRoundTripNeverSilentlyRearms.bin.gz",
+      "sha256": "b0d1c5c188d174c688f1f76a9b012e1877711d10503b801828234d48699eeef2"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/NativeLegacyBytes/NoDamageDoesNotCreatePendingWakeOnLoad.bin.gz",
+      "sha256": "ec7693368d9c3658fdd587223cd2b4fa0f43980a7cf9a95ede012b0ebca03bc8"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/NativeLegacyBytes/OrdinaryViperDoesNotGainAnAmbushPartOrGoalOnSaveLoad.bin.gz",
+      "sha256": "917b9394f5f745f72e8d22e81e16e1415ba780ed3b6835ca68c8d413f5bbd631"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/NativeLegacyBytes/PendingExplicitWakeSurvivesBeforeNextStackCleanup.bin.gz",
+      "sha256": "9075d55647def1ee948abfc2e1df52895673f5cd3f41ec6feeea29efbb915dbd"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/adversarial-green.xml.gz",
+      "sha256": "faac048bd701538d1a5bbc8938259df6c6a177e0be1ed25add0286df5f834d1c"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/all-baseline.xml.gz",
+      "sha256": "05ebc3bbb1cde86496ba3824fab3822cc3f40352e7bac93926f8643738e367be"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/all-green.xml.gz",
+      "sha256": "4d034d2f435c7efd968ea17d186761a5b8f7a0304976b59efe4257a82fcb49ac"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/compile_native.py",
+      "sha256": "5e21e4436d7ccf0aff658b9c22c7ac849294a3c20d610237e9274e87c0eb1367"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/differential.json",
+      "sha256": "66f10293b409ed1ca0d3fbb9be4618bc875daea9a8ef1d9dd008b764f7b43525"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/dual-runtime-legacy-manifest.json",
+      "sha256": "a1119bb2ce3cbe5cc5220c489d9b5e8d409d69361d53f53b42c1451660c14c51"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/green.xml.gz",
+      "sha256": "c480fc9147731f8a2937895bece5f67604cd10dcacefefdb3e2302228ca55ce2"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/legacy-capture-red.xml.gz",
+      "sha256": "2f21b37c8603ca7757ae4270d88b7370b8cb375e2ce0f3bdcc1e2bc785370a79"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/legacy-manifest.json",
+      "sha256": "69df9830a7ccc4d4e37e165b20d3ac9e5fbb05c064cbc29c5dd56fb16f92c687"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/legacy-update-manifest.json",
+      "sha256": "031cbf979b731cf3021b5a78ca9770c2a6166c8bb56200cba6f97619e8fdf830"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/manifest.json",
+      "sha256": "05f30d5c2e21f7ef2ab1e33af000a48defbac1aff0429fd892aa37a73d1a6bd5"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/native-baseline-red.json",
+      "sha256": "b429e05ef52cb57d906dc09da3839aafab0705721e6b8346682c3bac1a75f550"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/native-baseline-red.xml.gz",
+      "sha256": "0bb938cac5d0b5ac2e9e1d70d2c6bcd64664f5a5fc22eb5cd2b6f0e44f01d512"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/native-final-summary.json",
+      "sha256": "a634079db83452704d8a376a154b21b55ee84412cd4d70f115771d45ad9e378e"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/native-first-red.json",
+      "sha256": "d6ce9f61442c88371657b795ea609e28e6164689d57fa8aca8321075eaa0e5a9"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/native-first-red.xml.gz",
+      "sha256": "0c02dd2678d4c2c83bf1dc690559e115602789ae46e911743e39ef857524ceb5"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/nearby-baseline.xml.gz",
+      "sha256": "8d159714f5623dd1504d59bfee9e87ea302809f563c1d22121a16e80bca3988f"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/nearby-green.xml.gz",
+      "sha256": "b0db637a74a3a5741be8f5865381451fe467f22e704cdb9b1d69ac669924f562"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/notes.md",
+      "sha256": "d564ade79bce5f9be92d1db271f8447e7a6aef2add1d8e7c274e3e9f0dc53df8"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/production.patch",
+      "sha256": "5b9ed3009e896476f31ee349be081715243bc08b7c2d850e812825ce378930d7"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/rebuild_legacy_bytes.py",
+      "sha256": "c386383b10224f0c4194abb317492131c83453cca1023b53bf9b5a92bf0b80fd"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/red-summary.json",
+      "sha256": "3cef712bf70f7a369a8d9f65950166e36a6b29b08fbc56343801f874fc1c72de"
+    },
+    {
+      "path": "Docs/Verification/SpreadFirstHour/M5a/red.xml.gz",
+      "sha256": "7b0a2a475219c51dd832da6804ef647a05b2fdb27a7427e8da8012a1e9c37d87"
+    }
+  ]
+}

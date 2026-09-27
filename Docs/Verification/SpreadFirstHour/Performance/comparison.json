@@ -1,0 +1,347 @@
+{
+  "scope": "Actual Editor-only60s dense-glade keyboard movement. First two marker observations excluded. Markers are latest-completed, may lag observer frames, overlap and must not be added. Redraw group uses its own completed RenderZone marker. GC/allocation covers Editor-wide activity. Timings are not standalone build or repeated-reader performance. Existing reader route proves function only.",
+  "baseline": {
+    "runId": "b5fe9ac349d145b79870ddc96b82f17c",
+    "cases": 12,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "seconds": 60.257372416999715,
+    "frames": 14180,
+    "frameMeanMs": 4.252089500427246,
+    "frameP95Ms": 4.013584136962891,
+    "rawSha256": "81a82913fbd5008ec30076142cd530c5e841a7595759c91e949d1603d2b72eb0",
+    "settingsBefore": {
+      "screenWidth": 1920,
+      "screenHeight": 1080,
+      "targetWidth": 1461,
+      "targetHeight": 918,
+      "msaa": 1,
+      "vSync": 0,
+      "targetFrameRate": -1,
+      "groundBuildCount": 40,
+      "gc0": 2283,
+      "gc1": 2283,
+      "gc2": 2283,
+      "filter": "Bilinear",
+      "zone": "Overworld.11.10.0",
+      "runInBackground": true,
+      "focused": true,
+      "profilerEnabled": false,
+      "timeScale": 1.0
+    },
+    "settingsAfter": {
+      "screenWidth": 1920,
+      "screenHeight": 1080,
+      "targetWidth": 1461,
+      "targetHeight": 918,
+      "msaa": 1,
+      "vSync": 0,
+      "targetFrameRate": -1,
+      "groundBuildCount": 40,
+      "gc0": 2301,
+      "gc1": 2301,
+      "gc2": 2301,
+      "filter": "Bilinear",
+      "zone": "Overworld.11.10.0",
+      "runInBackground": true,
+      "focused": true,
+      "profilerEnabled": false,
+      "timeScale": 1.0
+    },
+    "overflow": false,
+    "normalIntervalComplete": true,
+    "groups": {
+      "allAfterFirstTwo": {
+        "COO.ZoneRenderer.LateUpdate": {
+          "count": 14178,
+          "mean": 1.77068339906898,
+          "p50": 0.8978335,
+          "p95": 1.0490062999999998,
+          "maximum": 506.67670799999996
+        },
+        "COO.ZoneRenderer.RenderZone": {
+          "count": 14178,
+          "mean": 0.7918831398645789,
+          "p50": 0.0,
+          "p95": 0.0,
+          "maximum": 149.895125
+        },
+        "COO.NativePresenter.Refresh": {
+          "count": 14178,
+          "mean": 0.4780806207504585,
+          "p50": 0.0,
+          "p95": 0.0,
+          "maximum": 131.812291
+        },
+        "COO.UI.Sidebar.Render": {
+          "count": 14178,
+          "mean": 0.05319916991112992,
+          "p50": 0.001959,
+          "p95": 0.003042,
+          "maximum": 92.19854199999999
+        },
+        "COO.UI.Hotbar.Render": {
+          "count": 14178,
+          "mean": 0.7480089085202426,
+          "p50": 0.7241664999999999,
+          "p95": 0.801584,
+          "maximum": 264.315292
+        },
+        "GC Allocated In Frame": {
+          "count": 14178,
+          "mean": 278232.83269854705,
+          "p50": 30987.0,
+          "p95": 59191.29999999999,
+          "maximum": 2468209064.0
+        },
+        "GC.Collect": {
+          "count": 14178,
+          "mean": 0.021951785724361687,
+          "p50": 0.0,
+          "p95": 0.0,
+          "maximum": 186.48779399999998
+        }
+      },
+      "completedRedraw": {
+        "COO.ZoneRenderer.LateUpdate": {
+          "count": 311,
+          "mean": 40.226729887459804,
+          "p50": 38.148542,
+          "p95": 43.0065,
+          "maximum": 506.67670799999996
+        },
+        "COO.ZoneRenderer.RenderZone": {
+          "count": 311,
+          "mean": 36.10070468488746,
+          "p50": 35.250958,
+          "p95": 39.9531455,
+          "maximum": 149.895125
+        },
+        "COO.NativePresenter.Refresh": {
+          "count": 311,
+          "mean": 21.794942254019293,
+          "p50": 20.9815,
+          "p95": 23.694083499999998,
+          "maximum": 131.812291
+        },
+        "COO.UI.Sidebar.Render": {
+          "count": 311,
+          "mean": 2.3278261125401927,
+          "p50": 2.01075,
+          "p95": 2.2282295,
+          "maximum": 92.19854199999999
+        },
+        "COO.UI.Hotbar.Render": {
+          "count": 311,
+          "mean": 1.5746093601286173,
+          "p50": 0.7157089999999999,
+          "p95": 0.797042,
+          "maximum": 264.315292
+        },
+        "GC Allocated In Frame": {
+          "count": 311,
+          "mean": 8624867.054662379,
+          "p50": 196972.0,
+          "p95": 291552.0,
+          "maximum": 2468209064.0
+        },
+        "GC.Collect": {
+          "count": 311,
+          "mean": 0.6481050450160771,
+          "p50": 0.0,
+          "p95": 0.0,
+          "maximum": 186.48779399999998
+        }
+      }
+    }
+  },
+  "current": {
+    "runId": "4df42af629784075b9203381f782ee2b",
+    "cases": 12,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "seconds": 60.23993937499472,
+    "frames": 12040,
+    "frameMeanMs": 5.112204551696777,
+    "frameP95Ms": 7.198795318603516,
+    "rawSha256": "de9d958dbcbc714c3ba01e801e44ca48b88a991a2b67ece5341377f19189f4b8",
+    "settingsBefore": {
+      "screenWidth": 1920,
+      "screenHeight": 1080,
+      "targetWidth": 1461,
+      "targetHeight": 918,
+      "msaa": 1,
+      "vSync": 0,
+      "targetFrameRate": -1,
+      "groundBuildCount": 40,
+      "gc0": 7129,
+      "gc1": 7129,
+      "gc2": 7129,
+      "filter": "Bilinear",
+      "zone": "Overworld.11.10.0",
+      "runInBackground": true,
+      "focused": true,
+      "profilerEnabled": false,
+      "timeScale": 1.0
+    },
+    "settingsAfter": {
+      "screenWidth": 1920,
+      "screenHeight": 1080,
+      "targetWidth": 1461,
+      "targetHeight": 918,
+      "msaa": 1,
+      "vSync": 0,
+      "targetFrameRate": -1,
+      "groundBuildCount": 40,
+      "gc0": 7130,
+      "gc1": 7130,
+      "gc2": 7130,
+      "filter": "Bilinear",
+      "zone": "Overworld.11.10.0",
+      "runInBackground": true,
+      "focused": true,
+      "profilerEnabled": false,
+      "timeScale": 1.0
+    },
+    "overflow": false,
+    "normalIntervalComplete": true,
+    "groups": {
+      "allAfterFirstTwo": {
+        "COO.ZoneRenderer.LateUpdate": {
+          "count": 12038,
+          "mean": 2.1602654582156506,
+          "p50": 0.974,
+          "p95": 1.5819954999999999,
+          "maximum": 130.110458
+        },
+        "COO.ZoneRenderer.RenderZone": {
+          "count": 12038,
+          "mean": 1.0834635598105997,
+          "p50": 0.0,
+          "p95": 0.0,
+          "maximum": 126.72425
+        },
+        "COO.NativePresenter.Refresh": {
+          "count": 12038,
+          "mean": 0.637527310184416,
+          "p50": 0.0,
+          "p95": 0.0,
+          "maximum": 47.859459
+        },
+        "COO.UI.Sidebar.Render": {
+          "count": 12038,
+          "mean": 0.060212638312011964,
+          "p50": 0.002333,
+          "p95": 0.003375,
+          "maximum": 4.241333
+        },
+        "COO.UI.Hotbar.Render": {
+          "count": 12038,
+          "mean": 0.7767624219139392,
+          "p50": 0.7597084999999999,
+          "p95": 0.8941659999999999,
+          "maximum": 3.8605
+        },
+        "GC Allocated In Frame": {
+          "count": 12038,
+          "mean": 84302.4653596943,
+          "p50": 30881.0,
+          "p95": 207833.0,
+          "maximum": 94902697.0
+        },
+        "GC.Collect": {
+          "count": 12038,
+          "mean": 0.06467393877720551,
+          "p50": 0.0,
+          "p95": 0.0,
+          "maximum": 778.5448749999999
+        }
+      },
+      "completedRedraw": {
+        "COO.ZoneRenderer.LateUpdate": {
+          "count": 304,
+          "mean": 46.28199752302631,
+          "p50": 45.0499375,
+          "p95": 53.86491244999999,
+          "maximum": 130.110458
+        },
+        "COO.ZoneRenderer.RenderZone": {
+          "count": 304,
+          "mean": 42.903731358552626,
+          "p50": 41.8399795,
+          "p95": 49.68479999999999,
+          "maximum": 126.72425
+        },
+        "COO.NativePresenter.Refresh": {
+          "count": 304,
+          "mean": 25.245242631578947,
+          "p50": 24.694938,
+          "p95": 29.218215199999992,
+          "maximum": 47.859459
+        },
+        "COO.UI.Sidebar.Render": {
+          "count": 304,
+          "mean": 2.292152273026316,
+          "p50": 2.2195205,
+          "p95": 2.7467000999999995,
+          "maximum": 4.241333
+        },
+        "COO.UI.Hotbar.Render": {
+          "count": 304,
+          "mean": 0.8114393914473684,
+          "p50": 0.784125,
+          "p95": 0.9610418999999993,
+          "maximum": 1.518459
+        },
+        "GC Allocated In Frame": {
+          "count": 304,
+          "mean": 800010.697368421,
+          "p50": 208490.0,
+          "p95": 3646743.1499999305,
+          "maximum": 22882099.0
+        },
+        "GC.Collect": {
+          "count": 304,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "maximum": 0.0
+        }
+      }
+    }
+  },
+  "matchingSettings": {
+    "screenWidth": true,
+    "screenHeight": true,
+    "targetWidth": true,
+    "targetHeight": true,
+    "msaa": true,
+    "filter": true,
+    "vSync": true,
+    "targetFrameRate": true,
+    "zone": true,
+    "runInBackground": true,
+    "focused": true,
+    "profilerEnabled": true,
+    "timeScale": true
+  },
+  "stableCurrentSettings": {
+    "screenWidth": true,
+    "screenHeight": true,
+    "targetWidth": true,
+    "targetHeight": true,
+    "msaa": true,
+    "filter": true,
+    "vSync": true,
+    "targetFrameRate": true,
+    "zone": true,
+    "runInBackground": true,
+    "focused": true,
+    "profilerEnabled": true,
+    "timeScale": true
+  },
+  "ratioCurrentToBaseline": {
+    "frameMean": 1.2022805614000147,
+    "frameP95": 1.793607676566835
+  }
+}

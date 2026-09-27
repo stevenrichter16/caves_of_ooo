@@ -50,6 +50,10 @@ namespace CavesOfOoo.Rendering
    foreach(var e in nativeStyles.Entries)Add(e.Id,e.Mesh,e.Material,e.Materials);
    foreach(var e in visitorPaints.Entries)Add(e.ModelId,e.Painted,visitorPaints.Material);
    foreach(var e in poured.Entries)Add(e.Spec.id,e.Prefab.GetComponent<MeshFilter>().sharedMesh,e.Material);
+   var rareMarlbacks = SpreadRareMarlbackLibrary.Load();
+   if (rareMarlbacks != null) { rareMarlbacks.Validate(); foreach (var e in rareMarlbacks.Entries) Add(e.Id, e.Mesh, rareMarlbacks.Material); }
+   var latchcoil = SpreadLatchcoilLibrary.Load();
+   if (latchcoil != null) { latchcoil.Validate(); foreach (var e in latchcoil.Entries) Add(e.Id,e.Mesh,latchcoil.Material); }
   }
   private void Add(string model,Mesh mesh,Material material,Material[] materials=null)
   {if(model==null||mesh==null||material==null||models.ContainsKey(model))throw new InvalidOperationException("Invalid exact style model contract.");models.Add(model,new Contract(mesh,material,materials));}

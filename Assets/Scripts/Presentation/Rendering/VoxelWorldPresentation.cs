@@ -40,6 +40,10 @@ namespace CavesOfOoo.Rendering
                 animals.Validate();foreach(var entry in animals.Entries)generated.Add(entry.Mesh);
                 var newVisitors=SpreadVisitorCreatureLibrary.Load();if(newVisitors==null)throw new InvalidOperationException("Original visitor library missing.");
                 newVisitors.Validate();foreach(var entry in newVisitors.Entries)generated.Add(entry.Mesh);
+                var rareMarlbacks = SpreadRareMarlbackLibrary.Load();
+                if (rareMarlbacks != null) { rareMarlbacks.Validate(); foreach (var entry in rareMarlbacks.Entries) generated.Add(entry.Mesh); }
+                var latchcoil = SpreadLatchcoilLibrary.Load();
+                if (latchcoil != null) { latchcoil.Validate(); foreach (var entry in latchcoil.Entries) generated.Add(entry.Mesh); }
                 var creatures=SpreadCreature3DLibrary.Load();if(creatures==null)throw new InvalidOperationException("Scoped creature library missing.");
                 creatures.Validate();foreach(var entry in creatures.Entries)generated.Add(entry.Mesh);
                 var people=SpreadBiomeHumanoidLibrary.Load();if(people==null)throw new InvalidOperationException("Scoped humanoid library missing.");

@@ -261,7 +261,8 @@ namespace CavesOfOoo.Rendering
                 {
                     var bounds = PresentationBounds(renderers[0]);
                     for (int i = 1; i < renderers.Length; i++) bounds.Encapsulate(PresentationBounds(renderers[i]));
-                    bool marlback = recipe.Owner.BlueprintName?.StartsWith("Marlback", StringComparison.Ordinal) == true;
+                    bool marlback = recipe.Owner.BlueprintName?.StartsWith("Marlback", StringComparison.Ordinal) == true
+                        || SpreadRareMarlbackLibrary.IsBlueprint(recipe.Owner.BlueprintName);
                     bool inspectionHumanoid = recipe.ModelId == "ring-player" || recipe.ModelId == "ring-sien" || recipe.ModelId == "ring-nam" || humanoidLibrary?.Find(recipe.ModelId)!=null;
                     // Native screenshot review measures these exact three rigs
                     // against the existing compensated camera. Other creatures

@@ -1,0 +1,54 @@
+{
+  "scope": "Only post-factory/current-map pair admission and its four callback regression/control cases. No E2, selection, payload, data, save, RNG or meta changes. Root publication only.",
+  "files": [
+    {
+      "source": "/tmp/coo-first-hour-pair-authority/SpreadRareEncounterBuilder.cs",
+      "target": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadRareEncounterBuilder.cs",
+      "preimageSha256": "26321b487922de91fa00a985555e3bc195f3090f0a615b187c28a987a9b420d5",
+      "sha256": "58163b9e36a768b7b98be1d114a56e9f095a535697d9e48fef95f4feaabaaf77"
+    },
+    {
+      "source": "/tmp/coo-first-hour-pair-authority/SpreadRareEncounterAdversarialTests.cs",
+      "target": "Assets/Tests/EditMode/Gameplay/World/SpreadRareEncounterAdversarialTests.cs",
+      "preimageSha256": "c80c6331750d7608c25ba6cfd60c1997b39649f73f5544be373571efe94aa572",
+      "sha256": "94c1e29f2e4429af461d1d9a5667fbc68e0b2a19899cce3c5ade3d62a0a00ae7"
+    }
+  ],
+  "test_names": [
+    "CavesOfOoo.Tests.SpreadRareEncounterTests",
+    "CavesOfOoo.Tests.SpreadRareEncounterAdversarialTests",
+    "CavesOfOoo.Tests.SpreadRareEncounterLifecycleTests",
+    "CavesOfOoo.Tests.SpreadLatchcoilSourceTests"
+  ],
+  "expectedCases": 92,
+  "evidence": {
+    "red": {
+      "total": 4,
+      "passed": 2,
+      "failed": 2,
+      "skipped": 0,
+      "result": "Failed",
+      "xml": "Docs/Verification/SpreadFirstHour/Integration/PairAuthority/red.xml.gz",
+      "sha256": "7a3bd6bbe133160c2e4fd470297e947458459093dc50452ba829dbe7a753cfdb"
+    },
+    "green": {
+      "total": 92,
+      "passed": 92,
+      "failed": 0,
+      "skipped": 0,
+      "result": "Passed",
+      "xml": "Docs/Verification/SpreadFirstHour/Integration/PairAuthority/green.xml.gz",
+      "sha256": "d89de5651539720cb580dbbb756d6240ee7f8e9ef9dc83305d96414eafb86c28"
+    }
+  },
+  "runtimeBoundary": "Private Unity-free runner uses presentation stubs and deterministic string-hash adapters; baseline/candidate exact matched. Actual native execution pending root.",
+  "peerReview": "Requested from render_completion; pending.",
+  "compilation": {
+    "runtime": "Actual current runtime references: 0 errors",
+    "tests": "Actual EditModeTests references: 0 errors; positive owner check uses public Zone.GetEntityCell, not internal SpatialZone."
+  },
+  "unchangedProof": {
+    "fromTryPlaceViperToEndByteIdentical": true,
+    "sourceDataSelectionSaveAndPayloadChanged": false
+  }
+}

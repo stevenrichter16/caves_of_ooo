@@ -41,7 +41,7 @@ namespace CavesOfOoo.Tests
   {
    int x=direction?4:15;var grass=Put("Grass",x);var source=Put("OilSeep",x);var water=Put("WaterPuddle",x);var top=cloud?Put("SteamCloud",x):water;
    source.ApplyEffect(new SteamEffect(.7f));source.GetPart<ThermalPart>().Temperature=hot?700:25;
-   var cell=zone.GetCell(x,4);var owners=cell.Occupants.ToArray();Assert.False(WorldInteractionSystem.IsPileCell(cell));
+   var cell=zone.GetCell(x,4);cell.Explored=true;cell.IsVisible=true;Assert.True(cell.Explored&&cell.IsVisible,"Ordinary current source examination requires a visible explored cell.");var owners=cell.Occupants.ToArray();Assert.False(WorldInteractionSystem.IsPileCell(cell));
    int tick=input.TurnManager.TickCount,energy=input.TurnManager.GetEnergy(player),hp=player.GetStatValue("Hitpoints");float density=source.GetEffect<SteamEffect>().Density;
    Open(x,4,direction);Assert.AreSame(top,menu.SelectedTarget);Assert.False(menu.SelectedCellIsPile);Back();
    Assert.AreEqual(owners.Length,Actions.Count);Select(WorldInteractionSystem.PickTargetCommandPrefix+source.ID);Assert.AreSame(source,menu.SelectedTarget);Assert.False(menu.SelectedCellIsPile);

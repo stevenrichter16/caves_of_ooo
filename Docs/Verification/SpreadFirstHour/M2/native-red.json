@@ -1,0 +1,132 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "cca9dc475ce9422890af775063b6cf20",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1790537905965,
+      "finished_unix_ms": 1790537912037,
+      "last_update_unix_ms": 1790537912037,
+      "progress": {
+        "completed": 40,
+        "total": 40,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1790537911994,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.SpreadWorldExamineReaderTests.RealHotOrCoolOwnerAndVisibleGroundOpenTogetherForFree(False,\"Normal\")",
+        "last_finished_unix_ms": 1790537912014,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.EquipmentComparisonInventoryTests.ChangedEquipmentAndCandidateFieldsAreReadWhenActionIsChosen",
+            "message": "  One discoverable equipment comparison action.\n  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.EquipmentComparisonInventoryTests.CompareIsDiscoverableAndUsesTheExistingFreePaginatedReader",
+            "message": "  One discoverable equipment comparison action.\n  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.EquipmentComparisonInventoryTests.EquippedCandidateCanBeReadWithoutMovingIt",
+            "message": "  One discoverable equipment comparison action.\n  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.EquipmentComparisonInventoryTests.IncompatibleSlotStillOffersAComparisonWithItsUnavailableReason",
+            "message": "  One discoverable equipment comparison action.\n  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.EquipmentComparisonInventoryTests.ReadingDoesNotAuthorizeLaterEquipAfterTheItemIsRemoved",
+            "message": "  One discoverable equipment comparison action.\n  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.EquipmentComparisonInventoryTests.SelectionRevalidatesRemovedAndForeignItems(False)",
+            "message": "  One discoverable equipment comparison action.\n  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.EquipmentComparisonInventoryTests.SelectionRevalidatesRemovedAndForeignItems(True)",
+            "message": "  One discoverable equipment comparison action.\n  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadSidebarGlyphBoundsTests.ActualSidebarGlyphsKeepHalfARowAtBothScreenEdges(11.48f,False)",
+            "message": "  Expected: greater than or equal to 1460.98987f\n  But was:  1454.25f\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadSidebarGlyphBoundsTests.ActualSidebarGlyphsKeepHalfARowAtBothScreenEdges(11.48f,True)",
+            "message": "  Expected: greater than or equal to 1460.98987f\n  But was:  1454.25f\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadSidebarGlyphBoundsTests.ActualSidebarGlyphsKeepHalfARowAtBothScreenEdges(17.0f,True)",
+            "message": "  Expected: greater than or equal to 1460.98999f\n  But was:  1454.25f\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadSidebarParagraphTests.ExplicitParagraphsAndBlankLineRemainDistinctRows(\"\\n\")",
+            "message": "  Expected is <System.String[3]>, actual is <System.Collections.Generic.List`1[System.String]> with 1 elements\n  Values differ at index [0]\n  Expected string length 8 but was 14. Strings differ at index 8.\n  Expected: \":: First\"\n  But was:  \":: First\\n\\nLast\"\n  -------------------^\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadSidebarParagraphTests.ExplicitParagraphsAndBlankLineRemainDistinctRows(\"\\r\\n\")",
+            "message": "  Expected is <System.String[3]>, actual is <System.Collections.Generic.List`1[System.String]> with 2 elements\n  Values differ at index [0]\n  Expected string length 8 but was 14. Strings differ at index 8.\n  Expected: \":: First\"\n  But was:  \":: First\\r\\n\\r\\nLa\"\n  -------------------^\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadSidebarParagraphTests.ExplicitParagraphsAndBlankLineRemainDistinctRows(\"\\r\")",
+            "message": "  Expected is <System.String[3]>, actual is <System.Collections.Generic.List`1[System.String]> with 1 elements\n  Values differ at index [0]\n  Expected string length 8 but was 14. Strings differ at index 8.\n  Expected: \":: First\"\n  But was:  \":: First\\r\\rLast\"\n  -------------------^\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadSidebarParagraphTests.FocusUsesTheSameParagraphBoundariesWithoutControlGlyphs",
+            "message": "  Expected is <System.String[4]>, actual is <System.Collections.Generic.List`1[System.String]> with 2 elements\n  Values differ at index [1]\n  Expected string length 10 but was 25. Strings differ at index 10.\n  Expected: \"Afflicted:\"\n  But was:  \"Afflicted:\\n- first\\n- last\"\n  ---------------------^\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadSidebarParagraphTests.LogParagraphRowsKeepOneMessageIdentityAndOrdering",
+            "message": "  Expected is <System.String[2]>, actual is <System.Linq.Enumerable+SelectListIterator`2[CavesOfOoo.Rendering.SidebarTextFormatter+LogLine,System.String]>\n  Values differ at index [0]\n  Expected string length 8 but was 12. Strings differ at index 8.\n  Expected: \":: start\"\n  But was:  \":: start\\nfin\"\n  -------------------^\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ActualPileSummaryIsDistinctFromSelectedOwnersFullDetails",
+            "message": "  Actual world Examine must reach the complete paginated reader.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(\"removed\")",
+            "message": "  Expected: not String containing \"PRIVATE-OWNER-TEXT\"\n  But was:  \"You see an oil seep. PRIVATE-OWNER-TEXT\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(\"moved\")",
+            "message": "  Expected: not String containing \"PRIVATE-OWNER-TEXT\"\n  But was:  \"You see an oil seep. PRIVATE-OWNER-TEXT\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(\"hidden\")",
+            "message": "  Expected: not String containing \"PRIVATE-OWNER-TEXT\"\n  But was:  \"You see an oil seep. PRIVATE-OWNER-TEXT\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(\"fogged\")",
+            "message": "  Expected: not String containing \"PRIVATE-OWNER-TEXT\"\n  But was:  \"You see an oil seep. PRIVATE-OWNER-TEXT\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(\"unexplored\")",
+            "message": "  Expected: not String containing \"PRIVATE-OWNER-TEXT\"\n  But was:  \"You see an oil seep. PRIVATE-OWNER-TEXT\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(\"foreign-zone\")",
+            "message": "  Expected: not String containing \"PRIVATE-OWNER-TEXT\"\n  But was:  \"You see an oil seep. PRIVATE-OWNER-TEXT\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(\"missing-part\")",
+            "message": "  Refusal must be visible.\n  Expected: not <empty>\n  But was:  <empty>\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadWorldExamineReaderTests.ChangedSelectionCannotRevealStaleOwnerOrGround(\"replacement-id\")",
+            "message": "  Expected: not String containing \"PRIVATE-OWNER-TEXT\"\n  But was:  \"You see an oil seep. PRIVATE-OWNER-TEXT\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.SpreadWorldExamineReaderTests.CurrentCorpseIsInspectableWithoutALivingActorGate",
+            "message": "  Actual world Examine must reach the complete paginated reader.\n  Expected: True\n  But was:  False\n"
+          }
+        ],
+        "failures_capped": true
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

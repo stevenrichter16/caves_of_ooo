@@ -91,6 +91,21 @@ namespace CavesOfOoo.Rendering
         /// target may share a pile cell without inheriting summary actions.</summary>
         public bool SelectedCellIsPile => _cellIsPile;
 
+        public InventoryAction HighlightedAction => _isOpen && _cursorIndex >= 0 && _cursorIndex < _actions.Count ? _actions[_cursorIndex] : null;
+        public bool IsTargetPicker => _actions.Count > 0 && _actions.TrueForAll(a => a != null &&
+            a.Command != null && a.Command.StartsWith(WorldInteractionSystem.PickTargetCommandPrefix, System.StringComparison.Ordinal));
+        public bool HasBackRow => _actions.Exists(a => a != null && a.Command == WorldInteractionSystem.PickCellCommand);
+
+        /// <summary>The input owner may layer its reader, then rebuild current actions on return.</summary>
+        public void HideForReader() => Close();
+        public void RestoreHighlight(InventoryAction identity)
+        {
+            if (!_isOpen || identity == null) return;
+            int found = _actions.FindIndex(a => a != null && a.Name == identity.Name &&
+                a.Command == identity.Command && a.FireOnActor == identity.FireOnActor);
+            if (found >= 0) { _cursorIndex = found; ScrollIntoView(); Render(); }
+        }
+
         /// <summary>
         /// Show the menu. <paramref name="actor"/> is accepted for call-site
         /// symmetry but unused (the menu never needed the actor; the dead
@@ -315,7 +330,7 @@ namespace CavesOfOoo.Rendering
         /// tile's water can share a cell without sharing a line.</para>
         ///
         /// <para>Capped at <see cref="MAX_STATUS_ROWS"/> rows with an
-        /// "...and N more" tail — look mode always carries the full
+        /// "...and N more" tail — Examine carries the full
         /// list.</para>
         /// </summary>
         public static List<string> BuildStatusLinesFor(Entity target, Cell cell, Zone zone)
@@ -342,7 +357,7 @@ namespace CavesOfOoo.Rendering
             {
                 int extra = lines.Count - (MAX_STATUS_ROWS - 1);
                 lines.RemoveRange(MAX_STATUS_ROWS - 1, extra);
-                lines.Add("...and " + extra + " more (see look mode)");
+                lines.Add("...and " + extra + " more (see Examine)");
             }
             return lines;
         }
@@ -361,7 +376,7 @@ namespace CavesOfOoo.Rendering
             int borderH = visibleCount + 4 + StatusBlockRows;
 
             ClearRegion(0, 0, POPUP_W, _popupH);
-            DrawBgFill(0, 0, POPUP_W, borderH);
+            DrawBgFill(0, 0, POPUP_W, _popupH);
             DrawPopupBorder(0, 0, POPUP_W, borderH, _statusLines.Count, visibleCount);
 
 
@@ -431,6 +446,7 @@ namespace CavesOfOoo.Rendering
                 if (_scrollOffset + visibleCount < totalRows)
                     DrawChar(POPUP_W - 2, contentY + visibleCount - 1, 'v', QudColorParser.Gray);
             }
+            DrawText(2, borderH, "[F1]details [Enter]ok [Esc]back", QudColorParser.Gray);
         }
 
         private void ComputePopupPosition()

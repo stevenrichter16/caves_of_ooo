@@ -1,0 +1,128 @@
+using System;
+using CavesOfOoo.Diagnostics;
+
+namespace CavesOfOoo.Core
+{
+    /// <summary>Fresh-world regional pair and optional viper addresses, frozen before exploration.
+    /// Saved as bounded ordinary World properties. A missing old-save plan stays
+    /// disabled; an initialized empty plan stays empty. No read path rolls RNG.</summary>
+    public sealed class SpreadRareEncounterPlan
+    {
+        public const string PropertyKey = "SpreadRareEncounter.Selection.v1";
+        public const string ViperPropertyKey = "SpreadRareEncounter.ViperSelection.v1";
+        public const string ViperBlueprint = "SpreadLatchcoil";
+        public const string PairLeader = "SpreadHurdleCutter";
+        public const string PairMate = "SpreadDitchMate";
+        public string PairZoneID { get; private set; }
+        public bool Initialized { get; private set; }
+        public string ViperZoneID { get; private set; } = "";
+        public bool ViperInitialized { get; private set; }
+
+        public static SpreadRareEncounterPlan Create(OverworldZoneManager manager)
+        {
+            var result = new SpreadRareEncounterPlan { Initialized = true, PairZoneID = "" };
+            uint best = uint.MaxValue;
+            for (int y = 0; y < WorldMap.Height; y++)
+                for (int x = 0; x < WorldMap.Width; x++)
+                {
+                    string id = WorldMap.ToZoneID(x, y, 0);
+                    if (!IsEligible(manager, id)) continue;
+                    var formation = FormationSelector.For(BiomeType.Spread, id);
+                    if (formation != Formation.Hedgerow && formation != Formation.OldRoad) continue;
+                    uint rank = Rank(manager.WorldSeed, id);
+                    if (rank >= best) continue;
+                    best = rank; result.PairZoneID = id;
+                }
+            // Independent rank stream; the original pair selection and caller RNG are unchanged.
+            result.ViperInitialized = true;
+            uint viperBest = uint.MaxValue;
+            for (int y = 0; y < WorldMap.Height; y++)
+                for (int x = 0; x < WorldMap.Width; x++)
+                {
+                    string id = WorldMap.ToZoneID(x, y, 0);
+                    if (!result.ViperEligible(manager, id)) continue;
+                    uint rank = ViperRank(manager.WorldSeed, id);
+                    if (rank >= viperBest) continue;
+                    viperBest = rank; result.ViperZoneID = id;
+                }
+            if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "SpreadRareSelected",
+                payload: new { version = 1, zone = result.PairZoneID, family = "ditch-cutters" });
+            return result;
+        }
+
+        public static bool IsEligible(OverworldZoneManager manager, string id)
+        {
+            if (manager?.WorldMap?.Tiles == null || manager.WorldMap.POIs == null || !WorldMap.IsOverworldZoneID(id)) return false;
+            var p = WorldMap.FromZoneID(id);
+            if (!WorldMapAuthoring.InBounds(p.x, p.y) || p.z != 0 || id != WorldMap.ToZoneID(p.x, p.y, 0)) return false;
+            if (manager.WorldMap.GetBiome(p.x, p.y) != BiomeType.Spread || manager.WorldMap.GetPOI(p.x, p.y) != null
+                || WorldMapAuthoring.TierAt(p.x, p.y) != 1 || !SpreadCompositionPlan.IsWildernessZone(id)) return false;
+            return Array.IndexOf(OverworldZoneManager.AuthoredWildernessZoneIDs, id) < 0 && id != MultiCellPilotRuntime.ZoneID;
+        }
+
+        public bool Selects(OverworldZoneManager manager, string id)
+            => Initialized && ((!string.IsNullOrEmpty(PairZoneID) && PairZoneID == id && IsEligible(manager, id))
+                || (ViperInitialized && !string.IsNullOrEmpty(ViperZoneID) && ViperZoneID == id && ViperEligible(manager, id)));
+
+        private bool ViperEligible(OverworldZoneManager manager, string id)
+        {
+            if (!IsEligible(manager, id) || FormationSelector.For(BiomeType.Spread, id) != Formation.Hedgerow) return false;
+            if (string.IsNullOrEmpty(PairZoneID)) return true;
+            var a = WorldMap.FromZoneID(PairZoneID); var b = WorldMap.FromZoneID(id);
+            return Math.Max(Math.Abs(a.x - b.x), Math.Abs(a.y - b.y)) > 1;
+        }
+
+        public static Entity BindForSave(OverworldZoneManager manager, Entity world)
+        {
+            if (manager?.RareEncounters?.Initialized != true) return world;
+            if (world == null) { world = new Entity { BlueprintName = "World", ID = Guid.NewGuid().ToString("N") }; world.SetTag("WorldEntity"); }
+            world.Properties[PropertyKey] = "1|" + manager.RareEncounters.PairZoneID;
+            if (manager.RareEncounters.ViperInitialized)
+                world.Properties[ViperPropertyKey] = "1|" + manager.RareEncounters.ViperZoneID;
+            return world;
+        }
+
+        /// <summary>Decodes without selecting a replacement when a saved address
+        /// becomes ineligible. Unknown/malformed metadata refuses new spawning.</summary>
+        public static SpreadRareEncounterPlan Restore(Entity world)
+        {
+            var result = new SpreadRareEncounterPlan { PairZoneID = "" };
+            if (world == null || !world.Properties.TryGetValue(PropertyKey, out string value) || value == null || !value.StartsWith("1|", StringComparison.Ordinal)) return result;
+            string id = value.Substring(2);
+            if (id.Length > 0)
+            {
+                if (!WorldMap.IsOverworldZoneID(id)) return result;
+                var p = WorldMap.FromZoneID(id);
+                if (!WorldMapAuthoring.InBounds(p.x, p.y) || p.z != 0 || id != WorldMap.ToZoneID(p.x, p.y, 0)) return result;
+            }
+            result.Initialized = true; result.PairZoneID = id;
+            // Missing optional metadata is an old save, not a request for fresh content.
+            if (world.Properties.TryGetValue(ViperPropertyKey, out string optional) && optional != null
+                && optional.StartsWith("1|", StringComparison.Ordinal))
+            {
+                string viper = optional.Substring(2);
+                if (CanonicalSurfaceOrEmpty(viper))
+                { result.ViperInitialized = true; result.ViperZoneID = viper; }
+            }
+            return result;
+        }
+
+        private static bool CanonicalSurfaceOrEmpty(string id)
+        {
+            if (id.Length == 0) return true;
+            // FromZoneID uses TryParse; equality rejects aliases, extra fields and whitespace.
+            var p = WorldMap.FromZoneID(id);
+            return WorldMapAuthoring.InBounds(p.x, p.y) && p.z == 0 && id == WorldMap.ToZoneID(p.x, p.y, 0);
+        }
+
+        private static uint ViperRank(int seed, string id)
+        {
+            unchecked { uint hash = 2166136261 ^ (uint)seed; foreach (char c in "SpreadRare.v1.viper|" + id) hash = (hash ^ c) * 16777619; return hash; }
+        }
+
+        private static uint Rank(int seed, string id)
+        {
+            unchecked { uint hash = 2166136261 ^ (uint)seed; foreach (char c in "SpreadRare.v1.pair|" + id) hash = (hash ^ c) * 16777619; return hash; }
+        }
+    }
+}

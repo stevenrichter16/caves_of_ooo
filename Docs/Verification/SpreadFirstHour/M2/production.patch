@@ -1,0 +1,271 @@
+--- a/Assets/Scripts/Gameplay/Entities/ExaminablePart.cs
++++ b/Assets/Scripts/Gameplay/Entities/ExaminablePart.cs
+@@ -91,13 +91,26 @@
+         /// proper noun (starts uppercase), we leave it alone. Otherwise we
+         /// prepend "a ".
+         /// </summary>
+-        public string BuildExamineLine()
++        public string BuildExamineLine() => BuildDescription(false, null);
++
++        /// <summary>World reader snapshot: immediate effects and visible ground precede long flavor.</summary>
++        public string BuildWorldExamineLine(Zone zone, Cell cell)
+         {
++            return BuildDescription(true, CellStatusReadout.GroundLine(zone, cell));
++        }
++
++        private string BuildDescription(bool statusFirst, string ground)
++        {
+             string name = ParentEntity?.GetDisplayName() ?? "something";
+             string article = GetArticle(name);
+             string baseLine = $"You see {article}{name}.";
++            if (statusFirst)
++            {
++                baseLine += DescribeAfflictions();
++                if (!string.IsNullOrEmpty(ground)) baseLine += "\n" + ground;
++            }
+             if (!string.IsNullOrWhiteSpace(Text))
+-                baseLine += " " + Text.Trim();
++                baseLine += (statusFirst ? "\n\n" : " ") + Text.Trim();
+ 
+             var carriedReward = ParentEntity?.GetPart<LegendaryIdentityPart>()?.DescribeCarriedReward();
+             if (!string.IsNullOrWhiteSpace(carriedReward))
+@@ -128,23 +141,20 @@
+                 }
+             }
+ 
+-            // Live afflictions: the same per-effect lines the look-mode
+-            // FOCUS panel shows (shared EffectDescriber).
+-            var effectsPart = ParentEntity?.GetPart<StatusEffectsPart>();
+-            var effects = effectsPart?.GetAllEffects();
+-            if (effects != null && effects.Count > 0)
+-            {
+-                baseLine += "\nAfflicted:";
+-                for (int i = 0; i < effects.Count; i++)
+-                {
+-                    if (effects[i] != null)
+-                        baseLine += "\n  - " + EffectDescriber.Describe(effects[i]);
+-                }
+-            }
+-
++            if (!statusFirst) baseLine += DescribeAfflictions();
+             return baseLine;
+         }
+ 
++        private string DescribeAfflictions()
++        {
++            var effects = ParentEntity?.GetPart<StatusEffectsPart>()?.GetAllEffects();
++            if (effects == null || effects.Count == 0) return string.Empty;
++            string result = "\nAfflicted:";
++            for (int i = 0; i < effects.Count; i++)
++                if (effects[i] != null) result += "\n  - " + EffectDescriber.Describe(effects[i]);
++            return result;
++        }
++
+         private static string GetArticle(string name)
+         {
+             if (string.IsNullOrEmpty(name)) return "";
+--- a/Assets/Scripts/Presentation/Input/InputHandler.cs
++++ b/Assets/Scripts/Presentation/Input/InputHandler.cs
+@@ -2748,12 +2748,11 @@
+                 return;
+             }
+ 
+-            // Only the pile SUMMARY examines the whole cell. A selected owner's
+-            // menu uses its own Examine even when it shares that same cell.
+-            if (isPileCell && action.Command == "Examine")
++            // Examine is free, but stale menus cannot reveal an old owner or hidden cell.
++            // A pile summary and an explicitly selected owner remain distinct snapshots.
++            if (action.Command == "Examine")
+             {
+-                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell, CurrentZone));
+-                _inputState = _worldActionMenuReturnState;
++                OpenWorldExamineReader(target, cell, isPileCell);
+                 return;
+             }
+ 
+@@ -4059,6 +4058,63 @@
+             tilemap.SetTile(tilePos, tile);
+             tilemap.SetTileFlags(tilePos, UnityEngine.Tilemaps.TileFlags.None);
+             tilemap.SetColor(tilePos, color);
++        }
++
++        private bool IsCurrentExamineOwner(Entity target, Cell cell)
++        {
++            if (CurrentZone == null || cell == null || !cell.Explored || !cell.IsVisible
++                || !ReferenceEquals(CurrentZone.GetCell(cell.X, cell.Y), cell)
++                || target == null || string.IsNullOrEmpty(target.ID)
++                || CurrentZone.GetEntityCell(target) == null) return false;
++            var render = target.GetPart<RenderPart>();
++            if (render == null || !render.Visible || !ReferenceEquals(render.ParentEntity, target)) return false;
++            for (int i = 0; i < cell.Occupants.Count; i++)
++                if (ReferenceEquals(cell.Occupants[i], target)) return true;
++            return false;
++        }
++
++        private void OpenWorldExamineReader(Entity target, Cell cell, bool pile)
++        {
++            _inputState = _worldActionMenuReturnState;
++            var examinable = target?.GetPart<ExaminablePart>();
++            if (!IsCurrentExamineOwner(target, cell) || (!pile &&
++                (examinable == null || !ReferenceEquals(examinable.ParentEntity, target))))
++            {
++                MessageLog.Add("That selection is no longer available to examine.");
++                return;
++            }
++
++            string text;
++            if (pile)
++            {
++                // The summary names visible current objects, never another owner's full prose.
++                var names = new List<string>();
++                for (int i = 0; i < cell.Occupants.Count; i++)
++                {
++                    var owner = cell.Occupants[i];
++                    if (IsCurrentExamineOwner(owner, cell) && !owner.HasTag("Player")
++                        && !WorldInteractionSystem.IsTerrain(owner)) names.Add(owner.GetDisplayName());
++                }
++                text = names.Count > 1 ? "A pile of items, including: " + string.Join(", ", names) + "."
++                    : names.Count == 1 ? "You see " + names[0] + "." : "There are no visible items in this pile.";
++                string ground = CellStatusReadout.GroundLine(CurrentZone, cell);
++                if (!string.IsNullOrEmpty(ground)) text += "\n" + ground;
++            }
++            else text = examinable.BuildWorldExamineLine(CurrentZone, cell);
++
++            // Describers may consult parts. Recheck the same selected instance before publication.
++            if (!IsCurrentExamineOwner(target, cell) || (!pile &&
++                !ReferenceEquals(target.GetPart<ExaminablePart>(), examinable)))
++            {
++                MessageLog.Add("That selection is no longer available to examine.");
++                return;
++            }
++            if (AnnouncementUI == null) MessageLog.Add(text);
++            else
++            {
++                MessageLog.AddAnnouncement(text);
++                TryOpenAnnouncement();
++            }
+         }
+ 
+         // ===== Announcement Modal =====
+--- a/Assets/Scripts/Presentation/Rendering/SidebarTextFormatter.cs
++++ b/Assets/Scripts/Presentation/Rendering/SidebarTextFormatter.cs
+@@ -244,37 +244,32 @@
+                 return lines;
+             }
+ 
+-            int index = 0;
+-            bool firstLine = true;
+-            while (index < normalized.Length)
++            normalized = normalized.Replace("\r\n", "\n").Replace('\r', '\n');
++            foreach (string paragraph in normalized.Split('\n'))
+             {
+-                string prefix = firstLine ? first : cont;
+-                int available = safeWidth - prefix.Length;
+-                if (available <= 0)
+-                {
+-                    lines.Add(Truncate(prefix, safeWidth));
+-                    break;
+-                }
+-
+-                int remaining = normalized.Length - index;
+-                if (remaining <= available)
++                string body = paragraph.Trim();
++                int index = 0;
++                do
+                 {
+-                    lines.Add(prefix + normalized.Substring(index, remaining));
+-                    break;
+-                }
+-
+-                int breakAt = normalized.LastIndexOf(' ', index + available - 1, available);
+-                if (breakAt < index)
+-                    breakAt = index + available;
+-
+-                string slice = normalized.Substring(index, breakAt - index).TrimEnd();
+-                lines.Add(prefix + slice);
+-
+-                index = breakAt;
+-                while (index < normalized.Length && normalized[index] == ' ')
+-                    index++;
+-
+-                firstLine = false;
++                    string prefix = lines.Count == 0 ? first : cont;
++                    int available = safeWidth - prefix.Length;
++                    if (available <= 0)
++                    {
++                        lines.Add(Truncate(prefix, safeWidth));
++                        break;
++                    }
++                    int remaining = body.Length - index;
++                    if (remaining <= available)
++                    {
++                        lines.Add(prefix + body.Substring(index, remaining));
++                        break;
++                    }
++                    int breakAt = body.LastIndexOf(' ', index + available - 1, available);
++                    if (breakAt < index) breakAt = index + available;
++                    lines.Add(prefix + body.Substring(index, breakAt - index).TrimEnd());
++                    index = breakAt;
++                    while (index < body.Length && body[index] == ' ') index++;
++                } while (index < body.Length);
+             }
+ 
+             return lines;
+@@ -292,35 +287,8 @@
+ 
+         private static List<string> WrapPlain(string text, int width)
+         {
+-            int safeWidth = Math.Max(1, width);
+-            var lines = new List<string>();
+-            if (string.IsNullOrWhiteSpace(text))
+-                return lines;
+-
+-            string normalized = text.Trim();
+-            int index = 0;
+-            while (index < normalized.Length)
+-            {
+-                int remaining = normalized.Length - index;
+-                if (remaining <= safeWidth)
+-                {
+-                    lines.Add(normalized.Substring(index, remaining));
+-                    break;
+-                }
+-
+-                int breakAt = normalized.LastIndexOf(' ', index + safeWidth - 1, safeWidth);
+-                if (breakAt < index)
+-                    breakAt = index + safeWidth;
+-
+-                string slice = normalized.Substring(index, breakAt - index).TrimEnd();
+-                lines.Add(slice);
+-
+-                index = breakAt;
+-                while (index < normalized.Length && normalized[index] == ' ')
+-                    index++;
+-            }
+-
+-            return lines;
++            return string.IsNullOrWhiteSpace(text) ? new List<string>()
++                : WrapWithPrefixes(text, width, string.Empty, string.Empty);
+         }
+ 
+         private static string Truncate(string text, int width)
+--- a/Assets/Scripts/Presentation/UI/WorldActionMenuUI.cs
++++ b/Assets/Scripts/Presentation/UI/WorldActionMenuUI.cs
+@@ -315,7 +315,7 @@
+         /// tile's water can share a cell without sharing a line.</para>
+         ///
+         /// <para>Capped at <see cref="MAX_STATUS_ROWS"/> rows with an
+-        /// "...and N more" tail — look mode always carries the full
++        /// "...and N more" tail — Examine carries the full
+         /// list.</para>
+         /// </summary>
+         public static List<string> BuildStatusLinesFor(Entity target, Cell cell, Zone zone)
+@@ -342,7 +342,7 @@
+             {
+                 int extra = lines.Count - (MAX_STATUS_ROWS - 1);
+                 lines.RemoveRange(MAX_STATUS_ROWS - 1, extra);
+-                lines.Add("...and " + extra + " more (see look mode)");
++                lines.Add("...and " + extra + " more (see Examine)");
+             }
+             return lines;
+         }

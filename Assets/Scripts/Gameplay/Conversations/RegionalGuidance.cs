@@ -35,7 +35,10 @@ namespace CavesOfOoo.Core
         /// <summary>Directions from a sign's actual attached surface graph.
         /// Signs are not living conversation partners and never advertise work.
         /// A stale or detached sign has no authority to name destinations.</summary>
-        internal static IReadOnlyList<RegionalTravelLead> BuildSignpost(Entity sign)
+        internal static IReadOnlyList<RegionalTravelLead> BuildSignpost(Entity sign) => BuildGeographicDirections(sign);
+
+        // Shared read-only geographic path: no claim about services or work.
+        internal static IReadOnlyList<RegionalTravelLead> BuildGeographicDirections(Entity sign)
         {
             var zone=sign?.SpatialZone;
             var manager=WorldLocationContext.For(zone);

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092a35a8ad8f456a921da0e5f0d83d79, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.SpreadLatchcoilLibrary
+  Entries:
+  - Id: spread-latchcoil-viper
+    Prefab: {fileID: 7445843113608016513, guid: 063b071479f8b416093a8d0b2009908b, type: 3}
+    Mesh: {fileID: 4300000, guid: ebb31d8be7dd4422c8d527487f0434d1, type: 2}
+    Spec:
+      id: spread-latchcoil-viper
+      path: Assets/Resources/SpreadLatchcoil3D/spread-latchcoil-viper.prefab
+      kind: actor
+      rigFamily: serpent
+      materialFamily: reference-glade-palette
+      sourceBlueprint: SpreadLatchcoil
+      rigged: 1
+      boundsCenter: {x: 0.023153212, y: 0.42439994, z: 0.034798887}
+      boundsSize: {x: 0.69191164, y: 1.0888, z: 1.1295974}
+      triangles: 696
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  SourcePrefab: {fileID: 6858822792302253863, guid: 590aa976c0cc84a8a9beafa68c388009, type: 3}
+  SourceMesh: {fileID: -5207515584968568059, guid: d3e0722d4a2954aa591789f149a527fb, type: 3}
+  Material: {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}

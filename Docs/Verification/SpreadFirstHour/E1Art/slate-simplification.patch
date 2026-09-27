@@ -1,0 +1,30 @@
+--- Assets/Editor/Art/SpreadRareMarlbackBuilder.cs
++++ Assets/Editor/Art/SpreadRareMarlbackBuilder.cs
+@@ -187,14 +187,13 @@
+             }
+             else
+             {
+-                // Rear slate has two stepped pieces and an absent corner.
++                // One rear slate lies on the actual back roof. The second
++                // decorative corner was removed: it had no original surface beneath it.
+                 // The far rear roof is lower than Spine's global maximum.
+                 // Keep the same form/footprint but attach it to the actual
+                 // original surface beneath its centre, not a distant peak.
+                 float rearSurface = OriginalSurfaceHeight(.10f, spine.max.z -.075f, indices["Spine"], source, fromMesh);
+                 Box(new Vector3(.10f, rearSurface + .010f, spine.max.z -.075f), new Vector3(.23f,.055f,.13f), "Spine", 11);
+-                float cornerSurface = OriginalSurfaceHeight(-.07f, spine.max.z -.043f, indices["Spine"], source, fromMesh);
+-                Box(new Vector3(-.07f, cornerSurface + .004f, spine.max.z -.043f), new Vector3(.09f,.043f,.066f), "Spine", 12);
+             }
+             string arm = cutter ? "Arm.L" : "Arm.R"; var limb = BoneBounds(arm);
+             float side = cutter ? limb.min.x - .006f : limb.max.x + .006f;
+--- ArtSource/SpreadRareMarlback3D/design.json
++++ ArtSource/SpreadRareMarlback3D/design.json
+@@ -16,7 +16,7 @@
+       "id": "spread-rare-ditch-mate",
+       "blueprint": "SpreadDitchMate",
+       "name": "ditch-cutter mate",
+-      "forms": "Two offset rear slate steps with a missing-corner outline, plus two short pale rake scars on the right forelimb.",
++      "forms": "One offset rear slate attached to the original back, plus two short pale rake scars on the right forelimb. The unsupported decorative corner was removed after actual contact validation.",
+       "realEquipment": ["Cudgel"]
+     }
+   ],

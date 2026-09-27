@@ -1,0 +1,54 @@
+{
+  "source": "Docs/Verification/SpreadFirstHour/Integration/full-first-red.xml.gz",
+  "sha256": "e83fc199af56361816c0f132fdcd65ebeb9382c64d9ba191bc542d28fd40a6a0",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.InteractKeyPileAndTakeTests.PickedCreatureSharingCellWithScenery_ExamineDescribesTheSelectedOwner",
+      "message": "  Picking the frog must dispatch its own Examine, even while the cell remains a pile.\n  Expected: String containing \"A translucent frog rests on the damp bank.\"\n  But was:  \"That selection is no longer available to examine.\"\n",
+      "stack": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.InteractKeyPileAndTakeTests.PickedCreatureSharingCellWithScenery_ExamineDescribesTheSelectedOwner () [0x0011a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/InteractKeyPileAndTakeTests.cs:161\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InteractKeyPileAndTakeTests.PickedOwner_BackToPickerThenAnotherOwner_KeepsIndividualExamineContext",
+      "message": "  Expected: String containing \"The second bone is polished smooth.\"\n  But was:  \"That selection is no longer available to examine.\"\n",
+      "stack": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.InteractKeyPileAndTakeTests.PickedOwner_BackToPickerThenAnotherOwner_KeepsIndividualExamineContext () [0x00101] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/InteractKeyPileAndTakeTests.cs:190\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InteractKeyPileAndTakeTests.PileSummary_ExamineDescribesTheWholeCell",
+      "message": "  Expected string length 39 but was 49. Strings differ at index 0.\n  Expected: \"A pile of items, including: Bone, Bone.\"\n  But was:  \"That selection is no longer available to examine.\"\n  -----------^\n",
+      "stack": "at CavesOfOoo.Tests.InteractKeyPileAndTakeTests.PileSummary_ExamineDescribesTheWholeCell () [0x00092] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/InteractKeyPileAndTakeTests.cs:136\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.InteractKeyPileAndTakeTests.SingleOwner_ExaminePreservesAuthoredDescriptionWithoutPicker",
+      "message": "  Expected: String containing \"One weathered bone.\"\n  But was:  \"That selection is no longer available to examine.\"\n",
+      "stack": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.InteractKeyPileAndTakeTests.SingleOwner_ExaminePreservesAuthoredDescriptionWithoutPicker () [0x0009f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/InteractKeyPileAndTakeTests.cs:210\n"
+    }
+  ],
+  "existingSelection": [
+    {
+      "name": "HotSteamTerrainMenuTests",
+      "total": "10",
+      "passed": "10",
+      "failed": "0"
+    },
+    {
+      "name": "InteractKeyPileAndTakeTests",
+      "total": "16",
+      "passed": "12",
+      "failed": "4"
+    },
+    {
+      "name": "SpreadWorldExamineReaderTests",
+      "total": "29",
+      "passed": "29",
+      "failed": "0"
+    },
+    {
+      "name": "WorldActionReachTests",
+      "total": "9",
+      "passed": "9",
+      "failed": "0"
+    }
+  ],
+  "premiseSource": "Cell.IsVisible/Explored defaultfalse; old CreateLooseItem/frog/mushroom lack RenderPart; IsCurrentExamineOwner requires both.",
+  "productionChange": false
+}

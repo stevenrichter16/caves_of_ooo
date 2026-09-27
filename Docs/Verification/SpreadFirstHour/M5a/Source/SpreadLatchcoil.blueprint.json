@@ -1,0 +1,50 @@
+{
+  "Name": "SpreadLatchcoil",
+  "Inherits": "Viper",
+  "Parts": [
+    {
+      "Name": "Render",
+      "Params": [
+        {
+          "Key": "DisplayName",
+          "Value": "chalk-ring latchcoil"
+        }
+      ]
+    },
+    {
+      "Name": "Brain",
+      "Params": [
+        {
+          "Key": "SightRadius",
+          "Value": "3"
+        }
+      ]
+    },
+    {
+      "Name": "AIAmbush",
+      "Params": [
+        {
+          "Key": "WakeOnDamage",
+          "Value": "true"
+        },
+        {
+          "Key": "WakeOnHostileInSight",
+          "Value": "true"
+        },
+        {
+          "Key": "SleepParticleInterval",
+          "Value": "8"
+        }
+      ]
+    },
+    {
+      "Name": "Examinable",
+      "Params": [
+        {
+          "Key": "Description",
+          "Value": "A broken chalk-colored ring follows this viper's low coils. Nearby movement or injury can rouse its ambush; its bite can poison."
+        }
+      ]
+    }
+  ]
+}

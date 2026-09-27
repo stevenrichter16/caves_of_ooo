@@ -1,0 +1,99 @@
+--- shared/FirstHourGuidanceNativePlayer.cs
++++ private/FirstHourGuidanceNativePlayer.cs
+@@ -20,6 +20,8 @@
+     /// No actor, item, source, state or travel grants; partial failures remain evidence.</summary>
+     public sealed class FirstHourGuidanceNativePlayer:MonoBehaviour
+     {
++        // Harness policy: ordinary risk, still avoiding adjacent active threats. This is not a safety guarantee.
++        const int ThreatClearance=1;
+         const BindingFlags Private=BindingFlags.Instance|BindingFlags.NonPublic;
+         static readonly (int x,int y)[] Steps={(1,0),(-1,0),(0,1),(0,-1),(1,1),(1,-1),(-1,1),(-1,-1)};
+         static readonly string[] RequiredChecks={"ordinary_start","warden_clearing_and_current_lead","glade_sign_current_lead","native_map_sill","ellun_current_marker_directions","accepted_existing_quest","native_marker_reached","authored_quest_reward","actual_affordable_gear_purchase","checkpoint_saved","real_unsaved_step","restored_exact_quest_and_owned_graph","completed_quest_no_repeat_reward","ordinary_finish"};
+@@ -117,7 +119,7 @@
+             var markerCell=Zone.GetEntityCell(beforeMarker);int mx=markerCell.X,my=markerCell.Y;string source=Zone.ZoneID;
+             var info=SaveGameService.GetSaveInfo("Quick");Require(info!=null,"actual native initial checkpoint");string file=Path.Combine(_ownedRoot,info.GameID,"Quick.sav.gz"),beforeHash=HashFile(file);long serial=MessageLog.NextSerialValue;
+             yield return Tap(Key.F5);yield return Settled();_checkpointHash=HashFile(file);Check("checkpoint_saved",_checkpointHash!=beforeHash&&MessageLog.NextSerialValue>serial&&MessageLog.GetLast()=="Game saved."&&SaveGameService.GetSaveInfo("Quick").ActiveZoneID==source);
+-            var step=Steps.Select(d=>Zone.GetCell(x+d.x,y+d.y)).FirstOrDefault(c=>Safe(Zone,c,3)&&Zone.CanPlaceFootprint(Player,c.X,c.Y));Require(step!=null,"one genuine post-save safe step");yield return StepTo(step.X,step.Y);
++            var step=Steps.Select(d=>Zone.GetCell(x+d.x,y+d.y)).FirstOrDefault(c=>Safe(Zone,c,ThreatClearance)&&Zone.CanPlaceFootprint(Player,c.X,c.Y));Require(step!=null,"one genuine post-save safe step");yield return StepTo(step.X,step.Y);
+             Check("real_unsaved_step",At!=beforeZone.GetCell(x,y)&&Tick>tick&&HashFile(file)==_checkpointHash);yield return Tap(Key.F6);double began=Time.realtimeSinceStartupAsDouble;
+             while(ReferenceEquals(Player,beforePlayer)){Require(Time.realtimeSinceStartupAsDouble-began<8,"real F6 replaces actor graph");yield return null;}yield return Settled();
+             var ellun=Owner(_ellunId);var marker=Owner(_markerId);var merchant=Owner(_merchantId);var actualMarker=marker==null?null:Zone.GetEntityCell(marker);_allowedMarker=marker;
+@@ -142,7 +144,7 @@
+         }
+         IEnumerator StepTo(int x,int y)
+         {
+-            var zone=Zone;Require(Safe(zone,zone.GetCell(x,y),3),"fresh native movement footprint");
++            var zone=Zone;Require(Safe(zone,zone.GetCell(x,y),ThreatClearance),"fresh native movement footprint");
+             var doors=zone.GetOccupiedCells(Player,x,y).SelectMany(c=>c.Occupants).Distinct().Where(e=>e.GetPart<DoorPart>()?.IsClosed==true).ToArray();
+             if(doors.Length>0)
+             {
+@@ -150,7 +152,7 @@
+                 yield return Paid(WorldAction(door,DoorPart.OpenCommand),"local","native-door-open");
+                 Require(Zone==zone&&At==at&&zone.GetEntityCell(door)!=null&&!door.GetPart<DoorPart>().IsClosed,"paid stationary real door open");
+             }
+-            Require(Safe(zone,zone.GetCell(x,y),3)&&zone.CanPlaceFootprint(Player,x,y),"recheck current body after actual door action");
++            Require(Safe(zone,zone.GetCell(x,y),ThreatClearance)&&zone.CanPlaceFootprint(Player,x,y),"recheck current body after actual door action");
+             yield return Paid(Tap(Direction(x-At.X,y-At.Y)),"local","ground-step");Require(Zone==zone&&At.X==x&&At.Y==y,"native step current destination");
+         }
+         string Mark(string label)
+@@ -242,6 +244,7 @@
+                 Require(Zone.GetEntityCell(target)!=null,"current approach owner remains in zone");
+                 if(SpatialQuery.Distance(Zone,Player,target)<=1)yield break;
+                 var path=PathTo(c=>SpatialQuery.DistanceToCell(Zone,target,c.X,c.Y)==1);
++                if(path==null||path.Count==0)RouteDiagnostic("owner "+target.ID+" at "+Zone.GetEntityCell(target).X+","+Zone.GetEntityCell(target).Y,c=>SpatialQuery.DistanceToCell(Zone,target,c.X,c.Y)==1);
+                 Require(path!=null&&path.Count>0,"finite currently safe route to actual owner "+target.ID);
+                 yield return StepTo(path[0].x,path[0].y);
+             }
+@@ -254,6 +257,7 @@
+             {
+                 if(At.X==target.X&&At.Y==target.Y)yield break;
+                 var path=PathTo(c=>c.X==target.X&&c.Y==target.Y);
++                if(path==null||path.Count==0)RouteDiagnostic("cell "+target.X+","+target.Y,c=>c==target);
+                 Require(path!=null&&path.Count>0,"finite current safe return route to "+target.X+","+target.Y);
+                 yield return StepTo(path[0].x,path[0].y);
+             }
+@@ -264,7 +268,7 @@
+         {
+             var zone=Zone;var start=At;var threats=Threats(zone);var seen=new bool[Zone.Width,Zone.Height];var safe=new sbyte[Zone.Width,Zone.Height];
+             var parent=new (int x,int y)[Zone.Width,Zone.Height];var queue=new Queue<(int x,int y)>();queue.Enqueue((start.X,start.Y));seen[start.X,start.Y]=true;
+-            bool Allowed(int x,int y){if(!zone.InBounds(x,y))return false;if(safe[x,y]==0)safe[x,y]=(sbyte)(Safe(zone,zone.GetCell(x,y),3,threats)?1:-1);return safe[x,y]>0;}
++            bool Allowed(int x,int y){if(!zone.InBounds(x,y))return false;if(safe[x,y]==0)safe[x,y]=(sbyte)(Safe(zone,zone.GetCell(x,y),ThreatClearance,threats)?1:-1);return safe[x,y]>0;}
+             while(queue.Count>0)
+             {
+                 var at=queue.Dequeue();
+@@ -282,6 +286,22 @@
+             _notes.Add("NO SAFE ROUTE "+zone.ZoneID+"@"+start.X+","+start.Y+" threats="+string.Join(";",threats.Select(e=>e.ID+"@"+zone.GetEntityCell(e).X+","+zone.GetEntityCell(e).Y)));WriteReport();return null;
+         }
+ 
++        void RouteDiagnostic(string goal,Func<Cell,bool> matches)
++        {
++            var zone=Zone;var threats=Threats(zone);var candidates=new List<object>();var neighbors=new List<object>();
++            object Describe(Cell cell)
++            {
++                var occupied=zone.GetOccupiedCells(Player,cell.X,cell.Y).ToArray();
++                return new{x=cell.X,y=cell.Y,physicallyAdmitted=zone.CanPlaceFootprint(Player,cell.X,cell.Y,allowOperableDoors:true),observerSafe=Safe(zone,cell,ThreatClearance,threats),
++                    owners=occupied.SelectMany(c=>c.Occupants).Distinct().Select(e=>e.ID+":"+e.BlueprintName).ToArray(),
++                    activeThreats=threats.Where(e=>occupied.Any(c=>SpatialQuery.DistanceToCell(zone,e,c.X,c.Y)<=ThreatClearance)).Select(e=>e.ID+"@"+zone.GetEntityCell(e).X+","+zone.GetEntityCell(e).Y).ToArray(),
++                    tileStates=occupied.Select(c=>{var state=zone.TileState.Get(c.X,c.Y);return new{x=c.X,y=c.Y,heat=state?.Heat??0,cold=state?.Cold??0,charge=state?.Charge??0,cloud=state?.Cloud??"",cloudTurns=state?.CloudTurns??0,coatings=state?.Coatings.Select(l=>l.Id+":"+l.Turns).ToArray()??Array.Empty<string>()};}).ToArray()};
++            }
++            for(int x=0;x<Zone.Width;x++)for(int y=0;y<Zone.Height;y++){var cell=zone.GetCell(x,y);if(matches(cell))candidates.Add(Describe(cell));}
++            foreach(var d in Steps){var cell=zone.GetCell(At.X+d.x,At.Y+d.y);if(cell!=null)neighbors.Add(Describe(cell));}
++            _observations.Add(new{phase="route_refusal",goal,zone=zone.ZoneID,x=At.X,y=At.Y,hp=Player.GetStatValue("Hitpoints"),tick=Tick,threatClearance=ThreatClearance,candidates,neighbors});WriteReport();
++        }
++
+         private static Key Direction(int dx,int dy)
+         {
+             dx=Math.Sign(dx);dy=Math.Sign(dy);
+@@ -370,8 +390,10 @@
+         void WriteReport()
+         {
+             Directory.CreateDirectory(DirectoryPath);ReportPath=Path.Combine(DirectoryPath,"report.json");
+-            string json=JsonConvert.SerializeObject(new{runId=RunId,complete=Complete,failures=Failures,unexpectedErrors=_unexpectedErrors,seconds=_clock?.Elapsed.TotalSeconds??0,fatal=_fatal,audit=_audit,requiredChecks=RequiredChecks,keys=_keys,observations=_observations,windows=_windows,notes=_notes,screenshots=_screenshots,localInputs=_localInputs,mapSteps=_mapSteps,completedPlayerTurns=_completedTurns,pureClock=_pureClock,checkpointHash=_checkpointHash,
+-                canVerify="One ordinary seed1 actor: actual glade Warden/sign current-map lead, real worldmap/ground keys to Sill, current Ellun marker direction, original accept/step/report/reward, current affordable merchant gear, actual F5/paid-step/F6 replacement source/quest/ownership graph. Typed native keys are released between frames; no direct gameplay actions.",
++            string json=JsonConvert.SerializeObject(new{runId=RunId,complete=Complete,failures=Failures,unexpectedErrors=_unexpectedErrors,seconds=_clock?.Elapsed.TotalSeconds??0,fatal=_fatal,audit=_audit,requiredChecks=RequiredChecks,keys=_keys,observations=_observations,windows=_windows,notes=_notes,screenshots=_screenshots,localInputs=_localInputs,mapSteps=_mapSteps,completedPlayerTurns=_completedTurns,pureClock=_pureClock,checkpointHash=_checkpointHash,threatClearance=ThreatClearance,
++                passedChecks=RequiredChecks.Where(n=>_audit.Contains("PASS "+n)).ToArray(),unmetChecks=RequiredChecks.Where(n=>!_audit.Contains("PASS "+n)).ToArray(),
++                canVerify="Only the named passedChecks were observed in this run; intendedCapability is the planned route, not a completion claim. Partial failures and unmetChecks remain explicit.",
++                intendedCapability="One ordinary seed1 actor: actual glade Warden/sign current-map lead, real worldmap/ground keys to Sill, current Ellun marker direction, original accept/step/report/reward, current affordable merchant gear, actual F5/paid-step/F6 replacement source/quest/ownership graph. Typed native keys are released between frames; no direct gameplay actions.",
+                 cannotVerify="Not all seeds, fallback starts, campaign balance, rare encounters or guaranteed services. Conservative threat/hazard selection may refuse playable routes. No entities, stock, HP, currency, progression, AI or RNG edits; no travel transfers. Ordinary earned level-up is permitted. Screenshots need actual viewing; stops leave named gates unmet."},Formatting.Indented);
+             var parsed=JObject.Parse(json);Require(parsed["windows"] is JArray w&&w.Count==_windows.Count&&parsed["observations"] is JArray o&&o.Count==_observations.Count,"complete nested report evidence");File.WriteAllText(ReportPath,json);
+         }

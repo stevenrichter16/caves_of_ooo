@@ -244,37 +244,32 @@ namespace CavesOfOoo.Rendering
                 return lines;
             }
 
-            int index = 0;
-            bool firstLine = true;
-            while (index < normalized.Length)
+            normalized = normalized.Replace("\r\n", "\n").Replace('\r', '\n');
+            foreach (string paragraph in normalized.Split('\n'))
             {
-                string prefix = firstLine ? first : cont;
-                int available = safeWidth - prefix.Length;
-                if (available <= 0)
+                string body = paragraph.Trim();
+                int index = 0;
+                do
                 {
-                    lines.Add(Truncate(prefix, safeWidth));
-                    break;
-                }
-
-                int remaining = normalized.Length - index;
-                if (remaining <= available)
-                {
-                    lines.Add(prefix + normalized.Substring(index, remaining));
-                    break;
-                }
-
-                int breakAt = normalized.LastIndexOf(' ', index + available - 1, available);
-                if (breakAt < index)
-                    breakAt = index + available;
-
-                string slice = normalized.Substring(index, breakAt - index).TrimEnd();
-                lines.Add(prefix + slice);
-
-                index = breakAt;
-                while (index < normalized.Length && normalized[index] == ' ')
-                    index++;
-
-                firstLine = false;
+                    string prefix = lines.Count == 0 ? first : cont;
+                    int available = safeWidth - prefix.Length;
+                    if (available <= 0)
+                    {
+                        lines.Add(Truncate(prefix, safeWidth));
+                        break;
+                    }
+                    int remaining = body.Length - index;
+                    if (remaining <= available)
+                    {
+                        lines.Add(prefix + body.Substring(index, remaining));
+                        break;
+                    }
+                    int breakAt = body.LastIndexOf(' ', index + available - 1, available);
+                    if (breakAt < index) breakAt = index + available;
+                    lines.Add(prefix + body.Substring(index, breakAt - index).TrimEnd());
+                    index = breakAt;
+                    while (index < body.Length && body[index] == ' ') index++;
+                } while (index < body.Length);
             }
 
             return lines;
@@ -292,35 +287,8 @@ namespace CavesOfOoo.Rendering
 
         private static List<string> WrapPlain(string text, int width)
         {
-            int safeWidth = Math.Max(1, width);
-            var lines = new List<string>();
-            if (string.IsNullOrWhiteSpace(text))
-                return lines;
-
-            string normalized = text.Trim();
-            int index = 0;
-            while (index < normalized.Length)
-            {
-                int remaining = normalized.Length - index;
-                if (remaining <= safeWidth)
-                {
-                    lines.Add(normalized.Substring(index, remaining));
-                    break;
-                }
-
-                int breakAt = normalized.LastIndexOf(' ', index + safeWidth - 1, safeWidth);
-                if (breakAt < index)
-                    breakAt = index + safeWidth;
-
-                string slice = normalized.Substring(index, breakAt - index).TrimEnd();
-                lines.Add(slice);
-
-                index = breakAt;
-                while (index < normalized.Length && normalized[index] == ' ')
-                    index++;
-            }
-
-            return lines;
+            return string.IsNullOrWhiteSpace(text) ? new List<string>()
+                : WrapWithPrefixes(text, width, string.Empty, string.Empty);
         }
 
         private static string Truncate(string text, int width)

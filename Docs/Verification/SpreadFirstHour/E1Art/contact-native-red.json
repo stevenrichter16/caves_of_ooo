@@ -1,0 +1,48 @@
+{
+  "job_id": "60bd27ef27cc4118b562ce6dc8567c2b",
+  "summary": {
+    "id": "2",
+    "testcasecount": "9",
+    "result": "Failed(Child)",
+    "total": "9",
+    "passed": "8",
+    "failed": "1",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 20:22:13Z",
+    "end-time": "2026-09-27 20:22:16Z",
+    "duration": "2.9466737"
+  },
+  "fixtures": {
+    "CavesOfOoo.Tests.SpreadRareMarlbackValidationTests": {
+      "type": "TestFixture",
+      "id": "22056",
+      "name": "SpreadRareMarlbackValidationTests",
+      "fullname": "CavesOfOoo.Tests.SpreadRareMarlbackValidationTests",
+      "classname": "CavesOfOoo.Tests.SpreadRareMarlbackValidationTests",
+      "runstate": "Runnable",
+      "testcasecount": "9",
+      "result": "Failed",
+      "site": "Child",
+      "start-time": "2026-09-27 20:22:13Z",
+      "end-time": "2026-09-27 20:22:16Z",
+      "duration": "2.915149",
+      "total": "9",
+      "passed": "8",
+      "failed": "1",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0"
+    }
+  },
+  "failed": [
+    {
+      "name": "CavesOfOoo.Tests.SpreadRareMarlbackValidationTests.EveryPhysicalAdditionTouchesAnActualOriginalSurfaceOnItsBone(\"spread-rare-ditch-mate\")",
+      "message": "  spread-rare-ditch-mate detached physical addition #0\n  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.SpreadRareMarlbackValidationTests.EveryPhysicalAdditionTouchesAnActualOriginalSurfaceOnItsBone (System.String id) [0x0017d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadRareMarlbackValidationTests.cs:84\n"
+    }
+  ]
+}

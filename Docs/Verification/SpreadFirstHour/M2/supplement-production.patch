@@ -1,0 +1,205 @@
+--- a/Assets/Scripts/Presentation/Input/InputHandler.cs
++++ b/Assets/Scripts/Presentation/Input/InputHandler.cs
+@@ -2566,6 +2566,11 @@
+                 return;
+             }
+ 
++            if (InputHelper.GetKeyDown(KeyCode.F1))
++            {
++                OpenWorldActionDetailsReader();
++                return;
++            }
+             WorldActionMenuUI.HandleInput();
+ 
+             if (WorldActionMenuUI.SelectionCancelled)
+@@ -4058,8 +4063,98 @@
+             tilemap.SetTile(tilePos, tile);
+             tilemap.SetTileFlags(tilePos, UnityEngine.Tilemaps.TileFlags.None);
+             tilemap.SetColor(tilePos, color);
++        }
++
++        private sealed class WorldActionReaderContext
++        {
++            public Entity Owner;
++            public Cell Cell;
++            public InventoryAction Identity;
++            public bool Pile, Picker, Back;
++        }
++        private WorldActionReaderContext _worldActionReader;
++
++        private List<InventoryAction> GatherActionReaderRows(WorldActionReaderContext context)
++        {
++            if (context.Pile) return WorldInteractionSystem.BuildPileSummaryActions(context.Cell, PlayerEntity);
++            if (context.Picker) return WorldInteractionSystem.BuildTargetPickerActions(context.Cell);
++            var actions = WorldInteractionSystem.GatherActions(context.Owner, PlayerEntity);
++            WorldInteractionSystem.AppendUnderfootActions(actions, context.Cell, PlayerEntity, context.Owner);
++            if ((context.Back || WorldInteractionSystem.BuildTargetPickerActions(context.Cell).Count > 1)
++                && !actions.Exists(a => a.Command == WorldInteractionSystem.PickCellCommand))
++                actions.Add(new InventoryAction("PickCell", "<< everything here", WorldInteractionSystem.PickCellCommand, '\0', 0));
++            return actions;
++        }
++
++        private void OpenWorldActionDetailsReader()
++        {
++            var menu = WorldActionMenuUI;
++            var selected = menu?.HighlightedAction;
++            if (menu == null || !menu.IsOpen || selected == null || AnnouncementUI == null) return;
++            var context = new WorldActionReaderContext { Owner = menu.SelectedTarget, Cell = menu.SelectedCell,
++                Identity = new InventoryAction(selected.Name, selected.Display, selected.Command, selected.Key,
++                    selected.Priority, selected.FireOnActor), Pile = menu.SelectedCellIsPile,
++                Picker = menu.IsTargetPicker, Back = menu.HasBackRow };
++            if (!IsCurrentExamineOwner(context.Owner, context.Cell))
++            {
++                RestoreWorldActionReader(context);
++                return;
++            }
++            var rows = GatherActionReaderRows(context);
++            InventoryAction fresh = null;
++            int matches = 0;
++            foreach (var row in rows)
++                if (row != null && row.Name == selected.Name && row.Command == selected.Command && row.FireOnActor == selected.FireOnActor)
++                { fresh = row; matches++; }
++            if (matches != 1 || !IsCurrentExamineOwner(context.Owner, context.Cell))
++            {
++                MessageLog.Add("That action is no longer available to inspect.");
++                RestoreWorldActionReader(context);
++                return;
++            }
++            Entity described = context.Owner;
++            if (context.Picker)
++            {
++                described = WorldInteractionSystem.FindInCell(context.Cell,
++                    fresh.Command.Substring(WorldInteractionSystem.PickTargetCommandPrefix.Length));
++                if (!IsCurrentExamineOwner(described, context.Cell))
++                { MessageLog.Add("That selection is no longer available to inspect."); RestoreWorldActionReader(context); return; }
++            }
++            var part = described.GetPart<ExaminablePart>();
++            string text = "Selected action (reading only):\n" + (fresh.Display ?? fresh.Name ?? "") + "\n\n"
++                + (part != null && ReferenceEquals(part.ParentEntity, described)
++                    ? part.BuildWorldExamineLine(CurrentZone, context.Cell) : described.GetDisplayName());
++            if (!IsCurrentExamineOwner(context.Owner, context.Cell) || !IsCurrentExamineOwner(described, context.Cell)
++                || !ReferenceEquals(described.GetPart<ExaminablePart>(), part))
++            { MessageLog.Add("That selection is no longer available to inspect."); RestoreWorldActionReader(context); return; }
++            _worldActionReader = context;
++            menu.HideForReader();
++            _inputState = InputState.WorldActionMenuOpen;
++            MessageLog.AddAnnouncement(text);
++            TryOpenAnnouncement();
+         }
+ 
++        private void RestoreWorldActionReader(WorldActionReaderContext context)
++        {
++            _worldActionReader = null;
++            if (context != null && WorldActionMenuUI != null && IsCurrentExamineOwner(context.Owner, context.Cell))
++            {
++                var actions = GatherActionReaderRows(context);
++                if (IsCurrentExamineOwner(context.Owner, context.Cell))
++                {
++                    WorldActionMenuUI.Open(PlayerEntity, context.Owner, context.Cell, actions, CurrentZone, context.Pile);
++                    WorldActionMenuUI.RestoreHighlight(context.Identity);
++                    _inputState = InputState.WorldActionMenuOpen;
++                    EnterCenteredPopupOverlayView();
++                    return;
++                }
++            }
++            WorldActionMenuUI?.HideForReader();
++            MessageLog.Add("That selection is no longer available.");
++            _inputState = _worldActionMenuReturnState;
++            ExitCenteredPopupOverlayViewToGameplay();
++        }
++
+         private bool IsCurrentExamineOwner(Entity target, Cell cell)
+         {
+             if (CurrentZone == null || cell == null || !cell.Explored || !cell.IsVisible
+@@ -4182,6 +4277,11 @@
+             _stateBeforeAnnouncement = InputState.Normal;
+             _inputState = prior;
+ 
++            if (prior == InputState.WorldActionMenuOpen && _worldActionReader != null)
++            {
++                RestoreWorldActionReader(_worldActionReader);
++                return;
++            }
+             if (prior == InputState.InventoryOpen)
+             {
+                 // Disable the popup overlay camera but keep the fullscreen
+--- a/Assets/Scripts/Presentation/UI/AnnouncementUI.cs
++++ b/Assets/Scripts/Presentation/UI/AnnouncementUI.cs
+@@ -199,7 +199,7 @@
+                 return;
+             }
+ 
+-            string[] paragraphs = text.Split('\n');
++            string[] paragraphs = text.Replace("\r\n", "\n").Replace('\r', '\n').Split('\n');
+             for (int p = 0; p < paragraphs.Length; p++)
+             {
+                 string para = paragraphs[p];
+--- a/Assets/Scripts/Presentation/UI/WorldActionMenuUI.cs
++++ b/Assets/Scripts/Presentation/UI/WorldActionMenuUI.cs
+@@ -90,6 +90,21 @@
+         /// <summary>True only for the whole-pile summary menu. An individual
+         /// target may share a pile cell without inheriting summary actions.</summary>
+         public bool SelectedCellIsPile => _cellIsPile;
++
++        public InventoryAction HighlightedAction => _isOpen && _cursorIndex >= 0 && _cursorIndex < _actions.Count ? _actions[_cursorIndex] : null;
++        public bool IsTargetPicker => _actions.Count > 0 && _actions.TrueForAll(a => a != null &&
++            a.Command != null && a.Command.StartsWith(WorldInteractionSystem.PickTargetCommandPrefix, System.StringComparison.Ordinal));
++        public bool HasBackRow => _actions.Exists(a => a != null && a.Command == WorldInteractionSystem.PickCellCommand);
++
++        /// <summary>The input owner may layer its reader, then rebuild current actions on return.</summary>
++        public void HideForReader() => Close();
++        public void RestoreHighlight(InventoryAction identity)
++        {
++            if (!_isOpen || identity == null) return;
++            int found = _actions.FindIndex(a => a != null && a.Name == identity.Name &&
++                a.Command == identity.Command && a.FireOnActor == identity.FireOnActor);
++            if (found >= 0) { _cursorIndex = found; ScrollIntoView(); Render(); }
++        }
+ 
+         /// <summary>
+         /// Show the menu. <paramref name="actor"/> is accepted for call-site
+@@ -361,7 +376,7 @@
+             int borderH = visibleCount + 4 + StatusBlockRows;
+ 
+             ClearRegion(0, 0, POPUP_W, _popupH);
+-            DrawBgFill(0, 0, POPUP_W, borderH);
++            DrawBgFill(0, 0, POPUP_W, _popupH);
+             DrawPopupBorder(0, 0, POPUP_W, borderH, _statusLines.Count, visibleCount);
+ 
+ 
+@@ -431,6 +446,7 @@
+                 if (_scrollOffset + visibleCount < totalRows)
+                     DrawChar(POPUP_W - 2, contentY + visibleCount - 1, 'v', QudColorParser.Gray);
+             }
++            DrawText(2, borderH, "[F1]details [Enter]ok [Esc]back", QudColorParser.Gray);
+         }
+ 
+         private void ComputePopupPosition()
+--- a/Assets/Scripts/Presentation/Rendering/GameplayViewportLayout.cs
++++ b/Assets/Scripts/Presentation/Rendering/GameplayViewportLayout.cs
+@@ -165,8 +165,9 @@
+             float worldBottom = camera.transform.position.y - halfH;
+             float charWidthWorld = 0.5f * scale;
+             int startCharX = Mathf.RoundToInt(worldLeft / Mathf.Max(0.001f, charWidthWorld));
+-            int topTextY = Mathf.FloorToInt((worldTop - 0.5f * scale) / Mathf.Max(0.001f, scale));
+-            int visibleRowCount = Mathf.Max(1, Mathf.FloorToInt((worldTop - worldBottom) / Mathf.Max(0.001f, scale)));
++            // Reserve one text row at each edge; glyph bounds otherwise touch the top pixel.
++            int topTextY = Mathf.FloorToInt((worldTop - 0.5f * scale) / Mathf.Max(0.001f, scale)) - 1;
++            int visibleRowCount = Mathf.Max(1, Mathf.FloorToInt((worldTop - worldBottom) / Mathf.Max(0.001f, scale)) - 2);
+ 
+             return new SidebarCameraMetrics(
+                 scale,
+--- a/Assets/Scripts/Presentation/Rendering/SidebarRenderer.cs
++++ b/Assets/Scripts/Presentation/Rendering/SidebarRenderer.cs
+@@ -165,8 +165,9 @@
+             int contentX = startX + 2;
+             int contentWidth = Mathf.Max(1, width - 3);
+ 
+-            DrawBackground(startX, bottomY, width, rows, flashActive, flashT);
+-            DrawDivider(startX, bottomY, rows);
++            // Background/divider still reach the screen edges; only text uses safe rows.
++            DrawBackground(startX, bottomY - 1, width, rows + 2, flashActive, flashT);
++            DrawDivider(startX, bottomY - 1, rows + 2);
+ 
+             int y = topY;
+             DrawSectionHeader(startX, contentX, y, contentWidth, "VITALS", QudColorParser.White);

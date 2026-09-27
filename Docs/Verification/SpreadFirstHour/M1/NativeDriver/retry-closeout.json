@@ -1,0 +1,51 @@
+{
+  "runId": "4fdbfe4fa8b24a21bb8a80e05feabfe1",
+  "rawComplete": false,
+  "rawAudit": [
+    "PASS ordinary_start",
+    "PASS warden_clearing_and_current_lead",
+    "PASS glade_sign_current_lead",
+    "PASS native_map_sill",
+    "PASS ellun_current_marker_directions",
+    "PASS accepted_existing_quest",
+    "FAIL native_marker_reached",
+    "FAIL native_precondition_failed"
+  ],
+  "classification": "Incomplete native journey; observer false-negative on completed search plus finite route-policy refusal. No confirmed gameplay blocker. No third broad retry.",
+  "confirmedAdditionalEvidence": {
+    "markerPosition": [
+      66,
+      3
+    ],
+    "markerFact": 1,
+    "objectiveFinishedTrace": "a832065f",
+    "stageAdvancedTrace": "399404e6",
+    "stageFrom": 0,
+    "stageTo": 1
+  },
+  "unmet": [
+    "authored quest reward",
+    "actual merchant gear purchase",
+    "quest/acquisition save replacement",
+    "completed quest repeat-reward control"
+  ],
+  "returnRefusal": {
+    "player": [
+      54,
+      3
+    ],
+    "currentEllun": [
+      25,
+      5
+    ],
+    "all8CurrentNeighborsSafe": true,
+    "fiveGoalApproachesSafe": true,
+    "nearThreat": [
+      15,
+      13
+    ],
+    "inference": "Policy graph could not connect the actual current goal; diagnostic does not establish why every connecting route was rejected, or a gameplay connectivity defect."
+  },
+  "visualReview": "Parent viewed five images: actual glade lead/sign, Sill/current Ellun and objective completion readable; no new 3D defect identified.",
+  "stoppingDecision": "Preserve accepted bounded evidence, leave later gates unmet, continue M4 as prioritized."
+}

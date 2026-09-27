@@ -1,0 +1,17 @@
+{
+  "scope": "Null-manager restoration guard only; no format or test change",
+  "entries": [
+    {
+      "path": "Assets/Scripts/Gameplay/Save/SaveSystem.cs",
+      "source": "/tmp/coo-first-hour-null-manager-save/SaveSystem.cs",
+      "before": "934d69f70664fe75fff47f0f48643b76e2d68017de9d1903f754f6fcaf945416",
+      "after": "b39fd2ff8f7901ffc74d768c135e98af992940de0b598d452e19d2e2b95bb3d7"
+    }
+  ],
+  "evidence": {
+    "exactExisting7": "before2PASS5RED; same5native-reported NREs",
+    "nearby133": "before128PASS5RED -> after133PASS; World/Narrative/SaveGraph/Spec/rare sources"
+  },
+  "review": "combat_density nullable-session symmetry reread clear",
+  "limitations": "Portable133 matched evidence only. Native-only decode/new-game fixtures intentionally deferred to actual Unity. A separate extended-runner support draft was started but is excluded from this evidence/package per root instruction; no shared files modified."
+}

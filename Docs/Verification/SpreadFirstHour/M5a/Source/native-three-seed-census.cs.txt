@@ -1,0 +1,28 @@
+// Root-owned idle-editor read-only diagnostic after production import.
+// Uses the existing isolated content scope. No player, map edits, forced placement,
+// factory replacement or saved-world changes. This is generated-source evidence.
+var type = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("CavesOfOoo.Tests.DensityLootTestScope")).First(t => t != null);
+var scope = (IDisposable)Activator.CreateInstance(type, true);
+try
+{
+    var factory = (CavesOfOoo.Data.EntityFactory)type.GetField("Factory").GetValue(scope);
+    var rows = new List<object>();
+    foreach (int seed in new[] { 1, 64, 1729 })
+    {
+        type.GetMethod("Seed").Invoke(scope, new object[] { seed });
+        var manager = CavesOfOoo.Core.OverworldZoneManager.CreateDetached(factory, seed);
+        string id = manager.RareEncounters.ViperZoneID;
+        if (string.IsNullOrEmpty(id)) throw new Exception("No frozen optional address for predeclared seed " + seed);
+        var zone = manager.GetZone(id);
+        var owned = zone.GetReadOnlyEntities().Where(e => e.Properties.ContainsKey(CavesOfOoo.Core.SpreadRareEncounterBuilder.SourceKey)).ToArray();
+        var snakes = owned.Where(e => e.BlueprintName == "SpreadLatchcoil").ToArray();
+        var signs = owned.Where(e => e.BlueprintName == "Signpost").ToArray();
+        if (snakes.Length > 1 || signs.Length != snakes.Length || owned.Length != snakes.Length * 2) throw new Exception("Partial or duplicate source " + id);
+        rows.Add(new { seed, zone = id, pair = manager.RareEncounters.PairZoneID, latchcoils = snakes.Length, warnings = signs.Length,
+            owners = zone.GetReadOnlyEntities().Count, placements = string.Join(";", owned.Select(e => e.BlueprintName + ":" + zone.GetEntityPosition(e))),
+            warningText = signs.Length == 1 ? signs[0].GetPart<CavesOfOoo.Core.ExaminablePart>().Description : "" });
+    }
+    return new { canVerify = "Actual generated source selection and admission; no forced pocket or actors.",
+        cannotVerify = "Not ordinary discovery, native encounter play, balance or visual acceptance. An invalid selected site can legitimately refuse.", rows };
+}
+finally { scope.Dispose(); }

@@ -1,0 +1,73 @@
+--- a/Assets/Tests/EditMode/Presentation/Rendering/SpreadRareMarlbackGalleryTests.cs
++++ b/Assets/Tests/EditMode/Presentation/Rendering/SpreadRareMarlbackGalleryTests.cs
+@@ -31,7 +31,7 @@
+                 CollectionAssert.AreEquivalent(blueprint == "SpreadHurdleCutter" ? new[] { "ShortSword", "LeatherCap" } : new[] { "Cudgel" }, items.Select(i => i.BlueprintName));
+                 var corpseConfig = actor.GetPart<CorpsePart>(); Assert.NotNull(corpseConfig);
+                 Assert.AreEqual("MarlbackCorpse", corpseConfig.CorpseBlueprint);
+-                Assert.AreEqual(100, corpseConfig.CorpseChance); Assert.AreEqual(100, corpseConfig.BuildCorpseChance);
++                Assert.AreEqual(70, corpseConfig.CorpseChance); Assert.AreEqual(100, corpseConfig.BuildCorpseChance);
+                 f.Set("FullReveal", true); f.Refresh();
+                 var presenter = (SpawnRing3DPresenter)f.Presenter; var root = f.View(actor);
+                 Assert.True(presenter.TryGetApprovedStyle(actor, out var bodyProof), bodyProof.Failure);
+@@ -69,6 +69,9 @@
+                 var deathCell = f.Zone.GetEntityPosition(actor);
+                 // Explicit staged canonical death, with no invented corpse or item.
+                 // This tests render ownership/drop lifecycle, not survivable combat.
++                // This art diagnostic chooses the successful edge of the real70% gate.
++                // It does not change the authored chance or claim ordinary RNG acquisition.
++                corpseConfig.TestRng = new CorpseBoundaryRoll(69);
+                 CombatSystem.HandleDeath(actor, null, f.Zone);
+                 Assert.True(CombatSystem.IsDeathHandled(actor)); Assert.IsNull(f.Zone.GetEntityCell(actor));
+                 var corpse = f.Zone.GetReadOnlyEntities().Single(e => e.BlueprintName == "MarlbackCorpse"
+@@ -90,11 +93,40 @@
+                 Capture(camera, remains, Quaternion.Euler(0, 35, 0), Path.Combine(path, deathImage));
+                 File.WriteAllText(Path.Combine(path, "report.json"), JsonUtility.ToJson(new Report {
+                     blueprint = blueprint, owner = actor.ID, zone = f.Zone.ZoneID, bodyModel = bodyProof.ModelId,
+-                    corpse = corpse.ID, corpseModel = corpseProof.ModelId, originalGear = items.Select(i => i.ID).ToArray(), deathImage = deathImage, frames = rows.ToArray(),
++                    corpse = corpse.ID, corpseModel = corpseProof.ModelId, corpseChance = corpseConfig.CorpseChance, diagnosticCorpseRoll = 69, originalGear = items.Select(i => i.ID).ToArray(), deathImage = deathImage, frames = rows.ToArray(),
+                     canVerify = "Explicit staged factory owners with exact authored gear; actual persistent mesh/owned palette; original five imported clips sampled; tile state, entity version, existing IDs/positions/HP/equipped IDs unchanged during pose capture; canonical death removes exact owner and produces source-linked corpse plus original gear; actual PNG output.",
+-                    cannotVerify = "Not encounter placement, ordinary acquisition, scheduling, player attacks or balance. Direct death and sampled poses are diagnostic. Camera is a close-up; numeric success alone does not prove fit, silhouette/readability, clip quality or lack of world occlusion. Images require review." }, true));
++                    cannotVerify = "Not encounter placement, ordinary acquisition, scheduling, player attacks or balance. Direct death, sampled poses and explicit instance corpse roll69 below the unchanged70% authored chance are diagnostic. Camera is a close-up; numeric success alone does not prove fit, silhouette/readability, clip quality or lack of world occlusion. Images require review." }, true));
+                 Assert.AreEqual(8, rows.Count);
+             }
++        }
++        [Test]
++        public void ActualSeventyPercentBoundaryCanLeaveOnlyOriginalGear()
++        {
++            using (var isolation = new GalleryIsolation())
++            using (var f = new SpawnRing3DIntegrationFixture("Overworld.12.10.0"))
++            {
++                CorpsePart.Factory = f.Factory;
++                var actor = f.Add("SpreadHurdleCutter"); var config = actor.GetPart<CorpsePart>();
++                Assert.AreEqual(70, config.CorpseChance); Assert.AreEqual(100, config.BuildCorpseChance);
++                var items = actor.GetPart<InventoryPart>().GetAllEquipped().ToArray();
++                CollectionAssert.AreEquivalent(new[] { "ShortSword", "LeatherCap" }, items.Select(i => i.BlueprintName));
++                var cell = f.Zone.GetEntityPosition(actor); config.TestRng = new CorpseBoundaryRoll(70);
++                CombatSystem.HandleDeath(actor, null, f.Zone);
++                Assert.True(CombatSystem.IsDeathHandled(actor)); Assert.IsNull(f.Zone.GetEntityCell(actor));
++                Assert.False(f.Zone.GetReadOnlyEntities().Any(e => e.Properties.TryGetValue("SourceID", out var source) && source == actor.ID));
++                foreach (var item in items)
++                {
++                    Assert.AreEqual(cell, f.Zone.GetEntityPosition(item));
++                    Assert.IsNull(item.GetPart<PhysicsPart>().InInventory); Assert.IsNull(item.GetPart<PhysicsPart>().Equipped);
++                }
++                Assert.AreEqual(70, config.CorpseChance);
++            }
++        }
++        private sealed class CorpseBoundaryRoll : System.Random
++        {
++            readonly int roll;
++            internal CorpseBoundaryRoll(int roll) { this.roll = roll; }
++            public override int Next(int maxValue) { Assert.AreEqual(100, maxValue); return roll; }
+         }
+         private static string Graph(SpawnRing3DIntegrationFixture f)
+             => f.Zone.TileState.ToSaveString() + "|" + f.Zone.EntityVersion + "|" + string.Join("\n", f.Zone.GetReadOnlyEntities().Select(e => e.ID + "|" + e.BlueprintName + "|" + f.Zone.GetEntityPosition(e) + "|" + e.GetStatValue("Hitpoints") + "|" + string.Join(",", e.GetPart<InventoryPart>()?.GetAllEquipped().Select(i => i.ID).OrderBy(x => x) ?? Enumerable.Empty<string>())).OrderBy(x => x));
+@@ -150,7 +182,7 @@
+         [Serializable] private sealed class GearRow { public string blueprint,id,model,mesh,palette; public int pieces; }
+         [Serializable] private sealed class CameraRow { public float size; public Vector3 position,rotation; public int width,height; }
+         [Serializable] private sealed class FrameRow { public string image,clip; public float normalizedTime,yaw,width,height,depth; public CameraRow camera; public GearRow[] gear; }
+-        [Serializable] private sealed class Report { public string blueprint,owner,zone,bodyModel,corpse,corpseModel,deathImage,canVerify,cannotVerify; public string[] originalGear; public FrameRow[] frames; }
++        [Serializable] private sealed class Report { public string blueprint,owner,zone,bodyModel,corpse,corpseModel,deathImage,canVerify,cannotVerify; public int corpseChance,diagnosticCorpseRoll; public string[] originalGear; public FrameRow[] frames; }
+         private sealed class GalleryIsolation : IDisposable
+         {
+             const BindingFlags Private = BindingFlags.Static | BindingFlags.NonPublic;

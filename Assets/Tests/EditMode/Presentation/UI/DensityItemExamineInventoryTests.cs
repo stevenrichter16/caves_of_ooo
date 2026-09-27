@@ -188,7 +188,10 @@ namespace CavesOfOoo.Tests
                 Assert.That(zone.AddEntity(item, 11, 10), Is.True);
             }
             else if (blueprint == "Dagger")
+            {
                 Assert.That(item.RemovePart(item.GetPart<MeleeWeaponPart>()), Is.True);
+                Assert.That(item.RemovePart(item.GetPart<EquippablePart>()), Is.True);
+            }
             else
                 item.GetPart<TonicPart>().Healing = "";
 
@@ -203,6 +206,19 @@ namespace CavesOfOoo.Tests
             StringAssert.Contains(removeItem ? "unavailable-inventory-item" : "no-supported-details", records[0].PayloadJson);
             Assert.That(DiagQuery.Count(new DiagQuery.Filter
                 { Category = "event", Kind = "ItemExamined" }).Count, Is.Zero);
+            before.AssertUnchanged(this);
+        }
+
+        [Test]
+        public void RemovingWeaponStillLeavesActualEquipmentSlotDetailsInspectable()
+        {
+            var item = Carry("Dagger");
+            Assert.That(item.RemovePart(item.GetPart<MeleeWeaponPart>()), Is.True);
+            Assert.That(item.GetPart<EquippablePart>(), Is.Not.Null);
+            var before = new Snapshot(this);
+            string text = ExamineAndDismiss(item);
+            StringAssert.Contains("Equip slots:", text);
+            StringAssert.DoesNotContain("Damage:", text);
             before.AssertUnchanged(this);
         }
 

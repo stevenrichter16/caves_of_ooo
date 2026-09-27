@@ -1,0 +1,53 @@
+{
+  "job_id": "9067fc5354104db989a2fe9c664e91c0",
+  "summary": {
+    "id": "2",
+    "testcasecount": "38",
+    "result": "Failed(Child)",
+    "total": "38",
+    "passed": "36",
+    "failed": "2",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 20:38:34Z",
+    "end-time": "2026-09-27 20:38:35Z",
+    "duration": "1.1079913"
+  },
+  "fixtures": {
+    "CavesOfOoo.Tests.NativeDensitySceneRestorationTests": {
+      "type": "TestFixture",
+      "id": "19426",
+      "name": "NativeDensitySceneRestorationTests",
+      "fullname": "CavesOfOoo.Tests.NativeDensitySceneRestorationTests",
+      "classname": "CavesOfOoo.Tests.NativeDensitySceneRestorationTests",
+      "runstate": "Runnable",
+      "testcasecount": "38",
+      "result": "Failed",
+      "site": "Child",
+      "start-time": "2026-09-27 20:38:35Z",
+      "end-time": "2026-09-27 20:38:35Z",
+      "duration": "0.511892",
+      "total": "38",
+      "passed": "36",
+      "failed": "2",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0"
+    }
+  },
+  "failed": [
+    {
+      "name": "CavesOfOoo.Tests.NativeDensitySceneRestorationTests.NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene(\"FirstHourEncounterNativeBatch\")",
+      "message": "System.InvalidOperationException : Sequence contains no matching element",
+      "stack": "  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 \n  at CavesOfOoo.Tests.NativeDensitySceneRestorationTests.Launcher (System.String name) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs:12 \n  at CavesOfOoo.Tests.NativeDensitySceneRestorationTests.NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs:80 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    },
+    {
+      "name": "CavesOfOoo.Tests.NativeDensitySceneRestorationTests.RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles(\"FirstHourEncounterNativeBatch\")",
+      "message": "System.InvalidOperationException : Sequence contains no matching element",
+      "stack": "  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 \n  at CavesOfOoo.Tests.NativeDensitySceneRestorationTests.Launcher (System.String name) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs:12 \n  at CavesOfOoo.Tests.NativeDensitySceneRestorationTests.RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs:40 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 "
+    }
+  ]
+}

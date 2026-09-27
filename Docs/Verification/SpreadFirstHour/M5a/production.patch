@@ -1,0 +1,137 @@
+--- /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/AI/AIAmbushPart.cs	2026-04-22 17:11:00
++++ /tmp/coo-first-hour-e2/candidate/Assets/Scripts/Gameplay/AI/AIAmbushPart.cs	2026-09-27 14:48:54
+@@ -33,7 +33,7 @@
+     ///
+     /// Fallback safeguard: <see cref="HandleEvent"/> also attempts to push on
+     /// TakeTurn if Initialize couldn't (e.g., BrainPart was attached AFTER this
+-    /// part). The <c>_dormantPushed</c> flag ensures exactly-once push regardless
++    /// part). The <c>DormantPushed</c> flag ensures exactly-once push regardless
+     /// of which path succeeds.
+     ///
+     /// The flag is never auto-cleared: once woken, AIAmbush does not re-arm on
+@@ -54,8 +54,25 @@
+         public int SleepParticleInterval = 8;
+ 
+         /// <summary>Set to true once DormantGoal has been pushed. Prevents re-push on subsequent turns.</summary>
+-        private bool _dormantPushed;
++        public bool DormantPushed;
+ 
++        /// <summary>Presence marker for the additive lifecycle fields. Old saves
++        /// omitted the private latch; restored brains conservatively count as
++        /// already armed, never as a request to sleep again.</summary>
++        public int AmbushSaveStateVersion;
++
++        public override void OnBeforeSave(SaveWriter writer)
++        {
++            AmbushSaveStateVersion = 1;
++        }
++
++        public override void OnAfterLoad(SaveReader reader)
++        {
++            if (AmbushSaveStateVersion != 0) return;
++            DormantPushed = ParentEntity?.GetPart<BrainPart>() != null;
++            AmbushSaveStateVersion = 1;
++        }
++
+         public override void Initialize()
+         {
+             TryPushDormant();
+@@ -66,7 +83,7 @@
+             // Fallback: if Initialize couldn't push (e.g., BrainPart was attached
+             // after this part, or part fields were modified post-construction),
+             // retry on the first TakeTurn event.
+-            if (!_dormantPushed && e.ID == "TakeTurn")
++            if (!DormantPushed && e.ID == "TakeTurn")
+             {
+                 TryPushDormant();
+             }
+@@ -77,16 +94,16 @@
+         /// Re-arm ambush mode so the next Initialize or TakeTurn re-pushes DormantGoal.
+         /// Intended for sleep-status effects or programmatic re-dormancy. Callers are
+         /// responsible for ensuring no DormantGoal is currently on the stack (the
+-        /// `_dormantPushed` flag tracks state, not actual stack contents).
++        /// `DormantPushed` flag tracks state, not actual stack contents).
+         /// </summary>
+         public void Rearm()
+         {
+-            _dormantPushed = false;
++            DormantPushed = false;
+         }
+ 
+         private void TryPushDormant()
+         {
+-            if (_dormantPushed) return;
++            if (DormantPushed) return;
+             var brain = ParentEntity?.GetPart<BrainPart>();
+             if (brain == null) return;
+ 
+@@ -94,7 +111,7 @@
+                 wakeOnDamage: WakeOnDamage,
+                 wakeOnHostileInSight: WakeOnHostileInSight,
+                 sleepParticleInterval: SleepParticleInterval));
+-            _dormantPushed = true;
++            DormantPushed = true;
+         }
+     }
+ }
+--- /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/AI/Goals/DormantGoal.cs	2026-04-30 21:35:15
++++ /tmp/coo-first-hour-e2/candidate/Assets/Scripts/Gameplay/AI/Goals/DormantGoal.cs	2026-09-27 14:48:54
+@@ -28,8 +28,12 @@
+         /// <summary>Ticks between 'z' particle emissions. 0 disables the visual.</summary>
+         public int SleepParticleInterval;
+ 
+-        private int _lastHp = -1;
+-        private bool _wakeRequested;
++        /// <summary>Saved damage baseline. The presence flag also handles legacy
++        /// goal loads, whose constructor and private initializers were skipped.</summary>
++        public int LastHitpoints = -1;
++        public bool HasDamageBaseline;
++        /// <summary>Saved pending wake, including the interval before stack cleanup.</summary>
++        public bool WakeRequested;
+ 
+         public DormantGoal(bool wakeOnDamage = true, bool wakeOnHostileInSight = false, int sleepParticleInterval = 8)
+         {
+@@ -41,12 +45,12 @@
+         public override bool CanFight() => false;
+         public override bool IsBusy() => false;
+ 
+-        public override bool Finished() => _wakeRequested;
++        public override bool Finished() => WakeRequested;
+ 
+         /// <summary>Explicitly wake this dormant goal. It will pop on next stack clean.</summary>
+         public void Wake()
+         {
+-            _wakeRequested = true;
++            WakeRequested = true;
+         }
+ 
+         public override void TakeAction()
+@@ -63,14 +67,15 @@
+             if (WakeOnDamage)
+             {
+                 int hp = ParentEntity.GetStatValue("Hitpoints", -1);
+-                if (_lastHp >= 0 && hp >= 0 && hp < _lastHp)
++                if (HasDamageBaseline && LastHitpoints >= 0 && hp >= 0 && hp < LastHitpoints)
+                 {
+-                    _wakeRequested = true;
+-                    _lastHp = hp;
++                    WakeRequested = true;
++                    LastHitpoints = hp;
+                     EmitWakeParticle();
+                     return;
+                 }
+-                _lastHp = hp;
++                LastHitpoints = hp;
++                HasDamageBaseline = true;
+             }
+ 
+             // Hostile-wake check: any hostile in sight radius.
+@@ -81,7 +86,7 @@
+                 if (hostile != null)
+                 {
+                     ParentBrain.Target = hostile;
+-                    _wakeRequested = true;
++                    WakeRequested = true;
+                     EmitWakeParticle();
+                     return;
+                 }

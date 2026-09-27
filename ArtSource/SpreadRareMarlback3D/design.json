@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "sourceModel": "ring-snapjaw",
+  "sourcePaint": "ReferenceGlade3D/Library:ActorPaints:ring-snapjaw",
+  "palette": "ReferenceGlade3D/Library.Material",
+  "preserve": ["all original vertices", "weights", "bindposes", "five animation clips", "four sockets", "all source bytes"],
+  "variants": [
+    {
+      "id": "spread-rare-hurdle-cutter",
+      "blueprint": "SpreadHurdleCutter",
+      "name": "notched ditch-cutter",
+      "forms": "Two unequal shoulder slate lips separated by a real notch, plus three narrow raised pale rake scars on the left forelimb.",
+      "realEquipment": ["ShortSword", "LeatherCap"]
+    },
+    {
+      "id": "spread-rare-ditch-mate",
+      "blueprint": "SpreadDitchMate",
+      "name": "ditch-cutter mate",
+      "forms": "One offset rear slate attached to the original back, plus two short pale rake scars on the right forelimb. The unsupported decorative corner was removed after actual contact validation.",
+      "realEquipment": ["Cudgel"]
+    }
+  ],
+  "bounds": "Same low broad original anatomy; small additions remain within the source silhouette width, below +0.10 root units above dorsal height.",
+  "honesty": "Wear/slate is visual anatomy, not added gameplay armor. Weapons and cap are never baked into the body. Native viewed gallery required."
+}

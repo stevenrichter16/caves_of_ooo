@@ -1,0 +1,9 @@
+# Root-only native baseline capture and restore
+
+The first native142 run found eight legacy-fixture `Entity.End` parser failures. Those embedded bytes were produced by the standalone runner adapters, so they cannot establish native old-save compatibility. All current-save lifecycle cases passed. Preserve the original legacy wires and first-native receipt.
+
+1. Save exact current shared AIAmbushPart.cs and AI/Goals/DormantGoal.cs content/hashes outside Assets. Temporarily put only M5a/AIAmbushPart.cs.before.txt and DormantGoal.cs.before.txt at those runtime paths. Force compile and verify loaded baseline (no public `DormantPushed` / `WakeRequested`). Do not enter ordinary Play or access user saves.
+2. In the editor process set `System.Environment.SetEnvironmentVariable("COO_E2_LEGACY_DIR", "/tmp/coo-first-hour-e2/native-legacy")`. Execute only `CavesOfOoo.Tests.FirstHourAmbushSaveTests` (9). Existing fixture hook writes each actual full native save *before* restoring/asserting. Expected7RED/2controls, just as initial standalone baseline.
+3. In an unconditional cleanup/finally clear that environment variable, restore exact two saved current sources and force compile. Verify both file hashes and loaded public-field candidate. No other runtime/data changes.
+4. After all nine baseline .bin files exist, run `python3 /tmp/coo-first-hour-e2/rebuild_legacy_bytes.py`. It writes only a private test candidate and dual-runtime manifest. It embeds native bytes under UNITY_5_3_OR_NEWER, original standalone bytes otherwise, and preserves real executed old-byte provenance. Root can review/publish this ONE test support file (meta unchanged), then run same native fixtures127 plus previous neighbors.
+5. Archive all native baseline captures/manifest and actual RED/GREEN. Do not claim old native compatibility until native wire corpus passes. No save schema change is proposed from this adapter mismatch.

@@ -1,0 +1,12 @@
+--- Assets/Tests/EditMode/Presentation/Rendering/SpreadLatchcoilValidationTests.cs
++++ Assets/Tests/EditMode/Presentation/Rendering/SpreadLatchcoilValidationTests.cs
+@@ -63,7 +63,8 @@
+             var library = Library(); var source = library.SourceMesh; var variant = library.Find(id).Mesh;
+             var original = source.vertices; var oldWeights = source.boneWeights; var triangles = source.triangles;
+             var added = variant.vertices; var weights = variant.boneWeights;
+-            Assert.AreEqual(0, (added.Length - original.Length) % 24, "The current explicit additions are closed six-face cuboids.");
++            Assert.AreEqual(12 * 24, added.Length - original.Length, "Four distinct broken bands each have exactly three physical cuboids.");
++            Assert.AreEqual(4, weights.Skip(original.Length).Select(w => w.boneIndex0).Distinct().Count(), "Each band follows a different original coil.");
+             for (int start = original.Length; start < added.Length; start += 24)
+             {
+                 int bone = weights[start].boneIndex0;

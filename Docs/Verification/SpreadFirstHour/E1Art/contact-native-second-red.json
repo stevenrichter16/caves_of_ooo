@@ -1,0 +1,86 @@
+{
+  "job_id": "aec3d83a920f4bc0a02b3f826c3a6aac",
+  "summary": {
+    "id": "2",
+    "testcasecount": "29",
+    "result": "Failed(Child)",
+    "total": "29",
+    "passed": "28",
+    "failed": "1",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-27 20:27:53Z",
+    "end-time": "2026-09-27 20:28:06Z",
+    "duration": "13.1279304"
+  },
+  "fixtures": {
+    "CavesOfOoo.Tests.SpreadRareMarlbackArtTests": {
+      "type": "TestFixture",
+      "id": "22042",
+      "name": "SpreadRareMarlbackArtTests",
+      "fullname": "CavesOfOoo.Tests.SpreadRareMarlbackArtTests",
+      "classname": "CavesOfOoo.Tests.SpreadRareMarlbackArtTests",
+      "runstate": "Runnable",
+      "testcasecount": "17",
+      "result": "Passed",
+      "start-time": "2026-09-27 20:27:53Z",
+      "end-time": "2026-09-27 20:28:03Z",
+      "duration": "9.928357",
+      "total": "17",
+      "passed": "17",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0"
+    },
+    "CavesOfOoo.Tests.SpreadRareMarlbackGalleryTests": {
+      "type": "TestFixture",
+      "id": "22066",
+      "name": "SpreadRareMarlbackGalleryTests",
+      "fullname": "CavesOfOoo.Tests.SpreadRareMarlbackGalleryTests",
+      "classname": "CavesOfOoo.Tests.SpreadRareMarlbackGalleryTests",
+      "runstate": "Runnable",
+      "testcasecount": "3",
+      "result": "Passed",
+      "start-time": "2026-09-27 20:28:03Z",
+      "end-time": "2026-09-27 20:28:05Z",
+      "duration": "2.928962",
+      "total": "3",
+      "passed": "3",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0"
+    },
+    "CavesOfOoo.Tests.SpreadRareMarlbackValidationTests": {
+      "type": "TestFixture",
+      "id": "22071",
+      "name": "SpreadRareMarlbackValidationTests",
+      "fullname": "CavesOfOoo.Tests.SpreadRareMarlbackValidationTests",
+      "classname": "CavesOfOoo.Tests.SpreadRareMarlbackValidationTests",
+      "runstate": "Runnable",
+      "testcasecount": "9",
+      "result": "Failed",
+      "site": "Child",
+      "start-time": "2026-09-27 20:28:05Z",
+      "end-time": "2026-09-27 20:28:06Z",
+      "duration": "0.229175",
+      "total": "9",
+      "passed": "8",
+      "failed": "1",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0"
+    }
+  },
+  "failed": [
+    {
+      "name": "CavesOfOoo.Tests.SpreadRareMarlbackValidationTests.EveryPhysicalAdditionTouchesAnActualOriginalSurfaceOnItsBone(\"spread-rare-ditch-mate\")",
+      "message": "  spread-rare-ditch-mate detached physical addition #1\n  Expected: True\n  But was:  False\n",
+      "stack": "at CavesOfOoo.Tests.SpreadRareMarlbackValidationTests.EveryPhysicalAdditionTouchesAnActualOriginalSurfaceOnItsBone (System.String id) [0x0017d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadRareMarlbackValidationTests.cs:84\n"
+    }
+  ]
+}

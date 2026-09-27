@@ -1,0 +1,12 @@
+--- Assets/Scripts/Gameplay/Save/SaveSystem.cs
++++ Assets/Scripts/Gameplay/Save/SaveSystem.cs
+@@ -417,7 +417,8 @@
+             tileSnapshot?.Apply();
+ 
+             LairStacks.Restore(state.ZoneManager, state.World);
+-            state.ZoneManager.RareEncounters = SpreadRareEncounterPlan.Restore(state.World);
++            if (state.ZoneManager != null)
++                state.ZoneManager.RareEncounters = SpreadRareEncounterPlan.Restore(state.World);
+             // Parser failures leave the live session untouched. Load-hook or
+             // bootstrap application exceptions are separate from this boundary.
+             state.TurnManager?.Activate();

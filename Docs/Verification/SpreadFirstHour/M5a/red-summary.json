@@ -1,0 +1,37 @@
+{
+  "total": 9,
+  "passed": 2,
+  "failed": 7,
+  "failures": [
+    {
+      "name": "AsleepRoundTripRetainsExactlyOneDormantGoalAfterEachTurn",
+      "message": "  Expected: 1\n  But was:  2\n"
+    },
+    {
+      "name": "DamageBetweenLastSleepTickAndSaveStillWakesAfterLoad",
+      "message": "  Expected: True\n  But was:  False\n"
+    },
+    {
+      "name": "ExistingAmbusherRetainsItsSingleSavedSleep(\"AmbushBandit\")",
+      "message": "  Expected: 1\n  But was:  2\n"
+    },
+    {
+      "name": "ExistingAmbusherRetainsItsSingleSavedSleep(\"SleepingTroll\")",
+      "message": "  Expected: 1\n  But was:  2\n"
+    },
+    {
+      "name": "ExistingAmbusherRetainsItsSingleSavedSleep(\"MimicChest\")",
+      "message": "  Expected: 1\n  But was:  2\n"
+    },
+    {
+      "name": "FullyAwakeRoundTripNeverSilentlyRearms",
+      "message": "  Expected: False\n  But was:  True\n"
+    },
+    {
+      "name": "PendingExplicitWakeSurvivesBeforeNextStackCleanup",
+      "message": "  Expected: True\n  But was:  False\n"
+    }
+  ],
+  "production_changed": false,
+  "activation": false
+}

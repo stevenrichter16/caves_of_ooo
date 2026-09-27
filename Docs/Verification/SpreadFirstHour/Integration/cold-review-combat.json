@@ -1,0 +1,169 @@
+{
+  "reviewer": "combat_density (root-independent cold read)",
+  "dateUTC": "2026-09-27T20:54:57.848684+00:00",
+  "status": "One confirmed P2 gap repaired and root-published; 92/92 private neighbors and reference compilation pass. Actual final native integration pending; no additional substantial finding.",
+  "reviewedFiles": [
+    {
+      "path": "Assets/Scripts/Gameplay/AI/AIAmbushPart.cs",
+      "sha256": "1f3c43650ae272d4fd8aefe2aef8da89adae9b462d609263ef97445c9fa916d9",
+      "reviewedScope": "Full additive latch/version, Initialize/TakeTurn/Rearm and save hooks."
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/Goals/DormantGoal.cs",
+      "sha256": "1a218bc35cadf4da09b912ba96d0a94638a3e183f45f056a4a8258d138a5bd5e",
+      "reviewedScope": "Full saved wake/HP sampling and unchanged action lifecycle."
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadRareEncounterPlan.cs",
+      "sha256": "8f7637c962616e0d9bb2b314f51bf65e10a07fa39ff506bab9d7d52afbbc460c",
+      "reviewedScope": "Full source selection, current eligibility, family dispatch and saved metadata."
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadRareEncounterBuilder.cs",
+      "sha256": "58163b9e36a768b7b98be1d114a56e9f095a535697d9e48fef95f4feaabaaf77",
+      "reviewedScope": "Full pair/viper preflight, staging, kit/route checks, commit/refusal and rollback. Root-published narrow repair/paired cases also reviewed.",
+      "preRepairReviewedSha256": "58163b9e36a768b7b98be1d114a56e9f095a535697d9e48fef95f4feaabaaf77"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/PopulationBuilder.cs",
+      "sha256": "687cb70882e02bd758dad10238b396d7a66c6e6b1d5877e178f982383e67d757",
+      "reviewedScope": "Current rare group replacement hunk and ordinary population flow."
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+      "sha256": "7b1ce3c80d974114b1d7eca1742c90d82e1af02bdf911bfe2399dedaa887f986",
+      "reviewedScope": "Current rare ownership/constructor/ordinary Spread pipeline hunks; unload boundary only."
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Save/SaveSystem.cs",
+      "sha256": "934d69f70664fe75fff47f0f48643b76e2d68017de9d1903f754f6fcaf945416",
+      "reviewedScope": "Rare save/load hunks plus part hook order and public-field/goal serialization dependencies."
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Map/Zone.cs",
+      "sha256": "a3c8efb0496cd2f066ddbcdf5bd3d3ae2ffd8e834f0f25138040123ef03cee46",
+      "reviewedScope": "AddEntity/RemoveEntity current callbacks, exact membership and rollback semantics."
+    },
+    {
+      "path": "Assets/Resources/Content/Blueprints/Objects.json",
+      "sha256": "ef60810ab571340e61130bf70c0e838edfedcf711ee4eadebae2f7eed83f1718",
+      "reviewedScope": "Three added declarations, inherited actual parents/kit/bite/reward; complete parsed HEAD delta."
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadRareEncounterTests.cs",
+      "sha256": "7408678c217ddfd9be32f233e976202fc1332880e9769299e2b76f15dadd2c0d",
+      "reviewedScope": "Full fixture."
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadRareEncounterAdversarialTests.cs",
+      "sha256": "94c1e29f2e4429af461d1d9a5667fbc68e0b2a19899cce3c5ade3d62a0a00ae7",
+      "reviewedScope": "Full fixture, existing callback seam; private four-case expansion separately recorded. Root-published narrow repair/paired cases also reviewed.",
+      "preRepairReviewedSha256": "94c1e29f2e4429af461d1d9a5667fbc68e0b2a19899cce3c5ade3d62a0a00ae7"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadRareEncounterLifecycleTests.cs",
+      "sha256": "6c4d01d24fe09a8a975f20256961c2e592ac2c68ad4da81826f4474063f35ea4",
+      "reviewedScope": "Full reach/assistance/death/item/save fixture."
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadLatchcoilSourceTests.cs",
+      "sha256": "dfd43f255340647e8243647026c25e9d3c31c477ec0d7b79e69b2d325f633530",
+      "reviewedScope": "Full source/metadata/warning/bypass/callback/save fixture."
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveTests.cs",
+      "sha256": "582e38380bac24411fb2e35dad086db1584d692e961c44acba53b95179f38ac5",
+      "reviewedScope": "Full lifecycle fixture and round-trip setup."
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushSaveAdversarialTests.cs",
+      "sha256": "18c10f10e312ad80c442b81a4a73af05c877eabf96ebc3084d12f26288f6765c",
+      "reviewedScope": "Full legacy/new lifecycle countercases."
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/FirstHourAmbushLegacyBytes.cs",
+      "sha256": "335b1211f99ec95e7002f5b0382fe833253cc9f75957145123a1c655483c0217",
+      "reviewedScope": "Loader and runtime-conditional corpus selection; opaque bytes covered by existing native receipt, not decoded by this reread."
+    },
+    {
+      "path": "Docs/SPREAD-FIRST-HOUR-PLAN.md",
+      "sha256": "c6515c25393b25989dc18cd05db06147cf4c7c330f76fa647f0b2bc2dac018f0",
+      "reviewedScope": "Relevant E1/E2/source/save/stopping boundaries and current milestone statement."
+    }
+  ],
+  "dataDelta": {
+    "baselineCommit": "0417e1458683dd0fbebb765ed5a8834e2d447066",
+    "added": [
+      "SpreadDitchMate",
+      "SpreadHurdleCutter",
+      "SpreadLatchcoil"
+    ],
+    "changedExisting": [],
+    "removed": []
+  },
+  "finding": {
+    "priority": "P2",
+    "path": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadRareEncounterBuilder.cs",
+    "lines": [
+      34,
+      46
+    ],
+    "problem": "Pair source authority was checked before ObjectCreated callbacks but not afterward; callback changes to current biome/POI still committed actors at an ineligible address.",
+    "reproduction": "Existing RarePlacementMutationPart ObjectCreated callback; leader changes biome or mate creates POI. Two otherwise identical unchanged callbacks are positive controls.",
+    "baselineResult": {
+      "total": 4,
+      "failed": 2,
+      "passed": 2
+    },
+    "privateRepairResult": {
+      "total": 92,
+      "failed": 0,
+      "passed": 92
+    },
+    "candidateManifest": "Docs/Verification/SpreadFirstHour/Integration/PairAuthority/candidate-manifest.json",
+    "nativeStatus": "Root-published, final native integration pending.",
+    "publishedFiles": [
+      {
+        "path": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadRareEncounterBuilder.cs",
+        "sha256": "58163b9e36a768b7b98be1d114a56e9f095a535697d9e48fef95f4feaabaaf77"
+      },
+      {
+        "path": "Assets/Tests/EditMode/Gameplay/World/SpreadRareEncounterAdversarialTests.cs",
+        "sha256": "94c1e29f2e4429af461d1d9a5667fbc68e0b2a19899cce3c5ade3d62a0a00ae7"
+      }
+    ]
+  },
+  "reviewPass": {
+    "Q1": "Compared pair and viper authority/rollback gates; this exposed the one asymmetric postcreation check. Additive ambush apply/save/load lifecycle respects current field serializer.",
+    "Q2": "Family-specific dispatch protects pair from malformed optional overlap. Replacement preserves ambient rows and ordinary groups on refusal. Exact kit owners and source markers carry through cache/save.",
+    "Q3": "Reviewed awake/asleep/pending/Rearm/legacy counters, current eligibility/geometry/callback refusal, original population+RNG, actual gear reach/death/save counters. Added only the four missing pair callback cases.",
+    "Q4": "No new parity claim. Original local variants, finite natural viper yield, nonmoving Lunge, cached/save retention, explicit administrative unload regeneration and deferred E3 remain consistent with plan."
+  },
+  "existingEvidence": [
+    "Docs/Verification/SpreadFirstHour/M5a/native-final-summary.json",
+    "Docs/Verification/SpreadFirstHour/M5a/source-native-green.json",
+    "Docs/Verification/SpreadFirstHour/M4/NativeDriver/native-result.json"
+  ],
+  "bounds": [
+    "This review did not run Unity, modify Assets, change saves or stage files.",
+    "Legacy saves never stored private pending wake or prior HP; those historical values cannot be recovered. Existing native legacy bytes pin conservative awake/sleep shape and first current sample.",
+    "M4 native13 success is an explicitly staged source/arena with ordinary player actions; zero observed tactic rows, so it does not prove native Lunge/discovery/frequency/balance.",
+    "At review time E2 keyboard driver is separate pending execution; source/save/art results do not substitute for its witness.",
+    "Explicit administrative unloading may regenerate wilderness; no global retention or unique-lore promise is introduced.",
+    "No current editor logs or mutable native output files are included in reviewed-file hashes."
+  ],
+  "subsequentFullSuiteFindings": [
+    {
+      "owner": "standalone_verify",
+      "finding": "WorldEntityTests exposed null manager dereference in new SaveSystem.RareEncounters restore assignment.",
+      "reviewOutcome": "Read-only symmetry follow-up agrees with guarding just that manager-owned assignment; serialized World metadata remains intact, with no separate managerless hydration required.",
+      "bound": "Not discovered by initial cold read; actual full native run found it. Root owns repair/native gate."
+    },
+    {
+      "owner": "combat_density",
+      "finding": "Existing global equipment allowlist omitted two intentional rare child loadouts.",
+      "reviewOutcome": "One fixture-only literal Kits update;91 baseline90PASS/1RED \u219293GREEN, exact new kit/ownership and existing negative assertions retained.",
+      "manifest": "Docs/Verification/SpreadFirstHour/Integration/EquipmentPin/manifest.json"
+    }
+  ]
+}

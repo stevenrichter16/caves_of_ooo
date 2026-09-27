@@ -1,0 +1,84 @@
+--- a/Assets/Scripts/Gameplay/World/Generation/Builders/SpreadRareEncounterBuilder.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/Builders/SpreadRareEncounterBuilder.cs
+@@ -35,13 +35,14 @@
+             var a = factory.CreateEntity(required[0]);
+             var b = factory.CreateEntity(required[1]);
+             if (!Fresh(a, required[0], "ShortSword", "LeatherCap") || !Fresh(b, required[1], "Cudgel", null)
+-                || ReferenceEquals(a, b) || a.ID == b.ID || !Pocket(zone, px, py)
++                || ReferenceEquals(a, b) || a.ID == b.ID || !CurrentPairSource(zone, factory) || !Pocket(zone, px, py)
+                 || !ReachableFromEdges(zone)[px,py]) return Refuse(zone, "staging-or-callback-refused");
+             if (!LegalBody(zone, a, px, py) || !LegalBody(zone, b, px + 2, py)) return Refuse(zone, "invalid-body");
+             if (!zone.AddEntity(a, px, py)) return Refuse(zone, "leader-placement-refused");
+-            if (!Fresh(b, required[1], "Cudgel", null) || !LegalBody(zone, b, px + 2, py) || !zone.AddEntity(b, px + 2, py))
++            if (!CurrentPairSource(zone, factory) || !Fresh(b, required[1], "Cudgel", null)
++                || !LegalBody(zone, b, px + 2, py) || !zone.AddEntity(b, px + 2, py))
+             { if (a.SpatialZone == zone) zone.RemoveEntity(a); return Refuse(zone, "mate-placement-refused"); }
+-            if (a.SpatialZone != zone || b.SpatialZone != zone || zone.GetEntityPosition(a) != (px,py)
++            if (!CurrentPairSource(zone, factory) || a.SpatialZone != zone || b.SpatialZone != zone || zone.GetEntityPosition(a) != (px,py)
+                 || zone.GetEntityPosition(b) != (px+2,py) || !OwnsKit(a, "ShortSword", "LeatherCap") || !OwnsKit(b, "Cudgel", null))
+             { if (a.SpatialZone == zone) zone.RemoveEntity(a); if (b.SpatialZone == zone) zone.RemoveEntity(b); return Refuse(zone, "commit-owner-changed"); }
+             a.Properties[SourceKey] = b.Properties[SourceKey] = zone.ZoneID;
+@@ -50,6 +51,14 @@
+                 items = a.GetPart<InventoryPart>().EquippedItems.Values.Concat(b.GetPart<InventoryPart>().EquippedItems.Values).Distinct().Select(e => e.ID).ToArray() });
+             return true;
+         }
++
++        // Creation may change the live map or frozen selection. Recheck this
++        // pair's authority without admitting the separate optional viper source.
++        private bool CurrentPairSource(Zone zone, EntityFactory factory)
++            => factory == manager.Factory && manager.RareEncounters?.Initialized == true
++                && manager.RareEncounters.PairZoneID == zone.ZoneID
++                && SpreadRareEncounterPlan.IsEligible(manager, zone.ZoneID)
++                && !zone.GetReadOnlyEntities().Any(e => e.Properties.ContainsKey(SourceKey));
+ 
+         private bool TryPlaceViper(Zone zone, EntityFactory factory)
+         {
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadRareEncounterAdversarialTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadRareEncounterAdversarialTests.cs
+@@ -91,6 +91,46 @@
+             });
+             Assert.IsFalse(new SpreadRareEncounterBuilder(manager).TryPlace(z,scope.Factory));
+             Assert.IsFalse(z.GetReadOnlyEntities().Any(e=>e.HasTag("Creature")));
++        }
++        [TestCase("SpreadHurdleCutter", "biome")]
++        [TestCase("SpreadDitchMate", "poi")]
++        [TestCase("SpreadHurdleCutter", "unchanged")]
++        [TestCase("SpreadDitchMate", "unchanged")]
++        public void CreationCallbackMustRetainCurrentPairSourceAuthority(string blueprint, string change)
++        {
++            var zone = Pocket();
++            var before = zone.GetReadOnlyEntities().ToArray();
++            string selected = manager.RareEncounters.PairZoneID;
++            var address = WorldMap.FromZoneID(selected);
++            int callbacks = 0;
++            scope.Factory.RegisterPartType<RarePlacementMutationPart>("RarePlacementMutation");
++            scope.Factory.Blueprints[blueprint].Parts["RarePlacementMutation"] = new Dictionary<string, string>();
++            RarePlacementMutationPart.Callback = () =>
++            {
++                callbacks++;
++                if (change == "biome") manager.WorldMap.Tiles[address.x, address.y] = BiomeType.Beating;
++                if (change == "poi") manager.WorldMap.SetPOI(address.x, address.y,
++                    new PointOfInterest(POIType.MerchantCamp, "callback-owned camp"));
++            };
++
++            bool placed = new SpreadRareEncounterBuilder(manager).TryPlace(zone, scope.Factory);
++            Assert.AreEqual(1, callbacks, "The real creation callback must execute.");
++            Assert.AreEqual(selected, manager.RareEncounters.PairZoneID, "Refusal must not reroll selection.");
++            Assert.AreEqual(change == "unchanged", placed);
++            if (change == "unchanged")
++            {
++                var pair = zone.GetReadOnlyEntities().Where(e => e.Properties.ContainsKey(SpreadRareEncounterBuilder.SourceKey)).ToArray();
++                Assert.AreEqual(2, pair.Length);
++                Assert.IsTrue(pair.All(e => e.GetProperty(SpreadRareEncounterBuilder.SourceKey) == selected));
++                Assert.AreEqual(3, pair.Sum(e => DensityLootTestScope.Gear(e).Count()));
++                Assert.IsTrue(before.All(e => zone.GetEntityCell(e) != null));
++            }
++            else
++            {
++                Assert.IsFalse(manager.RareEncounters.Selects(manager, selected));
++                CollectionAssert.AreEquivalent(before, zone.GetReadOnlyEntities(), "Refusal must preserve every pre-existing owner.");
++                Assert.IsFalse(zone.GetReadOnlyEntities().Any(e => e.Properties.ContainsKey(SpreadRareEncounterBuilder.SourceKey)));
++            }
+         }
+         [Test]
+         public void EnclosedHedgePocketCannotBecomeAnUnreachableRewardSite()

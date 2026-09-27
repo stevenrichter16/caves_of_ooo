@@ -2566,6 +2566,11 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (InputHelper.GetKeyDown(KeyCode.F1))
+            {
+                OpenWorldActionDetailsReader();
+                return;
+            }
             WorldActionMenuUI.HandleInput();
 
             if (WorldActionMenuUI.SelectionCancelled)
@@ -2748,12 +2753,11 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Only the pile SUMMARY examines the whole cell. A selected owner's
-            // menu uses its own Examine even when it shares that same cell.
-            if (isPileCell && action.Command == "Examine")
+            // Examine is free, but stale menus cannot reveal an old owner or hidden cell.
+            // A pile summary and an explicitly selected owner remain distinct snapshots.
+            if (action.Command == "Examine")
             {
-                MessageLog.Add(WorldInteractionSystem.DescribeCell(cell, CurrentZone));
-                _inputState = _worldActionMenuReturnState;
+                OpenWorldExamineReader(target, cell, isPileCell);
                 return;
             }
 
@@ -4061,6 +4065,153 @@ namespace CavesOfOoo.Rendering
             tilemap.SetColor(tilePos, color);
         }
 
+        private sealed class WorldActionReaderContext
+        {
+            public Entity Owner;
+            public Cell Cell;
+            public InventoryAction Identity;
+            public bool Pile, Picker, Back;
+        }
+        private WorldActionReaderContext _worldActionReader;
+
+        private List<InventoryAction> GatherActionReaderRows(WorldActionReaderContext context)
+        {
+            if (context.Pile) return WorldInteractionSystem.BuildPileSummaryActions(context.Cell, PlayerEntity);
+            if (context.Picker) return WorldInteractionSystem.BuildTargetPickerActions(context.Cell);
+            var actions = WorldInteractionSystem.GatherActions(context.Owner, PlayerEntity);
+            WorldInteractionSystem.AppendUnderfootActions(actions, context.Cell, PlayerEntity, context.Owner);
+            if ((context.Back || WorldInteractionSystem.BuildTargetPickerActions(context.Cell).Count > 1)
+                && !actions.Exists(a => a.Command == WorldInteractionSystem.PickCellCommand))
+                actions.Add(new InventoryAction("PickCell", "<< everything here", WorldInteractionSystem.PickCellCommand, '\0', 0));
+            return actions;
+        }
+
+        private void OpenWorldActionDetailsReader()
+        {
+            var menu = WorldActionMenuUI;
+            var selected = menu?.HighlightedAction;
+            if (menu == null || !menu.IsOpen || selected == null || AnnouncementUI == null) return;
+            var context = new WorldActionReaderContext { Owner = menu.SelectedTarget, Cell = menu.SelectedCell,
+                Identity = new InventoryAction(selected.Name, selected.Display, selected.Command, selected.Key,
+                    selected.Priority, selected.FireOnActor), Pile = menu.SelectedCellIsPile,
+                Picker = menu.IsTargetPicker, Back = menu.HasBackRow };
+            if (!IsCurrentExamineOwner(context.Owner, context.Cell))
+            {
+                RestoreWorldActionReader(context);
+                return;
+            }
+            var rows = GatherActionReaderRows(context);
+            InventoryAction fresh = null;
+            int matches = 0;
+            foreach (var row in rows)
+                if (row != null && row.Name == selected.Name && row.Command == selected.Command && row.FireOnActor == selected.FireOnActor)
+                { fresh = row; matches++; }
+            if (matches != 1 || !IsCurrentExamineOwner(context.Owner, context.Cell))
+            {
+                MessageLog.Add("That action is no longer available to inspect.");
+                RestoreWorldActionReader(context);
+                return;
+            }
+            Entity described = context.Owner;
+            if (context.Picker)
+            {
+                described = WorldInteractionSystem.FindInCell(context.Cell,
+                    fresh.Command.Substring(WorldInteractionSystem.PickTargetCommandPrefix.Length));
+                if (!IsCurrentExamineOwner(described, context.Cell))
+                { MessageLog.Add("That selection is no longer available to inspect."); RestoreWorldActionReader(context); return; }
+            }
+            var part = described.GetPart<ExaminablePart>();
+            string text = "Selected action (reading only):\n" + (fresh.Display ?? fresh.Name ?? "") + "\n\n"
+                + (part != null && ReferenceEquals(part.ParentEntity, described)
+                    ? part.BuildWorldExamineLine(CurrentZone, context.Cell) : described.GetDisplayName());
+            if (!IsCurrentExamineOwner(context.Owner, context.Cell) || !IsCurrentExamineOwner(described, context.Cell)
+                || !ReferenceEquals(described.GetPart<ExaminablePart>(), part))
+            { MessageLog.Add("That selection is no longer available to inspect."); RestoreWorldActionReader(context); return; }
+            _worldActionReader = context;
+            menu.HideForReader();
+            _inputState = InputState.WorldActionMenuOpen;
+            MessageLog.AddAnnouncement(text);
+            TryOpenAnnouncement();
+        }
+
+        private void RestoreWorldActionReader(WorldActionReaderContext context)
+        {
+            _worldActionReader = null;
+            if (context != null && WorldActionMenuUI != null && IsCurrentExamineOwner(context.Owner, context.Cell))
+            {
+                var actions = GatherActionReaderRows(context);
+                if (IsCurrentExamineOwner(context.Owner, context.Cell))
+                {
+                    WorldActionMenuUI.Open(PlayerEntity, context.Owner, context.Cell, actions, CurrentZone, context.Pile);
+                    WorldActionMenuUI.RestoreHighlight(context.Identity);
+                    _inputState = InputState.WorldActionMenuOpen;
+                    EnterCenteredPopupOverlayView();
+                    return;
+                }
+            }
+            WorldActionMenuUI?.HideForReader();
+            MessageLog.Add("That selection is no longer available.");
+            _inputState = _worldActionMenuReturnState;
+            ExitCenteredPopupOverlayViewToGameplay();
+        }
+
+        private bool IsCurrentExamineOwner(Entity target, Cell cell)
+        {
+            if (CurrentZone == null || cell == null || !cell.Explored || !cell.IsVisible
+                || !ReferenceEquals(CurrentZone.GetCell(cell.X, cell.Y), cell)
+                || target == null || string.IsNullOrEmpty(target.ID)
+                || CurrentZone.GetEntityCell(target) == null) return false;
+            var render = target.GetPart<RenderPart>();
+            if (render == null || !render.Visible || !ReferenceEquals(render.ParentEntity, target)) return false;
+            for (int i = 0; i < cell.Occupants.Count; i++)
+                if (ReferenceEquals(cell.Occupants[i], target)) return true;
+            return false;
+        }
+
+        private void OpenWorldExamineReader(Entity target, Cell cell, bool pile)
+        {
+            _inputState = _worldActionMenuReturnState;
+            var examinable = target?.GetPart<ExaminablePart>();
+            if (!IsCurrentExamineOwner(target, cell) || (!pile &&
+                (examinable == null || !ReferenceEquals(examinable.ParentEntity, target))))
+            {
+                MessageLog.Add("That selection is no longer available to examine.");
+                return;
+            }
+
+            string text;
+            if (pile)
+            {
+                // The summary names visible current objects, never another owner's full prose.
+                var names = new List<string>();
+                for (int i = 0; i < cell.Occupants.Count; i++)
+                {
+                    var owner = cell.Occupants[i];
+                    if (IsCurrentExamineOwner(owner, cell) && !owner.HasTag("Player")
+                        && !WorldInteractionSystem.IsTerrain(owner)) names.Add(owner.GetDisplayName());
+                }
+                text = names.Count > 1 ? "A pile of items, including: " + string.Join(", ", names) + "."
+                    : names.Count == 1 ? "You see " + names[0] + "." : "There are no visible items in this pile.";
+                string ground = CellStatusReadout.GroundLine(CurrentZone, cell);
+                if (!string.IsNullOrEmpty(ground)) text += "\n" + ground;
+            }
+            else text = examinable.BuildWorldExamineLine(CurrentZone, cell);
+
+            // Describers may consult parts. Recheck the same selected instance before publication.
+            if (!IsCurrentExamineOwner(target, cell) || (!pile &&
+                !ReferenceEquals(target.GetPart<ExaminablePart>(), examinable)))
+            {
+                MessageLog.Add("That selection is no longer available to examine.");
+                return;
+            }
+            if (AnnouncementUI == null) MessageLog.Add(text);
+            else
+            {
+                MessageLog.AddAnnouncement(text);
+                TryOpenAnnouncement();
+            }
+        }
+
         // ===== Announcement Modal =====
 
         private bool TryOpenAnnouncement()
@@ -4126,6 +4277,11 @@ namespace CavesOfOoo.Rendering
             _stateBeforeAnnouncement = InputState.Normal;
             _inputState = prior;
 
+            if (prior == InputState.WorldActionMenuOpen && _worldActionReader != null)
+            {
+                RestoreWorldActionReader(_worldActionReader);
+                return;
+            }
             if (prior == InputState.InventoryOpen)
             {
                 // Disable the popup overlay camera but keep the fullscreen

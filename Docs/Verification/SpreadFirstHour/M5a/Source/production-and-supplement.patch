@@ -1,0 +1,324 @@
+--- a/Assets/Scripts/Gameplay/World/Generation/SpreadRareEncounterPlan.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/SpreadRareEncounterPlan.cs
+@@ -3,16 +3,20 @@
+ 
+ namespace CavesOfOoo.Core
+ {
+-    /// <summary>One fresh-world regional pair address, frozen before exploration.
++    /// <summary>Fresh-world regional pair and optional viper addresses, frozen before exploration.
+     /// Saved as bounded ordinary World properties. A missing old-save plan stays
+     /// disabled; an initialized empty plan stays empty. No read path rolls RNG.</summary>
+     public sealed class SpreadRareEncounterPlan
+     {
+         public const string PropertyKey = "SpreadRareEncounter.Selection.v1";
++        public const string ViperPropertyKey = "SpreadRareEncounter.ViperSelection.v1";
++        public const string ViperBlueprint = "SpreadLatchcoil";
+         public const string PairLeader = "SpreadHurdleCutter";
+         public const string PairMate = "SpreadDitchMate";
+         public string PairZoneID { get; private set; }
+         public bool Initialized { get; private set; }
++        public string ViperZoneID { get; private set; } = "";
++        public bool ViperInitialized { get; private set; }
+ 
+         public static SpreadRareEncounterPlan Create(OverworldZoneManager manager)
+         {
+@@ -29,8 +33,22 @@
+                     if (rank >= best) continue;
+                     best = rank; result.PairZoneID = id;
+                 }
++            // Independent rank stream; the original pair selection and caller RNG are unchanged.
++            result.ViperInitialized = true;
++            uint viperBest = uint.MaxValue;
++            for (int y = 0; y < WorldMap.Height; y++)
++                for (int x = 0; x < WorldMap.Width; x++)
++                {
++                    string id = WorldMap.ToZoneID(x, y, 0);
++                    if (!result.ViperEligible(manager, id)) continue;
++                    uint rank = ViperRank(manager.WorldSeed, id);
++                    if (rank >= viperBest) continue;
++                    viperBest = rank; result.ViperZoneID = id;
++                }
+             if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "SpreadRareSelected",
+                 payload: new { version = 1, zone = result.PairZoneID, family = "ditch-cutters" });
++            if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "SpreadRareSelected",
++                payload: new { version = 1, zone = result.ViperZoneID, family = "chalk-ring-viper" });
+             return result;
+         }
+ 
+@@ -45,13 +63,30 @@
+         }
+ 
+         public bool Selects(OverworldZoneManager manager, string id)
+-            => Initialized && !string.IsNullOrEmpty(PairZoneID) && PairZoneID == id && IsEligible(manager, id);
++            => Initialized && ((!string.IsNullOrEmpty(PairZoneID) && PairZoneID == id && IsEligible(manager, id))
++                || SelectsViper(manager, id));
++
++        // The optional source must pass its own admission even when malformed
++        // saved metadata aliases the separately eligible original pair.
++        public bool SelectsViper(OverworldZoneManager manager, string id)
++            => Initialized && ViperInitialized && !string.IsNullOrEmpty(ViperZoneID)
++                && ViperZoneID == id && ViperEligible(manager, id);
++
++        private bool ViperEligible(OverworldZoneManager manager, string id)
++        {
++            if (!IsEligible(manager, id) || FormationSelector.For(BiomeType.Spread, id) != Formation.Hedgerow) return false;
++            if (string.IsNullOrEmpty(PairZoneID)) return true;
++            var a = WorldMap.FromZoneID(PairZoneID); var b = WorldMap.FromZoneID(id);
++            return Math.Max(Math.Abs(a.x - b.x), Math.Abs(a.y - b.y)) > 1;
++        }
+ 
+         public static Entity BindForSave(OverworldZoneManager manager, Entity world)
+         {
+             if (manager?.RareEncounters?.Initialized != true) return world;
+             if (world == null) { world = new Entity { BlueprintName = "World", ID = Guid.NewGuid().ToString("N") }; world.SetTag("WorldEntity"); }
+             world.Properties[PropertyKey] = "1|" + manager.RareEncounters.PairZoneID;
++            if (manager.RareEncounters.ViperInitialized)
++                world.Properties[ViperPropertyKey] = "1|" + manager.RareEncounters.ViperZoneID;
+             return world;
+         }
+ 
+@@ -68,7 +103,29 @@
+                 var p = WorldMap.FromZoneID(id);
+                 if (!WorldMapAuthoring.InBounds(p.x, p.y) || p.z != 0 || id != WorldMap.ToZoneID(p.x, p.y, 0)) return result;
+             }
+-            result.Initialized = true; result.PairZoneID = id; return result;
++            result.Initialized = true; result.PairZoneID = id;
++            // Missing optional metadata is an old save, not a request for fresh content.
++            if (world.Properties.TryGetValue(ViperPropertyKey, out string optional) && optional != null
++                && optional.StartsWith("1|", StringComparison.Ordinal))
++            {
++                string viper = optional.Substring(2);
++                if (CanonicalSurfaceOrEmpty(viper))
++                { result.ViperInitialized = true; result.ViperZoneID = viper; }
++            }
++            return result;
++        }
++
++        private static bool CanonicalSurfaceOrEmpty(string id)
++        {
++            if (id.Length == 0) return true;
++            // FromZoneID uses TryParse; equality rejects aliases, extra fields and whitespace.
++            var p = WorldMap.FromZoneID(id);
++            return WorldMapAuthoring.InBounds(p.x, p.y) && p.z == 0 && id == WorldMap.ToZoneID(p.x, p.y, 0);
++        }
++
++        private static uint ViperRank(int seed, string id)
++        {
++            unchecked { uint hash = 2166136261 ^ (uint)seed; foreach (char c in "SpreadRare.v1.viper|" + id) hash = (hash ^ c) * 16777619; return hash; }
+         }
+ 
+         private static uint Rank(int seed, string id)
+--- a/Assets/Scripts/Gameplay/World/Generation/Builders/SpreadRareEncounterBuilder.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/Builders/SpreadRareEncounterBuilder.cs
+@@ -6,7 +6,7 @@
+ 
+ namespace CavesOfOoo.Core
+ {
+-    /// <summary>Cold population preflight/commit for one optional original pair.
++    /// <summary>Cold population preflight/commit for optional original pair or warned viper.
+     /// Refusal leaves the ordinary group intact. Never runs on revisit or render.</summary>
+     public sealed class SpreadRareEncounterBuilder
+     {
+@@ -18,6 +18,7 @@
+         {
+             if (zone == null || factory == null || manager?.RareEncounters?.Selects(manager, zone.ZoneID) != true) return false;
+             if (factory != manager.Factory) return Refuse(zone,"foreign-factory");
++            if (manager.RareEncounters.SelectsViper(manager, zone.ZoneID)) return TryPlaceViper(zone, factory);
+             string[] required = { SpreadRareEncounterPlan.PairLeader, SpreadRareEncounterPlan.PairMate, "ShortSword", "Cudgel", "LeatherCap" };
+             if (factory.Blueprints == null || required.Any(id => !factory.Blueprints.ContainsKey(id)) || LoadoutPart.Factory != factory)
+                 return Refuse(zone, "missing-content-or-loadout-owner");
+@@ -50,6 +51,109 @@
+             return true;
+         }
+ 
++        private bool TryPlaceViper(Zone zone, EntityFactory factory)
++        {
++            if (factory.Blueprints == null || !factory.Blueprints.ContainsKey(SpreadRareEncounterPlan.ViperBlueprint)
++                || !factory.Blueprints.ContainsKey("Signpost")) return ViperRefuse(zone, "missing-latchcoil-content");
++            if (zone.GetReadOnlyEntities().Any(e => e.Properties.ContainsKey(SourceKey))) return ViperRefuse(zone, "already-owned-source");
++            int px = -1, py = -1;
++            for (int y = 5; y < Zone.Height - 5 && px < 0; y++)
++                for (int x = 8; x < Zone.Width - 7; x++)
++                    if (ViperPocket(zone, x, y)) { px = x; py = y; break; }
++            if (px < 0) return ViperRefuse(zone, "no-warned-dry-bypass");
++            var snake = factory.CreateEntity(SpreadRareEncounterPlan.ViperBlueprint);
++            var sign = factory.CreateEntity("Signpost");
++            if (!FreshViper(snake) || !FreshSign(sign) || ReferenceEquals(snake, sign) || snake.ID == sign.ID
++                || !CurrentViperSource(zone, factory) || !ViperPocket(zone, px, py)) return ViperRefuse(zone, "latchcoil-staging-refused");
++            sign.GetPart<ExaminablePart>().Description = "Old cuts warn of chalk-ring vipers in these hedges and poisonous bites. A scratched arrow points south, around the hedge corner.";
++            if (!zone.AddEntity(snake, px, py)) return ViperRefuse(zone, "latchcoil-placement-refused");
++            if (!CurrentViperSource(zone, factory) || !FreshSign(sign) || !ViperPocket(zone, px, py, snake)
++                || !zone.AddEntity(sign, px - 5, py))
++            { RemoveOwned(zone, snake, sign); return ViperRefuse(zone, "warning-placement-refused"); }
++            if (!CurrentViperSource(zone, factory) || zone.GetEntityPosition(snake) != (px, py)
++                || zone.GetEntityPosition(sign) != (px - 5, py) || !ViperContract(snake) || !SignContract(sign)
++                || !ViperPocket(zone, px, py, snake, sign))
++            { RemoveOwned(zone, snake, sign); return ViperRefuse(zone, "latchcoil-commit-owner-changed"); }
++            snake.Properties[SourceKey] = sign.Properties[SourceKey] = zone.ZoneID;
++            if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "SpreadRareCommitted", snake,
++                payload: new { zone = zone.ZoneID, family = "chalk-ring-viper", warning = sign.ID });
++            return true;
++        }
++        private bool CurrentViperSource(Zone zone, EntityFactory factory)
++            => factory == manager.Factory && manager.RareEncounters?.SelectsViper(manager, zone.ZoneID) == true
++                && !zone.GetReadOnlyEntities().Any(e => e.Properties.ContainsKey(SourceKey));
++        private static void RemoveOwned(Zone zone, Entity a, Entity b)
++        { if (a?.SpatialZone == zone) zone.RemoveEntity(a); if (b?.SpatialZone == zone) zone.RemoveEntity(b); }
++        private static bool Uncarried(Entity e)
++            => e != null && !string.IsNullOrEmpty(e.ID) && e.GetPart<PhysicsPart>()?.ParentEntity == e
++                && e.GetPart<PhysicsPart>().InInventory == null && e.GetPart<PhysicsPart>().Equipped == null;
++        private static bool FreshViper(Entity e) => e?.SpatialZone == null && ViperContract(e);
++        private static bool ViperContract(Entity e)
++            => Uncarried(e) && !e.HasPart<SpatialFootprintPart>() && e.BlueprintName == SpreadRareEncounterPlan.ViperBlueprint && e.GetStatValue("Hitpoints") == 8
++                && !CombatSystem.IsDeathHandled(e) && e.GetPart<BrainPart>()?.ParentEntity == e
++                && e.GetPart<BrainPart>().SightRadius == 3 && e.GetPart<AIAmbushPart>()?.ParentEntity == e
++                && e.GetPart<AIAmbushPart>().WakeOnDamage && e.GetPart<AIAmbushPart>().WakeOnHostileInSight
++                && e.GetPart<AIAmbushPart>().DormantPushed && e.GetPart<BrainPart>().PeekGoal() is DormantGoal dormant && !dormant.Finished()
++                && e.GetPart<RenderPart>()?.ParentEntity == e && e.GetPart<RenderPart>().Visible
++                && e.GetPart<ExaminablePart>()?.ParentEntity == e && e.GetProperty("NaturalWeapon") == "ViperBite";
++        private static bool FreshSign(Entity e) => e?.SpatialZone == null && SignContract(e);
++        private static bool SignContract(Entity e)
++            => Uncarried(e) && !e.HasPart<SpatialFootprintPart>() && e.BlueprintName == "Signpost" && e.GetPart<PhysicsPart>().Solid
++                && !e.HasTag("Creature") && !e.HasPart<BrainPart>() && !e.GetPart<PhysicsPart>().Takeable
++                && e.GetPart<RenderPart>()?.ParentEntity == e && e.GetPart<RenderPart>().Visible
++                && e.GetPart<RenderPart>().RenderString == "I" && e.GetPart<ExaminablePart>()?.ParentEntity == e
++                && e.GetPart<RegionalSignpostPart>()?.ParentEntity == e;
++        private static bool Dry(Zone zone, Cell cell)
++        {
++            if (cell == null) return false;
++            var state = zone.TileState.Get(cell.X, cell.Y);
++            return (state == null || state.IsEmpty) && !cell.Occupants.Any(e =>
++                e.HasPart<LiquidPoolPart>() || e.HasPart<GasPoolPart>() || e.HasPart<TriggerOnStepPart>());
++        }
++        private static bool ViperClear(Zone zone, int x, int y, Entity allowed = null)
++        {
++            var cell = zone.GetCell(x, y);
++            return Dry(zone, cell) && !cell.BlocksMovement(allowed) && !zone.GenReservedCells.Contains((x, y))
++                && !cell.Occupants.Any(e => e.HasTag("Creature") && !ReferenceEquals(e, allowed));
++        }
++        private static bool DryWalkable(Zone zone, int x, int y)
++        { var cell = zone.GetCell(x, y); return Dry(zone, cell) && !cell.BlocksMovement(); }
++        private static bool ViperPocket(Zone zone, int x, int y, Entity snake = null, Entity sign = null)
++        {
++            if (!ViperClear(zone, x, y, snake) || !ViperClear(zone, x - 5, y, sign)) return false;
++            if (snake != null && (snake.SpatialZone != zone || zone.GetOccupiedCells(snake, x, y).Count != 1)) return false;
++            if (sign != null && (sign.SpatialZone != zone || zone.GetOccupiedCells(sign, x - 5, y).Count != 1)) return false;
++            for (int dy = -1; dy <= 1; dy++) for (int dx = -1; dx <= 1; dx++)
++                if ((dx != 0 || dy != 0) && !ViperClear(zone, x + dx, y + dy)) return false;
++            bool hedge = false;
++            for (int dy = -3; dy <= 3; dy++) for (int dx = -3; dx <= 3; dx++)
++                if (zone.GetCell(x + dx, y + dy)?.Occupants.Any(e => e.BlueprintName == "Hedge") == true) hedge = true;
++            if (!hedge) return false;
++            // South bypass stays outside the fresh actor's Chebyshev sight3.
++            // Reservations can be walked, but neither owner is placed on one.
++            for (int yy = y; yy <= y + 4; yy++)
++                if (!DryWalkable(zone, x - 6, yy) || !DryWalkable(zone, x + 5, yy)) return false;
++            for (int xx = x - 6; xx <= x + 5; xx++) if (!DryWalkable(zone, xx, y + 4)) return false;
++            return ViperApproachReachesEdge(zone, x - 6, y, x, y);
++        }
++        private static bool ViperApproachReachesEdge(Zone zone, int ax, int ay, int sx, int sy)
++        {
++            var seen = new bool[Zone.Width, Zone.Height]; var q = new Queue<(int x, int y)>();
++            if (!DryWalkable(zone, ax, ay)) return false;
++            seen[ax, ay] = true; q.Enqueue((ax, ay));
++            while (q.Count > 0)
++            {
++                var p = q.Dequeue(); if (p.x == 0 || p.y == 0 || p.x == Zone.Width - 1 || p.y == Zone.Height - 1) return true;
++                for (int d = 0; d < 4; d++)
++                {
++                    int x = p.x + (d == 0 ? 1 : d == 1 ? -1 : 0), y = p.y + (d == 2 ? 1 : d == 3 ? -1 : 0);
++                    if (zone.GetCell(x, y) == null || seen[x, y] || AIHelpers.ChebyshevDistance(x, y, sx, sy) <= 3 || !DryWalkable(zone, x, y)) continue;
++                    seen[x, y] = true; q.Enqueue((x, y));
++                }
++            }
++            return false;
++        }
++
+         private static bool Fresh(Entity e, string blueprint, string weapon, string armor)
+             => e != null && e.BlueprintName == blueprint && !string.IsNullOrEmpty(e.ID) && e.SpatialZone == null
+                 && e.GetPart<PhysicsPart>()?.InInventory == null && e.GetPart<PhysicsPart>()?.Equipped == null
+@@ -118,6 +222,8 @@
+             var cells = z.GetOccupiedCells(e, x, y);
+             return cells.Count > 0 && cells.All(c => c != null && Clear(z, c.X, c.Y));
+         }
++        private static bool ViperRefuse(Zone zone, string reason)
++        { if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "SpreadRareRejected", payload: new { zone = zone.ZoneID, family = "chalk-ring-viper", reason }); return false; }
+         private static bool Refuse(Zone zone, string reason)
+         { if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "SpreadRareRejected", payload: new { zone = zone.ZoneID, reason }); return false; }
+     }
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadLatchcoilSourceTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadLatchcoilSourceTests.cs
+@@ -4,6 +4,7 @@
+ using System.Reflection;
+ using CavesOfOoo.Core;
+ using CavesOfOoo.Data;
++using CavesOfOoo.Diagnostics;
+ using NUnit.Framework;
+ 
+ namespace CavesOfOoo.Tests
+@@ -110,26 +111,62 @@
+             return false;
+         }
+         [TestCase("content")][TestCase("reservation")][TestCase("water")][TestCase("sealed")]
++        [TestCase("heat")][TestCase("coating")][TestCase("cloud")]
+         public void RefusedPocketPreservesAllExistingOwnersAndDoesNotCommitHalfASource(string change)
+         {
+             var z=Pocket();if(change=="content")scope.Factory.Blueprints.Remove("Signpost");
+             if(change=="reservation")z.ForEachCell((c,x,y)=>z.GenReservedCells.Add((x,y)));
+             if(change=="water")z.ForEachCell((c,x,y)=>z.AddEntity(scope.Factory.CreateEntity("WaterPuddle"),x,y));
+             if(change=="sealed")z.ForEachCell((c,x,y)=>{if(x==0||y==0||x==Zone.Width-1||y==Zone.Height-1)z.AddEntity(scope.Factory.CreateEntity("Hedge"),x,y);});
++            if(change=="heat")z.ForEachCell((c,x,y)=>z.TileState.AddHeat(x,y,1));
++            if(change=="coating")z.ForEachCell((c,x,y)=>z.TileState.WriteCoating(x,y,"water",3));
++            if(change=="cloud")z.ForEachCell((c,x,y)=>z.TileState.WriteCloud(x,y,"smoke",3));
+             string before=Graph(z);Assert.False(new SpreadRareEncounterBuilder(manager).TryPlace(z,scope.Factory));Assert.AreEqual(before,Graph(z));
+         }
+         public sealed class LatchcoilMutationPart:Part
+         {public static Action<Entity> Callback;public override string Name=>"LatchcoilMutation";public override bool HandleEvent(GameEvent e){if(e.ID=="ObjectCreated")Callback?.Invoke(ParentEntity);return true;}}
+-        [TestCase("map")][TestCase("carried")][TestCase("id")][TestCase("route")]
++        [TestCase("map")][TestCase("carried")][TestCase("id")][TestCase("route")][TestCase("awake")][TestCase("footprint")]
+         public void StagingCallbackCannotSmuggleChangedAuthorityOwnerOrBlockedRoute(string change)
+         {
+             var z=Pocket();Assert.True(scope.Factory.Blueprints.ContainsKey(Child));scope.Factory.RegisterPartType<LatchcoilMutationPart>("LatchcoilMutation");
+             scope.Factory.Blueprints[Child].Parts["LatchcoilMutation"]=new Dictionary<string,string>();
+             LatchcoilMutationPart.Callback=e=>{if(change=="map"){var p=WorldMap.FromZoneID(z.ZoneID);manager.WorldMap.Tiles[p.x,p.y]=BiomeType.Beating;}
+-                if(change=="carried")e.GetPart<PhysicsPart>().InInventory=new Entity();if(change=="id")e.ID="";
++                if(change=="footprint")e.AddPart(new SpatialFootprintPart{CellsRaw="0,0;1,0"});if(change=="awake")e.GetPart<BrainPart>().ClearGoals();if(change=="carried")e.GetPart<PhysicsPart>().InInventory=new Entity();if(change=="id")e.ID="";
+                 if(change=="route")z.ForEachCell((c,x,y)=>{if(x==0||y==0||x==Zone.Width-1||y==Zone.Height-1)z.AddEntity(scope.Factory.CreateEntity("Hedge"),x,y);});};
+-            var before=z.GetReadOnlyEntities().ToArray();Assert.False(new SpreadRareEncounterBuilder(manager).TryPlace(z,scope.Factory));Assert.False(z.GetReadOnlyEntities().Any(e=>e.BlueprintName==Child||e.BlueprintName=="Signpost"));Assert.True(before.All(e=>z.GetEntityCell(e)!=null));
++            var before=z.GetReadOnlyEntities().ToArray();int version=z.EntityVersion;Assert.False(new SpreadRareEncounterBuilder(manager).TryPlace(z,scope.Factory));if(change=="footprint")Assert.AreEqual(version,z.EntityVersion,"Malformed staged body must refuse before inserting a temporary owner.");Assert.False(z.GetReadOnlyEntities().Any(e=>e.BlueprintName==Child||e.BlueprintName=="Signpost"));Assert.True(before.All(e=>z.GetEntityCell(e)!=null));
+         }
++        [TestCase(false)][TestCase(true)]
++        public void SavedOptionalOverlapOrAdjacencyCannotTakeOverTheOriginalPair(bool adjacent)
++        {
++            string pair=manager.RareEncounters.PairZoneID, optional=pair;
++            if(adjacent)
++            {
++                var p=WorldMap.FromZoneID(pair);
++                optional=Enumerable.Range(-1,3).SelectMany(dx=>Enumerable.Range(-1,3).Select(dy=>WorldMap.ToZoneID(p.x+dx,p.y+dy,0)))
++                    .First(id=>id!=pair&&SpreadRareEncounterPlan.IsEligible(manager,id)&&FormationSelector.For(BiomeType.Spread,id)==Formation.Hedgerow);
++            }
++            SetPlan(manager,SpreadRareEncounterPlan.Restore(Metadata(pair,"1|"+optional)));
++            var z=new Zone(pair);z.AddEntity(scope.Factory.CreateEntity("Hedge"),5,2);z.AddEntity(scope.Factory.CreateEntity("Hedge"),12,6);
++            Assert.True(new SpreadRareEncounterBuilder(manager).TryPlace(z,scope.Factory));
++            CollectionAssert.AreEquivalent(new[]{SpreadRareEncounterPlan.PairLeader,SpreadRareEncounterPlan.PairMate},z.GetReadOnlyEntities().Where(e=>e.Properties.ContainsKey(SpreadRareEncounterBuilder.SourceKey)).Select(e=>e.BlueprintName));
++            Assert.AreEqual(optional,Viper(manager.RareEncounters));
++            if(adjacent)Assert.False(manager.RareEncounters.Selects(manager,optional));
++        }
++        [Test] public void ActualFamilySelectionCommitAndRefusalAreDiagnosedWithoutChangingThePairRecord()
++        {
++            bool old=Diag.IsChannelEnabled("worldgen");var before=new HashSet<string>(Diag.Snapshot(Diag.BufferCapacity).Select(e=>e.TraceId));Diag.SetChannel("worldgen",true);
++            try
++            {
++                manager=OverworldZoneManager.CreateDetached(scope.Factory,64);var z=Pocket();var b=new SpreadRareEncounterBuilder(manager);
++                Assert.True(b.TryPlace(z,scope.Factory));Assert.False(b.TryPlace(z,scope.Factory));
++                var rows=Diag.Snapshot(Diag.BufferCapacity).Where(e=>!before.Contains(e.TraceId)&&e.Category=="worldgen").ToArray();
++                foreach(string kind in new[]{"SpreadRareSelected","SpreadRareCommitted","SpreadRareRejected"})
++                {var match=rows.Where(e=>e.Kind==kind&&e.PayloadJson.Contains("chalk-ring-viper")).ToArray();Assert.AreEqual(1,match.Length,kind);StringAssert.Contains(z.ZoneID,match[0].PayloadJson);}
++                var pair=rows.Single(e=>e.Kind=="SpreadRareSelected"&&e.PayloadJson.Contains("ditch-cutters"));StringAssert.Contains(manager.RareEncounters.PairZoneID,pair.PayloadJson);
++            }
++            finally{Diag.SetChannel("worldgen",old);}
++        }
++
+         [Test] public void FrozenSelectionAndExactSourceOwnersSurviveSaveWithoutRevisitDuplication()
+         {
+             var z=Pocket();Assert.True(new SpreadRareEncounterBuilder(manager).TryPlace(z,scope.Factory));var source=z.GetReadOnlyEntities().Where(e=>e.Properties.ContainsKey(SpreadRareEncounterBuilder.SourceKey)).Select(e=>e.ID).OrderBy(x=>x).ToArray();

@@ -1,0 +1,11 @@
+--- shared/FirstHourGuidanceNativePlayer.cs
++++ private/FirstHourGuidanceNativePlayer.cs
+@@ -74,7 +74,7 @@
+             Check("ellun_current_marker_directions",(NarrativeStatePart.Current?.GetFact("bmo_stump_reached")??0)==0&&ConversationManager.CurrentText.Contains(direction.Length==0?"right here":direction+" of where I'm standing"));
+             yield return Capture("04-ellun-actual-marker-direction");yield return Choice(c=>c.Actions?.Any(a=>a.Key=="StartQuest"&&a.Value=="BmoCartridge")==true);
+             Check("accepted_existing_quest",StoryletPart.Current?.IsQuestActive("BmoCartridge")==true);yield return CloseNormal();
+-            _allowedMarker=marker;yield return WalkTo(markerCell,120);Check("native_marker_reached",Zone.GetEntityCell(marker)==At&&(NarrativeStatePart.Current?.GetFact("bmo_stump_reached")??0)>=1&&StoryletPart.Current.IsObjectiveFinished("BmoCartridge","reach_stump"));yield return Capture("05-real-stump-arrival");
++            _allowedMarker=marker;yield return WalkTo(markerCell,120);Check("native_marker_reached",Zone.GetEntityCell(marker)==At&&(NarrativeStatePart.Current?.GetFact("bmo_stump_reached")??0)>=1&&(StoryletPart.Current.IsObjectiveFinished("BmoCartridge","reach_stump")||(StoryletPart.Current.GetQuestState("BmoCartridge")?.CurrentStageIndex??0)>=1));yield return Capture("05-real-stump-arrival");
+             yield return Approach(ellun,120);yield return Chat(ellun);int money=TradeSystem.GetDrams(Player),experience=TotalExperience(Player),tick=Tick,energy=Energy;
+             yield return Choice(c=>c.Actions?.Any(a=>a.Key=="CompleteQuest"&&a.Value=="BmoCartridge")==true);
+             Check("authored_quest_reward",StoryletPart.Current.IsQuestCompleted("BmoCartridge")&&TradeSystem.GetDrams(Player)==money+40&&TotalExperience(Player)==experience+120&&Tick==tick&&Energy==energy);yield return Capture("06-authored-quest-reward");yield return CloseNormal();

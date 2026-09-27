@@ -1,0 +1,18 @@
+--- Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs
++++ Assets/Tests/EditMode/Presentation/Rendering/NativeDensitySceneRestorationTests.cs
+@@ -34,6 +34,7 @@
+         [TestCase("DensityPetNativeBatch")]
+         [TestCase("FirstHourReadabilityNativeBatch")]
+         [TestCase("FirstHourGuidanceNativeBatch")]
++        [TestCase("FirstHourEncounterNativeBatch")]
+         public void RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles(string name)
+         {
+             var type = Launcher(name); var callback = Callback(type);
+@@ -73,6 +74,7 @@
+         [TestCase("DensityPetNativeBatch")]
+         [TestCase("FirstHourReadabilityNativeBatch")]
+         [TestCase("FirstHourGuidanceNativeBatch")]
++        [TestCase("FirstHourEncounterNativeBatch")]
+         public void NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene(string name)
+         {
+             var type = Launcher(name); var callback = Callback(type);

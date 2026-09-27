@@ -36277,6 +36277,206 @@
           "Value": ""
         }
       ]
+    },
+    {
+      "Name": "SpreadHurdleCutter",
+      "Inherits": "MarlbackScrabbler",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "notched ditch-cutter"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "s"
+            }
+          ]
+        },
+        {
+          "Name": "Loadout",
+          "Params": [
+            {
+              "Key": "Equip",
+              "Value": "ShortSword;LeatherCap"
+            },
+            {
+              "Key": "Carry",
+              "Value": ""
+            },
+            {
+              "Key": "Pick",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "FleeThreshold",
+              "Value": "0.35"
+            }
+          ]
+        },
+        {
+          "Name": "CombatTactics",
+          "Params": [
+            {
+              "Key": "SkillClasses",
+              "Value": "LongBlades_Lunge"
+            },
+            {
+              "Key": "AbilityChance",
+              "Value": "35"
+            },
+            {
+              "Key": "AssistAllies",
+              "Value": "true"
+            },
+            {
+              "Key": "AssistRadius",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A broad marlback with a pale notch cut through one shale back plate. Trained to strike across a two-step gap when armed with a long blade, it watches for a willing ditch mate nearby."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SpreadDitchMate",
+      "Inherits": "MarlbackScrabbler",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "ditch-cutter mate"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "s"
+            }
+          ]
+        },
+        {
+          "Name": "Loadout",
+          "Params": [
+            {
+              "Key": "Equip",
+              "Value": "Cudgel"
+            },
+            {
+              "Key": "Carry",
+              "Value": ""
+            },
+            {
+              "Key": "Pick",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "FleeThreshold",
+              "Value": "0.35"
+            }
+          ]
+        },
+        {
+          "Name": "CombatTactics",
+          "Params": [
+            {
+              "Key": "SkillClasses",
+              "Value": ""
+            },
+            {
+              "Key": "AbilityChance",
+              "Value": "35"
+            },
+            {
+              "Key": "AssistAllies",
+              "Value": "true"
+            },
+            {
+              "Key": "AssistRadius",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Parallel rake marks cross this short-faced marlback's shoulder plates. It is accustomed to fighting beside a willing companion; separation and cover can break their coordination."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "SpreadLatchcoil",
+      "Inherits": "Viper",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "chalk-ring latchcoil"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "SightRadius",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "AIAmbush",
+          "Params": [
+            {
+              "Key": "WakeOnDamage",
+              "Value": "true"
+            },
+            {
+              "Key": "WakeOnHostileInSight",
+              "Value": "true"
+            },
+            {
+              "Key": "SleepParticleInterval",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A broken chalk-colored ring follows this viper's low coils. Nearby movement or injury can rouse its ambush; its bite can poison."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,21 @@
+if (!UnityEngine.Application.isPlaying || CavesOfOoo.Core.SaveGameService.SaveRootOverride==null) throw new Exception("Owned Play audit required.");
+var factory=new CavesOfOoo.Data.EntityFactory();factory.LoadBlueprints(UnityEngine.Resources.Load<UnityEngine.TextAsset>("Content/Blueprints/Objects").text);
+var reports=new System.Collections.Generic.List<object>();
+foreach(bool repeat in new[]{false,true}) {
+ var z=new CavesOfOoo.Core.Zone("isolated-acid-admission");var s=factory.CreateEntity("CaveSlime");var p=factory.CreateEntity("Player"); z.AddEntity(s,10,10);z.AddEntity(p,13,10);
+ var rng=new System.Random(1729);var ability=s.GetPart<CavesOfOoo.Core.ActivatedAbilitiesPart>().AbilityList.First(a=>a.Command=="CommandAcidSpray");
+ var wall=factory.CreateEntity("Hedge");z.AddEntity(wall,11,10);bool blocked=!s.GetPart<CavesOfOoo.Core.CombatTacticsPart>().TryUseAbility(p,z,rng);z.RemoveEntity(wall);
+ int starting=p.GetStatValue("Hitpoints");var rows=new System.Collections.Generic.List<object>(); bool began=false;int casts=0;bool second=false;bool outOfRange=false;
+ for(int turn=0;turn<24;turn++){
+  if(turn==0 || (repeat&&turn==11&&ability.IsUsable)){var e=CavesOfOoo.Core.GameEvent.New("CommandAcidSpray");e.SetParameter("Zone",(object)z);e.SetParameter("RNG",(object)rng);e.SetParameter("SourceCell",(object)z.GetEntityCell(s));e.SetParameter("TargetCell",(object)z.GetEntityCell(p));e.SetParameter("DirectionX",1);e.SetParameter("DirectionY",0);e.SetParameter("Range",4);s.FireEventAndRelease(e);casts++;began|=p.HasEffect<CavesOfOoo.Core.AcidicEffect>();if(turn==11)second=true;}
+  if(turn>0){var e=CavesOfOoo.Core.GameEvent.New("BeginTakeAction");e.SetParameter("Zone",(object)z);p.FireEventAndRelease(e);
+   if(!repeat&&turn<=3&&p.GetStatValue("Hitpoints")>0)CavesOfOoo.Core.MovementSystem.TryMove(p,z,1,0);
+   p.FireEventAndRelease(CavesOfOoo.Core.GameEvent.New("EndTurn"));s.FireEventAndRelease(CavesOfOoo.Core.GameEvent.New("EndTurn"));}
+  var acid=p.GetPart<CavesOfOoo.Core.StatusEffectsPart>()?.GetEffect<CavesOfOoo.Core.AcidicEffect>();
+  rows.Add(new {turn,hp=p.GetStatValue("Hitpoints"),corrosion=acid==null?0:acid.Corrosion,position=z.GetEntityPosition(p).ToString(),cooldown=ability.CooldownRemaining});
+  if(turn==3&&!repeat)outOfRange=!s.GetPart<CavesOfOoo.Core.CombatTacticsPart>().TryUseAbility(p,z,rng);
+  if(p.GetStatValue("Hitpoints")<=0)break;
+ }
+ reports.Add(new {repeat,startingHp=starting,resistance=p.GetStatValue("AcidResistance"),wallPreventedCast=blocked,began,casts,second,outOfRange,death=CavesOfOoo.Core.CombatSystem.IsDeathHandled(p),rows});
+}
+return new {unity=UnityEngine.Application.unityVersion,playing=UnityEngine.Application.isPlaying,kind="Controlled factory CaveSlime/Player, actual command and lifecycle events, one or two legal-cooldown casts; no HP/resistance grants, no AI-frequency/discovery or ordinary survival claim",reports};

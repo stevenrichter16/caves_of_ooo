@@ -1140,6 +1140,9 @@ namespace CavesOfOoo.Rendering
             else if (equipmentGuidance)
                 actions.Add(new ItemAction { Label = "Examine", Command = "examine_item" });
 
+            if (item.GetPart<EquippablePart>() != null)
+                actions.Add(new ItemAction { Label = "Compare equipment", Command = "compare_equipment" });
+
             if (itemDisplay.IsEquipped)
             {
                 actions.Add(new ItemAction { Label = "Unequip", Command = "unequip" });
@@ -1356,6 +1359,22 @@ namespace CavesOfOoo.Rendering
                 case "disassemble": completed = TryDisassembleViaCommand(item); break;
                 case "toggle_craftmark": completed = TryToggleCraftMarkViaCommand(item); break;
                 case "put_container": completed = TryPutInContainerViaCommand(item, action.Container); break;
+                case "compare_equipment":
+                    if (!EquipmentComparisonService.TryDescribe(PlayerEntity, item,
+                        out string comparisonText, out string comparisonReason))
+                    {
+                        SetActionFailure(comparisonReason);
+                        Diag.Record("event", "EquipmentComparisonRejected", actor: PlayerEntity, target: item,
+                            payload: new { reason = comparisonReason });
+                        Render();
+                        return;
+                    }
+                    MessageLog.AddAnnouncement(comparisonText);
+                    Diag.Record("event", "EquipmentCompared", actor: PlayerEntity, target: item,
+                        payload: new { blueprint = item.BlueprintName });
+                    _itemActionPopup = null;
+                    Render();
+                    return;
                 case "examine_material":
                     // Recheck real carriage after the menu was opened. Inspecting
                     // a description must not operate on a stale ground item.

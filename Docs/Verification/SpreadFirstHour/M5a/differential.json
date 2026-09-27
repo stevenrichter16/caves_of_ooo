@@ -1,0 +1,33 @@
+{
+  "same_cases": true,
+  "cases": 127,
+  "before": {
+    "pass": 109,
+    "fail": 18
+  },
+  "after": {
+    "pass": 127,
+    "fail": 0
+  },
+  "newly_failing": [],
+  "newly_passing": [
+    "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming(\"AsleepRoundTripRetainsExactlyOneDormantGoalAfterEachTurn\",True)",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming(\"FullyAwakeRoundTripNeverSilentlyRearms\",False)",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming(\"ExistingAmbusherRetainsItsSingleSavedSleep__AmbushBandit__\",True)",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming(\"ExistingAmbusherRetainsItsSingleSavedSleep__SleepingTroll__\",True)",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.ActualLegacyBytesPreserveAwakeOrSleepingShapeWithoutRearming(\"ExistingAmbusherRetainsItsSingleSavedSleep__MimicChest__\",True)",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.AmbushWithNoBrainCanBeSavedThenArmsExactlyOnceAfterLateAttachment",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.DamageAfterRestoredSampleHonorsWakeConfiguration(True)",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.DeliberatePendingRearmSurvivesSaveRatherThanLegacyInference",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.RepeatedFullSaveCyclesRetainExactLifecycle(\"sleep\")",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.RepeatedFullSaveCyclesRetainExactLifecycle(\"awake\")",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveAdversarialTests.RepeatedFullSaveCyclesRetainExactLifecycle(\"pending\")",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveTests.AsleepRoundTripRetainsExactlyOneDormantGoalAfterEachTurn",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveTests.DamageBetweenLastSleepTickAndSaveStillWakesAfterLoad",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveTests.ExistingAmbusherRetainsItsSingleSavedSleep(\"AmbushBandit\")",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveTests.ExistingAmbusherRetainsItsSingleSavedSleep(\"SleepingTroll\")",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveTests.ExistingAmbusherRetainsItsSingleSavedSleep(\"MimicChest\")",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveTests.FullyAwakeRoundTripNeverSilentlyRearms",
+    "CavesOfOoo.Tests.FirstHourAmbushSaveTests.PendingExplicitWakeSurvivesBeforeNextStackCleanup"
+  ]
+}

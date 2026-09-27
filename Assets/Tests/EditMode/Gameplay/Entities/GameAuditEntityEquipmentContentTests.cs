@@ -75,6 +75,9 @@ namespace CavesOfOoo.Tests
         // Literal content requirements, independent of the blueprint's actual authored values.
         public static readonly EquipmentContentKit[] Kits = {
             new EquipmentContentKit("MarlbackScrabbler", "LeatherCap:35;LeatherGloves:20", pick: "1;Dagger;Hatchet;Cudgel"),
+            // First-hour rare pair overrides the parent roll with its exact visible kit.
+            new EquipmentContentKit("SpreadHurdleCutter", "ShortSword;LeatherCap"),
+            new EquipmentContentKit("SpreadDitchMate", "Cudgel"),
             new EquipmentContentKit("MarlbackGleaner", "LeatherGloves:50;LeatherArmor:25", pick: "1;Dagger;ShortSword"),
             new EquipmentContentKit("MarlbackTunnelguard", "Spear;LeatherBoots:50;LeatherCap:25"),
             new EquipmentContentKit("MarlbackWallkeeper", "LongSword;LeatherArmor;LeatherCap;LeatherBoots:35"),

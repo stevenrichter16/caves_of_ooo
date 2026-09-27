@@ -28,8 +28,12 @@ namespace CavesOfOoo.Core
         /// <summary>Ticks between 'z' particle emissions. 0 disables the visual.</summary>
         public int SleepParticleInterval;
 
-        private int _lastHp = -1;
-        private bool _wakeRequested;
+        /// <summary>Saved damage baseline. The presence flag also handles legacy
+        /// goal loads, whose constructor and private initializers were skipped.</summary>
+        public int LastHitpoints = -1;
+        public bool HasDamageBaseline;
+        /// <summary>Saved pending wake, including the interval before stack cleanup.</summary>
+        public bool WakeRequested;
 
         public DormantGoal(bool wakeOnDamage = true, bool wakeOnHostileInSight = false, int sleepParticleInterval = 8)
         {
@@ -41,12 +45,12 @@ namespace CavesOfOoo.Core
         public override bool CanFight() => false;
         public override bool IsBusy() => false;
 
-        public override bool Finished() => _wakeRequested;
+        public override bool Finished() => WakeRequested;
 
         /// <summary>Explicitly wake this dormant goal. It will pop on next stack clean.</summary>
         public void Wake()
         {
-            _wakeRequested = true;
+            WakeRequested = true;
         }
 
         public override void TakeAction()
@@ -63,14 +67,15 @@ namespace CavesOfOoo.Core
             if (WakeOnDamage)
             {
                 int hp = ParentEntity.GetStatValue("Hitpoints", -1);
-                if (_lastHp >= 0 && hp >= 0 && hp < _lastHp)
+                if (HasDamageBaseline && LastHitpoints >= 0 && hp >= 0 && hp < LastHitpoints)
                 {
-                    _wakeRequested = true;
-                    _lastHp = hp;
+                    WakeRequested = true;
+                    LastHitpoints = hp;
                     EmitWakeParticle();
                     return;
                 }
-                _lastHp = hp;
+                LastHitpoints = hp;
+                HasDamageBaseline = true;
             }
 
             // Hostile-wake check: any hostile in sight radius.
@@ -81,7 +86,7 @@ namespace CavesOfOoo.Core
                 if (hostile != null)
                 {
                     ParentBrain.Target = hostile;
-                    _wakeRequested = true;
+                    WakeRequested = true;
                     EmitWakeParticle();
                     return;
                 }

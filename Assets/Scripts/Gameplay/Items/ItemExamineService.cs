@@ -23,26 +23,8 @@ namespace CavesOfOoo.Core
             if (item == null || !item.HasTag("Item")) return false;
 
             var lines = new List<string>();
-            var weapon = item.GetPart<MeleeWeaponPart>();
-            var armor = item.GetPart<ArmorPart>();
-            if (weapon != null) DescribeWeapon(weapon, lines);
-            if (armor != null)
-            {
-                lines.Add("Armor contribution - AV: " + Signed(armor.AV)
-                    + "; DV: " + Signed(armor.DV) + ".");
-                if (armor.SpeedPenalty != 0)
-                    lines.Add("Speed: " + Signed(-(long)armor.SpeedPenalty) + " while equipped.");
-            }
-
-            if (weapon != null || armor != null)
-            {
-                var equipment = item.GetPart<EquippablePart>();
-                if (equipment != null)
-                {
-                    lines.Add("Equip slots: " + string.Join(",", equipment.GetSlotArray()) + ".");
-                    DescribeEquipBonuses(equipment.EquipBonuses, lines);
-                }
-            }
+            if (TryDescribeEquipmentDetails(item, out string equipmentDetails))
+                lines.Add(equipmentDetails);
 
             var vessel = item.GetPart<LiquidVesselPart>();
             if (vessel != null)
@@ -66,6 +48,39 @@ namespace CavesOfOoo.Core
                 if (lines.Count > 0) lines.Add("");
                 lines.Add(tonic);
             }
+            if (lines.Count == 0) return false;
+            details = string.Join("\n", lines);
+            return true;
+        }
+
+        /// <summary>Live equipment contributions, including a body's untagged natural weapon.
+        /// This formatter does not establish ownership or equip eligibility; callers must do so.</summary>
+        public static bool TryDescribeEquipmentDetails(Entity item, out string details)
+        {
+            details = null;
+            if (item == null) return false;
+            var lines = new List<string>();
+            var weapon = item.GetPart<MeleeWeaponPart>();
+            var armor = item.GetPart<ArmorPart>();
+            if (weapon != null) DescribeWeapon(weapon, lines);
+            if (armor != null)
+            {
+                lines.Add("Armor contribution - AV: " + Signed(armor.AV)
+                    + "; DV: " + Signed(armor.DV) + ".");
+                if (armor.SpeedPenalty != 0)
+                    lines.Add("Speed: " + Signed(-(long)armor.SpeedPenalty) + " while equipped.");
+            }
+
+            if (item.GetPart<EquippablePart>() != null)
+            {
+                var equipment = item.GetPart<EquippablePart>();
+                if (equipment != null)
+                {
+                    lines.Add("Equip slots: " + string.Join(",", equipment.GetSlotArray()) + ".");
+                    DescribeEquipBonuses(equipment.EquipBonuses, lines);
+                }
+            }
+
             if (lines.Count == 0) return false;
             details = string.Join("\n", lines);
             return true;

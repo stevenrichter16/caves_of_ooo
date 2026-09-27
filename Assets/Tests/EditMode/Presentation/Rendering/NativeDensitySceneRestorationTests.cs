@@ -32,6 +32,10 @@ namespace CavesOfOoo.Tests
         [TestCase("DensityCampaignNativeBatch")]
         [TestCase("DensityHotSteamNativeBatch")]
         [TestCase("DensityPetNativeBatch")]
+        [TestCase("FirstHourReadabilityNativeBatch")]
+        [TestCase("FirstHourGuidanceNativeBatch")]
+        [TestCase("FirstHourEncounterNativeBatch")]
+        [TestCase("FirstHourViperNativeBatch")]
         public void RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles(string name)
         {
             var type = Launcher(name); var callback = Callback(type);
@@ -69,6 +73,10 @@ namespace CavesOfOoo.Tests
         [TestCase("DensityCampaignNativeBatch")]
         [TestCase("DensityHotSteamNativeBatch")]
         [TestCase("DensityPetNativeBatch")]
+        [TestCase("FirstHourReadabilityNativeBatch")]
+        [TestCase("FirstHourGuidanceNativeBatch")]
+        [TestCase("FirstHourEncounterNativeBatch")]
+        [TestCase("FirstHourViperNativeBatch")]
         public void NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene(string name)
         {
             var type = Launcher(name); var callback = Callback(type);

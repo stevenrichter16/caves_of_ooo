@@ -33,7 +33,7 @@ namespace CavesOfOoo.Core
     ///
     /// Fallback safeguard: <see cref="HandleEvent"/> also attempts to push on
     /// TakeTurn if Initialize couldn't (e.g., BrainPart was attached AFTER this
-    /// part). The <c>_dormantPushed</c> flag ensures exactly-once push regardless
+    /// part). The <c>DormantPushed</c> flag ensures exactly-once push regardless
     /// of which path succeeds.
     ///
     /// The flag is never auto-cleared: once woken, AIAmbush does not re-arm on
@@ -54,7 +54,24 @@ namespace CavesOfOoo.Core
         public int SleepParticleInterval = 8;
 
         /// <summary>Set to true once DormantGoal has been pushed. Prevents re-push on subsequent turns.</summary>
-        private bool _dormantPushed;
+        public bool DormantPushed;
+
+        /// <summary>Presence marker for the additive lifecycle fields. Old saves
+        /// omitted the private latch; restored brains conservatively count as
+        /// already armed, never as a request to sleep again.</summary>
+        public int AmbushSaveStateVersion;
+
+        public override void OnBeforeSave(SaveWriter writer)
+        {
+            AmbushSaveStateVersion = 1;
+        }
+
+        public override void OnAfterLoad(SaveReader reader)
+        {
+            if (AmbushSaveStateVersion != 0) return;
+            DormantPushed = ParentEntity?.GetPart<BrainPart>() != null;
+            AmbushSaveStateVersion = 1;
+        }
 
         public override void Initialize()
         {
@@ -66,7 +83,7 @@ namespace CavesOfOoo.Core
             // Fallback: if Initialize couldn't push (e.g., BrainPart was attached
             // after this part, or part fields were modified post-construction),
             // retry on the first TakeTurn event.
-            if (!_dormantPushed && e.ID == "TakeTurn")
+            if (!DormantPushed && e.ID == "TakeTurn")
             {
                 TryPushDormant();
             }
@@ -77,16 +94,16 @@ namespace CavesOfOoo.Core
         /// Re-arm ambush mode so the next Initialize or TakeTurn re-pushes DormantGoal.
         /// Intended for sleep-status effects or programmatic re-dormancy. Callers are
         /// responsible for ensuring no DormantGoal is currently on the stack (the
-        /// `_dormantPushed` flag tracks state, not actual stack contents).
+        /// `DormantPushed` flag tracks state, not actual stack contents).
         /// </summary>
         public void Rearm()
         {
-            _dormantPushed = false;
+            DormantPushed = false;
         }
 
         private void TryPushDormant()
         {
-            if (_dormantPushed) return;
+            if (DormantPushed) return;
             var brain = ParentEntity?.GetPart<BrainPart>();
             if (brain == null) return;
 
@@ -94,7 +111,7 @@ namespace CavesOfOoo.Core
                 wakeOnDamage: WakeOnDamage,
                 wakeOnHostileInSight: WakeOnHostileInSight,
                 sleepParticleInterval: SleepParticleInterval));
-            _dormantPushed = true;
+            DormantPushed = true;
         }
     }
 }

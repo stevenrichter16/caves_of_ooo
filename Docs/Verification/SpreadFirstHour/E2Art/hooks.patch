@@ -1,0 +1,63 @@
+--- Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
++++ Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
+@@ -23,7 +23,7 @@
+     public static class SpawnRing3DRecipes
+     {
+         public static SpawnRing3DRecipe Resolve(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot = null)
+-            => SpreadRareMarlbackLibrary.Refine(zone, entity, SpreadVisitorCreatureLibrary.Refine(zone, entity, SpreadEnvironmentRecipes.Refine(zone, entity, SpreadCommonTerrain.Refine(zone, entity, SpreadCreature3DLibrary.Refine(zone, entity, SpreadSceneryWorldRecipes.Refine(zone, entity, SpreadBiomeHumanoidLibrary.Refine(zone, entity, SpreadPortableWorldRecipes.Refine(zone, entity, ResolveNative(zone, entity, catalog, pilot)))))))));
++            => SpreadLatchcoilLibrary.Refine(zone, entity, SpreadRareMarlbackLibrary.Refine(zone, entity, SpreadVisitorCreatureLibrary.Refine(zone, entity, SpreadEnvironmentRecipes.Refine(zone, entity, SpreadCommonTerrain.Refine(zone, entity, SpreadCreature3DLibrary.Refine(zone, entity, SpreadSceneryWorldRecipes.Refine(zone, entity, SpreadBiomeHumanoidLibrary.Refine(zone, entity, SpreadPortableWorldRecipes.Refine(zone, entity, ResolveNative(zone, entity, catalog, pilot))))))))));
+ 
+         private static SpawnRing3DRecipe ResolveNative(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot)
+         {
+--- Assets/Scripts/Presentation/Rendering/SpreadPortableRecipes.cs
++++ Assets/Scripts/Presentation/Rendering/SpreadPortableRecipes.cs
+@@ -233,6 +233,7 @@
+             { "SandWurm", "serpent" },
+             { "GiantSpider", "spider" },
+             { "Viper", "serpent" },
++            { "SpreadLatchcoil", "serpent" },
+             { "JungleApe", "ape" },
+             { "RuinScavenger", "humanoid" },
+             { "SkeletalSentry", "skeleton" },
+--- Assets/Scripts/Presentation/Rendering/SpreadBiomeStyleEvidence.cs
++++ Assets/Scripts/Presentation/Rendering/SpreadBiomeStyleEvidence.cs
+@@ -52,6 +52,8 @@
+    foreach(var e in poured.Entries)Add(e.Spec.id,e.Prefab.GetComponent<MeshFilter>().sharedMesh,e.Material);
+    var rareMarlbacks = SpreadRareMarlbackLibrary.Load();
+    if (rareMarlbacks != null) { rareMarlbacks.Validate(); foreach (var e in rareMarlbacks.Entries) Add(e.Id, e.Mesh, rareMarlbacks.Material); }
++   var latchcoil = SpreadLatchcoilLibrary.Load();
++   if (latchcoil != null) { latchcoil.Validate(); foreach (var e in latchcoil.Entries) Add(e.Id,e.Mesh,latchcoil.Material); }
+   }
+   private void Add(string model,Mesh mesh,Material material,Material[] materials=null)
+   {if(model==null||mesh==null||material==null||models.ContainsKey(model))throw new InvalidOperationException("Invalid exact style model contract.");models.Add(model,new Contract(mesh,material,materials));}
+--- Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
++++ Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
+@@ -168,6 +168,7 @@
+         {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:
+             (SpreadEnvironmentSource.IsModelId(modelId) ? LoadExtension<SpreadEnvironment3DLibrary>(load, SpreadEnvironment3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+             ?? (SpreadRareMarlbackLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadRareMarlbackLibrary>(load, SpreadRareMarlbackLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
++            ?? (SpreadLatchcoilLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadLatchcoilLibrary>(load, SpreadLatchcoilLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+             ?? (SpreadVisitorCreatureSource.Find(modelId)!=null ? LoadExtension<SpreadVisitorCreatureLibrary>(load, SpreadVisitorCreatureLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+             ?? (modelId.StartsWith("spread-creature-",StringComparison.Ordinal) ? LoadExtension<SpreadCreature3DLibrary>(load, SpreadCreature3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+             ?? (SpreadScenerySource.IsModelId(modelId) ? LoadExtension<SpreadScenery3DLibrary>(load, SpreadScenery3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+--- Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
++++ Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
+@@ -69,6 +69,7 @@
+         {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:
+             (SpreadEnvironmentSource.IsModelId(modelId) ? LoadExtension<SpreadEnvironment3DLibrary>(load, SpreadEnvironment3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+             ?? (SpreadRareMarlbackLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadRareMarlbackLibrary>(load, SpreadRareMarlbackLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
++            ?? (SpreadLatchcoilLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadLatchcoilLibrary>(load, SpreadLatchcoilLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+             ?? (SpreadVisitorCreatureSource.Find(modelId)!=null ? LoadExtension<SpreadVisitorCreatureLibrary>(load, SpreadVisitorCreatureLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+             ?? (modelId.StartsWith("spread-creature-",StringComparison.Ordinal) ? LoadExtension<SpreadCreature3DLibrary>(load, SpreadCreature3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+             ?? (SpreadScenerySource.IsModelId(modelId) ? LoadExtension<SpreadScenery3DLibrary>(load, SpreadScenery3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+--- Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
++++ Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
+@@ -42,6 +42,8 @@
+                 newVisitors.Validate();foreach(var entry in newVisitors.Entries)generated.Add(entry.Mesh);
+                 var rareMarlbacks = SpreadRareMarlbackLibrary.Load();
+                 if (rareMarlbacks != null) { rareMarlbacks.Validate(); foreach (var entry in rareMarlbacks.Entries) generated.Add(entry.Mesh); }
++                var latchcoil = SpreadLatchcoilLibrary.Load();
++                if (latchcoil != null) { latchcoil.Validate(); foreach (var entry in latchcoil.Entries) generated.Add(entry.Mesh); }
+                 var creatures=SpreadCreature3DLibrary.Load();if(creatures==null)throw new InvalidOperationException("Scoped creature library missing.");
+                 creatures.Validate();foreach(var entry in creatures.Entries)generated.Add(entry.Mesh);
+                 var people=SpreadBiomeHumanoidLibrary.Load();if(people==null)throw new InvalidOperationException("Scoped humanoid library missing.");

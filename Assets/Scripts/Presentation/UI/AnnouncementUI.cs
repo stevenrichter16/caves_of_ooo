@@ -199,7 +199,7 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            string[] paragraphs = text.Split('\n');
+            string[] paragraphs = text.Replace("\r\n", "\n").Replace('\r', '\n').Split('\n');
             for (int p = 0; p < paragraphs.Length; p++)
             {
                 string para = paragraphs[p];

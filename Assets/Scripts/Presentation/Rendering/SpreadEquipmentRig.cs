@@ -26,7 +26,8 @@ namespace CavesOfOoo.Rendering
         public bool Supported { get; }
         public SpreadEquipmentRig(Entity actor, GameObject instance)
         {
-            root = instance.transform; marlback = actor.BlueprintName?.StartsWith("Marlback", StringComparison.Ordinal) == true;
+            root = instance.transform; marlback = actor.BlueprintName?.StartsWith("Marlback", StringComparison.Ordinal) == true
+                || SpreadRareMarlbackLibrary.IsBlueprint(actor.BlueprintName);
             foreach (var candidate in instance.GetComponentsInChildren<SkinnedMeshRenderer>(true))
             {
                 if (candidate.sharedMesh == null || candidate.bones.Length != Names.Length || candidate.sharedMesh.bindposeCount != Names.Length) continue;

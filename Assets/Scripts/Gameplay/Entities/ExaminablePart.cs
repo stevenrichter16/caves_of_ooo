@@ -91,13 +91,26 @@ namespace CavesOfOoo.Core
         /// proper noun (starts uppercase), we leave it alone. Otherwise we
         /// prepend "a ".
         /// </summary>
-        public string BuildExamineLine()
+        public string BuildExamineLine() => BuildDescription(false, null);
+
+        /// <summary>World reader snapshot: immediate effects and visible ground precede long flavor.</summary>
+        public string BuildWorldExamineLine(Zone zone, Cell cell)
+        {
+            return BuildDescription(true, CellStatusReadout.GroundLine(zone, cell));
+        }
+
+        private string BuildDescription(bool statusFirst, string ground)
         {
             string name = ParentEntity?.GetDisplayName() ?? "something";
             string article = GetArticle(name);
             string baseLine = $"You see {article}{name}.";
+            if (statusFirst)
+            {
+                baseLine += DescribeAfflictions();
+                if (!string.IsNullOrEmpty(ground)) baseLine += "\n" + ground;
+            }
             if (!string.IsNullOrWhiteSpace(Text))
-                baseLine += " " + Text.Trim();
+                baseLine += (statusFirst ? "\n\n" : " ") + Text.Trim();
 
             var carriedReward = ParentEntity?.GetPart<LegendaryIdentityPart>()?.DescribeCarriedReward();
             if (!string.IsNullOrWhiteSpace(carriedReward))
@@ -128,21 +141,18 @@ namespace CavesOfOoo.Core
                 }
             }
 
-            // Live afflictions: the same per-effect lines the look-mode
-            // FOCUS panel shows (shared EffectDescriber).
-            var effectsPart = ParentEntity?.GetPart<StatusEffectsPart>();
-            var effects = effectsPart?.GetAllEffects();
-            if (effects != null && effects.Count > 0)
-            {
-                baseLine += "\nAfflicted:";
-                for (int i = 0; i < effects.Count; i++)
-                {
-                    if (effects[i] != null)
-                        baseLine += "\n  - " + EffectDescriber.Describe(effects[i]);
-                }
-            }
-
+            if (!statusFirst) baseLine += DescribeAfflictions();
             return baseLine;
+        }
+
+        private string DescribeAfflictions()
+        {
+            var effects = ParentEntity?.GetPart<StatusEffectsPart>()?.GetAllEffects();
+            if (effects == null || effects.Count == 0) return string.Empty;
+            string result = "\nAfflicted:";
+            for (int i = 0; i < effects.Count; i++)
+                if (effects[i] != null) result += "\n  - " + EffectDescriber.Describe(effects[i]);
+            return result;
         }
 
         private static string GetArticle(string name)

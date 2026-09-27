@@ -1,0 +1,88 @@
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs
+@@ -23,7 +23,7 @@
+     public static class SpawnRing3DRecipes
+     {
+         public static SpawnRing3DRecipe Resolve(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot = null)
+-            => SpreadVisitorCreatureLibrary.Refine(zone, entity, SpreadEnvironmentRecipes.Refine(zone, entity, SpreadCommonTerrain.Refine(zone, entity, SpreadCreature3DLibrary.Refine(zone, entity, SpreadSceneryWorldRecipes.Refine(zone, entity, SpreadBiomeHumanoidLibrary.Refine(zone, entity, SpreadPortableWorldRecipes.Refine(zone, entity, ResolveNative(zone, entity, catalog, pilot))))))));
++            => SpreadRareMarlbackLibrary.Refine(zone, entity, SpreadVisitorCreatureLibrary.Refine(zone, entity, SpreadEnvironmentRecipes.Refine(zone, entity, SpreadCommonTerrain.Refine(zone, entity, SpreadCreature3DLibrary.Refine(zone, entity, SpreadSceneryWorldRecipes.Refine(zone, entity, SpreadBiomeHumanoidLibrary.Refine(zone, entity, SpreadPortableWorldRecipes.Refine(zone, entity, ResolveNative(zone, entity, catalog, pilot)))))))));
+ 
+         private static SpawnRing3DRecipe ResolveNative(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot)
+         {
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs
+@@ -167,6 +167,7 @@
+         internal Model FindModel(string modelId,Func<string,Type,UnityEngine.Object> load)
+         {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:
+             (SpreadEnvironmentSource.IsModelId(modelId) ? LoadExtension<SpreadEnvironment3DLibrary>(load, SpreadEnvironment3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
++            ?? (SpreadRareMarlbackLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadRareMarlbackLibrary>(load, SpreadRareMarlbackLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+             ?? (SpreadVisitorCreatureSource.Find(modelId)!=null ? LoadExtension<SpreadVisitorCreatureLibrary>(load, SpreadVisitorCreatureLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+             ?? (modelId.StartsWith("spread-creature-",StringComparison.Ordinal) ? LoadExtension<SpreadCreature3DLibrary>(load, SpreadCreature3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+             ?? (SpreadScenerySource.IsModelId(modelId) ? LoadExtension<SpreadScenery3DLibrary>(load, SpreadScenery3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs
+@@ -68,6 +68,7 @@
+         internal GameObject FindModel(string modelId,Func<string,Type,UnityEngine.Object> load)
+         {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:
+             (SpreadEnvironmentSource.IsModelId(modelId) ? LoadExtension<SpreadEnvironment3DLibrary>(load, SpreadEnvironment3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
++            ?? (SpreadRareMarlbackLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadRareMarlbackLibrary>(load, SpreadRareMarlbackLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+             ?? (SpreadVisitorCreatureSource.Find(modelId)!=null ? LoadExtension<SpreadVisitorCreatureLibrary>(load, SpreadVisitorCreatureLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+             ?? (modelId.StartsWith("spread-creature-",StringComparison.Ordinal) ? LoadExtension<SpreadCreature3DLibrary>(load, SpreadCreature3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+             ?? (SpreadScenerySource.IsModelId(modelId) ? LoadExtension<SpreadScenery3DLibrary>(load, SpreadScenery3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+--- a/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
++++ b/Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs
+@@ -40,6 +40,8 @@
+                 animals.Validate();foreach(var entry in animals.Entries)generated.Add(entry.Mesh);
+                 var newVisitors=SpreadVisitorCreatureLibrary.Load();if(newVisitors==null)throw new InvalidOperationException("Original visitor library missing.");
+                 newVisitors.Validate();foreach(var entry in newVisitors.Entries)generated.Add(entry.Mesh);
++                var rareMarlbacks = SpreadRareMarlbackLibrary.Load();
++                if (rareMarlbacks != null) { rareMarlbacks.Validate(); foreach (var entry in rareMarlbacks.Entries) generated.Add(entry.Mesh); }
+                 var creatures=SpreadCreature3DLibrary.Load();if(creatures==null)throw new InvalidOperationException("Scoped creature library missing.");
+                 creatures.Validate();foreach(var entry in creatures.Entries)generated.Add(entry.Mesh);
+                 var people=SpreadBiomeHumanoidLibrary.Load();if(people==null)throw new InvalidOperationException("Scoped humanoid library missing.");
+--- a/Assets/Scripts/Presentation/Rendering/SpreadBiomeStyleEvidence.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpreadBiomeStyleEvidence.cs
+@@ -50,6 +50,8 @@
+    foreach(var e in nativeStyles.Entries)Add(e.Id,e.Mesh,e.Material,e.Materials);
+    foreach(var e in visitorPaints.Entries)Add(e.ModelId,e.Painted,visitorPaints.Material);
+    foreach(var e in poured.Entries)Add(e.Spec.id,e.Prefab.GetComponent<MeshFilter>().sharedMesh,e.Material);
++   var rareMarlbacks = SpreadRareMarlbackLibrary.Load();
++   if (rareMarlbacks != null) { rareMarlbacks.Validate(); foreach (var e in rareMarlbacks.Entries) Add(e.Id, e.Mesh, rareMarlbacks.Material); }
+   }
+   private void Add(string model,Mesh mesh,Material material,Material[] materials=null)
+   {if(model==null||mesh==null||material==null||models.ContainsKey(model))throw new InvalidOperationException("Invalid exact style model contract.");models.Add(model,new Contract(mesh,material,materials));}
+--- a/Assets/Scripts/Presentation/Rendering/SpreadEquipmentRig.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpreadEquipmentRig.cs
+@@ -26,7 +26,8 @@
+         public bool Supported { get; }
+         public SpreadEquipmentRig(Entity actor, GameObject instance)
+         {
+-            root = instance.transform; marlback = actor.BlueprintName?.StartsWith("Marlback", StringComparison.Ordinal) == true;
++            root = instance.transform; marlback = actor.BlueprintName?.StartsWith("Marlback", StringComparison.Ordinal) == true
++                || SpreadRareMarlbackLibrary.IsBlueprint(actor.BlueprintName);
+             foreach (var candidate in instance.GetComponentsInChildren<SkinnedMeshRenderer>(true))
+             {
+                 if (candidate.sharedMesh == null || candidate.bones.Length != Names.Length || candidate.sharedMesh.bindposeCount != Names.Length) continue;
+--- a/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpawnRing3DPresenter.cs
+@@ -261,7 +261,8 @@
+                 {
+                     var bounds = PresentationBounds(renderers[0]);
+                     for (int i = 1; i < renderers.Length; i++) bounds.Encapsulate(PresentationBounds(renderers[i]));
+-                    bool marlback = recipe.Owner.BlueprintName?.StartsWith("Marlback", StringComparison.Ordinal) == true;
++                    bool marlback = recipe.Owner.BlueprintName?.StartsWith("Marlback", StringComparison.Ordinal) == true
++                        || SpreadRareMarlbackLibrary.IsBlueprint(recipe.Owner.BlueprintName);
+                     bool inspectionHumanoid = recipe.ModelId == "ring-player" || recipe.ModelId == "ring-sien" || recipe.ModelId == "ring-nam" || humanoidLibrary?.Find(recipe.ModelId)!=null;
+                     // Native screenshot review measures these exact three rigs
+                     // against the existing compensated camera. Other creatures
+--- a/Assets/Scripts/Presentation/Rendering/SpreadPortableRecipes.cs
++++ b/Assets/Scripts/Presentation/Rendering/SpreadPortableRecipes.cs
+@@ -195,6 +195,8 @@
+         private static readonly Dictionary<string, string> CorpseFamilies = new Dictionary<string, string>(StringComparer.Ordinal)
+         {
+             { "MarlbackScrabbler", "marlback" },
++            { "SpreadHurdleCutter", "marlback" },
++            { "SpreadDitchMate", "marlback" },
+             { "Player", "humanoid" },
+             { "MarlbackGleaner", "marlback" },
+             { "MarlbackTunnelguard", "marlback" },

@@ -5,10 +5,10 @@
       "Nodes": [
         {
           "ID": "Start",
-          "Text": "Name's Hallun — detective, at your service. And I'm stumped: I've misplaced my notebook somewhere here in the village. Whole case is in there. Help me crack it?",
+          "Text": "Name's Hallun — detective, at your service. I've misplaced my witness-book here in the village, and a soot gremlin needs driving off. Both need settling before I can close the case.",
           "Choices": [
             {
-              "Text": "[Accept] I'll find your notebook.",
+              "Text": "[Accept] I'll find the book and deal with the gremlin.",
               "Target": "Accepted",
               "Predicates": [
                 {
@@ -34,7 +34,7 @@
               ]
             },
             {
-              "Text": "[Return it] Found your notebook.",
+              "Text": "[Report] The book and the gremlin are accounted for.",
               "Target": "Solved",
               "Predicates": [
                 {
@@ -91,7 +91,7 @@
         },
         {
           "ID": "Accepted",
-          "Text": "A partner! Outstanding. It's somewhere in the village — check the buildings. Bring it here when you've got it.",
+          "Text": "A partner! Find my witness-book here in the village and drive off the soot gremlin. Then report back to me.",
           "Choices": [
             {
               "Text": "On the case.",
@@ -101,7 +101,7 @@
         },
         {
           "ID": "Searching",
-          "Text": "Keep at it, partner. A good detective never quits mid-case.",
+          "Text": "The case needs both the witness-book found and the soot gremlin dealt with. Tell me what's settled, partner.",
           "Choices": [
             {
               "Text": "Right.",

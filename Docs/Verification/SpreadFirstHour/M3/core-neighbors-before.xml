@@ -1,0 +1,1001 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-first-hour-m3/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="105" result="Failed" start-time="2026-09-27T19:41:13.9256140Z" end-time="2026-09-27T19:41:14.9111660Z" duration="0.985537" total="105" passed="69" failed="36" inconclusive="0" skipped="0" warnings="0" asserts="305" random-seed="1495524449">
+  <command-line><![CDATA[/private/tmp/coo-first-hour-m3/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-first-hour-m3/evidence/core-neighbors-before.xml --where "class =~ /EquipmentComparison|DensityItemExamine/"]]></command-line>
+  <filter>
+    <class re="1">EquipmentComparison|DensityItemExamine</class>
+  </filter>
+  <test-suite type="Assembly" id="1127" name="EditModeRunner.dll" fullname="/private/tmp/coo-first-hour-m3/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="105" result="Failed" site="Child" start-time="2026-09-27T19:41:13.9256140Z" end-time="2026-09-27T19:41:14.9111660Z" duration="0.985537" total="105" passed="69" failed="36" warnings="0" inconclusive="0" skipped="0" asserts="305">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-first-hour-m3" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-first-hour-m3" />
+    </settings>
+    <properties>
+      <property name="_PID" value="37055" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1128" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="105" result="Failed" site="Child" start-time="2026-09-27T19:41:13.9272940Z" end-time="2026-09-27T19:41:14.9111240Z" duration="0.983825" total="105" passed="69" failed="36" warnings="0" inconclusive="0" skipped="0" asserts="305">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1129" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="105" result="Failed" site="Child" start-time="2026-09-27T19:41:13.9274250Z" end-time="2026-09-27T19:41:14.9111210Z" duration="0.983691" total="105" passed="69" failed="36" warnings="0" inconclusive="0" skipped="0" asserts="305">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1097" name="DensityItemExamineAdversarialTests" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-09-27T19:41:13.9277980Z" end-time="2026-09-27T19:41:14.3767340Z" duration="0.448934" total="25" passed="25" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="68">
+          <test-suite type="ParameterizedMethod" id="1105" name="AbsentOrInvalidSpecsDoNotInventEffectAttempts" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-27T19:41:13.9288240Z" end-time="2026-09-27T19:41:14.0878940Z" duration="0.159069" total="7" passed="7" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="21">
+            <test-case id="1098" name="AbsentOrInvalidSpecsDoNotInventEffectAttempts(null)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts(null)" methodname="AbsentOrInvalidSpecsDoNotInventEffectAttempts" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="1583866592" result="Passed" start-time="2026-09-27T19:41:13.9289720Z" end-time="2026-09-27T19:41:13.9916030Z" duration="0.062655" asserts="3" />
+            <test-case id="1099" name="AbsentOrInvalidSpecsDoNotInventEffectAttempts(&quot;&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts(&quot;&quot;)" methodname="AbsentOrInvalidSpecsDoNotInventEffectAttempts" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="571025164" result="Passed" start-time="2026-09-27T19:41:13.9921540Z" end-time="2026-09-27T19:41:14.0101500Z" duration="0.017996" asserts="3" />
+            <test-case id="1100" name="AbsentOrInvalidSpecsDoNotInventEffectAttempts(&quot;  &quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts(&quot;  &quot;)" methodname="AbsentOrInvalidSpecsDoNotInventEffectAttempts" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="695519021" result="Passed" start-time="2026-09-27T19:41:14.0101690Z" end-time="2026-09-27T19:41:14.0282240Z" duration="0.018055" asserts="3" />
+            <test-case id="1101" name="AbsentOrInvalidSpecsDoNotInventEffectAttempts(&quot;Burning,0&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts(&quot;Burning,0&quot;)" methodname="AbsentOrInvalidSpecsDoNotInventEffectAttempts" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="600650199" result="Passed" start-time="2026-09-27T19:41:14.0282430Z" end-time="2026-09-27T19:41:14.0431840Z" duration="0.014941" asserts="3" />
+            <test-case id="1102" name="AbsentOrInvalidSpecsDoNotInventEffectAttempts(&quot;Burning,-1&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts(&quot;Burning,-1&quot;)" methodname="AbsentOrInvalidSpecsDoNotInventEffectAttempts" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="1665176269" result="Passed" start-time="2026-09-27T19:41:14.0432090Z" end-time="2026-09-27T19:41:14.0592930Z" duration="0.016084" asserts="3" />
+            <test-case id="1103" name="AbsentOrInvalidSpecsDoNotInventEffectAttempts(&quot;Burning,no&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts(&quot;Burning,no&quot;)" methodname="AbsentOrInvalidSpecsDoNotInventEffectAttempts" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="70517138" result="Passed" start-time="2026-09-27T19:41:14.0593190Z" end-time="2026-09-27T19:41:14.0729250Z" duration="0.013606" asserts="3" />
+            <test-case id="1104" name="AbsentOrInvalidSpecsDoNotInventEffectAttempts(&quot;Burning&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.AbsentOrInvalidSpecsDoNotInventEffectAttempts(&quot;Burning&quot;)" methodname="AbsentOrInvalidSpecsDoNotInventEffectAttempts" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="876025264" result="Passed" start-time="2026-09-27T19:41:14.0729430Z" end-time="2026-09-27T19:41:14.0873210Z" duration="0.014378" asserts="3" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1122" name="ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27T19:41:14.0881230Z" end-time="2026-09-27T19:41:14.1360730Z" duration="0.047950" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <test-case id="1119" name="ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow(5,&quot;-5&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow(5,&quot;-5&quot;)" methodname="ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="570472197" result="Passed" start-time="2026-09-27T19:41:14.0881480Z" end-time="2026-09-27T19:41:14.1069630Z" duration="0.018816" asserts="1" />
+            <test-case id="1120" name="ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow(-5,&quot;+5&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow(-5,&quot;+5&quot;)" methodname="ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="1219518289" result="Passed" start-time="2026-09-27T19:41:14.1070190Z" end-time="2026-09-27T19:41:14.1219380Z" duration="0.014919" asserts="1" />
+            <test-case id="1121" name="ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow(int.MinValue,&quot;+2147483648&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow(int.MinValue,&quot;+2147483648&quot;)" methodname="ArmorSpeedChangeUsesSignedArithmeticWithoutOverflow" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="1017519241" result="Passed" start-time="2026-09-27T19:41:14.1219580Z" end-time="2026-09-27T19:41:14.1360350Z" duration="0.014077" asserts="1" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1113" name="ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27T19:41:14.1360840Z" end-time="2026-09-27T19:41:14.1829390Z" duration="0.046855" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <test-case id="1110" name="ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute(&quot;Cudgel&quot;,True)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute(&quot;Cudgel&quot;,True)" methodname="ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="1152519382" result="Passed" start-time="2026-09-27T19:41:14.1360970Z" end-time="2026-09-27T19:41:14.1533480Z" duration="0.017251" asserts="1" />
+            <test-case id="1111" name="ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute(&quot;NotCudgel&quot;,False)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute(&quot;NotCudgel&quot;,False)" methodname="ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="727657954" result="Passed" start-time="2026-09-27T19:41:14.1533600Z" end-time="2026-09-27T19:41:14.1684060Z" duration="0.015047" asserts="1" />
+            <test-case id="1112" name="ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute(&quot;Bludgeoning Cudgel Cudgel&quot;,True)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute(&quot;Bludgeoning Cudgel Cudgel&quot;,True)" methodname="ClassPredicatesUseCombatAliasesOnceAndRequireAnExactAttribute" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="805111356" result="Passed" start-time="2026-09-27T19:41:14.1684250Z" end-time="2026-09-27T19:41:14.1829130Z" duration="0.014488" asserts="1" />
+          </test-suite>
+          <test-case id="1118" name="DurationIsNotInventedForPhysicalStateEffects" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.DurationIsNotInventedForPhysicalStateEffects" methodname="DurationIsNotInventedForPhysicalStateEffects" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="957411644" result="Passed" start-time="2026-09-27T19:41:14.1829550Z" end-time="2026-09-27T19:41:14.1993440Z" duration="0.016390" asserts="5" />
+          <test-case id="1125" name="EmptyRuntimeTonicKeepsAnHonestGenericDescription" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.EmptyRuntimeTonicKeepsAnHonestGenericDescription" methodname="EmptyRuntimeTonicKeepsAnHonestGenericDescription" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="1499369849" result="Passed" start-time="2026-09-27T19:41:14.1993860Z" end-time="2026-09-27T19:41:14.2158540Z" duration="0.016468" asserts="3" />
+          <test-case id="1126" name="ExaminationDoesNotConsumeOrTickLiveEffectsOrMutateItemState" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ExaminationDoesNotConsumeOrTickLiveEffectsOrMutateItemState" methodname="ExaminationDoesNotConsumeOrTickLiveEffectsOrMutateItemState" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="978459105" result="Passed" start-time="2026-09-27T19:41:14.2158700Z" end-time="2026-09-27T19:41:14.2418810Z" duration="0.026011" asserts="8" />
+          <test-case id="1123" name="ExplicitEquipmentBonusesFollowTheEquipmentParser" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ExplicitEquipmentBonusesFollowTheEquipmentParser" methodname="ExplicitEquipmentBonusesFollowTheEquipmentParser" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="904997574" result="Passed" start-time="2026-09-27T19:41:14.2418990Z" end-time="2026-09-27T19:41:14.2560140Z" duration="0.014115" asserts="3" />
+          <test-case id="1117" name="MultipleSpecsRemainIndependentWithoutAddingTheirChances" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.MultipleSpecsRemainIndependentWithoutAddingTheirChances" methodname="MultipleSpecsRemainIndependentWithoutAddingTheirChances" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="844614600" result="Passed" start-time="2026-09-27T19:41:14.2560360Z" end-time="2026-09-27T19:41:14.2703360Z" duration="0.014300" asserts="4" />
+          <test-case id="1115" name="NullLegacySlotUsesTheSameHandFallbackAsEquipment" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.NullLegacySlotUsesTheSameHandFallbackAsEquipment" methodname="NullLegacySlotUsesTheSameHandFallbackAsEquipment" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="448949855" result="Passed" start-time="2026-09-27T19:41:14.2703630Z" end-time="2026-09-27T19:41:14.2850230Z" duration="0.014660" asserts="2" />
+          <test-suite type="ParameterizedMethod" id="1108" name="OversizedChanceMatchesTheRealHundredOutcomeRoll" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.OversizedChanceMatchesTheRealHundredOutcomeRoll" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T19:41:14.2850390Z" end-time="2026-09-27T19:41:14.3166280Z" duration="0.031589" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <test-case id="1106" name="OversizedChanceMatchesTheRealHundredOutcomeRoll(101)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.OversizedChanceMatchesTheRealHundredOutcomeRoll(101)" methodname="OversizedChanceMatchesTheRealHundredOutcomeRoll" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="565166492" result="Passed" start-time="2026-09-27T19:41:14.2850560Z" end-time="2026-09-27T19:41:14.3012470Z" duration="0.016191" asserts="2" />
+            <test-case id="1107" name="OversizedChanceMatchesTheRealHundredOutcomeRoll(int.MaxValue)" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.OversizedChanceMatchesTheRealHundredOutcomeRoll(int.MaxValue)" methodname="OversizedChanceMatchesTheRealHundredOutcomeRoll" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="560579197" result="Passed" start-time="2026-09-27T19:41:14.3012730Z" end-time="2026-09-27T19:41:14.3166120Z" duration="0.015331" asserts="2" />
+          </test-suite>
+          <test-case id="1116" name="ReexaminingChangedSpecsCannotRetainAStaleCombatCache" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.ReexaminingChangedSpecsCannotRetainAStaleCombatCache" methodname="ReexaminingChangedSpecsCannotRetainAStaleCombatCache" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="477886678" result="Passed" start-time="2026-09-27T19:41:14.3166340Z" end-time="2026-09-27T19:41:14.3316180Z" duration="0.014983" asserts="4" />
+          <test-case id="1124" name="RenamingOrRemovingItemTagDoesNotTurnNaturalWeaponsIntoEquipment" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.RenamingOrRemovingItemTagDoesNotTurnNaturalWeaponsIntoEquipment" methodname="RenamingOrRemovingItemTagDoesNotTurnNaturalWeaponsIntoEquipment" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="879870826" result="Passed" start-time="2026-09-27T19:41:14.3316450Z" end-time="2026-09-27T19:41:14.3474750Z" duration="0.015830" asserts="3" />
+          <test-case id="1114" name="StatAttributeAlsoParticipatesInTheActualClassDispatcher" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.StatAttributeAlsoParticipatesInTheActualClassDispatcher" methodname="StatAttributeAlsoParticipatesInTheActualClassDispatcher" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="1211136519" result="Passed" start-time="2026-09-27T19:41:14.3474980Z" end-time="2026-09-27T19:41:14.3619710Z" duration="0.014473" asserts="2" />
+          <test-case id="1109" name="UnknownEffectIsNotAdvertisedAsAWorkingPower" fullname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests.UnknownEffectIsNotAdvertisedAsAWorkingPower" methodname="UnknownEffectIsNotAdvertisedAsAWorkingPower" classname="CavesOfOoo.Tests.DensityItemExamineAdversarialTests" runstate="Runnable" seed="2078215130" result="Passed" start-time="2026-09-27T19:41:14.3619900Z" end-time="2026-09-27T19:41:14.3766610Z" duration="0.014671" asserts="3" />
+        </test-suite>
+        <test-suite type="TestFixture" id="1043" name="DensityItemExamineTests" fullname="CavesOfOoo.Tests.DensityItemExamineTests" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" testcasecount="44" result="Passed" start-time="2026-09-27T19:41:14.3770610Z" end-time="2026-09-27T19:41:14.7058340Z" duration="0.328771" total="44" passed="44" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="136">
+          <test-suite type="ParameterizedMethod" id="1072" name="ArmorAdvertisesItsActualSpeedPenalty" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ArmorAdvertisesItsActualSpeedPenalty" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T19:41:14.3771120Z" end-time="2026-09-27T19:41:14.4099420Z" duration="0.032830" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <test-case id="1070" name="ArmorAdvertisesItsActualSpeedPenalty(&quot;IronshodBoots&quot;,True)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ArmorAdvertisesItsActualSpeedPenalty(&quot;IronshodBoots&quot;,True)" methodname="ArmorAdvertisesItsActualSpeedPenalty" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="155744820" result="Passed" start-time="2026-09-27T19:41:14.3771190Z" end-time="2026-09-27T19:41:14.3939400Z" duration="0.016821" asserts="2" />
+            <test-case id="1071" name="ArmorAdvertisesItsActualSpeedPenalty(&quot;LeatherBoots&quot;,False)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ArmorAdvertisesItsActualSpeedPenalty(&quot;LeatherBoots&quot;,False)" methodname="ArmorAdvertisesItsActualSpeedPenalty" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1168672708" result="Passed" start-time="2026-09-27T19:41:14.3939560Z" end-time="2026-09-27T19:41:14.4099190Z" duration="0.015963" asserts="2" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1069" name="ArmorReportsContributionsRatherThanActorTotals" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ArmorReportsContributionsRatherThanActorTotals" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27T19:41:14.4099650Z" end-time="2026-09-27T19:41:14.4560480Z" duration="0.046083" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <test-case id="1066" name="ArmorReportsContributionsRatherThanActorTotals(&quot;LeatherArmor&quot;,&quot;+3&quot;,&quot;-1&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ArmorReportsContributionsRatherThanActorTotals(&quot;LeatherArmor&quot;,&quot;+3&quot;,&quot;-1&quot;)" methodname="ArmorReportsContributionsRatherThanActorTotals" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="993465676" result="Passed" start-time="2026-09-27T19:41:14.4099990Z" end-time="2026-09-27T19:41:14.4257010Z" duration="0.015702" asserts="3" />
+            <test-case id="1067" name="ArmorReportsContributionsRatherThanActorTotals(&quot;Buckler&quot;,&quot;+1&quot;,&quot;+1&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ArmorReportsContributionsRatherThanActorTotals(&quot;Buckler&quot;,&quot;+1&quot;,&quot;+1&quot;)" methodname="ArmorReportsContributionsRatherThanActorTotals" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="474438139" result="Passed" start-time="2026-09-27T19:41:14.4257230Z" end-time="2026-09-27T19:41:14.4412490Z" duration="0.015526" asserts="3" />
+            <test-case id="1068" name="ArmorReportsContributionsRatherThanActorTotals(&quot;WardedCloak&quot;,&quot;+0&quot;,&quot;+2&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ArmorReportsContributionsRatherThanActorTotals(&quot;WardedCloak&quot;,&quot;+0&quot;,&quot;+2&quot;)" methodname="ArmorReportsContributionsRatherThanActorTotals" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1068127625" result="Passed" start-time="2026-09-27T19:41:14.4412660Z" end-time="2026-09-27T19:41:14.4560220Z" duration="0.014757" asserts="3" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1060" name="ElementalWeaponDescribesConstructedEffectsAndAttributes" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-09-27T19:41:14.4560720Z" end-time="2026-09-27T19:41:14.5433220Z" duration="0.087250" total="8" passed="8" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="40">
+            <test-case id="1052" name="ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;FlamingSword&quot;,&quot;30%&quot;,&quot;Set ablaze&quot;,&quot;Fire&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;FlamingSword&quot;,&quot;30%&quot;,&quot;Set ablaze&quot;,&quot;Fire&quot;)" methodname="ElementalWeaponDescribesConstructedEffectsAndAttributes" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="97331028" result="Passed" start-time="2026-09-27T19:41:14.4560930Z" end-time="2026-09-27T19:41:14.4701620Z" duration="0.014069" asserts="5" />
+            <test-case id="1053" name="ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;IceSword&quot;,&quot;30%&quot;,&quot;Frozen over&quot;,&quot;Ice&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;IceSword&quot;,&quot;30%&quot;,&quot;Frozen over&quot;,&quot;Ice&quot;)" methodname="ElementalWeaponDescribesConstructedEffectsAndAttributes" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1939474673" result="Passed" start-time="2026-09-27T19:41:14.4701740Z" end-time="2026-09-27T19:41:14.4861070Z" duration="0.015933" asserts="5" />
+            <test-case id="1054" name="ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;CryoLance&quot;,&quot;30%&quot;,&quot;Frozen over&quot;,&quot;Ice&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;CryoLance&quot;,&quot;30%&quot;,&quot;Frozen over&quot;,&quot;Ice&quot;)" methodname="ElementalWeaponDescribesConstructedEffectsAndAttributes" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1473345377" result="Passed" start-time="2026-09-27T19:41:14.4861220Z" end-time="2026-09-27T19:41:14.5018310Z" duration="0.015710" asserts="5" />
+            <test-case id="1055" name="ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;EmberSpear&quot;,&quot;30%&quot;,&quot;Set ablaze&quot;,&quot;Fire&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;EmberSpear&quot;,&quot;30%&quot;,&quot;Set ablaze&quot;,&quot;Fire&quot;)" methodname="ElementalWeaponDescribesConstructedEffectsAndAttributes" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1719950099" result="Passed" start-time="2026-09-27T19:41:14.5018560Z" end-time="2026-09-27T19:41:14.5123780Z" duration="0.010522" asserts="5" />
+            <test-case id="1056" name="ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;AcidicDagger&quot;,&quot;30%&quot;,&quot;5 damage a turn&quot;,&quot;Acid&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;AcidicDagger&quot;,&quot;30%&quot;,&quot;5 damage a turn&quot;,&quot;Acid&quot;)" methodname="ElementalWeaponDescribesConstructedEffectsAndAttributes" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="275435582" result="Passed" start-time="2026-09-27T19:41:14.5124710Z" end-time="2026-09-27T19:41:14.5234180Z" duration="0.010948" asserts="5" />
+            <test-case id="1057" name="ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;VenomDagger&quot;,&quot;50%&quot;,&quot;1d4 damage a turn for 6 turns&quot;,&quot;Poison&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;VenomDagger&quot;,&quot;50%&quot;,&quot;1d4 damage a turn for 6 turns&quot;,&quot;Poison&quot;)" methodname="ElementalWeaponDescribesConstructedEffectsAndAttributes" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1576920432" result="Passed" start-time="2026-09-27T19:41:14.5234410Z" end-time="2026-09-27T19:41:14.5318850Z" duration="0.008444" asserts="5" />
+            <test-case id="1058" name="ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;ThunderHammer&quot;,&quot;30%&quot;,&quot;Electrified&quot;,&quot;Lightning&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;ThunderHammer&quot;,&quot;30%&quot;,&quot;Electrified&quot;,&quot;Lightning&quot;)" methodname="ElementalWeaponDescribesConstructedEffectsAndAttributes" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1852637523" result="Passed" start-time="2026-09-27T19:41:14.5319030Z" end-time="2026-09-27T19:41:14.5395510Z" duration="0.007648" asserts="5" />
+            <test-case id="1059" name="ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;DissolutionMaul&quot;,&quot;40%&quot;,&quot;5 damage a turn&quot;,&quot;Acid&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ElementalWeaponDescribesConstructedEffectsAndAttributes(&quot;DissolutionMaul&quot;,&quot;40%&quot;,&quot;5 damage a turn&quot;,&quot;Acid&quot;)" methodname="ElementalWeaponDescribesConstructedEffectsAndAttributes" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1595601561" result="Passed" start-time="2026-09-27T19:41:14.5395950Z" end-time="2026-09-27T19:41:14.5433060Z" duration="0.003711" asserts="5" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1075" name="EquipmentShowsItsEffectiveSlots" fullname="CavesOfOoo.Tests.DensityItemExamineTests.EquipmentShowsItsEffectiveSlots" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T19:41:14.5433310Z" end-time="2026-09-27T19:41:14.5558430Z" duration="0.012511" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <test-case id="1073" name="EquipmentShowsItsEffectiveSlots(&quot;DissolutionMaul&quot;,&quot;Hand,Hand&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.EquipmentShowsItsEffectiveSlots(&quot;DissolutionMaul&quot;,&quot;Hand,Hand&quot;)" methodname="EquipmentShowsItsEffectiveSlots" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="2100270777" result="Passed" start-time="2026-09-27T19:41:14.5433530Z" end-time="2026-09-27T19:41:14.5502790Z" duration="0.006926" asserts="1" />
+            <test-case id="1074" name="EquipmentShowsItsEffectiveSlots(&quot;Dagger&quot;,&quot;Hand&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.EquipmentShowsItsEffectiveSlots(&quot;Dagger&quot;,&quot;Hand&quot;)" methodname="EquipmentShowsItsEffectiveSlots" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="291637054" result="Passed" start-time="2026-09-27T19:41:14.5503080Z" end-time="2026-09-27T19:41:14.5558250Z" duration="0.005518" asserts="1" />
+          </test-suite>
+          <test-case id="1092" name="ExistingFlavorEnhancementAndAfflictionArePreservedOnce" fullname="CavesOfOoo.Tests.DensityItemExamineTests.ExistingFlavorEnhancementAndAfflictionArePreservedOnce" methodname="ExistingFlavorEnhancementAndAfflictionArePreservedOnce" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1047696462" result="Passed" start-time="2026-09-27T19:41:14.5558520Z" end-time="2026-09-27T19:41:14.5610080Z" duration="0.005156" asserts="5" />
+          <test-suite type="ParameterizedMethod" id="1096" name="NonItemsKeepTheirExistingDescriptionWithoutItemMechanics" fullname="CavesOfOoo.Tests.DensityItemExamineTests.NonItemsKeepTheirExistingDescriptionWithoutItemMechanics" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27T19:41:14.5610240Z" end-time="2026-09-27T19:41:14.5818230Z" duration="0.020799" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1093" name="NonItemsKeepTheirExistingDescriptionWithoutItemMechanics(&quot;Viper&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.NonItemsKeepTheirExistingDescriptionWithoutItemMechanics(&quot;Viper&quot;)" methodname="NonItemsKeepTheirExistingDescriptionWithoutItemMechanics" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1508749965" result="Passed" start-time="2026-09-27T19:41:14.5610470Z" end-time="2026-09-27T19:41:14.5696980Z" duration="0.008651" asserts="4" />
+            <test-case id="1094" name="NonItemsKeepTheirExistingDescriptionWithoutItemMechanics(&quot;MarlbackScrabbler&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.NonItemsKeepTheirExistingDescriptionWithoutItemMechanics(&quot;MarlbackScrabbler&quot;)" methodname="NonItemsKeepTheirExistingDescriptionWithoutItemMechanics" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="494863435" result="Passed" start-time="2026-09-27T19:41:14.5697260Z" end-time="2026-09-27T19:41:14.5764680Z" duration="0.006742" asserts="4" />
+            <test-case id="1095" name="NonItemsKeepTheirExistingDescriptionWithoutItemMechanics(&quot;Chest&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.NonItemsKeepTheirExistingDescriptionWithoutItemMechanics(&quot;Chest&quot;)" methodname="NonItemsKeepTheirExistingDescriptionWithoutItemMechanics" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1669575312" result="Passed" start-time="2026-09-27T19:41:14.5764950Z" end-time="2026-09-27T19:41:14.5817940Z" duration="0.005299" asserts="4" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1064" name="PhysicalClassAttemptsAreVisibleWithoutElementalSpecs" fullname="CavesOfOoo.Tests.DensityItemExamineTests.PhysicalClassAttemptsAreVisibleWithoutElementalSpecs" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27T19:41:14.5818440Z" end-time="2026-09-27T19:41:14.5948990Z" duration="0.013055" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <test-case id="1061" name="PhysicalClassAttemptsAreVisibleWithoutElementalSpecs(&quot;Mace&quot;,&quot;15%&quot;,&quot;Stunned&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.PhysicalClassAttemptsAreVisibleWithoutElementalSpecs(&quot;Mace&quot;,&quot;15%&quot;,&quot;Stunned&quot;)" methodname="PhysicalClassAttemptsAreVisibleWithoutElementalSpecs" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="2076971159" result="Passed" start-time="2026-09-27T19:41:14.5818590Z" end-time="2026-09-27T19:41:14.5848370Z" duration="0.002978" asserts="3" />
+            <test-case id="1062" name="PhysicalClassAttemptsAreVisibleWithoutElementalSpecs(&quot;LongSword&quot;,&quot;25%&quot;,&quot;Bleeding&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.PhysicalClassAttemptsAreVisibleWithoutElementalSpecs(&quot;LongSword&quot;,&quot;25%&quot;,&quot;Bleeding&quot;)" methodname="PhysicalClassAttemptsAreVisibleWithoutElementalSpecs" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1460985008" result="Passed" start-time="2026-09-27T19:41:14.5848550Z" end-time="2026-09-27T19:41:14.5906570Z" duration="0.005803" asserts="3" />
+            <test-case id="1063" name="PhysicalClassAttemptsAreVisibleWithoutElementalSpecs(&quot;Spear&quot;,&quot;10%&quot;,&quot;Confused&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.PhysicalClassAttemptsAreVisibleWithoutElementalSpecs(&quot;Spear&quot;,&quot;10%&quot;,&quot;Confused&quot;)" methodname="PhysicalClassAttemptsAreVisibleWithoutElementalSpecs" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1452227442" result="Passed" start-time="2026-09-27T19:41:14.5906690Z" end-time="2026-09-27T19:41:14.5948780Z" duration="0.004209" asserts="3" />
+          </test-suite>
+          <test-case id="1065" name="SporebladeNameDoesNotInventSporeEmission" fullname="CavesOfOoo.Tests.DensityItemExamineTests.SporebladeNameDoesNotInventSporeEmission" methodname="SporebladeNameDoesNotInventSporeEmission" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="600396871" result="Passed" start-time="2026-09-27T19:41:14.5949140Z" end-time="2026-09-27T19:41:14.6005640Z" duration="0.005650" asserts="4" />
+          <test-suite type="ParameterizedMethod" id="1051" name="StrengthCapMatchesTheActualCombatLimit" fullname="CavesOfOoo.Tests.DensityItemExamineTests.StrengthCapMatchesTheActualCombatLimit" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T19:41:14.6005850Z" end-time="2026-09-27T19:41:14.6119730Z" duration="0.011388" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <test-case id="1049" name="StrengthCapMatchesTheActualCombatLimit(&quot;Dagger&quot;,3)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.StrengthCapMatchesTheActualCombatLimit(&quot;Dagger&quot;,3)" methodname="StrengthCapMatchesTheActualCombatLimit" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="877016846" result="Passed" start-time="2026-09-27T19:41:14.6006230Z" end-time="2026-09-27T19:41:14.6061040Z" duration="0.005481" asserts="3" />
+            <test-case id="1050" name="StrengthCapMatchesTheActualCombatLimit(&quot;LongSword&quot;,50)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.StrengthCapMatchesTheActualCombatLimit(&quot;LongSword&quot;,50)" methodname="StrengthCapMatchesTheActualCombatLimit" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="2032044537" result="Passed" start-time="2026-09-27T19:41:14.6061160Z" end-time="2026-09-27T19:41:14.6119620Z" duration="0.005846" asserts="3" />
+          </test-suite>
+          <test-case id="1048" name="WeaponReadsChangedLiveFields_InsteadOfGuessingFromItsBlueprintName" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WeaponReadsChangedLiveFields_InsteadOfGuessingFromItsBlueprintName" methodname="WeaponReadsChangedLiveFields_InsteadOfGuessingFromItsBlueprintName" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1719979591" result="Passed" start-time="2026-09-27T19:41:14.6119790Z" end-time="2026-09-27T19:41:14.6167880Z" duration="0.004809" asserts="6" />
+          <test-suite type="ParameterizedMethod" id="1047" name="WeaponReportsItsOwnDiceAndModifiers" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WeaponReportsItsOwnDiceAndModifiers" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27T19:41:14.6168100Z" end-time="2026-09-27T19:41:14.6316080Z" duration="0.014798" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <test-case id="1044" name="WeaponReportsItsOwnDiceAndModifiers(&quot;Dagger&quot;,&quot;1d4&quot;,&quot;+1&quot;,&quot;+0&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WeaponReportsItsOwnDiceAndModifiers(&quot;Dagger&quot;,&quot;1d4&quot;,&quot;+1&quot;,&quot;+0&quot;)" methodname="WeaponReportsItsOwnDiceAndModifiers" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1129395493" result="Passed" start-time="2026-09-27T19:41:14.6168470Z" end-time="2026-09-27T19:41:14.6201020Z" duration="0.003255" asserts="3" />
+            <test-case id="1045" name="WeaponReportsItsOwnDiceAndModifiers(&quot;LongSword&quot;,&quot;1d8&quot;,&quot;+2&quot;,&quot;+0&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WeaponReportsItsOwnDiceAndModifiers(&quot;LongSword&quot;,&quot;1d8&quot;,&quot;+2&quot;,&quot;+0&quot;)" methodname="WeaponReportsItsOwnDiceAndModifiers" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="309895394" result="Passed" start-time="2026-09-27T19:41:14.6201300Z" end-time="2026-09-27T19:41:14.6270230Z" duration="0.006892" asserts="3" />
+            <test-case id="1046" name="WeaponReportsItsOwnDiceAndModifiers(&quot;EchoKnife&quot;,&quot;1d4+3&quot;,&quot;+1&quot;,&quot;+3&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WeaponReportsItsOwnDiceAndModifiers(&quot;EchoKnife&quot;,&quot;1d4+3&quot;,&quot;+1&quot;,&quot;+3&quot;)" methodname="WeaponReportsItsOwnDiceAndModifiers" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1627492732" result="Passed" start-time="2026-09-27T19:41:14.6270390Z" end-time="2026-09-27T19:41:14.6315930Z" duration="0.004555" asserts="3" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1091" name="WorldExamineIncludesTheExistingTruthfulTonicPayload" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-09-27T19:41:14.6316160Z" end-time="2026-09-27T19:41:14.7058110Z" duration="0.074195" total="15" passed="15" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="30">
+            <test-case id="1076" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;HealingTonic&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;HealingTonic&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="929268620" result="Passed" start-time="2026-09-27T19:41:14.6316300Z" end-time="2026-09-27T19:41:14.6359330Z" duration="0.004303" asserts="2" />
+            <test-case id="1077" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;PoisonTonic&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;PoisonTonic&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="546475216" result="Passed" start-time="2026-09-27T19:41:14.6359540Z" end-time="2026-09-27T19:41:14.6418630Z" duration="0.005909" asserts="2" />
+            <test-case id="1078" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;FireTonic&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;FireTonic&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1593219284" result="Passed" start-time="2026-09-27T19:41:14.6418880Z" end-time="2026-09-27T19:41:14.6479150Z" duration="0.006028" asserts="2" />
+            <test-case id="1079" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;AcidTonic&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;AcidTonic&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="2068409126" result="Passed" start-time="2026-09-27T19:41:14.6479350Z" end-time="2026-09-27T19:41:14.6528820Z" duration="0.004947" asserts="2" />
+            <test-case id="1080" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;LightningTonic&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;LightningTonic&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="2058778523" result="Passed" start-time="2026-09-27T19:41:14.6528940Z" end-time="2026-09-27T19:41:14.6566240Z" duration="0.003730" asserts="2" />
+            <test-case id="1081" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;FrostTonic&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;FrostTonic&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1903958931" result="Passed" start-time="2026-09-27T19:41:14.6566440Z" end-time="2026-09-27T19:41:14.6622200Z" duration="0.005576" asserts="2" />
+            <test-case id="1082" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;WaterTonic&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;WaterTonic&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="815799567" result="Passed" start-time="2026-09-27T19:41:14.6622350Z" end-time="2026-09-27T19:41:14.6664340Z" duration="0.004199" asserts="2" />
+            <test-case id="1083" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;BleedTonic&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;BleedTonic&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="837093904" result="Passed" start-time="2026-09-27T19:41:14.6664520Z" end-time="2026-09-27T19:41:14.6720270Z" duration="0.005574" asserts="2" />
+            <test-case id="1084" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;CharredTonic&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;CharredTonic&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="841838962" result="Passed" start-time="2026-09-27T19:41:14.6720350Z" end-time="2026-09-27T19:41:14.6772110Z" duration="0.005176" asserts="2" />
+            <test-case id="1085" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;Antidote&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;Antidote&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="395210229" result="Passed" start-time="2026-09-27T19:41:14.6772260Z" end-time="2026-09-27T19:41:14.6836800Z" duration="0.006455" asserts="2" />
+            <test-case id="1086" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;BurnSalve&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;BurnSalve&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="640801596" result="Passed" start-time="2026-09-27T19:41:14.6836930Z" end-time="2026-09-27T19:41:14.6885090Z" duration="0.004816" asserts="2" />
+            <test-case id="1087" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;Panacea&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;Panacea&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="22355769" result="Passed" start-time="2026-09-27T19:41:14.6885250Z" end-time="2026-09-27T19:41:14.6913440Z" duration="0.002819" asserts="2" />
+            <test-case id="1088" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;SpeedTonic&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;SpeedTonic&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="1315377817" result="Passed" start-time="2026-09-27T19:41:14.6913580Z" end-time="2026-09-27T19:41:14.6974360Z" duration="0.006078" asserts="2" />
+            <test-case id="1089" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;StrengthTonic&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;StrengthTonic&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="198918185" result="Passed" start-time="2026-09-27T19:41:14.6974560Z" end-time="2026-09-27T19:41:14.7016750Z" duration="0.004219" asserts="2" />
+            <test-case id="1090" name="WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;StoneskinTonic&quot;)" fullname="CavesOfOoo.Tests.DensityItemExamineTests.WorldExamineIncludesTheExistingTruthfulTonicPayload(&quot;StoneskinTonic&quot;)" methodname="WorldExamineIncludesTheExistingTruthfulTonicPayload" classname="CavesOfOoo.Tests.DensityItemExamineTests" runstate="Runnable" seed="364510528" result="Passed" start-time="2026-09-27T19:41:14.7016880Z" end-time="2026-09-27T19:41:14.7057860Z" duration="0.004097" asserts="2" />
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1000" name="EquipmentComparisonAdversarialTests" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-27T19:41:14.7058530Z" end-time="2026-09-27T19:41:14.7809130Z" duration="0.075060" total="12" passed="0" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="34">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1014" name="DistinctSameNamedEquippedItemsAreBothRepresented" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.DistinctSameNamedEquippedItemsAreBothRepresented" methodname="DistinctSameNamedEquippedItemsAreBothRepresented" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" seed="910071826" result="Failed" start-time="2026-09-27T19:41:14.7059380Z" end-time="2026-09-27T19:41:14.7296430Z" duration="0.023704" asserts="6">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 37
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.DistinctSameNamedEquippedItemsAreBothRepresented() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 129
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 37
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.DistinctSameNamedEquippedItemsAreBothRepresented() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 129
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1013" name="ExtremeSpeedAndMalformedBonusFieldsStayFactualAndDoNotChangeStats" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ExtremeSpeedAndMalformedBonusFieldsStayFactualAndDoNotChangeStats" methodname="ExtremeSpeedAndMalformedBonusFieldsStayFactualAndDoNotChangeStats" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" seed="764725171" result="Failed" start-time="2026-09-27T19:41:14.7297000Z" end-time="2026-09-27T19:41:14.7353200Z" duration="0.005619" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 37
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ExtremeSpeedAndMalformedBonusFieldsStayFactualAndDoNotChangeStats() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 114
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 37
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ExtremeSpeedAndMalformedBonusFieldsStayFactualAndDoNotChangeStats() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 114
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1005" name="ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T19:41:14.7353350Z" end-time="2026-09-27T19:41:14.7431910Z" duration="0.007856" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1003" name="ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts(False)" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts(False)" methodname="ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" seed="369596913" result="Failed" start-time="2026-09-27T19:41:14.7353540Z" end-time="2026-09-27T19:41:14.7399410Z" duration="0.004587" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts(Boolean equipped) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 72
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts(Boolean equipped) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 72
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts(True)" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts(True)" methodname="ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" seed="1457563069" result="Failed" start-time="2026-09-27T19:41:14.7399550Z" end-time="2026-09-27T19:41:14.7431720Z" duration="0.003217" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts(Boolean equipped) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 72
+   at InvokeStub_EquipmentComparisonAdversarialTests.ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts(Boolean equipped) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 72
+   at InvokeStub_EquipmentComparisonAdversarialTests.ForeignNaturalWeaponOwnerIsRejectedWithoutBorrowingItsFacts(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1010" name="MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-27T19:41:14.7432010Z" end-time="2026-09-27T19:41:14.7623350Z" duration="0.019134" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1006" name="MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(&quot;extra-cache&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(&quot;extra-cache&quot;)" methodname="MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" seed="1234934905" result="Failed" start-time="2026-09-27T19:41:14.7432170Z" end-time="2026-09-27T19:41:14.7478790Z" duration="0.004662" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 86
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 86
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(&quot;foreign-inventory&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(&quot;foreign-inventory&quot;)" methodname="MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" seed="1086982886" result="Failed" start-time="2026-09-27T19:41:14.7478970Z" end-time="2026-09-27T19:41:14.7551870Z" duration="0.007289" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 86
+   at InvokeStub_EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 86
+   at InvokeStub_EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(&quot;foreign-body-part&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(&quot;foreign-body-part&quot;)" methodname="MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" seed="410376964" result="Failed" start-time="2026-09-27T19:41:14.7552010Z" end-time="2026-09-27T19:41:14.7593240Z" duration="0.004123" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 86
+   at InvokeStub_EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 86
+   at InvokeStub_EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(&quot;double-carried-equipped&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(&quot;double-carried-equipped&quot;)" methodname="MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" seed="1517286463" result="Failed" start-time="2026-09-27T19:41:14.7593380Z" end-time="2026-09-27T19:41:14.7623180Z" duration="0.002980" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 86
+   at InvokeStub_EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 86
+   at InvokeStub_EquipmentComparisonAdversarialTests.MismatchedGraphRefusesInsteadOfPresentingAnEquipGuarantee(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1011" name="ReinspectionUsesNewSlotsAndRefusesTheRemovedExactInstance" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ReinspectionUsesNewSlotsAndRefusesTheRemovedExactInstance" methodname="ReinspectionUsesNewSlotsAndRefusesTheRemovedExactInstance" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" seed="215897154" result="Failed" start-time="2026-09-27T19:41:14.7623440Z" end-time="2026-09-27T19:41:14.7676260Z" duration="0.005283" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 37
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ReinspectionUsesNewSlotsAndRefusesTheRemovedExactInstance() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 92
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 37
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ReinspectionUsesNewSlotsAndRefusesTheRemovedExactInstance() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 92
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1012" name="RuntimeEquippableWithoutItemTagRetainsActualFacts" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.RuntimeEquippableWithoutItemTagRetainsActualFacts" methodname="RuntimeEquippableWithoutItemTagRetainsActualFacts" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" seed="1076043280" result="Failed" start-time="2026-09-27T19:41:14.7676410Z" end-time="2026-09-27T19:41:14.7728850Z" duration="0.005244" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 37
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.RuntimeEquippableWithoutItemTagRetainsActualFacts() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 105
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 37
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.RuntimeEquippableWithoutItemTagRetainsActualFacts() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 105
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1002" name="SharedNaturalWeaponFirstFlagMatchesActualCurrentAttackAdmission" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.SharedNaturalWeaponFirstFlagMatchesActualCurrentAttackAdmission" methodname="SharedNaturalWeaponFirstFlagMatchesActualCurrentAttackAdmission" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" seed="2113784459" result="Failed" start-time="2026-09-27T19:41:14.7728980Z" end-time="2026-09-27T19:41:14.7772830Z" duration="0.004386" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 37
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.SharedNaturalWeaponFirstFlagMatchesActualCurrentAttackAdmission() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 58
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 37
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.SharedNaturalWeaponFirstFlagMatchesActualCurrentAttackAdmission() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 58
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1001" name="ShieldHandHasNaturalAttackButSupportingMultiHandSlotDoesNot" fullname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ShieldHandHasNaturalAttackButSupportingMultiHandSlotDoesNot" methodname="ShieldHandHasNaturalAttackButSupportingMultiHandSlotDoesNot" classname="CavesOfOoo.Tests.EquipmentComparisonAdversarialTests" runstate="Runnable" seed="1138303088" result="Failed" start-time="2026-09-27T19:41:14.7773380Z" end-time="2026-09-27T19:41:14.7808920Z" duration="0.003554" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 37
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ShieldHandHasNaturalAttackButSupportingMultiHandSlotDoesNot() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 46
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Describe(Entity item, String& text) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 32
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 37
+   at CavesOfOoo.Tests.EquipmentComparisonAdversarialTests.ShieldHandHasNaturalAttackButSupportingMultiHandSlotDoesNot() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonAdversarialTests.cs:line 46
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+        <test-suite type="TestFixture" id="1015" name="EquipmentComparisonTests" fullname="CavesOfOoo.Tests.EquipmentComparisonTests" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-09-27T19:41:14.7809250Z" end-time="2026-09-27T19:41:14.9111060Z" duration="0.130180" total="24" passed="0" failed="24" warnings="0" inconclusive="0" skipped="0" asserts="67">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1021" name="AlreadyEquippedShowsItsActualCurrentSlots" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.AlreadyEquippedShowsItsActualCurrentSlots" methodname="AlreadyEquippedShowsItsActualCurrentSlots" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="604341126" result="Failed" start-time="2026-09-27T19:41:14.7809690Z" end-time="2026-09-27T19:41:14.7914770Z" duration="0.010509" asserts="3">
+            <failure>
+              <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.AlreadyEquippedShowsItsActualCurrentSlots() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 127
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.AlreadyEquippedShowsItsActualCurrentSlots() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 127
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1018" name="AutoChoiceAndOccupiedHandAlternativeAreBothVisible" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.AutoChoiceAndOccupiedHandAlternativeAreBothVisible" methodname="AutoChoiceAndOccupiedHandAlternativeAreBothVisible" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="2016213952" result="Failed" start-time="2026-09-27T19:41:14.7915170Z" end-time="2026-09-27T19:41:14.7982780Z" duration="0.006762" asserts="4">
+            <failure>
+              <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.AutoChoiceAndOccupiedHandAlternativeAreBothVisible() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 90
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.AutoChoiceAndOccupiedHandAlternativeAreBothVisible() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 90
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1023" name="BodylessLegacyActorGetsUnavailableReasonWithoutInventedSlots" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.BodylessLegacyActorGetsUnavailableReasonWithoutInventedSlots" methodname="BodylessLegacyActorGetsUnavailableReasonWithoutInventedSlots" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="621774655" result="Failed" start-time="2026-09-27T19:41:14.7982930Z" end-time="2026-09-27T19:41:14.8023010Z" duration="0.004007" asserts="2">
+            <failure>
+              <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.BodylessLegacyActorGetsUnavailableReasonWithoutInventedSlots() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 146
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.BodylessLegacyActorGetsUnavailableReasonWithoutInventedSlots() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 146
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1042" name="ComparisonDoesNotDispatchEquipCallbacksOrChangeNativeState" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.ComparisonDoesNotDispatchEquipCallbacksOrChangeNativeState" methodname="ComparisonDoesNotDispatchEquipCallbacksOrChangeNativeState" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="1518182915" result="Failed" start-time="2026-09-27T19:41:14.8023340Z" end-time="2026-09-27T19:41:14.8101140Z" duration="0.007780" asserts="4">
+            <failure>
+              <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.ComparisonDoesNotDispatchEquipCallbacksOrChangeNativeState() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 226
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.ComparisonDoesNotDispatchEquipCallbacksOrChangeNativeState() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 226
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1028" name="ConditionalEnhancementAndUnknownOnHitAreNotSummedIntoDamage" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.ConditionalEnhancementAndUnknownOnHitAreNotSummedIntoDamage" methodname="ConditionalEnhancementAndUnknownOnHitAreNotSummedIntoDamage" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="1498838339" result="Failed" start-time="2026-09-27T19:41:14.8101440Z" end-time="2026-09-27T19:41:14.8153180Z" duration="0.005174" asserts="2">
+            <failure>
+              <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.ConditionalEnhancementAndUnknownOnHitAreNotSummedIntoDamage() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 165
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.ConditionalEnhancementAndUnknownOnHitAreNotSummedIntoDamage() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 165
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1017" name="EmptyWornSlotIsNotANaturalHand" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.EmptyWornSlotIsNotANaturalHand" methodname="EmptyWornSlotIsNotANaturalHand" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="1491083764" result="Failed" start-time="2026-09-27T19:41:14.8153330Z" end-time="2026-09-27T19:41:14.8202090Z" duration="0.004877" asserts="2">
+            <failure>
+              <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.EmptyWornSlotIsNotANaturalHand() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 76
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.EmptyWornSlotIsNotANaturalHand() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 76
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1027" name="EquipmentContributionsReuseExistingItemDescriptions" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27T19:41:14.8202300Z" end-time="2026-09-27T19:41:14.8351910Z" duration="0.014962" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1024" name="EquipmentContributionsReuseExistingItemDescriptions(&quot;IronshodBoots&quot;,&quot;Speed: -5&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(&quot;IronshodBoots&quot;,&quot;Speed: -5&quot;)" methodname="EquipmentContributionsReuseExistingItemDescriptions" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="1205160571" result="Failed" start-time="2026-09-27T19:41:14.8202610Z" end-time="2026-09-27T19:41:14.8244600Z" duration="0.004199" asserts="2">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(String blueprint, String expected) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 155
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(String blueprint, String expected) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 155
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1025" name="EquipmentContributionsReuseExistingItemDescriptions(&quot;Buckler&quot;,&quot;AV: +1; DV: +1&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(&quot;Buckler&quot;,&quot;AV: +1; DV: +1&quot;)" methodname="EquipmentContributionsReuseExistingItemDescriptions" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="1473758878" result="Failed" start-time="2026-09-27T19:41:14.8244820Z" end-time="2026-09-27T19:41:14.8307120Z" duration="0.006231" asserts="2">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(String blueprint, String expected) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 155
+   at InvokeStub_EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(String blueprint, String expected) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 155
+   at InvokeStub_EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1026" name="EquipmentContributionsReuseExistingItemDescriptions(&quot;VenomDagger&quot;,&quot;50%&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(&quot;VenomDagger&quot;,&quot;50%&quot;)" methodname="EquipmentContributionsReuseExistingItemDescriptions" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="1713583062" result="Failed" start-time="2026-09-27T19:41:14.8307350Z" end-time="2026-09-27T19:41:14.8351720Z" duration="0.004438" asserts="2">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(String blueprint, String expected) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 155
+   at InvokeStub_EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(String blueprint, String expected) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 155
+   at InvokeStub_EquipmentComparisonTests.EquipmentContributionsReuseExistingItemDescriptions(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1022" name="IncompatibleCandidateKeepsItsFactsAndPlannerReason" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.IncompatibleCandidateKeepsItsFactsAndPlannerReason" methodname="IncompatibleCandidateKeepsItsFactsAndPlannerReason" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="437622835" result="Failed" start-time="2026-09-27T19:41:14.8352040Z" end-time="2026-09-27T19:41:14.8412410Z" duration="0.006038" asserts="2">
+            <failure>
+              <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.IncompatibleCandidateKeepsItsFactsAndPlannerReason() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 137
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.IncompatibleCandidateKeepsItsFactsAndPlannerReason() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 137
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1041" name="InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-27T19:41:14.8412650Z" end-time="2026-09-27T19:41:14.8617210Z" duration="0.020456" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1037" name="InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(&quot;foreign-current&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(&quot;foreign-current&quot;)" methodname="InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="787905412" result="Failed" start-time="2026-09-27T19:41:14.8413290Z" end-time="2026-09-27T19:41:14.8473360Z" duration="0.006007" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 215
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 215
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1038" name="InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(&quot;missing-current-cache&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(&quot;missing-current-cache&quot;)" methodname="InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="1705581327" result="Failed" start-time="2026-09-27T19:41:14.8473560Z" end-time="2026-09-27T19:41:14.8535450Z" duration="0.006190" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 215
+   at InvokeStub_EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 215
+   at InvokeStub_EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1039" name="InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(&quot;foreign-body&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(&quot;foreign-body&quot;)" methodname="InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="2101242205" result="Failed" start-time="2026-09-27T19:41:14.8535620Z" end-time="2026-09-27T19:41:14.8586880Z" duration="0.005127" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 215
+   at InvokeStub_EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 215
+   at InvokeStub_EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1040" name="InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(&quot;dead-actor&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(&quot;dead-actor&quot;)" methodname="InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="472414626" result="Failed" start-time="2026-09-27T19:41:14.8587040Z" end-time="2026-09-27T19:41:14.8617040Z" duration="0.002999" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 215
+   at InvokeStub_EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 215
+   at InvokeStub_EquipmentComparisonTests.InvalidCurrentEquipmentOrActorCannotProduceTrustworthyComparison(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1020" name="OneHandCandidateShowsBothReleasedSlotsOfCurrentTwoHandWeapon" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.OneHandCandidateShowsBothReleasedSlotsOfCurrentTwoHandWeapon" methodname="OneHandCandidateShowsBothReleasedSlotsOfCurrentTwoHandWeapon" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="178259785" result="Failed" start-time="2026-09-27T19:41:14.8617360Z" end-time="2026-09-27T19:41:14.8683580Z" duration="0.006623" asserts="4">
+            <failure>
+              <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.OneHandCandidateShowsBothReleasedSlotsOfCurrentTwoHandWeapon() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 117
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.OneHandCandidateShowsBothReleasedSlotsOfCurrentTwoHandWeapon() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 117
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1029" name="RuntimeNonWeaponEquippableStillShowsSlotsAndConditionalBonuses" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.RuntimeNonWeaponEquippableStillShowsSlotsAndConditionalBonuses" methodname="RuntimeNonWeaponEquippableStillShowsSlotsAndConditionalBonuses" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="1487260716" result="Failed" start-time="2026-09-27T19:41:14.8683710Z" end-time="2026-09-27T19:41:14.8730950Z" duration="0.004723" asserts="2">
+            <failure>
+              <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.RuntimeNonWeaponEquippableStillShowsSlotsAndConditionalBonuses() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 178
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.RuntimeNonWeaponEquippableStillShowsSlotsAndConditionalBonuses() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 178
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1036" name="StaleOrForgedCandidateIsRejected" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-27T19:41:14.8731090Z" end-time="2026-09-27T19:41:14.9022820Z" duration="0.029172" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1030" name="StaleOrForgedCandidateIsRejected(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(&quot;foreign-physics&quot;)" methodname="StaleOrForgedCandidateIsRejected" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="884137314" result="Failed" start-time="2026-09-27T19:41:14.8731280Z" end-time="2026-09-27T19:41:14.8776580Z" duration="0.004530" asserts="2">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 199
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 199
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1031" name="StaleOrForgedCandidateIsRejected(&quot;foreign-equippable&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(&quot;foreign-equippable&quot;)" methodname="StaleOrForgedCandidateIsRejected" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="744389655" result="Failed" start-time="2026-09-27T19:41:14.8776710Z" end-time="2026-09-27T19:41:14.8811690Z" duration="0.003498" asserts="2">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 199
+   at InvokeStub_EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 199
+   at InvokeStub_EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1032" name="StaleOrForgedCandidateIsRejected(&quot;foreign-weapon&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(&quot;foreign-weapon&quot;)" methodname="StaleOrForgedCandidateIsRejected" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="990371872" result="Failed" start-time="2026-09-27T19:41:14.8811840Z" end-time="2026-09-27T19:41:14.8870520Z" duration="0.005868" asserts="2">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 199
+   at InvokeStub_EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 199
+   at InvokeStub_EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1033" name="StaleOrForgedCandidateIsRejected(&quot;cache-only&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(&quot;cache-only&quot;)" methodname="StaleOrForgedCandidateIsRejected" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="1208051015" result="Failed" start-time="2026-09-27T19:41:14.8870940Z" end-time="2026-09-27T19:41:14.8914500Z" duration="0.004355" asserts="2">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 199
+   at InvokeStub_EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 199
+   at InvokeStub_EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1034" name="StaleOrForgedCandidateIsRejected(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(&quot;removed&quot;)" methodname="StaleOrForgedCandidateIsRejected" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="2008191852" result="Failed" start-time="2026-09-27T19:41:14.8914640Z" end-time="2026-09-27T19:41:14.8970540Z" duration="0.005590" asserts="2">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 199
+   at InvokeStub_EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 199
+   at InvokeStub_EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1035" name="StaleOrForgedCandidateIsRejected(&quot;zero-stack&quot;)" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(&quot;zero-stack&quot;)" methodname="StaleOrForgedCandidateIsRejected" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="1526074851" result="Failed" start-time="2026-09-27T19:41:14.8970940Z" end-time="2026-09-27T19:41:14.9022630Z" duration="0.005170" asserts="2">
+              <failure>
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 199
+   at InvokeStub_EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(String mutation) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 199
+   at InvokeStub_EquipmentComparisonTests.StaleOrForgedCandidateIsRejected(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1019" name="TwoHandCandidateListsBothDifferentDisplacedItems" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.TwoHandCandidateListsBothDifferentDisplacedItems" methodname="TwoHandCandidateListsBothDifferentDisplacedItems" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="257309785" result="Failed" start-time="2026-09-27T19:41:14.9022910Z" end-time="2026-09-27T19:41:14.9063010Z" duration="0.004010" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.TwoHandCandidateListsBothDifferentDisplacedItems() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 104
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.TwoHandCandidateListsBothDifferentDisplacedItems() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 104
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1016" name="WeaponUsesCurrentFieldsAndPerUnitWeight" fullname="CavesOfOoo.Tests.EquipmentComparisonTests.WeaponUsesCurrentFieldsAndPerUnitWeight" methodname="WeaponUsesCurrentFieldsAndPerUnitWeight" classname="CavesOfOoo.Tests.EquipmentComparisonTests" runstate="Runnable" seed="535524486" result="Failed" start-time="2026-09-27T19:41:14.9063320Z" end-time="2026-09-27T19:41:14.9110850Z" duration="0.004754" asserts="2">
+            <failure>
+              <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.WeaponUsesCurrentFieldsAndPerUnitWeight() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 63
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing factual equipment comparison service.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.EquipmentComparisonTests.Describe(Entity who, Entity item, String& text, String& reason) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 40
+   at CavesOfOoo.Tests.EquipmentComparisonTests.Text(Entity item) in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 51
+   at CavesOfOoo.Tests.EquipmentComparisonTests.WeaponUsesCurrentFieldsAndPerUnitWeight() in /tmp/coo-first-hour-m3/Assets/Tests/EditMode/Gameplay/Items/EquipmentComparisonTests.cs:line 63
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

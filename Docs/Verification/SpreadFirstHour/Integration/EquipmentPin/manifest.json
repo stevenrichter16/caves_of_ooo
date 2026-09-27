@@ -1,0 +1,38 @@
+{
+  "scope": "One existing fixture-only literal Kits manifest correction. Two intentionally equipped rare children added; no production/data/Assets/meta edits by this agent.",
+  "files": [
+    {
+      "source": "/tmp/coo-first-hour-equipment-pin/GameAuditEntityEquipmentContentTests.cs",
+      "target": "Assets/Tests/EditMode/Gameplay/Entities/GameAuditEntityEquipmentContentTests.cs",
+      "preimageSha256": "3cb76b49fc0a5fc25ec7ca3d7ce21a5db2ab6818913628b4ae4a441443ac53e8",
+      "sha256": "3a87691be7e2b06c875debc3ac691da60b04d7bb01a5a61a788f90b211f5549a"
+    }
+  ],
+  "test_names": [
+    "CavesOfOoo.Tests.GameAuditEntityEquipmentContentTests",
+    "CavesOfOoo.Tests.GameAuditEntityEquipmentAdversarialTests"
+  ],
+  "expectedCases": 93,
+  "evidence": {
+    "red": {
+      "xml": "Docs/Verification/SpreadFirstHour/Integration/EquipmentPin/red.xml.gz",
+      "sha256": "f6a8bf8ed20df5a2a2582b5472baf30ba0449c16399ff59d4abef133328e3c0b",
+      "total": 91,
+      "passed": 90,
+      "failed": 1,
+      "skipped": 0
+    },
+    "green": {
+      "xml": "Docs/Verification/SpreadFirstHour/Integration/EquipmentPin/green.xml.gz",
+      "sha256": "8869ede5b9e5dac1caa15e20dfda1aec255be6ee81c6a569c7458944271eb57c",
+      "total": 93,
+      "passed": 93,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "compile": "Actual runtime/EditMode reference compilation: 0 errors.",
+  "controls": "Existing exact all-Loadout blueprint set, derived Humanoid class checks, Villager/SummitSinger/Armorer no-Loadout controls and all other content/adversarial assertions unchanged. Two existing parameterized gear rows additionally assert exact counts/slots/Physics links.",
+  "runtimeBound": "Private Unity-free runner with existing hash/presentation adapters; actual native pending root.",
+  "peerReview": "standalone_verify reread clear: two literal rows extend actual-kit checks without weakening exact allowlist/nonselected controls."
+}

@@ -14,6 +14,8 @@ namespace CavesOfOoo.Core
     {
         public WorldMap WorldMap { get; private set; }
         public SettlementManager SettlementManager { get; private set; }
+        /// <summary>Bounded new-world rare source selection; restored saves never reroll it.</summary>
+        public SpreadRareEncounterPlan RareEncounters { get; internal set; }
         private System.Func<int> _turnProvider;
 
         public OverworldZoneManager(EntityFactory factory, int worldSeed = 0)
@@ -24,6 +26,7 @@ namespace CavesOfOoo.Core
             : base(factory, worldSeed)
         {
             WorldMap = WorldGenerator.Generate(WorldSeed);
+            RareEncounters = SpreadRareEncounterPlan.Create(this);
             SettlementManager = new SettlementManager(
                 currentTurnProvider: null,
                 poiResolver: ResolvePointOfInterestForSettlement,
@@ -147,7 +150,12 @@ namespace CavesOfOoo.Core
                 // authored map ships walkable, not that it ships
                 // finished.
                 case BiomeType.Spread:
-                    return CreateSpreadPipeline(tier, composed: SpreadCompositionPlan.IsWildernessZone(zoneID));
+                    var spread = CreateSpreadPipeline(tier, composed: SpreadCompositionPlan.IsWildernessZone(zoneID));
+                    if (RareEncounters?.Selects(this, zoneID) == true)
+                        foreach (var builder in spread.Builders)
+                            if (builder is PopulationBuilder population && population.Table?.Name == "SpreadTier1")
+                                population.SpreadEncounter = new SpreadRareEncounterBuilder(this);
+                    return spread;
                 case BiomeType.Sodden:
                     return CreateSoddenPipeline(tier, composed: SoddenCompositionPlan.IsWildernessZone(zoneID));
                 case BiomeType.Beating:

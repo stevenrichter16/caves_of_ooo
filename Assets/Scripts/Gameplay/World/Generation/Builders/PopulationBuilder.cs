@@ -16,6 +16,8 @@ namespace CavesOfOoo.Core
         public string Name => "PopulationBuilder";
         public int Priority => 4000;
         public PopulationTable Table;
+        /// <summary>Only ordinary selected Spread sources may replace their one hostile group.</summary>
+        public SpreadRareEncounterBuilder SpreadEncounter;
         /// <summary>Optional cold-generation habitat predicate. A rolled
         /// animal with no eligible unoccupied cell is skipped and diagnosed.</summary>
         public System.Func<string, Cell, bool> HabitatFilter;
@@ -28,6 +30,8 @@ namespace CavesOfOoo.Core
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
             if (Table == null) return true;
+            bool replaceSpread = Table.Name == "SpreadTier1" && SpreadEncounter != null
+                && SpreadEncounter.TryPlace(zone, factory);
 
             // Categorize open cells (passable and not already occupied by a solid entity).
             // BIOME-OVERHAUL A2: cells claimed by structure stamps
@@ -46,6 +50,7 @@ namespace CavesOfOoo.Core
             // Place each entity in a random open cell
             foreach (var blueprintName in toSpawn)
             {
+                if (replaceSpread && Table.Entries.Exists(e => e.EncounterGroup == "SpreadTier1Encounter" && e.BlueprintName == blueprintName)) continue;
                 if (openCells.Count == 0) break;
 
                 int idx;

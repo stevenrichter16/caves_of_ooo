@@ -1,0 +1,604 @@
+{
+  "runId": "58010485df1d45d7aa2fa5f5012b7041",
+  "complete": false,
+  "failures": 2,
+  "unexpectedErrors": 1,
+  "seconds": 1.9419503999999999,
+  "fatal": "System.InvalidOperationException: First-hour guidance precondition: finite currently safe route to actual owner 2077\n  at CavesOfOoo.Scenarios.Custom.FirstHourGuidanceNativePlayer.Require (System.Boolean value, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/FirstHourGuidanceNativePlayer.cs:327 \n  at CavesOfOoo.Scenarios.Custom.FirstHourGuidanceNativePlayer+<Approach>d__86.MoveNext () [0x000d3] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/FirstHourGuidanceNativePlayer.cs:245 \n  at CavesOfOoo.Scenarios.Custom.FirstHourGuidanceNativePlayer+<RunSafely>d__102.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/FirstHourGuidanceNativePlayer.cs:339 ",
+  "audit": [
+    "PASS ordinary_start",
+    "FAIL native_precondition_failed"
+  ],
+  "requiredChecks": [
+    "ordinary_start",
+    "warden_clearing_and_current_lead",
+    "glade_sign_current_lead",
+    "native_map_sill",
+    "ellun_current_marker_directions",
+    "accepted_existing_quest",
+    "native_marker_reached",
+    "authored_quest_reward",
+    "actual_affordable_gear_purchase",
+    "checkpoint_saved",
+    "real_unsaved_step",
+    "restored_exact_quest_and_owned_graph",
+    "completed_quest_no_repeat_reward",
+    "ordinary_finish"
+  ],
+  "keys": [
+    {
+      "sequence": 0,
+      "keys": "N",
+      "state": "Normal",
+      "tick": 10
+    },
+    {
+      "sequence": 1,
+      "keys": "Numpad1",
+      "state": "Normal",
+      "tick": 10
+    },
+    {
+      "sequence": 2,
+      "keys": "S",
+      "state": "Normal",
+      "tick": 20
+    }
+  ],
+  "observations": [
+    {
+      "phase": "ordinary_start",
+      "player": "2710",
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 10,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2711:Dagger:1:owner=2710|2712:HealingTonic:2:owner=2710|2713:DriedMeat:2:owner=2710|2714:WateringGrimoire:1:owner=2710|2715:CandyCarrotSeed:4:owner=2710|2716:EmberwheatSeed:2:owner=2710;slots=;body=;links=",
+      "ellun": null,
+      "marker": null,
+      "purchase": null,
+      "questComplete": false,
+      "markerFact": 0,
+      "message": "Starting a new game. Initial checkpoint saved."
+    },
+    {
+      "phase": "ground-step",
+      "player": "2710",
+      "zone": "Overworld.11.10.0",
+      "x": 39,
+      "y": 13,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 20,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2711:Dagger:1:owner=2710|2712:HealingTonic:2:owner=2710|2713:DriedMeat:2:owner=2710|2714:WateringGrimoire:1:owner=2710|2715:CandyCarrotSeed:4:owner=2710|2716:EmberwheatSeed:2:owner=2710;slots=;body=;links=",
+      "ellun": null,
+      "marker": null,
+      "purchase": null,
+      "questComplete": false,
+      "markerFact": 0,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "ground-step",
+      "player": "2710",
+      "zone": "Overworld.11.10.0",
+      "x": 39,
+      "y": 14,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 30,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2711:Dagger:1:owner=2710|2712:HealingTonic:2:owner=2710|2713:DriedMeat:2:owner=2710|2714:WateringGrimoire:1:owner=2710|2715:CandyCarrotSeed:4:owner=2710|2716:EmberwheatSeed:2:owner=2710;slots=;body=;links=",
+      "ellun": null,
+      "marker": null,
+      "purchase": null,
+      "questComplete": false,
+      "markerFact": 0,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "native_precondition_failed",
+      "player": "2710",
+      "zone": "Overworld.11.10.0",
+      "x": 39,
+      "y": 14,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 30,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2711:Dagger:1:owner=2710|2712:HealingTonic:2:owner=2710|2713:DriedMeat:2:owner=2710|2714:WateringGrimoire:1:owner=2710|2715:CandyCarrotSeed:4:owner=2710|2716:EmberwheatSeed:2:owner=2710;slots=;body=;links=",
+      "ellun": null,
+      "marker": null,
+      "purchase": null,
+      "questComplete": false,
+      "markerFact": 0,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    }
+  ],
+  "windows": [
+    {
+      "label": "ground-step",
+      "kind": "local",
+      "marker": "703f3727",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 10,
+      "afterTick": 20,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "703f3727",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790540129488,
+          "Turn": 10,
+          "ActorId": "2710",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"58010485df1d45d7aa2fa5f5012b7041\",\"label\":\"ground-step\"}"
+        },
+        {
+          "TraceId": "396a7326",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129493,
+          "Turn": 10,
+          "ActorId": "2710",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "50963b3b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129494,
+          "Turn": 20,
+          "ActorId": "2071",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"MarlbackScrabbler\",\"hp\":15}"
+        },
+        {
+          "TraceId": "df33fc6a",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129494,
+          "Turn": 20,
+          "ActorId": "2071",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"MarlbackScrabbler\",\"hp\":15}"
+        },
+        {
+          "TraceId": "baab1469",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129494,
+          "Turn": 20,
+          "ActorId": "2073",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"MarlbackGleaner\",\"hp\":20}"
+        },
+        {
+          "TraceId": "896212f3",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129494,
+          "Turn": 20,
+          "ActorId": "2073",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"MarlbackGleaner\",\"hp\":20}"
+        },
+        {
+          "TraceId": "790979dd",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129494,
+          "Turn": 20,
+          "ActorId": "2075",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"MarlbackScrabbler\",\"hp\":15}"
+        },
+        {
+          "TraceId": "27917b5b",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129494,
+          "Turn": 20,
+          "ActorId": "2075",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"MarlbackScrabbler\",\"hp\":15}"
+        },
+        {
+          "TraceId": "bc88315e",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129494,
+          "Turn": 20,
+          "ActorId": "2077",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Warden\",\"hp\":40}"
+        },
+        {
+          "TraceId": "33c40030",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129494,
+          "Turn": 20,
+          "ActorId": "2077",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Warden\",\"hp\":40}"
+        },
+        {
+          "TraceId": "88781bae",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129494,
+          "Turn": 20,
+          "ActorId": "2085",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "c78fe150",
+          "Category": "damage",
+          "Kind": "HitRoll",
+          "TimestampUnixMs": 1790540129499,
+          "Turn": 20,
+          "ActorId": "2085",
+          "TargetId": "2071",
+          "CauseTraceId": "9dfab80e",
+          "PayloadJson": "{\"weapon\":\"fist\",\"hitRoll\":3,\"agilityMod\":-3,\"weaponHitBonus\":0,\"skillHitBonus\":0,\"totalHit\":0,\"dv\":6,\"naturalTwenty\":false,\"landed\":false}"
+        },
+        {
+          "TraceId": "097f1e61",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129503,
+          "Turn": 20,
+          "ActorId": "2085",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "ac63f65b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129503,
+          "Turn": 20,
+          "ActorId": "2090",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"PetDog\",\"hp\":15}"
+        },
+        {
+          "TraceId": "efc69e40",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129504,
+          "Turn": 20,
+          "ActorId": "2090",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"PetDog\",\"hp\":15}"
+        },
+        {
+          "TraceId": "ca11505f",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129504,
+          "Turn": 20,
+          "ActorId": "2710",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "label": "ground-step",
+      "kind": "local",
+      "marker": "144908fe",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 20,
+      "afterTick": 30,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "144908fe",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790540129695,
+          "Turn": 20,
+          "ActorId": "2710",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"58010485df1d45d7aa2fa5f5012b7041\",\"label\":\"ground-step\"}"
+        },
+        {
+          "TraceId": "b3f3770c",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129699,
+          "Turn": 20,
+          "ActorId": "2710",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "046a21b6",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129699,
+          "Turn": 30,
+          "ActorId": "2071",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"MarlbackScrabbler\",\"hp\":15}"
+        },
+        {
+          "TraceId": "a1f731dc",
+          "Category": "damage",
+          "Kind": "HitRoll",
+          "TimestampUnixMs": 1790540129699,
+          "Turn": 30,
+          "ActorId": "2071",
+          "TargetId": "2085",
+          "CauseTraceId": "d07e94c3",
+          "PayloadJson": "{\"weapon\":\"cudgel\",\"hitRoll\":17,\"agilityMod\":-1,\"weaponHitBonus\":0,\"skillHitBonus\":0,\"totalHit\":16,\"dv\":4,\"naturalTwenty\":false,\"landed\":true}"
+        },
+        {
+          "TraceId": "334f04ec",
+          "Category": "damage",
+          "Kind": "Penetration",
+          "TimestampUnixMs": 1790540129700,
+          "Turn": 30,
+          "ActorId": "2071",
+          "TargetId": "2085",
+          "CauseTraceId": "d07e94c3",
+          "PayloadJson": "{\"weapon\":\"cudgel\",\"av\":1,\"weaponPenBonus\":2,\"strMod\":0,\"skillPenBonus\":0,\"critPenBonus\":0,\"totalBonus\":2,\"maxBonus\":52,\"naturalTwenty\":false,\"penetrations\":2,\"autoPenForced\":false}"
+        },
+        {
+          "TraceId": "369b5340",
+          "Category": "damage",
+          "Kind": "DamageRoll",
+          "TimestampUnixMs": 1790540129702,
+          "Turn": 30,
+          "ActorId": "2071",
+          "TargetId": "2085",
+          "CauseTraceId": "d07e94c3",
+          "PayloadJson": "{\"weapon\":\"cudgel\",\"damageDice\":\"1d4+2\",\"penetrationsRolled\":2,\"baseDamageTotal\":9,\"naturalTwenty\":false,\"attributes\":\"Melee,Strength,Bludgeoning,Cudgel\"}"
+        },
+        {
+          "TraceId": "4916bbbf",
+          "Category": "damage",
+          "Kind": "DamageDealt",
+          "TimestampUnixMs": 1790540129704,
+          "Turn": 30,
+          "ActorId": "2071",
+          "TargetId": "2085",
+          "CauseTraceId": "d07e94c3",
+          "PayloadJson": "{\"amount\":9,\"hpAfter\":11,\"lethal\":false,\"attributes\":[\"Melee\",\"Strength\",\"Bludgeoning\",\"Cudgel\"]}"
+        },
+        {
+          "TraceId": "3e27a201",
+          "Category": "damage",
+          "Kind": "ClassEffectRolled",
+          "TimestampUnixMs": 1790540129705,
+          "Turn": 30,
+          "ActorId": "2071",
+          "TargetId": "2085",
+          "CauseTraceId": "d07e94c3",
+          "PayloadJson": "{\"effect\":\"Stunned\",\"roll\":98,\"chancePercent\":15,\"fired\":false}"
+        },
+        {
+          "TraceId": "534a6ebc",
+          "Category": "damage",
+          "Kind": "Dismemberment",
+          "TimestampUnixMs": 1790540129707,
+          "Turn": 30,
+          "ActorId": null,
+          "TargetId": "2085",
+          "CauseTraceId": "d07e94c3",
+          "PayloadJson": "{\"bodyPart\":\"left arm\",\"outcome\":\"roll_failed\",\"damageRatio\":0.45,\"threshold\":0.25,\"chance\":14,\"roll\":78,\"fired\":false}"
+        },
+        {
+          "TraceId": "cb74ad4d",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129708,
+          "Turn": 30,
+          "ActorId": "2071",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"MarlbackScrabbler\",\"hp\":15}"
+        },
+        {
+          "TraceId": "7f23a7ab",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129708,
+          "Turn": 30,
+          "ActorId": "2073",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"MarlbackGleaner\",\"hp\":20}"
+        },
+        {
+          "TraceId": "0d963412",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129709,
+          "Turn": 30,
+          "ActorId": "2073",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"MarlbackGleaner\",\"hp\":20}"
+        },
+        {
+          "TraceId": "34f05b08",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129709,
+          "Turn": 30,
+          "ActorId": "2075",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"MarlbackScrabbler\",\"hp\":15}"
+        },
+        {
+          "TraceId": "558f3909",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129709,
+          "Turn": 30,
+          "ActorId": "2075",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"MarlbackScrabbler\",\"hp\":15}"
+        },
+        {
+          "TraceId": "9627d115",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129709,
+          "Turn": 30,
+          "ActorId": "2077",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Warden\",\"hp\":40}"
+        },
+        {
+          "TraceId": "37f100c9",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129709,
+          "Turn": 30,
+          "ActorId": "2077",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Warden\",\"hp\":40}"
+        },
+        {
+          "TraceId": "482f6323",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129709,
+          "Turn": 30,
+          "ActorId": "2085",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":11}"
+        },
+        {
+          "TraceId": "549b3cff",
+          "Category": "damage",
+          "Kind": "HitRoll",
+          "TimestampUnixMs": 1790540129709,
+          "Turn": 30,
+          "ActorId": "2085",
+          "TargetId": "2071",
+          "CauseTraceId": "5fbee90f",
+          "PayloadJson": "{\"weapon\":\"fist\",\"hitRoll\":10,\"agilityMod\":-3,\"weaponHitBonus\":0,\"skillHitBonus\":0,\"totalHit\":7,\"dv\":6,\"naturalTwenty\":false,\"landed\":true}"
+        },
+        {
+          "TraceId": "e092d05c",
+          "Category": "damage",
+          "Kind": "Penetration",
+          "TimestampUnixMs": 1790540129709,
+          "Turn": 30,
+          "ActorId": "2085",
+          "TargetId": "2071",
+          "CauseTraceId": "5fbee90f",
+          "PayloadJson": "{\"weapon\":\"fist\",\"av\":2,\"weaponPenBonus\":0,\"strMod\":-1,\"skillPenBonus\":0,\"critPenBonus\":0,\"totalBonus\":-1,\"maxBonus\":50,\"naturalTwenty\":false,\"penetrations\":0,\"autoPenForced\":false}"
+        },
+        {
+          "TraceId": "c07445b2",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129709,
+          "Turn": 30,
+          "ActorId": "2085",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":11}"
+        },
+        {
+          "TraceId": "8dfe13f9",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129709,
+          "Turn": 30,
+          "ActorId": "2090",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"PetDog\",\"hp\":15}"
+        },
+        {
+          "TraceId": "67563d48",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790540129710,
+          "Turn": 30,
+          "ActorId": "2090",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"PetDog\",\"hp\":15}"
+        },
+        {
+          "TraceId": "aa214bdc",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790540129710,
+          "Turn": 30,
+          "ActorId": "2710",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "NO SAFE ROUTE Overworld.11.10.0@39,14 threats=2071@40,20;2073@41,20;2075@21,3"
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/SpreadFirstHour/M1/Native/58010485df1d45d7aa2fa5f5012b7041/01-ordinary-glade-start.png"
+  ],
+  "localInputs": 2,
+  "mapSteps": 0,
+  "completedPlayerTurns": 2,
+  "pureClock": 0,
+  "checkpointHash": null,
+  "canVerify": "One ordinary seed1 actor: actual glade Warden/sign current-map lead, real worldmap/ground keys to Sill, current Ellun marker direction, original accept/step/report/reward, current affordable merchant gear, actual F5/paid-step/F6 replacement source/quest/ownership graph. Typed native keys are released between frames; no direct gameplay actions.",
+  "cannotVerify": "Not all seeds, fallback starts, campaign balance, rare encounters or guaranteed services. Conservative threat/hazard selection may refuse playable routes. No entities, stock, HP, currency, progression, AI or RNG edits; no travel transfers. Ordinary earned level-up is permitted. Screenshots need actual viewing; stops leave named gates unmet."
+}

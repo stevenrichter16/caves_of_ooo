@@ -195,6 +195,8 @@ namespace CavesOfOoo.Rendering
         private static readonly Dictionary<string, string> CorpseFamilies = new Dictionary<string, string>(StringComparer.Ordinal)
         {
             { "MarlbackScrabbler", "marlback" },
+            { "SpreadHurdleCutter", "marlback" },
+            { "SpreadDitchMate", "marlback" },
             { "Player", "humanoid" },
             { "MarlbackGleaner", "marlback" },
             { "MarlbackTunnelguard", "marlback" },
@@ -231,6 +233,7 @@ namespace CavesOfOoo.Rendering
             { "SandWurm", "serpent" },
             { "GiantSpider", "spider" },
             { "Viper", "serpent" },
+            { "SpreadLatchcoil", "serpent" },
             { "JungleApe", "ape" },
             { "RuinScavenger", "humanoid" },
             { "SkeletalSentry", "skeleton" },

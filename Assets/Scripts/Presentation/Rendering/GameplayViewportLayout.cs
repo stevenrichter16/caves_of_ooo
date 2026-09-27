@@ -165,8 +165,9 @@ namespace CavesOfOoo.Rendering
             float worldBottom = camera.transform.position.y - halfH;
             float charWidthWorld = 0.5f * scale;
             int startCharX = Mathf.RoundToInt(worldLeft / Mathf.Max(0.001f, charWidthWorld));
-            int topTextY = Mathf.FloorToInt((worldTop - 0.5f * scale) / Mathf.Max(0.001f, scale));
-            int visibleRowCount = Mathf.Max(1, Mathf.FloorToInt((worldTop - worldBottom) / Mathf.Max(0.001f, scale)));
+            // Reserve one text row at each edge; glyph bounds otherwise touch the top pixel.
+            int topTextY = Mathf.FloorToInt((worldTop - 0.5f * scale) / Mathf.Max(0.001f, scale)) - 1;
+            int visibleRowCount = Mathf.Max(1, Mathf.FloorToInt((worldTop - worldBottom) / Mathf.Max(0.001f, scale)) - 2);
 
             return new SidebarCameraMetrics(
                 scale,

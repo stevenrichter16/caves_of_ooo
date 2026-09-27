@@ -165,8 +165,9 @@ namespace CavesOfOoo.Rendering
             int contentX = startX + 2;
             int contentWidth = Mathf.Max(1, width - 3);
 
-            DrawBackground(startX, bottomY, width, rows, flashActive, flashT);
-            DrawDivider(startX, bottomY, rows);
+            // Background/divider still reach the screen edges; only text uses safe rows.
+            DrawBackground(startX, bottomY - 1, width, rows + 2, flashActive, flashT);
+            DrawDivider(startX, bottomY - 1, rows + 2);
 
             int y = topY;
             DrawSectionHeader(startX, contentX, y, contentWidth, "VITALS", QudColorParser.White);

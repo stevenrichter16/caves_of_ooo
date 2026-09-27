@@ -121,8 +121,25 @@ When an item stalls, distinguish a normal-play defect from a test-route inconven
 
 This prioritization supersedes treating the unfinished pet keyboard route as a prerequisite for higher-impact work. BitLocker, lore restrictions and old-save boundaries are unchanged.
 
-Final integrated checkpoint: actual Unity EditMode **20,068/20,068 GREEN**,
+Pre-first-hour integrated checkpoint: actual Unity EditMode **20,068/20,068 GREEN**,
 zero failures/skips,904.367seconds, exact editor/save/input restoration and
 zero changes among5,687 recorded inputs. See
 `Verification/DensityCompletion/Integration/PostContent/`. This confirms the
 integrated code while retaining the live-route and visual limits above.
+
+## Spread first-hour implementation — 27 September
+
+The next authorized slice is tracked in `SPREAD-FIRST-HOUR-PLAN.md` §11 and
+executes `SPREAD-FIRST-HOUR-IMPLEMENTATION-PROMPT.md`. It adds truthful current
+glade/quest guidance, complete world/action readers, factual equipment comparison,
+and bounded original regional encounter variety in the approved Spread style.
+Existing ambushers also retain their sleeping/awake lifecycle through saves.
+
+The new evidence lives in `Verification/SpreadFirstHour/`; the20,068-pass result
+above is only the preceding baseline. Final unfiltered first-hour integration
+passes20,406/20,406 in actual Unity, zero failures/skips, zero recorded input drift
+and exact editor/save/input restoration. The verified scope accompanies this commit. The drain-slime proposal failed its native acid admission gate and
+is deferred without global damage changes. A bounded ordinary route reached Sill
+and the actual stump objective, but the observer pathfinder could not return to
+the moving quest giver; it does not establish the later reward/purchase/save loop.
+The raw failure and source-confirmed quest progression are retained separately.
