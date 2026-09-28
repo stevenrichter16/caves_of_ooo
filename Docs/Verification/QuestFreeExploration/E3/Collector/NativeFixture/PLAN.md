@@ -1,0 +1,5 @@
+# F6 native callback fixture correction
+
+Native156 integration had151PASS/5FAIL, all five callback cases stopped at a false setup assumption: successful collector source plus unrelated normally stocked companion. Frozen native seeds1/64/1729 actually realize1/3/2 collector sources, all with zero remaining Magpies; companion-bearing rows legitimately lack loose goods or home. No gameplay failure is established.
+
+Retain natural three-seed conservation and generated full-save trip unchanged. Unchanged/home-stock/cargo callbacks require only a natural actual configured collector. Ambient-stock/position callbacks explicitly use a fixture-local SpreadTier1 table (three Magpies, one Hatchet) through the same actual PopulationBuilder substitution/receipts, ordinary TradeStock/Container builders and real composer/final acceptance. The table is not a global registry or production edit; no fake receipt, direct actor/goods injection or new seed is used. Source selection remains bounded by the original seed64 frozen assignment set. Assert two real remaining Magpies and actual stocked owned gear before mutation. Native test execution remains gate.

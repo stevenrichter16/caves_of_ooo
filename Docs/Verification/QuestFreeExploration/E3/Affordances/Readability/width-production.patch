@@ -1,0 +1,11 @@
+--- /tmp/coo-questfree-implementation/collector-native/cue-pixels/width-fix/WorldAffordanceRenderer.cs.before.txt	2026-09-28 00:12:51
++++ /tmp/coo-questfree-implementation/collector-native/cue-pixels/width-fix/WorldAffordanceRenderer.cs	2026-09-28 00:12:51
+@@ -27,7 +27,7 @@
+         {
+             var go=new GameObject(name){hideFlags=HideFlags.DontSave};go.transform.SetParent(root.transform,false);go.layer=layer;
+             var line=go.AddComponent<LineRenderer>();line.sharedMaterial=material;line.positionCount=3;
+-            line.useWorldSpace=true;line.loop=false;line.widthMultiplier=.035f;line.numCapVertices=0;line.numCornerVertices=0;line.sortingOrder=7;
++            line.useWorldSpace=true;line.loop=false;line.widthMultiplier=.08f;line.numCapVertices=0;line.numCornerVertices=0;line.sortingOrder=7;
+             line.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;line.receiveShadows=false;
+             line.startColor=line.endColor=new Color(.48f,.65f,.60f,.85f);return line;
+         }

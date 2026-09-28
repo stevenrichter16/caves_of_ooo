@@ -1,0 +1,170 @@
+--- Assets/Scripts/Presentation/Input/InputHandler.cs
++++ Assets/Scripts/Presentation/Input/InputHandler.cs
+@@ -301,8 +301,27 @@
+         public bool TryActivateBootMenu(bool hasSave)
+             => _bootMenuController.TryActivate(hasSave, MessageLog.Add);
+ 
++        /// <summary>Current menu opportunity only. No action gathering, input or simulation mutation.</summary>
++        public WorldAffordance? QueryWorldAffordance(Zone zone, Entity actor)
++        {
++            if (!isActiveAndEnabled || actor != PlayerEntity || zone != CurrentZone || WorldActionMenuUI == null
++                || TurnManager == null || !TurnManager.WaitingForInput || TurnManager.CurrentActor != actor
++                || _bootMenuController.IsActive || _deathScreenController.IsActive || SpellFxSettingsPanel.IsOpen
++                || (ZoneRenderer != null && ZoneRenderer.Paused)) return null;
++            if (_inputState == InputState.Normal) return WorldAffordanceQuery.Find(actor, zone, false, 0, 0);
++            if (_inputState == InputState.LookMode && _worldCursorState.Active && _worldCursorState.Zone == zone)
++                return WorldAffordanceQuery.Find(actor, zone, true, _worldCursorState.X, _worldCursorState.Y);
++            return null;
++        }
++
++        private void OnDisable()
++        {
++            if (ZoneRenderer != null) ZoneRenderer.ClearAffordanceInput(this);
++        }
++
+         private void Update()
+         {
++            if (ZoneRenderer != null) ZoneRenderer.SetAffordanceInput(this);
+             if (SpellFxSettingsPanel.IsOpen) return;
+             using (PerformanceMarkers.Input.Update.Auto())
+             {
+--- Assets/Scripts/Presentation/Rendering/SidebarRenderer.cs
++++ Assets/Scripts/Presentation/Rendering/SidebarRenderer.cs
+@@ -125,7 +125,7 @@
+             }
+         }
+ 
+-        public void Render(SidebarSnapshot snapshot, Camera camera, int sidebarWidthChars, bool flashActive, float flashT)
++        public void Render(SidebarSnapshot snapshot, Camera camera, int sidebarWidthChars, bool flashActive, float flashT, string actionHint = null)
+         {
+             using (PerformanceMarkers.Ui.SidebarRender.Auto())
+             {
+@@ -137,7 +137,7 @@
+                 // frame. Saves ~220ms / frame in the steady state because
+                 // the full re-tile-the-whole-sidebar pass below is the
+                 // single most expensive thing in LateUpdate.
+-                int fingerprint = ComputeSnapshotFingerprint(snapshot);
++                int fingerprint = unchecked(ComputeSnapshotFingerprint(snapshot) * 31 + (actionHint?.GetHashCode() ?? 0));
+                 bool inputsUnchanged = !_needsRedraw
+                     && fingerprint == _lastSnapshotFingerprint
+                     && Mathf.Approximately(camera.aspect, _lastCameraAspect)
+@@ -211,7 +211,7 @@
+                 // so the extra ceiling costs nothing on effect-free targets.
+                 int focusCeiling = inspectorActive ? 14 : 11;
+                 int focusMaxLines = Mathf.Clamp(remainingAfterFocusHeader - 4, 2, focusCeiling);
+-                List<string> focusLines = SidebarTextFormatter.FormatFocus(snapshot?.FocusSnapshot, contentWidth, focusMaxLines);
++                List<string> focusLines = SidebarTextFormatter.FormatFocus(snapshot?.FocusSnapshot, contentWidth, focusMaxLines, actionHint);
+                 for (int i = 0; i < focusLines.Count && y >= bottomY; i++, y--)
+                 {
+                     Color color = i == 0
+--- Assets/Scripts/Presentation/Rendering/SidebarTextFormatter.cs
++++ Assets/Scripts/Presentation/Rendering/SidebarTextFormatter.cs
+@@ -80,14 +80,18 @@
+         private const int FocusGoalStackLineCap = 8;
+ 
+         public static List<string> FormatFocus(LookSnapshot snapshot, int width, int maxLines)
++            => FormatFocus(snapshot, width, maxLines, null);
++
++        public static List<string> FormatFocus(LookSnapshot snapshot, int width, int maxLines, string actionHint)
+         {
+             int safeWidth = Math.Max(1, width);
+             int safeMaxLines = Math.Max(1, maxLines);
+             var lines = new List<string>(safeMaxLines);
++            if (!string.IsNullOrEmpty(actionHint)) AppendWrapped(lines, actionHint, safeWidth, safeMaxLines);
+ 
+             if (snapshot == null)
+             {
+-                lines.Add("No focus");
++                if (lines.Count < safeMaxLines) lines.Add("No focus");
+                 return lines;
+             }
+ 
+--- Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
++++ Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
+@@ -132,6 +132,10 @@
+         private CampfireEmberRenderer _campfireEmberRenderer;
+         private AmbientMotesRenderer _ambientMotesRenderer;     // Round 5
+         private WorldCursorRenderer _worldCursorRenderer;
++        private WorldAffordanceRenderer _worldAffordanceRenderer;
++        private InputHandler _affordanceInput;
++        private WorldAffordance? _worldAffordance;
++
+         private GameplaySidebarRenderer _sidebarRenderer;
+         private GameplayHotbarRenderer _hotbarRenderer;
+ 
+@@ -502,6 +506,7 @@
+             ConfigureHotbarTilemapRenderer(hotbarRenderer, 1);
+ 
+             _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
++            _worldAffordanceRenderer = new WorldAffordanceRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
+             _sidebarRenderer = new GameplaySidebarRenderer(_sidebarTilemap, _sidebarBgTilemap, _sidebarGridTransform, MessageReferenceZoom);
+             _hotbarRenderer = new GameplayHotbarRenderer(_hotbarTilemap, _hotbarBgTilemap);
+ 
+@@ -551,6 +556,7 @@
+ 
+         private void OnDisable()
+         {
++            ClearWorldAffordance();
+             _worldFxCoordinator?.CancelAll();
+             _fellingScenePresenter?.SetPresentationVisible(false);
+             _fellingDressingPresenter?.SetPresentationVisible(false);
+@@ -563,6 +569,7 @@
+ 
+         private void OnDestroy()
+         {
++            _worldAffordanceRenderer?.Dispose(); _worldAffordanceRenderer = null; _affordanceInput = null;
+             _fellingScenePresenter?.Unbind();
+             _fellingDressingPresenter?.Unbind();
+             _morrowfastScenePresenter?.Unbind();
+@@ -592,6 +599,7 @@
+             // the Zone constructor, so a cached-but-inactive zone never
+             // dirties cells in the one actually on screen.
+             ZoneTileStateSystem.BindRenderHook(zone);
++            ClearWorldAffordance();
+             CurrentZone = zone;
+             _fellingScenePresenter?.Bind(zone);
+             _fellingDressingPresenter?.Bind(zone);
+@@ -809,6 +817,7 @@
+ 
+                 if (Paused)
+                 {
++                    ClearWorldAffordance();
+                     _fellingScenePresenter?.SetPresentationVisible(false);
+                     _fellingDressingPresenter?.SetPresentationVisible(false);
+                     _morrowfastScenePresenter?.SetPresentationVisible(false);
+@@ -959,6 +968,7 @@
+                 using (PerformanceMarkers.Zone.UpdateAmbientAnimations.Auto())
+                     UpdateAmbientAnimations(Time.deltaTime);
+ 
++                RefreshWorldAffordance();
+                 RenderSidebar(cam);
+                 RenderHotbar();
+ 
+@@ -1536,7 +1546,7 @@
+                 SidebarSnapshot snapshot = SidebarStateBuilder.Build(
+                     PlayerEntity, CurrentZone, _currentLookSnapshot,
+                     showThoughts: ShowThoughtLog);
+-                _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT);
++                _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT, _worldAffordance?.Hint);
+             }
+         }
+ 
+@@ -1665,6 +1675,18 @@
+         {
+             RenderCell(oldX, oldY);
+             RenderCell(newX, newY);
++        }
++
++        public void SetAffordanceInput(InputHandler input) { _affordanceInput = input; }
++        public void ClearAffordanceInput(InputHandler input)
++        { if (_affordanceInput == input) { _affordanceInput = null; ClearWorldAffordance(); } }
++        private void ClearWorldAffordance()
++        { _worldAffordance = null; _worldAffordanceRenderer?.Clear(); }
++        private void RefreshWorldAffordance()
++        {
++            _worldAffordance = _affordanceInput != null && _affordanceInput.ZoneRenderer == this
++                ? _affordanceInput.QueryWorldAffordance(CurrentZone, PlayerEntity) : null;
++            _worldAffordanceRenderer?.Refresh(PlayerEntity, CurrentZone, _worldAffordance);
+         }
+ 
+         public void SetWorldCursorState(WorldCursorState state, Entity player)

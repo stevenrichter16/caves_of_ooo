@@ -1,0 +1,139 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 14,
+    "passed": 8,
+    "failed": 6,
+    "skipped": 0,
+    "durationSeconds": 0.0728681,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "BothModesRefuseBeforeInputOrWorldSetupWithoutActualSaveIsolation(\"Initialize\")",
+      "fullName": "CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.BothModesRefuseBeforeInputOrWorldSetupWithoutActualSaveIsolation(\"Initialize\")",
+      "state": "Passed",
+      "durationSeconds": 0.0120879,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "BothModesRefuseBeforeInputOrWorldSetupWithoutActualSaveIsolation(\"InitializeCollector\")",
+      "fullName": "CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.BothModesRefuseBeforeInputOrWorldSetupWithoutActualSaveIsolation(\"InitializeCollector\")",
+      "state": "Passed",
+      "durationSeconds": 0.0001785,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "BothModesRefuseBeforeInputOrWorldSetupWithoutActualSaveIsolation(\"InitializeAffordances\")",
+      "fullName": "CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.BothModesRefuseBeforeInputOrWorldSetupWithoutActualSaveIsolation(\"InitializeAffordances\")",
+      "state": "Passed",
+      "durationSeconds": 8.85E-05,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExplicitModeHasAnOwnedNoArgumentLauncherWithoutReplacingDefault(\"Launch\")",
+      "fullName": "CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.ExplicitModeHasAnOwnedNoArgumentLauncherWithoutReplacingDefault(\"Launch\")",
+      "state": "Passed",
+      "durationSeconds": 0.0007941,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExplicitModeHasAnOwnedNoArgumentLauncherWithoutReplacingDefault(\"LaunchCollector\")",
+      "fullName": "CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.ExplicitModeHasAnOwnedNoArgumentLauncherWithoutReplacingDefault(\"LaunchCollector\")",
+      "state": "Passed",
+      "durationSeconds": 0.000151,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExplicitModeHasAnOwnedNoArgumentLauncherWithoutReplacingDefault(\"LaunchAffordances\")",
+      "fullName": "CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.ExplicitModeHasAnOwnedNoArgumentLauncherWithoutReplacingDefault(\"LaunchAffordances\")",
+      "state": "Passed",
+      "durationSeconds": 0.0001347,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualExchangeHasItsOwnNoArgumentLauncher",
+      "fullName": "CavesOfOoo.Tests.QuestFreeExchangeNativeModeTests.ActualExchangeHasItsOwnNoArgumentLauncher",
+      "state": "Failed",
+      "durationSeconds": 0.0024082,
+      "message": "  Missing bounded real-entry exchange mode\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeExchangeNativeModeTests.ActualExchangeHasItsOwnNoArgumentLauncher () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeExchangeNativeModeTests.cs:21\n",
+      "output": ""
+    },
+    {
+      "name": "BootstrapSeedIsSelectedOnlyForTheExplicitMode(\"exchange\",3)",
+      "fullName": "CavesOfOoo.Tests.QuestFreeExchangeNativeModeTests.BootstrapSeedIsSelectedOnlyForTheExplicitMode(\"exchange\",3)",
+      "state": "Failed",
+      "durationSeconds": 0.0005508,
+      "message": "  Missing launcher seed selector used before bootstrap\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeExchangeNativeModeTests.BootstrapSeedIsSelectedOnlyForTheExplicitMode (System.String mode, System.Int32 expected) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeExchangeNativeModeTests.cs:27\n",
+      "output": ""
+    },
+    {
+      "name": "BootstrapSeedIsSelectedOnlyForTheExplicitMode(\"states\",64)",
+      "fullName": "CavesOfOoo.Tests.QuestFreeExchangeNativeModeTests.BootstrapSeedIsSelectedOnlyForTheExplicitMode(\"states\",64)",
+      "state": "Failed",
+      "durationSeconds": 0.0003638,
+      "message": "  Missing launcher seed selector used before bootstrap\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeExchangeNativeModeTests.BootstrapSeedIsSelectedOnlyForTheExplicitMode (System.String mode, System.Int32 expected) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeExchangeNativeModeTests.cs:27\n",
+      "output": ""
+    },
+    {
+      "name": "BootstrapSeedIsSelectedOnlyForTheExplicitMode(\"collector\",64)",
+      "fullName": "CavesOfOoo.Tests.QuestFreeExchangeNativeModeTests.BootstrapSeedIsSelectedOnlyForTheExplicitMode(\"collector\",64)",
+      "state": "Failed",
+      "durationSeconds": 0.0004496,
+      "message": "  Missing launcher seed selector used before bootstrap\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeExchangeNativeModeTests.BootstrapSeedIsSelectedOnlyForTheExplicitMode (System.String mode, System.Int32 expected) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeExchangeNativeModeTests.cs:27\n",
+      "output": ""
+    },
+    {
+      "name": "BootstrapSeedIsSelectedOnlyForTheExplicitMode(\"affordances\",64)",
+      "fullName": "CavesOfOoo.Tests.QuestFreeExchangeNativeModeTests.BootstrapSeedIsSelectedOnlyForTheExplicitMode(\"affordances\",64)",
+      "state": "Failed",
+      "durationSeconds": 0.0003532,
+      "message": "  Missing launcher seed selector used before bootstrap\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeExchangeNativeModeTests.BootstrapSeedIsSelectedOnlyForTheExplicitMode (System.String mode, System.Int32 expected) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeExchangeNativeModeTests.cs:27\n",
+      "output": ""
+    },
+    {
+      "name": "ExchangeRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+      "fullName": "CavesOfOoo.Tests.QuestFreeExchangeNativeModeTests.ExchangeRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+      "state": "Failed",
+      "durationSeconds": 0.000597,
+      "message": "  Missing explicit isolated exchange initializer\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeExchangeNativeModeTests.ExchangeRefusesWithoutSaveIsolationBeforeChangingInputOrWorld () [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeExchangeNativeModeTests.cs:38\n",
+      "output": ""
+    },
+    {
+      "name": "NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene",
+      "fullName": "CavesOfOoo.Tests.QuestFreeSpreadStateNativeRestorationTests.NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene",
+      "state": "Passed",
+      "durationSeconds": 0.0016445,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles",
+      "fullName": "CavesOfOoo.Tests.QuestFreeSpreadStateNativeRestorationTests.RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles",
+      "state": "Passed",
+      "durationSeconds": 0.0003745,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    }
+  ]
+}

@@ -1,0 +1,1168 @@
+{
+  "runId": "3dc45efa833d4801a089292e24a6fd97",
+  "seed": 3,
+  "requestedSeed": 3,
+  "mode": "exchange",
+  "finished": true,
+  "complete": true,
+  "failures": 0,
+  "fatal": null,
+  "seconds": 7.0418848,
+  "paidInputs": 11,
+  "checks": [
+    {
+      "label": "ordinary_fresh_opted_in_world",
+      "pass": true
+    },
+    {
+      "label": "fixed_actual_winner_metadata",
+      "pass": true
+    },
+    {
+      "label": "native_map_arrival_same_player",
+      "pass": true
+    },
+    {
+      "label": "actual_one_shot_entry_owner_and_f8_commit",
+      "pass": true
+    },
+    {
+      "label": "actual_current_route_dialogue",
+      "pass": true
+    },
+    {
+      "label": "native_purchase_exact_identity_units_purses",
+      "pass": true
+    },
+    {
+      "label": "return_preserves_same_source_and_consumed_stock",
+      "pass": true
+    },
+    {
+      "label": "bounded_exchange_finish",
+      "pass": true
+    }
+  ],
+  "observations": [
+    {
+      "phase": "fixed-source-before-travel",
+      "zone": "Overworld.11.7.0",
+      "initiallyCached": false,
+      "originalCount": 0,
+      "boundary": "Metadata only. Observer does not GetZone or invoke OnZoneEntered; normal map descent owns generation and entry."
+    },
+    {
+      "phase": "outward-map-ascent",
+      "kind": "local",
+      "beforeTick": 10,
+      "afterTick": 20,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "41d1824a",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602820908,
+          "Turn": 10,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"outward-map-ascent\"}"
+        },
+        {
+          "TraceId": "7350a67c",
+          "Category": "worldmap",
+          "Kind": "Ascended",
+          "TimestampUnixMs": 1790602820953,
+          "Turn": 10,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromZoneID\":\"Overworld.11.10.0\",\"fromZoneX\":40,\"fromZoneY\":12,\"toWorldX\":11,\"toWorldY\":10,\"toZoneCellX\":41,\"toZoneCellY\":13}"
+        },
+        {
+          "TraceId": "b142b5f5",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602821249,
+          "Turn": 10,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "06558154",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602821250,
+          "Turn": 20,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "outward-map-step",
+      "kind": "map",
+      "beforeTick": 20,
+      "afterTick": 40,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 10,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "7a7e5dab",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602821413,
+          "Turn": 20,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"outward-map-step\"}"
+        },
+        {
+          "TraceId": "bb07303f",
+          "Category": "worldmap",
+          "Kind": "Stepped",
+          "TimestampUnixMs": 1790602821416,
+          "Turn": 30,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"toZoneX\":41,\"toZoneY\":12,\"toWorldX\":11,\"toWorldY\":9,\"turnsCost\":10}"
+        },
+        {
+          "TraceId": "fc9a3d41",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602821417,
+          "Turn": 30,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "0e3bbfae",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602821417,
+          "Turn": 40,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "outward-map-step",
+      "kind": "map",
+      "beforeTick": 40,
+      "afterTick": 60,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 10,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "1f6964a4",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602821569,
+          "Turn": 40,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"outward-map-step\"}"
+        },
+        {
+          "TraceId": "edc0d205",
+          "Category": "worldmap",
+          "Kind": "Stepped",
+          "TimestampUnixMs": 1790602821572,
+          "Turn": 50,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"toZoneX\":41,\"toZoneY\":11,\"toWorldX\":11,\"toWorldY\":8,\"turnsCost\":10}"
+        },
+        {
+          "TraceId": "6670db9a",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602821572,
+          "Turn": 50,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "f78552ff",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602821572,
+          "Turn": 60,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "outward-map-step",
+      "kind": "map",
+      "beforeTick": 60,
+      "afterTick": 80,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 10,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "97f023c7",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602821719,
+          "Turn": 60,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"outward-map-step\"}"
+        },
+        {
+          "TraceId": "f670e639",
+          "Category": "worldmap",
+          "Kind": "Stepped",
+          "TimestampUnixMs": 1790602821722,
+          "Turn": 70,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"toZoneX\":41,\"toZoneY\":10,\"toWorldX\":11,\"toWorldY\":7,\"turnsCost\":10}"
+        },
+        {
+          "TraceId": "5a2f6d69",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602821722,
+          "Turn": 70,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "85733916",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602821722,
+          "Turn": 80,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "actual-source-descent",
+      "kind": "local",
+      "beforeTick": 80,
+      "afterTick": 90,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "c3f57086",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602821869,
+          "Turn": 80,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"actual-source-descent\"}"
+        },
+        {
+          "TraceId": "70608496",
+          "Category": "worldgen",
+          "Kind": "SpreadCompositionPlanned",
+          "TimestampUnixMs": 1790602821902,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.11.7.0\",\"seed\":3,\"formation\":\"OldRoad\",\"condition\":\"returning scrub\",\"objects\":95,\"water\":0}"
+        },
+        {
+          "TraceId": "a5db216b",
+          "Category": "worldgen",
+          "Kind": "ConnectivityConnected",
+          "TimestampUnixMs": 1790602821908,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneID\":\"Overworld.11.7.0\"}"
+        },
+        {
+          "TraceId": "1f850e53",
+          "Category": "worldgen",
+          "Kind": "StructurePlaced",
+          "TimestampUnixMs": 1790602821910,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"stamp\":\"FestivalField\",\"zone\":\"Overworld.11.7.0\",\"ax\":46,\"ay\":5}"
+        },
+        {
+          "TraceId": "1ac3310d",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790602821916,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.11.7.0\",\"blueprint\":\"Magpie\",\"group\":null,\"count\":1,\"roll\":0.3527780372429537,\"rollKind\":\"chance\",\"threshold\":0.23809523809523808,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "2531df8e",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790602821917,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.11.7.0\",\"blueprint\":\"PetDog\",\"group\":null,\"count\":0,\"roll\":0.88052934030095553,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "d8f3ee57",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790602821917,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.11.7.0\",\"blueprint\":\"Viper\",\"group\":\"SpreadTier1Encounter\",\"count\":0,\"roll\":0.63300023397104821,\"rollKind\":\"weighted_choice\",\"threshold\":null,\"selectionStart\":0.0,\"selectionEnd\":0.5,\"reason\":\"not_selected\"}"
+        },
+        {
+          "TraceId": "6a71e936",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790602821917,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.11.7.0\",\"blueprint\":\"MarlbackScrabbler\",\"group\":\"SpreadTier1Encounter\",\"count\":1,\"roll\":0.63300023397104821,\"rollKind\":\"weighted_choice\",\"threshold\":null,\"selectionStart\":0.5,\"selectionEnd\":1.0,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "7f4dda01",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790602821918,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.11.7.0\",\"blueprint\":\"BerryBush\",\"group\":null,\"count\":1,\"roll\":0.59600511267595235,\"rollKind\":\"chance\",\"threshold\":0.19047619047619047,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "206bc84d",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790602821918,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.11.7.0\",\"blueprint\":\"Beehive\",\"group\":null,\"count\":0,\"roll\":0.76751034975401611,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "4f213a44",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790602821918,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.11.7.0\",\"blueprint\":\"HollowStump\",\"group\":null,\"count\":0,\"roll\":0.87453292863188914,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "f82f1047",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790602821918,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.11.7.0\",\"blueprint\":\"Signpost\",\"group\":null,\"count\":0,\"roll\":0.60543946530923221,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "de3f06e3",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790602821918,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.11.7.0\",\"blueprint\":\"Hatchet\",\"group\":null,\"count\":0,\"roll\":0.50598999928030652,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "8826c1d6",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790602821918,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.11.7.0\",\"blueprint\":\"Cudgel\",\"group\":null,\"count\":0,\"roll\":0.54728202500719669,\"rollKind\":\"chance\",\"threshold\":0.047619047619047616,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "ac5d3793",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790602821918,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.11.7.0\",\"blueprint\":\"LeatherBoots\",\"group\":null,\"count\":0,\"roll\":0.48614046559023694,\"rollKind\":\"chance\",\"threshold\":0.047619047619047616,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "4e1886d2",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790602821919,
+          "Turn": 80,
+          "ActorId": "6830",
+          "TargetId": "6831",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Hatchet\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "47a2696d",
+          "Category": "loot",
+          "Kind": "TableRolled",
+          "TimestampUnixMs": 1790602821926,
+          "Turn": 80,
+          "ActorId": "6833",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"StrongBoxT1\",\"rolledCount\":4,\"added\":4}"
+        },
+        {
+          "TraceId": "11935240",
+          "Category": "worldgen",
+          "Kind": "ContainersPlaced",
+          "TimestampUnixMs": 1790602821926,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.11.7.0\",\"biome\":\"Spread\",\"zoneKind\":\"Wilderness\",\"tier\":1,\"budget\":1,\"placed\":1}"
+        },
+        {
+          "TraceId": "57d60442",
+          "Category": "worldgen",
+          "Kind": "SpreadExplorationRefused",
+          "TimestampUnixMs": 1790602821928,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.11.7.0\",\"family\":\"RoadsideExchange\",\"reason\":\"unsupported-family\"}"
+        },
+        {
+          "TraceId": "236a6856",
+          "Category": "worldmap",
+          "Kind": "Descended",
+          "TimestampUnixMs": 1790602821931,
+          "Turn": 80,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromWorldX\":11,\"fromWorldY\":7,\"toZoneID\":\"Overworld.11.7.0\",\"toZoneX\":40,\"toZoneY\":12,\"usedSavedLocation\":false}"
+        },
+        {
+          "TraceId": "76b63e71",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790602821936,
+          "Turn": 80,
+          "ActorId": "6843",
+          "TargetId": "6851",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"ShortSword\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "c5e3d50b",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790602821937,
+          "Turn": 80,
+          "ActorId": "6843",
+          "TargetId": "6852",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherBoots\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "11683b45",
+          "Category": "worldgen",
+          "Kind": "RoadsideExchange",
+          "TimestampUnixMs": 1790602821962,
+          "Turn": 80,
+          "ActorId": "traveller:3:Overworld.11.7.0",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.11.7.0\",\"reason\":\"committed-in-place\",\"source\":\"fresh-traveller-entry\"}"
+        },
+        {
+          "TraceId": "ad580918",
+          "Category": "worldgen",
+          "Kind": "TravellerEntryRoll",
+          "TimestampUnixMs": 1790602821963,
+          "Turn": 80,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.11.7.0\",\"reason\":\"placed\",\"entityId\":\"traveller:3:Overworld.11.7.0\"}"
+        },
+        {
+          "TraceId": "8ce5e637",
+          "Category": "worldgen",
+          "Kind": "VoxelPresentationBound",
+          "TimestampUnixMs": 1790602822017,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.11.7.0\",\"bindings\":410}"
+        },
+        {
+          "TraceId": "c8d19f45",
+          "Category": "effect",
+          "Kind": "NativeSpellPrepared",
+          "TimestampUnixMs": 1790602822141,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"WorldMap\",\"backend\":\"native\",\"LoadSeconds\":0.0,\"ValidationSeconds\":0.0,\"PoolSeconds\":0.0022521,\"ViewCount\":384,\"UsedCachedLibrary\":true}"
+        },
+        {
+          "TraceId": "2055df9b",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602822474,
+          "Turn": 80,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "b10435e7",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602822474,
+          "Turn": 90,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "actual-entry-source",
+      "merchant": "traveller:3:Overworld.11.7.0",
+      "origin": "Overworld.13.7.0",
+      "destination": "Overworld.10.10.0",
+      "stock": "6844:HealingTonic:1:traveller:3:Overworld.11.7.0:|6845:DriedMeat:1:traveller:3:Overworld.11.7.0:|6846:Dagger:1:traveller:3:Overworld.11.7.0:|6847:LeatherArmor:1:traveller:3:Overworld.11.7.0:|6848:Torch:1:traveller:3:Overworld.11.7.0:|6849:StoneburrSeed:1:traveller:3:Overworld.11.7.0:|6850:Codex06:1:traveller:3:Overworld.11.7.0:",
+      "purse": 500,
+      "player": "2713",
+      "position": {
+        "Item1": 38,
+        "Item2": 8
+      },
+      "disposition": 2
+    },
+    {
+      "phase": "actual-merchant-approach",
+      "kind": "local",
+      "beforeTick": 90,
+      "afterTick": 100,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "489fbe9f",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602822746,
+          "Turn": 90,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"actual-merchant-approach\"}"
+        },
+        {
+          "TraceId": "db665ca5",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602822749,
+          "Turn": 90,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "c052edf4",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602822751,
+          "Turn": 100,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "actual-merchant-approach",
+      "kind": "local",
+      "beforeTick": 100,
+      "afterTick": 110,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "55f0373c",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602822928,
+          "Turn": 100,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"actual-merchant-approach\"}"
+        },
+        {
+          "TraceId": "46704483",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602822933,
+          "Turn": 100,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "931eba4e",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602822934,
+          "Turn": 110,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "actual-merchant-approach",
+      "kind": "local",
+      "beforeTick": 110,
+      "afterTick": 120,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "6374b008",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602823105,
+          "Turn": 110,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"actual-merchant-approach\"}"
+        },
+        {
+          "TraceId": "e3c17502",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602823109,
+          "Turn": 110,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "8d2691a5",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602823110,
+          "Turn": 120,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "actual-merchant-approach",
+      "kind": "local",
+      "beforeTick": 120,
+      "afterTick": 130,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "8ce289fc",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602823280,
+          "Turn": 120,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"actual-merchant-approach\"}"
+        },
+        {
+          "TraceId": "6d9dcdb2",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602823283,
+          "Turn": 120,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "67e66c52",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602823284,
+          "Turn": 130,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "real-purchase",
+      "item": "6848",
+      "blueprint": "Torch",
+      "units": 1,
+      "price": 9,
+      "beforePlayerPurse": 50,
+      "afterPlayerPurse": 41,
+      "beforeMerchantPurse": 500,
+      "afterMerchantPurse": 509,
+      "rows": [
+        {
+          "TraceId": "f4252ded",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602824831,
+          "Turn": 130,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"actual-source-purchase\"}"
+        },
+        {
+          "TraceId": "6c4689d2",
+          "Category": "event",
+          "Kind": "CurrencyDebitApplied",
+          "TimestampUnixMs": 1790602824970,
+          "Turn": 130,
+          "ActorId": "2713",
+          "TargetId": "2713",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"amount\":-9,\"dramsAfter\":41}"
+        },
+        {
+          "TraceId": "c2003f4d",
+          "Category": "event",
+          "Kind": "CurrencyCreditApplied",
+          "TimestampUnixMs": 1790602824971,
+          "Turn": 130,
+          "ActorId": "traveller:3:Overworld.11.7.0",
+          "TargetId": "traveller:3:Overworld.11.7.0",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"amount\":9,\"dramsAfter\":509}"
+        },
+        {
+          "TraceId": "ea64378f",
+          "Category": "trade",
+          "Kind": "Bought",
+          "TimestampUnixMs": 1790602824971,
+          "Turn": 130,
+          "ActorId": "2713",
+          "TargetId": "traveller:3:Overworld.11.7.0",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"itemName\":\"torch\",\"itemId\":\"6848\",\"price\":9,\"dramsAfter\":41,\"perf\":0.35}"
+        }
+      ]
+    },
+    {
+      "phase": "real-source-exit",
+      "kind": "local",
+      "beforeTick": 130,
+      "afterTick": 140,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "a711b2f2",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602825290,
+          "Turn": 130,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"real-source-exit\"}"
+        },
+        {
+          "TraceId": "44df40a2",
+          "Category": "worldmap",
+          "Kind": "Ascended",
+          "TimestampUnixMs": 1790602825295,
+          "Turn": 130,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromZoneID\":\"Overworld.11.7.0\",\"fromZoneX\":39,\"fromZoneY\":9,\"toWorldX\":11,\"toWorldY\":7,\"toZoneCellX\":41,\"toZoneCellY\":10}"
+        },
+        {
+          "TraceId": "3c83441c",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602825629,
+          "Turn": 130,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "3bb8fdfb",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602825629,
+          "Turn": 140,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "real-source-return",
+      "kind": "local",
+      "beforeTick": 140,
+      "afterTick": 150,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "f6513b0e",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602825781,
+          "Turn": 140,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"real-source-return\"}"
+        },
+        {
+          "TraceId": "f96079b5",
+          "Category": "worldmap",
+          "Kind": "Descended",
+          "TimestampUnixMs": 1790602825785,
+          "Turn": 140,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromWorldX\":11,\"fromWorldY\":7,\"toZoneID\":\"Overworld.11.7.0\",\"toZoneX\":39,\"toZoneY\":9,\"usedSavedLocation\":true}"
+        },
+        {
+          "TraceId": "1e4aaf9d",
+          "Category": "worldgen",
+          "Kind": "VoxelPresentationBound",
+          "TimestampUnixMs": 1790602825824,
+          "Turn": 140,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.11.7.0\",\"bindings\":410}"
+        },
+        {
+          "TraceId": "2b8b5f2a",
+          "Category": "effect",
+          "Kind": "NativeSpellPrepared",
+          "TimestampUnixMs": 1790602825934,
+          "Turn": 140,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"WorldMap\",\"backend\":\"native\",\"LoadSeconds\":1E-07,\"ValidationSeconds\":0.0,\"PoolSeconds\":0.0026424,\"ViewCount\":384,\"UsedCachedLibrary\":true}"
+        },
+        {
+          "TraceId": "9c2fa98f",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602826308,
+          "Turn": 140,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "01a3d510",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602826308,
+          "Turn": 150,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "actual-source-return",
+      "item": "6848",
+      "stock": "6844:HealingTonic:1:traveller:3:Overworld.11.7.0:|6845:DriedMeat:1:traveller:3:Overworld.11.7.0:|6846:Dagger:1:traveller:3:Overworld.11.7.0:|6847:LeatherArmor:1:traveller:3:Overworld.11.7.0:|6849:StoneburrSeed:1:traveller:3:Overworld.11.7.0:|6850:Codex06:1:traveller:3:Overworld.11.7.0:",
+      "merchantPurse": 509,
+      "playerPurse": 41,
+      "stamp": 80,
+      "tick": 150,
+      "disposition": 2,
+      "rows": [
+        {
+          "TraceId": "a711b2f2",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602825290,
+          "Turn": 130,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"real-source-exit\"}"
+        },
+        {
+          "TraceId": "44df40a2",
+          "Category": "worldmap",
+          "Kind": "Ascended",
+          "TimestampUnixMs": 1790602825295,
+          "Turn": 130,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromZoneID\":\"Overworld.11.7.0\",\"fromZoneX\":39,\"fromZoneY\":9,\"toWorldX\":11,\"toWorldY\":7,\"toZoneCellX\":41,\"toZoneCellY\":10}"
+        },
+        {
+          "TraceId": "3c83441c",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602825629,
+          "Turn": 130,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "3bb8fdfb",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602825629,
+          "Turn": 140,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "f6513b0e",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790602825781,
+          "Turn": 140,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"3dc45efa833d4801a089292e24a6fd97\",\"label\":\"real-source-return\"}"
+        },
+        {
+          "TraceId": "f96079b5",
+          "Category": "worldmap",
+          "Kind": "Descended",
+          "TimestampUnixMs": 1790602825785,
+          "Turn": 140,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromWorldX\":11,\"fromWorldY\":7,\"toZoneID\":\"Overworld.11.7.0\",\"toZoneX\":39,\"toZoneY\":9,\"usedSavedLocation\":true}"
+        },
+        {
+          "TraceId": "1e4aaf9d",
+          "Category": "worldgen",
+          "Kind": "VoxelPresentationBound",
+          "TimestampUnixMs": 1790602825824,
+          "Turn": 140,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.11.7.0\",\"bindings\":410}"
+        },
+        {
+          "TraceId": "2b8b5f2a",
+          "Category": "effect",
+          "Kind": "NativeSpellPrepared",
+          "TimestampUnixMs": 1790602825934,
+          "Turn": 140,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"WorldMap\",\"backend\":\"native\",\"LoadSeconds\":1E-07,\"ValidationSeconds\":0.0,\"PoolSeconds\":0.0026424,\"ViewCount\":384,\"UsedCachedLibrary\":true}"
+        },
+        {
+          "TraceId": "9c2fa98f",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790602826308,
+          "Turn": 140,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "01a3d510",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790602826308,
+          "Turn": 150,
+          "ActorId": "2713",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ],
+      "boundary": "Same cached source through real exit/return before ordinary restock. Merchant movement is allowed. This is not F5/F6 evidence."
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/00-ordinary-start.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/01-actual-native-roadside-entry.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/02-real-route-dialogue.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/03-native-actual-stock-purchase.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/04-returned-original-owner-and-purchase.png"
+  ],
+  "unverifiedFamilies": [],
+  "humanAwarenessMeasured": false,
+  "boundary": "Ordinary seed3 N, actual map keys from11.10 to11.7, current native entry/Chat/Trade/exit-return. Fixed address is the first actual source winner in the retained prebounded census, not uninformed discovery. Original50drams; no transfer, grant, forced source, stock, actor, RNG or time edit. At most31 paid inputs,24 local approach steps,150seconds. Return is before normal300-tick restock; it does not prove this run's F5/F6 persistence or permanent finite stock. Root must view screenshots.",
+  "settings": {
+    "screenWidth": 2271,
+    "screenHeight": 1251,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "lowDetail": false
+  }
+}

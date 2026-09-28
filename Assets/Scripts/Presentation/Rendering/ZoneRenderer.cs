@@ -132,6 +132,10 @@ namespace CavesOfOoo.Rendering
         private CampfireEmberRenderer _campfireEmberRenderer;
         private AmbientMotesRenderer _ambientMotesRenderer;     // Round 5
         private WorldCursorRenderer _worldCursorRenderer;
+        private WorldAffordanceRenderer _worldAffordanceRenderer;
+        private InputHandler _affordanceInput;
+        private WorldAffordance? _worldAffordance;
+
         private GameplaySidebarRenderer _sidebarRenderer;
         private GameplayHotbarRenderer _hotbarRenderer;
 
@@ -502,6 +506,7 @@ namespace CavesOfOoo.Rendering
             ConfigureHotbarTilemapRenderer(hotbarRenderer, 1);
 
             _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
+            _worldAffordanceRenderer = new WorldAffordanceRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
             _sidebarRenderer = new GameplaySidebarRenderer(_sidebarTilemap, _sidebarBgTilemap, _sidebarGridTransform, MessageReferenceZoom);
             _hotbarRenderer = new GameplayHotbarRenderer(_hotbarTilemap, _hotbarBgTilemap);
 
@@ -551,6 +556,7 @@ namespace CavesOfOoo.Rendering
 
         private void OnDisable()
         {
+            ClearWorldAffordance();
             _worldFxCoordinator?.CancelAll();
             _fellingScenePresenter?.SetPresentationVisible(false);
             _fellingDressingPresenter?.SetPresentationVisible(false);
@@ -563,6 +569,7 @@ namespace CavesOfOoo.Rendering
 
         private void OnDestroy()
         {
+            _worldAffordanceRenderer?.Dispose(); _worldAffordanceRenderer = null; _affordanceInput = null;
             _fellingScenePresenter?.Unbind();
             _fellingDressingPresenter?.Unbind();
             _morrowfastScenePresenter?.Unbind();
@@ -592,6 +599,7 @@ namespace CavesOfOoo.Rendering
             // the Zone constructor, so a cached-but-inactive zone never
             // dirties cells in the one actually on screen.
             ZoneTileStateSystem.BindRenderHook(zone);
+            ClearWorldAffordance();
             CurrentZone = zone;
             _fellingScenePresenter?.Bind(zone);
             _fellingDressingPresenter?.Bind(zone);
@@ -809,6 +817,7 @@ namespace CavesOfOoo.Rendering
 
                 if (Paused)
                 {
+                    ClearWorldAffordance();
                     _fellingScenePresenter?.SetPresentationVisible(false);
                     _fellingDressingPresenter?.SetPresentationVisible(false);
                     _morrowfastScenePresenter?.SetPresentationVisible(false);
@@ -959,6 +968,7 @@ namespace CavesOfOoo.Rendering
                 using (PerformanceMarkers.Zone.UpdateAmbientAnimations.Auto())
                     UpdateAmbientAnimations(Time.deltaTime);
 
+                RefreshWorldAffordance();
                 RenderSidebar(cam);
                 RenderHotbar();
 
@@ -1536,7 +1546,7 @@ namespace CavesOfOoo.Rendering
                 SidebarSnapshot snapshot = SidebarStateBuilder.Build(
                     PlayerEntity, CurrentZone, _currentLookSnapshot,
                     showThoughts: ShowThoughtLog);
-                _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT);
+                _sidebarRenderer?.Render(snapshot, sidebarCamera, SidebarWidthChars, flashActive, flashT, _worldAffordance?.Hint);
             }
         }
 
@@ -1665,6 +1675,18 @@ namespace CavesOfOoo.Rendering
         {
             RenderCell(oldX, oldY);
             RenderCell(newX, newY);
+        }
+
+        public void SetAffordanceInput(InputHandler input) { _affordanceInput = input; }
+        public void ClearAffordanceInput(InputHandler input)
+        { if (_affordanceInput == input) { _affordanceInput = null; ClearWorldAffordance(); } }
+        private void ClearWorldAffordance()
+        { _worldAffordance = null; _worldAffordanceRenderer?.Clear(); }
+        private void RefreshWorldAffordance()
+        {
+            _worldAffordance = _affordanceInput != null && _affordanceInput.ZoneRenderer == this
+                ? _affordanceInput.QueryWorldAffordance(CurrentZone, PlayerEntity) : null;
+            _worldAffordanceRenderer?.Refresh(PlayerEntity, CurrentZone, _worldAffordance);
         }
 
         public void SetWorldCursorState(WorldCursorState state, Entity player)

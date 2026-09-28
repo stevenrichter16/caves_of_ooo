@@ -23,8 +23,10 @@ namespace CavesOfOoo.Core
         /// <summary>Separate exact rolls; neither receipt grants authority over matching decoys.</summary>
         public SpreadGenerationReceipt LooseSourceReceipt { get; private set; }
         public SpreadGenerationReceipt AmbientSourceReceipt { get; private set; }
-        /// <summary>Only the exact Magpie roll changed to the optional grazer, before unrelated ambient stocking.</summary>
+        /// <summary>Only the exact Magpie roll changed to the optional scoped animal, before unrelated ambient stocking.</summary>
         public SpreadGenerationReceipt AmbientReplacementReceipt { get; private set; }
+        /// <summary>Exact independent ordinary finite-food rolls; matching scenery grants no authority.</summary>
+        public SpreadGenerationReceipt ForageSourceReceipt { get; private set; }
         /// <summary>Opt-in manager authority, rechecked against the captured cold attempt before source replacement.</summary>
         public OverworldZoneManager ExplorationManager;
         private int sourceRevision;
@@ -41,12 +43,13 @@ namespace CavesOfOoo.Core
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
-            SourceReceipt = LooseSourceReceipt = AmbientSourceReceipt = AmbientReplacementReceipt = null; int revision = ++sourceRevision;
+            SourceReceipt = LooseSourceReceipt = AmbientSourceReceipt = AmbientReplacementReceipt = ForageSourceReceipt = null; int revision = ++sourceRevision;
             var receiptOwners = CaptureSourceReceipts ? new List<Entity>() : null;
             var looseOwners = CaptureSourceReceipts ? new List<Entity>() : null;
             var ambientOwners = CaptureSourceReceipts ? new List<Entity>() : null;
             var replacementOwners = CaptureSourceReceipts ? new List<Entity>() : null;
             int replacementIndex = -1;
+            var forageOwners = CaptureSourceReceipts ? new List<Entity>() : null;
             if (Table == null) return true;
             bool replaceSpread = Table.Name == "SpreadTier1" && SpreadEncounter != null
                 && SpreadEncounter.TryPlace(zone, factory);
@@ -72,7 +75,8 @@ namespace CavesOfOoo.Core
             {
                 var rewritten = SpreadExplorationPopulationPolicy.Rewrite(Table, toSpawn, assignment.Family);
                 string required = assignment.Family == SpreadExplorationFamily.OccupiedBank ? "MarlbackScrabbler"
-                    : assignment.Family == SpreadExplorationFamily.LastGleanings ? "ReedbackGrazer" : null;
+                    : assignment.Family == SpreadExplorationFamily.LastGleanings ? "ReedbackGrazer"
+                    : assignment.Family == SpreadExplorationFamily.CollectorReturn ? "Tatterjay" : null;
                 if (required != null && !toSpawn.SequenceEqual(rewritten) && !factory.Blueprints.ContainsKey(required))
                 {
                     // Missing optional content must not swallow a real ordinary
@@ -84,12 +88,12 @@ namespace CavesOfOoo.Core
                 }
                 else
                 {
-                    if (assignment.Family == SpreadExplorationFamily.LastGleanings && rewritten.Length == toSpawn.Count)
+                    if ((assignment.Family == SpreadExplorationFamily.LastGleanings || assignment.Family == SpreadExplorationFamily.CollectorReturn) && rewritten.Length == toSpawn.Count)
                     {
                         // Preserve the precise changed roll index. An authored or matching
-                        // nearby grazer is not the owner produced by this substitution.
+                        // nearby animal is not the owner produced by this substitution.
                         var changed = Enumerable.Range(0, toSpawn.Count).Where(i => toSpawn[i] != rewritten[i]).ToArray();
-                        if (changed.Length == 1 && toSpawn[changed[0]] == "Magpie" && rewritten[changed[0]] == "ReedbackGrazer")
+                        if (changed.Length == 1 && toSpawn[changed[0]] == "Magpie" && rewritten[changed[0]] == required)
                             replacementIndex = changed[0];
                     }
                     toSpawn = new List<string>(rewritten);
@@ -105,7 +109,13 @@ namespace CavesOfOoo.Core
             // silently promote quest/foreign owners into an ambient or loose allowance.
             var loose = ReceiptBlueprints("Hatchet", "Cudgel", "LeatherBoots");
             var ambient = ReceiptBlueprints("Magpie", "PetDog");
-            if (optedIn && assignment.Family == SpreadExplorationFamily.LastGleanings && ambient.Contains("Magpie")) ambient.Add("ReedbackGrazer");
+            if (optedIn && ambient.Contains("Magpie"))
+            {
+                if (assignment.Family == SpreadExplorationFamily.LastGleanings) ambient.Add("ReedbackGrazer");
+                else if (assignment.Family == SpreadExplorationFamily.CollectorReturn) ambient.Add("Tatterjay");
+            }
+            var forage = ReceiptBlueprints("BerryBush", "Beehive");
+            int forageExpected = toSpawn.Count(forage.Contains);
             int looseExpected = toSpawn.Count(loose.Contains), ambientExpected = toSpawn.Count(ambient.Contains);
 
             // Place each entity in a random open cell
@@ -171,6 +181,7 @@ namespace CavesOfOoo.Core
                     if (loose.Contains(blueprintName)) looseOwners?.Add(spawned);
                     if (ambient.Contains(blueprintName)) ambientOwners?.Add(spawned);
                     if (spawnIndex == replacementIndex) replacementOwners?.Add(spawned);
+                    if (forage.Contains(blueprintName)) forageOwners?.Add(spawned);
                 }
 
                 // Remove used cell to prevent double-placement of solid entities
@@ -183,6 +194,7 @@ namespace CavesOfOoo.Core
                 LooseSourceReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, looseOwners, looseExpected);
                 AmbientSourceReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, ambientOwners, ambientExpected);
                 AmbientReplacementReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, replacementOwners, replacementIndex < 0 ? 0 : 1);
+                ForageSourceReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, forageOwners, forageExpected);
             }
             return true;
         }

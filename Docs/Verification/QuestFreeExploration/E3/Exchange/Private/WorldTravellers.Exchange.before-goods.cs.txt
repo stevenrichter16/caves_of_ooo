@@ -1,0 +1,154 @@
+using System;
+using System.Collections.Generic;
+using CavesOfOoo.Diagnostics;
+
+namespace CavesOfOoo.Core
+{
+    public static partial class WorldTravellers
+    {
+        // The only creator is the real entry method, after its winning roll and
+        // before its factory call. No retry or arbitrary-owner adoption API exists.
+        static FreshExchangeSource CaptureExchange(Entity player, Zone zone, OverworldZoneManager manager)
+        {
+            var plan = manager.Exploration;
+            return plan?.TryGetAcceptedEntry(manager, zone, out var entry) == true
+                ? new FreshExchangeSource(player, zone, manager, plan, entry) : null;
+        }
+
+        sealed class FreshExchangeSource
+        {
+            readonly Entity player;
+            readonly Zone zone;
+            readonly OverworldZoneManager manager;
+            readonly SpreadExplorationPlan plan;
+            readonly SpreadExplorationEntry entry;
+            readonly WorldMap map;
+            readonly SpreadRareEncounterPlan rare;
+            readonly SpreadWayhousePlan wayhouse;
+            readonly string pairID, viperID, wayhouseID, playerID;
+            readonly PhysicsPart playerPhysics;
+            readonly (int x, int y) arrival;
+            readonly string countKey, rollKey, spawnKey, actorID;
+            readonly int priorCount;
+            bool used;
+
+            internal FreshExchangeSource(Entity player, Zone zone, OverworldZoneManager manager,
+                SpreadExplorationPlan plan, SpreadExplorationEntry entry)
+            {
+                this.player = player; this.zone = zone; this.manager = manager; this.plan = plan; this.entry = entry;
+                map = manager.WorldMap; rare = manager.RareEncounters; wayhouse = manager.Wayhouse;
+                pairID = rare?.PairZoneID; viperID = rare?.ViperZoneID; wayhouseID = wayhouse?.ZoneID;
+                playerID = player.ID; playerPhysics = player.GetPart<PhysicsPart>(); arrival = zone.GetEntityPosition(player);
+                string seed = manager.WorldSeed.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                countKey = CountPrefix + seed; rollKey = RollPrefix + seed + ":" + zone.ZoneID;
+                spawnKey = SpawnPrefix + seed + ":" + zone.ZoneID; actorID = "traveller:" + seed + ":" + zone.ZoneID;
+                priorCount = player.GetIntProperty(countKey);
+            }
+
+            bool Current(Entity actor)
+            {
+                if (manager.Exploration != plan || manager.WorldMap != map || manager.RareEncounters != rare
+                    || manager.Wayhouse != wayhouse || rare?.PairZoneID != pairID || rare?.ViperZoneID != viperID
+                    || wayhouse?.ZoneID != wayhouseID || !plan.TryGetAcceptedEntry(manager, zone, out var actual)
+                    || !ReferenceEquals(actual, entry) || !WorldAmbience.IsPresentPlayer(player, zone)
+                    || player.ID != playerID || player.GetPart<PhysicsPart>() != playerPhysics
+                    || playerPhysics?.ParentEntity != player || zone.GetEntityPosition(player) != arrival
+                    || player.GetIntProperty(countKey) != priorCount + 1 || player.GetIntProperty(rollKey) != 1
+                    || player.GetProperty(spawnKey) != actorID || actor?.ID != actorID
+                    || actor.GetProperty(ReceiptProperty) != spawnKey || actor.BlueprintName != "Merchant"
+                    || actor.GetPart<RenderPart>()?.Visible != true || actor.GetPart<RenderPart>().ParentEntity != actor
+                    || actor.GetPart<BrainPart>()?.CurrentZone != zone || actor.HasPart<SpatialFootprintPart>()
+                    || actor.GetPart<TraderPart>()?.ParentEntity != actor || actor.GetPart<InventoryPart>()?.Objects.Count < 1
+                    || FactionManager.IsHostile(actor, player) || FactionManager.IsHostile(player, actor)) return false;
+                return SpreadActorContext.Actor(actor, zone, out _);
+            }
+
+            internal void Complete(Entity actor)
+            {
+                if (used) return; used = true;
+                if (!Current(actor)) { Result("source-changed", actor); return; }
+                var source = SpreadExplorationActorPlacement.CaptureEntryMerchant(zone, actor);
+                if (source == null) { Result("source-graph", actor); return; }
+                var origin = zone.GetEntityPosition(actor);
+                var ignored = new HashSet<Entity> { actor, player };
+                var original = new SpreadWildernessSituationBuilder.Geometry(zone, ignored);
+                (int x, int y) chosen = origin;
+                bool found = Layout(original, original, origin);
+                // Finite current rings; no RNG, factory, future-zone read or stock inspection.
+                for (int radius = 4; !found && radius <= 7; radius++)
+                    for (int dy = -radius; !found && dy <= radius; dy++)
+                        for (int dx = -radius; !found && dx <= radius; dx++)
+                        {
+                            if (Math.Max(Math.Abs(dx), Math.Abs(dy)) != radius) continue;
+                            var candidate = (x: arrival.x + dx, y: arrival.y + dy);
+                            if (!Layout(original, original, candidate)) continue;
+                            chosen = candidate; found = true;
+                        }
+                if (!found || !Current(actor) || !source(origin)) { Result("no-current-verge", actor); return; }
+                if (chosen != origin && !zone.MoveEntity(actor, chosen.x, chosen.y))
+                { Result("move-refused", actor); return; }
+                bool accepted = false;
+                try
+                {
+                    accepted = plan.TryMarkAcceptedEntryCommitted(manager, zone, entry,
+                        () => Current(actor) && source(chosen)
+                            && Layout(new SpreadWildernessSituationBuilder.Geometry(zone, ignored), original, chosen));
+                }
+                finally
+                {
+                    // Never repair a callback's foreign owner/stock/position changes.
+                    if (!accepted && chosen != origin && source(chosen)
+                        && zone.CanPlaceFootprint(actor, origin.x, origin.y))
+                        zone.MoveEntity(actor, origin.x, origin.y);
+                }
+                Result(accepted ? (chosen == origin ? "committed-in-place" : "committed-relocated") : "final-refused", actor);
+            }
+
+            bool Layout(SpreadWildernessSituationBuilder.Geometry current,
+                SpreadWildernessSituationBuilder.Geometry original, (int x, int y) at)
+            {
+                int distance = Math.Max(Math.Abs(at.x - arrival.x), Math.Abs(at.y - arrival.y));
+                if (distance < 4 || distance > 7 || !current.Place(at.x, at.y)
+                    || !AIHelpers.HasLineOfSight(zone, arrival.x, arrival.y, at.x, at.y)) return false;
+                bool road = false;
+                foreach (var owner in zone.GetCell(at.x, at.y).Occupants)
+                    if (owner.BlueprintName == "RoadStone") return false;
+                foreach (var d in Cardinal)
+                {
+                    var cell = zone.GetCell(at.x + d.x, at.y + d.y);
+                    if (cell == null || !current.Walk(cell.X, cell.Y, null)) continue;
+                    foreach (var owner in cell.Occupants)
+                        if (owner.BlueprintName == "RoadStone" && owner.GetPart<PhysicsPart>()?.ParentEntity == owner
+                            && owner.SpatialZone == zone && zone.GetEntityCell(owner) == cell && DoorPart.IsBareGround(owner)) road = true;
+                }
+                if (!road || !current.PreservesAgainst(original, new[] { at })) return false;
+                var blocked = new HashSet<(int x, int y)> { at };
+                var reached = current.Flood(blocked, arrival, Zone.Width * Zone.Height, null);
+                int edges = 0; bool adjacent = false;
+                for (int y = 0; y < Zone.Height; y++) for (int x = 0; x < Zone.Width; x++)
+                    if (reached[x, y]) edges |= (x == 0 ? 1 : 0) | (x == Zone.Width - 1 ? 2 : 0)
+                        | (y == 0 ? 4 : 0) | (y == Zone.Height - 1 ? 8 : 0);
+                foreach (var d in Cardinal) if (reached[at.x + d.x, at.y + d.y]) adjacent = true;
+                return adjacent && ((edges & 3) == 3 || (edges & 12) == 12);
+            }
+
+            void Result(string reason, Entity actor)
+            {
+                if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "RoadsideExchange",
+                    actor: actor, payload: new { zone = zone.ZoneID, reason, source = "fresh-traveller-entry" });
+            }
+        }
+    }
+
+    public static partial class SpreadExplorationActorPlacement
+    {
+        // Read-only graph proof. This cannot grant source adoption, movement or
+        // manifest commitment; the entry's inaccessible one-shot source owns those.
+        internal static Func<(int x, int y), bool> CaptureEntryMerchant(Zone zone, Entity merchant)
+        {
+            var snapshot = ActorSnapshot.Capture(zone, merchant, "Merchant");
+            return snapshot == null || !snapshot.Current(snapshot.Origin) ? null
+                : position => snapshot.Current(position);
+        }
+    }
+}

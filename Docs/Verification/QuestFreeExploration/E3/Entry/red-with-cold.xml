@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/entry-expansion/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="40" result="Failed" start-time="2026-09-28T04:07:54.1376420Z" end-time="2026-09-28T04:07:54.7239380Z" duration="0.586279" total="24" passed="5" failed="19" inconclusive="0" skipped="0" warnings="0" asserts="28" random-seed="682643461">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/entry-expansion/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/entry-expansion/red-with-cold.xml --where "class == CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1049" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/entry-expansion/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-09-28T04:07:54.1376420Z" end-time="2026-09-28T04:07:54.7239380Z" duration="0.586279" total="24" passed="5" failed="19" warnings="0" inconclusive="0" skipped="0" asserts="28">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/entry-expansion/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/entry-expansion/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="52413" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1050" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-09-28T04:07:54.1392720Z" end-time="2026-09-28T04:07:54.7239370Z" duration="0.584657" total="24" passed="5" failed="19" warnings="0" inconclusive="0" skipped="0" asserts="28">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1051" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="40" result="Failed" site="Child" start-time="2026-09-28T04:07:54.1394040Z" end-time="2026-09-28T04:07:54.7239320Z" duration="0.584520" total="24" passed="5" failed="19" warnings="0" inconclusive="0" skipped="0" asserts="28">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationEntryExpansionTests" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-09-28T04:07:54.1397560Z" end-time="2026-09-28T04:07:54.7239150Z" duration="0.584151" total="24" passed="5" failed="19" warnings="0" inconclusive="0" skipped="0" asserts="28">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1012" name="AddressOrAttachmentCannotGrantDynamicCommit" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-28T04:07:54.1407420Z" end-time="2026-09-28T04:07:54.3254690Z" duration="0.184724" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="5">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1007" name="AddressOrAttachmentCannotGrantDynamicCommit(&quot;uncached&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(&quot;uncached&quot;)" methodname="AddressOrAttachmentCannotGrantDynamicCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1507055249" result="Failed" start-time="2026-09-28T04:07:54.1408360Z" end-time="2026-09-28T04:07:54.2360320Z" duration="0.095222" asserts="1">
+              <failure>
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 62
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 62
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="AddressOrAttachmentCannotGrantDynamicCommit(&quot;attached-only&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(&quot;attached-only&quot;)" methodname="AddressOrAttachmentCannotGrantDynamicCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="294649107" result="Failed" start-time="2026-09-28T04:07:54.2365950Z" end-time="2026-09-28T04:07:54.2589100Z" duration="0.022315" asserts="1">
+              <failure>
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 62
+   at InvokeStub_SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 62
+   at InvokeStub_SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="AddressOrAttachmentCannotGrantDynamicCommit(&quot;same-id-clone&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(&quot;same-id-clone&quot;)" methodname="AddressOrAttachmentCannotGrantDynamicCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1732101800" result="Failed" start-time="2026-09-28T04:07:54.2589420Z" end-time="2026-09-28T04:07:54.2792720Z" duration="0.020330" asserts="1">
+              <failure>
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 62
+   at InvokeStub_SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 62
+   at InvokeStub_SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1010" name="AddressOrAttachmentCannotGrantDynamicCommit(&quot;inactive&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(&quot;inactive&quot;)" methodname="AddressOrAttachmentCannotGrantDynamicCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1557793441" result="Failed" start-time="2026-09-28T04:07:54.2793030Z" end-time="2026-09-28T04:07:54.3036030Z" duration="0.024301" asserts="1">
+              <failure>
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 62
+   at InvokeStub_SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 62
+   at InvokeStub_SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="AddressOrAttachmentCannotGrantDynamicCommit(&quot;foreign-entry&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(&quot;foreign-entry&quot;)" methodname="AddressOrAttachmentCannotGrantDynamicCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="425411675" result="Failed" start-time="2026-09-28T04:07:54.3036350Z" end-time="2026-09-28T04:07:54.3249150Z" duration="0.021280" asserts="1">
+              <failure>
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 62
+   at InvokeStub_SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 62
+   at InvokeStub_SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1006" name="ColdGenerationCannotCommitTheDynamicExchangeReservation" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.ColdGenerationCannotCommitTheDynamicExchangeReservation" methodname="ColdGenerationCannotCommitTheDynamicExchangeReservation" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="959852504" result="Failed" start-time="2026-09-28T04:07:54.3256870Z" end-time="2026-09-28T04:07:54.3477880Z" duration="0.022101" asserts="1">
+            <failure>
+              <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.ColdGenerationCannotCommitTheDynamicExchangeReservation() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 54
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.ColdGenerationCannotCommitTheDynamicExchangeReservation() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 54
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1021" name="DynamicCommitAndExactAcceptedGraphSurviveSaveWithoutReplay" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.DynamicCommitAndExactAcceptedGraphSurviveSaveWithoutReplay" methodname="DynamicCommitAndExactAcceptedGraphSurviveSaveWithoutReplay" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="409831315" result="Failed" start-time="2026-09-28T04:07:54.3478160Z" end-time="2026-09-28T04:07:54.3685970Z" duration="0.020781" asserts="1">
+            <failure>
+              <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.DynamicCommitAndExactAcceptedGraphSurviveSaveWithoutReplay() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 84
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.DynamicCommitAndExactAcceptedGraphSurviveSaveWithoutReplay() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 84
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1024" name="EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T04:07:54.3686250Z" end-time="2026-09-28T04:07:54.4211150Z" duration="0.052490" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1022" name="EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion(2)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion(2)" methodname="EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="884734189" result="Passed" start-time="2026-09-28T04:07:54.3686470Z" end-time="2026-09-28T04:07:54.3972360Z" duration="0.028589" asserts="5" />
+            <test-case id="1023" name="EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion(3)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion(3)" methodname="EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="368886612" result="Failed" label="Error" start-time="2026-09-28T04:07:54.3972600Z" end-time="2026-09-28T04:07:54.4210770Z" duration="0.023816" asserts="1">
+              <failure>
+                <message><![CDATA[System.IO.InvalidDataException : Invalid Spread exploration manifest: version/seed]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Core.SpreadExplorationPlan.Restore(OverworldZoneManager manager, Entity world) in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs:line 249
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+--- End of stack trace from previous location ---
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Call(Object owner, String method, Object[] args) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Restore(OverworldZoneManager m, String wire) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 32
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion(Int32 version) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 93
+   at InvokeStub_SpreadExplorationEntryExpansionTests.EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1019" name="FailedOrMutatingProofCannotMarkAnotherGraph" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T04:07:54.4211320Z" end-time="2026-09-28T04:07:54.5407270Z" duration="0.119593" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1013" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;false&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;false&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1173422298" result="Failed" start-time="2026-09-28T04:07:54.4211430Z" end-time="2026-09-28T04:07:54.4433640Z" duration="0.022221" asserts="1">
+              <failure>
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 71
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 71
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1014" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;removed&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="257197576" result="Failed" start-time="2026-09-28T04:07:54.4433870Z" end-time="2026-09-28T04:07:54.4626570Z" duration="0.019270" asserts="1">
+              <failure>
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 71
+   at InvokeStub_SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 71
+   at InvokeStub_SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1015" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;replaced&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;replaced&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1208691860" result="Failed" start-time="2026-09-28T04:07:54.4626800Z" end-time="2026-09-28T04:07:54.4861660Z" duration="0.023486" asserts="1">
+              <failure>
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 71
+   at InvokeStub_SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 71
+   at InvokeStub_SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1016" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;protected&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;protected&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1718469133" result="Failed" start-time="2026-09-28T04:07:54.4861900Z" end-time="2026-09-28T04:07:54.5050260Z" duration="0.018837" asserts="1">
+              <failure>
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 71
+   at InvokeStub_SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 71
+   at InvokeStub_SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1017" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;inactive&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;inactive&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1745852149" result="Failed" start-time="2026-09-28T04:07:54.5050510Z" end-time="2026-09-28T04:07:54.5233950Z" duration="0.018344" asserts="1">
+              <failure>
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 71
+   at InvokeStub_SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 71
+   at InvokeStub_SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1018" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;new-plan&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;new-plan&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1330626663" result="Failed" start-time="2026-09-28T04:07:54.5234180Z" end-time="2026-09-28T04:07:54.5407010Z" duration="0.017283" asserts="1">
+              <failure>
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 71
+   at InvokeStub_SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(String fault) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 71
+   at InvokeStub_SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1004" name="NewFamiliesAreFrozenColdAndHabitatSpecific" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T04:07:54.5407480Z" end-time="2026-09-28T04:07:54.6090970Z" duration="0.068348" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="NewFamiliesAreFrozenColdAndHabitatSpecific(1)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(1)" methodname="NewFamiliesAreFrozenColdAndHabitatSpecific" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="574931874" result="Failed" start-time="2026-09-28T04:07:54.5407580Z" end-time="2026-09-28T04:07:54.5662940Z" duration="0.025537" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: 4
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(Int32 seed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 37
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 4
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(Int32 seed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 37
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="NewFamiliesAreFrozenColdAndHabitatSpecific(64)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(64)" methodname="NewFamiliesAreFrozenColdAndHabitatSpecific" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="145622455" result="Failed" start-time="2026-09-28T04:07:54.5663370Z" end-time="2026-09-28T04:07:54.5875020Z" duration="0.021165" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: 4
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(Int32 seed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 37
+   at InvokeStub_SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 4
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(Int32 seed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 37
+   at InvokeStub_SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="NewFamiliesAreFrozenColdAndHabitatSpecific(1729)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(1729)" methodname="NewFamiliesAreFrozenColdAndHabitatSpecific" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="198799897" result="Failed" start-time="2026-09-28T04:07:54.5875410Z" end-time="2026-09-28T04:07:54.6090760Z" duration="0.021535" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: 4
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(Int32 seed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 37
+   at InvokeStub_SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 4
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(Int32 seed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 37
+   at InvokeStub_SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1029" name="OldOrFutureHeaderCannotAuthorizeNewFamily" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OldOrFutureHeaderCannotAuthorizeNewFamily" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-28T04:07:54.6091080Z" end-time="2026-09-28T04:07:54.6861330Z" duration="0.077024" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <test-case id="1025" name="OldOrFutureHeaderCannotAuthorizeNewFamily(2,7)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OldOrFutureHeaderCannotAuthorizeNewFamily(2,7)" methodname="OldOrFutureHeaderCannotAuthorizeNewFamily" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1204586979" result="Passed" start-time="2026-09-28T04:07:54.6091240Z" end-time="2026-09-28T04:07:54.6277530Z" duration="0.018629" asserts="1" />
+            <test-case id="1026" name="OldOrFutureHeaderCannotAuthorizeNewFamily(3,7)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OldOrFutureHeaderCannotAuthorizeNewFamily(3,7)" methodname="OldOrFutureHeaderCannotAuthorizeNewFamily" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1246808013" result="Passed" start-time="2026-09-28T04:07:54.6277770Z" end-time="2026-09-28T04:07:54.6480200Z" duration="0.020243" asserts="1" />
+            <test-case id="1027" name="OldOrFutureHeaderCannotAuthorizeNewFamily(3,8)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OldOrFutureHeaderCannotAuthorizeNewFamily(3,8)" methodname="OldOrFutureHeaderCannotAuthorizeNewFamily" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1300051522" result="Passed" start-time="2026-09-28T04:07:54.6480600Z" end-time="2026-09-28T04:07:54.6657150Z" duration="0.017655" asserts="1" />
+            <test-case id="1028" name="OldOrFutureHeaderCannotAuthorizeNewFamily(5,1)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OldOrFutureHeaderCannotAuthorizeNewFamily(5,1)" methodname="OldOrFutureHeaderCannotAuthorizeNewFamily" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="931650396" result="Passed" start-time="2026-09-28T04:07:54.6657440Z" end-time="2026-09-28T04:07:54.6861060Z" duration="0.020362" asserts="1" />
+          </test-suite>
+          <test-case id="1005" name="OnlyExactActiveAcceptedGraphCanCommitOnce" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OnlyExactActiveAcceptedGraphCanCommitOnce" methodname="OnlyExactActiveAcceptedGraphCanCommitOnce" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1519588632" result="Failed" start-time="2026-09-28T04:07:54.6861480Z" end-time="2026-09-28T04:07:54.7042660Z" duration="0.018118" asserts="1">
+            <failure>
+              <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OnlyExactActiveAcceptedGraphCanCommitOnce() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 48
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OnlyExactActiveAcceptedGraphCanCommitOnce() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 48
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1020" name="ReentrantOrThrowingProofDoesNotLeakACommitOrLock" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.ReentrantOrThrowingProofDoesNotLeakACommitOrLock" methodname="ReentrantOrThrowingProofDoesNotLeakACommitOrLock" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="2067577787" result="Failed" start-time="2026-09-28T04:07:54.7042900Z" end-time="2026-09-28T04:07:54.7238460Z" duration="0.019556" asserts="1">
+            <failure>
+              <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.ReentrantOrThrowingProofDoesNotLeakACommitOrLock() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 77
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Fresh v4 must assign ordinary roadside exchange opportunities.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.Exchange(OverworldZoneManager m) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.ReentrantOrThrowingProofDoesNotLeakACommitOrLock() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 77
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,3 @@
+# Independent bounded read
+
+standalone_verify reviewed current Encounter method and final Encounters helper after the receipt rebase and approved safety correction. Exact complete rolled actor packet/forage membership/cold authority are repeated; food/post graph state and anchors are fixed; only selected actors and assist-only appended parts are owned. Rollback respects exact references. Final validation preserves original critical components and actual sight-free opposite-border crossing. Four-cell standoff honestly allows distant visible threats. No concrete blocker found; native realization/performance/action gates remain open.

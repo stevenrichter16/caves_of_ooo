@@ -1,0 +1,210 @@
+{
+  "date": "2026-09-28",
+  "reviewer": "combat_density",
+  "scope": "E3 gameplay/source integration bounded read-only Q1-Q4",
+  "result": "No new confirmed significant production regression found",
+  "executedTests": false,
+  "unityCalled": false,
+  "sharedWrites": false,
+  "findings": [],
+  "documentationFollowups": [
+    "Current master E3 checkpoint obsolete after adoption; final native gates still pending",
+    "Collector Generation README unresolved territory/native wording needs subsequent status; preserve historical receipts"
+  ],
+  "reviewedFiles": [
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs",
+      "sha256": "7acc9cfad2227937b3b192fc971750a8bf7c4a9cb6210aa2d9e032f1fd326cff",
+      "bytes": 22872,
+      "scope": "full source: version/create/restore, cold and entry authority"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+      "sha256": "796b68480fd9707ee5aecfc2134a5c80978ec3f3ed621d884c147cd13b7ed63d",
+      "bytes": 81078,
+      "scope": "construction/pipeline, commit and retain integration"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Save/SaveSystem.cs",
+      "sha256": "44fe2924d6c1181285cbd6c18f71e13d1bc39010a0c315d09e6644bb1a345b9b",
+      "bytes": 90359,
+      "scope": "BindForSave and restore ordering only"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/PopulationBuilder.cs",
+      "sha256": "12f10f55ed9c8e57cb43e7f430d1638e48e1e646cf1bf9adeab9b8f90024403d",
+      "bytes": 15807,
+      "scope": "roll policy, producer references/revision and receipt capture"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPopulationPolicy.cs",
+      "sha256": "2f63e098cdd62cadd4a3d836e0fda31e0fefcdfe070a91e9add754ed06042f7f",
+      "bytes": 1844,
+      "scope": "full source"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadWildernessSituationPlan.cs",
+      "sha256": "a9ac602eab9278a6ba7650053f137f9bac01eb08a9af1df61425c8bfa1a9addb",
+      "bytes": 10751,
+      "scope": "receipt and exact graph snapshot"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationBuilder.cs",
+      "sha256": "fec6fabfbd30adee328532b02a8766a073f576080f86b4188cbfd057a84497cb",
+      "bytes": 20035,
+      "scope": "F5/F7/F6/current other-owner and strict final integration; prior E2 paths checked for preservation"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs",
+      "sha256": "a8ca7172d2756515a48b8e3ea961ada6f1cb180e4d5c1d4bb6721d9eacb2d4f6",
+      "bytes": 28977,
+      "scope": "territory filter delta, shared graph/helper and finalization contracts"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.Encounters.cs",
+      "sha256": "ce5eb7fe75a18cbe36805de468c2e251628e88ba09a360c5e6671c239b35226f",
+      "bytes": 10727,
+      "scope": "full source"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.Collector.cs",
+      "sha256": "e57d36f70f082e2a05a827644099625213f13a93a64c075f5feb0d198a4b0f25",
+      "bytes": 9597,
+      "scope": "full source"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/SpreadCollectorPart.cs",
+      "sha256": "70bdebe32a55dc846f876330c98dfbf7ba2a94470765bfc88894a1bcc7b67d0b",
+      "bytes": 14519,
+      "scope": "full source and committed callback/phase boundaries"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/CombatTacticsPart.cs",
+      "sha256": "29d65266f07d57c46159055078845513088b56bcb78cee6e5a8fe6a5476770b8",
+      "bytes": 13771,
+      "scope": "AlertAllies and NoFight guard delta"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/Goals/BoredGoal.cs",
+      "sha256": "46036b14d6a08ab39dff1975bb3ba8a66bb29e65037217167fc703feaba3d965",
+      "bytes": 9545,
+      "scope": "role/default acquisition/action ordering"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Inventory/Commands/Disposition/PutInContainerCommand.cs",
+      "sha256": "dff99775b96ad248a5883b65ec3fab5cc0b954a8bd4d55272d15356a5e306922",
+      "bytes": 6732,
+      "scope": "NPC narration delta; existing merge retained"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/WorldTravellers.cs",
+      "sha256": "a62dad603aae4611840223c93da3ead012bfe92a62afaa30067d33db7958a209",
+      "bytes": 11610,
+      "scope": "actual source entry and EntrySample preservation"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/WorldTravellers.Exchange.cs",
+      "sha256": "95e4f88aad627fd5477cae2e16a0863757fd58245f4e135be07a2366d594c431",
+      "bytes": 11767,
+      "scope": "full source and Body ownership guard"
+    },
+    {
+      "path": "Assets/Resources/Content/Blueprints/Objects.json",
+      "sha256": "e940b87ebe2e47d1f695dc98cd49f13b0bb1bcc233dec1a8ee2c630da69c74e1",
+      "bytes": 829192,
+      "scope": "diff only: Tatterjay/TatterjayCorpse"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEncounterPipelineTests.cs",
+      "sha256": "afd38a804b2d65915fba79f963ae9cbe3dcbd4e5f8307e84e81f8e284f5fe390",
+      "bytes": 12156,
+      "scope": "paired generation/save/protected/callback tests"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/SpreadExplorationEncounterTests.cs",
+      "sha256": "4a54df7720a181c6249fbe173b94ead1c94725a56be388e584dbc5ca350e68a6",
+      "bytes": 18027,
+      "scope": "focused source, sight, Calm, mutation and save counter inventory"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEntryExpansionTests.cs",
+      "sha256": "95fac0c3828b771625a2053366ca145e17b5e38ab1c2ebc26a2d51411c0494b1",
+      "bytes": 11522,
+      "scope": "saved-version/one-shot accepted-entry rows"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadRoadsideExchangeTests.cs",
+      "sha256": "89e663cf36d9dd6872d5d546765f5dbc489ba73ddea179ee4d4f553e3918d6e3",
+      "bytes": 13490,
+      "scope": "current owner/callback/fallback/depletion/body rows"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadCollectorPipelineTests.cs",
+      "sha256": "46c823c5f8e84aefacd845744c31a29f27858ef5b2204fc388fac602875f0964",
+      "bytes": 11867,
+      "scope": "current original natural and callback premise; separate pending private correction"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/AI/SpreadTerritorySourceSelectionTests.cs",
+      "sha256": "e3308fe73e53ccac321248d0d88331613376f8077af7d6684a5cffb16415c60a",
+      "bytes": 2408,
+      "scope": "clutter/counter rows"
+    },
+    {
+      "path": "Docs/QUEST-FREE-EXPLORATION-PLAN.md",
+      "sha256": "f4afdd94e48d81895b814b7f51ffcb994f86183bf5079a59040b8881785b75d1",
+      "bytes": 103012,
+      "scope": "Q1-Q4, E4 F9/F12 and current E3 checkpoint"
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E3/Collector/Generation/README.md",
+      "sha256": "7b914ff63548b4c842992a5c38777be71fd5b4a08bf7e8b14e5ec57a5d95ddd5",
+      "bytes": 4502,
+      "scope": "historical evidence versus current unresolved wording"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/HaulablePropBuilder.cs",
+      "sha256": "f579af1ccf791ee5523064f9d110d6a060207b6ec71cd514ff8c8f1cc57424d6",
+      "bytes": 5389,
+      "scope": "E4 actual source dependency suggestion"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/DragRules.cs",
+      "sha256": "013584d80256f392139dca36cbbb22ec457c5a31e9290b832eda2e3e52d39c98",
+      "bytes": 7267,
+      "scope": "E4 actual gate dependency"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Items/HandlingPart.cs",
+      "sha256": "6f8bc4f3ef658af180f6aeb2d6c5bd8a4077df9133b01d9bad5005738b820fbb",
+      "bytes": 4367,
+      "scope": "E4 actual action dependency"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/DoorPart.cs",
+      "sha256": "ea8038547e8af1fd4c921facb15a5e26b5b2b11b691457d47ddbff740e86f976",
+      "bytes": 5332,
+      "scope": "E4 ordinary door/action/state dependency"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/DestructiblePart.cs",
+      "sha256": "07482866338d19d5d67444823e884de57396d6b7d177af5b27bf9702e6143e96",
+      "bytes": 4597,
+      "scope": "E4 opt-in destruction/action dependency"
+    }
+  ],
+  "existingEvidence": {
+    "path": "Docs/Verification/QuestFreeExploration/E3/Integration/native-f6-f8-v4-first.json",
+    "sha256": "abfb235e8f7c844c020717a434036798c10ec8277f26fa3c859d5aa4f3bea74c",
+    "summary": {
+      "total": 156,
+      "passed": 151,
+      "failed": 5,
+      "skipped": 0,
+      "durationSeconds": 20.4981194,
+      "resultState": "Failed(Child)"
+    }
+  },
+  "pendingPrivateFixtureManifest": "/tmp/coo-questfree-implementation/actors/collector-native-fixture/manifest.json",
+  "noteSha256": "95aa7f737234f1a5de0e8da42617434cdfae7d33c44dabdbade5eea51ed3d745"
+}

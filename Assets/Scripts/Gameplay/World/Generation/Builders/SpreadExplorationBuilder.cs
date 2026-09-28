@@ -34,8 +34,83 @@ namespace CavesOfOoo.Core
     case SpreadExplorationFamily.OccupiedBank:return Actor(zone,factory,entry,false);
     case SpreadExplorationFamily.LastGleanings:return Actor(zone,factory,entry,true);
     case SpreadExplorationFamily.WateringMargin:return Water(zone,factory,entry);
+    case SpreadExplorationFamily.SnakeForage:return Encounter(zone,factory,entry,true);
+    case SpreadExplorationFamily.WorkGang:return Encounter(zone,factory,entry,false);
+    case SpreadExplorationFamily.CollectorReturn:return Collector(zone,factory,entry);
     default:return Refuse(zone,entry,"unsupported-family");
    }
+  }
+  bool Collector(Zone z,EntityFactory f,SpreadExplorationEntry entry)
+  {
+   var replacement=population?.AmbientReplacementReceipt;var ambient=population?.AmbientSourceReceipt;
+   var loose=population?.LooseSourceReceipt;var homes=containers?.SourceReceipt;
+   if(!Source(replacement,z,f)||!Source(loose,z,f)||!Source(homes,z,f))return Refuse(z,entry,"collector-source");
+   if(replacement.Owners.Count!=1||replacement.Owners[0].BlueprintName!="Tatterjay")return Refuse(z,entry,"no-exact-collector-allowance");
+   var actor=replacement.Owners[0];
+   if(ambient==null||ambient.Zone!=z||!ReferenceEquals(ambient.Factory,f)||ambient.Revision!=replacement.Revision
+     ||ambient.Owners.Count(e=>e==actor)!=1)return Refuse(z,entry,"collector-ambient-source");
+   var items=loose.Owners.Where(e=>LooseOwner(z,e)&&(e.BlueprintName=="Hatchet"||e.BlueprintName=="Cudgel"||e.BlueprintName=="LeatherBoots"))
+     .OrderBy(e=>z.GetEntityPosition(e).y).ThenBy(e=>z.GetEntityPosition(e).x).Take(32).ToArray();
+   var caches=homes.Owners.Where(e=>CacheOwner(z,e)).OrderBy(e=>Math.Abs(z.GetEntityPosition(e).y-Zone.Height/2))
+     .ThenBy(e=>z.GetEntityPosition(e).y).ThenBy(e=>z.GetEntityPosition(e).x).Take(32).ToArray();
+   if(items.Length==0||caches.Length==0)return Refuse(z,entry,"no-rolled-collector-goods-or-home");
+   // Capture at4300, after ordinary Magpie stocking. The original whole ambient
+   // receipt remains stale; only the exact replacement authorizes this actor.
+   var original=SpreadGenerationReceipt.CaptureFinalState(z,ambient.Owners.Concat(loose.Owners).Concat(homes.Owners));
+   bool SourceAuthority()=>Current(z,f,entry)&&population.CaptureSourceReceipts&&containers.CaptureSourceReceipts
+    &&ReferenceEquals(population.AmbientReplacementReceipt,replacement)&&ReferenceEquals(population.AmbientSourceReceipt,ambient)
+    &&ReferenceEquals(population.LooseSourceReceipt,loose)&&ReferenceEquals(containers.SourceReceipt,homes);
+   if(!SourceAuthority()||!original()||!replacement.TryConsume()||!loose.TryConsume()||!homes.TryConsume())return Refuse(z,entry,"changed-collector-source");
+   int trials=0;
+   foreach(var home in caches)foreach(var item in items)
+   {
+    if(++trials>32)return Refuse(z,entry,"collector-source-budget");
+    var others=SpreadGenerationReceipt.CaptureFinalState(z,ambient.Owners.Concat(loose.Owners).Concat(homes.Owners).Where(e=>e!=actor&&e!=item));
+    bool Authority()=>SourceAuthority()&&others();
+    if(SpreadExplorationActorPlacement.TryCollectorReturn(z,actor,home,item,Authority,out var final))
+    {
+     if(final==null)return false;
+     return Commit(z,f,entry,new[]{actor,home,item},()=>Authority()&&final());
+    }
+    // Honest optional refusal must retain the entire original packet, including
+    // positions. A failed callback cannot leave uncommitted source movement.
+    if(!SourceAuthority()||!original())return false;
+   }
+   return Refuse(z,entry,"no-safe-collector-layout");
+  }
+  bool Encounter(Zone z,EntityFactory f,SpreadExplorationEntry entry,bool snakes)
+  {
+   var receipt=population?.SourceReceipt;var forage=population?.ForageSourceReceipt;
+   if(!Source(receipt,z,f)||(snakes&&!Source(forage,z,f)))return Refuse(z,entry,"encounter-source");
+   var actors=receipt.Owners.ToArray();
+   if(snakes?(actors.Length<1||actors.Length>2||actors.Any(e=>e.BlueprintName!="Viper"))
+    :(actors.Length!=2||actors.Any(e=>e.BlueprintName!="MarlbackScrabbler")))return Refuse(z,entry,"no-exact-encounter-allowance");
+   var foods=snakes?forage.Owners.OrderBy(e=>z.GetEntityPosition(e).y).ThenBy(e=>z.GetEntityPosition(e).x).Take(32).ToArray():Array.Empty<Entity>();
+   if(snakes&&foods.Length==0)return Refuse(z,entry,"no-rolled-forage");
+   // Food and any non-selected packet owners remain at their original anchors.
+   // The helper owns intentional actor movement and its assist-only part.
+   var foodUnchanged=SpreadGenerationReceipt.CaptureFinalState(z,snakes?forage.Owners:Array.Empty<Entity>());
+   bool Authority()=>Current(z,f,entry)&&population.CaptureSourceReceipts&&ReferenceEquals(population.SourceReceipt,receipt)
+    &&(!snakes||ReferenceEquals(population.ForageSourceReceipt,forage))&&foodUnchanged();
+   if(!Authority()||!receipt.TryConsume()||(snakes&&!forage.TryConsume()))return Refuse(z,entry,"changed-encounter-source");
+   Func<bool> final=null;bool placed=false;
+   if(snakes)
+   {
+    foreach(var food in foods)
+    {
+     placed=SpreadExplorationActorPlacement.TrySnakeForage(z,actors,food,Authority,out final);
+     if(placed)break;
+     if(!Authority()||!receipt.MatchesOwnedState()||!forage.MatchesOwnedState())return false;
+    }
+   }
+   else placed=SpreadExplorationActorPlacement.TryWorkGang(z,actors,(entry.ActorSeed&1)!=0,Authority,out final);
+   if(!placed)
+   {
+    if(!Authority()||!receipt.MatchesOwnedState()||(snakes&&!forage.MatchesOwnedState()))return false;
+    return Refuse(z,entry,"no-safe-encounter-layout");
+   }
+   if(final==null)return false;
+   return Commit(z,f,entry,actors,()=>Authority()&&final());
   }
   bool Actor(Zone z,EntityFactory f,SpreadExplorationEntry entry,bool grazer)
   {

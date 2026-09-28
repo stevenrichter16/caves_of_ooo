@@ -27,11 +27,11 @@ namespace CavesOfOoo.Core
     }
     return output.ToArray();
    }
-   if(family==SpreadExplorationFamily.LastGleanings)
+   if(family==SpreadExplorationFamily.LastGleanings||family==SpreadExplorationFamily.CollectorReturn)
    {
     var entries=table.Entries.Where(e=>e!=null&&e.BlueprintName=="Magpie").ToArray();
     if(entries.Length!=1||!string.IsNullOrEmpty(entries[0].EncounterGroup))return result;
-    int index=Array.IndexOf(result,"Magpie");if(index>=0)result[index]="ReedbackGrazer";
+    int index=Array.IndexOf(result,"Magpie");if(index>=0)result[index]=family==SpreadExplorationFamily.CollectorReturn?"Tatterjay":"ReedbackGrazer";
    }
    return result;
   }

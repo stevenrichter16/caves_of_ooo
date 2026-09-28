@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="47" result="Failed" start-time="2026-09-28T03:26:22.7986900Z" end-time="2026-09-28T03:26:25.6302690Z" duration="2.831510" total="12" passed="2" failed="10" inconclusive="0" skipped="0" warnings="0" asserts="129636" random-seed="798822534">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/e3-integration/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/e3-integration/pipeline-red.xml --where "class == CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1058" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="47" result="Failed" site="Child" start-time="2026-09-28T03:26:22.7986900Z" end-time="2026-09-28T03:26:25.6302690Z" duration="2.831510" total="12" passed="2" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="129636">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="40080" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1059" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="47" result="Failed" site="Child" start-time="2026-09-28T03:26:22.8004390Z" end-time="2026-09-28T03:26:25.6302670Z" duration="2.829778" total="12" passed="2" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="129636">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1060" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="47" result="Failed" site="Child" start-time="2026-09-28T03:26:22.8005660Z" end-time="2026-09-28T03:26:25.6302650Z" duration="2.829649" total="12" passed="2" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="129636">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationEncounterPipelineTests" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T03:26:22.8009170Z" end-time="2026-09-28T03:26:25.6302500Z" duration="2.829283" total="12" passed="2" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="129636">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1013" name="ActualLoadedVersionTwoKeepsItsFamilyAndDoesNotRetrofitAnE3Role" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.ActualLoadedVersionTwoKeepsItsFamilyAndDoesNotRetrofitAnE3Role" methodname="ActualLoadedVersionTwoKeepsItsFamilyAndDoesNotRetrofitAnE3Role" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="786491717" result="Passed" start-time="2026-09-28T03:26:22.8019550Z" end-time="2026-09-28T03:26:23.0130780Z" duration="0.211144" asserts="7" />
+          <test-suite type="ParameterizedMethod" id="1012" name="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T03:26:23.0137790Z" end-time="2026-09-28T03:26:23.7249330Z" duration="0.711142" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="0">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1008" name="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;SnakeForage&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;SnakeForage&quot;,False)" methodname="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1547072971" result="Failed" start-time="2026-09-28T03:26:23.0138590Z" end-time="2026-09-28T03:26:23.1809980Z" duration="0.167136" asserts="0">
+              <failure>
+                <message><![CDATA[Need a real committed SnakeForage before measuring callbacks]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[Need a real committed SnakeForage before measuring callbacks]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;SnakeForage&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;SnakeForage&quot;,True)" methodname="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="310623174" result="Failed" start-time="2026-09-28T03:26:23.1810830Z" end-time="2026-09-28T03:26:23.3178010Z" duration="0.136716" asserts="0">
+              <failure>
+                <message><![CDATA[Need a real committed SnakeForage before measuring callbacks]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[Need a real committed SnakeForage before measuring callbacks]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1010" name="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;WorkGang&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;WorkGang&quot;,False)" methodname="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="959895743" result="Failed" start-time="2026-09-28T03:26:23.3178330Z" end-time="2026-09-28T03:26:23.5227880Z" duration="0.204952" asserts="0">
+              <failure>
+                <message><![CDATA[Need a real committed WorkGang before measuring callbacks]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[Need a real committed WorkGang before measuring callbacks]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;WorkGang&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;WorkGang&quot;,True)" methodname="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1724487074" result="Failed" start-time="2026-09-28T03:26:23.5228210Z" end-time="2026-09-28T03:26:23.7242930Z" duration="0.201469" asserts="0">
+              <failure>
+                <message><![CDATA[Need a real committed WorkGang before measuring callbacks]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[Need a real committed WorkGang before measuring callbacks]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1014" name="ProtectedPlacesCannotAcquireEitherNewFamily" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.ProtectedPlacesCannotAcquireEitherNewFamily" methodname="ProtectedPlacesCannotAcquireEitherNewFamily" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="747352221" result="Passed" start-time="2026-09-28T03:26:23.7251110Z" end-time="2026-09-28T03:26:23.8548900Z" duration="0.129777" asserts="15" />
+          <test-suite type="ParameterizedMethod" id="1007" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T03:26:23.8549290Z" end-time="2026-09-28T03:26:25.6301380Z" duration="1.775178" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="129614">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1,&quot;SnakeForage&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1,&quot;SnakeForage&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1734891831" result="Failed" start-time="2026-09-28T03:26:23.8549480Z" end-time="2026-09-28T03:26:24.4902500Z" duration="0.635292" asserts="51273">
+              <failure>
+                <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1 SnakeForage Overworld.10.1.0 refused:unsupported-family actors=Viper food=1
+1 SnakeForage Overworld.10.12.0 refused:unsupported-family actors=Viper food=3
+1 SnakeForage Overworld.11.4.0 refused:unsupported-family actors=Viper food=1
+1 SnakeForage Overworld.12.10.0 refused:unsupported-family actors=Viper,Viper food=1
+1 SnakeForage Overworld.18.12.0 refused:unsupported-family actors=MarlbackScrabbler food=1
+1 SnakeForage Overworld.19.11.0 refused:unsupported-family actors=Viper food=3
+1 SnakeForage Overworld.6.13.0 refused:unsupported-family actors=Viper,Viper food=2
+1 SnakeForage Overworld.7.14.0 refused:unsupported-family actors=MarlbackScrabbler food=1
+1 SnakeForage Overworld.8.11.0 refused:unsupported-family actors=Viper,Viper food=3
+1 SnakeForage Overworld.8.4.0 refused:unsupported-family actors=MarlbackScrabbler food=1
+1 SnakeForage Overworld.9.9.0 refused:unsupported-family actors=Viper,Viper food=3
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,&quot;SnakeForage&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,&quot;SnakeForage&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="894207876" result="Failed" start-time="2026-09-28T03:26:24.4903380Z" end-time="2026-09-28T03:26:24.8913970Z" duration="0.401054" asserts="32520">
+              <failure>
+                <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[64 SnakeForage Overworld.11.11.0 refused:unsupported-family actors=Viper food=1
+64 SnakeForage Overworld.13.6.0 refused:unsupported-family actors=MarlbackScrabbler,MarlbackScrabbler food=1
+64 SnakeForage Overworld.18.12.0 refused:unsupported-family actors=Viper,Viper food=2
+64 SnakeForage Overworld.19.11.0 refused:unsupported-family actors=Viper,Viper food=1
+64 SnakeForage Overworld.6.13.0 refused:unsupported-family actors=Viper food=1
+64 SnakeForage Overworld.7.14.0 refused:unsupported-family actors=MarlbackScrabbler,MarlbackScrabbler food=1
+64 SnakeForage Overworld.9.1.0 refused:unsupported-family actors=Viper food=4
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1729,&quot;SnakeForage&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1729,&quot;SnakeForage&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1314968197" result="Failed" start-time="2026-09-28T03:26:24.8914340Z" end-time="2026-09-28T03:26:25.1769740Z" duration="0.285535" asserts="18592">
+              <failure>
+                <message><![CDATA[  Overworld.13.6.0 original exact IDs/gear/backlinks
+  Expected is <System.String[2324]>, actual is <System.Linq.Enumerable+ArraySelectIterator`2[CavesOfOoo.Core.Entity,System.String]>
+  Values differ at index [2301]
+  Expected string length 493 but was 567. Strings differ at index 166.
+  Expected: "...llpower:10:0:0,XPValue:10:0:0:ShopStockTable=FarmerStock;s..."
+  But was:  "...llpower:10:0:0,XPValue:10:0:0:LocalCulture=Villagers,Local..."
+  --------------------------------------------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 43
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1729 SnakeForage Overworld.10.9.0 refused:unsupported-family actors=Viper,Viper food=1
+1729 SnakeForage Overworld.11.11.0 refused:unsupported-family actors=MarlbackScrabbler food=1
+1729 SnakeForage Overworld.11.4.0 refused:unsupported-family actors=MarlbackScrabbler,MarlbackScrabbler food=2
+1729 SnakeForage Overworld.12.10.0 refused:unsupported-family actors=Viper,Viper food=1
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.13.6.0 original exact IDs/gear/backlinks
+  Expected is <System.String[2324]>, actual is <System.Linq.Enumerable+ArraySelectIterator`2[CavesOfOoo.Core.Entity,System.String]>
+  Values differ at index [2301]
+  Expected string length 493 but was 567. Strings differ at index 166.
+  Expected: "...llpower:10:0:0,XPValue:10:0:0:ShopStockTable=FarmerStock;s..."
+  But was:  "...llpower:10:0:0,XPValue:10:0:0:LocalCulture=Villagers,Local..."
+  --------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 43
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1,&quot;WorkGang&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1,&quot;WorkGang&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1573808677" result="Failed" start-time="2026-09-28T03:26:25.1770050Z" end-time="2026-09-28T03:26:25.2845570Z" duration="0.107550" asserts="4555">
+              <failure>
+                <message><![CDATA[  Overworld.11.14.0 original exact IDs/gear/backlinks
+  Expected is <System.String[2272]>, actual is <System.Linq.Enumerable+ArraySelectIterator`2[CavesOfOoo.Core.Entity,System.String]>
+  Values differ at index [2245]
+  Expected string length 450 but was 525. Strings differ at index 165.
+  Expected: "...llpower:10:0:0,XPValue:10:0:0:ShopStockTable=FarmerStock;s..."
+  But was:  "...llpower:10:0:0,XPValue:10:0:0:LocalCulture=Villagers,Local..."
+  --------------------------------------------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 43
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1 WorkGang Overworld.10.4.0 refused:unsupported-family actors=Viper food=1
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.11.14.0 original exact IDs/gear/backlinks
+  Expected is <System.String[2272]>, actual is <System.Linq.Enumerable+ArraySelectIterator`2[CavesOfOoo.Core.Entity,System.String]>
+  Values differ at index [2245]
+  Expected string length 450 but was 525. Strings differ at index 165.
+  Expected: "...llpower:10:0:0,XPValue:10:0:0:ShopStockTable=FarmerStock;s..."
+  But was:  "...llpower:10:0:0,XPValue:10:0:0:LocalCulture=Villagers,Local..."
+  --------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 43
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,&quot;WorkGang&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,&quot;WorkGang&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1858515061" result="Failed" start-time="2026-09-28T03:26:25.2845850Z" end-time="2026-09-28T03:26:25.5731140Z" duration="0.288524" asserts="22666">
+              <failure>
+                <message><![CDATA[  Overworld.6.7.0 original exact IDs/gear/backlinks
+  Expected is <System.String[2262]>, actual is <System.Linq.Enumerable+ArraySelectIterator`2[CavesOfOoo.Core.Entity,System.String]>
+  Values differ at index [2245]
+  Expected string length 510 but was 584. Strings differ at index 166.
+  Expected: "...llpower:10:0:0,XPValue:10:0:0:ShopStockTable=FarmerStock;s..."
+  But was:  "...llpower:10:0:0,XPValue:10:0:0:LocalCulture=Villagers,Local..."
+  --------------------------------------------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 43
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[64 WorkGang Overworld.12.6.0 refused:unsupported-family actors=MarlbackScrabbler,MarlbackScrabbler food=1
+64 WorkGang Overworld.13.12.0 refused:unsupported-family actors=MarlbackScrabbler food=1
+64 WorkGang Overworld.14.8.0 refused:unsupported-family actors=Viper food=2
+64 WorkGang Overworld.5.13.0 refused:unsupported-family actors=Viper food=1
+64 WorkGang Overworld.5.8.0 refused:unsupported-family actors=Viper,Viper food=1
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.6.7.0 original exact IDs/gear/backlinks
+  Expected is <System.String[2262]>, actual is <System.Linq.Enumerable+ArraySelectIterator`2[CavesOfOoo.Core.Entity,System.String]>
+  Values differ at index [2245]
+  Expected string length 510 but was 584. Strings differ at index 166.
+  Expected: "...llpower:10:0:0,XPValue:10:0:0:ShopStockTable=FarmerStock;s..."
+  But was:  "...llpower:10:0:0,XPValue:10:0:0:LocalCulture=Villagers,Local..."
+  --------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 43
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1729,&quot;WorkGang&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1729,&quot;WorkGang&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1548203125" result="Failed" start-time="2026-09-28T03:26:25.5731410Z" end-time="2026-09-28T03:26:25.6300900Z" duration="0.056948" asserts="8">
+              <failure>
+                <message><![CDATA[  Overworld.10.4.0 original exact IDs/gear/backlinks
+  Expected is <System.String[2271]>, actual is <System.Linq.Enumerable+ArraySelectIterator`2[CavesOfOoo.Core.Entity,System.String]>
+  Values differ at index [2240]
+  Expected string length 457 but was 531. Strings differ at index 165.
+  Expected: "...llpower:10:0:0,XPValue:10:0:0:ShopStockTable=FarmerStock;s..."
+  But was:  "...llpower:10:0:0,XPValue:10:0:0:LocalCulture=Villagers,Local..."
+  --------------------------------------------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 43
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.10.4.0 original exact IDs/gear/backlinks
+  Expected is <System.String[2271]>, actual is <System.Linq.Enumerable+ArraySelectIterator`2[CavesOfOoo.Core.Entity,System.String]>
+  Values differ at index [2240]
+  Expected string length 457 but was 531. Strings differ at index 165.
+  Expected: "...llpower:10:0:0,XPValue:10:0:0:ShopStockTable=FarmerStock;s..."
+  But was:  "...llpower:10:0:0,XPValue:10:0:0:LocalCulture=Villagers,Local..."
+  --------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 43
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -211,6 +211,8 @@ namespace CavesOfOoo.Core
                 else if (FactionManager.GetFaction(ally) != faction) reason = "different-faction";
                 else if (BrainPart.ArePartyAligned(ally, target) || brain.PartyLeader != null) reason = "party";
                 else if (brain.Target != null) reason = "already-engaged";
+                else if (brain.PeekGoal() is NoFightGoal calm && (calm.Duration <= 0 || calm.Age < calm.Duration))
+                    reason = "controlled";
                 var cell = zone.GetEntityCell(ally);
                 if (reason == null && (cell == null || AssistRadius < 1 || tactics.AssistRadius < 1 ||
                     SpatialQuery.Distance(zone, actor, ally) > Math.Min(AssistRadius, tactics.AssistRadius) ||

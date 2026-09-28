@@ -1,0 +1,250 @@
+{
+  "runId": "a00c749fc3c84b26a95c78e652bd8907",
+  "seed": 64,
+  "mode": "affordances",
+  "finished": true,
+  "complete": true,
+  "failures": 0,
+  "fatal": null,
+  "seconds": 4.2639996,
+  "paidInputs": 1,
+  "checks": [
+    {
+      "label": "ordinary_fresh_opted_in_world",
+      "pass": true
+    },
+    {
+      "label": "00b-normal-adjacent-current-cue_free_current_normal_cue",
+      "pass": true
+    },
+    {
+      "label": "cue_pixel_diagnostic_restored_and_free",
+      "pass": true
+    },
+    {
+      "label": "focused_actual_harvest_cue",
+      "pass": true
+    },
+    {
+      "label": "menu_hides_world_cue_and_opening_is_free",
+      "pass": true
+    },
+    {
+      "label": "one_real_paid_harvest_same_owner_finite_yield",
+      "pass": true
+    },
+    {
+      "label": "same_source_native_stubble",
+      "pass": true
+    },
+    {
+      "label": "spent_source_has_no_stale_harvest_cue",
+      "pass": true
+    },
+    {
+      "label": "spent_focus_return_free",
+      "pass": true
+    },
+    {
+      "label": "04-normal-after-harvest-current-cue_free_current_normal_cue",
+      "pass": true
+    },
+    {
+      "label": "bounded_mode_finish",
+      "pass": true
+    }
+  ],
+  "observations": [
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "LastGleanings",
+      "zone": "Overworld.10.5.0",
+      "owner": "3395",
+      "arrival": [
+        31,
+        6
+      ],
+      "accepted": true,
+      "criterion": "actual ripe field and dry adjacent observation cell",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "disclosed-player-only-transfer",
+      "label": "actual generated harvest cue",
+      "zone": "Overworld.10.5.0",
+      "x": 31,
+      "y": 6,
+      "player": "2698",
+      "tick": 10,
+      "nativeEntryAdditions": [],
+      "boundary": "Setup transfer to an actual generated source; not an ordinary journey. Original source owners are preserved. Normal native entry-hook additions such as travellers are recorded separately, never suppressed."
+    },
+    {
+      "phase": "00b-normal-adjacent-current-cue",
+      "state": "Normal",
+      "owner": "3395",
+      "blueprint": "RipeCropRow",
+      "command": "Harvest",
+      "hint": "C, N: menu / harvest",
+      "cell": [
+        32,
+        7
+      ],
+      "submitted": true,
+      "boundary": "Actual Normal-state nearby choice, which may differ from the field chosen for the later focused action. No Look rectangle; screenshot must establish subtle corner visibility."
+    },
+    {
+      "phase": "cue-pixel-diagnostic",
+      "owner": "3395",
+      "cell": [
+        32,
+        7
+      ],
+      "camera": "Main Camera",
+      "screen": [
+        1920,
+        1080
+      ],
+      "pixelRect": [
+        0.0,
+        161.999985,
+        1461.0,
+        918.0
+      ],
+      "orthographic": true,
+      "orthographicSize": 16.8000011,
+      "cullingMask": 257,
+      "lines": [
+        {
+          "name": "lower corner",
+          "layer": 8,
+          "sortingOrder": 7,
+          "widthMultiplier": 0.035,
+          "color": [
+            0.478431374,
+            0.6509804,
+            0.6,
+            0.8509804
+          ],
+          "projected": [
+            [
+              747.4393,
+              752.4161,
+              9.89
+            ],
+            [
+              747.4393,
+              747.225037,
+              9.89
+            ],
+            [
+              752.630249,
+              747.225037,
+              9.89
+            ]
+          ],
+          "widthPixels": 0.956249952
+        },
+        {
+          "name": "upper corner",
+          "layer": 8,
+          "sortingOrder": 7,
+          "widthMultiplier": 0.035,
+          "color": [
+            0.478431374,
+            0.6509804,
+            0.6,
+            0.8509804
+          ],
+          "projected": [
+            [
+              763.0126,
+              767.9893,
+              9.89
+            ],
+            [
+              768.2036,
+              767.9893,
+              9.89
+            ],
+            [
+              768.2036,
+              762.798157,
+              9.89
+            ]
+          ],
+          "widthPixels": 0.956249952
+        }
+      ],
+      "boundary": "Diagnostic-only actual owned line suppression/width/color in successive free frames, same scene/camera/source. Ambient animation can vary; compare the exact projected cell ROI. All original line settings restored in finally. No production setting chosen by this probe."
+    },
+    {
+      "phase": "actual-cue-state",
+      "owner": "3395",
+      "currentTarget": "3395",
+      "currentCommand": "Harvest",
+      "hint": "Enter: menu / harvest",
+      "cachedTarget": "3395",
+      "cachedCommand": "Harvest",
+      "visible": true,
+      "cell": [
+        32,
+        7
+      ],
+      "boundary": "Current native query, cached submitted cue and owned line state; visible pixels still require screenshot review."
+    },
+    {
+      "phase": "actual-native-harvest",
+      "owner": "3395",
+      "yieldBlueprint": "Emberwheat",
+      "yieldCount": 1,
+      "beforeUnits": 0,
+      "afterUnits": 1,
+      "beforeTick": 10,
+      "afterTick": 20,
+      "cost": 1000
+    },
+    {
+      "phase": "spent-current-cue",
+      "owner": "3395",
+      "target": null,
+      "command": null,
+      "hint": null,
+      "boundary": "Another legitimate current verb is allowed; the spent Harvest owner cannot remain advertised."
+    },
+    {
+      "phase": "04-normal-after-harvest-current-cue",
+      "state": "Normal",
+      "owner": null,
+      "blueprint": null,
+      "command": null,
+      "hint": null,
+      "cell": null,
+      "submitted": true,
+      "boundary": "Actual Normal-state nearby choice, which may differ from the field chosen for the later focused action. No Look rectangle; screenshot must establish subtle corner visibility."
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Affordances/Native/a00c749fc3c84b26a95c78e652bd8907/00-ordinary-start.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Affordances/Native/a00c749fc3c84b26a95c78e652bd8907/00b-normal-adjacent-current-cue.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Affordances/Native/a00c749fc3c84b26a95c78e652bd8907/00c-cue-current-on.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Affordances/Native/a00c749fc3c84b26a95c78e652bd8907/00d-cue-forced-off.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Affordances/Native/a00c749fc3c84b26a95c78e652bd8907/00e-cue-width-008.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Affordances/Native/a00c749fc3c84b26a95c78e652bd8907/00f-cue-width-008-white-control.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Affordances/Native/a00c749fc3c84b26a95c78e652bd8907/00g-cue-restored.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Affordances/Native/a00c749fc3c84b26a95c78e652bd8907/01-generated-ripe-field-cue-and-hint.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Affordances/Native/a00c749fc3c84b26a95c78e652bd8907/02-actual-harvest-menu-cue-hidden.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Affordances/Native/a00c749fc3c84b26a95c78e652bd8907/03-same-field-spent-current-cue.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Affordances/Native/a00c749fc3c84b26a95c78e652bd8907/04-normal-after-harvest-current-cue.png"
+  ],
+  "unverifiedFamilies": [],
+  "humanAwarenessMeasured": false,
+  "boundary": "Ordinary N then one disclosed original-player-only setup transfer to a bounded actual generated source. No owner/item/phase/energy grant or direct actor action. Actual keys and current camera/state are observed. This is local instrumented activation, not ordinary discovery, uninformed awareness, natural travel or performance. Root must review screenshots.",
+  "settings": {
+    "screenWidth": 2271,
+    "screenHeight": 1251,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "lowDetail": false
+  }
+}

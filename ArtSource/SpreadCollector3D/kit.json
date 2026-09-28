@@ -1,0 +1,800 @@
+{
+  "schemaVersion": 1,
+  "id": "spread-collector-original-art",
+  "coordinates": "Unity X east/Y up/Z north; one unit per cell",
+  "palette": [
+    "#082C28",
+    "#103E36",
+    "#1A4B40",
+    "#26594A",
+    "#A0A77C",
+    "#CBC697",
+    "#647353",
+    "#235D25",
+    "#40872C",
+    "#65AE3D",
+    "#435A53",
+    "#62786C",
+    "#819489",
+    "#16883B",
+    "#45CB4B",
+    "#A0E772",
+    "#207838",
+    "#D2D3B4",
+    "#B77B43",
+    "#403D28",
+    "#756C40",
+    "#A39456",
+    "#C4B877",
+    "#243E39"
+  ],
+  "models": [
+    {
+      "id": "spread-tatterjay",
+      "blueprint": "Tatterjay",
+      "rigged": true,
+      "rigFamily": "avian",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit",
+        "CarryIdle",
+        "CarryWalk",
+        "Pickup",
+        "Deposit"
+      ],
+      "sockets": [
+        {
+          "name": "Collector.Bill",
+          "bone": "Head",
+          "position": [
+            0,
+            0.515,
+            -0.425
+          ]
+        }
+      ],
+      "bones": [
+        {
+          "name": "Root",
+          "head": [
+            0,
+            0,
+            0
+          ],
+          "tail": [
+            0,
+            0.07,
+            0
+          ],
+          "parent": null
+        },
+        {
+          "name": "Body",
+          "head": [
+            0,
+            0.14,
+            0.035
+          ],
+          "tail": [
+            0,
+            0.38,
+            0.035
+          ],
+          "parent": "Root"
+        },
+        {
+          "name": "Head",
+          "head": [
+            0,
+            0.4,
+            -0.15
+          ],
+          "tail": [
+            0,
+            0.57,
+            -0.23
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Wing.L",
+          "head": [
+            -0.15,
+            0.39,
+            0.015
+          ],
+          "tail": [
+            -0.31,
+            0.31,
+            0.12
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Leg.L",
+          "head": [
+            -0.085,
+            0.21,
+            -0.005
+          ],
+          "tail": [
+            -0.085,
+            0.027,
+            -0.035
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Wing.R",
+          "head": [
+            0.15,
+            0.39,
+            0.015
+          ],
+          "tail": [
+            0.31,
+            0.31,
+            0.12
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Leg.R",
+          "head": [
+            0.085,
+            0.21,
+            -0.005
+          ],
+          "tail": [
+            0.085,
+            0.027,
+            -0.035
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Tail",
+          "head": [
+            0,
+            0.26,
+            0.17
+          ],
+          "tail": [
+            0,
+            0.2,
+            0.48
+          ],
+          "parent": "Body"
+        }
+      ],
+      "boxes": [
+        {
+          "part": "broad-chest",
+          "center": [
+            0,
+            0.31,
+            0.035
+          ],
+          "size": [
+            0.34,
+            0.3,
+            0.32
+          ],
+          "color": 3,
+          "bone": "Body"
+        },
+        {
+          "part": "pale-breast",
+          "center": [
+            0,
+            0.335,
+            -0.145
+          ],
+          "size": [
+            0.275,
+            0.245,
+            0.095
+          ],
+          "color": 17,
+          "bone": "Body"
+        },
+        {
+          "part": "dark-shoulder",
+          "center": [
+            0,
+            0.43,
+            0.035
+          ],
+          "size": [
+            0.3,
+            0.085,
+            0.265
+          ],
+          "color": 23,
+          "bone": "Body"
+        },
+        {
+          "part": "thick-neck",
+          "center": [
+            0,
+            0.45,
+            -0.155
+          ],
+          "size": [
+            0.17,
+            0.19,
+            0.18
+          ],
+          "color": 3,
+          "bone": "Head"
+        },
+        {
+          "part": "broad-head",
+          "center": [
+            0,
+            0.5775,
+            -0.23
+          ],
+          "size": [
+            0.225,
+            0.205,
+            0.22
+          ],
+          "color": 3,
+          "bone": "Head"
+        },
+        {
+          "part": "stepped-crown",
+          "center": [
+            -0.025,
+            0.6925,
+            -0.185
+          ],
+          "size": [
+            0.16,
+            0.05,
+            0.16
+          ],
+          "color": 23,
+          "bone": "Head"
+        },
+        {
+          "part": "broad-pale-bill",
+          "center": [
+            0,
+            0.515,
+            -0.395
+          ],
+          "size": [
+            0.115,
+            0.075,
+            0.16
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "bill-cut",
+          "center": [
+            0,
+            0.487,
+            -0.399
+          ],
+          "size": [
+            0.105,
+            0.026,
+            0.15
+          ],
+          "color": 19,
+          "bone": "Head"
+        },
+        {
+          "part": "folded-wing-L",
+          "center": [
+            -0.205,
+            0.33,
+            0.085
+          ],
+          "size": [
+            0.1,
+            0.2,
+            0.34
+          ],
+          "color": 23,
+          "bone": "Wing.L"
+        },
+        {
+          "part": "slate-wing-bar-L",
+          "center": [
+            -0.205,
+            0.434,
+            0.09
+          ],
+          "size": [
+            0.11,
+            0.032,
+            0.215
+          ],
+          "color": 12,
+          "bone": "Wing.L"
+        },
+        {
+          "part": "wing-tip-L",
+          "center": [
+            -0.205,
+            0.29,
+            0.27
+          ],
+          "size": [
+            0.09,
+            0.07,
+            0.11
+          ],
+          "color": 3,
+          "bone": "Wing.L"
+        },
+        {
+          "part": "shin-L",
+          "center": [
+            -0.085,
+            0.112,
+            -0.025
+          ],
+          "size": [
+            0.035,
+            0.19,
+            0.042
+          ],
+          "color": 19,
+          "bone": "Leg.L"
+        },
+        {
+          "part": "spread-foot-L",
+          "center": [
+            -0.085,
+            0.021,
+            -0.065
+          ],
+          "size": [
+            0.105,
+            0.042,
+            0.15
+          ],
+          "color": 19,
+          "bone": "Leg.L"
+        },
+        {
+          "part": "pale-eye-L",
+          "center": [
+            -0.117,
+            0.587,
+            -0.285
+          ],
+          "size": [
+            0.018,
+            0.035,
+            0.044
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "eye-cut-L",
+          "center": [
+            -0.127,
+            0.587,
+            -0.297
+          ],
+          "size": [
+            0.009,
+            0.026,
+            0.023
+          ],
+          "color": 0,
+          "bone": "Head"
+        },
+        {
+          "part": "folded-wing-R",
+          "center": [
+            0.205,
+            0.33,
+            0.085
+          ],
+          "size": [
+            0.1,
+            0.2,
+            0.34
+          ],
+          "color": 23,
+          "bone": "Wing.R"
+        },
+        {
+          "part": "slate-wing-bar-R",
+          "center": [
+            0.205,
+            0.434,
+            0.09
+          ],
+          "size": [
+            0.11,
+            0.032,
+            0.215
+          ],
+          "color": 12,
+          "bone": "Wing.R"
+        },
+        {
+          "part": "wing-tip-R",
+          "center": [
+            0.205,
+            0.29,
+            0.27
+          ],
+          "size": [
+            0.09,
+            0.07,
+            0.11
+          ],
+          "color": 3,
+          "bone": "Wing.R"
+        },
+        {
+          "part": "shin-R",
+          "center": [
+            0.085,
+            0.112,
+            -0.025
+          ],
+          "size": [
+            0.035,
+            0.19,
+            0.042
+          ],
+          "color": 19,
+          "bone": "Leg.R"
+        },
+        {
+          "part": "spread-foot-R",
+          "center": [
+            0.085,
+            0.021,
+            -0.065
+          ],
+          "size": [
+            0.105,
+            0.042,
+            0.15
+          ],
+          "color": 19,
+          "bone": "Leg.R"
+        },
+        {
+          "part": "pale-eye-R",
+          "center": [
+            0.117,
+            0.587,
+            -0.285
+          ],
+          "size": [
+            0.018,
+            0.035,
+            0.044
+          ],
+          "color": 17,
+          "bone": "Head"
+        },
+        {
+          "part": "eye-cut-R",
+          "center": [
+            0.127,
+            0.587,
+            -0.297
+          ],
+          "size": [
+            0.009,
+            0.026,
+            0.023
+          ],
+          "color": 0,
+          "bone": "Head"
+        },
+        {
+          "part": "ragged-tail-0",
+          "center": [
+            -0.085,
+            0.26,
+            0.31
+          ],
+          "size": [
+            0.08,
+            0.055,
+            0.29
+          ],
+          "color": 3,
+          "bone": "Tail"
+        },
+        {
+          "part": "ragged-tail-1",
+          "center": [
+            0,
+            0.23,
+            0.35
+          ],
+          "size": [
+            0.08,
+            0.055,
+            0.38
+          ],
+          "color": 23,
+          "bone": "Tail"
+        },
+        {
+          "part": "ragged-tail-2",
+          "center": [
+            0.085,
+            0.245,
+            0.335
+          ],
+          "size": [
+            0.08,
+            0.055,
+            0.33
+          ],
+          "color": 12,
+          "bone": "Tail"
+        }
+      ],
+      "motion": {
+        "Idle": {
+          "bodyBreath": 0.018,
+          "headSway": 0.035
+        },
+        "Walk": {
+          "legSwing": 0.34,
+          "wingSwing": 0.08,
+          "bodyBob": 0.014
+        },
+        "Interact": {
+          "headPitch": 0.4,
+          "bodyPitch": 0.09
+        },
+        "Attack": {
+          "headPitch": 0.45,
+          "wingSwing": 0.2
+        },
+        "Hit": {
+          "bodyPitch": -0.15,
+          "headPitch": -0.12
+        },
+        "CarryIdle": {
+          "headPitch": -0.11,
+          "bodyBreath": 0.012
+        },
+        "CarryWalk": {
+          "headPitch": -0.11,
+          "legSwing": 0.3,
+          "wingSwing": 0.06,
+          "bodyBob": 0.01
+        },
+        "Pickup": {
+          "headPitch": 0.7,
+          "bodyPitch": 0.1
+        },
+        "Deposit": {
+          "headPitch": 0.5,
+          "bodyPitch": 0.06,
+          "headSway": 0.09
+        }
+      }
+    },
+    {
+      "id": "spread-tatterjay-remains",
+      "blueprint": "TatterjayCorpse",
+      "rigged": false,
+      "rigFamily": "",
+      "clips": [],
+      "sockets": [],
+      "bones": [],
+      "boxes": [
+        {
+          "part": "folded-body",
+          "center": [
+            0,
+            0.105,
+            0.055
+          ],
+          "size": [
+            0.38,
+            0.2,
+            0.38
+          ],
+          "color": 3,
+          "bone": "Body"
+        },
+        {
+          "part": "folded-pale-chest",
+          "center": [
+            0,
+            0.13,
+            -0.11
+          ],
+          "size": [
+            0.28,
+            0.17,
+            0.1
+          ],
+          "color": 17,
+          "bone": "Body"
+        },
+        {
+          "part": "folded-head",
+          "center": [
+            -0.055,
+            0.085,
+            -0.205
+          ],
+          "size": [
+            0.245,
+            0.16,
+            0.2
+          ],
+          "color": 3,
+          "bone": "Body"
+        },
+        {
+          "part": "folded-pale-bill",
+          "center": [
+            -0.06,
+            0.058,
+            -0.34
+          ],
+          "size": [
+            0.13,
+            0.07,
+            0.17
+          ],
+          "color": 17,
+          "bone": "Body"
+        },
+        {
+          "part": "fallen-wing-L",
+          "center": [
+            -0.235,
+            0.053,
+            0.05
+          ],
+          "size": [
+            0.15,
+            0.09,
+            0.31
+          ],
+          "color": 23,
+          "bone": "Body"
+        },
+        {
+          "part": "fallen-wing-mark-L",
+          "center": [
+            -0.235,
+            0.101,
+            0.05
+          ],
+          "size": [
+            0.115,
+            0.018,
+            0.22
+          ],
+          "color": 12,
+          "bone": "Body"
+        },
+        {
+          "part": "folded-foot-L",
+          "center": [
+            -0.105,
+            0.029,
+            -0.01
+          ],
+          "size": [
+            0.05,
+            0.035,
+            0.2
+          ],
+          "color": 19,
+          "bone": "Body"
+        },
+        {
+          "part": "fallen-wing-R",
+          "center": [
+            0.235,
+            0.053,
+            0.05
+          ],
+          "size": [
+            0.15,
+            0.09,
+            0.31
+          ],
+          "color": 23,
+          "bone": "Body"
+        },
+        {
+          "part": "fallen-wing-mark-R",
+          "center": [
+            0.235,
+            0.101,
+            0.05
+          ],
+          "size": [
+            0.115,
+            0.018,
+            0.22
+          ],
+          "color": 12,
+          "bone": "Body"
+        },
+        {
+          "part": "folded-foot-R",
+          "center": [
+            0.105,
+            0.029,
+            -0.01
+          ],
+          "size": [
+            0.05,
+            0.035,
+            0.2
+          ],
+          "color": 19,
+          "bone": "Body"
+        },
+        {
+          "part": "fallen-tail-0",
+          "center": [
+            -0.07,
+            0.075,
+            0.31
+          ],
+          "size": [
+            0.067,
+            0.06,
+            0.3
+          ],
+          "color": 3,
+          "bone": "Body"
+        },
+        {
+          "part": "fallen-tail-1",
+          "center": [
+            0,
+            0.075,
+            0.34
+          ],
+          "size": [
+            0.067,
+            0.06,
+            0.36
+          ],
+          "color": 23,
+          "bone": "Body"
+        },
+        {
+          "part": "fallen-tail-2",
+          "center": [
+            0.07,
+            0.075,
+            0.325
+          ],
+          "size": [
+            0.067,
+            0.06,
+            0.33
+          ],
+          "color": 12,
+          "bone": "Body"
+        }
+      ]
+    }
+  ]
+}

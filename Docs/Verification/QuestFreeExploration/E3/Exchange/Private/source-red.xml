@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/exchange/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="18" result="Failed" start-time="2026-09-28T04:41:37.0429570Z" end-time="2026-09-28T04:41:37.6863950Z" duration="0.643421" total="18" passed="12" failed="6" inconclusive="0" skipped="0" warnings="0" asserts="275" random-seed="1809399088">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/exchange/runner/bin/Debug/net8.0/EditModeRunner.dll --test=CavesOfOoo.Tests.SpreadRoadsideExchangeTests --result=/tmp/coo-questfree-implementation/exchange/source-red.xml]]></command-line>
+  <filter>
+    <test>CavesOfOoo.Tests.SpreadRoadsideExchangeTests</test>
+  </filter>
+  <test-suite type="Assembly" id="1021" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/exchange/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-09-28T04:41:37.0429570Z" end-time="2026-09-28T04:41:37.6863950Z" duration="0.643421" total="18" passed="12" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="275">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="LOAD" value="System.Collections.Generic.List`1[System.String]" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+      <setting name="NumberOfTestWorkers" value="10" />
+    </settings>
+    <properties>
+      <property name="_PID" value="60819" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1022" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-09-28T04:41:37.0447810Z" end-time="2026-09-28T04:41:37.6863930Z" duration="0.641605" total="18" passed="12" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="275">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1023" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-09-28T04:41:37.0448920Z" end-time="2026-09-28T04:41:37.6863900Z" duration="0.641491" total="18" passed="12" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="275">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadRoadsideExchangeTests" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-09-28T04:41:37.0452380Z" end-time="2026-09-28T04:41:37.6863820Z" duration="0.641137" total="18" passed="12" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="275">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1001" name="ActualFreshMerchantCommitsOnVisibleReachableVergeWithoutChangingStock" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.ActualFreshMerchantCommitsOnVisibleReachableVergeWithoutChangingStock" methodname="ActualFreshMerchantCommitsOnVisibleReachableVergeWithoutChangingStock" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1284017884" result="Failed" start-time="2026-09-28T04:41:37.0462400Z" end-time="2026-09-28T04:41:37.1877700Z" duration="0.141556" asserts="18">
+            <failure>
+              <message><![CDATA[  Real accepted entry must commit F8, not only ordinary traveller spawn.
+  Expected: 2
+  But was:  1
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.ActualFreshMerchantCommitsOnVisibleReachableVergeWithoutChangingStock() in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 56
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Real accepted entry must commit F8, not only ordinary traveller spawn.
+  Expected: 2
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.ActualFreshMerchantCommitsOnVisibleReachableVergeWithoutChangingStock() in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 56
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1002" name="ArrivalDoesNotNeedStaleRendererVisibilityFlags" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.ArrivalDoesNotNeedStaleRendererVisibilityFlags" methodname="ArrivalDoesNotNeedStaleRendererVisibilityFlags" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1238081310" result="Failed" start-time="2026-09-28T04:41:37.1884770Z" end-time="2026-09-28T04:41:37.2226020Z" duration="0.034125" asserts="8">
+            <failure>
+              <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.ArrivalDoesNotNeedStaleRendererVisibilityFlags() in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 59
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.ArrivalDoesNotNeedStaleRendererVisibilityFlags() in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 59
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1020" name="CallerRandomIsNotUsedByOptionalPlacement" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.CallerRandomIsNotUsedByOptionalPlacement" methodname="CallerRandomIsNotUsedByOptionalPlacement" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="585983697" result="Failed" start-time="2026-09-28T04:41:37.2226450Z" end-time="2026-09-28T04:41:37.2500420Z" duration="0.027397" asserts="8">
+            <failure>
+              <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.CallerRandomIsNotUsedByOptionalPlacement() in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 84
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.CallerRandomIsNotUsedByOptionalPlacement() in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 84
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1019" name="DepletedStockAndCommittedGraphSurviveActualSaveWithoutEntryReplay" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.DepletedStockAndCommittedGraphSurviveActualSaveWithoutEntryReplay" methodname="DepletedStockAndCommittedGraphSurviveActualSaveWithoutEntryReplay" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="473519850" result="Failed" start-time="2026-09-28T04:41:37.2500600Z" end-time="2026-09-28T04:41:37.2834650Z" duration="0.033404" asserts="8">
+            <failure>
+              <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.DepletedStockAndCommittedGraphSurviveActualSaveWithoutEntryReplay() in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 81
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.DepletedStockAndCommittedGraphSurviveActualSaveWithoutEntryReplay() in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 81
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1017" name="ExistingSameIdentityCannotBeAdoptedOrRestocked" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.ExistingSameIdentityCannotBeAdoptedOrRestocked" methodname="ExistingSameIdentityCannotBeAdoptedOrRestocked" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1737013607" result="Passed" start-time="2026-09-28T04:41:37.2834830Z" end-time="2026-09-28T04:41:37.3097590Z" duration="0.026276" asserts="9" />
+          <test-suite type="ParameterizedMethod" id="1015" name="FactoryCallbackCannotAdoptAnotherEntryAuthority" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T04:41:37.3097810Z" end-time="2026-09-28T04:41:37.4866230Z" duration="0.176839" total="6" passed="5" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="109">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1009" name="FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;plan&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;plan&quot;)" methodname="FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="775476051" result="Failed" start-time="2026-09-28T04:41:37.3098590Z" end-time="2026-09-28T04:41:37.3388810Z" duration="0.029023" asserts="6">
+              <failure>
+                <message><![CDATA[  Existing ordinary traveller entry must succeed.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.Enter() in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 50
+   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(String fault) in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 74
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Existing ordinary traveller entry must succeed.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.Enter() in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 50
+   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(String fault) in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 74
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1010" name="FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;map&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;map&quot;)" methodname="FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="176152743" result="Passed" start-time="2026-09-28T04:41:37.3389000Z" end-time="2026-09-28T04:41:37.3690700Z" duration="0.030170" asserts="20" />
+            <test-case id="1011" name="FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;rare&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;rare&quot;)" methodname="FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1286723620" result="Passed" start-time="2026-09-28T04:41:37.3690910Z" end-time="2026-09-28T04:41:37.3964040Z" duration="0.027313" asserts="20" />
+            <test-case id="1012" name="FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;wayhouse&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;wayhouse&quot;)" methodname="FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1123579906" result="Passed" start-time="2026-09-28T04:41:37.3964230Z" end-time="2026-09-28T04:41:37.4261520Z" duration="0.029729" asserts="20" />
+            <test-case id="1013" name="FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;player-moved&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;player-moved&quot;)" methodname="FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="925146983" result="Passed" start-time="2026-09-28T04:41:37.4261700Z" end-time="2026-09-28T04:41:37.4551480Z" duration="0.028978" asserts="22" />
+            <test-case id="1014" name="FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;same-id-cache&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;same-id-cache&quot;)" methodname="FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1822882733" result="Passed" start-time="2026-09-28T04:41:37.4552180Z" end-time="2026-09-28T04:41:37.4860810Z" duration="0.030864" asserts="21" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1008" name="MissingOptionalVergePreservesOrdinaryActorStockAndPosition" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MissingOptionalVergePreservesOrdinaryActorStockAndPosition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-28T04:41:37.4868550Z" end-time="2026-09-28T04:41:37.6319600Z" duration="0.145104" total="5" passed="5" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="100">
+            <test-case id="1003" name="MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;no-road&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;no-road&quot;)" methodname="MissingOptionalVergePreservesOrdinaryActorStockAndPosition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1329411387" result="Passed" start-time="2026-09-28T04:41:37.4868700Z" end-time="2026-09-28T04:41:37.5177800Z" duration="0.030910" asserts="20" />
+            <test-case id="1004" name="MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;reserved&quot;)" methodname="MissingOptionalVergePreservesOrdinaryActorStockAndPosition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1649251322" result="Passed" start-time="2026-09-28T04:41:37.5177980Z" end-time="2026-09-28T04:41:37.5472310Z" duration="0.029433" asserts="20" />
+            <test-case id="1005" name="MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;interior&quot;)" methodname="MissingOptionalVergePreservesOrdinaryActorStockAndPosition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="626629890" result="Passed" start-time="2026-09-28T04:41:37.5472490Z" end-time="2026-09-28T04:41:37.5752100Z" duration="0.027960" asserts="20" />
+            <test-case id="1006" name="MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;wet&quot;)" methodname="MissingOptionalVergePreservesOrdinaryActorStockAndPosition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="2114827675" result="Passed" start-time="2026-09-28T04:41:37.5752280Z" end-time="2026-09-28T04:41:37.6035440Z" duration="0.028316" asserts="20" />
+            <test-case id="1007" name="MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;sealed-border&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;sealed-border&quot;)" methodname="MissingOptionalVergePreservesOrdinaryActorStockAndPosition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1180324350" result="Passed" start-time="2026-09-28T04:41:37.6035700Z" end-time="2026-09-28T04:41:37.6319280Z" duration="0.028358" asserts="20" />
+          </test-suite>
+          <test-case id="1018" name="RemovalAndRepeatedEntryCannotRetryCommitOrMintAnotherMerchant" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.RemovalAndRepeatedEntryCannotRetryCommitOrMintAnotherMerchant" methodname="RemovalAndRepeatedEntryCannotRetryCommitOrMintAnotherMerchant" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="2102544655" result="Failed" start-time="2026-09-28T04:41:37.6319950Z" end-time="2026-09-28T04:41:37.6610620Z" duration="0.029067" asserts="8">
+            <failure>
+              <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.RemovalAndRepeatedEntryCannotRetryCommitOrMintAnotherMerchant() in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 78
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 2
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.RemovalAndRepeatedEntryCannotRetryCommitOrMintAnotherMerchant() in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 78
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1016" name="ThreeEncounterCapDoesNotRunFactoryOrOptionalComposition" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.ThreeEncounterCapDoesNotRunFactoryOrOptionalComposition" methodname="ThreeEncounterCapDoesNotRunFactoryOrOptionalComposition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1394367009" result="Passed" start-time="2026-09-28T04:41:37.6610910Z" end-time="2026-09-28T04:41:37.6863370Z" duration="0.025246" asserts="7" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

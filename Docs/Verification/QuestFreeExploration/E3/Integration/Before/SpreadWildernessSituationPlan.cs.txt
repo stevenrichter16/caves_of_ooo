@@ -1,0 +1,149 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using CavesOfOoo.Data;
+
+namespace CavesOfOoo.Core
+{
+    /// <summary>Bounded ordinary Spread situation selection. Reads current map
+    /// and frozen exclusions only; never generates a zone or consumes caller RNG.</summary>
+    public static class SpreadWildernessSituationPlan
+    {
+        public static bool IsEligible(OverworldZoneManager manager,string id,string excludedWayhouseZoneID="")
+        {
+            if(!SpreadRareEncounterPlan.IsEligible(manager,id)||id==ReferenceGladePlan.ZoneID||id==excludedWayhouseZoneID
+                ||id==manager.Wayhouse?.ZoneID||id==manager.RareEncounters?.PairZoneID||id==manager.RareEncounters?.ViperZoneID)return false;
+            return !RegionalSituations.Definitions.Any(d=>d.SourceZoneId==id||d.RecipientZoneId==id);
+        }
+        public static string Select(OverworldZoneManager manager,string id,string excludedWayhouseZoneID="")
+        {
+            if(!IsEligible(manager,id,excludedWayhouseZoneID))return "";
+            uint rank;unchecked{rank=2166136261^(uint)manager.WorldSeed;foreach(char c in "SpreadWildernessSituation.v1|"+id)rank=(rank^c)*16777619;}
+            // Avalanche before reducing: two salted FNV low-bit selectors otherwise
+            // correlate and can select only one formation for an entire seed.
+            unchecked{rank^=rank>>16;rank*=0x7feb352d;rank^=rank>>15;rank*=0x846ca68b;rank^=rank>>16;}
+            if(rank%8!=0)return "";
+            var formation=FormationSelector.For(BiomeType.Spread,id);
+            return formation==Formation.OldRoad?"cargo":formation==Formation.FieldStrips?"gleanings"
+                :formation==Formation.Hedgerow||formation==Formation.Fallow?"shelter":"";
+        }
+    }
+
+    /// <summary>Transient receipt of one optional cold-generation source build.
+    /// Exact references and builder revision establish provenance; unrelated later
+    /// placements may change the zone. Reading never dispatches events or RNG.</summary>
+    public sealed class SpreadGenerationReceipt
+    {
+        readonly object source;
+        readonly OwnerSnapshot[] snapshots;
+        readonly Entity[] owners;
+        readonly bool complete;
+        bool consumed;
+        public Zone Zone { get; }
+        public EntityFactory Factory { get; }
+        public int Revision { get; }
+        public IReadOnlyList<Entity> Owners { get; }
+        internal SpreadGenerationReceipt(object source, Zone zone, EntityFactory factory, int revision,
+            IList<Entity> entities, int expectedCount)
+        {
+            this.source=source;Zone=zone;Factory=factory;Revision=revision;
+            owners=entities.ToArray();Owners=Array.AsReadOnly(owners);
+            complete=zone!=null&&factory!=null&&owners.Length==expectedCount&&owners.Distinct().Count()==owners.Length
+                &&owners.All(e=>e!=null&&!string.IsNullOrEmpty(e.ID))&&owners.Select(e=>e.ID).Distinct().Count()==owners.Length;
+            snapshots=owners.Select(e=>new OwnerSnapshot(zone,e)).ToArray();
+        }
+        bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&(ReferenceEquals(p.SourceReceipt,this)||ReferenceEquals(p.LooseSourceReceipt,this)||ReferenceEquals(p.AmbientSourceReceipt,this)||ReferenceEquals(p.AmbientReplacementReceipt,this))
+            : source is ContainerBuilder c&&c.CaptureSourceReceipts&&ReferenceEquals(c.SourceReceipt,this);
+        public bool IsCurrent => !consumed&&complete&&SourceCurrent&&snapshots.All(s=>s.Matches(true));
+        /// <summary>Claim this exact source once after all transaction preflights.
+        /// Consumption is ephemeral and never changes its owners or saved graph.</summary>
+        internal bool TryConsume(){if(!IsCurrent)return false;consumed=true;return true;}
+        // A consuming transaction owns intentional position changes, but must
+        // still establish source and complete item/state identity at commit.
+        internal bool MatchesOwnedState()=>complete&&SourceCurrent&&snapshots.All(s=>s.Matches(false));
+
+        // Seal the realized packet after its authorized mutations. Final generation
+        // callbacks must not leave a commitment pointing at replaced/depleted owners.
+        // This is observation only; it grants no authority to acquire any source.
+        internal static Func<bool> CaptureFinalState(Zone zone,IEnumerable<Entity> entities)
+        {
+            var exact=entities?.ToArray();
+            if(zone==null||exact==null||exact.Any(e=>e==null)||exact.Distinct().Count()!=exact.Length)
+                return ()=>false;
+            var state=exact.Select(e=>new OwnerSnapshot(zone,e)).ToArray();
+            return ()=>state.All(s=>s.Matches(true));
+        }
+
+        sealed class OwnerSnapshot
+        {
+            readonly Zone zone;readonly Entity owner;readonly (int x,int y) position;
+            readonly List<EntitySnapshot> graph=new List<EntitySnapshot>();readonly bool valid;
+            internal OwnerSnapshot(Zone zone,Entity owner)
+            {
+                this.zone=zone;this.owner=owner;position=zone?.GetEntityPosition(owner)??(-1,-1);
+                var pending=new Queue<Entity>();var seen=new HashSet<Entity>();pending.Enqueue(owner);
+                while(pending.Count>0&&seen.Count<256)
+                {
+                    var e=pending.Dequeue();if(e==null||!seen.Add(e))continue;
+                    var snapshot=new EntitySnapshot(e);graph.Add(snapshot);
+                    foreach(var child in snapshot.Children)pending.Enqueue(child);
+                }
+                valid=owner!=null&&position.x>=0&&pending.Count==0;
+            }
+            internal bool Matches(bool location)=>valid&&owner.SpatialZone==zone&&zone.GetEntityCell(owner)!=null
+                &&owner.GetPart<PhysicsPart>()?.InInventory==null&&owner.GetPart<PhysicsPart>()?.Equipped==null
+                &&zone.GetReadOnlyEntities().Count(e=>e.ID==owner.ID)==1
+                &&(!location||zone.GetEntityPosition(owner)==position)&&graph.All(e=>e.Matches());
+        }
+        // A bounded snapshot for the already-produced graph, not a save schema.
+        // Field reads avoid description/event callbacks. Collection membership
+        // is copied; identity, stats, parts, equipment and quantities are pinned.
+        sealed class EntitySnapshot
+        {
+            readonly Entity entity;readonly string id,blueprint;readonly Zone spatialZone;
+            readonly KeyValuePair<string,string>[] tags,properties;
+            readonly KeyValuePair<string,int>[] ints;
+            readonly KeyValuePair<string,Stat>[] stats;
+            readonly Part[] parts;readonly FieldSnapshot[] values;
+            readonly Entity[] contents,carried;readonly KeyValuePair<string,Entity>[] equipped;
+            readonly Core.Anatomy.BodyPart[] slots;readonly FieldSnapshot[] slotValues;
+            readonly Entity[] enemies;readonly GoalHandler[] goals;readonly FieldSnapshot[] goalValues;
+            internal readonly Entity[] Children;
+            internal EntitySnapshot(Entity entity)
+            {
+                this.entity=entity;id=entity.ID;blueprint=entity.BlueprintName;spatialZone=entity.SpatialZone;
+                tags=entity.Tags.ToArray();properties=entity.Properties.ToArray();ints=entity.IntProperties.ToArray();stats=entity.Statistics.ToArray();parts=entity.Parts.ToArray();
+                values=parts.Cast<object>().Concat(stats.Select(s=>(object)s.Value)).Select(o=>new FieldSnapshot(o)).ToArray();
+                contents=entity.GetPart<ContainerPart>()?.Contents?.ToArray();carried=entity.GetPart<InventoryPart>()?.Objects?.ToArray();equipped=entity.GetPart<InventoryPart>()?.EquippedItems?.ToArray();
+                slots=entity.GetPart<Body>()?.GetParts()?.ToArray();slotValues=slots?.Select(s=>new FieldSnapshot(s)).ToArray();
+                enemies=entity.GetPart<BrainPart>()?.PersonalEnemies?.ToArray();goals=entity.GetPart<BrainPart>()?.GetGoalsSnapshot()?.ToArray();goalValues=goals?.Select(g=>new FieldSnapshot(g)).ToArray();
+                Children=(contents??Array.Empty<Entity>()).Concat(carried??Array.Empty<Entity>()).Concat(equipped?.Select(k=>k.Value)??Enumerable.Empty<Entity>())
+                    .Concat(slots?.SelectMany(s=>new[]{s.Equipped,s.Cybernetics,s.DefaultBehavior})??Enumerable.Empty<Entity>()).Where(e=>e!=null).Distinct().ToArray();
+            }
+            internal bool Matches()=>entity.ID==id&&entity.BlueprintName==blueprint&&entity.SpatialZone==spatialZone&&Same(entity.Tags,tags)&&Same(entity.Properties,properties)&&Same(entity.IntProperties,ints)&&Same(entity.Statistics,stats)
+                &&entity.Parts.SequenceEqual(parts)&&parts.All(p=>p!=null&&ReferenceEquals(p.ParentEntity,entity))&&values.All(v=>v.Matches())
+                &&Sequence(entity.GetPart<ContainerPart>()?.Contents,contents)&&Sequence(entity.GetPart<InventoryPart>()?.Objects,carried)
+                &&SameNullable(entity.GetPart<InventoryPart>()?.EquippedItems,equipped)&&Sequence(entity.GetPart<Body>()?.GetParts(),slots)
+                &&(slotValues==null||slotValues.All(v=>v.Matches()))
+                &&(enemies==null?entity.GetPart<BrainPart>()?.PersonalEnemies==null:entity.GetPart<BrainPart>()?.PersonalEnemies?.SetEquals(enemies)==true)
+                &&Sequence(entity.GetPart<BrainPart>()?.GetGoalsSnapshot(),goals)&&(goalValues==null||goalValues.All(v=>v.Matches()));
+            static bool Sequence<T>(IEnumerable<T> current,T[] saved)=>saved==null?current==null:current!=null&&current.SequenceEqual(saved);
+            static bool Same<K,V>(IDictionary<K,V> current,KeyValuePair<K,V>[] saved)=>current!=null&&current.Count==saved.Length&&saved.All(k=>current.TryGetValue(k.Key,out V v)&&EqualityComparer<V>.Default.Equals(v,k.Value));
+            static bool SameNullable<K,V>(IDictionary<K,V> current,KeyValuePair<K,V>[] saved)=>saved==null?current==null:Same(current,saved);
+        }
+        sealed class FieldSnapshot
+        {
+            readonly object owner;readonly (FieldInfo field,object value)[] fields;
+            internal FieldSnapshot(object owner)
+            {
+                this.owner=owner;
+                fields=owner==null?Array.Empty<(FieldInfo,object)>():owner.GetType().GetFields(BindingFlags.Instance|BindingFlags.Public)
+                    .Select(f=>(f,f.GetValue(owner))).ToArray();
+            }
+            internal bool Matches()=>owner!=null&&fields.All(f=>(f.field.FieldType.IsValueType||f.field.FieldType==typeof(string))
+                ?Equals(f.value,f.field.GetValue(owner)):ReferenceEquals(f.value,f.field.GetValue(owner)));
+        }
+    }
+}

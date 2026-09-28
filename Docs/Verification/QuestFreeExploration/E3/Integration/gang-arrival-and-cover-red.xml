@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="130" result="Failed" start-time="2026-09-28T04:03:17.7837710Z" end-time="2026-09-28T04:03:19.4647110Z" duration="1.680904" total="11" passed="9" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="26076" random-seed="258993345">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/e3-integration/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/e3-integration/gang-arrival-and-cover-red.xml --where "class == CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests or method == OccludedVariantPrioritizesActualNativeSightCoverOverVisualHedges or method == ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn"]]></command-line>
+  <filter>
+    <or>
+      <class>CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests</class>
+      <method>OccludedVariantPrioritizesActualNativeSightCoverOverVisualHedges</method>
+      <method>ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn</method>
+    </or>
+  </filter>
+  <test-suite type="Assembly" id="1160" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="130" result="Failed" site="Child" start-time="2026-09-28T04:03:17.7837710Z" end-time="2026-09-28T04:03:19.4647110Z" duration="1.680904" total="11" passed="9" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="26076">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="50839" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1161" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="130" result="Failed" site="Child" start-time="2026-09-28T04:03:17.7854060Z" end-time="2026-09-28T04:03:19.4647020Z" duration="1.679274" total="11" passed="9" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="26076">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1162" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="130" result="Failed" site="Child" start-time="2026-09-28T04:03:17.7855490Z" end-time="2026-09-28T04:03:19.4646620Z" duration="1.679090" total="11" passed="9" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="26076">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1150" name="SpreadExplorationEncounterBypassTests" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests" classname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-28T04:03:17.7859180Z" end-time="2026-09-28T04:03:18.0322960Z" duration="0.246375" total="8" passed="7" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="19924">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1159" name="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs" classname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-28T04:03:17.7868800Z" end-time="2026-09-28T04:03:18.0320900Z" duration="0.245207" total="8" passed="7" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="19924">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1151" name="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;Viper&quot;,&quot;visible-alternative&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;Viper&quot;,&quot;visible-alternative&quot;,True)" methodname="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs" classname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests" runstate="Runnable" seed="2021031087" result="Passed" start-time="2026-09-28T04:03:17.7869580Z" end-time="2026-09-28T04:03:17.8671890Z" duration="0.080256" asserts="2006" />
+            <test-case id="1152" name="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;Viper&quot;,&quot;occluded-alternative&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;Viper&quot;,&quot;occluded-alternative&quot;,True)" methodname="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs" classname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests" runstate="Runnable" seed="2050459948" result="Passed" start-time="2026-09-28T04:03:17.8677810Z" end-time="2026-09-28T04:03:17.8882240Z" duration="0.020444" asserts="2027" />
+            <test-case id="1153" name="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;Viper&quot;,&quot;no-alternative&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;Viper&quot;,&quot;no-alternative&quot;,False)" methodname="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs" classname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests" runstate="Runnable" seed="187882592" result="Passed" start-time="2026-09-28T04:03:17.8882770Z" end-time="2026-09-28T04:03:17.9118260Z" duration="0.023549" asserts="3924" />
+            <test-case id="1154" name="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;Viper&quot;,&quot;near-edge&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;Viper&quot;,&quot;near-edge&quot;,False)" methodname="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs" classname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests" runstate="Runnable" seed="31341899" result="Passed" start-time="2026-09-28T04:03:17.9118590Z" end-time="2026-09-28T04:03:17.9343760Z" duration="0.022518" asserts="2005" />
+            <test-case id="1155" name="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;MarlbackScrabbler&quot;,&quot;visible-alternative&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;MarlbackScrabbler&quot;,&quot;visible-alternative&quot;,True)" methodname="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs" classname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests" runstate="Runnable" seed="90645773" result="Failed" start-time="2026-09-28T04:03:17.9344080Z" end-time="2026-09-28T04:03:17.9700290Z" duration="0.035621" asserts="2006">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(String blueprint, String layout, Boolean expected) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterBypassTests.cs:line 30
+   at InvokeStub_SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(String blueprint, String layout, Boolean expected) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterBypassTests.cs:line 30
+   at InvokeStub_SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1156" name="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;MarlbackScrabbler&quot;,&quot;occluded-alternative&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;MarlbackScrabbler&quot;,&quot;occluded-alternative&quot;,True)" methodname="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs" classname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests" runstate="Runnable" seed="141237863" result="Passed" start-time="2026-09-28T04:03:17.9701520Z" end-time="2026-09-28T04:03:17.9897790Z" duration="0.019628" asserts="2027" />
+            <test-case id="1157" name="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;MarlbackScrabbler&quot;,&quot;no-alternative&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;MarlbackScrabbler&quot;,&quot;no-alternative&quot;,False)" methodname="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs" classname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests" runstate="Runnable" seed="119578566" result="Passed" start-time="2026-09-28T04:03:17.9898170Z" end-time="2026-09-28T04:03:18.0090340Z" duration="0.019217" asserts="3924" />
+            <test-case id="1158" name="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;MarlbackScrabbler&quot;,&quot;near-edge&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests.SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs(&quot;MarlbackScrabbler&quot;,&quot;near-edge&quot;,False)" methodname="SnakeArrivalStandoffAndRealSightBypassAreSeparateProofs" classname="CavesOfOoo.Tests.SpreadExplorationEncounterBypassTests" runstate="Runnable" seed="2016863152" result="Passed" start-time="2026-09-28T04:03:18.0090590Z" end-time="2026-09-28T04:03:18.0314310Z" duration="0.022373" asserts="2005" />
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1058" name="SpreadExplorationEncounterTests" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="52" result="Failed" site="Child" start-time="2026-09-28T04:03:18.0325500Z" end-time="2026-09-28T04:03:19.4646500Z" duration="1.432081" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="6152">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1067" name="ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T04:03:18.0326000Z" end-time="2026-09-28T04:03:19.3906930Z" duration="1.358075" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4070">
+            <test-case id="1065" name="ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(False)" methodname="ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1138998273" result="Passed" start-time="2026-09-28T04:03:18.0326080Z" end-time="2026-09-28T04:03:18.7184820Z" duration="0.685865" asserts="2035" />
+            <test-case id="1066" name="ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(True)" methodname="ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="42564939" result="Passed" start-time="2026-09-28T04:03:18.7185080Z" end-time="2026-09-28T04:03:19.3906530Z" duration="0.672137" asserts="2035" />
+          </test-suite>
+          <test-case id="1063" name="OccludedVariantPrioritizesActualNativeSightCoverOverVisualHedges" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.OccludedVariantPrioritizesActualNativeSightCoverOverVisualHedges" methodname="OccludedVariantPrioritizesActualNativeSightCoverOverVisualHedges" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1819432840" result="Failed" start-time="2026-09-28T04:03:19.3907260Z" end-time="2026-09-28T04:03:19.4645600Z" duration="0.073833" asserts="2082">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.OccludedVariantPrioritizesActualNativeSightCoverOverVisualHedges() in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterTests.cs:line 43
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.OccludedVariantPrioritizesActualNativeSightCoverOverVisualHedges() in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterTests.cs:line 43
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

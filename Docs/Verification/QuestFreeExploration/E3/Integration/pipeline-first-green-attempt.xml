@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="47" result="Failed" start-time="2026-09-28T03:28:02.2990120Z" end-time="2026-09-28T03:28:08.4127730Z" duration="6.113640" total="12" passed="2" failed="10" inconclusive="0" skipped="0" warnings="0" asserts="307420" random-seed="1137288803">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/e3-integration/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/e3-integration/pipeline-first-green-attempt.xml --where "class == CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1058" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="47" result="Failed" site="Child" start-time="2026-09-28T03:28:02.2990120Z" end-time="2026-09-28T03:28:08.4127730Z" duration="6.113640" total="12" passed="2" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="307420">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="40540" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1059" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="47" result="Failed" site="Child" start-time="2026-09-28T03:28:02.3005360Z" end-time="2026-09-28T03:28:08.4127700Z" duration="6.112125" total="12" passed="2" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="307420">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1060" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="47" result="Failed" site="Child" start-time="2026-09-28T03:28:02.3006720Z" end-time="2026-09-28T03:28:08.4127670Z" duration="6.111987" total="12" passed="2" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="307420">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationEncounterPipelineTests" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T03:28:02.3010000Z" end-time="2026-09-28T03:28:08.4127620Z" duration="6.111653" total="12" passed="2" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="307420">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1013" name="ActualLoadedVersionTwoKeepsItsFamilyAndDoesNotRetrofitAnE3Role" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.ActualLoadedVersionTwoKeepsItsFamilyAndDoesNotRetrofitAnE3Role" methodname="ActualLoadedVersionTwoKeepsItsFamilyAndDoesNotRetrofitAnE3Role" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1383728145" result="Passed" start-time="2026-09-28T03:28:02.3021080Z" end-time="2026-09-28T03:28:02.5212610Z" duration="0.219176" asserts="7" />
+          <test-suite type="ParameterizedMethod" id="1012" name="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T03:28:02.5218820Z" end-time="2026-09-28T03:28:03.7462550Z" duration="1.224351" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="0">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1008" name="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;SnakeForage&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;SnakeForage&quot;,False)" methodname="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="445831473" result="Failed" start-time="2026-09-28T03:28:02.5219870Z" end-time="2026-09-28T03:28:02.8755900Z" duration="0.353597" asserts="0">
+              <failure>
+                <message><![CDATA[Need a real committed SnakeForage before measuring callbacks]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[Need a real committed SnakeForage before measuring callbacks]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;SnakeForage&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;SnakeForage&quot;,True)" methodname="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="311654405" result="Failed" start-time="2026-09-28T03:28:02.8756730Z" end-time="2026-09-28T03:28:03.2087490Z" duration="0.333070" asserts="0">
+              <failure>
+                <message><![CDATA[Need a real committed SnakeForage before measuring callbacks]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[Need a real committed SnakeForage before measuring callbacks]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1010" name="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;WorkGang&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;WorkGang&quot;,False)" methodname="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="556918749" result="Failed" start-time="2026-09-28T03:28:03.2087760Z" end-time="2026-09-28T03:28:03.4701430Z" duration="0.261363" asserts="0">
+              <failure>
+                <message><![CDATA[Need a real committed WorkGang before measuring callbacks]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[Need a real committed WorkGang before measuring callbacks]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;WorkGang&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(&quot;WorkGang&quot;,True)" methodname="FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1899474188" result="Failed" start-time="2026-09-28T03:28:03.4701750Z" end-time="2026-09-28T03:28:03.7456650Z" duration="0.275486" asserts="0">
+              <failure>
+                <message><![CDATA[Need a real committed WorkGang before measuring callbacks]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[Need a real committed WorkGang before measuring callbacks]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 59
+   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(String family, Boolean mutate) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 63
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1014" name="ProtectedPlacesCannotAcquireEitherNewFamily" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.ProtectedPlacesCannotAcquireEitherNewFamily" methodname="ProtectedPlacesCannotAcquireEitherNewFamily" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="710720920" result="Passed" start-time="2026-09-28T03:28:03.7464760Z" end-time="2026-09-28T03:28:03.8932450Z" duration="0.146767" asserts="15" />
+          <test-suite type="ParameterizedMethod" id="1007" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T03:28:03.8932810Z" end-time="2026-09-28T03:28:08.4125850Z" duration="4.519224" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="307398">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1,&quot;SnakeForage&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1,&quot;SnakeForage&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1481365197" result="Failed" start-time="2026-09-28T03:28:03.8933080Z" end-time="2026-09-28T03:28:04.9554700Z" duration="1.062144" asserts="51273">
+              <failure>
+                <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1 SnakeForage Overworld.10.1.0 refused:no-safe-encounter-layout actors=Viper food=1
+1 SnakeForage Overworld.10.12.0 refused:no-safe-encounter-layout actors=Viper food=3
+1 SnakeForage Overworld.11.4.0 refused:no-safe-encounter-layout actors=Viper food=1
+1 SnakeForage Overworld.12.10.0 refused:no-safe-encounter-layout actors=Viper,Viper food=1
+1 SnakeForage Overworld.18.12.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+1 SnakeForage Overworld.19.11.0 refused:no-safe-encounter-layout actors=Viper food=3
+1 SnakeForage Overworld.6.13.0 refused:no-safe-encounter-layout actors=Viper,Viper food=2
+1 SnakeForage Overworld.7.14.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+1 SnakeForage Overworld.8.11.0 refused:no-safe-encounter-layout actors=Viper,Viper food=3
+1 SnakeForage Overworld.8.4.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+1 SnakeForage Overworld.9.9.0 refused:no-safe-encounter-layout actors=Viper,Viper food=3
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,&quot;SnakeForage&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,&quot;SnakeForage&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1937373766" result="Failed" start-time="2026-09-28T03:28:04.9555030Z" end-time="2026-09-28T03:28:05.4779840Z" duration="0.522473" asserts="32520">
+              <failure>
+                <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[64 SnakeForage Overworld.11.11.0 refused:no-safe-encounter-layout actors=Viper food=1
+64 SnakeForage Overworld.13.6.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler,MarlbackScrabbler food=1
+64 SnakeForage Overworld.18.12.0 refused:no-safe-encounter-layout actors=Viper,Viper food=2
+64 SnakeForage Overworld.19.11.0 refused:no-safe-encounter-layout actors=Viper,Viper food=1
+64 SnakeForage Overworld.6.13.0 refused:no-safe-encounter-layout actors=Viper food=1
+64 SnakeForage Overworld.7.14.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler,MarlbackScrabbler food=1
+64 SnakeForage Overworld.9.1.0 refused:no-safe-encounter-layout actors=Viper food=4
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1729,&quot;SnakeForage&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1729,&quot;SnakeForage&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="698127554" result="Failed" start-time="2026-09-28T03:28:05.4780470Z" end-time="2026-09-28T03:28:06.2422390Z" duration="0.764179" asserts="56011">
+              <failure>
+                <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1729 SnakeForage Overworld.10.9.0 refused:no-safe-encounter-layout actors=Viper,Viper food=1
+1729 SnakeForage Overworld.11.11.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+1729 SnakeForage Overworld.11.4.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler,MarlbackScrabbler food=2
+1729 SnakeForage Overworld.12.10.0 refused:no-safe-encounter-layout actors=Viper,Viper food=1
+1729 SnakeForage Overworld.13.6.0 refused:no-safe-encounter-layout actors=Viper,Viper food=1
+1729 SnakeForage Overworld.18.12.0 refused:no-safe-encounter-layout actors=Viper,Viper food=2
+1729 SnakeForage Overworld.19.11.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+1729 SnakeForage Overworld.6.13.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler,MarlbackScrabbler food=2
+1729 SnakeForage Overworld.7.14.0 refused:no-safe-encounter-layout actors=Viper food=1
+1729 SnakeForage Overworld.8.4.0 refused:no-safe-encounter-layout actors=Viper food=1
+1729 SnakeForage Overworld.9.1.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1729 SnakeForage Overworld.9.12.0 refused:no-safe-encounter-layout actors=Viper food=1
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1,&quot;WorkGang&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1,&quot;WorkGang&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="658953055" result="Failed" start-time="2026-09-28T03:28:06.2422680Z" end-time="2026-09-28T03:28:07.1848420Z" duration="0.942557" asserts="72407">
+              <failure>
+                <message><![CDATA[  WorkGang needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1 WorkGang Overworld.10.4.0 refused:no-exact-encounter-allowance actors=Viper food=1
+1 WorkGang Overworld.11.14.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1 WorkGang Overworld.11.9.0 refused:no-exact-encounter-allowance actors=Viper food=1
+1 WorkGang Overworld.12.6.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1 WorkGang Overworld.13.12.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1 WorkGang Overworld.14.13.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+1 WorkGang Overworld.14.8.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=3
+1 WorkGang Overworld.15.10.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1 WorkGang Overworld.5.13.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+1 WorkGang Overworld.5.8.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+1 WorkGang Overworld.6.7.0 refused:no-exact-encounter-allowance actors=Viper food=1
+1 WorkGang Overworld.7.11.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=2
+1 WorkGang Overworld.7.2.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=3
+1 WorkGang Overworld.8.1.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=3
+1 WorkGang Overworld.8.14.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+1 WorkGang Overworld.8.9.0 refused:no-exact-encounter-allowance actors=Viper food=1
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  WorkGang needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,&quot;WorkGang&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,&quot;WorkGang&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="807371763" result="Failed" start-time="2026-09-28T03:28:07.1949040Z" end-time="2026-09-28T03:28:07.7594970Z" duration="0.564583" asserts="45314">
+              <failure>
+                <message><![CDATA[  WorkGang needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[64 WorkGang Overworld.12.6.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+64 WorkGang Overworld.13.12.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+64 WorkGang Overworld.14.8.0 refused:no-exact-encounter-allowance actors=Viper food=2
+64 WorkGang Overworld.5.13.0 refused:no-exact-encounter-allowance actors=Viper food=1
+64 WorkGang Overworld.5.8.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+64 WorkGang Overworld.6.7.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+64 WorkGang Overworld.7.11.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=2
+64 WorkGang Overworld.7.2.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=2
+64 WorkGang Overworld.8.1.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+64 WorkGang Overworld.8.9.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  WorkGang needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1729,&quot;WorkGang&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1729,&quot;WorkGang&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1328696640" result="Failed" start-time="2026-09-28T03:28:07.7595170Z" end-time="2026-09-28T03:28:08.4125200Z" duration="0.652992" asserts="49873">
+              <failure>
+                <message><![CDATA[  WorkGang needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1729 WorkGang Overworld.10.4.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=4
+1729 WorkGang Overworld.11.14.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1729 WorkGang Overworld.11.9.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=2
+1729 WorkGang Overworld.12.6.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+1729 WorkGang Overworld.13.12.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1729 WorkGang Overworld.14.8.0 refused:no-exact-encounter-allowance actors=Viper food=3
+1729 WorkGang Overworld.4.10.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+1729 WorkGang Overworld.5.13.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=3
+1729 WorkGang Overworld.5.8.0 refused:no-exact-encounter-allowance actors=Viper food=1
+1729 WorkGang Overworld.8.1.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=3
+1729 WorkGang Overworld.8.14.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  WorkGang needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

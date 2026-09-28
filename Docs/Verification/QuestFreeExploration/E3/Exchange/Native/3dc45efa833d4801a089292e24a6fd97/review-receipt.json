@@ -1,0 +1,53 @@
+{
+  "reviewer": "standalone_verify",
+  "status": "bounded native acceptance complete",
+  "runId": "3dc45efa833d4801a089292e24a6fd97",
+  "complete": true,
+  "checksPassed": 8,
+  "failures": 0,
+  "paidInputs": 11,
+  "seconds": 7.0418848,
+  "nativeModeTests": {
+    "before": {
+      "passed": 8,
+      "failed": 6
+    },
+    "after": {
+      "passed": 14,
+      "failed": 0
+    }
+  },
+  "filesReviewed": [
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/00-ordinary-start.png",
+      "sha256": "c64f574007bedb34689442fcab744133948034fbcb4c2e346713bc1024bfd6e2"
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/01-actual-native-roadside-entry.png",
+      "sha256": "a1e604f247ad2ddac674f0eb75c23eb8cccea3cc2d983645ea4fcb3f7c6ed86e"
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/02-real-route-dialogue.png",
+      "sha256": "3046251fe46b21ad46dcef8d144d21dd2ec669bd36d2aac84a09b44905986a66"
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/03-native-actual-stock-purchase.png",
+      "sha256": "6970e9e802944a94b47c0633688d952d98807eb5127a1214937598c725a04459"
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/04-returned-original-owner-and-purchase.png",
+      "sha256": "c48f03f3271fdd9712368833dcd4bd1c59a7277b80a7fccdab7b58d357b65405"
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/report.json",
+      "sha256": "482c020c9fe7e7880edbf4229fe7e41c9fd1ceeba42b9e3bd50276322e5c34aa"
+    }
+  ],
+  "restoration": "Root reports clean Main restoration; reviewer did not invoke Unity.",
+  "frameScope": "All five frames viewed independently; pre-confirmation stock frame distinguished from actual receipt.",
+  "bounds": [
+    "Controlled actual source seed3, not uninformed discovery or frequency",
+    "Cached return before restock, not F5/F6 or permanent stock",
+    "No follow-up observer changes or replay"
+  ]
+}

@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/entry-expansion/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="138" result="Failed" start-time="2026-09-28T04:43:54.8734370Z" end-time="2026-09-28T04:43:56.1166090Z" duration="1.243149" total="33" passed="29" failed="4" inconclusive="0" skipped="0" warnings="0" asserts="274" random-seed="682787220">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/entry-expansion/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/entry-expansion/source-aware-red.xml --where "class == CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1168" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/entry-expansion/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="138" result="Failed" site="Child" start-time="2026-09-28T04:43:54.8734370Z" end-time="2026-09-28T04:43:56.1166090Z" duration="1.243149" total="33" passed="29" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="274">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/entry-expansion/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/entry-expansion/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="61266" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1169" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="138" result="Failed" site="Child" start-time="2026-09-28T04:43:54.8751140Z" end-time="2026-09-28T04:43:56.1165860Z" duration="1.241459" total="33" passed="29" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="274">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1170" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="138" result="Failed" site="Child" start-time="2026-09-28T04:43:54.8752690Z" end-time="2026-09-28T04:43:56.1165810Z" duration="1.241298" total="33" passed="29" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="274">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationEntryExpansionTests" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="33" result="Failed" site="Child" start-time="2026-09-28T04:43:54.8756520Z" end-time="2026-09-28T04:43:56.1165470Z" duration="1.240883" total="33" passed="29" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="274">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1017" name="AddressOrAttachmentCannotGrantDynamicCommit" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-28T04:43:54.8768780Z" end-time="2026-09-28T04:43:55.1541830Z" duration="0.277302" total="5" passed="5" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <test-case id="1012" name="AddressOrAttachmentCannotGrantDynamicCommit(&quot;uncached&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(&quot;uncached&quot;)" methodname="AddressOrAttachmentCannotGrantDynamicCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="729886297" result="Passed" start-time="2026-09-28T04:43:54.8769820Z" end-time="2026-09-28T04:43:54.9662520Z" duration="0.089295" asserts="4" />
+            <test-case id="1013" name="AddressOrAttachmentCannotGrantDynamicCommit(&quot;attached-only&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(&quot;attached-only&quot;)" methodname="AddressOrAttachmentCannotGrantDynamicCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1593866815" result="Passed" start-time="2026-09-28T04:43:54.9669190Z" end-time="2026-09-28T04:43:54.9917950Z" duration="0.024877" asserts="4" />
+            <test-case id="1014" name="AddressOrAttachmentCannotGrantDynamicCommit(&quot;same-id-clone&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(&quot;same-id-clone&quot;)" methodname="AddressOrAttachmentCannotGrantDynamicCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1491670214" result="Passed" start-time="2026-09-28T04:43:54.9918370Z" end-time="2026-09-28T04:43:55.0769230Z" duration="0.085085" asserts="5" />
+            <test-case id="1015" name="AddressOrAttachmentCannotGrantDynamicCommit(&quot;inactive&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(&quot;inactive&quot;)" methodname="AddressOrAttachmentCannotGrantDynamicCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1103607907" result="Passed" start-time="2026-09-28T04:43:55.0769490Z" end-time="2026-09-28T04:43:55.1178590Z" duration="0.040910" asserts="5" />
+            <test-case id="1016" name="AddressOrAttachmentCannotGrantDynamicCommit(&quot;foreign-entry&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.AddressOrAttachmentCannotGrantDynamicCommit(&quot;foreign-entry&quot;)" methodname="AddressOrAttachmentCannotGrantDynamicCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1568297359" result="Passed" start-time="2026-09-28T04:43:55.1179210Z" end-time="2026-09-28T04:43:55.1535680Z" duration="0.035647" asserts="6" />
+          </test-suite>
+          <test-case id="1011" name="ColdGenerationCannotCommitTheDynamicExchangeReservation" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.ColdGenerationCannotCommitTheDynamicExchangeReservation" methodname="ColdGenerationCannotCommitTheDynamicExchangeReservation" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="538732722" result="Passed" start-time="2026-09-28T04:43:55.1543670Z" end-time="2026-09-28T04:43:55.1819380Z" duration="0.027571" asserts="8" />
+          <test-case id="1031" name="DynamicCommitAndExactAcceptedGraphSurviveSaveWithoutReplay" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.DynamicCommitAndExactAcceptedGraphSurviveSaveWithoutReplay" methodname="DynamicCommitAndExactAcceptedGraphSurviveSaveWithoutReplay" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1559649137" result="Passed" start-time="2026-09-28T04:43:55.1819560Z" end-time="2026-09-28T04:43:55.2737050Z" duration="0.091748" asserts="10" />
+          <test-suite type="ParameterizedMethod" id="1034" name="EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T04:43:55.2737270Z" end-time="2026-09-28T04:43:55.3207210Z" duration="0.046993" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="10">
+            <test-case id="1032" name="EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion(2)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion(2)" methodname="EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="991834572" result="Passed" start-time="2026-09-28T04:43:55.2737660Z" end-time="2026-09-28T04:43:55.2986220Z" duration="0.024856" asserts="5" />
+            <test-case id="1033" name="EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion(3)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion(3)" methodname="EarlierManifestKeepsItsOriginalRoadAssignmentAndVersion" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="97145623" result="Passed" start-time="2026-09-28T04:43:55.2986450Z" end-time="2026-09-28T04:43:55.3206850Z" duration="0.022040" asserts="5" />
+          </test-suite>
+          <test-case id="1009" name="EveryAssignedExchangeHasAnActualStableArrivalWinnerAcrossBoundedCohort" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.EveryAssignedExchangeHasAnActualStableArrivalWinnerAcrossBoundedCohort" methodname="EveryAssignedExchangeHasAnActualStableArrivalWinnerAcrossBoundedCohort" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1324822880" result="Failed" start-time="2026-09-28T04:43:55.3207570Z" end-time="2026-09-28T04:43:55.3576530Z" duration="0.036892" asserts="1">
+            <failure>
+              <message><![CDATA[  1:Overworld.10.11.0
+  Expected string length 9 but was 16. Strings differ at index 4.
+  Expected: "RoadSpill"
+  But was:  "RoadsideExchange"
+  ---------------^
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.EveryAssignedExchangeHasAnActualStableArrivalWinnerAcrossBoundedCohort() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 70
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  1:Overworld.10.11.0
+  Expected string length 9 but was 16. Strings differ at index 4.
+  Expected: "RoadSpill"
+  But was:  "RoadsideExchange"
+  ---------------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.EveryAssignedExchangeHasAnActualStableArrivalWinnerAcrossBoundedCohort() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 70
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1027" name="FailedOrMutatingProofCannotMarkAnotherGraph" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-09-28T04:43:55.3577220Z" end-time="2026-09-28T04:43:55.7063340Z" duration="0.348608" total="9" passed="9" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="45">
+            <test-case id="1018" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;false&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;false&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1144011330" result="Passed" start-time="2026-09-28T04:43:55.3577380Z" end-time="2026-09-28T04:43:55.3944390Z" duration="0.036701" asserts="5" />
+            <test-case id="1019" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;removed&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1836922429" result="Passed" start-time="2026-09-28T04:43:55.3944660Z" end-time="2026-09-28T04:43:55.4321260Z" duration="0.037661" asserts="5" />
+            <test-case id="1020" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;replaced&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;replaced&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="959252460" result="Passed" start-time="2026-09-28T04:43:55.4321480Z" end-time="2026-09-28T04:43:55.4671020Z" duration="0.034954" asserts="5" />
+            <test-case id="1021" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;protected&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;protected&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1907701619" result="Passed" start-time="2026-09-28T04:43:55.4671330Z" end-time="2026-09-28T04:43:55.5064820Z" duration="0.039349" asserts="5" />
+            <test-case id="1022" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;inactive&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;inactive&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="475048615" result="Passed" start-time="2026-09-28T04:43:55.5065240Z" end-time="2026-09-28T04:43:55.5432080Z" duration="0.036684" asserts="5" />
+            <test-case id="1023" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;new-plan&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;new-plan&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="2397350" result="Passed" start-time="2026-09-28T04:43:55.5432290Z" end-time="2026-09-28T04:43:55.5810260Z" duration="0.037797" asserts="5" />
+            <test-case id="1024" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;new-map&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;new-map&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1804817457" result="Passed" start-time="2026-09-28T04:43:55.5810450Z" end-time="2026-09-28T04:43:55.6161070Z" duration="0.035062" asserts="5" />
+            <test-case id="1025" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;new-rare&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;new-rare&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="274755820" result="Passed" start-time="2026-09-28T04:43:55.6161290Z" end-time="2026-09-28T04:43:55.6582810Z" duration="0.042152" asserts="5" />
+            <test-case id="1026" name="FailedOrMutatingProofCannotMarkAnotherGraph(&quot;new-wayhouse&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.FailedOrMutatingProofCannotMarkAnotherGraph(&quot;new-wayhouse&quot;)" methodname="FailedOrMutatingProofCannotMarkAnotherGraph" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="2144915724" result="Passed" start-time="2026-09-28T04:43:55.6583360Z" end-time="2026-09-28T04:43:55.7062790Z" duration="0.047943" asserts="5" />
+          </test-suite>
+          <test-case id="1030" name="MissingProofAndUnrelatedFamilyCannotConsumeEntry" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.MissingProofAndUnrelatedFamilyCannotConsumeEntry" methodname="MissingProofAndUnrelatedFamilyCannotConsumeEntry" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="88111617" result="Passed" start-time="2026-09-28T04:43:55.7063500Z" end-time="2026-09-28T04:43:55.7739540Z" duration="0.067604" asserts="10" />
+          <test-suite type="ParameterizedMethod" id="1008" name="MissingTravellerSourceLeavesOrdinaryRoadContent" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T04:43:55.7739800Z" end-time="2026-09-28T04:43:55.8464810Z" duration="0.072500" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="19">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1005" name="MissingTravellerSourceLeavesOrdinaryRoadContent(1)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(1)" methodname="MissingTravellerSourceLeavesOrdinaryRoadContent" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1782128285" result="Failed" start-time="2026-09-28T04:43:55.7740240Z" end-time="2026-09-28T04:43:55.7993570Z" duration="0.025333" asserts="3">
+              <failure>
+                <message><![CDATA[  Overworld.10.11.0
+  Expected: "None" or "RoadSpill"
+  But was:  "RoadsideExchange"
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(Int32 seed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 57
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.10.11.0
+  Expected: "None" or "RoadSpill"
+  But was:  "RoadsideExchange"
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(Int32 seed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 57
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="MissingTravellerSourceLeavesOrdinaryRoadContent(64)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(64)" methodname="MissingTravellerSourceLeavesOrdinaryRoadContent" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="845591422" result="Failed" start-time="2026-09-28T04:43:55.7993940Z" end-time="2026-09-28T04:43:55.8208100Z" duration="0.021416" asserts="5">
+              <failure>
+                <message><![CDATA[  Overworld.11.12.0
+  Expected: "None" or "RoadSpill"
+  But was:  "RoadsideExchange"
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(Int32 seed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 57
+   at InvokeStub_SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.11.12.0
+  Expected: "None" or "RoadSpill"
+  But was:  "RoadsideExchange"
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(Int32 seed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 57
+   at InvokeStub_SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="MissingTravellerSourceLeavesOrdinaryRoadContent(1729)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(1729)" methodname="MissingTravellerSourceLeavesOrdinaryRoadContent" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1897021448" result="Failed" start-time="2026-09-28T04:43:55.8208520Z" end-time="2026-09-28T04:43:55.8464560Z" duration="0.025604" asserts="11">
+              <failure>
+                <message><![CDATA[  Overworld.12.0.0
+  Expected: "None" or "RoadSpill"
+  But was:  "RoadsideExchange"
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(Int32 seed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 57
+   at InvokeStub_SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.12.0.0
+  Expected: "None" or "RoadSpill"
+  But was:  "RoadsideExchange"
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(Int32 seed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationEntryExpansionTests.cs:line 57
+   at InvokeStub_SpreadExplorationEntryExpansionTests.MissingTravellerSourceLeavesOrdinaryRoadContent(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1004" name="NewFamiliesAreFrozenColdAndHabitatSpecific" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T04:43:55.8464930Z" end-time="2026-09-28T04:43:55.9198630Z" duration="0.073369" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="113">
+            <test-case id="1001" name="NewFamiliesAreFrozenColdAndHabitatSpecific(1)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(1)" methodname="NewFamiliesAreFrozenColdAndHabitatSpecific" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="464036734" result="Passed" start-time="2026-09-28T04:43:55.8465150Z" end-time="2026-09-28T04:43:55.8724920Z" duration="0.025978" asserts="33" />
+            <test-case id="1002" name="NewFamiliesAreFrozenColdAndHabitatSpecific(64)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(64)" methodname="NewFamiliesAreFrozenColdAndHabitatSpecific" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="541437802" result="Passed" start-time="2026-09-28T04:43:55.8725150Z" end-time="2026-09-28T04:43:55.8947950Z" duration="0.022280" asserts="43" />
+            <test-case id="1003" name="NewFamiliesAreFrozenColdAndHabitatSpecific(1729)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.NewFamiliesAreFrozenColdAndHabitatSpecific(1729)" methodname="NewFamiliesAreFrozenColdAndHabitatSpecific" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="874837573" result="Passed" start-time="2026-09-28T04:43:55.8948350Z" end-time="2026-09-28T04:43:55.9198220Z" duration="0.024987" asserts="37" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1039" name="OldOrFutureHeaderCannotAuthorizeNewFamily" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OldOrFutureHeaderCannotAuthorizeNewFamily" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-28T04:43:55.9198810Z" end-time="2026-09-28T04:43:56.0075400Z" duration="0.087659" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <test-case id="1035" name="OldOrFutureHeaderCannotAuthorizeNewFamily(2,7)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OldOrFutureHeaderCannotAuthorizeNewFamily(2,7)" methodname="OldOrFutureHeaderCannotAuthorizeNewFamily" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="186846972" result="Passed" start-time="2026-09-28T04:43:55.9199190Z" end-time="2026-09-28T04:43:55.9431050Z" duration="0.023186" asserts="1" />
+            <test-case id="1036" name="OldOrFutureHeaderCannotAuthorizeNewFamily(3,7)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OldOrFutureHeaderCannotAuthorizeNewFamily(3,7)" methodname="OldOrFutureHeaderCannotAuthorizeNewFamily" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="2129225282" result="Passed" start-time="2026-09-28T04:43:55.9431410Z" end-time="2026-09-28T04:43:55.9634330Z" duration="0.020292" asserts="1" />
+            <test-case id="1037" name="OldOrFutureHeaderCannotAuthorizeNewFamily(3,8)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OldOrFutureHeaderCannotAuthorizeNewFamily(3,8)" methodname="OldOrFutureHeaderCannotAuthorizeNewFamily" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1762480545" result="Passed" start-time="2026-09-28T04:43:55.9634790Z" end-time="2026-09-28T04:43:55.9870210Z" duration="0.023542" asserts="1" />
+            <test-case id="1038" name="OldOrFutureHeaderCannotAuthorizeNewFamily(5,1)" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OldOrFutureHeaderCannotAuthorizeNewFamily(5,1)" methodname="OldOrFutureHeaderCannotAuthorizeNewFamily" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1604972268" result="Passed" start-time="2026-09-28T04:43:55.9870390Z" end-time="2026-09-28T04:43:56.0075180Z" duration="0.020479" asserts="1" />
+          </test-suite>
+          <test-case id="1010" name="OnlyExactActiveAcceptedGraphCanCommitOnce" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.OnlyExactActiveAcceptedGraphCanCommitOnce" methodname="OnlyExactActiveAcceptedGraphCanCommitOnce" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1984785450" result="Passed" start-time="2026-09-28T04:43:56.0075490Z" end-time="2026-09-28T04:43:56.0458360Z" duration="0.038286" asserts="13" />
+          <test-case id="1029" name="ProofCanReadAuthorityButCannotReenterCommit" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.ProofCanReadAuthorityButCannotReenterCommit" methodname="ProofCanReadAuthorityButCannotReenterCommit" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="1683762737" result="Passed" start-time="2026-09-28T04:43:56.0458760Z" end-time="2026-09-28T04:43:56.0757980Z" duration="0.029923" asserts="5" />
+          <test-case id="1028" name="ReentrantOrThrowingProofDoesNotLeakACommitOrLock" fullname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests.ReentrantOrThrowingProofDoesNotLeakACommitOrLock" methodname="ReentrantOrThrowingProofDoesNotLeakACommitOrLock" classname="CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests" runstate="Runnable" seed="2028914429" result="Passed" start-time="2026-09-28T04:43:56.0758220Z" end-time="2026-09-28T04:43:56.1164820Z" duration="0.040660" asserts="12" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

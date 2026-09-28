@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca61f6ff79d04e75b755c59d46355b9f, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.SpreadCollectorArtLibrary
+  Entries:
+  - Id: spread-tatterjay
+    Prefab: {fileID: 8079455682332803309, guid: faded1c9d8b144c36bb9ada6f6253b2b, type: 3}
+    Mesh: {fileID: 4300000, guid: 88e4095407a914d27b61418488c4af4b, type: 2}
+    Materials:
+    - {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
+    Spec:
+      id: spread-tatterjay
+      path: Assets/Resources/SpreadCollector3D/spread-tatterjay.prefab
+      kind: actor
+      rigFamily: avian
+      materialFamily: reference-glade-palette
+      sourceBlueprint: Tatterjay
+      rigged: 1
+      boundsCenter: {x: 0.000000028802743, y: 0.37759805, z: 0.011433861}
+      boundsSize: {x: 0.98016316, y: 0.8030894, z: 1.0827086}
+      triangles: 300
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      - CarryIdle
+      - CarryWalk
+      - Pickup
+      - Deposit
+      sockets:
+      - Collector.Bill
+  - Id: spread-tatterjay-remains
+    Prefab: {fileID: 3658692805607303400, guid: ab9eda7667e9940efa11efdfe1954b7a, type: 3}
+    Mesh: {fileID: 4300000, guid: 78fca952cbc404d528961720c9f2b059, type: 2}
+    Materials:
+    - {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
+    Spec:
+      id: spread-tatterjay-remains
+      path: Assets/Resources/SpreadCollector3D/spread-tatterjay-remains.prefab
+      kind: entity
+      rigFamily: 
+      materialFamily: reference-glade-palette
+      sourceBlueprint: TatterjayCorpse
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.11, z: 0.04749997}
+      boundsSize: {x: 0.62000006, y: 0.21000001, z: 0.94500005}
+      triangles: 156
+      clips: []
+      sockets: []

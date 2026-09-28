@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/collector/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="51" result="Failed" start-time="2026-09-28T03:36:47.6618270Z" end-time="2026-09-28T03:36:47.7195750Z" duration="0.057712" total="28" passed="1" failed="27" inconclusive="0" skipped="0" warnings="0" asserts="225" random-seed="1875134036">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/collector/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "class == CavesOfOoo.Tests.SpreadCollectorTests" --result=/tmp/coo-questfree-implementation/collector/red.xml]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadCollectorTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1059" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/collector/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="51" result="Failed" site="Child" start-time="2026-09-28T03:36:47.6618270Z" end-time="2026-09-28T03:36:47.7195750Z" duration="0.057712" total="28" passed="1" failed="27" warnings="0" inconclusive="0" skipped="0" asserts="225">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="43081" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1060" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="51" result="Failed" site="Child" start-time="2026-09-28T03:36:47.6646710Z" end-time="2026-09-28T03:36:47.7195730Z" duration="0.054901" total="28" passed="1" failed="27" warnings="0" inconclusive="0" skipped="0" asserts="225">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1061" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="51" result="Failed" site="Child" start-time="2026-09-28T03:36:47.6648510Z" end-time="2026-09-28T03:36:47.7195710Z" duration="0.054719" total="28" passed="1" failed="27" warnings="0" inconclusive="0" skipped="0" asserts="225">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1024" name="SpreadCollectorTests" fullname="CavesOfOoo.Tests.SpreadCollectorTests" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2026-09-28T03:36:47.6652650Z" end-time="2026-09-28T03:36:47.7195550Z" duration="0.054289" total="28" passed="1" failed="27" warnings="0" inconclusive="0" skipped="0" asserts="225">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1036" name="AnnotatedSpecialGoodsRefuse" fullname="CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-28T03:36:47.6664630Z" end-time="2026-09-28T03:36:47.7017480Z" duration="0.035284" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="40">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1031" name="AnnotatedSpecialGoodsRefuse(&quot;QuestItem&quot;)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(&quot;QuestItem&quot;)" methodname="AnnotatedSpecialGoodsRefuse" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="2058336850" result="Failed" start-time="2026-09-28T03:36:47.6665790Z" end-time="2026-09-28T03:36:47.6987160Z" duration="0.032165" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(String tag) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 44
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(String tag) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 44
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1032" name="AnnotatedSpecialGoodsRefuse(&quot;Unique&quot;)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(&quot;Unique&quot;)" methodname="AnnotatedSpecialGoodsRefuse" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="1283214379" result="Failed" start-time="2026-09-28T03:36:47.6993730Z" end-time="2026-09-28T03:36:47.7003480Z" duration="0.000975" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(String tag) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 44
+   at InvokeStub_SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(String tag) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 44
+   at InvokeStub_SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1033" name="AnnotatedSpecialGoodsRefuse(&quot;NoTrade&quot;)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(&quot;NoTrade&quot;)" methodname="AnnotatedSpecialGoodsRefuse" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="561324351" result="Failed" start-time="2026-09-28T03:36:47.7003750Z" end-time="2026-09-28T03:36:47.7007140Z" duration="0.000340" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(String tag) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 44
+   at InvokeStub_SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(String tag) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 44
+   at InvokeStub_SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1034" name="AnnotatedSpecialGoodsRefuse(&quot;Owned&quot;)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(&quot;Owned&quot;)" methodname="AnnotatedSpecialGoodsRefuse" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="1553729709" result="Failed" start-time="2026-09-28T03:36:47.7007290Z" end-time="2026-09-28T03:36:47.7009110Z" duration="0.000183" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(String tag) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 44
+   at InvokeStub_SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(String tag) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 44
+   at InvokeStub_SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1035" name="AnnotatedSpecialGoodsRefuse(&quot;Essential&quot;)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(&quot;Essential&quot;)" methodname="AnnotatedSpecialGoodsRefuse" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="1580807903" result="Failed" start-time="2026-09-28T03:36:47.7009260Z" end-time="2026-09-28T03:36:47.7013240Z" duration="0.000398" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(String tag) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 44
+   at InvokeStub_SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(String tag) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 44
+   at InvokeStub_SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1056" name="BeforePickupCallbackRefusesChangedAuthority" fullname="CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T03:36:47.7019370Z" end-time="2026-09-28T03:36:47.7057050Z" duration="0.003768" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="32">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1052" name="BeforePickupCallbackRefusesChangedAuthority(&quot;veto&quot;)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(&quot;veto&quot;)" methodname="BeforePickupCallbackRefusesChangedAuthority" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="1913104204" result="Failed" start-time="2026-09-28T03:36:47.7019540Z" end-time="2026-09-28T03:36:47.7026410Z" duration="0.000687" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(String mutation) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 55
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(String mutation) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 55
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1053" name="BeforePickupCallbackRefusesChangedAuthority(&quot;quantity&quot;)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(&quot;quantity&quot;)" methodname="BeforePickupCallbackRefusesChangedAuthority" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="1336737748" result="Failed" start-time="2026-09-28T03:36:47.7026550Z" end-time="2026-09-28T03:36:47.7029900Z" duration="0.000336" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(String mutation) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 55
+   at InvokeStub_SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(String mutation) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 55
+   at InvokeStub_SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1054" name="BeforePickupCallbackRefusesChangedAuthority(&quot;home&quot;)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(&quot;home&quot;)" methodname="BeforePickupCallbackRefusesChangedAuthority" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="657422139" result="Failed" start-time="2026-09-28T03:36:47.7030050Z" end-time="2026-09-28T03:36:47.7032180Z" duration="0.000214" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(String mutation) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 55
+   at InvokeStub_SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(String mutation) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 55
+   at InvokeStub_SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1055" name="BeforePickupCallbackRefusesChangedAuthority(&quot;actor&quot;)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(&quot;actor&quot;)" methodname="BeforePickupCallbackRefusesChangedAuthority" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="380889653" result="Failed" start-time="2026-09-28T03:36:47.7032530Z" end-time="2026-09-28T03:36:47.7056440Z" duration="0.002391" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(String mutation) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 55
+   at InvokeStub_SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(String mutation) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 55
+   at InvokeStub_SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1058" name="BeforePickupForeignTransferRemainsForeign" fullname="CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupForeignTransferRemainsForeign" methodname="BeforePickupForeignTransferRemainsForeign" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="862830178" result="Failed" start-time="2026-09-28T03:36:47.7057380Z" end-time="2026-09-28T03:36:47.7064700Z" duration="0.000732" asserts="8">
+            <failure>
+              <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupForeignTransferRemainsForeign() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 57
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupForeignTransferRemainsForeign() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 57
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1050" name="CalmAndCurrentWorkRemainAboveIdleCollection" fullname="CavesOfOoo.Tests.SpreadCollectorTests.CalmAndCurrentWorkRemainAboveIdleCollection" methodname="CalmAndCurrentWorkRemainAboveIdleCollection" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="453120662" result="Failed" start-time="2026-09-28T03:36:47.7064870Z" end-time="2026-09-28T03:36:47.7068300Z" duration="0.000343" asserts="8">
+            <failure>
+              <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.CalmAndCurrentWorkRemainAboveIdleCollection() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 52
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.CalmAndCurrentWorkRemainAboveIdleCollection() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 52
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1057" name="DepositMessageFailureRollsBackActualCommandAndPhase" fullname="CavesOfOoo.Tests.SpreadCollectorTests.DepositMessageFailureRollsBackActualCommandAndPhase" methodname="DepositMessageFailureRollsBackActualCommandAndPhase" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="1888940510" result="Failed" start-time="2026-09-28T03:36:47.7068560Z" end-time="2026-09-28T03:36:47.7072370Z" duration="0.000381" asserts="8">
+            <failure>
+              <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.DepositMessageFailureRollsBackActualCommandAndPhase() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 56
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.DepositMessageFailureRollsBackActualCommandAndPhase() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 56
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1042" name="DestroyedHomeRetainsActualCarriedItem" fullname="CavesOfOoo.Tests.SpreadCollectorTests.DestroyedHomeRetainsActualCarriedItem" methodname="DestroyedHomeRetainsActualCarriedItem" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="1822656861" result="Failed" start-time="2026-09-28T03:36:47.7072470Z" end-time="2026-09-28T03:36:47.7074680Z" duration="0.000220" asserts="8">
+            <failure>
+              <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.DestroyedHomeRetainsActualCarriedItem() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 48
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.DestroyedHomeRetainsActualCarriedItem() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 48
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1045" name="HomeCapacityIsAtomicAndCanMerge" fullname="CavesOfOoo.Tests.SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T03:36:47.7074800Z" end-time="2026-09-28T03:36:47.7080790Z" duration="0.000599" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1043" name="HomeCapacityIsAtomicAndCanMerge(False)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge(False)" methodname="HomeCapacityIsAtomicAndCanMerge" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="1830142295" result="Failed" start-time="2026-09-28T03:36:47.7074980Z" end-time="2026-09-28T03:36:47.7077790Z" duration="0.000281" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge(Boolean compatible) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 49
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge(Boolean compatible) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 49
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1044" name="HomeCapacityIsAtomicAndCanMerge(True)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge(True)" methodname="HomeCapacityIsAtomicAndCanMerge" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="1431648944" result="Failed" start-time="2026-09-28T03:36:47.7078160Z" end-time="2026-09-28T03:36:47.7080650Z" duration="0.000249" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge(Boolean compatible) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 49
+   at InvokeStub_SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge(Boolean compatible) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 49
+   at InvokeStub_SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1025" name="LegacyOrdinaryOwnerDoesNotCollectTool" fullname="CavesOfOoo.Tests.SpreadCollectorTests.LegacyOrdinaryOwnerDoesNotCollectTool" methodname="LegacyOrdinaryOwnerDoesNotCollectTool" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="713025205" result="Passed" start-time="2026-09-28T03:36:47.7080880Z" end-time="2026-09-28T03:36:47.7150120Z" duration="0.006924" asserts="9" />
+          <test-case id="1040" name="NonPassiveOwnerRefuses" fullname="CavesOfOoo.Tests.SpreadCollectorTests.NonPassiveOwnerRefuses" methodname="NonPassiveOwnerRefuses" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="158398820" result="Failed" start-time="2026-09-28T03:36:47.7150430Z" end-time="2026-09-28T03:36:47.7154220Z" duration="0.000379" asserts="8">
+            <failure>
+              <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.NonPassiveOwnerRefuses() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 46
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.NonPassiveOwnerRefuses() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 46
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1026" name="OnePickupThenOneDepositKeepsExactWholeToolWithoutAutoEquip" fullname="CavesOfOoo.Tests.SpreadCollectorTests.OnePickupThenOneDepositKeepsExactWholeToolWithoutAutoEquip" methodname="OnePickupThenOneDepositKeepsExactWholeToolWithoutAutoEquip" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="796789069" result="Failed" start-time="2026-09-28T03:36:47.7154370Z" end-time="2026-09-28T03:36:47.7157360Z" duration="0.000300" asserts="8">
+            <failure>
+              <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.OnePickupThenOneDepositKeepsExactWholeToolWithoutAutoEquip() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 40
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.OnePickupThenOneDepositKeepsExactWholeToolWithoutAutoEquip() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 40
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1030" name="OnlyCurrentLooseSalvageAllowanceAccepted" fullname="CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T03:36:47.7157490Z" end-time="2026-09-28T03:36:47.7164100Z" duration="0.000661" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1027" name="OnlyCurrentLooseSalvageAllowanceAccepted(&quot;GoldCoin&quot;)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(&quot;GoldCoin&quot;)" methodname="OnlyCurrentLooseSalvageAllowanceAccepted" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="998508608" result="Failed" start-time="2026-09-28T03:36:47.7157620Z" end-time="2026-09-28T03:36:47.7159680Z" duration="0.000206" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(String bp) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 42
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(String bp) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 42
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1028" name="OnlyCurrentLooseSalvageAllowanceAccepted(&quot;Starapple&quot;)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(&quot;Starapple&quot;)" methodname="OnlyCurrentLooseSalvageAllowanceAccepted" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="321368152" result="Failed" start-time="2026-09-28T03:36:47.7159790Z" end-time="2026-09-28T03:36:47.7162040Z" duration="0.000225" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(String bp) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 42
+   at InvokeStub_SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(String bp) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 42
+   at InvokeStub_SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1029" name="OnlyCurrentLooseSalvageAllowanceAccepted(&quot;UnknownTool&quot;)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(&quot;UnknownTool&quot;)" methodname="OnlyCurrentLooseSalvageAllowanceAccepted" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="206130901" result="Failed" start-time="2026-09-28T03:36:47.7162170Z" end-time="2026-09-28T03:36:47.7163980Z" duration="0.000181" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(String bp) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 42
+   at InvokeStub_SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(String bp) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 42
+   at InvokeStub_SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1051" name="PaidPickupEndsExactlyOneActorTurnNoChildChain" fullname="CavesOfOoo.Tests.SpreadCollectorTests.PaidPickupEndsExactlyOneActorTurnNoChildChain" methodname="PaidPickupEndsExactlyOneActorTurnNoChildChain" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="528577541" result="Failed" start-time="2026-09-28T03:36:47.7164150Z" end-time="2026-09-28T03:36:47.7166960Z" duration="0.000281" asserts="8">
+            <failure>
+              <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.PaidPickupEndsExactlyOneActorTurnNoChildChain() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 53
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.PaidPickupEndsExactlyOneActorTurnNoChildChain() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 53
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1039" name="RecruitedOrPlayerOwnerRefuses" fullname="CavesOfOoo.Tests.SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T03:36:47.7167070Z" end-time="2026-09-28T03:36:47.7173150Z" duration="0.000608" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1037" name="RecruitedOrPlayerOwnerRefuses(False)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses(False)" methodname="RecruitedOrPlayerOwnerRefuses" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="534512312" result="Failed" start-time="2026-09-28T03:36:47.7167150Z" end-time="2026-09-28T03:36:47.7169660Z" duration="0.000251" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses(Boolean player) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 45
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses(Boolean player) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 45
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1038" name="RecruitedOrPlayerOwnerRefuses(True)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses(True)" methodname="RecruitedOrPlayerOwnerRefuses" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="1433430033" result="Failed" start-time="2026-09-28T03:36:47.7169820Z" end-time="2026-09-28T03:36:47.7172860Z" duration="0.000304" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses(Boolean player) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 45
+   at InvokeStub_SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses(Boolean player) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 45
+   at InvokeStub_SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1049" name="SaveDepositedCannotRestartTrip" fullname="CavesOfOoo.Tests.SpreadCollectorTests.SaveDepositedCannotRestartTrip" methodname="SaveDepositedCannotRestartTrip" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="1251618357" result="Failed" start-time="2026-09-28T03:36:47.7173380Z" end-time="2026-09-28T03:36:47.7175890Z" duration="0.000252" asserts="8">
+            <failure>
+              <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.SaveDepositedCannotRestartTrip() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 51
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.SaveDepositedCannotRestartTrip() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 51
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1048" name="SaveSeekingAndCarryingUsesReplacementExactReferences" fullname="CavesOfOoo.Tests.SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T03:36:47.7176030Z" end-time="2026-09-28T03:36:47.7190830Z" duration="0.001480" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1046" name="SaveSeekingAndCarryingUsesReplacementExactReferences(False)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences(False)" methodname="SaveSeekingAndCarryingUsesReplacementExactReferences" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="1917651042" result="Failed" start-time="2026-09-28T03:36:47.7176250Z" end-time="2026-09-28T03:36:47.7184240Z" duration="0.000799" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences(Boolean carrying) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 50
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences(Boolean carrying) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 50
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1047" name="SaveSeekingAndCarryingUsesReplacementExactReferences(True)" fullname="CavesOfOoo.Tests.SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences(True)" methodname="SaveSeekingAndCarryingUsesReplacementExactReferences" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="719684349" result="Failed" start-time="2026-09-28T03:36:47.7184860Z" end-time="2026-09-28T03:36:47.7190710Z" duration="0.000585" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences(Boolean carrying) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 50
+   at InvokeStub_SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences(Boolean carrying) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 50
+   at InvokeStub_SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1041" name="StolenTargetCannotBeRecreated" fullname="CavesOfOoo.Tests.SpreadCollectorTests.StolenTargetCannotBeRecreated" methodname="StolenTargetCannotBeRecreated" classname="CavesOfOoo.Tests.SpreadCollectorTests" runstate="Runnable" seed="754055311" result="Failed" start-time="2026-09-28T03:36:47.7190900Z" end-time="2026-09-28T03:36:47.7194710Z" duration="0.000382" asserts="8">
+            <failure>
+              <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.StolenTargetCannotBeRecreated() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 47
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped collector role API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorTests.Fixture..ctor(Boolean role) in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadCollectorTests.StolenTargetCannotBeRecreated() in /tmp/coo-questfree-implementation/collector/SpreadCollectorTests.cs:line 47
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

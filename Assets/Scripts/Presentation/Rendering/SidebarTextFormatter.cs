@@ -80,14 +80,18 @@ namespace CavesOfOoo.Rendering
         private const int FocusGoalStackLineCap = 8;
 
         public static List<string> FormatFocus(LookSnapshot snapshot, int width, int maxLines)
+            => FormatFocus(snapshot, width, maxLines, null);
+
+        public static List<string> FormatFocus(LookSnapshot snapshot, int width, int maxLines, string actionHint)
         {
             int safeWidth = Math.Max(1, width);
             int safeMaxLines = Math.Max(1, maxLines);
             var lines = new List<string>(safeMaxLines);
+            if (!string.IsNullOrEmpty(actionHint)) AppendWrapped(lines, actionHint, safeWidth, safeMaxLines);
 
             if (snapshot == null)
             {
-                lines.Add("No focus");
+                if (lines.Count < safeMaxLines) lines.Add("No focus");
                 return lines;
             }
 

@@ -1,0 +1,20 @@
+/tmp/coo-questfree-implementation/collector-art/export_source.py:20: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  MAT=bpy.data.materials.new('SpreadBiomePalette');MAT.use_nodes=True;tex=MAT.node_tree.nodes.new('ShaderNodeTexImage');tex.image=img;tex.interpolation='Closest';shader=MAT.node_tree.nodes.get('Principled BSDF');MAT.node_tree.links.new(tex.outputs['Color'],shader.inputs['Base Color']);shader.inputs['Roughness'].default_value=1;WATER=bpy.data.materials.new('SemanticWater');WATER.use_nodes=True;WATER.node_tree.nodes.get('Principled BSDF').inputs['Base Color'].default_value=(0,.667,.667,1);WATER.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value=.85
+/tmp/coo-questfree-implementation/collector-art/export_source.py:81: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  SCENE.world.use_nodes=True;SCENE.world.node_tree.nodes['Background'].inputs[0].default_value=(.28,.32,.30,1);SCENE.world.node_tree.nodes['Background'].inputs[1].default_value=.8
+/tmp/coo-questfree-implementation/collector-art/export_source.py:82: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  floor=bpy.data.materials.new('ReviewGround');floor.use_nodes=True;floor.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value=(.003,.025,.021,1);floor.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value=1
+00:16.005  render           | Saved: '/private/tmp/coo-questfree-implementation/collector-art/Export/renders/collector-forms-review.png'
+00:30.359  render           | Saved: '/private/tmp/coo-questfree-implementation/collector-art/Export/renders/collector-forms-three-quarter.png'
+
+FBX export starting... '/private/tmp/coo-questfree-implementation/collector-art/Export/models/spread-tatterjay.fbx'
+(bpy.data.armatures['spread-tatterjay_Skeleton.001'], 'POSE')
+export finished in 0.0948 sec.
+
+FBX export starting... '/private/tmp/coo-questfree-implementation/collector-art/Export/models/spread-tatterjay-remains.fbx'
+export finished in 0.0022 sec.
+Info: Saved as "collector-forms-review.blend"
+SPREAD_COLLECTOR_SOURCE [{"id": "spread-tatterjay", "sourceBlueprint": "Tatterjay", "path": "models/spread-tatterjay.fbx", "rigFamily": "avian", "rigged": true, "clips": ["Idle", "Walk", "Interact", "Attack", "Hit", "CarryIdle", "CarryWalk", "Pickup", "Deposit"], "sockets": ["Collector.Bill"], "bones": ["Root", "Body", "Head", "Wing.L", "Leg.L", "Wing.R", "Leg.R", "Tail"], "triangles": 300, "boundsBlender": {"min": [-0.25999999046325684, -0.4750000238418579, 0.0], "max": [0.25999999046325684, 0.5399999618530273, 0.7174999713897705]}, "sha256": "c5435ecd78fbe26dae087ddb863176c61683d3b6b6c7abdb183697db3573bfdb", "status": "private-source-not-native-adopted"}, {"id": "spread-tatterjay-remains", "sourceBlueprint": "TatterjayCorpse", "path": "models/spread-tatterjay-remains.fbx", "rigFamily": "", "rigged": false, "clips": [], "sockets": [], "bones": [], "triangles": 156, "boundsBlender": {"min": [-0.3100000023841858, -0.42500001192092896, 0.004999995231628418], "max": [0.3100000023841858, 0.5199999809265137, 0.2150000035762787]}, "sha256": "ad0d21e5bf5a71103585a74bb62cb44f25e01e93161766a4bc0d66924fd18aff", "status": "private-source-not-native-adopted"}]
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

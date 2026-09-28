@@ -1,0 +1,193 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Rendering;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace CavesOfOoo.Scenarios.Custom
+{
+    public sealed partial class QuestFreeSpreadStateNativePlayer
+    {
+        string ModeBoundary=>_mode=="states"
+            ?"Ordinary N then disclosed original-player-only setup transfers to real generated frozen family sources. One empty waterskin is supplied. Wait, withdrawal, Look/Examine and inventory Fill use actual keys. No generated owner, AI, HP, reward, RNG or corpse was forced. Local activation/camera proof, not ordinary journey/acquisition or a matched performance sample. Root must review screenshots."
+            :"Ordinary N then one disclosed original-player-only setup transfer to a bounded actual generated source. No owner/item/phase/energy grant or direct actor action. Actual keys and current camera/state are observed. This is local instrumented activation, not ordinary discovery, uninformed awareness, natural travel or performance. Root must review screenshots.";
+
+        IEnumerator Affordances()
+        {
+            Zone site=null;Entity row=null;Cell arrival=null;
+            foreach(var entry in Candidates(SpreadExplorationFamily.LastGleanings))
+            {
+                var z=Manager.GetZone(entry.ZoneID);
+                foreach(var e in z.GetReadOnlyEntities().Where(e=>e.BlueprintName=="RipeCropRow"&&e.GetPart<FieldHarvestPart>()?.Harvested==false).OrderBy(e=>e.ID,StringComparer.Ordinal))
+                {
+                    var a=z.GetEntityCell(e);if(a==null)continue;
+                    arrival=CellsNear(z,a,1,1).FirstOrDefault(c=>DrySafe(z,c,null)&&AIHelpers.HasLineOfSight(z,c.X,c.Y,a.X,a.Y));
+                    if(arrival!=null){site=z;row=e;break;}
+                }
+                Selection(entry,z,row,arrival,"actual ripe field and dry adjacent observation cell");if(row!=null)break;
+            }
+            if(row==null){Unverified("affordances","No current generated ripe source and safe adjacent observer in eight canonical LastGleanings candidates.");yield break;}
+            yield return Transfer(site,arrival,"actual generated harvest cue");var cell=Zone.GetEntityCell(row);var harvest=row.GetPart<FieldHarvestPart>();
+            Require(harvest!=null&&!harvest.Harvested&&cell.IsVisible&&Presenter.IsRenderedEntity(row),"current visible original harvest owner");
+            Require(Presenter.TryGetApprovedStyle(row,out var beforeStyle)&&beforeStyle.ModelId.Contains("grain-"),"approved actual ripe field art");
+            string ripe=Model(row),playerBefore=PlayerSignature(),sourceBefore=SourceRows(new[]{row},Zone);int tick=Tick,energy=Energy;
+            yield return NormalCueCapture("00b-normal-adjacent-current-cue",true);
+            yield return Focus(row);yield return null;
+            Check("focused_actual_harvest_cue",Cue(row,"Harvest",true));yield return Capture("01-generated-ripe-field-cue-and-hint");
+            yield return Tap(Key.Enter);Require(State=="WorldActionMenuOpen","actual focused action menu");yield return SelectCurrentOwner(row);yield return null;
+            var renderer=(WorldAffordanceRenderer)Field(_input.ZoneRenderer,"_worldAffordanceRenderer");
+            Check("menu_hides_world_cue_and_opening_is_free",!renderer.IsVisible&&!_input.QueryWorldAffordance(Zone,Player).HasValue&&PlayerSignature()==playerBefore&&SourceRows(new[]{row},Zone)==sourceBefore&&Tick==tick&&Energy==energy);
+            yield return Capture("02-actual-harvest-menu-cue-hidden");
+            int units=CarriedUnits(harvest.YieldBlueprint),yieldCount=harvest.YieldCount,speed=Player.GetStatValue("Speed",100);string yieldBlueprint=harvest.YieldBlueprint;
+            yield return MenuAction("Harvest");yield return CloseNormal();_paidInputs++;
+            long cost=(long)energy+(long)(Tick-tick)*speed-Energy;
+            _observations.Add(new{phase="actual-native-harvest",owner=row.ID,yieldBlueprint,yieldCount,beforeUnits=units,afterUnits=CarriedUnits(yieldBlueprint),beforeTick=tick,afterTick=Tick,cost});
+            Check("one_real_paid_harvest_same_owner_finite_yield",cost==TurnManager.ActionThreshold&&_paidInputs==1&&ReferenceEquals(row.GetPart<FieldHarvestPart>(),harvest)&&Zone.GetEntityCell(row)==cell&&harvest.Harvested&&CarriedUnits(yieldBlueprint)==units+yieldCount&&Player.GetStatValue("Hitpoints")==40);
+            Check("same_source_native_stubble",Presenter.TryGetApprovedStyle(row,out var afterStyle)&&afterStyle.ModelId==ripe.Replace("grain-","stubble-"));
+            tick=Tick;energy=Energy;string afterPlayer=PlayerSignature();yield return Focus(row);yield return null;
+            var current=_input.QueryWorldAffordance(Zone,Player);var cached=(WorldAffordance?)Field(_input.ZoneRenderer,"_worldAffordance");
+            Check("spent_source_has_no_stale_harvest_cue",!(current.HasValue&&current.Value.Target==row&&current.Value.Command=="Harvest")&&!(cached.HasValue&&cached.Value.Target==row&&cached.Value.Command=="Harvest"));
+            _observations.Add(new{phase="spent-current-cue",owner=row.ID,target=current?.Target?.ID,command=current?.Command,hint=current?.Hint,boundary="Another legitimate current verb is allowed; the spent Harvest owner cannot remain advertised."});
+            yield return Capture("03-same-field-spent-current-cue");yield return CloseNormal();Check("spent_focus_return_free",Tick==tick&&Energy==energy&&PlayerSignature()==afterPlayer);
+            yield return NormalCueCapture("04-normal-after-harvest-current-cue",false);
+        }
+        IEnumerator NormalCueCapture(string label,bool requireCue)
+        {
+            Require(State=="Normal","normal cue without Look rectangle");yield return null;
+            int tick=Tick,energy=Energy;var standing=At;string player=PlayerSignature();var current=_input.QueryWorldAffordance(Zone,Player);
+            var cached=(WorldAffordance?)Field(_input.ZoneRenderer,"_worldAffordance");var draw=(WorldAffordanceRenderer)Field(_input.ZoneRenderer,"_worldAffordanceRenderer");
+            string source=current.HasValue?SourceRows(new[]{current.Value.Target},Zone):null;
+            bool submitted=current.HasValue?cached.HasValue&&current.Value.Target==cached.Value.Target&&current.Value.Command==cached.Value.Command
+                &&draw!=null&&draw.IsVisible&&draw.CurrentCell==new Vector2Int(current.Value.Cell.X,current.Value.Cell.Y):!cached.HasValue&&draw!=null&&!draw.IsVisible;
+            _observations.Add(new{phase=label,state=State,owner=current?.Target?.ID,blueprint=current?.Target?.BlueprintName,command=current?.Command,hint=current?.Hint,cell=current.HasValue?new[]{current.Value.Cell.X,current.Value.Cell.Y}:null,
+                submitted,boundary="Actual Normal-state nearby choice, which may differ from the field chosen for the later focused action. No Look rectangle; screenshot must establish subtle corner visibility."});
+            yield return Capture(label);
+            Check(label+"_free_current_normal_cue",(!requireCue||current.HasValue)&&submitted&&State=="Normal"&&At==standing&&Tick==tick&&Energy==energy&&PlayerSignature()==player
+                &&(!current.HasValue||SourceRows(new[]{current.Value.Target},Zone)==source));
+        }
+        int CarriedUnits(string blueprint)=>Player.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName==blueprint).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
+        IEnumerator Focus(Entity target)
+        {
+            Require(State=="Normal","normal before actual look");yield return Tap(Key.L);Require(State=="LookMode","actual look mode");var cursor=(WorldCursorState)Field(_input,"_worldCursorState");var to=Zone.GetEntityCell(target);Require(to!=null,"current look target");
+            for(int n=0;cursor.X!=to.X||cursor.Y!=to.Y;n++){Require(n<18,"bounded real focused cursor");yield return Tap(cursor.X<to.X?Key.D:cursor.X>to.X?Key.A:cursor.Y<to.Y?Key.S:Key.W);}
+        }
+        IEnumerator SelectCurrentOwner(Entity target)
+        {
+            string command=WorldInteractionSystem.PickTargetCommandPrefix+target.ID;var menu=_input.WorldActionMenuUI;var actions=(List<InventoryAction>)Field(menu,"_actions");
+            if(!ReferenceEquals(menu.SelectedTarget,target)||menu.SelectedCellIsPile)
+                if(!actions.Any(a=>a.Command==command)&&actions.Any(a=>a.Command==WorldInteractionSystem.PickCellCommand))yield return MenuAction(WorldInteractionSystem.PickCellCommand);
+            actions=(List<InventoryAction>)Field(menu,"_actions");if(actions.Any(a=>a.Command==command))yield return MenuAction(command);
+            Require(ReferenceEquals(menu.SelectedTarget,target)&&!menu.SelectedCellIsPile,"exact current owner selected through actual menu");
+        }
+        bool Cue(Entity target,string command,bool focused)
+        {
+            var actual=_input.QueryWorldAffordance(Zone,Player);var cached=(WorldAffordance?)Field(_input.ZoneRenderer,"_worldAffordance");var draw=(WorldAffordanceRenderer)Field(_input.ZoneRenderer,"_worldAffordanceRenderer");var at=Zone.GetEntityCell(target);
+            _observations.Add(new{phase="actual-cue-state",owner=target.ID,currentTarget=actual?.Target?.ID,currentCommand=actual?.Command,hint=actual?.Hint,cachedTarget=cached?.Target?.ID,cachedCommand=cached?.Command,visible=draw?.IsVisible,cell=draw==null?null:new[]{draw.CurrentCell.x,draw.CurrentCell.y},boundary="Current native query, cached submitted cue and owned line state; visible pixels still require screenshot review."});
+            return actual.HasValue&&actual.Value.Target==target&&actual.Value.Command==command&&(!focused||actual.Value.Hint=="Enter: menu / harvest")&&cached.HasValue&&cached.Value.Target==target&&cached.Value.Command==command&&draw!=null&&draw.IsVisible&&draw.CurrentCell==new Vector2Int(at.X,at.Y);
+        }
+
+        Entity _collectorObserved;Coroutine _collectorFrames;bool _pickupFrame,_depositFrame;string _collectorObserverError;
+        IEnumerator Collector()
+        {
+            if(!Enum.TryParse("CollectorReturn",out SpreadExplorationFamily family)){Unverified("collector","CollectorReturn source family is not available in this loaded build.");yield break;}
+            Zone site=null;Entity bird=null;Cell arrival=null;
+            foreach(var entry in Candidates(family))
+            {
+                var z=Manager.GetZone(entry.ZoneID);
+                foreach(var e in z.GetReadOnlyEntities().Where(e=>e.BlueprintName=="Tatterjay").OrderBy(e=>e.ID,StringComparer.Ordinal))
+                {
+                    var p=e.GetPart<SpreadCollectorPart>();var a=z.GetEntityCell(e);var h=p?.Home==null?null:z.GetEntityCell(p.Home);var t=p?.Target==null?null:z.GetEntityCell(p.Target);
+                    if(p?.Configured!=true||p.Phase!=SpreadCollectorPhase.Seeking||p.Actions!=0||a==null||h==null||t==null||Manager.Exploration.DispositionFor(z.ZoneID)!=2)continue;
+                    var threats=CollectorThreats(z,e);
+                    arrival=CellsNear(z,a,3,6).Where(c=>DrySafe(z,c,e)&&new[]{a,h,t}.All(v=>Math.Max(Math.Abs(c.X-v.X),Math.Abs(c.Y-v.Y))<=6&&AIHelpers.HasLineOfSight(z,c.X,c.Y,v.X,v.Y)))
+                        .OrderByDescending(c=>threats.Length==0?int.MaxValue:threats.Min(other=>SpatialQuery.DistanceToCell(z,other,c.X,c.Y))).FirstOrDefault();
+                    if(arrival!=null){bird=e;site=z;break;}
+                }
+                Selection(entry,z,bird,arrival,"configured Seeking collector with original ground target/home and safe visible local observation cell");if(bird!=null)break;
+            }
+            if(bird==null){Unverified("collector","No admitted current source/view in eight canonical CollectorReturn candidates.");yield break;}
+            yield return Transfer(site,arrival,"actual finite collector trip");var role=bird.GetPart<SpreadCollectorPart>();var item=role.Target;var home=role.Home;var homeCell=Zone.GetEntityCell(home);var originalContents=home.GetPart<ContainerPart>().Contents.ToArray();var originalUnits=originalContents.ToDictionary(e=>e,e=>e.GetPart<StackerPart>()?.StackCount??1);var compatible=originalContents.ToDictionary(e=>e,e=>e.GetPart<StackerPart>()?.CanStackWith(item)==true);int quantity=role.Quantity,hp=bird.GetStatValue("Hitpoints");string itemBlueprint=item.BlueprintName;
+            Require(role.Phase==SpreadCollectorPhase.Seeking&&role.CurrentCarriedItem==null&&Zone.GetEntityCell(item)!=null,"original current uncollected item");Visual(bird,"spread-tatterjay",1);_collectorObserved=bird;_collectorFrames=StartCoroutine(CollectorFrameObservation());
+            yield return Capture("01-original-collector-item-and-home");bool picked=false,movedWithCargo=false;Cell firstCarryCell=null;
+            while(_paidInputs<PaidLimit&&role.Phase!=SpreadCollectorPhase.Deposited&&role.Phase!=SpreadCollectorPhase.Stopped)
+            {
+                Require(_collectorObserverError==null,"collector frame observer: "+_collectorObserverError);Require(Player.GetStatValue("Hitpoints")==40,"original observer HP unchanged");
+                if(!DrySafe(Zone,At,bird))
+                {
+                    _observations.Add(CollectorSafety("observer-became-unsafe",bird));Unverified("collector-safe-view","The actual observer cell became unsafe after "+_paidInputs+" real paid waits. Stop before another input; no relocation, source retry or suppressed actor.");
+                    yield return Capture("98-current-unsafe-observer");StopCollectorObservation();yield break;
+                }
+                yield return Paid(Key.Period,"native-collector-wait");
+                Require(bird.GetPart<SpreadCollectorPart>()==role&&role.Home==home&&role.Target==item&&Zone.GetEntityCell(home)==homeCell&&bird.GetStatValue("Hitpoints")==hp&&Player.GetStatValue("Hitpoints")==40&&item.BlueprintName==itemBlueprint&&(role.Phase==SpreadCollectorPhase.Deposited||(item.GetPart<StackerPart>()?.StackCount??1)==quantity),"original collector source identities/predeposit quantity/HP");
+                var at=Zone.GetEntityCell(bird);_observations.Add(new{phase="live-collector-progress",paidInputs=_paidInputs,actor=bird.ID,item=item.ID,home=home.ID,state=role.Phase.ToString(),role.Actions,position=Zone.GetEntityPosition(bird),carried=role.CurrentCarriedItem?.ID,itemInventory=item.GetPart<PhysicsPart>()?.InInventory?.ID,homeCount=home.GetPart<ContainerPart>().Contents.Count});
+                if(role.Phase==SpreadCollectorPhase.Carrying)
+                {
+                    Check("current_real_cargo_"+_paidInputs,ReferenceEquals(role.CurrentCarriedItem,item)&&Presenter.TryGetCollectorCarryView(bird,item,out _)&&Presenter.TryGetApprovedCollectorCarryStyle(bird,item,out _));
+                    if(!picked){picked=true;firstCarryCell=at;yield return Capture("02-actual-picked-up-original-item");}
+                    else if(at!=firstCarryCell&&!movedWithCargo){movedWithCargo=true;yield return Capture("03-actual-carried-item-after-native-movement");}
+                }
+            }
+            Require(_collectorObserverError==null,"collector frame observer: "+_collectorObserverError);
+            if(role.Phase!=SpreadCollectorPhase.Deposited){Unverified("collector","Actual finite trip ended in "+role.Phase+" after "+_paidInputs+" paid waits; no retry, source repair or forced action.");StopCollectorObservation();yield break;}
+            var contents=home.GetPart<ContainerPart>().Contents;
+            long residentGain=originalContents.Sum(e=>(long)(e.GetPart<StackerPart>()?.StackCount??1)-originalUnits[e]);
+            bool retained=contents.Contains(item);int incomingRemainder=item.GetPart<StackerPart>()?.StackCount??1;
+            bool residents=originalContents.All(e=>contents.Contains(e)&&e.GetPart<PhysicsPart>()?.InInventory==home
+                &&(e.GetPart<StackerPart>()?.StackCount??1)>=originalUnits[e]
+                &&((e.GetPart<StackerPart>()?.StackCount??1)==originalUnits[e]||compatible[e]));
+            bool incoming=retained?incomingRemainder>0&&item.GetPart<PhysicsPart>().InInventory==home:incomingRemainder==0&&item.GetPart<PhysicsPart>().InInventory==null;
+            _observations.Add(new{phase="actual-deposit-conservation",owner=bird.ID,home=home.ID,originalItem=item.ID,quantity,retained,remainingUnits=incomingRemainder,residentGain,residents=originalContents.Select(e=>new{id=e.ID,before=originalUnits[e],after=e.GetPart<StackerPart>()?.StackCount??1,wasCompatible=compatible[e]}).ToArray(),boundary="Actual native AddItem can fully or partly merge a stack. Preserve original residents and exact incoming conservation; do not require an exhausted incoming ID to survive."});
+            Check("original_cargo_conserved_in_home_no_attachment",residents&&incoming&&contents.All(e=>originalContents.Contains(e)||e==item)&&contents.Count==originalContents.Length+(retained?1:0)
+                &&residentGain+incomingRemainder==quantity&&role.CurrentCarriedItem==null&&!Presenter.TryGetCollectorCarryView(bird,item,out _)
+                &&!bird.GetPart<InventoryPart>().Objects.Contains(item)&&item.GetPart<PhysicsPart>().Equipped==null&&Zone.GetEntityCell(item)==null);
+            yield return Capture("05-actual-deposit-empty-bill-and-home");
+            double poseDeadline=Time.realtimeSinceStartupAsDouble+.65;while(!_depositFrame&&Time.realtimeSinceStartupAsDouble<poseDeadline)yield return null;
+            Require(_collectorObserverError==null,"collector final frame observer: "+_collectorObserverError);
+            if(!picked||!movedWithCargo||!_pickupFrame||!_depositFrame)Unverified("collector-live-motion","Observed pickup="+picked+", carrying movement="+movedWithCargo+", actual Pickup frame="+_pickupFrame+", actual Deposit frame="+_depositFrame+". Sampled native art gallery remains separate.");
+            StopCollectorObservation();
+        }
+        Entity[] CollectorThreats(Zone zone,Entity bird)=>zone.GetReadOnlyEntities().Where(e=>e!=Player&&e!=bird&&e.HasTag("Creature")&&e.GetStatValue("Hitpoints")>0&&FactionManager.IsHostile(e,Player)).ToArray();
+        object CollectorSafety(string phase,Entity bird)
+        {
+            var cell=At;var tile=Zone.TileState.Get(cell.X,cell.Y);bool placeable=Zone.CanPlaceFootprint(Player,cell.X,cell.Y);
+            var occupants=cell.Occupants.Where(e=>e!=Player).Select(e=>new{id=e.ID,blueprint=e.BlueprintName,creature=e.HasTag("Creature"),liquid=e.HasPart<LiquidPoolPart>(),gas=e.HasPart<GasPoolPart>(),trigger=e.HasPart<TriggerOnStepPart>(),burning=e.HasEffect<BurningEffect>(),aflame=e.GetPart<ThermalPart>()?.IsAflame==true}).ToArray();
+            var threats=CollectorThreats(Zone,bird).Select(e=>new{id=e.ID,blueprint=e.BlueprintName,position=Zone.GetEntityPosition(e),distance=SpatialQuery.DistanceToCell(Zone,e,cell.X,cell.Y)}).OrderBy(e=>e.distance).ToArray();
+            var reasons=new List<string>();if(!placeable)reasons.Add("current-footprint-blocked");
+            if(occupants.Any(e=>e.creature||e.liquid||e.gas||e.trigger||e.burning||e.aflame))reasons.Add("current-cell-occupant-hazard");
+            if(tile!=null&&(tile.Heat>0||tile.Cold>0||tile.Charge>0||!string.IsNullOrEmpty(tile.Cloud)||tile.Coatings.Count>0))reasons.Add("current-tile-state-hazard");
+            if(threats.Any(e=>e.distance<=3))reasons.Add("actual-hostile-within-three-cells");
+            return new{phase,player=Player.ID,position=new[]{cell.X,cell.Y},safe=DrySafe(Zone,cell,bird),reasons=reasons.ToArray(),placeable,occupants,
+                tile=tile==null?null:new{tile.Heat,tile.Cold,tile.Charge,tile.Cloud,coatingCount=tile.Coatings.Count},threats,
+                boundary="Instrumented initial view ranks the same eligible cells by greatest current hostile separation. Future safety is not guaranteed; an unsafe view stops unverified before another paid input. No source, actor, seed, candidate budget or safety predicate change."};
+        }
+        IEnumerator CollectorFrameObservation()
+        {
+            while(_collectorObserved!=null)
+            {
+                yield return new WaitForEndOfFrame();
+                try{ObserveCollectorGesture();}catch(Exception e){_collectorObserverError=e.ToString();yield break;}
+            }
+        }
+        void ObserveCollectorGesture()
+        {
+            var bird=_collectorObserved;if(bird==null||!Presenter.TryGetEntityView(bird,out var root,out _))return;var animator=root.GetComponentInChildren<Animator>();if(animator==null)return;var state=animator.GetCurrentAnimatorStateInfo(0);
+            string pose=!_pickupFrame&&state.IsName("Pickup")?"Pickup":!_depositFrame&&state.IsName("Deposit")?"Deposit":null;
+            if(pose==null||state.normalizedTime<.20f||state.normalizedTime>.85f)return;
+            var skin=root.GetComponentInChildren<SkinnedMeshRenderer>();int head=Array.FindIndex(skin.bones,b=>b.name=="Head");Require(head>=0,"actual collector Head");var bill=root.GetComponentsInChildren<Transform>().Single(t=>t.name==SpreadCollectorArtLibrary.BillSocket);var mesh=new Mesh();
+            try
+            {
+                skin.BakeMesh(mesh);var weights=skin.sharedMesh.boneWeights;var vertices=mesh.vertices;var world=Enumerable.Range(0,vertices.Length).Where(i=>weights[i].boneIndex0==head&&weights[i].weight0>.99f).Select(i=>skin.transform.TransformPoint(vertices[i])).ToArray();Require(world.Length>0,"actual skinned head vertices");
+                var bounds=new Bounds(world[0],Vector3.zero);foreach(var p in world)bounds.Encapsulate(p);var held=bird.GetPart<SpreadCollectorPart>().CurrentCarriedItem;float? gripDistance=null;
+                if(held!=null&&Presenter.TryGetCollectorCarryView(bird,held,out var carry)){var filter=carry.GetComponent<MeshFilter>();gripDistance=filter.sharedMesh.vertices.Min(v=>Vector3.Distance(filter.transform.TransformPoint(v),bill.position));}
+                _observations.Add(new{phase="actual-live-collector-pose",pose,normalizedTime=state.normalizedTime,owner=bird.ID,item=held?.ID,bill=Coordinates(bill.position),headBone=Coordinates(skin.bones[head].position),headBounds=new{center=Coordinates(bounds.center),size=Coordinates(bounds.size)},gripDistance,measurement="Actual running Animator; CPU BakeMesh then skin TransformPoint. No clip sampling or Animator advancement. Pixels distinguish any CPU/GPU lag."});
+                string label=pose=="Pickup"?"04-live-pickup-head-bill-cargo":"06-live-deposit-head-bill";string path=System.IO.Path.Combine(DirectoryPath,label+".png");System.IO.Directory.CreateDirectory(DirectoryPath);DensityNativeScreenshot.CaptureToFile(path);_images.Add(path);
+                if(pose=="Pickup")_pickupFrame=true;else _depositFrame=true;WriteReport();
+            }finally{Destroy(mesh);}
+        }
+        static float[] Coordinates(Vector3 v)=>new[]{v.x,v.y,v.z};
+        void StopCollectorObservation(){_collectorObserved=null;if(_collectorFrames!=null){StopCoroutine(_collectorFrames);_collectorFrames=null;}}
+    }
+}

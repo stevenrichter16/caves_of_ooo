@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e3/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="25" result="Failed" start-time="2026-09-28T03:11:07.8774230Z" end-time="2026-09-28T03:11:08.0651380Z" duration="0.187689" total="5" passed="0" failed="5" inconclusive="0" skipped="0" warnings="0" asserts="5" random-seed="827170715">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/e3/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/e3/forage-receipt-red.xml --where "class =~ /SpreadExplorationForageReceiptTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationForageReceiptTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1032" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e3/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-09-28T03:11:07.8774230Z" end-time="2026-09-28T03:11:08.0651380Z" duration="0.187689" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="5">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/e3/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/e3/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="35562" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1033" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-09-28T03:11:07.8793180Z" end-time="2026-09-28T03:11:08.0651320Z" duration="0.185810" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="5">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1034" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-09-28T03:11:07.8794840Z" end-time="2026-09-28T03:11:08.0650900Z" duration="0.185603" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="5">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1025" name="SpreadExplorationForageReceiptTests" fullname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests" classname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-28T03:11:07.8799370Z" end-time="2026-09-28T03:11:08.0650840Z" duration="0.185143" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="5">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1027" name="AlteredFoodInvalidatesOnlyTheFoodReceiptAndEarlierRevisionCannotAuthorizeNewZone" fullname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.AlteredFoodInvalidatesOnlyTheFoodReceiptAndEarlierRevisionCannotAuthorizeNewZone" methodname="AlteredFoodInvalidatesOnlyTheFoodReceiptAndEarlierRevisionCannotAuthorizeNewZone" classname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests" runstate="Runnable" seed="22478836" result="Failed" start-time="2026-09-28T03:11:07.8811650Z" end-time="2026-09-28T03:11:07.9860780Z" duration="0.104940" asserts="1">
+            <failure>
+              <message><![CDATA[  A separately rolled finite food owner needs its own exact source receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.Receipt(PopulationBuilder b) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.AlteredFoodInvalidatesOnlyTheFoodReceiptAndEarlierRevisionCannotAuthorizeNewZone() in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 21
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  A separately rolled finite food owner needs its own exact source receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.Receipt(PopulationBuilder b) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.AlteredFoodInvalidatesOnlyTheFoodReceiptAndEarlierRevisionCannotAuthorizeNewZone() in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 21
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1031" name="DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood" fullname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood" classname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T03:11:07.9867590Z" end-time="2026-09-28T03:11:08.0477470Z" duration="0.060987" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1028" name="DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(False,&quot;SpreadTier1&quot;,False,0)" fullname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(False,&quot;SpreadTier1&quot;,False,0)" methodname="DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood" classname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests" runstate="Runnable" seed="854003890" result="Failed" start-time="2026-09-28T03:11:07.9868670Z" end-time="2026-09-28T03:11:08.0076200Z" duration="0.020753" asserts="1">
+              <failure>
+                <message><![CDATA[  A separately rolled finite food owner needs its own exact source receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.Receipt(PopulationBuilder b) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(Boolean enabled, String table, Boolean duplicate, Int32 count) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 26
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  A separately rolled finite food owner needs its own exact source receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.Receipt(PopulationBuilder b) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(Boolean enabled, String table, Boolean duplicate, Int32 count) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 26
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1029" name="DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(True,&quot;foreign&quot;,False,0)" fullname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(True,&quot;foreign&quot;,False,0)" methodname="DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood" classname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests" runstate="Runnable" seed="1796183870" result="Failed" start-time="2026-09-28T03:11:08.0076660Z" end-time="2026-09-28T03:11:08.0277300Z" duration="0.020064" asserts="1">
+              <failure>
+                <message><![CDATA[  A separately rolled finite food owner needs its own exact source receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.Receipt(PopulationBuilder b) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(Boolean enabled, String table, Boolean duplicate, Int32 count) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 26
+   at InvokeStub_SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  A separately rolled finite food owner needs its own exact source receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.Receipt(PopulationBuilder b) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(Boolean enabled, String table, Boolean duplicate, Int32 count) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 26
+   at InvokeStub_SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(True,&quot;SpreadTier1&quot;,True,1)" fullname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(True,&quot;SpreadTier1&quot;,True,1)" methodname="DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood" classname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests" runstate="Runnable" seed="469371057" result="Failed" start-time="2026-09-28T03:11:08.0277620Z" end-time="2026-09-28T03:11:08.0453680Z" duration="0.017606" asserts="1">
+              <failure>
+                <message><![CDATA[  A separately rolled finite food owner needs its own exact source receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.Receipt(PopulationBuilder b) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(Boolean enabled, String table, Boolean duplicate, Int32 count) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 26
+   at InvokeStub_SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  A separately rolled finite food owner needs its own exact source receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.Receipt(PopulationBuilder b) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(Boolean enabled, String table, Boolean duplicate, Int32 count) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 26
+   at InvokeStub_SpreadExplorationForageReceiptTests.DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1026" name="OnlyActualFiniteFoodRollsAuthorizeTheSourceAndConsumptionIsOneShot" fullname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.OnlyActualFiniteFoodRollsAuthorizeTheSourceAndConsumptionIsOneShot" methodname="OnlyActualFiniteFoodRollsAuthorizeTheSourceAndConsumptionIsOneShot" classname="CavesOfOoo.Tests.SpreadExplorationForageReceiptTests" runstate="Runnable" seed="1402026932" result="Failed" start-time="2026-09-28T03:11:08.0479620Z" end-time="2026-09-28T03:11:08.0650100Z" duration="0.017048" asserts="1">
+            <failure>
+              <message><![CDATA[  A separately rolled finite food owner needs its own exact source receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.Receipt(PopulationBuilder b) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.OnlyActualFiniteFoodRollsAuthorizeTheSourceAndConsumptionIsOneShot() in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 15
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  A separately rolled finite food owner needs its own exact source receipt.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.Receipt(PopulationBuilder b) in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadExplorationForageReceiptTests.OnlyActualFiniteFoodRollsAuthorizeTheSourceAndConsumptionIsOneShot() in /tmp/coo-questfree-implementation/e3/SpreadExplorationForageReceiptTests.cs:line 15
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

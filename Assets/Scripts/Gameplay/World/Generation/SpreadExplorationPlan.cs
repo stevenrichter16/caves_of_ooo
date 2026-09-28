@@ -10,7 +10,7 @@ using CavesOfOoo.Data;
 
 namespace CavesOfOoo.Core
 {
-    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin }
+    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin, SnakeForage, WorkGang, CollectorReturn, RoadsideExchange }
 
     /// <summary>Frozen assignment, not evidence that its optional content was placed.</summary>
     public sealed class SpreadExplorationEntry
@@ -36,7 +36,7 @@ namespace CavesOfOoo.Core
     public sealed class SpreadExplorationPlan
     {
         public const string PropertyKey="SpreadExploration.Manifest";
-        public const int CurrentVersion=2;
+        public const int CurrentVersion=4;
         private const int MaxRecords=WorldMap.Width*WorldMap.Height;
         private const int MaxWireLength=65536;
         private readonly OverworldZoneManager owner;
@@ -44,17 +44,18 @@ namespace CavesOfOoo.Core
         private readonly Dictionary<string,SpreadExplorationEntry> entries;
         private readonly Dictionary<string,Zone> installed;
         private readonly Dictionary<string,int> dispositions;
+        private bool validatingAcceptedEntry;
         public bool Enabled { get; }
-        public int Version => CurrentVersion;
+        public int Version { get; }
         public int AllocationChecks { get; private set; }
         public IReadOnlyList<SpreadExplorationEntry> Entries { get; }
         public int RetainedGraphCount => installed?.Count??0;
         private static readonly IReadOnlyList<SpreadExplorationEntry> Empty=Array.AsReadOnly(new SpreadExplorationEntry[0]);
 
         private SpreadExplorationPlan(OverworldZoneManager manager,bool enabled,bool isBound,
-            IEnumerable<SpreadExplorationEntry> rows=null)
+            IEnumerable<SpreadExplorationEntry> rows=null,int version=CurrentVersion)
         {
-            owner=manager;Enabled=enabled;bound=isBound;
+            owner=manager;Enabled=enabled;bound=isBound;Version=version;
             if(!enabled){Entries=Empty;return;}
             entries=new Dictionary<string,SpreadExplorationEntry>(StringComparer.Ordinal);
             installed=new Dictionary<string,Zone>(StringComparer.Ordinal);
@@ -82,7 +83,7 @@ namespace CavesOfOoo.Core
             {
                 // Quiet rate and neighborhood diversity are tuning measurements. Exclusions and
                 // edge adjacency are hard constraints; a refusal leaves the address quiet.
-                var family=FamilyFor(FormationSelector.For(BiomeType.Spread,id));checks++;
+                var family=FamilyFor(FormationSelector.For(BiomeType.Spread,id),CurrentVersion,manager.WorldSeed,id);checks++;
                 if(Rank(manager.WorldSeed,id,"quiet")%100<35||family==SpreadExplorationFamily.None||Touches(rows,id,family))family=SpreadExplorationFamily.None;
                 var topology=(SpreadExplorationTopology)(1+Rank(manager.WorldSeed,id,"topology")%3);
                 rows[id]=new SpreadExplorationEntry(id,true,family,topology,manager.WorldSeed);
@@ -91,10 +92,12 @@ namespace CavesOfOoo.Core
         }
         internal static uint Rank(int seed,string id,string salt)
         {unchecked{uint h=2166136261u^(uint)seed;foreach(char c in "SpreadExploration.v2|"+salt+"|"+id)h=(h^c)*16777619u;h^=h>>16;h*=0x7feb352du;h^=h>>15;h*=0x846ca68bu;return h^(h>>16);}}
-        private static SpreadExplorationFamily FamilyFor(Formation formation)
+        private static SpreadExplorationFamily FamilyFor(Formation formation,int version,int seed,string id)
         {
-            switch(formation){case Formation.OldRoad:return SpreadExplorationFamily.RoadSpill;
-                case Formation.Hedgerow:case Formation.Fallow:return SpreadExplorationFamily.OccupiedBank;
+            switch(formation){case Formation.OldRoad:return version>=4&&WorldTravellers.EntrySample(seed,id)%8==0?SpreadExplorationFamily.RoadsideExchange:SpreadExplorationFamily.RoadSpill;
+                case Formation.Hedgerow:return version>=4&&Rank(seed,id,"family-variant")%2==0?SpreadExplorationFamily.CollectorReturn:SpreadExplorationFamily.OccupiedBank;
+                case Formation.Fallow:return version==2?SpreadExplorationFamily.OccupiedBank:SpreadExplorationFamily.WorkGang;
+                case Formation.FlowerMeadow:return version==2?SpreadExplorationFamily.None:SpreadExplorationFamily.SnakeForage;
                 case Formation.FieldStrips:return SpreadExplorationFamily.LastGleanings;
                 case Formation.RiverMeadow:return SpreadExplorationFamily.WateringMargin;
                 default:return SpreadExplorationFamily.None;}
@@ -113,6 +116,34 @@ namespace CavesOfOoo.Core
         {
             entry=null;if(!Current(manager))return false;var found=Find(id);
             if(found?.PlacementEligible!=true||!PlacementNow(manager,id))return false;entry=found;return true;
+        }
+        /// <summary>One dynamic exchange opportunity on the exact active, accepted graph.
+        /// Reading it never generates a graph, exposes hidden actors, or consumes the opportunity.</summary>
+        public bool TryGetAcceptedEntry(OverworldZoneManager manager,Zone zone,out SpreadExplorationEntry entry)
+        {
+            entry=null;
+            if(zone==null||!Current(manager)||Version<4
+                ||!ReferenceEquals(manager.ActiveZone,zone)||!TryGetPlacement(manager,zone.ZoneID,out var found)
+                ||found.Family!=SpreadExplorationFamily.RoadsideExchange||DispositionFor(zone.ZoneID)!=1
+                ||!installed.TryGetValue(zone.ZoneID,out var accepted)||!ReferenceEquals(accepted,zone)
+                ||!manager.CachedZones.TryGetValue(zone.ZoneID,out var cached)||!ReferenceEquals(cached,zone))return false;
+            entry=found;return true;
+        }
+        /// <summary>Commits a real entry-time source once. The transient proof must validate actual
+        /// owners and placement; saved committed opportunities never replay this callback.</summary>
+        public bool TryMarkAcceptedEntryCommitted(OverworldZoneManager manager,Zone zone,SpreadExplorationEntry exactEntry,Func<bool> validator)
+        {
+            if(validatingAcceptedEntry||validator==null||!TryGetAcceptedEntry(manager,zone,out var entry)||!ReferenceEquals(entry,exactEntry))return false;
+            var map=manager.WorldMap;var rare=manager.RareEncounters;var wayhouse=manager.Wayhouse;
+            string pair=rare?.PairZoneID,viper=rare?.ViperZoneID,wayhouseID=wayhouse?.ZoneID;
+            validatingAcceptedEntry=true;
+            bool proved;
+            try{proved=validator();}finally{validatingAcceptedEntry=false;}
+            if(!proved||!ReferenceEquals(map,manager.WorldMap)||!ReferenceEquals(rare,manager.RareEncounters)
+                ||!ReferenceEquals(wayhouse,manager.Wayhouse)||pair!=manager.RareEncounters?.PairZoneID
+                ||viper!=manager.RareEncounters?.ViperZoneID||wayhouseID!=manager.Wayhouse?.ZoneID
+                ||!TryGetAcceptedEntry(manager,zone,out var current)||!ReferenceEquals(current,exactEntry))return false;
+            dispositions[entry.ZoneID]=2;return true;
         }
         private bool Current(OverworldZoneManager manager)=>bound&&ReferenceEquals(owner,manager)&&ReferenceEquals(manager?.Exploration,this);
         private static bool Canonical(string id)
@@ -192,7 +223,7 @@ namespace CavesOfOoo.Core
         private bool MarkPlacement(OverworldZoneManager manager,Zone zone,SpreadExplorationEntry exactEntry,Func<bool> validator)
         {
             if(!TryGetGenerationEntry(manager,zone,out var current)||!ReferenceEquals(current,exactEntry)
-                ||current.Family==SpreadExplorationFamily.None||!Attempts.TryGetValue(zone,out var attempt)
+                ||current.Family==SpreadExplorationFamily.None||current.Family==SpreadExplorationFamily.RoadsideExchange||!Attempts.TryGetValue(zone,out var attempt)
                 ||attempt.PlacementCommitted||attempt.Validating||attempt.Finalizing)return false;
             if(validator!=null)
             {
@@ -235,7 +266,7 @@ namespace CavesOfOoo.Core
         {
             var plan=manager?.Exploration;if(plan==null)return world;plan.ValidateAccess(manager,null);if(!plan.Enabled)return world;
             foreach(var pair in plan.installed)ValidateInstalled(manager,pair.Key,pair.Value);
-            var wire=new StringBuilder();wire.Append(CurrentVersion).Append('|').Append(manager.WorldSeed.ToString(CultureInfo.InvariantCulture)).Append('|').Append(plan.Entries.Count);
+            var wire=new StringBuilder();wire.Append(plan.Version).Append('|').Append(manager.WorldSeed.ToString(CultureInfo.InvariantCulture)).Append('|').Append(plan.Entries.Count);
             foreach(var e in plan.Entries)wire.Append('\n').Append(e.ZoneID).Append('|').Append(e.PlacementEligible?3:1).Append('|').Append((int)e.Family)
                 .Append('|').Append((int)e.Topology).Append('|').Append(plan.DispositionFor(e.ZoneID));
             if(world==null){world=new Entity{BlueprintName="World",ID=Guid.NewGuid().ToString("N")};world.SetTag("WorldEntity");}
@@ -246,24 +277,26 @@ namespace CavesOfOoo.Core
             if(world==null||!world.Properties.TryGetValue(PropertyKey,out string wire))return Legacy(manager);
             if(wire==null||wire.Length==0||wire.Length>MaxWireLength)throw Invalid("length");
             var lines=wire.Split('\n');var header=lines[0].Split('|');
-            if(header.Length!=3||Number(header[0])!=CurrentVersion||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
+            if(header.Length!=3)throw Invalid("header");
+            int version=Number(header[0]);
+            if((version!=2&&version!=3&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
             int count=Number(header[2]);if(count<0||count>MaxRecords||lines.Length!=count+1)throw Invalid("record count");
             var rows=new Dictionary<string,SpreadExplorationEntry>(StringComparer.Ordinal);var saved=new Dictionary<string,int>(StringComparer.Ordinal);
             for(int i=1;i<lines.Length;i++)
             {
                 var f=lines[i].Split('|');if(f.Length!=5||!Supported(f[0])||rows.ContainsKey(f[0]))throw Invalid("address");
                 int mask=Number(f[1]),family=Number(f[2]),topology=Number(f[3]),disposition=Number(f[4]);
-                if((mask!=1&&mask!=3)||family<0||family>4||topology<0||topology>3||disposition<0||disposition>2
+                if((mask!=1&&mask!=3)||family<0||family>(version==2?4:version==3?6:8)||topology<0||topology>3||disposition<0||disposition>2
                     ||(mask==1&&(family!=0||topology!=0))||(disposition==2&&(mask!=3||family==0)))throw Invalid("enum/mask/disposition");
                 var selected=(SpreadExplorationFamily)family;
-                if(selected!=SpreadExplorationFamily.None&&selected!=FamilyFor(FormationSelector.For(BiomeType.Spread,f[0])))throw Invalid("family habitat");
+                if(selected!=SpreadExplorationFamily.None&&selected!=FamilyFor(FormationSelector.For(BiomeType.Spread,f[0]),version,manager.WorldSeed,f[0]))throw Invalid("family habitat");
                 if(mask==3&&(f[0]==ReferenceGladePlan.ZoneID||f[0]==manager.RareEncounters?.PairZoneID||f[0]==manager.RareEncounters?.ViperZoneID||f[0]==manager.Wayhouse?.ZoneID
                     ||RegionalSituations.Definitions.Any(d=>d.SourceZoneId==f[0]||d.RecipientZoneId==f[0])))throw Invalid("protected placement");
                 rows.Add(f[0],new SpreadExplorationEntry(f[0],mask==3,selected,(SpreadExplorationTopology)topology,manager.WorldSeed));
                 if(disposition>0)saved.Add(f[0],disposition);
             }
             foreach(var e in rows.Values)if(e.Family!=SpreadExplorationFamily.None&&Touches(rows,e.ZoneID,e.Family))throw Invalid("adjacency");
-            var result=new SpreadExplorationPlan(manager,true,true,rows.Values);
+            var result=new SpreadExplorationPlan(manager,true,true,rows.Values,version);
             foreach(var record in saved)
             {
                 string id=record.Key;

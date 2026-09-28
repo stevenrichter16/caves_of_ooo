@@ -1,0 +1,24 @@
+--- a/Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs
++++ b/Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs
+@@ -19,13 +19,19 @@
+                 || authority == null || !authority() || !owner.Current(owner.Origin)) return false;
+             var geometry = new Geometry(zone, actor);
+             int trials = 0;
++            // Budget only candidates that can form the existing local territory.
++            // Dense edge/distant posts must not consume all32 before admission.
+             foreach (var post in zone.GetReadOnlyEntities().Where(e => Post(zone, e))
++                .Where(e =>
++                {
++                    var at = zone.GetEntityPosition(e);
++                    return Distance(owner.Origin, at) <= 12 && at.x - 3 >= 2 && at.y - 2 >= 2
++                        && at.x + 3 < Zone.Width - 2 && at.y + 2 < Zone.Height - 2;
++                })
+                 .OrderBy(e => zone.GetEntityCell(e).Y).ThenBy(e => zone.GetEntityCell(e).X).Take(MaxSources).ToArray())
+             {
+                 var source = new SourceSnapshot(zone, post); var center = source.Position;
+-                if (Distance(owner.Origin, center) > 12) continue;
+                 int left = center.x - 3, right = center.x + 3, top = center.y - 2, bottom = center.y + 2;
+-                if (left < 2 || top < 2 || right >= Zone.Width - 2 || bottom >= Zone.Height - 2) continue;
+                 for (int y = center.y - 1; y <= center.y + 1; y++)
+                     for (int x = center.x - 1; x <= center.x + 1; x++)
+                     {

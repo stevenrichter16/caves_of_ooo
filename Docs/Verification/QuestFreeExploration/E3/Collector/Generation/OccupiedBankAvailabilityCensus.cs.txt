@@ -1,0 +1,24 @@
+using System;
+using System.Linq;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using Newtonsoft.Json;
+using NUnit.Framework;
+namespace CavesOfOoo.Tests {
+public class OccupiedBankAvailabilityCensus {
+sealed class Probe:IZoneBuilder { readonly Action<Zone> a; public Probe(Action<Zone> a){this.a=a;}public string Name=>"occupied-source-census";public int Priority=>4299;public bool BuildZone(Zone z,EntityFactory f,Random r){a(z);return true;} }
+sealed class Manager:OverworldZoneManager {
+public object[] Owners;public bool ReceiptCurrent;public string Result;public int Callbacks; SpreadExplorationBuilder composer;
+public Manager(EntityFactory f,int seed):base(f,seed){}
+protected override ZoneGenerationPipeline GetPipelineForZone(string id){var p=base.GetPipelineForZone(id);composer=p.Builders.OfType<SpreadExplorationBuilder>().SingleOrDefault();var pop=p.Builders.OfType<PopulationBuilder>().SingleOrDefault();p.AddBuilder(new Probe(z=>{var receipt=pop?.SourceReceipt;ReceiptCurrent=receipt?.IsCurrent==true;Owners=(receipt?.Owners??Array.Empty<Entity>()).Select(e=>new {id=e.ID,blueprint=e.BlueprintName,position=z.GetEntityPosition(e),hp=e.GetStatValue("Hitpoints"),gear=DensityLootTestScope.Gear(e).Select(i=>i.BlueprintName).ToArray()}).Cast<object>().ToArray();}));return p;}
+protected override void OnZoneGenerated(Zone z,string id){base.OnZoneGenerated(z,id);Result=composer?.LastResult;Callbacks++;}
+}
+[Test]public void Capture(){var rows=new List<object>();var globals=new List<(FieldInfo f,object value,List<DictionaryEntry> entries)>();foreach(var f in typeof(LootTableRegistry).GetFields(BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic)){var v=f.GetValue(null);var es=new List<DictionaryEntry>();if(v is IDictionary d)foreach(DictionaryEntry e in d)es.Add(e);globals.Add((f,v,es));}
+try{using(var scope=new DensityLootTestScope()){foreach(int seed in new[]{1,64,1729}){var selection=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);foreach(var e in selection.Exploration.Entries.Where(e=>e.PlacementEligible&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.Hedgerow)){scope.Seed(unchecked(seed^FormationSelector.StableIndex(e.ZoneID,int.MaxValue)));var m=new Manager(scope.Factory,seed);var z=m.GetZone(e.ZoneID);Assert.NotNull(z,e.ZoneID);rows.Add(new {seed,version=m.Exploration.Version,zone=e.ZoneID,family=e.Family.ToString(),disposition=m.Exploration.DispositionFor(e.ZoneID),result=m.Result,m.ReceiptCurrent,owners=m.Owners,holders=z.GetReadOnlyEntities().Where(x=>x.GetPart<SpreadTerritoryPart>()?.Configured==true).Select(x=>new {x.ID,position=z.GetEntityPosition(x)}).ToArray()});}}}}
+finally{foreach(var g in globals){if(!g.f.IsInitOnly)g.f.SetValue(null,g.value);if(g.value is IDictionary d){d.Clear();foreach(var e in g.entries)d.Add(e.Key,e.Value);}}}
+File.WriteAllText(Environment.GetEnvironmentVariable("COO_OCCUPIED_CENSUS_OUTPUT"),JsonConvert.SerializeObject(new {boundary="Private deterministic hash runtime, actual full managers; every placement-eligible Hedgerow address. This observes existing source/geometry and does not assert native availability.",rows},Formatting.Indented));Assert.Greater(rows.Count,0);}
+}}

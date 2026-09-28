@@ -1,0 +1,49 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 6,
+    "passed": 2,
+    "failed": 4,
+    "skipped": 0,
+    "durationSeconds": 0.0541054,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "BothModesRefuseBeforeInputOrWorldSetupWithoutActualSaveIsolation(\"InitializeCollector\")",
+      "fullName": "CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.BothModesRefuseBeforeInputOrWorldSetupWithoutActualSaveIsolation(\"InitializeCollector\")",
+      "state": "Failed",
+      "durationSeconds": 0.0011916,
+      "message": "  Missing explicit collector initializer\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.BothModesRefuseBeforeInputOrWorldSetupWithoutActualSaveIsolation (System.String method) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeCollectorNativeModeTests.cs:29\n",
+      "output": ""
+    },
+    {
+      "name": "BothModesRefuseBeforeInputOrWorldSetupWithoutActualSaveIsolation(\"InitializeAffordances\")",
+      "fullName": "CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.BothModesRefuseBeforeInputOrWorldSetupWithoutActualSaveIsolation(\"InitializeAffordances\")",
+      "state": "Failed",
+      "durationSeconds": 0.0003329,
+      "message": "  Missing explicit collector initializer\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.BothModesRefuseBeforeInputOrWorldSetupWithoutActualSaveIsolation (System.String method) [0x0006d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeCollectorNativeModeTests.cs:29\n",
+      "output": ""
+    },
+    {
+      "name": "ExplicitModeHasAnOwnedNoArgumentLauncherWithoutReplacingDefault(\"LaunchCollector\")",
+      "fullName": "CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.ExplicitModeHasAnOwnedNoArgumentLauncherWithoutReplacingDefault(\"LaunchCollector\")",
+      "state": "Failed",
+      "durationSeconds": 0.0004602,
+      "message": "  Missing explicit bounded collector mode\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.ExplicitModeHasAnOwnedNoArgumentLauncherWithoutReplacingDefault (System.String method) [0x00062] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeCollectorNativeModeTests.cs:19\n",
+      "output": ""
+    },
+    {
+      "name": "ExplicitModeHasAnOwnedNoArgumentLauncherWithoutReplacingDefault(\"LaunchAffordances\")",
+      "fullName": "CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.ExplicitModeHasAnOwnedNoArgumentLauncherWithoutReplacingDefault(\"LaunchAffordances\")",
+      "state": "Failed",
+      "durationSeconds": 0.0004075,
+      "message": "  Missing explicit bounded collector mode\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeCollectorNativeModeTests.ExplicitModeHasAnOwnedNoArgumentLauncherWithoutReplacingDefault (System.String method) [0x00062] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeCollectorNativeModeTests.cs:19\n",
+      "output": ""
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+# F8 bounded real-entry/trade witness — feasibility, awaiting root choice
+
+Status: source audit only, 2026-09-28. No Unity call, native result, new harness, shared source edit or forced source. E4 cooking tests remain paused while this E3 gap is resolved. Read current CLAUDE.md. References below are repository-relative current files, verified directly.
+
+## Recommendation
+
+Add one small `exchange` partial mode to the existing `QuestFreeSpreadStateNativePlayer` / `QuestFreeSpreadStateNativeBatch`, with seed 3 only for that mode. Use ordinary N and real map keys from the fresh ReferenceGlade start at Overworld.11.10.0 to the predeclared actual stable winner Overworld.11.7.0. No transfer is necessary to attempt the route: ascend `<`, take three northward world-map steps, descend `>`. Do not pre-generate the destination, invoke WorldTravellers directly, construct a merchant, alter stock/purses, search another seed, or retry consumed entry.
+
+This is a finite controlled-address witness, not uninformed discovery or campaign coverage. Seed/address came from the retained prebounded source census, not a successful native run. The source winner alone does not establish live standing space, route availability, roadside geometry, safe access or affordable stock. Those remain named native gates; refusal ends this mode honestly.
+
+## Verified source and reuse seams
+
+| Point | Verified current source | Consequence |
+|---|---|---|
+| Reusable isolated mode | `Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.cs:18,34-59,252-266`; `Assets/Editor/Scenarios/QuestFreeSpreadStateNativeBatch.cs:25-76` | Existing partial class, queued press/empty coroutine, report/images, watchdog and NativeSaveIsolation cleanup suffice. Current seed64, mode dispatch, paid cap and report seed are explicit branches to change only for Exchange. Keep other modes unchanged. |
+| Ordinary map keys | `Assets/Scripts/Scenarios/Custom/SpreadDiscoveryNativePlayer.cs:298-310` | Accepted native pattern is Shift+Comma, actual direction keys, Shift+Period. No direct traversal command calls. |
+| Actual map descent | `Assets/Scripts/Gameplay/World/Map/WorldMapTraversal.cs:159-192` | Normal GetZone creates/accepts the exact target; different-zone arrival uses the center with normal footprint fallback. The driver must not choose or rewrite arrival. |
+| Native entry hook | `Assets/Scripts/Presentation/Input/InputHandler.cs:913-939,964-978` | SetActiveZone then WorldTravellers.OnZoneEntered, then ordinary scheduler/render registration, autosave and timed restock. Descending through keys therefore exercises real F8 entry. |
+| Real finite entry allowance | `Assets/Scripts/Gameplay/World/WorldTravellers.cs:26-49,69-84,90-107` | Existing tier/POI/current graph, cap3, saved roll, stable1-in8, real two-village route and standing-space gates remain. Actual factory creates stock/equipment; receipt/count are stamped before optional Complete. |
+| Distinguish F8 from ordinary trader | `Assets/Scripts/Gameplay/World/WorldTravellers.Exchange.cs:107-145,148-179`; `Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs:122-146` | A merchant alone is insufficient: require fresh same-zone committed-in-place/committed-relocated diagnostic and exact accepted disposition2. The actual road-verge/LOS/bypass contract runs inside production. |
+| Existing real native trade | `Assets/Scripts/Scenarios/Custom/DensityTravellerNativePlayer.cs:195-235` | Reuse narrow Chat→offered StartTrade→actual stock row→Enter confirmation pattern, exact current quoted whole-stack price and same-instance ownership/purse conservation. Never call trade mutation APIs directly. |
+| Ordinary money | `Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.cs:51`; `DensityTravellerNativePlayer.cs:210-214` | Fresh player has actual50drams. Choose an offered positive-price whole stack that fits this purse and does not merge with current carried stock. No earned-floor-find claim and no grant. If unavailable, stop rather than add a loot hunt or forced sale. |
+| Action clock difference | `Assets/Scripts/Gameplay/World/Map/WorldMapTravelCostPart.cs:26,39-47`; `Assets/Scripts/Scenarios/Custom/DensityCampaignNativeEvidence.cs:20-47`; `SpreadDiscoveryNativePlayer.cs:328-336` | Map movement adds10 pure clock ticks as well as normal action energy. Current state driver's local-only Paid formula cannot be reused unchanged. Reuse the existing TryClock proof with fresh marker windows for map vs local input. No new accounting framework. |
+| Return is bounded finite commerce | `Assets/Scripts/Gameplay/Economy/TraderRestockSystem.cs:24,66-68`; `DensityTravellerNativePlayer.cs:122-131` | Compare stock only before normal >300 tick restock becomes due. Ordinary NPC movement is allowed; require same merchant reference/ID and inventory/purse, not unchanged actor position. |
+
+## Small route and required observations
+
+1. Ordinary N: same fresh seed3 player, 40HP, 50drams, no dev/invincibility, enabled version4 plan. Read only metadata to pin 11.7 family RoadsideExchange and the original traveller receipt/count/roll state. Destination is not generated by the observer.
+2. Actual map input: ascent, three requested map coordinates, descent into 11.7. Require fresh native worldmap and entry diagnostic window, exact current cached/active graph, same original player. Record actual arrival and any native refusal.
+3. Real entry owner: exactly one `traveller:3:Overworld.11.7.0`, real Merchant/Brain/current inventory graph, player spawn receipt points to that ID, merchant receipt points back, count increments once, roll consumed once, scheduler contains it once. Require F8 disposition2 plus committed F8 diagnostic. A normal merchant with F8 refusal is useful partial evidence but does not pass F8 placement.
+4. Current short approach: replan from current player/merchant positions after each paid native key; at most24 local steps. Respect body collision, actual hazards and ordinary HP>10 stop; do not alter hostile actors, positions, effects, time or RNG. No combat loop, waiting-for-luck loop, alternative source or seed.
+5. Actual Chat and offered StartTrade choice. Capture the actual source route dialogue and native stock screen. Select an existing positive-price nonmerging whole stack affordable by the actual original purse. Exact real purchase through row navigation plus confirmation. Prove same item ID/blueprint/quantity moved, current back-links, exact buyer/seller currency deltas, combined item-unit conservation, and unchanged tick/energy for free UI.
+6. Close UI. Snapshot selected merchant stock, purse, bought item/player inventory, count/roll/receipt, disposition2 and LastRestockTurn. Before return, prove enough time remains below the ordinary restock threshold.
+7. Actual `<` followed by `>` at the same map cell. This is a genuine zone exit/return through the native entry hook without extra walking. Require the same cached zone and merchant references, one merchant ID across cached graphs, same bought item held by the player, same post-purchase source stock/purse and saved receipt/count/disposition. Native scheduler/Brain re-registration is expected, and merchant positions may change normally. No second traveller/F8 commit is allowed.
+
+Suggested compact checks: ordinary start; exact native map arrival; real receipt/unique scheduled merchant; committed F8 placement; current route dialogue; real purchase; exit/return preserves post-purchase source; ordinary bounded finish. Three to four screenshots: arrival, dialogue/trade, final returned state. Retain precise actual passed/unmet gates and refusal reasons, not a capability list mislabeled as proof.
+
+## Bounds and minimal implementation surface if approved
+
+- One new partial `QuestFreeSpreadStateNativePlayer.Exchange.cs` (+meta), narrow existing player dispatch/seed/report branch, narrow existing Batch LaunchExchange/seed3 branch. Do not touch gameplay/plan/source/stock/art.
+- At most31 paid inputs: five outward map/local transition actions,24 current local approach steps,two exit/return transitions.150-second driver/180-second launcher watchdog remain. Bound each offered-menu navigation as existing C7 does. Stop before >300 post-spawn ticks instead of claiming stock should never refill.
+- Reuse existing DensityCampaignNativeEvidence.TryClock, native menu/TradeUI APIs and exact ownership signature logic. Do not add a generic observer framework or duplicate accounting helper.
+- Tests first: missing launcher/mode restoration pair with existing modes as controls; source/row identity and clock helpers already have established tests. Native is the gate for actual source availability, real menu timing and pixels. Any distinct new helper would need a genuine paired test; avoid introducing one merely to multiply gates.
+- No F5/F6 extension is required to close this specific entry/trade/return gap. Accepted-entry save authority already has focused core tests, and the existing C7 native routine proves merchant checkpoint semantics. If root wants this exact F8 saved disposition+stock exercised live, add a separately named F5→real sell-back→F6 gate using the existing accepted pattern (`DensityTravellerNativePlayer.cs:169-192`), transparently increasing scope. Do not silently claim it from return alone.
+
+## Q1–Q4 / honest limits
+
+- Q1: entry and return use the same real native hook; observer never manufactures source authority. Return is expected to refuse re-entry opportunity while retaining existing commerce.
+- Q2: preserve seed64/default reports and existing state's40HP assertions outside Exchange; Exchange may observe ordinary damage but must finish alive above10HP. Separate local vs map clocks and UI-free transactions.
+- Q3: current visible/physical owner and offered row are rechecked before interaction; actual world entry can fail before F8. Source/cached uniqueness and exact combined units make a replacement or duplicated item fail, not count as success.
+- Q4: this plan proves no live outcome yet. It does not establish uninformed discovery, traveller frequency, full-campaign income, permanent finite merchant stock, ordinary save persistence for this exact F8 run, or visual readability. Root must view the actual screenshots after execution.

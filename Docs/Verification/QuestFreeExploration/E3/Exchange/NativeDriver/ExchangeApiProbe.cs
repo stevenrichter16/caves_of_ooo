@@ -1,0 +1,1 @@
+class ExchangeApiProbe { void Required(CavesOfOoo.Scenarios.Custom.QuestFreeSpreadStateNativePlayer player, CavesOfOoo.Scenarios.ScenarioContext context) { player.InitializeExchange(context); CavesOfOoo.Editor.QuestFreeSpreadStateNativeBatch.LaunchExchange(); } }

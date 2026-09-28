@@ -301,8 +301,27 @@ namespace CavesOfOoo.Rendering
         public bool TryActivateBootMenu(bool hasSave)
             => _bootMenuController.TryActivate(hasSave, MessageLog.Add);
 
+        /// <summary>Current menu opportunity only. No action gathering, input or simulation mutation.</summary>
+        public WorldAffordance? QueryWorldAffordance(Zone zone, Entity actor)
+        {
+            if (!isActiveAndEnabled || actor != PlayerEntity || zone != CurrentZone || WorldActionMenuUI == null
+                || TurnManager == null || !TurnManager.WaitingForInput || TurnManager.CurrentActor != actor
+                || _bootMenuController.IsActive || _deathScreenController.IsActive || SpellFxSettingsPanel.IsOpen
+                || (ZoneRenderer != null && ZoneRenderer.Paused)) return null;
+            if (_inputState == InputState.Normal) return WorldAffordanceQuery.Find(actor, zone, false, 0, 0);
+            if (_inputState == InputState.LookMode && _worldCursorState.Active && _worldCursorState.Zone == zone)
+                return WorldAffordanceQuery.Find(actor, zone, true, _worldCursorState.X, _worldCursorState.Y);
+            return null;
+        }
+
+        private void OnDisable()
+        {
+            if (ZoneRenderer != null) ZoneRenderer.ClearAffordanceInput(this);
+        }
+
         private void Update()
         {
+            if (ZoneRenderer != null) ZoneRenderer.SetAffordanceInput(this);
             if (SpellFxSettingsPanel.IsOpen) return;
             using (PerformanceMarkers.Input.Update.Auto())
             {

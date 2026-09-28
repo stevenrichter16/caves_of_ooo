@@ -1,0 +1,103 @@
+{
+  "status": "Real executed fixture isolation collisions after valid new holder realization; not waived and no fixture edit yet",
+  "counts": {
+    "id": "2",
+    "name": "EditModeRunner.dll",
+    "fullname": "/private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/bin/Debug/net8.0/EditModeRunner.dll",
+    "testcasecount": "963",
+    "result": "Failed",
+    "start-time": "2026-09-28T04:56:12.9419680Z",
+    "end-time": "2026-09-28T04:56:45.9693800Z",
+    "duration": "33.027049",
+    "total": "947",
+    "passed": "931",
+    "failed": "16",
+    "inconclusive": "0",
+    "skipped": "0",
+    "warnings": "0",
+    "asserts": "1045168",
+    "random-seed": "552269552"
+  },
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.AcceptedDispositionMatchesActualAttemptAndSurvivesSave(False)",
+      "message": "  Expected: 1\n  But was:  2\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.AcceptedDispositionMatchesActualAttemptAndSurvivesSave(Boolean committed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 144\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.AcceptedDispositionMatchesActualAttemptAndSurvivesSave(True)",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.<>c__DisplayClass27_0.<AcceptedDispositionMatchesActualAttemptAndSurvivesSave>b__0(Zone z) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 143\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ObservedManager.OnZoneGenerated(Zone zone, String id) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 95\n   at CavesOfOoo.Core.ZoneManager.GenerateZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 88\n   at CavesOfOoo.Core.ZoneManager.GetZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 54\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.AcceptedDispositionMatchesActualAttemptAndSurvivesSave(Boolean committed) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 144\n   at InvokeStub_SpreadExplorationManifestAdversarialTests.AcceptedDispositionMatchesActualAttemptAndSurvivesSave(Object, Span`1)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.APlacementLabelWithoutExactActiveTokenIsRefused(\"foreign-entry\")",
+      "message": "  Expected: 1\n  But was:  2\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.APlacementLabelWithoutExactActiveTokenIsRefused(String mode) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 156\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.APlacementLabelWithoutExactActiveTokenIsRefused(\"foreign-zone\")",
+      "message": "  Expected: 1\n  But was:  2\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.APlacementLabelWithoutExactActiveTokenIsRefused(String mode) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 156\n   at InvokeStub_SpreadExplorationManifestAdversarialTests.APlacementLabelWithoutExactActiveTokenIsRefused(Object, Span`1)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(\"unchanged\")",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.<>c__DisplayClass33_0.<FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks>b__0(Zone z) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 197\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ObservedManager.OnZoneGenerated(Zone zone, String id) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 95\n   at CavesOfOoo.Core.ZoneManager.GenerateZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 88\n   at CavesOfOoo.Core.ZoneManager.GetZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 54\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(String mutation) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 202\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(\"removed\")",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.<>c__DisplayClass33_0.<FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks>b__0(Zone z) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 197\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ObservedManager.OnZoneGenerated(Zone zone, String id) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 95\n   at CavesOfOoo.Core.ZoneManager.GenerateZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 88\n   at CavesOfOoo.Core.ZoneManager.GetZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 54\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(String mutation) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 202\n   at InvokeStub_SpreadExplorationManifestAdversarialTests.FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(Object, Span`1)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(\"moved\")",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.<>c__DisplayClass33_0.<FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks>b__0(Zone z) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 197\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ObservedManager.OnZoneGenerated(Zone zone, String id) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 95\n   at CavesOfOoo.Core.ZoneManager.GenerateZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 88\n   at CavesOfOoo.Core.ZoneManager.GetZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 54\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(String mutation) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 202\n   at InvokeStub_SpreadExplorationManifestAdversarialTests.FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(Object, Span`1)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalValidatorIsTransientAndNeverReplaysAfterLoad",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.<>c__DisplayClass36_0.<FinalValidatorIsTransientAndNeverReplaysAfterLoad>b__0(Zone z) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 224\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ObservedManager.OnZoneGenerated(Zone zone, String id) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 95\n   at CavesOfOoo.Core.ZoneManager.GenerateZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 88\n   at CavesOfOoo.Core.ZoneManager.GetZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 54\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalValidatorIsTransientAndNeverReplaysAfterLoad() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 225\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MarkBeforeRejectedFinalCallbackDoesNotPublishACommit",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.<>c__DisplayClass29_0.<MarkBeforeRejectedFinalCallbackDoesNotPublishACommit>b__0(Zone z) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 161\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ObservedManager.OnZoneGenerated(Zone zone, String id) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 95\n   at CavesOfOoo.Core.ZoneManager.GenerateZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 88\n   at CavesOfOoo.Core.ZoneManager.GetZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 54\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MarkBeforeRejectedFinalCallbackDoesNotPublishACommit() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 162\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.NullFinalValidatorCannotPublishAStrictMark",
+      "message": "  Expected: 1\n  But was:  2\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.NullFinalValidatorCannotPublishAStrictMark() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 219\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ReplacedAttemptDuringValidatorCannotKeepOriginalMarkAuthority(False)",
+      "message": "  Expected: 1\n  But was:  2\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ReplacedAttemptDuringValidatorCannotKeepOriginalMarkAuthority(Boolean replaceAtFinal) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 250\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ReplacedAttemptDuringValidatorCannotKeepOriginalMarkAuthority(True)",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.<>c__DisplayClass38_0.<ReplacedAttemptDuringValidatorCannotKeepOriginalMarkAuthority>b__0(Zone z) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 246\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ObservedManager.OnZoneGenerated(Zone zone, String id) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 95\n   at CavesOfOoo.Core.ZoneManager.GenerateZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 88\n   at CavesOfOoo.Core.ZoneManager.GetZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 54\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ReplacedAttemptDuringValidatorCannotKeepOriginalMarkAuthority(Boolean replaceAtFinal) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 248\n   at InvokeStub_SpreadExplorationManifestAdversarialTests.ReplacedAttemptDuringValidatorCannotKeepOriginalMarkAuthority(Object, Span`1)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ThrowingFinalValidatorCannotLeaveInstalledOrReusableAuthority",
+      "message": "  Expected: <System.InvalidOperationException>\n  But was:  <NUnit.Framework.AssertionException:   Expected: True\n  But was:  False\n\n   at NUnit.Framework.Assert.ReportFailure(String message)\n   at NUnit.Framework.Assert.ReportFailure(ConstraintResult result, String message, Object[] args)\n   at NUnit.Framework.Assert.That[TActual](TActual actual, IResolveConstraint expression, String message, Object[] args)\n   at NUnit.Framework.Assert.True(Boolean condition)\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.<>c__DisplayClass39_0.<ThrowingFinalValidatorCannotLeaveInstalledOrReusableAuthority>b__0(Zone z) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 256\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ObservedManager.OnZoneGenerated(Zone zone, String id) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 95\n   at CavesOfOoo.Core.ZoneManager.GenerateZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 88\n   at CavesOfOoo.Core.ZoneManager.GetZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 54\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.<>c__DisplayClass39_0.<ThrowingFinalValidatorCannotLeaveInstalledOrReusableAuthority>b__1() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 257\n   at NUnit.Framework.Assert.Throws(IResolveConstraint expression, TestDelegate code, String message, Object[] args)>\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ThrowingFinalValidatorCannotLeaveInstalledOrReusableAuthority() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 257\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ValidatorCannotReenterEitherMarkOverload",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.<>c__DisplayClass37_0.<ValidatorCannotReenterEitherMarkOverload>b__0(Zone z) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 234\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ObservedManager.OnZoneGenerated(Zone zone, String id) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 95\n   at CavesOfOoo.Core.ZoneManager.GenerateZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 88\n   at CavesOfOoo.Core.ZoneManager.GetZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 54\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ValidatorCannotReenterEitherMarkOverload() in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 237\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ValidatorPlanSwapRefusesBeforeMarkOrBeforeFinalInstallation(False)",
+      "message": "  Expected: null\n  But was:  <Zone(Overworld.10.0.0) [2290 entities]>\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ValidatorPlanSwapRefusesBeforeMarkOrBeforeFinalInstallation(Boolean swapAtFinal) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 214\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ValidatorPlanSwapRefusesBeforeMarkOrBeforeFinalInstallation(True)",
+      "message": "  Expected: True\n  But was:  False\n",
+      "stack": "   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.<>c__DisplayClass34_0.<ValidatorPlanSwapRefusesBeforeMarkOrBeforeFinalInstallation>b__0(Zone z) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 212\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ObservedManager.OnZoneGenerated(Zone zone, String id) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 95\n   at CavesOfOoo.Core.ZoneManager.GenerateZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 88\n   at CavesOfOoo.Core.ZoneManager.GetZone(String zoneID) in /private/tmp/coo-questfree-implementation/actors/territory-source-fix/runner/Patched/ZoneManager.cs:line 54\n   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ValidatorPlanSwapRefusesBeforeMarkOrBeforeFinalInstallation(Boolean swapAtFinal) in /tmp/coo-questfree-implementation/entry-expansion/SpreadExplorationManifestAdversarialTests.cs:line 214\n   at InvokeStub_SpreadExplorationManifestAdversarialTests.ValidatorPlanSwapRefusesBeforeMarkOrBeforeFinalInstallation(Object, Span`1)\n"
+    }
+  ]
+}

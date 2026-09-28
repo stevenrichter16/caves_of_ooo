@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-world-affordances/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="42" result="Passed" start-time="2026-09-28T04:24:18.3086430Z" end-time="2026-09-28T04:24:18.3294690Z" duration="0.020813" total="1" passed="1" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="35" random-seed="220488130">
+  <command-line><![CDATA[/private/tmp/coo-world-affordances/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-world-affordances/allocation.xml --where "class =~ /AllocationProbe/"]]></command-line>
+  <filter>
+    <class re="1">AllocationProbe</class>
+  </filter>
+  <test-suite type="Assembly" id="1054" name="EditModeRunner.dll" fullname="/private/tmp/coo-world-affordances/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-09-28T04:24:18.3086430Z" end-time="2026-09-28T04:24:18.3294690Z" duration="0.020813" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="35">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="56344" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestSuite" id="1055" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-09-28T04:24:18.3103030Z" end-time="2026-09-28T04:24:18.3294590Z" duration="0.019156" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="35">
+      <test-suite type="TestSuite" id="1056" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-09-28T04:24:18.3104040Z" end-time="2026-09-28T04:24:18.3294420Z" duration="0.019038" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="35">
+        <test-suite type="TestFixture" id="1052" name="AllocationProbeTests" fullname="CavesOfOoo.Tests.AllocationProbeTests" classname="CavesOfOoo.Tests.AllocationProbeTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-28T04:24:18.3108390Z" end-time="2026-09-28T04:24:18.3293340Z" duration="0.018495" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="35">
+          <test-case id="1053" name="WarmCurrentQueryDoesNotAllocate" fullname="CavesOfOoo.Tests.AllocationProbeTests.WarmCurrentQueryDoesNotAllocate" methodname="WarmCurrentQueryDoesNotAllocate" classname="CavesOfOoo.Tests.AllocationProbeTests" runstate="Runnable" seed="624519484" result="Passed" start-time="2026-09-28T04:24:18.3117350Z" end-time="2026-09-28T04:24:18.3284340Z" duration="0.016727" asserts="35">
+            <output><![CDATA[validatedCounter=65560; queries=10000; bytes=0
+]]></output>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

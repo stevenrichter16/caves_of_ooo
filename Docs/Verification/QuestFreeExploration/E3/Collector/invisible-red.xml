@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/collector/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="12" result="Failed" start-time="2026-09-28T03:56:37.1980230Z" end-time="2026-09-28T03:56:37.2798330Z" duration="0.081799" total="12" passed="10" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="164" random-seed="1444258756">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/collector/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --test=CavesOfOoo.Tests.PutInContainerNarrationTests --result=/tmp/coo-questfree-implementation/collector/invisible-red.xml]]></command-line>
+  <filter>
+    <test>CavesOfOoo.Tests.PutInContainerNarrationTests</test>
+  </filter>
+  <test-suite type="Assembly" id="1016" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/collector/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T03:56:37.1980230Z" end-time="2026-09-28T03:56:37.2798330Z" duration="0.081799" total="12" passed="10" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="164">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="LOAD" value="System.Collections.Generic.List`1[System.String]" />
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="48583" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1017" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T03:56:37.1998070Z" end-time="2026-09-28T03:56:37.2798310Z" duration="0.080022" total="12" passed="10" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="164">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1018" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T03:56:37.1999290Z" end-time="2026-09-28T03:56:37.2798290Z" duration="0.079898" total="12" passed="10" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="164">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="PutInContainerNarrationTests" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T03:56:37.2002910Z" end-time="2026-09-28T03:56:37.2798250Z" duration="0.079532" total="12" passed="10" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="164">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1015" name="PlayerDepositKeepsFeedbackOutsideAVisibleWorldCell" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.PlayerDepositKeepsFeedbackOutsideAVisibleWorldCell" methodname="PlayerDepositKeepsFeedbackOutsideAVisibleWorldCell" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" seed="472142654" result="Passed" start-time="2026-09-28T03:56:37.2012980Z" end-time="2026-09-28T03:56:37.2531370Z" duration="0.051864" asserts="13" />
+          <test-suite type="ParameterizedMethod" id="1011" name="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-28T03:56:37.2537450Z" end-time="2026-09-28T03:56:37.2780710Z" duration="0.024325" total="7" passed="5" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="91">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1004" name="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;actor-hidden&quot;)" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;actor-hidden&quot;)" methodname="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" seed="1408380679" result="Passed" start-time="2026-09-28T03:56:37.2538200Z" end-time="2026-09-28T03:56:37.2545350Z" duration="0.000716" asserts="13" />
+            <test-case id="1005" name="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;home-hidden&quot;)" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;home-hidden&quot;)" methodname="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" seed="1054380743" result="Passed" start-time="2026-09-28T03:56:37.2545510Z" end-time="2026-09-28T03:56:37.2547220Z" duration="0.000171" asserts="13" />
+            <test-case id="1006" name="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;actor-detached&quot;)" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;actor-detached&quot;)" methodname="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" seed="610432023" result="Passed" start-time="2026-09-28T03:56:37.2547430Z" end-time="2026-09-28T03:56:37.2548740Z" duration="0.000131" asserts="13" />
+            <test-case id="1007" name="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;home-detached&quot;)" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;home-detached&quot;)" methodname="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" seed="146290225" result="Passed" start-time="2026-09-28T03:56:37.2548860Z" end-time="2026-09-28T03:56:37.2549870Z" duration="0.000101" asserts="13" />
+            <test-case id="1008" name="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;inactive&quot;)" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;inactive&quot;)" methodname="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" seed="628702570" result="Passed" start-time="2026-09-28T03:56:37.2549990Z" end-time="2026-09-28T03:56:37.2641510Z" duration="0.009152" asserts="13" />
+            <test-case id="1009" name="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;actor-invisible&quot;)" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;actor-invisible&quot;)" methodname="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" seed="331253471" result="Failed" start-time="2026-09-28T03:56:37.2641720Z" end-time="2026-09-28T03:56:37.2773340Z" duration="0.013162" asserts="13">
+              <failure>
+                <message><![CDATA[  Expected: <empty>
+  But was:  < "tatterjay puts hatchet (x3) in the sack." >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(String state) in /tmp/coo-questfree-implementation/collector/PutInContainerNarrationTests.cs:line 17
+   at InvokeStub_PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: <empty>
+  But was:  < "tatterjay puts hatchet (x3) in the sack." >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(String state) in /tmp/coo-questfree-implementation/collector/PutInContainerNarrationTests.cs:line 17
+   at InvokeStub_PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1010" name="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;home-invisible&quot;)" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(&quot;home-invisible&quot;)" methodname="UnobservedNpcDepositDoesNotRevealSourceButStillTransfers" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" seed="579710827" result="Failed" start-time="2026-09-28T03:56:37.2773990Z" end-time="2026-09-28T03:56:37.2777320Z" duration="0.000333" asserts="13">
+              <failure>
+                <message><![CDATA[  Expected: <empty>
+  But was:  < "tatterjay puts hatchet (x3) in the sack." >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(String state) in /tmp/coo-questfree-implementation/collector/PutInContainerNarrationTests.cs:line 17
+   at InvokeStub_PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: <empty>
+  But was:  < "tatterjay puts hatchet (x3) in the sack." >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(String state) in /tmp/coo-questfree-implementation/collector/PutInContainerNarrationTests.cs:line 17
+   at InvokeStub_PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1014" name="UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T03:56:37.2782540Z" end-time="2026-09-28T03:56:37.2792490Z" duration="0.000995" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="30">
+            <test-case id="1012" name="UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource(False)" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource(False)" methodname="UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" seed="1130971161" result="Passed" start-time="2026-09-28T03:56:37.2782660Z" end-time="2026-09-28T03:56:37.2788740Z" duration="0.000608" asserts="15" />
+            <test-case id="1013" name="UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource(True)" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource(True)" methodname="UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" seed="538979069" result="Passed" start-time="2026-09-28T03:56:37.2788930Z" end-time="2026-09-28T03:56:37.2792350Z" duration="0.000342" asserts="15" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1003" name="VisibleDepositNamesTheActualActorAndKeepsExactTransfer" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.VisibleDepositNamesTheActualActorAndKeepsExactTransfer" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T03:56:37.2792530Z" end-time="2026-09-28T03:56:37.2798030Z" duration="0.000550" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="30">
+            <test-case id="1001" name="VisibleDepositNamesTheActualActorAndKeepsExactTransfer(&quot;player&quot;)" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.VisibleDepositNamesTheActualActorAndKeepsExactTransfer(&quot;player&quot;)" methodname="VisibleDepositNamesTheActualActorAndKeepsExactTransfer" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" seed="898518557" result="Passed" start-time="2026-09-28T03:56:37.2792600Z" end-time="2026-09-28T03:56:37.2795560Z" duration="0.000297" asserts="15" />
+            <test-case id="1002" name="VisibleDepositNamesTheActualActorAndKeepsExactTransfer(&quot;npc&quot;)" fullname="CavesOfOoo.Tests.PutInContainerNarrationTests.VisibleDepositNamesTheActualActorAndKeepsExactTransfer(&quot;npc&quot;)" methodname="VisibleDepositNamesTheActualActorAndKeepsExactTransfer" classname="CavesOfOoo.Tests.PutInContainerNarrationTests" runstate="Runnable" seed="217346855" result="Passed" start-time="2026-09-28T03:56:37.2795740Z" end-time="2026-09-28T03:56:37.2797900Z" duration="0.000216" asserts="15" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

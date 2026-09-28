@@ -8,7 +8,7 @@ namespace CavesOfOoo.Core
     /// <summary>Bounded entry encounters, not offscreen caravan simulation.
     /// Rolls and identities live in existing player save properties; the actual
     /// trader/inventory stays in the normal cached zone graph.</summary>
-    public static class WorldTravellers
+    public static partial class WorldTravellers
     {
         public const int MaximumEncounters = 3;
         public const string OriginProperty = "TravellerOrigin";
@@ -36,7 +36,7 @@ namespace CavesOfOoo.Core
             int count = player.GetIntProperty(countKey);
             if (count < 0 || count >= MaximumEncounters || player.IntProperties.ContainsKey(rollKey)) return false;
             player.IntProperties[rollKey] = 1;
-            uint sample = WorldRemarks.Hash(seed + ":traveller:" + canonical);
+            uint sample = EntrySample(manager.WorldSeed, canonical);
             if (sample % 8 != 0) { Record(player, zone, "miss", null); return false; }
             if (!FindRoute(manager, x, y, out string origin, out string destination))
             { Record(player, zone, "missing-route", null); return false; }
@@ -46,6 +46,7 @@ namespace CavesOfOoo.Core
             foreach (var cached in manager.CachedZones.Values)
                 foreach (var entity in cached.GetReadOnlyEntities())
                     if (entity.ID == id) { Record(player, zone, "identity-already-present", id); return false; }
+            var exchange = CaptureExchange(player, zone, manager);
             Entity actor;
             var oldLoadoutFactory = LoadoutPart.Factory; var oldTraderFactory = TraderPart.Factory;
             var oldLoadoutRng = LoadoutPart.Rng; var oldTraderRng = TraderPart.Rng;
@@ -79,9 +80,15 @@ namespace CavesOfOoo.Core
             var brain = actor.GetPart<BrainPart>(); if (brain != null) brain.CurrentZone = zone;
             player.IntProperties[countKey] = count + 1;
             player.Properties[SpawnPrefix + seed + ":" + canonical] = id;
+            exchange?.Complete(actor);
             Record(player, zone, "placed", id);
             return true;
         }
+
+        // Same saved-entry roll bytes for the live source and optional manifest admission.
+        // Callers pass a canonical surface address; this never creates a source or consumes RNG.
+        internal static uint EntrySample(int worldSeed, string canonicalZoneID)
+            => WorldRemarks.Hash(worldSeed.ToString(CultureInfo.InvariantCulture) + ":traveller:" + canonicalZoneID);
 
         private static bool FindRoute(OverworldZoneManager manager, int x, int y, out string origin, out string destination)
         {

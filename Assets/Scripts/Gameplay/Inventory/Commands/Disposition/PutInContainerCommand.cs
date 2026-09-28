@@ -75,7 +75,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             if (containerPart.IsLocked)
             {
-                MessageLog.Add($"The {_container.GetDisplayName()} is locked.");
+                if (CanNarrate(context)) MessageLog.Add($"The {_container.GetDisplayName()} is locked.");
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
                     "Container is locked.");
@@ -108,7 +108,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             transaction.Do(apply: null, undo: destination.Restore);
             if (!destination.Apply(() => containerPart.AddItem(_item)))
             {
-                MessageLog.Add($"The {_container.GetDisplayName()} is full.");
+                if (CanNarrate(context)) MessageLog.Add($"The {_container.GetDisplayName()} is full.");
                 DispositionDiagnostics.Record(context, _item, Name, quantity, _container.ID, "container_full");
                 return InventoryCommandResult.Fail(
                     InventoryCommandErrorCode.ExecutionFailed,
@@ -117,9 +117,31 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             if (!destination.ClaimChanges(transaction, context.Actor, Name))
                 return InventoryCommandResult.Fail(InventoryCommandErrorCode.ExecutionFailed, "A destination stack is already being transferred.");
-            MessageLog.Add($"You put {itemName} {containerPart.Preposition} the {_container.GetDisplayName()}.");
+            if (CanNarrate(context))
+            {
+                string subject = context.Actor.HasTag("Player") ? "You put" : context.Actor.GetDisplayName() + " puts";
+                MessageLog.Add($"{subject} {itemName} {containerPart.Preposition} the {_container.GetDisplayName()}.");
+            }
             DispositionDiagnostics.Record(context, _item, Name, quantity, _container.ID);
             return InventoryCommandResult.Ok();
+        }
+        // NPC feedback follows current visible world ownership, never an invented
+        // audible event. Keep player feedback and transfer/rollback semantics intact.
+        private bool CanNarrate(InventoryContext context)
+        {
+            if (context.Actor.HasTag("Player")) return true;
+            var zone = context.Zone;
+            if (zone == null || context.Actor.SpatialZone != zone || _container.SpatialZone != zone) return false;
+            var manager = WorldLocationContext.For(zone);
+            if (manager != null && manager.ActiveZone != zone) return false;
+            var actorRender = context.Actor.GetPart<RenderPart>();
+            var homeRender = _container.GetPart<RenderPart>();
+            if (actorRender == null || !actorRender.Visible || actorRender.ParentEntity != context.Actor
+                || homeRender == null || !homeRender.Visible || homeRender.ParentEntity != _container) return false;
+            var actorCell = zone.GetEntityCell(context.Actor);
+            var homeCell = zone.GetEntityCell(_container);
+            return actorCell != null && homeCell != null && actorCell.IsVisible && homeCell.IsVisible
+                && actorCell.Objects.Contains(context.Actor) && homeCell.Objects.Contains(_container);
         }
     }
 }

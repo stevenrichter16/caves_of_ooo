@@ -1,0 +1,31 @@
+using System;
+using System.Linq;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using Newtonsoft.Json;
+using NUnit.Framework;
+namespace CavesOfOoo.Tests {
+public class OccupiedBankPostDiagnostic {
+sealed class Probe:IZoneBuilder { readonly Action<Zone> a; public Probe(Action<Zone> a){this.a=a;}public string Name=>"occupied-source-census";public int Priority=>4299;public bool BuildZone(Zone z,EntityFactory f,Random r){a(z);return true;} }
+sealed class Manager:OverworldZoneManager {
+public object Layout;public object[] Owners;public bool ReceiptCurrent;public string Result;public int Callbacks; SpreadExplorationBuilder composer;
+public Manager(EntityFactory f,int seed):base(f,seed){}
+protected override ZoneGenerationPipeline GetPipelineForZone(string id){var p=base.GetPipelineForZone(id);composer=p.Builders.OfType<SpreadExplorationBuilder>().SingleOrDefault();var pop=p.Builders.OfType<PopulationBuilder>().SingleOrDefault();p.AddBuilder(new Probe(z=>{var receipt=pop?.SourceReceipt;ReceiptCurrent=receipt?.IsCurrent==true; if(Exploration.Find(id)?.Family==SpreadExplorationFamily.OccupiedBank && receipt?.Owners.Count==1)Layout=Inspect(z,receipt.Owners[0]);Owners=(receipt?.Owners??Array.Empty<Entity>()).Select(e=>new {id=e.ID,blueprint=e.BlueprintName,position=z.GetEntityPosition(e),hp=e.GetStatValue("Hitpoints"),gear=DensityLootTestScope.Gear(e).Select(i=>i.BlueprintName).ToArray()}).Cast<object>().ToArray();}));return p;}
+protected override void OnZoneGenerated(Zone z,string id){base.OnZoneGenerated(z,id);Result=composer?.LastResult;Callbacks++;}
+}
+static object Inspect(Zone z,Entity actor){
+var flags=BindingFlags.Static|BindingFlags.Instance|BindingFlags.Public|BindingFlags.NonPublic;var type=typeof(SpreadExplorationActorPlacement);var post=type.GetMethod("Post",flags);var geom=type.GetNestedType("Geometry",flags);var g=Activator.CreateInstance(geom,flags,null,new object[]{z,actor},null);var origin=z.GetEntityPosition(actor);
+var all=z.GetReadOnlyEntities().Where(e=>(bool)post.Invoke(null,new object[]{z,e})).OrderBy(e=>z.GetEntityPosition(e).y).ThenBy(e=>z.GetEntityPosition(e).x).ToArray();
+bool Interior(Entity e){var a=z.GetEntityPosition(e);return a.x-3>=2&&a.y-2>=2&&a.x+3<Zone.Width-2&&a.y+2<Zone.Height-2;}
+bool Near(Entity e){var a=z.GetEntityPosition(e);return Math.Max(Math.Abs(a.x-origin.x),Math.Abs(a.y-origin.y))<=12;}
+object Evaluate(IEnumerable<Entity> sources){int trials=0,bare=0,preserved=0;foreach(var e in sources){var a=z.GetEntityPosition(e);for(int y=a.y-1;y<=a.y+1;y++)for(int x=a.x-1;x<=a.x+1;x++){if(++trials>256)return new{success=false,trials,bare,preserved,post=(object)null,destination=(object)null};if(!(bool)geom.GetMethod("Place",flags).Invoke(g,new object[]{x,y}))continue;bare++;if(!(bool)geom.GetMethod("PreservesRoutes",flags).Invoke(g,new object[]{(x,y)}))continue;preserved++;Func<int,int,bool> avoid=(xx,yy)=>xx>=a.x-3&&xx<=a.x+3&&yy>=a.y-2&&yy<=a.y+2;if((bool)geom.GetMethod("HasBypass",flags).Invoke(g,new object[]{(x,y),avoid}))return new{success=true,trials,bare,preserved,post=(object)new {e.BlueprintName,position=a},destination=(object)(x,y)};}}return new{success=false,trials,bare,preserved,post=(object)null,destination=(object)null};}
+return new {origin,allPosts=all.Length,first32=all.Take(32).Select(e=>new{e.BlueprintName,position=z.GetEntityPosition(e),interior=Interior(e),near=Near(e)}).ToArray(),interiorPosts=all.Count(Interior),nearInteriorPosts=all.Count(e=>Interior(e)&&Near(e)),original=Evaluate(all.Take(32).Where(e=>Interior(e)&&Near(e))),filterThenCap=Evaluate(all.Where(e=>Interior(e)&&Near(e)).Take(32)),coldRelocationAndFilter=Evaluate(all.Where(Interior).Take(32))};}
+[Test]public void Capture(){var rows=new List<object>();var globals=new List<(FieldInfo f,object value,List<DictionaryEntry> entries)>();foreach(var f in typeof(LootTableRegistry).GetFields(BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic)){var v=f.GetValue(null);var es=new List<DictionaryEntry>();if(v is IDictionary d)foreach(DictionaryEntry e in d)es.Add(e);globals.Add((f,v,es));}
+try{using(var scope=new DensityLootTestScope()){foreach(int seed in new[]{1,64,1729}){var selection=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);foreach(var e in selection.Exploration.Entries.Where(e=>e.PlacementEligible&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.Hedgerow)){scope.Seed(unchecked(seed^FormationSelector.StableIndex(e.ZoneID,int.MaxValue)));var m=new Manager(scope.Factory,seed);var z=m.GetZone(e.ZoneID);Assert.NotNull(z,e.ZoneID);rows.Add(new {seed,version=m.Exploration.Version,zone=e.ZoneID,family=e.Family.ToString(),disposition=m.Exploration.DispositionFor(e.ZoneID),result=m.Result,m.ReceiptCurrent,owners=m.Owners,layout=m.Layout,holders=z.GetReadOnlyEntities().Where(x=>x.GetPart<SpreadTerritoryPart>()?.Configured==true).Select(x=>new {x.ID,position=z.GetEntityPosition(x)}).ToArray()});}}}}
+finally{foreach(var g in globals){if(!g.f.IsInitOnly)g.f.SetValue(null,g.value);if(g.value is IDictionary d){d.Clear();foreach(var e in g.entries)d.Add(e.Key,e.Value);}}}
+File.WriteAllText(Environment.GetEnvironmentVariable("COO_OCCUPIED_CENSUS_OUTPUT"),JsonConvert.SerializeObject(new {boundary="Private deterministic hash runtime, actual full managers; every placement-eligible Hedgerow address. This observes existing source/geometry and does not assert native availability.",rows},Formatting.Indented));Assert.Greater(rows.Count,0);}
+}}

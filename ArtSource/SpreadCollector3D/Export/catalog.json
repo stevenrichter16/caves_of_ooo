@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "spread-collector-original-art",
+  "palette": [
+    "#082C28",
+    "#103E36",
+    "#1A4B40",
+    "#26594A",
+    "#A0A77C",
+    "#CBC697",
+    "#647353",
+    "#235D25",
+    "#40872C",
+    "#65AE3D",
+    "#435A53",
+    "#62786C",
+    "#819489",
+    "#16883B",
+    "#45CB4B",
+    "#A0E772",
+    "#207838",
+    "#D2D3B4",
+    "#B77B43",
+    "#403D28",
+    "#756C40",
+    "#A39456",
+    "#C4B877",
+    "#243E39"
+  ],
+  "models": [
+    {
+      "id": "spread-tatterjay",
+      "sourceBlueprint": "Tatterjay",
+      "path": "models/spread-tatterjay.fbx",
+      "rigFamily": "avian",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit",
+        "CarryIdle",
+        "CarryWalk",
+        "Pickup",
+        "Deposit"
+      ],
+      "sockets": [
+        "Collector.Bill"
+      ],
+      "bones": [
+        "Root",
+        "Body",
+        "Head",
+        "Wing.L",
+        "Leg.L",
+        "Wing.R",
+        "Leg.R",
+        "Tail"
+      ],
+      "triangles": 300,
+      "boundsBlender": {
+        "min": [
+          -0.25999999046325684,
+          -0.4750000238418579,
+          0.0
+        ],
+        "max": [
+          0.25999999046325684,
+          0.5399999618530273,
+          0.7174999713897705
+        ]
+      },
+      "sha256": "c5435ecd78fbe26dae087ddb863176c61683d3b6b6c7abdb183697db3573bfdb",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "spread-tatterjay-remains",
+      "sourceBlueprint": "TatterjayCorpse",
+      "path": "models/spread-tatterjay-remains.fbx",
+      "rigFamily": "",
+      "rigged": false,
+      "clips": [],
+      "sockets": [],
+      "bones": [],
+      "triangles": 156,
+      "boundsBlender": {
+        "min": [
+          -0.3100000023841858,
+          -0.42500001192092896,
+          0.004999995231628418
+        ],
+        "max": [
+          0.3100000023841858,
+          0.5199999809265137,
+          0.2150000035762787
+        ]
+      },
+      "sha256": "ad0d21e5bf5a71103585a74bb62cb44f25e01e93161766a4bc0d66924fd18aff",
+      "status": "private-source-not-native-adopted"
+    }
+  ]
+}

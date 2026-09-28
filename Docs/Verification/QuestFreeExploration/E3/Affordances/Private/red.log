@@ -1,0 +1,259 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /private/tmp/coo-world-affordances/runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-28 04:14:51Z
+    End time: 2026-09-28 04:14:51Z
+    Duration: 0.027 seconds
+
+Test Filters
+    Where: class =~ /WorldAffordanceQueryTests/
+
+Errors, Failures and Warnings
+
+1) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.AdjacentHarvestNamesActualMenuKeyAndOwner
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.AdjacentHarvestNamesActualMenuKeyAndOwner() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 23
+
+2) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly("hidden-cell")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+
+3) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly("unexplored")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+
+4) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly("hidden-part")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+
+5) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly("foreign-render")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+
+6) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly("carried")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+
+7) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly("equipped")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+
+8) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly("removed")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+
+9) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly("moved")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+
+10) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly("foreign-physics")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+
+11) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.DeadOrDetachedPlayerHasNoActionCue
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DeadOrDetachedPlayerHasNoActionCue() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 32
+
+12) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints("locked")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 37
+
+13) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints("foreign-owner")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 37
+   at InvokeStub_WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(Object, Span`1)
+
+14) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints("takeable")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 37
+   at InvokeStub_WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(Object, Span`1)
+
+15) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorUsesCurrentOpenCloseAndCannotCloseOccupiedDoorway
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorUsesCurrentOpenCloseAndCannotCloseOccupiedDoorway() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 35
+
+16) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.FocusUsesEnterMenuAndCannotFallBackToAnotherCell
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.FocusUsesEnterMenuAndCannotFallBackToAnotherCell() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 24
+
+17) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.ForeignSameCoordinatesAndSameIdNeverSupplyAQuery
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.ForeignSameCoordinatesAndSameIdNeverSupplyAQuery() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 31
+
+18) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(False)
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(Boolean legacy) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 33
+
+19) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(True)
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(Boolean legacy) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 33
+   at InvokeStub_WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(Object, Span`1)
+
+20) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(False)
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(Boolean spent) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 38
+
+21) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(True)
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(Boolean spent) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 38
+   at InvokeStub_WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(Object, Span`1)
+
+22) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.QueryNeverDispatchesCallbacksOrChangesSources
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.QueryNeverDispatchesCallbacksOrChangesSources() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 39
+
+23) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.ReadSignRequiresExactExamineProvider
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.ReadSignRequiresExactExamineProvider() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 34
+
+24) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest("spent")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 27
+
+25) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest("missing-factory")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 27
+   at InvokeStub_WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(Object, Span`1)
+
+26) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest("missing-yield")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 27
+   at InvokeStub_WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(Object, Span`1)
+
+27) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest("zero-yield")
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 27
+   at InvokeStub_WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(Object, Span`1)
+
+28) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.UnderfootUsesPeriodNotEnterOrMoveKey
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnderfootUsesPeriodNotEnterOrMoveKey() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 25
+
+29) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.UnderfootWinsAndOneResultNeverRevealsRemoteOwners
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnderfootWinsAndOneResultNeverRevealsRemoteOwners() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 40
+
+30) Failed : CavesOfOoo.Tests.WorldAffordanceQueryTests.VisibleFarFocusDoesNotAdvertiseAnOutOfReachAction
+  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.VisibleFarFocusDoesNotAdvertiseAnOutOfReachAction() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 30
+
+Run Settings
+    Number of Test Workers: 1
+    Work Directory: /Users/steven/caves-of-ooo
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Failed
+  Test Count: 30, Passed: 0, Failed: 30, Warnings: 0, Inconclusive: 0, Skipped: 0
+    Failed Tests - Failures: 30, Errors: 0, Invalid: 0
+  Start time: 2026-09-28 04:14:51Z
+    End time: 2026-09-28 04:14:51Z
+    Duration: 0.040 seconds
+
+Results (nunit3) saved as /tmp/coo-world-affordances/red.xml

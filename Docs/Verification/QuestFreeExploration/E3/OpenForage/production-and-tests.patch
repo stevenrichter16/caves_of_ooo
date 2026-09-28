@@ -1,0 +1,32 @@
+--- a/Assets/Tests/EditMode/Gameplay/AI/SpreadExplorationEncounterTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/AI/SpreadExplorationEncounterTests.cs
+@@ -95,6 +95,15 @@
+    var restored=loaded.ZoneManager.ActiveZone;Assert.AreNotSame(f.Z,restored);Assert.AreNotSame(actor,loaded.Player);Assert.False(restored.GetReadOnlyEntities().Any(e=>e.ID==id));Assert.AreEqual(total,Packed(loaded.Player)+Floor(restored));CollectionAssert.AreEquivalent(f.Actors.Select(e=>e.ID),restored.GetReadOnlyEntities().Where(e=>e.BlueprintName=="Viper").Select(e=>e.ID));
+   }}
+ 
++  [TestCase(7,16,false)][TestCase(7,16,true)][TestCase(43,12,false)][TestCase(43,12,true)]
++  public void ExposedForageDoesNotRequireAnUnrelatedNearbyPost(int x,int y,bool covered)
++  {using(var f=new Fixture(true)){foreach(var post in f.Z.GetReadOnlyEntities().Where(e=>e.BlueprintName=="Tree").ToArray())Assert.True(f.Z.RemoveEntity(post));
++   Assert.True(f.Z.MoveEntity(f.Food,x,y));if(covered)f.Put("Tree",x+3,y);Assert.True(f.Z.RemoveEntity(f.B));
++   var original=f.Z.GetReadOnlyEntities().ToArray();var food=f.Food.GetPart<HarvestablePart>();
++   Assert.True(f.Run(true,actors:new[]{f.A}));Assert.True(f.Final());CollectionAssert.AreEquivalent(original,f.Z.GetReadOnlyEntities());
++   Assert.AreEqual((x,y),f.Z.GetEntityPosition(f.Food));Assert.AreSame(food,f.Food.GetPart<HarvestablePart>());Assert.False(food.Harvested);
++   Assert.AreEqual(10,f.A.GetPart<BrainPart>().SightRadius);Assert.AreEqual(130,f.A.GetStatValue("Speed"));}}
++
+   [Test]public void RemovedChosenForageCoverInvalidatesTheColdSituationClaim()
+   {using(var f=new Fixture(true)){Assert.True(f.Run(true));foreach(var post in f.Z.GetReadOnlyEntities().Where(e=>e.BlueprintName=="Tree").ToArray())Assert.True(f.Z.RemoveEntity(post));Assert.False(f.Final());}}
+ 
+--- a/Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.Encounters.cs
++++ b/Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.Encounters.cs
+@@ -13,9 +13,9 @@
+    var foodGraph=new OwnedGraphSnapshot(forage);var foodAt=zone.GetEntityPosition(forage);
+    var cover=zone.GetReadOnlyEntities().Where(e=>Post(zone,e)&&Distance(zone.GetEntityPosition(e),foodAt)<=6)
+     .OrderBy(e=>zone.GetEntityPosition(e).y).ThenBy(e=>zone.GetEntityPosition(e).x).FirstOrDefault();
+-   if(cover==null)return false;var coverGraph=new OwnedGraphSnapshot(cover);var coverAt=zone.GetEntityPosition(cover);
++   var coverGraph=cover==null?null:new OwnedGraphSnapshot(cover);var coverAt=cover==null?(-1,-1):zone.GetEntityPosition(cover);
+    bool Source()=>Forage(zone,forage)&&zone.GetEntityPosition(forage)==foodAt&&foodGraph.Matches(null)
+-    &&Post(zone,cover)&&zone.GetEntityPosition(cover)==coverAt&&coverGraph.Matches(null);
++    &&(cover==null||(Post(zone,cover)&&zone.GetEntityPosition(cover)==coverAt&&coverGraph.Matches(null)));
+    var snapshots=actors.Select(e=>ActorSnapshot.Capture(zone,e,"Viper")).ToArray();
+    if(!authority()||!Source()||!Original(snapshots))return false;
+    var ignored=new HashSet<Entity>(actors);var geometry=new SpreadWildernessSituationBuilder.Geometry(zone,ignored);

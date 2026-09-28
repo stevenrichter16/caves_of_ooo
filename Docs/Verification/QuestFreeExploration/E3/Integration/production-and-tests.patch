@@ -1,0 +1,763 @@
+--- Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationBuilder.cs
++++ Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationBuilder.cs
+@@ -34,8 +34,44 @@
+     case SpreadExplorationFamily.OccupiedBank:return Actor(zone,factory,entry,false);
+     case SpreadExplorationFamily.LastGleanings:return Actor(zone,factory,entry,true);
+     case SpreadExplorationFamily.WateringMargin:return Water(zone,factory,entry);
++    case SpreadExplorationFamily.SnakeForage:return Encounter(zone,factory,entry,true);
++    case SpreadExplorationFamily.WorkGang:return Encounter(zone,factory,entry,false);
+     default:return Refuse(zone,entry,"unsupported-family");
+    }
++  }
++  bool Encounter(Zone z,EntityFactory f,SpreadExplorationEntry entry,bool snakes)
++  {
++   var receipt=population?.SourceReceipt;var forage=population?.ForageSourceReceipt;
++   if(!Source(receipt,z,f)||(snakes&&!Source(forage,z,f)))return Refuse(z,entry,"encounter-source");
++   var actors=receipt.Owners.ToArray();
++   if(snakes?(actors.Length<1||actors.Length>2||actors.Any(e=>e.BlueprintName!="Viper"))
++    :(actors.Length!=2||actors.Any(e=>e.BlueprintName!="MarlbackScrabbler")))return Refuse(z,entry,"no-exact-encounter-allowance");
++   var foods=snakes?forage.Owners.OrderBy(e=>z.GetEntityPosition(e).y).ThenBy(e=>z.GetEntityPosition(e).x).Take(32).ToArray():Array.Empty<Entity>();
++   if(snakes&&foods.Length==0)return Refuse(z,entry,"no-rolled-forage");
++   // Food and any non-selected packet owners remain at their original anchors.
++   // The helper owns intentional actor movement and its assist-only part.
++   var foodUnchanged=SpreadGenerationReceipt.CaptureFinalState(z,snakes?forage.Owners:Array.Empty<Entity>());
++   bool Authority()=>Current(z,f,entry)&&population.CaptureSourceReceipts&&ReferenceEquals(population.SourceReceipt,receipt)
++    &&(!snakes||ReferenceEquals(population.ForageSourceReceipt,forage))&&foodUnchanged();
++   if(!Authority()||!receipt.TryConsume()||(snakes&&!forage.TryConsume()))return Refuse(z,entry,"changed-encounter-source");
++   Func<bool> final=null;bool placed=false;
++   if(snakes)
++   {
++    foreach(var food in foods)
++    {
++     placed=SpreadExplorationActorPlacement.TrySnakeForage(z,actors,food,Authority,out final);
++     if(placed)break;
++     if(!Authority()||!receipt.MatchesOwnedState()||!forage.MatchesOwnedState())return false;
++    }
++   }
++   else placed=SpreadExplorationActorPlacement.TryWorkGang(z,actors,(entry.ActorSeed&1)!=0,Authority,out final);
++   if(!placed)
++   {
++    if(!Authority()||!receipt.MatchesOwnedState()||(snakes&&!forage.MatchesOwnedState()))return false;
++    return Refuse(z,entry,"no-safe-encounter-layout");
++   }
++   if(final==null)return false;
++   return Commit(z,f,entry,actors,()=>Authority()&&final());
+   }
+   bool Actor(Zone z,EntityFactory f,SpreadExplorationEntry entry,bool grazer)
+   {
+--- Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs
++++ Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs
+@@ -10,7 +10,7 @@
+ 
+ namespace CavesOfOoo.Core
+ {
+-    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin }
++    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin, SnakeForage, WorkGang }
+ 
+     /// <summary>Frozen assignment, not evidence that its optional content was placed.</summary>
+     public sealed class SpreadExplorationEntry
+@@ -36,7 +36,7 @@
+     public sealed class SpreadExplorationPlan
+     {
+         public const string PropertyKey="SpreadExploration.Manifest";
+-        public const int CurrentVersion=2;
++        public const int CurrentVersion=3;
+         private const int MaxRecords=WorldMap.Width*WorldMap.Height;
+         private const int MaxWireLength=65536;
+         private readonly OverworldZoneManager owner;
+@@ -45,16 +45,16 @@
+         private readonly Dictionary<string,Zone> installed;
+         private readonly Dictionary<string,int> dispositions;
+         public bool Enabled { get; }
+-        public int Version => CurrentVersion;
++        public int Version { get; }
+         public int AllocationChecks { get; private set; }
+         public IReadOnlyList<SpreadExplorationEntry> Entries { get; }
+         public int RetainedGraphCount => installed?.Count??0;
+         private static readonly IReadOnlyList<SpreadExplorationEntry> Empty=Array.AsReadOnly(new SpreadExplorationEntry[0]);
+ 
+         private SpreadExplorationPlan(OverworldZoneManager manager,bool enabled,bool isBound,
+-            IEnumerable<SpreadExplorationEntry> rows=null)
+-        {
+-            owner=manager;Enabled=enabled;bound=isBound;
++            IEnumerable<SpreadExplorationEntry> rows=null,int version=CurrentVersion)
++        {
++            owner=manager;Enabled=enabled;bound=isBound;Version=version;
+             if(!enabled){Entries=Empty;return;}
+             entries=new Dictionary<string,SpreadExplorationEntry>(StringComparer.Ordinal);
+             installed=new Dictionary<string,Zone>(StringComparer.Ordinal);
+@@ -91,10 +91,12 @@
+         }
+         internal static uint Rank(int seed,string id,string salt)
+         {unchecked{uint h=2166136261u^(uint)seed;foreach(char c in "SpreadExploration.v2|"+salt+"|"+id)h=(h^c)*16777619u;h^=h>>16;h*=0x7feb352du;h^=h>>15;h*=0x846ca68bu;return h^(h>>16);}}
+-        private static SpreadExplorationFamily FamilyFor(Formation formation)
++        private static SpreadExplorationFamily FamilyFor(Formation formation,int version=CurrentVersion)
+         {
+             switch(formation){case Formation.OldRoad:return SpreadExplorationFamily.RoadSpill;
+-                case Formation.Hedgerow:case Formation.Fallow:return SpreadExplorationFamily.OccupiedBank;
++                case Formation.Hedgerow:return SpreadExplorationFamily.OccupiedBank;
++                case Formation.Fallow:return version==2?SpreadExplorationFamily.OccupiedBank:SpreadExplorationFamily.WorkGang;
++                case Formation.FlowerMeadow:return version==2?SpreadExplorationFamily.None:SpreadExplorationFamily.SnakeForage;
+                 case Formation.FieldStrips:return SpreadExplorationFamily.LastGleanings;
+                 case Formation.RiverMeadow:return SpreadExplorationFamily.WateringMargin;
+                 default:return SpreadExplorationFamily.None;}
+@@ -235,7 +237,7 @@
+         {
+             var plan=manager?.Exploration;if(plan==null)return world;plan.ValidateAccess(manager,null);if(!plan.Enabled)return world;
+             foreach(var pair in plan.installed)ValidateInstalled(manager,pair.Key,pair.Value);
+-            var wire=new StringBuilder();wire.Append(CurrentVersion).Append('|').Append(manager.WorldSeed.ToString(CultureInfo.InvariantCulture)).Append('|').Append(plan.Entries.Count);
++            var wire=new StringBuilder();wire.Append(plan.Version).Append('|').Append(manager.WorldSeed.ToString(CultureInfo.InvariantCulture)).Append('|').Append(plan.Entries.Count);
+             foreach(var e in plan.Entries)wire.Append('\n').Append(e.ZoneID).Append('|').Append(e.PlacementEligible?3:1).Append('|').Append((int)e.Family)
+                 .Append('|').Append((int)e.Topology).Append('|').Append(plan.DispositionFor(e.ZoneID));
+             if(world==null){world=new Entity{BlueprintName="World",ID=Guid.NewGuid().ToString("N")};world.SetTag("WorldEntity");}
+@@ -246,24 +248,26 @@
+             if(world==null||!world.Properties.TryGetValue(PropertyKey,out string wire))return Legacy(manager);
+             if(wire==null||wire.Length==0||wire.Length>MaxWireLength)throw Invalid("length");
+             var lines=wire.Split('\n');var header=lines[0].Split('|');
+-            if(header.Length!=3||Number(header[0])!=CurrentVersion||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
++            if(header.Length!=3)throw Invalid("header");
++            int version=Number(header[0]);
++            if((version!=2&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
+             int count=Number(header[2]);if(count<0||count>MaxRecords||lines.Length!=count+1)throw Invalid("record count");
+             var rows=new Dictionary<string,SpreadExplorationEntry>(StringComparer.Ordinal);var saved=new Dictionary<string,int>(StringComparer.Ordinal);
+             for(int i=1;i<lines.Length;i++)
+             {
+                 var f=lines[i].Split('|');if(f.Length!=5||!Supported(f[0])||rows.ContainsKey(f[0]))throw Invalid("address");
+                 int mask=Number(f[1]),family=Number(f[2]),topology=Number(f[3]),disposition=Number(f[4]);
+-                if((mask!=1&&mask!=3)||family<0||family>4||topology<0||topology>3||disposition<0||disposition>2
++                if((mask!=1&&mask!=3)||family<0||family>(version==2?4:6)||topology<0||topology>3||disposition<0||disposition>2
+                     ||(mask==1&&(family!=0||topology!=0))||(disposition==2&&(mask!=3||family==0)))throw Invalid("enum/mask/disposition");
+                 var selected=(SpreadExplorationFamily)family;
+-                if(selected!=SpreadExplorationFamily.None&&selected!=FamilyFor(FormationSelector.For(BiomeType.Spread,f[0])))throw Invalid("family habitat");
++                if(selected!=SpreadExplorationFamily.None&&selected!=FamilyFor(FormationSelector.For(BiomeType.Spread,f[0]),version))throw Invalid("family habitat");
+                 if(mask==3&&(f[0]==ReferenceGladePlan.ZoneID||f[0]==manager.RareEncounters?.PairZoneID||f[0]==manager.RareEncounters?.ViperZoneID||f[0]==manager.Wayhouse?.ZoneID
+                     ||RegionalSituations.Definitions.Any(d=>d.SourceZoneId==f[0]||d.RecipientZoneId==f[0])))throw Invalid("protected placement");
+                 rows.Add(f[0],new SpreadExplorationEntry(f[0],mask==3,selected,(SpreadExplorationTopology)topology,manager.WorldSeed));
+                 if(disposition>0)saved.Add(f[0],disposition);
+             }
+             foreach(var e in rows.Values)if(e.Family!=SpreadExplorationFamily.None&&Touches(rows,e.ZoneID,e.Family))throw Invalid("adjacency");
+-            var result=new SpreadExplorationPlan(manager,true,true,rows.Values);
++            var result=new SpreadExplorationPlan(manager,true,true,rows.Values,version);
+             foreach(var record in saved)
+             {
+                 string id=record.Key;
+--- Assets/Scripts/Gameplay/World/Generation/SpreadWildernessSituationPlan.cs
++++ Assets/Scripts/Gameplay/World/Generation/SpreadWildernessSituationPlan.cs
+@@ -54,7 +54,7 @@
+                 &&owners.All(e=>e!=null&&!string.IsNullOrEmpty(e.ID))&&owners.Select(e=>e.ID).Distinct().Count()==owners.Length;
+             snapshots=owners.Select(e=>new OwnerSnapshot(zone,e)).ToArray();
+         }
+-        bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&(ReferenceEquals(p.SourceReceipt,this)||ReferenceEquals(p.LooseSourceReceipt,this)||ReferenceEquals(p.AmbientSourceReceipt,this)||ReferenceEquals(p.AmbientReplacementReceipt,this))
++        bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&(ReferenceEquals(p.SourceReceipt,this)||ReferenceEquals(p.LooseSourceReceipt,this)||ReferenceEquals(p.AmbientSourceReceipt,this)||ReferenceEquals(p.AmbientReplacementReceipt,this)||ReferenceEquals(p.ForageSourceReceipt,this))
+             : source is ContainerBuilder c&&c.CaptureSourceReceipts&&ReferenceEquals(c.SourceReceipt,this);
+         public bool IsCurrent => !consumed&&complete&&SourceCurrent&&snapshots.All(s=>s.Matches(true));
+         /// <summary>Claim this exact source once after all transaction preflights.
+--- Assets/Scripts/Gameplay/World/Generation/Builders/PopulationBuilder.cs
++++ Assets/Scripts/Gameplay/World/Generation/Builders/PopulationBuilder.cs
+@@ -25,6 +25,8 @@
+         public SpreadGenerationReceipt AmbientSourceReceipt { get; private set; }
+         /// <summary>Only the exact Magpie roll changed to the optional grazer, before unrelated ambient stocking.</summary>
+         public SpreadGenerationReceipt AmbientReplacementReceipt { get; private set; }
++        /// <summary>Exact independent ordinary finite-food rolls; matching scenery grants no authority.</summary>
++        public SpreadGenerationReceipt ForageSourceReceipt { get; private set; }
+         /// <summary>Opt-in manager authority, rechecked against the captured cold attempt before source replacement.</summary>
+         public OverworldZoneManager ExplorationManager;
+         private int sourceRevision;
+@@ -41,12 +43,13 @@
+ 
+         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
+         {
+-            SourceReceipt = LooseSourceReceipt = AmbientSourceReceipt = AmbientReplacementReceipt = null; int revision = ++sourceRevision;
++            SourceReceipt = LooseSourceReceipt = AmbientSourceReceipt = AmbientReplacementReceipt = ForageSourceReceipt = null; int revision = ++sourceRevision;
+             var receiptOwners = CaptureSourceReceipts ? new List<Entity>() : null;
+             var looseOwners = CaptureSourceReceipts ? new List<Entity>() : null;
+             var ambientOwners = CaptureSourceReceipts ? new List<Entity>() : null;
+             var replacementOwners = CaptureSourceReceipts ? new List<Entity>() : null;
+             int replacementIndex = -1;
++            var forageOwners = CaptureSourceReceipts ? new List<Entity>() : null;
+             if (Table == null) return true;
+             bool replaceSpread = Table.Name == "SpreadTier1" && SpreadEncounter != null
+                 && SpreadEncounter.TryPlace(zone, factory);
+@@ -106,6 +109,8 @@
+             var loose = ReceiptBlueprints("Hatchet", "Cudgel", "LeatherBoots");
+             var ambient = ReceiptBlueprints("Magpie", "PetDog");
+             if (optedIn && assignment.Family == SpreadExplorationFamily.LastGleanings && ambient.Contains("Magpie")) ambient.Add("ReedbackGrazer");
++            var forage = ReceiptBlueprints("BerryBush", "Beehive");
++            int forageExpected = toSpawn.Count(forage.Contains);
+             int looseExpected = toSpawn.Count(loose.Contains), ambientExpected = toSpawn.Count(ambient.Contains);
+ 
+             // Place each entity in a random open cell
+@@ -171,6 +176,7 @@
+                     if (loose.Contains(blueprintName)) looseOwners?.Add(spawned);
+                     if (ambient.Contains(blueprintName)) ambientOwners?.Add(spawned);
+                     if (spawnIndex == replacementIndex) replacementOwners?.Add(spawned);
++                    if (forage.Contains(blueprintName)) forageOwners?.Add(spawned);
+                 }
+ 
+                 // Remove used cell to prevent double-placement of solid entities
+@@ -183,6 +189,7 @@
+                 LooseSourceReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, looseOwners, looseExpected);
+                 AmbientSourceReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, ambientOwners, ambientExpected);
+                 AmbientReplacementReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, replacementOwners, replacementIndex < 0 ? 0 : 1);
++                ForageSourceReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, forageOwners, forageExpected);
+             }
+             return true;
+         }
+--- Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs
++++ Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs
+@@ -8,7 +8,7 @@
+     /// <summary>Cold realization of one receipt-authorized existing owner. No
+     /// factory, stock, faction or scheduler changes. Caller retains plan/receipt
+     /// authority; this helper proves physical placement and installs one role.</summary>
+-    public static class SpreadExplorationActorPlacement
++    public static partial class SpreadExplorationActorPlacement
+     {
+         const int MaxSources = 32, MaxTrials = 256;
+ 
+@@ -216,7 +216,7 @@
+             internal static ActorSnapshot Capture(Zone z, Entity e, string blueprint)
+                 => e?.BlueprintName == blueprint && SpreadActorContext.Actor(e, z, out var b) && b.PartyLeader == null
+                     ? new ActorSnapshot(z, e, b) : null;
+-            internal bool Current((int x, int y) at, SpreadTerritoryPart added = null) => graph.Matches(added) && SpreadActorContext.Actor(entity, zone, out var b) && b == brain
++            internal bool Current((int x, int y) at, Part added = null) => graph.Matches(added) && SpreadActorContext.Actor(entity, zone, out var b) && b == brain
+                 && entity.GetPart<PhysicsPart>() == physics && entity.ID == id && entity.BlueprintName == blueprint
+                 && brain.PartyLeader == null && zone.GetEntityPosition(entity) == at;
+             internal void Rollback((int x, int y) destination)
+@@ -246,7 +246,7 @@
+                 }
+                 valid = pending.Count == 0;
+             }
+-            internal bool Matches(SpreadTerritoryPart added) => valid && graph.All(s => s.Matches(s.Entity == root ? added : null));
++            internal bool Matches(Part added) => valid && graph.All(s => s.Matches(s.Entity == root ? added : null));
+         }
+         sealed class EntityState
+         {
+@@ -269,7 +269,7 @@
+                 Children=(contents??Array.Empty<Entity>()).Concat(carried??Array.Empty<Entity>()).Concat(equipped?.Select(k=>k.Value)??Enumerable.Empty<Entity>())
+                     .Concat(slots?.SelectMany(s=>new[]{s.Equipped,s.Cybernetics,s.DefaultBehavior})??Enumerable.Empty<Entity>()).Where(e2=>e2!=null).Distinct().ToArray();
+             }
+-            internal bool Matches(SpreadTerritoryPart added) => Entity.ID==id && Entity.BlueprintName==blueprint && Entity.SpatialZone==spatialZone
++            internal bool Matches(Part added) => Entity.ID==id && Entity.BlueprintName==blueprint && Entity.SpatialZone==spatialZone
+                 && Same(Entity.Tags,tags) && Same(Entity.Properties,properties) && Same(Entity.IntProperties,ints) && Same(Entity.Statistics,stats)
+                 && (added==null ? Entity.Parts.SequenceEqual(parts) : added.ParentEntity==Entity && Entity.Parts.SequenceEqual(parts.Concat(new[]{added})))
+                 && parts.All(p=>p!=null && p.ParentEntity==Entity) && values.All(v=>v.Matches())
+--- /dev/null
++++ Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.Encounters.cs
+@@ -0,0 +1,153 @@
++using System;
++using System.Collections.Generic;
++using System.Linq;
++namespace CavesOfOoo.Core
++{
++ public static partial class SpreadExplorationActorPlacement
++ {
++  /// <summary>Cold placement only. Caller must own the complete rolled snake
++  /// packet and exact forage receipt. Food stays in place and is never consumed.</summary>
++  public static bool TrySnakeForage(Zone zone,IReadOnlyList<Entity> snakes,Entity forage,Func<bool> authority,out Func<bool> finalState)
++  {
++   finalState=null;var actors=AdmitEncounter(zone,snakes,"Viper",1,2);if(actors==null||!Forage(zone,forage)||authority==null)return false;
++   var foodGraph=new OwnedGraphSnapshot(forage);var foodAt=zone.GetEntityPosition(forage);
++   var cover=zone.GetReadOnlyEntities().Where(e=>Post(zone,e)&&Distance(zone.GetEntityPosition(e),foodAt)<=6)
++    .OrderBy(e=>zone.GetEntityPosition(e).y).ThenBy(e=>zone.GetEntityPosition(e).x).FirstOrDefault();
++   if(cover==null)return false;var coverGraph=new OwnedGraphSnapshot(cover);var coverAt=zone.GetEntityPosition(cover);
++   bool Source()=>Forage(zone,forage)&&zone.GetEntityPosition(forage)==foodAt&&foodGraph.Matches(null)
++    &&Post(zone,cover)&&zone.GetEntityPosition(cover)==coverAt&&coverGraph.Matches(null);
++   var snapshots=actors.Select(e=>ActorSnapshot.Capture(zone,e,"Viper")).ToArray();
++   if(!authority()||!Source()||!Original(snapshots))return false;
++   var ignored=new HashSet<Entity>(actors);var geometry=new SpreadWildernessSituationBuilder.Geometry(zone,ignored);
++   int trials=0;
++   for(int radius=2;radius<=4;radius++)for(int y=foodAt.y-radius;y<=foodAt.y+radius;y++)for(int x=foodAt.x-radius;x<=foodAt.x+radius;x++)
++   {
++    if(Distance((x,y),foodAt)!=radius)continue;if(++trials>MaxTrials)return false;
++    var destinations=actors.Length==1?new[]{(x,y)}:new[]{(x,y),(x+2,y)};
++    bool Layout(SpreadWildernessSituationBuilder.Geometry g)=>(AllPlaces(g,destinations)&&g.PreservesRoutes(destinations)
++     &&SnakeApproach(zone,g,actors,destinations,foodAt)&&SafeBypass(zone,g,actors,destinations));
++    if(!Layout(geometry))continue;
++    if(!authority()||!Source()||!Original(snapshots))return false;
++    return PlaceEncounter(zone,actors,snapshots,destinations,authority,Source,Layout,geometry,false,out finalState);
++   }
++   return false;
++  }
++  /// <summary>Realizes exactly two existing ordinary owners. Only local help is
++  /// enabled; no new skills, equipment, stats or ObjectCreated replay.</summary>
++  public static bool TryWorkGang(Zone zone,IReadOnlyList<Entity> pair,bool breakAssistanceSight,Func<bool> authority,out Func<bool> finalState)
++  {
++   finalState=null;var actors=AdmitEncounter(zone,pair,"MarlbackScrabbler",2,2);if(actors==null||authority==null)return false;
++   var snapshots=actors.Select(e=>ActorSnapshot.Capture(zone,e,"MarlbackScrabbler")).ToArray();
++   if(!authority()||!Original(snapshots))return false;
++   var geometry=new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(actors));int trials=0;
++   foreach(var post in zone.GetReadOnlyEntities().Where(e=>Post(zone,e)).OrderBy(e=>breakAssistanceSight&&!zone.GetEntityCell(e).IsSolid()?1:0).ThenBy(e=>Math.Abs(zone.GetEntityPosition(e).y-Zone.Height/2)).ThenBy(e=>zone.GetEntityPosition(e).y).ThenBy(e=>zone.GetEntityPosition(e).x).Take(MaxSources).ToArray())
++   {
++    var postGraph=new OwnedGraphSnapshot(post);var center=zone.GetEntityPosition(post);
++    bool Source()=>Post(zone,post)&&zone.GetEntityPosition(post)==center&&postGraph.Matches(null);
++    for(int y=center.y-2;y<=center.y+2;y++)for(int x=center.x-3;x<=center.x+3;x++)for(int distance=3;distance<=6;distance++)
++    {
++     if(++trials>MaxTrials)return false;var destinations=new[]{(x,y),(x+distance,y)};
++     bool Layout(SpreadWildernessSituationBuilder.Geometry g)=>AllPlaces(g,destinations)&&g.PreservesRoutes(destinations)
++      &&GangSight(zone,g,actors,destinations,breakAssistanceSight)&&SafeBypass(zone,g,actors,destinations);
++     if(!Layout(geometry))continue;
++     if(!authority()||!Source()||!Original(snapshots))return false;
++     return PlaceEncounter(zone,actors,snapshots,destinations,authority,Source,Layout,geometry,true,out finalState);
++    }
++   }
++   return false;
++  }
++  static Entity[] AdmitEncounter(Zone z,IReadOnlyList<Entity> input,string blueprint,int min,int max)
++  {
++   if(z==null||input==null||input.Count<min||input.Count>max)return null;var actors=input.ToArray();
++   if(actors.Any(e=>e==null)||actors.Distinct().Count()!=actors.Length||actors.Select(e=>e.ID).Distinct().Count()!=actors.Length)return null;
++   foreach(var e in actors)
++   {
++    if(ActorSnapshot.Capture(z,e,blueprint)==null||e.HasPart<CombatTacticsPart>()||e.HasPart<SpreadTerritoryPart>()||e.HasPart<SpreadGrazerPart>()||e.HasPart<AIAmbushPart>())return null;
++    var brain=e.GetPart<BrainPart>();if(brain.Target!=null||brain.Passive||brain.InConversation||brain.GetGoalsSnapshot().Any(g=>!(g is BoredGoal)))return null;
++   }
++   return actors;
++  }
++  static bool Original(ActorSnapshot[] state)=>state.All(s=>s!=null&&s.Current(s.Origin));
++  static bool Forage(Zone z,Entity e)=>SpreadActorContext.Ground(e,z)&&(e.BlueprintName=="BerryBush"||e.BlueprintName=="Beehive")
++   &&!e.HasPart<SpatialFootprintPart>()&&e.GetPart<RenderPart>()?.ParentEntity==e&&e.GetPart<ExaminablePart>()?.ParentEntity==e
++   &&e.GetPart<HarvestablePart>() is HarvestablePart h&&h.ParentEntity==e&&!h.Harvested&&h.YieldChance==100&&h.YieldMin==1
++   &&h.YieldMax==(e.BlueprintName=="BerryBush"?3:2)&&h.YieldBlueprint==(e.BlueprintName=="BerryBush"?"WildBerries":"Honeycomb");
++  static bool AllPlaces(SpreadWildernessSituationBuilder.Geometry g,(int x,int y)[] points)=>points.Distinct().Count()==points.Length&&points.All(p=>g.Place(p.x,p.y));
++  static bool Seen(Zone z,Entity actor,(int x,int y) at,(int x,int y) target)=>Distance(at,target)<=actor.GetPart<BrainPart>().SightRadius&&AIHelpers.HasLineOfSight(z,at.x,at.y,target.x,target.y);
++  static bool SnakeApproach(Zone z,SpreadWildernessSituationBuilder.Geometry g,Entity[] actors,(int x,int y)[] positions,(int x,int y) food)
++  {
++   var blocked=new HashSet<(int x,int y)>(positions);var reach=g.Flood(blocked,null,int.MaxValue,null);
++   for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)
++   {var p=(x:food.x+dx,y:food.y+dy);if(Math.Abs(dx)+Math.Abs(dy)!=1||!g.In(p.x,p.y)||!reach[p.x,p.y])continue;
++    if(actors.Select((a,i)=>Seen(z,a,positions[i],p)).Any(b=>b))return true;}
++   return false;
++  }
++  static bool GangSight(Zone z,SpreadWildernessSituationBuilder.Geometry g,Entity[] actors,(int x,int y)[] points,bool occluded)
++  {
++   if(Distance(points[0],points[1])>6)return false;
++   bool together=AIHelpers.HasLineOfSight(z,points[0].x,points[0].y,points[1].x,points[1].y)&&AIHelpers.HasLineOfSight(z,points[1].x,points[1].y,points[0].x,points[0].y);
++   if(together==occluded)return false;var blocked=new HashSet<(int x,int y)>(points);var reach=g.Flood(blocked,null,int.MaxValue,null);
++   for(int y=Math.Max(1,points[0].y-3);y<=Math.Min(Zone.Height-2,points[0].y+3);y++)for(int x=Math.Max(1,points[0].x-3);x<=Math.Min(Zone.Width-2,points[0].x+3);x++)
++   {
++    if(!reach[x,y]||!g.Walk(x,y,blocked))continue;bool a=Seen(z,actors[0],points[0],(x,y)),b=Seen(z,actors[1],points[1],(x,y));
++    if(occluded?a!=b:a&&b)return true;
++   }
++   return false;
++  }
++  static bool SafeBypass(Zone z,SpreadWildernessSituationBuilder.Geometry g,Entity[] actors,(int x,int y)[] points)
++  {
++   var blocked=new HashSet<(int x,int y)>(points);var unsafeCells=new bool[Zone.Width,Zone.Height];
++   for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
++   {
++    if(!g.Walk(x,y,blocked))continue;
++    for(int i=0;i<actors.Length;i++)if(Seen(z,actors[i],points[i],(x,y))){unsafeCells[x,y]=true;break;}
++    if(x==0||y==0||x==Zone.Width-1||y==Zone.Height-1)
++    {
++     // A distant visible owner is an approach choice, not an adjacent arrival.
++     // Keep four-cell standoff and prove a separate crossing outside actual sight.
++     if(points.Any(p=>Distance(p,(x,y))<4))return false;
++    }
++   }
++   bool Cross(bool vertical)
++   {
++    var seen=new bool[Zone.Width,Zone.Height];var q=new Queue<(int x,int y)>();
++    void Add(int x,int y){if(!g.In(x,y)||seen[x,y]||unsafeCells[x,y]||!g.Walk(x,y,blocked))return;seen[x,y]=true;q.Enqueue((x,y));}
++    if(vertical){for(int x=0;x<Zone.Width;x++)Add(x,0);}else for(int y=0;y<Zone.Height;y++)Add(0,y);
++    while(q.Count>0){var p=q.Dequeue();if(vertical?p.y==Zone.Height-1:p.x==Zone.Width-1)return true;Add(p.x-1,p.y);Add(p.x+1,p.y);Add(p.x,p.y-1);Add(p.x,p.y+1);}return false;
++   }
++   return Cross(false)||Cross(true);
++  }
++  static bool PlaceEncounter(Zone zone,Entity[] actors,ActorSnapshot[] snapshots,(int x,int y)[] destinations,Func<bool> authority,Func<bool> source,
++   Func<SpreadWildernessSituationBuilder.Geometry,bool> layout,SpreadWildernessSituationBuilder.Geometry original,bool assist,out Func<bool> finalState)
++  {
++   finalState=null;var additions=new CombatTacticsPart[actors.Length];var current=snapshots.Select(s=>s.Origin).ToArray();bool committed=false;
++   bool Current()=>source()&&actors.Select((e,i)=>snapshots[i].Current(current[i],additions[i])).All(b=>b)
++    &&additions.All(t=>t==null||(t.AssistAllies&&t.AssistRadius==6&&t.SkillClasses==""&&t.AbilityChance==0));
++   try
++   {
++    for(int i=0;i<actors.Length;i++)
++    {
++     if(!authority()||!Current())return false;
++     if(current[i]!=destinations[i]&&!zone.MoveEntity(actors[i],destinations[i].x,destinations[i].y))return false;current[i]=destinations[i];
++     if(!authority()||!Current())return false;
++    }
++    if(assist)for(int i=0;i<actors.Length;i++)
++    {additions[i]=new CombatTacticsPart{SkillClasses="",AbilityChance=0,AssistAllies=true,AssistRadius=6};actors[i].AddPart(additions[i]);if(!authority()||!Current())return false;}
++    var geometry=new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(actors));
++    if(!authority()||!Current()||!geometry.PreservesAgainst(original,destinations)||!layout(geometry))return false;
++    var finished=actors.Select(e=>ActorSnapshot.Capture(zone,e,e.BlueprintName)).ToArray();
++    bool Final()=>source()&&finished.Select((s,i)=>s!=null&&s.Current(destinations[i])).All(b=>b)
++     &&new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(actors)) is SpreadWildernessSituationBuilder.Geometry next
++     &&next.PreservesAgainst(original,destinations)&&layout(next);
++    committed=Final();if(committed)finalState=Final;return committed;
++   }
++   finally
++   {
++    if(!committed)
++    {
++     for(int i=actors.Length-1;i>=0;i--){var added=additions[i];if(added!=null&&added.ParentEntity==actors[i]&&actors[i].Parts.Contains(added))actors[i].RemovePart(added);snapshots[i].Rollback(current[i]);}
++    }
++   }
++  }
++ }
++}
+--- Assets/Scripts/Gameplay/AI/CombatTacticsPart.cs
++++ Assets/Scripts/Gameplay/AI/CombatTacticsPart.cs
+@@ -211,6 +211,8 @@
+                 else if (FactionManager.GetFaction(ally) != faction) reason = "different-faction";
+                 else if (BrainPart.ArePartyAligned(ally, target) || brain.PartyLeader != null) reason = "party";
+                 else if (brain.Target != null) reason = "already-engaged";
++                else if (brain.PeekGoal() is NoFightGoal calm && (calm.Duration <= 0 || calm.Age < calm.Duration))
++                    reason = "controlled";
+                 var cell = zone.GetEntityCell(ally);
+                 if (reason == null && (cell == null || AssistRadius < 1 || tactics.AssistRadius < 1 ||
+                     SpatialQuery.Distance(zone, actor, ally) > Math.Min(AssistRadius, tactics.AssistRadius) ||
+--- Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestTests.cs
++++ Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestTests.cs
+@@ -60,7 +60,7 @@
+         public void FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(int seed)
+         {
+             var rng=new Random(714); LoadoutPart.Rng=rng;
+-            var m=Fresh(seed); var p=Plan(m); Assert.True((bool)Value(p,"Enabled")); Assert.AreEqual(2,Value(p,"Version"));
++            var m=Fresh(seed); var p=Plan(m); Assert.True((bool)Value(p,"Enabled")); Assert.AreEqual(3,Value(p,"Version"));
+             var rows=Entries(p).ToArray(); Assert.Greater(rows.Length,0); Assert.LessOrEqual(rows.Length,WorldMap.Width*WorldMap.Height);
+             Assert.AreEqual(rows.Length,rows.Select(ID).Distinct().Count()); Assert.AreEqual(0,m.CachedZoneCount);
+             Assert.AreEqual(new Random(714).Next(),rng.Next(),"Planner reads may not spend actor loadout draws.");
+@@ -80,7 +80,7 @@
+         [TestCase(1)][TestCase(64)][TestCase(1729)]
+         public void ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(int seed)
+         {
+-            var p=Plan(Fresh(seed)); var rows=Entries(p).ToArray(); var allowed=new[]{"None","RoadSpill","OccupiedBank","LastGleanings","WateringMargin"};
++            var p=Plan(Fresh(seed)); var rows=Entries(p).ToArray(); var allowed=new[]{"None","RoadSpill","OccupiedBank","LastGleanings","WateringMargin","SnakeForage","WorkGang"};
+             Assert.True(rows.Any(e=>Flag(e,"PlacementEligible")&&Family(e)=="None")); Assert.Greater(rows.Count(e=>Family(e)!="None"),0);
+             foreach(var e in rows) { CollectionAssert.Contains(allowed,Family(e)); if(Family(e)=="None")continue;
+                 foreach(string neighbor in Adjacent(ID(e))) { var other=Find(p,neighbor); if(other!=null)Assert.AreNotEqual(Family(e),Family(other),ID(e)+" / "+neighbor); }
+@@ -129,7 +129,7 @@
+             Assert.False((bool)Value(Plan(state.ZoneManager),"Enabled"));Assert.AreEqual(0,state.ZoneManager.CachedZoneCount);
+             var saved=(Entity)Static("BindForSave",state.ZoneManager,state.World);Assert.False(saved?.Properties.ContainsKey(Key)==true);
+         }
+-        [TestCase("")][TestCase("3|64|0")][TestCase("2|64|1\nOverworld.999.1.0|3|1|0|0")]
++        [TestCase("")][TestCase("999|64|0")][TestCase("2|64|1\nOverworld.999.1.0|3|1|0|0")]
+         public void CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(string value)
+         {
+             var m=OverworldZoneManager.CreateDetached(scope.Factory,64);var world=new Entity{BlueprintName="World"};world.Properties[Key]=value;
+--- Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestAdversarialTests.cs
++++ Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestAdversarialTests.cs
+@@ -174,7 +174,7 @@
+             {
+                 System.Globalization.CultureInfo.CurrentCulture=culture;
+                 var m=OverworldZoneManager.CreateDetached(scope.Factory,-64,true);
+-                string wire=Wire(m);Assert.True(wire.StartsWith("2|-64|",StringComparison.Ordinal));
++                string wire=Wire(m);Assert.True(wire.StartsWith("3|-64|",StringComparison.Ordinal));
+                 var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("culture","fixture",m,null,null));
+                 Assert.True(loaded.ZoneManager.Exploration.Enabled);Assert.AreEqual(-64,loaded.ZoneManager.WorldSeed);
+             }
+--- /dev/null
++++ Assets/Tests/EditMode/Gameplay/AI/SpreadExplorationEncounterTests.cs
+@@ -0,0 +1,102 @@
++using System;
++using System.Collections.Generic;
++using System.IO;
++using System.Linq;
++using System.Reflection;
++using CavesOfOoo.Core;
++using CavesOfOoo.Data;
++using NUnit.Framework;
++namespace CavesOfOoo.Tests
++{
++ public sealed class SpreadExplorationEncounterTests
++ {
++  sealed class Fixture:IDisposable
++  {
++   readonly SpreadExplorationActorTests.Scope scope=new SpreadExplorationActorTests.Scope();
++   readonly EntityFactory oldFactory=LoadoutPart.Factory;readonly Random oldRng=LoadoutPart.Rng;readonly EntityFactory oldHarvest=HarvestablePart.Factory;
++   public readonly EntityFactory Factory=new EntityFactory();public readonly Zone Z=new Zone("Overworld.7.9.0");
++   public readonly Entity A,B,Food;public readonly Entity[] Actors;public Func<bool> Final;
++   public Fixture(bool snakes=false,string source="BerryBush")
++   {
++    Factory.LoadBlueprints(File.ReadAllText(Path.Combine(UnityEngine.Application.dataPath,"Resources/Content/Blueprints/Objects.json")));
++    LoadoutPart.Factory=HarvestablePart.Factory=Factory;LoadoutPart.Rng=new Random(718);
++    for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++){var g=new Entity{ID="ground-"+x+","+y,BlueprintName="Grass"};g.Tags["Terrain"]="true";Assert.True(Z.AddEntity(g,x,y));}
++    A=Put(snakes?"Viper":"MarlbackScrabbler",31,11);B=Put(snakes?"Viper":"MarlbackScrabbler",31,13);Actors=new[]{A,B};
++    Food=Put(source,43,12);
++    for(int y=10;y<=14;y++)Put("Tree",40,y);
++   }
++   public Entity Put(string blueprint,int x,int y){var e=Factory.CreateEntity(blueprint);Assert.NotNull(e);Assert.True(Z.AddEntity(e,x,y));if(e.GetPart<BrainPart>() is BrainPart b)b.CurrentZone=Z;return e;}
++   public bool Run(bool snakes=false,bool occluded=false,Func<bool> authority=null,IReadOnlyList<Entity> actors=null)
++   {
++    var method=typeof(SpreadExplorationActorPlacement).GetMethod(snakes?"TrySnakeForage":"TryWorkGang",BindingFlags.Public|BindingFlags.Static);Assert.NotNull(method,"Missing bounded encounter placement API");
++    object[] args={Z,actors??Actors,snakes?(object)Food:occluded,authority??(()=>true),null};bool ok=(bool)method.Invoke(null,args);Final=(Func<bool>)args[4];return ok;
++   }
++   public void Dispose(){LoadoutPart.Factory=oldFactory;LoadoutPart.Rng=oldRng;HarvestablePart.Factory=oldHarvest;scope.Dispose();}
++  }
++  static Entity[] Gear(Entity e)=>e.GetPart<InventoryPart>().Objects.Concat(e.GetPart<InventoryPart>().EquippedItems.Values).Concat(e.GetPart<Body>().GetParts().Select(p=>p.Equipped)).Where(i=>i!=null).Distinct().ToArray();
++  static bool Los(Zone z,Entity a,Entity b){var p=z.GetEntityPosition(a);var q=z.GetEntityPosition(b);return AIHelpers.HasLineOfSight(z,p.x,p.y,q.x,q.y);}
++  [TestCase(false)][TestCase(true)]public void OriginalColdRollPositionsDoNotSetALiveTravelLeash(bool far)
++  {using(var f=new Fixture()){if(far){Assert.True(f.Z.MoveEntity(f.A,3,4));Assert.True(f.Z.MoveEntity(f.B,73,20));}var a=Gear(f.A);var b=Gear(f.B);Assert.True(f.Run());Assert.True(f.Final());CollectionAssert.AreEquivalent(a,Gear(f.A));CollectionAssert.AreEquivalent(b,Gear(f.B));Assert.LessOrEqual(SpatialQuery.Distance(f.Z,f.A,f.B),6);}}
++  [Test]public void BoundedPostSearchPrioritizesAUsefulInteriorPocketOverEdgeDecoys()
++  {using(var f=new Fixture()){for(int x=2;x<34;x++)f.Put("Signpost",x,2);Assert.True(f.Run());Assert.True(f.Final());}}
++  [Test]public void OccludedVariantPrioritizesActualNativeSightCoverOverVisualHedges()
++  {using(var f=new Fixture()){for(int x=2;x<34;x++)f.Put("Hedge",x,12);Assert.True(f.Run(occluded:true));Assert.True(f.Final());Assert.False(Los(f.Z,f.A,f.B));}}
++  [Test]public void ActualOrdinaryKitHasNoAssistanceOrReachSkillToBorrow()
++  {using(var f=new Fixture()){foreach(var a in f.Actors){Assert.IsNull(a.GetPart<CombatTacticsPart>());var weapons=Gear(a).Where(e=>e.HasPart<MeleeWeaponPart>()).ToArray();Assert.AreEqual(1,weapons.Length);CollectionAssert.Contains(new[]{"Dagger","Hatchet","Cudgel"},weapons[0].BlueprintName);Assert.IsNull(a.GetPart<ActivatedAbilitiesPart>());}}}
++  [TestCase(false)][TestCase(true)]public void ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(bool occluded)
++  {using(var f=new Fixture()){var before=f.Z.GetReadOnlyEntities().ToArray();var a=Gear(f.A);var b=Gear(f.B);var rng=LoadoutPart.Rng;Assert.True(f.Run(occluded:occluded));Assert.NotNull(f.Final);Assert.True(f.Final());CollectionAssert.AreEquivalent(before,f.Z.GetReadOnlyEntities());CollectionAssert.AreEquivalent(a,Gear(f.A));CollectionAssert.AreEquivalent(b,Gear(f.B));Assert.AreSame(rng,LoadoutPart.Rng);Assert.AreEqual(!occluded,Los(f.Z,f.A,f.B));foreach(var e in f.Actors){var t=e.GetPart<CombatTacticsPart>();Assert.NotNull(t);Assert.True(t.AssistAllies);Assert.AreEqual("",t.SkillClasses);Assert.Zero(t.AbilityChance);Assert.IsNull(e.GetPart<ActivatedAbilitiesPart>());}}}
++  [TestCase("BerryBush",1)][TestCase("Beehive",2)]public void ActualSnakePacketLeavesFiniteForageUntouched(string source,int count)
++  {using(var f=new Fixture(true,source)){if(count==1)Assert.True(f.Z.RemoveEntity(f.B));var owners=f.Actors.Take(count).ToArray();var before=f.Z.GetReadOnlyEntities().ToArray();var at=f.Z.GetEntityPosition(f.Food);var h=f.Food.GetPart<HarvestablePart>();int max=h.YieldMax;Assert.True(f.Run(true,actors:owners));Assert.True(f.Final());CollectionAssert.AreEquivalent(before,f.Z.GetReadOnlyEntities());Assert.AreEqual(at,f.Z.GetEntityPosition(f.Food));Assert.AreSame(h,f.Food.GetPart<HarvestablePart>());Assert.False(h.Harvested);Assert.AreEqual(max,h.YieldMax);foreach(var v in owners){Assert.AreEqual(8,v.GetStatValue("Hitpoints"));Assert.AreEqual(130,v.GetStatValue("Speed"));Assert.AreEqual(10,v.GetPart<BrainPart>().SightRadius);Assert.IsNull(v.GetPart<AIAmbushPart>());Assert.IsNull(v.GetPart<CombatTacticsPart>());}}}
++  [TestCase("one")][TestCase("duplicate")][TestCase("wrong-blueprint")][TestCase("party")][TestCase("busy")][TestCase("existing-tactics")][TestCase("no-post")]
++  public void InvalidPairRefusesWithoutMovingOrAlteringStock(string fault)
++  {using(var f=new Fixture()){IReadOnlyList<Entity> input=f.Actors;if(fault=="one")input=new[]{f.A};if(fault=="duplicate")input=new[]{f.A,f.A};if(fault=="wrong-blueprint")f.B.BlueprintName="SpreadDitchMate";if(fault=="party")f.B.GetPart<BrainPart>().SetPartyLeader(f.A);if(fault=="busy")f.B.GetPart<BrainPart>().PushGoal(new WaitGoal(3));if(fault=="existing-tactics")f.B.AddPart(new CombatTacticsPart());if(fault=="no-post")foreach(var p in f.Z.GetReadOnlyEntities().Where(e=>e.BlueprintName=="Tree").ToArray())f.Z.RemoveEntity(p);var at=f.Actors.Select(f.Z.GetEntityPosition).ToArray();var parts=f.Actors.Select(e=>e.Parts.ToArray()).ToArray();Assert.False(f.Run(actors:input));Assert.IsNull(f.Final);CollectionAssert.AreEqual(at,f.Actors.Select(f.Z.GetEntityPosition));for(int i=0;i<2;i++)CollectionAssert.AreEqual(parts[i],f.Actors[i].Parts);}}
++  [TestCase("spent")][TestCase("foreign")][TestCase("changed-kind")][TestCase("missing-part")]
++  public void InvalidFoodCannotBecomeAClaimedForageOpportunity(string fault)
++  {using(var f=new Fixture(true)){if(fault=="spent")f.Food.GetPart<HarvestablePart>().Harvested=true;if(fault=="foreign")f.Z.RemoveEntity(f.Food);if(fault=="changed-kind")f.Food.BlueprintName="HollowStump";if(fault=="missing-part")f.Food.RemovePart(f.Food.GetPart<HarvestablePart>());var at=f.Actors.Select(f.Z.GetEntityPosition).ToArray();Assert.False(f.Run(true));CollectionAssert.AreEqual(at,f.Actors.Select(f.Z.GetEntityPosition));Assert.IsNull(f.Final);}}
++  [TestCase(false)][TestCase(true)]public void RefusedAuthorityMakesNoActorOrWorldMutation(bool snakes)
++  {using(var f=new Fixture(snakes)){var at=f.Actors.Select(f.Z.GetEntityPosition).ToArray();int version=f.Z.EntityVersion;Assert.False(f.Run(snakes,authority:()=>false));Assert.AreEqual(version,f.Z.EntityVersion);CollectionAssert.AreEqual(at,f.Actors.Select(f.Z.GetEntityPosition));}}
++  [TestCase(false)][TestCase(true)]public void ClosedBorderRefusesRatherThanClaimingAnOptionalBypass(bool snakes)
++  {using(var f=new Fixture(snakes)){for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)if(x==0||y==0||x==Zone.Width-1||y==Zone.Height-1){var wall=new Entity{ID=Guid.NewGuid().ToString("N")};wall.AddPart(new PhysicsPart{Solid=true});Assert.True(f.Z.AddEntity(wall,x,y));}Assert.False(f.Run(snakes));Assert.IsNull(f.Final);}}
++  [TestCase(false)][TestCase(true)]public void FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange(bool snakes)
++  {using(var f=new Fixture(snakes)){Assert.True(f.Run(snakes));var wall=new Entity{ID="harmless"};wall.AddPart(new PhysicsPart{Solid=true});Assert.True(f.Z.AddEntity(wall,40,12));Assert.True(f.Final());f.A.Statistics["Strength"].BaseValue++;Assert.False(f.Final());}}
++  [Test]public void LateAuthorityGearMutationRefusesWithoutRestoringForeignChange()
++  {using(var f=new Fixture()){var gear=Gear(f.A).First();bool changed=false;Assert.False(f.Run(authority:()=>{if(f.A.GetPart<CombatTacticsPart>()!=null&&!changed){gear.Properties["foreign-change"]="kept";changed=true;}return true;}));Assert.True(changed);Assert.AreEqual("kept",gear.Properties["foreign-change"]);Assert.IsNull(f.A.GetPart<CombatTacticsPart>());Assert.IsNull(f.B.GetPart<CombatTacticsPart>());}}
++  [TestCase("normal",true)][TestCase("calm",false)][TestCase("expired",true)][TestCase("removed",true)][TestCase("indefinite",false)][TestCase("buried",true)][TestCase("covered",false)][TestCase("passive",false)][TestCase("party",false)]
++  public void RealAssistanceAdmissionHonorsCurrentCalmAndSight(string mode,bool expected)
++  {using(var f=new Fixture()){Assert.True(f.Z.MoveEntity(f.A,20,12));Assert.True(f.Z.MoveEntity(f.B,22,12));var target=f.Put("Player",21,15);foreach(var e in f.Actors)e.AddPart(new CombatTacticsPart{SkillClasses="",AbilityChance=0,AssistAllies=true});var brain=f.B.GetPart<BrainPart>();if(mode=="calm"||mode=="expired"||mode=="removed"||mode=="indefinite"||mode=="buried"){var goal=new NoFightGoal(8);brain.PushGoal(goal);if(mode=="expired")goal.Age=8;if(mode=="indefinite")goal.Duration=0;if(mode=="buried")brain.PushGoal(new WaitGoal(3));if(mode=="removed")brain.RemoveGoal(goal);}if(mode=="covered")f.Put("Tree",21,12);if(mode=="passive")brain.Passive=true;if(mode=="party")brain.SetPartyLeader(target);f.A.GetPart<CombatTacticsPart>().AlertAllies(target,f.Z);Assert.AreEqual(expected,brain.IsPersonallyHostileTo(target));}}
++  [TestCase(false)][TestCase(true)]public void MidPlacementCallbackCannotEraseAnOriginalCriticalBorder(bool snakes)
++  {using(var f=new Fixture(snakes)){var origin=f.Z.GetEntityPosition(f.A);bool changed=false;Assert.False(f.Run(snakes,authority:()=>{if(!changed&&f.Z.GetEntityPosition(f.A)!=origin){changed=true;var wall=new Entity{ID="foreign-border"};wall.AddPart(new PhysicsPart{Solid=true});Assert.True(f.Z.AddEntity(wall,0,0));}return true;}));Assert.True(changed);Assert.IsNull(f.Final);}}
++  [TestCase(false)][TestCase(true)]public void LateGenerationBlockerInvalidatesExactAcceptedGeometry(bool snakes)
++  {using(var f=new Fixture(snakes)){Assert.True(f.Run(snakes));var wall=new Entity{ID="late-border"};wall.AddPart(new PhysicsPart{Solid=true});Assert.True(f.Z.AddEntity(wall,0,0));Assert.False(f.Final());}}
++  [TestCase("moved")][TestCase("replaced")][TestCase("changed-yield")]
++  public void FoodCallbackMutationRefusesWithoutRepairingIndependentSource(string fault)
++  {using(var f=new Fixture(true)){var origin=f.Z.GetEntityPosition(f.A);bool changed=false;Entity foreign=null;Assert.False(f.Run(true,authority:()=>{if(!changed&&f.Z.GetEntityPosition(f.A)!=origin){changed=true;if(fault=="moved")Assert.True(f.Z.MoveEntity(f.Food,60,20));if(fault=="changed-yield")f.Food.GetPart<HarvestablePart>().YieldMax=9;if(fault=="replaced"){string id=f.Food.ID;f.Z.RemoveEntity(f.Food);foreign=f.Put("BerryBush",43,12);foreign.ID=id;}}return true;}));Assert.True(changed);if(fault=="moved")Assert.AreEqual((60,20),f.Z.GetEntityPosition(f.Food));if(fault=="changed-yield")Assert.AreEqual(9,f.Food.GetPart<HarvestablePart>().YieldMax);if(fault=="replaced")Assert.AreSame(foreign,f.Z.GetCell(43,12).Objects.Single(e=>e.ID==f.Food.ID));}}
++  [TestCase(false)][TestCase(true)]public void ForeignActorReplacementIsNotRemovedOrReclaimed(bool snakes)
++  {using(var f=new Fixture(snakes)){var origin=f.Z.GetEntityPosition(f.A);Entity foreign=null;Assert.False(f.Run(snakes,authority:()=>{if(foreign==null&&f.Z.GetEntityPosition(f.A)!=origin){var at=f.Z.GetEntityPosition(f.A);f.Z.RemoveEntity(f.A);foreign=f.Put(snakes?"Viper":"MarlbackScrabbler",at.x,at.y);foreign.ID=f.A.ID;}return true;}));Assert.NotNull(foreign);Assert.NotNull(f.Z.GetEntityCell(foreign));Assert.IsNull(f.Z.GetEntityCell(f.A));}}
++  [TestCase(false,false)][TestCase(true,false)][TestCase(false,true)]
++  public void ActualPlacedPairUsesNativeSightAndCalmAdmission(bool occluded,bool calm)
++  {using(var f=new Fixture()){Assert.True(f.Run(occluded:occluded));var a=f.Z.GetEntityPosition(f.A);var b=f.Z.GetEntityPosition(f.B);Cell chosen=null;
++   for(int y=1;y<Zone.Height-1&&chosen==null;y++)for(int x=1;x<Zone.Width-1;x++){var c=f.Z.GetCell(x,y);if(c.BlocksMovement()||c.Occupants.Any(e=>e.HasTag("Creature")))continue;bool sa=Math.Max(Math.Abs(x-a.x),Math.Abs(y-a.y))<=3&&AIHelpers.HasLineOfSight(f.Z,a.x,a.y,x,y);bool sb=Math.Max(Math.Abs(x-b.x),Math.Abs(y-b.y))<=10&&AIHelpers.HasLineOfSight(f.Z,b.x,b.y,x,y);if(sa&&(occluded?!sb:sb)){chosen=c;break;}}
++   Assert.NotNull(chosen,"Actual geometry must expose the exact threat ray before observing assistance.");var player=f.Put("Player",chosen.X,chosen.Y);if(calm)f.B.GetPart<BrainPart>().PushGoal(new NoFightGoal(8));f.A.FireEventAndRelease(GameEvent.New("TakeTurn"));Assert.AreSame(player,f.A.GetPart<BrainPart>().Target);Assert.AreEqual(!occluded&&!calm,f.B.GetPart<BrainPart>().IsPersonallyHostileTo(player));}}
++  [Test]public void SavedAssistOnlyPartRetainsActualGearAndCalmWithoutAnyNewAbility()
++  {using(var f=new Fixture()){Assert.True(f.Run());f.A.GetPart<BrainPart>().PushGoal(new NoFightGoal(8){Age=2});var ids=Gear(f.A).Select(e=>e.ID+":"+e.BlueprintName).OrderBy(v=>v).ToArray();var loaded=PartRoundTripHelper.RoundTripEntityViaTokenGraph(f.A);Assert.AreNotSame(f.A,loaded);CollectionAssert.AreEqual(ids,Gear(loaded).Select(e=>e.ID+":"+e.BlueprintName).OrderBy(v=>v));var t=loaded.GetPart<CombatTacticsPart>();Assert.AreSame(loaded,t.ParentEntity);Assert.True(t.AssistAllies);Assert.AreEqual(6,t.AssistRadius);Assert.AreEqual("",t.SkillClasses);Assert.Zero(t.AbilityChance);Assert.IsNull(loaded.GetPart<ActivatedAbilitiesPart>());var calm=loaded.GetPart<BrainPart>().PeekGoal() as NoFightGoal;Assert.NotNull(calm);Assert.AreEqual(2,calm.Age);Assert.AreEqual(8,calm.Duration);}}
++
++  [TestCase("BerryBush",false)][TestCase("Beehive",true)]
++  public void OptionalNativeHarvestKeepsAuthoredYieldAndDepletionAcrossFullSave(string kind,bool overflow)
++  {using(var f=new Fixture(true,kind)){Assert.True(f.Run(true));var actor=f.Factory.CreateEntity("Player");var cell=f.Z.GetCell(43,12);var approach=new[]{(43,11),(43,13),(42,12),(44,12)}.First(p=>f.Z.CanPlaceFootprint(actor,p.Item1,p.Item2));Assert.True(f.Z.AddEntity(actor,approach.Item1,approach.Item2));if(overflow)actor.GetPart<InventoryPart>().MaxWeight=0;
++   string product=f.Food.GetPart<HarvestablePart>().YieldBlueprint;int max=f.Food.GetPart<HarvestablePart>().YieldMax;string id=f.Food.ID;
++   Func<bool> harvest=()=>InventorySystem.ExecuteCommand(new CavesOfOoo.Core.Inventory.Commands.PerformInventoryActionCommand(f.Food,"Harvest"),actor,f.Z).Success;
++   Assert.True(harvest());Assert.True(f.Food.GetPart<HarvestablePart>().Harvested);Assert.IsNull(f.Z.GetEntityCell(f.Food));Assert.False(harvest());
++   int Packed(Entity a)=>a.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName==product).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
++   int Floor(Zone z)=>z.GetReadOnlyEntities().Where(e=>e.BlueprintName==product).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
++   int total=Packed(actor)+Floor(f.Z);Assert.That(total,Is.InRange(1,max));Assert.AreEqual(overflow?0:total,Packed(actor));Assert.AreEqual(overflow?total:0,Floor(f.Z));
++   var manager=OverworldZoneManager.CreateDetached(f.Factory,64);manager.SetActiveZone(f.Z);var session=GameSessionState.Capture("forage","fixture",manager,new TurnManager(),actor,0);GameSessionState loaded;
++   using(var stream=new MemoryStream()){session.Save(new SaveWriter(stream));stream.Position=0;loaded=GameSessionState.Load(new SaveReader(stream,f.Factory));}
++   var restored=loaded.ZoneManager.ActiveZone;Assert.AreNotSame(f.Z,restored);Assert.AreNotSame(actor,loaded.Player);Assert.False(restored.GetReadOnlyEntities().Any(e=>e.ID==id));Assert.AreEqual(total,Packed(loaded.Player)+Floor(restored));CollectionAssert.AreEquivalent(f.Actors.Select(e=>e.ID),restored.GetReadOnlyEntities().Where(e=>e.BlueprintName=="Viper").Select(e=>e.ID));
++  }}
++
++  [Test]public void RemovedChosenForageCoverInvalidatesTheColdSituationClaim()
++  {using(var f=new Fixture(true)){Assert.True(f.Run(true));foreach(var post in f.Z.GetReadOnlyEntities().Where(e=>e.BlueprintName=="Tree").ToArray())Assert.True(f.Z.RemoveEntity(post));Assert.False(f.Final());}}
++
++ }
++}
+--- /dev/null
++++ Assets/Tests/EditMode/Gameplay/AI/SpreadExplorationEncounterBypassTests.cs
+@@ -0,0 +1,34 @@
++using System;
++using System.Collections.Generic;
++using System.IO;
++using System.Reflection;
++using CavesOfOoo.Core;
++using CavesOfOoo.Data;
++using NUnit.Framework;
++namespace CavesOfOoo.Tests
++{
++ public sealed class SpreadExplorationEncounterBypassTests
++ {
++  [TestCase("Viper","visible-alternative",true)][TestCase("Viper","occluded-alternative",true)][TestCase("Viper","no-alternative",false)][TestCase("Viper","near-edge",false)]
++  [TestCase("MarlbackScrabbler","visible-alternative",true)][TestCase("MarlbackScrabbler","occluded-alternative",true)][TestCase("MarlbackScrabbler","no-alternative",false)][TestCase("MarlbackScrabbler","near-edge",false)]
++  public void ArrivalStandoffAndRealSightBypassAreSeparateProofs(string blueprint,string layout,bool expected)
++  {
++   using(var scope=new SpreadExplorationActorTests.Scope())
++   {
++    var f=new EntityFactory();f.LoadBlueprints(File.ReadAllText(Path.Combine(UnityEngine.Application.dataPath,"Resources/Content/Blueprints/Objects.json")));
++    var z=new Zone("Overworld.7.9.0");for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++){var e=new Entity{ID="ground-"+x+","+y,BlueprintName="Grass"};e.Tags["Terrain"]="true";Assert.True(z.AddEntity(e,x,y));}
++    var snake=f.CreateEntity(blueprint);int sy=layout=="near-edge"?3:layout=="no-alternative"?11:4;Assert.True(z.AddEntity(snake,30,sy));snake.GetPart<BrainPart>().CurrentZone=z;
++    void Wall(int x,int y){var e=new Entity{ID="wall-"+x+","+y};e.Tags["Solid"]="true";e.AddPart(new PhysicsPart{Solid=true});Assert.True(z.AddEntity(e,x,y));}
++    if(layout=="occluded-alternative")for(int x=20;x<=40;x++)Wall(x,2);
++    if(layout=="no-alternative")for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)if(y!=12&&!(x==30&&y==sy))Wall(x,y);
++    Assert.AreEqual(10,snake.GetPart<BrainPart>().SightRadius);
++    if(layout=="visible-alternative")Assert.True(AIHelpers.HasLineOfSight(z,30,sy,30,0),"Visible enemy pressure is real; the safer route is elsewhere.");
++    if(layout=="occluded-alternative")Assert.False(AIHelpers.HasLineOfSight(z,30,sy,30,0),"Actual Solid cover, not a visual-only hedge.");
++    var type=typeof(SpreadWildernessSituationBuilder).GetNestedType("Geometry",BindingFlags.NonPublic);Assert.NotNull(type);
++    object geometry=Activator.CreateInstance(type,BindingFlags.Instance|BindingFlags.NonPublic,null,new object[]{z,new HashSet<Entity>{snake}},null);
++    var method=typeof(SpreadExplorationActorPlacement).GetMethod("SafeBypass",BindingFlags.NonPublic|BindingFlags.Static);Assert.NotNull(method);
++    Assert.AreEqual(expected,(bool)method.Invoke(null,new object[]{z,geometry,new[]{snake},new[]{(30,sy)}}));
++   }
++  }
++ }
++}
+--- /dev/null
++++ Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEncounterPipelineTests.cs
+@@ -0,0 +1,83 @@
++using System;
++using System.Collections;
++using System.Collections.Generic;
++using System.IO;
++using System.Linq;
++using System.Reflection;
++using CavesOfOoo.Core;
++using CavesOfOoo.Data;
++using NUnit.Framework;
++namespace CavesOfOoo.Tests
++{
++ public sealed class SpreadExplorationEncounterPipelineTests
++ {
++  static bool Consume(SpreadGenerationReceipt receipt)=>(bool)typeof(SpreadGenerationReceipt).GetMethod("TryConsume",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(receipt,null);
++
++  DensityLootTestScope scope; readonly List<(FieldInfo field,object value,List<DictionaryEntry> entries)> globals=new List<(FieldInfo,object,List<DictionaryEntry>)>();
++  [SetUp] public void Setup(){foreach(var f in typeof(LootTableRegistry).GetFields(BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic)){var v=f.GetValue(null);var rows=new List<DictionaryEntry>();if(v is IDictionary d)foreach(DictionaryEntry e in d)rows.Add(e);globals.Add((f,v,rows));}scope=new DensityLootTestScope();}
++  [TearDown] public void Cleanup(){try{scope?.Dispose();}finally{foreach(var g in globals){if(!g.field.IsInitOnly)g.field.SetValue(null,g.value);if(g.value is IDictionary d){d.Clear();foreach(var e in g.entries)d.Add(e.Key,e.Value);}}globals.Clear();}}
++  sealed class Probe:IZoneBuilder { readonly int priority;readonly Action<Zone,Random> action;public Probe(int p,Action<Zone,Random>a){priority=p;action=a;}public string Name=>"EncounterPipelineProbe";public int Priority=>priority;public bool BuildZone(Zone z,EntityFactory f,Random r){action(z,r);return true;}}
++  sealed class ObservedManager:OverworldZoneManager
++  {
++   readonly bool baseline;readonly Action<ObservedManager,Zone> after;internal Entity[] Before;internal (int x,int y)[] Positions;internal string[] Facts;internal Part[][] Parts;internal Entity[] After;internal string[] LateFacts;internal (int x,int y)[] LatePositions;internal Part[][] LateParts;
++   internal PopulationBuilder Population;internal SpreadExplorationBuilder Composer;internal int NextRng,Callbacks;
++   internal ObservedManager(EntityFactory f,int seed,bool baseline=false,Action<ObservedManager,Zone> after=null):base(f,seed){this.baseline=baseline;this.after=after;}
++   protected override ZoneGenerationPipeline GetPipelineForZone(string id){var p=base.GetPipelineForZone(id);Population=p.Builders.OfType<PopulationBuilder>().SingleOrDefault();Composer=p.Builders.OfType<SpreadExplorationBuilder>().SingleOrDefault();if(baseline)p.RemoveBuilders<SpreadExplorationBuilder>();p.AddBuilder(new Probe(4299,(z,r)=>{Before=z.GetReadOnlyEntities().ToArray();Positions=Before.Select(z.GetEntityPosition).ToArray();Facts=Before.Select(Exact).ToArray();Parts=Before.Select(e=>e.Parts.ToArray()).ToArray();}));p.AddBuilder(new Probe(int.MaxValue,(z,r)=>{After=z.GetReadOnlyEntities().ToArray();LateFacts=After.Select(Exact).ToArray();LatePositions=After.Select(z.GetEntityPosition).ToArray();LateParts=After.Select(e=>e.Parts.ToArray()).ToArray();NextRng=r.Next();}));return p;}
++   protected override void OnZoneGenerated(Zone z,string id){base.OnZoneGenerated(z,id);if(Composer?.LastResult=="SnakeForage"||Composer?.LastResult=="WorkGang"){Callbacks++;after?.Invoke(this,z);}}
++  }
++  static Entity[] Gear(Entity e){var i=e.GetPart<InventoryPart>();var b=e.GetPart<Body>();return (i?.Objects??new List<Entity>()).Concat(i?.EquippedItems.Values??Enumerable.Empty<Entity>()).Concat(b?.GetParts().Select(p=>p.Equipped)??Enumerable.Empty<Entity>()).Where(x=>x!=null).Distinct().ToArray();}
++  static string Item(Entity e)=>e.BlueprintName+":"+(e.GetPart<StackerPart>()?.StackCount??1)+":"+string.Join(",",e.Statistics.OrderBy(s=>s.Key).Select(s=>s.Key+":"+s.Value.BaseValue+":"+s.Value.Bonus+":"+s.Value.Penalty))+":"+string.Join(",",e.Properties.OrderBy(s=>s.Key).Select(s=>s.Key+"="+s.Value));
++  static string Shape(Entity e)=>Item(e)+";stock="+string.Join("/",(e.GetPart<ContainerPart>()?.Contents??new List<Entity>()).Select(Item))+";gear="+string.Join("/",Gear(e).Select(Item));
++  static string Exact(Entity e)=>e.ID+":"+Shape(e)+";ids="+string.Join("/",Gear(e).Concat(e.GetPart<ContainerPart>()?.Contents??new List<Entity>()).Select(i=>i.ID+":"+i.GetPart<PhysicsPart>()?.InInventory?.ID+":"+i.GetPart<PhysicsPart>()?.Equipped?.ID));
++  void Seed(int seed,string id)=>scope.Seed(unchecked(seed^FormationSelector.StableIndex(id,int.MaxValue)));
++  static bool Eligible(ObservedManager m,string family)=>m.Population?.SourceReceipt?.Owners is IReadOnlyList<Entity> owners && (family=="WorkGang"?owners.Count==2&&owners.All(e=>e.BlueprintName=="MarlbackScrabbler"):owners.Count>=1&&owners.Count<=2&&owners.All(e=>e.BlueprintName=="Viper")&&m.Population.ForageSourceReceipt.Owners.Count>0);
++  static string[] Selected(OverworldZoneManager m,string family)=>m.Exploration.Entries.Where(e=>e.PlacementEligible&&e.Family.ToString()==family).Select(e=>e.ZoneID).ToArray();
++  [TestCase(1,"SnakeForage")][TestCase(64,"SnakeForage")][TestCase(1729,"SnakeForage")]
++  [TestCase(1,"WorkGang")][TestCase(64,"WorkGang")][TestCase(1729,"WorkGang")]
++  public void RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(int seed,string family)
++  {
++   var selection=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);int committed=0,missing=0,eligible=0;
++   foreach(string id in Selected(selection,family))
++   {
++    Seed(seed,id);var baseline=new ObservedManager(scope.Factory,seed,true);var original=baseline.GetZone(id);Assert.NotNull(original,id+" baseline");var shapes=original.GetReadOnlyEntities().Select(Shape).ToArray();
++    Seed(seed,id);var current=new ObservedManager(scope.Factory,seed);var zone=current.GetZone(id);Assert.NotNull(zone,id+" current");Assert.NotNull(current.Composer,id);
++    var owners=zone.GetReadOnlyEntities().ToArray();CollectionAssert.AreEqual(shapes,owners.Select(Shape),id+" original stock/stats/quantities/order");Assert.AreEqual(baseline.NextRng,current.NextRng,id+" caller RNG");Assert.AreEqual(original.TileState.ToSaveString(),zone.TileState.ToSaveString(),id+" terrain state");
++    CollectionAssert.AreEqual(current.Before,current.After,id+" actual references across composition");CollectionAssert.AreEqual(current.Facts,current.LateFacts,id+" original exact IDs/gear/backlinks across composition");
++    bool done=current.Exploration.DispositionFor(id)==2;var actors=current.Population.SourceReceipt.Owners.ToArray();var allowed=new HashSet<Entity>(done?actors:Array.Empty<Entity>());
++    if(Eligible(current,family))eligible++;else{missing++;Assert.False(done,id+" missing source cannot be manufactured");}
++    for(int i=0;i<owners.Length;i++){
++     if(current.LatePositions[i]!=current.Positions[i])Assert.True(allowed.Contains(owners[i]),id+" unauthorized move: "+owners[i].BlueprintName);
++     var extra=current.LateParts[i].Except(current.Parts[i]).ToArray();CollectionAssert.IsSubsetOf(current.Parts[i],current.LateParts[i],id+" removed original part");
++     if(done&&family=="WorkGang"&&allowed.Contains(owners[i])){Assert.AreEqual(1,extra.Length);var t=extra.Single() as CombatTacticsPart;Assert.NotNull(t);Assert.True(t.AssistAllies);Assert.Zero(t.AbilityChance);Assert.AreEqual("",t.SkillClasses);Assert.IsNull(owners[i].GetPart<ActivatedAbilitiesPart>());}
++     else Assert.Zero(extra.Length,id+" unexpected role");
++    }
++    foreach(var food in current.Population.ForageSourceReceipt.Owners){int i=Array.IndexOf(current.Before,food);Assert.AreEqual(current.Positions[i],zone.GetEntityPosition(food));Assert.False(food.GetPart<HarvestablePart>().Harvested);}
++    if(done){committed++;Assert.AreEqual(family,current.Composer.LastResult);Assert.AreEqual(1,current.Callbacks);Assert.False(Consume(current.Population.SourceReceipt));if(family=="SnakeForage")Assert.False(Consume(current.Population.ForageSourceReceipt));}
++    var finalFacts=owners.Select(Exact).ToArray();Assert.AreSame(zone,current.GetZone(id));CollectionAssert.AreEqual(finalFacts,zone.GetReadOnlyEntities().Select(Exact));
++    TestContext.WriteLine(seed+" "+family+" "+id+" "+current.Composer.LastResult+" actors="+string.Join(",",actors.Select(a=>a.BlueprintName))+" food="+current.Population.ForageSourceReceipt.Owners.Count);
++   }
++   Assert.Greater(eligible,0,"Actual ordinary rolls must supply at least one bounded candidate");Assert.Greater(committed,0,family+" needs actual pipeline realization, not only assignments");TestContext.WriteLine("SUMMARY committed="+committed+" eligible="+eligible+" sourceAbsent="+missing);
++  }
++  string FindCommitted(int seed,string family){var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);foreach(string id in Selected(m,family)){Seed(seed,id);var one=new ObservedManager(scope.Factory,seed);if(one.GetZone(id)!=null&&one.Exploration.DispositionFor(id)==2)return id;}Assert.Fail("Need a real committed "+family+" before measuring callbacks");return null;}
++  [TestCase("SnakeForage",false)][TestCase("SnakeForage",true)][TestCase("WorkGang",false)][TestCase("WorkGang",true)]
++  public void FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(string family,bool mutate)
++  {
++   const int seed=64;string id=FindCommitted(seed,family);Seed(seed,id);int observed=0;
++   var m=new ObservedManager(scope.Factory,seed,after:(self,z)=>{observed++;if(!mutate)return;if(family=="SnakeForage")self.Population.ForageSourceReceipt.Owners[0].GetPart<HarvestablePart>().YieldMax++;else Gear(self.Population.SourceReceipt.Owners[0])[0].Properties["late-change"]="retained";});
++   var zone=m.GetZone(id);Assert.Greater(observed,0);if(mutate){Assert.IsNull(zone);Assert.AreEqual(0,m.Exploration.DispositionFor(id));Assert.Zero(m.CachedZoneCount);}else{Assert.NotNull(zone);Assert.AreEqual(2,m.Exploration.DispositionFor(id));}
++  }
++  [Test] public void ActualLoadedVersionTwoKeepsItsFamilyAndDoesNotRetrofitAnE3Role()
++  {
++   const int seed=64;var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);string id=m.Exploration.Entries.First(e=>e.PlacementEligible&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.Fallow).ZoneID;
++   var world=new Entity{BlueprintName="World"};world.Properties[SpreadExplorationPlan.PropertyKey]="2|64|1\n"+id+"|3|2|1|0";
++   var restore=typeof(SpreadExplorationPlan).GetMethod("Restore",BindingFlags.Static|BindingFlags.NonPublic);typeof(OverworldZoneManager).GetProperty("Exploration").SetValue(m,restore.Invoke(null,new object[]{m,world}));Seed(seed,id);var zone=m.GetZone(id);Assert.NotNull(zone);m.SetActiveZone(zone);var player=scope.Factory.CreateEntity("Player");var at=zone.GetReadOnlyEntities().Select(zone.GetEntityPosition).First(p=>zone.CanPlaceFootprint(player,p.x,p.y));Assert.True(zone.AddEntity(player,at.x,at.y));
++   var state=GameSessionState.Capture("v2-integration","fixture",m,new TurnManager(),player,0);GameSessionState loaded;using(var stream=new MemoryStream()){state.Save(new SaveWriter(stream));stream.Position=0;loaded=GameSessionState.Load(new SaveReader(stream,scope.Factory));}
++   var manager=(OverworldZoneManager)loaded.ZoneManager;Assert.AreEqual(2,manager.Exploration.Version);Assert.AreEqual("OccupiedBank",manager.Exploration.Entries.Single().Family.ToString());Assert.AreNotSame(zone,manager.ActiveZone);Assert.False(manager.ActiveZone.GetReadOnlyEntities().Any(e=>e.GetPart<CombatTacticsPart>()?.SkillClasses==""&&e.GetPart<CombatTacticsPart>()?.AssistAllies==true));Assert.True(SpreadExplorationPlan.BindForSave(manager,new Entity()).Properties[SpreadExplorationPlan.PropertyKey].StartsWith("2|64|1\n"));
++  }
++  [Test] public void ProtectedPlacesCannotAcquireEitherNewFamily()
++  {
++   var m=OverworldZoneManager.CreateDetached(scope.Factory,64,true);foreach(string id in new[]{ReferenceGladePlan.ZoneID,m.Wayhouse.ZoneID,m.RareEncounters.PairZoneID,m.RareEncounters.ViperZoneID,"Overworld.10.10.0"}.Where(x=>!string.IsNullOrEmpty(x)).Distinct()){
++    Assert.False(m.Exploration.Entries.Any(e=>e.ZoneID==id&&e.PlacementEligible&&(e.Family.ToString()=="SnakeForage"||e.Family.ToString()=="WorkGang")),id);Seed(64,id);var z=m.GetZone(id);Assert.NotNull(z);Assert.False(z.GetReadOnlyEntities().Any(e=>e.BlueprintName=="MarlbackScrabbler"&&e.GetPart<CombatTacticsPart>()!=null),id);}
++  }
++ }
++}
+--- /dev/null
++++ Assets/Tests/EditMode/Gameplay/World/SpreadExplorationCatalogExpansionTests.cs
+@@ -0,0 +1,49 @@
++using System;
++using System.Linq;
++using System.Reflection;
++using CavesOfOoo.Core;
++using NUnit.Framework;
++namespace CavesOfOoo.Tests
++{
++ public sealed class SpreadExplorationCatalogExpansionTests
++ {
++  [TestCase(1)][TestCase(64)][TestCase(1729)]
++  public void FreshCatalogAddsActualForageAndWorkGangAssignments(int seed)
++  {using(var s=new DensityLootTestScope()){
++   var m=OverworldZoneManager.CreateDetached(s.Factory,seed,true);
++   Assert.AreEqual(3,m.Exploration.Version,"New distribution has an explicit version; existing v2 worlds must retain theirs.");
++   foreach(string family in new[]{"SnakeForage","WorkGang"})Assert.True(m.Exploration.Entries.Any(e=>e.Family.ToString()==family),family);
++   foreach(var e in m.Exploration.Entries.Where(e=>e.Family.ToString()=="SnakeForage"))Assert.AreEqual(Formation.FlowerMeadow,FormationSelector.For(BiomeType.Spread,e.ZoneID));
++   foreach(var e in m.Exploration.Entries.Where(e=>e.Family.ToString()=="WorkGang"))Assert.AreEqual(Formation.Fallow,FormationSelector.For(BiomeType.Spread,e.ZoneID));
++   Assert.AreEqual(0,m.CachedZoneCount);
++  }}
++  [TestCase(2,"Fallow",2,true)][TestCase(2,"Fallow",6,false)]
++  [TestCase(2,"FlowerMeadow",5,false)][TestCase(3,"Fallow",6,true)]
++  [TestCase(3,"Fallow",2,false)][TestCase(3,"FlowerMeadow",5,true)]
++  [TestCase(3,"FlowerMeadow",6,false)][TestCase(4,"FlowerMeadow",5,false)]
++  [TestCase(1,"Fallow",2,false)][TestCase(3,"FlowerMeadow",7,false)]
++  public void SavedCatalogVersionOwnsItsFamilyHabitat(int version,string formation,int family,bool accepted)
++  {using(var s=new DensityLootTestScope()){
++   var m=OverworldZoneManager.CreateDetached(s.Factory,64,false);
++   string id=SpreadExplorationPlan.Create(m).Entries.First(e=>e.PlacementEligible&&FormationSelector.For(BiomeType.Spread,e.ZoneID).ToString()==formation).ZoneID;
++   var world=new Entity{BlueprintName="World"};string wire=version+"|64|1\n"+id+"|3|"+family+"|1|0";world.Properties[SpreadExplorationPlan.PropertyKey]=wire;
++   var method=typeof(SpreadExplorationPlan).GetMethod("Restore",BindingFlags.Static|BindingFlags.NonPublic);
++   if(!accepted){var error=Assert.Throws<TargetInvocationException>(()=>method.Invoke(null,new object[]{m,world}));Assert.IsInstanceOf<System.IO.InvalidDataException>(error.InnerException);Assert.False(m.Exploration.Enabled);return;}
++   var restored=(SpreadExplorationPlan)method.Invoke(null,new object[]{m,world});typeof(OverworldZoneManager).GetProperty("Exploration").SetValue(m,restored);
++   Assert.AreEqual(version,restored.Version);Assert.AreEqual(wire,SpreadExplorationPlan.BindForSave(m,world).Properties[SpreadExplorationPlan.PropertyKey]);Assert.AreEqual(0,m.CachedZoneCount);
++  }}
++  [Test]public void AVersionTwoFallowTerritoryRemainsVersionTwoWhenSavedAgain()
++  {using(var s=new DensityLootTestScope()){
++   var m=OverworldZoneManager.CreateDetached(s.Factory,64,false);
++   var candidates=SpreadExplorationPlan.Create(m);
++   string id=candidates.Entries.First(e=>e.PlacementEligible&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.Fallow).ZoneID;
++   var world=new Entity{BlueprintName="World"};string wire="2|64|1\n"+id+"|3|2|1|0";world.Properties[SpreadExplorationPlan.PropertyKey]=wire;
++   var restore=typeof(SpreadExplorationPlan).GetMethod("Restore",BindingFlags.Static|BindingFlags.NonPublic);
++   var restored=(SpreadExplorationPlan)restore.Invoke(null,new object[]{m,world});
++   typeof(OverworldZoneManager).GetProperty("Exploration").SetValue(m,restored);
++   Assert.AreEqual(2,restored.Version);Assert.AreEqual("OccupiedBank",restored.Entries.Single().Family.ToString());
++   Assert.AreEqual(wire,SpreadExplorationPlan.BindForSave(m,world).Properties[SpreadExplorationPlan.PropertyKey]);
++   Assert.AreEqual(0,m.CachedZoneCount);
++  }}
++ }
++}
+--- /dev/null
++++ Assets/Tests/EditMode/Gameplay/World/SpreadExplorationForageReceiptTests.cs
+@@ -0,0 +1,30 @@
++using System;
++using System.Linq;
++using System.Collections.Generic;
++using CavesOfOoo.Core;
++using CavesOfOoo.Data;
++using NUnit.Framework;
++namespace CavesOfOoo.Tests
++{
++ public sealed class SpreadExplorationForageReceiptTests
++ {
++  static bool Consume(SpreadGenerationReceipt receipt)=>(bool)typeof(SpreadGenerationReceipt).GetMethod("TryConsume",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).Invoke(receipt,null);
++
++  static PopulationBuilder Builder(bool enabled=true,string table="SpreadTier1",bool duplicate=false){var t=new PopulationTable{Name=table,Entries=new List<PopulationEntry>{new PopulationEntry{BlueprintName="BerryBush",MinCount=1,MaxCount=1},new PopulationEntry{BlueprintName="Beehive",MinCount=1,MaxCount=1},new PopulationEntry{BlueprintName="Viper",MinCount=1,MaxCount=1,EncounterGroup="SpreadTier1Encounter"}}};if(duplicate)t.Entries.Add(new PopulationEntry{BlueprintName="BerryBush",MinCount=1,MaxCount=1});return new PopulationBuilder(t){CaptureSourceReceipts=enabled};}
++  static SpreadGenerationReceipt Receipt(PopulationBuilder b){var p=typeof(PopulationBuilder).GetProperty("ForageSourceReceipt");Assert.NotNull(p,"A separately rolled finite food owner needs its own exact source receipt.");return (SpreadGenerationReceipt)p.GetValue(b);}
++  [Test]public void OnlyActualFiniteFoodRollsAuthorizeTheSourceAndConsumptionIsOneShot()
++  {using(var s=new DensityLootTestScope()){
++   var z=new Zone("forage-receipt");var decoy=s.Factory.CreateEntity("BerryBush");z.AddEntity(decoy,2,2);var b=Builder();b.BuildZone(z,s.Factory,new Random(64));var r=Receipt(b);
++   Assert.NotNull(r);Assert.True(r.IsCurrent);Assert.AreEqual(2,r.Owners.Count);CollectionAssert.AreEquivalent(new[]{"BerryBush","Beehive"},r.Owners.Select(e=>e.BlueprintName));Assert.False(r.Owners.Contains(decoy));
++   Assert.True(b.SourceReceipt.Owners.All(e=>e.BlueprintName=="Viper"));Assert.True(Consume(r));Assert.False(Consume(r));
++  }}
++  [Test]public void AlteredFoodInvalidatesOnlyTheFoodReceiptAndEarlierRevisionCannotAuthorizeNewZone()
++  {using(var s=new DensityLootTestScope()){
++   var z=new Zone("forage-stale");var b=Builder();b.BuildZone(z,s.Factory,new Random(64));var r=Receipt(b);Assert.True(r.IsCurrent);r.Owners[0].GetPart<HarvestablePart>().Harvested=true;Assert.False(r.IsCurrent);Assert.True(b.SourceReceipt.IsCurrent);
++   b.BuildZone(new Zone("forage-new"),s.Factory,new Random(64));Assert.False(r.IsCurrent);Assert.True(Receipt(b).IsCurrent);
++  }}
++  [TestCase(false,"SpreadTier1",false,0)][TestCase(true,"foreign",false,0)][TestCase(true,"SpreadTier1",true,1)]
++  public void DisabledForeignAndAmbiguousRowsCannotPromoteMatchingFood(bool enabled,string table,bool duplicate,int count)
++  {using(var s=new DensityLootTestScope()){var b=Builder(enabled,table,duplicate);b.BuildZone(new Zone("forage-counter"),s.Factory,new Random(64));var r=Receipt(b);if(!enabled)Assert.IsNull(r);else{Assert.NotNull(r);Assert.AreEqual(count,r.Owners.Count);if(duplicate)Assert.AreEqual("Beehive",r.Owners.Single().BlueprintName);}}}
++ }
++}

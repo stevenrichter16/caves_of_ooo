@@ -54,7 +54,7 @@ namespace CavesOfOoo.Core
                 &&owners.All(e=>e!=null&&!string.IsNullOrEmpty(e.ID))&&owners.Select(e=>e.ID).Distinct().Count()==owners.Length;
             snapshots=owners.Select(e=>new OwnerSnapshot(zone,e)).ToArray();
         }
-        bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&(ReferenceEquals(p.SourceReceipt,this)||ReferenceEquals(p.LooseSourceReceipt,this)||ReferenceEquals(p.AmbientSourceReceipt,this)||ReferenceEquals(p.AmbientReplacementReceipt,this))
+        bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&(ReferenceEquals(p.SourceReceipt,this)||ReferenceEquals(p.LooseSourceReceipt,this)||ReferenceEquals(p.AmbientSourceReceipt,this)||ReferenceEquals(p.AmbientReplacementReceipt,this)||ReferenceEquals(p.ForageSourceReceipt,this))
             : source is ContainerBuilder c&&c.CaptureSourceReceipts&&ReferenceEquals(c.SourceReceipt,this);
         public bool IsCurrent => !consumed&&complete&&SourceCurrent&&snapshots.All(s=>s.Matches(true));
         /// <summary>Claim this exact source once after all transaction preflights.

@@ -1,0 +1,146 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+namespace CavesOfOoo.Core
+{
+ public static partial class SpreadExplorationActorPlacement
+ {
+  /// <summary>Cold placement only. Caller must own the complete rolled snake
+  /// packet and exact forage receipt. Food stays in place and is never consumed.</summary>
+  public static bool TrySnakeForage(Zone zone,IReadOnlyList<Entity> snakes,Entity forage,Func<bool> authority,out Func<bool> finalState)
+  {
+   finalState=null;var actors=AdmitEncounter(zone,snakes,"Viper",1,2);if(actors==null||!Forage(zone,forage)||authority==null)return false;
+   var foodGraph=new OwnedGraphSnapshot(forage);var foodAt=zone.GetEntityPosition(forage);
+   bool Source()=>Forage(zone,forage)&&zone.GetEntityPosition(forage)==foodAt&&foodGraph.Matches(null);
+   var snapshots=actors.Select(e=>ActorSnapshot.Capture(zone,e,"Viper")).ToArray();
+   if(!authority()||!Source()||!Original(snapshots))return false;
+   var ignored=new HashSet<Entity>(actors);var geometry=new SpreadWildernessSituationBuilder.Geometry(zone,ignored);
+   if(!zone.GetReadOnlyEntities().Any(e=>Post(zone,e)&&Distance(zone.GetEntityPosition(e),foodAt)<=6))return false;
+   int trials=0;
+   for(int radius=2;radius<=4;radius++)for(int y=foodAt.y-radius;y<=foodAt.y+radius;y++)for(int x=foodAt.x-radius;x<=foodAt.x+radius;x++)
+   {
+    if(Distance((x,y),foodAt)!=radius)continue;if(++trials>MaxTrials)return false;
+    var destinations=actors.Length==1?new[]{(x,y)}:new[]{(x,y),(x+2,y)};
+    bool Layout(SpreadWildernessSituationBuilder.Geometry g)=>(AllPlaces(g,destinations)&&g.PreservesRoutes(destinations)
+     &&SnakeApproach(zone,g,actors,destinations,foodAt)&&SafeBypass(zone,g,actors,destinations));
+    if(!Layout(geometry))continue;
+    if(!authority()||!Source()||!Original(snapshots))return false;
+    return PlaceEncounter(zone,actors,snapshots,destinations,authority,Source,Layout,geometry,false,out finalState);
+   }
+   return false;
+  }
+  /// <summary>Realizes exactly two existing ordinary owners. Only local help is
+  /// enabled; no new skills, equipment, stats or ObjectCreated replay.</summary>
+  public static bool TryWorkGang(Zone zone,IReadOnlyList<Entity> pair,bool breakAssistanceSight,Func<bool> authority,out Func<bool> finalState)
+  {
+   finalState=null;var actors=AdmitEncounter(zone,pair,"MarlbackScrabbler",2,2);if(actors==null||authority==null)return false;
+   var snapshots=actors.Select(e=>ActorSnapshot.Capture(zone,e,"MarlbackScrabbler")).ToArray();
+   if(!authority()||!Original(snapshots))return false;
+   var geometry=new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(actors));int trials=0;
+   foreach(var post in zone.GetReadOnlyEntities().Where(e=>Post(zone,e)).OrderBy(e=>zone.GetEntityPosition(e).y).ThenBy(e=>zone.GetEntityPosition(e).x).Take(MaxSources).ToArray())
+   {
+    var postGraph=new OwnedGraphSnapshot(post);var center=zone.GetEntityPosition(post);
+    if(snapshots.Any(s=>Distance(s.Origin,center)>12))continue;
+    bool Source()=>Post(zone,post)&&zone.GetEntityPosition(post)==center&&postGraph.Matches(null);
+    for(int y=center.y-2;y<=center.y+2;y++)for(int x=center.x-3;x<=center.x+3;x++)for(int distance=3;distance<=6;distance++)
+    {
+     if(++trials>MaxTrials)return false;var destinations=new[]{(x,y),(x+distance,y)};
+     bool Layout(SpreadWildernessSituationBuilder.Geometry g)=>AllPlaces(g,destinations)&&g.PreservesRoutes(destinations)
+      &&GangSight(zone,g,actors,destinations,breakAssistanceSight)&&SafeBypass(zone,g,actors,destinations);
+     if(!Layout(geometry))continue;
+     if(!authority()||!Source()||!Original(snapshots))return false;
+     return PlaceEncounter(zone,actors,snapshots,destinations,authority,Source,Layout,geometry,true,out finalState);
+    }
+   }
+   return false;
+  }
+  static Entity[] AdmitEncounter(Zone z,IReadOnlyList<Entity> input,string blueprint,int min,int max)
+  {
+   if(z==null||input==null||input.Count<min||input.Count>max)return null;var actors=input.ToArray();
+   if(actors.Any(e=>e==null)||actors.Distinct().Count()!=actors.Length||actors.Select(e=>e.ID).Distinct().Count()!=actors.Length)return null;
+   foreach(var e in actors)
+   {
+    if(ActorSnapshot.Capture(z,e,blueprint)==null||e.HasPart<CombatTacticsPart>()||e.HasPart<SpreadTerritoryPart>()||e.HasPart<SpreadGrazerPart>()||e.HasPart<AIAmbushPart>())return null;
+    var brain=e.GetPart<BrainPart>();if(brain.Target!=null||brain.Passive||brain.InConversation||brain.GetGoalsSnapshot().Any(g=>!(g is BoredGoal)))return null;
+   }
+   return actors;
+  }
+  static bool Original(ActorSnapshot[] state)=>state.All(s=>s!=null&&s.Current(s.Origin));
+  static bool Forage(Zone z,Entity e)=>SpreadActorContext.Ground(e,z)&&(e.BlueprintName=="BerryBush"||e.BlueprintName=="Beehive")
+   &&!e.HasPart<SpatialFootprintPart>()&&e.GetPart<RenderPart>()?.ParentEntity==e&&e.GetPart<ExaminablePart>()?.ParentEntity==e
+   &&e.GetPart<HarvestablePart>() is HarvestablePart h&&h.ParentEntity==e&&!h.Harvested&&h.YieldChance==100&&h.YieldMin==1
+   &&h.YieldMax==(e.BlueprintName=="BerryBush"?3:2)&&h.YieldBlueprint==(e.BlueprintName=="BerryBush"?"WildBerries":"Honeycomb");
+  static bool AllPlaces(SpreadWildernessSituationBuilder.Geometry g,(int x,int y)[] points)=>points.Distinct().Count()==points.Length&&points.All(p=>g.Place(p.x,p.y));
+  static bool Seen(Zone z,Entity actor,(int x,int y) at,(int x,int y) target)=>Distance(at,target)<=actor.GetPart<BrainPart>().SightRadius&&AIHelpers.HasLineOfSight(z,at.x,at.y,target.x,target.y);
+  static bool SnakeApproach(Zone z,SpreadWildernessSituationBuilder.Geometry g,Entity[] actors,(int x,int y)[] positions,(int x,int y) food)
+  {
+   var blocked=new HashSet<(int x,int y)>(positions);var reach=g.Flood(blocked,null,int.MaxValue,null);
+   for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)
+   {var p=(x:food.x+dx,y:food.y+dy);if(Math.Abs(dx)+Math.Abs(dy)!=1||!g.In(p.x,p.y)||!reach[p.x,p.y])continue;
+    if(actors.Select((a,i)=>Seen(z,a,positions[i],p)).Any(b=>b))return true;}
+   return false;
+  }
+  static bool GangSight(Zone z,SpreadWildernessSituationBuilder.Geometry g,Entity[] actors,(int x,int y)[] points,bool occluded)
+  {
+   if(Distance(points[0],points[1])>6)return false;
+   bool together=AIHelpers.HasLineOfSight(z,points[0].x,points[0].y,points[1].x,points[1].y)&&AIHelpers.HasLineOfSight(z,points[1].x,points[1].y,points[0].x,points[0].y);
+   if(together==occluded)return false;var blocked=new HashSet<(int x,int y)>(points);var reach=g.Flood(blocked,null,int.MaxValue,null);
+   for(int y=Math.Max(1,points[0].y-3);y<=Math.Min(Zone.Height-2,points[0].y+3);y++)for(int x=Math.Max(1,points[0].x-3);x<=Math.Min(Zone.Width-2,points[0].x+3);x++)
+   {
+    if(!reach[x,y]||!g.Walk(x,y,blocked))continue;bool a=Seen(z,actors[0],points[0],(x,y)),b=Seen(z,actors[1],points[1],(x,y));
+    if(occluded?a!=b:a&&b)return true;
+   }
+   return false;
+  }
+  static bool SafeBypass(Zone z,SpreadWildernessSituationBuilder.Geometry g,Entity[] actors,(int x,int y)[] points)
+  {
+   var blocked=new HashSet<(int x,int y)>(points);var unsafeCells=new bool[Zone.Width,Zone.Height];
+   for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
+   {
+    if(!g.Walk(x,y,blocked))continue;
+    for(int i=0;i<actors.Length;i++)if(Seen(z,actors[i],points[i],(x,y))){unsafeCells[x,y]=true;break;}
+    if(unsafeCells[x,y]&&(x==0||y==0||x==Zone.Width-1||y==Zone.Height-1))return false;
+   }
+   bool Cross(bool vertical)
+   {
+    var seen=new bool[Zone.Width,Zone.Height];var q=new Queue<(int x,int y)>();
+    void Add(int x,int y){if(!g.In(x,y)||seen[x,y]||unsafeCells[x,y]||!g.Walk(x,y,blocked))return;seen[x,y]=true;q.Enqueue((x,y));}
+    if(vertical){for(int x=0;x<Zone.Width;x++)Add(x,0);}else for(int y=0;y<Zone.Height;y++)Add(0,y);
+    while(q.Count>0){var p=q.Dequeue();if(vertical?p.y==Zone.Height-1:p.x==Zone.Width-1)return true;Add(p.x-1,p.y);Add(p.x+1,p.y);Add(p.x,p.y-1);Add(p.x,p.y+1);}return false;
+   }
+   return Cross(false)||Cross(true);
+  }
+  static bool PlaceEncounter(Zone zone,Entity[] actors,ActorSnapshot[] snapshots,(int x,int y)[] destinations,Func<bool> authority,Func<bool> source,
+   Func<SpreadWildernessSituationBuilder.Geometry,bool> layout,SpreadWildernessSituationBuilder.Geometry original,bool assist,out Func<bool> finalState)
+  {
+   finalState=null;var additions=new CombatTacticsPart[actors.Length];var current=snapshots.Select(s=>s.Origin).ToArray();bool committed=false;
+   bool Current()=>source()&&actors.Select((e,i)=>snapshots[i].Current(current[i],additions[i])).All(b=>b)
+    &&additions.All(t=>t==null||(t.AssistAllies&&t.AssistRadius==6&&t.SkillClasses==""&&t.AbilityChance==0));
+   try
+   {
+    for(int i=0;i<actors.Length;i++)
+    {
+     if(!authority()||!Current())return false;
+     if(current[i]!=destinations[i]&&!zone.MoveEntity(actors[i],destinations[i].x,destinations[i].y))return false;current[i]=destinations[i];
+     if(!authority()||!Current())return false;
+    }
+    if(assist)for(int i=0;i<actors.Length;i++)
+    {additions[i]=new CombatTacticsPart{SkillClasses="",AbilityChance=0,AssistAllies=true,AssistRadius=6};actors[i].AddPart(additions[i]);if(!authority()||!Current())return false;}
+    var geometry=new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(actors));
+    if(!authority()||!Current()||!geometry.PreservesAgainst(original,destinations)||!layout(geometry))return false;
+    var finished=actors.Select(e=>ActorSnapshot.Capture(zone,e,e.BlueprintName)).ToArray();
+    bool Final()=>source()&&finished.Select((s,i)=>s!=null&&s.Current(destinations[i])).All(b=>b)
+     &&new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(actors)) is SpreadWildernessSituationBuilder.Geometry next
+     &&next.PreservesAgainst(original,destinations)&&layout(next);
+    committed=Final();if(committed)finalState=Final;return committed;
+   }
+   finally
+   {
+    if(!committed)
+    {
+     for(int i=actors.Length-1;i>=0;i--){var added=additions[i];if(added!=null&&added.ParentEntity==actors[i]&&actors[i].Parts.Contains(added))actors[i].RemovePart(added);snapshots[i].Rollback(current[i]);}
+    }
+   }
+  }
+ }
+}

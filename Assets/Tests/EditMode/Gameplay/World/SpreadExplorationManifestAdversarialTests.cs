@@ -90,7 +90,11 @@ namespace CavesOfOoo.Tests
             internal ObservedManager(EntityFactory f):base(f,64){Set(this,"Exploration",SpreadExplorationPlan.Create(this));}
             protected override ZoneGenerationPipeline GetPipelineForZone(string id)
             {
-                var p=base.GetPipelineForZone(id);p.AddBuilder(new CallbackBuilder{Retry=Retry,Callback=z=>{Starts++;Early?.Invoke(z);}});return p;
+                var p=base.GetPipelineForZone(id);
+                // These fixtures explicitly mark their own generation attempt.
+                // Keep real producers/guards, but do not let ordinary composition preempt that mark.
+                p.RemoveBuilders<SpreadExplorationBuilder>();
+                p.AddBuilder(new CallbackBuilder{Retry=Retry,Callback=z=>{Starts++;Early?.Invoke(z);}});return p;
             }
             protected override void OnZoneGenerated(Zone zone,string id){base.OnZoneGenerated(zone,id);Final?.Invoke(zone);}
             internal bool ReplaceAttempt(Zone zone)=>base.GetPipelineForZone(zone.ZoneID).Builders.First(b=>b.Name=="SpreadExplorationAttempt").BuildZone(zone,Factory,new Random(1));
@@ -174,7 +178,7 @@ namespace CavesOfOoo.Tests
             {
                 System.Globalization.CultureInfo.CurrentCulture=culture;
                 var m=OverworldZoneManager.CreateDetached(scope.Factory,-64,true);
-                string wire=Wire(m);Assert.True(wire.StartsWith("2|-64|",StringComparison.Ordinal));
+                string wire=Wire(m);Assert.True(wire.StartsWith("4|-64|",StringComparison.Ordinal));
                 var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("culture","fixture",m,null,null));
                 Assert.True(loaded.ZoneManager.Exploration.Enabled);Assert.AreEqual(-64,loaded.ZoneManager.WorldSeed);
             }

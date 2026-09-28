@@ -1,0 +1,186 @@
+{
+  "runId": "3f7afbbab5b24493b1339da9aac33d64",
+  "seed": 64,
+  "mode": "collector",
+  "finished": true,
+  "complete": false,
+  "failures": 1,
+  "fatal": "System.InvalidOperationException: original collector source identities/predeposit quantity/HP\n  at CavesOfOoo.Scenarios.Custom.QuestFreeSpreadStateNativePlayer+<Collector>d__122.MoveNext () [0x00d7b] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.Modes.cs:151 \n  at CavesOfOoo.Scenarios.Custom.QuestFreeSpreadStateNativePlayer+<RunSafely>d__101.MoveNext () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.cs:259 ",
+  "seconds": 4.1861838,
+  "paidInputs": 3,
+  "checks": [
+    {
+      "label": "ordinary_fresh_opted_in_world",
+      "pass": true
+    }
+  ],
+  "observations": [
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "CollectorReturn",
+      "zone": "Overworld.10.13.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "configured Seeking collector with original ground target/home and safe visible local observation cell",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "CollectorReturn",
+      "zone": "Overworld.10.7.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "configured Seeking collector with original ground target/home and safe visible local observation cell",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "CollectorReturn",
+      "zone": "Overworld.11.2.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "configured Seeking collector with original ground target/home and safe visible local observation cell",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "CollectorReturn",
+      "zone": "Overworld.12.5.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "configured Seeking collector with original ground target/home and safe visible local observation cell",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "CollectorReturn",
+      "zone": "Overworld.13.11.0",
+      "owner": "14086",
+      "arrival": [
+        1,
+        23
+      ],
+      "accepted": true,
+      "criterion": "configured Seeking collector with original ground target/home and safe visible local observation cell",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "disclosed-player-only-transfer",
+      "label": "actual finite collector trip",
+      "zone": "Overworld.13.11.0",
+      "x": 1,
+      "y": 23,
+      "player": "2698",
+      "tick": 10,
+      "nativeEntryAdditions": [],
+      "boundary": "Setup transfer to an actual generated source; not an ordinary journey. Original source owners are preserved. Normal native entry-hook additions such as travellers are recorded separately, never suppressed."
+    },
+    {
+      "phase": "actual-current-style",
+      "owner": "14086",
+      "blueprint": "Tatterjay",
+      "model": "spread-tatterjay",
+      "pieces": 1,
+      "camera": {
+        "pixelWidth": 1461,
+        "pixelHeight": 918
+      },
+      "boundary": "All-piece identity and bounds do not prove unoccluded pixels or human readability; images require review."
+    },
+    {
+      "phase": "native-collector-wait",
+      "key": "Period",
+      "beforeTick": 10,
+      "afterTick": 20,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "cost": 1000,
+      "beforeHp": 40,
+      "afterHp": 40
+    },
+    {
+      "phase": "live-collector-progress",
+      "paidInputs": 1,
+      "actor": "14086",
+      "item": "14094",
+      "home": "14095",
+      "state": "Seeking",
+      "Actions": 0,
+      "position": {
+        "Item1": 4,
+        "Item2": 19
+      },
+      "carried": null,
+      "itemInventory": null,
+      "homeCount": 1
+    },
+    {
+      "phase": "native-collector-wait",
+      "key": "Period",
+      "beforeTick": 20,
+      "afterTick": 30,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "cost": 1000,
+      "beforeHp": 40,
+      "afterHp": 40
+    },
+    {
+      "phase": "live-collector-progress",
+      "paidInputs": 2,
+      "actor": "14086",
+      "item": "14094",
+      "home": "14095",
+      "state": "Seeking",
+      "Actions": 1,
+      "position": {
+        "Item1": 3,
+        "Item2": 19
+      },
+      "carried": null,
+      "itemInventory": null,
+      "homeCount": 1
+    },
+    {
+      "phase": "native-collector-wait",
+      "key": "Period",
+      "beforeTick": 30,
+      "afterTick": 40,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "cost": 1000,
+      "beforeHp": 40,
+      "afterHp": 40
+    },
+    {
+      "phase": "failed-current-state",
+      "zone": "Overworld.13.11.0",
+      "player": "2698",
+      "position": [
+        1,
+        23
+      ],
+      "hp": 40,
+      "state": "Normal"
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Collector/NativeStates/3f7afbbab5b24493b1339da9aac33d64/00-ordinary-start.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Collector/NativeStates/3f7afbbab5b24493b1339da9aac33d64/01-original-collector-item-and-home.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E3/Collector/NativeStates/3f7afbbab5b24493b1339da9aac33d64/99-failed-current-state.png"
+  ],
+  "unverifiedFamilies": [],
+  "humanAwarenessMeasured": false,
+  "boundary": "Ordinary N then one disclosed original-player-only setup transfer to a bounded actual generated source. No owner/item/phase/energy grant or direct actor action. Actual keys and current camera/state are observed. This is local instrumented activation, not ordinary discovery, uninformed awareness, natural travel or performance. Root must review screenshots.",
+  "settings": {
+    "screenWidth": 2271,
+    "screenHeight": 1251,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "lowDetail": false
+  }
+}

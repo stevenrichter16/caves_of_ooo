@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e3/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="20" result="Failed" start-time="2026-09-28T03:04:28.6054060Z" end-time="2026-09-28T03:04:28.7892710Z" duration="0.183808" total="4" passed="1" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="7" random-seed="1076003192">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/e3/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/e3/catalog-red.xml --where "class =~ /SpreadExplorationCatalogExpansionTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationCatalogExpansionTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1025" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e3/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-28T03:04:28.6054060Z" end-time="2026-09-28T03:04:28.7892710Z" duration="0.183808" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="7">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/e3/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/e3/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="33737" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1026" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-28T03:04:28.6073880Z" end-time="2026-09-28T03:04:28.7892670Z" duration="0.181876" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="7">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1027" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-28T03:04:28.6075560Z" end-time="2026-09-28T03:04:28.7892630Z" duration="0.181705" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="7">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationCatalogExpansionTests" fullname="CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests" classname="CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T03:04:28.6081640Z" end-time="2026-09-28T03:04:28.7892460Z" duration="0.181080" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="7">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1005" name="AVersionTwoFallowTerritoryRemainsVersionTwoWhenSavedAgain" fullname="CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests.AVersionTwoFallowTerritoryRemainsVersionTwoWhenSavedAgain" methodname="AVersionTwoFallowTerritoryRemainsVersionTwoWhenSavedAgain" classname="CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests" runstate="Runnable" seed="1922283154" result="Passed" start-time="2026-09-28T03:04:28.6101680Z" end-time="2026-09-28T03:04:28.7025900Z" duration="0.092446" asserts="4" />
+          <test-suite type="ParameterizedMethod" id="1004" name="FreshCatalogAddsActualForageAndWorkGangAssignments" fullname="CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments" classname="CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T03:04:28.7031880Z" end-time="2026-09-28T03:04:28.7887320Z" duration="0.085543" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="FreshCatalogAddsActualForageAndWorkGangAssignments(1)" fullname="CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(1)" methodname="FreshCatalogAddsActualForageAndWorkGangAssignments" classname="CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests" runstate="Runnable" seed="931058591" result="Failed" start-time="2026-09-28T03:04:28.7032830Z" end-time="2026-09-28T03:04:28.7397380Z" duration="0.036455" asserts="1">
+              <failure>
+                <message><![CDATA[  New distribution has an explicit version; existing v2 worlds must retain theirs.
+  Expected: 3
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(Int32 seed) in /tmp/coo-questfree-implementation/e3/SpreadExplorationCatalogExpansionTests.cs:line 14
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New distribution has an explicit version; existing v2 worlds must retain theirs.
+  Expected: 3
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(Int32 seed) in /tmp/coo-questfree-implementation/e3/SpreadExplorationCatalogExpansionTests.cs:line 14
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="FreshCatalogAddsActualForageAndWorkGangAssignments(64)" fullname="CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(64)" methodname="FreshCatalogAddsActualForageAndWorkGangAssignments" classname="CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests" runstate="Runnable" seed="911073513" result="Failed" start-time="2026-09-28T03:04:28.7398110Z" end-time="2026-09-28T03:04:28.7618980Z" duration="0.022087" asserts="1">
+              <failure>
+                <message><![CDATA[  New distribution has an explicit version; existing v2 worlds must retain theirs.
+  Expected: 3
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(Int32 seed) in /tmp/coo-questfree-implementation/e3/SpreadExplorationCatalogExpansionTests.cs:line 14
+   at InvokeStub_SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New distribution has an explicit version; existing v2 worlds must retain theirs.
+  Expected: 3
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(Int32 seed) in /tmp/coo-questfree-implementation/e3/SpreadExplorationCatalogExpansionTests.cs:line 14
+   at InvokeStub_SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="FreshCatalogAddsActualForageAndWorkGangAssignments(1729)" fullname="CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(1729)" methodname="FreshCatalogAddsActualForageAndWorkGangAssignments" classname="CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests" runstate="Runnable" seed="473642529" result="Failed" start-time="2026-09-28T03:04:28.7619220Z" end-time="2026-09-28T03:04:28.7882110Z" duration="0.026289" asserts="1">
+              <failure>
+                <message><![CDATA[  New distribution has an explicit version; existing v2 worlds must retain theirs.
+  Expected: 3
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(Int32 seed) in /tmp/coo-questfree-implementation/e3/SpreadExplorationCatalogExpansionTests.cs:line 14
+   at InvokeStub_SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New distribution has an explicit version; existing v2 worlds must retain theirs.
+  Expected: 3
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(Int32 seed) in /tmp/coo-questfree-implementation/e3/SpreadExplorationCatalogExpansionTests.cs:line 14
+   at InvokeStub_SpreadExplorationCatalogExpansionTests.FreshCatalogAddsActualForageAndWorkGangAssignments(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

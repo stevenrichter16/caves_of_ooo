@@ -1,0 +1,23 @@
+# Environmental utility source audit (E4 preparation)
+
+Status: read-only source verification while E3 collector/action-cue integration continues. No E4 family is registered or implemented by this audit. This refines the existing parent plan; it does not replace its source/route/save/native gates.
+
+## Corrections before implementation
+
+| Planned opportunity | Current source evidence | Implementation consequence |
+|---|---|---|
+| Heavy salvage with a choice of moving it or leaving it | `HaulablePropBuilder` runs4200, rolls35percent, then selects one actual Spread HaulBarrel/FallenBeam/MillStone and tries40 positions. The class comment says one or two but code places at mostone. No exact producer receipt exists yet. | Add a narrow receipt for that real0/1 source. Do not create a second object or turn ordinary crates into cargo. Preserve the existing source probability and actor stats. |
+| Drag a prop to gain cover | `DragRules` asks actual lift admission, then Strength×8 and MinLiftStrength. HaulBarrel75, FallenBeam60 and MillStone150 use Physics.Solid; `Cell.IsSolid`/native sight requires the Solid tag or a closed supported door. | These existing props obstruct movement, not sight. F9 should initially offer movable obstruction or opening a route; do not promise ranged/sight cover without a separate deliberate mechanical change. Starting Strength must be checked using the actual spawned player, not assumed16. |
+| A useful cooling cooking place | `CookingService.FindStation` currently accepts any adjacent CampfirePart. It checks neither fuel nor thermal state. Campfire has actual Fuel200/BurnRate0.5/Thermal500, and BurningEffect exhaustion leaves charred/smoldering ownership rather than removing CampfirePart. | A finite heat-based F10 cannot claim a spent fire stops cooking today. Execute a failing exhausted/cold source counter before a narrow admission correction. Distinguish cooking-source permission from fire visuals and free-rest policy. No universal combustibility rewrite. |
+| An oven implies a cooking station | The raw Oven blueprint is solid physical scenery, with no CampfirePart; HearthPatch is a living/fungal settlement feature. CampfirePart is a native action provider, not a name match. | Do not repurpose protected HearthPatch or label a bare oven usable. Reuse an actual sourced Campfire, or explicitly define a new station contract after tests. |
+| Exhaustion leaves ash | BurningEffect fires FuelExhausted with an ExhaustProduct, but a project search found no receiving handler. | Record as a follow-up source gap. It is not necessary to build an ash subsystem merely to prove finite cooking permission; prioritize actual heat/depletion and route safety. |
+| A field passage can be cut | Hedge already has DestructibleHP10 and physical collision but no sight-blocking Solid tag. VillageDoor is an actual DoorPart and changes collision/occlusion through its existing action path. | A future F12 layout can reshape ordinary boundary terrain under the user’s authorization. Prove a useful shorter route and an initial bypass; keep authored/owned/quest terrain and recorded changes protected. Do not call hedges visual cover without new evidence. |
+
+## Next implementation order once E3 is coherent
+
+1. Audit actual fresh-player drag verdicts, 3D prop identities, producers and native drag turn/footprint semantics; write a one-source receipt and route-choice RED fixture. Use useful obstruction/haul decisions, not cash-value flavor.
+2. Establish finite cooking source semantics through real recipe transactions and actual exhausted/cold/hot counters, then select only actual source owners. Fuel/thermal state and products must persist across travel/load. Keep protected hearths and deliberate inexhaustible landmarks out.
+3. Build one deliberately shaped ordinary boundary with a real operable gate or destructible hedge and an open alternate route. Compare before/after path lengths and save the changed world. This is the clearest use of the user’s permission to modify chunks meaningfully.
+4. Leave F11 predator/prey for its own behavior/visual slice after these environmental opportunities. Generic Beast alliances, actual prey escape, player entry safety and corpse provenance need separate tests; no fake battle aftermath or global beast hostility.
+
+All four remain CoO-original exploration compositions. Existing tests, static models or source comments are not evidence of ordinary player discovery, visual legibility or live performance. Broader regional rollout still waits for Spread acceptance.

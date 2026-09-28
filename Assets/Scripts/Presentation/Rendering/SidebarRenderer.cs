@@ -125,7 +125,7 @@ namespace CavesOfOoo.Rendering
             }
         }
 
-        public void Render(SidebarSnapshot snapshot, Camera camera, int sidebarWidthChars, bool flashActive, float flashT)
+        public void Render(SidebarSnapshot snapshot, Camera camera, int sidebarWidthChars, bool flashActive, float flashT, string actionHint = null)
         {
             using (PerformanceMarkers.Ui.SidebarRender.Auto())
             {
@@ -137,7 +137,7 @@ namespace CavesOfOoo.Rendering
                 // frame. Saves ~220ms / frame in the steady state because
                 // the full re-tile-the-whole-sidebar pass below is the
                 // single most expensive thing in LateUpdate.
-                int fingerprint = ComputeSnapshotFingerprint(snapshot);
+                int fingerprint = unchecked(ComputeSnapshotFingerprint(snapshot) * 31 + (actionHint?.GetHashCode() ?? 0));
                 bool inputsUnchanged = !_needsRedraw
                     && fingerprint == _lastSnapshotFingerprint
                     && Mathf.Approximately(camera.aspect, _lastCameraAspect)
@@ -211,7 +211,7 @@ namespace CavesOfOoo.Rendering
                 // so the extra ceiling costs nothing on effect-free targets.
                 int focusCeiling = inspectorActive ? 14 : 11;
                 int focusMaxLines = Mathf.Clamp(remainingAfterFocusHeader - 4, 2, focusCeiling);
-                List<string> focusLines = SidebarTextFormatter.FormatFocus(snapshot?.FocusSnapshot, contentWidth, focusMaxLines);
+                List<string> focusLines = SidebarTextFormatter.FormatFocus(snapshot?.FocusSnapshot, contentWidth, focusMaxLines, actionHint);
                 for (int i = 0; i < focusLines.Count && y >= bottomY; i++, y--)
                 {
                     Color color = i == 0

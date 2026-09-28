@@ -1,0 +1,44 @@
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadCollectorPipelineTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadCollectorPipelineTests.cs
+@@ -17,10 +17,16 @@
+   sealed class Probe:IZoneBuilder{readonly int p;readonly Action<Zone,Random> a;public Probe(int priority,Action<Zone,Random> act){p=priority;a=act;}public string Name=>"CollectorPipelineProbe";public int Priority=>p;public bool BuildZone(Zone z,EntityFactory f,Random r){a(z,r);return true;}}
+   sealed class Manager:OverworldZoneManager
+   {
+-   readonly bool baseline;readonly string mutation;public SpreadExplorationBuilder Composer;public PopulationBuilder Population;public int NextRng,Callbacks;public Entity[] Before,Birds;public (int x,int y)[] Positions;public string[] Facts;public bool AmbientCurrent;
+-   public Manager(EntityFactory f,int seed,bool before=false,string mutation=""):base(f,seed){baseline=before;this.mutation=mutation;}
+-   protected override ZoneGenerationPipeline GetPipelineForZone(string id){var p=base.GetPipelineForZone(id);Composer=p.Builders.OfType<SpreadExplorationBuilder>().SingleOrDefault();Population=p.Builders.OfType<PopulationBuilder>().SingleOrDefault();if(baseline)p.RemoveBuilders<SpreadExplorationBuilder>();p.AddBuilder(new Probe(4299,(z,r)=>{Before=z.GetReadOnlyEntities().ToArray();Positions=Before.Select(z.GetEntityPosition).ToArray();Facts=Before.Select(Exact).ToArray();Birds=Population.AmbientSourceReceipt.Owners.Where(e=>e.BlueprintName=="Magpie").ToArray();AmbientCurrent=Population.AmbientSourceReceipt.IsCurrent;}));p.AddBuilder(new Probe(int.MaxValue,(z,r)=>{CollectionAssert.AreEqual(Before,z.GetReadOnlyEntities(),"Composer retains all actual owners");CollectionAssert.AreEqual(Facts,z.GetReadOnlyEntities().Select(Exact),"Composer retains exact current stock and gear");NextRng=r.Next();}));return p;}
+-   protected override void OnZoneGenerated(Zone z,string id){base.OnZoneGenerated(z,id);if(Composer?.LastResult!="CollectorReturn"||Birds.Length==0)return;Callbacks++;var collector=z.GetReadOnlyEntities().Single(e=>e.BlueprintName=="Tatterjay");var role=collector.GetPart<SpreadCollectorPart>();if(mutation=="home-stock")role.Home.GetPart<ContainerPart>().Contents[0].Properties["late-home"]="independent";if(mutation=="cargo")role.Target.GetPart<StackerPart>().StackCount++;if(mutation=="stock")Birds[0].GetPart<InventoryPart>().Objects[0].Properties["late-stock"]="independent";if(mutation=="position"){var actor=Birds[0];var at=z.GetEntityPosition(actor);var next=Enumerable.Range(1,Zone.Width-2).Select(x=>(x,y:at.y)).First(p=>p.x!=at.x&&z.CanPlaceFootprint(actor,p.x,p.y));Assert.True(z.MoveEntity(actor,next.x,next.y));}}
++   readonly bool baseline,stockedFixture;readonly string mutation;public SpreadExplorationBuilder Composer;public PopulationBuilder Population;public int NextRng,Callbacks;public Entity[] Before,Birds;public (int x,int y)[] Positions;public string[] Facts;public bool AmbientCurrent;
++   public Manager(EntityFactory f,int seed,bool before=false,string mutation="",bool stockedFixture=false):base(f,seed){baseline=before;this.mutation=mutation;this.stockedFixture=stockedFixture;}
++   protected override ZoneGenerationPipeline GetPipelineForZone(string id){var p=base.GetPipelineForZone(id);Composer=p.Builders.OfType<SpreadExplorationBuilder>().SingleOrDefault();Population=p.Builders.OfType<PopulationBuilder>().SingleOrDefault();
++    // Explicit producer fixture for late ambient-owner counters only. Natural
++    // three-seed occurrence and save cases retain the shipped table unchanged.
++    if(stockedFixture)Population.Table=new PopulationTable{Name="SpreadTier1",Entries=new List<PopulationEntry>{
++     new PopulationEntry{BlueprintName="Magpie",MinCount=3,MaxCount=3},
++     new PopulationEntry{BlueprintName="Hatchet",MinCount=1,MaxCount=1}}};
++    if(baseline)p.RemoveBuilders<SpreadExplorationBuilder>();p.AddBuilder(new Probe(4299,(z,r)=>{Before=z.GetReadOnlyEntities().ToArray();Positions=Before.Select(z.GetEntityPosition).ToArray();Facts=Before.Select(Exact).ToArray();Birds=Population.AmbientSourceReceipt.Owners.Where(e=>e.BlueprintName=="Magpie").ToArray();AmbientCurrent=Population.AmbientSourceReceipt.IsCurrent;}));p.AddBuilder(new Probe(int.MaxValue,(z,r)=>{CollectionAssert.AreEqual(Before,z.GetReadOnlyEntities(),"Composer retains all actual owners");CollectionAssert.AreEqual(Facts,z.GetReadOnlyEntities().Select(Exact),"Composer retains exact current stock and gear");NextRng=r.Next();}));return p;}
++   protected override void OnZoneGenerated(Zone z,string id){base.OnZoneGenerated(z,id);if(Composer?.LastResult!="CollectorReturn")return;Callbacks++;var collector=z.GetReadOnlyEntities().Single(e=>e.BlueprintName=="Tatterjay");var role=collector.GetPart<SpreadCollectorPart>();if(mutation=="home-stock")role.Home.GetPart<ContainerPart>().Contents[0].Properties["late-home"]="independent";if(mutation=="cargo")role.Target.GetPart<StackerPart>().StackCount++;if(mutation=="stock")DensityLootTestScope.Gear(Birds[0]).First().Properties["late-stock"]="independent";if(mutation=="position"){var actor=Birds[0];var at=z.GetEntityPosition(actor);var next=Enumerable.Range(1,Zone.Width-2).Select(x=>(x,y:at.y)).First(p=>p.x!=at.x&&z.CanPlaceFootprint(actor,p.x,p.y));Assert.True(z.MoveEntity(actor,next.x,next.y));}}
+   }
+   static string Shape(Entity e)=>e.BlueprintName+":"+string.Join(",",e.Statistics.OrderBy(x=>x.Key).Select(x=>x.Key+":"+x.Value.BaseValue+":"+x.Value.Bonus+":"+x.Value.Penalty))+";items="+string.Join("/",DensityLootTestScope.Gear(e).Concat(e.GetPart<ContainerPart>()?.Contents??new List<Entity>()).Select(i=>i.BlueprintName+":"+(i.GetPart<StackerPart>()?.StackCount??1)));
+   static string Exact(Entity e)=>e.ID+":"+Shape(e)+";links="+string.Join("/",DensityLootTestScope.Gear(e).Concat(e.GetPart<ContainerPart>()?.Contents??new List<Entity>()).Select(i=>i.ID+":"+i.GetPart<PhysicsPart>()?.InInventory?.ID+":"+i.GetPart<PhysicsPart>()?.Equipped?.ID));
+@@ -33,7 +39,19 @@
+   }
+   [TestCase("")][TestCase("stock")][TestCase("position")][TestCase("home-stock")][TestCase("cargo")]public void LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(string mutation)
+   {
+-   const int seed=64;string id=null;foreach(string candidate in IDs(seed)){Seed(seed,candidate);var find=new Manager(scope.Factory,seed);var zone=find.GetZone(candidate);if(zone!=null&&find.Exploration.DispositionFor(candidate)==2&&find.Birds.Length>0){id=candidate;break;}}Assert.NotNull(id,"Need a real configured source with normally stocked neighbors before callback witness");Seed(seed,id);var m=new Manager(scope.Factory,seed,mutation:mutation);var result=m.GetZone(id);Assert.Greater(m.Callbacks,0);if(mutation==""){Assert.NotNull(result);Assert.AreEqual(2,m.Exploration.DispositionFor(id));}else{Assert.IsNull(result);Assert.Zero(m.CachedZoneCount);Assert.Zero(m.Exploration.DispositionFor(id));}
++   const int seed=64;bool needsAmbient=mutation=="stock"||mutation=="position";string id=null;
++   foreach(string candidate in IDs(seed))
++   {
++    Seed(seed,candidate);var find=new Manager(scope.Factory,seed,stockedFixture:needsAmbient);var zone=find.GetZone(candidate);
++    if(zone==null||find.Exploration.DispositionFor(candidate)!=2)continue;
++    if(needsAmbient){Assert.AreEqual(2,find.Birds.Length,"Real population fixture replaces exactly one of three actual Magpie rolls.");Assert.False(find.AmbientCurrent,"Normal TradeStock must run before composition; never refresh this stale whole packet.");Assert.True(find.Birds.All(b=>DensityLootTestScope.Gear(b).Any()),"Actual ordinary stocked owners precede their mutation.");}
++    id=candidate;break;
++   }
++   Assert.NotNull(id,needsAmbient?"Controlled real producer packet must reach composition before ambient callback counter":"Need a real naturally configured source before home/cargo callback witness");
++   TestContext.WriteLine(needsAmbient?"Explicit fixture table Magpie3/Hatchet1; real producer receipts, normal stock/container builders, no natural co-occurrence claim.":"Unmodified natural population table; this counter does not require an unrelated ambient companion.");
++   Seed(seed,id);var m=new Manager(scope.Factory,seed,mutation:mutation,stockedFixture:needsAmbient);var result=m.GetZone(id);Assert.Greater(m.Callbacks,0);
++   if(mutation==""){Assert.NotNull(result);Assert.AreEqual(2,m.Exploration.DispositionFor(id));}
++   else{Assert.IsNull(result);Assert.Zero(m.CachedZoneCount);Assert.Zero(m.Exploration.DispositionFor(id));}
+   }
+   [Test]public void GeneratedTripKeepsExactCarriedOwnerAcrossFullSaveThenDepositsOnlyOnce()
+   {

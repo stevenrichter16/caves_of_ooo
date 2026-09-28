@@ -1,0 +1,634 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/e3/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="53" result="Failed" start-time="2026-09-28T03:04:43.5750210Z" end-time="2026-09-28T03:04:44.2700880Z" duration="0.694981" total="30" passed="6" failed="24" inconclusive="0" skipped="0" warnings="0" asserts="60960" random-seed="864232199">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/e3/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/e3/initial-red.xml --where "class == CavesOfOoo.Tests.SpreadExplorationEncounterTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadExplorationEncounterTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1063" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/e3/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="53" result="Failed" site="Child" start-time="2026-09-28T03:04:43.5750210Z" end-time="2026-09-28T03:04:44.2700880Z" duration="0.694981" total="30" passed="6" failed="24" warnings="0" inconclusive="0" skipped="0" asserts="60960">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/e3/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/e3/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="33819" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1064" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="53" result="Failed" site="Child" start-time="2026-09-28T03:04:43.5767850Z" end-time="2026-09-28T03:04:44.2700620Z" duration="0.693265" total="30" passed="6" failed="24" warnings="0" inconclusive="0" skipped="0" asserts="60960">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1065" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="53" result="Failed" site="Child" start-time="2026-09-28T03:04:43.5768920Z" end-time="2026-09-28T03:04:44.2700290Z" duration="0.693125" total="30" passed="6" failed="24" warnings="0" inconclusive="0" skipped="0" asserts="60960">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1024" name="SpreadExplorationEncounterTests" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-09-28T03:04:43.5772940Z" end-time="2026-09-28T03:04:44.2700230Z" duration="0.692717" total="30" passed="6" failed="24" warnings="0" inconclusive="0" skipped="0" asserts="60960">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1025" name="ActualOrdinaryKitHasNoAssistanceOrReachSkillToBorrow" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ActualOrdinaryKitHasNoAssistanceOrReachSkillToBorrow" methodname="ActualOrdinaryKitHasNoAssistanceOrReachSkillToBorrow" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="2044482456" result="Passed" start-time="2026-09-28T03:04:43.5782300Z" end-time="2026-09-28T03:04:43.6654100Z" duration="0.087212" asserts="2024" />
+          <test-suite type="ParameterizedMethod" id="1031" name="ActualSnakePacketLeavesFiniteForageUntouched" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ActualSnakePacketLeavesFiniteForageUntouched" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T03:04:43.6661420Z" end-time="2026-09-28T03:04:43.7183710Z" duration="0.052228" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4035">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1029" name="ActualSnakePacketLeavesFiniteForageUntouched(&quot;BerryBush&quot;,1)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ActualSnakePacketLeavesFiniteForageUntouched(&quot;BerryBush&quot;,1)" methodname="ActualSnakePacketLeavesFiniteForageUntouched" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1840960078" result="Failed" start-time="2026-09-28T03:04:43.6662530Z" end-time="2026-09-28T03:04:43.6991910Z" duration="0.032938" asserts="2018">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ActualSnakePacketLeavesFiniteForageUntouched(String source, Int32 count) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 43
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ActualSnakePacketLeavesFiniteForageUntouched(String source, Int32 count) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 43
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="ActualSnakePacketLeavesFiniteForageUntouched(&quot;Beehive&quot;,2)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ActualSnakePacketLeavesFiniteForageUntouched(&quot;Beehive&quot;,2)" methodname="ActualSnakePacketLeavesFiniteForageUntouched" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="573487083" result="Failed" start-time="2026-09-28T03:04:43.6992550Z" end-time="2026-09-28T03:04:43.7179640Z" duration="0.018709" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ActualSnakePacketLeavesFiniteForageUntouched(String source, Int32 count) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 43
+   at InvokeStub_SpreadExplorationEncounterTests.ActualSnakePacketLeavesFiniteForageUntouched(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ActualSnakePacketLeavesFiniteForageUntouched(String source, Int32 count) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 43
+   at InvokeStub_SpreadExplorationEncounterTests.ActualSnakePacketLeavesFiniteForageUntouched(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1050" name="ClosedBorderRefusesRatherThanClaimingAnOptionalBypass" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ClosedBorderRefusesRatherThanClaimingAnOptionalBypass" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T03:04:43.7185350Z" end-time="2026-09-28T03:04:43.7622640Z" duration="0.043728" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4446">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1048" name="ClosedBorderRefusesRatherThanClaimingAnOptionalBypass(False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ClosedBorderRefusesRatherThanClaimingAnOptionalBypass(False)" methodname="ClosedBorderRefusesRatherThanClaimingAnOptionalBypass" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1841781423" result="Failed" start-time="2026-09-28T03:04:43.7185510Z" end-time="2026-09-28T03:04:43.7388440Z" duration="0.020293" asserts="2223">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ClosedBorderRefusesRatherThanClaimingAnOptionalBypass(Boolean snakes) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 53
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ClosedBorderRefusesRatherThanClaimingAnOptionalBypass(Boolean snakes) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 53
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1049" name="ClosedBorderRefusesRatherThanClaimingAnOptionalBypass(True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ClosedBorderRefusesRatherThanClaimingAnOptionalBypass(True)" methodname="ClosedBorderRefusesRatherThanClaimingAnOptionalBypass" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="170122904" result="Failed" start-time="2026-09-28T03:04:43.7388690Z" end-time="2026-09-28T03:04:43.7622310Z" duration="0.023362" asserts="2223">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ClosedBorderRefusesRatherThanClaimingAnOptionalBypass(Boolean snakes) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 53
+   at InvokeStub_SpreadExplorationEncounterTests.ClosedBorderRefusesRatherThanClaimingAnOptionalBypass(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ClosedBorderRefusesRatherThanClaimingAnOptionalBypass(Boolean snakes) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 53
+   at InvokeStub_SpreadExplorationEncounterTests.ClosedBorderRefusesRatherThanClaimingAnOptionalBypass(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1028" name="ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T03:04:43.7622880Z" end-time="2026-09-28T03:04:43.8022460Z" duration="0.039957" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4034">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1026" name="ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(False)" methodname="ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="101182733" result="Failed" start-time="2026-09-28T03:04:43.7623020Z" end-time="2026-09-28T03:04:43.7838670Z" duration="0.021564" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(Boolean occluded) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 41
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(Boolean occluded) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 41
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1027" name="ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(True)" methodname="ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="393230089" result="Failed" start-time="2026-09-28T03:04:43.7838880Z" end-time="2026-09-28T03:04:43.8022210Z" duration="0.018333" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(Boolean occluded) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 41
+   at InvokeStub_SpreadExplorationEncounterTests.ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(Boolean occluded) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 41
+   at InvokeStub_SpreadExplorationEncounterTests.ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1053" name="FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T03:04:43.8022570Z" end-time="2026-09-28T03:04:43.8444430Z" duration="0.042185" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4034">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1051" name="FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange(False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange(False)" methodname="FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1599383906" result="Failed" start-time="2026-09-28T03:04:43.8022770Z" end-time="2026-09-28T03:04:43.8204010Z" duration="0.018124" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange(Boolean snakes) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 55
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange(Boolean snakes) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 55
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1052" name="FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange(True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange(True)" methodname="FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="356478309" result="Failed" start-time="2026-09-28T03:04:43.8204530Z" end-time="2026-09-28T03:04:43.8444160Z" duration="0.023962" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange(Boolean snakes) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 55
+   at InvokeStub_SpreadExplorationEncounterTests.FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange(Boolean snakes) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 55
+   at InvokeStub_SpreadExplorationEncounterTests.FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1044" name="InvalidFoodCannotBecomeAClaimedForageOpportunity" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T03:04:43.8444640Z" end-time="2026-09-28T03:04:43.9238710Z" duration="0.079406" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="8068">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1040" name="InvalidFoodCannotBecomeAClaimedForageOpportunity(&quot;spent&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(&quot;spent&quot;)" methodname="InvalidFoodCannotBecomeAClaimedForageOpportunity" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1680477246" result="Failed" start-time="2026-09-28T03:04:43.8444850Z" end-time="2026-09-28T03:04:43.8646680Z" duration="0.020182" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 49
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 49
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1041" name="InvalidFoodCannotBecomeAClaimedForageOpportunity(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(&quot;foreign&quot;)" methodname="InvalidFoodCannotBecomeAClaimedForageOpportunity" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="513429410" result="Failed" start-time="2026-09-28T03:04:43.8646890Z" end-time="2026-09-28T03:04:43.8833160Z" duration="0.018627" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 49
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 49
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1042" name="InvalidFoodCannotBecomeAClaimedForageOpportunity(&quot;changed-kind&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(&quot;changed-kind&quot;)" methodname="InvalidFoodCannotBecomeAClaimedForageOpportunity" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="134177835" result="Failed" start-time="2026-09-28T03:04:43.8833450Z" end-time="2026-09-28T03:04:43.9059410Z" duration="0.022596" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 49
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 49
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1043" name="InvalidFoodCannotBecomeAClaimedForageOpportunity(&quot;missing-part&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(&quot;missing-part&quot;)" methodname="InvalidFoodCannotBecomeAClaimedForageOpportunity" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="298866716" result="Failed" start-time="2026-09-28T03:04:43.9059590Z" end-time="2026-09-28T03:04:43.9238550Z" duration="0.017896" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 49
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 49
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidFoodCannotBecomeAClaimedForageOpportunity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1039" name="InvalidPairRefusesWithoutMovingOrAlteringStock" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-28T03:04:43.9238800Z" end-time="2026-09-28T03:04:44.0650690Z" duration="0.141186" total="7" passed="0" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="14119">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1032" name="InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;one&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;one&quot;)" methodname="InvalidPairRefusesWithoutMovingOrAlteringStock" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1621807480" result="Failed" start-time="2026-09-28T03:04:43.9238950Z" end-time="2026-09-28T03:04:43.9429680Z" duration="0.019074" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1033" name="InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;duplicate&quot;)" methodname="InvalidPairRefusesWithoutMovingOrAlteringStock" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="907491694" result="Failed" start-time="2026-09-28T03:04:43.9429890Z" end-time="2026-09-28T03:04:43.9603310Z" duration="0.017342" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1034" name="InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;wrong-blueprint&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;wrong-blueprint&quot;)" methodname="InvalidPairRefusesWithoutMovingOrAlteringStock" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1739466774" result="Failed" start-time="2026-09-28T03:04:43.9603530Z" end-time="2026-09-28T03:04:43.9855280Z" duration="0.025174" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1035" name="InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;party&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;party&quot;)" methodname="InvalidPairRefusesWithoutMovingOrAlteringStock" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="2122031887" result="Failed" start-time="2026-09-28T03:04:43.9855540Z" end-time="2026-09-28T03:04:44.0044090Z" duration="0.018855" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1036" name="InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;busy&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;busy&quot;)" methodname="InvalidPairRefusesWithoutMovingOrAlteringStock" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="76992435" result="Failed" start-time="2026-09-28T03:04:44.0044320Z" end-time="2026-09-28T03:04:44.0230420Z" duration="0.018610" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1037" name="InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;existing-tactics&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;existing-tactics&quot;)" methodname="InvalidPairRefusesWithoutMovingOrAlteringStock" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="550117588" result="Failed" start-time="2026-09-28T03:04:44.0230700Z" end-time="2026-09-28T03:04:44.0399460Z" duration="0.016876" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1038" name="InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;no-post&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(&quot;no-post&quot;)" methodname="InvalidPairRefusesWithoutMovingOrAlteringStock" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="308038228" result="Failed" start-time="2026-09-28T03:04:44.0399710Z" end-time="2026-09-28T03:04:44.0650280Z" duration="0.025057" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(String fault) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 46
+   at InvokeStub_SpreadExplorationEncounterTests.InvalidPairRefusesWithoutMovingOrAlteringStock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1054" name="LateAuthorityGearMutationRefusesWithoutRestoringForeignChange" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.LateAuthorityGearMutationRefusesWithoutRestoringForeignChange" methodname="LateAuthorityGearMutationRefusesWithoutRestoringForeignChange" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1001173080" result="Failed" start-time="2026-09-28T03:04:44.0650790Z" end-time="2026-09-28T03:04:44.0839570Z" duration="0.018878" asserts="2017">
+            <failure>
+              <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.LateAuthorityGearMutationRefusesWithoutRestoringForeignChange() in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 57
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.LateAuthorityGearMutationRefusesWithoutRestoringForeignChange() in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 57
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1062" name="RealAssistanceAdmissionHonorsCurrentCalmAndSight" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-28T03:04:44.0839940Z" end-time="2026-09-28T03:04:44.2287720Z" duration="0.144776" total="7" passed="5" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="14149">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1055" name="RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;normal&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;normal&quot;,True)" methodname="RealAssistanceAdmissionHonorsCurrentCalmAndSight" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1277174168" result="Passed" start-time="2026-09-28T03:04:44.0840150Z" end-time="2026-09-28T03:04:44.1065220Z" duration="0.022507" asserts="2021" />
+            <test-case id="1056" name="RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;calm&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;calm&quot;,False)" methodname="RealAssistanceAdmissionHonorsCurrentCalmAndSight" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="66120500" result="Failed" start-time="2026-09-28T03:04:44.1065810Z" end-time="2026-09-28T03:04:44.1247620Z" duration="0.018180" asserts="2021">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(String mode, Boolean expected) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 60
+   at InvokeStub_SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(String mode, Boolean expected) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 60
+   at InvokeStub_SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1057" name="RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;expired&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;expired&quot;,True)" methodname="RealAssistanceAdmissionHonorsCurrentCalmAndSight" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1439602018" result="Passed" start-time="2026-09-28T03:04:44.1247860Z" end-time="2026-09-28T03:04:44.1498040Z" duration="0.025018" asserts="2021" />
+            <test-case id="1058" name="RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;removed&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;removed&quot;,True)" methodname="RealAssistanceAdmissionHonorsCurrentCalmAndSight" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1100087306" result="Passed" start-time="2026-09-28T03:04:44.1498290Z" end-time="2026-09-28T03:04:44.1687600Z" duration="0.018931" asserts="2021" />
+            <test-case id="1059" name="RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;covered&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;covered&quot;,False)" methodname="RealAssistanceAdmissionHonorsCurrentCalmAndSight" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1661915123" result="Failed" start-time="2026-09-28T03:04:44.1687840Z" end-time="2026-09-28T03:04:44.1875640Z" duration="0.018780" asserts="2023">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(String mode, Boolean expected) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 60
+   at InvokeStub_SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(String mode, Boolean expected) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 60
+   at InvokeStub_SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1060" name="RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;passive&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;passive&quot;,False)" methodname="RealAssistanceAdmissionHonorsCurrentCalmAndSight" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="2035051662" result="Passed" start-time="2026-09-28T03:04:44.1875950Z" end-time="2026-09-28T03:04:44.2042510Z" duration="0.016655" asserts="2021" />
+            <test-case id="1061" name="RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;party&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.RealAssistanceAdmissionHonorsCurrentCalmAndSight(&quot;party&quot;,False)" methodname="RealAssistanceAdmissionHonorsCurrentCalmAndSight" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="2003583560" result="Passed" start-time="2026-09-28T03:04:44.2042800Z" end-time="2026-09-28T03:04:44.2287450Z" duration="0.024465" asserts="2021" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1047" name="RefusedAuthorityMakesNoActorOrWorldMutation" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.RefusedAuthorityMakesNoActorOrWorldMutation" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T03:04:44.2287840Z" end-time="2026-09-28T03:04:44.2699880Z" duration="0.041203" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4034">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1045" name="RefusedAuthorityMakesNoActorOrWorldMutation(False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.RefusedAuthorityMakesNoActorOrWorldMutation(False)" methodname="RefusedAuthorityMakesNoActorOrWorldMutation" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="929767970" result="Failed" start-time="2026-09-28T03:04:44.2288080Z" end-time="2026-09-28T03:04:44.2485060Z" duration="0.019698" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.RefusedAuthorityMakesNoActorOrWorldMutation(Boolean snakes) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 51
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.RefusedAuthorityMakesNoActorOrWorldMutation(Boolean snakes) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 51
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1046" name="RefusedAuthorityMakesNoActorOrWorldMutation(True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.RefusedAuthorityMakesNoActorOrWorldMutation(True)" methodname="RefusedAuthorityMakesNoActorOrWorldMutation" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="406425699" result="Failed" start-time="2026-09-28T03:04:44.2485270Z" end-time="2026-09-28T03:04:44.2699690Z" duration="0.021442" asserts="2017">
+              <failure>
+                <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.RefusedAuthorityMakesNoActorOrWorldMutation(Boolean snakes) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 51
+   at InvokeStub_SpreadExplorationEncounterTests.RefusedAuthorityMakesNoActorOrWorldMutation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded encounter placement API
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.Fixture.Run(Boolean snakes, Boolean occluded, Func`1 authority, IReadOnlyList`1 actors) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 31
+   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.RefusedAuthorityMakesNoActorOrWorldMutation(Boolean snakes) in /private/tmp/coo-questfree-implementation/actors/e3/SpreadExplorationEncounterTests.cs:line 51
+   at InvokeStub_SpreadExplorationEncounterTests.RefusedAuthorityMakesNoActorOrWorldMutation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

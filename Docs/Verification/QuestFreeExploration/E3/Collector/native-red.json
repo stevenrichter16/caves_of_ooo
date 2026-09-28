@@ -1,0 +1,598 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 68,
+    "passed": 3,
+    "failed": 65,
+    "skipped": 0,
+    "durationSeconds": 0.192839,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"actor-hidden\")",
+      "fullName": "CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"actor-hidden\")",
+      "state": "Failed",
+      "durationSeconds": 0.0030562,
+      "message": "  Expected: <empty>\n  But was:  < \"You put hatchet (x3) in the sack.\" >\n",
+      "stackTrace": "at CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers (System.String state) [0x0016b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/PutInContainerNarrationTests.cs:17\n",
+      "output": ""
+    },
+    {
+      "name": "UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"home-hidden\")",
+      "fullName": "CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"home-hidden\")",
+      "state": "Failed",
+      "durationSeconds": 0.0010336,
+      "message": "  Expected: <empty>\n  But was:  < \"You put hatchet (x3) in the sack.\" >\n",
+      "stackTrace": "at CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers (System.String state) [0x0016b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/PutInContainerNarrationTests.cs:17\n",
+      "output": ""
+    },
+    {
+      "name": "UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"actor-detached\")",
+      "fullName": "CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"actor-detached\")",
+      "state": "Failed",
+      "durationSeconds": 0.0012019,
+      "message": "  Expected: <empty>\n  But was:  < \"You put hatchet (x3) in the sack.\" >\n",
+      "stackTrace": "at CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers (System.String state) [0x0016b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/PutInContainerNarrationTests.cs:17\n",
+      "output": ""
+    },
+    {
+      "name": "UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"home-detached\")",
+      "fullName": "CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"home-detached\")",
+      "state": "Failed",
+      "durationSeconds": 0.0016325,
+      "message": "  Expected: <empty>\n  But was:  < \"You put hatchet (x3) in the sack.\" >\n",
+      "stackTrace": "at CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers (System.String state) [0x0016b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/PutInContainerNarrationTests.cs:17\n",
+      "output": ""
+    },
+    {
+      "name": "UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"inactive\")",
+      "fullName": "CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"inactive\")",
+      "state": "Failed",
+      "durationSeconds": 0.0208002,
+      "message": "  Expected: <empty>\n  But was:  < \"You put hatchet (x3) in the sack.\" >\n",
+      "stackTrace": "at CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers (System.String state) [0x0016b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/PutInContainerNarrationTests.cs:17\n",
+      "output": ""
+    },
+    {
+      "name": "UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"actor-invisible\")",
+      "fullName": "CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"actor-invisible\")",
+      "state": "Failed",
+      "durationSeconds": 0.0012311,
+      "message": "  Expected: <empty>\n  But was:  < \"You put hatchet (x3) in the sack.\" >\n",
+      "stackTrace": "at CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers (System.String state) [0x0016b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/PutInContainerNarrationTests.cs:17\n",
+      "output": ""
+    },
+    {
+      "name": "UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"home-invisible\")",
+      "fullName": "CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers(\"home-invisible\")",
+      "state": "Failed",
+      "durationSeconds": 0.0013079,
+      "message": "  Expected: <empty>\n  But was:  < \"You put hatchet (x3) in the sack.\" >\n",
+      "stackTrace": "at CavesOfOoo.Tests.PutInContainerNarrationTests.UnobservedNpcDepositDoesNotRevealSourceButStillTransfers (System.String state) [0x0016b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/PutInContainerNarrationTests.cs:17\n",
+      "output": ""
+    },
+    {
+      "name": "UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource(False)",
+      "fullName": "CavesOfOoo.Tests.PutInContainerNarrationTests.UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0014326,
+      "message": "  Expected: <empty>\n  But was:  < \"The sack is full.\" >\n",
+      "stackTrace": "at CavesOfOoo.Tests.PutInContainerNarrationTests.UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource (System.Boolean locked) [0x000da] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/PutInContainerNarrationTests.cs:20\n",
+      "output": ""
+    },
+    {
+      "name": "UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource(True)",
+      "fullName": "CavesOfOoo.Tests.PutInContainerNarrationTests.UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource(True)",
+      "state": "Failed",
+      "durationSeconds": 0.0010291,
+      "message": "  Expected: <empty>\n  But was:  < \"The sack is locked.\" >\n",
+      "stackTrace": "at CavesOfOoo.Tests.PutInContainerNarrationTests.UnseenNpcCapacityAndLockRefusalsAreSilentAndLeaveSource (System.Boolean locked) [0x000da] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/PutInContainerNarrationTests.cs:20\n",
+      "output": ""
+    },
+    {
+      "name": "VisibleDepositNamesTheActualActorAndKeepsExactTransfer(\"npc\")",
+      "fullName": "CavesOfOoo.Tests.PutInContainerNarrationTests.VisibleDepositNamesTheActualActorAndKeepsExactTransfer(\"npc\")",
+      "state": "Failed",
+      "durationSeconds": 0.00093,
+      "message": "  Expected: String starting with \"tatterjay puts \"\n  But was:  \"You put hatchet (x3) in the sack.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.StartsWith (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.StartsWith (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.PutInContainerNarrationTests.VisibleDepositNamesTheActualActorAndKeepsExactTransfer (System.String who) [0x000b9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Inventory/PutInContainerNarrationTests.cs:14\n",
+      "output": ""
+    },
+    {
+      "name": "ActualCarryPresentationSurvivesDutyInterruption(\"party\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryPresentationSurvivesDutyInterruption(\"party\")",
+      "state": "Failed",
+      "durationSeconds": 0.0024417,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryPresentationSurvivesDutyInterruption (System.String state) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:11\n",
+      "output": ""
+    },
+    {
+      "name": "ActualCarryPresentationSurvivesDutyInterruption(\"nonpassive\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryPresentationSurvivesDutyInterruption(\"nonpassive\")",
+      "state": "Failed",
+      "durationSeconds": 0.001821,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryPresentationSurvivesDutyInterruption (System.String state) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:11\n",
+      "output": ""
+    },
+    {
+      "name": "ActualCarryPresentationSurvivesDutyInterruption(\"foreign-zone\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryPresentationSurvivesDutyInterruption(\"foreign-zone\")",
+      "state": "Failed",
+      "durationSeconds": 0.0014041,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryPresentationSurvivesDutyInterruption (System.String state) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:11\n",
+      "output": ""
+    },
+    {
+      "name": "ActualCarryRemainsVisibleButChangedDutyGoodsCannotDeposit(\"NoTrade\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryRemainsVisibleButChangedDutyGoodsCannotDeposit(\"NoTrade\")",
+      "state": "Failed",
+      "durationSeconds": 0.0014118,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryRemainsVisibleButChangedDutyGoodsCannotDeposit (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:43\n",
+      "output": ""
+    },
+    {
+      "name": "ActualCarryRemainsVisibleButChangedDutyGoodsCannotDeposit(\"Owned\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryRemainsVisibleButChangedDutyGoodsCannotDeposit(\"Owned\")",
+      "state": "Failed",
+      "durationSeconds": 0.001119,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryRemainsVisibleButChangedDutyGoodsCannotDeposit (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:43\n",
+      "output": ""
+    },
+    {
+      "name": "ActualCarryRemainsVisibleButChangedDutyGoodsCannotDeposit(\"quantity\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryRemainsVisibleButChangedDutyGoodsCannotDeposit(\"quantity\")",
+      "state": "Failed",
+      "durationSeconds": 0.0009928,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryRemainsVisibleButChangedDutyGoodsCannotDeposit (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:43\n",
+      "output": ""
+    },
+    {
+      "name": "ActualCarryRemainsVisibleButChangedDutyGoodsCannotDeposit(\"blueprint\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryRemainsVisibleButChangedDutyGoodsCannotDeposit(\"blueprint\")",
+      "state": "Failed",
+      "durationSeconds": 0.0008417,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ActualCarryRemainsVisibleButChangedDutyGoodsCannotDeposit (System.String mutation) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:43\n",
+      "output": ""
+    },
+    {
+      "name": "CarryQueryRefusesMissingOrBorrowedInventory(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.CarryQueryRefusesMissingOrBorrowedInventory(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0009596,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.CarryQueryRefusesMissingOrBorrowedInventory (System.Boolean missing) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:39\n",
+      "output": ""
+    },
+    {
+      "name": "CarryQueryRefusesMissingOrBorrowedInventory(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.CarryQueryRefusesMissingOrBorrowedInventory(True)",
+      "state": "Failed",
+      "durationSeconds": 0.0006856,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.CarryQueryRefusesMissingOrBorrowedInventory (System.Boolean missing) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:39\n",
+      "output": ""
+    },
+    {
+      "name": "CompetingExactCollectorsCannotDuplicateOneSource",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.CompetingExactCollectorsCannotDuplicateOneSource",
+      "state": "Failed",
+      "durationSeconds": 0.0012817,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.CompetingExactCollectorsCannotDuplicateOneSource () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:22\n",
+      "output": ""
+    },
+    {
+      "name": "CompletionDropIsIndependentCommittedWork",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.CompletionDropIsIndependentCommittedWork",
+      "state": "Failed",
+      "durationSeconds": 0.0014618,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.CompletionDropIsIndependentCommittedWork () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:27\n",
+      "output": ""
+    },
+    {
+      "name": "DepositRollbackDoesNotModifyRoleTransferredByObserver",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.DepositRollbackDoesNotModifyRoleTransferredByObserver",
+      "state": "Failed",
+      "durationSeconds": 0.00134,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.DepositRollbackDoesNotModifyRoleTransferredByObserver () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:49\n",
+      "output": ""
+    },
+    {
+      "name": "EmptySpentStackIsNotCarriedGeometry",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.EmptySpentStackIsNotCarriedGeometry",
+      "state": "Failed",
+      "durationSeconds": 0.0009338,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.EmptySpentStackIsNotCarriedGeometry () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:45\n",
+      "output": ""
+    },
+    {
+      "name": "FinitePathBudgetHasNoSearchOrRngFallback",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.FinitePathBudgetHasNoSearchOrRngFallback",
+      "state": "Failed",
+      "durationSeconds": 0.0011023,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.FinitePathBudgetHasNoSearchOrRngFallback () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:37\n",
+      "output": ""
+    },
+    {
+      "name": "FullHomeCannotPartiallyMergeAndLoseRemainder",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.FullHomeCannotPartiallyMergeAndLoseRemainder",
+      "state": "Failed",
+      "durationSeconds": 0.0009605,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.FullHomeCannotPartiallyMergeAndLoseRemainder () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:18\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidLiveCarryNeverSuppliesVisualOwner(\"removed\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.InvalidLiveCarryNeverSuppliesVisualOwner(\"removed\")",
+      "state": "Failed",
+      "durationSeconds": 0.0014437,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.InvalidLiveCarryNeverSuppliesVisualOwner (System.String state) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:14\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidLiveCarryNeverSuppliesVisualOwner(\"dead\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.InvalidLiveCarryNeverSuppliesVisualOwner(\"dead\")",
+      "state": "Failed",
+      "durationSeconds": 0.0010927,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.InvalidLiveCarryNeverSuppliesVisualOwner (System.String state) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:14\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidLiveCarryNeverSuppliesVisualOwner(\"wrong-backlink\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.InvalidLiveCarryNeverSuppliesVisualOwner(\"wrong-backlink\")",
+      "state": "Failed",
+      "durationSeconds": 0.0012904,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.InvalidLiveCarryNeverSuppliesVisualOwner (System.String state) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:14\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidLiveCarryNeverSuppliesVisualOwner(\"equipped\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.InvalidLiveCarryNeverSuppliesVisualOwner(\"equipped\")",
+      "state": "Failed",
+      "durationSeconds": 0.0007939,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.InvalidLiveCarryNeverSuppliesVisualOwner (System.String state) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:14\n",
+      "output": ""
+    },
+    {
+      "name": "LockedOrMovedHomeDoesNotChaseOrPutRemotely",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.LockedOrMovedHomeDoesNotChaseOrPutRemotely",
+      "state": "Failed",
+      "durationSeconds": 0.0009954,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.LockedOrMovedHomeDoesNotChaseOrPutRemotely () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:33\n",
+      "output": ""
+    },
+    {
+      "name": "PickRetainsNewIdentityBesideCompatibleCarriedStack",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.PickRetainsNewIdentityBesideCompatibleCarriedStack",
+      "state": "Failed",
+      "durationSeconds": 0.0009726,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.PickRetainsNewIdentityBesideCompatibleCarriedStack () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:16\n",
+      "output": ""
+    },
+    {
+      "name": "RealDeathDropsOnlyExactCollectedGoodsOnce",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.RealDeathDropsOnlyExactCollectedGoodsOnce",
+      "state": "Failed",
+      "durationSeconds": 0.0008665,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.RealDeathDropsOnlyExactCollectedGoodsOnce () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:20\n",
+      "output": ""
+    },
+    {
+      "name": "ReentrantBoredHookDoesNotDepositInPickupTurn",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ReentrantBoredHookDoesNotDepositInPickupTurn",
+      "state": "Failed",
+      "durationSeconds": 0.000729,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ReentrantBoredHookDoesNotDepositInPickupTurn () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:31\n",
+      "output": ""
+    },
+    {
+      "name": "RefusedPickupDoesNotModifyRoleTransferredByCallback",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.RefusedPickupDoesNotModifyRoleTransferredByCallback",
+      "state": "Failed",
+      "durationSeconds": 0.0009456,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.RefusedPickupDoesNotModifyRoleTransferredByCallback () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:47\n",
+      "output": ""
+    },
+    {
+      "name": "SaveStoppedCarriedItemDoesNotMintReplacementHome",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.SaveStoppedCarriedItemDoesNotMintReplacementHome",
+      "state": "Failed",
+      "durationSeconds": 0.0010941,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.SaveStoppedCarriedItemDoesNotMintReplacementHome () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:35\n",
+      "output": ""
+    },
+    {
+      "name": "ThrowingBeforeHookLeavesOriginalGroundAndNoSavedCarry(\"BeforePickup\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ThrowingBeforeHookLeavesOriginalGroundAndNoSavedCarry(\"BeforePickup\")",
+      "state": "Failed",
+      "durationSeconds": 0.0017129,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ThrowingBeforeHookLeavesOriginalGroundAndNoSavedCarry (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:25\n",
+      "output": ""
+    },
+    {
+      "name": "ThrowingBeforeHookLeavesOriginalGroundAndNoSavedCarry(\"BeforeBeingPickedUp\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ThrowingBeforeHookLeavesOriginalGroundAndNoSavedCarry(\"BeforeBeingPickedUp\")",
+      "state": "Failed",
+      "durationSeconds": 0.0014227,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ThrowingBeforeHookLeavesOriginalGroundAndNoSavedCarry (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:25\n",
+      "output": ""
+    },
+    {
+      "name": "ThrowingCompletionCannotRollBackCommittedAcquisition",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ThrowingCompletionCannotRollBackCommittedAcquisition",
+      "state": "Failed",
+      "durationSeconds": 0.001016,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorAdversarialTests.ThrowingCompletionCannotRollBackCommittedAcquisition () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorAdversarialTests.cs:29\n",
+      "output": ""
+    },
+    {
+      "name": "AnnotatedSpecialGoodsRefuse(\"QuestItem\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(\"QuestItem\")",
+      "state": "Failed",
+      "durationSeconds": 0.0009569,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse (System.String tag) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:44\n",
+      "output": ""
+    },
+    {
+      "name": "AnnotatedSpecialGoodsRefuse(\"Unique\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(\"Unique\")",
+      "state": "Failed",
+      "durationSeconds": 0.0008653,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse (System.String tag) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:44\n",
+      "output": ""
+    },
+    {
+      "name": "AnnotatedSpecialGoodsRefuse(\"NoTrade\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(\"NoTrade\")",
+      "state": "Failed",
+      "durationSeconds": 0.0008698,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse (System.String tag) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:44\n",
+      "output": ""
+    },
+    {
+      "name": "AnnotatedSpecialGoodsRefuse(\"Owned\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(\"Owned\")",
+      "state": "Failed",
+      "durationSeconds": 0.0008363,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse (System.String tag) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:44\n",
+      "output": ""
+    },
+    {
+      "name": "AnnotatedSpecialGoodsRefuse(\"Essential\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse(\"Essential\")",
+      "state": "Failed",
+      "durationSeconds": 0.0007426,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.AnnotatedSpecialGoodsRefuse (System.String tag) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:44\n",
+      "output": ""
+    },
+    {
+      "name": "BeforePickupCallbackRefusesChangedAuthority(\"veto\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(\"veto\")",
+      "state": "Failed",
+      "durationSeconds": 0.0009638,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority (System.String mutation) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:55\n",
+      "output": ""
+    },
+    {
+      "name": "BeforePickupCallbackRefusesChangedAuthority(\"quantity\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(\"quantity\")",
+      "state": "Failed",
+      "durationSeconds": 0.0008006,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority (System.String mutation) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:55\n",
+      "output": ""
+    },
+    {
+      "name": "BeforePickupCallbackRefusesChangedAuthority(\"home\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(\"home\")",
+      "state": "Failed",
+      "durationSeconds": 0.0008199,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority (System.String mutation) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:55\n",
+      "output": ""
+    },
+    {
+      "name": "BeforePickupCallbackRefusesChangedAuthority(\"actor\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority(\"actor\")",
+      "state": "Failed",
+      "durationSeconds": 0.000767,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupCallbackRefusesChangedAuthority (System.String mutation) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:55\n",
+      "output": ""
+    },
+    {
+      "name": "BeforePickupForeignTransferRemainsForeign",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupForeignTransferRemainsForeign",
+      "state": "Failed",
+      "durationSeconds": 0.0012995,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.BeforePickupForeignTransferRemainsForeign () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:57\n",
+      "output": ""
+    },
+    {
+      "name": "CalmAndCurrentWorkRemainAboveIdleCollection",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.CalmAndCurrentWorkRemainAboveIdleCollection",
+      "state": "Failed",
+      "durationSeconds": 0.0011926,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.CalmAndCurrentWorkRemainAboveIdleCollection () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:52\n",
+      "output": ""
+    },
+    {
+      "name": "DepositMessageFailureRollsBackActualCommandAndPhase",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.DepositMessageFailureRollsBackActualCommandAndPhase",
+      "state": "Failed",
+      "durationSeconds": 0.0012315,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.DepositMessageFailureRollsBackActualCommandAndPhase () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:56\n",
+      "output": ""
+    },
+    {
+      "name": "DestroyedHomeRetainsActualCarriedItem",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.DestroyedHomeRetainsActualCarriedItem",
+      "state": "Failed",
+      "durationSeconds": 0.0009595,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.DestroyedHomeRetainsActualCarriedItem () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:48\n",
+      "output": ""
+    },
+    {
+      "name": "HomeCapacityIsAtomicAndCanMerge(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0012262,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge (System.Boolean compatible) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:49\n",
+      "output": ""
+    },
+    {
+      "name": "HomeCapacityIsAtomicAndCanMerge(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge(True)",
+      "state": "Failed",
+      "durationSeconds": 0.0008604,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.HomeCapacityIsAtomicAndCanMerge (System.Boolean compatible) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:49\n",
+      "output": ""
+    },
+    {
+      "name": "NonPassiveOwnerRefuses",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.NonPassiveOwnerRefuses",
+      "state": "Failed",
+      "durationSeconds": 0.0009729,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.NonPassiveOwnerRefuses () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:46\n",
+      "output": ""
+    },
+    {
+      "name": "OnePickupThenOneDepositKeepsExactWholeToolWithoutAutoEquip",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.OnePickupThenOneDepositKeepsExactWholeToolWithoutAutoEquip",
+      "state": "Failed",
+      "durationSeconds": 0.0010332,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.OnePickupThenOneDepositKeepsExactWholeToolWithoutAutoEquip () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:40\n",
+      "output": ""
+    },
+    {
+      "name": "OnlyCurrentLooseSalvageAllowanceAccepted(\"GoldCoin\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(\"GoldCoin\")",
+      "state": "Failed",
+      "durationSeconds": 0.0007984,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted (System.String bp) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:42\n",
+      "output": ""
+    },
+    {
+      "name": "OnlyCurrentLooseSalvageAllowanceAccepted(\"Starapple\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(\"Starapple\")",
+      "state": "Failed",
+      "durationSeconds": 0.0009052,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted (System.String bp) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:42\n",
+      "output": ""
+    },
+    {
+      "name": "OnlyCurrentLooseSalvageAllowanceAccepted(\"UnknownTool\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted(\"UnknownTool\")",
+      "state": "Failed",
+      "durationSeconds": 0.0008177,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.OnlyCurrentLooseSalvageAllowanceAccepted (System.String bp) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:42\n",
+      "output": ""
+    },
+    {
+      "name": "PaidPickupEndsExactlyOneActorTurnNoChildChain",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.PaidPickupEndsExactlyOneActorTurnNoChildChain",
+      "state": "Failed",
+      "durationSeconds": 0.0012384,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.PaidPickupEndsExactlyOneActorTurnNoChildChain () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:53\n",
+      "output": ""
+    },
+    {
+      "name": "RecruitedOrPlayerOwnerRefuses(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0012662,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses (System.Boolean player) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:45\n",
+      "output": ""
+    },
+    {
+      "name": "RecruitedOrPlayerOwnerRefuses(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses(True)",
+      "state": "Failed",
+      "durationSeconds": 0.0009142,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.RecruitedOrPlayerOwnerRefuses (System.Boolean player) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:45\n",
+      "output": ""
+    },
+    {
+      "name": "SaveDepositedCannotRestartTrip",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.SaveDepositedCannotRestartTrip",
+      "state": "Failed",
+      "durationSeconds": 0.0010729,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.SaveDepositedCannotRestartTrip () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:51\n",
+      "output": ""
+    },
+    {
+      "name": "SaveSeekingAndCarryingUsesReplacementExactReferences(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0009425,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences (System.Boolean carrying) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:50\n",
+      "output": ""
+    },
+    {
+      "name": "SaveSeekingAndCarryingUsesReplacementExactReferences(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences(True)",
+      "state": "Failed",
+      "durationSeconds": 0.000943,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.SaveSeekingAndCarryingUsesReplacementExactReferences (System.Boolean carrying) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:50\n",
+      "output": ""
+    },
+    {
+      "name": "StolenTargetCannotBeRecreated",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorTests.StolenTargetCannotBeRecreated",
+      "state": "Failed",
+      "durationSeconds": 0.000976,
+      "message": "  Missing scoped collector role API\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorTests+Fixture..ctor (System.Boolean role) [0x000a0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:27\nat CavesOfOoo.Tests.SpreadCollectorTests.StolenTargetCannotBeRecreated () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadCollectorTests.cs:47\n",
+      "output": ""
+    }
+  ]
+}

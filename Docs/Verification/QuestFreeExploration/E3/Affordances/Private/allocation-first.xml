@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-world-affordances/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="42" result="Failed" start-time="2026-09-28T04:23:32.9041350Z" end-time="2026-09-28T04:23:32.9357290Z" duration="0.031585" total="1" passed="0" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="5" random-seed="701068105">
+  <command-line><![CDATA[/private/tmp/coo-world-affordances/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-world-affordances/allocation.xml --where "class =~ /AllocationProbe/"]]></command-line>
+  <filter>
+    <class re="1">AllocationProbe</class>
+  </filter>
+  <test-suite type="Assembly" id="1054" name="EditModeRunner.dll" fullname="/private/tmp/coo-world-affordances/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="42" result="Failed" site="Child" start-time="2026-09-28T04:23:32.9041350Z" end-time="2026-09-28T04:23:32.9357290Z" duration="0.031585" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="5">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="56046" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1055" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="42" result="Failed" site="Child" start-time="2026-09-28T04:23:32.9056850Z" end-time="2026-09-28T04:23:32.9357250Z" duration="0.030040" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="5">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1056" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="42" result="Failed" site="Child" start-time="2026-09-28T04:23:32.9058030Z" end-time="2026-09-28T04:23:32.9357140Z" duration="0.029911" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="5">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1052" name="AllocationProbeTests" fullname="CavesOfOoo.Tests.AllocationProbeTests" classname="CavesOfOoo.Tests.AllocationProbeTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-09-28T04:23:32.9062060Z" end-time="2026-09-28T04:23:32.9355890Z" duration="0.029384" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="5">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1053" name="WarmCurrentQueryDoesNotAllocate" fullname="CavesOfOoo.Tests.AllocationProbeTests.WarmCurrentQueryDoesNotAllocate" methodname="WarmCurrentQueryDoesNotAllocate" classname="CavesOfOoo.Tests.AllocationProbeTests" runstate="Runnable" seed="1800715647" result="Failed" start-time="2026-09-28T04:23:32.9070470Z" end-time="2026-09-28T04:23:32.9344500Z" duration="0.027436" asserts="5">
+            <failure>
+              <message><![CDATA[  Expected: 0
+  But was:  5312
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.AllocationProbeTests.WarmCurrentQueryDoesNotAllocate() in /tmp/coo-world-affordances/AllocationProbeTests.cs:line 9
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[validatedCounter=65560; queries=10000; bytes=5312
+]]></output>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 0
+  But was:  5312
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.AllocationProbeTests.WarmCurrentQueryDoesNotAllocate() in /tmp/coo-world-affordances/AllocationProbeTests.cs:line 9
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

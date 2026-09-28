@@ -1,0 +1,60 @@
+--- /tmp/coo-questfree-implementation/collector-art/deposit-merge/production/SpreadCollectorCarryView.before.txt	2026-09-28 00:04:06
++++ /tmp/coo-questfree-implementation/collector-art/deposit-merge/production/SpreadCollectorCarryView.cs	2026-09-28 00:04:06
+@@ -10,7 +10,7 @@
+  {
+   readonly Entity actor;readonly GameObject body;readonly Transform bill,head;readonly Quaternion bindRotation;
+   readonly SpreadPortable3DLibrary library;readonly Action<GameObject> prepare;
+-  SpreadCollectorPart previousRole;SpreadCollectorPhase previousPhase;Entity previousTarget,previousCarried;
++  SpreadCollectorPart previousRole;SpreadCollectorPhase previousPhase;Entity previousTarget,previousCarried,previousHome;
+   Vector3 committedPosition,committedScale;Quaternion committedRotation;
+   bool observed,previousVisible;Entity item;SpreadPortable3DLibrary.Entry entry;GameObject root;MeshRenderer renderer;MeshFilter filter;
+   internal SpreadCollectorCarryView(Entity actor,GameObject body,SpreadPortable3DLibrary library,Action<GameObject> prepare)
+@@ -31,7 +31,7 @@
+        &&actual!=null&&ReferenceEquals(previousTarget,actual))gesture="Pickup";
+    if(same&&previousPhase==SpreadCollectorPhase.Carrying&&role.Phase==SpreadCollectorPhase.Deposited
+        &&previousCarried!=null&&ReferenceEquals(previousTarget,role.Target)&&ReferenceEquals(previousCarried,role.Target)
+-       &&role.Home!=null&&zone.GetEntityCell(role.Home)!=null&&role.Home.GetPart<ContainerPart>()?.Contents.Contains(previousCarried)==true)gesture="Deposit";
++       &&ReferenceEquals(previousHome,role.Home)&&DepositedIntoCurrentHome(zone,role.Home,previousCarried))gesture="Deposit";
+    if(!visible||actual==null||!Source(actual,out var expected,out var grip,out var rotation))Clear();
+    else if(root==null||!ReferenceEquals(item,actual)||entry!=expected||!GripMatches())
+    {
+@@ -43,8 +43,30 @@
+     filter=root.AddComponent<MeshFilter>();filter.sharedMesh=entry.Mesh;renderer=root.AddComponent<MeshRenderer>();renderer.sharedMaterial=library.Material;
+     try{prepare(root);}catch{Clear();throw;}
+    }
+-   observed=true;previousRole=role;previousPhase=role?.Phase??SpreadCollectorPhase.Stopped;previousTarget=role?.Target;previousCarried=actual;previousVisible=visible;
++   observed=true;previousRole=role;previousPhase=role?.Phase??SpreadCollectorPhase.Stopped;previousTarget=role?.Target;previousHome=role?.Home;previousCarried=actual;previousVisible=visible;
+   }
++  // The saved phase transition is the role command's committed result. A full
++  // native stack merge consumes the incoming owner instead of retaining its ID
++  // in Contents; require its exact exhausted aftermath and a real compatible
++  // resident in the same observed/current home, never mere cargo disappearance.
++  bool DepositedIntoCurrentHome(Zone zone,Entity home,Entity incoming)
++  {
++   var cell=home==null?null:zone.GetEntityCell(home);var container=home?.GetPart<ContainerPart>();var physics=incoming?.GetPart<PhysicsPart>();
++   if(home==null||home.SpatialZone!=zone||cell==null||!cell.Objects.Contains(home)||container==null||container.ParentEntity!=home
++      ||incoming==null||physics==null||physics.ParentEntity!=incoming||incoming.SpatialZone!=null||physics.Equipped!=null
++      ||actor.GetPart<InventoryPart>()?.Objects.Contains(incoming)==true)return false;
++   var stack=incoming.GetPart<StackerPart>();
++   if(container.Contents.Contains(incoming))return physics.InInventory==home&&(stack?.StackCount??1)>0;
++   if(stack==null||stack.ParentEntity!=incoming||stack.StackCount!=0||physics.InInventory!=null)return false;
++   foreach(var resident in container.Contents)
++   {
++    var residentStack=resident?.GetPart<StackerPart>();var residentPhysics=resident?.GetPart<PhysicsPart>();
++    if(residentStack!=null&&residentStack.ParentEntity==resident&&residentStack.StackCount>0&&residentPhysics!=null
++       &&residentPhysics.ParentEntity==resident&&residentPhysics.InInventory==home&&residentPhysics.Equipped==null
++       &&resident.SpatialZone==null&&residentStack.CanStackWith(incoming))return true;
++   }
++   return false;
++  }
+   bool CurrentActor(Zone zone,SpreadCollectorPart role)
+   {
+    if(body==null||bill==null||head==null||!head.IsChildOf(body.transform)||!bill.IsChildOf(head)
+@@ -93,6 +115,6 @@
+   }
+   void Clear()
+   {if(root!=null){root.SetActive(false);if(Application.isPlaying)UnityEngine.Object.Destroy(root);else UnityEngine.Object.DestroyImmediate(root);}root=null;renderer=null;filter=null;item=null;entry=null;}
+-  public void Dispose(){Clear();observed=false;previousVisible=false;previousRole=null;previousTarget=null;previousCarried=null;}
++  public void Dispose(){Clear();observed=false;previousVisible=false;previousRole=null;previousTarget=null;previousHome=null;previousCarried=null;}
+  }
+ }

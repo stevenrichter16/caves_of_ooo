@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using NUnit.Framework;
+namespace CavesOfOoo.Tests
+{
+ public sealed class SpreadExplorationEncounterTests
+ {
+  sealed class Fixture:IDisposable
+  {
+   readonly SpreadExplorationActorTests.Scope scope=new SpreadExplorationActorTests.Scope();
+   readonly EntityFactory oldFactory=LoadoutPart.Factory;readonly Random oldRng=LoadoutPart.Rng;readonly EntityFactory oldHarvest=HarvestablePart.Factory;
+   public readonly EntityFactory Factory=new EntityFactory();public readonly Zone Z=new Zone("Overworld.7.9.0");
+   public readonly Entity A,B,Food;public readonly Entity[] Actors;public Func<bool> Final;
+   public Fixture(bool snakes=false,string source="BerryBush")
+   {
+    Factory.LoadBlueprints(File.ReadAllText(Path.Combine(UnityEngine.Application.dataPath,"Resources/Content/Blueprints/Objects.json")));
+    LoadoutPart.Factory=HarvestablePart.Factory=Factory;LoadoutPart.Rng=new Random(718);
+    for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++){var g=new Entity{ID="ground-"+x+","+y,BlueprintName="Grass"};g.Tags["Terrain"]="true";Assert.True(Z.AddEntity(g,x,y));}
+    A=Put(snakes?"Viper":"MarlbackScrabbler",31,11);B=Put(snakes?"Viper":"MarlbackScrabbler",31,13);Actors=new[]{A,B};
+    Food=Put(source,43,12);
+    for(int y=10;y<=14;y++)Put("Hedge",40,y);
+   }
+   public Entity Put(string blueprint,int x,int y){var e=Factory.CreateEntity(blueprint);Assert.NotNull(e);Assert.True(Z.AddEntity(e,x,y));if(e.GetPart<BrainPart>() is BrainPart b)b.CurrentZone=Z;return e;}
+   public bool Run(bool snakes=false,bool occluded=false,Func<bool> authority=null,IReadOnlyList<Entity> actors=null)
+   {
+    var method=typeof(SpreadExplorationActorPlacement).GetMethod(snakes?"TrySnakeForage":"TryWorkGang",BindingFlags.Public|BindingFlags.Static);Assert.NotNull(method,"Missing bounded encounter placement API");
+    object[] args={Z,actors??Actors,snakes?(object)Food:occluded,authority??(()=>true),null};bool ok=(bool)method.Invoke(null,args);Final=(Func<bool>)args[4];return ok;
+   }
+   public void Dispose(){LoadoutPart.Factory=oldFactory;LoadoutPart.Rng=oldRng;HarvestablePart.Factory=oldHarvest;scope.Dispose();}
+  }
+  static Entity[] Gear(Entity e)=>e.GetPart<InventoryPart>().Objects.Concat(e.GetPart<InventoryPart>().EquippedItems.Values).Concat(e.GetPart<Body>().GetParts().Select(p=>p.Equipped)).Where(i=>i!=null).Distinct().ToArray();
+  static bool Los(Zone z,Entity a,Entity b){var p=z.GetEntityPosition(a);var q=z.GetEntityPosition(b);return AIHelpers.HasLineOfSight(z,p.x,p.y,q.x,q.y);}
+  [Test]public void ActualOrdinaryKitHasNoAssistanceOrReachSkillToBorrow()
+  {using(var f=new Fixture()){foreach(var a in f.Actors){Assert.IsNull(a.GetPart<CombatTacticsPart>());var weapons=Gear(a).Where(e=>e.HasPart<MeleeWeaponPart>()).ToArray();Assert.AreEqual(1,weapons.Length);CollectionAssert.Contains(new[]{"Dagger","Hatchet","Cudgel"},weapons[0].BlueprintName);Assert.IsNull(a.GetPart<ActivatedAbilitiesPart>());}}}
+  [TestCase(false)][TestCase(true)]public void ExactPairKeepsAllGearAndReceivesOnlyAssistOptIn(bool occluded)
+  {using(var f=new Fixture()){var before=f.Z.GetReadOnlyEntities().ToArray();var a=Gear(f.A);var b=Gear(f.B);var rng=LoadoutPart.Rng;Assert.True(f.Run(occluded:occluded));Assert.NotNull(f.Final);Assert.True(f.Final());CollectionAssert.AreEquivalent(before,f.Z.GetReadOnlyEntities());CollectionAssert.AreEquivalent(a,Gear(f.A));CollectionAssert.AreEquivalent(b,Gear(f.B));Assert.AreSame(rng,LoadoutPart.Rng);Assert.AreEqual(!occluded,Los(f.Z,f.A,f.B));foreach(var e in f.Actors){var t=e.GetPart<CombatTacticsPart>();Assert.NotNull(t);Assert.True(t.AssistAllies);Assert.AreEqual("",t.SkillClasses);Assert.Zero(t.AbilityChance);Assert.IsNull(e.GetPart<ActivatedAbilitiesPart>());}}}
+  [TestCase("BerryBush",1)][TestCase("Beehive",2)]public void ActualSnakePacketLeavesFiniteForageUntouched(string source,int count)
+  {using(var f=new Fixture(true,source)){if(count==1)Assert.True(f.Z.RemoveEntity(f.B));var owners=f.Actors.Take(count).ToArray();var before=f.Z.GetReadOnlyEntities().ToArray();var at=f.Z.GetEntityPosition(f.Food);var h=f.Food.GetPart<HarvestablePart>();int max=h.YieldMax;Assert.True(f.Run(true,actors:owners));Assert.True(f.Final());CollectionAssert.AreEquivalent(before,f.Z.GetReadOnlyEntities());Assert.AreEqual(at,f.Z.GetEntityPosition(f.Food));Assert.AreSame(h,f.Food.GetPart<HarvestablePart>());Assert.False(h.Harvested);Assert.AreEqual(max,h.YieldMax);foreach(var v in owners){Assert.AreEqual(8,v.GetStatValue("Hitpoints"));Assert.AreEqual(130,v.GetStatValue("Speed"));Assert.AreEqual(10,v.GetPart<BrainPart>().SightRadius);Assert.IsNull(v.GetPart<AIAmbushPart>());Assert.IsNull(v.GetPart<CombatTacticsPart>());}}}
+  [TestCase("one")][TestCase("duplicate")][TestCase("wrong-blueprint")][TestCase("party")][TestCase("busy")][TestCase("existing-tactics")][TestCase("no-post")]
+  public void InvalidPairRefusesWithoutMovingOrAlteringStock(string fault)
+  {using(var f=new Fixture()){IReadOnlyList<Entity> input=f.Actors;if(fault=="one")input=new[]{f.A};if(fault=="duplicate")input=new[]{f.A,f.A};if(fault=="wrong-blueprint")f.B.BlueprintName="SpreadDitchMate";if(fault=="party")f.B.GetPart<BrainPart>().SetPartyLeader(f.A);if(fault=="busy")f.B.GetPart<BrainPart>().PushGoal(new WaitGoal(3));if(fault=="existing-tactics")f.B.AddPart(new CombatTacticsPart());if(fault=="no-post")foreach(var p in f.Z.GetReadOnlyEntities().Where(e=>e.BlueprintName=="Hedge").ToArray())f.Z.RemoveEntity(p);var at=f.Actors.Select(f.Z.GetEntityPosition).ToArray();var parts=f.Actors.Select(e=>e.Parts.ToArray()).ToArray();Assert.False(f.Run(actors:input));Assert.IsNull(f.Final);CollectionAssert.AreEqual(at,f.Actors.Select(f.Z.GetEntityPosition));for(int i=0;i<2;i++)CollectionAssert.AreEqual(parts[i],f.Actors[i].Parts);}}
+  [TestCase("spent")][TestCase("foreign")][TestCase("changed-kind")][TestCase("missing-part")]
+  public void InvalidFoodCannotBecomeAClaimedForageOpportunity(string fault)
+  {using(var f=new Fixture(true)){if(fault=="spent")f.Food.GetPart<HarvestablePart>().Harvested=true;if(fault=="foreign")f.Z.RemoveEntity(f.Food);if(fault=="changed-kind")f.Food.BlueprintName="HollowStump";if(fault=="missing-part")f.Food.RemovePart(f.Food.GetPart<HarvestablePart>());var at=f.Actors.Select(f.Z.GetEntityPosition).ToArray();Assert.False(f.Run(true));CollectionAssert.AreEqual(at,f.Actors.Select(f.Z.GetEntityPosition));Assert.IsNull(f.Final);}}
+  [TestCase(false)][TestCase(true)]public void RefusedAuthorityMakesNoActorOrWorldMutation(bool snakes)
+  {using(var f=new Fixture(snakes)){var at=f.Actors.Select(f.Z.GetEntityPosition).ToArray();int version=f.Z.EntityVersion;Assert.False(f.Run(snakes,authority:()=>false));Assert.AreEqual(version,f.Z.EntityVersion);CollectionAssert.AreEqual(at,f.Actors.Select(f.Z.GetEntityPosition));}}
+  [TestCase(false)][TestCase(true)]public void ClosedBorderRefusesRatherThanClaimingAnOptionalBypass(bool snakes)
+  {using(var f=new Fixture(snakes)){for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)if(x==0||y==0||x==Zone.Width-1||y==Zone.Height-1){var wall=new Entity{ID=Guid.NewGuid().ToString("N")};wall.AddPart(new PhysicsPart{Solid=true});Assert.True(f.Z.AddEntity(wall,x,y));}Assert.False(f.Run(snakes));Assert.IsNull(f.Final);}}
+  [TestCase(false)][TestCase(true)]public void FinalValidatorRejectsChangedActorAndKeepsUnrelatedChange(bool snakes)
+  {using(var f=new Fixture(snakes)){Assert.True(f.Run(snakes));var wall=new Entity{ID="harmless"};wall.AddPart(new PhysicsPart{Solid=true});Assert.True(f.Z.AddEntity(wall,40,12));Assert.True(f.Final());f.A.Statistics["Strength"].BaseValue++;Assert.False(f.Final());}}
+  [Test]public void LateAuthorityGearMutationRefusesWithoutRestoringForeignChange()
+  {using(var f=new Fixture()){var gear=Gear(f.A).First();bool changed=false;Assert.False(f.Run(authority:()=>{if(f.A.GetPart<CombatTacticsPart>()!=null&&!changed){gear.Properties["foreign-change"]="kept";changed=true;}return true;}));Assert.True(changed);Assert.AreEqual("kept",gear.Properties["foreign-change"]);Assert.IsNull(f.A.GetPart<CombatTacticsPart>());Assert.IsNull(f.B.GetPart<CombatTacticsPart>());}}
+  [TestCase("normal",true)][TestCase("calm",false)][TestCase("expired",true)][TestCase("removed",true)][TestCase("covered",false)][TestCase("passive",false)][TestCase("party",false)]
+  public void RealAssistanceAdmissionHonorsCurrentCalmAndSight(string mode,bool expected)
+  {using(var f=new Fixture()){Assert.True(f.Z.MoveEntity(f.A,20,12));Assert.True(f.Z.MoveEntity(f.B,22,12));var target=f.Put("Player",21,15);foreach(var e in f.Actors)e.AddPart(new CombatTacticsPart{SkillClasses="",AbilityChance=0,AssistAllies=true});var brain=f.B.GetPart<BrainPart>();if(mode=="calm"||mode=="expired"||mode=="removed"){var goal=new NoFightGoal(8);brain.PushGoal(goal);if(mode=="expired")goal.Age=8;if(mode=="removed")brain.RemoveGoal(goal);}if(mode=="covered")f.Put("Hedge",21,12);if(mode=="passive")brain.Passive=true;if(mode=="party")brain.SetPartyLeader(target);f.A.GetPart<CombatTacticsPart>().AlertAllies(target,f.Z);Assert.AreEqual(expected,brain.IsPersonallyHostileTo(target));}}
+ }
+}

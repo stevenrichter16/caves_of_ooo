@@ -1,0 +1,184 @@
+--- a/Assets/Scripts/Gameplay/AI/SpreadCollectorPart.cs
++++ b/Assets/Scripts/Gameplay/AI/SpreadCollectorPart.cs
+@@ -26,7 +26,7 @@
+ 
+         public bool Configure(Zone zone, Entity home, Entity target)
+         {
+-            if (Configured || !ActorCurrent(zone, out _) || !HomeSource(home, zone)
++            if (Configured || !ActorCurrent(zone, out _, allowUnwired: true) || !HomeSource(home, zone)
+                 || !Eligible(target) || !SpreadActorContext.Ground(target, zone)
+                 || home == target || !Unowned(target) || Units(target) < 1) return false;
+             var h = zone.GetEntityCell(home); var t = zone.GetEntityCell(target); var a = zone.GetEntityCell(ParentEntity);
+@@ -79,10 +79,10 @@
+             if (!result.Success && ParentEntity==originalActor && originalActor.GetPart<SpreadCollectorPart>()==this) Stop(pickup?"pickup_refused":"deposit_refused");
+         }
+ 
+-        bool ActorCurrent(Zone zone,out BrainPart brain)
++        bool ActorCurrent(Zone zone,out BrainPart brain,bool allowUnwired=false)
+         {
+             if (!SpreadActorContext.Actor(ParentEntity,zone,out brain) || ParentEntity.GetPart<SpreadCollectorPart>()!=this
+-                || brain.CurrentZone!=zone || !brain.Passive || brain.PartyLeader!=null || ParentEntity.HasTag("Player")
++                || (brain.CurrentZone!=zone && !(allowUnwired && brain.CurrentZone==null)) || !brain.Passive || brain.PartyLeader!=null || ParentEntity.HasTag("Player")
+                 || CombatSystem.IsDeathHandled(ParentEntity)) return false;
+             var inv=ParentEntity.GetPart<InventoryPart>();
+             return inv!=null && inv.ParentEntity==ParentEntity;
+--- a/Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs
++++ b/Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs
+@@ -211,11 +211,11 @@
+             internal readonly (int x, int y) Origin;
+             readonly Zone zone; readonly Entity entity; readonly string id, blueprint; readonly BrainPart brain; readonly PhysicsPart physics;
+             readonly OwnedGraphSnapshot graph;
+-            ActorSnapshot(Zone z, Entity e, BrainPart b)
+-            { zone = z; entity = e; brain = b; physics = e.GetPart<PhysicsPart>(); Origin = z.GetEntityPosition(e); id = e.ID; blueprint = e.BlueprintName; graph = new OwnedGraphSnapshot(e); }
+-            internal static ActorSnapshot Capture(Zone z, Entity e, string blueprint)
++            ActorSnapshot(Zone z, Entity e, BrainPart b, Part ignoredRole)
++            { zone = z; entity = e; brain = b; physics = e.GetPart<PhysicsPart>(); Origin = z.GetEntityPosition(e); id = e.ID; blueprint = e.BlueprintName; graph = new OwnedGraphSnapshot(e,ignoredRole); }
++            internal static ActorSnapshot Capture(Zone z, Entity e, string blueprint, Part ignoredRole = null)
+                 => e?.BlueprintName == blueprint && SpreadActorContext.Actor(e, z, out var b) && b.PartyLeader == null
+-                    ? new ActorSnapshot(z, e, b) : null;
++                    ? new ActorSnapshot(z, e, b, ignoredRole) : null;
+             internal bool Current((int x, int y) at, Part added = null) => graph.Matches(added) && SpreadActorContext.Actor(entity, zone, out var b) && b == brain
+                 && entity.GetPart<PhysicsPart>() == physics && entity.ID == id && entity.BlueprintName == blueprint
+                 && brain.PartyLeader == null && zone.GetEntityPosition(entity) == at;
+@@ -234,14 +234,14 @@
+         sealed class OwnedGraphSnapshot
+         {
+             readonly Entity root; readonly List<EntityState> graph = new List<EntityState>(); readonly bool valid;
+-            internal OwnedGraphSnapshot(Entity root)
++            internal OwnedGraphSnapshot(Entity root, Part ignoredRole = null)
+             {
+                 this.root = root;
+                 var pending = new Queue<Entity>(); var seen = new HashSet<Entity>(); pending.Enqueue(root);
+                 while (pending.Count > 0 && seen.Count < 256)
+                 {
+                     var e = pending.Dequeue(); if (e == null || !seen.Add(e)) continue;
+-                    var state = new EntityState(e, e == root ? e.GetPart<SpreadGrazerPart>() : null); graph.Add(state);
++                    var state = new EntityState(e, e == root ? ignoredRole ?? e.GetPart<SpreadGrazerPart>() : null); graph.Add(state);
+                     foreach (var child in state.Children) pending.Enqueue(child);
+                 }
+                 valid = pending.Count == 0;
+@@ -257,7 +257,7 @@
+             readonly Entity[] contents, carried; readonly KeyValuePair<string,Entity>[] equipped;
+             readonly Anatomy.BodyPart[] slots; readonly FieldState[] slotValues;
+             readonly Entity[] enemies; readonly GoalHandler[] goals; readonly FieldState[] goalValues;
+-            internal EntityState(Entity e, SpreadGrazerPart ignoredRole)
++            internal EntityState(Entity e, Part ignoredRole)
+             {
+                 Entity=e; id=e.ID; blueprint=e.BlueprintName; spatialZone=e.SpatialZone;
+                 tags=e.Tags.ToArray(); properties=e.Properties.ToArray(); ints=e.IntProperties.ToArray(); stats=e.Statistics.ToArray(); parts=e.Parts.ToArray();
+--- a/Assets/Scripts/Gameplay/World/Generation/Builders/PopulationBuilder.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/Builders/PopulationBuilder.cs
+@@ -23,7 +23,7 @@
+         /// <summary>Separate exact rolls; neither receipt grants authority over matching decoys.</summary>
+         public SpreadGenerationReceipt LooseSourceReceipt { get; private set; }
+         public SpreadGenerationReceipt AmbientSourceReceipt { get; private set; }
+-        /// <summary>Only the exact Magpie roll changed to the optional grazer, before unrelated ambient stocking.</summary>
++        /// <summary>Only the exact Magpie roll changed to the optional scoped animal, before unrelated ambient stocking.</summary>
+         public SpreadGenerationReceipt AmbientReplacementReceipt { get; private set; }
+         /// <summary>Exact independent ordinary finite-food rolls; matching scenery grants no authority.</summary>
+         public SpreadGenerationReceipt ForageSourceReceipt { get; private set; }
+@@ -75,7 +75,8 @@
+             {
+                 var rewritten = SpreadExplorationPopulationPolicy.Rewrite(Table, toSpawn, assignment.Family);
+                 string required = assignment.Family == SpreadExplorationFamily.OccupiedBank ? "MarlbackScrabbler"
+-                    : assignment.Family == SpreadExplorationFamily.LastGleanings ? "ReedbackGrazer" : null;
++                    : assignment.Family == SpreadExplorationFamily.LastGleanings ? "ReedbackGrazer"
++                    : assignment.Family == SpreadExplorationFamily.CollectorReturn ? "Tatterjay" : null;
+                 if (required != null && !toSpawn.SequenceEqual(rewritten) && !factory.Blueprints.ContainsKey(required))
+                 {
+                     // Missing optional content must not swallow a real ordinary
+@@ -87,12 +88,12 @@
+                 }
+                 else
+                 {
+-                    if (assignment.Family == SpreadExplorationFamily.LastGleanings && rewritten.Length == toSpawn.Count)
++                    if ((assignment.Family == SpreadExplorationFamily.LastGleanings || assignment.Family == SpreadExplorationFamily.CollectorReturn) && rewritten.Length == toSpawn.Count)
+                     {
+                         // Preserve the precise changed roll index. An authored or matching
+-                        // nearby grazer is not the owner produced by this substitution.
++                        // nearby animal is not the owner produced by this substitution.
+                         var changed = Enumerable.Range(0, toSpawn.Count).Where(i => toSpawn[i] != rewritten[i]).ToArray();
+-                        if (changed.Length == 1 && toSpawn[changed[0]] == "Magpie" && rewritten[changed[0]] == "ReedbackGrazer")
++                        if (changed.Length == 1 && toSpawn[changed[0]] == "Magpie" && rewritten[changed[0]] == required)
+                             replacementIndex = changed[0];
+                     }
+                     toSpawn = new List<string>(rewritten);
+@@ -108,7 +109,11 @@
+             // silently promote quest/foreign owners into an ambient or loose allowance.
+             var loose = ReceiptBlueprints("Hatchet", "Cudgel", "LeatherBoots");
+             var ambient = ReceiptBlueprints("Magpie", "PetDog");
+-            if (optedIn && assignment.Family == SpreadExplorationFamily.LastGleanings && ambient.Contains("Magpie")) ambient.Add("ReedbackGrazer");
++            if (optedIn && ambient.Contains("Magpie"))
++            {
++                if (assignment.Family == SpreadExplorationFamily.LastGleanings) ambient.Add("ReedbackGrazer");
++                else if (assignment.Family == SpreadExplorationFamily.CollectorReturn) ambient.Add("Tatterjay");
++            }
+             var forage = ReceiptBlueprints("BerryBush", "Beehive");
+             int forageExpected = toSpawn.Count(forage.Contains);
+             int looseExpected = toSpawn.Count(loose.Contains), ambientExpected = toSpawn.Count(ambient.Contains);
+--- a/Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPopulationPolicy.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPopulationPolicy.cs
+@@ -27,11 +27,11 @@
+     }
+     return output.ToArray();
+    }
+-   if(family==SpreadExplorationFamily.LastGleanings)
++   if(family==SpreadExplorationFamily.LastGleanings||family==SpreadExplorationFamily.CollectorReturn)
+    {
+     var entries=table.Entries.Where(e=>e!=null&&e.BlueprintName=="Magpie").ToArray();
+     if(entries.Length!=1||!string.IsNullOrEmpty(entries[0].EncounterGroup))return result;
+-    int index=Array.IndexOf(result,"Magpie");if(index>=0)result[index]="ReedbackGrazer";
++    int index=Array.IndexOf(result,"Magpie");if(index>=0)result[index]=family==SpreadExplorationFamily.CollectorReturn?"Tatterjay":"ReedbackGrazer";
+    }
+    return result;
+   }
+--- a/Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationBuilder.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationBuilder.cs
+@@ -36,8 +36,47 @@
+     case SpreadExplorationFamily.WateringMargin:return Water(zone,factory,entry);
+     case SpreadExplorationFamily.SnakeForage:return Encounter(zone,factory,entry,true);
+     case SpreadExplorationFamily.WorkGang:return Encounter(zone,factory,entry,false);
++    case SpreadExplorationFamily.CollectorReturn:return Collector(zone,factory,entry);
+     default:return Refuse(zone,entry,"unsupported-family");
+    }
++  }
++  bool Collector(Zone z,EntityFactory f,SpreadExplorationEntry entry)
++  {
++   var replacement=population?.AmbientReplacementReceipt;var ambient=population?.AmbientSourceReceipt;
++   var loose=population?.LooseSourceReceipt;var homes=containers?.SourceReceipt;
++   if(!Source(replacement,z,f)||!Source(loose,z,f)||!Source(homes,z,f))return Refuse(z,entry,"collector-source");
++   if(replacement.Owners.Count!=1||replacement.Owners[0].BlueprintName!="Tatterjay")return Refuse(z,entry,"no-exact-collector-allowance");
++   var actor=replacement.Owners[0];
++   if(ambient==null||ambient.Zone!=z||!ReferenceEquals(ambient.Factory,f)||ambient.Revision!=replacement.Revision
++     ||ambient.Owners.Count(e=>e==actor)!=1)return Refuse(z,entry,"collector-ambient-source");
++   var items=loose.Owners.Where(e=>LooseOwner(z,e)&&(e.BlueprintName=="Hatchet"||e.BlueprintName=="Cudgel"||e.BlueprintName=="LeatherBoots"))
++     .OrderBy(e=>z.GetEntityPosition(e).y).ThenBy(e=>z.GetEntityPosition(e).x).Take(32).ToArray();
++   var caches=homes.Owners.Where(e=>CacheOwner(z,e)).OrderBy(e=>Math.Abs(z.GetEntityPosition(e).y-Zone.Height/2))
++     .ThenBy(e=>z.GetEntityPosition(e).y).ThenBy(e=>z.GetEntityPosition(e).x).Take(32).ToArray();
++   if(items.Length==0||caches.Length==0)return Refuse(z,entry,"no-rolled-collector-goods-or-home");
++   // Capture at4300, after ordinary Magpie stocking. The original whole ambient
++   // receipt remains stale; only the exact replacement authorizes this actor.
++   var original=SpreadGenerationReceipt.CaptureFinalState(z,ambient.Owners.Concat(loose.Owners).Concat(homes.Owners));
++   bool SourceAuthority()=>Current(z,f,entry)&&population.CaptureSourceReceipts&&containers.CaptureSourceReceipts
++    &&ReferenceEquals(population.AmbientReplacementReceipt,replacement)&&ReferenceEquals(population.AmbientSourceReceipt,ambient)
++    &&ReferenceEquals(population.LooseSourceReceipt,loose)&&ReferenceEquals(containers.SourceReceipt,homes);
++   if(!SourceAuthority()||!original()||!replacement.TryConsume()||!loose.TryConsume()||!homes.TryConsume())return Refuse(z,entry,"changed-collector-source");
++   int trials=0;
++   foreach(var home in caches)foreach(var item in items)
++   {
++    if(++trials>32)return Refuse(z,entry,"collector-source-budget");
++    var others=SpreadGenerationReceipt.CaptureFinalState(z,ambient.Owners.Concat(loose.Owners).Concat(homes.Owners).Where(e=>e!=actor&&e!=item));
++    bool Authority()=>SourceAuthority()&&others();
++    if(SpreadExplorationActorPlacement.TryCollectorReturn(z,actor,home,item,Authority,out var final))
++    {
++     if(final==null)return false;
++     return Commit(z,f,entry,new[]{actor,home,item},()=>Authority()&&final());
++    }
++    // Honest optional refusal must retain the entire original packet, including
++    // positions. A failed callback cannot leave uncommitted source movement.
++    if(!SourceAuthority()||!original())return false;
++   }
++   return Refuse(z,entry,"no-safe-collector-layout");
+   }
+   bool Encounter(Zone z,EntityFactory f,SpreadExplorationEntry entry,bool snakes)
+   {

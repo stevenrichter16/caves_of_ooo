@@ -36698,6 +36698,176 @@
           "Value": ""
         }
       ]
+    },
+    {
+      "Name": "Tatterjay",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "tatterjay"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "j"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Inventory",
+          "Params": [
+            {
+              "Key": "MaxWeight",
+              "Value": "20"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "Passive",
+              "Value": "true"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "false"
+            },
+            {
+              "Key": "WandersRandomly",
+              "Value": "false"
+            },
+            {
+              "Key": "SightRadius",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "SpreadCollector",
+          "Params": []
+        },
+        {
+          "Name": "Corpse",
+          "Params": [
+            {
+              "Key": "CorpseChance",
+              "Value": "70"
+            },
+            {
+              "Key": "CorpseBlueprint",
+              "Value": "TatterjayCorpse"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A broad-billed blue-green bird with a pale breast and an uneven fan of tail feathers. It tests loose things with its bill, then tilts its head toward the place where it keeps them."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 8,
+          "Min": 0,
+          "Max": 8
+        },
+        {
+          "Name": "Strength",
+          "Value": 6
+        },
+        {
+          "Name": "Agility",
+          "Value": 14
+        },
+        {
+          "Name": "Toughness",
+          "Value": 6
+        },
+        {
+          "Name": "XPValue",
+          "Value": 0
+        }
+      ],
+      "Props": [
+        {
+          "Key": "Anatomy",
+          "Value": "Avian"
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Faction",
+          "Value": "Villagers"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "NoRandomStock",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "TatterjayCorpse",
+      "Inherits": "CreatureCorpse",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "tatterjay remains"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "The broad bill rests against a pale breast. Uneven tail feathers lie spread across the ground."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

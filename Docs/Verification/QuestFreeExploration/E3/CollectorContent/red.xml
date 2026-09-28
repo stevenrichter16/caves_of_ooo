@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/collector-content/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="4" result="Failed" start-time="2026-09-28T03:41:26.4652070Z" end-time="2026-09-28T03:41:26.6119650Z" duration="0.146747" total="4" passed="1" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="11" random-seed="509251249">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/collector-content/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/collector-content/red.xml --where "class =~ /SpreadCollectorContentTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadCollectorContentTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1005" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/collector-content/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T03:41:26.4652070Z" end-time="2026-09-28T03:41:26.6119650Z" duration="0.146747" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="11">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/collector-content/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/collector-content/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="44161" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1006" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T03:41:26.4667980Z" end-time="2026-09-28T03:41:26.6119330Z" duration="0.145134" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="11">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1007" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T03:41:26.4669450Z" end-time="2026-09-28T03:41:26.6118960Z" duration="0.144949" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="11">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadCollectorContentTests" fullname="CavesOfOoo.Tests.SpreadCollectorContentTests" classname="CavesOfOoo.Tests.SpreadCollectorContentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T03:41:26.4673190Z" end-time="2026-09-28T03:41:26.6116980Z" duration="0.144379" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="11">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1002" name="CollectorHasScopedEmptyRoleWithoutGenericShinyHoardingOrStartingStock" fullname="CavesOfOoo.Tests.SpreadCollectorContentTests.CollectorHasScopedEmptyRoleWithoutGenericShinyHoardingOrStartingStock" methodname="CollectorHasScopedEmptyRoleWithoutGenericShinyHoardingOrStartingStock" classname="CavesOfOoo.Tests.SpreadCollectorContentTests" runstate="Runnable" seed="915390331" result="Failed" start-time="2026-09-28T03:41:26.4682540Z" end-time="2026-09-28T03:41:26.5416440Z" duration="0.073418" asserts="1">
+            <failure>
+              <message><![CDATA[  Original collector content missing: Tatterjay
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorContentTests.Make(String name) in /tmp/coo-questfree-implementation/collector-content/SpreadCollectorContentTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadCollectorContentTests.CollectorHasScopedEmptyRoleWithoutGenericShinyHoardingOrStartingStock() in /tmp/coo-questfree-implementation/collector-content/SpreadCollectorContentTests.cs:line 41
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Original collector content missing: Tatterjay
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorContentTests.Make(String name) in /tmp/coo-questfree-implementation/collector-content/SpreadCollectorContentTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadCollectorContentTests.CollectorHasScopedEmptyRoleWithoutGenericShinyHoardingOrStartingStock() in /tmp/coo-questfree-implementation/collector-content/SpreadCollectorContentTests.cs:line 41
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1001" name="CollectorUsesActualBirdAnatomyWithoutInventedWeaponsOrHumanoidHands" fullname="CavesOfOoo.Tests.SpreadCollectorContentTests.CollectorUsesActualBirdAnatomyWithoutInventedWeaponsOrHumanoidHands" methodname="CollectorUsesActualBirdAnatomyWithoutInventedWeaponsOrHumanoidHands" classname="CavesOfOoo.Tests.SpreadCollectorContentTests" runstate="Runnable" seed="608570749" result="Failed" start-time="2026-09-28T03:41:26.5422380Z" end-time="2026-09-28T03:41:26.5634400Z" duration="0.021202" asserts="1">
+            <failure>
+              <message><![CDATA[  Original collector content missing: Tatterjay
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorContentTests.Make(String name) in /tmp/coo-questfree-implementation/collector-content/SpreadCollectorContentTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadCollectorContentTests.CollectorUsesActualBirdAnatomyWithoutInventedWeaponsOrHumanoidHands() in /tmp/coo-questfree-implementation/collector-content/SpreadCollectorContentTests.cs:line 28
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Original collector content missing: Tatterjay
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorContentTests.Make(String name) in /tmp/coo-questfree-implementation/collector-content/SpreadCollectorContentTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadCollectorContentTests.CollectorUsesActualBirdAnatomyWithoutInventedWeaponsOrHumanoidHands() in /tmp/coo-questfree-implementation/collector-content/SpreadCollectorContentTests.cs:line 28
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1004" name="ExistingMagpieAndDogKeepTheirOwnBehaviorAndDoNotAcquireCollectorState" fullname="CavesOfOoo.Tests.SpreadCollectorContentTests.ExistingMagpieAndDogKeepTheirOwnBehaviorAndDoNotAcquireCollectorState" methodname="ExistingMagpieAndDogKeepTheirOwnBehaviorAndDoNotAcquireCollectorState" classname="CavesOfOoo.Tests.SpreadCollectorContentTests" runstate="Runnable" seed="1165458999" result="Passed" start-time="2026-09-28T03:41:26.5634720Z" end-time="2026-09-28T03:41:26.5914640Z" duration="0.027992" asserts="8" />
+          <test-case id="1003" name="OriginalRemainsHaveCorpseIdentityWithoutBonusFoodOrSalvage" fullname="CavesOfOoo.Tests.SpreadCollectorContentTests.OriginalRemainsHaveCorpseIdentityWithoutBonusFoodOrSalvage" methodname="OriginalRemainsHaveCorpseIdentityWithoutBonusFoodOrSalvage" classname="CavesOfOoo.Tests.SpreadCollectorContentTests" runstate="Runnable" seed="1826814706" result="Failed" start-time="2026-09-28T03:41:26.5914950Z" end-time="2026-09-28T03:41:26.6111070Z" duration="0.019611" asserts="1">
+            <failure>
+              <message><![CDATA[  Original collector content missing: Tatterjay
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorContentTests.Make(String name) in /tmp/coo-questfree-implementation/collector-content/SpreadCollectorContentTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadCollectorContentTests.OriginalRemainsHaveCorpseIdentityWithoutBonusFoodOrSalvage() in /tmp/coo-questfree-implementation/collector-content/SpreadCollectorContentTests.cs:line 54
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Original collector content missing: Tatterjay
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCollectorContentTests.Make(String name) in /tmp/coo-questfree-implementation/collector-content/SpreadCollectorContentTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadCollectorContentTests.OriginalRemainsHaveCorpseIdentityWithoutBonusFoodOrSalvage() in /tmp/coo-questfree-implementation/collector-content/SpreadCollectorContentTests.cs:line 54
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

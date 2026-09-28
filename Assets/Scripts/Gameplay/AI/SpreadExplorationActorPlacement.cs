@@ -8,7 +8,7 @@ namespace CavesOfOoo.Core
     /// <summary>Cold realization of one receipt-authorized existing owner. No
     /// factory, stock, faction or scheduler changes. Caller retains plan/receipt
     /// authority; this helper proves physical placement and installs one role.</summary>
-    public static class SpreadExplorationActorPlacement
+    public static partial class SpreadExplorationActorPlacement
     {
         const int MaxSources = 32, MaxTrials = 256;
 
@@ -19,13 +19,19 @@ namespace CavesOfOoo.Core
                 || authority == null || !authority() || !owner.Current(owner.Origin)) return false;
             var geometry = new Geometry(zone, actor);
             int trials = 0;
+            // Budget only candidates that can form the existing local territory.
+            // Dense edge/distant posts must not consume all32 before admission.
             foreach (var post in zone.GetReadOnlyEntities().Where(e => Post(zone, e))
+                .Where(e =>
+                {
+                    var at = zone.GetEntityPosition(e);
+                    return Distance(owner.Origin, at) <= 12 && at.x - 3 >= 2 && at.y - 2 >= 2
+                        && at.x + 3 < Zone.Width - 2 && at.y + 2 < Zone.Height - 2;
+                })
                 .OrderBy(e => zone.GetEntityCell(e).Y).ThenBy(e => zone.GetEntityCell(e).X).Take(MaxSources).ToArray())
             {
                 var source = new SourceSnapshot(zone, post); var center = source.Position;
-                if (Distance(owner.Origin, center) > 12) continue;
                 int left = center.x - 3, right = center.x + 3, top = center.y - 2, bottom = center.y + 2;
-                if (left < 2 || top < 2 || right >= Zone.Width - 2 || bottom >= Zone.Height - 2) continue;
                 for (int y = center.y - 1; y <= center.y + 1; y++)
                     for (int x = center.x - 1; x <= center.x + 1; x++)
                     {
@@ -211,12 +217,12 @@ namespace CavesOfOoo.Core
             internal readonly (int x, int y) Origin;
             readonly Zone zone; readonly Entity entity; readonly string id, blueprint; readonly BrainPart brain; readonly PhysicsPart physics;
             readonly OwnedGraphSnapshot graph;
-            ActorSnapshot(Zone z, Entity e, BrainPart b)
-            { zone = z; entity = e; brain = b; physics = e.GetPart<PhysicsPart>(); Origin = z.GetEntityPosition(e); id = e.ID; blueprint = e.BlueprintName; graph = new OwnedGraphSnapshot(e); }
-            internal static ActorSnapshot Capture(Zone z, Entity e, string blueprint)
+            ActorSnapshot(Zone z, Entity e, BrainPart b, Part ignoredRole)
+            { zone = z; entity = e; brain = b; physics = e.GetPart<PhysicsPart>(); Origin = z.GetEntityPosition(e); id = e.ID; blueprint = e.BlueprintName; graph = new OwnedGraphSnapshot(e,ignoredRole); }
+            internal static ActorSnapshot Capture(Zone z, Entity e, string blueprint, Part ignoredRole = null)
                 => e?.BlueprintName == blueprint && SpreadActorContext.Actor(e, z, out var b) && b.PartyLeader == null
-                    ? new ActorSnapshot(z, e, b) : null;
-            internal bool Current((int x, int y) at, SpreadTerritoryPart added = null) => graph.Matches(added) && SpreadActorContext.Actor(entity, zone, out var b) && b == brain
+                    ? new ActorSnapshot(z, e, b, ignoredRole) : null;
+            internal bool Current((int x, int y) at, Part added = null) => graph.Matches(added) && SpreadActorContext.Actor(entity, zone, out var b) && b == brain
                 && entity.GetPart<PhysicsPart>() == physics && entity.ID == id && entity.BlueprintName == blueprint
                 && brain.PartyLeader == null && zone.GetEntityPosition(entity) == at;
             internal void Rollback((int x, int y) destination)
@@ -234,19 +240,19 @@ namespace CavesOfOoo.Core
         sealed class OwnedGraphSnapshot
         {
             readonly Entity root; readonly List<EntityState> graph = new List<EntityState>(); readonly bool valid;
-            internal OwnedGraphSnapshot(Entity root)
+            internal OwnedGraphSnapshot(Entity root, Part ignoredRole = null)
             {
                 this.root = root;
                 var pending = new Queue<Entity>(); var seen = new HashSet<Entity>(); pending.Enqueue(root);
                 while (pending.Count > 0 && seen.Count < 256)
                 {
                     var e = pending.Dequeue(); if (e == null || !seen.Add(e)) continue;
-                    var state = new EntityState(e, e == root ? e.GetPart<SpreadGrazerPart>() : null); graph.Add(state);
+                    var state = new EntityState(e, e == root ? ignoredRole ?? e.GetPart<SpreadGrazerPart>() : null); graph.Add(state);
                     foreach (var child in state.Children) pending.Enqueue(child);
                 }
                 valid = pending.Count == 0;
             }
-            internal bool Matches(SpreadTerritoryPart added) => valid && graph.All(s => s.Matches(s.Entity == root ? added : null));
+            internal bool Matches(Part added) => valid && graph.All(s => s.Matches(s.Entity == root ? added : null));
         }
         sealed class EntityState
         {
@@ -257,7 +263,7 @@ namespace CavesOfOoo.Core
             readonly Entity[] contents, carried; readonly KeyValuePair<string,Entity>[] equipped;
             readonly Anatomy.BodyPart[] slots; readonly FieldState[] slotValues;
             readonly Entity[] enemies; readonly GoalHandler[] goals; readonly FieldState[] goalValues;
-            internal EntityState(Entity e, SpreadGrazerPart ignoredRole)
+            internal EntityState(Entity e, Part ignoredRole)
             {
                 Entity=e; id=e.ID; blueprint=e.BlueprintName; spatialZone=e.SpatialZone;
                 tags=e.Tags.ToArray(); properties=e.Properties.ToArray(); ints=e.IntProperties.ToArray(); stats=e.Statistics.ToArray(); parts=e.Parts.ToArray();
@@ -269,7 +275,7 @@ namespace CavesOfOoo.Core
                 Children=(contents??Array.Empty<Entity>()).Concat(carried??Array.Empty<Entity>()).Concat(equipped?.Select(k=>k.Value)??Enumerable.Empty<Entity>())
                     .Concat(slots?.SelectMany(s=>new[]{s.Equipped,s.Cybernetics,s.DefaultBehavior})??Enumerable.Empty<Entity>()).Where(e2=>e2!=null).Distinct().ToArray();
             }
-            internal bool Matches(SpreadTerritoryPart added) => Entity.ID==id && Entity.BlueprintName==blueprint && Entity.SpatialZone==spatialZone
+            internal bool Matches(Part added) => Entity.ID==id && Entity.BlueprintName==blueprint && Entity.SpatialZone==spatialZone
                 && Same(Entity.Tags,tags) && Same(Entity.Properties,properties) && Same(Entity.IntProperties,ints) && Same(Entity.Statistics,stats)
                 && (added==null ? Entity.Parts.SequenceEqual(parts) : added.ParentEntity==Entity && Entity.Parts.SequenceEqual(parts.Concat(new[]{added})))
                 && parts.All(p=>p!=null && p.ParentEntity==Entity) && values.All(v=>v.Matches())

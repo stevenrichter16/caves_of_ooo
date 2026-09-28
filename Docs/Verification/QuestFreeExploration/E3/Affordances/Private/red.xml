@@ -1,0 +1,751 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-world-affordances/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="30" result="Failed" start-time="2026-09-28T04:14:51.6534570Z" end-time="2026-09-28T04:14:51.6935180Z" duration="0.040051" total="30" passed="0" failed="30" inconclusive="0" skipped="0" warnings="0" asserts="95" random-seed="71298165">
+  <command-line><![CDATA[/private/tmp/coo-world-affordances/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-world-affordances/red.xml --where "class =~ /WorldAffordanceQueryTests/"]]></command-line>
+  <filter>
+    <class re="1">WorldAffordanceQueryTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1036" name="EditModeRunner.dll" fullname="/private/tmp/coo-world-affordances/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-09-28T04:14:51.6534570Z" end-time="2026-09-28T04:14:51.6935180Z" duration="0.040051" total="30" passed="0" failed="30" warnings="0" inconclusive="0" skipped="0" asserts="95">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="53723" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1037" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-09-28T04:14:51.6551350Z" end-time="2026-09-28T04:14:51.6935170Z" duration="0.038381" total="30" passed="0" failed="30" warnings="0" inconclusive="0" skipped="0" asserts="95">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1038" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-09-28T04:14:51.6552590Z" end-time="2026-09-28T04:14:51.6935120Z" duration="0.038252" total="30" passed="0" failed="30" warnings="0" inconclusive="0" skipped="0" asserts="95">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="WorldAffordanceQueryTests" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-09-28T04:14:51.6556020Z" end-time="2026-09-28T04:14:51.6935000Z" duration="0.037898" total="30" passed="0" failed="30" warnings="0" inconclusive="0" skipped="0" asserts="95">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1001" name="AdjacentHarvestNamesActualMenuKeyAndOwner" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.AdjacentHarvestNamesActualMenuKeyAndOwner" methodname="AdjacentHarvestNamesActualMenuKeyAndOwner" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1146492937" result="Failed" start-time="2026-09-28T04:14:51.6565400Z" end-time="2026-09-28T04:14:51.6772180Z" duration="0.020745" asserts="3">
+            <failure>
+              <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.AdjacentHarvestNamesActualMenuKeyAndOwner() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 23
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.AdjacentHarvestNamesActualMenuKeyAndOwner() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 23
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1018" name="CurrentVisibleGroundOwnerOnly" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T04:14:51.6782590Z" end-time="2026-09-28T04:14:51.6869870Z" duration="0.008728" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="29">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1009" name="CurrentVisibleGroundOwnerOnly(&quot;hidden-cell&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(&quot;hidden-cell&quot;)" methodname="CurrentVisibleGroundOwnerOnly" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="2032341977" result="Failed" start-time="2026-09-28T04:14:51.6783770Z" end-time="2026-09-28T04:14:51.6791310Z" duration="0.000755" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1010" name="CurrentVisibleGroundOwnerOnly(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(&quot;unexplored&quot;)" methodname="CurrentVisibleGroundOwnerOnly" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="340737453" result="Failed" start-time="2026-09-28T04:14:51.6791830Z" end-time="2026-09-28T04:14:51.6797710Z" duration="0.000588" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="CurrentVisibleGroundOwnerOnly(&quot;hidden-part&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(&quot;hidden-part&quot;)" methodname="CurrentVisibleGroundOwnerOnly" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1384554313" result="Failed" start-time="2026-09-28T04:14:51.6797820Z" end-time="2026-09-28T04:14:51.6801100Z" duration="0.000328" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1012" name="CurrentVisibleGroundOwnerOnly(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(&quot;foreign-render&quot;)" methodname="CurrentVisibleGroundOwnerOnly" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="808714884" result="Failed" start-time="2026-09-28T04:14:51.6801250Z" end-time="2026-09-28T04:14:51.6803610Z" duration="0.000237" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1013" name="CurrentVisibleGroundOwnerOnly(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(&quot;carried&quot;)" methodname="CurrentVisibleGroundOwnerOnly" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1944922109" result="Failed" start-time="2026-09-28T04:14:51.6803720Z" end-time="2026-09-28T04:14:51.6805980Z" duration="0.000227" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1014" name="CurrentVisibleGroundOwnerOnly(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(&quot;equipped&quot;)" methodname="CurrentVisibleGroundOwnerOnly" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="67880602" result="Failed" start-time="2026-09-28T04:14:51.6806100Z" end-time="2026-09-28T04:14:51.6808300Z" duration="0.000221" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1015" name="CurrentVisibleGroundOwnerOnly(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(&quot;removed&quot;)" methodname="CurrentVisibleGroundOwnerOnly" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="149963233" result="Failed" start-time="2026-09-28T04:14:51.6808430Z" end-time="2026-09-28T04:14:51.6832340Z" duration="0.002391" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1016" name="CurrentVisibleGroundOwnerOnly(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(&quot;moved&quot;)" methodname="CurrentVisibleGroundOwnerOnly" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="800428538" result="Failed" start-time="2026-09-28T04:14:51.6832610Z" end-time="2026-09-28T04:14:51.6864480Z" duration="0.003188" asserts="5">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1017" name="CurrentVisibleGroundOwnerOnly(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(&quot;foreign-physics&quot;)" methodname="CurrentVisibleGroundOwnerOnly" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="833765014" result="Failed" start-time="2026-09-28T04:14:51.6864620Z" end-time="2026-09-28T04:14:51.6866650Z" duration="0.000203" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 29
+   at InvokeStub_WorldAffordanceQueryTests.CurrentVisibleGroundOwnerOnly(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1021" name="DeadOrDetachedPlayerHasNoActionCue" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.DeadOrDetachedPlayerHasNoActionCue" methodname="DeadOrDetachedPlayerHasNoActionCue" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1923364972" result="Failed" start-time="2026-09-28T04:14:51.6871710Z" end-time="2026-09-28T04:14:51.6874810Z" duration="0.000310" asserts="3">
+            <failure>
+              <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DeadOrDetachedPlayerHasNoActionCue() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 32
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DeadOrDetachedPlayerHasNoActionCue() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 32
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1030" name="DoorPermissionRefusalsAreNotOpenHints" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T04:14:51.6874950Z" end-time="2026-09-28T04:14:51.6885840Z" duration="0.001089" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1027" name="DoorPermissionRefusalsAreNotOpenHints(&quot;locked&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(&quot;locked&quot;)" methodname="DoorPermissionRefusalsAreNotOpenHints" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1596193762" result="Failed" start-time="2026-09-28T04:14:51.6875120Z" end-time="2026-09-28T04:14:51.6880810Z" duration="0.000568" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 37
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 37
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1028" name="DoorPermissionRefusalsAreNotOpenHints(&quot;foreign-owner&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(&quot;foreign-owner&quot;)" methodname="DoorPermissionRefusalsAreNotOpenHints" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1222038866" result="Failed" start-time="2026-09-28T04:14:51.6880890Z" end-time="2026-09-28T04:14:51.6883690Z" duration="0.000279" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 37
+   at InvokeStub_WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 37
+   at InvokeStub_WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1029" name="DoorPermissionRefusalsAreNotOpenHints(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(&quot;takeable&quot;)" methodname="DoorPermissionRefusalsAreNotOpenHints" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="972200289" result="Failed" start-time="2026-09-28T04:14:51.6883810Z" end-time="2026-09-28T04:14:51.6885670Z" duration="0.000186" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 37
+   at InvokeStub_WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 37
+   at InvokeStub_WorldAffordanceQueryTests.DoorPermissionRefusalsAreNotOpenHints(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1026" name="DoorUsesCurrentOpenCloseAndCannotCloseOccupiedDoorway" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorUsesCurrentOpenCloseAndCannotCloseOccupiedDoorway" methodname="DoorUsesCurrentOpenCloseAndCannotCloseOccupiedDoorway" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1789612666" result="Failed" start-time="2026-09-28T04:14:51.6886080Z" end-time="2026-09-28T04:14:51.6888640Z" duration="0.000256" asserts="3">
+            <failure>
+              <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorUsesCurrentOpenCloseAndCannotCloseOccupiedDoorway() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 35
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.DoorUsesCurrentOpenCloseAndCannotCloseOccupiedDoorway() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 35
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1002" name="FocusUsesEnterMenuAndCannotFallBackToAnotherCell" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.FocusUsesEnterMenuAndCannotFallBackToAnotherCell" methodname="FocusUsesEnterMenuAndCannotFallBackToAnotherCell" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1160257929" result="Failed" start-time="2026-09-28T04:14:51.6888760Z" end-time="2026-09-28T04:14:51.6891040Z" duration="0.000227" asserts="3">
+            <failure>
+              <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.FocusUsesEnterMenuAndCannotFallBackToAnotherCell() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 24
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.FocusUsesEnterMenuAndCannotFallBackToAnotherCell() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 24
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1020" name="ForeignSameCoordinatesAndSameIdNeverSupplyAQuery" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.ForeignSameCoordinatesAndSameIdNeverSupplyAQuery" methodname="ForeignSameCoordinatesAndSameIdNeverSupplyAQuery" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="42445007" result="Failed" start-time="2026-09-28T04:14:51.6891120Z" end-time="2026-09-28T04:14:51.6894170Z" duration="0.000305" asserts="5">
+            <failure>
+              <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.ForeignSameCoordinatesAndSameIdNeverSupplyAQuery() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 31
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.ForeignSameCoordinatesAndSameIdNeverSupplyAQuery() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 31
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1024" name="LockedContainerRefusesButContentsNeverChangeHint" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T04:14:51.6894280Z" end-time="2026-09-28T04:14:51.6900640Z" duration="0.000636" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1022" name="LockedContainerRefusesButContentsNeverChangeHint(False)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(False)" methodname="LockedContainerRefusesButContentsNeverChangeHint" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="2052445664" result="Failed" start-time="2026-09-28T04:14:51.6894340Z" end-time="2026-09-28T04:14:51.6897810Z" duration="0.000347" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(Boolean legacy) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 33
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(Boolean legacy) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 33
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1023" name="LockedContainerRefusesButContentsNeverChangeHint(True)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(True)" methodname="LockedContainerRefusesButContentsNeverChangeHint" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1548585357" result="Failed" start-time="2026-09-28T04:14:51.6897900Z" end-time="2026-09-28T04:14:51.6900530Z" duration="0.000263" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(Boolean legacy) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 33
+   at InvokeStub_WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(Boolean legacy) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 33
+   at InvokeStub_WorldAffordanceQueryTests.LockedContainerRefusesButContentsNeverChangeHint(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1033" name="OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T04:14:51.6900690Z" end-time="2026-09-28T04:14:51.6906140Z" duration="0.000546" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1031" name="OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(False)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(False)" methodname="OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="562939521" result="Failed" start-time="2026-09-28T04:14:51.6900740Z" end-time="2026-09-28T04:14:51.6903560Z" duration="0.000283" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(Boolean spent) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 38
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(Boolean spent) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 38
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1032" name="OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(True)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(True)" methodname="OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1029356335" result="Failed" start-time="2026-09-28T04:14:51.6903660Z" end-time="2026-09-28T04:14:51.6906030Z" duration="0.000237" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(Boolean spent) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 38
+   at InvokeStub_WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(Boolean spent) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 38
+   at InvokeStub_WorldAffordanceQueryTests.OrdinaryFiniteHarvestReflectsSpentStateWithoutPromisingRoll(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1034" name="QueryNeverDispatchesCallbacksOrChangesSources" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.QueryNeverDispatchesCallbacksOrChangesSources" methodname="QueryNeverDispatchesCallbacksOrChangesSources" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1967990746" result="Failed" start-time="2026-09-28T04:14:51.6906180Z" end-time="2026-09-28T04:14:51.6909480Z" duration="0.000330" asserts="3">
+            <failure>
+              <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.QueryNeverDispatchesCallbacksOrChangesSources() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 39
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.QueryNeverDispatchesCallbacksOrChangesSources() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 39
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1025" name="ReadSignRequiresExactExamineProvider" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.ReadSignRequiresExactExamineProvider" methodname="ReadSignRequiresExactExamineProvider" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1653366935" result="Failed" start-time="2026-09-28T04:14:51.6909530Z" end-time="2026-09-28T04:14:51.6911890Z" duration="0.000236" asserts="3">
+            <failure>
+              <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.ReadSignRequiresExactExamineProvider() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 34
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.ReadSignRequiresExactExamineProvider() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 34
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1008" name="UnavailableFieldNeverAdvertisesHarvest" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T04:14:51.6911980Z" end-time="2026-09-28T04:14:51.6926970Z" duration="0.001499" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1004" name="UnavailableFieldNeverAdvertisesHarvest(&quot;spent&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(&quot;spent&quot;)" methodname="UnavailableFieldNeverAdvertisesHarvest" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="418249679" result="Failed" start-time="2026-09-28T04:14:51.6912030Z" end-time="2026-09-28T04:14:51.6914530Z" duration="0.000250" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 27
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 27
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="UnavailableFieldNeverAdvertisesHarvest(&quot;missing-factory&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(&quot;missing-factory&quot;)" methodname="UnavailableFieldNeverAdvertisesHarvest" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1634315008" result="Failed" start-time="2026-09-28T04:14:51.6914620Z" end-time="2026-09-28T04:14:51.6916810Z" duration="0.000219" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 27
+   at InvokeStub_WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 27
+   at InvokeStub_WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="UnavailableFieldNeverAdvertisesHarvest(&quot;missing-yield&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(&quot;missing-yield&quot;)" methodname="UnavailableFieldNeverAdvertisesHarvest" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1527788282" result="Failed" start-time="2026-09-28T04:14:51.6916920Z" end-time="2026-09-28T04:14:51.6918810Z" duration="0.000190" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 27
+   at InvokeStub_WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 27
+   at InvokeStub_WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="UnavailableFieldNeverAdvertisesHarvest(&quot;zero-yield&quot;)" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(&quot;zero-yield&quot;)" methodname="UnavailableFieldNeverAdvertisesHarvest" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="471593576" result="Failed" start-time="2026-09-28T04:14:51.6918900Z" end-time="2026-09-28T04:14:51.6926900Z" duration="0.000800" asserts="3">
+              <failure>
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 27
+   at InvokeStub_WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(String why) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 27
+   at InvokeStub_WorldAffordanceQueryTests.UnavailableFieldNeverAdvertisesHarvest(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1003" name="UnderfootUsesPeriodNotEnterOrMoveKey" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.UnderfootUsesPeriodNotEnterOrMoveKey" methodname="UnderfootUsesPeriodNotEnterOrMoveKey" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1075392746" result="Failed" start-time="2026-09-28T04:14:51.6927000Z" end-time="2026-09-28T04:14:51.6929400Z" duration="0.000240" asserts="3">
+            <failure>
+              <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnderfootUsesPeriodNotEnterOrMoveKey() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 25
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnderfootUsesPeriodNotEnterOrMoveKey() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 25
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1035" name="UnderfootWinsAndOneResultNeverRevealsRemoteOwners" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.UnderfootWinsAndOneResultNeverRevealsRemoteOwners" methodname="UnderfootWinsAndOneResultNeverRevealsRemoteOwners" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="1317424580" result="Failed" start-time="2026-09-28T04:14:51.6929670Z" end-time="2026-09-28T04:14:51.6932540Z" duration="0.000287" asserts="4">
+            <failure>
+              <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnderfootWinsAndOneResultNeverRevealsRemoteOwners() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 40
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.UnderfootWinsAndOneResultNeverRevealsRemoteOwners() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 40
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1019" name="VisibleFarFocusDoesNotAdvertiseAnOutOfReachAction" fullname="CavesOfOoo.Tests.WorldAffordanceQueryTests.VisibleFarFocusDoesNotAdvertiseAnOutOfReachAction" methodname="VisibleFarFocusDoesNotAdvertiseAnOutOfReachAction" classname="CavesOfOoo.Tests.WorldAffordanceQueryTests" runstate="Runnable" seed="429014646" result="Failed" start-time="2026-09-28T04:14:51.6932650Z" end-time="2026-09-28T04:14:51.6934710Z" duration="0.000207" asserts="3">
+            <failure>
+              <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.VisibleFarFocusDoesNotAdvertiseAnOutOfReachAction() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 30
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing read-only affordance query
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.WorldAffordanceQueryTests.Fixture.Find(Boolean focus, Int32 x, Int32 y) in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 19
+   at CavesOfOoo.Tests.WorldAffordanceQueryTests.VisibleFarFocusDoesNotAdvertiseAnOutOfReachAction() in /tmp/coo-world-affordances/WorldAffordanceQueryTests.cs:line 30
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

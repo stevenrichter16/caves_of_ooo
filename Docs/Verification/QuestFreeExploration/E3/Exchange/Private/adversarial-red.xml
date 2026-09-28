@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/exchange/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="26" result="Failed" start-time="2026-09-28T04:48:23.0979210Z" end-time="2026-09-28T04:48:24.1837230Z" duration="1.085770" total="26" passed="23" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="2395" random-seed="2039202957">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/exchange/runner/bin/Debug/net8.0/EditModeRunner.dll --test=CavesOfOoo.Tests.SpreadRoadsideExchangeTests --result=/tmp/coo-questfree-implementation/exchange/adversarial-red.xml]]></command-line>
+  <filter>
+    <test>CavesOfOoo.Tests.SpreadRoadsideExchangeTests</test>
+  </filter>
+  <test-suite type="Assembly" id="1030" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/exchange/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-09-28T04:48:23.0979210Z" end-time="2026-09-28T04:48:24.1837230Z" duration="1.085770" total="26" passed="23" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="2395">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="LOAD" value="System.Collections.Generic.List`1[System.String]" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+      <setting name="NumberOfTestWorkers" value="10" />
+    </settings>
+    <properties>
+      <property name="_PID" value="62535" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1031" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-09-28T04:48:23.0999600Z" end-time="2026-09-28T04:48:24.1837210Z" duration="1.083748" total="26" passed="23" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="2395">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1032" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-09-28T04:48:23.1001990Z" end-time="2026-09-28T04:48:24.1837130Z" duration="1.083503" total="26" passed="23" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="2395">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadRoadsideExchangeTests" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-09-28T04:48:23.1007150Z" end-time="2026-09-28T04:48:24.1836390Z" duration="1.082911" total="26" passed="23" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="2395">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1001" name="ActualFreshMerchantCommitsOnVisibleReachableVergeWithoutChangingStock" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.ActualFreshMerchantCommitsOnVisibleReachableVergeWithoutChangingStock" methodname="ActualFreshMerchantCommitsOnVisibleReachableVergeWithoutChangingStock" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="196051806" result="Passed" start-time="2026-09-28T04:48:23.1019680Z" end-time="2026-09-28T04:48:23.2515930Z" duration="0.149650" asserts="2025" />
+          <test-case id="1002" name="ArrivalDoesNotNeedStaleRendererVisibilityFlags" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.ArrivalDoesNotNeedStaleRendererVisibilityFlags" methodname="ArrivalDoesNotNeedStaleRendererVisibilityFlags" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="993947055" result="Passed" start-time="2026-09-28T04:48:23.2522170Z" end-time="2026-09-28T04:48:23.2869850Z" duration="0.034768" asserts="9" />
+          <test-case id="1020" name="CallerRandomIsNotUsedByOptionalPlacement" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.CallerRandomIsNotUsedByOptionalPlacement" methodname="CallerRandomIsNotUsedByOptionalPlacement" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="37183006" result="Passed" start-time="2026-09-28T04:48:23.2870490Z" end-time="2026-09-28T04:48:23.3200100Z" duration="0.032962" asserts="10" />
+          <test-case id="1019" name="DepletedStockAndCommittedGraphSurviveActualSaveWithoutEntryReplay" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.DepletedStockAndCommittedGraphSurviveActualSaveWithoutEntryReplay" methodname="DepletedStockAndCommittedGraphSurviveActualSaveWithoutEntryReplay" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1736562858" result="Passed" start-time="2026-09-28T04:48:23.3200430Z" end-time="2026-09-28T04:48:23.4298330Z" duration="0.109789" asserts="16" />
+          <test-case id="1017" name="ExistingSameIdentityCannotBeAdoptedOrRestocked" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.ExistingSameIdentityCannotBeAdoptedOrRestocked" methodname="ExistingSameIdentityCannotBeAdoptedOrRestocked" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1809456877" result="Passed" start-time="2026-09-28T04:48:23.4298550Z" end-time="2026-09-28T04:48:23.4625230Z" duration="0.032668" asserts="9" />
+          <test-suite type="ParameterizedMethod" id="1015" name="FactoryCallbackCannotAdoptAnotherEntryAuthority" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-28T04:48:23.4625830Z" end-time="2026-09-28T04:48:23.6467230Z" duration="0.184137" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="123">
+            <test-case id="1009" name="FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;plan&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;plan&quot;)" methodname="FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="243177124" result="Passed" start-time="2026-09-28T04:48:23.4627040Z" end-time="2026-09-28T04:48:23.5049860Z" duration="0.042281" asserts="20" />
+            <test-case id="1010" name="FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;map&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;map&quot;)" methodname="FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="676473880" result="Passed" start-time="2026-09-28T04:48:23.5050080Z" end-time="2026-09-28T04:48:23.5406870Z" duration="0.035679" asserts="20" />
+            <test-case id="1011" name="FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;rare&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;rare&quot;)" methodname="FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1950138584" result="Passed" start-time="2026-09-28T04:48:23.5407160Z" end-time="2026-09-28T04:48:23.5653950Z" duration="0.024679" asserts="20" />
+            <test-case id="1012" name="FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;wayhouse&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;wayhouse&quot;)" methodname="FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="2093054548" result="Passed" start-time="2026-09-28T04:48:23.5654140Z" end-time="2026-09-28T04:48:23.5970910Z" duration="0.031677" asserts="20" />
+            <test-case id="1013" name="FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;player-moved&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;player-moved&quot;)" methodname="FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1689002735" result="Passed" start-time="2026-09-28T04:48:23.5971190Z" end-time="2026-09-28T04:48:23.6245120Z" duration="0.027393" asserts="22" />
+            <test-case id="1014" name="FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;same-id-cache&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.FactoryCallbackCannotAdoptAnotherEntryAuthority(&quot;same-id-cache&quot;)" methodname="FactoryCallbackCannotAdoptAnotherEntryAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1524775279" result="Passed" start-time="2026-09-28T04:48:23.6245290Z" end-time="2026-09-28T04:48:23.6462220Z" duration="0.021693" asserts="21" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1029" name="MalformedFreshFactoryOwnerCannotGainExchangeAuthority" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-28T04:48:23.6468900Z" end-time="2026-09-28T04:48:23.9163230Z" duration="0.269430" total="8" passed="5" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="83">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1021" name="MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;hidden&quot;)" methodname="MalformedFreshFactoryOwnerCannotGainExchangeAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="554897182" result="Passed" start-time="2026-09-28T04:48:23.6469040Z" end-time="2026-09-28T04:48:23.6731070Z" duration="0.026204" asserts="11" />
+            <test-case id="1022" name="MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;blueprint&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;blueprint&quot;)" methodname="MalformedFreshFactoryOwnerCannotGainExchangeAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="586528476" result="Passed" start-time="2026-09-28T04:48:23.6731330Z" end-time="2026-09-28T04:48:23.6989130Z" duration="0.025780" asserts="11" />
+            <test-case id="1023" name="MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;party&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;party&quot;)" methodname="MalformedFreshFactoryOwnerCannotGainExchangeAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1920038533" result="Passed" start-time="2026-09-28T04:48:23.6989550Z" end-time="2026-09-28T04:48:23.7264160Z" duration="0.027461" asserts="11" />
+            <test-case id="1024" name="MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;dead&quot;)" methodname="MalformedFreshFactoryOwnerCannotGainExchangeAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="161699014" result="Passed" start-time="2026-09-28T04:48:23.7264710Z" end-time="2026-09-28T04:48:23.7533760Z" duration="0.026905" asserts="11" />
+            <test-case id="1025" name="MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;stock-backlink&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;stock-backlink&quot;)" methodname="MalformedFreshFactoryOwnerCannotGainExchangeAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1956931542" result="Failed" start-time="2026-09-28T04:48:23.7533940Z" end-time="2026-09-28T04:48:23.8032960Z" duration="0.049902" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(String fault) in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 101
+   at InvokeStub_SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(String fault) in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 101
+   at InvokeStub_SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1026" name="MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;stock-ground&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;stock-ground&quot;)" methodname="MalformedFreshFactoryOwnerCannotGainExchangeAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="866044379" result="Failed" start-time="2026-09-28T04:48:23.8033640Z" end-time="2026-09-28T04:48:23.8485630Z" duration="0.045199" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(String fault) in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 101
+   at InvokeStub_SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(String fault) in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 101
+   at InvokeStub_SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1027" name="MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;duplicate-stock&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;duplicate-stock&quot;)" methodname="MalformedFreshFactoryOwnerCannotGainExchangeAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="795299499" result="Failed" start-time="2026-09-28T04:48:23.8485840Z" end-time="2026-09-28T04:48:23.8847650Z" duration="0.036181" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(String fault) in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 101
+   at InvokeStub_SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(String fault) in /tmp/coo-questfree-implementation/exchange/SpreadRoadsideExchangeTests.cs:line 101
+   at InvokeStub_SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1028" name="MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;inventory-parent&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MalformedFreshFactoryOwnerCannotGainExchangeAuthority(&quot;inventory-parent&quot;)" methodname="MalformedFreshFactoryOwnerCannotGainExchangeAuthority" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1051187069" result="Passed" start-time="2026-09-28T04:48:23.8847880Z" end-time="2026-09-28T04:48:23.9162630Z" duration="0.031475" asserts="11" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1008" name="MissingOptionalVergePreservesOrdinaryActorStockAndPosition" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MissingOptionalVergePreservesOrdinaryActorStockAndPosition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-28T04:48:23.9163520Z" end-time="2026-09-28T04:48:24.1011740Z" duration="0.184820" total="5" passed="5" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="100">
+            <test-case id="1003" name="MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;no-road&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;no-road&quot;)" methodname="MissingOptionalVergePreservesOrdinaryActorStockAndPosition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="455127938" result="Passed" start-time="2026-09-28T04:48:23.9163650Z" end-time="2026-09-28T04:48:23.9514730Z" duration="0.035108" asserts="20" />
+            <test-case id="1004" name="MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;reserved&quot;)" methodname="MissingOptionalVergePreservesOrdinaryActorStockAndPosition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="1522521519" result="Passed" start-time="2026-09-28T04:48:23.9514980Z" end-time="2026-09-28T04:48:23.9907670Z" duration="0.039269" asserts="20" />
+            <test-case id="1005" name="MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;interior&quot;)" methodname="MissingOptionalVergePreservesOrdinaryActorStockAndPosition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="787921712" result="Passed" start-time="2026-09-28T04:48:23.9908080Z" end-time="2026-09-28T04:48:24.0228130Z" duration="0.032004" asserts="20" />
+            <test-case id="1006" name="MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;wet&quot;)" methodname="MissingOptionalVergePreservesOrdinaryActorStockAndPosition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="569901824" result="Passed" start-time="2026-09-28T04:48:24.0228370Z" end-time="2026-09-28T04:48:24.0562480Z" duration="0.033411" asserts="20" />
+            <test-case id="1007" name="MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;sealed-border&quot;)" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.MissingOptionalVergePreservesOrdinaryActorStockAndPosition(&quot;sealed-border&quot;)" methodname="MissingOptionalVergePreservesOrdinaryActorStockAndPosition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="348241725" result="Passed" start-time="2026-09-28T04:48:24.0562710Z" end-time="2026-09-28T04:48:24.1011540Z" duration="0.044882" asserts="20" />
+          </test-suite>
+          <test-case id="1018" name="RemovalAndRepeatedEntryCannotRetryCommitOrMintAnotherMerchant" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.RemovalAndRepeatedEntryCannotRetryCommitOrMintAnotherMerchant" methodname="RemovalAndRepeatedEntryCannotRetryCommitOrMintAnotherMerchant" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="231971180" result="Passed" start-time="2026-09-28T04:48:24.1011850Z" end-time="2026-09-28T04:48:24.1478140Z" duration="0.046630" asserts="13" />
+          <test-case id="1016" name="ThreeEncounterCapDoesNotRunFactoryOrOptionalComposition" fullname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests.ThreeEncounterCapDoesNotRunFactoryOrOptionalComposition" methodname="ThreeEncounterCapDoesNotRunFactoryOrOptionalComposition" classname="CavesOfOoo.Tests.SpreadRoadsideExchangeTests" runstate="Runnable" seed="64148785" result="Passed" start-time="2026-09-28T04:48:24.1478330Z" end-time="2026-09-28T04:48:24.1835890Z" duration="0.035756" asserts="7" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

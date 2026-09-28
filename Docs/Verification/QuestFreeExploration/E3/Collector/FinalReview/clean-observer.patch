@@ -1,0 +1,88 @@
+--- /tmp/coo-questfree-implementation/collector-native/safe-view/QuestFreeSpreadStateNativePlayer.Modes.before.txt	2026-09-28 00:13:48
++++ /tmp/coo-questfree-implementation/collector-native/safe-view/QuestFreeSpreadStateNativePlayer.Modes.cs	2026-09-28 00:14:21
+@@ -35,7 +35,6 @@
+             Require(Presenter.TryGetApprovedStyle(row,out var beforeStyle)&&beforeStyle.ModelId.Contains("grain-"),"approved actual ripe field art");
+             string ripe=Model(row),playerBefore=PlayerSignature(),sourceBefore=SourceRows(new[]{row},Zone);int tick=Tick,energy=Energy;
+             yield return NormalCueCapture("00b-normal-adjacent-current-cue",true);
+-            yield return CuePixelDiagnostic();
+             yield return Focus(row);yield return null;
+             Check("focused_actual_harvest_cue",Cue(row,"Harvest",true));yield return Capture("01-generated-ripe-field-cue-and-hint");
+             yield return Tap(Key.Enter);Require(State=="WorldActionMenuOpen","actual focused action menu");yield return SelectCurrentOwner(row);yield return null;
+@@ -69,31 +68,6 @@
+             Check(label+"_free_current_normal_cue",(!requireCue||current.HasValue)&&submitted&&State=="Normal"&&At==standing&&Tick==tick&&Energy==energy&&PlayerSignature()==player
+                 &&(!current.HasValue||SourceRows(new[]{current.Value.Target},Zone)==source));
+         }
+-        IEnumerator CuePixelDiagnostic()
+-        {
+-            Require(State=="Normal","normal cue diagnostic");var cue=_input.QueryWorldAffordance(Zone,Player);Require(cue.HasValue,"actual cue diagnostic target");
+-            var draw=(WorldAffordanceRenderer)Field(_input.ZoneRenderer,"_worldAffordanceRenderer");var lines=new[]{(LineRenderer)Field(draw,"left"),(LineRenderer)Field(draw,"right")};
+-            Require(lines.All(l=>l!=null&&l.enabled&&!l.forceRenderingOff),"submitted actual cue lines");
+-            var widths=lines.Select(l=>l.widthMultiplier).ToArray();var starts=lines.Select(l=>l.startColor).ToArray();var ends=lines.Select(l=>l.endColor).ToArray();var forced=lines.Select(l=>l.forceRenderingOff).ToArray();
+-            var camera=Camera.main;Require(camera!=null,"actual main camera");int tick=Tick,energy=Energy;var at=At;string player=PlayerSignature(),source=SourceRows(new[]{cue.Value.Target},Zone);
+-            _observations.Add(new{phase="cue-pixel-diagnostic",owner=cue.Value.Target.ID,cell=new[]{cue.Value.Cell.X,cue.Value.Cell.Y},camera=camera.name,
+-                screen=new[]{Screen.width,Screen.height},pixelRect=new[]{camera.pixelRect.x,camera.pixelRect.y,camera.pixelRect.width,camera.pixelRect.height},camera.orthographic,camera.orthographicSize,camera.cullingMask,
+-                lines=lines.Select(l=>new{name=l.name,layer=l.gameObject.layer,l.sortingOrder,l.widthMultiplier,color=new[]{l.startColor.r,l.startColor.g,l.startColor.b,l.startColor.a},
+-                    projected=Enumerable.Range(0,l.positionCount).Select(i=>{var v=camera.WorldToScreenPoint(l.GetPosition(i));return new[]{v.x,v.y,v.z};}).ToArray(),
+-                    widthPixels=camera.orthographic?l.widthMultiplier*camera.pixelHeight/(2*camera.orthographicSize):-1f}).ToArray(),
+-                boundary="Diagnostic-only actual owned line suppression/width/color in successive free frames, same scene/camera/source. Ambient animation can vary; compare the exact projected cell ROI. All original line settings restored in finally. No production setting chosen by this probe."});
+-            try
+-            {
+-                yield return Capture("00c-cue-current-on");
+-                foreach(var line in lines)line.forceRenderingOff=true;yield return Capture("00d-cue-forced-off");
+-                foreach(var line in lines){line.forceRenderingOff=false;line.widthMultiplier=.08f;}yield return Capture("00e-cue-width-008");
+-                foreach(var line in lines)line.startColor=line.endColor=Color.white;yield return Capture("00f-cue-width-008-white-control");
+-            }
+-            finally{for(int i=0;i<lines.Length;i++)if(lines[i]!=null){lines[i].forceRenderingOff=forced[i];lines[i].widthMultiplier=widths[i];lines[i].startColor=starts[i];lines[i].endColor=ends[i];}}
+-            yield return Capture("00g-cue-restored");
+-            Check("cue_pixel_diagnostic_restored_and_free",State=="Normal"&&At==at&&Tick==tick&&Energy==energy&&PlayerSignature()==player&&SourceRows(new[]{cue.Value.Target},Zone)==source
+-                &&lines.Select((l,i)=>l!=null&&l.forceRenderingOff==forced[i]&&l.widthMultiplier==widths[i]&&l.startColor==starts[i]&&l.endColor==ends[i]).All(v=>v));
+-        }
+         int CarriedUnits(string blueprint)=>Player.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName==blueprint).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
+         IEnumerator Focus(Entity target)
+         {
+@@ -127,7 +101,9 @@
+                 {
+                     var p=e.GetPart<SpreadCollectorPart>();var a=z.GetEntityCell(e);var h=p?.Home==null?null:z.GetEntityCell(p.Home);var t=p?.Target==null?null:z.GetEntityCell(p.Target);
+                     if(p?.Configured!=true||p.Phase!=SpreadCollectorPhase.Seeking||p.Actions!=0||a==null||h==null||t==null||Manager.Exploration.DispositionFor(z.ZoneID)!=2)continue;
+-                    arrival=CellsNear(z,a,3,6).FirstOrDefault(c=>DrySafe(z,c,e)&&new[]{a,h,t}.All(v=>Math.Max(Math.Abs(c.X-v.X),Math.Abs(c.Y-v.Y))<=6&&AIHelpers.HasLineOfSight(z,c.X,c.Y,v.X,v.Y)));
++                    var threats=CollectorThreats(z,e);
++                    arrival=CellsNear(z,a,3,6).Where(c=>DrySafe(z,c,e)&&new[]{a,h,t}.All(v=>Math.Max(Math.Abs(c.X-v.X),Math.Abs(c.Y-v.Y))<=6&&AIHelpers.HasLineOfSight(z,c.X,c.Y,v.X,v.Y)))
++                        .OrderByDescending(c=>threats.Length==0?int.MaxValue:threats.Min(other=>SpatialQuery.DistanceToCell(z,other,c.X,c.Y))).FirstOrDefault();
+                     if(arrival!=null){bird=e;site=z;break;}
+                 }
+                 Selection(entry,z,bird,arrival,"configured Seeking collector with original ground target/home and safe visible local observation cell");if(bird!=null)break;
+@@ -138,7 +114,12 @@
+             yield return Capture("01-original-collector-item-and-home");bool picked=false,movedWithCargo=false;Cell firstCarryCell=null;
+             while(_paidInputs<PaidLimit&&role.Phase!=SpreadCollectorPhase.Deposited&&role.Phase!=SpreadCollectorPhase.Stopped)
+             {
+-                Require(_collectorObserverError==null,"collector frame observer: "+_collectorObserverError);Require(DrySafe(Zone,At,bird)&&Player.GetStatValue("Hitpoints")==40,"current safe observer remains unchanged");
++                Require(_collectorObserverError==null,"collector frame observer: "+_collectorObserverError);Require(Player.GetStatValue("Hitpoints")==40,"original observer HP unchanged");
++                if(!DrySafe(Zone,At,bird))
++                {
++                    _observations.Add(CollectorSafety("observer-became-unsafe",bird));Unverified("collector-safe-view","The actual observer cell became unsafe after "+_paidInputs+" real paid waits. Stop before another input; no relocation, source retry or suppressed actor.");
++                    yield return Capture("98-current-unsafe-observer");StopCollectorObservation();yield break;
++                }
+                 yield return Paid(Key.Period,"native-collector-wait");
+                 Require(bird.GetPart<SpreadCollectorPart>()==role&&role.Home==home&&role.Target==item&&Zone.GetEntityCell(home)==homeCell&&bird.GetStatValue("Hitpoints")==hp&&Player.GetStatValue("Hitpoints")==40&&item.BlueprintName==itemBlueprint&&(role.Phase==SpreadCollectorPhase.Deposited||(item.GetPart<StackerPart>()?.StackCount??1)==quantity),"original collector source identities/predeposit quantity/HP");
+                 var at=Zone.GetEntityCell(bird);_observations.Add(new{phase="live-collector-progress",paidInputs=_paidInputs,actor=bird.ID,item=item.ID,home=home.ID,state=role.Phase.ToString(),role.Actions,position=Zone.GetEntityPosition(bird),carried=role.CurrentCarriedItem?.ID,itemInventory=item.GetPart<PhysicsPart>()?.InInventory?.ID,homeCount=home.GetPart<ContainerPart>().Contents.Count});
+@@ -168,6 +149,20 @@
+             if(!picked||!movedWithCargo||!_pickupFrame||!_depositFrame)Unverified("collector-live-motion","Observed pickup="+picked+", carrying movement="+movedWithCargo+", actual Pickup frame="+_pickupFrame+", actual Deposit frame="+_depositFrame+". Sampled native art gallery remains separate.");
+             StopCollectorObservation();
+         }
++        Entity[] CollectorThreats(Zone zone,Entity bird)=>zone.GetReadOnlyEntities().Where(e=>e!=Player&&e!=bird&&e.HasTag("Creature")&&e.GetStatValue("Hitpoints")>0&&FactionManager.IsHostile(e,Player)).ToArray();
++        object CollectorSafety(string phase,Entity bird)
++        {
++            var cell=At;var tile=Zone.TileState.Get(cell.X,cell.Y);bool placeable=Zone.CanPlaceFootprint(Player,cell.X,cell.Y);
++            var occupants=cell.Occupants.Where(e=>e!=Player).Select(e=>new{id=e.ID,blueprint=e.BlueprintName,creature=e.HasTag("Creature"),liquid=e.HasPart<LiquidPoolPart>(),gas=e.HasPart<GasPoolPart>(),trigger=e.HasPart<TriggerOnStepPart>(),burning=e.HasEffect<BurningEffect>(),aflame=e.GetPart<ThermalPart>()?.IsAflame==true}).ToArray();
++            var threats=CollectorThreats(Zone,bird).Select(e=>new{id=e.ID,blueprint=e.BlueprintName,position=Zone.GetEntityPosition(e),distance=SpatialQuery.DistanceToCell(Zone,e,cell.X,cell.Y)}).OrderBy(e=>e.distance).ToArray();
++            var reasons=new List<string>();if(!placeable)reasons.Add("current-footprint-blocked");
++            if(occupants.Any(e=>e.creature||e.liquid||e.gas||e.trigger||e.burning||e.aflame))reasons.Add("current-cell-occupant-hazard");
++            if(tile!=null&&(tile.Heat>0||tile.Cold>0||tile.Charge>0||!string.IsNullOrEmpty(tile.Cloud)||tile.Coatings.Count>0))reasons.Add("current-tile-state-hazard");
++            if(threats.Any(e=>e.distance<=3))reasons.Add("actual-hostile-within-three-cells");
++            return new{phase,player=Player.ID,position=new[]{cell.X,cell.Y},safe=DrySafe(Zone,cell,bird),reasons=reasons.ToArray(),placeable,occupants,
++                tile=tile==null?null:new{tile.Heat,tile.Cold,tile.Charge,tile.Cloud,coatingCount=tile.Coatings.Count},threats,
++                boundary="Instrumented initial view ranks the same eligible cells by greatest current hostile separation. Future safety is not guaranteed; an unsafe view stops unverified before another paid input. No source, actor, seed, candidate budget or safety predicate change."};
++        }
+         IEnumerator CollectorFrameObservation()
+         {
+             while(_collectorObserved!=null)

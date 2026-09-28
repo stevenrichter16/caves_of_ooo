@@ -54,6 +54,8 @@ namespace CavesOfOoo.Rendering
    if (rareMarlbacks != null) { rareMarlbacks.Validate(); foreach (var e in rareMarlbacks.Entries) Add(e.Id, e.Mesh, rareMarlbacks.Material); }
    var latchcoil = SpreadLatchcoilLibrary.Load();
    if (latchcoil != null) { latchcoil.Validate(); foreach (var e in latchcoil.Entries) Add(e.Id,e.Mesh,latchcoil.Material); }
+   var collectors=SpreadCollectorArtLibrary.Load();
+   if(collectors!=null){collectors.Validate();foreach(var e in collectors.Entries)Add(e.Id,e.Mesh,e.Materials[0],e.Materials);}
    var exploration = QuestFreeSpreadArtLibrary.Load();
    if (exploration != null) { exploration.Validate(); foreach (var e in exploration.Entries) Add(e.Id,e.Mesh,e.Materials[0],e.Materials); }
   }

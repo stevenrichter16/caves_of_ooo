@@ -24,6 +24,7 @@ namespace CavesOfOoo.Rendering
             public Animator Animator;
             public NativeSpellCastPlayer Cast;
             public NativeQuestCueViews.Handle QuestCue;
+            public SpreadCollectorCarryView CollectorCarry;
             public bool Transient, Drawn, AuthoredIdleFacing;
             public Vector3 Target, Start;
             public float MoveStart, MoveDuration, ActionUntil;
@@ -39,6 +40,7 @@ namespace CavesOfOoo.Rendering
         private readonly List<Entity> removed = new List<Entity>();
         private RaycastHit[] hits = new RaycastHit[64];
         private SpawnRing3DLibrary library;
+        private SpreadPortable3DLibrary collectorPortables;
         private VoxelWorldPresentation voxel;
         private MultiCellPilot3DLibrary pilotLibrary;
         private ReferenceGladeVoxelLibrary gladeLibrary;
@@ -114,7 +116,7 @@ namespace CavesOfOoo.Rendering
                 {
                     var portable = SpreadPortable3DLibrary.Load();
                     if (portable == null) throw new InvalidOperationException("Spread portable library is unavailable.");
-                    portable.Validate(); materials.Add(portable.Material);
+                    portable.Validate(); collectorPortables=portable; materials.Add(portable.Material);
                 }
                 ReferenceGladeVoxelLibrary glade=null;
                 if(referenceGlade || spreadStyle)
@@ -222,6 +224,7 @@ namespace CavesOfOoo.Rendering
                 bool drawn = recipe.Transient ? AnyBodyKnown(entity, visibleOnly:true) : AnyRemembered(view, cell);
                 SetDrawn(view, drawn);
                 SyncQuestCue(view);
+                SyncCollectorCarry(view);
                 if (drawn && view.Cast?.IsActive != true && view.MoveDuration <= 0 && Time.unscaledTime >= view.ActionUntil) Play(view, "Idle");
             }
             foreach (var pair in recipes) if (!seen.Contains(pair.Key)) removed.Add(pair.Key);
@@ -306,6 +309,8 @@ namespace CavesOfOoo.Rendering
             view.Colliders = root.GetComponentsInChildren<Collider>(true);
             foreach (var collider in view.Colliders) byCollider.Add(collider, view);
             if (view.Animator != null) { view.Animator.applyRootMotion = false; view.Animator.cullingMode = AnimatorCullingMode.CullCompletely; view.Cast = new NativeSpellCastPlayer(view.Animator); }
+            if(recipe.ModelId==SpreadCollectorArtLibrary.Actor&&boundSpreadStyle)
+                view.CollectorCarry=new SpreadCollectorCarryView(view.Owner,root,collectorPortables,go=>PrepareModel(go,true));
             views.Add(recipe.Owner, view); return view;
         }
         // Only the exact three glade body forms decouple visible proportions
@@ -326,7 +331,7 @@ namespace CavesOfOoo.Rendering
         private static Vector3 Abs(Vector3 v) => new Vector3(Mathf.Abs(v.x), Mathf.Abs(v.y), Mathf.Abs(v.z));
         private void RemoveView(View view)
         {
-            views.Remove(view.Owner); view.Cast?.Dispose();
+            views.Remove(view.Owner); view.Cast?.Dispose(); view.CollectorCarry?.Dispose();
             foreach (var collider in view.Colliders) byCollider.Remove(collider);
             if (view.Root != null) { view.Root.SetActive(false); DestroyOwned(view.Root); }
         }
@@ -473,6 +478,27 @@ namespace CavesOfOoo.Rendering
             questCues?.Sync(ref view.QuestCue,view.Owner,view.Root,view.Renderers,CurrentZone,
                 StoryletPart.LocalPlayer,view.Drawn,FullReveal,surface?.WorldCamera);
         }
+        private bool CollectorShown(View view) => PresentationVisible && boundSpreadStyle && GladeAuthorityMatches
+            && view.Drawn && view.Owner.GetPart<RenderPart>()?.Visible==true && AnyBodyKnown(view.Owner,true);
+        private void SyncCollectorCarry(View view)
+        {
+            if(view.CollectorCarry==null)return;
+            view.CollectorCarry.Sync(CurrentZone,CollectorShown(view),out string gesture);
+            if(gesture!=null)Action(view.Owner,CurrentZone,gesture,.6f);
+            else if(view.Cast?.IsActive!=true&&view.MoveDuration<=0&&Time.unscaledTime>=view.ActionUntil)Play(view,"Idle");
+        }
+        /// <summary>Exact real inventory owner, separate from body/equipment and picking.</summary>
+        public bool TryGetCollectorCarryView(Entity actor,Entity item,out GameObject root)
+        {
+            root=null;return IsReady&&actor!=null&&views.TryGetValue(actor,out var view)&&view.CollectorCarry!=null
+                &&view.CollectorCarry.TryGet(CurrentZone,CollectorShown(view),item,out root);
+        }
+        public bool TryGetApprovedCollectorCarryStyle(Entity actor,Entity item,out SpreadBiomeStyleEvidence evidence)
+        {
+            evidence=new SpreadBiomeStyleEvidence(null,"outside-current-collector-carry",false);
+            return IsReady&&actor!=null&&views.TryGetValue(actor,out var view)&&view.CollectorCarry!=null
+                &&view.CollectorCarry.TryStyle(CurrentZone,CollectorShown(view),item,surface,styleProperties,styleMaterials,out evidence);
+        }
         /// <summary>Read-only exact current gas output. Unknown/custom/stale or
         /// unsubmitted sources never suppress their native fallback.</summary>
         public bool TryGetGasVolume(Entity entity,out GameObject root,out SpreadTransientSample sample)
@@ -496,7 +522,7 @@ namespace CavesOfOoo.Rendering
             bool wasVisible = surface != null && surface.IsVisible;
             surface?.Sync(source, PresentationRequested, Village3DSettings.LowDetail);
             groundContact?.SetEnabled(PresentationVisible && !Village3DSettings.LowDetail);
-            if (wasVisible && !PresentationVisible) foreach (var view in views.Values) Interrupt(view);
+            if (wasVisible && !PresentationVisible) foreach (var view in views.Values) { Interrupt(view); view.CollectorCarry?.Sync(CurrentZone,false,out _); }
         }
         private void LateUpdate()
         {
@@ -507,6 +533,7 @@ namespace CavesOfOoo.Rendering
             foreach (var view in views.Values)
             {
                 SyncQuestCue(view);
+                SyncCollectorCarry(view);
                 if (!view.Drawn) continue;
                 bool wasCasting = view.Cast?.IsActive == true;
                 view.Cast?.Tick(Time.unscaledDeltaTime);
@@ -575,8 +602,10 @@ namespace CavesOfOoo.Rendering
             EntityVisualHooks.MovedCallback += OnMoved; EntityVisualHooks.AttackCallback += OnAttack; EntityVisualHooks.InteractionCallback += OnInteraction;
             EntityVisualHooks.DamageCallback += OnDamage; EntityVisualHooks.DeathCallback += OnDeath; EntityVisualHooks.CastCallback += OnCast;
         }
-        private static void Play(View view, string clip)
+        private void Play(View view, string clip)
         {
+            if ((clip=="Idle"||clip=="Walk")&&view.CollectorCarry?.HasCurrentCarry(CurrentZone,CollectorShown(view))==true)
+                clip=clip=="Idle"?"CarryIdle":"CarryWalk";
             if (view.Cast?.IsActive == true) { view.Cast.Clear(); view.Clip = null; }
             // Encased elders have an architectural rest pose even without a rig.
             // All gesture/movement expiry paths settle through Idle; other actors
@@ -626,10 +655,10 @@ namespace CavesOfOoo.Rendering
                 view.Root.transform.rotation = Quaternion.LookRotation(new Vector3(tx - sx, 0, sy - ty));
         }
         private void OnDeath(Entity target, Entity killer, Zone zone, int x, int y)
-        { if (ReferenceEquals(zone, CurrentZone) && target != null && views.TryGetValue(target, out var view)) SetDrawn(view, false); }
+        { if (ReferenceEquals(zone, CurrentZone) && target != null && views.TryGetValue(target, out var view)) { view.CollectorCarry?.Dispose(); SetDrawn(view, false); } }
         private static void Interrupt(View view)
         { view.Cast?.Clear(); view.MoveDuration = 0; view.ActionUntil = 0; view.Clip = null; if (view.Root != null) view.Root.transform.position = view.Target; }
-        private void OnDisable() { SyncCamera(); foreach (var view in views.Values) Interrupt(view); }
+        private void OnDisable() { SyncCamera(); foreach (var view in views.Values) { view.CollectorCarry?.Dispose(); Interrupt(view); } }
         private void OnDestroy() => Release();
         private void Release()
         {
@@ -639,7 +668,7 @@ namespace CavesOfOoo.Rendering
                 EntityVisualHooks.MovedCallback -= OnMoved; EntityVisualHooks.AttackCallback -= OnAttack; EntityVisualHooks.InteractionCallback -= OnInteraction;
                 EntityVisualHooks.DamageCallback -= OnDamage; EntityVisualHooks.DeathCallback -= OnDeath; EntityVisualHooks.CastCallback -= OnCast; hooks = false;
             }
-            foreach (var view in views.Values) view.Cast?.Dispose();
+            foreach (var view in views.Values) { view.Cast?.Dispose(); view.CollectorCarry?.Dispose(); }
             spellLibrary = null;
             voxel = null;
             transientVolumes?.Dispose(); transientVolumes=null;
@@ -647,7 +676,7 @@ namespace CavesOfOoo.Rendering
             groundContact?.Dispose(); groundContact = null;
             equipment?.Dispose(); equipment = null; ground?.Dispose(); ground = null; surface?.Dispose(); surface = null;
             recipes.Clear(); staticStyles.Clear(); views.Clear(); byCollider.Clear(); seen.Clear(); removed.Clear();
-            CurrentZone = null; source = null; library = null; pilotLibrary = null; gladeLibrary = null; visitorPaintLibrary = null; visitorCreatureLibrary = null; humanoidLibrary = null; nativeStyleLibrary = null; approvedStyle = null; styleProperties?.Clear(); styleProperties = null; styleMaterials.Clear(); definition = null;
+            CurrentZone = null; source = null; library = null; collectorPortables = null; pilotLibrary = null; gladeLibrary = null; visitorPaintLibrary = null; visitorCreatureLibrary = null; humanoidLibrary = null; nativeStyleLibrary = null; approvedStyle = null; styleProperties?.Clear(); styleProperties = null; styleMaterials.Clear(); definition = null;
         }
         private void PrepareModel(GameObject root, bool transient, string modelId = null)
         {

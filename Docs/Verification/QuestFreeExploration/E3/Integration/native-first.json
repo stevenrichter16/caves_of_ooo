@@ -1,0 +1,40 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 165,
+    "passed": 162,
+    "failed": 3,
+    "skipped": 0,
+    "durationSeconds": 25.8001523,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(\"SnakeForage\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(\"SnakeForage\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.4139391,
+      "message": "Need a real committed SnakeForage before measuring callbacks",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted (System.Int32 seed, System.String family) [0x00061] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEncounterPipelineTests.cs:61\nat CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource (System.String family, System.Boolean mutate) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEncounterPipelineTests.cs:65\n",
+      "output": ""
+    },
+    {
+      "name": "FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(\"SnakeForage\",True)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource(\"SnakeForage\",True)",
+      "state": "Failed",
+      "durationSeconds": 1.1389615,
+      "message": "Need a real committed SnakeForage before measuring callbacks",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FindCommitted (System.Int32 seed, System.String family) [0x00061] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEncounterPipelineTests.cs:61\nat CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.FinalGenerationCallbackAcceptsUnchangedAndRefusesMutatedSource (System.String family, System.Boolean mutate) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEncounterPipelineTests.cs:65\n",
+      "output": ""
+    },
+    {
+      "name": "RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,\"SnakeForage\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,\"SnakeForage\")",
+      "state": "Failed",
+      "durationSeconds": 1.6477818,
+      "message": "  SnakeForage needs actual pipeline realization, not only assignments\n  Expected: greater than 0\n  But was:  0\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream (System.Int32 seed, System.String family) [0x0058d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEncounterPipelineTests.cs:59\n",
+      "output": "64 SnakeForage Overworld.11.11.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler,MarlbackScrabbler food=1\n64 SnakeForage Overworld.13.6.0 refused:no-safe-encounter-layout actors=Viper food=1\n64 SnakeForage Overworld.18.12.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1\n64 SnakeForage Overworld.19.11.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler,MarlbackScrabbler food=3\n64 SnakeForage Overworld.6.13.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=3\n64 SnakeForage Overworld.7.14.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1\n64 SnakeForage Overworld.9.1.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1\n"
+    }
+  ]
+}

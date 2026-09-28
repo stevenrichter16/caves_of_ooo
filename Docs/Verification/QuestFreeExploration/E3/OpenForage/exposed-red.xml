@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/e3-open-forage/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="79" result="Failed" start-time="2026-09-28T04:17:21.0779490Z" end-time="2026-09-28T04:17:22.4836780Z" duration="1.405691" total="4" passed="2" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="8118" random-seed="2099443209">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/e3-open-forage/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/e3-open-forage/exposed-red.xml --where "test =~ /ExposedForageDoesNotRequire/"]]></command-line>
+  <filter>
+    <test re="1">ExposedForageDoesNotRequire</test>
+  </filter>
+  <test-suite type="Assembly" id="1097" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/e3-open-forage/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="79" result="Failed" site="Child" start-time="2026-09-28T04:17:21.0779490Z" end-time="2026-09-28T04:17:22.4836780Z" duration="1.405691" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="8118">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/e3-open-forage/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/e3-open-forage/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="54403" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1098" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="79" result="Failed" site="Child" start-time="2026-09-28T04:17:21.0796450Z" end-time="2026-09-28T04:17:22.4836410Z" duration="1.403977" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="8118">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1099" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="79" result="Failed" site="Child" start-time="2026-09-28T04:17:21.0797650Z" end-time="2026-09-28T04:17:22.4836000Z" duration="1.403816" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="8118">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationEncounterTests" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-09-28T04:17:21.0801080Z" end-time="2026-09-28T04:17:22.4835920Z" duration="1.403461" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="8118">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1071" name="ExposedForageDoesNotRequireAnUnrelatedNearbyPost" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExposedForageDoesNotRequireAnUnrelatedNearbyPost" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T04:17:21.0810030Z" end-time="2026-09-28T04:17:22.4833910Z" duration="1.402369" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="8118">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1067" name="ExposedForageDoesNotRequireAnUnrelatedNearbyPost(7,16,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExposedForageDoesNotRequireAnUnrelatedNearbyPost(7,16,False)" methodname="ExposedForageDoesNotRequireAnUnrelatedNearbyPost" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="750154483" result="Failed" start-time="2026-09-28T04:17:21.0810820Z" end-time="2026-09-28T04:17:21.1684260Z" duration="0.087376" asserts="2025">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExposedForageDoesNotRequireAnUnrelatedNearbyPost(Int32 x, Int32 y, Boolean covered) in /tmp/coo-questfree-implementation/actors/e3-open-forage/SpreadExplorationEncounterTests.cs:line 103
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExposedForageDoesNotRequireAnUnrelatedNearbyPost(Int32 x, Int32 y, Boolean covered) in /tmp/coo-questfree-implementation/actors/e3-open-forage/SpreadExplorationEncounterTests.cs:line 103
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1068" name="ExposedForageDoesNotRequireAnUnrelatedNearbyPost(7,16,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExposedForageDoesNotRequireAnUnrelatedNearbyPost(7,16,True)" methodname="ExposedForageDoesNotRequireAnUnrelatedNearbyPost" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="351351566" result="Passed" start-time="2026-09-28T04:17:21.1690670Z" end-time="2026-09-28T04:17:21.8426550Z" duration="0.673578" asserts="2034" />
+            <test-case id="1069" name="ExposedForageDoesNotRequireAnUnrelatedNearbyPost(43,12,False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExposedForageDoesNotRequireAnUnrelatedNearbyPost(43,12,False)" methodname="ExposedForageDoesNotRequireAnUnrelatedNearbyPost" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1075211590" result="Failed" start-time="2026-09-28T04:17:21.8426800Z" end-time="2026-09-28T04:17:21.8635120Z" duration="0.020833" asserts="2025">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExposedForageDoesNotRequireAnUnrelatedNearbyPost(Int32 x, Int32 y, Boolean covered) in /tmp/coo-questfree-implementation/actors/e3-open-forage/SpreadExplorationEncounterTests.cs:line 103
+   at InvokeStub_SpreadExplorationEncounterTests.ExposedForageDoesNotRequireAnUnrelatedNearbyPost(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExposedForageDoesNotRequireAnUnrelatedNearbyPost(Int32 x, Int32 y, Boolean covered) in /tmp/coo-questfree-implementation/actors/e3-open-forage/SpreadExplorationEncounterTests.cs:line 103
+   at InvokeStub_SpreadExplorationEncounterTests.ExposedForageDoesNotRequireAnUnrelatedNearbyPost(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1070" name="ExposedForageDoesNotRequireAnUnrelatedNearbyPost(43,12,True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.ExposedForageDoesNotRequireAnUnrelatedNearbyPost(43,12,True)" methodname="ExposedForageDoesNotRequireAnUnrelatedNearbyPost" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="62453004" result="Passed" start-time="2026-09-28T04:17:21.8635460Z" end-time="2026-09-28T04:17:22.4827160Z" duration="0.619163" asserts="2034" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

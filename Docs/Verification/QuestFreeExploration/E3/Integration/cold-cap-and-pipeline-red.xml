@@ -1,0 +1,1032 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="120" result="Failed" start-time="2026-09-28T03:57:28.5536730Z" end-time="2026-09-28T03:57:33.2893250Z" duration="4.735550" total="8" passed="1" failed="7" inconclusive="0" skipped="0" warnings="0" asserts="311440" random-seed="1832988078">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/e3-integration/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/e3-integration/candidate-diagnostic.xml --where "method == RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream or method == OriginalColdRollPositionsDoNotSetALiveTravelLeash"]]></command-line>
+  <filter>
+    <or>
+      <method>RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream</method>
+      <method>OriginalColdRollPositionsDoNotSetALiveTravelLeash</method>
+    </or>
+  </filter>
+  <test-suite type="Assembly" id="1148" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="120" result="Failed" site="Child" start-time="2026-09-28T03:57:28.5536730Z" end-time="2026-09-28T03:57:33.2893250Z" duration="4.735550" total="8" passed="1" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="311440">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/e3-integration/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="49064" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1149" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="120" result="Failed" site="Child" start-time="2026-09-28T03:57:28.5552300Z" end-time="2026-09-28T03:57:33.2893230Z" duration="4.734016" total="8" passed="1" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="311440">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1150" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="120" result="Failed" site="Child" start-time="2026-09-28T03:57:28.5553690Z" end-time="2026-09-28T03:57:33.2893210Z" duration="4.733876" total="8" passed="1" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="311440">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationEncounterPipelineTests" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T03:57:28.5557480Z" end-time="2026-09-28T03:57:33.2357380Z" duration="4.679913" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="307398">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1007" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T03:57:28.5567810Z" end-time="2026-09-28T03:57:33.2355420Z" duration="4.678686" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="307398">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1,&quot;SnakeForage&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1,&quot;SnakeForage&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1845436635" result="Failed" start-time="2026-09-28T03:57:28.5568660Z" end-time="2026-09-28T03:57:29.7391810Z" duration="1.182321" asserts="51273">
+              <failure>
+                <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1 SnakeForage Overworld.10.1.0 refused:no-safe-encounter-layout actors=Viper food=1
+1 SnakeForage Overworld.10.12.0 refused:no-safe-encounter-layout actors=Viper food=3
+BORDER (6, 8) sees=2,0
+BORDER (7, 8) sees=1,0
+BORDER (8, 8) sees=1,0
+BORDER (6, 9) sees=3,0
+BORDER (10, 9) sees=1,0
+BORDER (6, 10) sees=3,0
+BORDER (10, 10) sees=1,0
+BORDER (5, 7) sees=4,0
+BORDER (6, 7) sees=2,0
+BORDER (10, 7) sees=0,0
+BORDER (11, 7) sees=1,0
+BORDER (5, 8) sees=4,0
+BORDER (5, 9) sees=0,0
+BORDER (11, 9) sees=1,0
+BORDER (5, 10) sees=0,0
+BORDER (11, 10) sees=1,0
+INTERIOR (11, 11) places=False preserve=False
+INTERIOR (11, 12) places=False preserve=False
+INTERIOR (11, 13) places=False preserve=False
+BORDER (5, 6) sees=2,0
+BORDER (12, 6) sees=3,0
+BORDER (12, 8) sees=4,0
+BORDER (4, 9) sees=0,0
+BORDER (12, 9) sees=2,0
+BORDER (4, 10) sees=6,0
+BORDER (12, 10) sees=2,0
+INTERIOR (12, 11) places=False preserve=False
+INTERIOR (12, 12) places=False preserve=False
+INTERIOR (12, 13) places=False preserve=False
+BORDER (4, 14) sees=0,4
+BORDER (5, 14) sees=0,4
+BORDER (6, 14) sees=0,4
+BORDER (7, 14) sees=0,4
+BORDER (8, 14) sees=0,5
+BORDER (9, 14) sees=0,5
+BORDER (10, 14) sees=0,5
+BORDER (11, 14) sees=1,24
+BORDER (12, 14) sees=2,24
+1 SnakeForage Overworld.11.4.0 refused:no-safe-encounter-layout actors=Viper food=1
+1 SnakeForage Overworld.12.10.0 refused:no-safe-encounter-layout actors=Viper,Viper food=1
+1 SnakeForage Overworld.18.12.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+BORDER (63, 8) sees=53,0
+BORDER (64, 8) sees=56,0
+BORDER (65, 8) sees=56,0
+BORDER (66, 8) sees=56,0
+BORDER (63, 9) sees=53,0
+BORDER (67, 9) sees=57,0
+BORDER (63, 10) sees=53,0
+BORDER (67, 10) sees=57,0
+INTERIOR (63, 11) places=False preserve=False
+INTERIOR (67, 11) places=False preserve=False
+INTERIOR (63, 12) places=False preserve=False
+INTERIOR (64, 12) places=False preserve=False
+INTERIOR (65, 12) places=False preserve=False
+INTERIOR (66, 12) places=False preserve=False
+INTERIOR (67, 12) places=False preserve=False
+BORDER (62, 7) sees=52,0
+BORDER (66, 7) sees=56,0
+BORDER (67, 7) sees=60,0
+BORDER (68, 8) sees=60,0
+BORDER (62, 9) sees=52,0
+BORDER (68, 9) sees=64,0
+BORDER (62, 10) sees=52,0
+BORDER (68, 10) sees=60,0
+INTERIOR (62, 11) places=False preserve=False
+INTERIOR (68, 11) places=False preserve=False
+INTERIOR (62, 12) places=False preserve=False
+INTERIOR (68, 12) places=False preserve=False
+INTERIOR (62, 13) places=False preserve=False
+INTERIOR (63, 13) places=False preserve=False
+INTERIOR (64, 13) places=False preserve=False
+INTERIOR (65, 13) places=False preserve=False
+INTERIOR (66, 13) places=False preserve=False
+INTERIOR (67, 13) places=False preserve=False
+INTERIOR (68, 13) places=False preserve=False
+BORDER (62, 6) sees=52,0
+BORDER (64, 6) sees=55,0
+BORDER (67, 6) sees=60,0
+BORDER (61, 7) sees=51,0
+BORDER (69, 7) sees=79,2
+BORDER (69, 8) sees=60,0
+BORDER (61, 9) sees=51,0
+BORDER (61, 10) sees=51,0
+BORDER (69, 10) sees=62,0
+INTERIOR (61, 11) places=False preserve=False
+INTERIOR (61, 12) places=False preserve=False
+INTERIOR (61, 13) places=False preserve=False
+BORDER (62, 14) sees=52,24
+BORDER (63, 14) sees=53,24
+BORDER (64, 14) sees=54,24
+BORDER (65, 14) sees=55,24
+BORDER (66, 14) sees=56,24
+BORDER (67, 14) sees=57,24
+BORDER (68, 14) sees=58,24
+BORDER (69, 14) sees=79,4
+BORDER (68, 8) sees=60,0
+BORDER (69, 8) sees=60,0
+BORDER (70, 8) sees=76,0
+BORDER (71, 8) sees=73,0
+BORDER (72, 8) sees=66,0
+BORDER (68, 9) sees=64,0
+BORDER (72, 9) sees=68,0
+BORDER (68, 10) sees=60,0
+BORDER (72, 10) sees=71,0
+INTERIOR (68, 11) places=False preserve=False
+INTERIOR (68, 12) places=False preserve=False
+BORDER (67, 7) sees=60,0
+BORDER (68, 7) sees=60,0
+BORDER (69, 7) sees=79,2
+BORDER (70, 7) sees=77,0
+BORDER (71, 7) sees=68,0
+BORDER (72, 7) sees=65,0
+BORDER (73, 7) sees=70,0
+BORDER (73, 8) sees=65,0
+BORDER (67, 9) sees=57,0
+BORDER (73, 9) sees=66,0
+BORDER (67, 10) sees=57,0
+BORDER (73, 10) sees=67,0
+INTERIOR (67, 11) places=False preserve=False
+INTERIOR (67, 12) places=False preserve=False
+INTERIOR (67, 13) places=False preserve=False
+INTERIOR (68, 13) places=False preserve=False
+BORDER (67, 6) sees=60,0
+BORDER (71, 6) sees=61,0
+BORDER (72, 6) sees=70,0
+BORDER (73, 6) sees=70,0
+BORDER (66, 7) sees=56,0
+BORDER (74, 7) sees=66,0
+BORDER (66, 8) sees=56,0
+BORDER (66, 9) sees=56,0
+BORDER (74, 9) sees=65,0
+BORDER (66, 10) sees=56,0
+INTERIOR (66, 11) places=False preserve=False
+INTERIOR (66, 12) places=False preserve=False
+INTERIOR (66, 13) places=False preserve=False
+BORDER (66, 14) sees=56,24
+BORDER (67, 14) sees=57,24
+BORDER (68, 14) sees=58,24
+BORDER (69, 14) sees=79,4
+BORDER (70, 14) sees=79,4
+BORDER (71, 14) sees=79,4
+BORDER (72, 14) sees=79,4
+BORDER (73, 14) sees=79,4
+BORDER (74, 14) sees=79,4
+1 SnakeForage Overworld.19.11.0 refused:no-safe-encounter-layout actors=Viper food=3
+BORDER (22, 5);(24, 5) sees=12,0
+BORDER (23, 5);(25, 5) sees=13,0
+BORDER (21, 8);(23, 8) sees=13,0
+BORDER (21, 9);(23, 9) sees=11,0
+BORDER (22, 9);(24, 9) sees=13,0
+BORDER (23, 9);(25, 9) sees=13,0
+BORDER (20, 4);(22, 4) sees=11,0
+BORDER (21, 4);(23, 4) sees=11,0
+BORDER (20, 9);(22, 9) sees=10,0
+BORDER (20, 10);(22, 10) sees=10,0
+BORDER (21, 10);(23, 10) sees=11,0
+BORDER (22, 10);(24, 10) sees=13,0
+BORDER (23, 10);(25, 10) sees=13,0
+BORDER (19, 3);(21, 3) sees=10,0
+BORDER (20, 3);(22, 3) sees=15,0
+BORDER (21, 3);(23, 3) sees=14,0
+BORDER (22, 3);(24, 3) sees=14,0
+BORDER (23, 3);(25, 3) sees=14,0
+BORDER (19, 9);(21, 9) sees=9,0
+BORDER (19, 10);(21, 10) sees=9,0
+INTERIOR (19, 11);(21, 11) places=False preserve=False
+INTERIOR (20, 11);(22, 11) places=False preserve=False
+INTERIOR (21, 11);(23, 11) places=False preserve=False
+INTERIOR (22, 11);(24, 11) places=False preserve=False
+INTERIOR (23, 11);(25, 11) places=False preserve=False
+INTERIOR (24, 11);(26, 11) places=False preserve=False
+INTERIOR (25, 11);(27, 11) places=False preserve=False
+INTERIOR (26, 11);(28, 11) places=False preserve=False
+INTERIOR (27, 11);(29, 11) places=False preserve=False
+1 SnakeForage Overworld.6.13.0 refused:no-safe-encounter-layout actors=Viper,Viper food=2
+1 SnakeForage Overworld.7.14.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+BORDER (70, 7);(72, 7) sees=60,0
+BORDER (72, 9);(74, 9) sees=62,0
+BORDER (72, 10);(74, 10) sees=62,0
+BORDER (70, 11);(72, 11) sees=79,1
+BORDER (71, 11);(73, 11) sees=79,1
+BORDER (72, 11);(74, 11) sees=79,1
+BORDER (70, 6);(72, 6) sees=60,0
+BORDER (73, 6);(75, 6) sees=65,0
+BORDER (73, 9);(75, 9) sees=63,0
+BORDER (73, 10);(75, 10) sees=63,0
+BORDER (73, 11);(75, 11) sees=79,1
+BORDER (74, 8);(76, 8) sees=66,0
+BORDER (74, 9);(76, 9) sees=64,0
+BORDER (74, 10);(76, 10) sees=64,0
+INTERIOR (66, 11);(68, 11) places=False preserve=False
+BORDER (74, 11);(76, 11) sees=79,1
+INTERIOR (66, 12);(68, 12) places=False preserve=False
+INTERIOR (66, 13);(68, 13) places=False preserve=False
+1 SnakeForage Overworld.8.11.0 refused:no-safe-encounter-layout actors=Viper,Viper food=3
+1 SnakeForage Overworld.8.4.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+BORDER (64, 8);(66, 8) sees=54,0
+BORDER (65, 8);(67, 8) sees=57,0
+BORDER (66, 8);(68, 8) sees=57,0
+BORDER (67, 8);(69, 8) sees=57,0
+BORDER (68, 8);(70, 8) sees=58,0
+BORDER (64, 9);(66, 9) sees=54,0
+BORDER (68, 10);(70, 10) sees=58,0
+INTERIOR (64, 11);(66, 11) places=False preserve=False
+INTERIOR (64, 12);(66, 12) places=False preserve=False
+INTERIOR (65, 12);(67, 12) places=False preserve=False
+INTERIOR (66, 12);(68, 12) places=False preserve=False
+BORDER (66, 7);(68, 7) sees=56,0
+BORDER (67, 7);(69, 7) sees=57,0
+BORDER (69, 7);(71, 7) sees=62,0
+BORDER (63, 8);(65, 8) sees=53,0
+BORDER (63, 9);(65, 9) sees=53,0
+BORDER (63, 10);(65, 10) sees=53,0
+BORDER (69, 10);(71, 10) sees=59,0
+INTERIOR (63, 11);(65, 11) places=False preserve=False
+INTERIOR (63, 12);(65, 12) places=False preserve=False
+INTERIOR (63, 13);(65, 13) places=False preserve=False
+INTERIOR (64, 13);(66, 13) places=False preserve=False
+INTERIOR (65, 13);(67, 13) places=False preserve=False
+INTERIOR (66, 13);(68, 13) places=False preserve=False
+BORDER (66, 6);(68, 6) sees=56,0
+BORDER (70, 8);(72, 8) sees=62,0
+BORDER (62, 9);(64, 9) sees=52,0
+BORDER (62, 10);(64, 10) sees=52,0
+BORDER (70, 10);(72, 10) sees=62,0
+INTERIOR (62, 11);(64, 11) places=False preserve=False
+INTERIOR (62, 12);(64, 12) places=False preserve=False
+INTERIOR (62, 13);(64, 13) places=False preserve=False
+BORDER (62, 14);(64, 14) sees=52,24
+BORDER (63, 14);(65, 14) sees=53,24
+BORDER (64, 14);(66, 14) sees=54,24
+BORDER (65, 14);(67, 14) sees=55,24
+BORDER (66, 14);(68, 14) sees=56,24
+BORDER (67, 14);(69, 14) sees=79,5
+BORDER (68, 14);(70, 14) sees=79,5
+BORDER (69, 14);(71, 14) sees=79,5
+BORDER (70, 14);(72, 14) sees=79,4
+1 SnakeForage Overworld.9.9.0 refused:no-safe-encounter-layout actors=Viper,Viper food=3
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,&quot;SnakeForage&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,&quot;SnakeForage&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1059939896" result="Failed" start-time="2026-09-28T03:57:29.7397210Z" end-time="2026-09-28T03:57:30.3901070Z" duration="0.650376" asserts="32520">
+              <failure>
+                <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[BORDER (68, 5) sees=61,0
+BORDER (69, 5) sees=61,0
+BORDER (70, 5) sees=61,0
+BORDER (71, 5) sees=61,0
+BORDER (72, 5) sees=62,0
+BORDER (68, 6) sees=62,0
+BORDER (72, 6) sees=62,0
+BORDER (68, 7) sees=58,0
+BORDER (72, 8) sees=62,0
+BORDER (68, 9) sees=59,0
+BORDER (69, 9) sees=59,0
+BORDER (70, 9) sees=62,0
+BORDER (71, 9) sees=62,0
+BORDER (72, 9) sees=62,0
+BORDER (67, 4) sees=61,0
+BORDER (68, 4) sees=61,0
+BORDER (69, 4) sees=60,0
+BORDER (70, 4) sees=60,0
+BORDER (71, 4) sees=69,0
+BORDER (72, 4) sees=67,0
+BORDER (73, 4) sees=66,0
+BORDER (67, 5) sees=62,0
+BORDER (67, 6) sees=62,0
+BORDER (73, 6) sees=63,0
+BORDER (67, 8) sees=59,0
+BORDER (73, 8) sees=79,1
+BORDER (73, 9) sees=63,0
+BORDER (67, 10) sees=60,0
+BORDER (68, 10) sees=59,0
+BORDER (69, 10) sees=59,0
+BORDER (70, 10) sees=63,0
+BORDER (71, 10) sees=62,0
+BORDER (72, 10) sees=62,0
+BORDER (73, 10) sees=63,0
+BORDER (66, 3) sees=61,0
+BORDER (67, 3) sees=60,0
+BORDER (68, 3) sees=59,0
+BORDER (71, 3) sees=66,0
+BORDER (73, 3) sees=63,0
+BORDER (74, 3) sees=64,0
+BORDER (66, 4) sees=62,0
+BORDER (74, 4) sees=64,0
+BORDER (66, 5) sees=63,0
+BORDER (74, 5) sees=67,0
+BORDER (74, 6) sees=71,0
+BORDER (74, 8) sees=73,0
+BORDER (74, 9) sees=73,0
+BORDER (74, 10) sees=64,0
+INTERIOR (66, 11) places=False preserve=False
+INTERIOR (67, 11) places=False preserve=False
+INTERIOR (68, 11) places=False preserve=False
+64 SnakeForage Overworld.11.11.0 refused:no-safe-encounter-layout actors=Viper food=1
+64 SnakeForage Overworld.13.6.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler,MarlbackScrabbler food=1
+BORDER (16, 17);(18, 17) sees=6,24
+BORDER (14, 21);(16, 21) sees=6,24
+BORDER (16, 21);(18, 21) sees=6,24
+BORDER (12, 21);(14, 21) sees=2,24
+BORDER (18, 21);(20, 21) sees=11,24
+BORDER (12, 22);(14, 22) sees=2,24
+BORDER (11, 15);(13, 15) sees=2,24
+BORDER (12, 15);(14, 15) sees=2,24
+BORDER (13, 15);(15, 15) sees=3,24
+BORDER (14, 15);(16, 15) sees=5,24
+BORDER (15, 15);(17, 15) sees=5,24
+BORDER (16, 15);(18, 15) sees=7,24
+BORDER (17, 15);(19, 15) sees=7,24
+BORDER (18, 15);(20, 15) sees=8,24
+BORDER (11, 16);(13, 16) sees=1,24
+BORDER (11, 20);(13, 20) sees=3,24
+BORDER (11, 22);(13, 22) sees=1,24
+64 SnakeForage Overworld.18.12.0 refused:no-safe-encounter-layout actors=Viper,Viper food=2
+BORDER (62, 14);(64, 14) sees=52,24
+BORDER (63, 14);(65, 14) sees=53,24
+BORDER (64, 14);(66, 14) sees=55,24
+BORDER (64, 15);(66, 15) sees=55,24
+BORDER (62, 18);(64, 18) sees=54,24
+BORDER (64, 18);(66, 18) sees=54,24
+INTERIOR (59, 13);(61, 13) places=False preserve=False
+INTERIOR (60, 13);(62, 13) places=False preserve=False
+INTERIOR (61, 13);(63, 13) places=False preserve=False
+INTERIOR (62, 13);(64, 13) places=False preserve=False
+INTERIOR (63, 13);(65, 13) places=False preserve=False
+INTERIOR (64, 13);(66, 13) places=False preserve=False
+INTERIOR (65, 13);(67, 13) places=False preserve=False
+BORDER (65, 14);(67, 14) sees=55,24
+BORDER (65, 15);(67, 15) sees=55,24
+BORDER (62, 19);(64, 19) sees=53,24
+BORDER (63, 19);(65, 19) sees=53,24
+INTERIOR (58, 12);(60, 12) places=False preserve=False
+INTERIOR (59, 12);(61, 12) places=False preserve=False
+INTERIOR (60, 12);(62, 12) places=False preserve=False
+INTERIOR (61, 12);(63, 12) places=False preserve=False
+INTERIOR (62, 12);(64, 12) places=False preserve=False
+INTERIOR (63, 12);(65, 12) places=False preserve=False
+INTERIOR (64, 12);(66, 12) places=False preserve=False
+INTERIOR (65, 12);(67, 12) places=False preserve=False
+INTERIOR (66, 12);(68, 12) places=False preserve=False
+INTERIOR (58, 13);(60, 13) places=False preserve=False
+INTERIOR (66, 13);(68, 13) places=False preserve=False
+BORDER (66, 14);(68, 14) sees=56,24
+BORDER (66, 15);(68, 15) sees=56,24
+BORDER (58, 20);(60, 20) sees=48,24
+BORDER (59, 20);(61, 20) sees=51,24
+64 SnakeForage Overworld.19.11.0 refused:no-safe-encounter-layout actors=Viper,Viper food=1
+64 SnakeForage Overworld.6.13.0 refused:no-safe-encounter-layout actors=Viper food=1
+64 SnakeForage Overworld.7.14.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler,MarlbackScrabbler food=1
+BORDER (68, 3) sees=65,0
+BORDER (70, 3) sees=63,0
+BORDER (71, 3) sees=62,0
+BORDER (68, 4) sees=66,0
+BORDER (68, 5) sees=60,0
+BORDER (72, 5) sees=64,0
+BORDER (68, 6) sees=61,0
+BORDER (72, 6) sees=65,0
+BORDER (68, 7) sees=58,0
+BORDER (69, 7) sees=61,0
+BORDER (70, 7) sees=60,0
+BORDER (67, 2) sees=64,0
+BORDER (68, 2) sees=61,0
+BORDER (69, 2) sees=59,0
+BORDER (71, 2) sees=68,0
+BORDER (67, 4) sees=70,0
+BORDER (73, 4) sees=63,0
+BORDER (67, 5) sees=60,0
+BORDER (73, 5) sees=64,0
+BORDER (73, 7) sees=65,0
+BORDER (67, 8) sees=58,0
+BORDER (66, 4) sees=60,0
+BORDER (74, 5) sees=64,0
+BORDER (74, 6) sees=64,0
+BORDER (74, 7) sees=64,0
+BORDER (67, 9) sees=58,0
+BORDER (70, 9) sees=61,0
+BORDER (71, 9) sees=61,0
+BORDER (73, 9) sees=65,0
+BORDER (62, 6) sees=52,0
+BORDER (63, 6) sees=53,0
+BORDER (64, 7) sees=54,0
+BORDER (60, 8) sees=50,0
+BORDER (64, 8) sees=54,0
+BORDER (60, 9) sees=50,0
+BORDER (62, 10) sees=52,0
+BORDER (63, 10) sees=53,0
+BORDER (62, 5) sees=52,0
+BORDER (65, 5) sees=57,0
+BORDER (65, 8) sees=58,0
+INTERIOR (59, 11) places=False preserve=False
+INTERIOR (60, 11) places=False preserve=False
+INTERIOR (61, 11) places=False preserve=False
+INTERIOR (62, 11) places=False preserve=False
+INTERIOR (63, 11) places=False preserve=False
+INTERIOR (64, 11) places=False preserve=False
+INTERIOR (65, 11) places=False preserve=False
+BORDER (58, 4) sees=48,0
+BORDER (59, 4) sees=49,0
+BORDER (60, 4) sees=50,0
+BORDER (61, 4) sees=51,0
+BORDER (62, 4) sees=58,0
+BORDER (63, 4) sees=57,0
+BORDER (64, 4) sees=62,0
+BORDER (65, 4) sees=61,0
+BORDER (66, 4) sees=60,0
+BORDER (58, 5) sees=48,0
+INTERIOR (58, 11) places=False preserve=False
+INTERIOR (66, 11) places=False preserve=False
+INTERIOR (58, 12) places=False preserve=False
+INTERIOR (59, 12) places=False preserve=False
+INTERIOR (60, 12) places=False preserve=False
+INTERIOR (61, 12) places=False preserve=False
+INTERIOR (62, 12) places=False preserve=False
+INTERIOR (63, 12) places=False preserve=False
+INTERIOR (64, 12) places=False preserve=False
+INTERIOR (65, 12) places=False preserve=False
+INTERIOR (66, 12) places=False preserve=False
+64 SnakeForage Overworld.9.1.0 refused:no-safe-encounter-layout actors=Viper food=4
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1729,&quot;SnakeForage&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1729,&quot;SnakeForage&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="905966021" result="Failed" start-time="2026-09-28T03:57:30.3901390Z" end-time="2026-09-28T03:57:31.2000030Z" duration="0.809851" asserts="56011">
+              <failure>
+                <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1729 SnakeForage Overworld.10.9.0 refused:no-safe-encounter-layout actors=Viper,Viper food=1
+1729 SnakeForage Overworld.11.11.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+1729 SnakeForage Overworld.11.4.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler,MarlbackScrabbler food=2
+1729 SnakeForage Overworld.12.10.0 refused:no-safe-encounter-layout actors=Viper,Viper food=1
+BORDER (19, 6);(21, 6) sees=9,0
+BORDER (20, 9);(22, 9) sees=10,0
+BORDER (18, 10);(20, 10) sees=8,0
+BORDER (19, 10);(21, 10) sees=9,0
+BORDER (20, 10);(22, 10) sees=10,0
+BORDER (21, 9);(23, 9) sees=11,0
+BORDER (21, 10);(23, 10) sees=11,0
+INTERIOR (15, 11);(17, 11) places=False preserve=False
+INTERIOR (16, 11);(18, 11) places=False preserve=False
+INTERIOR (17, 11);(19, 11) places=False preserve=False
+INTERIOR (18, 11);(20, 11) places=False preserve=False
+INTERIOR (19, 11);(21, 11) places=False preserve=False
+INTERIOR (20, 11);(22, 11) places=False preserve=False
+INTERIOR (21, 11);(23, 11) places=False preserve=False
+BORDER (22, 9);(24, 9) sees=12,0
+BORDER (22, 10);(24, 10) sees=12,0
+INTERIOR (14, 11);(16, 11) places=False preserve=False
+INTERIOR (22, 11);(24, 11) places=False preserve=False
+INTERIOR (14, 12);(16, 12) places=False preserve=False
+INTERIOR (15, 12);(17, 12) places=False preserve=False
+INTERIOR (16, 12);(18, 12) places=False preserve=False
+INTERIOR (17, 12);(19, 12) places=False preserve=False
+INTERIOR (18, 12);(20, 12) places=False preserve=False
+INTERIOR (19, 12);(21, 12) places=False preserve=False
+INTERIOR (20, 12);(22, 12) places=False preserve=False
+INTERIOR (21, 12);(23, 12) places=False preserve=False
+INTERIOR (22, 12);(24, 12) places=False preserve=False
+1729 SnakeForage Overworld.13.6.0 refused:no-safe-encounter-layout actors=Viper,Viper food=1
+1729 SnakeForage Overworld.18.12.0 refused:no-safe-encounter-layout actors=Viper,Viper food=2
+1729 SnakeForage Overworld.19.11.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+1729 SnakeForage Overworld.6.13.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler,MarlbackScrabbler food=2
+1729 SnakeForage Overworld.7.14.0 refused:no-safe-encounter-layout actors=Viper food=1
+1729 SnakeForage Overworld.8.4.0 refused:no-safe-encounter-layout actors=Viper food=1
+1729 SnakeForage Overworld.9.1.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1729 SnakeForage Overworld.9.12.0 refused:no-safe-encounter-layout actors=Viper food=1
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  SnakeForage needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1,&quot;WorkGang&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1,&quot;WorkGang&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="521079147" result="Failed" start-time="2026-09-28T03:57:31.2000280Z" end-time="2026-09-28T03:57:32.1098810Z" duration="0.909839" asserts="72407">
+              <failure>
+                <message><![CDATA[  WorkGang needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1 WorkGang Overworld.10.4.0 refused:no-exact-encounter-allowance actors=Viper food=1
+1 WorkGang Overworld.11.14.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1 WorkGang Overworld.11.9.0 refused:no-exact-encounter-allowance actors=Viper food=1
+1 WorkGang Overworld.12.6.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1 WorkGang Overworld.13.12.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1 WorkGang Overworld.14.13.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+1 WorkGang Overworld.14.8.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=3
+BORDER (5, 2);(8, 2) sees=0,0
+BORDER (5, 2);(9, 2) sees=0,0
+BORDER (5, 2);(10, 2) sees=0,0
+BORDER (5, 2);(11, 2) sees=1,0
+BORDER (6, 2);(9, 2) sees=0,0
+BORDER (6, 2);(10, 2) sees=0,0
+BORDER (6, 2);(11, 2) sees=0,0
+BORDER (6, 2);(12, 2) sees=0,0
+BORDER (7, 2);(10, 2) sees=0,0
+BORDER (7, 2);(11, 2) sees=0,0
+BORDER (7, 2);(12, 2) sees=0,0
+BORDER (7, 2);(13, 2) sees=0,0
+BORDER (8, 2);(11, 2) sees=0,0
+BORDER (8, 2);(12, 2) sees=0,0
+BORDER (8, 2);(13, 2) sees=0,0
+BORDER (8, 2);(14, 2) sees=0,0
+BORDER (4, 3);(10, 3) sees=0,0
+BORDER (6, 3);(10, 3) sees=0,0
+BORDER (6, 3);(11, 3) sees=1,0
+BORDER (6, 3);(12, 3) sees=2,0
+BORDER (2, 4);(6, 4) sees=0,0
+BORDER (2, 4);(7, 4) sees=0,0
+BORDER (2, 4);(8, 4) sees=0,0
+BORDER (3, 4);(6, 4) sees=0,0
+BORDER (3, 4);(7, 4) sees=0,0
+BORDER (3, 4);(8, 4) sees=0,0
+BORDER (3, 4);(9, 4) sees=0,0
+BORDER (6, 4);(9, 4) sees=0,0
+BORDER (6, 4);(10, 4) sees=0,0
+BORDER (6, 4);(12, 4) sees=0,0
+BORDER (7, 4);(10, 4) sees=1,0
+BORDER (7, 4);(12, 4) sees=2,0
+BORDER (7, 4);(13, 4) sees=3,0
+BORDER (8, 4);(12, 4) sees=2,0
+BORDER (8, 4);(13, 4) sees=2,0
+BORDER (8, 4);(14, 4) sees=2,0
+BORDER (2, 5);(6, 5) sees=0,0
+BORDER (2, 5);(7, 5) sees=0,0
+BORDER (2, 5);(8, 5) sees=0,0
+BORDER (4, 5);(7, 5) sees=0,0
+BORDER (4, 5);(8, 5) sees=0,0
+BORDER (4, 5);(9, 5) sees=0,0
+BORDER (6, 5);(9, 5) sees=1,0
+BORDER (6, 5);(11, 5) sees=1,0
+BORDER (6, 5);(12, 5) sees=1,0
+BORDER (7, 5);(11, 5) sees=0,0
+BORDER (7, 5);(12, 5) sees=0,0
+BORDER (8, 5);(11, 5) sees=0,0
+BORDER (8, 5);(12, 5) sees=0,0
+BORDER (5, 2);(8, 2) sees=0,0
+BORDER (5, 2);(9, 2) sees=0,0
+BORDER (5, 2);(10, 2) sees=0,0
+BORDER (5, 2);(11, 2) sees=1,0
+BORDER (6, 2);(9, 2) sees=0,0
+BORDER (6, 2);(10, 2) sees=0,0
+BORDER (6, 2);(11, 2) sees=0,0
+BORDER (6, 2);(12, 2) sees=0,0
+BORDER (7, 2);(10, 2) sees=0,0
+BORDER (7, 2);(11, 2) sees=0,0
+BORDER (7, 2);(12, 2) sees=0,0
+BORDER (7, 2);(13, 2) sees=0,0
+BORDER (8, 2);(11, 2) sees=0,0
+BORDER (8, 2);(12, 2) sees=0,0
+BORDER (8, 2);(13, 2) sees=0,0
+BORDER (8, 2);(14, 2) sees=0,0
+BORDER (9, 2);(12, 2) sees=0,0
+BORDER (9, 2);(13, 2) sees=0,0
+BORDER (9, 2);(14, 2) sees=0,0
+BORDER (9, 2);(15, 2) sees=0,0
+BORDER (10, 2);(13, 2) sees=0,0
+BORDER (10, 2);(14, 2) sees=0,0
+BORDER (10, 2);(15, 2) sees=0,0
+BORDER (10, 2);(16, 2) sees=0,0
+BORDER (4, 3);(10, 3) sees=0,0
+BORDER (6, 3);(10, 3) sees=0,0
+BORDER (6, 3);(11, 3) sees=1,0
+BORDER (6, 3);(12, 3) sees=2,0
+BORDER (10, 3);(16, 3) sees=0,0
+BORDER (6, 4);(9, 4) sees=0,0
+BORDER (6, 4);(10, 4) sees=0,0
+BORDER (6, 4);(12, 4) sees=0,0
+BORDER (7, 4);(10, 4) sees=1,0
+BORDER (7, 4);(12, 4) sees=2,0
+BORDER (7, 4);(13, 4) sees=3,0
+BORDER (8, 4);(12, 4) sees=2,0
+BORDER (8, 4);(13, 4) sees=2,0
+BORDER (8, 4);(14, 4) sees=2,0
+BORDER (9, 4);(12, 4) sees=2,0
+BORDER (9, 4);(13, 4) sees=2,0
+BORDER (9, 4);(14, 4) sees=2,0
+BORDER (9, 4);(15, 4) sees=2,0
+BORDER (10, 4);(13, 4) sees=1,0
+BORDER (10, 4);(14, 4) sees=1,0
+BORDER (10, 4);(15, 4) sees=1,0
+BORDER (4, 5);(7, 5) sees=0,0
+BORDER (4, 5);(8, 5) sees=0,0
+BORDER (4, 5);(9, 5) sees=0,0
+1 WorkGang Overworld.15.10.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1 WorkGang Overworld.5.13.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+1 WorkGang Overworld.5.8.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+1 WorkGang Overworld.6.7.0 refused:no-exact-encounter-allowance actors=Viper food=1
+1 WorkGang Overworld.7.11.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=2
+1 WorkGang Overworld.7.2.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=3
+1 WorkGang Overworld.8.1.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=3
+1 WorkGang Overworld.8.14.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+1 WorkGang Overworld.8.9.0 refused:no-exact-encounter-allowance actors=Viper food=1
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  WorkGang needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,&quot;WorkGang&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(64,&quot;WorkGang&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="75865901" result="Failed" start-time="2026-09-28T03:57:32.1099060Z" end-time="2026-09-28T03:57:32.6324500Z" duration="0.522536" asserts="45314">
+              <failure>
+                <message><![CDATA[  WorkGang needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[64 WorkGang Overworld.12.6.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+64 WorkGang Overworld.13.12.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+64 WorkGang Overworld.14.8.0 refused:no-exact-encounter-allowance actors=Viper food=2
+64 WorkGang Overworld.5.13.0 refused:no-exact-encounter-allowance actors=Viper food=1
+64 WorkGang Overworld.5.8.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+64 WorkGang Overworld.6.7.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+64 WorkGang Overworld.7.11.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=2
+64 WorkGang Overworld.7.2.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=2
+64 WorkGang Overworld.8.1.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+64 WorkGang Overworld.8.9.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  WorkGang needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1729,&quot;WorkGang&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(1729,&quot;WorkGang&quot;)" methodname="RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream" classname="CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests" runstate="Runnable" seed="1265864370" result="Failed" start-time="2026-09-28T03:57:32.6325230Z" end-time="2026-09-28T03:57:33.2350070Z" duration="0.602475" asserts="49873">
+              <failure>
+                <message><![CDATA[  WorkGang needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1729 WorkGang Overworld.10.4.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=4
+1729 WorkGang Overworld.11.14.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1729 WorkGang Overworld.11.9.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=2
+1729 WorkGang Overworld.12.6.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+BORDER (39, 2);(42, 2) sees=29,0
+BORDER (39, 2);(43, 2) sees=29,0
+BORDER (39, 2);(44, 2) sees=29,0
+BORDER (39, 2);(45, 2) sees=29,0
+BORDER (40, 2);(43, 2) sees=30,0
+BORDER (40, 2);(44, 2) sees=30,0
+BORDER (40, 2);(45, 2) sees=30,0
+BORDER (40, 2);(46, 2) sees=30,0
+BORDER (41, 2);(44, 2) sees=31,0
+BORDER (41, 2);(45, 2) sees=31,0
+BORDER (41, 2);(46, 2) sees=31,0
+BORDER (41, 2);(47, 2) sees=31,0
+BORDER (42, 2);(45, 2) sees=32,0
+BORDER (42, 2);(46, 2) sees=32,0
+BORDER (42, 2);(47, 2) sees=32,0
+BORDER (42, 2);(48, 2) sees=32,0
+BORDER (43, 2);(46, 2) sees=33,0
+BORDER (43, 2);(47, 2) sees=33,0
+BORDER (43, 2);(48, 2) sees=33,0
+BORDER (43, 2);(49, 2) sees=33,0
+BORDER (44, 2);(47, 2) sees=34,0
+BORDER (44, 2);(48, 2) sees=34,0
+BORDER (44, 2);(49, 2) sees=34,0
+BORDER (44, 2);(50, 2) sees=34,0
+BORDER (45, 2);(48, 2) sees=35,0
+BORDER (45, 2);(49, 2) sees=35,0
+BORDER (45, 2);(50, 2) sees=35,0
+BORDER (45, 2);(51, 2) sees=35,0
+BORDER (39, 3);(44, 3) sees=29,0
+BORDER (40, 3);(44, 3) sees=30,0
+BORDER (40, 3);(46, 3) sees=30,0
+BORDER (41, 3);(44, 3) sees=31,0
+BORDER (41, 3);(46, 3) sees=31,0
+BORDER (41, 3);(47, 3) sees=31,0
+BORDER (44, 3);(47, 3) sees=34,0
+BORDER (44, 3);(50, 3) sees=34,0
+BORDER (39, 4);(42, 4) sees=29,0
+BORDER (39, 4);(43, 4) sees=29,0
+BORDER (39, 4);(44, 4) sees=29,0
+BORDER (39, 4);(45, 4) sees=29,0
+BORDER (40, 4);(43, 4) sees=30,0
+BORDER (40, 4);(44, 4) sees=30,0
+BORDER (40, 4);(45, 4) sees=30,0
+BORDER (40, 4);(46, 4) sees=30,0
+BORDER (41, 4);(44, 4) sees=31,0
+BORDER (41, 4);(45, 4) sees=31,0
+BORDER (41, 4);(46, 4) sees=31,0
+BORDER (41, 4);(47, 4) sees=31,0
+BORDER (42, 4);(45, 4) sees=32,0
+BORDER (42, 4);(46, 4) sees=32,0
+BORDER (42, 4);(47, 4) sees=32,0
+BORDER (42, 4);(48, 4) sees=32,0
+BORDER (43, 4);(46, 4) sees=33,0
+BORDER (43, 4);(47, 4) sees=33,0
+BORDER (43, 4);(48, 4) sees=33,0
+BORDER (43, 4);(49, 4) sees=33,0
+BORDER (44, 4);(47, 4) sees=34,0
+BORDER (44, 4);(48, 4) sees=34,0
+BORDER (44, 4);(49, 4) sees=34,0
+BORDER (45, 4);(48, 4) sees=35,0
+BORDER (45, 4);(49, 4) sees=35,0
+BORDER (39, 5);(42, 5) sees=29,0
+BORDER (39, 5);(43, 5) sees=29,0
+BORDER (39, 5);(44, 5) sees=29,0
+BORDER (39, 5);(45, 5) sees=29,0
+BORDER (40, 5);(43, 5) sees=30,0
+BORDER (40, 5);(44, 5) sees=30,0
+BORDER (40, 5);(45, 5) sees=30,0
+BORDER (40, 5);(46, 5) sees=30,0
+BORDER (41, 5);(44, 5) sees=31,0
+BORDER (41, 5);(45, 5) sees=31,0
+BORDER (41, 5);(46, 5) sees=31,0
+BORDER (42, 5);(45, 5) sees=32,0
+BORDER (42, 5);(46, 5) sees=32,0
+BORDER (42, 5);(48, 5) sees=32,0
+BORDER (43, 5);(46, 5) sees=33,0
+BORDER (43, 5);(48, 5) sees=33,0
+BORDER (44, 5);(48, 5) sees=34,0
+BORDER (44, 5);(50, 5) sees=34,0
+BORDER (45, 5);(48, 5) sees=35,0
+BORDER (45, 5);(50, 5) sees=35,0
+BORDER (40, 2);(43, 2) sees=30,0
+BORDER (40, 2);(44, 2) sees=30,0
+BORDER (40, 2);(45, 2) sees=30,0
+BORDER (40, 2);(46, 2) sees=30,0
+BORDER (41, 2);(44, 2) sees=31,0
+BORDER (41, 2);(45, 2) sees=31,0
+BORDER (41, 2);(46, 2) sees=31,0
+BORDER (41, 2);(47, 2) sees=31,0
+BORDER (42, 2);(45, 2) sees=32,0
+BORDER (42, 2);(46, 2) sees=32,0
+BORDER (42, 2);(47, 2) sees=32,0
+BORDER (42, 2);(48, 2) sees=32,0
+BORDER (43, 2);(46, 2) sees=33,0
+BORDER (43, 2);(47, 2) sees=33,0
+BORDER (43, 2);(48, 2) sees=33,0
+BORDER (43, 2);(49, 2) sees=33,0
+BORDER (44, 2);(47, 2) sees=34,0
+BORDER (44, 2);(48, 2) sees=34,0
+BORDER (44, 2);(49, 2) sees=34,0
+BORDER (44, 2);(50, 2) sees=34,0
+BORDER (45, 2);(48, 2) sees=35,0
+BORDER (45, 2);(49, 2) sees=35,0
+BORDER (45, 2);(50, 2) sees=35,0
+BORDER (45, 2);(51, 2) sees=35,0
+BORDER (46, 2);(49, 2) sees=36,0
+BORDER (46, 2);(50, 2) sees=36,0
+BORDER (46, 2);(51, 2) sees=36,0
+BORDER (46, 2);(52, 2) sees=36,0
+BORDER (40, 3);(44, 3) sees=30,0
+BORDER (40, 3);(46, 3) sees=30,0
+BORDER (41, 3);(44, 3) sees=31,0
+BORDER (41, 3);(46, 3) sees=31,0
+BORDER (41, 3);(47, 3) sees=31,0
+BORDER (44, 3);(47, 3) sees=34,0
+BORDER (44, 3);(50, 3) sees=34,0
+BORDER (46, 3);(50, 3) sees=36,0
+BORDER (46, 3);(51, 3) sees=36,0
+BORDER (46, 3);(52, 3) sees=36,0
+BORDER (40, 4);(43, 4) sees=30,0
+BORDER (40, 4);(44, 4) sees=30,0
+BORDER (40, 4);(45, 4) sees=30,0
+BORDER (40, 4);(46, 4) sees=30,0
+BORDER (41, 4);(44, 4) sees=31,0
+BORDER (41, 4);(45, 4) sees=31,0
+BORDER (41, 4);(46, 4) sees=31,0
+BORDER (41, 4);(47, 4) sees=31,0
+BORDER (42, 4);(45, 4) sees=32,0
+BORDER (42, 4);(46, 4) sees=32,0
+BORDER (42, 4);(47, 4) sees=32,0
+BORDER (42, 4);(48, 4) sees=32,0
+BORDER (43, 4);(46, 4) sees=33,0
+BORDER (43, 4);(47, 4) sees=33,0
+BORDER (43, 4);(48, 4) sees=33,0
+BORDER (43, 4);(49, 4) sees=33,0
+BORDER (44, 4);(47, 4) sees=34,0
+BORDER (44, 4);(48, 4) sees=34,0
+BORDER (44, 4);(49, 4) sees=34,0
+BORDER (45, 4);(48, 4) sees=35,0
+BORDER (45, 4);(49, 4) sees=35,0
+BORDER (46, 4);(49, 4) sees=36,0
+BORDER (46, 4);(52, 4) sees=36,0
+BORDER (40, 5);(43, 5) sees=30,0
+BORDER (40, 5);(44, 5) sees=30,0
+BORDER (40, 5);(45, 5) sees=30,0
+BORDER (40, 5);(46, 5) sees=30,0
+1729 WorkGang Overworld.13.12.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=1
+1729 WorkGang Overworld.14.8.0 refused:no-exact-encounter-allowance actors=Viper food=3
+1729 WorkGang Overworld.4.10.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=1
+1729 WorkGang Overworld.5.13.0 refused:no-safe-encounter-layout actors=MarlbackScrabbler,MarlbackScrabbler food=3
+1729 WorkGang Overworld.5.8.0 refused:no-exact-encounter-allowance actors=Viper food=1
+1729 WorkGang Overworld.8.1.0 refused:no-exact-encounter-allowance actors=Viper,Viper food=3
+1729 WorkGang Overworld.8.14.0 refused:no-exact-encounter-allowance actors=MarlbackScrabbler food=1
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  WorkGang needs actual pipeline realization, not only assignments
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Int32 seed, String family) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterPipelineTests.cs:line 57
+   at InvokeStub_SpreadExplorationEncounterPipelineTests.RealPipelineReusesOnlyTheSelectedSourceAndPreservesStockAndRandomStream(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1058" name="SpreadExplorationEncounterTests" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-09-28T03:57:33.2360270Z" end-time="2026-09-28T03:57:33.2893190Z" duration="0.053291" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="4042">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1061" name="OriginalColdRollPositionsDoNotSetALiveTravelLeash" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.OriginalColdRollPositionsDoNotSetALiveTravelLeash" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T03:57:33.2361030Z" end-time="2026-09-28T03:57:33.2893080Z" duration="0.053203" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="4042">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1059" name="OriginalColdRollPositionsDoNotSetALiveTravelLeash(False)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.OriginalColdRollPositionsDoNotSetALiveTravelLeash(False)" methodname="OriginalColdRollPositionsDoNotSetALiveTravelLeash" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1288776852" result="Passed" start-time="2026-09-28T03:57:33.2361280Z" end-time="2026-09-28T03:57:33.2818810Z" duration="0.045754" asserts="2022">
+              <output><![CDATA[BORDER (37, 8);(40, 8) sees=27,0
+BORDER (37, 8);(41, 8) sees=27,0
+BORDER (37, 8);(42, 8) sees=27,0
+BORDER (37, 8);(43, 8) sees=27,0
+BORDER (38, 8);(41, 8) sees=28,0
+BORDER (38, 8);(42, 8) sees=28,0
+BORDER (38, 8);(43, 8) sees=28,0
+BORDER (38, 8);(44, 8) sees=28,0
+BORDER (39, 8);(42, 8) sees=29,0
+BORDER (39, 8);(43, 8) sees=29,0
+BORDER (39, 8);(44, 8) sees=29,0
+BORDER (39, 8);(45, 8) sees=29,0
+BORDER (40, 8);(43, 8) sees=30,0
+BORDER (40, 8);(44, 8) sees=30,0
+BORDER (40, 8);(45, 8) sees=30,0
+BORDER (40, 8);(46, 8) sees=30,0
+BORDER (41, 8);(44, 8) sees=31,0
+BORDER (41, 8);(45, 8) sees=31,0
+BORDER (41, 8);(46, 8) sees=31,0
+BORDER (41, 8);(47, 8) sees=31,0
+BORDER (42, 8);(45, 8) sees=32,0
+BORDER (42, 8);(46, 8) sees=32,0
+BORDER (42, 8);(47, 8) sees=32,0
+BORDER (42, 8);(48, 8) sees=32,0
+BORDER (43, 8);(46, 8) sees=33,0
+BORDER (43, 8);(47, 8) sees=33,0
+BORDER (43, 8);(48, 8) sees=33,0
+BORDER (43, 8);(49, 8) sees=33,0
+BORDER (37, 9);(40, 9) sees=27,0
+BORDER (37, 9);(41, 9) sees=27,0
+BORDER (37, 9);(42, 9) sees=27,0
+BORDER (37, 9);(43, 9) sees=27,0
+BORDER (38, 9);(41, 9) sees=28,0
+BORDER (38, 9);(42, 9) sees=28,0
+BORDER (38, 9);(43, 9) sees=28,0
+BORDER (38, 9);(44, 9) sees=28,0
+BORDER (39, 9);(42, 9) sees=29,0
+BORDER (39, 9);(43, 9) sees=29,0
+BORDER (39, 9);(44, 9) sees=29,0
+BORDER (39, 9);(45, 9) sees=29,0
+BORDER (40, 9);(43, 9) sees=30,0
+BORDER (40, 9);(44, 9) sees=30,0
+BORDER (40, 9);(45, 9) sees=30,0
+BORDER (40, 9);(46, 9) sees=30,0
+BORDER (41, 9);(44, 9) sees=31,0
+BORDER (41, 9);(45, 9) sees=31,0
+BORDER (41, 9);(46, 9) sees=31,0
+BORDER (41, 9);(47, 9) sees=31,0
+BORDER (42, 9);(45, 9) sees=32,0
+BORDER (42, 9);(46, 9) sees=32,0
+BORDER (42, 9);(47, 9) sees=32,0
+BORDER (42, 9);(48, 9) sees=32,0
+BORDER (43, 9);(46, 9) sees=33,0
+BORDER (43, 9);(47, 9) sees=33,0
+BORDER (43, 9);(48, 9) sees=33,0
+BORDER (43, 9);(49, 9) sees=33,0
+BORDER (41, 10);(44, 10) sees=31,0
+BORDER (41, 10);(45, 10) sees=31,0
+BORDER (41, 10);(46, 10) sees=31,0
+BORDER (41, 10);(47, 10) sees=31,0
+BORDER (42, 10);(45, 10) sees=32,0
+BORDER (42, 10);(46, 10) sees=32,0
+BORDER (42, 10);(47, 10) sees=32,0
+BORDER (42, 10);(48, 10) sees=32,0
+BORDER (43, 10);(46, 10) sees=33,0
+BORDER (43, 10);(47, 10) sees=33,0
+BORDER (43, 10);(48, 10) sees=33,0
+BORDER (43, 10);(49, 10) sees=33,0
+INTERIOR (37, 11);(40, 11) places=False preserve=True
+INTERIOR (37, 11);(41, 11) places=True preserve=True
+INTERIOR (37, 11);(42, 11) places=True preserve=True
+INTERIOR (37, 11);(43, 11) places=True preserve=True
+INTERIOR (38, 11);(41, 11) places=True preserve=True
+INTERIOR (38, 11);(42, 11) places=True preserve=True
+INTERIOR (38, 11);(43, 11) places=True preserve=True
+INTERIOR (38, 11);(44, 11) places=True preserve=True
+INTERIOR (39, 11);(42, 11) places=True preserve=True
+INTERIOR (39, 11);(43, 11) places=True preserve=True
+INTERIOR (39, 11);(44, 11) places=True preserve=True
+INTERIOR (39, 11);(45, 11) places=True preserve=True
+INTERIOR (40, 11);(43, 11) places=False preserve=True
+INTERIOR (40, 11);(44, 11) places=False preserve=True
+INTERIOR (40, 11);(45, 11) places=False preserve=True
+INTERIOR (40, 11);(46, 11) places=False preserve=True
+INTERIOR (41, 11);(44, 11) places=True preserve=True
+]]></output>
+            </test-case>
+            <test-case id="1060" name="OriginalColdRollPositionsDoNotSetALiveTravelLeash(True)" fullname="CavesOfOoo.Tests.SpreadExplorationEncounterTests.OriginalColdRollPositionsDoNotSetALiveTravelLeash(True)" methodname="OriginalColdRollPositionsDoNotSetALiveTravelLeash" classname="CavesOfOoo.Tests.SpreadExplorationEncounterTests" runstate="Runnable" seed="1050785607" result="Failed" start-time="2026-09-28T03:57:33.2819140Z" end-time="2026-09-28T03:57:33.2892720Z" duration="0.007358" asserts="2020">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.OriginalColdRollPositionsDoNotSetALiveTravelLeash(Boolean far) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterTests.cs:line 39
+   at InvokeStub_SpreadExplorationEncounterTests.OriginalColdRollPositionsDoNotSetALiveTravelLeash(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationEncounterTests.OriginalColdRollPositionsDoNotSetALiveTravelLeash(Boolean far) in /tmp/coo-questfree-implementation/actors/e3-integration/SpreadExplorationEncounterTests.cs:line 39
+   at InvokeStub_SpreadExplorationEncounterTests.OriginalColdRollPositionsDoNotSetALiveTravelLeash(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

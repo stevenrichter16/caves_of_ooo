@@ -1,0 +1,823 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 90,
+    "passed": 89,
+    "failed": 1,
+    "skipped": 0,
+    "durationSeconds": 17.296518,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "ActualFullHomeMergePlaysDepositWhileRefusedFullHomeKeepsCarry(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorDepositPoseTests.ActualFullHomeMergePlaysDepositWhileRefusedFullHomeKeepsCarry(True)",
+      "state": "Failed",
+      "durationSeconds": 1.9944438,
+      "message": "  A real same-owner whole-stack deposit can merge into its actual resident; the exhausted incoming ID need not remain in Contents.\n  Expected string length 7 but was 6. Strings differ at index 0.\n  Expected: \"Deposit\"\n  But was:  \"Pickup\"\n  -----------^\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCollectorDepositPoseTests.ActualFullHomeMergePlaysDepositWhileRefusedFullHomeKeepsCarry (System.Boolean compatible) [0x00189] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpreadCollectorDepositPoseTests.cs:21\n",
+      "output": ""
+    },
+    {
+      "name": "ActualFullHomeMergePlaysDepositWhileRefusedFullHomeKeepsCarry(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCollectorDepositPoseTests.ActualFullHomeMergePlaysDepositWhileRefusedFullHomeKeepsCarry(False)",
+      "state": "Passed",
+      "durationSeconds": 0.2634487,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "CurrentWaterSourceCellCannotAcquireAForeignBlocker(False,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(False,False)",
+      "state": "Passed",
+      "durationSeconds": 0.1216979,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "CurrentWaterSourceCellCannotAcquireAForeignBlocker(False,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(False,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0978857,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "CurrentWaterSourceCellCannotAcquireAForeignBlocker(True,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(True,False)",
+      "state": "Passed",
+      "durationSeconds": 0.088323,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "CurrentWaterSourceCellCannotAcquireAForeignBlocker(True,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(True,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0808807,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExistingExhaustedBankSourceDoesNotCreateAReplacementRefill",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingExhaustedBankSourceDoesNotCreateAReplacementRefill",
+      "state": "Passed",
+      "durationSeconds": 0.0774194,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(1)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(1)",
+      "state": "Passed",
+      "durationSeconds": 0.0856763,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(3)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(3)",
+      "state": "Passed",
+      "durationSeconds": 0.1007412,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(120)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(120)",
+      "state": "Passed",
+      "durationSeconds": 0.1426321,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "IncompatibleExistingPoolIsNeverChangedOrClaimedAsTheReusableSource(\"mixed\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.IncompatibleExistingPoolIsNeverChangedOrClaimedAsTheReusableSource(\"mixed\")",
+      "state": "Passed",
+      "durationSeconds": 0.1324825,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "IncompatibleExistingPoolIsNeverChangedOrClaimedAsTheReusableSource(\"portable\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.IncompatibleExistingPoolIsNeverChangedOrClaimedAsTheReusableSource(\"portable\")",
+      "state": "Passed",
+      "durationSeconds": 1.3007338,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "IncompatibleExistingPoolIsNeverChangedOrClaimedAsTheReusableSource(\"hidden\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.IncompatibleExistingPoolIsNeverChangedOrClaimedAsTheReusableSource(\"hidden\")",
+      "state": "Passed",
+      "durationSeconds": 0.0761153,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "IncompatibleExistingPoolIsNeverChangedOrClaimedAsTheReusableSource(\"custom\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.IncompatibleExistingPoolIsNeverChangedOrClaimedAsTheReusableSource(\"custom\")",
+      "state": "Passed",
+      "durationSeconds": 0.0774317,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LaterCallbackCannotEraseAnAcceptedCriticalApproach(RoadSpill,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(RoadSpill,False)",
+      "state": "Passed",
+      "durationSeconds": 0.085011,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LaterCallbackCannotEraseAnAcceptedCriticalApproach(RoadSpill,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(RoadSpill,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0716252,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LaterCallbackCannotEraseAnAcceptedCriticalApproach(OccupiedBank,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(OccupiedBank,False)",
+      "state": "Passed",
+      "durationSeconds": 0.1088157,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LaterCallbackCannotEraseAnAcceptedCriticalApproach(OccupiedBank,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(OccupiedBank,True)",
+      "state": "Passed",
+      "durationSeconds": 0.092282,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LaterCallbackCannotEraseAnAcceptedCriticalApproach(LastGleanings,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(LastGleanings,False)",
+      "state": "Passed",
+      "durationSeconds": 0.0823343,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LaterCallbackCannotEraseAnAcceptedCriticalApproach(LastGleanings,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(LastGleanings,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0752116,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LaterCallbackCannotEraseAnAcceptedCriticalApproach(WateringMargin,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(WateringMargin,False)",
+      "state": "Passed",
+      "durationSeconds": 0.0716096,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LaterCallbackCannotEraseAnAcceptedCriticalApproach(WateringMargin,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(WateringMargin,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0762943,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ReusedSourceChangedAfterCommitCannotInstallAValidUtilityClaim(\"spent\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ReusedSourceChangedAfterCommitCannotInstallAValidUtilityClaim(\"spent\")",
+      "state": "Passed",
+      "durationSeconds": 0.0762199,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ReusedSourceChangedAfterCommitCannotInstallAValidUtilityClaim(\"removed\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ReusedSourceChangedAfterCommitCannotInstallAValidUtilityClaim(\"removed\")",
+      "state": "Passed",
+      "durationSeconds": 0.0705666,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ReuseRequiresNoNewDrawBlueprintAndSavedSpentSourceCannotRefill",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ReuseRequiresNoNewDrawBlueprintAndSavedSpentSourceCannotRefill",
+      "state": "Passed",
+      "durationSeconds": 0.1883865,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0736414,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationFinalizationTests.RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions(True)",
+      "state": "Passed",
+      "durationSeconds": 0.0772902,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "AcceptedDispositionMatchesActualAttemptAndSurvivesSave(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.AcceptedDispositionMatchesActualAttemptAndSurvivesSave(False)",
+      "state": "Passed",
+      "durationSeconds": 0.1887338,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "AcceptedDispositionMatchesActualAttemptAndSurvivesSave(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.AcceptedDispositionMatchesActualAttemptAndSurvivesSave(True)",
+      "state": "Passed",
+      "durationSeconds": 0.1960777,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "APlacementLabelWithoutExactActiveTokenIsRefused(\"foreign-entry\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.APlacementLabelWithoutExactActiveTokenIsRefused(\"foreign-entry\")",
+      "state": "Passed",
+      "durationSeconds": 0.0661575,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "APlacementLabelWithoutExactActiveTokenIsRefused(\"foreign-zone\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.APlacementLabelWithoutExactActiveTokenIsRefused(\"foreign-zone\")",
+      "state": "Passed",
+      "durationSeconds": 0.058845,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "APlacementLabelWithoutExactActiveTokenIsRefused(\"quiet\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.APlacementLabelWithoutExactActiveTokenIsRefused(\"quiet\")",
+      "state": "Passed",
+      "durationSeconds": 0.0590079,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "DispositionReadsNeverGenerateOrResolveForeignAddresses",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.DispositionReadsNeverGenerateOrResolveForeignAddresses",
+      "state": "Passed",
+      "durationSeconds": 0.0323478,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExactQuietGladeGraphIsRetainedWithoutAssigningAnExplorationFamily",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ExactQuietGladeGraphIsRetainedWithoutAssigningAnExplorationFamily",
+      "state": "Passed",
+      "durationSeconds": 0.2251771,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FinalCallbacksCannotInstallAStaleOrForeignGeneration(\"plan\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalCallbacksCannotInstallAStaleOrForeignGeneration(\"plan\")",
+      "state": "Passed",
+      "durationSeconds": 0.060484,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FinalCallbacksCannotInstallAStaleOrForeignGeneration(\"map\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalCallbacksCannotInstallAStaleOrForeignGeneration(\"map\")",
+      "state": "Passed",
+      "durationSeconds": 0.0557878,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FinalCallbacksCannotInstallAStaleOrForeignGeneration(\"rare\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalCallbacksCannotInstallAStaleOrForeignGeneration(\"rare\")",
+      "state": "Passed",
+      "durationSeconds": 0.0563522,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FinalCallbacksCannotInstallAStaleOrForeignGeneration(\"wayhouse\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalCallbacksCannotInstallAStaleOrForeignGeneration(\"wayhouse\")",
+      "state": "Passed",
+      "durationSeconds": 0.0653481,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FinalCallbacksCannotInstallAStaleOrForeignGeneration(\"cache-clone\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalCallbacksCannotInstallAStaleOrForeignGeneration(\"cache-clone\")",
+      "state": "Passed",
+      "durationSeconds": 0.0583768,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(\"unchanged\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(\"unchanged\")",
+      "state": "Passed",
+      "durationSeconds": 0.0726319,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(\"removed\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(\"removed\")",
+      "state": "Passed",
+      "durationSeconds": 0.0645823,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(\"moved\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(\"moved\")",
+      "state": "Passed",
+      "durationSeconds": 0.0659076,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FinalValidatorIsTransientAndNeverReplaysAfterLoad",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.FinalValidatorIsTransientAndNeverReplaysAfterLoad",
+      "state": "Passed",
+      "durationSeconds": 0.1841428,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ForeignPlanCannotGenerateOrSerializeForAnotherManager",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ForeignPlanCannotGenerateOrSerializeForAnotherManager",
+      "state": "Passed",
+      "durationSeconds": 0.0368597,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"duplicate\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"duplicate\")",
+      "state": "Passed",
+      "durationSeconds": 0.0487229,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"foreign\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"foreign\")",
+      "state": "Passed",
+      "durationSeconds": 0.0344514,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"alias\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"alias\")",
+      "state": "Passed",
+      "durationSeconds": 0.0435383,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"family\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"family\")",
+      "state": "Passed",
+      "durationSeconds": 0.0313613,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"topology\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"topology\")",
+      "state": "Passed",
+      "durationSeconds": 0.0300537,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"placement-without-retention\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"placement-without-retention\")",
+      "state": "Passed",
+      "durationSeconds": 0.035724,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"quiet-mask-family\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"quiet-mask-family\")",
+      "state": "Passed",
+      "durationSeconds": 0.0316139,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"disposition\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"disposition\")",
+      "state": "Passed",
+      "durationSeconds": 0.0332677,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"missing-installed\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"missing-installed\")",
+      "state": "Passed",
+      "durationSeconds": 0.0330125,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"wrong-seed\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"wrong-seed\")",
+      "state": "Passed",
+      "durationSeconds": 0.032875,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"too-many\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"too-many\")",
+      "state": "Passed",
+      "durationSeconds": 0.0419024,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"protected-placement\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MalformedMetadataRefusesBeforeReplacingTheLiveSession(\"protected-placement\")",
+      "state": "Passed",
+      "durationSeconds": 0.0647396,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MarkBeforeRejectedFinalCallbackDoesNotPublishACommit",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.MarkBeforeRejectedFinalCallbackDoesNotPublishACommit",
+      "state": "Passed",
+      "durationSeconds": 0.1025034,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0561078,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture(True)",
+      "state": "Passed",
+      "durationSeconds": 0.0582972,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "NullFinalValidatorCannotPublishAStrictMark",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.NullFinalValidatorCannotPublishAStrictMark",
+      "state": "Passed",
+      "durationSeconds": 0.0728244,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "OldLegacyMissingChunkRemainsLegacyAfterActualLoadAndNewAccess",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.OldLegacyMissingChunkRemainsLegacyAfterActualLoadAndNewAccess",
+      "state": "Passed",
+      "durationSeconds": 0.2444248,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "POIAndForeignOrdinaryGraphsKeepTheirExistingUnloadLifecycle",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.POIAndForeignOrdinaryGraphsKeepTheirExistingUnloadLifecycle",
+      "state": "Passed",
+      "durationSeconds": 0.1454203,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ReplacedAttemptDuringValidatorCannotKeepOriginalMarkAuthority(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ReplacedAttemptDuringValidatorCannotKeepOriginalMarkAuthority(False)",
+      "state": "Passed",
+      "durationSeconds": 0.6325513,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ReplacedAttemptDuringValidatorCannotKeepOriginalMarkAuthority(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ReplacedAttemptDuringValidatorCannotKeepOriginalMarkAuthority(True)",
+      "state": "Passed",
+      "durationSeconds": 0.0512655,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "RestoreConstructorCannotGenerateBeforeMetadataHydration",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.RestoreConstructorCannotGenerateBeforeMetadataHydration",
+      "state": "Passed",
+      "durationSeconds": 0.0231674,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "RetryReplacesTransientAttemptAndFinalAcceptedGraphAloneRetains",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.RetryReplacesTransientAttemptAndFinalAcceptedGraphAloneRetains",
+      "state": "Passed",
+      "durationSeconds": 0.0533467,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ThrowingFinalValidatorCannotLeaveInstalledOrReusableAuthority",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ThrowingFinalValidatorCannotLeaveInstalledOrReusableAuthority",
+      "state": "Passed",
+      "durationSeconds": 0.0544057,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ValidatorCannotReenterEitherMarkOverload",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ValidatorCannotReenterEitherMarkOverload",
+      "state": "Passed",
+      "durationSeconds": 0.0545191,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ValidatorPlanSwapRefusesBeforeMarkOrBeforeFinalInstallation(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ValidatorPlanSwapRefusesBeforeMarkOrBeforeFinalInstallation(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0569001,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ValidatorPlanSwapRefusesBeforeMarkOrBeforeFinalInstallation(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ValidatorPlanSwapRefusesBeforeMarkOrBeforeFinalInstallation(True)",
+      "state": "Passed",
+      "durationSeconds": 0.0547204,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ValidLiteralEmptyManifestRestoresAsEnabledWithoutSelectingReplacements",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ValidLiteralEmptyManifestRestoresAsEnabledWithoutSelectingReplacements",
+      "state": "Passed",
+      "durationSeconds": 0.0318306,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ValidLiteralUninstalledRecordDoesNotGenerateOrRetainAnAttachedClone",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.ValidLiteralUninstalledRecordDoesNotGenerateOrRetainAnAttachedClone",
+      "state": "Passed",
+      "durationSeconds": 0.0320512,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,\"RoadSpill\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,\"RoadSpill\")",
+      "state": "Passed",
+      "durationSeconds": 0.4040604,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,\"OccupiedBank\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,\"OccupiedBank\")",
+      "state": "Passed",
+      "durationSeconds": 0.5070978,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,\"LastGleanings\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,\"LastGleanings\")",
+      "state": "Passed",
+      "durationSeconds": 0.7199585,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,\"WateringMargin\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,\"WateringMargin\")",
+      "state": "Passed",
+      "durationSeconds": 0.3563177,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,\"RoadSpill\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,\"RoadSpill\")",
+      "state": "Passed",
+      "durationSeconds": 0.4716073,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,\"OccupiedBank\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,\"OccupiedBank\")",
+      "state": "Passed",
+      "durationSeconds": 0.4972741,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,\"LastGleanings\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,\"LastGleanings\")",
+      "state": "Passed",
+      "durationSeconds": 0.6283035,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,\"WateringMargin\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,\"WateringMargin\")",
+      "state": "Passed",
+      "durationSeconds": 0.3532419,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,\"RoadSpill\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,\"RoadSpill\")",
+      "state": "Passed",
+      "durationSeconds": 0.445009,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,\"OccupiedBank\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,\"OccupiedBank\")",
+      "state": "Passed",
+      "durationSeconds": 0.5736048,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,\"LastGleanings\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,\"LastGleanings\")",
+      "state": "Passed",
+      "durationSeconds": 0.7297181,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,\"WateringMargin\")",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,\"WateringMargin\")",
+      "state": "Passed",
+      "durationSeconds": 0.8626884,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LegacyAndProtectedPlacesNeverGetNewRolesOrDrawPoints",
+      "fullName": "CavesOfOoo.Tests.SpreadExplorationPipelineTests.LegacyAndProtectedPlacesNeverGetNewRolesOrDrawPoints",
+      "state": "Passed",
+      "durationSeconds": 0.8939536,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "IneligiblePostsDoNotExhaustTheBoundedEligibleSourceList(\"edge\",True)",
+      "fullName": "CavesOfOoo.Tests.SpreadTerritorySourceSelectionTests.IneligiblePostsDoNotExhaustTheBoundedEligibleSourceList(\"edge\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.0203196,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "IneligiblePostsDoNotExhaustTheBoundedEligibleSourceList(\"edge\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadTerritorySourceSelectionTests.IneligiblePostsDoNotExhaustTheBoundedEligibleSourceList(\"edge\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.0113836,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "IneligiblePostsDoNotExhaustTheBoundedEligibleSourceList(\"distant\",True)",
+      "fullName": "CavesOfOoo.Tests.SpreadTerritorySourceSelectionTests.IneligiblePostsDoNotExhaustTheBoundedEligibleSourceList(\"distant\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.0175156,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "IneligiblePostsDoNotExhaustTheBoundedEligibleSourceList(\"distant\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadTerritorySourceSelectionTests.IneligiblePostsDoNotExhaustTheBoundedEligibleSourceList(\"distant\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.0110661,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "IneligiblePostsDoNotExhaustTheBoundedEligibleSourceList(\"none\",True)",
+      "fullName": "CavesOfOoo.Tests.SpreadTerritorySourceSelectionTests.IneligiblePostsDoNotExhaustTheBoundedEligibleSourceList(\"none\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.0165112,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    }
+  ]
+}
