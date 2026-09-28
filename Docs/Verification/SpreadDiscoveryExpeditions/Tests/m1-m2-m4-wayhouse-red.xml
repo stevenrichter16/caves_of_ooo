@@ -1,0 +1,1451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="102" result="Failed(Child)" total="102" passed="27" failed="75" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-27 23:19:32Z" end-time="2026-09-27 23:19:40Z" duration="8.19449">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="20511" result="Failed" site="Child" start-time="2026-09-27 23:19:32Z" end-time="2026-09-27 23:19:40Z" duration="8.194490" total="102" passed="27" failed="75" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="25138" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="20511" result="Failed" site="Child" start-time="2026-09-27 23:19:32Z" end-time="2026-09-27 23:19:40Z" duration="7.978557" total="102" passed="27" failed="75" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37276" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="25139" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="20511" result="Failed" site="Child" start-time="2026-09-27 23:19:32Z" end-time="2026-09-27 23:19:40Z" duration="7.800998" total="102" passed="27" failed="75" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="25140" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="20511" result="Failed" site="Child" start-time="2026-09-27 23:19:32Z" end-time="2026-09-27 23:19:40Z" duration="7.600705" total="102" passed="27" failed="75" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="4593" name="SpreadDiscoveryAdversarialTests" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" testcasecount="29" result="Failed" site="Child" start-time="2026-09-27 23:19:32Z" end-time="2026-09-27 23:19:33Z" duration="0.840721" total="29" passed="0" failed="29" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="4610" name="ACallbackBeforeRememberCannotSpendAStaleOffer" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.ACallbackBeforeRememberCannotSpendAStaleOffer" methodname="ACallbackBeforeRememberCannotSpendAStaleOffer" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="349577780" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.055588" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.ACallbackBeforeRememberCannotSpendAStaleOffer () [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:54
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="4609" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.282132" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="4594" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;unchanged&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="539711682" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.015456" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4595" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;removed&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="1809900250" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.009311" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4596" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;dead&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="2111302679" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.009644" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4597" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;death-handled&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;death-handled&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="2132257044" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.009107" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4598" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;moved&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="928151026" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.009023" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4599" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;foreign-physics&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="1384641887" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.009170" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4600" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;foreign-conversation&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;foreign-conversation&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="1405805891" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.008577" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4601" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;foreign-render&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="2076406450" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.008894" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4602" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;hostile&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;hostile&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="1920071726" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.009013" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4603" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;cache-replaced&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;cache-replaced&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="2070789665" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.009394" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4604" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;player-replaced&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;player-replaced&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="1393940364" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.008386" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4605" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;node-replaced&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;node-replaced&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="968173456" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.008516" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4606" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;conversation-ended&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;conversation-ended&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="1469917951" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.008780" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4607" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;map-changed&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;map-changed&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="2108904088" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.008900" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4608" name="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;plan-replaced&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting(&quot;plan-replaced&quot;)" methodname="OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="1156069747" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.008520" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OfferedChoiceRevalidatesExactCurrentAuthorityBeforeWriting (System.String mutation) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="4613" name="OldChoiceCannotBeReplayedAfterRefreshButFreshChoiceCan" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OldChoiceCannotBeReplayedAfterRefreshButFreshChoiceCan" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.083256" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="4611" name="OldChoiceCannotBeReplayedAfterRefreshButFreshChoiceCan(False)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OldChoiceCannotBeReplayedAfterRefreshButFreshChoiceCan(False)" methodname="OldChoiceCannotBeReplayedAfterRefreshButFreshChoiceCan" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="24171476" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.011335" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OldChoiceCannotBeReplayedAfterRefreshButFreshChoiceCan (System.Boolean refresh) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4612" name="OldChoiceCannotBeReplayedAfterRefreshButFreshChoiceCan(True)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OldChoiceCannotBeReplayedAfterRefreshButFreshChoiceCan(True)" methodname="OldChoiceCannotBeReplayedAfterRefreshButFreshChoiceCan" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="80806636" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.014435" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OldChoiceCannotBeReplayedAfterRefreshButFreshChoiceCan (System.Boolean refresh) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:63
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="4624" name="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.127682" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="4618" name="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily(&quot;json&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily(&quot;json&quot;)" methodname="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="1854258805" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.009728" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily (System.String corruption) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4619" name="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily(&quot;version&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily(&quot;version&quot;)" methodname="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="1707270318" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.008878" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily (System.String corruption) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4620" name="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily(&quot;origin&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily(&quot;origin&quot;)" methodname="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="1585360228" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.009031" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily (System.String corruption) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4621" name="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily(&quot;destination&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily(&quot;destination&quot;)" methodname="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="1195393279" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.008305" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily (System.String corruption) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4622" name="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily(&quot;name-size&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily(&quot;name-size&quot;)" methodname="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="942741070" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.008723" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily (System.String corruption) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4623" name="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily(&quot;family&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily(&quot;family&quot;)" methodname="OneMalformedSavedRecordDoesNotHideTheValidOtherFamily" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="1322171087" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.008639" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.OneMalformedSavedRecordDoesNotHideTheValidOtherFamily (System.String corruption) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:83
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="4626" name="SameOriginBearingsAreHistoricalAfterInformantRenameAndMapChange" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.SameOriginBearingsAreHistoricalAfterInformantRenameAndMapChange" methodname="SameOriginBearingsAreHistoricalAfterInformantRenameAndMapChange" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="864175097" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.008798" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.SameOriginBearingsAreHistoricalAfterInformantRenameAndMapChange () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:115
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="4625" name="UnknownPrefixFamiliesCannotBypassTwoNoteBoundOrSuppressValidRows" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.UnknownPrefixFamiliesCannotBypassTwoNoteBoundOrSuppressValidRows" methodname="UnknownPrefixFamiliesCannotBypassTwoNoteBoundOrSuppressValidRows" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="281086211" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.009168" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.UnknownPrefixFamiliesCannotBypassTwoNoteBoundOrSuppressValidRows () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:105
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="4617" name="UnofferedActionArgumentsAreRefusedWithoutNote" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.UnofferedActionArgumentsAreRefusedWithoutNote" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.070443" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="4614" name="UnofferedActionArgumentsAreRefusedWithoutNote(&quot;garbage&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.UnofferedActionArgumentsAreRefusedWithoutNote(&quot;garbage&quot;)" methodname="UnofferedActionArgumentsAreRefusedWithoutNote" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="2113935435" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.022297" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.UnofferedActionArgumentsAreRefusedWithoutNote (System.String argument) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4615" name="UnofferedActionArgumentsAreRefusedWithoutNote(&quot;&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.UnofferedActionArgumentsAreRefusedWithoutNote(&quot;&quot;)" methodname="UnofferedActionArgumentsAreRefusedWithoutNote" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="2042683419" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.009686" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.UnofferedActionArgumentsAreRefusedWithoutNote (System.String argument) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4616" name="UnofferedActionArgumentsAreRefusedWithoutNote(null)" fullname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.UnofferedActionArgumentsAreRefusedWithoutNote(null)" methodname="UnofferedActionArgumentsAreRefusedWithoutNote" classname="CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests" runstate="Runnable" seed="2060807767" result="Failed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:33Z" duration="0.009851" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests.UnofferedActionArgumentsAreRefusedWithoutNote (System.String argument) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs:73
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="4627" name="SpreadDiscoveryReportsTests" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:34Z" duration="0.808859" total="13" passed="7" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="4639" name="AbsentSelectionCannotBeBackfilledByTalking" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.AbsentSelectionCannotBeBackfilledByTalking" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27 23:19:33Z" end-time="2026-09-27 23:19:34Z" duration="0.240338" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="4636" name="AbsentSelectionCannotBeBackfilledByTalking(&quot;old&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.AbsentSelectionCannotBeBackfilledByTalking(&quot;old&quot;)" methodname="AbsentSelectionCannotBeBackfilledByTalking" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="561107927" result="Passed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.021455" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="4637" name="AbsentSelectionCannotBeBackfilledByTalking(&quot;empty&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.AbsentSelectionCannotBeBackfilledByTalking(&quot;empty&quot;)" methodname="AbsentSelectionCannotBeBackfilledByTalking" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="980053869" result="Passed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.009374" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="4638" name="AbsentSelectionCannotBeBackfilledByTalking(&quot;malformed&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.AbsentSelectionCannotBeBackfilledByTalking(&quot;malformed&quot;)" methodname="AbsentSelectionCannotBeBackfilledByTalking" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="1531769993" result="Passed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.008769" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="4630" name="CurrentDialogueOffersBothFamiliesWithoutAcceptingOrGenerating" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.CurrentDialogueOffersBothFamiliesWithoutAcceptingOrGenerating" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.190560" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="4628" name="CurrentDialogueOffersBothFamiliesWithoutAcceptingOrGenerating(&quot;Scribe_1&quot;,&quot;RegionOverview&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.CurrentDialogueOffersBothFamiliesWithoutAcceptingOrGenerating(&quot;Scribe_1&quot;,&quot;RegionOverview&quot;)" methodname="CurrentDialogueOffersBothFamiliesWithoutAcceptingOrGenerating" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="1092170945" result="Failed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.020820" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryReportsTests.CurrentDialogueOffersBothFamiliesWithoutAcceptingOrGenerating (System.String conversation, System.String node) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:127
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4629" name="CurrentDialogueOffersBothFamiliesWithoutAcceptingOrGenerating(&quot;Innkeeper_1&quot;,&quot;Rumors&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.CurrentDialogueOffersBothFamiliesWithoutAcceptingOrGenerating(&quot;Innkeeper_1&quot;,&quot;Rumors&quot;)" methodname="CurrentDialogueOffersBothFamiliesWithoutAcceptingOrGenerating" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="1341254645" result="Failed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.009700" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryReportsTests.CurrentDialogueOffersBothFamiliesWithoutAcceptingOrGenerating (System.String conversation, System.String node) [0x00036] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:127
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="4642" name="EntitySaveRestoresExactHistoricalNotesWithoutConsultingCurrentMapOrSpeaker" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.EntitySaveRestoresExactHistoricalNotesWithoutConsultingCurrentMapOrSpeaker" methodname="EntitySaveRestoresExactHistoricalNotesWithoutConsultingCurrentMapOrSpeaker" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="1928731678" result="Failed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.009316" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryReportsTests.EntitySaveRestoresExactHistoricalNotesWithoutConsultingCurrentMapOrSpeaker () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:191
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="4643" name="ExistingJournalShowsCompleteReportAndKeepsTabNavigation" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.ExistingJournalShowsCompleteReportAndKeepsTabNavigation" methodname="ExistingJournalShowsCompleteReportAndKeepsTabNavigation" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="1205597915" result="Failed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.009938" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryReportsTests.ExistingJournalShowsCompleteReportAndKeepsTabNavigation () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:204
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="4640" name="ExplicitChoiceRecordsEachHistoricalFamilyOnceAndPreservesOtherNotes" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.ExplicitChoiceRecordsEachHistoricalFamilyOnceAndPreservesOtherNotes" methodname="ExplicitChoiceRecordsEachHistoricalFamilyOnceAndPreservesOtherNotes" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="1816894691" result="Failed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.015400" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The current real dialogue must offer ditch-cutters.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryFixture.Offer (System.String family) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:82
+at CavesOfOoo.Tests.SpreadDiscoveryReportsTests.ExplicitChoiceRecordsEachHistoricalFamilyOnceAndPreservesOtherNotes () [0x000b8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:162
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="4635" name="OtherNodesAndRolesDoNotAcquireRareRumorActions" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.OtherNodesAndRolesDoNotAcquireRareRumorActions" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.175846" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="4631" name="OtherNodesAndRolesDoNotAcquireRareRumorActions(&quot;Scribe_1&quot;,&quot;Start&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.OtherNodesAndRolesDoNotAcquireRareRumorActions(&quot;Scribe_1&quot;,&quot;Start&quot;)" methodname="OtherNodesAndRolesDoNotAcquireRareRumorActions" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="1174791533" result="Passed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.014245" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="4632" name="OtherNodesAndRolesDoNotAcquireRareRumorActions(&quot;Innkeeper_1&quot;,&quot;RegionOverview&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.OtherNodesAndRolesDoNotAcquireRareRumorActions(&quot;Innkeeper_1&quot;,&quot;RegionOverview&quot;)" methodname="OtherNodesAndRolesDoNotAcquireRareRumorActions" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="78044816" result="Passed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.009387" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="4633" name="OtherNodesAndRolesDoNotAcquireRareRumorActions(&quot;Warden_1&quot;,&quot;Threats&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.OtherNodesAndRolesDoNotAcquireRareRumorActions(&quot;Warden_1&quot;,&quot;Threats&quot;)" methodname="OtherNodesAndRolesDoNotAcquireRareRumorActions" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="584488619" result="Passed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.008743" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="4634" name="OtherNodesAndRolesDoNotAcquireRareRumorActions(&quot;Morrowfast_Vennit&quot;,&quot;RegionOverview&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.OtherNodesAndRolesDoNotAcquireRareRumorActions(&quot;Morrowfast_Vennit&quot;,&quot;RegionOverview&quot;)" methodname="OtherNodesAndRolesDoNotAcquireRareRumorActions" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="1768726918" result="Passed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.008904" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="4641" name="RemoteEmptyLiveOrDeadGraphCannotChangeReportsOrBeMutated" fullname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests.RemoteEmptyLiveOrDeadGraphCannotChangeReportsOrBeMutated" methodname="RemoteEmptyLiveOrDeadGraphCannotChangeReportsOrBeMutated" classname="CavesOfOoo.Tests.SpreadDiscoveryReportsTests" runstate="Runnable" seed="1649169171" result="Failed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.009325" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadDiscoveryReportsTests.RemoteEmptyLiveOrDeadGraphCannotChangeReportsOrBeMutated () [0x00040] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs:174
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="16340" name="SpreadGenerationReceiptTests" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:36Z" duration="1.701047" total="25" passed="2" failed="23" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="16359" name="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.188595" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16356" name="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(&quot;ambient&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(&quot;ambient&quot;)" methodname="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="711624468" result="Failed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.042841" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority (System.String change) [0x00070] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16357" name="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(&quot;other-group&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(&quot;other-group&quot;)" methodname="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="101576543" result="Failed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.022925" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority (System.String change) [0x00070] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16358" name="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(&quot;table-name&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(&quot;table-name&quot;)" methodname="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="727102230" result="Failed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.022503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority (System.String change) [0x00070] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:57
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16349" name="DisabledCaptureLeavesNoReceipt" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.156363" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16347" name="DisabledCaptureLeavesNoReceipt(True)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt(True)" methodname="DisabledCaptureLeavesNoReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1896381830" result="Failed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.023150" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt (System.Boolean population) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:48
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16348" name="DisabledCaptureLeavesNoReceipt(False)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt(False)" methodname="DisabledCaptureLeavesNoReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1893501494" result="Failed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:34Z" duration="0.022040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt (System.Boolean population) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:48
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16343" name="LegacySourcesStillGenerateOrdinaryContentWithoutOptIn" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.LegacySourcesStillGenerateOrdinaryContentWithoutOptIn" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27 23:19:34Z" end-time="2026-09-27 23:19:35Z" duration="0.220399" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16341" name="LegacySourcesStillGenerateOrdinaryContentWithoutOptIn(True)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.LegacySourcesStillGenerateOrdinaryContentWithoutOptIn(True)" methodname="LegacySourcesStillGenerateOrdinaryContentWithoutOptIn" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="2026298039" result="Passed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.039232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16342" name="LegacySourcesStillGenerateOrdinaryContentWithoutOptIn(False)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.LegacySourcesStillGenerateOrdinaryContentWithoutOptIn(False)" methodname="LegacySourcesStillGenerateOrdinaryContentWithoutOptIn" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="129393425" result="Passed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.025826" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16346" name="OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.183647" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16344" name="OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(True)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(True)" methodname="OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1157863666" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.025554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges (System.Boolean population) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16345" name="OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(False)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(False)" methodname="OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1435249328" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.023802" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges (System.Boolean population) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:41
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16355" name="OptOutRebuildInvalidatesAndClearsPriorReceipt" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.098859" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16353" name="OptOutRebuildInvalidatesAndClearsPriorReceipt(True)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt(True)" methodname="OptOutRebuildInvalidatesAndClearsPriorReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1686392453" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.024547" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt (System.Boolean population) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16354" name="OptOutRebuildInvalidatesAndClearsPriorReceipt(False)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt(False)" methodname="OptOutRebuildInvalidatesAndClearsPriorReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="3936293" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.023745" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt (System.Boolean population) [0x0001f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:54
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16367" name="OwnerMutationInvalidatesPopulationReceipt" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.306487" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16361" name="OwnerMutationInvalidatesPopulationReceipt(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(&quot;moved&quot;)" methodname="OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="955170536" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.025489" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt (System.String change) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16362" name="OwnerMutationInvalidatesPopulationReceipt(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(&quot;removed&quot;)" methodname="OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1137303063" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.024832" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt (System.String change) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16363" name="OwnerMutationInvalidatesPopulationReceipt(&quot;same-id-replacement&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(&quot;same-id-replacement&quot;)" methodname="OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1525285021" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.025827" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt (System.String change) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16364" name="OwnerMutationInvalidatesPopulationReceipt(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(&quot;carried&quot;)" methodname="OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="446137578" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.025809" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt (System.String change) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16365" name="OwnerMutationInvalidatesPopulationReceipt(&quot;physics-backlink&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(&quot;physics-backlink&quot;)" methodname="OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="565583808" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.026062" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt (System.String change) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16366" name="OwnerMutationInvalidatesPopulationReceipt(&quot;health&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(&quot;health&quot;)" methodname="OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1301912772" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.026198" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt (System.String change) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="16360" name="PreexistingSameBlueprintOwnersAndStampContainersAreNotCaptured" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.PreexistingSameBlueprintOwnersAndStampContainersAreNotCaptured" methodname="PreexistingSameBlueprintOwnersAndStampContainersAreNotCaptured" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1921715917" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.024376" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.PreexistingSameBlueprintOwnersAndStampContainersAreNotCaptured () [0x0005d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:59
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16352" name="SameAddressDifferentBuildInvalidatesPriorReceipt" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.068322" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16350" name="SameAddressDifferentBuildInvalidatesPriorReceipt(True)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt(True)" methodname="SameAddressDifferentBuildInvalidatesPriorReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1815417167" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.024277" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt (System.Boolean population) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16351" name="SameAddressDifferentBuildInvalidatesPriorReceipt(False)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt(False)" methodname="SameAddressDifferentBuildInvalidatesPriorReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1414467087" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.023428" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt (System.Boolean population) [0x00024] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16371" name="StockMutationInvalidatesContainerReceipt" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:36Z" duration="0.123676" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16368" name="StockMutationInvalidatesContainerReceipt(&quot;remove-item&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(&quot;remove-item&quot;)" methodname="StockMutationInvalidatesContainerReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="178046454" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.023411" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16369" name="StockMutationInvalidatesContainerReceipt(&quot;quantity&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(&quot;quantity&quot;)" methodname="StockMutationInvalidatesContainerReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1017439241" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:35Z" duration="0.023731" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16370" name="StockMutationInvalidatesContainerReceipt(&quot;replaced-part&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(&quot;replaced-part&quot;)" methodname="StockMutationInvalidatesContainerReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1489207550" result="Failed" start-time="2026-09-27 23:19:35Z" end-time="2026-09-27 23:19:36Z" duration="0.024192" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:67
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16374" name="UnrelatedLaterPlacementDoesNotInvalidateExactReceipt" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27 23:19:36Z" end-time="2026-09-27 23:19:36Z" duration="0.180665" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16372" name="UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(True)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(True)" methodname="UnrelatedLaterPlacementDoesNotInvalidateExactReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="336413258" result="Failed" start-time="2026-09-27 23:19:36Z" end-time="2026-09-27 23:19:36Z" duration="0.025854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt (System.Boolean population) [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16373" name="UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(False)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(False)" methodname="UnrelatedLaterPlacementDoesNotInvalidateExactReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1966405016" result="Failed" start-time="2026-09-27 23:19:36Z" end-time="2026-09-27 23:19:36Z" duration="0.026050" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture (System.Object builder, System.Boolean enabled) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:18
+at CavesOfOoo.Tests.SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt (System.Boolean population) [0x00025] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs:71
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="16375" name="SpreadGleaningLaneMeasurementTests" fullname="CavesOfOoo.Tests.SpreadGleaningLaneMeasurementTests" classname="CavesOfOoo.Tests.SpreadGleaningLaneMeasurementTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27 23:19:36Z" end-time="2026-09-27 23:19:38Z" duration="2.558662" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="16379" name="CurrentFieldGleaningsRecordActualLaneDistanceAndLineOfSightWithoutChangingTheirBudget" fullname="CavesOfOoo.Tests.SpreadGleaningLaneMeasurementTests.CurrentFieldGleaningsRecordActualLaneDistanceAndLineOfSightWithoutChangingTheirBudget" classname="CavesOfOoo.Tests.SpreadGleaningLaneMeasurementTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27 23:19:36Z" end-time="2026-09-27 23:19:38Z" duration="2.510928" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16376" name="CurrentFieldGleaningsRecordActualLaneDistanceAndLineOfSightWithoutChangingTheirBudget(1)" fullname="CavesOfOoo.Tests.SpreadGleaningLaneMeasurementTests.CurrentFieldGleaningsRecordActualLaneDistanceAndLineOfSightWithoutChangingTheirBudget(1)" methodname="CurrentFieldGleaningsRecordActualLaneDistanceAndLineOfSightWithoutChangingTheirBudget" classname="CavesOfOoo.Tests.SpreadGleaningLaneMeasurementTests" runstate="Runnable" seed="1183911151" result="Passed" start-time="2026-09-27 23:19:36Z" end-time="2026-09-27 23:19:37Z" duration="0.798069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Measured 33 FieldStrips source graphs; 68 existing ripe rows.
+]]></output>
+              </test-case>
+              <test-case id="16377" name="CurrentFieldGleaningsRecordActualLaneDistanceAndLineOfSightWithoutChangingTheirBudget(64)" fullname="CavesOfOoo.Tests.SpreadGleaningLaneMeasurementTests.CurrentFieldGleaningsRecordActualLaneDistanceAndLineOfSightWithoutChangingTheirBudget(64)" methodname="CurrentFieldGleaningsRecordActualLaneDistanceAndLineOfSightWithoutChangingTheirBudget" classname="CavesOfOoo.Tests.SpreadGleaningLaneMeasurementTests" runstate="Runnable" seed="26067541" result="Passed" start-time="2026-09-27 23:19:37Z" end-time="2026-09-27 23:19:38Z" duration="0.780699" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Measured 33 FieldStrips source graphs; 70 existing ripe rows.
+]]></output>
+              </test-case>
+              <test-case id="16378" name="CurrentFieldGleaningsRecordActualLaneDistanceAndLineOfSightWithoutChangingTheirBudget(1729)" fullname="CavesOfOoo.Tests.SpreadGleaningLaneMeasurementTests.CurrentFieldGleaningsRecordActualLaneDistanceAndLineOfSightWithoutChangingTheirBudget(1729)" methodname="CurrentFieldGleaningsRecordActualLaneDistanceAndLineOfSightWithoutChangingTheirBudget" classname="CavesOfOoo.Tests.SpreadGleaningLaneMeasurementTests" runstate="Runnable" seed="647093983" result="Passed" start-time="2026-09-27 23:19:38Z" end-time="2026-09-27 23:19:38Z" duration="0.730891" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Measured 33 FieldStrips source graphs; 74 existing ripe rows.
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="16503" name="SpreadRarePairClueTests" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-09-27 23:19:38Z" end-time="2026-09-27 23:19:39Z" duration="0.908398" total="21" passed="7" failed="14" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="16509" name="ClueDescribesHistoricalTracesWithoutCurrentEnemyLootOrSafetyPromises" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.ClueDescribesHistoricalTracesWithoutCurrentEnemyLootOrSafetyPromises" methodname="ClueDescribesHistoricalTracesWithoutCurrentEnemyLootOrSafetyPromises" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="579689290" result="Failed" start-time="2026-09-27 23:19:38Z" end-time="2026-09-27 23:19:38Z" duration="0.055255" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.ClueDescribesHistoricalTracesWithoutCurrentEnemyLootOrSafetyPromises () [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:76
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="16527" name="ExistingLatchcoilWarningKeepsItsExactSourceAndSouthernBypass" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.ExistingLatchcoilWarningKeepsItsExactSourceAndSouthernBypass" methodname="ExistingLatchcoilWarningKeepsItsExactSourceAndSouthernBypass" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="149572216" result="Passed" start-time="2026-09-27 23:19:38Z" end-time="2026-09-27 23:19:38Z" duration="0.028299" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="16522" name="ExistingRegionalSignIsNotRewrittenOrAdoptedAsTheClue" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.ExistingRegionalSignIsNotRewrittenOrAdoptedAsTheClue" methodname="ExistingRegionalSignIsNotRewrittenOrAdoptedAsTheClue" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="1269528864" result="Failed" start-time="2026-09-27 23:19:38Z" end-time="2026-09-27 23:19:38Z" duration="0.026522" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.ExistingRegionalSignIsNotRewrittenOrAdoptedAsTheClue () [0x0005a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:116
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16521" name="NoLegalMarkerSpaceStillReturnsTheUnmodifiedPair" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.NoLegalMarkerSpaceStillReturnsTheUnmodifiedPair" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27 23:19:38Z" end-time="2026-09-27 23:19:39Z" duration="0.182403" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16518" name="NoLegalMarkerSpaceStillReturnsTheUnmodifiedPair(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.NoLegalMarkerSpaceStillReturnsTheUnmodifiedPair(&quot;reserved&quot;)" methodname="NoLegalMarkerSpaceStillReturnsTheUnmodifiedPair" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="1340236196" result="Passed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.032811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16519" name="NoLegalMarkerSpaceStillReturnsTheUnmodifiedPair(&quot;heat&quot;)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.NoLegalMarkerSpaceStillReturnsTheUnmodifiedPair(&quot;heat&quot;)" methodname="NoLegalMarkerSpaceStillReturnsTheUnmodifiedPair" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="2000057332" result="Passed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.029794" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16520" name="NoLegalMarkerSpaceStillReturnsTheUnmodifiedPair(&quot;coating&quot;)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.NoLegalMarkerSpaceStillReturnsTheUnmodifiedPair(&quot;coating&quot;)" methodname="NoLegalMarkerSpaceStillReturnsTheUnmodifiedPair" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="1544219936" result="Passed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.030136" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="16524" name="OldPairWithoutClueIsNeverRetrofittedAndDoesNotCallTheSignFactory" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OldPairWithoutClueIsNeverRetrofittedAndDoesNotCallTheSignFactory" methodname="OldPairWithoutClueIsNeverRetrofittedAndDoesNotCallTheSignFactory" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="1194488009" result="Passed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.028503" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16507" name="OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.161980" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16504" name="OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii(1)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii(1)" methodname="OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="843922659" result="Failed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.028102" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A legal open source has one optional physical clue.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii (System.Int32 seed) [0x00066] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16505" name="OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii(64)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii(64)" methodname="OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="759919299" result="Failed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.027548" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A legal open source has one optional physical clue.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii (System.Int32 seed) [0x00066] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16506" name="OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii(1729)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii(1729)" methodname="OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="1865446614" result="Failed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.027757" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A legal open source has one optional physical clue.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalClueUsesRealSignAndAVisibleDryApproachOutsideBothInitialSightRadii (System.Int32 seed) [0x00066] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:51
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16517" name="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.219250" total="7" passed="1" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16510" name="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;missing&quot;)" methodname="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="44117993" result="Passed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.027069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16511" name="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;throw&quot;)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;throw&quot;)" methodname="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="2117282395" result="Failed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.036035" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional source must be attempted before its callback refusal is meaningful.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair (System.String change) [0x000d6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16512" name="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;hidden&quot;)" methodname="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="246071833" result="Failed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.028003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional source must be attempted before its callback refusal is meaningful.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair (System.String change) [0x000d6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16513" name="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;carried&quot;)" methodname="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="507583490" result="Failed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.028347" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional source must be attempted before its callback refusal is meaningful.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair (System.String change) [0x000d6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16514" name="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;duplicate-id&quot;)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;duplicate-id&quot;)" methodname="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="1009993716" result="Failed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.028539" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional source must be attempted before its callback refusal is meaningful.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair (System.String change) [0x000d6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16515" name="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;foreign-owner&quot;)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;foreign-owner&quot;)" methodname="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="2096223831" result="Failed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.027450" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional source must be attempted before its callback refusal is meaningful.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair (System.String change) [0x000d6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16516" name="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;map&quot;)" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair(&quot;map&quot;)" methodname="OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="244524179" result="Failed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.027041" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The optional source must be attempted before its callback refusal is meaningful.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalFactoryRefusalNeverRollsBackTheAlreadyCommittedPair (System.String change) [0x000d6] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="16526" name="OptionalMarkerDiagnosticsStaySeparateFromTheExistingPairCommit" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalMarkerDiagnosticsStaySeparateFromTheExistingPairCommit" methodname="OptionalMarkerDiagnosticsStaySeparateFromTheExistingPairCommit" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="1957294101" result="Failed" label="Error" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.030008" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.ArgumentException : The actual value must be an IEnumerable
+Parameter name: actual]]></message>
+                <stack-trace><![CDATA[  at NUnit.Framework.Constraints.CollectionConstraint.ApplyTo (System.Object actual) [0x0000a] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Constraints.ContainsConstraint.ApplyTo (System.Object actual) [0x00042] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 
+  at CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalMarkerDiagnosticsStaySeparateFromTheExistingPairCommit () [0x00176] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:152 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="16525" name="OptionalSourceDoesNotConsumeLoadoutRandomOrChangePairRolls" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.OptionalSourceDoesNotConsumeLoadoutRandomOrChangePairRolls" methodname="OptionalSourceDoesNotConsumeLoadoutRandomOrChangePairRolls" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="1907681654" result="Passed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.028215" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="16523" name="RemovedClueIsNotRecreatedWhenTheExistingSourceIsVisitedAgain" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.RemovedClueIsNotRecreatedWhenTheExistingSourceIsVisitedAgain" methodname="RemovedClueIsNotRecreatedWhenTheExistingSourceIsVisitedAgain" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="1515181340" result="Failed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.027009" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.RemovedClueIsNotRecreatedWhenTheExistingSourceIsVisitedAgain () [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:124
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="16508" name="SignFactoryRunsOnlyAfterExactPairAndEquipmentCommit" fullname="CavesOfOoo.Tests.SpreadRarePairClueTests.SignFactoryRunsOnlyAfterExactPairAndEquipmentCommit" methodname="SignFactoryRunsOnlyAfterExactPairAndEquipmentCommit" classname="CavesOfOoo.Tests.SpreadRarePairClueTests" runstate="Runnable" seed="1488156775" result="Failed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.030936" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadRarePairClueTests.SignFactoryRunsOnlyAfterExactPairAndEquipmentCommit () [0x00058] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs:69
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="16528" name="SpreadWayhouseTests" fullname="CavesOfOoo.Tests.SpreadWayhouseTests" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:40Z" duration="0.581493" total="11" passed="8" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="16538" name="ExplicitEmptySelectionRemainsInitializedAndEmpty" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.ExplicitEmptySelectionRemainsInitializedAndEmpty" methodname="ExplicitEmptySelectionRemainsInitializedAndEmpty" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="890214089" result="Passed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.000641" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16542" name="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.183409" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16539" name="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt(1)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt(1)" methodname="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="493699290" result="Passed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.029255" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16540" name="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt(64)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt(64)" methodname="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="1639810421" result="Passed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.025854" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16541" name="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt(1729)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt(1729)" methodname="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="1062182335" result="Passed" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:39Z" duration="0.028155" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16532" name="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27 23:19:39Z" end-time="2026-09-27 23:19:40Z" duration="0.296323" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16529" name="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(1)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(1)" methodname="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="1915063671" result="Failed" start-time="2026-09-27 23:19:40Z" end-time="2026-09-27 23:19:40Z" duration="0.073010" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The selected native zone must admit a real complete expedition.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances (System.Int32 seed) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16530" name="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(64)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(64)" methodname="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="1427200774" result="Failed" start-time="2026-09-27 23:19:40Z" end-time="2026-09-27 23:19:40Z" duration="0.050563" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The selected native zone must admit a real complete expedition.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances (System.Int32 seed) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16531" name="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(1729)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(1729)" methodname="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="901618645" result="Failed" start-time="2026-09-27 23:19:40Z" end-time="2026-09-27 23:19:40Z" duration="0.056765" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The selected native zone must admit a real complete expedition.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances (System.Int32 seed) [0x0005c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16537" name="MissingOrMalformedSelectionDoesNotBackfill" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.MissingOrMalformedSelectionDoesNotBackfill" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-27 23:19:40Z" end-time="2026-09-27 23:19:40Z" duration="0.020331" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16533" name="MissingOrMalformedSelectionDoesNotBackfill(null)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.MissingOrMalformedSelectionDoesNotBackfill(null)" methodname="MissingOrMalformedSelectionDoesNotBackfill" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="1878569834" result="Passed" start-time="2026-09-27 23:19:40Z" end-time="2026-09-27 23:19:40Z" duration="0.000354" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16534" name="MissingOrMalformedSelectionDoesNotBackfill(&quot;&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.MissingOrMalformedSelectionDoesNotBackfill(&quot;&quot;)" methodname="MissingOrMalformedSelectionDoesNotBackfill" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="395559109" result="Passed" start-time="2026-09-27 23:19:40Z" end-time="2026-09-27 23:19:40Z" duration="0.000211" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16535" name="MissingOrMalformedSelectionDoesNotBackfill(&quot;2|Overworld.1.1.0&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.MissingOrMalformedSelectionDoesNotBackfill(&quot;2|Overworld.1.1.0&quot;)" methodname="MissingOrMalformedSelectionDoesNotBackfill" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="915470077" result="Passed" start-time="2026-09-27 23:19:40Z" end-time="2026-09-27 23:19:40Z" duration="0.000184" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="16536" name="MissingOrMalformedSelectionDoesNotBackfill(&quot;1|Overworld.01.1.0&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.MissingOrMalformedSelectionDoesNotBackfill(&quot;1|Overworld.01.1.0&quot;)" methodname="MissingOrMalformedSelectionDoesNotBackfill" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="403460873" result="Passed" start-time="2026-09-27 23:19:40Z" end-time="2026-09-27 23:19:40Z" duration="0.000184" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

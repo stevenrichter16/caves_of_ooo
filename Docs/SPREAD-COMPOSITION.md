@@ -1,12 +1,31 @@
 # The Spread: worked country composition
 
-Status: complete and installed, 2026-09-12. CoO-original; no Qud parity claim.
+Status: original composition installed 2026-09-12; current finite-gleaning source audit and native crop readability verified 2026-09-27. CoO-original; no Qud parity claim.
 
 The Spread is the recovered river country between the stranger regions. Design
 authority: Lore/README.md, Lore/10_Bible.md and the ordinary magic described in
 Lore/History/09_Magic.md (temporary flowers cannot replace a lasting harvest).
 Shipped geography and formation identities follow WorldMapAuthoring and
 Docs/FELLING-WORLD-DESIGN.md's Spread illustration. No new dialogue or lore facts.
+
+## Current source correction — discovery work, 2026-09-27
+
+The sections below record the original September 12 composition delivery and its historical verification limits. Current source has since added finite emberwheat gleanings and the approved biome-wide presentation.
+
+`SpreadCompositionBuilder.SelectGleanings` replaces existing planned CropRow cells with exactly 1, 2, or 3 RipeCropRow owners according to the after-harvest, returning-scrub, or tended condition (bounded by available rows). Selection is deterministic and consumes no caller RNG. A RipeCropRow yields one actual Emberwheat through the existing FieldHarvestPart action, stays in place as spent stubble, and leaves overflow grain recoverable on that same cell. Ordinary CropRow is already-cut stubble, not another harvest source. There is no new growth timer, field ownership claim, or repeated harvest payout.
+
+The current managed Spread renderer adopts the exact grain and stubble families from SpreadEnvironment3DLibrary, retaining the variant and actual owner when harvested. BiomeAffordanceRenderingTests covers actual harvest/removal, local batch rebuilding, distant-batch preservation, and the explicit grain item model. The prior first-hour 20,406-pass native baseline covers those existing tests; it does not establish the new discovery plan's lane siting or native grain readability.
+
+The new native source-placement probe passed for seeds 1, 64, and 1729: 99 FieldStrips composition graphs with 212 ripe rows (68/70/74), all with unobstructed source line of sight from a working lane. Maximum Chebyshev distance to a visible working-lane cell was 6/6/7 respectively. These graphs include separately labelled POI/rare-address exclusions; they are not the realized count of eligible composed situations. Current placement is retained because no lane-siting defect was established. The actual diagnostic fixture is SpreadGleaningLaneMeasurementTests; its three native passes are retained in `Verification/SpreadDiscoveryExpeditions/Tests/m1-m2-m4-wayhouse-red.xml`, with per-owner measurements in `Verification/SpreadDiscovery/M3/Measurements/`. Those source measurements alone do not establish finished-pipeline placement or native readability; the later ordinary grain route and viewed frames provide that separate evidence. A retained image named finite-harvest from the earlier biome walkthrough shows BerryBush harvesting, so it is not grain evidence. The retained native asset gallery at `Verification/DensityCompletion/SpreadBiome/Art/Environment/NativeGallery/native-environment-1.png` shows visibly taller gold-tipped ripe grain and low cut stubble as distinct forms; this is isolated asset evidence, not walking-scale readability. No extra yield, model replacement, or crop-selection change is proposed for this discovery slice.
+
+
+### Discovery clue and native gleaning closeout
+
+Committed ditch-cutter pairs may now receive one optional Signpost describing old cuts, scored shale and dragged scraps. It is placed after the original pair commits, outside initial sight, with a clear reading pocket reachable from a legal border approach. A missing/invalid sign or unsuitable approach leaves the original pair intact. Selection, existing gear and previous pair rolls are retained; the clue uses no caller RNG and does not retrofit saved graphs. Fresh later placement can account for its physical blocker.
+
+The optional clue has23 native behavioral/counter cases and the retained field measurement has3: all26 pass in the final integrated run. The clue's original RED and first GREEN are retained in `Verification/SpreadDiscoveryExpeditions/Tests/m1-m2-m4-wayhouse-red.xml` and `m2-receipts-wayhouse-first-green.xml`; those mixed-run totals include independent features and must not be called this slice's case count.
+
+Later native evidence separately shows the actual optional clue reader and the earned grain/stubble forms. The ordinary14-check grain route uses normal travel to harvest, eat one earned Emberwheat, return to Sill and restore the consumed/spent state; no new field yield or placement was needed. The dedicated card uses a disclosed player-only positioning step to inspect the real clue. Exact receipts and viewed-image limits are recorded in the discovery integration documentation. This is original content, not a Qud mechanics-parity claim.
 
 ## Spatial grammar
 

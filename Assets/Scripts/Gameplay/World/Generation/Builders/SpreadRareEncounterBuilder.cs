@@ -11,6 +11,7 @@ namespace CavesOfOoo.Core
     public sealed class SpreadRareEncounterBuilder
     {
         public const string SourceKey = "SpreadRare.Source";
+        public const string PairClueKey = "SpreadRare.PairClue";
         private readonly OverworldZoneManager manager;
         public SpreadRareEncounterBuilder(OverworldZoneManager owner) { manager = owner; }
 
@@ -49,8 +50,110 @@ namespace CavesOfOoo.Core
             if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "SpreadRareCommitted", a, payload: new
             { zone = zone.ZoneID, family = "ditch-cutters", leader = a.ID, mate = b.ID,
                 items = a.GetPart<InventoryPart>().EquippedItems.Values.Concat(b.GetPart<InventoryPart>().EquippedItems.Values).Distinct().Select(e => e.ID).ToArray() });
+            // The physical clue is optional and begins only after the original
+            // pair transaction has committed. Refusal never retracts that pair.
+            TryAddPairClue(zone, factory, a, b, px, py);
             return true;
         }
+
+        private void TryAddPairClue(Zone zone, EntityFactory factory, Entity a, Entity b, int px, int py)
+        {
+            if (factory.Blueprints == null || !factory.Blueprints.ContainsKey("Signpost"))
+            { ClueRefuse(zone, "missing-signpost"); return; }
+            var reachable = PairClueReachable(zone, a, b);
+            int cx = -1, cy = -1, rank = int.MaxValue;
+            for (int y = 1; y < Zone.Height - 1; y++) for (int x = 1; x < Zone.Width - 1; x++)
+            {
+                int distance = AIHelpers.ChebyshevDistance(x, y, px, py);
+                if (distance >= rank || !PairCluePocket(zone, a, b, x, y, reachable)) continue;
+                cx = x; cy = y; rank = distance;
+            }
+            if (cx < 0) { ClueRefuse(zone, "no-dry-reading-approach"); return; }
+            Entity sign;
+            try { sign = factory.CreateEntity("Signpost"); }
+            catch (Exception) { ClueRefuse(zone, "signpost-factory-failed"); return; }
+            if (!FreshSign(sign) || !PairClueAppearance(sign) || zone.GetReadOnlyEntities().Any(e => e.ID == sign.ID)
+                || !CommittedPairCurrent(zone, factory, a, b, px, py)
+                || !PairCluePocket(zone, a, b, cx, cy, PairClueReachable(zone, a, b)))
+            { ClueRefuse(zone, "signpost-staging-changed"); return; }
+            sign.GetPart<ExaminablePart>().Description = "Old cuts warn of ditch-cutters. Faded marks show scored shale and dragged scraps.";
+            if (!zone.AddEntity(sign, cx, cy)) { ClueRefuse(zone, "signpost-placement-refused"); return; }
+            if (!CommittedPairCurrent(zone, factory, a, b, px, py) || !SignContract(sign) || !PairClueAppearance(sign)
+                || sign.SpatialZone != zone || zone.GetEntityPosition(sign) != (cx, cy)
+                || !PairCluePocket(zone, a, b, cx, cy, PairClueReachable(zone, a, b), sign))
+            {
+                if (sign.SpatialZone == zone && zone.GetEntityPosition(sign) == (cx, cy)) zone.RemoveEntity(sign);
+                ClueRefuse(zone, "signpost-commit-changed"); return;
+            }
+            sign.Properties[PairClueKey] = zone.ZoneID;
+            if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "SpreadRareClueCommitted", sign,
+                payload: new { zone = zone.ZoneID, family = "ditch-cutters", sign = sign.ID, x = cx, y = cy });
+        }
+        private static bool PairClueAppearance(Entity sign)
+        {
+            var render = sign.GetPart<RenderPart>();
+            return !sign.HasTag("Item") && !sign.HasPart<MultiCellPilotPropPart>()
+                && string.IsNullOrEmpty(render.VisualID) && string.IsNullOrEmpty(render.VisualVariant)
+                && string.IsNullOrEmpty(render.GlyphVariants);
+        }
+        private bool CommittedPairCurrent(Zone z, EntityFactory factory, Entity a, Entity b, int x, int y)
+            => factory == manager.Factory && manager.RareEncounters?.Initialized == true
+                && manager.RareEncounters.PairZoneID == z.ZoneID && SpreadRareEncounterPlan.IsEligible(manager, z.ZoneID)
+                && Uncarried(a) && Uncarried(b) && a.ID != b.ID
+                && a.SpatialZone == z && b.SpatialZone == z && z.GetEntityPosition(a) == (x, y) && z.GetEntityPosition(b) == (x + 2, y)
+                && a.GetProperty(SourceKey) == z.ZoneID && b.GetProperty(SourceKey) == z.ZoneID
+                && z.GetReadOnlyEntities().Count(e => e.Properties.ContainsKey(SourceKey)) == 2
+                && a.BlueprintName == SpreadRareEncounterPlan.PairLeader && b.BlueprintName == SpreadRareEncounterPlan.PairMate
+                && a.GetPart<BrainPart>()?.ParentEntity == a && b.GetPart<BrainPart>()?.ParentEntity == b
+                && a.GetStatValue("Hitpoints") > 0 && b.GetStatValue("Hitpoints") > 0
+                && !CombatSystem.IsDeathHandled(a) && !CombatSystem.IsDeathHandled(b)
+                && OwnsKit(a, "ShortSword", "LeatherCap") && OwnsKit(b, "Cudgel", null);
+        private static bool OutsidePairSight(Zone z, Entity a, Entity b, int x, int y)
+        {
+            var ap = z.GetEntityPosition(a); var bp = z.GetEntityPosition(b);
+            return a.GetPart<BrainPart>() != null && b.GetPart<BrainPart>() != null
+                && AIHelpers.ChebyshevDistance(x, y, ap.x, ap.y) > a.GetPart<BrainPart>().SightRadius
+                && AIHelpers.ChebyshevDistance(x, y, bp.x, bp.y) > b.GetPart<BrainPart>().SightRadius;
+        }
+        private static bool PairClueClear(Zone z, int x, int y, Entity sign = null)
+        {
+            var c = z.GetCell(x, y);
+            return Dry(z, c) && !c.BlocksMovement(sign) && !c.Occupants.Any(e => e.HasTag("Creature"));
+        }
+        private static bool PairCluePocket(Zone z, Entity a, Entity b, int x, int y, bool[,] reachable, Entity sign = null)
+        {
+            if (z.GenReservedCells.Contains((x, y)) || !OutsidePairSight(z, a, b, x, y)) return false;
+            bool reading = false;
+            for (int dy = -1; dy <= 1; dy++) for (int dx = -1; dx <= 1; dx++)
+            {
+                int xx = x + dx, yy = y + dy;
+                if (!PairClueClear(z, xx, yy, dx == 0 && dy == 0 ? sign : null)) return false;
+                if ((dx != 0 || dy != 0) && reachable[xx, yy]
+                    && AIHelpers.HasLineOfSight(z, xx, yy, x, y)) reading = true;
+            }
+            return reading;
+        }
+        private static bool[,] PairClueReachable(Zone z, Entity a, Entity b)
+        {
+            var seen = new bool[Zone.Width, Zone.Height]; var q = new Queue<(int x, int y)>();
+            for (int y = 0; y < Zone.Height; y++) for (int x = 0; x < Zone.Width; x++)
+                if ((x == 0 || y == 0 || x == Zone.Width - 1 || y == Zone.Height - 1)
+                    && PairClueClear(z, x, y) && OutsidePairSight(z, a, b, x, y))
+                { seen[x, y] = true; q.Enqueue((x, y)); }
+            while (q.Count > 0)
+            {
+                var p = q.Dequeue();
+                for (int d = 0; d < 4; d++)
+                {
+                    int x = p.x + (d == 0 ? 1 : d == 1 ? -1 : 0), y = p.y + (d == 2 ? 1 : d == 3 ? -1 : 0);
+                    if (z.GetCell(x, y) == null || seen[x, y] || !PairClueClear(z, x, y) || !OutsidePairSight(z, a, b, x, y)) continue;
+                    seen[x, y] = true; q.Enqueue((x, y));
+                }
+            }
+            return seen;
+        }
+        private static void ClueRefuse(Zone z, string reason)
+        { if (Diag.IsChannelEnabled("worldgen")) Diag.Record("worldgen", "SpreadRareClueRejected", payload: new { zone = z.ZoneID, family = "ditch-cutters", reason }); }
 
         // Creation may change the live map or frozen selection. Recheck this
         // pair's authority without admitting the separate optional viper source.
