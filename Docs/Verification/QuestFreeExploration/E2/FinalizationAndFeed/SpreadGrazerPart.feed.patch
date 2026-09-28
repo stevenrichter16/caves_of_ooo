@@ -1,0 +1,26 @@
+--- Assets/Scripts/Gameplay/AI/SpreadGrazerPart.cs
++++ Assets/Scripts/Gameplay/AI/SpreadGrazerPart.cs
+@@ -48,8 +48,22 @@
+             if (AIHelpers.ChebyshevDistance(here.X, here.Y, FoodX, FoodY) <= 1)
+             {
+                 // No callbacks between validation and these two saved mutations.
++                var actor=ParentEntity; var meal=Food; var reserve=ReservedRow;
++                var field=meal.GetPart<FieldHarvestPart>(); var reserveField=reserve.GetPart<FieldHarvestPart>();
++                var mealCell=zone.GetEntityCell(meal); var reserveCell=zone.GetEntityCell(reserve);
+                 Fed = true;
+-                Food.GetPart<FieldHarvestPart>().ConsumeByGrazer();
++                field.ConsumeByGrazer();
++                // Dirty-view subscribers run after consumption. Revalidate before
++                // publishing the gesture; never turn it into another game action.
++                if(ParentEntity==actor && actor.GetPart<SpreadGrazerPart>()==this && Configured && Fed
++                    && Food==meal && ReservedRow==reserve && ZoneID==zone.ZoneID
++                    && SpreadActorContext.Actor(actor,zone,out var currentBrain) && currentBrain==brain
++                    && zone.GetEntityCell(actor)==here && SpreadActorContext.Ground(meal,zone)
++                    && zone.GetEntityCell(meal)==mealCell && mealCell.X==FoodX && mealCell.Y==FoodY
++                    && meal.BlueprintName=="RipeCropRow" && meal.GetPart<FieldHarvestPart>()==field && field.ParentEntity==meal && field.Harvested
++                    && Ripe(reserve,zone) && reserve.GetPart<FieldHarvestPart>()==reserveField
++                    && zone.GetEntityCell(reserve)==reserveCell && reserveCell.X==ReservedX && reserveCell.Y==ReservedY)
++                    EntityVisualHooks.EmitInteraction(actor,meal,zone);
+             }
+             else
+             {

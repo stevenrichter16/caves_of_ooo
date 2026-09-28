@@ -1,0 +1,285 @@
+{
+  "source": "Docs/Verification/QuestFreeExploration/E2/Performance/native-report.json",
+  "sha256": "4e0ecc66dbeee6b993f333a4a90addf7ba2fd9a5c2869bfc5abad5471ed6ac48",
+  "complete": true,
+  "restored": true,
+  "errors": [],
+  "rows": 330,
+  "allocationAvailable": false,
+  "allocationProbeBytes": 0,
+  "statistics": {
+    "manager-constructor": {
+      "legacy-current": {
+        "count": 3,
+        "medianMs": 2.983,
+        "minMs": 2.8848,
+        "maxMs": 4.4585,
+        "p95Ms": 4.31095,
+        "sumMs": 10.3263
+      },
+      "exploration-current": {
+        "count": 3,
+        "medianMs": 4.4442,
+        "minMs": 4.1634,
+        "maxMs": 4.5873,
+        "p95Ms": 4.57299,
+        "sumMs": 13.1949
+      },
+      "paired": {
+        "medianRatio": 1.4432196339434278,
+        "p95Ratio": 1.5283548162270615,
+        "minRatio": 0.9967926432656724,
+        "maxRatio": 1.537814280925243,
+        "medianDeltaMs": 1.2786000000000004
+      }
+    },
+    "cold-GetZone": {
+      "legacy-current": {
+        "count": 60,
+        "medianMs": 24.12605,
+        "minMs": 19.9236,
+        "maxMs": 61.2882,
+        "p95Ms": 42.66710499999999,
+        "sumMs": 1582.5481
+      },
+      "exploration-current": {
+        "count": 60,
+        "medianMs": 26.93455,
+        "minMs": 20.6903,
+        "maxMs": 61.9241,
+        "p95Ms": 47.161950000000004,
+        "sumMs": 1866.9478
+      },
+      "paired": {
+        "medianRatio": 1.081398411240244,
+        "p95Ratio": 2.074759729802234,
+        "minRatio": 0.6222829190610916,
+        "maxRatio": 2.4528408617521826,
+        "medianDeltaMs": 2.0520499999999995
+      },
+      "pairsAtLeast2x": [
+        {
+          "seed": 1,
+          "zone": "Overworld.11.9.0",
+          "legacyMs": 28.6466,
+          "currentMs": 61.9241,
+          "ratio": 2.1616561825836227,
+          "legacyOwners": 2154,
+          "currentOwners": 2222
+        },
+        {
+          "seed": 64,
+          "zone": "Overworld.11.12.0",
+          "legacyMs": 20.4798,
+          "currentMs": 42.397,
+          "ratio": 2.0701862322874245,
+          "legacyOwners": 2071,
+          "currentOwners": 2089
+        },
+        {
+          "seed": 64,
+          "zone": "Overworld.9.10.0",
+          "legacyMs": 20.5,
+          "currentMs": 41.0223,
+          "ratio": 2.0010878048780487,
+          "legacyOwners": 2156,
+          "currentOwners": 2154
+        },
+        {
+          "seed": 1729,
+          "zone": "Overworld.11.9.0",
+          "legacyMs": 22.8047,
+          "currentMs": 55.9363,
+          "ratio": 2.4528408617521826,
+          "legacyOwners": 2147,
+          "currentOwners": 2227
+        },
+        {
+          "seed": 1729,
+          "zone": "Overworld.12.8.0",
+          "legacyMs": 20.7687,
+          "currentMs": 45.764,
+          "ratio": 2.203508163727147,
+          "legacyOwners": 2078,
+          "currentOwners": 2086
+        }
+      ]
+    },
+    "save20-memory": {
+      "legacy-current": {
+        "count": 3,
+        "medianMs": 888.7133,
+        "minMs": 874.689,
+        "maxMs": 965.1639,
+        "p95Ms": 957.51884,
+        "sumMs": 2728.5662
+      },
+      "exploration-current": {
+        "count": 3,
+        "medianMs": 918.3298,
+        "minMs": 908.3276,
+        "maxMs": 937.8912,
+        "p95Ms": 935.93506,
+        "sumMs": 2764.5486
+      },
+      "paired": {
+        "medianRatio": 1.0220704472409718,
+        "p95Ratio": 1.0471106847607272,
+        "minRatio": 0.9717429340239518,
+        "maxRatio": 1.0498929333740334,
+        "medianDeltaMs": 19.614299999999957
+      }
+    },
+    "load20-memory": {
+      "legacy-current": {
+        "count": 3,
+        "medianMs": 2018.9649,
+        "minMs": 1963.0859,
+        "maxMs": 2460.8842,
+        "p95Ms": 2416.69227,
+        "sumMs": 6442.9349999999995
+      },
+      "exploration-current": {
+        "count": 3,
+        "medianMs": 1973.7151,
+        "minMs": 1518.6201,
+        "maxMs": 1995.9038,
+        "p95Ms": 1993.6849300000001,
+        "sumMs": 5488.239
+      },
+      "paired": {
+        "medianRatio": 0.9775876242325956,
+        "p95Ratio": 1.012804517680327,
+        "minRatio": 0.6171034378618873,
+        "maxRatio": 1.0167175058411861,
+        "medianDeltaMs": -45.24980000000005
+      }
+    },
+    "dense-role:territory-warning": {
+      "ordinary-no-role": {
+        "count": 32,
+        "medianMs": 0.02695,
+        "minMs": 0.017,
+        "maxMs": 6.7271,
+        "p95Ms": 0.053135,
+        "sumMs": 7.6772
+      },
+      "configured-role": {
+        "count": 32,
+        "medianMs": 0.12115000000000001,
+        "minMs": 0.0801,
+        "maxMs": 0.8743,
+        "p95Ms": 0.18134499999999998,
+        "sumMs": 4.5618
+      },
+      "paired": {
+        "medianRatio": 4.13657440690151,
+        "p95Ratio": 5.661009174311927,
+        "minRatio": 0.12996685050021553,
+        "maxRatio": 5.826530612244898,
+        "medianDeltaMs": 0.08474999999999999
+      }
+    },
+    "dense-role:grazer-feed": {
+      "ordinary-no-role": {
+        "count": 32,
+        "medianMs": 0.022949999999999998,
+        "minMs": 0.0143,
+        "maxMs": 0.1121,
+        "p95Ms": 0.05682999999999999,
+        "sumMs": 0.9167
+      },
+      "configured-role": {
+        "count": 32,
+        "medianMs": 0.02725,
+        "minMs": 0.0196,
+        "maxMs": 0.413,
+        "p95Ms": 0.06028999999999997,
+        "sumMs": 1.3455
+      },
+      "paired": {
+        "medianRatio": 1.2555040029112083,
+        "p95Ratio": 2.9964102564102566,
+        "minRatio": 0.5578446909667195,
+        "maxRatio": 3.684210526315789,
+        "medianDeltaMs": 0.005150000000000002
+      }
+    },
+    "dense-role:grazer-flight": {
+      "ordinary-no-role": {
+        "count": 32,
+        "medianMs": 0.0195,
+        "minMs": 0.0127,
+        "maxMs": 0.0778,
+        "p95Ms": 0.046244999999999994,
+        "sumMs": 0.745
+      },
+      "configured-role": {
+        "count": 32,
+        "medianMs": 0.030350000000000002,
+        "minMs": 0.0209,
+        "maxMs": 0.2007,
+        "p95Ms": 0.049214999999999995,
+        "sumMs": 1.185
+      },
+      "paired": {
+        "medianRatio": 1.5242590512399552,
+        "p95Ratio": 3.0638356345088376,
+        "minRatio": 0.42344045368620037,
+        "maxRatio": 14.335714285714285,
+        "medianDeltaMs": 0.0109
+      }
+    }
+  },
+  "saveRows": [
+    {
+      "seed": 1,
+      "arm": "legacy-current",
+      "bytes": 34569625,
+      "owners": 44675,
+      "retained": 0,
+      "milliseconds": 965.1639
+    },
+    {
+      "seed": 1,
+      "arm": "exploration-current",
+      "bytes": 35981929,
+      "owners": 45728,
+      "retained": 18,
+      "milliseconds": 937.8912
+    },
+    {
+      "seed": 64,
+      "arm": "exploration-current",
+      "bytes": 35589375,
+      "owners": 45479,
+      "retained": 18,
+      "milliseconds": 918.3298
+    },
+    {
+      "seed": 64,
+      "arm": "legacy-current",
+      "bytes": 34107874,
+      "owners": 44326,
+      "retained": 0,
+      "milliseconds": 874.689
+    },
+    {
+      "seed": 1729,
+      "arm": "legacy-current",
+      "bytes": 34346812,
+      "owners": 44471,
+      "retained": 0,
+      "milliseconds": 888.7133
+    },
+    {
+      "seed": 1729,
+      "arm": "exploration-current",
+      "bytes": 35483626,
+      "owners": 45357,
+      "retained": 18,
+      "milliseconds": 908.3276
+    }
+  ],
+  "method": "Median paired ratios, with matching seed/zone/iteration; p95 linearly interpolated. One pair per seed for world samples. Current disabled/enabled modes in same runtime, not old binary."
+}

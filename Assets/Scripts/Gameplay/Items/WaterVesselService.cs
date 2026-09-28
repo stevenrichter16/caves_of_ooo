@@ -33,12 +33,13 @@ namespace CavesOfOoo.Core
                     if (source == null) return Reject(actor, vessel, command, "no_fresh_water", "Stand beside a well, cistern, or pool of fresh water to fill it.");
                     if (!transaction.TryClaim(source, actor, command)) return Reject(actor, vessel, command, "source_in_use", "That water is already being drawn.");
                     var pool = source.GetPart<LiquidPoolPart>();
+                    var sourceCell = zone.GetEntityCell(source);
                     int oldVolume = pool?.Volume ?? 0;
                     int amount = pool == null ? skin.Capacity - before : Math.Min(skin.Capacity - before, oldVolume);
                     transaction.Do(null, () => { skin.Charges = before; if (pool != null) pool.Volume = oldVolume; });
                     skin.Charges += amount;
                     if (pool != null) pool.Volume -= amount;
-                    transaction.AfterCommit(() => LiquidVesselService.RetireExhaustedPouredPool(zone, source, pool));
+                    transaction.AfterCommit(() => LiquidVesselService.PublishCommittedPoolDraw(zone, source, pool, sourceCell));
                     int filled = skin.Charges;
                     transaction.AfterCommit(() => Diag.Record("event", "WaterskinFilled", actor, vessel,
                         new { source = source.BlueprintName, amount, remaining = filled }));

@@ -1,0 +1,213 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
+namespace CavesOfOoo.Core
+{
+ /// <summary>One optional new-world situation from exact ordinary sources. This
+ /// runs only in the captured cold attempt; graph attachment never rebuilds it.</summary>
+ public sealed class SpreadExplorationBuilder:IZoneBuilder
+ {
+  public string Name=>"SpreadExploration";public int Priority=>4300;
+  public string LastResult{get;private set;}="";
+  readonly OverworldZoneManager manager;readonly SpreadExplorationPlan plan;
+  readonly SpreadCompositionBuilder terrain;readonly PopulationBuilder population;readonly ContainerBuilder containers;
+  const int MaxTrials=256;
+  public SpreadExplorationBuilder(OverworldZoneManager manager,SpreadCompositionBuilder terrain,PopulationBuilder population,ContainerBuilder containers)
+  {
+   this.manager=manager;plan=manager?.Exploration;this.terrain=terrain;this.population=population;this.containers=containers;
+   if(population!=null){population.CaptureSourceReceipts=true;population.ExplorationManager=manager;}
+   if(containers!=null)containers.CaptureSourceReceipts=true;
+  }
+  bool Current(Zone z,EntityFactory f,SpreadExplorationEntry entry)=>z!=null&&ReferenceEquals(f,manager?.Factory)
+   &&plan!=null&&plan.TryGetGenerationEntry(manager,z,out var now)&&ReferenceEquals(now,entry)
+   &&terrain?.SourceZone==z&&terrain.Plan?.ZoneID==z.ZoneID&&terrain.Plan.Seed==manager.WorldSeed&&terrain.Plan.Topology==entry.Topology;
+  public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
+  {
+   LastResult="";
+   if(plan==null||!plan.TryGetGenerationEntry(manager,zone,out var entry)||entry.Family==SpreadExplorationFamily.None)return true;
+   if(!Current(zone,factory,entry))return Refuse(zone,entry,"authority");
+   switch(entry.Family)
+   {
+    case SpreadExplorationFamily.RoadSpill:return Road(zone,factory,entry);
+    case SpreadExplorationFamily.OccupiedBank:return Actor(zone,factory,entry,false);
+    case SpreadExplorationFamily.LastGleanings:return Actor(zone,factory,entry,true);
+    case SpreadExplorationFamily.WateringMargin:return Water(zone,factory,entry);
+    default:return Refuse(zone,entry,"unsupported-family");
+   }
+  }
+  bool Actor(Zone z,EntityFactory f,SpreadExplorationEntry entry,bool grazer)
+  {
+   var receipt=grazer?population?.AmbientReplacementReceipt:population?.SourceReceipt;
+   var ambient=grazer?population?.AmbientSourceReceipt:null;
+   if(!Source(receipt,z,f))return Refuse(z,entry,"source");
+   var candidates=receipt.Owners.Where(e=>e.BlueprintName==(grazer?"ReedbackGrazer":"MarlbackScrabbler")).ToArray();
+   if(candidates.Length!=1||(!grazer&&receipt.Owners.Count!=1))return Refuse(z,entry,"no-exact-role-allowance");
+   Entity actor=candidates[0];
+   if(grazer&&(receipt.Owners.Count!=1||ambient==null||ambient.Zone!=z||!ReferenceEquals(ambient.Factory,f)
+    ||ambient.Revision!=receipt.Revision||ambient.Owners.Count(e=>e==actor)!=1))return Refuse(z,entry,"ambient-source");
+   // Ordinary stocking runs after Population. Preserve the other current owners
+   // and their completed stock, without refreshing the stale population receipt.
+   var othersUnchanged=SpreadGenerationReceipt.CaptureFinalState(z,(grazer?ambient.Owners:receipt.Owners).Where(e=>e!=actor));
+   bool Authority()=>Current(z,f,entry)&&othersUnchanged()&&population.CaptureSourceReceipts
+    &&ReferenceEquals(receipt,grazer?population.AmbientReplacementReceipt:population.SourceReceipt)
+    &&(!grazer||ReferenceEquals(ambient,population.AmbientSourceReceipt));
+   if(!Authority()||!receipt.TryConsume())return Refuse(z,entry,"changed-source");
+   bool placed=grazer?SpreadExplorationActorPlacement.TryGleanings(z,actor,Authority):SpreadExplorationActorPlacement.TryTerritory(z,actor,Authority);
+   if(!placed)
+   {
+    // A callback may have changed stock/ownership; never accept a partially altered packet as an optional refusal.
+    if(!Authority()||!receipt.MatchesOwnedState())return false;
+    return Refuse(z,entry,"no-safe-role-layout");
+   }
+   var sources=grazer?new[]{actor,actor.GetPart<SpreadGrazerPart>().Food,actor.GetPart<SpreadGrazerPart>().ReservedRow}
+    :new[]{actor,actor.GetPart<SpreadTerritoryPart>().Post};
+   var finalLayout=SpreadExplorationActorPlacement.CaptureFinalGeometry(z,actor);
+   if(finalLayout==null)return false;
+   return Commit(z,f,entry,sources,()=>Authority()&&finalLayout());
+  }
+  bool Road(Zone z,EntityFactory f,SpreadExplorationEntry entry)
+  {
+   var loose=population?.LooseSourceReceipt;var stock=containers?.SourceReceipt;
+   var candidates=new List<(Entity owner,SpreadGenerationReceipt receipt)>();
+   void Loose(){if(Source(loose,z,f))foreach(var e in loose.Owners)if(LooseOwner(z,e))candidates.Add((e,loose));}
+   void Caches(){if(Source(stock,z,f))foreach(var e in stock.Owners)if(CacheOwner(z,e))candidates.Add((e,stock));}
+   if((entry.RewardSeed&1)==0){Loose();Caches();}else{Caches();Loose();}
+   int trials=0;
+   foreach(var source in candidates)
+   {
+    var owner=source.owner;var receipt=source.receipt;var origin=z.GetEntityPosition(owner);
+    var othersUnchanged=SpreadGenerationReceipt.CaptureFinalState(z,receipt.Owners.Where(e=>e!=owner));
+    var geometry=new SpreadWildernessSituationBuilder.Geometry(z,new HashSet<Entity>{owner});
+    for(int y=2;y<Zone.Height-2;y++)for(int x=2;x<Zone.Width-2;x++)
+    {
+     if(!geometry.Place(x,y)||origin==(x,y))continue;
+     if(++trials>MaxTrials)return Refuse(z,entry,"layout-budget");
+     var destination=(x,y);
+     if(!geometry.PreservesRoutes(new[]{destination})||!SpreadWildernessSituationBuilder.Cargo(z,geometry,destination))continue;
+     if(!Current(z,f,entry)||!Source(receipt,z,f)||!receipt.TryConsume())return Refuse(z,entry,"changed-source");
+     bool moved=false,committed=false;
+     try
+     {
+      moved=z.MoveEntity(owner,x,y);if(!moved)return Refuse(z,entry,"move-refused");
+      if(!Current(z,f,entry)||!receipt.MatchesOwnedState()||z.GetEntityPosition(owner)!=destination)return false;
+      var finalGeometry=new SpreadWildernessSituationBuilder.Geometry(z,new HashSet<Entity>{owner});
+      if(!finalGeometry.Place(x,y)||!finalGeometry.PreservesAgainst(geometry,new[]{destination})||!SpreadWildernessSituationBuilder.Cargo(z,finalGeometry,destination))return false;
+      bool FinalLayout()
+      {
+       var current=new SpreadWildernessSituationBuilder.Geometry(z,new HashSet<Entity>{owner});
+       return current.Place(destination.x,destination.y)&&current.PreservesAgainst(geometry,new[]{destination})
+        &&SpreadWildernessSituationBuilder.Cargo(z,current,destination);
+      }
+      committed=Commit(z,f,entry,new[]{owner},()=>receipt.MatchesOwnedState()&&othersUnchanged()&&FinalLayout());return committed;
+     }
+     finally{if(!committed&&moved&&owner.SpatialZone==z&&z.GetEntityPosition(owner)==destination&&z.CanPlaceFootprint(owner,origin.x,origin.y))z.MoveEntity(owner,origin.x,origin.y);}
+    }
+   }
+   return Refuse(z,entry,"no-rolled-road-source");
+  }
+  bool Water(Zone z,EntityFactory f,SpreadExplorationEntry entry)
+  {
+   if(terrain.Plan.Formation!=Formation.RiverMeadow)return Refuse(z,entry,"no-bank-source");
+   // Reuse an exact already-produced finite source without renaming, moving or
+   // refilling it. A spent compatible source is aftermath, not a new allowance.
+   foreach(var existing in z.GetReadOnlyEntities().Where(e=>FiniteWater(z,e,f))
+     .OrderBy(e=>z.GetEntityPosition(e).y).ThenBy(e=>z.GetEntityPosition(e).x))
+   {
+    var at=z.GetEntityPosition(existing);
+    var original=new SpreadWildernessSituationBuilder.Geometry(z,new HashSet<Entity>{existing});
+    if(!WaterLayout(z,existing,at,original))continue;
+    if(existing.GetPart<LiquidPoolPart>().Volume==0)return Refuse(z,entry,"existing-source-spent");
+    return Commit(z,f,entry,new[]{existing},()=>FiniteWater(z,existing,f)&&WaterLayout(z,existing,at,original));
+   }
+   if(!f.Blueprints.ContainsKey("SpreadDrawPoint")
+     ||!f.Blueprints.TryGetValue("Waterskin",out var vessel)||!vessel.Parts.TryGetValue("Waterskin",out var skin)
+     ||!skin.TryGetValue("Capacity",out string encodedCapacity)||!int.TryParse(encodedCapacity,System.Globalization.NumberStyles.None,System.Globalization.CultureInfo.InvariantCulture,out int budget)||budget<=0)return Refuse(z,entry,"no-bank-source");
+   var geometry=new SpreadWildernessSituationBuilder.Geometry(z,new HashSet<Entity>());
+   (int x,int y)? chosen=null;int trials=0;
+   for(int y=3;y<Zone.Height-3&&!chosen.HasValue;y++)for(int x=3;x<Zone.Width-3;x++)
+   {
+    if(!geometry.Place(x,y)||!geometry.BorderReach[x,y]||!BankWater(z,x,y))continue;
+    if(++trials>MaxTrials)return Refuse(z,entry,"layout-budget");
+    if(!geometry.PreservesRoutes(new[]{(x,y)}))continue;chosen=(x,y);break;
+   }
+   if(!chosen.HasValue)return Refuse(z,entry,"no-dry-bank-pocket");
+   var destination=chosen.Value;var source=f.CreateEntity("SpreadDrawPoint");
+   var pool=source?.GetPart<LiquidPoolPart>();var physical=source?.GetPart<PhysicsPart>();
+   if(!Current(z,f,entry)||source?.BlueprintName!="SpreadDrawPoint"||pool?.ParentEntity!=source||pool.LiquidId!="water"||pool.Volume!=budget
+     ||physical?.ParentEntity!=source||physical.Takeable||physical.Solid||source.SpatialZone!=null
+     ||!new SpreadWildernessSituationBuilder.Geometry(z,new HashSet<Entity>()).Place(destination.x,destination.y))return Refuse(z,entry,"changed-water-preparation");
+   bool committed=false;
+   try
+   {
+    if(!z.AddEntity(source,destination.x,destination.y))return Refuse(z,entry,"water-placement-refused");
+    if(!Current(z,f,entry)||source.GetPart<LiquidPoolPart>()!=pool||pool.Volume!=budget||!FiniteWater(z,source,f))return false;
+    committed=Commit(z,f,entry,new[]{source},()=>FiniteWater(z,source,f)&&WaterLayout(z,source,destination,geometry));return committed;
+   }
+   finally{if(!committed&&source.SpatialZone==z&&z.GetEntityPosition(source)==destination)z.RemoveEntity(source);}
+  }
+  bool BankWater(Zone z,int x,int y)
+  {
+   for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)
+    if(Math.Abs(dx)+Math.Abs(dy)==1&&terrain.Plan.IsWater(x+dx,y+dy)&&z.TileState.HasCoating(x+dx,y+dy,"water"))return true;
+   return false;
+  }
+  bool WaterLayout(Zone z,Entity source,(int x,int y) at,SpreadWildernessSituationBuilder.Geometry original)
+  {
+   if(z.GetEntityPosition(source)!=at||!BankWater(z,at.x,at.y))return false;
+   var cell=z.GetCell(at.x,at.y);var state=z.TileState.Get(at.x,at.y);
+   // Pool projection wets this anchor, so Geometry.Place cannot admit it.
+   // Preserve its other placement rules explicitly and ignore only this pool.
+   if(cell==null||cell.IsInterior||z.GenReservedCells.Contains(at)||at.x<2||at.y<2||at.x>=Zone.Width-2||at.y>=Zone.Height-2
+     ||cell.Occupants.Any(e=>e!=source&&!DoorPart.IsBareGround(e))
+     ||(state!=null&&(state.Heat!=0||state.Cold!=0||state.Charge!=0||!string.IsNullOrEmpty(state.Cloud)||state.Residues.Count!=0
+       ||state.Coatings.Any(c=>c.Id!="water"))))return false;
+   var current=new SpreadWildernessSituationBuilder.Geometry(z,new HashSet<Entity>{source});
+   if(!current.PreservesAgainst(original,new[]{at}))return false;
+   // The finite source itself may be wet. Its usable dry approach must remain
+   // connected to an actual border; the wet coating never becomes free volume.
+   for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)
+    if(Math.Abs(dx)+Math.Abs(dy)==1&&current.In(at.x+dx,at.y+dy)&&current.BorderReach[at.x+dx,at.y+dy])return true;
+   return false;
+  }
+  static bool FiniteWater(Zone z,Entity e,EntityFactory factory)
+  {
+   if(!GroundOwner(z,e)||e.GetPart<PhysicsPart>().Takeable||e.GetPart<PhysicsPart>().Solid||e.HasTag("Solid")
+     ||e.HasTag("Creature")||e.HasTag("Item")||!e.HasTag("Terrain")||e.HasPart<WellPart>()||e.HasPart<TileStateSourcePart>()
+     ||e.HasPart<GasPoolPart>()||e.HasPart<TriggerOnStepPart>())return false;
+   var pool=e.GetPart<LiquidPoolPart>();var render=e.GetPart<RenderPart>();var water=LiquidRegistry.Get("water");
+   string glyph=water?.Glyph,color=water?.Color;
+   // Core cold generation may precede registry initialization. Preserve the
+   // factory's authored water appearance then; never initialize a global registry.
+   if(water==null)
+   {
+    if(factory==null||!factory.Blueprints.TryGetValue(e.BlueprintName,out var blueprint)
+      ||!blueprint.Parts.TryGetValue("LiquidPool",out var authoredPool)||!authoredPool.TryGetValue("LiquidId",out string liquid)||liquid!="water"
+      ||!blueprint.Parts.TryGetValue("Render",out var authoredRender)||!authoredRender.TryGetValue("RenderString",out glyph)
+      ||!authoredRender.TryGetValue("ColorString",out color))return false;
+   }
+   var at=z.GetEntityPosition(e);
+   return pool!=null&&pool.ParentEntity==e&&pool.LiquidId=="water"&&pool.Volume>=0
+    &&render.Visible&&render.RenderString==glyph&&render.ColorString==color
+    &&string.IsNullOrEmpty(render.VisualID)&&string.IsNullOrEmpty(render.VisualVariant)&&string.IsNullOrEmpty(render.GlyphVariants)
+    &&LiquidSourceSafety.IsUnmixedCell(z,at.x,at.y,"water");
+  }
+  bool Commit(Zone z,EntityFactory f,SpreadExplorationEntry entry,IEnumerable<Entity> owners,Func<bool> source)
+  {
+   var exact=owners.ToArray();var unchanged=SpreadGenerationReceipt.CaptureFinalState(z,exact);
+   bool Valid()=>Current(z,f,entry)&&source()&&unchanged();
+   if(!plan.TryMarkPlacementCommitted(manager,z,entry,Valid))return false;
+   LastResult=entry.Family.ToString();
+   if(Diag.IsChannelEnabled("worldgen"))Diag.Record("worldgen","SpreadExplorationCommitted",payload:new{zone=z.ZoneID,family=LastResult,owners=exact.Select(e=>e.ID).ToArray()});return true;
+  }
+  static bool Source(SpreadGenerationReceipt receipt,Zone z,EntityFactory f)=>receipt?.IsCurrent==true&&receipt.Zone==z&&ReferenceEquals(receipt.Factory,f);
+  static bool GroundOwner(Zone z,Entity e)=>e!=null&&e.SpatialZone==z&&e.GetPart<PhysicsPart>() is PhysicsPart p&&p.ParentEntity==e
+   &&p.InInventory==null&&p.Equipped==null&&!e.HasPart<SpatialFootprintPart>()&&z.GetOccupiedCells(e).Count==1&&e.GetPart<RenderPart>()?.ParentEntity==e;
+  static bool LooseOwner(Zone z,Entity e)=>GroundOwner(z,e)&&e.HasTag("Item")&&e.GetPart<PhysicsPart>().Takeable;
+  static bool CacheOwner(Zone z,Entity e)=>GroundOwner(z,e)&&(e.BlueprintName=="Crate"||e.BlueprintName=="Sack")&&!e.GetPart<PhysicsPart>().Takeable
+   &&e.GetPart<ContainerPart>() is ContainerPart c&&c.ParentEntity==e&&!c.IsLocked&&!e.HasPart<DoorPart>();
+  bool Refuse(Zone z,SpreadExplorationEntry entry,string reason)
+  {LastResult="refused:"+reason;if(Diag.IsChannelEnabled("worldgen"))Diag.Record("worldgen","SpreadExplorationRefused",payload:new{zone=z?.ZoneID,family=entry.Family.ToString(),reason});return true;}
+ }
+}

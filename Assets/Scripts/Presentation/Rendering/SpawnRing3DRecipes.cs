@@ -23,7 +23,7 @@ namespace CavesOfOoo.Rendering
     public static class SpawnRing3DRecipes
     {
         public static SpawnRing3DRecipe Resolve(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot = null)
-            => SpreadLatchcoilLibrary.Refine(zone, entity, SpreadRareMarlbackLibrary.Refine(zone, entity, SpreadVisitorCreatureLibrary.Refine(zone, entity, SpreadEnvironmentRecipes.Refine(zone, entity, SpreadCommonTerrain.Refine(zone, entity, SpreadCreature3DLibrary.Refine(zone, entity, SpreadSceneryWorldRecipes.Refine(zone, entity, SpreadBiomeHumanoidLibrary.Refine(zone, entity, SpreadPortableWorldRecipes.Refine(zone, entity, ResolveNative(zone, entity, catalog, pilot))))))))));
+            => QuestFreeSpreadArtLibrary.Refine(zone, entity, SpreadLatchcoilLibrary.Refine(zone, entity, SpreadRareMarlbackLibrary.Refine(zone, entity, SpreadVisitorCreatureLibrary.Refine(zone, entity, SpreadEnvironmentRecipes.Refine(zone, entity, SpreadCommonTerrain.Refine(zone, entity, SpreadCreature3DLibrary.Refine(zone, entity, SpreadSceneryWorldRecipes.Refine(zone, entity, SpreadBiomeHumanoidLibrary.Refine(zone, entity, SpreadPortableWorldRecipes.Refine(zone, entity, ResolveNative(zone, entity, catalog, pilot)))))))))));
 
         private static SpawnRing3DRecipe ResolveNative(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot)
         {

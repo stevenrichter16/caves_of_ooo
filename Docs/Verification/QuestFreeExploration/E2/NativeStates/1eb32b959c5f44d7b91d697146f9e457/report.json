@@ -1,0 +1,935 @@
+{
+  "runId": "1eb32b959c5f44d7b91d697146f9e457",
+  "seed": 64,
+  "finished": true,
+  "complete": true,
+  "failures": 0,
+  "fatal": null,
+  "seconds": 12.980713699999999,
+  "paidInputs": 6,
+  "checks": [
+    {
+      "label": "ordinary_fresh_opted_in_world",
+      "pass": true
+    },
+    {
+      "label": "actual_finite_feed_committed",
+      "pass": true
+    },
+    {
+      "label": "one_committed_interact_no_attack",
+      "pass": true
+    },
+    {
+      "label": "actual_interact_pose_selected",
+      "pass": true
+    },
+    {
+      "label": "live_head_down_and_stubble",
+      "pass": true
+    },
+    {
+      "label": "gesture_expires_without_second_meal",
+      "pass": true
+    },
+    {
+      "label": "actual_warning_before_contact",
+      "pass": true
+    },
+    {
+      "label": "warning_withdrawal_no_fight",
+      "pass": true
+    },
+    {
+      "label": "05-actual-full-draw-reader_free_current_readout",
+      "pass": true
+    },
+    {
+      "label": "native_fill_conserves_same_finite_owner",
+      "pass": true
+    },
+    {
+      "label": "08-actual-empty-draw-reader_free_current_readout",
+      "pass": true
+    },
+    {
+      "label": "persistent_empty_does_not_regrow_during_free_reader",
+      "pass": true
+    },
+    {
+      "label": "bounded_finish",
+      "pass": true
+    }
+  ],
+  "observations": [
+    {
+      "phase": "grazer-source-qualification",
+      "zone": "Overworld.10.5.0",
+      "disposition": 2,
+      "owner": "4976",
+      "position": {
+        "Item1": 71,
+        "Item2": 4
+      },
+      "configured": true,
+      "fed": false,
+      "food": "3240",
+      "reserve": "3395",
+      "foodDistance": 1,
+      "reason": null
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "LastGleanings",
+      "zone": "Overworld.10.5.0",
+      "owner": "4976",
+      "arrival": [
+        66,
+        1
+      ],
+      "accepted": true,
+      "criterion": "configured adjacent unspent food; safe observer beyond flight radius",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "disclosed-player-only-transfer",
+      "label": "actual LastGleanings grazer",
+      "zone": "Overworld.10.5.0",
+      "x": 66,
+      "y": 1,
+      "player": "2698",
+      "tick": 10,
+      "nativeEntryAdditions": [],
+      "boundary": "Setup transfer to an actual generated source; not an ordinary journey. Original source owners are preserved. Normal native entry-hook additions such as travellers are recorded separately, never suppressed."
+    },
+    {
+      "phase": "actual-current-style",
+      "owner": "4976",
+      "blueprint": "ReedbackGrazer",
+      "model": "questfree-spread-grazer",
+      "pieces": 1,
+      "camera": {
+        "pixelWidth": 1461,
+        "pixelHeight": 918
+      },
+      "boundary": "All-piece identity and bounds do not prove unoccluded pixels or human readability; images require review."
+    },
+    {
+      "phase": "native-wait-feed-before-1",
+      "zone": "Overworld.10.5.0",
+      "owner": "4976",
+      "actorAt": {
+        "Item1": 71,
+        "Item2": 4
+      },
+      "playerAt": {
+        "Item1": 66,
+        "Item2": 1
+      },
+      "post": null,
+      "postAt": null,
+      "hp": 10,
+      "actorIsCreature": true,
+      "targetIsCreature": true,
+      "actorCurrent": true,
+      "actorPartOwner": true,
+      "inInventory": null,
+      "equipped": null,
+      "sight": 8,
+      "brainZone": "Overworld.10.5.0",
+      "brainZoneIsCurrent": true,
+      "brainParent": true,
+      "partyLeader": null,
+      "target": null,
+      "personalHostility": false,
+      "hostile": true,
+      "playerHostile": true,
+      "brainState": "Idle",
+      "inConversation": false,
+      "goals": [],
+      "configured": null,
+      "partZone": null,
+      "home": null,
+      "postExpected": null,
+      "region": null,
+      "postCurrent": false,
+      "postPartOwner": true,
+      "postInventory": null,
+      "postEquipped": null,
+      "postIsCreature": null,
+      "inside": false,
+      "warningTarget": null,
+      "grace": null,
+      "graceTurns": null,
+      "registered": true,
+      "energy": 0,
+      "speed": 100,
+      "playerEnergy": 1000,
+      "tick": 10,
+      "currentActor": "2698",
+      "waitingForInput": true
+    },
+    {
+      "phase": "native-wait-feed-1",
+      "key": "Period",
+      "beforeTick": 10,
+      "afterTick": 20,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "cost": 1000,
+      "beforeHp": 40,
+      "afterHp": 40
+    },
+    {
+      "phase": "native-wait-feed-after-1",
+      "zone": "Overworld.10.5.0",
+      "owner": "4976",
+      "actorAt": {
+        "Item1": 71,
+        "Item2": 4
+      },
+      "playerAt": {
+        "Item1": 66,
+        "Item2": 1
+      },
+      "post": null,
+      "postAt": null,
+      "hp": 10,
+      "actorIsCreature": true,
+      "targetIsCreature": true,
+      "actorCurrent": true,
+      "actorPartOwner": true,
+      "inInventory": null,
+      "equipped": null,
+      "sight": 8,
+      "brainZone": "Overworld.10.5.0",
+      "brainZoneIsCurrent": true,
+      "brainParent": true,
+      "partyLeader": null,
+      "target": null,
+      "personalHostility": false,
+      "hostile": true,
+      "playerHostile": true,
+      "brainState": "Idle",
+      "inConversation": false,
+      "goals": [],
+      "configured": null,
+      "partZone": null,
+      "home": null,
+      "postExpected": null,
+      "region": null,
+      "postCurrent": false,
+      "postPartOwner": true,
+      "postInventory": null,
+      "postEquipped": null,
+      "postIsCreature": null,
+      "inside": false,
+      "warningTarget": null,
+      "grace": null,
+      "graceTurns": null,
+      "registered": true,
+      "energy": 1000,
+      "speed": 100,
+      "playerEnergy": 1000,
+      "tick": 20,
+      "currentActor": "2698",
+      "waitingForInput": true
+    },
+    {
+      "phase": "observed-actor-turn",
+      "label": "native-wait-feed",
+      "attempt": 1,
+      "owner": "4976",
+      "spent": 0,
+      "goalAdvanced": false,
+      "acted": false,
+      "boundary": "Actual paid key; execution inferred from native goal-age advance plus energy debit. No part, turn, energy or goal was injected."
+    },
+    {
+      "phase": "native-wait-feed-before-2",
+      "zone": "Overworld.10.5.0",
+      "owner": "4976",
+      "actorAt": {
+        "Item1": 71,
+        "Item2": 4
+      },
+      "playerAt": {
+        "Item1": 66,
+        "Item2": 1
+      },
+      "post": null,
+      "postAt": null,
+      "hp": 10,
+      "actorIsCreature": true,
+      "targetIsCreature": true,
+      "actorCurrent": true,
+      "actorPartOwner": true,
+      "inInventory": null,
+      "equipped": null,
+      "sight": 8,
+      "brainZone": "Overworld.10.5.0",
+      "brainZoneIsCurrent": true,
+      "brainParent": true,
+      "partyLeader": null,
+      "target": null,
+      "personalHostility": false,
+      "hostile": true,
+      "playerHostile": true,
+      "brainState": "Idle",
+      "inConversation": false,
+      "goals": [],
+      "configured": null,
+      "partZone": null,
+      "home": null,
+      "postExpected": null,
+      "region": null,
+      "postCurrent": false,
+      "postPartOwner": true,
+      "postInventory": null,
+      "postEquipped": null,
+      "postIsCreature": null,
+      "inside": false,
+      "warningTarget": null,
+      "grace": null,
+      "graceTurns": null,
+      "registered": true,
+      "energy": 1000,
+      "speed": 100,
+      "playerEnergy": 1000,
+      "tick": 20,
+      "currentActor": "2698",
+      "waitingForInput": true
+    },
+    {
+      "phase": "native-wait-feed-2",
+      "key": "Period",
+      "beforeTick": 20,
+      "afterTick": 30,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "cost": 1000,
+      "beforeHp": 40,
+      "afterHp": 40
+    },
+    {
+      "phase": "native-wait-feed-after-2",
+      "zone": "Overworld.10.5.0",
+      "owner": "4976",
+      "actorAt": {
+        "Item1": 71,
+        "Item2": 4
+      },
+      "playerAt": {
+        "Item1": 66,
+        "Item2": 1
+      },
+      "post": null,
+      "postAt": null,
+      "hp": 10,
+      "actorIsCreature": true,
+      "targetIsCreature": true,
+      "actorCurrent": true,
+      "actorPartOwner": true,
+      "inInventory": null,
+      "equipped": null,
+      "sight": 8,
+      "brainZone": "Overworld.10.5.0",
+      "brainZoneIsCurrent": true,
+      "brainParent": true,
+      "partyLeader": null,
+      "target": null,
+      "personalHostility": false,
+      "hostile": true,
+      "playerHostile": true,
+      "brainState": "Idle",
+      "inConversation": false,
+      "goals": [
+        {
+          "type": "BoredGoal",
+          "Age": 1
+        }
+      ],
+      "configured": null,
+      "partZone": null,
+      "home": null,
+      "postExpected": null,
+      "region": null,
+      "postCurrent": false,
+      "postPartOwner": true,
+      "postInventory": null,
+      "postEquipped": null,
+      "postIsCreature": null,
+      "inside": false,
+      "warningTarget": null,
+      "grace": null,
+      "graceTurns": null,
+      "registered": true,
+      "energy": 1000,
+      "speed": 100,
+      "playerEnergy": 1000,
+      "tick": 30,
+      "currentActor": "2698",
+      "waitingForInput": true
+    },
+    {
+      "phase": "observed-actor-turn",
+      "label": "native-wait-feed",
+      "attempt": 2,
+      "owner": "4976",
+      "spent": 1000,
+      "goalAdvanced": true,
+      "acted": true,
+      "boundary": "Actual paid key; execution inferred from native goal-age advance plus energy debit. No part, turn, energy or goal was injected."
+    },
+    {
+      "phase": "live-head-down",
+      "beforeWorldUp": 0.283754855,
+      "afterWorldUp": 0.124448031,
+      "elapsed": 0.290893078,
+      "model": "questfree-spread-grazer",
+      "rootScale": "(1, 1, 1)",
+      "skinScale": "(1, 0.9999999, 0.9999999)",
+      "measurement": "BakeMesh default then actual skin TransformPoint; same convention as accepted native coordinate probe"
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "OccupiedBank",
+      "zone": "Overworld.10.0.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "territory edge with one safe outward cardinal step",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "OccupiedBank",
+      "zone": "Overworld.10.13.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "territory edge with one safe outward cardinal step",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "OccupiedBank",
+      "zone": "Overworld.10.8.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "territory edge with one safe outward cardinal step",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "OccupiedBank",
+      "zone": "Overworld.11.2.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "territory edge with one safe outward cardinal step",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "OccupiedBank",
+      "zone": "Overworld.11.5.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "territory edge with one safe outward cardinal step",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "OccupiedBank",
+      "zone": "Overworld.12.6.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "territory edge with one safe outward cardinal step",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "OccupiedBank",
+      "zone": "Overworld.13.12.0",
+      "owner": "21087",
+      "arrival": [
+        50,
+        2
+      ],
+      "accepted": true,
+      "criterion": "territory edge with one safe outward cardinal step",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "disclosed-player-only-transfer",
+      "label": "actual occupied bank edge",
+      "zone": "Overworld.13.12.0",
+      "x": 50,
+      "y": 2,
+      "player": "2698",
+      "tick": 30,
+      "nativeEntryAdditions": [],
+      "boundary": "Setup transfer to an actual generated source; not an ordinary journey. Original source owners are preserved. Normal native entry-hook additions such as travellers are recorded separately, never suppressed."
+    },
+    {
+      "phase": "native-wait-territorial-warning-before-1",
+      "zone": "Overworld.13.12.0",
+      "owner": "21087",
+      "actorAt": {
+        "Item1": 52,
+        "Item2": 3
+      },
+      "playerAt": {
+        "Item1": 50,
+        "Item2": 2
+      },
+      "post": "19237",
+      "postAt": {
+        "Item1": 53,
+        "Item2": 4
+      },
+      "hp": 15,
+      "actorIsCreature": true,
+      "targetIsCreature": true,
+      "actorCurrent": true,
+      "actorPartOwner": true,
+      "inInventory": null,
+      "equipped": null,
+      "sight": 10,
+      "brainZone": "Overworld.13.12.0",
+      "brainZoneIsCurrent": true,
+      "brainParent": true,
+      "partyLeader": null,
+      "target": null,
+      "personalHostility": false,
+      "hostile": true,
+      "playerHostile": true,
+      "brainState": "Idle",
+      "inConversation": false,
+      "goals": [],
+      "configured": true,
+      "partZone": "Overworld.13.12.0",
+      "home": [
+        52,
+        3
+      ],
+      "postExpected": [
+        53,
+        4
+      ],
+      "region": [
+        50,
+        2,
+        56,
+        6
+      ],
+      "postCurrent": true,
+      "postPartOwner": true,
+      "postInventory": null,
+      "postEquipped": null,
+      "postIsCreature": false,
+      "inside": true,
+      "warningTarget": null,
+      "grace": 0,
+      "graceTurns": 2,
+      "registered": true,
+      "energy": 0,
+      "speed": 100,
+      "playerEnergy": 1000,
+      "tick": 30,
+      "currentActor": "2698",
+      "waitingForInput": true
+    },
+    {
+      "phase": "native-wait-territorial-warning-1",
+      "key": "Period",
+      "beforeTick": 30,
+      "afterTick": 40,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "cost": 1000,
+      "beforeHp": 40,
+      "afterHp": 40
+    },
+    {
+      "phase": "native-wait-territorial-warning-after-1",
+      "zone": "Overworld.13.12.0",
+      "owner": "21087",
+      "actorAt": {
+        "Item1": 52,
+        "Item2": 3
+      },
+      "playerAt": {
+        "Item1": 50,
+        "Item2": 2
+      },
+      "post": "19237",
+      "postAt": {
+        "Item1": 53,
+        "Item2": 4
+      },
+      "hp": 15,
+      "actorIsCreature": true,
+      "targetIsCreature": true,
+      "actorCurrent": true,
+      "actorPartOwner": true,
+      "inInventory": null,
+      "equipped": null,
+      "sight": 10,
+      "brainZone": "Overworld.13.12.0",
+      "brainZoneIsCurrent": true,
+      "brainParent": true,
+      "partyLeader": null,
+      "target": null,
+      "personalHostility": false,
+      "hostile": true,
+      "playerHostile": true,
+      "brainState": "Idle",
+      "inConversation": false,
+      "goals": [],
+      "configured": true,
+      "partZone": "Overworld.13.12.0",
+      "home": [
+        52,
+        3
+      ],
+      "postExpected": [
+        53,
+        4
+      ],
+      "region": [
+        50,
+        2,
+        56,
+        6
+      ],
+      "postCurrent": true,
+      "postPartOwner": true,
+      "postInventory": null,
+      "postEquipped": null,
+      "postIsCreature": false,
+      "inside": true,
+      "warningTarget": null,
+      "grace": 0,
+      "graceTurns": 2,
+      "registered": true,
+      "energy": 1000,
+      "speed": 100,
+      "playerEnergy": 1000,
+      "tick": 40,
+      "currentActor": "2698",
+      "waitingForInput": true
+    },
+    {
+      "phase": "observed-actor-turn",
+      "label": "native-wait-territorial-warning",
+      "attempt": 1,
+      "owner": "21087",
+      "spent": 0,
+      "goalAdvanced": false,
+      "acted": false,
+      "boundary": "Actual paid key; execution inferred from native goal-age advance plus energy debit. No part, turn, energy or goal was injected."
+    },
+    {
+      "phase": "native-wait-territorial-warning-before-2",
+      "zone": "Overworld.13.12.0",
+      "owner": "21087",
+      "actorAt": {
+        "Item1": 52,
+        "Item2": 3
+      },
+      "playerAt": {
+        "Item1": 50,
+        "Item2": 2
+      },
+      "post": "19237",
+      "postAt": {
+        "Item1": 53,
+        "Item2": 4
+      },
+      "hp": 15,
+      "actorIsCreature": true,
+      "targetIsCreature": true,
+      "actorCurrent": true,
+      "actorPartOwner": true,
+      "inInventory": null,
+      "equipped": null,
+      "sight": 10,
+      "brainZone": "Overworld.13.12.0",
+      "brainZoneIsCurrent": true,
+      "brainParent": true,
+      "partyLeader": null,
+      "target": null,
+      "personalHostility": false,
+      "hostile": true,
+      "playerHostile": true,
+      "brainState": "Idle",
+      "inConversation": false,
+      "goals": [],
+      "configured": true,
+      "partZone": "Overworld.13.12.0",
+      "home": [
+        52,
+        3
+      ],
+      "postExpected": [
+        53,
+        4
+      ],
+      "region": [
+        50,
+        2,
+        56,
+        6
+      ],
+      "postCurrent": true,
+      "postPartOwner": true,
+      "postInventory": null,
+      "postEquipped": null,
+      "postIsCreature": false,
+      "inside": true,
+      "warningTarget": null,
+      "grace": 0,
+      "graceTurns": 2,
+      "registered": true,
+      "energy": 1000,
+      "speed": 100,
+      "playerEnergy": 1000,
+      "tick": 40,
+      "currentActor": "2698",
+      "waitingForInput": true
+    },
+    {
+      "phase": "native-wait-territorial-warning-2",
+      "key": "Period",
+      "beforeTick": 40,
+      "afterTick": 50,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "cost": 1000,
+      "beforeHp": 40,
+      "afterHp": 40
+    },
+    {
+      "phase": "native-wait-territorial-warning-after-2",
+      "zone": "Overworld.13.12.0",
+      "owner": "21087",
+      "actorAt": {
+        "Item1": 52,
+        "Item2": 3
+      },
+      "playerAt": {
+        "Item1": 50,
+        "Item2": 2
+      },
+      "post": "19237",
+      "postAt": {
+        "Item1": 53,
+        "Item2": 4
+      },
+      "hp": 15,
+      "actorIsCreature": true,
+      "targetIsCreature": true,
+      "actorCurrent": true,
+      "actorPartOwner": true,
+      "inInventory": null,
+      "equipped": null,
+      "sight": 10,
+      "brainZone": "Overworld.13.12.0",
+      "brainZoneIsCurrent": true,
+      "brainParent": true,
+      "partyLeader": null,
+      "target": null,
+      "personalHostility": false,
+      "hostile": true,
+      "playerHostile": true,
+      "brainState": "Idle",
+      "inConversation": false,
+      "goals": [
+        {
+          "type": "BoredGoal",
+          "Age": 1
+        }
+      ],
+      "configured": true,
+      "partZone": "Overworld.13.12.0",
+      "home": [
+        52,
+        3
+      ],
+      "postExpected": [
+        53,
+        4
+      ],
+      "region": [
+        50,
+        2,
+        56,
+        6
+      ],
+      "postCurrent": true,
+      "postPartOwner": true,
+      "postInventory": null,
+      "postEquipped": null,
+      "postIsCreature": false,
+      "inside": true,
+      "warningTarget": "2698",
+      "grace": 2,
+      "graceTurns": 2,
+      "registered": true,
+      "energy": 1000,
+      "speed": 100,
+      "playerEnergy": 1000,
+      "tick": 50,
+      "currentActor": "2698",
+      "waitingForInput": true
+    },
+    {
+      "phase": "observed-actor-turn",
+      "label": "native-wait-territorial-warning",
+      "attempt": 2,
+      "owner": "21087",
+      "spent": 1000,
+      "goalAdvanced": true,
+      "acted": true,
+      "boundary": "Actual paid key; execution inferred from native goal-age advance plus energy debit. No part, turn, energy or goal was injected."
+    },
+    {
+      "phase": "territorial-warning",
+      "owner": "21087",
+      "post": "19237",
+      "messages": [
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "marlback scrabbler warns you to leave the marked ground.",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ],
+      "GraceRemaining": 2,
+      "region": [
+        50,
+        2,
+        56,
+        6
+      ]
+    },
+    {
+      "phase": "native-one-step-withdrawal",
+      "key": "A",
+      "beforeTick": 50,
+      "afterTick": 60,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "cost": 1000,
+      "beforeHp": 40,
+      "afterHp": 40
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "WateringMargin",
+      "zone": "Overworld.11.13.0",
+      "owner": "23266",
+      "arrival": [
+        7,
+        15
+      ],
+      "accepted": true,
+      "criterion": "safe dry adjacent cell whose first real water source is this finite pool",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "disclosed-player-only-transfer",
+      "label": "actual finite bank draw point",
+      "zone": "Overworld.11.13.0",
+      "x": 7,
+      "y": 15,
+      "player": "2698",
+      "tick": 60,
+      "nativeEntryAdditions": [],
+      "boundary": "Setup transfer to an actual generated source; not an ordinary journey. Original source owners are preserved. Normal native entry-hook additions such as travellers are recorded separately, never suppressed."
+    },
+    {
+      "phase": "actual-current-style",
+      "owner": "23266",
+      "blueprint": "SpreadDrawPoint",
+      "model": "questfree-spread-draw-full",
+      "pieces": 2,
+      "camera": {
+        "pixelWidth": 1461,
+        "pixelHeight": 918
+      },
+      "boundary": "All-piece identity and bounds do not prove unoccluded pixels or human readability; images require review."
+    },
+    {
+      "phase": "05-actual-full-draw-reader",
+      "owner": "23266",
+      "pages": 1,
+      "text": "You see a bank draw point. On the ground: water  A shallow stone-lined pocket beside the bank. Its collected water can be drawn into a carried vessel; the wet ground around it is not a refill. The draw point holds 3 drinks of water. Drawing it reduces that supply."
+    },
+    {
+      "phase": "disclosed-staged-empty-vessel",
+      "id": "23267",
+      "blueprint": "Waterskin",
+      "charges": 0,
+      "capacity": 3,
+      "boundary": "Supplied only to exercise actual inventory fill; no natural acquisition claim."
+    },
+    {
+      "phase": "native-inventory-fill",
+      "beforeTick": 60,
+      "afterTick": 70,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "cost": 1000,
+      "source": "23266",
+      "vessel": "23267"
+    },
+    {
+      "phase": "actual-current-style",
+      "owner": "23266",
+      "blueprint": "SpreadDrawPoint",
+      "model": "questfree-spread-draw-empty",
+      "pieces": 1,
+      "camera": {
+        "pixelWidth": 1461,
+        "pixelHeight": 918
+      },
+      "boundary": "All-piece identity and bounds do not prove unoccluded pixels or human readability; images require review."
+    },
+    {
+      "phase": "08-actual-empty-draw-reader",
+      "owner": "23266",
+      "pages": 1,
+      "text": "You see a bank draw point. On the ground: water  A shallow stone-lined pocket beside the bank. Its collected water can be drawn into a carried vessel; the wet ground around it is not a refill. The draw point is empty. The surrounding wet ground supplies no further drinks."
+    },
+    {
+      "phase": "natural-corpse-opportunistic",
+      "observed": false,
+      "owners": [],
+      "boundary": "No death, corpse chance or corpse source was forced. Absence leaves ordinary corpse acquisition unverified; staged native art gallery is separate."
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E2/NativeStates/1eb32b959c5f44d7b91d697146f9e457/00-ordinary-start.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E2/NativeStates/1eb32b959c5f44d7b91d697146f9e457/01-generated-grazer-and-ripe-row.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E2/NativeStates/1eb32b959c5f44d7b91d697146f9e457/02-actual-native-feeding-and-stubble.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E2/NativeStates/1eb32b959c5f44d7b91d697146f9e457/03-actual-territorial-warning.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E2/NativeStates/1eb32b959c5f44d7b91d697146f9e457/04-actual-withdrawal-clear-of-post.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E2/NativeStates/1eb32b959c5f44d7b91d697146f9e457/05-actual-full-draw-reader-0.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E2/NativeStates/1eb32b959c5f44d7b91d697146f9e457/06-actual-full-draw-point.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E2/NativeStates/1eb32b959c5f44d7b91d697146f9e457/07-native-empty-point-and-filled-skin.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E2/NativeStates/1eb32b959c5f44d7b91d697146f9e457/08-actual-empty-draw-reader-0.png"
+  ],
+  "unverifiedFamilies": [],
+  "humanAwarenessMeasured": false,
+  "boundary": "Ordinary N then disclosed original-player-only setup transfers to real generated frozen family sources. One empty waterskin is supplied. Wait, withdrawal, Look/Examine and inventory Fill use actual keys. No generated owner, AI, HP, reward, RNG or corpse was forced. Local activation/camera proof, not ordinary journey/acquisition or a matched performance sample. Root must review screenshots.",
+  "settings": {
+    "screenWidth": 2271,
+    "screenHeight": 1251,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "lowDetail": false
+  }
+}

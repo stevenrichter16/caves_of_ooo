@@ -1,0 +1,1612 @@
+{
+  "runId": "b4fde427753c4c1b9cbabda13228e661",
+  "seed": 1729,
+  "finished": true,
+  "complete": false,
+  "failures": 0,
+  "stop": "moving-owner-replan-cap",
+  "fatal": null,
+  "seconds": 8.7631268,
+  "cohortSha256": "d44ad89c006fd927683a2bc1a2c24ed8e54ccdc1e35fe7a286299285e0f7172b",
+  "frozenCohort": {
+    "protocol": "QuestFreeExploration.BFS20.v1",
+    "seed": 1729,
+    "requested": 20,
+    "complete": true,
+    "nodes": [
+      {
+        "id": "Overworld.11.10.0",
+        "parent": "",
+        "x": 11,
+        "y": 10,
+        "depth": 0
+      },
+      {
+        "id": "Overworld.11.11.0",
+        "parent": "Overworld.11.10.0",
+        "x": 11,
+        "y": 11,
+        "depth": 1
+      },
+      {
+        "id": "Overworld.11.9.0",
+        "parent": "Overworld.11.10.0",
+        "x": 11,
+        "y": 9,
+        "depth": 1
+      },
+      {
+        "id": "Overworld.10.10.0",
+        "parent": "Overworld.11.10.0",
+        "x": 10,
+        "y": 10,
+        "depth": 1
+      },
+      {
+        "id": "Overworld.12.10.0",
+        "parent": "Overworld.11.10.0",
+        "x": 12,
+        "y": 10,
+        "depth": 1
+      },
+      {
+        "id": "Overworld.10.9.0",
+        "parent": "Overworld.10.10.0",
+        "x": 10,
+        "y": 9,
+        "depth": 2
+      },
+      {
+        "id": "Overworld.10.11.0",
+        "parent": "Overworld.10.10.0",
+        "x": 10,
+        "y": 11,
+        "depth": 2
+      },
+      {
+        "id": "Overworld.11.12.0",
+        "parent": "Overworld.11.11.0",
+        "x": 11,
+        "y": 12,
+        "depth": 2
+      },
+      {
+        "id": "Overworld.13.10.0",
+        "parent": "Overworld.12.10.0",
+        "x": 13,
+        "y": 10,
+        "depth": 2
+      },
+      {
+        "id": "Overworld.11.8.0",
+        "parent": "Overworld.11.9.0",
+        "x": 11,
+        "y": 8,
+        "depth": 2
+      },
+      {
+        "id": "Overworld.12.9.0",
+        "parent": "Overworld.11.9.0",
+        "x": 12,
+        "y": 9,
+        "depth": 2
+      },
+      {
+        "id": "Overworld.12.11.0",
+        "parent": "Overworld.11.11.0",
+        "x": 12,
+        "y": 11,
+        "depth": 2
+      },
+      {
+        "id": "Overworld.9.10.0",
+        "parent": "Overworld.10.10.0",
+        "x": 9,
+        "y": 10,
+        "depth": 2
+      },
+      {
+        "id": "Overworld.8.10.0",
+        "parent": "Overworld.9.10.0",
+        "x": 8,
+        "y": 10,
+        "depth": 3
+      },
+      {
+        "id": "Overworld.12.8.0",
+        "parent": "Overworld.11.8.0",
+        "x": 12,
+        "y": 8,
+        "depth": 3
+      },
+      {
+        "id": "Overworld.11.7.0",
+        "parent": "Overworld.11.8.0",
+        "x": 11,
+        "y": 7,
+        "depth": 3
+      },
+      {
+        "id": "Overworld.11.13.0",
+        "parent": "Overworld.11.12.0",
+        "x": 11,
+        "y": 13,
+        "depth": 3
+      },
+      {
+        "id": "Overworld.12.12.0",
+        "parent": "Overworld.11.12.0",
+        "x": 12,
+        "y": 12,
+        "depth": 3
+      },
+      {
+        "id": "Overworld.9.9.0",
+        "parent": "Overworld.10.9.0",
+        "x": 9,
+        "y": 9,
+        "depth": 3
+      },
+      {
+        "id": "Overworld.13.9.0",
+        "parent": "Overworld.12.9.0",
+        "x": 13,
+        "y": 9,
+        "depth": 3
+      }
+    ],
+    "walk": [
+      "Overworld.11.10.0",
+      "Overworld.11.11.0",
+      "Overworld.11.12.0",
+      "Overworld.11.13.0",
+      "Overworld.11.12.0",
+      "Overworld.12.12.0",
+      "Overworld.11.12.0",
+      "Overworld.11.11.0",
+      "Overworld.12.11.0",
+      "Overworld.11.11.0",
+      "Overworld.11.10.0",
+      "Overworld.11.9.0",
+      "Overworld.11.8.0",
+      "Overworld.12.8.0",
+      "Overworld.11.8.0",
+      "Overworld.11.7.0",
+      "Overworld.11.8.0",
+      "Overworld.11.9.0",
+      "Overworld.12.9.0",
+      "Overworld.13.9.0",
+      "Overworld.12.9.0",
+      "Overworld.11.9.0",
+      "Overworld.11.10.0",
+      "Overworld.10.10.0",
+      "Overworld.10.9.0",
+      "Overworld.9.9.0",
+      "Overworld.10.9.0",
+      "Overworld.10.10.0",
+      "Overworld.10.11.0",
+      "Overworld.10.10.0",
+      "Overworld.9.10.0",
+      "Overworld.8.10.0",
+      "Overworld.9.10.0",
+      "Overworld.10.10.0",
+      "Overworld.11.10.0",
+      "Overworld.12.10.0",
+      "Overworld.13.10.0",
+      "Overworld.12.10.0",
+      "Overworld.11.10.0"
+    ]
+  },
+  "inputs": 37,
+  "transitions": 1,
+  "visited": [
+    "Overworld.11.10.0",
+    "Overworld.11.11.0"
+  ],
+  "actions": [
+    {
+      "sequence": 1,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 12,
+        "hp": 40,
+        "tick": 10,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 13,
+        "hp": 40,
+        "tick": 20,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 2,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 13,
+        "hp": 40,
+        "tick": 20,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 14,
+        "hp": 40,
+        "tick": 30,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 3,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 14,
+        "hp": 40,
+        "tick": 30,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 15,
+        "hp": 40,
+        "tick": 40,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 4,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 15,
+        "hp": 40,
+        "tick": 40,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 16,
+        "hp": 40,
+        "tick": 50,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 5,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 16,
+        "hp": 40,
+        "tick": 50,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 17,
+        "hp": 40,
+        "tick": 60,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 6,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 17,
+        "hp": 40,
+        "tick": 60,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 18,
+        "hp": 40,
+        "tick": 70,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 7,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 40,
+        "y": 18,
+        "hp": 40,
+        "tick": 70,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 39,
+        "y": 18,
+        "hp": 40,
+        "tick": 80,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 8,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 39,
+        "y": 18,
+        "hp": 40,
+        "tick": 80,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 39,
+        "y": 19,
+        "hp": 40,
+        "tick": 90,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 9,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 39,
+        "y": 19,
+        "hp": 40,
+        "tick": 90,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 38,
+        "y": 19,
+        "hp": 40,
+        "tick": 100,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 10,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 38,
+        "y": 19,
+        "hp": 40,
+        "tick": 100,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 38,
+        "y": 20,
+        "hp": 40,
+        "tick": 110,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 11,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 38,
+        "y": 20,
+        "hp": 40,
+        "tick": 110,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 38,
+        "y": 21,
+        "hp": 40,
+        "tick": 120,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 12,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 38,
+        "y": 21,
+        "hp": 40,
+        "tick": 120,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 38,
+        "y": 22,
+        "hp": 40,
+        "tick": 130,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 13,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 38,
+        "y": 22,
+        "hp": 40,
+        "tick": 130,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 38,
+        "y": 23,
+        "hp": 40,
+        "tick": 140,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 14,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 38,
+        "y": 23,
+        "hp": 40,
+        "tick": 140,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.10.0",
+        "x": 38,
+        "y": 24,
+        "hp": 40,
+        "tick": 150,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 15,
+      "kind": "ordinary-boundary-crossing",
+      "before": {
+        "zone": "Overworld.11.10.0",
+        "x": 38,
+        "y": 24,
+        "hp": 40,
+        "tick": 150,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 0,
+        "hp": 40,
+        "tick": 160,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 16,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 0,
+        "hp": 40,
+        "tick": 160,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 1,
+        "hp": 40,
+        "tick": 170,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 17,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 1,
+        "hp": 40,
+        "tick": 170,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 2,
+        "hp": 40,
+        "tick": 180,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 18,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 2,
+        "hp": 40,
+        "tick": 180,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 3,
+        "hp": 40,
+        "tick": 190,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 19,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 3,
+        "hp": 40,
+        "tick": 190,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 4,
+        "hp": 40,
+        "tick": 200,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 20,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 4,
+        "hp": 40,
+        "tick": 200,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 5,
+        "hp": 40,
+        "tick": 210,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 21,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 5,
+        "hp": 40,
+        "tick": 210,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 6,
+        "hp": 40,
+        "tick": 220,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 22,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 6,
+        "hp": 40,
+        "tick": 220,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 7,
+        "hp": 40,
+        "tick": 230,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 23,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 7,
+        "hp": 40,
+        "tick": 230,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 8,
+        "hp": 40,
+        "tick": 240,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 24,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 8,
+        "hp": 40,
+        "tick": 240,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 9,
+        "hp": 40,
+        "tick": 250,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 25,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 9,
+        "hp": 40,
+        "tick": 250,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 10,
+        "hp": 40,
+        "tick": 260,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 26,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 10,
+        "hp": 40,
+        "tick": 260,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 11,
+        "hp": 40,
+        "tick": 270,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 27,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 11,
+        "hp": 40,
+        "tick": 270,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 12,
+        "hp": 40,
+        "tick": 280,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 28,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 12,
+        "hp": 40,
+        "tick": 280,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 13,
+        "hp": 40,
+        "tick": 290,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 29,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 13,
+        "hp": 40,
+        "tick": 290,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 14,
+        "hp": 40,
+        "tick": 300,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 30,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 14,
+        "hp": 40,
+        "tick": 300,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 15,
+        "hp": 40,
+        "tick": 310,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 31,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 15,
+        "hp": 40,
+        "tick": 310,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 16,
+        "hp": 40,
+        "tick": 320,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 32,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 38,
+        "y": 16,
+        "hp": 40,
+        "tick": 320,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 39,
+        "y": 16,
+        "hp": 40,
+        "tick": 330,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 33,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 39,
+        "y": 16,
+        "hp": 40,
+        "tick": 330,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 39,
+        "y": 15,
+        "hp": 40,
+        "tick": 340,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 34,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 39,
+        "y": 15,
+        "hp": 40,
+        "tick": 340,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 39,
+        "y": 14,
+        "hp": 33,
+        "tick": 350,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 35,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 39,
+        "y": 14,
+        "hp": 33,
+        "tick": 350,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 39,
+        "y": 13,
+        "hp": 31,
+        "tick": 360,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 36,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 39,
+        "y": 13,
+        "hp": 31,
+        "tick": 360,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 39,
+        "y": 12,
+        "hp": 27,
+        "tick": 370,
+        "energy": 1000
+      }
+    },
+    {
+      "sequence": 37,
+      "kind": "walk",
+      "before": {
+        "zone": "Overworld.11.11.0",
+        "x": 39,
+        "y": 12,
+        "hp": 27,
+        "tick": 370,
+        "energy": 1000
+      },
+      "after": {
+        "zone": "Overworld.11.11.0",
+        "x": 39,
+        "y": 11,
+        "hp": 26,
+        "tick": 380,
+        "energy": 1000
+      }
+    }
+  ],
+  "entries": [
+    {
+      "phase": "ordinary-start",
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "player": "2718",
+      "hp": 40,
+      "tick": 10,
+      "energy": 1000,
+      "visibleSourceOpportunities": [
+        {
+          "id": "2059",
+          "blueprint": "GlowQuartzVein",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Harvestable",
+            "LightSource"
+          ],
+          "x": 31,
+          "y": 10,
+          "hp": 0,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": false
+        },
+        {
+          "id": "2060",
+          "blueprint": "GlowQuartzVein",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Harvestable",
+            "LightSource"
+          ],
+          "x": 31,
+          "y": 22,
+          "hp": 0,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": false
+        },
+        {
+          "id": "2061",
+          "blueprint": "Chest",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Container",
+            "Destructible",
+            "Material",
+            "Thermal"
+          ],
+          "x": 51,
+          "y": 8,
+          "hp": 0,
+          "hostile": false,
+          "containerLocked": false,
+          "containerUnits": 3,
+          "harvested": null
+        },
+        {
+          "id": "2065",
+          "blueprint": "WoodenBarrel",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Material",
+            "Thermal",
+            "Fuel",
+            "Container",
+            "Destructible"
+          ],
+          "x": 32,
+          "y": 22,
+          "hp": 20,
+          "hostile": false,
+          "containerLocked": false,
+          "containerUnits": 0,
+          "harvested": null
+        },
+        {
+          "id": "2066",
+          "blueprint": "WoodenBarrel",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Material",
+            "Thermal",
+            "Fuel",
+            "Container",
+            "Destructible"
+          ],
+          "x": 31,
+          "y": 23,
+          "hp": 20,
+          "hostile": false,
+          "containerLocked": false,
+          "containerUnits": 0,
+          "harvested": null
+        },
+        {
+          "id": "2067",
+          "blueprint": "Torch",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Stacker",
+            "TorchLight",
+            "Equippable",
+            "LightSource",
+            "LightSourceFlicker",
+            "Material",
+            "Thermal",
+            "Fuel",
+            "Commerce"
+          ],
+          "x": 52,
+          "y": 7,
+          "hp": 5,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        },
+        {
+          "id": "2069",
+          "blueprint": "MushroomRing",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Harvestable"
+          ],
+          "x": 34,
+          "y": 19,
+          "hp": 0,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": false
+        },
+        {
+          "id": "2071",
+          "blueprint": "MarlbackScrabbler",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Body",
+            "Armor",
+            "Inventory",
+            "Brain",
+            "GivesRep",
+            "DamageFlash",
+            "Corpse",
+            "Material",
+            "Thermal",
+            "Loadout"
+          ],
+          "x": 41,
+          "y": 20,
+          "hp": 15,
+          "hostile": true,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        },
+        {
+          "id": "2074",
+          "blueprint": "MarlbackGleaner",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Body",
+            "Armor",
+            "Inventory",
+            "Brain",
+            "GivesRep",
+            "DamageFlash",
+            "Corpse",
+            "Material",
+            "Thermal",
+            "Loadout",
+            "CombatTactics",
+            "ActivatedAbilities",
+            "Skills",
+            "ShortBlades_Shank",
+            "LongBlades_Lunge"
+          ],
+          "x": 43,
+          "y": 21,
+          "hp": 20,
+          "hostile": true,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        },
+        {
+          "id": "2076",
+          "blueprint": "MarlbackScrabbler",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Body",
+            "Armor",
+            "Inventory",
+            "Brain",
+            "GivesRep",
+            "DamageFlash",
+            "Corpse",
+            "Material",
+            "Thermal",
+            "Loadout"
+          ],
+          "x": 21,
+          "y": 4,
+          "hp": 15,
+          "hostile": true,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        },
+        {
+          "id": "2079",
+          "blueprint": "Warden",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Body",
+            "Armor",
+            "Inventory",
+            "Brain",
+            "GivesRep",
+            "DamageFlash",
+            "Corpse",
+            "Material",
+            "Thermal",
+            "Conversation",
+            "AISelfPreservation",
+            "AIGuard",
+            "Trader",
+            "Loadout"
+          ],
+          "x": 36,
+          "y": 16,
+          "hp": 40,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        },
+        {
+          "id": "2086",
+          "blueprint": "Villager",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Body",
+            "Armor",
+            "Inventory",
+            "Brain",
+            "GivesRep",
+            "DamageFlash",
+            "Corpse",
+            "Material",
+            "Thermal",
+            "Conversation",
+            "Trader"
+          ],
+          "x": 39,
+          "y": 20,
+          "hp": 20,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        },
+        {
+          "id": "2090",
+          "blueprint": "PetDog",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Body",
+            "Armor",
+            "Inventory",
+            "Brain",
+            "GivesRep",
+            "DamageFlash",
+            "Corpse",
+            "Material",
+            "Thermal",
+            "AIRetriever",
+            "AIPetter"
+          ],
+          "x": 32,
+          "y": 23,
+          "hp": 15,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        }
+      ],
+      "drams": 50,
+      "cached": [
+        "Overworld.11.10.0"
+      ],
+      "boundary": "FOV+declared render observation only; no claim of pixel occlusion, human noticing, reachable action, acquisition or choice to ignore."
+    },
+    {
+      "phase": "first-entry",
+      "zone": "Overworld.11.11.0",
+      "x": 38,
+      "y": 0,
+      "player": "2718",
+      "hp": 40,
+      "tick": 160,
+      "energy": 1000,
+      "visibleSourceOpportunities": [
+        {
+          "id": "4935",
+          "blueprint": "BrinePool",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Material",
+            "LiquidPool",
+            "Thermal",
+            "TileStateSource"
+          ],
+          "x": 34,
+          "y": 15,
+          "hp": 0,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        },
+        {
+          "id": "4936",
+          "blueprint": "BrinePool",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Material",
+            "LiquidPool",
+            "Thermal",
+            "TileStateSource"
+          ],
+          "x": 52,
+          "y": 11,
+          "hp": 0,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        },
+        {
+          "id": "4937",
+          "blueprint": "BrinePool",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Material",
+            "LiquidPool",
+            "Thermal",
+            "TileStateSource"
+          ],
+          "x": 53,
+          "y": 11,
+          "hp": 0,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        },
+        {
+          "id": "4938",
+          "blueprint": "BrinePool",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Material",
+            "LiquidPool",
+            "Thermal",
+            "TileStateSource"
+          ],
+          "x": 54,
+          "y": 11,
+          "hp": 0,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        },
+        {
+          "id": "4939",
+          "blueprint": "Magpie",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Body",
+            "Armor",
+            "Inventory",
+            "Brain",
+            "GivesRep",
+            "DamageFlash",
+            "Corpse",
+            "Material",
+            "Thermal",
+            "AIHoarder"
+          ],
+          "x": 67,
+          "y": 11,
+          "hp": 6,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        },
+        {
+          "id": "4940",
+          "blueprint": "Viper",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Body",
+            "Armor",
+            "Inventory",
+            "Brain",
+            "GivesRep",
+            "DamageFlash",
+            "Corpse",
+            "Material",
+            "Thermal"
+          ],
+          "x": 36,
+          "y": 23,
+          "hp": 8,
+          "hostile": true,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": null
+        },
+        {
+          "id": "4941",
+          "blueprint": "BerryBush",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Harvestable",
+            "Destructible",
+            "Material",
+            "Thermal"
+          ],
+          "x": 49,
+          "y": 16,
+          "hp": 0,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": false
+        },
+        {
+          "id": "4942",
+          "blueprint": "BerryBush",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Harvestable",
+            "Destructible",
+            "Material",
+            "Thermal"
+          ],
+          "x": 51,
+          "y": 0,
+          "hp": 0,
+          "hostile": false,
+          "containerLocked": null,
+          "containerUnits": null,
+          "harvested": false
+        },
+        {
+          "id": "4943",
+          "blueprint": "Crate",
+          "parts": [
+            "Render",
+            "Physics",
+            "Examinable",
+            "Container",
+            "Material",
+            "Destructible"
+          ],
+          "x": 62,
+          "y": 19,
+          "hp": 0,
+          "hostile": false,
+          "containerLocked": false,
+          "containerUnits": 10,
+          "harvested": null
+        }
+      ],
+      "drams": 50,
+      "cached": [
+        "Overworld.11.10.0",
+        "Overworld.11.11.0"
+      ],
+      "boundary": "FOV+declared render observation only; no claim of pixel occlusion, human noticing, reachable action, acquisition or choice to ignore."
+    }
+  ],
+  "instrumentedPathChoices": [
+    {
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "borderDx": 0,
+      "borderDy": 1,
+      "evaluated": 400,
+      "admitted": 378,
+      "threats": [
+        "2071",
+        "2074",
+        "2076"
+      ],
+      "choice": "shortest-current-safe-cardinal-path",
+      "knowledge": "full current-zone geometry including unrevealed cells; instrumented routing, not player awareness"
+    },
+    {
+      "zone": "Overworld.11.11.0",
+      "x": 38,
+      "y": 0,
+      "borderDx": 0,
+      "borderDy": 1,
+      "evaluated": 650,
+      "admitted": 642,
+      "threats": [
+        "4940"
+      ],
+      "choice": "shortest-current-safe-cardinal-path",
+      "knowledge": "full current-zone geometry including unrevealed cells; instrumented routing, not player awareness"
+    },
+    {
+      "zone": "Overworld.11.11.0",
+      "x": 38,
+      "y": 16,
+      "borderDx": 0,
+      "borderDy": 1,
+      "evaluated": 229,
+      "admitted": 219,
+      "threats": [
+        "4940"
+      ],
+      "choice": "shortest-current-safe-cardinal-path",
+      "knowledge": "full current-zone geometry including unrevealed cells; instrumented routing, not player awareness"
+    },
+    {
+      "zone": "Overworld.11.11.0",
+      "x": 39,
+      "y": 16,
+      "borderDx": 0,
+      "borderDy": 1,
+      "evaluated": 274,
+      "admitted": 264,
+      "threats": [
+        "4940"
+      ],
+      "choice": "shortest-current-safe-cardinal-path",
+      "knowledge": "full current-zone geometry including unrevealed cells; instrumented routing, not player awareness"
+    },
+    {
+      "zone": "Overworld.11.11.0",
+      "x": 39,
+      "y": 15,
+      "borderDx": 0,
+      "borderDy": 1,
+      "evaluated": 326,
+      "admitted": 316,
+      "threats": [
+        "4940"
+      ],
+      "choice": "shortest-current-safe-cardinal-path",
+      "knowledge": "full current-zone geometry including unrevealed cells; instrumented routing, not player awareness"
+    },
+    {
+      "zone": "Overworld.11.11.0",
+      "x": 39,
+      "y": 14,
+      "borderDx": 0,
+      "borderDy": 1,
+      "evaluated": 380,
+      "admitted": 370,
+      "threats": [
+        "4940"
+      ],
+      "choice": "shortest-current-safe-cardinal-path",
+      "knowledge": "full current-zone geometry including unrevealed cells; instrumented routing, not player awareness"
+    },
+    {
+      "zone": "Overworld.11.11.0",
+      "x": 39,
+      "y": 13,
+      "borderDx": 0,
+      "borderDy": 1,
+      "evaluated": 434,
+      "admitted": 422,
+      "threats": [
+        "4940"
+      ],
+      "choice": "shortest-current-safe-cardinal-path",
+      "knowledge": "full current-zone geometry including unrevealed cells; instrumented routing, not player awareness"
+    },
+    {
+      "zone": "Overworld.11.11.0",
+      "x": 39,
+      "y": 12,
+      "borderDx": 0,
+      "borderDy": 1,
+      "evaluated": 480,
+      "admitted": 468,
+      "threats": [
+        "4940"
+      ],
+      "choice": "shortest-current-safe-cardinal-path",
+      "knowledge": "full current-zone geometry including unrevealed cells; instrumented routing, not player awareness"
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E0/NativeWalk/b4fde427753c4c1b9cbabda13228e661/00-ordinary-start.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E0/NativeWalk/b4fde427753c4c1b9cbabda13228e661/02-Overworld.11.11.0.png"
+  ],
+  "performedRewardActions": 0,
+  "humanAwarenessMeasured": false,
+  "boundary": "Ordinary N and cardinal local/boundary inputs only. No worldmap/transfers/grants/reports/quests/AI changes. Full current-zone geometry guides conservative paths; this is instrumented motor traversal, not unaided decision-making. Zero reward actions is observer policy, not evidence players ignore content. Partial/refused walks remain partial. No candidate-only walk is a matched baseline.",
+  "settings": {
+    "screenWidth": 2079,
+    "screenHeight": 1251,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "lowDetail": false
+  }
+}

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="20" result="Failed" start-time="2026-09-28T02:47:30.1369710Z" end-time="2026-09-28T02:47:30.2924140Z" duration="0.155430" total="4" passed="1" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="6" random-seed="1921138488">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/e2/activation-red.xml --where "class =~ /SpreadExplorationActivationTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationActivationTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1025" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-28T02:47:30.1369710Z" end-time="2026-09-28T02:47:30.2924140Z" duration="0.155430" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/e2/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/e2/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="29411" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1026" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-28T02:47:30.1385570Z" end-time="2026-09-28T02:47:30.2924130Z" duration="0.153854" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1027" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-28T02:47:30.1386810Z" end-time="2026-09-28T02:47:30.2924080Z" duration="0.153727" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationActivationTests" fullname="CavesOfOoo.Tests.SpreadExplorationActivationTests" classname="CavesOfOoo.Tests.SpreadExplorationActivationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T02:47:30.1390300Z" end-time="2026-09-28T02:47:30.2923900Z" duration="0.153359" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1005" name="ExplicitLegacyPreviewCannotInheritTheFreshGameDefault" fullname="CavesOfOoo.Tests.SpreadExplorationActivationTests.ExplicitLegacyPreviewCannotInheritTheFreshGameDefault" methodname="ExplicitLegacyPreviewCannotInheritTheFreshGameDefault" classname="CavesOfOoo.Tests.SpreadExplorationActivationTests" runstate="Runnable" seed="1216839576" result="Passed" start-time="2026-09-28T02:47:30.1399080Z" end-time="2026-09-28T02:47:30.2215320Z" duration="0.081649" asserts="3" />
+          <test-suite type="ParameterizedMethod" id="1004" name="OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn" fullname="CavesOfOoo.Tests.SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn" classname="CavesOfOoo.Tests.SpreadExplorationActivationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T02:47:30.2221280Z" end-time="2026-09-28T02:47:30.2921610Z" duration="0.070033" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(1)" fullname="CavesOfOoo.Tests.SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(1)" methodname="OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn" classname="CavesOfOoo.Tests.SpreadExplorationActivationTests" runstate="Runnable" seed="1610108203" result="Failed" start-time="2026-09-28T02:47:30.2222010Z" end-time="2026-09-28T02:47:30.2535760Z" duration="0.031375" asserts="1">
+              <failure>
+                <message><![CDATA[  GameBootstrap's normal constructor must enable the delivered exploration tranche.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationActivationTests.cs:line 15
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  GameBootstrap's normal constructor must enable the delivered exploration tranche.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationActivationTests.cs:line 15
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(64)" fullname="CavesOfOoo.Tests.SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(64)" methodname="OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn" classname="CavesOfOoo.Tests.SpreadExplorationActivationTests" runstate="Runnable" seed="1686454286" result="Failed" start-time="2026-09-28T02:47:30.2536340Z" end-time="2026-09-28T02:47:30.2730460Z" duration="0.019413" asserts="1">
+              <failure>
+                <message><![CDATA[  GameBootstrap's normal constructor must enable the delivered exploration tranche.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationActivationTests.cs:line 15
+   at InvokeStub_SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  GameBootstrap's normal constructor must enable the delivered exploration tranche.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationActivationTests.cs:line 15
+   at InvokeStub_SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(1729)" fullname="CavesOfOoo.Tests.SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(1729)" methodname="OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn" classname="CavesOfOoo.Tests.SpreadExplorationActivationTests" runstate="Runnable" seed="679912856" result="Failed" start-time="2026-09-28T02:47:30.2731480Z" end-time="2026-09-28T02:47:30.2897330Z" duration="0.016585" asserts="1">
+              <failure>
+                <message><![CDATA[  GameBootstrap's normal constructor must enable the delivered exploration tranche.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationActivationTests.cs:line 15
+   at InvokeStub_SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  GameBootstrap's normal constructor must enable the delivered exploration tranche.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationActivationTests.cs:line 15
+   at InvokeStub_SpreadExplorationActivationTests.OrdinaryNewGameCreatesThePlayableManifestWithoutADeveloperOptIn(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,4 @@
+var assembly = System.Reflection.Assembly.LoadFile("/tmp/coo-questfree-implementation/e0/QuestFreeExplorationBaselineV2.dll");
+var type = assembly.GetType("CavesOfOoo.Experiments.QuestFreeExplorationBaseline", true);
+var method = type.GetMethod("Collect", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+return method.Invoke(null, new object[] { "/tmp/coo-questfree-implementation/e0/native-output" });

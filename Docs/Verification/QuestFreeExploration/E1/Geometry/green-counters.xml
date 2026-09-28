@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/geometry/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="19" result="Failed" start-time="2026-09-28T01:58:12.2099240Z" end-time="2026-09-28T01:58:12.3960760Z" duration="0.186128" total="19" passed="17" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="103698" random-seed="248630693">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/geometry/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/geometry/green-counters.xml --where "class =~ /SpreadExplorationGeometryTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationGeometryTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1026" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/geometry/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-09-28T01:58:12.2099240Z" end-time="2026-09-28T01:58:12.3960760Z" duration="0.186128" total="19" passed="17" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="103698">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/geometry/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/geometry/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="16851" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1027" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-09-28T01:58:12.2115220Z" end-time="2026-09-28T01:58:12.3960740Z" duration="0.184551" total="19" passed="17" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="103698">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1028" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-09-28T01:58:12.2116320Z" end-time="2026-09-28T01:58:12.3960670Z" duration="0.184434" total="19" passed="17" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="103698">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationGeometryTests" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-09-28T01:58:12.2119660Z" end-time="2026-09-28T01:58:12.3960500Z" duration="0.184083" total="19" passed="17" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="103698">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1008" name="EveryInteriorAndBorderApproachIsConnectedAndDry" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T01:58:12.2128140Z" end-time="2026-09-28T01:58:12.3083380Z" duration="0.095523" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="79772">
+            <test-case id="1005" name="EveryInteriorAndBorderApproachIsConnectedAndDry(&quot;OffsetLanes&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(&quot;OffsetLanes&quot;)" methodname="EveryInteriorAndBorderApproachIsConnectedAndDry" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="670406681" result="Passed" start-time="2026-09-28T01:58:12.2129100Z" end-time="2026-09-28T01:58:12.2506820Z" duration="0.037799" asserts="22716" />
+            <test-case id="1006" name="EveryInteriorAndBorderApproachIsConnectedAndDry(&quot;BrokenEnclosures&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(&quot;BrokenEnclosures&quot;)" methodname="EveryInteriorAndBorderApproachIsConnectedAndDry" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="759787380" result="Passed" start-time="2026-09-28T01:58:12.2512870Z" end-time="2026-09-28T01:58:12.2799810Z" duration="0.028694" asserts="26280" />
+            <test-case id="1007" name="EveryInteriorAndBorderApproachIsConnectedAndDry(&quot;BankCrossing&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(&quot;BankCrossing&quot;)" methodname="EveryInteriorAndBorderApproachIsConnectedAndDry" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="1161525198" result="Passed" start-time="2026-09-28T01:58:12.2800190Z" end-time="2026-09-28T01:58:12.3078240Z" duration="0.027805" asserts="30776" />
+          </test-suite>
+          <test-case id="1021" name="ExplicitLegacyKeepsExistingDefaultOutput" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.ExplicitLegacyKeepsExistingDefaultOutput" methodname="ExplicitLegacyKeepsExistingDefaultOutput" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="1190370378" result="Passed" start-time="2026-09-28T01:58:12.3085370Z" end-time="2026-09-28T01:58:12.3302920Z" duration="0.021755" asserts="54" />
+          <test-suite type="ParameterizedMethod" id="1016" name="FormationStillDeterminesMaterialIdentity" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T01:58:12.3303110Z" end-time="2026-09-28T01:58:12.3407570Z" duration="0.010446" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="111">
+            <test-case id="1013" name="FormationStillDeterminesMaterialIdentity(&quot;OffsetLanes&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(&quot;OffsetLanes&quot;)" methodname="FormationStillDeterminesMaterialIdentity" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="1665235206" result="Passed" start-time="2026-09-28T01:58:12.3303340Z" end-time="2026-09-28T01:58:12.3357630Z" duration="0.005429" asserts="37" />
+            <test-case id="1014" name="FormationStillDeterminesMaterialIdentity(&quot;BrokenEnclosures&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(&quot;BrokenEnclosures&quot;)" methodname="FormationStillDeterminesMaterialIdentity" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="222748065" result="Passed" start-time="2026-09-28T01:58:12.3357820Z" end-time="2026-09-28T01:58:12.3383860Z" duration="0.002604" asserts="37" />
+            <test-case id="1015" name="FormationStillDeterminesMaterialIdentity(&quot;BankCrossing&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(&quot;BankCrossing&quot;)" methodname="FormationStillDeterminesMaterialIdentity" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="2086187784" result="Passed" start-time="2026-09-28T01:58:12.3384110Z" end-time="2026-09-28T01:58:12.3407240Z" duration="0.002313" asserts="37" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1025" name="LegacyEntryPointStillRepeatsAndConnectsItsBorders" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.LegacyEntryPointStillRepeatsAndConnectsItsBorders" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T01:58:12.3407660Z" end-time="2026-09-28T01:58:12.3449030Z" duration="0.004137" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1022" name="LegacyEntryPointStillRepeatsAndConnectsItsBorders(1)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.LegacyEntryPointStillRepeatsAndConnectsItsBorders(1)" methodname="LegacyEntryPointStillRepeatsAndConnectsItsBorders" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="363576195" result="Passed" start-time="2026-09-28T01:58:12.3407740Z" end-time="2026-09-28T01:58:12.3419650Z" duration="0.001190" asserts="4" />
+            <test-case id="1023" name="LegacyEntryPointStillRepeatsAndConnectsItsBorders(64)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.LegacyEntryPointStillRepeatsAndConnectsItsBorders(64)" methodname="LegacyEntryPointStillRepeatsAndConnectsItsBorders" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="195400487" result="Passed" start-time="2026-09-28T01:58:12.3419740Z" end-time="2026-09-28T01:58:12.3437890Z" duration="0.001815" asserts="4" />
+            <test-case id="1024" name="LegacyEntryPointStillRepeatsAndConnectsItsBorders(1729)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.LegacyEntryPointStillRepeatsAndConnectsItsBorders(1729)" methodname="LegacyEntryPointStillRepeatsAndConnectsItsBorders" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="1110705853" result="Passed" start-time="2026-09-28T01:58:12.3438000Z" end-time="2026-09-28T01:58:12.3448700Z" duration="0.001070" asserts="4" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1012" name="NeighboringVariantsKeepSameSharedCrossings" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T01:58:12.3449220Z" end-time="2026-09-28T01:58:12.3481730Z" duration="0.003251" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="54">
+            <test-case id="1009" name="NeighboringVariantsKeepSameSharedCrossings(&quot;OffsetLanes&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(&quot;OffsetLanes&quot;)" methodname="NeighboringVariantsKeepSameSharedCrossings" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="1869976851" result="Passed" start-time="2026-09-28T01:58:12.3449560Z" end-time="2026-09-28T01:58:12.3461740Z" duration="0.001218" asserts="18" />
+            <test-case id="1010" name="NeighboringVariantsKeepSameSharedCrossings(&quot;BrokenEnclosures&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(&quot;BrokenEnclosures&quot;)" methodname="NeighboringVariantsKeepSameSharedCrossings" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="1865957837" result="Passed" start-time="2026-09-28T01:58:12.3461850Z" end-time="2026-09-28T01:58:12.3473390Z" duration="0.001154" asserts="18" />
+            <test-case id="1011" name="NeighboringVariantsKeepSameSharedCrossings(&quot;BankCrossing&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(&quot;BankCrossing&quot;)" methodname="NeighboringVariantsKeepSameSharedCrossings" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="785682773" result="Passed" start-time="2026-09-28T01:58:12.3473440Z" end-time="2026-09-28T01:58:12.3481670Z" duration="0.000823" asserts="18" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1020" name="NewLayoutsRespectExistingCropAndForestBudgets" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewLayoutsRespectExistingCropAndForestBudgets" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T01:58:12.3482170Z" end-time="2026-09-28T01:58:12.3904830Z" duration="0.042266" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="23662">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1017" name="NewLayoutsRespectExistingCropAndForestBudgets(&quot;OffsetLanes&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewLayoutsRespectExistingCropAndForestBudgets(&quot;OffsetLanes&quot;)" methodname="NewLayoutsRespectExistingCropAndForestBudgets" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="918917487" result="Failed" start-time="2026-09-28T01:58:12.3482300Z" end-time="2026-09-28T01:58:12.3645590Z" duration="0.016329" asserts="3263">
+              <failure>
+                <message><![CDATA[  Expected: less than 260
+  But was:  268
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewLayoutsRespectExistingCropAndForestBudgets(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 85
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: less than 260
+  But was:  268
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewLayoutsRespectExistingCropAndForestBudgets(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 85
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1018" name="NewLayoutsRespectExistingCropAndForestBudgets(&quot;BrokenEnclosures&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewLayoutsRespectExistingCropAndForestBudgets(&quot;BrokenEnclosures&quot;)" methodname="NewLayoutsRespectExistingCropAndForestBudgets" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="2069702234" result="Failed" start-time="2026-09-28T01:58:12.3646310Z" end-time="2026-09-28T01:58:12.3687540Z" duration="0.004123" asserts="3263">
+              <failure>
+                <message><![CDATA[  Expected: less than 260
+  But was:  296
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewLayoutsRespectExistingCropAndForestBudgets(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 85
+   at InvokeStub_SpreadExplorationGeometryTests.NewLayoutsRespectExistingCropAndForestBudgets(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: less than 260
+  But was:  296
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewLayoutsRespectExistingCropAndForestBudgets(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 85
+   at InvokeStub_SpreadExplorationGeometryTests.NewLayoutsRespectExistingCropAndForestBudgets(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1019" name="NewLayoutsRespectExistingCropAndForestBudgets(&quot;BankCrossing&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewLayoutsRespectExistingCropAndForestBudgets(&quot;BankCrossing&quot;)" methodname="NewLayoutsRespectExistingCropAndForestBudgets" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="814938818" result="Passed" start-time="2026-09-28T01:58:12.3687640Z" end-time="2026-09-28T01:58:12.3904610Z" duration="0.021697" asserts="17136" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1004" name="NewTopologyChangesRoutesWithoutChangingBoundaryPorts" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T01:58:12.3904920Z" end-time="2026-09-28T01:58:12.3960090Z" duration="0.005517" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="33">
+            <test-case id="1001" name="NewTopologyChangesRoutesWithoutChangingBoundaryPorts(&quot;OffsetLanes&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(&quot;OffsetLanes&quot;)" methodname="NewTopologyChangesRoutesWithoutChangingBoundaryPorts" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="127675379" result="Passed" start-time="2026-09-28T01:58:12.3905090Z" end-time="2026-09-28T01:58:12.3927480Z" duration="0.002239" asserts="11" />
+            <test-case id="1002" name="NewTopologyChangesRoutesWithoutChangingBoundaryPorts(&quot;BrokenEnclosures&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(&quot;BrokenEnclosures&quot;)" methodname="NewTopologyChangesRoutesWithoutChangingBoundaryPorts" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="1575255894" result="Passed" start-time="2026-09-28T01:58:12.3927620Z" end-time="2026-09-28T01:58:12.3944310Z" duration="0.001668" asserts="11" />
+            <test-case id="1003" name="NewTopologyChangesRoutesWithoutChangingBoundaryPorts(&quot;BankCrossing&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(&quot;BankCrossing&quot;)" methodname="NewTopologyChangesRoutesWithoutChangingBoundaryPorts" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="2109876299" result="Passed" start-time="2026-09-28T01:58:12.3944390Z" end-time="2026-09-28T01:58:12.3959980Z" duration="0.001559" asserts="11" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

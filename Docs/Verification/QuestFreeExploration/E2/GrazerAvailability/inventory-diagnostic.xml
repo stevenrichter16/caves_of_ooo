@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="17" result="Passed" start-time="2026-09-28T03:36:41.7403400Z" end-time="2026-09-28T03:36:42.1829400Z" duration="0.442581" total="1" passed="1" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="14" random-seed="65186884">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/inventory-diagnostic.xml --where "class == CavesOfOoo.Tests.GrazerRuntimeDiagnosticTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.GrazerRuntimeDiagnosticTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1021" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-09-28T03:36:41.7403400Z" end-time="2026-09-28T03:36:42.1829400Z" duration="0.442581" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="43014" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestSuite" id="1022" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-09-28T03:36:41.7420230Z" end-time="2026-09-28T03:36:42.1829340Z" duration="0.440895" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+      <test-suite type="TestSuite" id="1023" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-09-28T03:36:41.7421350Z" end-time="2026-09-28T03:36:42.1828810Z" duration="0.440738" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+        <test-suite type="TestFixture" id="1000" name="GrazerRuntimeDiagnosticTests" fullname="CavesOfOoo.Tests.GrazerRuntimeDiagnosticTests" classname="CavesOfOoo.Tests.GrazerRuntimeDiagnosticTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-28T03:36:41.7425120Z" end-time="2026-09-28T03:36:42.1826630Z" duration="0.440143" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+          <test-case id="1001" name="ActualSelectedFieldSourcesAndRefusalStages" fullname="CavesOfOoo.Tests.GrazerRuntimeDiagnosticTests.ActualSelectedFieldSourcesAndRefusalStages" methodname="ActualSelectedFieldSourcesAndRefusalStages" classname="CavesOfOoo.Tests.GrazerRuntimeDiagnosticTests" runstate="Runnable" seed="1591047842" result="Passed" start-time="2026-09-28T03:36:41.7434580Z" end-time="2026-09-28T03:36:42.1814920Z" duration="0.438053" asserts="14">
+            <output><![CDATA[Overworld.10.5.0 condition=returning scrub result=refused:no-safe-role-layout rows=(72, 5);(32, 7) grazers=(8, 22):False
+BAD SNAP Magpie inventory oldpack= nowpack=4631:Mushroom,4632:Dagger,4633:SteelBladeComponent,4634:LeatherGloves
+RECEIPT Overworld.12.14.0 complete=True owners=ReedbackGrazer,Magpie,Magpie
+BAD SNAP Magpie inventory oldpack= nowpack=4631:Mushroom,4632:Dagger,4633:SteelBladeComponent,4634:LeatherGloves
+ OWNER Magpie valid=True
+BAD SNAP Magpie inventory oldpack= nowpack=4631:Mushroom,4632:Dagger,4633:SteelBladeComponent,4634:LeatherGloves
+ ENTITY Magpie id=4612 partsold=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder partsnew=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder propsold= propsnew= goalsold= goalsnew=
+ CLAUSES parents=True parts=True body=True oldenemies= nowenemies= bodyfieldbad=
+BAD SNAP Magpie inventory oldpack= nowpack=4635:ShortSword,4636:FireTonic
+ OWNER Magpie valid=True
+BAD SNAP Magpie inventory oldpack= nowpack=4635:ShortSword,4636:FireTonic
+ ENTITY Magpie id=4613 partsold=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder partsnew=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder propsold= propsnew= goalsold= goalsnew=
+ CLAUSES parents=True parts=True body=True oldenemies= nowenemies= bodyfieldbad=
+BAD SNAP Magpie inventory oldpack= nowpack=4631:Mushroom,4632:Dagger,4633:SteelBladeComponent,4634:LeatherGloves
+Overworld.12.14.0 condition=returning scrub result=refused:source rows=(26, 6);(37, 16) grazers=(14, 15):False
+Overworld.13.10.0 condition=returning scrub result=refused:no-safe-role-layout rows=(22, 5);(53, 5) grazers=(11, 8):False
+BAD SNAP Magpie inventory oldpack= nowpack=9193:QuenchGrimoire,9194:StoneburrSeed,9195:FireMoss,9196:DriedMeat,9197:IronSpikeComponent
+RECEIPT Overworld.13.13.0 complete=True owners=ReedbackGrazer,Magpie,Magpie,Magpie
+BAD SNAP Magpie inventory oldpack= nowpack=9193:QuenchGrimoire,9194:StoneburrSeed,9195:FireMoss,9196:DriedMeat,9197:IronSpikeComponent
+ OWNER Magpie valid=True
+BAD SNAP Magpie inventory oldpack= nowpack=9193:QuenchGrimoire,9194:StoneburrSeed,9195:FireMoss,9196:DriedMeat,9197:IronSpikeComponent
+ ENTITY Magpie id=9185 partsold=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder partsnew=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder propsold= propsnew= goalsold= goalsnew=
+ CLAUSES parents=True parts=True body=True oldenemies= nowenemies= bodyfieldbad=
+BAD SNAP Magpie inventory oldpack= nowpack=9198:EmberwheatSeed,9199:CandyCarrotSeed,9200:IronSpikeComponent,9202:OakHaftComponent
+ OWNER Magpie valid=True
+BAD SNAP Magpie inventory oldpack= nowpack=9198:EmberwheatSeed,9199:CandyCarrotSeed,9200:IronSpikeComponent,9202:OakHaftComponent
+ ENTITY Magpie id=9186 partsold=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder partsnew=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder propsold= propsnew= goalsold= goalsnew=
+ CLAUSES parents=True parts=True body=True oldenemies= nowenemies= bodyfieldbad=
+BAD SNAP Magpie inventory oldpack= nowpack=9203:OakHaftComponent,9204:Cudgel
+ OWNER Magpie valid=True
+BAD SNAP Magpie inventory oldpack= nowpack=9203:OakHaftComponent,9204:Cudgel
+ ENTITY Magpie id=9187 partsold=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder partsnew=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder propsold= propsnew= goalsold= goalsnew=
+ CLAUSES parents=True parts=True body=True oldenemies= nowenemies= bodyfieldbad=
+BAD SNAP Magpie inventory oldpack= nowpack=9193:QuenchGrimoire,9194:StoneburrSeed,9195:FireMoss,9196:DriedMeat,9197:IronSpikeComponent
+Overworld.13.13.0 condition=tended result=refused:source rows=(19, 7);(11, 17);(13, 18) grazers=(24, 3):False
+Overworld.14.11.0 condition=after harvest result=refused:no-safe-role-layout rows=(11, 16) grazers=(68, 16):False
+Overworld.15.12.0 condition=returning scrub result=refused:no-safe-role-layout rows=(15, 4);(44, 4) grazers=(24, 21):False
+BAD SNAP Magpie inventory oldpack= nowpack=15965:FireMoss,15966:CandyHeartRoot,15968:FireTonic,15969:HealingTonic
+RECEIPT Overworld.16.10.0 complete=True owners=ReedbackGrazer,Magpie,Magpie
+BAD SNAP Magpie inventory oldpack= nowpack=15965:FireMoss,15966:CandyHeartRoot,15968:FireTonic,15969:HealingTonic
+ OWNER Magpie valid=True
+BAD SNAP Magpie inventory oldpack= nowpack=15965:FireMoss,15966:CandyHeartRoot,15968:FireTonic,15969:HealingTonic
+ ENTITY Magpie id=15953 partsold=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder partsnew=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder propsold= propsnew= goalsold= goalsnew=
+ CLAUSES parents=True parts=True body=True oldenemies= nowenemies= bodyfieldbad=
+BAD SNAP Magpie inventory oldpack= nowpack=15970:Starapple,15971:LeatherArmor,15972:FireMoss,15973:LeatherGloves
+ OWNER Magpie valid=True
+BAD SNAP Magpie inventory oldpack= nowpack=15970:Starapple,15971:LeatherArmor,15972:FireMoss,15973:LeatherGloves
+ ENTITY Magpie id=15954 partsold=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder partsnew=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder propsold= propsnew= goalsold= goalsnew=
+ CLAUSES parents=True parts=True body=True oldenemies= nowenemies= bodyfieldbad=
+BAD SNAP Magpie inventory oldpack= nowpack=15965:FireMoss,15966:CandyHeartRoot,15968:FireTonic,15969:HealingTonic
+Overworld.16.10.0 condition=returning scrub result=refused:source rows=(12, 16);(51, 19) grazers=(33, 17):False
+BAD SNAP Magpie inventory oldpack= nowpack=18211:FrostLichen,18212:Hatchet,18213:WillowHaftComponent,18214:EmberwheatSeed
+RECEIPT Overworld.5.12.0 complete=True owners=ReedbackGrazer,Magpie,Magpie,Magpie
+BAD SNAP Magpie inventory oldpack= nowpack=18211:FrostLichen,18212:Hatchet,18213:WillowHaftComponent,18214:EmberwheatSeed
+ OWNER Magpie valid=True
+BAD SNAP Magpie inventory oldpack= nowpack=18211:FrostLichen,18212:Hatchet,18213:WillowHaftComponent,18214:EmberwheatSeed
+ ENTITY Magpie id=18204 partsold=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder partsnew=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder propsold= propsnew= goalsold= goalsnew=
+ CLAUSES parents=True parts=True body=True oldenemies= nowenemies= bodyfieldbad=
+BAD SNAP Magpie inventory oldpack= nowpack=18215:GlacierSalt,18216:Cudgel
+ OWNER Magpie valid=True
+BAD SNAP Magpie inventory oldpack= nowpack=18215:GlacierSalt,18216:Cudgel
+ ENTITY Magpie id=18205 partsold=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder partsnew=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder propsold= propsnew= goalsold= goalsnew=
+ CLAUSES parents=True parts=True body=True oldenemies= nowenemies= bodyfieldbad=
+BAD SNAP Magpie inventory oldpack= nowpack=18217:FrostLichen,18218:GlimmerBrine,18219:GlacierSalt,18220:CandyHeartRoot,18221:Dagger
+ OWNER Magpie valid=True
+BAD SNAP Magpie inventory oldpack= nowpack=18217:FrostLichen,18218:GlimmerBrine,18219:GlacierSalt,18220:CandyHeartRoot,18221:Dagger
+ ENTITY Magpie id=18206 partsold=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder partsnew=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder propsold= propsnew= goalsold= goalsnew=
+ CLAUSES parents=True parts=True body=True oldenemies= nowenemies= bodyfieldbad=
+BAD SNAP Magpie inventory oldpack= nowpack=18211:FrostLichen,18212:Hatchet,18213:WillowHaftComponent,18214:EmberwheatSeed
+Overworld.5.12.0 condition=returning scrub result=refused:source rows=(48, 7);(15, 16) grazers=(23, 18):False
+Overworld.6.14.0 condition=tended result=refused:no-safe-role-layout rows=(6, 4);(36, 5);(54, 16) grazers=(17, 18):False
+Overworld.7.13.0 condition=returning scrub result=refused:no-safe-role-layout rows=(46, 5);(19, 17) grazers=(10, 17):False
+Overworld.8.0.0 condition=after harvest result=refused:no-safe-role-layout rows=(11, 4) grazers=(71, 8):False
+BAD SNAP Magpie inventory oldpack= nowpack=27336:LongSword,27337:Mushroom,27338:Mace,27340:GlacierSalt
+RECEIPT Overworld.9.15.0 complete=True owners=ReedbackGrazer,Magpie,Magpie
+BAD SNAP Magpie inventory oldpack= nowpack=27336:LongSword,27337:Mushroom,27338:Mace,27340:GlacierSalt
+ OWNER Magpie valid=True
+BAD SNAP Magpie inventory oldpack= nowpack=27336:LongSword,27337:Mushroom,27338:Mace,27340:GlacierSalt
+ ENTITY Magpie id=27313 partsold=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder partsnew=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder propsold= propsnew= goalsold= goalsnew=
+ CLAUSES parents=True parts=True body=True oldenemies= nowenemies= bodyfieldbad=
+BAD SNAP Magpie inventory oldpack= nowpack=27341:Cloak,27342:StrengthTonic,27343:LeatherArmor
+ OWNER Magpie valid=True
+BAD SNAP Magpie inventory oldpack= nowpack=27341:Cloak,27342:StrengthTonic,27343:LeatherArmor
+ ENTITY Magpie id=27314 partsold=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder partsnew=Render,Physics,Examinable,Body,Armor,Inventory,Brain,GivesRep,DamageFlash,Corpse,Material,Thermal,AIHoarder propsold= propsnew= goalsold= goalsnew=
+ CLAUSES parents=True parts=True body=True oldenemies= nowenemies= bodyfieldbad=
+BAD SNAP Magpie inventory oldpack= nowpack=27336:LongSword,27337:Mushroom,27338:Mace,27340:GlacierSalt
+Overworld.9.15.0 condition=tended result=refused:source rows=(55, 7);(53, 17);(16, 19) grazers=(40, 19):False
+Overworld.9.6.0 condition=returning scrub result=LastGleanings rows=(61, 5);(56, 16) grazers=(60, 4):True
+]]></output>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83aecdb0a084b8b8778477814e17f53, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.QuestFreeSpreadArtLibrary
+  Entries:
+  - Id: questfree-spread-grazer
+    Prefab: {fileID: 8866577280071629895, guid: 39b8b54984bee408db83f7448463bb2e, type: 3}
+    Mesh: {fileID: 4300000, guid: 0d10d86d958204f22bf4d36c1ee5a57f, type: 2}
+    Materials:
+    - {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
+    Spec:
+      id: questfree-spread-grazer
+      path: Assets/Resources/QuestFreeSpread3D/questfree-spread-grazer.prefab
+      kind: actor
+      rigFamily: quadruped
+      materialFamily: reference-glade-palette
+      sourceBlueprint: ReedbackGrazer
+      rigged: 1
+      boundsCenter: {x: 0.0019162046, y: 0.3660424, z: -0.05268112}
+      boundsSize: {x: 0.5921209, y: 0.7379146, z: 1.4169406}
+      triangles: 420
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets: []
+  - Id: questfree-spread-grazer-remains
+    Prefab: {fileID: 1448732580539631769, guid: fed220265c45a4b94a13bf97e941d1fd, type: 3}
+    Mesh: {fileID: 4300000, guid: 8fcbbba12fe384cedb49101b9d918e64, type: 2}
+    Materials:
+    - {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
+    Spec:
+      id: questfree-spread-grazer-remains
+      path: Assets/Resources/QuestFreeSpread3D/questfree-spread-grazer-remains.prefab
+      kind: entity
+      rigFamily: 
+      materialFamily: reference-glade-palette
+      sourceBlueprint: ReedbackGrazerCorpse
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.13599999, z: -0.13750002}
+      boundsSize: {x: 0.72, y: 0.26299998, z: 0.9650001}
+      triangles: 120
+      clips: []
+      sockets: []
+  - Id: questfree-spread-draw-full
+    Prefab: {fileID: 2127028714066514310, guid: 9d37089f611534713a54789a870715cd, type: 3}
+    Mesh: {fileID: 4300000, guid: a4b4cd53ecda546c68183182b5c43206, type: 2}
+    Materials:
+    - {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
+    - {fileID: 2100000, guid: 8fddc0cb2188a44198ee61cd5ab782c6, type: 2}
+    Spec:
+      id: questfree-spread-draw-full
+      path: Assets/Resources/QuestFreeSpread3D/questfree-spread-draw-full.prefab
+      kind: entity
+      rigFamily: 
+      materialFamily: reference-glade-palette
+      sourceBlueprint: SpreadDrawPoint
+      rigged: 0
+      boundsCenter: {x: -0.000000029802322, y: 0.215, z: -0.05249998}
+      boundsSize: {x: 0.97, y: 0.43, z: 0.8450001}
+      triangles: 168
+      clips: []
+      sockets: []
+  - Id: questfree-spread-draw-empty
+    Prefab: {fileID: 4405311987326126541, guid: f4e469df111cc424c840732b8ce81698, type: 3}
+    Mesh: {fileID: 4300000, guid: a608e94da545147f9b63ab01d85d3489, type: 2}
+    Materials:
+    - {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
+    Spec:
+      id: questfree-spread-draw-empty
+      path: Assets/Resources/QuestFreeSpread3D/questfree-spread-draw-empty.prefab
+      kind: entity
+      rigFamily: 
+      materialFamily: reference-glade-palette
+      sourceBlueprint: SpreadDrawPoint
+      rigged: 0
+      boundsCenter: {x: -0.000000029802322, y: 0.215, z: -0.05249998}
+      boundsSize: {x: 0.97, y: 0.43, z: 0.8450001}
+      triangles: 156
+      clips: []
+      sockets: []

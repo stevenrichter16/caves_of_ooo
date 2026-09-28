@@ -89,17 +89,34 @@ namespace CavesOfOoo.Core
             if (pool.LiquidId != expectedLiquid) return Reject(actor, vessel, command, "source-liquid-changed");
             if (part.Volume == part.Capacity) return Reject(actor, vessel, command, "full");
             if (!transaction.TryClaim(source, actor, command)) return Reject(actor, vessel, command, "source-in-use");
+            var sourceCell = zone.GetEntityCell(source);
             int before = part.Volume, oldPool = pool.Volume;
             string oldId = part.LiquidId, liquidId = pool.LiquidId;
             int amount = Math.Min(part.Capacity - before, oldPool);
             transaction.Do(null, () => { part.Volume = before; part.LiquidId = oldId; pool.Volume = oldPool; });
             part.Volume += amount; part.LiquidId = liquidId; pool.Volume -= amount;
-            transaction.AfterCommit(() => RetireExhaustedPouredPool(zone, source, pool));
+            transaction.AfterCommit(() => PublishCommittedPoolDraw(zone, source, pool, sourceCell));
             transaction.AfterCommit(() => Diag.Record("liquid", "VesselFilled", actor, vessel,
                 new { source = source.ID, liquidId, amount, remaining = oldPool - amount }));
             transaction.AfterCommit(() => MessageLog.Add("You fill the flask with " + LiquidName(liquidId) + ". (" + (before + amount) + "/" + part.Capacity + ")"));
             if (own) transaction.Commit();
             return true;
+        }
+
+        /// <summary>Publish a committed finite-volume change for the exact original
+        /// owner, pool and anchor. Persistent sources remain at zero; the existing
+        /// poured-pool lifecycle still owns retirement. Outer rollback never calls
+        /// this observer, and stale/replaced owners cannot dirty another cell.</summary>
+        internal static void PublishCommittedPoolDraw(Zone zone, Entity source, LiquidPoolPart pool, Cell sourceCell)
+        {
+            var physics = source?.GetPart<PhysicsPart>();
+            if (sourceCell == null || source?.SpatialZone != zone || zone?.GetEntityCell(source) != sourceCell
+                || !sourceCell.Objects.Contains(source) || pool == null || pool.ParentEntity != source
+                || source.GetPart<LiquidPoolPart>() != pool || physics == null || physics.ParentEntity != source
+                || physics.Takeable || physics.InInventory != null || physics.Equipped != null || source.HasTag("Creature")) return;
+            RetireExhaustedPouredPool(zone, source, pool);
+            if (source.SpatialZone == zone && zone.GetEntityCell(source) == sourceCell)
+                ZoneRenderHooks.MarkCellDirty(sourceCell, "LiquidVessel.SourceChanged");
         }
 
         /// <summary>A finite poured owner ends with its last recoverable unit.

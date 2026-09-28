@@ -88,7 +88,7 @@ namespace CavesOfOoo.Tests
         {
             var factory=GrovelandsCompositionTests.Factory();var live=new OverworldZoneManager(factory,64);
             var old=SettlementManager.Current;
-            var method=typeof(OverworldZoneManager).GetMethod("CreateDetached",BindingFlags.Public|BindingFlags.Static);
+            var method=typeof(OverworldZoneManager).GetMethod("CreateDetached",BindingFlags.Public|BindingFlags.Static,null,new[]{typeof(CavesOfOoo.Data.EntityFactory),typeof(int)},null);
             Assert.NotNull(method);
             var preview=(OverworldZoneManager)method.Invoke(null,new object[]{factory,1729});
             Assert.AreSame(old,SettlementManager.Current);Assert.AreNotSame(live.SettlementManager,preview.SettlementManager);

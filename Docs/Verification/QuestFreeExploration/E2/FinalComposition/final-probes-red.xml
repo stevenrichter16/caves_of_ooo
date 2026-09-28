@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/composer-final/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="71" result="Failed" start-time="2026-09-28T03:03:11.7384510Z" end-time="2026-09-28T03:03:12.2964900Z" duration="0.558005" total="6" passed="3" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="31" random-seed="1443213171">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/composer-final/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "method =~ RoadPacketRetainsOther|method =~ CurrentWaterSourceCell" --result=/tmp/coo-questfree-implementation/composer-final/final-probes-red.xml]]></command-line>
+  <filter>
+    <or>
+      <method re="1">RoadPacketRetainsOther</method>
+      <method re="1">CurrentWaterSourceCell</method>
+    </or>
+  </filter>
+  <test-suite type="Assembly" id="1088" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/composer-final/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-09-28T03:03:11.7384510Z" end-time="2026-09-28T03:03:12.2964900Z" duration="0.558005" total="6" passed="3" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="31">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="33300" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1089" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-09-28T03:03:11.7401400Z" end-time="2026-09-28T03:03:12.2964840Z" duration="0.556320" total="6" passed="3" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="31">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1090" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-09-28T03:03:11.7402670Z" end-time="2026-09-28T03:03:12.2964450Z" duration="0.556156" total="6" passed="3" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="31">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationFinalizationTests" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-09-28T03:03:11.7406150Z" end-time="2026-09-28T03:03:12.2964390Z" duration="0.555801" total="6" passed="3" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="31">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1017" name="CurrentWaterSourceCellCannotAcquireAForeignBlocker" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T03:03:11.7415420Z" end-time="2026-09-28T03:03:12.0433770Z" duration="0.301822" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1013" name="CurrentWaterSourceCellCannotAcquireAForeignBlocker(False,False)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(False,False)" methodname="CurrentWaterSourceCellCannotAcquireAForeignBlocker" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="2012607705" result="Passed" start-time="2026-09-28T03:03:11.7416260Z" end-time="2026-09-28T03:03:11.8895890Z" duration="0.147985" asserts="6" />
+            <test-case id="1014" name="CurrentWaterSourceCellCannotAcquireAForeignBlocker(False,True)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(False,True)" methodname="CurrentWaterSourceCellCannotAcquireAForeignBlocker" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1010011503" result="Failed" start-time="2026-09-28T03:03:11.8902040Z" end-time="2026-09-28T03:03:11.9490750Z" duration="0.058868" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.11.13.0) [2155 entities]>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(Boolean reuse, Boolean overlap) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 101
+   at InvokeStub_SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.11.13.0) [2155 entities]>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(Boolean reuse, Boolean overlap) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 101
+   at InvokeStub_SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1015" name="CurrentWaterSourceCellCannotAcquireAForeignBlocker(True,False)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(True,False)" methodname="CurrentWaterSourceCellCannotAcquireAForeignBlocker" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1697534602" result="Passed" start-time="2026-09-28T03:03:11.9491530Z" end-time="2026-09-28T03:03:11.9974110Z" duration="0.048257" asserts="7" />
+            <test-case id="1016" name="CurrentWaterSourceCellCannotAcquireAForeignBlocker(True,True)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(True,True)" methodname="CurrentWaterSourceCellCannotAcquireAForeignBlocker" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="731879691" result="Failed" start-time="2026-09-28T03:03:11.9974400Z" end-time="2026-09-28T03:03:12.0428840Z" duration="0.045442" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.11.13.0) [2155 entities]>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(Boolean reuse, Boolean overlap) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 101
+   at InvokeStub_SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.11.13.0) [2155 entities]>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(Boolean reuse, Boolean overlap) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 101
+   at InvokeStub_SpreadExplorationFinalizationTests.CurrentWaterSourceCellCannotAcquireAForeignBlocker(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1012" name="RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T03:03:12.0435460Z" end-time="2026-09-28T03:03:12.2963750Z" duration="0.252818" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="7">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1010" name="RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions(False)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions(False)" methodname="RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="163050030" result="Passed" start-time="2026-09-28T03:03:12.0435590Z" end-time="2026-09-28T03:03:12.1703390Z" duration="0.126774" asserts="3" />
+            <test-case id="1011" name="RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions(True)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions(True)" methodname="RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1165474592" result="Failed" start-time="2026-09-28T03:03:12.1703670Z" end-time="2026-09-28T03:03:12.2963380Z" duration="0.125966" asserts="4">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.12.8.0) [2093 entities]>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions(Boolean move) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 85
+   at InvokeStub_SpreadExplorationFinalizationTests.RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.12.8.0) [2093 entities]>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions(Boolean move) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 85
+   at InvokeStub_SpreadExplorationFinalizationTests.RoadPacketRetainsOtherClaimedSourceOwnersAtTheirOriginalPositions(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

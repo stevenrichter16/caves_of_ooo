@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/legacy-fixtures/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="57" result="Failed" start-time="2026-09-28T03:20:13.2150130Z" end-time="2026-09-28T03:20:14.2832940Z" duration="1.068253" total="24" passed="20" failed="4" inconclusive="0" skipped="0" warnings="0" asserts="14231" random-seed="126449548">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/legacy-fixtures/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "class =~ FreshGameStartTests|class =~ SpreadWildernessPipelineCensusTests" --result=/tmp/coo-questfree-implementation/legacy-fixtures/before.xml]]></command-line>
+  <filter>
+    <or>
+      <class re="1">FreshGameStartTests</class>
+      <class re="1">SpreadWildernessPipelineCensusTests</class>
+    </or>
+  </filter>
+  <test-suite type="Assembly" id="1071" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/legacy-fixtures/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="57" result="Failed" site="Child" start-time="2026-09-28T03:20:13.2150130Z" end-time="2026-09-28T03:20:14.2832940Z" duration="1.068253" total="24" passed="20" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="14231">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="38230" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1072" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="57" result="Failed" site="Child" start-time="2026-09-28T03:20:13.2169000Z" end-time="2026-09-28T03:20:14.2832920Z" duration="1.066375" total="24" passed="20" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="14231">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1073" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="57" result="Failed" site="Child" start-time="2026-09-28T03:20:13.2170380Z" end-time="2026-09-28T03:20:14.2832900Z" duration="1.066234" total="24" passed="20" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="14231">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1041" name="FreshGameStartTests" fullname="CavesOfOoo.Tests.FreshGameStartTests" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-09-28T03:20:13.2175640Z" end-time="2026-09-28T03:20:14.0294090Z" duration="0.811832" total="21" passed="20" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="14219">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1061" name="ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats" fullname="CavesOfOoo.Tests.FreshGameStartTests.ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-28T03:20:13.2185030Z" end-time="2026-09-28T03:20:13.5506960Z" duration="0.332188" total="5" passed="5" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="13445">
+            <test-case id="1056" name="ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats(1)" fullname="CavesOfOoo.Tests.FreshGameStartTests.ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats(1)" methodname="ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="1666148914" result="Passed" start-time="2026-09-28T03:20:13.2185990Z" end-time="2026-09-28T03:20:13.3706600Z" duration="0.152086" asserts="2702" />
+            <test-case id="1057" name="ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats(64)" fullname="CavesOfOoo.Tests.FreshGameStartTests.ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats(64)" methodname="ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="2141814645" result="Passed" start-time="2026-09-28T03:20:13.3713080Z" end-time="2026-09-28T03:20:13.4140420Z" duration="0.042734" asserts="2690" />
+            <test-case id="1058" name="ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats(1729)" fullname="CavesOfOoo.Tests.FreshGameStartTests.ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats(1729)" methodname="ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="1232222353" result="Passed" start-time="2026-09-28T03:20:13.4140920Z" end-time="2026-09-28T03:20:13.4589540Z" duration="0.044861" asserts="2710" />
+            <test-case id="1059" name="ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats(2026)" fullname="CavesOfOoo.Tests.FreshGameStartTests.ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats(2026)" methodname="ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="331588395" result="Passed" start-time="2026-09-28T03:20:13.4589890Z" end-time="2026-09-28T03:20:13.5007130Z" duration="0.041724" asserts="2669" />
+            <test-case id="1060" name="ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats(729490642)" fullname="CavesOfOoo.Tests.FreshGameStartTests.ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats(729490642)" methodname="ActualGeneratedDefaultHasSafeConnectedPlacementWithoutChangingOwnersOrStats" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="1844771997" result="Passed" start-time="2026-09-28T03:20:13.5007370Z" end-time="2026-09-28T03:20:13.5502780Z" duration="0.049541" asserts="2674" />
+          </test-suite>
+          <test-case id="1054" name="AlreadyPlacedSavedActorCannotBeRepositionedByDefaultPolicy" fullname="CavesOfOoo.Tests.FreshGameStartTests.AlreadyPlacedSavedActorCannotBeRepositionedByDefaultPolicy" methodname="AlreadyPlacedSavedActorCannotBeRepositionedByDefaultPolicy" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="1787099391" result="Passed" start-time="2026-09-28T03:20:13.5509050Z" end-time="2026-09-28T03:20:13.5730080Z" duration="0.022102" asserts="5" />
+          <test-suite type="ParameterizedMethod" id="1064" name="CachedAliasCannotPlaceDefaultActorInAForeignZone" fullname="CavesOfOoo.Tests.FreshGameStartTests.CachedAliasCannotPlaceDefaultActorInAForeignZone" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T03:20:13.5730290Z" end-time="2026-09-28T03:20:13.6220700Z" duration="0.049041" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="7">
+            <test-case id="1062" name="CachedAliasCannotPlaceDefaultActorInAForeignZone(True)" fullname="CavesOfOoo.Tests.FreshGameStartTests.CachedAliasCannotPlaceDefaultActorInAForeignZone(True)" methodname="CachedAliasCannotPlaceDefaultActorInAForeignZone" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="1227852573" result="Passed" start-time="2026-09-28T03:20:13.5730420Z" end-time="2026-09-28T03:20:13.5968730Z" duration="0.023831" asserts="4" />
+            <test-case id="1063" name="CachedAliasCannotPlaceDefaultActorInAForeignZone(False)" fullname="CavesOfOoo.Tests.FreshGameStartTests.CachedAliasCannotPlaceDefaultActorInAForeignZone(False)" methodname="CachedAliasCannotPlaceDefaultActorInAForeignZone" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="1645511686" result="Passed" start-time="2026-09-28T03:20:13.5968990Z" end-time="2026-09-28T03:20:13.6220050Z" duration="0.025106" asserts="3" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1047" name="DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed" fullname="CavesOfOoo.Tests.FreshGameStartTests.DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-28T03:20:13.6220910Z" end-time="2026-09-28T03:20:13.7490130Z" duration="0.126920" total="5" passed="5" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="719">
+            <test-case id="1042" name="DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed(1)" fullname="CavesOfOoo.Tests.FreshGameStartTests.DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed(1)" methodname="DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="1940191559" result="Passed" start-time="2026-09-28T03:20:13.6221130Z" end-time="2026-09-28T03:20:13.6483270Z" duration="0.026213" asserts="144" />
+            <test-case id="1043" name="DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed(64)" fullname="CavesOfOoo.Tests.FreshGameStartTests.DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed(64)" methodname="DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="1701271386" result="Passed" start-time="2026-09-28T03:20:13.6483720Z" end-time="2026-09-28T03:20:13.6712410Z" duration="0.022869" asserts="144" />
+            <test-case id="1044" name="DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed(1729)" fullname="CavesOfOoo.Tests.FreshGameStartTests.DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed(1729)" methodname="DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="1315641859" result="Passed" start-time="2026-09-28T03:20:13.6713550Z" end-time="2026-09-28T03:20:13.7005040Z" duration="0.029149" asserts="143" />
+            <test-case id="1045" name="DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed(2026)" fullname="CavesOfOoo.Tests.FreshGameStartTests.DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed(2026)" methodname="DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="1834137046" result="Passed" start-time="2026-09-28T03:20:13.7005310Z" end-time="2026-09-28T03:20:13.7220390Z" duration="0.021508" asserts="144" />
+            <test-case id="1046" name="DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed(729490642)" fullname="CavesOfOoo.Tests.FreshGameStartTests.DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed(729490642)" methodname="DefaultGladeIsCurrentActualSpreadWithoutFixedWorldSeed" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="2135772558" result="Passed" start-time="2026-09-28T03:20:13.7220790Z" end-time="2026-09-28T03:20:13.7489780Z" duration="0.026898" asserts="144" />
+          </test-suite>
+          <test-case id="1052" name="ExplicitScenarioAddressKeepsItsBiomeAndDoesNotGainFallback" fullname="CavesOfOoo.Tests.FreshGameStartTests.ExplicitScenarioAddressKeepsItsBiomeAndDoesNotGainFallback" methodname="ExplicitScenarioAddressKeepsItsBiomeAndDoesNotGainFallback" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="696303257" result="Passed" start-time="2026-09-28T03:20:13.7490530Z" end-time="2026-09-28T03:20:13.7715310Z" duration="0.022479" asserts="6" />
+          <test-case id="1055" name="FailedFirstGenerationIsNeverCachedOrAcceptedAsAnEmptyZone" fullname="CavesOfOoo.Tests.FreshGameStartTests.FailedFirstGenerationIsNeverCachedOrAcceptedAsAnEmptyZone" methodname="FailedFirstGenerationIsNeverCachedOrAcceptedAsAnEmptyZone" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="531322870" result="Failed" start-time="2026-09-28T03:20:13.7715650Z" end-time="2026-09-28T03:20:13.8108870Z" duration="0.039321" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FreshGameStartTests.FailedFirstGenerationIsNeverCachedOrAcceptedAsAnEmptyZone() in /tmp/coo-questfree-implementation/legacy-fixtures/FreshGameStartTests.cs:line 35
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FreshGameStartTests.FailedFirstGenerationIsNeverCachedOrAcceptedAsAnEmptyZone() in /tmp/coo-questfree-implementation/legacy-fixtures/FreshGameStartTests.cs:line 35
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1048" name="ForeignBiomeAtGladeAddressFallsBackDeterministicallyToActualSpread" fullname="CavesOfOoo.Tests.FreshGameStartTests.ForeignBiomeAtGladeAddressFallsBackDeterministicallyToActualSpread" methodname="ForeignBiomeAtGladeAddressFallsBackDeterministicallyToActualSpread" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="339004943" result="Passed" start-time="2026-09-28T03:20:13.8109640Z" end-time="2026-09-28T03:20:13.8373120Z" duration="0.026348" asserts="6" />
+          <test-case id="1051" name="MissingSpreadFailsWithoutGeneratingForeignTerrain" fullname="CavesOfOoo.Tests.FreshGameStartTests.MissingSpreadFailsWithoutGeneratingForeignTerrain" methodname="MissingSpreadFailsWithoutGeneratingForeignTerrain" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="2003040209" result="Passed" start-time="2026-09-28T03:20:13.8373390Z" end-time="2026-09-28T03:20:13.8706460Z" duration="0.033307" asserts="6" />
+          <test-case id="1053" name="UnsafeExplicitScenarioFailsRatherThanRelocatingToDefaultSpread" fullname="CavesOfOoo.Tests.FreshGameStartTests.UnsafeExplicitScenarioFailsRatherThanRelocatingToDefaultSpread" methodname="UnsafeExplicitScenarioFailsRatherThanRelocatingToDefaultSpread" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="2113918462" result="Passed" start-time="2026-09-28T03:20:13.8706740Z" end-time="2026-09-28T03:20:13.9014820Z" duration="0.030808" asserts="4" />
+          <test-case id="1050" name="UnsafeFirstZoneIsPreservedWhileSafeSecondSpreadZoneIsChosen" fullname="CavesOfOoo.Tests.FreshGameStartTests.UnsafeFirstZoneIsPreservedWhileSafeSecondSpreadZoneIsChosen" methodname="UnsafeFirstZoneIsPreservedWhileSafeSecondSpreadZoneIsChosen" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="984730500" result="Passed" start-time="2026-09-28T03:20:13.9015130Z" end-time="2026-09-28T03:20:13.9372530Z" duration="0.035740" asserts="5" />
+          <test-case id="1049" name="UnsupportedGladeContentCanUseNormalSpreadWithoutInventingOwners" fullname="CavesOfOoo.Tests.FreshGameStartTests.UnsupportedGladeContentCanUseNormalSpreadWithoutInventingOwners" methodname="UnsupportedGladeContentCanUseNormalSpreadWithoutInventingOwners" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="2020171773" result="Passed" start-time="2026-09-28T03:20:13.9372840Z" end-time="2026-09-28T03:20:13.9683900Z" duration="0.031106" asserts="7" />
+          <test-case id="1065" name="UnsupportedReferenceContentMayStillUseItsOrdinarySpreadFallbackAsLastValidCell" fullname="CavesOfOoo.Tests.FreshGameStartTests.UnsupportedReferenceContentMayStillUseItsOrdinarySpreadFallbackAsLastValidCell" methodname="UnsupportedReferenceContentMayStillUseItsOrdinarySpreadFallbackAsLastValidCell" classname="CavesOfOoo.Tests.FreshGameStartTests" runstate="Runnable" seed="660177151" result="Passed" start-time="2026-09-28T03:20:13.9684190Z" end-time="2026-09-28T03:20:14.0293460Z" duration="0.060926" asserts="7" />
+        </test-suite>
+        <test-suite type="TestFixture" id="1066" name="SpreadWildernessPipelineCensusTests" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests" classname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T03:20:14.0297340Z" end-time="2026-09-28T03:20:14.2832870Z" duration="0.253549" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="12">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1070" name="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates" classname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T03:20:14.0298130Z" end-time="2026-09-28T03:20:14.2832600Z" duration="0.253443" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1067" name="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(1)" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(1)" methodname="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates" classname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests" runstate="Runnable" seed="298571113" result="Failed" start-time="2026-09-28T03:20:14.0298370Z" end-time="2026-09-28T03:20:14.1270670Z" duration="0.097230" asserts="4">
+              <failure>
+                <message><![CDATA[  Overworld.9.0.0 missing actual pipeline integration
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(Int32 seed) in /tmp/coo-questfree-implementation/legacy-fixtures/SpreadWildernessPipelineCensusTests.cs:line 50
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.9.0.0 missing actual pipeline integration
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(Int32 seed) in /tmp/coo-questfree-implementation/legacy-fixtures/SpreadWildernessPipelineCensusTests.cs:line 50
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1068" name="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(64)" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(64)" methodname="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates" classname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests" runstate="Runnable" seed="1135709920" result="Failed" start-time="2026-09-28T03:20:14.1271000Z" end-time="2026-09-28T03:20:14.1933560Z" duration="0.066256" asserts="4">
+              <failure>
+                <message><![CDATA[  Overworld.11.1.0 missing actual pipeline integration
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(Int32 seed) in /tmp/coo-questfree-implementation/legacy-fixtures/SpreadWildernessPipelineCensusTests.cs:line 50
+   at InvokeStub_SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.11.1.0 missing actual pipeline integration
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(Int32 seed) in /tmp/coo-questfree-implementation/legacy-fixtures/SpreadWildernessPipelineCensusTests.cs:line 50
+   at InvokeStub_SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1069" name="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(1729)" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(1729)" methodname="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates" classname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests" runstate="Runnable" seed="218444092" result="Failed" start-time="2026-09-28T03:20:14.1933790Z" end-time="2026-09-28T03:20:14.2832110Z" duration="0.089831" asserts="4">
+              <failure>
+                <message><![CDATA[  Overworld.7.2.0 missing actual pipeline integration
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(Int32 seed) in /tmp/coo-questfree-implementation/legacy-fixtures/SpreadWildernessPipelineCensusTests.cs:line 50
+   at InvokeStub_SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.7.2.0 missing actual pipeline integration
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(Int32 seed) in /tmp/coo-questfree-implementation/legacy-fixtures/SpreadWildernessPipelineCensusTests.cs:line 50
+   at InvokeStub_SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="9" result="Failed" start-time="2026-09-28T02:38:05.7641930Z" end-time="2026-09-28T02:38:06.0024210Z" duration="0.238217" total="9" passed="7" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="50" random-seed="882189928">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/e2/final-brain-red.xml --where "class =~ /SpreadExplorationReceiptTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationReceiptTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1013" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T02:38:05.7641930Z" end-time="2026-09-28T02:38:06.0024210Z" duration="0.238217" total="9" passed="7" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="50">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/e2/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/e2/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="26935" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1014" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T02:38:05.7658470Z" end-time="2026-09-28T02:38:06.0024190Z" duration="0.236570" total="9" passed="7" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="50">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1015" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T02:38:05.7659830Z" end-time="2026-09-28T02:38:06.0024090Z" duration="0.236424" total="9" passed="7" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="50">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationReceiptTests" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T02:38:05.7663360Z" end-time="2026-09-28T02:38:06.0023910Z" duration="0.236053" total="9" passed="7" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="50">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1007" name="DisabledReceiptsDoNotAcquireSources" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.DisabledReceiptsDoNotAcquireSources" methodname="DisabledReceiptsDoNotAcquireSources" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="2092244089" result="Passed" start-time="2026-09-28T02:38:05.7672420Z" end-time="2026-09-28T02:38:05.8428270Z" duration="0.075610" asserts="5" />
+          <test-suite type="ParameterizedMethod" id="1012" name="FinalPacketProofPinsCurrentBrainCollections" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.FinalPacketProofPinsCurrentBrainCollections" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:38:05.8435280Z" end-time="2026-09-28T02:38:05.8978820Z" duration="0.054354" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1010" name="FinalPacketProofPinsCurrentBrainCollections(False)" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.FinalPacketProofPinsCurrentBrainCollections(False)" methodname="FinalPacketProofPinsCurrentBrainCollections" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="945336755" result="Failed" start-time="2026-09-28T02:38:05.8436010Z" end-time="2026-09-28T02:38:05.8784940Z" duration="0.034893" asserts="3">
+              <failure>
+                <message><![CDATA[  In-place behavioral collections cannot evade final source identity checks.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.FinalPacketProofPinsCurrentBrainCollections(Boolean goals) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 56
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  In-place behavioral collections cannot evade final source identity checks.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.FinalPacketProofPinsCurrentBrainCollections(Boolean goals) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 56
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="FinalPacketProofPinsCurrentBrainCollections(True)" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.FinalPacketProofPinsCurrentBrainCollections(True)" methodname="FinalPacketProofPinsCurrentBrainCollections" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="1429527437" result="Failed" start-time="2026-09-28T02:38:05.8785720Z" end-time="2026-09-28T02:38:05.8975040Z" duration="0.018932" asserts="3">
+              <failure>
+                <message><![CDATA[  In-place behavioral collections cannot evade final source identity checks.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.FinalPacketProofPinsCurrentBrainCollections(Boolean goals) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 56
+   at InvokeStub_SpreadExplorationReceiptTests.FinalPacketProofPinsCurrentBrainCollections(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  In-place behavioral collections cannot evade final source identity checks.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.FinalPacketProofPinsCurrentBrainCollections(Boolean goals) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 56
+   at InvokeStub_SpreadExplorationReceiptTests.FinalPacketProofPinsCurrentBrainCollections(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1009" name="FinalPacketProofRejectsOwnerReplacementAndAcceptsQuietEmptyPacket" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.FinalPacketProofRejectsOwnerReplacementAndAcceptsQuietEmptyPacket" methodname="FinalPacketProofRejectsOwnerReplacementAndAcceptsQuietEmptyPacket" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="1610830857" result="Passed" start-time="2026-09-28T02:38:05.8980770Z" end-time="2026-09-28T02:38:05.9153120Z" duration="0.017235" asserts="4" />
+          <test-case id="1008" name="FinalPacketProofSeesLaterStockAndPartChanges" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.FinalPacketProofSeesLaterStockAndPartChanges" methodname="FinalPacketProofSeesLaterStockAndPartChanges" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="730349284" result="Passed" start-time="2026-09-28T02:38:05.9153430Z" end-time="2026-09-28T02:38:05.9312610Z" duration="0.015918" asserts="3" />
+          <test-suite type="ParameterizedMethod" id="1003" name="ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:38:05.9312890Z" end-time="2026-09-28T02:38:05.9692300Z" duration="0.037941" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="22">
+            <test-case id="1001" name="ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(&quot;LooseSourceReceipt&quot;,&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(&quot;LooseSourceReceipt&quot;,&quot;Hatchet&quot;)" methodname="ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="255399086" result="Passed" start-time="2026-09-28T02:38:05.9313130Z" end-time="2026-09-28T02:38:05.9510500Z" duration="0.019737" asserts="11" />
+            <test-case id="1002" name="ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(&quot;AmbientSourceReceipt&quot;,&quot;Magpie&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(&quot;AmbientSourceReceipt&quot;,&quot;Magpie&quot;)" methodname="ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="1417428081" result="Passed" start-time="2026-09-28T02:38:05.9510700Z" end-time="2026-09-28T02:38:05.9692000Z" duration="0.018130" asserts="11" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1006" name="ReusedBuilderCannotAuthorizeOwnersFromEarlierZone" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReusedBuilderCannotAuthorizeOwnersFromEarlierZone" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:38:05.9692400Z" end-time="2026-09-28T02:38:06.0023470Z" duration="0.033107" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="10">
+            <test-case id="1004" name="ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(&quot;LooseSourceReceipt&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(&quot;LooseSourceReceipt&quot;)" methodname="ReusedBuilderCannotAuthorizeOwnersFromEarlierZone" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="89134379" result="Passed" start-time="2026-09-28T02:38:05.9692530Z" end-time="2026-09-28T02:38:05.9869680Z" duration="0.017716" asserts="5" />
+            <test-case id="1005" name="ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(&quot;AmbientSourceReceipt&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(&quot;AmbientSourceReceipt&quot;)" methodname="ReusedBuilderCannotAuthorizeOwnersFromEarlierZone" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="1705640426" result="Passed" start-time="2026-09-28T02:38:05.9870000Z" end-time="2026-09-28T02:38:06.0023180Z" duration="0.015319" asserts="5" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

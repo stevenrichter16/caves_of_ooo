@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="23" result="Failed" start-time="2026-09-28T01:54:02.0599660Z" end-time="2026-09-28T01:54:02.1159390Z" duration="0.055960" total="23" passed="2" failed="21" inconclusive="0" skipped="0" warnings="0" asserts="140" random-seed="292124279">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/red.xml --where "class =~ /SpreadExplorationActorTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationActorTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1024" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-09-28T01:54:02.0599660Z" end-time="2026-09-28T01:54:02.1159390Z" duration="0.055960" total="23" passed="2" failed="21" warnings="0" inconclusive="0" skipped="0" asserts="140">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="16088" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1025" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-09-28T01:54:02.0615050Z" end-time="2026-09-28T01:54:02.1159360Z" duration="0.054430" total="23" passed="2" failed="21" warnings="0" inconclusive="0" skipped="0" asserts="140">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1026" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-09-28T01:54:02.0616060Z" end-time="2026-09-28T01:54:02.1159230Z" duration="0.054317" total="23" passed="2" failed="21" warnings="0" inconclusive="0" skipped="0" asserts="140">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationActorTests" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-09-28T01:54:02.0619610Z" end-time="2026-09-28T01:54:02.1158240Z" duration="0.053863" total="23" passed="2" failed="21" warnings="0" inconclusive="0" skipped="0" asserts="140">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1023" name="ActionVetoLeavesForageAndActorUntouched" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.ActionVetoLeavesForageAndActorUntouched" methodname="ActionVetoLeavesForageAndActorUntouched" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1240462204" result="Failed" start-time="2026-09-28T01:54:02.0628240Z" end-time="2026-09-28T01:54:02.0826520Z" duration="0.019857" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.ActionVetoLeavesForageAndActorUntouched() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 77
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.ActionVetoLeavesForageAndActorUntouched() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 77
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1006" name="GenuinePersonalEnemyOutsideTerritoryRemainsHostile" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.GenuinePersonalEnemyOutsideTerritoryRemainsHostile" methodname="GenuinePersonalEnemyOutsideTerritoryRemainsHostile" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1963310419" result="Failed" start-time="2026-09-28T01:54:02.0834210Z" end-time="2026-09-28T01:54:02.0838730Z" duration="0.000453" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.GenuinePersonalEnemyOutsideTerritoryRemainsHostile() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 60
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.GenuinePersonalEnemyOutsideTerritoryRemainsHostile() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 60
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1018" name="GrazerCalmBlocksFlightAndFeeding" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.GrazerCalmBlocksFlightAndFeeding" methodname="GrazerCalmBlocksFlightAndFeeding" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1497329225" result="Failed" start-time="2026-09-28T01:54:02.0838920Z" end-time="2026-09-28T01:54:02.0841800Z" duration="0.000287" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.GrazerCalmBlocksFlightAndFeeding() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 72
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.GrazerCalmBlocksFlightAndFeeding() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 72
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1013" name="GrazerConsumesExactRowOnceAndCreatesNoFood" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.GrazerConsumesExactRowOnceAndCreatesNoFood" methodname="GrazerConsumesExactRowOnceAndCreatesNoFood" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1783073458" result="Failed" start-time="2026-09-28T01:54:02.0841890Z" end-time="2026-09-28T01:54:02.0845280Z" duration="0.000338" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.GrazerConsumesExactRowOnceAndCreatesNoFood() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 67
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.GrazerConsumesExactRowOnceAndCreatesNoFood() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 67
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1019" name="GrazerDoesNotInterruptCurrentWorkGoal" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.GrazerDoesNotInterruptCurrentWorkGoal" methodname="GrazerDoesNotInterruptCurrentWorkGoal" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="170537239" result="Failed" start-time="2026-09-28T01:54:02.0845420Z" end-time="2026-09-28T01:54:02.0848260Z" duration="0.000285" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.GrazerDoesNotInterruptCurrentWorkGoal() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 73
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.GrazerDoesNotInterruptCurrentWorkGoal() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 73
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1012" name="HealthyGrazerFleesClosePlayerBeforeEating" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.HealthyGrazerFleesClosePlayerBeforeEating" methodname="HealthyGrazerFleesClosePlayerBeforeEating" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1789138138" result="Failed" start-time="2026-09-28T01:54:02.0848420Z" end-time="2026-09-28T01:54:02.0851320Z" duration="0.000290" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.HealthyGrazerFleesClosePlayerBeforeEating() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 66
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.HealthyGrazerFleesClosePlayerBeforeEating() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 66
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1004" name="IncursionWarnsAndLeavesTwoCompleteActionsBeforeAttack" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.IncursionWarnsAndLeavesTwoCompleteActionsBeforeAttack" methodname="IncursionWarnsAndLeavesTwoCompleteActionsBeforeAttack" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1187036104" result="Failed" start-time="2026-09-28T01:54:02.0851680Z" end-time="2026-09-28T01:54:02.0854250Z" duration="0.000257" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.IncursionWarnsAndLeavesTwoCompleteActionsBeforeAttack() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 58
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.IncursionWarnsAndLeavesTwoCompleteActionsBeforeAttack() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 58
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1009" name="InvalidatedPostDoesNotTurnRoleIntoGlobalHostile" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.InvalidatedPostDoesNotTurnRoleIntoGlobalHostile" methodname="InvalidatedPostDoesNotTurnRoleIntoGlobalHostile" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1393452916" result="Failed" start-time="2026-09-28T01:54:02.0854380Z" end-time="2026-09-28T01:54:02.0856940Z" duration="0.000255" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.InvalidatedPostDoesNotTurnRoleIntoGlobalHostile() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 63
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.InvalidatedPostDoesNotTurnRoleIntoGlobalHostile() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 63
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1014" name="LastReservedRowConsumedPreventsFeeding" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.LastReservedRowConsumedPreventsFeeding" methodname="LastReservedRowConsumedPreventsFeeding" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1924750181" result="Failed" start-time="2026-09-28T01:54:02.0857030Z" end-time="2026-09-28T01:54:02.0871180Z" duration="0.001415" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.LastReservedRowConsumedPreventsFeeding() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 68
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.LastReservedRowConsumedPreventsFeeding() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 68
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1005" name="LeavingTerritoryReleasesOnlyItsOwnPursuit" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.LeavingTerritoryReleasesOnlyItsOwnPursuit" methodname="LeavingTerritoryReleasesOnlyItsOwnPursuit" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1299223039" result="Failed" start-time="2026-09-28T01:54:02.0871290Z" end-time="2026-09-28T01:54:02.0874300Z" duration="0.000301" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.LeavingTerritoryReleasesOnlyItsOwnPursuit() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 59
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.LeavingTerritoryReleasesOnlyItsOwnPursuit() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 59
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1016" name="MovedFoodIsNotPursuedAsTheAllocatedSource" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.MovedFoodIsNotPursuedAsTheAllocatedSource" methodname="MovedFoodIsNotPursuedAsTheAllocatedSource" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1818998082" result="Failed" start-time="2026-09-28T01:54:02.0874390Z" end-time="2026-09-28T01:54:02.0876790Z" duration="0.000240" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.MovedFoodIsNotPursuedAsTheAllocatedSource() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 70
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.MovedFoodIsNotPursuedAsTheAllocatedSource() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 70
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1010" name="MovedPostDoesNotMoveTerritory" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.MovedPostDoesNotMoveTerritory" methodname="MovedPostDoesNotMoveTerritory" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="779832258" result="Failed" start-time="2026-09-28T01:54:02.0876900Z" end-time="2026-09-28T01:54:02.0878990Z" duration="0.000209" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.MovedPostDoesNotMoveTerritory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 64
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.MovedPostDoesNotMoveTerritory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 64
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1002" name="OrdinaryCalmStillBlocksAttacks" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.OrdinaryCalmStillBlocksAttacks" methodname="OrdinaryCalmStillBlocksAttacks" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1502184456" result="Passed" start-time="2026-09-28T01:54:02.0879040Z" end-time="2026-09-28T01:54:02.0921890Z" duration="0.004285" asserts="7" />
+          <test-case id="1001" name="OrdinaryHostileWithoutRoleStillAttacks" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.OrdinaryHostileWithoutRoleStillAttacks" methodname="OrdinaryHostileWithoutRoleStillAttacks" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="680476118" result="Passed" start-time="2026-09-28T01:54:02.0922090Z" end-time="2026-09-28T01:54:02.1132400Z" duration="0.021031" asserts="7" />
+          <test-case id="1003" name="OutsideTerritorySuppressesGenericRaiderChase" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.OutsideTerritorySuppressesGenericRaiderChase" methodname="OutsideTerritorySuppressesGenericRaiderChase" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1843236197" result="Failed" start-time="2026-09-28T01:54:02.1132570Z" end-time="2026-09-28T01:54:02.1135830Z" duration="0.000326" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.OutsideTerritorySuppressesGenericRaiderChase() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 57
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.OutsideTerritorySuppressesGenericRaiderChase() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 57
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1022" name="PaidSchedulerFeedingEndsExactlyOneActorAction" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.PaidSchedulerFeedingEndsExactlyOneActorAction" methodname="PaidSchedulerFeedingEndsExactlyOneActorAction" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1248412799" result="Failed" start-time="2026-09-28T01:54:02.1135920Z" end-time="2026-09-28T01:54:02.1138180Z" duration="0.000226" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.PaidSchedulerFeedingEndsExactlyOneActorAction() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 76
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.PaidSchedulerFeedingEndsExactlyOneActorAction() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 76
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1020" name="RecruitedGrazerDoesNotConsumeWhileFollowing" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.RecruitedGrazerDoesNotConsumeWhileFollowing" methodname="RecruitedGrazerDoesNotConsumeWhileFollowing" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="2079633906" result="Failed" start-time="2026-09-28T01:54:02.1138340Z" end-time="2026-09-28T01:54:02.1140830Z" duration="0.000248" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.RecruitedGrazerDoesNotConsumeWhileFollowing() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 74
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.RecruitedGrazerDoesNotConsumeWhileFollowing() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 74
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1007" name="ReentryRequiresFreshWarning" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.ReentryRequiresFreshWarning" methodname="ReentryRequiresFreshWarning" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="340224843" result="Failed" start-time="2026-09-28T01:54:02.1140990Z" end-time="2026-09-28T01:54:02.1143520Z" duration="0.000253" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.ReentryRequiresFreshWarning() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 61
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.ReentryRequiresFreshWarning() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 61
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1015" name="RemovedReservedRowPreventsFeeding" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.RemovedReservedRowPreventsFeeding" methodname="RemovedReservedRowPreventsFeeding" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="39402747" result="Failed" start-time="2026-09-28T01:54:02.1143570Z" end-time="2026-09-28T01:54:02.1145460Z" duration="0.000189" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.RemovedReservedRowPreventsFeeding() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 69
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.RemovedReservedRowPreventsFeeding() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 69
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1017" name="SameRowCannotBeBothFoodAndReserve" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.SameRowCannotBeBothFoodAndReserve" methodname="SameRowCannotBeBothFoodAndReserve" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="745319400" result="Failed" start-time="2026-09-28T01:54:02.1145720Z" end-time="2026-09-28T01:54:02.1147480Z" duration="0.000176" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.SameRowCannotBeBothFoodAndReserve() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 71
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.SameRowCannotBeBothFoodAndReserve() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 71
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1021" name="SavedFedAllowanceDoesNotRearmOnAnotherRipeRow" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.SavedFedAllowanceDoesNotRearmOnAnotherRipeRow" methodname="SavedFedAllowanceDoesNotRearmOnAnotherRipeRow" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1833659932" result="Failed" start-time="2026-09-28T01:54:02.1147530Z" end-time="2026-09-28T01:54:02.1149400Z" duration="0.000187" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.SavedFedAllowanceDoesNotRearmOnAnotherRipeRow() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 75
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadGrazerPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Grazer() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.SavedFedAllowanceDoesNotRearmOnAnotherRipeRow() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 75
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1008" name="TerritoryCalmHasPriorityAndDoesNotSpendGrace" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.TerritoryCalmHasPriorityAndDoesNotSpendGrace" methodname="TerritoryCalmHasPriorityAndDoesNotSpendGrace" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1802053163" result="Failed" start-time="2026-09-28T01:54:02.1149590Z" end-time="2026-09-28T01:54:02.1151790Z" duration="0.000219" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.TerritoryCalmHasPriorityAndDoesNotSpendGrace() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 62
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.TerritoryCalmHasPriorityAndDoesNotSpendGrace() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 62
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1011" name="TerritoryWarningAndExactPostSurviveGraphLoad" fullname="CavesOfOoo.Tests.SpreadExplorationActorTests.TerritoryWarningAndExactPostSurviveGraphLoad" methodname="TerritoryWarningAndExactPostSurviveGraphLoad" classname="CavesOfOoo.Tests.SpreadExplorationActorTests" runstate="Runnable" seed="1698643148" result="Failed" start-time="2026-09-28T01:54:02.1151940Z" end-time="2026-09-28T01:54:02.1154790Z" duration="0.000285" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.TerritoryWarningAndExactPostSurviveGraphLoad() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 65
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing actor role API SpreadTerritoryPart
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Add(String name) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 41
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.Fixture.Territory() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 44
+   at CavesOfOoo.Tests.SpreadExplorationActorTests.TerritoryWarningAndExactPostSurviveGraphLoad() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorTests.cs:line 65
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

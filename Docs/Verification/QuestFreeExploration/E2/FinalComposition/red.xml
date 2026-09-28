@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/composer-final/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="58" result="Failed" start-time="2026-09-28T02:49:25.7514320Z" end-time="2026-09-28T02:49:26.8483770Z" duration="1.096903" total="12" passed="4" failed="8" inconclusive="0" skipped="0" warnings="0" asserts="61" random-seed="1384971501">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/composer-final/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "class =~ SpreadExplorationFinalizationTests" --result=/tmp/coo-questfree-implementation/composer-final/red.xml]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationFinalizationTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1071" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/composer-final/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-09-28T02:49:25.7514320Z" end-time="2026-09-28T02:49:26.8483770Z" duration="1.096903" total="12" passed="4" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="61">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="29985" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1072" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-09-28T02:49:25.7531770Z" end-time="2026-09-28T02:49:26.8483750Z" duration="1.095191" total="12" passed="4" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="61">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1073" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-09-28T02:49:25.7533050Z" end-time="2026-09-28T02:49:26.8483680Z" duration="1.095057" total="12" passed="4" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="61">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationFinalizationTests" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T02:49:25.7536630Z" end-time="2026-09-28T02:49:26.8483530Z" duration="1.094683" total="12" passed="4" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="61">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1014" name="ExistingExhaustedBankSourceDoesNotCreateAReplacementRefill" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingExhaustedBankSourceDoesNotCreateAReplacementRefill" methodname="ExistingExhaustedBankSourceDoesNotCreateAReplacementRefill" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="244196601" result="Failed" start-time="2026-09-28T02:49:25.7545880Z" end-time="2026-09-28T02:49:25.9337510Z" duration="0.179204" asserts="5">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingExhaustedBankSourceDoesNotCreateAReplacementRefill() in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 100
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingExhaustedBankSourceDoesNotCreateAReplacementRefill() in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 100
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1013" name="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T02:49:25.9345360Z" end-time="2026-09-28T02:49:26.0715540Z" duration="0.137018" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1010" name="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(1)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(1)" methodname="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="766695320" result="Failed" start-time="2026-09-28T02:49:25.9346310Z" end-time="2026-09-28T02:49:25.9812340Z" duration="0.046603" asserts="4">
+              <failure>
+                <message><![CDATA[  Reusing a source must not add another draw owner.
+  Expected: 2154
+  But was:  2155
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(Int32 volume) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 88
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Reusing a source must not add another draw owner.
+  Expected: 2154
+  But was:  2155
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(Int32 volume) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 88
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(3)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(3)" methodname="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1879383060" result="Failed" start-time="2026-09-28T02:49:25.9812730Z" end-time="2026-09-28T02:49:26.0290850Z" duration="0.047811" asserts="4">
+              <failure>
+                <message><![CDATA[  Reusing a source must not add another draw owner.
+  Expected: 2154
+  But was:  2155
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(Int32 volume) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 88
+   at InvokeStub_SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Reusing a source must not add another draw owner.
+  Expected: 2154
+  But was:  2155
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(Int32 volume) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 88
+   at InvokeStub_SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1012" name="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(120)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(120)" methodname="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="244885926" result="Failed" start-time="2026-09-28T02:49:26.0291050Z" end-time="2026-09-28T02:49:26.0710430Z" duration="0.041938" asserts="4">
+              <failure>
+                <message><![CDATA[  Reusing a source must not add another draw owner.
+  Expected: 2154
+  But was:  2155
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(Int32 volume) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 88
+   at InvokeStub_SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Reusing a source must not add another draw owner.
+  Expected: 2154
+  But was:  2155
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(Int32 volume) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 88
+   at InvokeStub_SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1009" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-28T02:49:26.0718220Z" end-time="2026-09-28T02:49:26.8482480Z" duration="0.776421" total="8" passed="4" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="44">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(RoadSpill,False)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(RoadSpill,False)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1058170384" result="Passed" start-time="2026-09-28T02:49:26.0718770Z" end-time="2026-09-28T02:49:26.1323350Z" duration="0.060458" asserts="6" />
+            <test-case id="1002" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(RoadSpill,True)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(RoadSpill,True)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1539817869" result="Failed" start-time="2026-09-28T02:49:26.1324520Z" end-time="2026-09-28T02:49:26.1871450Z" duration="0.054692" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.11.12.0) [2085 entities]>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(SpreadExplorationFamily family, Boolean block) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 66
+   at InvokeStub_SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.11.12.0) [2085 entities]>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(SpreadExplorationFamily family, Boolean block) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 66
+   at InvokeStub_SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(OccupiedBank,False)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(OccupiedBank,False)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1107944630" result="Passed" start-time="2026-09-28T02:49:26.1871790Z" end-time="2026-09-28T02:49:26.2624640Z" duration="0.075284" asserts="6" />
+            <test-case id="1004" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(OccupiedBank,True)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(OccupiedBank,True)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="946720912" result="Failed" start-time="2026-09-28T02:49:26.2624890Z" end-time="2026-09-28T02:49:26.3331670Z" duration="0.070677" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.10.13.0) [2240 entities]>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(SpreadExplorationFamily family, Boolean block) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 66
+   at InvokeStub_SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.10.13.0) [2240 entities]>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(SpreadExplorationFamily family, Boolean block) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 66
+   at InvokeStub_SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(LastGleanings,False)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(LastGleanings,False)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1480789707" result="Passed" start-time="2026-09-28T02:49:26.3332470Z" end-time="2026-09-28T02:49:26.5504140Z" duration="0.217166" asserts="6" />
+            <test-case id="1006" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(LastGleanings,True)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(LastGleanings,True)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1270321161" result="Failed" start-time="2026-09-28T02:49:26.5504590Z" end-time="2026-09-28T02:49:26.7571420Z" duration="0.206683" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.9.6.0) [2267 entities]>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(SpreadExplorationFamily family, Boolean block) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 66
+   at InvokeStub_SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.9.6.0) [2267 entities]>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(SpreadExplorationFamily family, Boolean block) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 66
+   at InvokeStub_SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(WateringMargin,False)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(WateringMargin,False)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="491556431" result="Passed" start-time="2026-09-28T02:49:26.7571800Z" end-time="2026-09-28T02:49:26.8122690Z" duration="0.055089" asserts="6" />
+            <test-case id="1008" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(WateringMargin,True)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(WateringMargin,True)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="540511141" result="Failed" start-time="2026-09-28T02:49:26.8123060Z" end-time="2026-09-28T02:49:26.8481890Z" duration="0.035884" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.11.13.0) [2155 entities]>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(SpreadExplorationFamily family, Boolean block) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 66
+   at InvokeStub_SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <Zone(Overworld.11.13.0) [2155 entities]>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(SpreadExplorationFamily family, Boolean block) in /tmp/coo-questfree-implementation/composer-final/SpreadExplorationFinalizationTests.cs:line 66
+   at InvokeStub_SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

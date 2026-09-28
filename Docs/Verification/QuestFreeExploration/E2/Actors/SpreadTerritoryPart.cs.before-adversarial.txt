@@ -1,0 +1,136 @@
+using System;
+
+namespace CavesOfOoo.Core
+{
+    /// <summary>Local duty for an explicitly configured situation owner. Entry is
+    /// not personal hostility. All progress and source references use normal Part saves.</summary>
+    public sealed class SpreadTerritoryPart : Part
+    {
+        public override string Name => "SpreadTerritory";
+        public bool Configured;
+        public string ZoneID;
+        public Entity Post;
+        public int PostX, PostY, HomeX, HomeY, Left, Top, Right, Bottom;
+        public int GraceTurns = 2;
+        public Entity WarningTarget;
+        public int GraceRemaining;
+        public int ReturnAttempts;
+
+        public bool Configure(Zone zone, Entity post, int left, int top, int right, int bottom, int graceTurns = 2)
+        {
+            if (Configured || !SpreadActorContext.Actor(ParentEntity, zone, out var brain)
+                || ParentEntity.GetPart<SpreadTerritoryPart>() != this
+                || !SpreadActorContext.Ground(post, zone) || post.HasTag("Creature")
+                || left > right || top > bottom || !zone.InBounds(left, top) || !zone.InBounds(right, bottom)
+                || right - left > 12 || bottom - top > 12 || graceTurns < 1 || graceTurns > 6) return false;
+            var home = zone.GetEntityCell(ParentEntity); var marker = zone.GetEntityCell(post);
+            if (home.X < left || home.X > right || home.Y < top || home.Y > bottom
+                || marker.X < left || marker.X > right || marker.Y < top || marker.Y > bottom) return false;
+            Post = post; PostX = marker.X; PostY = marker.Y; HomeX = home.X; HomeY = home.Y;
+            ZoneID = zone.ZoneID; Left = left; Top = top; Right = right; Bottom = bottom;
+            GraceTurns = graceTurns; GraceRemaining = 0; WarningTarget = null; ReturnAttempts = 0;
+            Configured = true; return true;
+        }
+
+        internal bool TakeIdleAction(BrainPart brain, Zone zone)
+        {
+            if (!SpreadActorContext.Actor(ParentEntity, zone, out var actual) || actual != brain
+                || ParentEntity.GetPart<SpreadTerritoryPart>() != this) return true;
+            if (brain.PartyLeader != null) return false;
+            // A real personal enemy retains normal defense even if the duty source is gone.
+            var personal = SpreadActorContext.Nearest(ParentEntity, zone, Math.Min(brain.SightRadius, 20),
+                e => brain.IsPersonallyHostileTo(e) && FactionManager.IsHostile(ParentEntity, e));
+            if (personal != null)
+            {
+                ClearWarning(brain);
+                SpreadActorContext.Combat(brain, zone, personal);
+                return true;
+            }
+            if (!CurrentPost(zone)) { ClearWarning(brain); brain.CurrentState = AIState.Idle; return true; }
+            var target = SpreadActorContext.Nearest(ParentEntity, zone, Math.Min(brain.SightRadius, 20),
+                e => Inside(zone.GetEntityCell(e)) && FactionManager.IsHostile(ParentEntity, e));
+            if (target == null)
+            {
+                ClearWarning(brain); brain.CurrentState = AIState.Idle;
+                var at = zone.GetEntityCell(ParentEntity);
+                if ((at.X != HomeX || at.Y != HomeY) && ReturnAttempts < 24)
+                {
+                    ReturnAttempts++;
+                    AIHelpers.TryApproachWithPathfinding(ParentEntity, zone, at.X, at.Y, HomeX, HomeY);
+                }
+                return true;
+            }
+            ReturnAttempts = 0;
+            if (WarningTarget != target)
+            {
+                ClearWarning(brain); WarningTarget = target; GraceRemaining = GraceTurns;
+                brain.CurrentState = AIState.Idle;
+                if (target.HasTag("Player")) MessageLog.Add(ParentEntity.GetDisplayName() + " warns you to leave the marked ground.");
+                return true;
+            }
+            if (GraceRemaining > 0) { GraceRemaining--; brain.CurrentState = AIState.Idle; return true; }
+            SpreadActorContext.Combat(brain, zone, target);
+            return true;
+        }
+        bool Inside(Cell c) => c != null && c.X >= Left && c.X <= Right && c.Y >= Top && c.Y <= Bottom;
+        bool CurrentPost(Zone zone)
+        {
+            if (!Configured || ZoneID != zone.ZoneID || GraceTurns < 1 || GraceTurns > 6
+                || !SpreadActorContext.Ground(Post, zone) || Post.HasTag("Creature")) return false;
+            var cell = zone.GetEntityCell(Post);
+            return cell.X == PostX && cell.Y == PostY && Inside(cell);
+        }
+        void ClearWarning(BrainPart brain)
+        {
+            if (brain.Target == WarningTarget) brain.Target = null;
+            WarningTarget = null; GraceRemaining = 0;
+        }
+    }
+
+    internal static class SpreadActorContext
+    {
+        internal static bool Ground(Entity entity, Zone zone)
+        {
+            if (entity == null || zone == null || entity.SpatialZone != zone || zone.GetEntityCell(entity) == null) return false;
+            var physics = entity.GetPart<PhysicsPart>();
+            return physics != null && physics.ParentEntity == entity && physics.InInventory == null && physics.Equipped == null;
+        }
+        internal static bool Actor(Entity actor, Zone zone, out BrainPart brain)
+        {
+            brain = actor?.GetPart<BrainPart>();
+            return Ground(actor, zone) && actor.HasTag("Creature") && actor.GetStatValue("Hitpoints", 0) > 0
+                && brain != null && brain.ParentEntity == actor && !actor.HasPart<SpatialFootprintPart>();
+        }
+        internal static Entity Nearest(Entity self, Zone zone, int radius, Func<Entity, bool> predicate)
+        {
+            var at = zone.GetEntityCell(self); if (at == null || radius < 1) return null;
+            Entity best = null; int distance = int.MaxValue;
+            for (int y = Math.Max(0, at.Y - radius); y <= Math.Min(Zone.Height - 1, at.Y + radius); y++)
+                for (int x = Math.Max(0, at.X - radius); x <= Math.Min(Zone.Width - 1, at.X + radius); x++)
+                    foreach (var other in zone.GetCell(x, y).Objects)
+                    {
+                        if (other == self || !Actor(other, zone, out _) || !predicate(other)) continue;
+                        int d = AIHelpers.ChebyshevDistance(at.X, at.Y, x, y);
+                        if (d >= distance || !AIHelpers.HasLineOfSight(zone, at.X, at.Y, x, y)) continue;
+                        best = other; distance = d;
+                    }
+            return best;
+        }
+        internal static void Combat(BrainPart brain, Zone zone, Entity target)
+        {
+            var actor = brain.ParentEntity; var at = zone.GetEntityCell(actor); var enemy = zone.GetEntityCell(target);
+            if (at == null || enemy == null) return;
+            brain.Target = target;
+            int hp = actor.GetStatValue("Hitpoints"); int max = actor.GetStat("Hitpoints")?.Max ?? 0;
+            if (max > 0 && (float)hp / max < brain.FleeThreshold)
+            {
+                brain.CurrentState = AIState.Wander;
+                AIHelpers.TryStepAway(actor, zone, at.X, at.Y, enemy.X, enemy.Y);
+                return;
+            }
+            // Reuse the native tactic/melee/path executor without pushing a
+            // child: Brain's child-chain must not execute a second paid action.
+            new KillGoal(target) { ParentBrain = brain }.TakeAction();
+        }
+    }
+}

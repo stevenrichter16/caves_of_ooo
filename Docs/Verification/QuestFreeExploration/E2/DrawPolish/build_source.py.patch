@@ -1,0 +1,21 @@
+--- a/ArtSource/QuestFreeSpread3D/build_source.py
++++ b/ArtSource/QuestFreeSpread3D/build_source.py
+@@ -26,12 +26,12 @@
+  for sign in (-1,1):
+   for z in (-.15,.23):box(corpse,'folded-hoof',(sign*.29,.037,z),(.14,.065,.13),19)
+  for i,z in enumerate([-.08,.055,.19]):box(corpse,'reed-ridge-'+str(i),(.095,.24,z),(.085,.055,.115),21)
+- empty=model('draw-empty','SpreadDrawPoint');box(empty,'buried-base',(0,.045,0),(.73,.09,.61),10);box(empty,'hollow-floor',(0,.098,0),(.52,.04,.40),0)
+- box(empty,'front-lip',(0,.19,-.255),(.73,.20,.10),12);box(empty,'rear-lip',(0,.19,.255),(.73,.20,.10),11)
+- for sign in (-1,1):box(empty,'side-lip',(sign*.315,.19,0),(.10,.20,.41),11)
+- box(empty,'lower-front-step',(.11,.074,-.35),(.38,.10,.15),10)
+- for i,(x,z) in enumerate([(-.39,.20),(-.405,.10),(.39,.20)]):box(empty,'short-bank-reed-'+str(i),(x,.145,z),(.032,.23,.04),6);box(empty,'reed-cap-'+str(i),(x,.27,z),(.07,.04,.065),5)
+- full=copy.deepcopy(empty);full['id']='questfree-spread-draw-full';box(full,'finite-water-surface',(0,.17,0),(.50,.022,.39),0,material='water')
++ empty=model('draw-empty','SpreadDrawPoint');box(empty,'buried-base',(0,.075,0),(.88,.15,.74),10);box(empty,'hollow-floor',(0,.205,0),(.67,.06,.53),0)
++ box(empty,'front-lip',(0,.25,-.315),(.88,.20,.11),12);box(empty,'rear-lip',(0,.30,.315),(.88,.26,.11),12)
++ for sign in (-1,1):box(empty,'side-lip',(sign*.385,.285,0),(.11,.23,.52),11)
++ box(empty,'lower-front-step',(.11,.115,-.415),(.43,.13,.12),10)
++ for i,(x,z) in enumerate([(-.465,.20),(-.465,.10),(.465,.20)]):box(empty,'short-bank-reed-'+str(i),(x,.24,z),(.028,.28,.04),6);box(empty,'reed-cap-'+str(i),(x,.395,z),(.04,.05,.065),5)
++ full=copy.deepcopy(empty);full['id']='questfree-spread-draw-full';box(full,'finite-water-surface',(0,.315,0),(.65,.022,.51),0,material='water')
+  return {'schemaVersion':1,'coordinates':'Unity X east/Y up/Z north; one unit per native cell','palette':json.loads((ROOT/'ArtSource/ReferenceGlade3D/kit.json').read_text())['palette'],'models':[m,corpse,full,empty]}
+ if __name__=='__main__':
+  p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);a=p.parse_args();a.output.write_text(json.dumps(build(),indent=2)+'\n')

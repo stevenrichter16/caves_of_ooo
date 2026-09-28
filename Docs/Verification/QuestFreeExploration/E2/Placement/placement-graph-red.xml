@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="97" result="Failed" start-time="2026-09-28T02:28:37.0614230Z" end-time="2026-09-28T02:28:38.4794190Z" duration="1.417931" total="45" passed="27" failed="18" inconclusive="0" skipped="0" warnings="0" asserts="94572" random-seed="2121747614">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/placement-graph-red.xml --where "class =~ /SpreadExplorationActorPlacementTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationActorPlacementTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1112" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="97" result="Failed" site="Child" start-time="2026-09-28T02:28:37.0614230Z" end-time="2026-09-28T02:28:38.4794190Z" duration="1.417931" total="45" passed="27" failed="18" warnings="0" inconclusive="0" skipped="0" asserts="94572">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="24598" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1113" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="97" result="Failed" site="Child" start-time="2026-09-28T02:28:37.0630200Z" end-time="2026-09-28T02:28:38.4794140Z" duration="1.416384" total="45" passed="27" failed="18" warnings="0" inconclusive="0" skipped="0" asserts="94572">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1114" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="97" result="Failed" site="Child" start-time="2026-09-28T02:28:37.0631420Z" end-time="2026-09-28T02:28:38.4793910Z" duration="1.416239" total="45" passed="27" failed="18" warnings="0" inconclusive="0" skipped="0" asserts="94572">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1061" name="SpreadExplorationActorPlacementTests" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="45" result="Failed" site="Child" start-time="2026-09-28T02:28:37.0634880Z" end-time="2026-09-28T02:28:38.4793510Z" duration="1.415852" total="45" passed="27" failed="18" warnings="0" inconclusive="0" skipped="0" asserts="94572">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1080" name="CallbackOwnedRelocationIsNotOverwrittenByRollback" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.CallbackOwnedRelocationIsNotOverwrittenByRollback" methodname="CallbackOwnedRelocationIsNotOverwrittenByRollback" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="945689037" result="Passed" start-time="2026-09-28T02:28:37.0644260Z" end-time="2026-09-28T02:28:37.0855020Z" duration="0.021100" asserts="2011" />
+          <test-suite type="ParameterizedMethod" id="1076" name="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:28:37.0861280Z" end-time="2026-09-28T02:28:37.0955640Z" duration="0.009436" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4023">
+            <test-case id="1074" name="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(False)" methodname="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="870161310" result="Passed" start-time="2026-09-28T02:28:37.0862100Z" end-time="2026-09-28T02:28:37.0919280Z" duration="0.005718" asserts="2011" />
+            <test-case id="1075" name="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(True)" methodname="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="2121822942" result="Passed" start-time="2026-09-28T02:28:37.0919540Z" end-time="2026-09-28T02:28:37.0952470Z" duration="0.003293" asserts="2012" />
+          </test-suite>
+          <test-case id="1073" name="ConsumedReserveCannotBeSelected" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ConsumedReserveCannotBeSelected" methodname="ConsumedReserveCannotBeSelected" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="408666786" result="Passed" start-time="2026-09-28T02:28:37.0957920Z" end-time="2026-09-28T02:28:37.0979910Z" duration="0.002199" asserts="2010" />
+          <test-case id="1067" name="ExistingConfiguredDutyCannotBeResetByPlacement" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ExistingConfiguredDutyCannotBeResetByPlacement" methodname="ExistingConfiguredDutyCannotBeResetByPlacement" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="656791997" result="Passed" start-time="2026-09-28T02:28:37.0980080Z" end-time="2026-09-28T02:28:37.1043450Z" duration="0.006337" asserts="2013" />
+          <test-case id="1087" name="FactoryRoleReplacementSurvivesFailureWithoutBeingResetOrRemoved" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FactoryRoleReplacementSurvivesFailureWithoutBeingResetOrRemoved" methodname="FactoryRoleReplacementSurvivesFailureWithoutBeingResetOrRemoved" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="158344058" result="Passed" start-time="2026-09-28T02:28:37.1043720Z" end-time="2026-09-28T02:28:37.1078530Z" duration="0.003481" asserts="2013" />
+          <test-suite type="ParameterizedMethod" id="1079" name="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:28:37.1078740Z" end-time="2026-09-28T02:28:37.1133030Z" duration="0.005429" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4025">
+            <test-case id="1077" name="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(False)" methodname="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1850986706" result="Passed" start-time="2026-09-28T02:28:37.1079030Z" end-time="2026-09-28T02:28:37.1108170Z" duration="0.002914" asserts="2011" />
+            <test-case id="1078" name="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(True)" methodname="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="2100676989" result="Passed" start-time="2026-09-28T02:28:37.1108340Z" end-time="2026-09-28T02:28:37.1132670Z" duration="0.002433" asserts="2014" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1108" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="20" result="Failed" site="Child" start-time="2026-09-28T02:28:37.1133400Z" end-time="2026-09-28T02:28:37.2176680Z" duration="0.104327" total="20" passed="2" failed="18" warnings="0" inconclusive="0" skipped="0" asserts="40190">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1088" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;unchanged&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="53744029" result="Passed" start-time="2026-09-28T02:28:37.1133600Z" end-time="2026-09-28T02:28:37.1218740Z" duration="0.008514" asserts="2009" />
+            <test-case id="1089" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;unchanged&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="565750464" result="Passed" start-time="2026-09-28T02:28:37.1218950Z" end-time="2026-09-28T02:28:37.1257370Z" duration="0.003843" asserts="2010" />
+            <test-case id="1090" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;units&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;units&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1700411582" result="Failed" start-time="2026-09-28T02:28:37.1257510Z" end-time="2026-09-28T02:28:37.1430490Z" duration="0.017299" asserts="2009">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1091" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;units&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;units&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1727859106" result="Failed" start-time="2026-09-28T02:28:37.1431270Z" end-time="2026-09-28T02:28:37.1498320Z" duration="0.006706" asserts="2010">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1092" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;carried&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="829904166" result="Failed" start-time="2026-09-28T02:28:37.1498510Z" end-time="2026-09-28T02:28:37.1533870Z" duration="0.003535" asserts="2009">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1093" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;carried&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="738472563" result="Failed" start-time="2026-09-28T02:28:37.1534010Z" end-time="2026-09-28T02:28:37.1569010Z" duration="0.003501" asserts="2010">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1094" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;equipped&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1555579839" result="Failed" start-time="2026-09-28T02:28:37.1569120Z" end-time="2026-09-28T02:28:37.1630180Z" duration="0.006107" asserts="2009">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1095" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;equipped&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="94564601" result="Failed" start-time="2026-09-28T02:28:37.1630260Z" end-time="2026-09-28T02:28:37.1665610Z" duration="0.003535" asserts="2010">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1096" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;body&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;body&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1161149670" result="Failed" start-time="2026-09-28T02:28:37.1665720Z" end-time="2026-09-28T02:28:37.1697700Z" duration="0.003198" asserts="2009">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1097" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;body&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;body&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1473120856" result="Failed" start-time="2026-09-28T02:28:37.1697830Z" end-time="2026-09-28T02:28:37.1748240Z" duration="0.005041" asserts="2010">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1098" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;stat&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;stat&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1782905522" result="Failed" start-time="2026-09-28T02:28:37.1748350Z" end-time="2026-09-28T02:28:37.1782190Z" duration="0.003384" asserts="2009">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1099" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;stat&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;stat&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="174836148" result="Failed" start-time="2026-09-28T02:28:37.1782290Z" end-time="2026-09-28T02:28:37.1816780Z" duration="0.003449" asserts="2010">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1100" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;property&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;property&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1401904304" result="Failed" start-time="2026-09-28T02:28:37.1816890Z" end-time="2026-09-28T02:28:37.1852980Z" duration="0.003609" asserts="2009">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1101" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;property&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;property&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="62770868" result="Failed" start-time="2026-09-28T02:28:37.1853160Z" end-time="2026-09-28T02:28:37.1916890Z" duration="0.006373" asserts="2010">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1102" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;part-field&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;part-field&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="907394475" result="Failed" start-time="2026-09-28T02:28:37.1917040Z" end-time="2026-09-28T02:28:37.1953390Z" duration="0.003635" asserts="2009">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1103" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;part-field&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;part-field&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1098715829" result="Failed" start-time="2026-09-28T02:28:37.1953470Z" end-time="2026-09-28T02:28:37.1987020Z" duration="0.003355" asserts="2010">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1104" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;part-added&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;part-added&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="308626735" result="Failed" start-time="2026-09-28T02:28:37.1987170Z" end-time="2026-09-28T02:28:37.2042450Z" duration="0.005528" asserts="2009">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1105" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;part-added&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;part-added&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1149680172" result="Failed" start-time="2026-09-28T02:28:37.2042570Z" end-time="2026-09-28T02:28:37.2078180Z" duration="0.003562" asserts="2010">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1106" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;child-owner&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;child-owner&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="382782352" result="Failed" start-time="2026-09-28T02:28:37.2078410Z" end-time="2026-09-28T02:28:37.2114060Z" duration="0.003565" asserts="2009">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1107" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;child-owner&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;child-owner&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1057365081" result="Failed" start-time="2026-09-28T02:28:37.2114140Z" end-time="2026-09-28T02:28:37.2176530Z" duration="0.006239" asserts="2010">
+              <failure>
+                <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The exact prior source graph must survive the final callback.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Boolean grazer, String mutation) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 110
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1083" name="FinalCallbackCannotInvalidateBypassAfterTheGeometrySnapshot" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotInvalidateBypassAfterTheGeometrySnapshot" methodname="FinalCallbackCannotInvalidateBypassAfterTheGeometrySnapshot" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1623080377" result="Passed" start-time="2026-09-28T02:28:37.2176750Z" end-time="2026-09-28T02:28:37.2214450Z" duration="0.003769" asserts="2216" />
+          <test-case id="1085" name="FinalCallbackCanOnlyLeaveTheReservedFoodActuallyReachable" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCanOnlyLeaveTheReservedFoodActuallyReachable" methodname="FinalCallbackCanOnlyLeaveTheReservedFoodActuallyReachable" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="236069685" result="Passed" start-time="2026-09-28T02:28:37.2214750Z" end-time="2026-09-28T02:28:37.2251650Z" duration="0.003690" asserts="2019" />
+          <test-case id="1070" name="GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows" methodname="GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="140548397" result="Passed" start-time="2026-09-28T02:28:37.2251770Z" end-time="2026-09-28T02:28:37.8494910Z" duration="0.624310" asserts="2017" />
+          <test-case id="1068" name="NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass" methodname="NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="301199739" result="Passed" start-time="2026-09-28T02:28:37.8495220Z" end-time="2026-09-28T02:28:37.8536840Z" duration="0.004162" asserts="2215" />
+          <test-case id="1066" name="NoPostIsAnHonestTerritoryRefusal" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NoPostIsAnHonestTerritoryRefusal" methodname="NoPostIsAnHonestTerritoryRefusal" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1826459053" result="Passed" start-time="2026-09-28T02:28:37.8537100Z" end-time="2026-09-28T02:28:37.8555280Z" duration="0.001818" asserts="2010" />
+          <test-suite type="ParameterizedMethod" id="1111" name="NullGuardFailsClosedWithoutTouchingTheActor" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:28:37.8555730Z" end-time="2026-09-28T02:28:37.8592180Z" duration="0.003645" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4019">
+            <test-case id="1109" name="NullGuardFailsClosedWithoutTouchingTheActor(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(False)" methodname="NullGuardFailsClosedWithoutTouchingTheActor" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="112580504" result="Passed" start-time="2026-09-28T02:28:37.8556120Z" end-time="2026-09-28T02:28:37.8580130Z" duration="0.002401" asserts="2009" />
+            <test-case id="1110" name="NullGuardFailsClosedWithoutTouchingTheActor(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(True)" methodname="NullGuardFailsClosedWithoutTouchingTheActor" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1078986860" result="Passed" start-time="2026-09-28T02:28:37.8580390Z" end-time="2026-09-28T02:28:37.8591980Z" duration="0.001159" asserts="2010" />
+          </test-suite>
+          <test-case id="1082" name="PlacedAnimalCannotBlockTheOnlyApproachToItsReservedRow" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.PlacedAnimalCannotBlockTheOnlyApproachToItsReservedRow" methodname="PlacedAnimalCannotBlockTheOnlyApproachToItsReservedRow" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="380234539" result="Passed" start-time="2026-09-28T02:28:37.8592410Z" end-time="2026-09-28T02:28:37.8647930Z" duration="0.005552" asserts="3997" />
+          <test-suite type="ParameterizedMethod" id="1065" name="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:28:37.8648100Z" end-time="2026-09-28T02:28:37.8699230Z" duration="0.005113" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4023">
+            <test-case id="1063" name="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(False)" methodname="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="305440357" result="Passed" start-time="2026-09-28T02:28:37.8648410Z" end-time="2026-09-28T02:28:37.8685130Z" duration="0.003672" asserts="2011" />
+            <test-case id="1064" name="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(True)" methodname="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="811297710" result="Passed" start-time="2026-09-28T02:28:37.8685280Z" end-time="2026-09-28T02:28:37.8699050Z" duration="0.001377" asserts="2012" />
+          </test-suite>
+          <test-case id="1081" name="RemovedActorAndSameIdReplacementAreNeverReclaimed" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RemovedActorAndSameIdReplacementAreNeverReclaimed" methodname="RemovedActorAndSameIdReplacementAreNeverReclaimed" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1443581049" result="Passed" start-time="2026-09-28T02:28:37.8699330Z" end-time="2026-09-28T02:28:37.8734470Z" duration="0.003514" asserts="2012" />
+          <test-case id="1084" name="ReplacedHarvestPartCannotBorrowTheOldRowProof" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ReplacedHarvestPartCannotBorrowTheOldRowProof" methodname="ReplacedHarvestPartCannotBorrowTheOldRowProof" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="2069591675" result="Passed" start-time="2026-09-28T02:28:37.8734610Z" end-time="2026-09-28T02:28:37.8761620Z" duration="0.002701" asserts="2011" />
+          <test-case id="1086" name="RollbackDoesNotRemoveTheCallbackOwnerClaimingTheOrigin" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RollbackDoesNotRemoveTheCallbackOwnerClaimingTheOrigin" methodname="RollbackDoesNotRemoveTheCallbackOwnerClaimingTheOrigin" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1719270691" result="Passed" start-time="2026-09-28T02:28:37.8761840Z" end-time="2026-09-28T02:28:37.8813840Z" duration="0.005200" asserts="2013" />
+          <test-case id="1072" name="SealedReservedRowDoesNotCountAsPlayerAccessibleFood" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SealedReservedRowDoesNotCountAsPlayerAccessibleFood" methodname="SealedReservedRowDoesNotCountAsPlayerAccessibleFood" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1299285439" result="Passed" start-time="2026-09-28T02:28:37.8814290Z" end-time="2026-09-28T02:28:37.8832460Z" duration="0.001817" asserts="2019" />
+          <test-case id="1069" name="SingleLaneThroughTheProposedTerritoryIsNotABypass" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SingleLaneThroughTheProposedTerritoryIsNotABypass" methodname="SingleLaneThroughTheProposedTerritoryIsNotABypass" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="605887345" result="Passed" start-time="2026-09-28T02:28:37.8832660Z" end-time="2026-09-28T02:28:37.8882040Z" duration="0.004939" asserts="3689" />
+          <test-case id="1071" name="SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood" methodname="SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="854055178" result="Passed" start-time="2026-09-28T02:28:37.8882260Z" end-time="2026-09-28T02:28:37.8901100Z" duration="0.001885" asserts="2012" />
+          <test-case id="1062" name="TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary" methodname="TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1572231371" result="Passed" start-time="2026-09-28T02:28:37.8901190Z" end-time="2026-09-28T02:28:38.4793060Z" duration="0.589183" asserts="2015" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/geometry/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="15" result="Failed" start-time="2026-09-28T01:52:51.8275800Z" end-time="2026-09-28T01:52:51.8626980Z" duration="0.035102" total="15" passed="3" failed="12" inconclusive="0" skipped="0" warnings="0" asserts="24" random-seed="277948227">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/geometry/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/geometry/red.xml --where "class =~ /SpreadExplorationGeometryTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationGeometryTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1021" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/geometry/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-09-28T01:52:51.8275800Z" end-time="2026-09-28T01:52:51.8626980Z" duration="0.035102" total="15" passed="3" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="24">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/geometry/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/geometry/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="15777" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1022" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-09-28T01:52:51.8292520Z" end-time="2026-09-28T01:52:51.8626960Z" duration="0.033444" total="15" passed="3" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="24">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1023" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-09-28T01:52:51.8293790Z" end-time="2026-09-28T01:52:51.8626940Z" duration="0.033314" total="15" passed="3" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="24">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationGeometryTests" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-09-28T01:52:51.8297810Z" end-time="2026-09-28T01:52:51.8626840Z" duration="0.032903" total="15" passed="3" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="24">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1008" name="EveryInteriorAndBorderApproachIsConnectedAndDry" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T01:52:51.8307650Z" end-time="2026-09-28T01:52:51.8490750Z" duration="0.018310" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1005" name="EveryInteriorAndBorderApproachIsConnectedAndDry(&quot;OffsetLanes&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(&quot;OffsetLanes&quot;)" methodname="EveryInteriorAndBorderApproachIsConnectedAndDry" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="300040038" result="Failed" start-time="2026-09-28T01:52:51.8308460Z" end-time="2026-09-28T01:52:51.8474350Z" duration="0.016615" asserts="1">
+              <failure>
+                <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 40
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 40
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="EveryInteriorAndBorderApproachIsConnectedAndDry(&quot;BrokenEnclosures&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(&quot;BrokenEnclosures&quot;)" methodname="EveryInteriorAndBorderApproachIsConnectedAndDry" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="914616186" result="Failed" start-time="2026-09-28T01:52:51.8480030Z" end-time="2026-09-28T01:52:51.8484070Z" duration="0.000404" asserts="1">
+              <failure>
+                <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 40
+   at InvokeStub_SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 40
+   at InvokeStub_SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="EveryInteriorAndBorderApproachIsConnectedAndDry(&quot;BankCrossing&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(&quot;BankCrossing&quot;)" methodname="EveryInteriorAndBorderApproachIsConnectedAndDry" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="1189535817" result="Failed" start-time="2026-09-28T01:52:51.8484620Z" end-time="2026-09-28T01:52:51.8486010Z" duration="0.000139" asserts="1">
+              <failure>
+                <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 40
+   at InvokeStub_SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 40
+   at InvokeStub_SpreadExplorationGeometryTests.EveryInteriorAndBorderApproachIsConnectedAndDry(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1016" name="FormationStillDeterminesMaterialIdentity" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T01:52:51.8492940Z" end-time="2026-09-28T01:52:51.8500840Z" duration="0.000790" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1013" name="FormationStillDeterminesMaterialIdentity(&quot;OffsetLanes&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(&quot;OffsetLanes&quot;)" methodname="FormationStillDeterminesMaterialIdentity" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="1226735918" result="Failed" start-time="2026-09-28T01:52:51.8493240Z" end-time="2026-09-28T01:52:51.8497440Z" duration="0.000420" asserts="1">
+              <failure>
+                <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 68
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 68
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1014" name="FormationStillDeterminesMaterialIdentity(&quot;BrokenEnclosures&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(&quot;BrokenEnclosures&quot;)" methodname="FormationStillDeterminesMaterialIdentity" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="288685115" result="Failed" start-time="2026-09-28T01:52:51.8497630Z" end-time="2026-09-28T01:52:51.8499310Z" duration="0.000168" asserts="1">
+              <failure>
+                <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 68
+   at InvokeStub_SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 68
+   at InvokeStub_SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1015" name="FormationStillDeterminesMaterialIdentity(&quot;BankCrossing&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(&quot;BankCrossing&quot;)" methodname="FormationStillDeterminesMaterialIdentity" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="681929587" result="Failed" start-time="2026-09-28T01:52:51.8499480Z" end-time="2026-09-28T01:52:51.8500700Z" duration="0.000121" asserts="1">
+              <failure>
+                <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 68
+   at InvokeStub_SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 68
+   at InvokeStub_SpreadExplorationGeometryTests.FormationStillDeterminesMaterialIdentity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1020" name="LegacyEntryPointStillRepeatsAndConnectsItsBorders" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.LegacyEntryPointStillRepeatsAndConnectsItsBorders" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T01:52:51.8500910Z" end-time="2026-09-28T01:52:51.8597530Z" duration="0.009662" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1017" name="LegacyEntryPointStillRepeatsAndConnectsItsBorders(1)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.LegacyEntryPointStillRepeatsAndConnectsItsBorders(1)" methodname="LegacyEntryPointStillRepeatsAndConnectsItsBorders" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="49345299" result="Passed" start-time="2026-09-28T01:52:51.8500970Z" end-time="2026-09-28T01:52:51.8562090Z" duration="0.006112" asserts="4" />
+            <test-case id="1018" name="LegacyEntryPointStillRepeatsAndConnectsItsBorders(64)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.LegacyEntryPointStillRepeatsAndConnectsItsBorders(64)" methodname="LegacyEntryPointStillRepeatsAndConnectsItsBorders" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="940286746" result="Passed" start-time="2026-09-28T01:52:51.8562560Z" end-time="2026-09-28T01:52:51.8585030Z" duration="0.002247" asserts="4" />
+            <test-case id="1019" name="LegacyEntryPointStillRepeatsAndConnectsItsBorders(1729)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.LegacyEntryPointStillRepeatsAndConnectsItsBorders(1729)" methodname="LegacyEntryPointStillRepeatsAndConnectsItsBorders" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="426887386" result="Passed" start-time="2026-09-28T01:52:51.8585250Z" end-time="2026-09-28T01:52:51.8597350Z" duration="0.001210" asserts="4" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1012" name="NeighboringVariantsKeepSameSharedCrossings" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T01:52:51.8597710Z" end-time="2026-09-28T01:52:51.8604620Z" duration="0.000691" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1009" name="NeighboringVariantsKeepSameSharedCrossings(&quot;OffsetLanes&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(&quot;OffsetLanes&quot;)" methodname="NeighboringVariantsKeepSameSharedCrossings" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="409904760" result="Failed" start-time="2026-09-28T01:52:51.8597900Z" end-time="2026-09-28T01:52:51.8601080Z" duration="0.000318" asserts="1">
+              <failure>
+                <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 56
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 56
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1010" name="NeighboringVariantsKeepSameSharedCrossings(&quot;BrokenEnclosures&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(&quot;BrokenEnclosures&quot;)" methodname="NeighboringVariantsKeepSameSharedCrossings" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="113891206" result="Failed" start-time="2026-09-28T01:52:51.8601510Z" end-time="2026-09-28T01:52:51.8603470Z" duration="0.000196" asserts="1">
+              <failure>
+                <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 56
+   at InvokeStub_SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 56
+   at InvokeStub_SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="NeighboringVariantsKeepSameSharedCrossings(&quot;BankCrossing&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(&quot;BankCrossing&quot;)" methodname="NeighboringVariantsKeepSameSharedCrossings" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="1289907356" result="Failed" start-time="2026-09-28T01:52:51.8603560Z" end-time="2026-09-28T01:52:51.8604520Z" duration="0.000096" asserts="1">
+              <failure>
+                <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 56
+   at InvokeStub_SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 56
+   at InvokeStub_SpreadExplorationGeometryTests.NeighboringVariantsKeepSameSharedCrossings(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1004" name="NewTopologyChangesRoutesWithoutChangingBoundaryPorts" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T01:52:51.8604680Z" end-time="2026-09-28T01:52:51.8626590Z" duration="0.002191" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="NewTopologyChangesRoutesWithoutChangingBoundaryPorts(&quot;OffsetLanes&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(&quot;OffsetLanes&quot;)" methodname="NewTopologyChangesRoutesWithoutChangingBoundaryPorts" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="587455231" result="Failed" start-time="2026-09-28T01:52:51.8604730Z" end-time="2026-09-28T01:52:51.8612660Z" duration="0.000793" asserts="1">
+              <failure>
+                <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 24
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 24
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="NewTopologyChangesRoutesWithoutChangingBoundaryPorts(&quot;BrokenEnclosures&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(&quot;BrokenEnclosures&quot;)" methodname="NewTopologyChangesRoutesWithoutChangingBoundaryPorts" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="1247412794" result="Failed" start-time="2026-09-28T01:52:51.8612710Z" end-time="2026-09-28T01:52:51.8619220Z" duration="0.000651" asserts="1">
+              <failure>
+                <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 24
+   at InvokeStub_SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 24
+   at InvokeStub_SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="NewTopologyChangesRoutesWithoutChangingBoundaryPorts(&quot;BankCrossing&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(&quot;BankCrossing&quot;)" methodname="NewTopologyChangesRoutesWithoutChangingBoundaryPorts" classname="CavesOfOoo.Tests.SpreadExplorationGeometryTests" runstate="Runnable" seed="1853132802" result="Failed" start-time="2026-09-28T01:52:51.8619550Z" end-time="2026-09-28T01:52:51.8626470Z" duration="0.000692" asserts="1">
+              <failure>
+                <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 24
+   at InvokeStub_SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New-world exploration requires an explicit topology contract; legacy geometry alone cannot vary routes.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.Variant(String id, Int32 seed, Formation formation, String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(String topology) in /tmp/coo-questfree-implementation/geometry/SpreadExplorationGeometryTests.cs:line 24
+   at InvokeStub_SpreadExplorationGeometryTests.NewTopologyChangesRoutesWithoutChangingBoundaryPorts(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

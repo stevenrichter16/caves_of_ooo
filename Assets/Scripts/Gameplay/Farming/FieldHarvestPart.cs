@@ -50,16 +50,7 @@ namespace CavesOfOoo.Core
                 }
                 items.Add(item);
             }
-            Harvested = true;
-            var render = ParentEntity.GetPart<RenderPart>();
-            if (render != null)
-            {
-                render.DisplayName = "cut emberwheat row";
-                render.RenderString = "\"";
-                render.ColorString = "&w";
-            }
-            var examine = ParentEntity.GetPart<ExaminablePart>();
-            if (examine != null) examine.Text = "Cut emberwheat stubble in an old field strip. The grain has already been gathered.";
+            SetStubble();
             int packed = 0;
             var inventory = actor.GetPart<InventoryPart>();
             foreach (var item in items)
@@ -73,6 +64,29 @@ namespace CavesOfOoo.Core
                 target: ParentEntity, payload: new { yield = YieldBlueprint, count = packed, dropped });
             e.Handled = true;
             return false;
+        }
+
+        // Only the scoped grazer uses this path after checking both exact rows.
+        // It creates no yield, healing, inventory changes, or player action.
+        internal void ConsumeByGrazer()
+        {
+            SetStubble();
+            var row = ParentEntity.SpatialZone?.GetEntityCell(ParentEntity);
+            if (row != null) ZoneRenderHooks.MarkCellDirty(row.X, row.Y, "FieldGrazed");
+        }
+
+        private void SetStubble()
+        {
+            Harvested = true;
+            var render = ParentEntity.GetPart<RenderPart>();
+            if (render != null)
+            {
+                render.DisplayName = "cut emberwheat row";
+                render.RenderString = "\"";
+                render.ColorString = "&w";
+            }
+            var examine = ParentEntity.GetPart<ExaminablePart>();
+            if (examine != null) examine.Text = "Cut emberwheat stubble in an old field strip. The grain has already been gathered.";
         }
 
         private bool Reject(Entity actor, string reason)

@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="115" result="Failed" start-time="2026-09-28T02:37:33.1745180Z" end-time="2026-09-28T02:37:34.6958830Z" duration="1.521338" total="63" passed="49" failed="14" inconclusive="0" skipped="0" warnings="0" asserts="130781" random-seed="836686717">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/placement-final-geometry-red.xml --where "class =~ /SpreadExplorationActorPlacementTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationActorPlacementTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1132" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="115" result="Failed" site="Child" start-time="2026-09-28T02:37:33.1745180Z" end-time="2026-09-28T02:37:34.6958830Z" duration="1.521338" total="63" passed="49" failed="14" warnings="0" inconclusive="0" skipped="0" asserts="130781">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="26731" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1133" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="115" result="Failed" site="Child" start-time="2026-09-28T02:37:33.1761550Z" end-time="2026-09-28T02:37:34.6958820Z" duration="1.519715" total="63" passed="49" failed="14" warnings="0" inconclusive="0" skipped="0" asserts="130781">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1134" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="115" result="Failed" site="Child" start-time="2026-09-28T02:37:33.1763150Z" end-time="2026-09-28T02:37:34.6958790Z" duration="1.519552" total="63" passed="49" failed="14" warnings="0" inconclusive="0" skipped="0" asserts="130781">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1061" name="SpreadExplorationActorPlacementTests" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="63" result="Failed" site="Child" start-time="2026-09-28T02:37:33.1768070Z" end-time="2026-09-28T02:37:34.6958730Z" duration="1.519055" total="63" passed="49" failed="14" warnings="0" inconclusive="0" skipped="0" asserts="130781">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1125" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T02:37:33.1779330Z" end-time="2026-09-28T02:37:33.2689460Z" duration="0.091012" total="12" passed="0" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="24114">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1113" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(False,&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(False,&quot;unchanged&quot;)" methodname="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="2007251969" result="Failed" start-time="2026-09-28T02:37:33.1780300Z" end-time="2026-09-28T02:37:33.2134240Z" duration="0.035421" asserts="2009">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1114" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(True,&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(True,&quot;unchanged&quot;)" methodname="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="2068627111" result="Failed" start-time="2026-09-28T02:37:33.2141010Z" end-time="2026-09-28T02:37:33.2218680Z" duration="0.007767" asserts="2010">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1115" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(False,&quot;off-route&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(False,&quot;off-route&quot;)" methodname="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="408763504" result="Failed" start-time="2026-09-28T02:37:33.2218880Z" end-time="2026-09-28T02:37:33.2257930Z" duration="0.003906" asserts="2009">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1116" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(True,&quot;off-route&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(True,&quot;off-route&quot;)" methodname="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1884499690" result="Failed" start-time="2026-09-28T02:37:33.2258160Z" end-time="2026-09-28T02:37:33.2298680Z" duration="0.004052" asserts="2010">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1117" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(False,&quot;split&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(False,&quot;split&quot;)" methodname="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1648392371" result="Failed" start-time="2026-09-28T02:37:33.2298980Z" end-time="2026-09-28T02:37:33.2360840Z" duration="0.006186" asserts="2009">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1118" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(True,&quot;split&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(True,&quot;split&quot;)" methodname="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="709412710" result="Failed" start-time="2026-09-28T02:37:33.2361060Z" end-time="2026-09-28T02:37:33.2396900Z" duration="0.003584" asserts="2010">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1119" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(False,&quot;border&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(False,&quot;border&quot;)" methodname="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="835062562" result="Failed" start-time="2026-09-28T02:37:33.2397070Z" end-time="2026-09-28T02:37:33.2435860Z" duration="0.003879" asserts="2009">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1120" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(True,&quot;border&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(True,&quot;border&quot;)" methodname="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1707829885" result="Failed" start-time="2026-09-28T02:37:33.2436070Z" end-time="2026-09-28T02:37:33.2494510Z" duration="0.005844" asserts="2010">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1121" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(False,&quot;source&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(False,&quot;source&quot;)" methodname="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1034318998" result="Failed" start-time="2026-09-28T02:37:33.2494840Z" end-time="2026-09-28T02:37:33.2533640Z" duration="0.003881" asserts="2009">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1122" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(True,&quot;source&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(True,&quot;source&quot;)" methodname="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="799148419" result="Failed" start-time="2026-09-28T02:37:33.2533820Z" end-time="2026-09-28T02:37:33.2569500Z" duration="0.003568" asserts="2010">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1123" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(False,&quot;actor&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(False,&quot;actor&quot;)" methodname="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1139566041" result="Failed" start-time="2026-09-28T02:37:33.2569610Z" end-time="2026-09-28T02:37:33.2649450Z" duration="0.007984" asserts="2009">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1124" name="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(True,&quot;actor&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(True,&quot;actor&quot;)" methodname="AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1190021649" result="Failed" start-time="2026-09-28T02:37:33.2649670Z" end-time="2026-09-28T02:37:33.2684920Z" duration="0.003526" asserts="2010">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Boolean grazer, String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 148
+   at InvokeStub_SpreadExplorationActorPlacementTests.AcceptedGeometrySurvivesOnlyChangesPreservingTheOriginalRoutes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1080" name="CallbackOwnedRelocationIsNotOverwrittenByRollback" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.CallbackOwnedRelocationIsNotOverwrittenByRollback" methodname="CallbackOwnedRelocationIsNotOverwrittenByRollback" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1365142905" result="Passed" start-time="2026-09-28T02:37:33.2691590Z" end-time="2026-09-28T02:37:33.2749300Z" duration="0.005770" asserts="2011" />
+          <test-suite type="ParameterizedMethod" id="1076" name="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:37:33.2749490Z" end-time="2026-09-28T02:37:33.2833620Z" duration="0.008413" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4023">
+            <test-case id="1074" name="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(False)" methodname="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1468646744" result="Passed" start-time="2026-09-28T02:37:33.2749960Z" end-time="2026-09-28T02:37:33.2785030Z" duration="0.003508" asserts="2011" />
+            <test-case id="1075" name="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(True)" methodname="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1588822060" result="Passed" start-time="2026-09-28T02:37:33.2785250Z" end-time="2026-09-28T02:37:33.2833310Z" duration="0.004807" asserts="2012" />
+          </test-suite>
+          <test-case id="1073" name="ConsumedReserveCannotBeSelected" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ConsumedReserveCannotBeSelected" methodname="ConsumedReserveCannotBeSelected" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="67895198" result="Passed" start-time="2026-09-28T02:37:33.2833720Z" end-time="2026-09-28T02:37:33.2851970Z" duration="0.001825" asserts="2010" />
+          <test-case id="1067" name="ExistingConfiguredDutyCannotBeResetByPlacement" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ExistingConfiguredDutyCannotBeResetByPlacement" methodname="ExistingConfiguredDutyCannotBeResetByPlacement" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="866587157" result="Passed" start-time="2026-09-28T02:37:33.2852100Z" end-time="2026-09-28T02:37:33.2889430Z" duration="0.003734" asserts="2013" />
+          <test-case id="1087" name="FactoryRoleReplacementSurvivesFailureWithoutBeingResetOrRemoved" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FactoryRoleReplacementSurvivesFailureWithoutBeingResetOrRemoved" methodname="FactoryRoleReplacementSurvivesFailureWithoutBeingResetOrRemoved" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1890419453" result="Passed" start-time="2026-09-28T02:37:33.2889560Z" end-time="2026-09-28T02:37:33.2931800Z" duration="0.004224" asserts="2013" />
+          <test-suite type="ParameterizedMethod" id="1079" name="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:37:33.2932010Z" end-time="2026-09-28T02:37:33.2987520Z" duration="0.005551" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4025">
+            <test-case id="1077" name="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(False)" methodname="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1542043833" result="Passed" start-time="2026-09-28T02:37:33.2932260Z" end-time="2026-09-28T02:37:33.2965000Z" duration="0.003274" asserts="2011" />
+            <test-case id="1078" name="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(True)" methodname="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="515936793" result="Passed" start-time="2026-09-28T02:37:33.2965130Z" end-time="2026-09-28T02:37:33.2987390Z" duration="0.002226" asserts="2014" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1112" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-09-28T02:37:33.2987680Z" end-time="2026-09-28T02:37:33.3898360Z" duration="0.091067" total="24" passed="24" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="48272">
+            <test-case id="1088" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;unchanged&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="93976633" result="Passed" start-time="2026-09-28T02:37:33.2988170Z" end-time="2026-09-28T02:37:33.3104250Z" duration="0.011608" asserts="2009" />
+            <test-case id="1089" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;unchanged&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="19552151" result="Passed" start-time="2026-09-28T02:37:33.3104430Z" end-time="2026-09-28T02:37:33.3140140Z" duration="0.003571" asserts="2010" />
+            <test-case id="1090" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;units&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;units&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1224397980" result="Passed" start-time="2026-09-28T02:37:33.3140320Z" end-time="2026-09-28T02:37:33.3167260Z" duration="0.002695" asserts="2011" />
+            <test-case id="1091" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;units&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;units&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1215924193" result="Passed" start-time="2026-09-28T02:37:33.3167370Z" end-time="2026-09-28T02:37:33.3190370Z" duration="0.002300" asserts="2012" />
+            <test-case id="1092" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;carried&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1176394255" result="Passed" start-time="2026-09-28T02:37:33.3190490Z" end-time="2026-09-28T02:37:33.3245100Z" duration="0.005461" asserts="2011" />
+            <test-case id="1093" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;carried&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="282956707" result="Passed" start-time="2026-09-28T02:37:33.3245270Z" end-time="2026-09-28T02:37:33.3271190Z" duration="0.002593" asserts="2012" />
+            <test-case id="1094" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;equipped&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1849123503" result="Passed" start-time="2026-09-28T02:37:33.3271340Z" end-time="2026-09-28T02:37:33.3297600Z" duration="0.002626" asserts="2011" />
+            <test-case id="1095" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;equipped&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="837360643" result="Passed" start-time="2026-09-28T02:37:33.3297700Z" end-time="2026-09-28T02:37:33.3374320Z" duration="0.007662" asserts="2012" />
+            <test-case id="1096" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;body&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;body&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="343596512" result="Passed" start-time="2026-09-28T02:37:33.3374690Z" end-time="2026-09-28T02:37:33.3427230Z" duration="0.005254" asserts="2011" />
+            <test-case id="1097" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;body&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;body&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="210632613" result="Passed" start-time="2026-09-28T02:37:33.3427560Z" end-time="2026-09-28T02:37:33.3449360Z" duration="0.002180" asserts="2012" />
+            <test-case id="1098" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;stat&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;stat&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="20492267" result="Passed" start-time="2026-09-28T02:37:33.3449590Z" end-time="2026-09-28T02:37:33.3508160Z" duration="0.005857" asserts="2011" />
+            <test-case id="1099" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;stat&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;stat&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1719868086" result="Passed" start-time="2026-09-28T02:37:33.3508440Z" end-time="2026-09-28T02:37:33.3532760Z" duration="0.002432" asserts="2012" />
+            <test-case id="1100" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;property&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;property&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1469019136" result="Passed" start-time="2026-09-28T02:37:33.3532930Z" end-time="2026-09-28T02:37:33.3557590Z" duration="0.002466" asserts="2011" />
+            <test-case id="1101" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;property&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;property&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="138282174" result="Passed" start-time="2026-09-28T02:37:33.3557940Z" end-time="2026-09-28T02:37:33.3579950Z" duration="0.002201" asserts="2012" />
+            <test-case id="1102" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;part-field&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;part-field&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1711158097" result="Passed" start-time="2026-09-28T02:37:33.3580280Z" end-time="2026-09-28T02:37:33.3624820Z" duration="0.004454" asserts="2011" />
+            <test-case id="1103" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;part-field&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;part-field&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="2051018540" result="Passed" start-time="2026-09-28T02:37:33.3625030Z" end-time="2026-09-28T02:37:33.3647040Z" duration="0.002201" asserts="2012" />
+            <test-case id="1104" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;part-added&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;part-added&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="191675240" result="Passed" start-time="2026-09-28T02:37:33.3647190Z" end-time="2026-09-28T02:37:33.3675570Z" duration="0.002838" asserts="2011" />
+            <test-case id="1105" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;part-added&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;part-added&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="784360073" result="Passed" start-time="2026-09-28T02:37:33.3675910Z" end-time="2026-09-28T02:37:33.3720420Z" duration="0.004450" asserts="2012" />
+            <test-case id="1106" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;child-owner&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;child-owner&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="196419835" result="Passed" start-time="2026-09-28T02:37:33.3720500Z" end-time="2026-09-28T02:37:33.3747200Z" duration="0.002670" asserts="2011" />
+            <test-case id="1107" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;child-owner&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;child-owner&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1256435946" result="Passed" start-time="2026-09-28T02:37:33.3747330Z" end-time="2026-09-28T02:37:33.3774670Z" duration="0.002734" asserts="2012" />
+            <test-case id="1108" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;personal-enemy&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;personal-enemy&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="2080171603" result="Passed" start-time="2026-09-28T02:37:33.3774830Z" end-time="2026-09-28T02:37:33.3800310Z" duration="0.002548" asserts="2011" />
+            <test-case id="1109" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;personal-enemy&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;personal-enemy&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1409745720" result="Passed" start-time="2026-09-28T02:37:33.3800490Z" end-time="2026-09-28T02:37:33.3840240Z" duration="0.003975" asserts="2012" />
+            <test-case id="1110" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;goal&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(False,&quot;goal&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1677648201" result="Passed" start-time="2026-09-28T02:37:33.3840430Z" end-time="2026-09-28T02:37:33.3876220Z" duration="0.003579" asserts="2011" />
+            <test-case id="1111" name="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;goal&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState(True,&quot;goal&quot;)" methodname="FinalCallbackCannotBorrowAnAlteredActorLoadoutOrState" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1254130646" result="Passed" start-time="2026-09-28T02:37:33.3876380Z" end-time="2026-09-28T02:37:33.3898150Z" duration="0.002177" asserts="2012" />
+          </test-suite>
+          <test-case id="1083" name="FinalCallbackCannotInvalidateBypassAfterTheGeometrySnapshot" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotInvalidateBypassAfterTheGeometrySnapshot" methodname="FinalCallbackCannotInvalidateBypassAfterTheGeometrySnapshot" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1451147417" result="Passed" start-time="2026-09-28T02:37:33.3898540Z" end-time="2026-09-28T02:37:33.3972020Z" duration="0.007347" asserts="2216" />
+          <test-case id="1085" name="FinalCallbackCanOnlyLeaveTheReservedFoodActuallyReachable" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCanOnlyLeaveTheReservedFoodActuallyReachable" methodname="FinalCallbackCanOnlyLeaveTheReservedFoodActuallyReachable" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1579349560" result="Passed" start-time="2026-09-28T02:37:33.3972290Z" end-time="2026-09-28T02:37:33.4006990Z" duration="0.003470" asserts="2019" />
+          <test-case id="1070" name="GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows" methodname="GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="901851753" result="Passed" start-time="2026-09-28T02:37:33.4007150Z" end-time="2026-09-28T02:37:34.0463790Z" duration="0.645660" asserts="2017" />
+          <test-case id="1068" name="NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass" methodname="NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="281421102" result="Passed" start-time="2026-09-28T02:37:34.0464010Z" end-time="2026-09-28T02:37:34.0515580Z" duration="0.005157" asserts="2215" />
+          <test-case id="1066" name="NoPostIsAnHonestTerritoryRefusal" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NoPostIsAnHonestTerritoryRefusal" methodname="NoPostIsAnHonestTerritoryRefusal" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1832177554" result="Passed" start-time="2026-09-28T02:37:34.0516100Z" end-time="2026-09-28T02:37:34.0537950Z" duration="0.002186" asserts="2010" />
+          <test-suite type="ParameterizedMethod" id="1131" name="NullGuardFailsClosedWithoutTouchingTheActor" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:37:34.0538160Z" end-time="2026-09-28T02:37:34.0577900Z" duration="0.003974" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4019">
+            <test-case id="1129" name="NullGuardFailsClosedWithoutTouchingTheActor(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(False)" methodname="NullGuardFailsClosedWithoutTouchingTheActor" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="2095264307" result="Passed" start-time="2026-09-28T02:37:34.0538440Z" end-time="2026-09-28T02:37:34.0549090Z" duration="0.001064" asserts="2009" />
+            <test-case id="1130" name="NullGuardFailsClosedWithoutTouchingTheActor(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(True)" methodname="NullGuardFailsClosedWithoutTouchingTheActor" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1827107340" result="Passed" start-time="2026-09-28T02:37:34.0549500Z" end-time="2026-09-28T02:37:34.0577440Z" duration="0.002794" asserts="2010" />
+          </test-suite>
+          <test-case id="1082" name="PlacedAnimalCannotBlockTheOnlyApproachToItsReservedRow" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.PlacedAnimalCannotBlockTheOnlyApproachToItsReservedRow" methodname="PlacedAnimalCannotBlockTheOnlyApproachToItsReservedRow" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1712063016" result="Passed" start-time="2026-09-28T02:37:34.0578060Z" end-time="2026-09-28T02:37:34.0634050Z" duration="0.005598" asserts="3997" />
+          <test-suite type="ParameterizedMethod" id="1065" name="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:37:34.0634270Z" end-time="2026-09-28T02:37:34.0677680Z" duration="0.004341" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4023">
+            <test-case id="1063" name="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(False)" methodname="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1083906559" result="Passed" start-time="2026-09-28T02:37:34.0634490Z" end-time="2026-09-28T02:37:34.0647750Z" duration="0.001326" asserts="2011" />
+            <test-case id="1064" name="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(True)" methodname="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="60090936" result="Passed" start-time="2026-09-28T02:37:34.0648200Z" end-time="2026-09-28T02:37:34.0677470Z" duration="0.002927" asserts="2012" />
+          </test-suite>
+          <test-case id="1081" name="RemovedActorAndSameIdReplacementAreNeverReclaimed" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RemovedActorAndSameIdReplacementAreNeverReclaimed" methodname="RemovedActorAndSameIdReplacementAreNeverReclaimed" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1797461901" result="Passed" start-time="2026-09-28T02:37:34.0677850Z" end-time="2026-09-28T02:37:34.0709830Z" duration="0.003199" asserts="2012" />
+          <test-case id="1084" name="ReplacedHarvestPartCannotBorrowTheOldRowProof" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ReplacedHarvestPartCannotBorrowTheOldRowProof" methodname="ReplacedHarvestPartCannotBorrowTheOldRowProof" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="700753402" result="Passed" start-time="2026-09-28T02:37:34.0710070Z" end-time="2026-09-28T02:37:34.0735190Z" duration="0.002513" asserts="2011" />
+          <test-case id="1086" name="RollbackDoesNotRemoveTheCallbackOwnerClaimingTheOrigin" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RollbackDoesNotRemoveTheCallbackOwnerClaimingTheOrigin" methodname="RollbackDoesNotRemoveTheCallbackOwnerClaimingTheOrigin" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="244743022" result="Passed" start-time="2026-09-28T02:37:34.0735300Z" end-time="2026-09-28T02:37:34.0789740Z" duration="0.005445" asserts="2013" />
+          <test-case id="1072" name="SealedReservedRowDoesNotCountAsPlayerAccessibleFood" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SealedReservedRowDoesNotCountAsPlayerAccessibleFood" methodname="SealedReservedRowDoesNotCountAsPlayerAccessibleFood" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="476466307" result="Passed" start-time="2026-09-28T02:37:34.0789920Z" end-time="2026-09-28T02:37:34.0807420Z" duration="0.001750" asserts="2019" />
+          <test-case id="1069" name="SingleLaneThroughTheProposedTerritoryIsNotABypass" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SingleLaneThroughTheProposedTerritoryIsNotABypass" methodname="SingleLaneThroughTheProposedTerritoryIsNotABypass" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="400117403" result="Passed" start-time="2026-09-28T02:37:34.0807580Z" end-time="2026-09-28T02:37:34.0843760Z" duration="0.003619" asserts="3689" />
+          <test-case id="1071" name="SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood" methodname="SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1596907251" result="Passed" start-time="2026-09-28T02:37:34.0844010Z" end-time="2026-09-28T02:37:34.0895150Z" duration="0.005113" asserts="2012" />
+          <test-case id="1062" name="TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary" methodname="TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1818585533" result="Passed" start-time="2026-09-28T02:37:34.0895330Z" end-time="2026-09-28T02:37:34.6918300Z" duration="0.602293" asserts="2015" />
+          <test-suite type="ParameterizedMethod" id="1128" name="UnconfiguredActorHasNoAcceptedFinalGeometry" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.UnconfiguredActorHasNoAcceptedFinalGeometry" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:37:34.6918530Z" end-time="2026-09-28T02:37:34.6958190Z" duration="0.003966" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4013">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1126" name="UnconfiguredActorHasNoAcceptedFinalGeometry(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.UnconfiguredActorHasNoAcceptedFinalGeometry(False)" methodname="UnconfiguredActorHasNoAcceptedFinalGeometry" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1831638634" result="Failed" start-time="2026-09-28T02:37:34.6918920Z" end-time="2026-09-28T02:37:34.6931300Z" duration="0.001238" asserts="2006">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.UnconfiguredActorHasNoAcceptedFinalGeometry(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 165
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.UnconfiguredActorHasNoAcceptedFinalGeometry(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 165
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1127" name="UnconfiguredActorHasNoAcceptedFinalGeometry(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.UnconfiguredActorHasNoAcceptedFinalGeometry(True)" methodname="UnconfiguredActorHasNoAcceptedFinalGeometry" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="465959765" result="Failed" start-time="2026-09-28T02:37:34.6931520Z" end-time="2026-09-28T02:37:34.6957970Z" duration="0.002646" asserts="2007">
+              <failure>
+                <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.UnconfiguredActorHasNoAcceptedFinalGeometry(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 165
+   at InvokeStub_SpreadExplorationActorPlacementTests.UnconfiguredActorHasNoAcceptedFinalGeometry(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing accepted-geometry proof for final generation callbacks.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalGeometry(Zone zone, Entity actor) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 135
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.UnconfiguredActorHasNoAcceptedFinalGeometry(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 165
+   at InvokeStub_SpreadExplorationActorPlacementTests.UnconfiguredActorHasNoAcceptedFinalGeometry(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

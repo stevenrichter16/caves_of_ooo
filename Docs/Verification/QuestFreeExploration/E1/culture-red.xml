@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/manifest/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="280" result="Failed" start-time="2026-09-28T02:17:26.8150560Z" end-time="2026-09-28T02:17:26.9405580Z" duration="0.125487" total="2" passed="1" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="4" random-seed="896382235">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/manifest/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "method == NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture" --result=/tmp/coo-questfree-implementation/manifest/culture-red.xml]]></command-line>
+  <filter>
+    <method>NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture</method>
+  </filter>
+  <test-suite type="Assembly" id="1336" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/manifest/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="280" result="Failed" site="Child" start-time="2026-09-28T02:17:26.8150560Z" end-time="2026-09-28T02:17:26.9405580Z" duration="0.125487" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="4">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="21761" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1337" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="280" result="Failed" site="Child" start-time="2026-09-28T02:17:26.8165530Z" end-time="2026-09-28T02:17:26.9405560Z" duration="0.124001" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="4">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1338" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="280" result="Failed" site="Child" start-time="2026-09-28T02:17:26.8166750Z" end-time="2026-09-28T02:17:26.9405540Z" duration="0.123877" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="4">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1056" name="SpreadExplorationManifestAdversarialTests" fullname="CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests" classname="CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests" runstate="Runnable" testcasecount="34" result="Failed" site="Child" start-time="2026-09-28T02:17:26.8170010Z" end-time="2026-09-28T02:17:26.9405390Z" duration="0.123535" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="4">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1095" name="NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture" fullname="CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture" classname="CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:17:26.8178710Z" end-time="2026-09-28T02:17:26.9403490Z" duration="0.122476" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1093" name="NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture(False)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture(False)" methodname="NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture" classname="CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests" runstate="Runnable" seed="339659667" result="Passed" start-time="2026-09-28T02:17:26.8179560Z" end-time="2026-09-28T02:17:26.9015610Z" duration="0.083628" asserts="3" />
+            <test-case id="1094" name="NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture(True)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture(True)" methodname="NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture" classname="CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests" runstate="Runnable" seed="1607228840" result="Failed" start-time="2026-09-28T02:17:26.9022150Z" end-time="2026-09-28T02:17:26.9399530Z" duration="0.037737" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture(Boolean alternateSign) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestAdversarialTests.cs:line 176
+   at InvokeStub_SpreadExplorationManifestAdversarialTests.NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests.NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture(Boolean alternateSign) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestAdversarialTests.cs:line 176
+   at InvokeStub_SpreadExplorationManifestAdversarialTests.NegativeWorldSeedWireIsInvariantAcrossCurrentNumericCulture(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

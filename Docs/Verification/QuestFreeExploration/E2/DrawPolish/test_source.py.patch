@@ -1,0 +1,29 @@
+--- a/ArtSource/QuestFreeSpread3D/test_source.py
++++ b/ArtSource/QuestFreeSpread3D/test_source.py
+@@ -1,4 +1,4 @@
+-import json,unittest,math
++import json,unittest,math,hashlib
+ from pathlib import Path
+ ROOT=Path(__file__).parent
+ class SourceTests(unittest.TestCase):
+@@ -27,4 +27,20 @@
+   empty=self.model('draw-empty');full=self.model('draw-full');self.assertEqual(empty['blueprint'],'SpreadDrawPoint');self.assertEqual(empty['boxes'],[b for b in full['boxes'] if b['material']!='water']);self.assertGreaterEqual(len(empty['boxes']),6);self.assertFalse(any(b['material']=='water' for b in empty['boxes']))
+  def test_full_surface_visible_inside_rim_not_solid_block(self):
+   m=self.model('draw-full');water=[b for b in m['boxes'] if b['material']=='water'];self.assertEqual(len(water),1);w=water[0];self.assertLess(w['size'][1],.04);self.assertGreater(w['size'][0]*w['size'][2],.1);rim=next(b for b in m['boxes'] if b['part']=='front-lip');self.assertGreater(rim['center'][1]+rim['size'][1]/2,w['center'][1]+w['size'][1]/2);self.assertEqual(w['semanticLiquid'],'water')
++ def test_draw_rim_raises_readable_stone_without_expanding_cell_footprint(self):
++  for suffix in ('draw-full','draw-empty'):
++   m=self.model(suffix);rim=[b for b in m['boxes'] if b['part'].endswith('-lip')]
++   self.assertEqual(len(rim),4)
++   self.assertGreaterEqual(max(b['center'][1]+b['size'][1]/2 for b in rim),.42)
++   self.assertTrue(all(abs(b['center'][axis])+b['size'][axis]/2<=.49 for b in m['boxes'] for axis in (0,2)))
++ def test_draw_water_presents_broad_raised_surface_below_real_open_rim(self):
++  m=self.model('draw-full');w=next(b for b in m['boxes'] if b['material']=='water')
++  self.assertGreaterEqual(w['center'][1],.30);self.assertGreaterEqual(w['size'][0]*w['size'][2],.30)
++  front=next(b for b in m['boxes'] if b['part']=='front-lip')
++  self.assertLessEqual(front['center'][1]+front['size'][1]/2-(w['center'][1]+w['size'][1]/2),.045)
++ def test_polish_preserves_animal_sources_and_exact_empty_structure(self):
++  before={'questfree-spread-grazer': 'e4443d3edfde0fdf80de040816dffa2d66c6c75eb4e554fd5aa8434f4e9412b5', 'questfree-spread-grazer-remains': '5e65f1971cce56a7f773e56935852503f4fafd48eb3445d39cc9ddc1da136818'}
++  for suffix in ('grazer','grazer-remains'):
++   m=self.model(suffix);self.assertEqual(hashlib.sha256(json.dumps(m,sort_keys=True).encode()).hexdigest(),before[m['id']])
++  self.assertEqual(self.model('draw-empty')['boxes'],[b for b in self.model('draw-full')['boxes'] if b['material']!='water'])
+ if __name__=='__main__':unittest.main(verbosity=2)

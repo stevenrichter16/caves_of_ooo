@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="153" result="Failed" start-time="2026-09-28T03:39:03.2562290Z" end-time="2026-09-28T03:39:04.9935150Z" duration="1.737228" total="11" passed="4" failed="7" inconclusive="0" skipped="0" warnings="0" asserts="22117" random-seed="1006447346">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/reserve-distance-red.xml --where "class == CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1179" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="153" result="Failed" site="Child" start-time="2026-09-28T03:39:03.2562290Z" end-time="2026-09-28T03:39:04.9935150Z" duration="1.737228" total="11" passed="4" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="22117">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="43418" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1180" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="153" result="Failed" site="Child" start-time="2026-09-28T03:39:03.2579170Z" end-time="2026-09-28T03:39:04.9932830Z" duration="1.735335" total="11" passed="4" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="22117">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1181" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="153" result="Failed" site="Child" start-time="2026-09-28T03:39:03.2580160Z" end-time="2026-09-28T03:39:04.9928210Z" duration="1.734774" total="11" passed="4" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="22117">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1002" name="SpreadGrazerReserveDistanceTests" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-09-28T03:39:03.2583560Z" end-time="2026-09-28T03:39:04.9925930Z" duration="1.734206" total="11" passed="4" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="22117">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1014" name="CurrentDistantReserveIdentityStillGatesTheActualFeed" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T03:39:03.2592830Z" end-time="2026-09-28T03:39:03.3009210Z" duration="0.041637" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6024">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1011" name="CurrentDistantReserveIdentityStillGatesTheActualFeed(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(&quot;removed&quot;)" methodname="CurrentDistantReserveIdentityStillGatesTheActualFeed" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="82596465" result="Failed" start-time="2026-09-28T03:39:03.2593770Z" end-time="2026-09-28T03:39:03.2932970Z" duration="0.033945" asserts="2008">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 27
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 27
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1012" name="CurrentDistantReserveIdentityStillGatesTheActualFeed(&quot;spent&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(&quot;spent&quot;)" methodname="CurrentDistantReserveIdentityStillGatesTheActualFeed" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="103706366" result="Failed" start-time="2026-09-28T03:39:03.2938750Z" end-time="2026-09-28T03:39:03.2988610Z" duration="0.004985" asserts="2008">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 27
+   at InvokeStub_SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 27
+   at InvokeStub_SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1013" name="CurrentDistantReserveIdentityStillGatesTheActualFeed(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(&quot;moved&quot;)" methodname="CurrentDistantReserveIdentityStillGatesTheActualFeed" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="2115505460" result="Failed" start-time="2026-09-28T03:39:03.2988860Z" end-time="2026-09-28T03:39:03.3005600Z" duration="0.001674" asserts="2008">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 27
+   at InvokeStub_SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 27
+   at InvokeStub_SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1006" name="DirectConfigurationKeepsTheActualMealApproachBounded" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.DirectConfigurationKeepsTheActualMealApproachBounded" methodname="DirectConfigurationKeepsTheActualMealApproachBounded" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="1440824797" result="Failed" start-time="2026-09-28T03:39:03.3010700Z" end-time="2026-09-28T03:39:03.3025240Z" duration="0.001454" asserts="2008">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.DirectConfigurationKeepsTheActualMealApproachBounded() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 21
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.DirectConfigurationKeepsTheActualMealApproachBounded() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 21
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1015" name="LateSealedDistantReserveInvalidatesAcceptedGeometry" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.LateSealedDistantReserveInvalidatesAcceptedGeometry" methodname="LateSealedDistantReserveInvalidatesAcceptedGeometry" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="1229554530" result="Failed" start-time="2026-09-28T03:39:03.3026010Z" end-time="2026-09-28T03:39:03.3073950Z" duration="0.004794" asserts="2008">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.LateSealedDistantReserveInvalidatesAcceptedGeometry() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 29
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.LateSealedDistantReserveInvalidatesAcceptedGeometry() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 29
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1005" name="ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T03:39:03.3074260Z" end-time="2026-09-28T03:39:04.9548100Z" duration="1.647356" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="4028">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1003" name="ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(16)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(16)" methodname="ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="1725227661" result="Passed" start-time="2026-09-28T03:39:03.3074500Z" end-time="2026-09-28T03:39:04.9509700Z" duration="1.643492" asserts="2020" />
+            <test-case id="1004" name="ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(60)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(60)" methodname="ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="1562866824" result="Failed" start-time="2026-09-28T03:39:04.9510410Z" end-time="2026-09-28T03:39:04.9547350Z" duration="0.003694" asserts="2008">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(Int32 x) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 19
+   at InvokeStub_SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(Int32 x) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 19
+   at InvokeStub_SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1016" name="SavedDistantReserveStillPermitsOnlyOnePaidMeal" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.SavedDistantReserveStillPermitsOnlyOnePaidMeal" methodname="SavedDistantReserveStillPermitsOnlyOnePaidMeal" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="125271123" result="Failed" start-time="2026-09-28T03:39:04.9548970Z" end-time="2026-09-28T03:39:04.9623520Z" duration="0.007454" asserts="2008">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.SavedDistantReserveStillPermitsOnlyOnePaidMeal() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 31
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.SavedDistantReserveStillPermitsOnlyOnePaidMeal() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 31
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1010" name="UnavailableDistantReserveCannotConfigureOrConsume" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.UnavailableDistantReserveCannotConfigureOrConsume" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T03:39:04.9625020Z" end-time="2026-09-28T03:39:04.9924180Z" duration="0.029916" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6041">
+            <test-case id="1007" name="UnavailableDistantReserveCannotConfigureOrConsume(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.UnavailableDistantReserveCannotConfigureOrConsume(&quot;removed&quot;)" methodname="UnavailableDistantReserveCannotConfigureOrConsume" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="466909918" result="Passed" start-time="2026-09-28T03:39:04.9625780Z" end-time="2026-09-28T03:39:04.9790110Z" duration="0.016432" asserts="2011" />
+            <test-case id="1008" name="UnavailableDistantReserveCannotConfigureOrConsume(&quot;spent&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.UnavailableDistantReserveCannotConfigureOrConsume(&quot;spent&quot;)" methodname="UnavailableDistantReserveCannotConfigureOrConsume" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="431719510" result="Passed" start-time="2026-09-28T03:39:04.9793210Z" end-time="2026-09-28T03:39:04.9843160Z" duration="0.004996" asserts="2011" />
+            <test-case id="1009" name="UnavailableDistantReserveCannotConfigureOrConsume(&quot;sealed&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.UnavailableDistantReserveCannotConfigureOrConsume(&quot;sealed&quot;)" methodname="UnavailableDistantReserveCannotConfigureOrConsume" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="115132930" result="Passed" start-time="2026-09-28T03:39:04.9851480Z" end-time="2026-09-28T03:39:04.9902440Z" duration="0.005095" asserts="2019" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

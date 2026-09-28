@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="165" result="Failed" start-time="2026-09-28T03:41:16.5106260Z" end-time="2026-09-28T03:41:18.4530310Z" duration="1.942355" total="23" passed="4" failed="19" inconclusive="0" skipped="0" warnings="0" asserts="22171" random-seed="152492303">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/replacement-and-reserve-red.xml --where "class == CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests or class == CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests"]]></command-line>
+  <filter>
+    <or>
+      <class>CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests</class>
+      <class>CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests</class>
+    </or>
+  </filter>
+  <test-suite type="Assembly" id="1194" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="165" result="Failed" site="Child" start-time="2026-09-28T03:41:16.5106260Z" end-time="2026-09-28T03:41:18.4530310Z" duration="1.942355" total="23" passed="4" failed="19" warnings="0" inconclusive="0" skipped="0" asserts="22171">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="44064" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1195" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="165" result="Failed" site="Child" start-time="2026-09-28T03:41:16.5125330Z" end-time="2026-09-28T03:41:18.4530280Z" duration="1.940504" total="23" passed="4" failed="19" warnings="0" inconclusive="0" skipped="0" asserts="22171">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1196" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="165" result="Failed" site="Child" start-time="2026-09-28T03:41:16.5126810Z" end-time="2026-09-28T03:41:18.4530260Z" duration="1.940354" total="23" passed="4" failed="19" warnings="0" inconclusive="0" skipped="0" asserts="22171">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1179" name="SpreadGrazerReplacementReceiptTests" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T03:41:16.5132180Z" end-time="2026-09-28T03:41:16.9254480Z" duration="0.412232" total="12" passed="0" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="54">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1180" name="ActualMagpieStockingKeepsOnlyTheSubstitutedOwnerReceiptCurrent" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ActualMagpieStockingKeepsOnlyTheSubstitutedOwnerReceiptCurrent" methodname="ActualMagpieStockingKeepsOnlyTheSubstitutedOwnerReceiptCurrent" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" seed="186323437" result="Failed" start-time="2026-09-28T03:41:16.5144280Z" end-time="2026-09-28T03:41:16.6444820Z" duration="0.130087" asserts="4">
+            <failure>
+              <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ActualMagpieStockingKeepsOnlyTheSubstitutedOwnerReceiptCurrent() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 26
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ActualMagpieStockingKeepsOnlyTheSubstitutedOwnerReceiptCurrent() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 26
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1193" name="CapturingTheReplacementDoesNotChangeRollOrderCoordinatesOrRng" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.CapturingTheReplacementDoesNotChangeRollOrderCoordinatesOrRng" methodname="CapturingTheReplacementDoesNotChangeRollOrderCoordinatesOrRng" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" seed="1873875089" result="Failed" start-time="2026-09-28T03:41:16.6458660Z" end-time="2026-09-28T03:41:16.6973580Z" duration="0.051492" asserts="9">
+            <failure>
+              <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.CapturingTheReplacementDoesNotChangeRollOrderCoordinatesOrRng() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 36
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.CapturingTheReplacementDoesNotChangeRollOrderCoordinatesOrRng() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 36
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1187" name="MatchingDecoyAndAdditionalAuthoredGrazerAreNotTheSubstitutedRoll" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.MatchingDecoyAndAdditionalAuthoredGrazerAreNotTheSubstitutedRoll" methodname="MatchingDecoyAndAdditionalAuthoredGrazerAreNotTheSubstitutedRoll" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" seed="102688159" result="Failed" start-time="2026-09-28T03:41:16.6974190Z" end-time="2026-09-28T03:41:16.7205090Z" duration="0.023091" asserts="5">
+            <failure>
+              <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.MatchingDecoyAndAdditionalAuthoredGrazerAreNotTheSubstitutedRoll() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 31
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.MatchingDecoyAndAdditionalAuthoredGrazerAreNotTheSubstitutedRoll() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 31
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1186" name="NoActualSubstitutionCannotAuthorizeAReplacement" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-28T03:41:16.7205330Z" end-time="2026-09-28T03:41:16.8306270Z" duration="0.110095" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1181" name="NoActualSubstitutionCannotAuthorizeAReplacement(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(&quot;missing&quot;)" methodname="NoActualSubstitutionCannotAuthorizeAReplacement" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" seed="710725535" result="Failed" start-time="2026-09-28T03:41:16.7206330Z" end-time="2026-09-28T03:41:16.7457780Z" duration="0.025145" asserts="4">
+              <failure>
+                <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 29
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 29
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1182" name="NoActualSubstitutionCannotAuthorizeAReplacement(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(&quot;foreign&quot;)" methodname="NoActualSubstitutionCannotAuthorizeAReplacement" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" seed="1406011542" result="Failed" start-time="2026-09-28T03:41:16.7458580Z" end-time="2026-09-28T03:41:16.7663640Z" duration="0.020506" asserts="4">
+              <failure>
+                <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 29
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 29
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1183" name="NoActualSubstitutionCannotAuthorizeAReplacement(&quot;duplicate&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(&quot;duplicate&quot;)" methodname="NoActualSubstitutionCannotAuthorizeAReplacement" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" seed="754499093" result="Failed" start-time="2026-09-28T03:41:16.7663800Z" end-time="2026-09-28T03:41:16.7868880Z" duration="0.020508" asserts="4">
+              <failure>
+                <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 29
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 29
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1184" name="NoActualSubstitutionCannotAuthorizeAReplacement(&quot;no-source&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(&quot;no-source&quot;)" methodname="NoActualSubstitutionCannotAuthorizeAReplacement" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" seed="1430644085" result="Failed" start-time="2026-09-28T03:41:16.7869040Z" end-time="2026-09-28T03:41:16.8087680Z" duration="0.021864" asserts="4">
+              <failure>
+                <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 29
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 29
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1185" name="NoActualSubstitutionCannotAuthorizeAReplacement(&quot;disabled&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(&quot;disabled&quot;)" methodname="NoActualSubstitutionCannotAuthorizeAReplacement" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" seed="840692393" result="Failed" start-time="2026-09-28T03:41:16.8087830Z" end-time="2026-09-28T03:41:16.8300150Z" duration="0.021233" asserts="4">
+              <failure>
+                <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 29
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 29
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.NoActualSubstitutionCannotAuthorizeAReplacement(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1192" name="ReceiptStillPinsExactProducerAndUnchangedCurrentOwner" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T03:41:16.8308930Z" end-time="2026-09-28T03:41:16.9253670Z" duration="0.094474" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1188" name="ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(&quot;revision&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(&quot;revision&quot;)" methodname="ReceiptStillPinsExactProducerAndUnchangedCurrentOwner" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" seed="1155791773" result="Failed" start-time="2026-09-28T03:41:16.8309070Z" end-time="2026-09-28T03:41:16.8573180Z" duration="0.026412" asserts="4">
+              <failure>
+                <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 34
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 34
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1189" name="ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(&quot;capture-off&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(&quot;capture-off&quot;)" methodname="ReceiptStillPinsExactProducerAndUnchangedCurrentOwner" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" seed="931348910" result="Failed" start-time="2026-09-28T03:41:16.8573380Z" end-time="2026-09-28T03:41:16.8795130Z" duration="0.022176" asserts="4">
+              <failure>
+                <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 34
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 34
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1190" name="ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(&quot;owner-removed&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(&quot;owner-removed&quot;)" methodname="ReceiptStillPinsExactProducerAndUnchangedCurrentOwner" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" seed="912698669" result="Failed" start-time="2026-09-28T03:41:16.8795840Z" end-time="2026-09-28T03:41:16.9039900Z" duration="0.024406" asserts="4">
+              <failure>
+                <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 34
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 34
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1191" name="ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(&quot;owner-changed&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(&quot;owner-changed&quot;)" methodname="ReceiptStillPinsExactProducerAndUnchangedCurrentOwner" classname="CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests" runstate="Runnable" seed="1558099890" result="Failed" start-time="2026-09-28T03:41:16.9040210Z" end-time="2026-09-28T03:41:16.9253360Z" duration="0.021315" asserts="4">
+              <failure>
+                <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 34
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Separate exact substituted-owner receipt must survive ordinary stocking of other ambient owners.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.Receipt(PopulationBuilder b) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReplacementReceiptTests.cs:line 34
+   at InvokeStub_SpreadGrazerReplacementReceiptTests.ReceiptStillPinsExactProducerAndUnchangedCurrentOwner(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1002" name="SpreadGrazerReserveDistanceTests" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-09-28T03:41:16.9257960Z" end-time="2026-09-28T03:41:18.4530200Z" duration="1.527231" total="11" passed="4" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="22117">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1014" name="CurrentDistantReserveIdentityStillGatesTheActualFeed" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T03:41:16.9258400Z" end-time="2026-09-28T03:41:16.9448400Z" duration="0.019001" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6024">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1011" name="CurrentDistantReserveIdentityStillGatesTheActualFeed(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(&quot;removed&quot;)" methodname="CurrentDistantReserveIdentityStillGatesTheActualFeed" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="213660959" result="Failed" start-time="2026-09-28T03:41:16.9258820Z" end-time="2026-09-28T03:41:16.9380030Z" duration="0.012121" asserts="2008">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 27
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 27
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1012" name="CurrentDistantReserveIdentityStillGatesTheActualFeed(&quot;spent&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(&quot;spent&quot;)" methodname="CurrentDistantReserveIdentityStillGatesTheActualFeed" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="131409852" result="Failed" start-time="2026-09-28T03:41:16.9380180Z" end-time="2026-09-28T03:41:16.9427460Z" duration="0.004728" asserts="2008">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 27
+   at InvokeStub_SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 27
+   at InvokeStub_SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1013" name="CurrentDistantReserveIdentityStillGatesTheActualFeed(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(&quot;moved&quot;)" methodname="CurrentDistantReserveIdentityStillGatesTheActualFeed" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="1561668551" result="Failed" start-time="2026-09-28T03:41:16.9427830Z" end-time="2026-09-28T03:41:16.9447960Z" duration="0.002013" asserts="2008">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 27
+   at InvokeStub_SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(String fault) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 27
+   at InvokeStub_SpreadGrazerReserveDistanceTests.CurrentDistantReserveIdentityStillGatesTheActualFeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1006" name="DirectConfigurationKeepsTheActualMealApproachBounded" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.DirectConfigurationKeepsTheActualMealApproachBounded" methodname="DirectConfigurationKeepsTheActualMealApproachBounded" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="1828065901" result="Failed" start-time="2026-09-28T03:41:16.9448750Z" end-time="2026-09-28T03:41:16.9462940Z" duration="0.001418" asserts="2008">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.DirectConfigurationKeepsTheActualMealApproachBounded() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 21
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.DirectConfigurationKeepsTheActualMealApproachBounded() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 21
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1015" name="LateSealedDistantReserveInvalidatesAcceptedGeometry" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.LateSealedDistantReserveInvalidatesAcceptedGeometry" methodname="LateSealedDistantReserveInvalidatesAcceptedGeometry" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="1835761724" result="Failed" start-time="2026-09-28T03:41:16.9463040Z" end-time="2026-09-28T03:41:16.9505190Z" duration="0.004215" asserts="2008">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.LateSealedDistantReserveInvalidatesAcceptedGeometry() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 29
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.LateSealedDistantReserveInvalidatesAcceptedGeometry() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 29
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1005" name="ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T03:41:16.9505420Z" end-time="2026-09-28T03:41:18.4373760Z" duration="1.486840" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="4028">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1003" name="ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(16)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(16)" methodname="ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="602386274" result="Passed" start-time="2026-09-28T03:41:16.9505820Z" end-time="2026-09-28T03:41:18.4337900Z" duration="1.483217" asserts="2020" />
+            <test-case id="1004" name="ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(60)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(60)" methodname="ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="1632015036" result="Failed" start-time="2026-09-28T03:41:18.4338650Z" end-time="2026-09-28T03:41:18.4373290Z" duration="0.003463" asserts="2008">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(Int32 x) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 19
+   at InvokeStub_SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(Int32 x) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 19
+   at InvokeStub_SpreadGrazerReserveDistanceTests.ReservedPlayerSupplyMayRemainFarFromTheSingleActualMeal(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1016" name="SavedDistantReserveStillPermitsOnlyOnePaidMeal" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.SavedDistantReserveStillPermitsOnlyOnePaidMeal" methodname="SavedDistantReserveStillPermitsOnlyOnePaidMeal" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="1926039764" result="Failed" start-time="2026-09-28T03:41:18.4374330Z" end-time="2026-09-28T03:41:18.4419060Z" duration="0.004473" asserts="2008">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.SavedDistantReserveStillPermitsOnlyOnePaidMeal() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 31
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.SavedDistantReserveStillPermitsOnlyOnePaidMeal() in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerReserveDistanceTests.cs:line 31
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1010" name="UnavailableDistantReserveCannotConfigureOrConsume" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.UnavailableDistantReserveCannotConfigureOrConsume" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T03:41:18.4419390Z" end-time="2026-09-28T03:41:18.4530030Z" duration="0.011064" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6041">
+            <test-case id="1007" name="UnavailableDistantReserveCannotConfigureOrConsume(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.UnavailableDistantReserveCannotConfigureOrConsume(&quot;removed&quot;)" methodname="UnavailableDistantReserveCannotConfigureOrConsume" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="14582295" result="Passed" start-time="2026-09-28T03:41:18.4419640Z" end-time="2026-09-28T03:41:18.4456120Z" duration="0.003649" asserts="2011" />
+            <test-case id="1008" name="UnavailableDistantReserveCannotConfigureOrConsume(&quot;spent&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.UnavailableDistantReserveCannotConfigureOrConsume(&quot;spent&quot;)" methodname="UnavailableDistantReserveCannotConfigureOrConsume" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="2077582344" result="Passed" start-time="2026-09-28T03:41:18.4456290Z" end-time="2026-09-28T03:41:18.4481030Z" duration="0.002474" asserts="2011" />
+            <test-case id="1009" name="UnavailableDistantReserveCannotConfigureOrConsume(&quot;sealed&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests.UnavailableDistantReserveCannotConfigureOrConsume(&quot;sealed&quot;)" methodname="UnavailableDistantReserveCannotConfigureOrConsume" classname="CavesOfOoo.Tests.SpreadGrazerReserveDistanceTests" runstate="Runnable" seed="1197464985" result="Passed" start-time="2026-09-28T03:41:18.4481330Z" end-time="2026-09-28T03:41:18.4529760Z" duration="0.004844" asserts="2019" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

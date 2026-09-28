@@ -1,0 +1,122 @@
+{
+  "runId": "75c5102888d24b15a8e92023d6f1f904",
+  "seed": 64,
+  "finished": true,
+  "complete": false,
+  "failures": 1,
+  "fatal": "System.InvalidOperationException: bounded actual generated grazer source and view cell\n  at CavesOfOoo.Scenarios.Custom.QuestFreeSpreadStateNativePlayer+<Feeding>d__60.MoveNext () [0x00771] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.cs:83 \n  at CavesOfOoo.Scenarios.Custom.QuestFreeSpreadStateNativePlayer+<RunSafely>d__90.MoveNext () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.cs:203 ",
+  "seconds": 1.7764402,
+  "paidInputs": 0,
+  "checks": [
+    {
+      "label": "ordinary_fresh_opted_in_world",
+      "pass": true
+    }
+  ],
+  "observations": [
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "LastGleanings",
+      "zone": "Overworld.10.5.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "configured adjacent unspent food; safe observer beyond flight radius",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "LastGleanings",
+      "zone": "Overworld.12.14.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "configured adjacent unspent food; safe observer beyond flight radius",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "LastGleanings",
+      "zone": "Overworld.13.10.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "configured adjacent unspent food; safe observer beyond flight radius",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "LastGleanings",
+      "zone": "Overworld.13.13.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "configured adjacent unspent food; safe observer beyond flight radius",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "LastGleanings",
+      "zone": "Overworld.14.11.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "configured adjacent unspent food; safe observer beyond flight radius",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "LastGleanings",
+      "zone": "Overworld.15.12.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "configured adjacent unspent food; safe observer beyond flight radius",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "LastGleanings",
+      "zone": "Overworld.16.10.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "configured adjacent unspent food; safe observer beyond flight radius",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "LastGleanings",
+      "zone": "Overworld.5.12.0",
+      "owner": null,
+      "arrival": null,
+      "accepted": false,
+      "criterion": "configured adjacent unspent food; safe observer beyond flight radius",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "failed-current-state",
+      "zone": "Overworld.11.10.0",
+      "player": "2697",
+      "position": [
+        40,
+        12
+      ],
+      "hp": 40,
+      "state": "Normal"
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E2/NativeStates/75c5102888d24b15a8e92023d6f1f904/00-ordinary-start.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E2/NativeStates/75c5102888d24b15a8e92023d6f1f904/99-failed-current-state.png"
+  ],
+  "humanAwarenessMeasured": false,
+  "boundary": "Ordinary N then disclosed original-player-only setup transfers to real generated frozen family sources. One empty waterskin is supplied. Wait, withdrawal, Look/Examine and inventory Fill use actual keys. No generated owner, AI, HP, reward, RNG or corpse was forced. Local activation/camera proof, not ordinary journey/acquisition or a matched performance sample. Root must review screenshots.",
+  "settings": {
+    "screenWidth": 2271,
+    "screenHeight": 1251,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "lowDetail": false
+  }
+}

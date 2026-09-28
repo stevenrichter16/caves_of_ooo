@@ -1,0 +1,73 @@
+--- Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs
++++ Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs
+@@ -132,6 +132,47 @@
+                 }
+             return false;
+         }
++        /// <summary>Read-only proof of the accepted cold placement across later
++        /// generation callbacks. No callback is saved or used during live AI.</summary>
++        public static Func<bool> CaptureFinalGeometry(Zone zone, Entity actor)
++        {
++            var territory=actor?.GetPart<SpreadTerritoryPart>(); var grazer=actor?.GetPart<SpreadGrazerPart>();
++            if ((territory==null)==(grazer==null)) return null;
++            var owner=ActorSnapshot.Capture(zone,actor,territory!=null?"MarlbackScrabbler":"ReedbackGrazer");
++            if(owner==null) return null;
++            var at=owner.Origin; var initial=new Geometry(zone,actor); var routes=initial.CaptureRoutes(at);
++            Func<bool> source; Func<Geometry,bool> layout;
++            if(territory!=null)
++            {
++                if(!territory.Configured || territory.ParentEntity!=actor || territory.ZoneID!=zone.ZoneID
++                    || territory.HomeX!=at.x || territory.HomeY!=at.y || !Post(zone,territory.Post)
++                    || territory.Left<2 || territory.Top<2 || territory.Right>=Zone.Width-2 || territory.Bottom>=Zone.Height-2
++                    || territory.Left>at.x || territory.Right<at.x || territory.Top>at.y || territory.Bottom<at.y
++                    || territory.Right-territory.Left>12 || territory.Bottom-territory.Top>12) return null;
++                var post=new SourceSnapshot(zone,territory.Post); var roleState=new FieldState(territory);
++                if(post.Position!=(territory.PostX,territory.PostY)) return null;
++                int left=territory.Left,right=territory.Right,top=territory.Top,bottom=territory.Bottom;
++                source=()=>roleState.Matches() && actor.GetPart<SpreadTerritoryPart>()==territory && post.Current() && Post(zone,post.Entity);
++                layout=g=>g.HasBypass(at,(x,y)=>x>=left&&x<=right&&y>=top&&y<=bottom);
++            }
++            else
++            {
++                if(!Ripe(zone,grazer.Food)||!Ripe(zone,grazer.ReservedRow)||grazer.Food==grazer.ReservedRow) return null;
++                var food=new SourceSnapshot(zone,grazer.Food); var reserve=new SourceSnapshot(zone,grazer.ReservedRow);var roleState=new FieldState(grazer);
++                if(!MatchesConfigured(grazer,actor,food,reserve)) return null;
++                source=()=>roleState.Matches() && MatchesConfigured(grazer,actor,food,reserve) && food.Current() && reserve.Current()
++                    && Ripe(zone,food.Entity) && Ripe(zone,reserve.Entity);
++                layout=g=>g.EntryReaches(food.Position,at)&&g.EntryReaches(reserve.Position,at);
++            }
++            bool Current()
++            {
++                if(!owner.Current(at)||!source()) return false;
++                var current=new Geometry(zone,actor);
++                return current.Place(at.x,at.y)&&routes(current)&&layout(current);
++            }
++            return Current()?(Func<bool>)Current:null;
++        }
++
+         static bool MatchesConfigured(SpreadGrazerPart r, Entity owner, SourceSnapshot food, SourceSnapshot reserve)
+             => r != null && r.ParentEntity == owner && owner.GetPart<SpreadGrazerPart>() == r && r.Configured && !r.Fed
+                 && r.ZoneID == food.Zone.ZoneID && r.Food == food.Entity && r.ReservedRow == reserve.Entity
+@@ -302,6 +343,22 @@
+                     if(Math.Abs(dx)+Math.Abs(dy)==1&&In(at.x+dx,at.y+dy)&&reached[at.x+dx,at.y+dy])return true;
+                 return false;
+             }
++            internal Func<Geometry,bool> CaptureRoutes((int x,int y) destination)
++            {
++                var accepted=Labels(destination,null);var required=critical.ToArray();
++                return current=>
++                {
++                    var next=current.Labels(destination,null);var map=new Dictionary<int,int>();
++                    foreach(var p in required)
++                    {
++                        int a=accepted[p.x,p.y],b=next[p.x,p.y];
++                        if(a==0||b==0)return false;
++                        if(map.TryGetValue(a,out int prior)&&prior!=b)return false;
++                        map[a]=b;
++                    }
++                    return true;
++                };
++            }
+             internal bool PreservesRoutes((int x,int y) destination)
+             {
+                 var next=Labels(destination,null);var map=new Dictionary<int,int>();

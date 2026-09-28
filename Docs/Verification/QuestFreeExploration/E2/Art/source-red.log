@@ -1,0 +1,94 @@
+test_all_finite_bone_owned_nonzero_bounded_cuboids (__main__.SourceTests.test_all_finite_bone_owned_nonzero_bounded_cuboids) ... FAIL
+test_draw_empty_keeps_real_trough_and_no_water (__main__.SourceTests.test_draw_empty_keeps_real_trough_and_no_water) ... FAIL
+test_exact_four_owned_forms (__main__.SourceTests.test_exact_four_owned_forms) ... FAIL
+test_five_clips_and_explicit_head_down_feeding (__main__.SourceTests.test_five_clips_and_explicit_head_down_feeding) ... FAIL
+test_full_surface_visible_inside_rim_not_solid_block (__main__.SourceTests.test_full_surface_visible_inside_rim_not_solid_block) ... FAIL
+test_original_low_broad_herbivore_four_leg_rig (__main__.SourceTests.test_original_low_broad_herbivore_four_leg_rig) ... FAIL
+test_palette_is_accepted_first24 (__main__.SourceTests.test_palette_is_accepted_first24) ... ok
+test_remains_original_low_silhouette_no_fake_reward (__main__.SourceTests.test_remains_original_low_silhouette_no_fake_reward) ... FAIL
+
+======================================================================
+FAIL: test_all_finite_bone_owned_nonzero_bounded_cuboids (__main__.SourceTests.test_all_finite_bone_owned_nonzero_bounded_cuboids)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/art/test_source.py", line 17, in test_all_finite_bone_owned_nonzero_bounded_cuboids
+    self.assertEqual(len(self.models),4)
+AssertionError: 0 != 4
+
+======================================================================
+FAIL: test_draw_empty_keeps_real_trough_and_no_water (__main__.SourceTests.test_draw_empty_keeps_real_trough_and_no_water)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/art/test_source.py", line 27, in test_draw_empty_keeps_real_trough_and_no_water
+    empty=self.model('draw-empty');full=self.model('draw-full');self.assertEqual(empty['blueprint'],'SpreadDrawPoint');self.assertEqual(empty['boxes'],[b for b in full['boxes'] if b['material']!='water']);self.assertGreaterEqual(len(empty['boxes']),6);self.assertFalse(any(b['material']=='water' for b in empty['boxes']))
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/art/test_source.py", line 7, in model
+    self.assertIn('questfree-spread-'+suffix,self.models);return self.models['questfree-spread-'+suffix]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'questfree-spread-draw-empty' not found in {}
+
+======================================================================
+FAIL: test_exact_four_owned_forms (__main__.SourceTests.test_exact_four_owned_forms)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/art/test_source.py", line 9, in test_exact_four_owned_forms
+    def test_exact_four_owned_forms(self):self.assertEqual(set(self.models),{'questfree-spread-grazer','questfree-spread-grazer-remains','questfree-spread-draw-full','questfree-spread-draw-empty'})
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'questfree-spread-grazer-remains'
+'questfree-spread-grazer'
+'questfree-spread-draw-full'
+'questfree-spread-draw-empty'
+
+======================================================================
+FAIL: test_five_clips_and_explicit_head_down_feeding (__main__.SourceTests.test_five_clips_and_explicit_head_down_feeding)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/art/test_source.py", line 15, in test_five_clips_and_explicit_head_down_feeding
+    m=self.model('grazer');self.assertEqual(m['clips'],['Idle','Walk','Interact','Attack','Hit']);self.assertGreaterEqual(m['feedingHeadPitch'],.5);self.assertLessEqual(m['feedingHeadPitch'],.8)
+      ^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/art/test_source.py", line 7, in model
+    self.assertIn('questfree-spread-'+suffix,self.models);return self.models['questfree-spread-'+suffix]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'questfree-spread-grazer' not found in {}
+
+======================================================================
+FAIL: test_full_surface_visible_inside_rim_not_solid_block (__main__.SourceTests.test_full_surface_visible_inside_rim_not_solid_block)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/art/test_source.py", line 29, in test_full_surface_visible_inside_rim_not_solid_block
+    m=self.model('draw-full');water=[b for b in m['boxes'] if b['material']=='water'];self.assertEqual(len(water),1);w=water[0];self.assertLess(w['size'][1],.04);self.assertGreater(w['size'][0]*w['size'][2],.1);rim=next(b for b in m['boxes'] if b['part']=='front-lip');self.assertGreater(rim['center'][1]+rim['size'][1]/2,w['center'][1]+w['size'][1]/2);self.assertEqual(w['semanticLiquid'],'water')
+      ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/art/test_source.py", line 7, in model
+    self.assertIn('questfree-spread-'+suffix,self.models);return self.models['questfree-spread-'+suffix]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'questfree-spread-draw-full' not found in {}
+
+======================================================================
+FAIL: test_original_low_broad_herbivore_four_leg_rig (__main__.SourceTests.test_original_low_broad_herbivore_four_leg_rig)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/art/test_source.py", line 11, in test_original_low_broad_herbivore_four_leg_rig
+    m=self.model('grazer');self.assertEqual(m['blueprint'],'ReedbackGrazer');self.assertEqual(m['rigFamily'],'quadruped');self.assertEqual(sum(b['name'].startswith('Leg') for b in m['bones']),4)
+      ^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/art/test_source.py", line 7, in model
+    self.assertIn('questfree-spread-'+suffix,self.models);return self.models['questfree-spread-'+suffix]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'questfree-spread-grazer' not found in {}
+
+======================================================================
+FAIL: test_remains_original_low_silhouette_no_fake_reward (__main__.SourceTests.test_remains_original_low_silhouette_no_fake_reward)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/art/test_source.py", line 25, in test_remains_original_low_silhouette_no_fake_reward
+    m=self.model('grazer-remains');self.assertEqual(m['blueprint'],'ReedbackGrazerCorpse');self.assertFalse(m['rigged']);self.assertLess(max(b['center'][1]+b['size'][1]/2 for b in m['boxes']),.3);self.assertTrue(any(b['part'].startswith('reed-ridge') for b in m['boxes']))
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/art/test_source.py", line 7, in model
+    self.assertIn('questfree-spread-'+suffix,self.models);return self.models['questfree-spread-'+suffix]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'questfree-spread-grazer-remains' not found in {}
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.003s
+
+FAILED (failures=7)

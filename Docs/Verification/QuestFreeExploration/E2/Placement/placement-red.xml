@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="71" result="Failed" start-time="2026-09-28T02:13:07.8947310Z" end-time="2026-09-28T02:13:07.9596250Z" duration="0.064884" total="19" passed="0" failed="19" inconclusive="0" skipped="0" warnings="0" asserts="40017" random-seed="1241312473">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/placement-red.xml --where "class =~ /SpreadExplorationActorPlacementTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationActorPlacementTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1085" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-09-28T02:13:07.8947310Z" end-time="2026-09-28T02:13:07.9596250Z" duration="0.064884" total="19" passed="0" failed="19" warnings="0" inconclusive="0" skipped="0" asserts="40017">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="20669" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1086" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-09-28T02:13:07.8962260Z" end-time="2026-09-28T02:13:07.9596160Z" duration="0.063389" total="19" passed="0" failed="19" warnings="0" inconclusive="0" skipped="0" asserts="40017">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1087" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-09-28T02:13:07.8963560Z" end-time="2026-09-28T02:13:07.9596130Z" duration="0.063256" total="19" passed="0" failed="19" warnings="0" inconclusive="0" skipped="0" asserts="40017">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1061" name="SpreadExplorationActorPlacementTests" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-09-28T02:13:07.8966820Z" end-time="2026-09-28T02:13:07.9596060Z" duration="0.062923" total="19" passed="0" failed="19" warnings="0" inconclusive="0" skipped="0" asserts="40017">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1080" name="CallbackOwnedRelocationIsNotOverwrittenByRollback" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.CallbackOwnedRelocationIsNotOverwrittenByRollback" methodname="CallbackOwnedRelocationIsNotOverwrittenByRollback" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="848256144" result="Failed" start-time="2026-09-28T02:13:07.8975510Z" end-time="2026-09-28T02:13:07.9191850Z" duration="0.021659" asserts="2006">
+            <failure>
+              <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.CallbackOwnedRelocationIsNotOverwrittenByRollback() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 54
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.CallbackOwnedRelocationIsNotOverwrittenByRollback() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 54
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1076" name="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:13:07.9196990Z" end-time="2026-09-28T02:13:07.9252700Z" duration="0.005571" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4013">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1074" name="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(False)" methodname="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1142029304" result="Failed" start-time="2026-09-28T02:13:07.9197670Z" end-time="2026-09-28T02:13:07.9236180Z" duration="0.003850" asserts="2006">
+              <failure>
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 50
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 50
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1075" name="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(True)" methodname="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="589874483" result="Failed" start-time="2026-09-28T02:13:07.9236330Z" end-time="2026-09-28T02:13:07.9249310Z" duration="0.001299" asserts="2007">
+              <failure>
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 50
+   at InvokeStub_SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 50
+   at InvokeStub_SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1073" name="ConsumedReserveCannotBeSelected" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ConsumedReserveCannotBeSelected" methodname="ConsumedReserveCannotBeSelected" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="103030303" result="Failed" start-time="2026-09-28T02:13:07.9254160Z" end-time="2026-09-28T02:13:07.9265750Z" duration="0.001159" asserts="2007">
+            <failure>
+              <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ConsumedReserveCannotBeSelected() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 48
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ConsumedReserveCannotBeSelected() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 48
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1067" name="ExistingConfiguredDutyCannotBeResetByPlacement" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ExistingConfiguredDutyCannotBeResetByPlacement" methodname="ExistingConfiguredDutyCannotBeResetByPlacement" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="257440700" result="Failed" start-time="2026-09-28T02:13:07.9266070Z" end-time="2026-09-28T02:13:07.9303370Z" duration="0.003730" asserts="2006">
+            <failure>
+              <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ExistingConfiguredDutyCannotBeResetByPlacement() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 36
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ExistingConfiguredDutyCannotBeResetByPlacement() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 36
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1079" name="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:13:07.9303520Z" end-time="2026-09-28T02:13:07.9332890Z" duration="0.002936" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4013">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1077" name="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(False)" methodname="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1732115474" result="Failed" start-time="2026-09-28T02:13:07.9303710Z" end-time="2026-09-28T02:13:07.9316970Z" duration="0.001326" asserts="2006">
+              <failure>
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 52
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 52
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1078" name="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(True)" methodname="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="860873000" result="Failed" start-time="2026-09-28T02:13:07.9317050Z" end-time="2026-09-28T02:13:07.9332670Z" duration="0.001561" asserts="2007">
+              <failure>
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 52
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 52
+   at InvokeStub_SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1070" name="GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows" methodname="GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="354692351" result="Failed" start-time="2026-09-28T02:13:07.9333430Z" end-time="2026-09-28T02:13:07.9350460Z" duration="0.001702" asserts="2007">
+            <failure>
+              <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 42
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 42
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1068" name="NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass" methodname="NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="742590911" result="Failed" start-time="2026-09-28T02:13:07.9350640Z" end-time="2026-09-28T02:13:07.9388550Z" duration="0.003791" asserts="2212">
+            <failure>
+              <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 38
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 38
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1066" name="NoPostIsAnHonestTerritoryRefusal" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NoPostIsAnHonestTerritoryRefusal" methodname="NoPostIsAnHonestTerritoryRefusal" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="204100806" result="Failed" start-time="2026-09-28T02:13:07.9388650Z" end-time="2026-09-28T02:13:07.9399650Z" duration="0.001100" asserts="2006">
+            <failure>
+              <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NoPostIsAnHonestTerritoryRefusal() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 34
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NoPostIsAnHonestTerritoryRefusal() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 34
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1084" name="NullGuardFailsClosedWithoutTouchingTheActor" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:13:07.9400030Z" end-time="2026-09-28T02:13:07.9452450Z" duration="0.005242" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4013">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1082" name="NullGuardFailsClosedWithoutTouchingTheActor(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(False)" methodname="NullGuardFailsClosedWithoutTouchingTheActor" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="147009241" result="Failed" start-time="2026-09-28T02:13:07.9400230Z" end-time="2026-09-28T02:13:07.9413390Z" duration="0.001316" asserts="2006">
+              <failure>
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 58
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 58
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1083" name="NullGuardFailsClosedWithoutTouchingTheActor(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(True)" methodname="NullGuardFailsClosedWithoutTouchingTheActor" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="257846868" result="Failed" start-time="2026-09-28T02:13:07.9413710Z" end-time="2026-09-28T02:13:07.9452080Z" duration="0.003837" asserts="2007">
+              <failure>
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 58
+   at InvokeStub_SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 58
+   at InvokeStub_SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1065" name="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:13:07.9452560Z" end-time="2026-09-28T02:13:07.9480520Z" duration="0.002796" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="4013">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1063" name="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(False)" methodname="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="370185917" result="Failed" start-time="2026-09-28T02:13:07.9452680Z" end-time="2026-09-28T02:13:07.9466910Z" duration="0.001423" asserts="2006">
+              <failure>
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 32
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 32
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1064" name="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(True)" methodname="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="351722953" result="Failed" start-time="2026-09-28T02:13:07.9467010Z" end-time="2026-09-28T02:13:07.9480000Z" duration="0.001299" asserts="2007">
+              <failure>
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 32
+   at InvokeStub_SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(Boolean grazer) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 32
+   at InvokeStub_SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1081" name="RemovedActorAndSameIdReplacementAreNeverReclaimed" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RemovedActorAndSameIdReplacementAreNeverReclaimed" methodname="RemovedActorAndSameIdReplacementAreNeverReclaimed" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="474529231" result="Failed" start-time="2026-09-28T02:13:07.9480770Z" end-time="2026-09-28T02:13:07.9523190Z" duration="0.004242" asserts="2006">
+            <failure>
+              <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RemovedActorAndSameIdReplacementAreNeverReclaimed() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 56
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RemovedActorAndSameIdReplacementAreNeverReclaimed() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 56
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1072" name="SealedReservedRowDoesNotCountAsPlayerAccessibleFood" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SealedReservedRowDoesNotCountAsPlayerAccessibleFood" methodname="SealedReservedRowDoesNotCountAsPlayerAccessibleFood" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="486487717" result="Failed" start-time="2026-09-28T02:13:07.9523280Z" end-time="2026-09-28T02:13:07.9538590Z" duration="0.001531" asserts="2016">
+            <failure>
+              <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SealedReservedRowDoesNotCountAsPlayerAccessibleFood() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 46
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SealedReservedRowDoesNotCountAsPlayerAccessibleFood() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 46
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1069" name="SingleLaneThroughTheProposedTerritoryIsNotABypass" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SingleLaneThroughTheProposedTerritoryIsNotABypass" methodname="SingleLaneThroughTheProposedTerritoryIsNotABypass" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1821720903" result="Failed" start-time="2026-09-28T02:13:07.9539060Z" end-time="2026-09-28T02:13:07.9557520Z" duration="0.001846" asserts="3686">
+            <failure>
+              <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SingleLaneThroughTheProposedTerritoryIsNotABypass() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 40
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SingleLaneThroughTheProposedTerritoryIsNotABypass() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 40
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1071" name="SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood" methodname="SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="553029782" result="Failed" start-time="2026-09-28T02:13:07.9557670Z" end-time="2026-09-28T02:13:07.9584390Z" duration="0.002672" asserts="2007">
+            <failure>
+              <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 44
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 44
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1062" name="TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary" methodname="TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1065459598" result="Failed" start-time="2026-09-28T02:13:07.9584860Z" end-time="2026-09-28T02:13:07.9595730Z" duration="0.001087" asserts="2006">
+            <failure>
+              <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 30
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exact-owner placement helper
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Call(String method, Zone zone, Entity actor, Func`1 current) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.Fixture.Run(Boolean grazer, Func`1 guard) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 30
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

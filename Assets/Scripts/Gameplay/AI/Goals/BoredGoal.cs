@@ -23,6 +23,13 @@ namespace CavesOfOoo.Core
 
         public override void TakeAction()
         {
+            // Situation roles admit their own current targets before faction
+            // acquisition. Higher goals (Calm, work, follow, combat) still win.
+            var territory = ParentEntity.GetPart<SpreadTerritoryPart>();
+            if (territory != null && territory.TakeIdleAction(ParentBrain, CurrentZone)) return;
+            var grazer = ParentEntity.GetPart<SpreadGrazerPart>();
+            if (grazer != null && grazer.TakeIdleAction(ParentBrain, CurrentZone)) return;
+
             // 1. If currently sitting, check for threats, then for duty work.
             if (ParentEntity.HasEffect<SittingEffect>())
             {

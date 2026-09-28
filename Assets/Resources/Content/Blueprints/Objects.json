@@ -36477,6 +36477,227 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "ReedbackGrazer",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "reedback grazer"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "g"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "Passive",
+              "Value": "true"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "false"
+            },
+            {
+              "Key": "WandersRandomly",
+              "Value": "false"
+            },
+            {
+              "Key": "SightRadius",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "SpreadGrazer",
+          "Params": []
+        },
+        {
+          "Name": "Corpse",
+          "Params": [
+            {
+              "Key": "CorpseChance",
+              "Value": "70"
+            },
+            {
+              "Key": "CorpseBlueprint",
+              "Value": "ReedbackGrazerCorpse"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A squat four-footed grazer with a blunt muzzle and a ridge of stiff reed-like hair. Its split hooves pick between the worked rows; it shies from close footsteps."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 10,
+          "Min": 0,
+          "Max": 10
+        },
+        {
+          "Name": "Strength",
+          "Value": 6
+        },
+        {
+          "Name": "Agility",
+          "Value": 14
+        },
+        {
+          "Name": "Toughness",
+          "Value": 8
+        },
+        {
+          "Name": "XPValue",
+          "Value": 0
+        }
+      ],
+      "Props": [
+        {
+          "Key": "Anatomy",
+          "Value": "Quadruped"
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Faction",
+          "Value": "Beasts"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "AllowIdleBehavior",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "ReedbackGrazerCorpse",
+      "Inherits": "CreatureCorpse",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "reedback grazer remains"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "The low reed ridge lies flat against a still, broad body."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SpreadDrawPoint",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "bank draw point"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "~"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "LiquidPool",
+          "Params": [
+            {
+              "Key": "LiquidId",
+              "Value": "water"
+            },
+            {
+              "Key": "Volume",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A shallow stone-lined pocket beside the bank. Its collected water can be drawn into a carried vessel; the wet ground around it is not a refill."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Terrain",
+          "Value": ""
+        }
+      ]
     }
   ]
 }

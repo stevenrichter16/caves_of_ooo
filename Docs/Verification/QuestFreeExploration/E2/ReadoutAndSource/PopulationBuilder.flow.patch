@@ -1,0 +1,26 @@
+--- Assets/Scripts/Gameplay/World/Generation/Builders/PopulationBuilder.cs
++++ Assets/Scripts/Gameplay/World/Generation/Builders/PopulationBuilder.cs
+@@ -64,7 +64,22 @@
+             SpreadExplorationEntry assignment = null;
+             bool optedIn = !replaceSpread && ReferenceEquals(factory, ExplorationManager?.Factory)
+                 && exploration != null && exploration.TryGetGenerationEntry(ExplorationManager, zone, out assignment);
+-            if (optedIn) toSpawn = new List<string>(SpreadExplorationPopulationPolicy.Rewrite(Table, toSpawn, assignment.Family));
++            if (optedIn)
++            {
++                var rewritten = SpreadExplorationPopulationPolicy.Rewrite(Table, toSpawn, assignment.Family);
++                string required = assignment.Family == SpreadExplorationFamily.OccupiedBank ? "MarlbackScrabbler"
++                    : assignment.Family == SpreadExplorationFamily.LastGleanings ? "ReedbackGrazer" : null;
++                if (required != null && !toSpawn.SequenceEqual(rewritten) && !factory.Blueprints.ContainsKey(required))
++                {
++                    // Missing optional content must not swallow a real ordinary
++                    // roll. Preserve its original count/order and placement RNG.
++                    optedIn = false;
++                    if (Diag.IsChannelEnabled("worldgen"))
++                        Diag.Record("worldgen", "ExplorationPopulationRewriteRejected", payload: new
++                        { zone = zone.ZoneID, table = Table.Name, family = assignment.Family.ToString(), blueprint = required, reason = "missing_replacement_blueprint" });
++                }
++                else toSpawn = new List<string>(rewritten);
++            }
+             // Roll is intentionally unchanged. Ambiguous duplicate blueprint rows
+             // cannot identify group provenance and therefore grant no authority.
+             var group = receiptOwners == null || Table.Name != "SpreadTier1" || Table.Entries == null ? new HashSet<string>()

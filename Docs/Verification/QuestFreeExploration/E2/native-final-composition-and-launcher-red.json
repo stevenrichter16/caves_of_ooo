@@ -1,0 +1,31 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 68,
+    "passed": 66,
+    "failed": 2,
+    "skipped": 0,
+    "durationSeconds": 15.2993652,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene",
+      "fullName": "CavesOfOoo.Tests.QuestFreeSpreadStateNativeRestorationTests.NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene",
+      "state": "Failed:Error",
+      "durationSeconds": 0.0113094,
+      "message": "System.InvalidOperationException : Sequence contains no matching element",
+      "stackTrace": "  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 \n  at CavesOfOoo.Tests.QuestFreeSpreadStateNativeRestorationTests.Launcher (System.String name) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeSpreadStateNativeRestorationTests.cs:12 \n  at CavesOfOoo.Tests.QuestFreeSpreadStateNativeRestorationTests.NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeSpreadStateNativeRestorationTests.cs:44 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ",
+      "output": ""
+    },
+    {
+      "name": "RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles",
+      "fullName": "CavesOfOoo.Tests.QuestFreeSpreadStateNativeRestorationTests.RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles",
+      "state": "Failed:Error",
+      "durationSeconds": 0.0016862,
+      "message": "System.InvalidOperationException : Sequence contains no matching element",
+      "stackTrace": "  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00011] in <2a8fff6ff3e54cfa88259e180adc29eb>:0 \n  at CavesOfOoo.Tests.QuestFreeSpreadStateNativeRestorationTests.Launcher (System.String name) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeSpreadStateNativeRestorationTests.cs:12 \n  at CavesOfOoo.Tests.QuestFreeSpreadStateNativeRestorationTests.RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeSpreadStateNativeRestorationTests.cs:22 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ",
+      "output": ""
+    }
+  ]
+}

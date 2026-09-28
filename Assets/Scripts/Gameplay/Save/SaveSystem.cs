@@ -346,6 +346,7 @@ namespace CavesOfOoo.Core
             World = LairStacks.BindForSave(ZoneManager, World);
             World = SpreadRareEncounterPlan.BindForSave(ZoneManager, World);
             World = SpreadWayhousePlan.BindForSave(ZoneManager, World);
+            World = SpreadExplorationPlan.BindForSave(ZoneManager, World);
             writer.WriteHeader(GameVersion);
             writer.WriteCheck("GameSession.Begin");
             writer.Write(SaveVersion);
@@ -423,6 +424,7 @@ namespace CavesOfOoo.Core
                 state.ZoneManager.RareEncounters = SpreadRareEncounterPlan.Restore(state.World);
                 state.ZoneManager.Wayhouse = SpreadWayhousePlan.Restore(state.World);
                 state.ZoneManager.Wayhouse.RestoreInstalledGraph(state.ZoneManager,state.World);
+                state.ZoneManager.Exploration = SpreadExplorationPlan.Restore(state.ZoneManager,state.World);
             }
             // Parser failures leave the live session untouched. Load-hook or
             // bootstrap application exceptions are separate from this boundary.
@@ -955,7 +957,7 @@ namespace CavesOfOoo.Core
             }
 
             SettlementManager settlements = LoadSettlementManager(reader);
-            var manager = new OverworldZoneManager(reader.Factory, seed, activate: false);
+            var manager = new OverworldZoneManager(reader.Factory, seed, activate: false, restoring: true);
             manager.ReplaceLoadedOverworldState(worldMap, settlements, null);
             manager.ReplaceLoadedState(zones, activeZoneID, connections);
             reader.SetZoneManager(manager);

@@ -1,0 +1,11 @@
+# E1 final source acceptance callback
+
+This resolves the E2 dependency identified in the E1/geometry cold second pass. Exact attempt authority alone cannot prove that mutable source owners remain present after later generation callbacks.
+
+Runtime composers must call `TryMarkPlacementCommitted(manager, zone, exactEntry, finalValidator)` only after their actual source transaction succeeds. The strict overload refuses null. It checks exact current token, runs the source validator before marking, rechecks the captured attempt after the callback, then retains that callback only in the transient attempt. At final acceptance it repeats validation and the exact authority recheck before publishing either graph retention or disposition2. The token stays queryable during validation; reentrant marks are refused. Finalization removes the transient attempt on success, refusal or exception. No delegate is serialized or replayed after loading.
+
+The three-argument API remains for token-only fixture witnesses and is explicitly documented as insufficient for runtime composers. It does not advertise source integrity. The root compositor owns its actual owner/quantity/role/geometry validator.
+
+Evidence: `final-validator-red.xml` was71 total,63 controls PASS and8 expected missing-overload RED. First implementation passed71/71. Two additional counters rebuilt the same graph's generation guard inside validation: `validator-token-red.xml` was74 total,72 PASS and2 genuine token-authority RED. An after-callback comparison of only manager/plan references was insufficient; the final implementation also requires the exact current weak-table attempt reference. The throwing-validator cleanup control passed. Final `validator-final-green.xml` is74/74 PASS (29 initial +45 adversarial), and final actual Unity-reference runtime/full EditMode compilation is0 errors.
+
+Controls cover unchanged/removed/moved owners after mark, plan replacement during either callback, exact attempt replacement during either callback, null, reentrancy, thrown cleanup, accepted/no-site separation and saved graph restore without callback replay. These are core/compile proofs, not native test or player-flow results. No manager/save/geometry/source-data changes accompany this narrow two-file follow-up. Default activation remains off.

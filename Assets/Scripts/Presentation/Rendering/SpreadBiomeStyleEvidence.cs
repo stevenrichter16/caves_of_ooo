@@ -54,6 +54,8 @@ namespace CavesOfOoo.Rendering
    if (rareMarlbacks != null) { rareMarlbacks.Validate(); foreach (var e in rareMarlbacks.Entries) Add(e.Id, e.Mesh, rareMarlbacks.Material); }
    var latchcoil = SpreadLatchcoilLibrary.Load();
    if (latchcoil != null) { latchcoil.Validate(); foreach (var e in latchcoil.Entries) Add(e.Id,e.Mesh,latchcoil.Material); }
+   var exploration = QuestFreeSpreadArtLibrary.Load();
+   if (exploration != null) { exploration.Validate(); foreach (var e in exploration.Entries) Add(e.Id,e.Mesh,e.Materials[0],e.Materials); }
   }
   private void Add(string model,Mesh mesh,Material material,Material[] materials=null)
   {if(model==null||mesh==null||material==null||models.ContainsKey(model))throw new InvalidOperationException("Invalid exact style model contract.");models.Add(model,new Contract(mesh,material,materials));}

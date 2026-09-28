@@ -1,0 +1,42 @@
+{
+  "scope": "E2 cold exact-owner territory/gleanings placement; no factory/data/stock/population/pipeline changes",
+  "status": "peer reviewed; root-authorized publication",
+  "testFilter": "CavesOfOoo.Tests.SpreadExplorationActorPlacementTests",
+  "cases": 49,
+  "evidence": {
+    "firstRed": "placement-red.xml:19 missing-API failures before implementation",
+    "adversarialRed": "placement-adversarial-second-red.xml:3 feature failures/22 controls",
+    "callbackGraphRed": "placement-graph-red.xml:18 feature failures/27 controls",
+    "aiCollectionRed": "placement-graph-collections-red.xml:4 feature failures/45 controls",
+    "current": "placement-graph-final-green.xml:101/101 combined (52 role+49 placement)",
+    "runtimeReferenceCompile": 0,
+    "testReferenceCompile": 0
+  },
+  "files": [
+    {
+      "source": "/tmp/coo-questfree-implementation/actors/workspace/Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs",
+      "target": "Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs",
+      "beforeSha256": null,
+      "sha256": "d8eb2f15cef50ffb12d858f2f49c41207f466cf29c8d66ee981099113d19cdef"
+    },
+    {
+      "source": "/tmp/coo-questfree-implementation/actors/workspace/Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs.meta",
+      "target": "Assets/Scripts/Gameplay/AI/SpreadExplorationActorPlacement.cs.meta",
+      "beforeSha256": null,
+      "sha256": "3a1ab9cd7b5b7978be0afd0309cb2fbe95398ac7ca042a522174f08836a07030"
+    },
+    {
+      "source": "/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs",
+      "target": "Assets/Tests/EditMode/Gameplay/AI/SpreadExplorationActorPlacementTests.cs",
+      "beforeSha256": null,
+      "sha256": "1e2291e7731c08fb1ea963eb6144292b0998ca6409f1a1131a389fdc69ec247f"
+    },
+    {
+      "source": "/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs.meta",
+      "target": "Assets/Tests/EditMode/Gameplay/AI/SpreadExplorationActorPlacementTests.cs.meta",
+      "beforeSha256": null,
+      "sha256": "e47129acf76c6fd8e4389aaea2fb8e0d55e9d794523c545e62aa7d8fc519406c"
+    }
+  ],
+  "peerReview": "standalone_verify: graph ownership/role exclusion/rollback reread clear; later finalization is caller-owned"
+}

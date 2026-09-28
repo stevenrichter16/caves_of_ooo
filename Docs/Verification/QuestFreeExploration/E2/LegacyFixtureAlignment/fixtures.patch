@@ -1,0 +1,58 @@
+--- /tmp/coo-questfree-implementation/legacy-fixtures/FoundingCampRenderingAdversarialTests.before.cs.txt	2026-09-27 22:20:10
++++ /tmp/coo-questfree-implementation/legacy-fixtures/FoundingCampRenderingAdversarialTests.cs	2026-09-27 22:20:41
+@@ -88,7 +88,7 @@
+         {
+             var factory=GrovelandsCompositionTests.Factory();var live=new OverworldZoneManager(factory,64);
+             var old=SettlementManager.Current;
+-            var method=typeof(OverworldZoneManager).GetMethod("CreateDetached",BindingFlags.Public|BindingFlags.Static);
++            var method=typeof(OverworldZoneManager).GetMethod("CreateDetached",BindingFlags.Public|BindingFlags.Static,null,new[]{typeof(CavesOfOoo.Data.EntityFactory),typeof(int)},null);
+             Assert.NotNull(method);
+             var preview=(OverworldZoneManager)method.Invoke(null,new object[]{factory,1729});
+             Assert.AreSame(old,SettlementManager.Current);Assert.AreNotSame(live.SettlementManager,preview.SettlementManager);
+--- /tmp/coo-questfree-implementation/legacy-fixtures/FreshGameStartTests.before.cs.txt	2026-09-27 22:20:10
++++ /tmp/coo-questfree-implementation/legacy-fixtures/FreshGameStartTests.cs	2026-09-27 22:20:41
+@@ -26,7 +26,14 @@
+   sealed class FailingFirstManager:OverworldZoneManager
+   {
+    public readonly List<string> Attempts=new List<string>();public FailingFirstManager(CavesOfOoo.Data.EntityFactory factory):base(factory,64){}
+-   protected override ZoneGenerationPipeline GetPipelineForZone(string id){Attempts.Add(id);var p=new ZoneGenerationPipeline{MaxRetries=1};p.AddBuilder(new ResultBuilder(id!="Overworld.12.10.0"));return p;}
++   protected override ZoneGenerationPipeline GetPipelineForZone(string id)
++   {
++    Attempts.Add(id);var p=new ZoneGenerationPipeline{MaxRetries=1};
++    // Retain new-world generation authority while this test controls only the
++    // success/failure result; no ordinary gameplay builders run in this fixture.
++    foreach(var guard in base.GetPipelineForZone(id).Builders.Where(b=>b.Name=="SpreadExplorationAttempt"))p.AddBuilder(guard);
++    p.AddBuilder(new ResultBuilder(id!="Overworld.12.10.0"));return p;
++   }
+    protected override void OnZoneGenerated(Zone z,string id){}
+   }
+   sealed class ResultBuilder:IZoneBuilder{readonly bool result;public ResultBuilder(bool value){result=value;}public string Name=>"controlled-generation-result";public int Priority=>0;public bool BuildZone(Zone z,CavesOfOoo.Data.EntityFactory f,Random r)=>result;}
+--- /tmp/coo-questfree-implementation/legacy-fixtures/SpreadWildernessPipelineCensusTests.before.cs.txt	2026-09-27 22:20:10
++++ /tmp/coo-questfree-implementation/legacy-fixtures/SpreadWildernessPipelineCensusTests.cs	2026-09-27 22:20:41
+@@ -20,7 +20,16 @@
+         {
+             readonly bool baseline;internal Entity[] Before;internal (int x,int y)[] Positions;internal string[] ExactFacts;
+             internal int NextRng;internal SpreadWildernessSituationBuilder Composer;internal PopulationBuilder Population;internal ContainerBuilder Containers;
+-            internal ObservedManager(EntityFactory f,int seed,bool baseline):base(f,seed){this.baseline=baseline;}
++            internal ObservedManager(EntityFactory f,int seed,bool baseline):base(f,seed)
++            {
++                this.baseline=baseline;
++                // This paired census measures the shipped v1 cargo/shelter composer.
++                // New-world v2 composition has its own pipeline/census acceptance.
++                var flags=System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic;
++                var legacy=typeof(SpreadExplorationPlan).GetMethod("Legacy",flags).Invoke(null,new object[]{this});
++                typeof(OverworldZoneManager).GetProperty("Exploration").SetValue(this,legacy);
++                Assert.False(Exploration.Enabled);Assert.AreEqual(0,CachedZoneCount);
++            }
+             protected override ZoneGenerationPipeline GetPipelineForZone(string id)
+             {
+                 var p=base.GetPipelineForZone(id);Composer=p.Builders.OfType<SpreadWildernessSituationBuilder>().SingleOrDefault();
+@@ -41,7 +50,7 @@
+         public void ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(int seed)
+         {
+             var selection=OverworldZoneManager.CreateDetached(scope.Factory,seed);var ids=IDs().Where(id=>{var kind=SpreadWildernessSituationPlan.Select(selection,id,selection.Wayhouse.ZoneID);return kind=="cargo"||kind=="shelter";}).ToArray();
+-            Assert.Greater(ids.Length,0);var report=new Report{seed=seed,selected=ids.Length,boundary="Actual full manager cold GetZone, paired no-composer subclass vs current wiring; per-zone global loadout/trader/death RNG reset. Test-only last builder samples caller next RNG equally. No journey, player balance, save replay or native pixels claimed."};
++            Assert.Greater(ids.Length,0);var report=new Report{seed=seed,selected=ids.Length,boundary="Actual legacy-v1 full manager cold GetZone, paired no-composer subclass vs v1 wiring; per-zone global loadout/trader/death RNG reset. Test-only last builder samples caller next RNG equally. No journey, player balance, save replay or native pixels claimed."};
+             foreach(string id in ids)
+             {
+                 int globalSeed=unchecked(seed^FormationSelector.StableIndex(id,int.MaxValue));scope.Seed(globalSeed);

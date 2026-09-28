@@ -27,6 +27,8 @@ namespace CavesOfOoo.Rendering
             public bool Transient, Drawn, AuthoredIdleFacing;
             public Vector3 Target, Start;
             public float MoveStart, MoveDuration, ActionUntil;
+            // Last resolved ordinary action state, consumed directly by Play; ActionUntil owns its active lifetime.
+            public string ActionState;
             public string Clip;
         }
         private readonly Dictionary<Entity, SpawnRing3DRecipe> recipes = new Dictionary<Entity, SpawnRing3DRecipe>();
@@ -570,7 +572,7 @@ namespace CavesOfOoo.Rendering
         private void Subscribe()
         {
             if (hooks) return; hooks = true;
-            EntityVisualHooks.MovedCallback += OnMoved; EntityVisualHooks.AttackCallback += OnAttack;
+            EntityVisualHooks.MovedCallback += OnMoved; EntityVisualHooks.AttackCallback += OnAttack; EntityVisualHooks.InteractionCallback += OnInteraction;
             EntityVisualHooks.DamageCallback += OnDamage; EntityVisualHooks.DeathCallback += OnDeath; EntityVisualHooks.CastCallback += OnCast;
         }
         private static void Play(View view, string clip)
@@ -595,12 +597,18 @@ namespace CavesOfOoo.Rendering
             if (!entity.HasPart<MultiCellPilotPropPart>()) view.Root.transform.rotation = Quaternion.LookRotation(new Vector3(newX-oldX, 0, oldY-newY));
             Play(view, "Walk");
         }
-        private void Action(Entity entity, Zone zone, string clip)
+        private void Action(Entity entity, Zone zone, string clip, float duration = .22f)
         {
             if (!PresentationVisible || !ReferenceEquals(zone, CurrentZone) || entity == null || !views.TryGetValue(entity, out var view) || !view.Drawn) return;
             var facing = entity.GetPart<RenderPart>()?.VisualFacing ?? EntityVisualFacing.South;
             Vector3 direction = facing == EntityVisualFacing.North ? Vector3.forward : facing == EntityVisualFacing.East ? Vector3.right : facing == EntityVisualFacing.West ? Vector3.left : Vector3.back;
-            if (!entity.HasPart<MultiCellPilotPropPart>()) view.Root.transform.rotation = Quaternion.LookRotation(direction); view.ActionUntil = Time.unscaledTime + .22f; Play(view, clip);
+            if (!entity.HasPart<MultiCellPilotPropPart>()) view.Root.transform.rotation = Quaternion.LookRotation(direction); view.ActionUntil = Time.unscaledTime + duration; view.ActionState = clip; Play(view, view.ActionState);
+        }
+        private void OnInteraction(Entity actor, Entity target, Zone zone)
+        {
+            // A prior subscriber may have removed or carried either participant.
+            if (!EntityVisualHooks.IsCurrentInteraction(actor, target, zone)) return;
+            Action(actor, zone, "Interact", .6f);
         }
         private void OnAttack(Entity attacker, Entity defender, Zone zone) => Action(attacker, zone, "Attack");
         private void OnDamage(Entity target, Entity other, Zone zone, int amount, bool lethal) => Action(target, zone, "Hit");
@@ -628,7 +636,7 @@ namespace CavesOfOoo.Rendering
             IsReady = false; Failure = null;
             if (hooks)
             {
-                EntityVisualHooks.MovedCallback -= OnMoved; EntityVisualHooks.AttackCallback -= OnAttack;
+                EntityVisualHooks.MovedCallback -= OnMoved; EntityVisualHooks.AttackCallback -= OnAttack; EntityVisualHooks.InteractionCallback -= OnInteraction;
                 EntityVisualHooks.DamageCallback -= OnDamage; EntityVisualHooks.DeathCallback -= OnDeath; EntityVisualHooks.CastCallback -= OnCast; hooks = false;
             }
             foreach (var view in views.Values) view.Cast?.Dispose();

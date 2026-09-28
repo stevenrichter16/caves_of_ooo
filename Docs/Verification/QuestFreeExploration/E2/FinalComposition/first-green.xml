@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/composer-final/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="58" result="Failed" start-time="2026-09-28T02:52:03.1644660Z" end-time="2026-09-28T02:52:07.0130550Z" duration="3.848557" total="25" passed="22" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="1812" random-seed="2009090142">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/composer-final/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "class =~ SpreadExplorationFinalizationTests or class =~ SpreadExplorationPipelineTests" --result=/tmp/coo-questfree-implementation/composer-final/first-green.xml]]></command-line>
+  <filter>
+    <or>
+      <class re="1">SpreadExplorationFinalizationTests</class>
+      <class re="1">SpreadExplorationPipelineTests</class>
+    </or>
+  </filter>
+  <test-suite type="Assembly" id="1071" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/composer-final/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-09-28T02:52:03.1644660Z" end-time="2026-09-28T02:52:07.0130550Z" duration="3.848557" total="25" passed="22" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="1812">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="30746" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1072" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-09-28T02:52:03.1660810Z" end-time="2026-09-28T02:52:07.0130100Z" duration="3.846907" total="25" passed="22" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="1812">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1073" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="58" result="Failed" site="Child" start-time="2026-09-28T02:52:03.1661850Z" end-time="2026-09-28T02:52:07.0129620Z" duration="3.846755" total="25" passed="22" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="1812">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationFinalizationTests" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-09-28T02:52:03.1665350Z" end-time="2026-09-28T02:52:04.2153290Z" duration="1.048788" total="12" passed="12" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="88">
+          <test-case id="1014" name="ExistingExhaustedBankSourceDoesNotCreateAReplacementRefill" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingExhaustedBankSourceDoesNotCreateAReplacementRefill" methodname="ExistingExhaustedBankSourceDoesNotCreateAReplacementRefill" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="583232792" result="Passed" start-time="2026-09-28T02:52:03.1674250Z" end-time="2026-09-28T02:52:03.3077830Z" duration="0.140381" asserts="6" />
+          <test-suite type="ParameterizedMethod" id="1013" name="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T02:52:03.3083630Z" end-time="2026-09-28T02:52:03.4464600Z" duration="0.138096" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="30">
+            <test-case id="1010" name="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(1)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(1)" methodname="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="2001819750" result="Passed" start-time="2026-09-28T02:52:03.3084330Z" end-time="2026-09-28T02:52:03.3599000Z" duration="0.051468" asserts="10" />
+            <test-case id="1011" name="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(3)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(3)" methodname="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1407917073" result="Passed" start-time="2026-09-28T02:52:03.3599310Z" end-time="2026-09-28T02:52:03.4047570Z" duration="0.044827" asserts="10" />
+            <test-case id="1012" name="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(120)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving(120)" methodname="ExistingPureFiniteWaterIsReusedWithoutAddingRefillingOrMoving" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1869851476" result="Passed" start-time="2026-09-28T02:52:03.4047890Z" end-time="2026-09-28T02:52:03.4460150Z" duration="0.041226" asserts="10" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1009" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-09-28T02:52:03.4466580Z" end-time="2026-09-28T02:52:04.2152270Z" duration="0.768564" total="8" passed="8" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="52">
+            <test-case id="1001" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(RoadSpill,False)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(RoadSpill,False)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="173305029" result="Passed" start-time="2026-09-28T02:52:03.4466810Z" end-time="2026-09-28T02:52:03.5060350Z" duration="0.059354" asserts="6" />
+            <test-case id="1002" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(RoadSpill,True)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(RoadSpill,True)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="756960038" result="Passed" start-time="2026-09-28T02:52:03.5060600Z" end-time="2026-09-28T02:52:03.5573120Z" duration="0.051252" asserts="7" />
+            <test-case id="1003" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(OccupiedBank,False)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(OccupiedBank,False)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="495144096" result="Passed" start-time="2026-09-28T02:52:03.5573410Z" end-time="2026-09-28T02:52:03.6334620Z" duration="0.076121" asserts="6" />
+            <test-case id="1004" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(OccupiedBank,True)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(OccupiedBank,True)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1666766018" result="Passed" start-time="2026-09-28T02:52:03.6334950Z" end-time="2026-09-28T02:52:03.7039350Z" duration="0.070439" asserts="7" />
+            <test-case id="1005" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(LastGleanings,False)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(LastGleanings,False)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1107512691" result="Passed" start-time="2026-09-28T02:52:03.7039670Z" end-time="2026-09-28T02:52:03.9033400Z" duration="0.199372" asserts="6" />
+            <test-case id="1006" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(LastGleanings,True)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(LastGleanings,True)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="356169186" result="Passed" start-time="2026-09-28T02:52:03.9033710Z" end-time="2026-09-28T02:52:04.1070680Z" duration="0.203696" asserts="7" />
+            <test-case id="1007" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(WateringMargin,False)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(WateringMargin,False)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="1150809233" result="Passed" start-time="2026-09-28T02:52:04.1071020Z" end-time="2026-09-28T02:52:04.1710680Z" duration="0.063966" asserts="6" />
+            <test-case id="1008" name="LaterCallbackCannotEraseAnAcceptedCriticalApproach(WateringMargin,True)" fullname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests.LaterCallbackCannotEraseAnAcceptedCriticalApproach(WateringMargin,True)" methodname="LaterCallbackCannotEraseAnAcceptedCriticalApproach" classname="CavesOfOoo.Tests.SpreadExplorationFinalizationTests" runstate="Runnable" seed="59688151" result="Passed" start-time="2026-09-28T02:52:04.1711030Z" end-time="2026-09-28T02:52:04.2151710Z" duration="0.044068" asserts="7" />
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1056" name="SpreadExplorationPipelineTests" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-09-28T02:52:04.2157000Z" end-time="2026-09-28T02:52:07.0129520Z" duration="2.797237" total="13" passed="10" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="1724">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1069" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T02:52:04.2158650Z" end-time="2026-09-28T02:52:06.8893250Z" duration="2.673444" total="12" passed="9" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="1707">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1057" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,&quot;RoadSpill&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,&quot;RoadSpill&quot;)" methodname="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="1504479503" result="Passed" start-time="2026-09-28T02:52:04.2158840Z" end-time="2026-09-28T02:52:04.5366030Z" duration="0.320718" asserts="164" />
+            <test-case id="1058" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,&quot;OccupiedBank&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,&quot;OccupiedBank&quot;)" methodname="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="1404621344" result="Passed" start-time="2026-09-28T02:52:04.5366440Z" end-time="2026-09-28T02:52:05.0499620Z" duration="0.513316" asserts="228" />
+            <test-case id="1059" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,&quot;LastGleanings&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,&quot;LastGleanings&quot;)" methodname="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="1111522327" result="Passed" start-time="2026-09-28T02:52:05.0500040Z" end-time="2026-09-28T02:52:05.2568950Z" duration="0.206891" asserts="171" />
+            <test-case id="1060" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,&quot;WateringMargin&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1,&quot;WateringMargin&quot;)" methodname="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="804179206" result="Failed" start-time="2026-09-28T02:52:05.2569370Z" end-time="2026-09-28T02:52:05.3568040Z" duration="0.099866" asserts="26">
+              <failure>
+                <message><![CDATA[  Overworld.11.13.0
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(Int32 seed, String family) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationPipelineTests.cs:line 38
+   at InvokeStub_SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.11.13.0
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(Int32 seed, String family) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationPipelineTests.cs:line 38
+   at InvokeStub_SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1061" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,&quot;RoadSpill&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,&quot;RoadSpill&quot;)" methodname="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="407313904" result="Passed" start-time="2026-09-28T02:52:05.3568750Z" end-time="2026-09-28T02:52:05.5662450Z" duration="0.209369" asserts="166" />
+            <test-case id="1062" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,&quot;OccupiedBank&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,&quot;OccupiedBank&quot;)" methodname="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="385907523" result="Passed" start-time="2026-09-28T02:52:05.5662790Z" end-time="2026-09-28T02:52:05.9041550Z" duration="0.337875" asserts="196" />
+            <test-case id="1063" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,&quot;LastGleanings&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,&quot;LastGleanings&quot;)" methodname="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="456218224" result="Passed" start-time="2026-09-28T02:52:05.9041810Z" end-time="2026-09-28T02:52:06.0555930Z" duration="0.151412" asserts="165" />
+            <test-case id="1064" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,&quot;WateringMargin&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(64,&quot;WateringMargin&quot;)" methodname="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="521736737" result="Failed" start-time="2026-09-28T02:52:06.0556190Z" end-time="2026-09-28T02:52:06.1282540Z" duration="0.072635" asserts="26">
+              <failure>
+                <message><![CDATA[  Overworld.11.13.0
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(Int32 seed, String family) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationPipelineTests.cs:line 38
+   at InvokeStub_SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.11.13.0
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(Int32 seed, String family) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationPipelineTests.cs:line 38
+   at InvokeStub_SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1065" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,&quot;RoadSpill&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,&quot;RoadSpill&quot;)" methodname="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="1215151748" result="Passed" start-time="2026-09-28T02:52:06.1282780Z" end-time="2026-09-28T02:52:06.3058080Z" duration="0.177530" asserts="164" />
+            <test-case id="1066" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,&quot;OccupiedBank&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,&quot;OccupiedBank&quot;)" methodname="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="166345402" result="Passed" start-time="2026-09-28T02:52:06.3058320Z" end-time="2026-09-28T02:52:06.6598090Z" duration="0.353975" asserts="209" />
+            <test-case id="1067" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,&quot;LastGleanings&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,&quot;LastGleanings&quot;)" methodname="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="706400649" result="Passed" start-time="2026-09-28T02:52:06.6598500Z" end-time="2026-09-28T02:52:06.8248600Z" duration="0.165008" asserts="179" />
+            <test-case id="1068" name="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,&quot;WateringMargin&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(1729,&quot;WateringMargin&quot;)" methodname="ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="630435199" result="Failed" start-time="2026-09-28T02:52:06.8248840Z" end-time="2026-09-28T02:52:06.8892970Z" duration="0.064413" asserts="13">
+              <failure>
+                <message><![CDATA[  Overworld.10.3.0
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(Int32 seed, String family) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationPipelineTests.cs:line 38
+   at InvokeStub_SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.10.3.0
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(Int32 seed, String family) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationPipelineTests.cs:line 38
+   at InvokeStub_SpreadExplorationPipelineTests.ActualColdPipelineCommitsEveryFirstTrancheFamilyWithRealOwners(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1070" name="LegacyAndProtectedPlacesNeverGetNewRolesOrDrawPoints" fullname="CavesOfOoo.Tests.SpreadExplorationPipelineTests.LegacyAndProtectedPlacesNeverGetNewRolesOrDrawPoints" methodname="LegacyAndProtectedPlacesNeverGetNewRolesOrDrawPoints" classname="CavesOfOoo.Tests.SpreadExplorationPipelineTests" runstate="Runnable" seed="1309455345" result="Passed" start-time="2026-09-28T02:52:06.8893520Z" end-time="2026-09-28T02:52:07.0128960Z" duration="0.123544" asserts="17" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

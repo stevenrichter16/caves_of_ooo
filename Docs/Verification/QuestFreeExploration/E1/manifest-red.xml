@@ -1,0 +1,754 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/manifest/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="45" result="Failed" start-time="2026-09-28T01:56:23.0860790Z" end-time="2026-09-28T01:56:23.7179250Z" duration="0.631832" total="29" passed="1" failed="28" inconclusive="0" skipped="0" warnings="0" asserts="31" random-seed="1476887743">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/manifest/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "class == CavesOfOoo.Tests.SpreadExplorationManifestTests" --result=/tmp/coo-questfree-implementation/manifest/manifest-red.xml]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadExplorationManifestTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1056" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/manifest/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="45" result="Failed" site="Child" start-time="2026-09-28T01:56:23.0860790Z" end-time="2026-09-28T01:56:23.7179250Z" duration="0.631832" total="29" passed="1" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="31">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="16478" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1057" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="45" result="Failed" site="Child" start-time="2026-09-28T01:56:23.0879840Z" end-time="2026-09-28T01:56:23.7179230Z" duration="0.629934" total="29" passed="1" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="31">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1058" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="45" result="Failed" site="Child" start-time="2026-09-28T01:56:23.0881010Z" end-time="2026-09-28T01:56:23.7179210Z" duration="0.629815" total="29" passed="1" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="31">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1019" name="SpreadExplorationManifestTests" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" testcasecount="29" result="Failed" site="Child" start-time="2026-09-28T01:56:23.0884600Z" end-time="2026-09-28T01:56:23.7179160Z" duration="0.629451" total="29" passed="1" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="31">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1031" name="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T01:56:23.0893780Z" end-time="2026-09-28T01:56:23.2047470Z" duration="0.115368" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1028" name="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(1)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(1)" methodname="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1726400917" result="Failed" start-time="2026-09-28T01:56:23.0894650Z" end-time="2026-09-28T01:56:23.1643580Z" duration="0.074918" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 83
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 83
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1029" name="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(64)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(64)" methodname="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1419911820" result="Failed" start-time="2026-09-28T01:56:23.1649270Z" end-time="2026-09-28T01:56:23.1882940Z" duration="0.023366" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 83
+   at InvokeStub_SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 83
+   at InvokeStub_SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(1729)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(1729)" methodname="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="400566159" result="Failed" start-time="2026-09-28T01:56:23.1883150Z" end-time="2026-09-28T01:56:23.2041380Z" duration="0.015823" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 83
+   at InvokeStub_SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 83
+   at InvokeStub_SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1054" name="AnUncommittedSameIdGraphCannotGainRetentionByBeingAttached" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.AnUncommittedSameIdGraphCannotGainRetentionByBeingAttached" methodname="AnUncommittedSameIdGraphCannotGainRetentionByBeingAttached" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="322842468" result="Failed" start-time="2026-09-28T01:56:23.2049770Z" end-time="2026-09-28T01:56:23.2240480Z" duration="0.019071" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.AnUncommittedSameIdGraphCannotGainRetentionByBeingAttached() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 162
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.AnUncommittedSameIdGraphCannotGainRetentionByBeingAttached() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 162
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1027" name="AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T01:56:23.2240670Z" end-time="2026-09-28T01:56:23.2818920Z" duration="0.057825" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1024" name="AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(1)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(1)" methodname="AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="142091632" result="Failed" start-time="2026-09-28T01:56:23.2240820Z" end-time="2026-09-28T01:56:23.2456130Z" duration="0.021531" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 73
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 73
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1025" name="AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(64)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(64)" methodname="AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="882836984" result="Failed" start-time="2026-09-28T01:56:23.2456360Z" end-time="2026-09-28T01:56:23.2665430Z" duration="0.020907" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 73
+   at InvokeStub_SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 73
+   at InvokeStub_SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1026" name="AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(1729)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(1729)" methodname="AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1971038981" result="Failed" start-time="2026-09-28T01:56:23.2665740Z" end-time="2026-09-28T01:56:23.2818490Z" duration="0.015275" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 73
+   at InvokeStub_SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 73
+   at InvokeStub_SpreadExplorationManifestTests.AssignmentIsFrozenAcrossReverseReadsAndActualGenerationOrder(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1055" name="CompletedGraphRemainsRetainedAfterItsCurrentMapEligibilityChanges" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.CompletedGraphRemainsRetainedAfterItsCurrentMapEligibilityChanges" methodname="CompletedGraphRemainsRetainedAfterItsCurrentMapEligibilityChanges" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1150551860" result="Failed" start-time="2026-09-28T01:56:23.2819090Z" end-time="2026-09-28T01:56:23.2999080Z" duration="0.017999" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.CompletedGraphRemainsRetainedAfterItsCurrentMapEligibilityChanges() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 167
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.CompletedGraphRemainsRetainedAfterItsCurrentMapEligibilityChanges() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 167
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1048" name="CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T01:56:23.2999370Z" end-time="2026-09-28T01:56:23.3900180Z" duration="0.090079" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1045" name="CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(&quot;&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(&quot;&quot;)" methodname="CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1846251177" result="Failed" start-time="2026-09-28T01:56:23.2999850Z" end-time="2026-09-28T01:56:23.3491290Z" duration="0.049144" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: <System.IO.InvalidDataException>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(String value) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 136
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: <System.IO.InvalidDataException>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(String value) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 136
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1046" name="CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(&quot;3|64|0&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(&quot;3|64|0&quot;)" methodname="CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1914975293" result="Failed" start-time="2026-09-28T01:56:23.3491530Z" end-time="2026-09-28T01:56:23.3715130Z" duration="0.022361" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: <System.IO.InvalidDataException>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(String value) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 136
+   at InvokeStub_SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: <System.IO.InvalidDataException>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(String value) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 136
+   at InvokeStub_SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1047" name="CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(&quot;2|64|1\nOverworld.999.1.0|3|1|0|0&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(&quot;2|64|1\nOverworld.999.1.0|3|1|0|0&quot;)" methodname="CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1288103805" result="Failed" start-time="2026-09-28T01:56:23.3715340Z" end-time="2026-09-28T01:56:23.3900020Z" duration="0.018469" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: <System.IO.InvalidDataException>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(String value) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 136
+   at InvokeStub_SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: <System.IO.InvalidDataException>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(String value) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 136
+   at InvokeStub_SpreadExplorationManifestTests.CorruptOrFutureMetadataRejectsWholeCandidateInsteadOfLegacyFallback(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1035" name="CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T01:56:23.3900250Z" end-time="2026-09-28T01:56:23.4280310Z" duration="0.038007" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1033" name="CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges(&quot;biome&quot;)" methodname="CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1021417853" result="Failed" start-time="2026-09-28T01:56:23.3900330Z" end-time="2026-09-28T01:56:23.4103550Z" duration="0.020322" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges(String kind) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 102
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges(String kind) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 102
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1034" name="CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges(&quot;poi&quot;)" methodname="CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="977063961" result="Failed" start-time="2026-09-28T01:56:23.4103760Z" end-time="2026-09-28T01:56:23.4280060Z" duration="0.017630" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges(String kind) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 102
+   at InvokeStub_SpreadExplorationManifestTests.CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges(String kind) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 102
+   at InvokeStub_SpreadExplorationManifestTests.CreationUsesActualMapAndFrozenPlanDoesNotMutateWhenMapLaterChanges(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1043" name="DefaultLegacyWorldStillUnloadsAndDoesNotAcquireManifestOnSave" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.DefaultLegacyWorldStillUnloadsAndDoesNotAcquireManifestOnSave" methodname="DefaultLegacyWorldStillUnloadsAndDoesNotAcquireManifestOnSave" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="2110960587" result="Passed" start-time="2026-09-28T01:56:23.4280430Z" end-time="2026-09-28T01:56:23.4577090Z" duration="0.029667" asserts="2" />
+          <test-suite type="ParameterizedMethod" id="1023" name="FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T01:56:23.4577340Z" end-time="2026-09-28T01:56:23.5092520Z" duration="0.051517" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1020" name="FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(1)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(1)" methodname="FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1217431797" result="Failed" start-time="2026-09-28T01:56:23.4577700Z" end-time="2026-09-28T01:56:23.4729080Z" duration="0.015138" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 63
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 63
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1021" name="FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(64)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(64)" methodname="FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="980467093" result="Failed" start-time="2026-09-28T01:56:23.4729270Z" end-time="2026-09-28T01:56:23.4900040Z" duration="0.017077" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 63
+   at InvokeStub_SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 63
+   at InvokeStub_SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1022" name="FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(1729)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(1729)" methodname="FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1629205841" result="Failed" start-time="2026-09-28T01:56:23.4900210Z" end-time="2026-09-28T01:56:23.5092230Z" duration="0.019203" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 63
+   at InvokeStub_SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 63
+   at InvokeStub_SpreadExplorationManifestTests.FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1042" name="InvalidReadDoesNotCreateOrResolveAnAddress" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-28T01:56:23.5092730Z" end-time="2026-09-28T01:56:23.5969150Z" duration="0.087642" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="5">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1037" name="InvalidReadDoesNotCreateOrResolveAnAddress(null)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(null)" methodname="InvalidReadDoesNotCreateOrResolveAnAddress" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1992751493" result="Failed" start-time="2026-09-28T01:56:23.5092850Z" end-time="2026-09-28T01:56:23.5285740Z" duration="0.019289" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(String id) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 116
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(String id) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 116
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1038" name="InvalidReadDoesNotCreateOrResolveAnAddress(&quot;&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(&quot;&quot;)" methodname="InvalidReadDoesNotCreateOrResolveAnAddress" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1907333589" result="Failed" start-time="2026-09-28T01:56:23.5286080Z" end-time="2026-09-28T01:56:23.5437990Z" duration="0.015191" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(String id) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 116
+   at InvokeStub_SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(String id) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 116
+   at InvokeStub_SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1039" name="InvalidReadDoesNotCreateOrResolveAnAddress(&quot;Overworld.01.1.0&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(&quot;Overworld.01.1.0&quot;)" methodname="InvalidReadDoesNotCreateOrResolveAnAddress" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="360467160" result="Failed" start-time="2026-09-28T01:56:23.5438160Z" end-time="2026-09-28T01:56:23.5616260Z" duration="0.017811" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(String id) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 116
+   at InvokeStub_SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(String id) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 116
+   at InvokeStub_SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1040" name="InvalidReadDoesNotCreateOrResolveAnAddress(&quot;Overworld.1.1.1&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(&quot;Overworld.1.1.1&quot;)" methodname="InvalidReadDoesNotCreateOrResolveAnAddress" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="2024721173" result="Failed" start-time="2026-09-28T01:56:23.5616430Z" end-time="2026-09-28T01:56:23.5809900Z" duration="0.019347" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(String id) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 116
+   at InvokeStub_SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(String id) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 116
+   at InvokeStub_SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1041" name="InvalidReadDoesNotCreateOrResolveAnAddress(&quot;Overworld.20.1.0&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(&quot;Overworld.20.1.0&quot;)" methodname="InvalidReadDoesNotCreateOrResolveAnAddress" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="19344859" result="Failed" start-time="2026-09-28T01:56:23.5810050Z" end-time="2026-09-28T01:56:23.5969020Z" duration="0.015897" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(String id) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 116
+   at InvokeStub_SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(String id) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 116
+   at InvokeStub_SpreadExplorationManifestTests.InvalidReadDoesNotCreateOrResolveAnAddress(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1053" name="LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T01:56:23.5969220Z" end-time="2026-09-28T01:56:23.6301000Z" duration="0.033178" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1051" name="LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement(&quot;removed&quot;)" methodname="LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1791875398" result="Failed" start-time="2026-09-28T01:56:23.5969300Z" end-time="2026-09-28T01:56:23.6154110Z" duration="0.018481" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement(String mode) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 156
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement(String mode) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 156
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1052" name="LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement(&quot;same-id-clone&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement(&quot;same-id-clone&quot;)" methodname="LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1084261679" result="Failed" start-time="2026-09-28T01:56:23.6154310Z" end-time="2026-09-28T01:56:23.6300520Z" duration="0.014622" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement(String mode) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 156
+   at InvokeStub_SpreadExplorationManifestTests.LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement(String mode) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 156
+   at InvokeStub_SpreadExplorationManifestTests.LostInstalledGraphCannotRegenerateOrSerializeAsAReplacement(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1044" name="MissingLegacyMetadataCannotKeepRestoreConstructorsFreshPlan" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.MissingLegacyMetadataCannotKeepRestoreConstructorsFreshPlan" methodname="MissingLegacyMetadataCannotKeepRestoreConstructorsFreshPlan" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="338959997" result="Failed" start-time="2026-09-28T01:56:23.6301560Z" end-time="2026-09-28T01:56:23.6481210Z" duration="0.017966" asserts="2">
+            <failure>
+              <message><![CDATA[  Missing Exploration
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Value(Object owner, String name) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 38
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Plan(OverworldZoneManager m) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 39
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.MissingLegacyMetadataCannotKeepRestoreConstructorsFreshPlan() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 129
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing Exploration
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Value(Object owner, String name) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 38
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Plan(OverworldZoneManager m) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 39
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.MissingLegacyMetadataCannotKeepRestoreConstructorsFreshPlan() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 129
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1036" name="NoEligibleCellsProducesValidEmptyManifestWithoutRerollOnLoad" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.NoEligibleCellsProducesValidEmptyManifestWithoutRerollOnLoad" methodname="NoEligibleCellsProducesValidEmptyManifestWithoutRerollOnLoad" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1678458392" result="Failed" start-time="2026-09-28T01:56:23.6481390Z" end-time="2026-09-28T01:56:23.6655750Z" duration="0.017436" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.NoEligibleCellsProducesValidEmptyManifestWithoutRerollOnLoad() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 109
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.NoEligibleCellsProducesValidEmptyManifestWithoutRerollOnLoad() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 109
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1049" name="OptedInOrdinaryGraphAndConnectionsSurviveExplicitUnloadAfterMutation" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.OptedInOrdinaryGraphAndConnectionsSurviveExplicitUnloadAfterMutation" methodname="OptedInOrdinaryGraphAndConnectionsSurviveExplicitUnloadAfterMutation" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1011844535" result="Failed" start-time="2026-09-28T01:56:23.6655980Z" end-time="2026-09-28T01:56:23.6854120Z" duration="0.019814" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.OptedInOrdinaryGraphAndConnectionsSurviveExplicitUnloadAfterMutation() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 140
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.OptedInOrdinaryGraphAndConnectionsSurviveExplicitUnloadAfterMutation() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 140
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1032" name="ProtectedOrdinaryGraphsRetainWithoutReceivingNewPlacement" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.ProtectedOrdinaryGraphsRetainWithoutReceivingNewPlacement" methodname="ProtectedOrdinaryGraphsRetainWithoutReceivingNewPlacement" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="899322765" result="Failed" start-time="2026-09-28T01:56:23.6854470Z" end-time="2026-09-28T01:56:23.7003130Z" duration="0.014866" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.ProtectedOrdinaryGraphsRetainWithoutReceivingNewPlacement() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 93
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.ProtectedOrdinaryGraphsRetainWithoutReceivingNewPlacement() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 93
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1050" name="SavedAwayGraphRetainsExactPartialStockAndDoesNotRefillAfterUnload" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.SavedAwayGraphRetainsExactPartialStockAndDoesNotRefillAfterUnload" methodname="SavedAwayGraphRetainsExactPartialStockAndDoesNotRefillAfterUnload" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="2110642226" result="Failed" start-time="2026-09-28T01:56:23.7003300Z" end-time="2026-09-28T01:56:23.7178760Z" duration="0.017546" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.SavedAwayGraphRetainsExactPartialStockAndDoesNotRefillAfterUnload() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 146
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing exploration API.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Invoke(MethodInfo m, Object owner, Object[] args) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 36
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.Fresh(Int32 seed) in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 45
+   at CavesOfOoo.Tests.SpreadExplorationManifestTests.SavedAwayGraphRetainsExactPartialStockAndDoesNotRefillAfterUnload() in /tmp/coo-questfree-implementation/manifest/SpreadExplorationManifestTests.cs:line 146
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

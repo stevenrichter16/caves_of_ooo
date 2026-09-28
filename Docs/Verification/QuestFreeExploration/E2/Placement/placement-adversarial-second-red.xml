@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="77" result="Failed" start-time="2026-09-28T02:19:29.4640100Z" end-time="2026-09-28T02:19:30.7610360Z" duration="1.296989" total="25" passed="22" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="54378" random-seed="1296596262">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/placement-adversarial-second-red.xml --where "class =~ /SpreadExplorationActorPlacementTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationActorPlacementTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1091" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-09-28T02:19:29.4640100Z" end-time="2026-09-28T02:19:30.7610360Z" duration="1.296989" total="25" passed="22" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="54378">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="22389" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1092" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-09-28T02:19:29.4657140Z" end-time="2026-09-28T02:19:30.7610340Z" duration="1.295299" total="25" passed="22" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="54378">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1093" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="77" result="Failed" site="Child" start-time="2026-09-28T02:19:29.4658320Z" end-time="2026-09-28T02:19:30.7610320Z" duration="1.295179" total="25" passed="22" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="54378">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1061" name="SpreadExplorationActorPlacementTests" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-09-28T02:19:29.4661880Z" end-time="2026-09-28T02:19:30.7610160Z" duration="1.294807" total="25" passed="22" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="54378">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1080" name="CallbackOwnedRelocationIsNotOverwrittenByRollback" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.CallbackOwnedRelocationIsNotOverwrittenByRollback" methodname="CallbackOwnedRelocationIsNotOverwrittenByRollback" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="717197106" result="Passed" start-time="2026-09-28T02:19:29.4671270Z" end-time="2026-09-28T02:19:29.4884180Z" duration="0.021314" asserts="2011" />
+          <test-suite type="ParameterizedMethod" id="1076" name="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:19:29.4889580Z" end-time="2026-09-28T02:19:29.4973360Z" duration="0.008378" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4023">
+            <test-case id="1074" name="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(False)" methodname="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="832437900" result="Passed" start-time="2026-09-28T02:19:29.4890460Z" end-time="2026-09-28T02:19:29.4943400Z" duration="0.005294" asserts="2011" />
+            <test-case id="1075" name="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit(True)" methodname="ChangedSourceInsideAuthorityCallbackRejectsBeforeCommit" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1772714899" result="Passed" start-time="2026-09-28T02:19:29.4943700Z" end-time="2026-09-28T02:19:29.4970340Z" duration="0.002664" asserts="2012" />
+          </test-suite>
+          <test-case id="1073" name="ConsumedReserveCannotBeSelected" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ConsumedReserveCannotBeSelected" methodname="ConsumedReserveCannotBeSelected" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="983664623" result="Passed" start-time="2026-09-28T02:19:29.4974780Z" end-time="2026-09-28T02:19:29.4994670Z" duration="0.001989" asserts="2010" />
+          <test-case id="1067" name="ExistingConfiguredDutyCannotBeResetByPlacement" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ExistingConfiguredDutyCannotBeResetByPlacement" methodname="ExistingConfiguredDutyCannotBeResetByPlacement" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="115106887" result="Passed" start-time="2026-09-28T02:19:29.4994910Z" end-time="2026-09-28T02:19:29.5052040Z" duration="0.005713" asserts="2013" />
+          <test-case id="1087" name="FactoryRoleReplacementSurvivesFailureWithoutBeingResetOrRemoved" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FactoryRoleReplacementSurvivesFailureWithoutBeingResetOrRemoved" methodname="FactoryRoleReplacementSurvivesFailureWithoutBeingResetOrRemoved" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1747977472" result="Passed" start-time="2026-09-28T02:19:29.5052210Z" end-time="2026-09-28T02:19:29.5081780Z" duration="0.002957" asserts="2013" />
+          <test-suite type="ParameterizedMethod" id="1079" name="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:19:29.5082100Z" end-time="2026-09-28T02:19:29.5134020Z" duration="0.005193" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4025">
+            <test-case id="1077" name="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(False)" methodname="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1334166294" result="Passed" start-time="2026-09-28T02:19:29.5082320Z" end-time="2026-09-28T02:19:29.5114420Z" duration="0.003211" asserts="2011" />
+            <test-case id="1078" name="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole(True)" methodname="FinalAuthorityRefusalRestoresOnlyTheOwnedActorAndRole" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="697489041" result="Passed" start-time="2026-09-28T02:19:29.5114550Z" end-time="2026-09-28T02:19:29.5133710Z" duration="0.001916" asserts="2014" />
+          </test-suite>
+          <test-case id="1083" name="FinalCallbackCannotInvalidateBypassAfterTheGeometrySnapshot" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotInvalidateBypassAfterTheGeometrySnapshot" methodname="FinalCallbackCannotInvalidateBypassAfterTheGeometrySnapshot" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="465204474" result="Failed" start-time="2026-09-28T02:19:29.5134080Z" end-time="2026-09-28T02:19:29.5317520Z" duration="0.018344" asserts="2214">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotInvalidateBypassAfterTheGeometrySnapshot() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 60
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCannotInvalidateBypassAfterTheGeometrySnapshot() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 60
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1085" name="FinalCallbackCanOnlyLeaveTheReservedFoodActuallyReachable" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.FinalCallbackCanOnlyLeaveTheReservedFoodActuallyReachable" methodname="FinalCallbackCanOnlyLeaveTheReservedFoodActuallyReachable" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1294753791" result="Passed" start-time="2026-09-28T02:19:29.5318410Z" end-time="2026-09-28T02:19:29.5346010Z" duration="0.002760" asserts="2019" />
+          <test-case id="1070" name="GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows" methodname="GleaningsConfiguresTheSameFactoryRoleAndTwoExistingFiniteRows" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="732650724" result="Passed" start-time="2026-09-28T02:19:29.5346190Z" end-time="2026-09-28T02:19:30.1465500Z" duration="0.611922" asserts="2017" />
+          <test-case id="1068" name="NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass" methodname="NoActualBorderApproachRejectsTerritoryInsteadOfClaimingBypass" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="741808793" result="Passed" start-time="2026-09-28T02:19:30.1465880Z" end-time="2026-09-28T02:19:30.1508820Z" duration="0.004294" asserts="2215" />
+          <test-case id="1066" name="NoPostIsAnHonestTerritoryRefusal" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NoPostIsAnHonestTerritoryRefusal" methodname="NoPostIsAnHonestTerritoryRefusal" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="446067188" result="Passed" start-time="2026-09-28T02:19:30.1509030Z" end-time="2026-09-28T02:19:30.1525940Z" duration="0.001691" asserts="2010" />
+          <test-suite type="ParameterizedMethod" id="1090" name="NullGuardFailsClosedWithoutTouchingTheActor" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:19:30.1526190Z" end-time="2026-09-28T02:19:30.1561660Z" duration="0.003546" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4019">
+            <test-case id="1088" name="NullGuardFailsClosedWithoutTouchingTheActor(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(False)" methodname="NullGuardFailsClosedWithoutTouchingTheActor" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="493810897" result="Passed" start-time="2026-09-28T02:19:30.1526460Z" end-time="2026-09-28T02:19:30.1536570Z" duration="0.001011" asserts="2009" />
+            <test-case id="1089" name="NullGuardFailsClosedWithoutTouchingTheActor(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.NullGuardFailsClosedWithoutTouchingTheActor(True)" methodname="NullGuardFailsClosedWithoutTouchingTheActor" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1751696080" result="Passed" start-time="2026-09-28T02:19:30.1536640Z" end-time="2026-09-28T02:19:30.1561470Z" duration="0.002483" asserts="2010" />
+          </test-suite>
+          <test-case id="1082" name="PlacedAnimalCannotBlockTheOnlyApproachToItsReservedRow" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.PlacedAnimalCannotBlockTheOnlyApproachToItsReservedRow" methodname="PlacedAnimalCannotBlockTheOnlyApproachToItsReservedRow" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="796846667" result="Failed" start-time="2026-09-28T02:19:30.1561750Z" end-time="2026-09-28T02:19:30.1615930Z" duration="0.005418" asserts="3997">
+            <failure>
+              <message><![CDATA[  Exact current reserved row remains physically reachable after placement.
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.PlacedAnimalCannotBlockTheOnlyApproachToItsReservedRow() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 58
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Exact current reserved row remains physically reachable after placement.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.PlacedAnimalCannotBlockTheOnlyApproachToItsReservedRow() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 58
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1065" name="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:19:30.1616250Z" end-time="2026-09-28T02:19:30.1673890Z" duration="0.005764" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="4023">
+            <test-case id="1063" name="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(False)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(False)" methodname="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="400365322" result="Passed" start-time="2026-09-28T02:19:30.1616390Z" end-time="2026-09-28T02:19:30.1629230Z" duration="0.001284" asserts="2011" />
+            <test-case id="1064" name="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(True)" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RefusedAuthorityDoesNotMoveOrConfigureAnyOwner(True)" methodname="RefusedAuthorityDoesNotMoveOrConfigureAnyOwner" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="2103793006" result="Passed" start-time="2026-09-28T02:19:30.1629370Z" end-time="2026-09-28T02:19:30.1673660Z" duration="0.004429" asserts="2012" />
+          </test-suite>
+          <test-case id="1081" name="RemovedActorAndSameIdReplacementAreNeverReclaimed" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RemovedActorAndSameIdReplacementAreNeverReclaimed" methodname="RemovedActorAndSameIdReplacementAreNeverReclaimed" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1621476922" result="Passed" start-time="2026-09-28T02:19:30.1674080Z" end-time="2026-09-28T02:19:30.1711420Z" duration="0.003734" asserts="2012" />
+          <test-case id="1084" name="ReplacedHarvestPartCannotBorrowTheOldRowProof" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ReplacedHarvestPartCannotBorrowTheOldRowProof" methodname="ReplacedHarvestPartCannotBorrowTheOldRowProof" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="544068953" result="Failed" start-time="2026-09-28T02:19:30.1711590Z" end-time="2026-09-28T02:19:30.1744250Z" duration="0.003265" asserts="2009">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ReplacedHarvestPartCannotBorrowTheOldRowProof() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 62
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.ReplacedHarvestPartCannotBorrowTheOldRowProof() in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationActorPlacementTests.cs:line 62
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1086" name="RollbackDoesNotRemoveTheCallbackOwnerClaimingTheOrigin" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.RollbackDoesNotRemoveTheCallbackOwnerClaimingTheOrigin" methodname="RollbackDoesNotRemoveTheCallbackOwnerClaimingTheOrigin" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="184529821" result="Passed" start-time="2026-09-28T02:19:30.1744430Z" end-time="2026-09-28T02:19:30.1805490Z" duration="0.006106" asserts="2013" />
+          <test-case id="1072" name="SealedReservedRowDoesNotCountAsPlayerAccessibleFood" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SealedReservedRowDoesNotCountAsPlayerAccessibleFood" methodname="SealedReservedRowDoesNotCountAsPlayerAccessibleFood" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="208264788" result="Passed" start-time="2026-09-28T02:19:30.1805650Z" end-time="2026-09-28T02:19:30.1824210Z" duration="0.001856" asserts="2019" />
+          <test-case id="1069" name="SingleLaneThroughTheProposedTerritoryIsNotABypass" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SingleLaneThroughTheProposedTerritoryIsNotABypass" methodname="SingleLaneThroughTheProposedTerritoryIsNotABypass" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="271131725" result="Passed" start-time="2026-09-28T02:19:30.1824420Z" end-time="2026-09-28T02:19:30.1861800Z" duration="0.003738" asserts="3689" />
+          <test-case id="1071" name="SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood" methodname="SingleRemainingRowRefusesWithoutFabricatingOrConfiguringFood" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1470670798" result="Passed" start-time="2026-09-28T02:19:30.1861900Z" end-time="2026-09-28T02:19:30.1905280Z" duration="0.004335" asserts="2012" />
+          <test-case id="1062" name="TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary" fullname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests.TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary" methodname="TerritoryUsesExactExistingActorAndPostWithInteriorWarningBoundary" classname="CavesOfOoo.Tests.SpreadExplorationActorPlacementTests" runstate="Runnable" seed="1592791073" result="Passed" start-time="2026-09-28T02:19:30.1905420Z" end-time="2026-09-28T02:19:30.7609460Z" duration="0.570395" asserts="2015" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

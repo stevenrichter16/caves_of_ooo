@@ -11,6 +11,8 @@ namespace CavesOfOoo.Core
         public string Name=>"SpreadComposition";
         public int Priority=>2000;
         public Formation FormationOverride=Formation.None;
+        /// <summary>Opt-in new-world interior grammar; default preserves legacy saves.</summary>
+        public SpreadExplorationTopology Topology=SpreadExplorationTopology.Legacy;
         public SpreadCompositionPlan Plan {get;private set;}
         /// <summary>Exact successful cold-build graph; cleared before every attempt.</summary>
         public Zone SourceZone {get;private set;}
@@ -24,7 +26,7 @@ namespace CavesOfOoo.Core
                 Diag.Record("worldgen","SpreadCompositionRejected",payload:new{reason=zone==null?"missing-zone":factory==null?"missing-factory":"nonempty-zone"});
                 return false;
             }
-            Plan=SpreadCompositionPlan.Create(zone.ZoneID,seed,FormationOverride);
+            Plan=SpreadCompositionPlan.Create(zone.ZoneID,seed,FormationOverride,Topology);
             var ripe=SelectGleanings(Plan);
             if(ripe.Count>0&&!factory.Blueprints.ContainsKey("RipeCropRow"))return Reject("missing-ripe-row");
             int objects=0,water=0;

@@ -61,6 +61,12 @@ namespace CavesOfOoo.Tests
             // Supported native zones use the separately tested exact-volume
             // PouredLiquid3D recipe. This list describes the legacy 2D fallback.
             "PouredLiquidPool",
+            // A finite bank pocket is an object on the ground, including when
+            // empty. Its full/empty native Spread forms are covered by
+            // QuestFreeSpreadArtTests; legacy 2D retains the authored feature
+            // glyph and Examine reports the remaining water. Mapping it to
+            // ground-water would erase the pocket and mislabel its empty state.
+            "SpreadDrawPoint",
             "CampfireGroundMarker", "LanternGroundMarker",
             "OvenGroundMarker", "WellGroundMarker",
 
@@ -200,6 +206,39 @@ namespace CavesOfOoo.Tests
             Assert.IsFalse(HasFixtureSprite(owner.BlueprintName));
             Assert.AreEqual(EnvironmentSpriteRenderer.GroundMaterial.None,
                 EnvironmentSpriteRenderer.ResolveGroundMaterial(owner.BlueprintName));
+        }
+
+        [TestCase(3)]
+        [TestCase(0)]
+        public void FiniteDrawPointFallbackRemainsAFeatureAtBothVolumes(int volume)
+        {
+            // This pins the legacy fallback decision, not native pixels or a
+            // claim that the glyph itself communicates the remaining volume.
+            var owner = _factory.CreateEntity("SpreadDrawPoint");
+            var pool = owner.GetPart<LiquidPoolPart>();
+            var render = owner.GetPart<RenderPart>();
+            Assert.IsTrue(owner.HasTag("Terrain")); Assert.NotNull(pool);
+            Assert.AreEqual("water", pool.LiquidId); Assert.AreEqual(3, pool.Volume);
+            pool.Volume = volume;
+            Assert.IsFalse(owner.GetPart<PhysicsPart>().Takeable);
+            Assert.IsFalse(owner.GetPart<PhysicsPart>().Solid);
+            Assert.IsFalse(owner.HasPart<WellPart>());
+            Assert.IsFalse(owner.HasPart<TileStateSourcePart>());
+            Assert.IsTrue(GlyphOnlyByDesign.Contains(owner.BlueprintName));
+            Assert.AreEqual(EnvironmentSpriteRenderer.GroundMaterial.None,
+                EnvironmentSpriteRenderer.ResolveGroundMaterial(owner.BlueprintName));
+            Assert.IsFalse(HasFixtureSprite(owner.BlueprintName));
+            Assert.AreEqual('~', AsciiWorldRenderPolicy.GetGlyphOrFallback(render, out var issue));
+            Assert.IsNull(issue); Assert.AreEqual("&c", render.ColorString);
+            Assert.AreEqual(volume, pool.Volume, "Reading appearance does not refill an empty pocket.");
+            Assert.AreSame(owner, pool.ParentEntity);
+
+            // Identical liquid/feature parts do not exempt an unreviewed name.
+            owner.BlueprintName = "UnreviewedDrawPoint";
+            Assert.IsFalse(GlyphOnlyByDesign.Contains(owner.BlueprintName));
+            Assert.AreEqual(EnvironmentSpriteRenderer.GroundMaterial.None,
+                EnvironmentSpriteRenderer.ResolveGroundMaterial(owner.BlueprintName));
+            Assert.IsFalse(HasFixtureSprite(owner.BlueprintName));
         }
 
         [Test]

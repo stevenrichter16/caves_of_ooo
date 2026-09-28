@@ -1,0 +1,390 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+
+namespace CavesOfOoo.Core
+{
+    /// <summary>Cold realization of one receipt-authorized existing owner. No
+    /// factory, stock, faction or scheduler changes. Caller retains plan/receipt
+    /// authority; this helper proves physical placement and installs one role.</summary>
+    public static class SpreadExplorationActorPlacement
+    {
+        const int MaxSources = 32, MaxTrials = 256;
+
+        public static bool TryTerritory(Zone zone, Entity actor, Func<bool> authority)
+        {
+            var owner = ActorSnapshot.Capture(zone, actor, "MarlbackScrabbler");
+            if (owner == null || actor.HasPart<SpreadTerritoryPart>() || actor.HasPart<SpreadGrazerPart>()
+                || authority == null || !authority() || !owner.Current(owner.Origin)) return false;
+            var geometry = new Geometry(zone, actor);
+            int trials = 0;
+            foreach (var post in zone.GetReadOnlyEntities().Where(e => Post(zone, e))
+                .OrderBy(e => zone.GetEntityCell(e).Y).ThenBy(e => zone.GetEntityCell(e).X).Take(MaxSources).ToArray())
+            {
+                var source = new SourceSnapshot(zone, post); var center = source.Position;
+                if (Distance(owner.Origin, center) > 12) continue;
+                int left = center.x - 3, right = center.x + 3, top = center.y - 2, bottom = center.y + 2;
+                if (left < 2 || top < 2 || right >= Zone.Width - 2 || bottom >= Zone.Height - 2) continue;
+                for (int y = center.y - 1; y <= center.y + 1; y++)
+                    for (int x = center.x - 1; x <= center.x + 1; x++)
+                    {
+                        if (++trials > MaxTrials) return false;
+                        if (!geometry.Place(x, y)) continue;
+                        var destination = (x, y);
+                        bool Avoid(int xx, int yy) => xx >= left && xx <= right && yy >= top && yy <= bottom;
+                        if (!geometry.PreservesRoutes(destination) || !geometry.HasBypass(destination, Avoid)) continue;
+                        if (!authority() || !owner.Current(owner.Origin) || !source.Current() || !Post(zone, post)
+                            || actor.HasPart<SpreadTerritoryPart>() || actor.HasPart<SpreadGrazerPart>()
+                            || !new Geometry(zone, actor).Place(x, y)) return false;
+                        SpreadTerritoryPart role = null; bool committed = false;
+                        try
+                        {
+                            if (owner.Origin != destination && !zone.MoveEntity(actor, x, y)) return false;
+                            if (!authority() || !owner.Current(destination) || !source.Current() || !Post(zone, post)) return false;
+                            role = new SpreadTerritoryPart(); actor.AddPart(role);
+                            if (!owner.Current(destination, role) || actor.GetPart<SpreadTerritoryPart>() != role
+                                || !role.Configure(zone, post, left, top, right, bottom)) return false;
+                            if (!authority() || !owner.Current(destination, role) || !source.Current() || !Post(zone, post)) return false;
+                            var finalGeometry = new Geometry(zone, actor);
+                            committed = owner.Current(destination, role) && source.Current() && Post(zone, post)
+                                && actor.GetPart<SpreadTerritoryPart>() == role && role.ParentEntity == actor && role.Configured
+                                && role.Post == post && role.PostX == center.x && role.PostY == center.y
+                                && role.HomeX == x && role.HomeY == y && role.Left == left && role.Right == right
+                                && role.Top == top && role.Bottom == bottom && role.WarningTarget == null
+                                && role.GraceRemaining == 0 && role.ReturnAttempts == 0 && role.GraceTurns == 2
+                                && finalGeometry.Place(x, y) && finalGeometry.PreservesRoutes(destination)
+                                && finalGeometry.HasBypass(destination, Avoid);
+                            return committed;
+                        }
+                        finally
+                        {
+                            if (!committed)
+                            {
+                                if (role != null && role.ParentEntity == actor && actor.Parts.Contains(role)) actor.RemovePart(role);
+                                owner.Rollback(destination);
+                            }
+                        }
+                    }
+            }
+            return false;
+        }
+
+        public static bool TryGleanings(Zone zone, Entity actor, Func<bool> authority)
+        {
+            var owner = ActorSnapshot.Capture(zone, actor, "ReedbackGrazer");
+            var role = actor?.GetPart<SpreadGrazerPart>();
+            if (owner == null || !Empty(role, actor) || actor.HasPart<SpreadTerritoryPart>()
+                || authority == null || !authority() || !owner.Current(owner.Origin) || !Empty(role, actor)) return false;
+            var geometry = new Geometry(zone, actor);
+            var rows = zone.GetReadOnlyEntities().Where(e => Ripe(zone, e))
+                .OrderBy(e => zone.GetEntityCell(e).Y).ThenBy(e => zone.GetEntityCell(e).X).Take(MaxSources)
+                .Select(e => new SourceSnapshot(zone, e)).ToArray();
+            int trials = 0;
+            foreach (var food in rows)
+                foreach (var reserve in rows)
+                {
+                    if (food.Entity == reserve.Entity || Distance(food.Position, reserve.Position) > 12
+                        || !geometry.EntryReaches(food.Position) || !geometry.EntryReaches(reserve.Position)) continue;
+                    for (int y = food.Position.y - 1; y <= food.Position.y + 1; y++)
+                        for (int x = food.Position.x - 1; x <= food.Position.x + 1; x++)
+                        {
+                            if (++trials > MaxTrials) return false;
+                            var destination = (x, y);
+                            if (!geometry.Place(x, y) || Distance(destination, reserve.Position) > 12
+                                || !geometry.PreservesRoutes(destination) || !geometry.EntryReaches(destination)
+                                || !geometry.EntryReaches(food.Position, destination) || !geometry.EntryReaches(reserve.Position, destination)) continue;
+                            if (!authority() || !owner.Current(owner.Origin) || !Empty(role, actor)
+                                || !food.Current() || !reserve.Current() || !Ripe(zone, food.Entity) || !Ripe(zone, reserve.Entity)) return false;
+                            bool configured = false, committed = false;
+                            try
+                            {
+                                if (owner.Origin != destination && !zone.MoveEntity(actor, x, y)) return false;
+                                if (!authority() || !owner.Current(destination) || !Empty(role, actor)
+                                    || !food.Current() || !reserve.Current() || !Ripe(zone, food.Entity) || !Ripe(zone, reserve.Entity)) return false;
+                                configured = role.ConfigureForage(zone, food.Entity, reserve.Entity);
+                                if (!configured) return false;
+                                committed = authority() && owner.Current(destination) && MatchesConfigured(role, actor, food, reserve)
+                                    && food.Current() && reserve.Current() && Ripe(zone, food.Entity) && Ripe(zone, reserve.Entity);
+                                if (committed)
+                                {
+                                    var finalGeometry = new Geometry(zone, actor);
+                                    committed = finalGeometry.Place(x, y) && finalGeometry.PreservesRoutes(destination)
+                                        && finalGeometry.EntryReaches(food.Position, destination) && finalGeometry.EntryReaches(reserve.Position, destination);
+                                }
+                                return committed;
+                            }
+                            finally
+                            {
+                                if (!committed)
+                                {
+                                    // Do not rewrite a foreign replacement or a role that a
+                                    // callback actually advanced. Restore only our exact config.
+                                    if (configured && MatchesConfigured(role, actor, food, reserve))
+                                    {
+                                        role.Configured = false; role.ZoneID = null; role.Food = role.ReservedRow = null;
+                                        role.FoodX = role.FoodY = role.ReservedX = role.ReservedY = role.ApproachAttempts = 0;
+                                    }
+                                    owner.Rollback(destination);
+                                }
+                            }
+                        }
+                }
+            return false;
+        }
+        /// <summary>Read-only proof of the accepted cold placement across later
+        /// generation callbacks. No callback is saved or used during live AI.</summary>
+        public static Func<bool> CaptureFinalGeometry(Zone zone, Entity actor)
+        {
+            var territory=actor?.GetPart<SpreadTerritoryPart>(); var grazer=actor?.GetPart<SpreadGrazerPart>();
+            if ((territory==null)==(grazer==null)) return null;
+            var owner=ActorSnapshot.Capture(zone,actor,territory!=null?"MarlbackScrabbler":"ReedbackGrazer");
+            if(owner==null) return null;
+            var at=owner.Origin; var initial=new Geometry(zone,actor); var routes=initial.CaptureRoutes(at);
+            Func<bool> source; Func<Geometry,bool> layout;
+            if(territory!=null)
+            {
+                if(!territory.Configured || territory.ParentEntity!=actor || territory.ZoneID!=zone.ZoneID
+                    || territory.HomeX!=at.x || territory.HomeY!=at.y || !Post(zone,territory.Post)
+                    || territory.Left<2 || territory.Top<2 || territory.Right>=Zone.Width-2 || territory.Bottom>=Zone.Height-2
+                    || territory.Left>at.x || territory.Right<at.x || territory.Top>at.y || territory.Bottom<at.y
+                    || territory.Right-territory.Left>12 || territory.Bottom-territory.Top>12) return null;
+                var post=new SourceSnapshot(zone,territory.Post); var roleState=new FieldState(territory);
+                if(post.Position!=(territory.PostX,territory.PostY)) return null;
+                int left=territory.Left,right=territory.Right,top=territory.Top,bottom=territory.Bottom;
+                source=()=>roleState.Matches() && actor.GetPart<SpreadTerritoryPart>()==territory && post.Current() && Post(zone,post.Entity);
+                layout=g=>g.HasBypass(at,(x,y)=>x>=left&&x<=right&&y>=top&&y<=bottom);
+            }
+            else
+            {
+                if(!Ripe(zone,grazer.Food)||!Ripe(zone,grazer.ReservedRow)||grazer.Food==grazer.ReservedRow) return null;
+                var food=new SourceSnapshot(zone,grazer.Food); var reserve=new SourceSnapshot(zone,grazer.ReservedRow);var roleState=new FieldState(grazer);
+                if(!MatchesConfigured(grazer,actor,food,reserve)) return null;
+                source=()=>roleState.Matches() && MatchesConfigured(grazer,actor,food,reserve) && food.Current() && reserve.Current()
+                    && Ripe(zone,food.Entity) && Ripe(zone,reserve.Entity);
+                layout=g=>g.EntryReaches(food.Position,at)&&g.EntryReaches(reserve.Position,at);
+            }
+            bool Current()
+            {
+                if(!owner.Current(at)||!source()) return false;
+                var current=new Geometry(zone,actor);
+                return current.Place(at.x,at.y)&&routes(current)&&layout(current);
+            }
+            return Current()?(Func<bool>)Current:null;
+        }
+
+        static bool MatchesConfigured(SpreadGrazerPart r, Entity owner, SourceSnapshot food, SourceSnapshot reserve)
+            => r != null && r.ParentEntity == owner && owner.GetPart<SpreadGrazerPart>() == r && r.Configured && !r.Fed
+                && r.ZoneID == food.Zone.ZoneID && r.Food == food.Entity && r.ReservedRow == reserve.Entity
+                && r.FoodX == food.Position.x && r.FoodY == food.Position.y
+                && r.ReservedX == reserve.Position.x && r.ReservedY == reserve.Position.y && r.ApproachAttempts == 0;
+        static bool Empty(SpreadGrazerPart r, Entity owner)
+            => r != null && r.ParentEntity == owner && owner.GetPart<SpreadGrazerPart>() == r && !r.Configured && !r.Fed
+                && r.ZoneID == null && r.Food == null && r.ReservedRow == null && r.FoodX == 0 && r.FoodY == 0
+                && r.ReservedX == 0 && r.ReservedY == 0 && r.ApproachAttempts == 0;
+        static int Distance((int x, int y) a, (int x, int y) b) => Math.Max(Math.Abs(a.x - b.x), Math.Abs(a.y - b.y));
+        static bool Post(Zone z, Entity e) => SpreadActorContext.Ground(e, z) && !e.HasTag("Creature")
+            && (e.BlueprintName == "Hedge" || e.BlueprintName == "Tree" || e.BlueprintName == "Signpost")
+            && e.GetPart<RenderPart>()?.ParentEntity == e && !e.HasPart<SpatialFootprintPart>();
+        static bool Ripe(Zone z, Entity e) => SpreadActorContext.Ground(e, z) && e.BlueprintName == "RipeCropRow"
+            && e.GetPart<FieldHarvestPart>() is FieldHarvestPart f && f.ParentEntity == e && !f.Harvested
+            && e.GetPart<RenderPart>()?.ParentEntity == e && e.GetPart<ExaminablePart>()?.ParentEntity == e
+            && !e.HasPart<SpatialFootprintPart>();
+
+        sealed class SourceSnapshot
+        {
+            internal readonly Zone Zone; internal readonly Entity Entity; internal readonly (int x, int y) Position;
+            readonly string id, blueprint; readonly PhysicsPart physics; readonly RenderPart render;
+            readonly FieldHarvestPart harvest; readonly ExaminablePart examine; readonly string yield; readonly int units;
+            internal SourceSnapshot(Zone zone, Entity entity)
+            { Zone = zone; Entity = entity; Position = zone.GetEntityPosition(entity); id = entity.ID; blueprint = entity.BlueprintName;
+                physics = entity.GetPart<PhysicsPart>(); render = entity.GetPart<RenderPart>(); harvest = entity.GetPart<FieldHarvestPart>();
+                examine = entity.GetPart<ExaminablePart>(); yield = harvest?.YieldBlueprint; units = harvest?.YieldCount ?? 0; }
+            internal bool Current() => SpreadActorContext.Ground(Entity, Zone) && Zone.GetEntityPosition(Entity) == Position
+                && Entity.ID == id && Entity.BlueprintName == blueprint && Entity.GetPart<PhysicsPart>() == physics
+                && Entity.GetPart<RenderPart>() == render && render?.ParentEntity == Entity
+                && Entity.GetPart<FieldHarvestPart>() == harvest && Entity.GetPart<ExaminablePart>() == examine
+                && (harvest == null || (harvest.ParentEntity == Entity && harvest.YieldBlueprint == yield && harvest.YieldCount == units));
+        }
+        sealed class ActorSnapshot
+        {
+            internal readonly (int x, int y) Origin;
+            readonly Zone zone; readonly Entity entity; readonly string id, blueprint; readonly BrainPart brain; readonly PhysicsPart physics;
+            readonly OwnedGraphSnapshot graph;
+            ActorSnapshot(Zone z, Entity e, BrainPart b)
+            { zone = z; entity = e; brain = b; physics = e.GetPart<PhysicsPart>(); Origin = z.GetEntityPosition(e); id = e.ID; blueprint = e.BlueprintName; graph = new OwnedGraphSnapshot(e); }
+            internal static ActorSnapshot Capture(Zone z, Entity e, string blueprint)
+                => e?.BlueprintName == blueprint && SpreadActorContext.Actor(e, z, out var b) && b.PartyLeader == null
+                    ? new ActorSnapshot(z, e, b) : null;
+            internal bool Current((int x, int y) at, SpreadTerritoryPart added = null) => graph.Matches(added) && SpreadActorContext.Actor(entity, zone, out var b) && b == brain
+                && entity.GetPart<PhysicsPart>() == physics && entity.ID == id && entity.BlueprintName == blueprint
+                && brain.PartyLeader == null && zone.GetEntityPosition(entity) == at;
+            internal void Rollback((int x, int y) destination)
+            {
+                if (Origin == destination || !Current(destination)) return;
+                // A callback may have claimed the origin; never displace it.
+                if (zone.CanPlaceFootprint(entity, Origin.x, Origin.y)) zone.MoveEntity(entity, Origin.x, Origin.y);
+            }
+        }
+
+        // Ephemeral source proof, not another saved schema. A producer receipt is
+        // consumed before calling this helper; its full-state check cannot survive
+        // our intended role mutation. Pin the owned graph independently and exempt
+        // only that exact root role, whose state is checked by the transaction.
+        sealed class OwnedGraphSnapshot
+        {
+            readonly Entity root; readonly List<EntityState> graph = new List<EntityState>(); readonly bool valid;
+            internal OwnedGraphSnapshot(Entity root)
+            {
+                this.root = root;
+                var pending = new Queue<Entity>(); var seen = new HashSet<Entity>(); pending.Enqueue(root);
+                while (pending.Count > 0 && seen.Count < 256)
+                {
+                    var e = pending.Dequeue(); if (e == null || !seen.Add(e)) continue;
+                    var state = new EntityState(e, e == root ? e.GetPart<SpreadGrazerPart>() : null); graph.Add(state);
+                    foreach (var child in state.Children) pending.Enqueue(child);
+                }
+                valid = pending.Count == 0;
+            }
+            internal bool Matches(SpreadTerritoryPart added) => valid && graph.All(s => s.Matches(s.Entity == root ? added : null));
+        }
+        sealed class EntityState
+        {
+            internal readonly Entity Entity; internal readonly Entity[] Children;
+            readonly string id, blueprint; readonly Zone spatialZone;
+            readonly KeyValuePair<string,string>[] tags, properties; readonly KeyValuePair<string,int>[] ints;
+            readonly KeyValuePair<string,Stat>[] stats; readonly Part[] parts; readonly FieldState[] values;
+            readonly Entity[] contents, carried; readonly KeyValuePair<string,Entity>[] equipped;
+            readonly Anatomy.BodyPart[] slots; readonly FieldState[] slotValues;
+            readonly Entity[] enemies; readonly GoalHandler[] goals; readonly FieldState[] goalValues;
+            internal EntityState(Entity e, SpreadGrazerPart ignoredRole)
+            {
+                Entity=e; id=e.ID; blueprint=e.BlueprintName; spatialZone=e.SpatialZone;
+                tags=e.Tags.ToArray(); properties=e.Properties.ToArray(); ints=e.IntProperties.ToArray(); stats=e.Statistics.ToArray(); parts=e.Parts.ToArray();
+                values=parts.Where(p=>p!=ignoredRole).Cast<object>().Concat(stats.Select(s=>(object)s.Value)).Select(o=>new FieldState(o)).ToArray();
+                contents=e.GetPart<ContainerPart>()?.Contents?.ToArray(); carried=e.GetPart<InventoryPart>()?.Objects?.ToArray(); equipped=e.GetPart<InventoryPart>()?.EquippedItems?.ToArray();
+                slots=e.GetPart<Body>()?.GetParts()?.ToArray(); slotValues=slots?.Select(s=>new FieldState(s)).ToArray();
+                enemies=e.GetPart<BrainPart>()?.PersonalEnemies?.ToArray(); goals=e.GetPart<BrainPart>()?.GetGoalsSnapshot()?.ToArray();
+                goalValues=goals?.Select(g=>new FieldState(g)).ToArray();
+                Children=(contents??Array.Empty<Entity>()).Concat(carried??Array.Empty<Entity>()).Concat(equipped?.Select(k=>k.Value)??Enumerable.Empty<Entity>())
+                    .Concat(slots?.SelectMany(s=>new[]{s.Equipped,s.Cybernetics,s.DefaultBehavior})??Enumerable.Empty<Entity>()).Where(e2=>e2!=null).Distinct().ToArray();
+            }
+            internal bool Matches(SpreadTerritoryPart added) => Entity.ID==id && Entity.BlueprintName==blueprint && Entity.SpatialZone==spatialZone
+                && Same(Entity.Tags,tags) && Same(Entity.Properties,properties) && Same(Entity.IntProperties,ints) && Same(Entity.Statistics,stats)
+                && (added==null ? Entity.Parts.SequenceEqual(parts) : added.ParentEntity==Entity && Entity.Parts.SequenceEqual(parts.Concat(new[]{added})))
+                && parts.All(p=>p!=null && p.ParentEntity==Entity) && values.All(v=>v.Matches())
+                && Sequence(Entity.GetPart<ContainerPart>()?.Contents,contents) && Sequence(Entity.GetPart<InventoryPart>()?.Objects,carried)
+                && SameNullable(Entity.GetPart<InventoryPart>()?.EquippedItems,equipped) && Sequence(Entity.GetPart<Body>()?.GetParts(),slots)
+                && (slotValues==null || slotValues.All(v=>v.Matches()))
+                && SameEnemies(Entity.GetPart<BrainPart>()?.PersonalEnemies,enemies) && Sequence(Entity.GetPart<BrainPart>()?.GetGoalsSnapshot(),goals)
+                && (goalValues==null || goalValues.All(v=>v.Matches()));
+            static bool SameEnemies(HashSet<Entity> current,Entity[] saved)=>saved==null?current==null:current!=null&&current.SetEquals(saved);
+            static bool Sequence<T>(IEnumerable<T> current,T[] saved)=>saved==null?current==null:current!=null&&current.SequenceEqual(saved);
+            static bool Same<K,V>(IDictionary<K,V> current,KeyValuePair<K,V>[] saved)=>current!=null&&current.Count==saved.Length&&saved.All(k=>current.TryGetValue(k.Key,out V v)&&EqualityComparer<V>.Default.Equals(v,k.Value));
+            static bool SameNullable<K,V>(IDictionary<K,V> current,KeyValuePair<K,V>[] saved)=>saved==null?current==null:Same(current,saved);
+        }
+        sealed class FieldState
+        {
+            readonly object owner; readonly (FieldInfo field,object value)[] fields;
+            internal FieldState(object owner)
+            {
+                this.owner=owner;
+                fields=owner==null?Array.Empty<(FieldInfo,object)>():owner.GetType().GetFields(BindingFlags.Instance|BindingFlags.Public)
+                    .Select(f=>(f,f.GetValue(owner))).ToArray();
+            }
+            internal bool Matches()=>owner!=null&&fields.All(f=>(f.field.FieldType.IsValueType||f.field.FieldType==typeof(string))
+                ?Equals(f.value,f.field.GetValue(owner)):ReferenceEquals(f.value,f.field.GetValue(owner)));
+        }
+
+        sealed class Geometry
+        {
+            readonly bool[,] walk = new bool[Zone.Width, Zone.Height], bare = new bool[Zone.Width, Zone.Height];
+            readonly int[,] baseline; readonly bool[,] fromBorder;
+            readonly List<(int x, int y)> critical = new List<(int x, int y)>();
+            internal Geometry(Zone zone, Entity moving)
+            {
+                for (int y = 0; y < Zone.Height; y++) for (int x = 0; x < Zone.Width; x++)
+                {
+                    var cell = zone.GetCell(x, y); if (cell == null) continue;
+                    bool safe = zone.TileState.Get(x, y)?.IsEmpty != false, empty = safe && !cell.IsInterior && !zone.GenReservedCells.Contains((x,y));
+                    bool ground = false;
+                    foreach (var e in cell.Occupants)
+                    {
+                        if (e == moving) continue;
+                        if (e.HasPart<LiquidPoolPart>() || e.HasPart<GasPoolPart>() || e.HasPart<TriggerOnStepPart>()) safe = empty = false;
+                        if (e.HasTag("Solid") || e.GetPart<PhysicsPart>()?.Solid == true || e.HasTag("Creature")
+                            || e.GetPart<DoorPart>()?.IsClosed == true || e.GetPart<SealedLibraryBarrierPart>()?.IsClosed == true) safe = false;
+                        if (DoorPart.IsBareGround(e)) ground = true; else empty = false;
+                    }
+                    walk[x,y] = safe; bare[x,y] = safe && empty && ground;
+                    if (safe && (Border(x,y) || zone.GenReservedCells.Contains((x,y)))) critical.Add((x,y));
+                }
+                foreach (var stair in zone.GetReadOnlyEntities().Where(e => e.HasPart<StairsUpPart>() || e.HasPart<StairsDownPart>()))
+                {
+                    var at = zone.GetEntityPosition(stair);
+                    for (int dy=-1;dy<=1;dy++) for(int dx=-1;dx<=1;dx++)
+                        if (In(at.x+dx,at.y+dy) && walk[at.x+dx,at.y+dy]) critical.Add((at.x+dx,at.y+dy));
+                }
+                baseline = Labels(null, null); fromBorder = new bool[Zone.Width,Zone.Height];
+                var open = new HashSet<int>(); for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)if(Border(x,y)&&baseline[x,y]!=0)open.Add(baseline[x,y]);
+                for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)fromBorder[x,y]=baseline[x,y]!=0&&open.Contains(baseline[x,y]);
+            }
+            internal bool Place(int x,int y)=>In(x,y)&&x>=2&&y>=2&&x<Zone.Width-2&&y<Zone.Height-2&&bare[x,y];
+            internal bool EntryReaches((int x,int y) at, (int x,int y)? blocked = null)
+            {
+                bool[,] reached = fromBorder;
+                if (blocked.HasValue)
+                {
+                    var labels = Labels(blocked, null); var edge = new HashSet<int>(); reached = new bool[Zone.Width,Zone.Height];
+                    for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)if(Border(x,y)&&labels[x,y]!=0)edge.Add(labels[x,y]);
+                    for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)reached[x,y]=labels[x,y]!=0&&edge.Contains(labels[x,y]);
+                }
+                for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)
+                    if(Math.Abs(dx)+Math.Abs(dy)==1&&In(at.x+dx,at.y+dy)&&reached[at.x+dx,at.y+dy])return true;
+                return false;
+            }
+            internal Func<Geometry,bool> CaptureRoutes((int x,int y) destination)
+            {
+                var accepted=Labels(destination,null);var required=critical.ToArray();
+                return current=>
+                {
+                    var next=current.Labels(destination,null);var map=new Dictionary<int,int>();
+                    foreach(var p in required)
+                    {
+                        int a=accepted[p.x,p.y],b=next[p.x,p.y];
+                        if(a==0||b==0)return false;
+                        if(map.TryGetValue(a,out int prior)&&prior!=b)return false;
+                        map[a]=b;
+                    }
+                    return true;
+                };
+            }
+            internal bool PreservesRoutes((int x,int y) destination)
+            {
+                var next=Labels(destination,null);var map=new Dictionary<int,int>();
+                foreach(var p in critical){int a=baseline[p.x,p.y],b=next[p.x,p.y];if(b==0)return false;if(map.TryGetValue(a,out int prior)&&prior!=b)return false;map[a]=b;}
+                return true;
+            }
+            internal bool HasBypass((int x,int y) destination,Func<int,int,bool> avoid)
+            {
+                var labels=Labels(destination,avoid);var edges=new Dictionary<int,int>();
+                for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)if(Border(x,y)&&labels[x,y]!=0)
+                {int flags=(x==0?1:0)|(x==Zone.Width-1?2:0)|(y==0?4:0)|(y==Zone.Height-1?8:0);int id=labels[x,y];edges.TryGetValue(id,out int old);edges[id]=old|flags;}
+                return edges.Values.Any(v=>(v&3)==3||(v&12)==12);
+            }
+            int[,] Labels((int x,int y)? blocked,Func<int,int,bool> avoid)
+            {
+                var labels=new int[Zone.Width,Zone.Height];var queue=new Queue<(int x,int y)>();int id=0;
+                bool Open(int x,int y)=>In(x,y)&&walk[x,y]&&(!blocked.HasValue||blocked.Value!=(x,y))&&avoid?.Invoke(x,y)!=true;
+                for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
+                {
+                    if(!Open(x,y)||labels[x,y]!=0)continue;labels[x,y]=++id;queue.Enqueue((x,y));
+                    while(queue.Count>0){var p=queue.Dequeue();for(int d=0;d<4;d++){int xx=p.x+(d==0?1:d==1?-1:0),yy=p.y+(d==2?1:d==3?-1:0);if(!Open(xx,yy)||labels[xx,yy]!=0)continue;labels[xx,yy]=id;queue.Enqueue((xx,yy));}}
+                }
+                return labels;
+            }
+            static bool In(int x,int y)=>x>=0&&y>=0&&x<Zone.Width&&y<Zone.Height;
+            static bool Border(int x,int y)=>x==0||y==0||x==Zone.Width-1||y==Zone.Height-1;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+--- Assets/Scripts/Gameplay/Items/WaterVesselService.cs
++++ Assets/Scripts/Gameplay/Items/WaterVesselService.cs
+@@ -33,12 +33,13 @@
+                     if (source == null) return Reject(actor, vessel, command, "no_fresh_water", "Stand beside a well, cistern, or pool of fresh water to fill it.");
+                     if (!transaction.TryClaim(source, actor, command)) return Reject(actor, vessel, command, "source_in_use", "That water is already being drawn.");
+                     var pool = source.GetPart<LiquidPoolPart>();
++                    var sourceCell = zone.GetEntityCell(source);
+                     int oldVolume = pool?.Volume ?? 0;
+                     int amount = pool == null ? skin.Capacity - before : Math.Min(skin.Capacity - before, oldVolume);
+                     transaction.Do(null, () => { skin.Charges = before; if (pool != null) pool.Volume = oldVolume; });
+                     skin.Charges += amount;
+                     if (pool != null) pool.Volume -= amount;
+-                    transaction.AfterCommit(() => LiquidVesselService.RetireExhaustedPouredPool(zone, source, pool));
++                    transaction.AfterCommit(() => LiquidVesselService.PublishCommittedPoolDraw(zone, source, pool, sourceCell));
+                     int filled = skin.Charges;
+                     transaction.AfterCommit(() => Diag.Record("event", "WaterskinFilled", actor, vessel,
+                         new { source = source.BlueprintName, amount, remaining = filled }));
+--- Assets/Scripts/Gameplay/Items/LiquidVesselService.cs
++++ Assets/Scripts/Gameplay/Items/LiquidVesselService.cs
+@@ -89,17 +89,34 @@
+             if (pool.LiquidId != expectedLiquid) return Reject(actor, vessel, command, "source-liquid-changed");
+             if (part.Volume == part.Capacity) return Reject(actor, vessel, command, "full");
+             if (!transaction.TryClaim(source, actor, command)) return Reject(actor, vessel, command, "source-in-use");
++            var sourceCell = zone.GetEntityCell(source);
+             int before = part.Volume, oldPool = pool.Volume;
+             string oldId = part.LiquidId, liquidId = pool.LiquidId;
+             int amount = Math.Min(part.Capacity - before, oldPool);
+             transaction.Do(null, () => { part.Volume = before; part.LiquidId = oldId; pool.Volume = oldPool; });
+             part.Volume += amount; part.LiquidId = liquidId; pool.Volume -= amount;
+-            transaction.AfterCommit(() => RetireExhaustedPouredPool(zone, source, pool));
++            transaction.AfterCommit(() => PublishCommittedPoolDraw(zone, source, pool, sourceCell));
+             transaction.AfterCommit(() => Diag.Record("liquid", "VesselFilled", actor, vessel,
+                 new { source = source.ID, liquidId, amount, remaining = oldPool - amount }));
+             transaction.AfterCommit(() => MessageLog.Add("You fill the flask with " + LiquidName(liquidId) + ". (" + (before + amount) + "/" + part.Capacity + ")"));
+             if (own) transaction.Commit();
+             return true;
++        }
++
++        /// <summary>Publish a committed finite-volume change for the exact original
++        /// owner, pool and anchor. Persistent sources remain at zero; the existing
++        /// poured-pool lifecycle still owns retirement. Outer rollback never calls
++        /// this observer, and stale/replaced owners cannot dirty another cell.</summary>
++        internal static void PublishCommittedPoolDraw(Zone zone, Entity source, LiquidPoolPart pool, Cell sourceCell)
++        {
++            var physics = source?.GetPart<PhysicsPart>();
++            if (sourceCell == null || source?.SpatialZone != zone || zone?.GetEntityCell(source) != sourceCell
++                || !sourceCell.Objects.Contains(source) || pool == null || pool.ParentEntity != source
++                || source.GetPart<LiquidPoolPart>() != pool || physics == null || physics.ParentEntity != source
++                || physics.Takeable || physics.InInventory != null || physics.Equipped != null || source.HasTag("Creature")) return;
++            RetireExhaustedPouredPool(zone, source, pool);
++            if (source.SpatialZone == zone && zone.GetEntityCell(source) == sourceCell)
++                ZoneRenderHooks.MarkCellDirty(sourceCell, "LiquidVessel.SourceChanged");
+         }
+ 
+         /// <summary>A finite poured owner ends with its last recoverable unit.

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="2" result="Failed" start-time="2026-09-28T02:38:42.1285930Z" end-time="2026-09-28T02:38:42.1546240Z" duration="0.026017" total="2" passed="0" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="6" random-seed="1713179181">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/e2/final-geometry-red.xml --where "class =~ /SpreadExplorationFinalGeometryTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationFinalGeometryTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1003" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:38:42.1285930Z" end-time="2026-09-28T02:38:42.1546240Z" duration="0.026017" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/e2/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/e2/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="27236" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1004" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:38:42.1302430Z" end-time="2026-09-28T02:38:42.1546210Z" duration="0.024379" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1005" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:38:42.1303510Z" end-time="2026-09-28T02:38:42.1546090Z" duration="0.024258" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationFinalGeometryTests" fullname="CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests" classname="CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:38:42.1307330Z" end-time="2026-09-28T02:38:42.1545000Z" duration="0.023767" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1002" name="HarmlessInteriorObstaclePreservesEarlierConnections" fullname="CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests.HarmlessInteriorObstaclePreservesEarlierConnections" methodname="HarmlessInteriorObstaclePreservesEarlierConnections" classname="CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests" runstate="Runnable" seed="1513076551" result="Failed" start-time="2026-09-28T02:38:42.1316680Z" end-time="2026-09-28T02:38:42.1527070Z" duration="0.021065" asserts="3">
+            <failure>
+              <message><![CDATA[  A later builder must preserve the previously accepted approaches, not redefine critical cells after blocking them.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests.Preserves(Object current, Object original) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationFinalGeometryTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests.HarmlessInteriorObstaclePreservesEarlierConnections() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationFinalGeometryTests.cs:line 14
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  A later builder must preserve the previously accepted approaches, not redefine critical cells after blocking them.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests.Preserves(Object current, Object original) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationFinalGeometryTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests.HarmlessInteriorObstaclePreservesEarlierConnections() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationFinalGeometryTests.cs:line 14
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1001" name="LaterCrossingBarrierCannotBecomeItsOwnPermissiveBaseline" fullname="CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests.LaterCrossingBarrierCannotBecomeItsOwnPermissiveBaseline" methodname="LaterCrossingBarrierCannotBecomeItsOwnPermissiveBaseline" classname="CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests" runstate="Runnable" seed="1049262539" result="Failed" start-time="2026-09-28T02:38:42.1533160Z" end-time="2026-09-28T02:38:42.1541700Z" duration="0.000854" asserts="3">
+            <failure>
+              <message><![CDATA[  A later builder must preserve the previously accepted approaches, not redefine critical cells after blocking them.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests.Preserves(Object current, Object original) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationFinalGeometryTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests.LaterCrossingBarrierCannotBecomeItsOwnPermissiveBaseline() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationFinalGeometryTests.cs:line 13
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  A later builder must preserve the previously accepted approaches, not redefine critical cells after blocking them.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests.Preserves(Object current, Object original) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationFinalGeometryTests.cs:line 11
+   at CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests.LaterCrossingBarrierCannotBecomeItsOwnPermissiveBaseline() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationFinalGeometryTests.cs:line 13
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

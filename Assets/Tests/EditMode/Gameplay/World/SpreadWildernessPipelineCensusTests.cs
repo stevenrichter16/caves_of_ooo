@@ -20,7 +20,16 @@ namespace CavesOfOoo.Tests
         {
             readonly bool baseline;internal Entity[] Before;internal (int x,int y)[] Positions;internal string[] ExactFacts;
             internal int NextRng;internal SpreadWildernessSituationBuilder Composer;internal PopulationBuilder Population;internal ContainerBuilder Containers;
-            internal ObservedManager(EntityFactory f,int seed,bool baseline):base(f,seed){this.baseline=baseline;}
+            internal ObservedManager(EntityFactory f,int seed,bool baseline):base(f,seed)
+            {
+                this.baseline=baseline;
+                // This paired census measures the shipped v1 cargo/shelter composer.
+                // New-world v2 composition has its own pipeline/census acceptance.
+                var flags=System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic;
+                var legacy=typeof(SpreadExplorationPlan).GetMethod("Legacy",flags).Invoke(null,new object[]{this});
+                typeof(OverworldZoneManager).GetProperty("Exploration").SetValue(this,legacy);
+                Assert.False(Exploration.Enabled);Assert.AreEqual(0,CachedZoneCount);
+            }
             protected override ZoneGenerationPipeline GetPipelineForZone(string id)
             {
                 var p=base.GetPipelineForZone(id);Composer=p.Builders.OfType<SpreadWildernessSituationBuilder>().SingleOrDefault();
@@ -41,7 +50,7 @@ namespace CavesOfOoo.Tests
         public void ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(int seed)
         {
             var selection=OverworldZoneManager.CreateDetached(scope.Factory,seed);var ids=IDs().Where(id=>{var kind=SpreadWildernessSituationPlan.Select(selection,id,selection.Wayhouse.ZoneID);return kind=="cargo"||kind=="shelter";}).ToArray();
-            Assert.Greater(ids.Length,0);var report=new Report{seed=seed,selected=ids.Length,boundary="Actual full manager cold GetZone, paired no-composer subclass vs current wiring; per-zone global loadout/trader/death RNG reset. Test-only last builder samples caller next RNG equally. No journey, player balance, save replay or native pixels claimed."};
+            Assert.Greater(ids.Length,0);var report=new Report{seed=seed,selected=ids.Length,boundary="Actual legacy-v1 full manager cold GetZone, paired no-composer subclass vs v1 wiring; per-zone global loadout/trader/death RNG reset. Test-only last builder samples caller next RNG equally. No journey, player balance, save replay or native pixels claimed."};
             foreach(string id in ids)
             {
                 int globalSeed=unchecked(seed^FormationSelector.StableIndex(id,int.MaxValue));scope.Seed(globalSeed);

@@ -1,0 +1,1363 @@
+{
+  "schemaVersion": 1,
+  "coordinates": "Unity X east/Y up/Z north; one unit per native cell",
+  "palette": [
+    "#082C28",
+    "#103E36",
+    "#1A4B40",
+    "#26594A",
+    "#A0A77C",
+    "#CBC697",
+    "#647353",
+    "#235D25",
+    "#40872C",
+    "#65AE3D",
+    "#435A53",
+    "#62786C",
+    "#819489",
+    "#16883B",
+    "#45CB4B",
+    "#A0E772",
+    "#207838",
+    "#D2D3B4",
+    "#B77B43",
+    "#403D28",
+    "#756C40",
+    "#A39456",
+    "#C4B877",
+    "#243E39"
+  ],
+  "models": [
+    {
+      "id": "questfree-spread-grazer",
+      "blueprint": "ReedbackGrazer",
+      "rigged": true,
+      "rigFamily": "quadruped",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        {
+          "name": "Root",
+          "head": [
+            0,
+            0,
+            0
+          ],
+          "tail": [
+            0,
+            0.08,
+            0
+          ],
+          "parent": null
+        },
+        {
+          "name": "Body",
+          "head": [
+            0,
+            0.3,
+            0.08
+          ],
+          "tail": [
+            0,
+            0.63,
+            0.08
+          ],
+          "parent": "Root"
+        },
+        {
+          "name": "Neck",
+          "head": [
+            0,
+            0.46,
+            -0.25
+          ],
+          "tail": [
+            0,
+            0.5,
+            -0.38
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Head",
+          "head": [
+            0,
+            0.47,
+            -0.39
+          ],
+          "tail": [
+            0,
+            0.4,
+            -0.59
+          ],
+          "parent": "Neck"
+        },
+        {
+          "name": "LegFront.L",
+          "head": [
+            -0.172,
+            0.34,
+            -0.17
+          ],
+          "tail": [
+            -0.18,
+            0.03,
+            -0.17
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "LegRear.L",
+          "head": [
+            -0.172,
+            0.34,
+            0.285
+          ],
+          "tail": [
+            -0.18,
+            0.03,
+            0.285
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "LegFront.R",
+          "head": [
+            0.172,
+            0.34,
+            -0.17
+          ],
+          "tail": [
+            0.18,
+            0.03,
+            -0.17
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "LegRear.R",
+          "head": [
+            0.172,
+            0.34,
+            0.285
+          ],
+          "tail": [
+            0.18,
+            0.03,
+            0.285
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Tail",
+          "head": [
+            0,
+            0.43,
+            0.4
+          ],
+          "tail": [
+            0,
+            0.32,
+            0.54
+          ],
+          "parent": "Body"
+        }
+      ],
+      "boxes": [
+        {
+          "part": "barrel",
+          "center": [
+            0,
+            0.46,
+            0.055
+          ],
+          "size": [
+            0.48,
+            0.36,
+            0.66
+          ],
+          "color": 6,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "belly",
+          "center": [
+            0,
+            0.285,
+            0.02
+          ],
+          "size": [
+            0.39,
+            0.1,
+            0.52
+          ],
+          "color": 21,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "shoulders",
+          "center": [
+            0,
+            0.49,
+            -0.215
+          ],
+          "size": [
+            0.41,
+            0.37,
+            0.18
+          ],
+          "color": 4,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "sloped-neck",
+          "center": [
+            0,
+            0.45,
+            -0.34
+          ],
+          "size": [
+            0.275,
+            0.24,
+            0.21
+          ],
+          "color": 6,
+          "bone": "Neck",
+          "material": "palette"
+        },
+        {
+          "part": "blunt-head",
+          "center": [
+            0,
+            0.43,
+            -0.47
+          ],
+          "size": [
+            0.29,
+            0.22,
+            0.25
+          ],
+          "color": 4,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "broad-muzzle",
+          "center": [
+            0,
+            0.345,
+            -0.625
+          ],
+          "size": [
+            0.26,
+            0.115,
+            0.135
+          ],
+          "color": 17,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "nose",
+          "center": [
+            0,
+            0.365,
+            -0.697
+          ],
+          "size": [
+            0.205,
+            0.055,
+            0.024
+          ],
+          "color": 19,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "side-ear-L",
+          "center": [
+            -0.205,
+            0.525,
+            -0.4
+          ],
+          "size": [
+            0.17,
+            0.075,
+            0.13
+          ],
+          "color": 4,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "inner-ear-L",
+          "center": [
+            -0.205,
+            0.566,
+            -0.4
+          ],
+          "size": [
+            0.115,
+            0.012,
+            0.085
+          ],
+          "color": 21,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "eye-L",
+          "center": [
+            -0.149,
+            0.456,
+            -0.532
+          ],
+          "size": [
+            0.018,
+            0.037,
+            0.04
+          ],
+          "color": 0,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "upper-LegFront.L",
+          "center": [
+            -0.176,
+            0.245,
+            -0.17
+          ],
+          "size": [
+            0.105,
+            0.29,
+            0.13
+          ],
+          "color": 6,
+          "bone": "LegFront.L",
+          "material": "palette"
+        },
+        {
+          "part": "ankle-LegFront.L",
+          "center": [
+            -0.18,
+            0.094,
+            -0.17500000000000002
+          ],
+          "size": [
+            0.08,
+            0.13,
+            0.102
+          ],
+          "color": 21,
+          "bone": "LegFront.L",
+          "material": "palette"
+        },
+        {
+          "part": "hoof-LegFront.L",
+          "center": [
+            -0.209,
+            0.025,
+            -0.195
+          ],
+          "size": [
+            0.05,
+            0.05,
+            0.125
+          ],
+          "color": 19,
+          "bone": "LegFront.L",
+          "material": "palette"
+        },
+        {
+          "part": "hoof-LegFront.L",
+          "center": [
+            -0.151,
+            0.025,
+            -0.195
+          ],
+          "size": [
+            0.05,
+            0.05,
+            0.125
+          ],
+          "color": 19,
+          "bone": "LegFront.L",
+          "material": "palette"
+        },
+        {
+          "part": "upper-LegRear.L",
+          "center": [
+            -0.176,
+            0.245,
+            0.285
+          ],
+          "size": [
+            0.105,
+            0.29,
+            0.13
+          ],
+          "color": 6,
+          "bone": "LegRear.L",
+          "material": "palette"
+        },
+        {
+          "part": "ankle-LegRear.L",
+          "center": [
+            -0.18,
+            0.094,
+            0.27999999999999997
+          ],
+          "size": [
+            0.08,
+            0.13,
+            0.102
+          ],
+          "color": 21,
+          "bone": "LegRear.L",
+          "material": "palette"
+        },
+        {
+          "part": "hoof-LegRear.L",
+          "center": [
+            -0.209,
+            0.025,
+            0.25999999999999995
+          ],
+          "size": [
+            0.05,
+            0.05,
+            0.125
+          ],
+          "color": 19,
+          "bone": "LegRear.L",
+          "material": "palette"
+        },
+        {
+          "part": "hoof-LegRear.L",
+          "center": [
+            -0.151,
+            0.025,
+            0.25999999999999995
+          ],
+          "size": [
+            0.05,
+            0.05,
+            0.125
+          ],
+          "color": 19,
+          "bone": "LegRear.L",
+          "material": "palette"
+        },
+        {
+          "part": "side-ear-R",
+          "center": [
+            0.205,
+            0.525,
+            -0.4
+          ],
+          "size": [
+            0.17,
+            0.075,
+            0.13
+          ],
+          "color": 4,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "inner-ear-R",
+          "center": [
+            0.205,
+            0.566,
+            -0.4
+          ],
+          "size": [
+            0.115,
+            0.012,
+            0.085
+          ],
+          "color": 21,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "eye-R",
+          "center": [
+            0.149,
+            0.456,
+            -0.532
+          ],
+          "size": [
+            0.018,
+            0.037,
+            0.04
+          ],
+          "color": 0,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "upper-LegFront.R",
+          "center": [
+            0.176,
+            0.245,
+            -0.17
+          ],
+          "size": [
+            0.105,
+            0.29,
+            0.13
+          ],
+          "color": 6,
+          "bone": "LegFront.R",
+          "material": "palette"
+        },
+        {
+          "part": "ankle-LegFront.R",
+          "center": [
+            0.18,
+            0.094,
+            -0.17500000000000002
+          ],
+          "size": [
+            0.08,
+            0.13,
+            0.102
+          ],
+          "color": 21,
+          "bone": "LegFront.R",
+          "material": "palette"
+        },
+        {
+          "part": "hoof-LegFront.R",
+          "center": [
+            0.151,
+            0.025,
+            -0.195
+          ],
+          "size": [
+            0.05,
+            0.05,
+            0.125
+          ],
+          "color": 19,
+          "bone": "LegFront.R",
+          "material": "palette"
+        },
+        {
+          "part": "hoof-LegFront.R",
+          "center": [
+            0.209,
+            0.025,
+            -0.195
+          ],
+          "size": [
+            0.05,
+            0.05,
+            0.125
+          ],
+          "color": 19,
+          "bone": "LegFront.R",
+          "material": "palette"
+        },
+        {
+          "part": "upper-LegRear.R",
+          "center": [
+            0.176,
+            0.245,
+            0.285
+          ],
+          "size": [
+            0.105,
+            0.29,
+            0.13
+          ],
+          "color": 6,
+          "bone": "LegRear.R",
+          "material": "palette"
+        },
+        {
+          "part": "ankle-LegRear.R",
+          "center": [
+            0.18,
+            0.094,
+            0.27999999999999997
+          ],
+          "size": [
+            0.08,
+            0.13,
+            0.102
+          ],
+          "color": 21,
+          "bone": "LegRear.R",
+          "material": "palette"
+        },
+        {
+          "part": "hoof-LegRear.R",
+          "center": [
+            0.151,
+            0.025,
+            0.25999999999999995
+          ],
+          "size": [
+            0.05,
+            0.05,
+            0.125
+          ],
+          "color": 19,
+          "bone": "LegRear.R",
+          "material": "palette"
+        },
+        {
+          "part": "hoof-LegRear.R",
+          "center": [
+            0.209,
+            0.025,
+            0.25999999999999995
+          ],
+          "size": [
+            0.05,
+            0.05,
+            0.125
+          ],
+          "color": 19,
+          "bone": "LegRear.R",
+          "material": "palette"
+        },
+        {
+          "part": "reed-ridge-0",
+          "center": [
+            0,
+            0.6675,
+            -0.12
+          ],
+          "size": [
+            0.075,
+            0.035,
+            0.13
+          ],
+          "color": 4,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "reed-ridge-1",
+          "center": [
+            0,
+            0.6825,
+            0.015
+          ],
+          "size": [
+            0.075,
+            0.065,
+            0.13
+          ],
+          "color": 21,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "reed-ridge-2",
+          "center": [
+            0,
+            0.6925,
+            0.15
+          ],
+          "size": [
+            0.075,
+            0.085,
+            0.13
+          ],
+          "color": 4,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "reed-ridge-3",
+          "center": [
+            0,
+            0.6775,
+            0.285
+          ],
+          "size": [
+            0.075,
+            0.055,
+            0.13
+          ],
+          "color": 21,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "short-tail",
+          "center": [
+            0,
+            0.365,
+            0.485
+          ],
+          "size": [
+            0.075,
+            0.16,
+            0.125
+          ],
+          "color": 6,
+          "bone": "Tail",
+          "material": "palette"
+        },
+        {
+          "part": "tail-tip",
+          "center": [
+            0,
+            0.289,
+            0.52
+          ],
+          "size": [
+            0.12,
+            0.07,
+            0.105
+          ],
+          "color": 21,
+          "bone": "Tail",
+          "material": "palette"
+        }
+      ],
+      "feedingHeadPitch": 0.68
+    },
+    {
+      "id": "questfree-spread-grazer-remains",
+      "blueprint": "ReedbackGrazerCorpse",
+      "rigged": false,
+      "rigFamily": "",
+      "clips": [],
+      "sockets": [],
+      "bones": [],
+      "boxes": [
+        {
+          "part": "grounded-barrel",
+          "center": [
+            0.015,
+            0.135,
+            0.03
+          ],
+          "size": [
+            0.53,
+            0.25,
+            0.63
+          ],
+          "color": 6,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "folded-head",
+          "center": [
+            -0.12,
+            0.09,
+            -0.37
+          ],
+          "size": [
+            0.28,
+            0.16,
+            0.31
+          ],
+          "color": 4,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "blunt-muzzle",
+          "center": [
+            -0.13,
+            0.062,
+            -0.555
+          ],
+          "size": [
+            0.25,
+            0.09,
+            0.13
+          ],
+          "color": 17,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "folded-hoof",
+          "center": [
+            -0.29,
+            0.037,
+            -0.15
+          ],
+          "size": [
+            0.14,
+            0.065,
+            0.13
+          ],
+          "color": 19,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "folded-hoof",
+          "center": [
+            -0.29,
+            0.037,
+            0.23
+          ],
+          "size": [
+            0.14,
+            0.065,
+            0.13
+          ],
+          "color": 19,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "folded-hoof",
+          "center": [
+            0.29,
+            0.037,
+            -0.15
+          ],
+          "size": [
+            0.14,
+            0.065,
+            0.13
+          ],
+          "color": 19,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "folded-hoof",
+          "center": [
+            0.29,
+            0.037,
+            0.23
+          ],
+          "size": [
+            0.14,
+            0.065,
+            0.13
+          ],
+          "color": 19,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "reed-ridge-0",
+          "center": [
+            0.095,
+            0.24,
+            -0.08
+          ],
+          "size": [
+            0.085,
+            0.055,
+            0.115
+          ],
+          "color": 21,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "reed-ridge-1",
+          "center": [
+            0.095,
+            0.24,
+            0.055
+          ],
+          "size": [
+            0.085,
+            0.055,
+            0.115
+          ],
+          "color": 21,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "reed-ridge-2",
+          "center": [
+            0.095,
+            0.24,
+            0.19
+          ],
+          "size": [
+            0.085,
+            0.055,
+            0.115
+          ],
+          "color": 21,
+          "bone": "Body",
+          "material": "palette"
+        }
+      ]
+    },
+    {
+      "id": "questfree-spread-draw-full",
+      "blueprint": "SpreadDrawPoint",
+      "rigged": false,
+      "rigFamily": "",
+      "clips": [],
+      "sockets": [],
+      "bones": [],
+      "boxes": [
+        {
+          "part": "buried-base",
+          "center": [
+            0,
+            0.075,
+            0
+          ],
+          "size": [
+            0.88,
+            0.15,
+            0.74
+          ],
+          "color": 10,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "hollow-floor",
+          "center": [
+            0,
+            0.205,
+            0
+          ],
+          "size": [
+            0.67,
+            0.06,
+            0.53
+          ],
+          "color": 0,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "front-lip",
+          "center": [
+            0,
+            0.25,
+            -0.315
+          ],
+          "size": [
+            0.88,
+            0.2,
+            0.11
+          ],
+          "color": 12,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "rear-lip",
+          "center": [
+            0,
+            0.3,
+            0.315
+          ],
+          "size": [
+            0.88,
+            0.26,
+            0.11
+          ],
+          "color": 12,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "side-lip",
+          "center": [
+            -0.385,
+            0.285,
+            0
+          ],
+          "size": [
+            0.11,
+            0.23,
+            0.52
+          ],
+          "color": 11,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "side-lip",
+          "center": [
+            0.385,
+            0.285,
+            0
+          ],
+          "size": [
+            0.11,
+            0.23,
+            0.52
+          ],
+          "color": 11,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "lower-front-step",
+          "center": [
+            0.11,
+            0.115,
+            -0.415
+          ],
+          "size": [
+            0.43,
+            0.13,
+            0.12
+          ],
+          "color": 10,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "short-bank-reed-0",
+          "center": [
+            -0.465,
+            0.24,
+            0.2
+          ],
+          "size": [
+            0.028,
+            0.28,
+            0.04
+          ],
+          "color": 6,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "reed-cap-0",
+          "center": [
+            -0.465,
+            0.395,
+            0.2
+          ],
+          "size": [
+            0.04,
+            0.05,
+            0.065
+          ],
+          "color": 5,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "short-bank-reed-1",
+          "center": [
+            -0.465,
+            0.24,
+            0.1
+          ],
+          "size": [
+            0.028,
+            0.28,
+            0.04
+          ],
+          "color": 6,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "reed-cap-1",
+          "center": [
+            -0.465,
+            0.395,
+            0.1
+          ],
+          "size": [
+            0.04,
+            0.05,
+            0.065
+          ],
+          "color": 5,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "short-bank-reed-2",
+          "center": [
+            0.465,
+            0.24,
+            0.2
+          ],
+          "size": [
+            0.028,
+            0.28,
+            0.04
+          ],
+          "color": 6,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "reed-cap-2",
+          "center": [
+            0.465,
+            0.395,
+            0.2
+          ],
+          "size": [
+            0.04,
+            0.05,
+            0.065
+          ],
+          "color": 5,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "finite-water-surface",
+          "center": [
+            0,
+            0.315,
+            0
+          ],
+          "size": [
+            0.65,
+            0.022,
+            0.51
+          ],
+          "color": 0,
+          "bone": "Body",
+          "material": "water",
+          "semanticLiquid": "water"
+        }
+      ]
+    },
+    {
+      "id": "questfree-spread-draw-empty",
+      "blueprint": "SpreadDrawPoint",
+      "rigged": false,
+      "rigFamily": "",
+      "clips": [],
+      "sockets": [],
+      "bones": [],
+      "boxes": [
+        {
+          "part": "buried-base",
+          "center": [
+            0,
+            0.075,
+            0
+          ],
+          "size": [
+            0.88,
+            0.15,
+            0.74
+          ],
+          "color": 10,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "hollow-floor",
+          "center": [
+            0,
+            0.205,
+            0
+          ],
+          "size": [
+            0.67,
+            0.06,
+            0.53
+          ],
+          "color": 0,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "front-lip",
+          "center": [
+            0,
+            0.25,
+            -0.315
+          ],
+          "size": [
+            0.88,
+            0.2,
+            0.11
+          ],
+          "color": 12,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "rear-lip",
+          "center": [
+            0,
+            0.3,
+            0.315
+          ],
+          "size": [
+            0.88,
+            0.26,
+            0.11
+          ],
+          "color": 12,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "side-lip",
+          "center": [
+            -0.385,
+            0.285,
+            0
+          ],
+          "size": [
+            0.11,
+            0.23,
+            0.52
+          ],
+          "color": 11,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "side-lip",
+          "center": [
+            0.385,
+            0.285,
+            0
+          ],
+          "size": [
+            0.11,
+            0.23,
+            0.52
+          ],
+          "color": 11,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "lower-front-step",
+          "center": [
+            0.11,
+            0.115,
+            -0.415
+          ],
+          "size": [
+            0.43,
+            0.13,
+            0.12
+          ],
+          "color": 10,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "short-bank-reed-0",
+          "center": [
+            -0.465,
+            0.24,
+            0.2
+          ],
+          "size": [
+            0.028,
+            0.28,
+            0.04
+          ],
+          "color": 6,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "reed-cap-0",
+          "center": [
+            -0.465,
+            0.395,
+            0.2
+          ],
+          "size": [
+            0.04,
+            0.05,
+            0.065
+          ],
+          "color": 5,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "short-bank-reed-1",
+          "center": [
+            -0.465,
+            0.24,
+            0.1
+          ],
+          "size": [
+            0.028,
+            0.28,
+            0.04
+          ],
+          "color": 6,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "reed-cap-1",
+          "center": [
+            -0.465,
+            0.395,
+            0.1
+          ],
+          "size": [
+            0.04,
+            0.05,
+            0.065
+          ],
+          "color": 5,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "short-bank-reed-2",
+          "center": [
+            0.465,
+            0.24,
+            0.2
+          ],
+          "size": [
+            0.028,
+            0.28,
+            0.04
+          ],
+          "color": 6,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "reed-cap-2",
+          "center": [
+            0.465,
+            0.395,
+            0.2
+          ],
+          "size": [
+            0.04,
+            0.05,
+            0.065
+          ],
+          "color": 5,
+          "bone": "Body",
+          "material": "palette"
+        }
+      ]
+    }
+  ]
+}

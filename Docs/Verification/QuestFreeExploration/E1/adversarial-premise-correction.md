@@ -1,0 +1,1 @@
+The first actual54-case adversarial run was53PASS/1FAIL. OldLegacyMissingChunk used HotbarSaveFixture.RoundTrip, which intentionally passes a null factory; a new post-load graph therefore legitimately could not generate. Corrected this one setup to use the same ordinary source factory in SaveReader. This was not a production bug; actual raw53/1 retained.

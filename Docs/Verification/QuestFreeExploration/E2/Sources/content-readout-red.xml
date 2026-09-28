@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="4" result="Failed" start-time="2026-09-28T02:21:06.9577300Z" end-time="2026-09-28T02:21:07.1128350Z" duration="0.155096" total="4" passed="3" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="46" random-seed="371434569">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/e2/content-readout-red.xml --where "class =~ /SpreadExplorationContentTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationContentTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1005" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T02:21:06.9577300Z" end-time="2026-09-28T02:21:07.1128350Z" duration="0.155096" total="4" passed="3" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="46">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/e2/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/e2/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="22947" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1006" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T02:21:06.9592140Z" end-time="2026-09-28T02:21:07.1128320Z" duration="0.153618" total="4" passed="3" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="46">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1007" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T02:21:06.9593220Z" end-time="2026-09-28T02:21:07.1128160Z" duration="0.153494" total="4" passed="3" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="46">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationContentTests" fullname="CavesOfOoo.Tests.SpreadExplorationContentTests" classname="CavesOfOoo.Tests.SpreadExplorationContentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T02:21:06.9597670Z" end-time="2026-09-28T02:21:07.1127240Z" duration="0.152957" total="4" passed="3" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="46">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1004" name="CoatingAloneDoesNotOfferADrinkAndCancelledDrawPreservesSource" fullname="CavesOfOoo.Tests.SpreadExplorationContentTests.CoatingAloneDoesNotOfferADrinkAndCancelledDrawPreservesSource" methodname="CoatingAloneDoesNotOfferADrinkAndCancelledDrawPreservesSource" classname="CavesOfOoo.Tests.SpreadExplorationContentTests" runstate="Runnable" seed="1993827685" result="Passed" start-time="2026-09-28T02:21:06.9606440Z" end-time="2026-09-28T02:21:07.0445670Z" duration="0.083948" asserts="11" />
+          <test-case id="1002" name="GrazerCorpseHasDistinctIdentityWithoutBonusGleanings" fullname="CavesOfOoo.Tests.SpreadExplorationContentTests.GrazerCorpseHasDistinctIdentityWithoutBonusGleanings" methodname="GrazerCorpseHasDistinctIdentityWithoutBonusGleanings" classname="CavesOfOoo.Tests.SpreadExplorationContentTests" runstate="Runnable" seed="1074788565" result="Passed" start-time="2026-09-28T02:21:07.0451260Z" end-time="2026-09-28T02:21:07.0643300Z" duration="0.019204" asserts="6" />
+          <test-case id="1001" name="OriginalGrazerHasRealPassiveBodySavedRoleAndNoInventedWeapon" fullname="CavesOfOoo.Tests.SpreadExplorationContentTests.OriginalGrazerHasRealPassiveBodySavedRoleAndNoInventedWeapon" methodname="OriginalGrazerHasRealPassiveBodySavedRoleAndNoInventedWeapon" classname="CavesOfOoo.Tests.SpreadExplorationContentTests" runstate="Runnable" seed="526333343" result="Passed" start-time="2026-09-28T02:21:07.0643490Z" end-time="2026-09-28T02:21:07.0833560Z" duration="0.019007" asserts="14" />
+          <test-case id="1003" name="RealDrawPointFillsOnlyOneOrdinaryWaterskinAndRemainsAsEmptySource" fullname="CavesOfOoo.Tests.SpreadExplorationContentTests.RealDrawPointFillsOnlyOneOrdinaryWaterskinAndRemainsAsEmptySource" methodname="RealDrawPointFillsOnlyOneOrdinaryWaterskinAndRemainsAsEmptySource" classname="CavesOfOoo.Tests.SpreadExplorationContentTests" runstate="Runnable" seed="358316588" result="Failed" start-time="2026-09-28T02:21:07.0834060Z" end-time="2026-09-28T02:21:07.1123780Z" duration="0.028973" asserts="15">
+            <failure>
+              <message><![CDATA[  Expected: String containing "empty"
+  But was:  "you see a bank draw point. a shallow stone-lined pocket beside the bank. its collected water can be drawn into a carried vessel; the wet ground around it is not a refill."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationContentTests.RealDrawPointFillsOnlyOneOrdinaryWaterskinAndRemainsAsEmptySource() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 40
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "empty"
+  But was:  "you see a bank draw point. a shallow stone-lined pocket beside the bank. its collected water can be drawn into a carried vessel; the wet ground around it is not a refill."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationContentTests.RealDrawPointFillsOnlyOneOrdinaryWaterskinAndRemainsAsEmptySource() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 40
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

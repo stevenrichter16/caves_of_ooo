@@ -1,0 +1,780 @@
+--- a/ArtSource/QuestFreeSpread3D/kit.json
++++ b/ArtSource/QuestFreeSpread3D/kit.json
+@@ -917,13 +917,13 @@
+           "part": "buried-base",
+           "center": [
+             0,
+-            0.045,
++            0.075,
+             0
+           ],
+           "size": [
+-            0.73,
+-            0.09,
+-            0.61
++            0.88,
++            0.15,
++            0.74
+           ],
+           "color": 10,
+           "bone": "Body",
+@@ -933,205 +933,205 @@
+           "part": "hollow-floor",
+           "center": [
+             0,
+-            0.098,
++            0.205,
+             0
+           ],
+           "size": [
+-            0.52,
++            0.67,
++            0.06,
++            0.53
++          ],
++          "color": 0,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "front-lip",
++          "center": [
++            0,
++            0.25,
++            -0.315
++          ],
++          "size": [
++            0.88,
++            0.2,
++            0.11
++          ],
++          "color": 12,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "rear-lip",
++          "center": [
++            0,
++            0.3,
++            0.315
++          ],
++          "size": [
++            0.88,
++            0.26,
++            0.11
++          ],
++          "color": 12,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "side-lip",
++          "center": [
++            -0.385,
++            0.285,
++            0
++          ],
++          "size": [
++            0.11,
++            0.23,
++            0.52
++          ],
++          "color": 11,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "side-lip",
++          "center": [
++            0.385,
++            0.285,
++            0
++          ],
++          "size": [
++            0.11,
++            0.23,
++            0.52
++          ],
++          "color": 11,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "lower-front-step",
++          "center": [
++            0.11,
++            0.115,
++            -0.415
++          ],
++          "size": [
++            0.43,
++            0.13,
++            0.12
++          ],
++          "color": 10,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "short-bank-reed-0",
++          "center": [
++            -0.465,
++            0.24,
++            0.2
++          ],
++          "size": [
++            0.028,
++            0.28,
++            0.04
++          ],
++          "color": 6,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "reed-cap-0",
++          "center": [
++            -0.465,
++            0.395,
++            0.2
++          ],
++          "size": [
+             0.04,
+-            0.4
+-          ],
+-          "color": 0,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "front-lip",
+-          "center": [
+-            0,
+-            0.19,
+-            -0.255
+-          ],
+-          "size": [
+-            0.73,
+-            0.2,
++            0.05,
++            0.065
++          ],
++          "color": 5,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "short-bank-reed-1",
++          "center": [
++            -0.465,
++            0.24,
+             0.1
+           ],
+-          "color": 12,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "rear-lip",
+-          "center": [
+-            0,
+-            0.19,
+-            0.255
+-          ],
+-          "size": [
+-            0.73,
+-            0.2,
++          "size": [
++            0.028,
++            0.28,
++            0.04
++          ],
++          "color": 6,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "reed-cap-1",
++          "center": [
++            -0.465,
++            0.395,
+             0.1
+           ],
+-          "color": 11,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "side-lip",
+-          "center": [
+-            -0.315,
+-            0.19,
++          "size": [
++            0.04,
++            0.05,
++            0.065
++          ],
++          "color": 5,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "short-bank-reed-2",
++          "center": [
++            0.465,
++            0.24,
++            0.2
++          ],
++          "size": [
++            0.028,
++            0.28,
++            0.04
++          ],
++          "color": 6,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "reed-cap-2",
++          "center": [
++            0.465,
++            0.395,
++            0.2
++          ],
++          "size": [
++            0.04,
++            0.05,
++            0.065
++          ],
++          "color": 5,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "finite-water-surface",
++          "center": [
++            0,
++            0.315,
+             0
+           ],
+           "size": [
+-            0.1,
+-            0.2,
+-            0.41
+-          ],
+-          "color": 11,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "side-lip",
+-          "center": [
+-            0.315,
+-            0.19,
+-            0
+-          ],
+-          "size": [
+-            0.1,
+-            0.2,
+-            0.41
+-          ],
+-          "color": 11,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "lower-front-step",
+-          "center": [
+-            0.11,
+-            0.074,
+-            -0.35
+-          ],
+-          "size": [
+-            0.38,
+-            0.1,
+-            0.15
+-          ],
+-          "color": 10,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "short-bank-reed-0",
+-          "center": [
+-            -0.39,
+-            0.145,
+-            0.2
+-          ],
+-          "size": [
+-            0.032,
+-            0.23,
+-            0.04
+-          ],
+-          "color": 6,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "reed-cap-0",
+-          "center": [
+-            -0.39,
+-            0.27,
+-            0.2
+-          ],
+-          "size": [
+-            0.07,
+-            0.04,
+-            0.065
+-          ],
+-          "color": 5,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "short-bank-reed-1",
+-          "center": [
+-            -0.405,
+-            0.145,
+-            0.1
+-          ],
+-          "size": [
+-            0.032,
+-            0.23,
+-            0.04
+-          ],
+-          "color": 6,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "reed-cap-1",
+-          "center": [
+-            -0.405,
+-            0.27,
+-            0.1
+-          ],
+-          "size": [
+-            0.07,
+-            0.04,
+-            0.065
+-          ],
+-          "color": 5,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "short-bank-reed-2",
+-          "center": [
+-            0.39,
+-            0.145,
+-            0.2
+-          ],
+-          "size": [
+-            0.032,
+-            0.23,
+-            0.04
+-          ],
+-          "color": 6,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "reed-cap-2",
+-          "center": [
+-            0.39,
+-            0.27,
+-            0.2
+-          ],
+-          "size": [
+-            0.07,
+-            0.04,
+-            0.065
+-          ],
+-          "color": 5,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "finite-water-surface",
+-          "center": [
+-            0,
+-            0.17,
+-            0
+-          ],
+-          "size": [
+-            0.5,
++            0.65,
+             0.022,
+-            0.39
++            0.51
+           ],
+           "color": 0,
+           "bone": "Body",
+@@ -1153,13 +1153,13 @@
+           "part": "buried-base",
+           "center": [
+             0,
+-            0.045,
++            0.075,
+             0
+           ],
+           "size": [
+-            0.73,
+-            0.09,
+-            0.61
++            0.88,
++            0.15,
++            0.74
+           ],
+           "color": 10,
+           "bone": "Body",
+@@ -1169,108 +1169,172 @@
+           "part": "hollow-floor",
+           "center": [
+             0,
+-            0.098,
++            0.205,
+             0
+           ],
+           "size": [
+-            0.52,
++            0.67,
++            0.06,
++            0.53
++          ],
++          "color": 0,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "front-lip",
++          "center": [
++            0,
++            0.25,
++            -0.315
++          ],
++          "size": [
++            0.88,
++            0.2,
++            0.11
++          ],
++          "color": 12,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "rear-lip",
++          "center": [
++            0,
++            0.3,
++            0.315
++          ],
++          "size": [
++            0.88,
++            0.26,
++            0.11
++          ],
++          "color": 12,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "side-lip",
++          "center": [
++            -0.385,
++            0.285,
++            0
++          ],
++          "size": [
++            0.11,
++            0.23,
++            0.52
++          ],
++          "color": 11,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "side-lip",
++          "center": [
++            0.385,
++            0.285,
++            0
++          ],
++          "size": [
++            0.11,
++            0.23,
++            0.52
++          ],
++          "color": 11,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "lower-front-step",
++          "center": [
++            0.11,
++            0.115,
++            -0.415
++          ],
++          "size": [
++            0.43,
++            0.13,
++            0.12
++          ],
++          "color": 10,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "short-bank-reed-0",
++          "center": [
++            -0.465,
++            0.24,
++            0.2
++          ],
++          "size": [
++            0.028,
++            0.28,
++            0.04
++          ],
++          "color": 6,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "reed-cap-0",
++          "center": [
++            -0.465,
++            0.395,
++            0.2
++          ],
++          "size": [
+             0.04,
+-            0.4
+-          ],
+-          "color": 0,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "front-lip",
+-          "center": [
+-            0,
+-            0.19,
+-            -0.255
+-          ],
+-          "size": [
+-            0.73,
+-            0.2,
++            0.05,
++            0.065
++          ],
++          "color": 5,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "short-bank-reed-1",
++          "center": [
++            -0.465,
++            0.24,
+             0.1
+           ],
+-          "color": 12,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "rear-lip",
+-          "center": [
+-            0,
+-            0.19,
+-            0.255
+-          ],
+-          "size": [
+-            0.73,
+-            0.2,
++          "size": [
++            0.028,
++            0.28,
++            0.04
++          ],
++          "color": 6,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "reed-cap-1",
++          "center": [
++            -0.465,
++            0.395,
+             0.1
+           ],
+-          "color": 11,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "side-lip",
+-          "center": [
+-            -0.315,
+-            0.19,
+-            0
+-          ],
+-          "size": [
+-            0.1,
+-            0.2,
+-            0.41
+-          ],
+-          "color": 11,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "side-lip",
+-          "center": [
+-            0.315,
+-            0.19,
+-            0
+-          ],
+-          "size": [
+-            0.1,
+-            0.2,
+-            0.41
+-          ],
+-          "color": 11,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "lower-front-step",
+-          "center": [
+-            0.11,
+-            0.074,
+-            -0.35
+-          ],
+-          "size": [
+-            0.38,
+-            0.1,
+-            0.15
+-          ],
+-          "color": 10,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "short-bank-reed-0",
+-          "center": [
+-            -0.39,
+-            0.145,
++          "size": [
++            0.04,
++            0.05,
++            0.065
++          ],
++          "color": 5,
++          "bone": "Body",
++          "material": "palette"
++        },
++        {
++          "part": "short-bank-reed-2",
++          "center": [
++            0.465,
++            0.24,
+             0.2
+           ],
+           "size": [
+-            0.032,
+-            0.23,
++            0.028,
++            0.28,
+             0.04
+           ],
+           "color": 6,
+@@ -1278,79 +1342,15 @@
+           "material": "palette"
+         },
+         {
+-          "part": "reed-cap-0",
+-          "center": [
+-            -0.39,
+-            0.27,
++          "part": "reed-cap-2",
++          "center": [
++            0.465,
++            0.395,
+             0.2
+           ],
+           "size": [
+-            0.07,
+             0.04,
+-            0.065
+-          ],
+-          "color": 5,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "short-bank-reed-1",
+-          "center": [
+-            -0.405,
+-            0.145,
+-            0.1
+-          ],
+-          "size": [
+-            0.032,
+-            0.23,
+-            0.04
+-          ],
+-          "color": 6,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "reed-cap-1",
+-          "center": [
+-            -0.405,
+-            0.27,
+-            0.1
+-          ],
+-          "size": [
+-            0.07,
+-            0.04,
+-            0.065
+-          ],
+-          "color": 5,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "short-bank-reed-2",
+-          "center": [
+-            0.39,
+-            0.145,
+-            0.2
+-          ],
+-          "size": [
+-            0.032,
+-            0.23,
+-            0.04
+-          ],
+-          "color": 6,
+-          "bone": "Body",
+-          "material": "palette"
+-        },
+-        {
+-          "part": "reed-cap-2",
+-          "center": [
+-            0.39,
+-            0.27,
+-            0.2
+-          ],
+-          "size": [
+-            0.07,
+-            0.04,
++            0.05,
+             0.065
+           ],
+           "color": 5,

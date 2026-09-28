@@ -18,6 +18,11 @@ namespace CavesOfOoo.Core
         public SpreadRareEncounterPlan RareEncounters { get; internal set; }
         /// <summary>Independent bounded expedition; missing saved metadata stays disabled.</summary>
         public SpreadWayhousePlan Wayhouse { get; internal set; }
+        /// <summary>New-world exploration metadata; legacy saves remain disabled.</summary>
+        public SpreadExplorationPlan Exploration { get; internal set; }
+        // Ordinary new games use the delivered exploration tranche; load candidates
+        // remain unbound until their saved metadata is read.
+        private const bool EnableFreshExploration = true;
         // Final validation belongs to the generation attempt even if a callback
         // replaces the selected plan before acceptance.
         internal SpreadWayhousePlan StagedWayhouse;
@@ -28,23 +33,59 @@ namespace CavesOfOoo.Core
 
         /// <summary>Decode an isolated candidate without publishing its default settlement registry.</summary>
         internal OverworldZoneManager(EntityFactory factory, int worldSeed, bool activate)
+            : this(factory, worldSeed, activate, restoring: false) { }
+
+        internal OverworldZoneManager(EntityFactory factory, int worldSeed, bool activate, bool restoring)
             : base(factory, worldSeed)
         {
             WorldMap = WorldGenerator.Generate(WorldSeed);
             RareEncounters = SpreadRareEncounterPlan.Create(this);
             Wayhouse = SpreadWayhousePlan.Create(this);
+            Exploration = restoring ? SpreadExplorationPlan.Unbound(this)
+                : EnableFreshExploration ? SpreadExplorationPlan.Create(this) : SpreadExplorationPlan.Legacy(this);
             SettlementManager = new SettlementManager(
                 currentTurnProvider: null,
                 poiResolver: ResolvePointOfInterestForSettlement,
                 activate: activate);
         }
 
-        /// <summary>Disposable native world for previews/tools. It owns a normal
-        /// settlement registry without replacing the running game's static registry.</summary>
+        /// <summary>Legacy-layout preview retained for existing tools and baseline comparisons.
+        /// Use the explicit overload with true for current exploration. Neither publishes a registry.</summary>
         public static OverworldZoneManager CreateDetached(EntityFactory factory,int worldSeed)
-            =>new OverworldZoneManager(factory,worldSeed,activate:false);
+            =>CreateDetached(factory,worldSeed,enableExploration:false);
+
+        /// <summary>Explicit new-world fixture/preview opt-in, never old-save adoption.</summary>
+        public static OverworldZoneManager CreateDetached(EntityFactory factory,int worldSeed,bool enableExploration)
+        {
+            var manager=new OverworldZoneManager(factory,worldSeed,activate:false);
+            manager.Exploration=enableExploration?SpreadExplorationPlan.Create(manager):SpreadExplorationPlan.Legacy(manager);
+            return manager;
+        }
 
         protected override ZoneGenerationPipeline GetPipelineForZone(string zoneID)
+        {
+            var captured=Exploration;
+            var guard=captured?.Guard(this,zoneID);
+            var pipeline=CreatePipelineForZone(zoneID);
+            if(captured?.TryGetPlacement(this,zoneID,out var assignment)==true)
+            {
+                SpreadCompositionBuilder land=null;PopulationBuilder population=null;ContainerBuilder containers=null;
+                foreach(var builder in pipeline.Builders)
+                {
+                    if(builder is SpreadCompositionBuilder composition){composition.Topology=assignment.Topology;land=composition;}
+                    if(builder is PopulationBuilder people)population=people;
+                    if(builder is ContainerBuilder stock)containers=stock;
+                }
+                // A v2 quiet address stays quiet; it must not borrow the old independent selector.
+                pipeline.RemoveBuilders<SpreadWildernessSituationBuilder>();
+                if(assignment.Family!=SpreadExplorationFamily.None&&land!=null&&population!=null&&containers!=null)
+                    pipeline.AddBuilder(new SpreadExplorationBuilder(this,land,population,containers));
+            }
+            if(guard!=null)pipeline.AddBuilder(guard);
+            return pipeline;
+        }
+
+        private ZoneGenerationPipeline CreatePipelineForZone(string zoneID)
         {
             // World-map zone: a singular Zone the player physically
             // inhabits when they ascend. ZoneID has no dots — see
@@ -1116,12 +1157,15 @@ namespace CavesOfOoo.Core
             LegendaryLairEncounters.TryApplyGeneratedFinal(zone, this);
             bool lairAccepted=LairStacks.CommitGenerated(zone,this);
             var staged=StagedWayhouse;
-            if(staged?.PendingZone!=zone)return lairAccepted;
-            StagedWayhouse=null;
-            return staged.FinalizeGenerated(zone)&&lairAccepted;
+            if(staged?.PendingZone==zone)
+            {
+                StagedWayhouse=null;
+                lairAccepted=staged.FinalizeGenerated(zone)&&lairAccepted;
+            }
+            return SpreadExplorationPlan.FinalizeGenerated(this,zone,zoneID,lairAccepted);
         }
         protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID)
-            && Wayhouse?.Retain(this,zoneID)!=true;
+            && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true;
 
         protected override void OnZoneAttached(Zone zone)
         {
@@ -1296,6 +1340,7 @@ namespace CavesOfOoo.Core
 
         protected override void PrepareZoneForAccess(string zoneID)
         {
+            Exploration?.ValidateAccess(this,zoneID);
             if (zoneID == MultiCellPilotRuntime.ZoneID)
             {
                 WorldMap.RehydrateMultiCellPilot();

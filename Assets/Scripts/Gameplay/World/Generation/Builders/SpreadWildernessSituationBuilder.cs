@@ -119,7 +119,7 @@ namespace CavesOfOoo.Core
                 if(z.GetCell(x+dx,y+dy)?.Occupants.Any(e=>(e.BlueprintName=="Hedge"||e.BlueprintName=="Tree")&&e.GetPart<PhysicsPart>()?.Solid==true)==true)return true;
             return false;
         }
-        static bool Cargo(Zone z,Geometry g,(int x,int y) cache)
+        internal static bool Cargo(Zone z,Geometry g,(int x,int y) cache)
         {
             var blocked=new HashSet<(int x,int y)>{cache};
             // Short physical spur to an actual connected road tile. Never call a
@@ -164,7 +164,7 @@ namespace CavesOfOoo.Core
 
         // A bounded virtual occupancy map permits full preflight without moving
         // anything. Single-cell admission above makes these anchors exact bodies.
-        sealed class Geometry
+        internal sealed class Geometry
         {
             readonly Zone zone;readonly bool[,] passable=new bool[Zone.Width,Zone.Height];readonly bool[,] places=new bool[Zone.Width,Zone.Height];
             readonly int[,] components=new int[Zone.Width,Zone.Height];readonly List<(int x,int y)> critical=new List<(int x,int y)>();
@@ -195,12 +195,15 @@ namespace CavesOfOoo.Core
             internal bool In(int x,int y)=>x>=0&&x<Zone.Width&&y>=0&&y<Zone.Height;
             internal bool Place(int x,int y)=>In(x,y)&&x>=2&&y>=2&&x<Zone.Width-2&&y<Zone.Height-2&&places[x,y];
             internal bool Walk(int x,int y,HashSet<(int x,int y)> blocked)=>In(x,y)&&passable[x,y]&&(blocked==null||!blocked.Contains((x,y)));
-            internal bool PreservesRoutes((int x,int y)[] dest)
+            internal bool PreservesRoutes((int x,int y)[] dest)=>PreservesAgainst(this,dest);
+            // Compare against the accepted pre-callback critical cells, so a later
+            // blocker cannot erase the very approach we promised to preserve.
+            internal bool PreservesAgainst(Geometry original,(int x,int y)[] dest)
             {
                 var blocked=new HashSet<(int x,int y)>(dest);if(blocked.Count!=dest.Length)return false;
                 var next=new int[Zone.Width,Zone.Height];Label(blocked,next);var mapping=new Dictionary<int,int>();
-                foreach(var p in critical)
-                {int a=components[p.x,p.y],b=next[p.x,p.y];if(b==0)return false;if(mapping.TryGetValue(a,out int prior)&&prior!=b)return false;mapping[a]=b;}
+                foreach(var p in original.critical)
+                {int a=original.components[p.x,p.y],b=next[p.x,p.y];if(b==0)return false;if(mapping.TryGetValue(a,out int prior)&&prior!=b)return false;mapping[a]=b;}
                 return true;
             }
             void Label(HashSet<(int x,int y)> blocked,int[,] labels)

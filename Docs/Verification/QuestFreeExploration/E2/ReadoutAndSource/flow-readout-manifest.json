@@ -1,0 +1,55 @@
+{
+  "scope": "Current local role/water readout truth and unavailable population-replacement preservation only",
+  "status": "private; root mechanics reviewed; player-facing wording corrected; peer pending",
+  "testFilters": [
+    "CavesOfOoo.Tests.SpreadExplorationReadoutTests",
+    "CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests"
+  ],
+  "newCases": 28,
+  "evidence": {
+    "red": "flow-readout-red.xml:20 failures/8 controls",
+    "green": "flow-readout-green.xml:28/28",
+    "combined": "flow-readout-combined-green.xml:153/153",
+    "referenceCompileRuntime": 0,
+    "referenceCompileTests": 0,
+    "wording": "readout-wording-red.xml:1 wording failure/23 controls;readout-wording-green.xml:28/28"
+  },
+  "files": [
+    {
+      "source": "/tmp/coo-questfree-implementation/actors/workspace/Assets/Scripts/Gameplay/World/Generation/SpreadExplorationReadout.cs",
+      "target": "Assets/Scripts/Gameplay/World/Generation/SpreadExplorationReadout.cs",
+      "beforeSha256": "b55a743c82d89f6a827f1d94121d3f264d5e20b6373929bc2850af0ec61265cf",
+      "sha256": "bfd7407f8afe7e331cd1f56dbadb8a9be7adba929fd776828b5659f523a14e94"
+    },
+    {
+      "source": "/tmp/coo-questfree-implementation/actors/workspace/Assets/Scripts/Gameplay/World/Generation/Builders/PopulationBuilder.cs",
+      "target": "Assets/Scripts/Gameplay/World/Generation/Builders/PopulationBuilder.cs",
+      "beforeSha256": "18765ab7b01a86b985dfb3ba55be573e35ea49f0677affc1a26ba7ffff3dc367",
+      "sha256": "c9fd626654a478304c4e836b23d88b446babdc69babe0fc92bde5a41270ec482"
+    },
+    {
+      "source": "/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs",
+      "target": "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationReadoutTests.cs",
+      "beforeSha256": null,
+      "sha256": "90834211169248c8de5bb03c4de4ac6f2b7a32d7275cae2d8d04505a240a6c09"
+    },
+    {
+      "source": "/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs.meta",
+      "target": "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationReadoutTests.cs.meta",
+      "beforeSha256": null,
+      "sha256": "99ba9817d213e834e79bc751dc8e3d43c2d1c8edb12285cf90dab2200c78cb3e"
+    },
+    {
+      "source": "/tmp/coo-questfree-implementation/actors/SpreadExplorationMissingReplacementTests.cs",
+      "target": "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationMissingReplacementTests.cs",
+      "beforeSha256": null,
+      "sha256": "c905c233e9fd1e2ed961c8a9c94f942fa8b54a8fea257ab5cfc2ecaea90b817a"
+    },
+    {
+      "source": "/tmp/coo-questfree-implementation/actors/SpreadExplorationMissingReplacementTests.cs.meta",
+      "target": "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationMissingReplacementTests.cs.meta",
+      "beforeSha256": null,
+      "sha256": "25512948cc6d84cf8219988334bcb611c446230c56b573c071d16eca1a7147d0"
+    }
+  ]
+}

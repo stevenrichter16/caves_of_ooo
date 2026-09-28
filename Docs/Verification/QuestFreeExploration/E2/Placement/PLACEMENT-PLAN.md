@@ -1,0 +1,20 @@
+# E2 exact-owner placement helper (private second unit)
+
+Only `SpreadExplorationActorPlacement.TryTerritory(Zone,Entity,Func<bool>)` and `TryGleanings(Zone,Entity,Func<bool>)`. Root supplies one exact producer-receipt actor and cold-manifest authority. No factory, population policy, RNG, data, source stock or renderer writes. No shared edits until reviewed publication.
+
+Source sweep: Zone.MoveEntity changes canonical spatial membership, projections and versions, not paid actor movement. Entity.AddPart invokes the new Part.Initialize; these two sealed role Parts have no override. Authority callbacks are treated as mutating; every callback must be followed by exact original owner/part/source/position validation. Rollback may restore only the original actor still at our chosen destination and remove only our added Part, never a same-ID replacement or foreign repositioning.
+
+Territory: exact ordinary MarlbackScrabbler with no role, current physical/brain ownership, live single-cell. Scan at most32 nearby existing Hedge/Tree/Signpost references and256 homes. Interior7x5 rectangle contains post/home and excludes border arrivals. Reuse only safe bare ground; retain real opposite-border bypass outside territory and protected border/reserved/stair approach connectivity. Configure only after complete virtual placement succeeds.
+
+Gleanings: exact ReedbackGrazer with the factory's empty, unconfigured, unfed SpreadGrazerPart. Two distinct current RipeCropRow owners; both must be reachable from an actual border approach. Place same grazer adjacent to target, both rows within12. Do not synthesize rows or grant food. Full refusal leaves original role fields/position unchanged unless a foreign callback independently replaced/moved/changed that state; never overwrite such foreign mutations. Configured or spent role is not eligible. Root decides one-row passing-animal handling outside this feeding helper.
+
+Geometry is a bounded 80x25 read-only physical flood, not runtime AI. It checks actual solid bodies, traps, pools/gases, nonempty tile hazards/coatings, interior/reservation constraints; no path may be invented by clearing another owner. Counter tests cover actual narrow-corridor refusal, inaccessible sources, current authority/source mutations and bounded rollback. Native geometry and root full pipeline remain further gates.
+
+
+## Final source-state tightening
+
+The caller must validate and consume its exact producer receipt before calling. Its callback subsequently proves current plan and exact source-builder receipt identity, not the pre-consumption `IsCurrent` or `MatchesOwnedState` after intentional role changes. These public bool helpers do not authorize a source by blueprint alone.
+
+The helper takes a bounded ephemeral snapshot of up to 256 actual owned graph entities. It preserves inventory/body slot references, quantities and Physics backlinks, stats/tags/properties, all pre-existing Parts and their public field values, and the actual enemy set/goal identities/public state. Only the exact planned root role is exempted from the general field comparison; its full allowed state is checked separately before and after configuration. Callback mutation causes refusal; it is never reverted. Positional rollback is attempted only while the prior complete actor graph and our destination still match, so a callback-mutated actor may remain at the helper destination with the role removed/reset rather than having the callback's state rewritten.
+
+Actual private TDD: initial19 missing-API RED; initial71 combined GREEN. Three geometry/source-reference defects reproduced (22 controls/3 RED) then77 GREEN. Final callback graph probes reproduced18 RED/27 controls; repair97 GREEN. In-place personal-enemy/goal insertion probes then4 RED/45 controls; final101/101 (52 role +49 placement) GREEN. Runtime and native test-assembly reference compiles0. These are private core results; actual Unity/native cold-generation coverage, source availability and cost remain root gates.

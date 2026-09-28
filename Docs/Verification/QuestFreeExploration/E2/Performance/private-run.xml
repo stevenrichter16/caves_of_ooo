@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/performance/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="57" result="Passed" start-time="2026-09-28T03:17:03.1438950Z" end-time="2026-09-28T03:17:10.2191750Z" duration="7.075148" total="1" passed="1" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="1408" random-seed="2045475883">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/performance/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "class =~ PerformanceHost" --result=/tmp/coo-questfree-implementation/performance/private-run.xml]]></command-line>
+  <filter>
+    <class re="1">PerformanceHost</class>
+  </filter>
+  <test-suite type="Assembly" id="1067" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/performance/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="57" result="Passed" start-time="2026-09-28T03:17:03.1438950Z" end-time="2026-09-28T03:17:10.2191750Z" duration="7.075148" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1408">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="37436" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestSuite" id="1068" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="57" result="Passed" start-time="2026-09-28T03:17:03.1454800Z" end-time="2026-09-28T03:17:10.2191700Z" duration="7.073573" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1408">
+      <test-suite type="TestSuite" id="1069" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="57" result="Passed" start-time="2026-09-28T03:17:03.1456010Z" end-time="2026-09-28T03:17:10.2191510Z" duration="7.073434" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1408">
+        <test-suite type="TestFixture" id="1065" name="PerformanceHostTests" fullname="CavesOfOoo.Tests.PerformanceHostTests" classname="CavesOfOoo.Tests.PerformanceHostTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-28T03:17:03.1459940Z" end-time="2026-09-28T03:17:10.2190190Z" duration="7.072909" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1408">
+          <test-case id="1066" name="Run" fullname="CavesOfOoo.Tests.PerformanceHostTests.Run" methodname="Run" classname="CavesOfOoo.Tests.PerformanceHostTests" runstate="Runnable" seed="1773504473" result="Passed" start-time="2026-09-28T03:17:03.1469100Z" end-time="2026-09-28T03:17:10.2180480Z" duration="7.071050" asserts="1408">
+            <output><![CDATA[[Log] [FactionLoader] Loaded 14 factions.
+[Log] [HouseDramaLoader] Loaded 2 drama(s).
+[Log] [HouseDramaRuntime] Drama 'Vex' activated.
+[Log] [Conversation] Loaded 74 conversations from 29 files.
+[Log] [HouseDramaZoneBuilder] Seeded drama 'Vex' into zone 'Overworld.10.10.0'.
+[Log] [HouseDramaZoneBuilder] Seeded drama 'Vex' into zone 'Overworld.12.12.0'.
+[Log] [FactionLoader] Loaded 14 factions.
+[Log] [HouseDramaLoader] Loaded 2 drama(s).
+[Log] [HouseDramaRuntime] Drama 'Vex' activated.
+[Log] [HouseDramaZoneBuilder] Seeded drama 'Vex' into zone 'Overworld.10.10.0'.
+[Log] [HouseDramaZoneBuilder] Seeded drama 'Vex' into zone 'Overworld.12.12.0'.
+[Log] [FactionLoader] Loaded 14 factions.
+[Log] [HouseDramaLoader] Loaded 2 drama(s).
+[Log] [HouseDramaRuntime] Drama 'Thresker' activated.
+[Log] [HouseDramaZoneBuilder] Seeded drama 'Thresker' into zone 'Overworld.10.10.0'.
+[Log] [HouseDramaZoneBuilder] Seeded drama 'Thresker' into zone 'Overworld.12.12.0'.
+[Log] [FactionLoader] Loaded 14 factions.
+[Log] [HouseDramaLoader] Loaded 2 drama(s).
+[Log] [HouseDramaRuntime] Drama 'Thresker' activated.
+[Log] [HouseDramaZoneBuilder] Seeded drama 'Thresker' into zone 'Overworld.10.10.0'.
+[Log] [HouseDramaZoneBuilder] Seeded drama 'Thresker' into zone 'Overworld.12.12.0'.
+[Log] [FactionLoader] Loaded 14 factions.
+[Log] [HouseDramaLoader] Loaded 2 drama(s).
+[Log] [HouseDramaRuntime] Drama 'Vex' activated.
+[Log] [HouseDramaZoneBuilder] Seeded drama 'Vex' into zone 'Overworld.10.10.0'.
+[Log] [HouseDramaZoneBuilder] Seeded drama 'Vex' into zone 'Overworld.12.12.0'.
+[Log] [FactionLoader] Loaded 14 factions.
+[Log] [HouseDramaLoader] Loaded 2 drama(s).
+[Log] [HouseDramaRuntime] Drama 'Vex' activated.
+[Log] [HouseDramaZoneBuilder] Seeded drama 'Vex' into zone 'Overworld.10.10.0'.
+[Log] [HouseDramaZoneBuilder] Seeded drama 'Vex' into zone 'Overworld.12.12.0'.
+]]></output>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

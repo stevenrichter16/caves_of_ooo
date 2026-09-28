@@ -169,6 +169,7 @@ namespace CavesOfOoo.Rendering
             (SpreadEnvironmentSource.IsModelId(modelId) ? LoadExtension<SpreadEnvironment3DLibrary>(load, SpreadEnvironment3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
             ?? (SpreadRareMarlbackLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadRareMarlbackLibrary>(load, SpreadRareMarlbackLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
             ?? (SpreadLatchcoilLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadLatchcoilLibrary>(load, SpreadLatchcoilLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+            ?? (QuestFreeSpreadArtLibrary.Blueprint(modelId)!=null ? LoadExtension<QuestFreeSpreadArtLibrary>(load, QuestFreeSpreadArtLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
             ?? (SpreadVisitorCreatureSource.Find(modelId)!=null ? LoadExtension<SpreadVisitorCreatureLibrary>(load, SpreadVisitorCreatureLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
             ?? (modelId.StartsWith("spread-creature-",StringComparison.Ordinal) ? LoadExtension<SpreadCreature3DLibrary>(load, SpreadCreature3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
             ?? (SpreadScenerySource.IsModelId(modelId) ? LoadExtension<SpreadScenery3DLibrary>(load, SpreadScenery3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)

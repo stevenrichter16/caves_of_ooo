@@ -1,0 +1,174 @@
+--- a/Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs
+@@ -155,7 +155,7 @@
+         private sealed class Attempt
+         {
+             internal OverworldZoneManager Manager;internal SpreadExplorationPlan Plan;internal WorldMap Map;
+-            internal SpreadRareEncounterPlan Rare;internal SpreadWayhousePlan Wayhouse;internal string Pair,Viper,WayhouseID,ID;internal bool PlacementCommitted;
++            internal SpreadRareEncounterPlan Rare;internal SpreadWayhousePlan Wayhouse;internal string Pair,Viper,WayhouseID,ID;internal bool PlacementCommitted, Validating, Finalizing;internal Func<bool> FinalValidator;
+         }
+         private static readonly ConditionalWeakTable<Zone,Attempt> Attempts=new ConditionalWeakTable<Zone,Attempt>();
+         internal IZoneBuilder Guard(OverworldZoneManager manager,string id)
+@@ -182,19 +182,32 @@
+                 ||!TryGetPlacement(manager,zone.ZoneID,out var found))return false;
+             entry=found;return true;
+         }
+-        /// <summary>Mark only after a successful composer transaction. Final acceptance still
+-        /// validates the captured graph; a rejected attempt never publishes this disposition.</summary>
++        /// <summary>Token-only fixture mark. Runtime composers must use the final-validator overload.</summary>
+         public bool TryMarkPlacementCommitted(OverworldZoneManager manager,Zone zone,SpreadExplorationEntry exactEntry)
++            =>MarkPlacement(manager,zone,exactEntry,null);
++        /// <summary>Validate the actual successful source packet now and again after generation
++        /// callbacks. The callback is transient and never runs during saved graph restoration.</summary>
++        public bool TryMarkPlacementCommitted(OverworldZoneManager manager,Zone zone,SpreadExplorationEntry exactEntry,Func<bool> finalValidator)
++            =>finalValidator!=null&&MarkPlacement(manager,zone,exactEntry,finalValidator);
++        private bool MarkPlacement(OverworldZoneManager manager,Zone zone,SpreadExplorationEntry exactEntry,Func<bool> validator)
+         {
+             if(!TryGetGenerationEntry(manager,zone,out var current)||!ReferenceEquals(current,exactEntry)
+-                ||current.Family==SpreadExplorationFamily.None||!Attempts.TryGetValue(zone,out var attempt)||attempt.PlacementCommitted)return false;
+-            attempt.PlacementCommitted=true;return true;
++                ||current.Family==SpreadExplorationFamily.None||!Attempts.TryGetValue(zone,out var attempt)
++                ||attempt.PlacementCommitted||attempt.Validating||attempt.Finalizing)return false;
++            if(validator!=null)
++            {
++                attempt.Validating=true;
++                try{if(!validator())return false;}finally{attempt.Validating=false;}
++                if(!AttemptCurrent(attempt,manager,zone,zone.ZoneID))return false;
++            }
++            attempt.FinalValidator=validator;attempt.PlacementCommitted=true;return true;
+         }
+         /// <summary>0=not accepted, 1=accepted/no-site, 2=accepted placement; never regenerates.</summary>
+         public int DispositionFor(string id)=>Enabled&&id!=null&&dispositions.TryGetValue(id,out int value)?value:0;
+ 
+         private static bool AttemptCurrent(Attempt a,OverworldZoneManager manager,Zone zone,string id)
+-            =>ReferenceEquals(a.Manager,manager)&&a.Plan.Current(manager)&&ReferenceEquals(a.Map,manager.WorldMap)
++            =>Attempts.TryGetValue(zone,out var currentAttempt)&&ReferenceEquals(currentAttempt,a)
++                &&ReferenceEquals(a.Manager,manager)&&a.Plan.Current(manager)&&ReferenceEquals(a.Map,manager.WorldMap)
+                 &&ReferenceEquals(a.Rare,manager.RareEncounters)&&ReferenceEquals(a.Wayhouse,manager.Wayhouse)
+                 &&a.Pair==manager.RareEncounters?.PairZoneID&&a.Viper==manager.RareEncounters?.ViperZoneID&&a.WayhouseID==manager.Wayhouse?.ZoneID
+                 &&a.ID==id&&zone.ZoneID==id&&CoveredNow(manager,id)&&!manager.CachedZones.ContainsKey(id)&&!a.Plan.installed.ContainsKey(id);
+@@ -203,9 +216,19 @@
+         {
+             if(zone==null)return false;
+             if(!Attempts.TryGetValue(zone,out var a))return accepted&&!(manager.Exploration?.Enabled==true&&manager.Exploration.Find(id)!=null&&CoveredNow(manager,id));
+-            Attempts.Remove(zone);
+-            if(!accepted||!AttemptCurrent(a,manager,zone,id))return false;
+-            a.Plan.installed.Add(id,zone);a.Plan.dispositions.Add(id,a.PlacementCommitted?2:1);return true;
++            try
++            {
++                if(a.Finalizing||a.Validating||!accepted||!AttemptCurrent(a,manager,zone,id))return false;
++                a.Finalizing=true;
++                if(a.FinalValidator!=null)
++                {
++                    a.Validating=true;
++                    try{if(!a.FinalValidator())return false;}finally{a.Validating=false;}
++                    if(!AttemptCurrent(a,manager,zone,id))return false;
++                }
++                a.Plan.installed.Add(id,zone);a.Plan.dispositions.Add(id,a.PlacementCommitted?2:1);return true;
++            }
++            finally{Attempts.Remove(zone);}
+         }
+ 
+         public static Entity BindForSave(OverworldZoneManager manager,Entity world)
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestAdversarialTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestAdversarialTests.cs
+@@ -93,6 +93,7 @@
+                 var p=base.GetPipelineForZone(id);p.AddBuilder(new CallbackBuilder{Retry=Retry,Callback=z=>{Starts++;Early?.Invoke(z);}});return p;
+             }
+             protected override void OnZoneGenerated(Zone zone,string id){base.OnZoneGenerated(zone,id);Final?.Invoke(zone);}
++            internal bool ReplaceAttempt(Zone zone)=>base.GetPipelineForZone(zone.ZoneID).Builders.First(b=>b.Name=="SpreadExplorationAttempt").BuildZone(zone,Factory,new Random(1));
+         }
+         [TestCase("plan")][TestCase("map")][TestCase("rare")][TestCase("wayhouse")][TestCase("cache-clone")]
+         public void FinalCallbacksCannotInstallAStaleOrForeignGeneration(string change)
+@@ -131,7 +132,7 @@
+         }
+ 
+         static bool Mark(SpreadExplorationPlan p,OverworldZoneManager m,Zone z,SpreadExplorationEntry entry)
+-        {var method=typeof(SpreadExplorationPlan).GetMethod("TryMarkPlacementCommitted");Assert.NotNull(method);return (bool)method.Invoke(p,new object[]{m,z,entry});}
++        {var method=typeof(SpreadExplorationPlan).GetMethod("TryMarkPlacementCommitted",new[]{typeof(OverworldZoneManager),typeof(Zone),typeof(SpreadExplorationEntry)});Assert.NotNull(method);return (bool)method.Invoke(p,new object[]{m,z,entry});}
+         static int Disposition(SpreadExplorationPlan p,string id)
+         {var method=typeof(SpreadExplorationPlan).GetMethod("DispositionFor");Assert.NotNull(method);return (int)method.Invoke(p,new object[]{id});}
+         static string ActiveID(OverworldZoneManager m)=>m.Exploration.Entries.First(e=>e.Family!=SpreadExplorationFamily.None).ZoneID;
+@@ -179,5 +180,82 @@
+             }
+             finally{System.Globalization.CultureInfo.CurrentCulture=before;}
+         }
++
++        static bool MarkWithValidation(SpreadExplorationPlan p,OverworldZoneManager m,Zone z,SpreadExplorationEntry entry,Func<bool> validate)
++        {
++            var method=typeof(SpreadExplorationPlan).GetMethod("TryMarkPlacementCommitted",new[]{typeof(OverworldZoneManager),typeof(Zone),typeof(SpreadExplorationEntry),typeof(Func<bool>)});
++            Assert.NotNull(method,"A token-only mark cannot validate a mutable placement packet at final acceptance.");
++            try{return (bool)method.Invoke(p,new object[]{m,z,entry,validate});}catch(TargetInvocationException e){System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(e.InnerException).Throw();throw;}
++        }
++        [TestCase("unchanged")][TestCase("removed")][TestCase("moved")]
++        public void FinalPacketValidatorObservesSourceAfterAllGenerationCallbacks(string mutation)
++        {
++            var m=new ObservedManager(scope.Factory);string id=ActiveID(m);int calls=0;Entity source=null;Zone staged=null;
++            m.Final=z=>{
++                staged=z;source=z.GetReadOnlyEntities().First(e=>e.HasPart<ContainerPart>());var at=z.GetEntityPosition(source);
++                bool Current()=>z.GetEntityCell(source)!=null&&z.GetEntityPosition(source)==at;
++                Assert.True(MarkWithValidation(m.Exploration,m,z,m.Exploration.Find(id),()=>{calls++;Assert.True(m.Exploration.TryGetGenerationEntry(m,z,out _));return Current();}));
++                Assert.AreEqual(1,calls);
++                if(mutation=="removed")Assert.True(z.RemoveEntity(source));
++                if(mutation=="moved"){var next=Enumerable.Range(0,Zone.Width*Zone.Height).Select(n=>z.GetCell(n%Zone.Width,n/Zone.Width)).First(c=>c.X!=at.x&&z.CanPlaceFootprint(source,c.X,c.Y));Assert.True(z.MoveEntity(source,next.X,next.Y));Assert.AreNotEqual(at,z.GetEntityPosition(source));}
++            };
++            var result=m.GetZone(id);Assert.AreEqual(2,calls);
++            if(mutation=="unchanged"){Assert.AreSame(staged,result);Assert.AreEqual(2,Disposition(m.Exploration,id));}
++            else{Assert.IsNull(result);Assert.False(m.CachedZones.ContainsKey(id));Assert.AreEqual(0,Disposition(m.Exploration,id));Assert.False(m.Exploration.TryGetGenerationEntry(m,staged,out _));}
++        }
++        [TestCase(false)][TestCase(true)]
++        public void ValidatorPlanSwapRefusesBeforeMarkOrBeforeFinalInstallation(bool swapAtFinal)
++        {
++            var m=new ObservedManager(scope.Factory);string id=ActiveID(m);var original=m.Exploration;int calls=0;
++            m.Final=z=>{
++                bool marked=MarkWithValidation(original,m,z,original.Find(id),()=>{calls++;if(calls==(swapAtFinal?2:1))Set(m,"Exploration",SpreadExplorationPlan.Create(m));return true;});
++                Assert.AreEqual(swapAtFinal,marked);
++            };
++            Assert.IsNull(m.GetZone(id));Assert.AreEqual(swapAtFinal?2:1,calls);Assert.AreEqual(0,original.RetainedGraphCount);Assert.AreEqual(0,Disposition(original,id));
++        }
++        [Test] public void NullFinalValidatorCannotPublishAStrictMark()
++        {
++            var m=new ObservedManager(scope.Factory);string id=ActiveID(m);m.Final=z=>Assert.False(MarkWithValidation(m.Exploration,m,z,m.Exploration.Find(id),null));
++            Assert.NotNull(m.GetZone(id));Assert.AreEqual(1,Disposition(m.Exploration,id));
++        }
++        [Test] public void FinalValidatorIsTransientAndNeverReplaysAfterLoad()
++        {
++            var m=new ObservedManager(scope.Factory);string id=ActiveID(m);int calls=0;
++            m.Final=z=>Assert.True(MarkWithValidation(m.Exploration,m,z,m.Exploration.Find(id),()=>{calls++;return true;}));
++            Assert.NotNull(m.GetZone(id));Assert.AreEqual(2,calls);
++            var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("validated-placement","fixture",m,null,null));
++            var z=loaded.ZoneManager.GetZone(id);Assert.AreEqual(2,Disposition(loaded.ZoneManager.Exploration,id));
++            Assert.False(MarkWithValidation(loaded.ZoneManager.Exploration,loaded.ZoneManager,z,loaded.ZoneManager.Exploration.Find(id),()=>{calls++;return true;}));
++            Assert.AreEqual(2,calls);
++        }
++        [Test] public void ValidatorCannotReenterEitherMarkOverload()
++        {
++            var m=new ObservedManager(scope.Factory);string id=ActiveID(m);int calls=0;
++            m.Final=z=>Assert.True(MarkWithValidation(m.Exploration,m,z,m.Exploration.Find(id),()=>{
++                calls++;Assert.False(Mark(m.Exploration,m,z,m.Exploration.Find(id)));
++                Assert.False(MarkWithValidation(m.Exploration,m,z,m.Exploration.Find(id),()=>throw new Exception("nested validator must not run")));return true;}));
++            Assert.NotNull(m.GetZone(id));Assert.AreEqual(2,calls);Assert.AreEqual(2,Disposition(m.Exploration,id));
++        }
++
++        [TestCase(false)][TestCase(true)]
++        public void ReplacedAttemptDuringValidatorCannotKeepOriginalMarkAuthority(bool replaceAtFinal)
++        {
++            var m=new ObservedManager(scope.Factory);string id=ActiveID(m);int calls=0;
++            m.Final=z=>{
++                bool marked=MarkWithValidation(m.Exploration,m,z,m.Exploration.Find(id),()=>{calls++;if(calls==(replaceAtFinal?2:1))Assert.True(m.ReplaceAttempt(z));return true;});
++                Assert.AreEqual(replaceAtFinal,marked);
++            };
++            var result=m.GetZone(id);
++            if(replaceAtFinal){Assert.IsNull(result);Assert.AreEqual(0,Disposition(m.Exploration,id));}
++            else{Assert.NotNull(result);Assert.AreEqual(1,Disposition(m.Exploration,id));}
++            Assert.AreEqual(replaceAtFinal?2:1,calls);
++        }
++        [Test] public void ThrowingFinalValidatorCannotLeaveInstalledOrReusableAuthority()
++        {
++            var m=new ObservedManager(scope.Factory);string id=ActiveID(m);int calls=0;Zone staged=null;
++            m.Final=z=>{staged=z;Assert.True(MarkWithValidation(m.Exploration,m,z,m.Exploration.Find(id),()=>{if(++calls==2)throw new InvalidOperationException("fixture validator failure");return true;}));};
++            Assert.Throws<InvalidOperationException>(()=>m.GetZone(id));Assert.AreEqual(0,m.Exploration.RetainedGraphCount);
++            Assert.False(m.CachedZones.ContainsKey(id));Assert.False(m.Exploration.TryGetGenerationEntry(m,staged,out _));
++        }
+     }
+ }

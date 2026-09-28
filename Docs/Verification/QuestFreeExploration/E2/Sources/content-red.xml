@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="4" result="Failed" start-time="2026-09-28T02:14:15.3416200Z" end-time="2026-09-28T02:14:15.4709150Z" duration="0.129284" total="4" passed="0" failed="4" inconclusive="0" skipped="0" warnings="0" asserts="4" random-seed="684605854">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/e2/content-red.xml --where "class =~ /SpreadExplorationContentTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationContentTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1005" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T02:14:15.3416200Z" end-time="2026-09-28T02:14:15.4709150Z" duration="0.129284" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/e2/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/e2/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="20963" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1006" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T02:14:15.3431900Z" end-time="2026-09-28T02:14:15.4708910Z" duration="0.127700" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1007" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T02:14:15.3433140Z" end-time="2026-09-28T02:14:15.4708860Z" duration="0.127570" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationContentTests" fullname="CavesOfOoo.Tests.SpreadExplorationContentTests" classname="CavesOfOoo.Tests.SpreadExplorationContentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T02:14:15.3437060Z" end-time="2026-09-28T02:14:15.4707630Z" duration="0.127054" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1004" name="CoatingAloneDoesNotOfferADrinkAndCancelledDrawPreservesSource" fullname="CavesOfOoo.Tests.SpreadExplorationContentTests.CoatingAloneDoesNotOfferADrinkAndCancelledDrawPreservesSource" methodname="CoatingAloneDoesNotOfferADrinkAndCancelledDrawPreservesSource" classname="CavesOfOoo.Tests.SpreadExplorationContentTests" runstate="Runnable" seed="1943428698" result="Failed" start-time="2026-09-28T02:14:15.3446030Z" end-time="2026-09-28T02:14:15.4155920Z" duration="0.071014" asserts="1">
+            <failure>
+              <message><![CDATA[  Shipped ordinary content definition missing: SpreadDrawPoint
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationContentTests.Make(String bp) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadExplorationContentTests.CoatingAloneDoesNotOfferADrinkAndCancelledDrawPreservesSource() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 45
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Shipped ordinary content definition missing: SpreadDrawPoint
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationContentTests.Make(String bp) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadExplorationContentTests.CoatingAloneDoesNotOfferADrinkAndCancelledDrawPreservesSource() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 45
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1002" name="GrazerCorpseHasDistinctIdentityWithoutBonusGleanings" fullname="CavesOfOoo.Tests.SpreadExplorationContentTests.GrazerCorpseHasDistinctIdentityWithoutBonusGleanings" methodname="GrazerCorpseHasDistinctIdentityWithoutBonusGleanings" classname="CavesOfOoo.Tests.SpreadExplorationContentTests" runstate="Runnable" seed="715760097" result="Failed" start-time="2026-09-28T02:14:15.4161640Z" end-time="2026-09-28T02:14:15.4357870Z" duration="0.019623" asserts="1">
+            <failure>
+              <message><![CDATA[  Shipped ordinary content definition missing: ReedbackGrazerCorpse
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationContentTests.Make(String bp) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadExplorationContentTests.GrazerCorpseHasDistinctIdentityWithoutBonusGleanings() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 32
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Shipped ordinary content definition missing: ReedbackGrazerCorpse
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationContentTests.Make(String bp) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadExplorationContentTests.GrazerCorpseHasDistinctIdentityWithoutBonusGleanings() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 32
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1001" name="OriginalGrazerHasRealPassiveBodySavedRoleAndNoInventedWeapon" fullname="CavesOfOoo.Tests.SpreadExplorationContentTests.OriginalGrazerHasRealPassiveBodySavedRoleAndNoInventedWeapon" methodname="OriginalGrazerHasRealPassiveBodySavedRoleAndNoInventedWeapon" classname="CavesOfOoo.Tests.SpreadExplorationContentTests" runstate="Runnable" seed="249281465" result="Failed" start-time="2026-09-28T02:14:15.4358390Z" end-time="2026-09-28T02:14:15.4522260Z" duration="0.016387" asserts="1">
+            <failure>
+              <message><![CDATA[  Shipped ordinary content definition missing: ReedbackGrazer
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationContentTests.Make(String bp) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadExplorationContentTests.OriginalGrazerHasRealPassiveBodySavedRoleAndNoInventedWeapon() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 25
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Shipped ordinary content definition missing: ReedbackGrazer
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationContentTests.Make(String bp) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadExplorationContentTests.OriginalGrazerHasRealPassiveBodySavedRoleAndNoInventedWeapon() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 25
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1003" name="RealDrawPointFillsOnlyOneOrdinaryWaterskinAndRemainsAsEmptySource" fullname="CavesOfOoo.Tests.SpreadExplorationContentTests.RealDrawPointFillsOnlyOneOrdinaryWaterskinAndRemainsAsEmptySource" methodname="RealDrawPointFillsOnlyOneOrdinaryWaterskinAndRemainsAsEmptySource" classname="CavesOfOoo.Tests.SpreadExplorationContentTests" runstate="Runnable" seed="508643929" result="Failed" start-time="2026-09-28T02:14:15.4522500Z" end-time="2026-09-28T02:14:15.4703550Z" duration="0.018105" asserts="1">
+            <failure>
+              <message><![CDATA[  Shipped ordinary content definition missing: SpreadDrawPoint
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationContentTests.Make(String bp) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadExplorationContentTests.RealDrawPointFillsOnlyOneOrdinaryWaterskinAndRemainsAsEmptySource() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 35
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Shipped ordinary content definition missing: SpreadDrawPoint
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationContentTests.Make(String bp) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadExplorationContentTests.RealDrawPointFillsOnlyOneOrdinaryWaterskinAndRemainsAsEmptySource() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationContentTests.cs:line 35
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

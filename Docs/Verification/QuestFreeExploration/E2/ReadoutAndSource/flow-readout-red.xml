@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="153" result="Failed" start-time="2026-09-28T02:48:39.4686770Z" end-time="2026-09-28T02:48:39.6168830Z" duration="0.148193" total="28" passed="8" failed="20" inconclusive="0" skipped="0" warnings="0" asserts="240" random-seed="1934352618">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/flow-readout-red.xml --where "class =~ /SpreadExploration(Readout|MissingReplacement)Tests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExploration(Readout|MissingReplacement)Tests</class>
+  </filter>
+  <test-suite type="Assembly" id="1177" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="153" result="Failed" site="Child" start-time="2026-09-28T02:48:39.4686770Z" end-time="2026-09-28T02:48:39.6168830Z" duration="0.148193" total="28" passed="8" failed="20" warnings="0" inconclusive="0" skipped="0" asserts="240">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="29769" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1178" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="153" result="Failed" site="Child" start-time="2026-09-28T02:48:39.4704860Z" end-time="2026-09-28T02:48:39.6168810Z" duration="0.146394" total="28" passed="8" failed="20" warnings="0" inconclusive="0" skipped="0" asserts="240">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1179" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="153" result="Failed" site="Child" start-time="2026-09-28T02:48:39.4706040Z" end-time="2026-09-28T02:48:39.6168800Z" duration="0.146275" total="28" passed="8" failed="20" warnings="0" inconclusive="0" skipped="0" asserts="240">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1171" name="SpreadExplorationMissingReplacementTests" fullname="CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests" classname="CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T02:48:39.4709710Z" end-time="2026-09-28T02:48:39.5805030Z" duration="0.109532" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="30">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1176" name="MissingRequiredBlueprintKeepsActualOriginalAllowance" fullname="CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests.MissingRequiredBlueprintKeepsActualOriginalAllowance" classname="CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T02:48:39.4742090Z" end-time="2026-09-28T02:48:39.5803190Z" duration="0.106109" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="30">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1172" name="MissingRequiredBlueprintKeepsActualOriginalAllowance(&quot;OccupiedBank&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests.MissingRequiredBlueprintKeepsActualOriginalAllowance(&quot;OccupiedBank&quot;,False)" methodname="MissingRequiredBlueprintKeepsActualOriginalAllowance" classname="CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests" runstate="Runnable" seed="264574500" result="Failed" start-time="2026-09-28T02:48:39.4743250Z" end-time="2026-09-28T02:48:39.5698560Z" duration="0.095558" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: equivalent to < "Hatchet", "Magpie", "Magpie", "Viper", "Viper" >
+  But was:  < "Hatchet", "Magpie", "Magpie" >
+  Missing (2): < "Viper", "Viper" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests.MissingRequiredBlueprintKeepsActualOriginalAllowance(String family, Boolean hasReplacement) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationMissingReplacementTests.cs:line 35
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: equivalent to < "Hatchet", "Magpie", "Magpie", "Viper", "Viper" >
+  But was:  < "Hatchet", "Magpie", "Magpie" >
+  Missing (2): < "Viper", "Viper" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests.MissingRequiredBlueprintKeepsActualOriginalAllowance(String family, Boolean hasReplacement) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationMissingReplacementTests.cs:line 35
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1173" name="MissingRequiredBlueprintKeepsActualOriginalAllowance(&quot;OccupiedBank&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests.MissingRequiredBlueprintKeepsActualOriginalAllowance(&quot;OccupiedBank&quot;,True)" methodname="MissingRequiredBlueprintKeepsActualOriginalAllowance" classname="CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests" runstate="Runnable" seed="861746253" result="Passed" start-time="2026-09-28T02:48:39.5704370Z" end-time="2026-09-28T02:48:39.5751720Z" duration="0.004734" asserts="10" />
+            <test-case id="1174" name="MissingRequiredBlueprintKeepsActualOriginalAllowance(&quot;LastGleanings&quot;,False)" fullname="CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests.MissingRequiredBlueprintKeepsActualOriginalAllowance(&quot;LastGleanings&quot;,False)" methodname="MissingRequiredBlueprintKeepsActualOriginalAllowance" classname="CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests" runstate="Runnable" seed="37473396" result="Failed" start-time="2026-09-28T02:48:39.5752010Z" end-time="2026-09-28T02:48:39.5778550Z" duration="0.002654" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: equivalent to < "Hatchet", "Magpie", "Magpie", "Viper", "Viper" >
+  But was:  < "Hatchet", "Magpie", "Viper", "Viper" >
+  Missing (1): < "Magpie" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests.MissingRequiredBlueprintKeepsActualOriginalAllowance(String family, Boolean hasReplacement) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationMissingReplacementTests.cs:line 35
+   at InvokeStub_SpreadExplorationMissingReplacementTests.MissingRequiredBlueprintKeepsActualOriginalAllowance(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: equivalent to < "Hatchet", "Magpie", "Magpie", "Viper", "Viper" >
+  But was:  < "Hatchet", "Magpie", "Viper", "Viper" >
+  Missing (1): < "Magpie" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests.MissingRequiredBlueprintKeepsActualOriginalAllowance(String family, Boolean hasReplacement) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationMissingReplacementTests.cs:line 35
+   at InvokeStub_SpreadExplorationMissingReplacementTests.MissingRequiredBlueprintKeepsActualOriginalAllowance(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1175" name="MissingRequiredBlueprintKeepsActualOriginalAllowance(&quot;LastGleanings&quot;,True)" fullname="CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests.MissingRequiredBlueprintKeepsActualOriginalAllowance(&quot;LastGleanings&quot;,True)" methodname="MissingRequiredBlueprintKeepsActualOriginalAllowance" classname="CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests" runstate="Runnable" seed="1060063359" result="Passed" start-time="2026-09-28T02:48:39.5778960Z" end-time="2026-09-28T02:48:39.5799260Z" duration="0.002030" asserts="10" />
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1143" name="SpreadExplorationReadoutTests" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-09-28T02:48:39.5808250Z" end-time="2026-09-28T02:48:39.6168770Z" duration="0.036052" total="24" passed="6" failed="18" warnings="0" inconclusive="0" skipped="0" asserts="210">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1170" name="FiniteDrawReadoutRequiresAnActualGroundSource" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.FiniteDrawReadoutRequiresAnActualGroundSource" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T02:48:39.5808840Z" end-time="2026-09-28T02:48:39.5837040Z" duration="0.002820" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1167" name="FiniteDrawReadoutRequiresAnActualGroundSource(&quot;current&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.FiniteDrawReadoutRequiresAnActualGroundSource(&quot;current&quot;)" methodname="FiniteDrawReadoutRequiresAnActualGroundSource" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="2024924895" result="Passed" start-time="2026-09-28T02:48:39.5808950Z" end-time="2026-09-28T02:48:39.5821510Z" duration="0.001256" asserts="1" />
+            <test-case id="1168" name="FiniteDrawReadoutRequiresAnActualGroundSource(&quot;detached&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.FiniteDrawReadoutRequiresAnActualGroundSource(&quot;detached&quot;)" methodname="FiniteDrawReadoutRequiresAnActualGroundSource" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="26947303" result="Failed" start-time="2026-09-28T02:48:39.5821950Z" end-time="2026-09-28T02:48:39.5834240Z" duration="0.001229" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  "The draw point holds 3 drinks of water. Drawing it reduces that supply."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.FiniteDrawReadoutRequiresAnActualGroundSource(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 59
+   at InvokeStub_SpreadExplorationReadoutTests.FiniteDrawReadoutRequiresAnActualGroundSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  "The draw point holds 3 drinks of water. Drawing it reduces that supply."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.FiniteDrawReadoutRequiresAnActualGroundSource(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 59
+   at InvokeStub_SpreadExplorationReadoutTests.FiniteDrawReadoutRequiresAnActualGroundSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1169" name="FiniteDrawReadoutRequiresAnActualGroundSource(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.FiniteDrawReadoutRequiresAnActualGroundSource(&quot;carried&quot;)" methodname="FiniteDrawReadoutRequiresAnActualGroundSource" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="1795844508" result="Failed" start-time="2026-09-28T02:48:39.5834530Z" end-time="2026-09-28T02:48:39.5836900Z" duration="0.000237" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  "The draw point holds 3 drinks of water. Drawing it reduces that supply."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.FiniteDrawReadoutRequiresAnActualGroundSource(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 59
+   at InvokeStub_SpreadExplorationReadoutTests.FiniteDrawReadoutRequiresAnActualGroundSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  "The draw point holds 3 drinks of water. Drawing it reduces that supply."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.FiniteDrawReadoutRequiresAnActualGroundSource(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 59
+   at InvokeStub_SpreadExplorationReadoutTests.FiniteDrawReadoutRequiresAnActualGroundSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1156" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T02:48:39.5837130Z" end-time="2026-09-28T02:48:39.5942220Z" duration="0.010509" total="12" passed="1" failed="11" warnings="0" inconclusive="0" skipped="0" asserts="114">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1144" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;current&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;current&quot;)" methodname="PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="850667645" result="Passed" start-time="2026-09-28T02:48:39.5837350Z" end-time="2026-09-28T02:48:39.5900410Z" duration="0.006307" asserts="13" />
+            <test-case id="1145" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;food-removed&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;food-removed&quot;)" methodname="PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="2118966342" result="Failed" start-time="2026-09-28T02:48:39.5900640Z" end-time="2026-09-28T02:48:39.5917080Z" duration="0.001644" asserts="9">
+              <failure>
+                <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1146" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;food-moved&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;food-moved&quot;)" methodname="PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="1427462179" result="Failed" start-time="2026-09-28T02:48:39.5917180Z" end-time="2026-09-28T02:48:39.5924010Z" duration="0.000683" asserts="10">
+              <failure>
+                <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1147" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;food-spent&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;food-spent&quot;)" methodname="PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="1724988170" result="Failed" start-time="2026-09-28T02:48:39.5924120Z" end-time="2026-09-28T02:48:39.5925730Z" duration="0.000161" asserts="9">
+              <failure>
+                <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1148" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;food-carried&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;food-carried&quot;)" methodname="PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="1694098163" result="Failed" start-time="2026-09-28T02:48:39.5925890Z" end-time="2026-09-28T02:48:39.5929050Z" duration="0.000316" asserts="9">
+              <failure>
+                <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1149" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;food-foreign&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;food-foreign&quot;)" methodname="PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="696623566" result="Failed" start-time="2026-09-28T02:48:39.5929260Z" end-time="2026-09-28T02:48:39.5931130Z" duration="0.000186" asserts="9">
+              <failure>
+                <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1150" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;reserve-removed&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;reserve-removed&quot;)" methodname="PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="1373882048" result="Failed" start-time="2026-09-28T02:48:39.5931240Z" end-time="2026-09-28T02:48:39.5932730Z" duration="0.000149" asserts="9">
+              <failure>
+                <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1151" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;reserve-moved&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;reserve-moved&quot;)" methodname="PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="453441051" result="Failed" start-time="2026-09-28T02:48:39.5933080Z" end-time="2026-09-28T02:48:39.5934860Z" duration="0.000178" asserts="10">
+              <failure>
+                <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1152" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;reserve-spent&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;reserve-spent&quot;)" methodname="PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="896459452" result="Failed" start-time="2026-09-28T02:48:39.5935020Z" end-time="2026-09-28T02:48:39.5936700Z" duration="0.000168" asserts="9">
+              <failure>
+                <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1153" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;reserve-foreign&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;reserve-foreign&quot;)" methodname="PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="660483712" result="Failed" start-time="2026-09-28T02:48:39.5936830Z" end-time="2026-09-28T02:48:39.5938400Z" duration="0.000158" asserts="9">
+              <failure>
+                <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1154" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;actor-removed&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;actor-removed&quot;)" methodname="PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="823757923" result="Failed" start-time="2026-09-28T02:48:39.5938660Z" end-time="2026-09-28T02:48:39.5940300Z" duration="0.000163" asserts="9">
+              <failure>
+                <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1155" name="PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;wrong-zone&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(&quot;wrong-zone&quot;)" methodname="PendingGrazerDescriptionRequiresBothActualAllocatedRows" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="1815274571" result="Failed" start-time="2026-09-28T02:48:39.5940500Z" end-time="2026-09-28T02:48:39.5942060Z" duration="0.000156" asserts="9">
+              <failure>
+                <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No pending-meal claim from stale allocated owners.
+  Expected: null
+  But was:  "It noses toward a particular ripe patch and shies from close approach."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 29
+   at InvokeStub_SpreadExplorationReadoutTests.PendingGrazerDescriptionRequiresBothActualAllocatedRows(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1166" name="SpentFeedingAllowanceRemainsHistoricalAfterRowRemovalAndLoad" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.SpentFeedingAllowanceRemainsHistoricalAfterRowRemovalAndLoad" methodname="SpentFeedingAllowanceRemainsHistoricalAfterRowRemovalAndLoad" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="1911973778" result="Passed" start-time="2026-09-28T02:48:39.5942290Z" end-time="2026-09-28T02:48:39.6141930Z" duration="0.019964" asserts="11" />
+          <test-suite type="ParameterizedMethod" id="1165" name="TerritoryDescriptionTracksItsActualPostAnchor" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-28T02:48:39.6142150Z" end-time="2026-09-28T02:48:39.6168660Z" duration="0.002651" total="8" passed="3" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="82">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1157" name="TerritoryDescriptionTracksItsActualPostAnchor(&quot;current&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(&quot;current&quot;)" methodname="TerritoryDescriptionTracksItsActualPostAnchor" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="1604796661" result="Passed" start-time="2026-09-28T02:48:39.6142350Z" end-time="2026-09-28T02:48:39.6146670Z" duration="0.000432" asserts="12" />
+            <test-case id="1158" name="TerritoryDescriptionTracksItsActualPostAnchor(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(&quot;removed&quot;)" methodname="TerritoryDescriptionTracksItsActualPostAnchor" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="661854342" result="Passed" start-time="2026-09-28T02:48:39.6146830Z" end-time="2026-09-28T02:48:39.6150630Z" duration="0.000380" asserts="12" />
+            <test-case id="1159" name="TerritoryDescriptionTracksItsActualPostAnchor(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(&quot;moved&quot;)" methodname="TerritoryDescriptionTracksItsActualPostAnchor" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="1868912662" result="Failed" start-time="2026-09-28T02:48:39.6150850Z" end-time="2026-09-28T02:48:39.6154150Z" duration="0.000329" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  "It keeps to the ground around its work post. Heed its warning and withdraw to avoid a fight; an attack is remembered."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 45
+   at InvokeStub_SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  "It keeps to the ground around its work post. Heed its warning and withdraw to avoid a fight; an attack is remembered."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 45
+   at InvokeStub_SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1160" name="TerritoryDescriptionTracksItsActualPostAnchor(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(&quot;carried&quot;)" methodname="TerritoryDescriptionTracksItsActualPostAnchor" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="844601777" result="Failed" start-time="2026-09-28T02:48:39.6154210Z" end-time="2026-09-28T02:48:39.6155680Z" duration="0.000147" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  "It keeps to the ground around its work post. Heed its warning and withdraw to avoid a fight; an attack is remembered."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 45
+   at InvokeStub_SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  "It keeps to the ground around its work post. Heed its warning and withdraw to avoid a fight; an attack is remembered."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 45
+   at InvokeStub_SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1161" name="TerritoryDescriptionTracksItsActualPostAnchor(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(&quot;foreign&quot;)" methodname="TerritoryDescriptionTracksItsActualPostAnchor" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="782009774" result="Failed" start-time="2026-09-28T02:48:39.6155820Z" end-time="2026-09-28T02:48:39.6164090Z" duration="0.000827" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  "It keeps to the ground around its work post. Heed its warning and withdraw to avoid a fight; an attack is remembered."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 45
+   at InvokeStub_SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  "It keeps to the ground around its work post. Heed its warning and withdraw to avoid a fight; an attack is remembered."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 45
+   at InvokeStub_SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1162" name="TerritoryDescriptionTracksItsActualPostAnchor(&quot;actor-removed&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(&quot;actor-removed&quot;)" methodname="TerritoryDescriptionTracksItsActualPostAnchor" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="2003829409" result="Passed" start-time="2026-09-28T02:48:39.6164180Z" end-time="2026-09-28T02:48:39.6165020Z" duration="0.000085" asserts="12" />
+            <test-case id="1163" name="TerritoryDescriptionTracksItsActualPostAnchor(&quot;both-detached&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(&quot;both-detached&quot;)" methodname="TerritoryDescriptionTracksItsActualPostAnchor" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="567812428" result="Failed" start-time="2026-09-28T02:48:39.6165080Z" end-time="2026-09-28T02:48:39.6166430Z" duration="0.000136" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  "It keeps to the ground around its work post. Heed its warning and withdraw to avoid a fight; an attack is remembered."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 45
+   at InvokeStub_SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  "It keeps to the ground around its work post. Heed its warning and withdraw to avoid a fight; an attack is remembered."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 45
+   at InvokeStub_SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1164" name="TerritoryDescriptionTracksItsActualPostAnchor(&quot;wrong-zone&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(&quot;wrong-zone&quot;)" methodname="TerritoryDescriptionTracksItsActualPostAnchor" classname="CavesOfOoo.Tests.SpreadExplorationReadoutTests" runstate="Runnable" seed="1453340450" result="Failed" start-time="2026-09-28T02:48:39.6166700Z" end-time="2026-09-28T02:48:39.6168350Z" duration="0.000165" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  "It keeps to the ground around its work post. Heed its warning and withdraw to avoid a fight; an attack is remembered."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 45
+   at InvokeStub_SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  "It keeps to the ground around its work post. Heed its warning and withdraw to avoid a fight; an attack is remembered."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(String change) in /private/tmp/coo-questfree-implementation/actors/SpreadExplorationReadoutTests.cs:line 45
+   at InvokeStub_SpreadExplorationReadoutTests.TerritoryDescriptionTracksItsActualPostAnchor(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

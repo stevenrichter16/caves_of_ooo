@@ -1,0 +1,3 @@
+# Bounded peer review
+
+standalone_verify reviewed the five-source delta and three fixtures. Exact actual substitution index, produced blueprint/current cell, producer revision/reference, original ambient membership and current stocked-neighbor capture were clear. No refresh, stock/RNG, row-budget or save-field mutation was found. The reserve change retains meal-distance12 and existing route/identity gates. The only test robustness note—dictionary enumeration as substitution authority—was repaired to independently derive the actual Table.Roll placement. Native execution remains a separate gate.

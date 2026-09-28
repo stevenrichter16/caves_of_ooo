@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="171" result="Failed" start-time="2026-09-28T03:42:57.1690540Z" end-time="2026-09-28T03:43:00.1292890Z" duration="2.960177" total="6" passed="0" failed="6" inconclusive="0" skipped="0" warnings="0" asserts="95509" random-seed="1253462387">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/stocking-pipeline-red.xml --where "class == CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1203" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="171" result="Failed" site="Child" start-time="2026-09-28T03:42:57.1690540Z" end-time="2026-09-28T03:43:00.1292890Z" duration="2.960177" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="95509">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="44525" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1204" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="171" result="Failed" site="Child" start-time="2026-09-28T03:42:57.1708480Z" end-time="2026-09-28T03:43:00.1292860Z" duration="2.958390" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="95509">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1205" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="171" result="Failed" site="Child" start-time="2026-09-28T03:42:57.1709540Z" end-time="2026-09-28T03:43:00.1292830Z" duration="2.958281" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="95509">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1194" name="SpreadGrazerPipelineStockingTests" fullname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests" classname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T03:42:57.1712960Z" end-time="2026-09-28T03:43:00.1292760Z" duration="2.957932" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="95509">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1198" name="ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock" fullname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock" classname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T03:42:57.1724560Z" end-time="2026-09-28T03:42:59.4670380Z" duration="2.294545" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="95428">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1195" name="ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(1)" fullname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(1)" methodname="ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock" classname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests" runstate="Runnable" seed="2091647957" result="Failed" start-time="2026-09-28T03:42:57.1725360Z" end-time="2026-09-28T03:42:58.2379760Z" duration="1.065450" asserts="36294">
+              <failure>
+                <message><![CDATA[  An actually stocked ambient packet must not suppress the separate grazer allowance.
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(Int32 seed) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerPipelineStockingTests.cs:line 31
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1 Overworld.11.15.0 refused:no-safe-role-layout stockedBirds=0
+1 Overworld.11.3.0 refused:no-safe-role-layout stockedBirds=0
+1 Overworld.11.8.0 refused:source stockedBirds=3
+1 Overworld.12.14.0 refused:source stockedBirds=3
+1 Overworld.12.4.0 LastGleanings stockedBirds=0
+1 Overworld.12.7.0 refused:no-safe-role-layout stockedBirds=0
+1 Overworld.13.9.0 refused:no-safe-role-layout stockedBirds=0
+1 Overworld.14.12.0 refused:source stockedBirds=2
+1 Overworld.15.11.0 refused:source stockedBirds=2
+1 Overworld.16.10.0 refused:no-safe-role-layout stockedBirds=0
+1 Overworld.7.10.0 refused:source stockedBirds=1
+1 Overworld.8.0.0 refused:source stockedBirds=2
+1 Overworld.8.3.0 refused:no-safe-role-layout stockedBirds=0
+1 Overworld.8.8.0 refused:no-safe-role-layout stockedBirds=0
+1 Overworld.9.15.0 refused:source stockedBirds=0
+1 Overworld.9.6.0 refused:source stockedBirds=0
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  An actually stocked ambient packet must not suppress the separate grazer allowance.
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(Int32 seed) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerPipelineStockingTests.cs:line 31
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1196" name="ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(64)" fullname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(64)" methodname="ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock" classname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests" runstate="Runnable" seed="1229855134" result="Failed" start-time="2026-09-28T03:42:58.2386460Z" end-time="2026-09-28T03:42:58.9128170Z" duration="0.674160" asserts="29566">
+              <failure>
+                <message><![CDATA[  An actually stocked ambient packet must not suppress the separate grazer allowance.
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(Int32 seed) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerPipelineStockingTests.cs:line 31
+   at InvokeStub_SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[64 Overworld.10.5.0 refused:no-safe-role-layout stockedBirds=0
+64 Overworld.12.14.0 refused:source stockedBirds=2
+64 Overworld.13.10.0 refused:no-safe-role-layout stockedBirds=0
+64 Overworld.13.13.0 refused:source stockedBirds=3
+64 Overworld.14.11.0 refused:no-safe-role-layout stockedBirds=0
+64 Overworld.15.12.0 refused:no-safe-role-layout stockedBirds=0
+64 Overworld.16.10.0 refused:source stockedBirds=2
+64 Overworld.5.12.0 refused:source stockedBirds=3
+64 Overworld.6.14.0 refused:no-safe-role-layout stockedBirds=0
+64 Overworld.7.13.0 refused:no-safe-role-layout stockedBirds=0
+64 Overworld.8.0.0 refused:no-safe-role-layout stockedBirds=0
+64 Overworld.9.15.0 refused:source stockedBirds=2
+64 Overworld.9.6.0 LastGleanings stockedBirds=0
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  An actually stocked ambient packet must not suppress the separate grazer allowance.
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(Int32 seed) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerPipelineStockingTests.cs:line 31
+   at InvokeStub_SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1197" name="ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(1729)" fullname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(1729)" methodname="ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock" classname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests" runstate="Runnable" seed="1169574423" result="Failed" start-time="2026-09-28T03:42:58.9128530Z" end-time="2026-09-28T03:42:59.4665600Z" duration="0.553699" asserts="29568">
+              <failure>
+                <message><![CDATA[  An actually stocked ambient packet must not suppress the separate grazer allowance.
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(Int32 seed) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerPipelineStockingTests.cs:line 31
+   at InvokeStub_SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1729 Overworld.10.5.0 refused:source stockedBirds=3
+1729 Overworld.11.15.0 refused:no-safe-role-layout stockedBirds=0
+1729 Overworld.12.4.0 LastGleanings stockedBirds=0
+1729 Overworld.12.7.0 refused:no-safe-role-layout stockedBirds=0
+1729 Overworld.13.9.0 refused:no-safe-role-layout stockedBirds=0
+1729 Overworld.15.11.0 LastGleanings stockedBirds=0
+1729 Overworld.16.10.0 refused:source stockedBirds=0
+1729 Overworld.5.11.0 LastGleanings stockedBirds=0
+1729 Overworld.6.14.0 LastGleanings stockedBirds=0
+1729 Overworld.7.13.0 refused:no-safe-role-layout stockedBirds=0
+1729 Overworld.8.15.0 refused:source stockedBirds=0
+1729 Overworld.8.3.0 refused:source stockedBirds=2
+1729 Overworld.9.6.0 refused:source stockedBirds=2
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  An actually stocked ambient packet must not suppress the separate grazer allowance.
+  Expected: greater than 0
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(Int32 seed) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerPipelineStockingTests.cs:line 31
+   at InvokeStub_SpreadGrazerPipelineStockingTests.ActualColdFieldsCanUseOneGrazerWithoutChangingNormalMagpieStock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1202" name="LateCallbackMustPreserveOtherAnimalsAndTheirActualStock" fullname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock" classname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T03:42:59.4672680Z" end-time="2026-09-28T03:43:00.1291830Z" duration="0.661905" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="81">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1199" name="LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(&quot;&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(&quot;&quot;)" methodname="LateCallbackMustPreserveOtherAnimalsAndTheirActualStock" classname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests" runstate="Runnable" seed="704659416" result="Failed" start-time="2026-09-28T03:42:59.4672880Z" end-time="2026-09-28T03:42:59.7062510Z" duration="0.238960" asserts="27">
+              <failure>
+                <message><![CDATA[  Need a real configured source with normally stocked neighbors before callback witness
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(String mutation) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerPipelineStockingTests.cs:line 35
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Need a real configured source with normally stocked neighbors before callback witness
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(String mutation) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerPipelineStockingTests.cs:line 35
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1200" name="LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(&quot;stock&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(&quot;stock&quot;)" methodname="LateCallbackMustPreserveOtherAnimalsAndTheirActualStock" classname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests" runstate="Runnable" seed="1528558451" result="Failed" start-time="2026-09-28T03:42:59.7062770Z" end-time="2026-09-28T03:42:59.9330960Z" duration="0.226816" asserts="27">
+              <failure>
+                <message><![CDATA[  Need a real configured source with normally stocked neighbors before callback witness
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(String mutation) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerPipelineStockingTests.cs:line 35
+   at InvokeStub_SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Need a real configured source with normally stocked neighbors before callback witness
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(String mutation) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerPipelineStockingTests.cs:line 35
+   at InvokeStub_SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1201" name="LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(&quot;position&quot;)" fullname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(&quot;position&quot;)" methodname="LateCallbackMustPreserveOtherAnimalsAndTheirActualStock" classname="CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests" runstate="Runnable" seed="105807827" result="Failed" start-time="2026-09-28T03:42:59.9331250Z" end-time="2026-09-28T03:43:00.1291390Z" duration="0.196011" asserts="27">
+              <failure>
+                <message><![CDATA[  Need a real configured source with normally stocked neighbors before callback witness
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(String mutation) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerPipelineStockingTests.cs:line 35
+   at InvokeStub_SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Need a real configured source with normally stocked neighbors before callback witness
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(String mutation) in /private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/SpreadGrazerPipelineStockingTests.cs:line 35
+   at InvokeStub_SpreadGrazerPipelineStockingTests.LateCallbackMustPreserveOtherAnimalsAndTheirActualStock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

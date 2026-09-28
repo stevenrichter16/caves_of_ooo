@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/finite-water/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="100" result="Failed" start-time="2026-09-28T02:40:37.6718890Z" end-time="2026-09-28T02:40:37.7694350Z" duration="0.097531" total="25" passed="17" failed="8" inconclusive="0" skipped="0" warnings="0" asserts="213" random-seed="1861287900">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/finite-water/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "class =~ FinitePoolDrawDirtyTests" --result=/tmp/coo-questfree-implementation/finite-water/stale-poured-red.xml]]></command-line>
+  <filter>
+    <class re="1">FinitePoolDrawDirtyTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1127" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/finite-water/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="100" result="Failed" site="Child" start-time="2026-09-28T02:40:37.6718890Z" end-time="2026-09-28T02:40:37.7694350Z" duration="0.097531" total="25" passed="17" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="213">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="27822" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1128" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="100" result="Failed" site="Child" start-time="2026-09-28T02:40:37.6734620Z" end-time="2026-09-28T02:40:37.7694330Z" duration="0.095970" total="25" passed="17" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="213">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1129" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="100" result="Failed" site="Child" start-time="2026-09-28T02:40:37.6735890Z" end-time="2026-09-28T02:40:37.7694310Z" duration="0.095841" total="25" passed="17" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="213">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="FinitePoolDrawDirtyTests" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-09-28T02:40:37.6739710Z" end-time="2026-09-28T02:40:37.7694190Z" duration="0.095448" total="25" passed="17" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="213">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1005" name="CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T02:40:37.6752290Z" end-time="2026-09-28T02:40:37.7471970Z" duration="0.071967" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="40">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(False,3)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(False,3)" methodname="CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1055664108" result="Failed" start-time="2026-09-28T02:40:37.6753070Z" end-time="2026-09-28T02:40:37.7401270Z" duration="0.064845" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OneSourceDirty() in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 59
+   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Boolean skin, Int32 amount) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 62
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OneSourceDirty() in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 59
+   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Boolean skin, Int32 amount) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 62
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(True,3)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(True,3)" methodname="CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="758604615" result="Failed" start-time="2026-09-28T02:40:37.7407100Z" end-time="2026-09-28T02:40:37.7432940Z" duration="0.002585" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OneSourceDirty() in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 59
+   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Boolean skin, Int32 amount) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 62
+   at InvokeStub_FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OneSourceDirty() in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 59
+   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Boolean skin, Int32 amount) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 62
+   at InvokeStub_FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(False,7)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(False,7)" methodname="CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="2116285626" result="Failed" start-time="2026-09-28T02:40:37.7433120Z" end-time="2026-09-28T02:40:37.7459670Z" duration="0.002655" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OneSourceDirty() in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 59
+   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Boolean skin, Int32 amount) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 62
+   at InvokeStub_FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OneSourceDirty() in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 59
+   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Boolean skin, Int32 amount) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 62
+   at InvokeStub_FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(True,7)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(True,7)" methodname="CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="2125096030" result="Failed" start-time="2026-09-28T02:40:37.7459810Z" end-time="2026-09-28T02:40:37.7468620Z" duration="0.000882" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OneSourceDirty() in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 59
+   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Boolean skin, Int32 amount) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 62
+   at InvokeStub_FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OneSourceDirty() in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 59
+   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Boolean skin, Int32 amount) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 62
+   at InvokeStub_FinitePoolDrawDirtyTests.CommittedFiniteDrawInvalidatesExactCellAndPreservesPersistentOwner(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1028" name="ExistingPouredPoolStillRetiresThroughItsExistingLifecycle" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.ExistingPouredPoolStillRetiresThroughItsExistingLifecycle" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:40:37.7473630Z" end-time="2026-09-28T02:40:37.7506290Z" duration="0.003267" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <test-case id="1026" name="ExistingPouredPoolStillRetiresThroughItsExistingLifecycle(False)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.ExistingPouredPoolStillRetiresThroughItsExistingLifecycle(False)" methodname="ExistingPouredPoolStillRetiresThroughItsExistingLifecycle" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="921023844" result="Passed" start-time="2026-09-28T02:40:37.7473820Z" end-time="2026-09-28T02:40:37.7497430Z" duration="0.002361" asserts="8" />
+            <test-case id="1027" name="ExistingPouredPoolStillRetiresThroughItsExistingLifecycle(True)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.ExistingPouredPoolStillRetiresThroughItsExistingLifecycle(True)" methodname="ExistingPouredPoolStillRetiresThroughItsExistingLifecycle" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1617468752" result="Passed" start-time="2026-09-28T02:40:37.7497750Z" end-time="2026-09-28T02:40:37.7506130Z" duration="0.000838" asserts="8" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1014" name="FullVesselRefusalDoesNotInvalidateSource" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.FullVesselRefusalDoesNotInvalidateSource" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:40:37.7506460Z" end-time="2026-09-28T02:40:37.7528680Z" duration="0.002223" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+            <test-case id="1012" name="FullVesselRefusalDoesNotInvalidateSource(False)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.FullVesselRefusalDoesNotInvalidateSource(False)" methodname="FullVesselRefusalDoesNotInvalidateSource" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1304485428" result="Passed" start-time="2026-09-28T02:40:37.7506510Z" end-time="2026-09-28T02:40:37.7520080Z" duration="0.001357" asserts="7" />
+            <test-case id="1013" name="FullVesselRefusalDoesNotInvalidateSource(True)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.FullVesselRefusalDoesNotInvalidateSource(True)" methodname="FullVesselRefusalDoesNotInvalidateSource" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="514508403" result="Passed" start-time="2026-09-28T02:40:37.7520240Z" end-time="2026-09-28T02:40:37.7528550Z" duration="0.000832" asserts="7" />
+          </test-suite>
+          <test-case id="1032" name="InfiniteWellWithoutFinitePoolDoesNotEmitFiniteVolumeInvalidation" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.InfiniteWellWithoutFinitePoolDoesNotEmitFiniteVolumeInvalidation" methodname="InfiniteWellWithoutFinitePoolDoesNotEmitFiniteVolumeInvalidation" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1014459297" result="Passed" start-time="2026-09-28T02:40:37.7528730Z" end-time="2026-09-28T02:40:37.7537230Z" duration="0.000850" asserts="7" />
+          <test-suite type="ParameterizedMethod" id="1031" name="MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:40:37.7537350Z" end-time="2026-09-28T02:40:37.7565400Z" duration="0.002805" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1029" name="MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit(False)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit(False)" methodname="MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1453915848" result="Failed" start-time="2026-09-28T02:40:37.7537400Z" end-time="2026-09-28T02:40:37.7556560Z" duration="0.001916" asserts="8">
+              <failure>
+                <message><![CDATA[  Expected: same as <Zone(finite-pool-dirty) [1 entities]>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit(Boolean skin) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 88
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: same as <Zone(finite-pool-dirty) [1 entities]>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit(Boolean skin) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 88
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit(True)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit(True)" methodname="MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="627222462" result="Failed" start-time="2026-09-28T02:40:37.7556670Z" end-time="2026-09-28T02:40:37.7565000Z" duration="0.000833" asserts="8">
+              <failure>
+                <message><![CDATA[  Expected: same as <Zone(finite-pool-dirty) [1 entities]>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit(Boolean skin) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 88
+   at InvokeStub_FinitePoolDrawDirtyTests.MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: same as <Zone(finite-pool-dirty) [1 entities]>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit(Boolean skin) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 88
+   at InvokeStub_FinitePoolDrawDirtyTests.MovedPouredOwnerCannotRetireOrDirtyItsNewCellOnOuterCommit(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1008" name="OuterCommitIsOnlyPublicationBoundary" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OuterCommitIsOnlyPublicationBoundary" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:40:37.7565540Z" end-time="2026-09-28T02:40:37.7584000Z" duration="0.001846" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1006" name="OuterCommitIsOnlyPublicationBoundary(False)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OuterCommitIsOnlyPublicationBoundary(False)" methodname="OuterCommitIsOnlyPublicationBoundary" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="646696342" result="Failed" start-time="2026-09-28T02:40:37.7565590Z" end-time="2026-09-28T02:40:37.7573660Z" duration="0.000808" asserts="8">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OneSourceDirty() in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 59
+   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OuterCommitIsOnlyPublicationBoundary(Boolean skin) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 64
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OneSourceDirty() in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 59
+   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OuterCommitIsOnlyPublicationBoundary(Boolean skin) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 64
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="OuterCommitIsOnlyPublicationBoundary(True)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OuterCommitIsOnlyPublicationBoundary(True)" methodname="OuterCommitIsOnlyPublicationBoundary" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1326510807" result="Failed" start-time="2026-09-28T02:40:37.7573760Z" end-time="2026-09-28T02:40:37.7583850Z" duration="0.001009" asserts="8">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OneSourceDirty() in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 59
+   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OuterCommitIsOnlyPublicationBoundary(Boolean skin) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 64
+   at InvokeStub_FinitePoolDrawDirtyTests.OuterCommitIsOnlyPublicationBoundary(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OneSourceDirty() in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 59
+   at CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OuterCommitIsOnlyPublicationBoundary(Boolean skin) in /tmp/coo-questfree-implementation/finite-water/FinitePoolDrawDirtyTests.cs:line 64
+   at InvokeStub_FinitePoolDrawDirtyTests.OuterCommitIsOnlyPublicationBoundary(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1011" name="OuterRollbackRestoresVolumeWithoutPublication" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OuterRollbackRestoresVolumeWithoutPublication" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T02:40:37.7584060Z" end-time="2026-09-28T02:40:37.7611010Z" duration="0.002695" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <test-case id="1009" name="OuterRollbackRestoresVolumeWithoutPublication(False)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OuterRollbackRestoresVolumeWithoutPublication(False)" methodname="OuterRollbackRestoresVolumeWithoutPublication" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="375094862" result="Passed" start-time="2026-09-28T02:40:37.7584130Z" end-time="2026-09-28T02:40:37.7592550Z" duration="0.000842" asserts="9" />
+            <test-case id="1010" name="OuterRollbackRestoresVolumeWithoutPublication(True)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.OuterRollbackRestoresVolumeWithoutPublication(True)" methodname="OuterRollbackRestoresVolumeWithoutPublication" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1414696903" result="Passed" start-time="2026-09-28T02:40:37.7592660Z" end-time="2026-09-28T02:40:37.7610880Z" duration="0.001822" asserts="9" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1025" name="StaleOuterCommitDoesNotPublishAnotherSourceOrCell" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.StaleOuterCommitDoesNotPublishAnotherSourceOrCell" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-28T02:40:37.7611050Z" end-time="2026-09-28T02:40:37.7693660Z" duration="0.008261" total="10" passed="10" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="86">
+            <test-case id="1015" name="StaleOuterCommitDoesNotPublishAnotherSourceOrCell(False,&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.StaleOuterCommitDoesNotPublishAnotherSourceOrCell(False,&quot;removed&quot;)" methodname="StaleOuterCommitDoesNotPublishAnotherSourceOrCell" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1572478859" result="Passed" start-time="2026-09-28T02:40:37.7611130Z" end-time="2026-09-28T02:40:37.7620420Z" duration="0.000929" asserts="8" />
+            <test-case id="1016" name="StaleOuterCommitDoesNotPublishAnotherSourceOrCell(True,&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.StaleOuterCommitDoesNotPublishAnotherSourceOrCell(True,&quot;removed&quot;)" methodname="StaleOuterCommitDoesNotPublishAnotherSourceOrCell" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1111627739" result="Passed" start-time="2026-09-28T02:40:37.7620540Z" end-time="2026-09-28T02:40:37.7628360Z" duration="0.000782" asserts="8" />
+            <test-case id="1017" name="StaleOuterCommitDoesNotPublishAnotherSourceOrCell(False,&quot;replacement&quot;)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.StaleOuterCommitDoesNotPublishAnotherSourceOrCell(False,&quot;replacement&quot;)" methodname="StaleOuterCommitDoesNotPublishAnotherSourceOrCell" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1998991259" result="Passed" start-time="2026-09-28T02:40:37.7628460Z" end-time="2026-09-28T02:40:37.7642610Z" duration="0.001414" asserts="10" />
+            <test-case id="1018" name="StaleOuterCommitDoesNotPublishAnotherSourceOrCell(True,&quot;replacement&quot;)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.StaleOuterCommitDoesNotPublishAnotherSourceOrCell(True,&quot;replacement&quot;)" methodname="StaleOuterCommitDoesNotPublishAnotherSourceOrCell" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1767391901" result="Passed" start-time="2026-09-28T02:40:37.7642710Z" end-time="2026-09-28T02:40:37.7649650Z" duration="0.000695" asserts="10" />
+            <test-case id="1019" name="StaleOuterCommitDoesNotPublishAnotherSourceOrCell(False,&quot;part&quot;)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.StaleOuterCommitDoesNotPublishAnotherSourceOrCell(False,&quot;part&quot;)" methodname="StaleOuterCommitDoesNotPublishAnotherSourceOrCell" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1293633326" result="Passed" start-time="2026-09-28T02:40:37.7649750Z" end-time="2026-09-28T02:40:37.7656900Z" duration="0.000715" asserts="8" />
+            <test-case id="1020" name="StaleOuterCommitDoesNotPublishAnotherSourceOrCell(True,&quot;part&quot;)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.StaleOuterCommitDoesNotPublishAnotherSourceOrCell(True,&quot;part&quot;)" methodname="StaleOuterCommitDoesNotPublishAnotherSourceOrCell" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1199284717" result="Passed" start-time="2026-09-28T02:40:37.7657000Z" end-time="2026-09-28T02:40:37.7663960Z" duration="0.000696" asserts="8" />
+            <test-case id="1021" name="StaleOuterCommitDoesNotPublishAnotherSourceOrCell(False,&quot;moved&quot;)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.StaleOuterCommitDoesNotPublishAnotherSourceOrCell(False,&quot;moved&quot;)" methodname="StaleOuterCommitDoesNotPublishAnotherSourceOrCell" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="687059829" result="Passed" start-time="2026-09-28T02:40:37.7664010Z" end-time="2026-09-28T02:40:37.7670960Z" duration="0.000695" asserts="9" />
+            <test-case id="1022" name="StaleOuterCommitDoesNotPublishAnotherSourceOrCell(True,&quot;moved&quot;)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.StaleOuterCommitDoesNotPublishAnotherSourceOrCell(True,&quot;moved&quot;)" methodname="StaleOuterCommitDoesNotPublishAnotherSourceOrCell" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="275485940" result="Passed" start-time="2026-09-28T02:40:37.7671070Z" end-time="2026-09-28T02:40:37.7678820Z" duration="0.000775" asserts="9" />
+            <test-case id="1023" name="StaleOuterCommitDoesNotPublishAnotherSourceOrCell(False,&quot;backlink&quot;)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.StaleOuterCommitDoesNotPublishAnotherSourceOrCell(False,&quot;backlink&quot;)" methodname="StaleOuterCommitDoesNotPublishAnotherSourceOrCell" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="1606598249" result="Passed" start-time="2026-09-28T02:40:37.7679240Z" end-time="2026-09-28T02:40:37.7686200Z" duration="0.000696" asserts="8" />
+            <test-case id="1024" name="StaleOuterCommitDoesNotPublishAnotherSourceOrCell(True,&quot;backlink&quot;)" fullname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests.StaleOuterCommitDoesNotPublishAnotherSourceOrCell(True,&quot;backlink&quot;)" methodname="StaleOuterCommitDoesNotPublishAnotherSourceOrCell" classname="CavesOfOoo.Tests.FinitePoolDrawDirtyTests" runstate="Runnable" seed="118304346" result="Passed" start-time="2026-09-28T02:40:37.7686310Z" end-time="2026-09-28T02:40:37.7693530Z" duration="0.000722" asserts="8" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,33 @@
+test_all_finite_bone_owned_nonzero_bounded_cuboids (__main__.SourceTests.test_all_finite_bone_owned_nonzero_bounded_cuboids) ... ok
+test_draw_empty_keeps_real_trough_and_no_water (__main__.SourceTests.test_draw_empty_keeps_real_trough_and_no_water) ... ok
+test_draw_rim_raises_readable_stone_without_expanding_cell_footprint (__main__.SourceTests.test_draw_rim_raises_readable_stone_without_expanding_cell_footprint) ... FAIL
+test_draw_water_presents_broad_raised_surface_below_real_open_rim (__main__.SourceTests.test_draw_water_presents_broad_raised_surface_below_real_open_rim) ... FAIL
+test_exact_four_owned_forms (__main__.SourceTests.test_exact_four_owned_forms) ... ok
+test_five_clips_and_explicit_head_down_feeding (__main__.SourceTests.test_five_clips_and_explicit_head_down_feeding) ... ok
+test_full_surface_visible_inside_rim_not_solid_block (__main__.SourceTests.test_full_surface_visible_inside_rim_not_solid_block) ... ok
+test_original_low_broad_herbivore_four_leg_rig (__main__.SourceTests.test_original_low_broad_herbivore_four_leg_rig) ... ok
+test_palette_is_accepted_first24 (__main__.SourceTests.test_palette_is_accepted_first24) ... ok
+test_polish_preserves_animal_sources_and_exact_empty_structure (__main__.SourceTests.test_polish_preserves_animal_sources_and_exact_empty_structure) ... ok
+test_remains_original_low_silhouette_no_fake_reward (__main__.SourceTests.test_remains_original_low_silhouette_no_fake_reward) ... ok
+
+======================================================================
+FAIL: test_draw_rim_raises_readable_stone_without_expanding_cell_footprint (__main__.SourceTests.test_draw_rim_raises_readable_stone_without_expanding_cell_footprint)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/draw-polish/test_source.py", line 34, in test_draw_rim_raises_readable_stone_without_expanding_cell_footprint
+    self.assertGreaterEqual(max(b['center'][1]+b['size'][1]/2 for b in rim),.42)
+AssertionError: 0.29000000000000004 not greater than or equal to 0.42
+
+======================================================================
+FAIL: test_draw_water_presents_broad_raised_surface_below_real_open_rim (__main__.SourceTests.test_draw_water_presents_broad_raised_surface_below_real_open_rim)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/draw-polish/test_source.py", line 38, in test_draw_water_presents_broad_raised_surface_below_real_open_rim
+    self.assertGreaterEqual(w['center'][1],.30);self.assertGreaterEqual(w['size'][0]*w['size'][2],.30)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.17 not greater than or equal to 0.3
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.004s
+
+FAILED (failures=2)

@@ -54,7 +54,7 @@ namespace CavesOfOoo.Core
                 &&owners.All(e=>e!=null&&!string.IsNullOrEmpty(e.ID))&&owners.Select(e=>e.ID).Distinct().Count()==owners.Length;
             snapshots=owners.Select(e=>new OwnerSnapshot(zone,e)).ToArray();
         }
-        bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&ReferenceEquals(p.SourceReceipt,this)
+        bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&(ReferenceEquals(p.SourceReceipt,this)||ReferenceEquals(p.LooseSourceReceipt,this)||ReferenceEquals(p.AmbientSourceReceipt,this)||ReferenceEquals(p.AmbientReplacementReceipt,this))
             : source is ContainerBuilder c&&c.CaptureSourceReceipts&&ReferenceEquals(c.SourceReceipt,this);
         public bool IsCurrent => !consumed&&complete&&SourceCurrent&&snapshots.All(s=>s.Matches(true));
         /// <summary>Claim this exact source once after all transaction preflights.
@@ -63,6 +63,18 @@ namespace CavesOfOoo.Core
         // A consuming transaction owns intentional position changes, but must
         // still establish source and complete item/state identity at commit.
         internal bool MatchesOwnedState()=>complete&&SourceCurrent&&snapshots.All(s=>s.Matches(false));
+
+        // Seal the realized packet after its authorized mutations. Final generation
+        // callbacks must not leave a commitment pointing at replaced/depleted owners.
+        // This is observation only; it grants no authority to acquire any source.
+        internal static Func<bool> CaptureFinalState(Zone zone,IEnumerable<Entity> entities)
+        {
+            var exact=entities?.ToArray();
+            if(zone==null||exact==null||exact.Any(e=>e==null)||exact.Distinct().Count()!=exact.Length)
+                return ()=>false;
+            var state=exact.Select(e=>new OwnerSnapshot(zone,e)).ToArray();
+            return ()=>state.All(s=>s.Matches(true));
+        }
 
         sealed class OwnerSnapshot
         {
@@ -90,29 +102,33 @@ namespace CavesOfOoo.Core
         // is copied; identity, stats, parts, equipment and quantities are pinned.
         sealed class EntitySnapshot
         {
-            readonly Entity entity;readonly string id,blueprint;
+            readonly Entity entity;readonly string id,blueprint;readonly Zone spatialZone;
             readonly KeyValuePair<string,string>[] tags,properties;
             readonly KeyValuePair<string,int>[] ints;
             readonly KeyValuePair<string,Stat>[] stats;
             readonly Part[] parts;readonly FieldSnapshot[] values;
             readonly Entity[] contents,carried;readonly KeyValuePair<string,Entity>[] equipped;
             readonly Core.Anatomy.BodyPart[] slots;readonly FieldSnapshot[] slotValues;
+            readonly Entity[] enemies;readonly GoalHandler[] goals;readonly FieldSnapshot[] goalValues;
             internal readonly Entity[] Children;
             internal EntitySnapshot(Entity entity)
             {
-                this.entity=entity;id=entity.ID;blueprint=entity.BlueprintName;
+                this.entity=entity;id=entity.ID;blueprint=entity.BlueprintName;spatialZone=entity.SpatialZone;
                 tags=entity.Tags.ToArray();properties=entity.Properties.ToArray();ints=entity.IntProperties.ToArray();stats=entity.Statistics.ToArray();parts=entity.Parts.ToArray();
                 values=parts.Cast<object>().Concat(stats.Select(s=>(object)s.Value)).Select(o=>new FieldSnapshot(o)).ToArray();
                 contents=entity.GetPart<ContainerPart>()?.Contents?.ToArray();carried=entity.GetPart<InventoryPart>()?.Objects?.ToArray();equipped=entity.GetPart<InventoryPart>()?.EquippedItems?.ToArray();
                 slots=entity.GetPart<Body>()?.GetParts()?.ToArray();slotValues=slots?.Select(s=>new FieldSnapshot(s)).ToArray();
+                enemies=entity.GetPart<BrainPart>()?.PersonalEnemies?.ToArray();goals=entity.GetPart<BrainPart>()?.GetGoalsSnapshot()?.ToArray();goalValues=goals?.Select(g=>new FieldSnapshot(g)).ToArray();
                 Children=(contents??Array.Empty<Entity>()).Concat(carried??Array.Empty<Entity>()).Concat(equipped?.Select(k=>k.Value)??Enumerable.Empty<Entity>())
                     .Concat(slots?.SelectMany(s=>new[]{s.Equipped,s.Cybernetics,s.DefaultBehavior})??Enumerable.Empty<Entity>()).Where(e=>e!=null).Distinct().ToArray();
             }
-            internal bool Matches()=>entity.ID==id&&entity.BlueprintName==blueprint&&Same(entity.Tags,tags)&&Same(entity.Properties,properties)&&Same(entity.IntProperties,ints)&&Same(entity.Statistics,stats)
+            internal bool Matches()=>entity.ID==id&&entity.BlueprintName==blueprint&&entity.SpatialZone==spatialZone&&Same(entity.Tags,tags)&&Same(entity.Properties,properties)&&Same(entity.IntProperties,ints)&&Same(entity.Statistics,stats)
                 &&entity.Parts.SequenceEqual(parts)&&parts.All(p=>p!=null&&ReferenceEquals(p.ParentEntity,entity))&&values.All(v=>v.Matches())
                 &&Sequence(entity.GetPart<ContainerPart>()?.Contents,contents)&&Sequence(entity.GetPart<InventoryPart>()?.Objects,carried)
                 &&SameNullable(entity.GetPart<InventoryPart>()?.EquippedItems,equipped)&&Sequence(entity.GetPart<Body>()?.GetParts(),slots)
-                &&(slotValues==null||slotValues.All(v=>v.Matches()));
+                &&(slotValues==null||slotValues.All(v=>v.Matches()))
+                &&(enemies==null?entity.GetPart<BrainPart>()?.PersonalEnemies==null:entity.GetPart<BrainPart>()?.PersonalEnemies?.SetEquals(enemies)==true)
+                &&Sequence(entity.GetPart<BrainPart>()?.GetGoalsSnapshot(),goals)&&(goalValues==null||goalValues.All(v=>v.Matches()));
             static bool Sequence<T>(IEnumerable<T> current,T[] saved)=>saved==null?current==null:current!=null&&current.SequenceEqual(saved);
             static bool Same<K,V>(IDictionary<K,V> current,KeyValuePair<K,V>[] saved)=>current!=null&&current.Count==saved.Length&&saved.All(k=>current.TryGetValue(k.Key,out V v)&&EqualityComparer<V>.Default.Equals(v,k.Value));
             static bool SameNullable<K,V>(IDictionary<K,V> current,KeyValuePair<K,V>[] saved)=>saved==null?current==null:Same(current,saved);

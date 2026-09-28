@@ -20,6 +20,13 @@ namespace CavesOfOoo.Core
         /// <summary>Opt-in, transient provenance for a later composition pass.</summary>
         public bool CaptureSourceReceipts;
         public SpreadGenerationReceipt SourceReceipt { get; private set; }
+        /// <summary>Separate exact rolls; neither receipt grants authority over matching decoys.</summary>
+        public SpreadGenerationReceipt LooseSourceReceipt { get; private set; }
+        public SpreadGenerationReceipt AmbientSourceReceipt { get; private set; }
+        /// <summary>Only the exact Magpie roll changed to the optional grazer, before unrelated ambient stocking.</summary>
+        public SpreadGenerationReceipt AmbientReplacementReceipt { get; private set; }
+        /// <summary>Opt-in manager authority, rechecked against the captured cold attempt before source replacement.</summary>
+        public OverworldZoneManager ExplorationManager;
         private int sourceRevision;
         /// <summary>Only ordinary selected Spread sources may replace their one hostile group.</summary>
         public SpreadRareEncounterBuilder SpreadEncounter;
@@ -34,8 +41,12 @@ namespace CavesOfOoo.Core
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
-            SourceReceipt = null; int revision = ++sourceRevision;
+            SourceReceipt = LooseSourceReceipt = AmbientSourceReceipt = AmbientReplacementReceipt = null; int revision = ++sourceRevision;
             var receiptOwners = CaptureSourceReceipts ? new List<Entity>() : null;
+            var looseOwners = CaptureSourceReceipts ? new List<Entity>() : null;
+            var ambientOwners = CaptureSourceReceipts ? new List<Entity>() : null;
+            var replacementOwners = CaptureSourceReceipts ? new List<Entity>() : null;
+            int replacementIndex = -1;
             if (Table == null) return true;
             bool replaceSpread = Table.Name == "SpreadTier1" && SpreadEncounter != null
                 && SpreadEncounter.TryPlace(zone, factory);
@@ -53,16 +64,54 @@ namespace CavesOfOoo.Core
 
             // Roll the population table
             var toSpawn = Table.Roll(rng, zone.ZoneID);
+            var exploration = ExplorationManager?.Exploration;
+            SpreadExplorationEntry assignment = null;
+            bool optedIn = !replaceSpread && ReferenceEquals(factory, ExplorationManager?.Factory)
+                && exploration != null && exploration.TryGetGenerationEntry(ExplorationManager, zone, out assignment);
+            if (optedIn)
+            {
+                var rewritten = SpreadExplorationPopulationPolicy.Rewrite(Table, toSpawn, assignment.Family);
+                string required = assignment.Family == SpreadExplorationFamily.OccupiedBank ? "MarlbackScrabbler"
+                    : assignment.Family == SpreadExplorationFamily.LastGleanings ? "ReedbackGrazer" : null;
+                if (required != null && !toSpawn.SequenceEqual(rewritten) && !factory.Blueprints.ContainsKey(required))
+                {
+                    // Missing optional content must not swallow a real ordinary
+                    // roll. Preserve its original count/order and placement RNG.
+                    optedIn = false;
+                    if (Diag.IsChannelEnabled("worldgen"))
+                        Diag.Record("worldgen", "ExplorationPopulationRewriteRejected", payload: new
+                        { zone = zone.ZoneID, table = Table.Name, family = assignment.Family.ToString(), blueprint = required, reason = "missing_replacement_blueprint" });
+                }
+                else
+                {
+                    if (assignment.Family == SpreadExplorationFamily.LastGleanings && rewritten.Length == toSpawn.Count)
+                    {
+                        // Preserve the precise changed roll index. An authored or matching
+                        // nearby grazer is not the owner produced by this substitution.
+                        var changed = Enumerable.Range(0, toSpawn.Count).Where(i => toSpawn[i] != rewritten[i]).ToArray();
+                        if (changed.Length == 1 && toSpawn[changed[0]] == "Magpie" && rewritten[changed[0]] == "ReedbackGrazer")
+                            replacementIndex = changed[0];
+                    }
+                    toSpawn = new List<string>(rewritten);
+                }
+            }
             // Roll is intentionally unchanged. Ambiguous duplicate blueprint rows
             // cannot identify group provenance and therefore grant no authority.
             var group = receiptOwners == null || Table.Name != "SpreadTier1" || Table.Entries == null ? new HashSet<string>()
                 : new HashSet<string>(Table.Entries.Where(e => e != null && e.EncounterGroup == "SpreadTier1Encounter")
                     .Select(e => e.BlueprintName).Where(bp => Table.Entries.All(e => e == null || e.BlueprintName != bp || e.EncounterGroup == "SpreadTier1Encounter")));
             int expected = replaceSpread ? 0 : toSpawn.Count(group.Contains);
+            // Exact explicit ordinary rows only. Duplicate or grouped declarations cannot
+            // silently promote quest/foreign owners into an ambient or loose allowance.
+            var loose = ReceiptBlueprints("Hatchet", "Cudgel", "LeatherBoots");
+            var ambient = ReceiptBlueprints("Magpie", "PetDog");
+            if (optedIn && assignment.Family == SpreadExplorationFamily.LastGleanings && ambient.Contains("Magpie")) ambient.Add("ReedbackGrazer");
+            int looseExpected = toSpawn.Count(loose.Contains), ambientExpected = toSpawn.Count(ambient.Contains);
 
             // Place each entity in a random open cell
-            foreach (var blueprintName in toSpawn)
+            for (int spawnIndex = 0; spawnIndex < toSpawn.Count; spawnIndex++)
             {
+                string blueprintName = toSpawn[spawnIndex];
                 if (replaceSpread && Table.Entries.Exists(e => e.EncounterGroup == "SpreadTier1Encounter" && e.BlueprintName == blueprintName)) continue;
                 if (openCells.Count == 0) break;
 
@@ -117,13 +166,37 @@ namespace CavesOfOoo.Core
                     && spawned != null && spawned.BlueprintName == blueprintName && zone.GetEntityCell(spawned) != null)
                     receiptOwners.Add(spawned);
 
+                if (spawned != null && spawned.BlueprintName == blueprintName && zone.GetEntityCell(spawned) != null)
+                {
+                    if (loose.Contains(blueprintName)) looseOwners?.Add(spawned);
+                    if (ambient.Contains(blueprintName)) ambientOwners?.Add(spawned);
+                    if (spawnIndex == replacementIndex) replacementOwners?.Add(spawned);
+                }
+
                 // Remove used cell to prevent double-placement of solid entities
                 openCells.RemoveAt(idx);
             }
 
             if (receiptOwners != null && CaptureSourceReceipts && revision == sourceRevision)
+            {
                 SourceReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, receiptOwners, expected);
+                LooseSourceReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, looseOwners, looseExpected);
+                AmbientSourceReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, ambientOwners, ambientExpected);
+                AmbientReplacementReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, replacementOwners, replacementIndex < 0 ? 0 : 1);
+            }
             return true;
+        }
+
+        private HashSet<string> ReceiptBlueprints(params string[] candidates)
+        {
+            var result = new HashSet<string>();
+            if (!CaptureSourceReceipts || Table?.Name != "SpreadTier1" || Table.Entries == null) return result;
+            foreach (string name in candidates)
+            {
+                var rows = Table.Entries.Where(e => e != null && e.BlueprintName == name).ToArray();
+                if (rows.Length == 1 && string.IsNullOrEmpty(rows[0].EncounterGroup)) result.Add(name);
+            }
+            return result;
         }
 
         private static bool IsStaticObstacle(Entity entity)

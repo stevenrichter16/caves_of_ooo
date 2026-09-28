@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="5" result="Failed" start-time="2026-09-28T02:18:49.8702470Z" end-time="2026-09-28T02:18:50.0311740Z" duration="0.160915" total="5" passed="0" failed="5" inconclusive="0" skipped="0" warnings="0" asserts="9" random-seed="144991985">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/e2/receipt-red.xml --where "class =~ /SpreadExplorationReceiptTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationReceiptTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1008" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-28T02:18:49.8702470Z" end-time="2026-09-28T02:18:50.0311740Z" duration="0.160915" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="9">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/e2/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/e2/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="22190" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1009" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-28T02:18:49.8719190Z" end-time="2026-09-28T02:18:50.0311640Z" duration="0.159243" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="9">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1010" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-28T02:18:49.8720290Z" end-time="2026-09-28T02:18:50.0311350Z" duration="0.159103" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="9">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationReceiptTests" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-28T02:18:49.8723880Z" end-time="2026-09-28T02:18:50.0311300Z" duration="0.158739" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="9">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1007" name="DisabledReceiptsDoNotAcquireSources" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.DisabledReceiptsDoNotAcquireSources" methodname="DisabledReceiptsDoNotAcquireSources" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="851807585" result="Failed" start-time="2026-09-28T02:18:49.8735770Z" end-time="2026-09-28T02:18:49.9574100Z" duration="0.083856" asserts="1">
+            <failure>
+              <message><![CDATA[  A creature-group receipt cannot authorize loose items or ambient fauna.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.Receipt(PopulationBuilder b, String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 19
+   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.DisabledReceiptsDoNotAcquireSources() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 32
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  A creature-group receipt cannot authorize loose items or ambient fauna.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.Receipt(PopulationBuilder b, String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 19
+   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.DisabledReceiptsDoNotAcquireSources() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 32
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1003" name="ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:18:49.9579320Z" end-time="2026-09-28T02:18:49.9996000Z" duration="0.041667" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(&quot;LooseSourceReceipt&quot;,&quot;Hatchet&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(&quot;LooseSourceReceipt&quot;,&quot;Hatchet&quot;)" methodname="ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="1467482315" result="Failed" start-time="2026-09-28T02:18:49.9580000Z" end-time="2026-09-28T02:18:49.9812780Z" duration="0.023278" asserts="3">
+              <failure>
+                <message><![CDATA[  A creature-group receipt cannot authorize loose items or ambient fauna.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.Receipt(PopulationBuilder b, String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 19
+   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(String name, String bp) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 24
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  A creature-group receipt cannot authorize loose items or ambient fauna.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.Receipt(PopulationBuilder b, String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 19
+   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(String name, String bp) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 24
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(&quot;AmbientSourceReceipt&quot;,&quot;Magpie&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(&quot;AmbientSourceReceipt&quot;,&quot;Magpie&quot;)" methodname="ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="1150460289" result="Failed" start-time="2026-09-28T02:18:49.9813040Z" end-time="2026-09-28T02:18:49.9992350Z" duration="0.017931" asserts="3">
+              <failure>
+                <message><![CDATA[  A creature-group receipt cannot authorize loose items or ambient fauna.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.Receipt(PopulationBuilder b, String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 19
+   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(String name, String bp) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 24
+   at InvokeStub_SpreadExplorationReceiptTests.ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  A creature-group receipt cannot authorize loose items or ambient fauna.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.Receipt(PopulationBuilder b, String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 19
+   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(String name, String bp) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 24
+   at InvokeStub_SpreadExplorationReceiptTests.ReceiptNamesOnlyItsOwnActualRollAndIgnoresMatchingDecoys(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1006" name="ReusedBuilderCannotAuthorizeOwnersFromEarlierZone" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReusedBuilderCannotAuthorizeOwnersFromEarlierZone" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:18:49.9997940Z" end-time="2026-09-28T02:18:50.0310810Z" duration="0.031286" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1004" name="ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(&quot;LooseSourceReceipt&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(&quot;LooseSourceReceipt&quot;)" methodname="ReusedBuilderCannotAuthorizeOwnersFromEarlierZone" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="614553641" result="Failed" start-time="2026-09-28T02:18:49.9998150Z" end-time="2026-09-28T02:18:50.0152230Z" duration="0.015408" asserts="1">
+              <failure>
+                <message><![CDATA[  A creature-group receipt cannot authorize loose items or ambient fauna.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.Receipt(PopulationBuilder b, String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 19
+   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 30
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  A creature-group receipt cannot authorize loose items or ambient fauna.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.Receipt(PopulationBuilder b, String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 19
+   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 30
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(&quot;AmbientSourceReceipt&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(&quot;AmbientSourceReceipt&quot;)" methodname="ReusedBuilderCannotAuthorizeOwnersFromEarlierZone" classname="CavesOfOoo.Tests.SpreadExplorationReceiptTests" runstate="Runnable" seed="2099262379" result="Failed" start-time="2026-09-28T02:18:50.0152480Z" end-time="2026-09-28T02:18:50.0310480Z" duration="0.015799" asserts="1">
+              <failure>
+                <message><![CDATA[  A creature-group receipt cannot authorize loose items or ambient fauna.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.Receipt(PopulationBuilder b, String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 19
+   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 30
+   at InvokeStub_SpreadExplorationReceiptTests.ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  A creature-group receipt cannot authorize loose items or ambient fauna.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.Receipt(PopulationBuilder b, String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 19
+   at CavesOfOoo.Tests.SpreadExplorationReceiptTests.ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(String name) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationReceiptTests.cs:line 30
+   at InvokeStub_SpreadExplorationReceiptTests.ReusedBuilderCannotAuthorizeOwnersFromEarlierZone(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -26,7 +26,14 @@ namespace CavesOfOoo.Tests
   sealed class FailingFirstManager:OverworldZoneManager
   {
    public readonly List<string> Attempts=new List<string>();public FailingFirstManager(CavesOfOoo.Data.EntityFactory factory):base(factory,64){}
-   protected override ZoneGenerationPipeline GetPipelineForZone(string id){Attempts.Add(id);var p=new ZoneGenerationPipeline{MaxRetries=1};p.AddBuilder(new ResultBuilder(id!="Overworld.12.10.0"));return p;}
+   protected override ZoneGenerationPipeline GetPipelineForZone(string id)
+   {
+    Attempts.Add(id);var p=new ZoneGenerationPipeline{MaxRetries=1};
+    // Retain new-world generation authority while this test controls only the
+    // success/failure result; no ordinary gameplay builders run in this fixture.
+    foreach(var guard in base.GetPipelineForZone(id).Builders.Where(b=>b.Name=="SpreadExplorationAttempt"))p.AddBuilder(guard);
+    p.AddBuilder(new ResultBuilder(id!="Overworld.12.10.0"));return p;
+   }
    protected override void OnZoneGenerated(Zone z,string id){}
   }
   sealed class ResultBuilder:IZoneBuilder{readonly bool result;public ResultBuilder(bool value){result=value;}public string Name=>"controlled-generation-result";public int Priority=>0;public bool BuildZone(Zone z,CavesOfOoo.Data.EntityFactory f,Random r)=>result;}

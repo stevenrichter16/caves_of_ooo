@@ -120,6 +120,9 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrWhiteSpace(directions))
                 baseLine += "\n" + directions;
 
+            var exploration = SpreadExplorationReadout.Describe(ParentEntity);
+            if (!string.IsNullOrEmpty(exploration)) baseLine += "\n" + exploration;
+
             if (ItemExamineService.TryDescribeDetails(ParentEntity, out string itemDetails))
                 baseLine += "\n" + itemDetails;
 

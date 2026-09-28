@@ -1,0 +1,113 @@
+--- a/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+@@ -18,6 +18,10 @@
+         public SpreadRareEncounterPlan RareEncounters { get; internal set; }
+         /// <summary>Independent bounded expedition; missing saved metadata stays disabled.</summary>
+         public SpreadWayhousePlan Wayhouse { get; internal set; }
++        /// <summary>New-world exploration metadata; legacy saves remain disabled.</summary>
++        public SpreadExplorationPlan Exploration { get; internal set; }
++        // Default activation waits for the playable role/source tranche.
++        private const bool EnableFreshExploration = false;
+         // Final validation belongs to the generation attempt even if a callback
+         // replaces the selected plan before acceptance.
+         internal SpreadWayhousePlan StagedWayhouse;
+@@ -28,11 +32,16 @@
+ 
+         /// <summary>Decode an isolated candidate without publishing its default settlement registry.</summary>
+         internal OverworldZoneManager(EntityFactory factory, int worldSeed, bool activate)
++            : this(factory, worldSeed, activate, restoring: false) { }
++
++        internal OverworldZoneManager(EntityFactory factory, int worldSeed, bool activate, bool restoring)
+             : base(factory, worldSeed)
+         {
+             WorldMap = WorldGenerator.Generate(WorldSeed);
+             RareEncounters = SpreadRareEncounterPlan.Create(this);
+             Wayhouse = SpreadWayhousePlan.Create(this);
++            Exploration = restoring ? SpreadExplorationPlan.Unbound(this)
++                : EnableFreshExploration ? SpreadExplorationPlan.Create(this) : SpreadExplorationPlan.Legacy(this);
+             SettlementManager = new SettlementManager(
+                 currentTurnProvider: null,
+                 poiResolver: ResolvePointOfInterestForSettlement,
+@@ -44,7 +53,27 @@
+         public static OverworldZoneManager CreateDetached(EntityFactory factory,int worldSeed)
+             =>new OverworldZoneManager(factory,worldSeed,activate:false);
+ 
++        /// <summary>Explicit new-world fixture/preview opt-in, never old-save adoption.</summary>
++        public static OverworldZoneManager CreateDetached(EntityFactory factory,int worldSeed,bool enableExploration)
++        {
++            var manager=new OverworldZoneManager(factory,worldSeed,activate:false);
++            if(enableExploration)manager.Exploration=SpreadExplorationPlan.Create(manager);
++            return manager;
++        }
++
+         protected override ZoneGenerationPipeline GetPipelineForZone(string zoneID)
++        {
++            var captured=Exploration;
++            var guard=captured?.Guard(this,zoneID);
++            var pipeline=CreatePipelineForZone(zoneID);
++            if(captured?.TryGetPlacement(this,zoneID,out var assignment)==true)
++                foreach(var builder in pipeline.Builders)
++                    if(builder is SpreadCompositionBuilder composition)composition.Topology=assignment.Topology;
++            if(guard!=null)pipeline.AddBuilder(guard);
++            return pipeline;
++        }
++
++        private ZoneGenerationPipeline CreatePipelineForZone(string zoneID)
+         {
+             // World-map zone: a singular Zone the player physically
+             // inhabits when they ascend. ZoneID has no dots — see
+@@ -1116,12 +1145,15 @@
+             LegendaryLairEncounters.TryApplyGeneratedFinal(zone, this);
+             bool lairAccepted=LairStacks.CommitGenerated(zone,this);
+             var staged=StagedWayhouse;
+-            if(staged?.PendingZone!=zone)return lairAccepted;
+-            StagedWayhouse=null;
+-            return staged.FinalizeGenerated(zone)&&lairAccepted;
++            if(staged?.PendingZone==zone)
++            {
++                StagedWayhouse=null;
++                lairAccepted=staged.FinalizeGenerated(zone)&&lairAccepted;
++            }
++            return SpreadExplorationPlan.FinalizeGenerated(this,zone,zoneID,lairAccepted);
+         }
+         protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID)
+-            && Wayhouse?.Retain(this,zoneID)!=true;
++            && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true;
+ 
+         protected override void OnZoneAttached(Zone zone)
+         {
+@@ -1296,6 +1328,7 @@
+ 
+         protected override void PrepareZoneForAccess(string zoneID)
+         {
++            Exploration?.ValidateAccess(this,zoneID);
+             if (zoneID == MultiCellPilotRuntime.ZoneID)
+             {
+                 WorldMap.RehydrateMultiCellPilot();
+--- a/Assets/Scripts/Gameplay/Save/SaveSystem.cs
++++ b/Assets/Scripts/Gameplay/Save/SaveSystem.cs
+@@ -346,6 +346,7 @@
+             World = LairStacks.BindForSave(ZoneManager, World);
+             World = SpreadRareEncounterPlan.BindForSave(ZoneManager, World);
+             World = SpreadWayhousePlan.BindForSave(ZoneManager, World);
++            World = SpreadExplorationPlan.BindForSave(ZoneManager, World);
+             writer.WriteHeader(GameVersion);
+             writer.WriteCheck("GameSession.Begin");
+             writer.Write(SaveVersion);
+@@ -423,6 +424,7 @@
+                 state.ZoneManager.RareEncounters = SpreadRareEncounterPlan.Restore(state.World);
+                 state.ZoneManager.Wayhouse = SpreadWayhousePlan.Restore(state.World);
+                 state.ZoneManager.Wayhouse.RestoreInstalledGraph(state.ZoneManager,state.World);
++                state.ZoneManager.Exploration = SpreadExplorationPlan.Restore(state.ZoneManager,state.World);
+             }
+             // Parser failures leave the live session untouched. Load-hook or
+             // bootstrap application exceptions are separate from this boundary.
+@@ -955,7 +957,7 @@
+             }
+ 
+             SettlementManager settlements = LoadSettlementManager(reader);
+-            var manager = new OverworldZoneManager(reader.Factory, seed, activate: false);
++            var manager = new OverworldZoneManager(reader.Factory, seed, activate: false, restoring: true);
+             manager.ReplaceLoadedOverworldState(worldMap, settlements, null);
+             manager.ReplaceLoadedState(zones, activeZoneID, connections);
+             reader.SetZoneManager(manager);

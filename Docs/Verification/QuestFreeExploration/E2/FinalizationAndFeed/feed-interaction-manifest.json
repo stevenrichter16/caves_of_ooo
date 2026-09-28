@@ -1,0 +1,33 @@
+{
+  "scope": "Existing committed finite meal emits real Interact after current actor/meal/reserve revalidation; no additional gameplay action",
+  "status": "private; bounded peer review clear; root publication pending",
+  "dependencies": {
+    "EntityVisualHooks": "renderer candidate37d08a478c86f6a74e51b9271fb2bd99f376e374facc485caf1ff0bd26edcee7",
+    "methods": [
+      "EmitInteraction(Entity actor, Entity target, Zone zone)"
+    ]
+  },
+  "testFilter": "CavesOfOoo.Tests.SpreadExplorationActorAdversarialTests",
+  "fixtureCases": 39,
+  "newCases": 10,
+  "evidence": {
+    "red": "feed-interaction-red.xml:1 missing gesture failure/38 controls",
+    "green": "feed-interaction-green.xml:125/125 total private core",
+    "runtimeReferenceCompile": 0,
+    "testReferenceCompile": 0
+  },
+  "files": [
+    {
+      "source": "/tmp/coo-questfree-implementation/actors/workspace/Assets/Scripts/Gameplay/AI/SpreadGrazerPart.cs",
+      "target": "Assets/Scripts/Gameplay/AI/SpreadGrazerPart.cs",
+      "beforeSha256": "3dc17c8c444869e2811e842e233afbef865d07cfce0fee7836dfa94cd363955c",
+      "sha256": "d6298d3e9a8551bba1ae4df1737e0f9454e6fffcf7ed59a91c99e57f85f06d5b"
+    },
+    {
+      "source": "/tmp/coo-questfree-implementation/actors/SpreadExplorationActorAdversarialTests.cs",
+      "target": "Assets/Tests/EditMode/Gameplay/AI/SpreadExplorationActorAdversarialTests.cs",
+      "beforeSha256": "c283ebd961e605f91fa22feaf927645514899912f1d41275fac4b59a58684f66",
+      "sha256": "7eb7f55ff265f8fc49bef3956508b0e164499a11e6a31cdc480e47e3b8f49cdf"
+    }
+  ]
+}

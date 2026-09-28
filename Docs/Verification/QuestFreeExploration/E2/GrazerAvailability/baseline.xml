@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="17" result="Passed" start-time="2026-09-28T03:32:55.5180210Z" end-time="2026-09-28T03:32:55.9900490Z" duration="0.471967" total="1" passed="1" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="14" random-seed="1761135689">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/baseline.xml --where "class == CavesOfOoo.Tests.GrazerRuntimeDiagnosticTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.GrazerRuntimeDiagnosticTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1021" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-09-28T03:32:55.5180210Z" end-time="2026-09-28T03:32:55.9900490Z" duration="0.471967" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/actors/grazer-runtime-diagnosis/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="41981" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestSuite" id="1022" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-09-28T03:32:55.5200250Z" end-time="2026-09-28T03:32:55.9900450Z" duration="0.470012" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+      <test-suite type="TestSuite" id="1023" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-09-28T03:32:55.5203250Z" end-time="2026-09-28T03:32:55.9899600Z" duration="0.469626" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+        <test-suite type="TestFixture" id="1000" name="GrazerRuntimeDiagnosticTests" fullname="CavesOfOoo.Tests.GrazerRuntimeDiagnosticTests" classname="CavesOfOoo.Tests.GrazerRuntimeDiagnosticTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-09-28T03:32:55.5211010Z" end-time="2026-09-28T03:32:55.9897620Z" duration="0.468653" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+          <test-case id="1001" name="ActualSelectedFieldSourcesAndRefusalStages" fullname="CavesOfOoo.Tests.GrazerRuntimeDiagnosticTests.ActualSelectedFieldSourcesAndRefusalStages" methodname="ActualSelectedFieldSourcesAndRefusalStages" classname="CavesOfOoo.Tests.GrazerRuntimeDiagnosticTests" runstate="Runnable" seed="1322945678" result="Passed" start-time="2026-09-28T03:32:55.5223030Z" end-time="2026-09-28T03:32:55.9883700Z" duration="0.466088" asserts="14">
+            <output><![CDATA[Overworld.10.5.0 condition=returning scrub result=refused:no-safe-role-layout rows=(72, 5);(32, 7) grazers=(8, 22):False
+Overworld.12.14.0 condition=returning scrub result=refused:source rows=(26, 6);(37, 16) grazers=(14, 15):False
+Overworld.13.10.0 condition=returning scrub result=refused:no-safe-role-layout rows=(22, 5);(53, 5) grazers=(11, 8):False
+Overworld.13.13.0 condition=tended result=refused:source rows=(19, 7);(11, 17);(13, 18) grazers=(24, 3):False
+Overworld.14.11.0 condition=after harvest result=refused:no-safe-role-layout rows=(11, 16) grazers=(68, 16):False
+Overworld.15.12.0 condition=returning scrub result=refused:no-safe-role-layout rows=(15, 4);(44, 4) grazers=(24, 21):False
+Overworld.16.10.0 condition=returning scrub result=refused:source rows=(12, 16);(51, 19) grazers=(33, 17):False
+Overworld.5.12.0 condition=returning scrub result=refused:source rows=(48, 7);(15, 16) grazers=(23, 18):False
+Overworld.6.14.0 condition=tended result=refused:no-safe-role-layout rows=(6, 4);(36, 5);(54, 16) grazers=(17, 18):False
+Overworld.7.13.0 condition=returning scrub result=refused:no-safe-role-layout rows=(46, 5);(19, 17) grazers=(10, 17):False
+Overworld.8.0.0 condition=after harvest result=refused:no-safe-role-layout rows=(11, 4) grazers=(71, 8):False
+Overworld.9.15.0 condition=tended result=refused:source rows=(55, 7);(53, 17);(16, 19) grazers=(40, 19):False
+Overworld.9.6.0 condition=returning scrub result=LastGleanings rows=(61, 5);(56, 16) grazers=(60, 4):True
+]]></output>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

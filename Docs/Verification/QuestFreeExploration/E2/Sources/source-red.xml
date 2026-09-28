@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="10" result="Failed" start-time="2026-09-28T02:08:38.8378810Z" end-time="2026-09-28T02:08:38.8587260Z" duration="0.020823" total="10" passed="0" failed="10" inconclusive="0" skipped="0" warnings="0" asserts="10" random-seed="1507965975">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/e2/source-red.xml --where "class =~ /SpreadExplorationSourcePolicyTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadExplorationSourcePolicyTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1014" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e2/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-09-28T02:08:38.8378810Z" end-time="2026-09-28T02:08:38.8587260Z" duration="0.020823" total="10" passed="0" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="10">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/e2/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/e2/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="19446" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1015" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-09-28T02:08:38.8394390Z" end-time="2026-09-28T02:08:38.8587240Z" duration="0.019284" total="10" passed="0" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="10">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1016" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-09-28T02:08:38.8395540Z" end-time="2026-09-28T02:08:38.8587230Z" duration="0.019168" total="10" passed="0" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="10">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadExplorationSourcePolicyTests" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-09-28T02:08:38.8399010Z" end-time="2026-09-28T02:08:38.8587190Z" duration="0.018818" total="10" passed="0" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="10">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1009" name="ForeignAndAmbiguousTablesRetainTheirRolls" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ForeignAndAmbiguousTablesRetainTheirRolls" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:08:38.8408630Z" end-time="2026-09-28T02:08:38.8571800Z" duration="0.016317" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1007" name="ForeignAndAmbiguousTablesRetainTheirRolls(&quot;OccupiedBank&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ForeignAndAmbiguousTablesRetainTheirRolls(&quot;OccupiedBank&quot;)" methodname="ForeignAndAmbiguousTablesRetainTheirRolls" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" seed="1393490769" result="Failed" start-time="2026-09-28T02:08:38.8409480Z" end-time="2026-09-28T02:08:38.8559570Z" duration="0.015033" asserts="1">
+              <failure>
+                <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ForeignAndAmbiguousTablesRetainTheirRolls(String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 42
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ForeignAndAmbiguousTablesRetainTheirRolls(String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 42
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="ForeignAndAmbiguousTablesRetainTheirRolls(&quot;LastGleanings&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ForeignAndAmbiguousTablesRetainTheirRolls(&quot;LastGleanings&quot;)" methodname="ForeignAndAmbiguousTablesRetainTheirRolls" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" seed="310773223" result="Failed" start-time="2026-09-28T02:08:38.8564890Z" end-time="2026-09-28T02:08:38.8568890Z" duration="0.000400" asserts="1">
+              <failure>
+                <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ForeignAndAmbiguousTablesRetainTheirRolls(String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 42
+   at InvokeStub_SpreadExplorationSourcePolicyTests.ForeignAndAmbiguousTablesRetainTheirRolls(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ForeignAndAmbiguousTablesRetainTheirRolls(String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 42
+   at InvokeStub_SpreadExplorationSourcePolicyTests.ForeignAndAmbiguousTablesRetainTheirRolls(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1005" name="GrazerUsesOnlyOneActuallyRolledAmbientSlot" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.GrazerUsesOnlyOneActuallyRolledAmbientSlot" methodname="GrazerUsesOnlyOneActuallyRolledAmbientSlot" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" seed="41618860" result="Failed" start-time="2026-09-28T02:08:38.8573340Z" end-time="2026-09-28T02:08:38.8574960Z" duration="0.000162" asserts="1">
+            <failure>
+              <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.GrazerUsesOnlyOneActuallyRolledAmbientSlot() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 33
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.GrazerUsesOnlyOneActuallyRolledAmbientSlot() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 33
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1006" name="NoAmbientRollCannotCreateAnAnimal" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.NoAmbientRollCannotCreateAnAnimal" methodname="NoAmbientRollCannotCreateAnAnimal" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" seed="1992202734" result="Failed" start-time="2026-09-28T02:08:38.8575130Z" end-time="2026-09-28T02:08:38.8576860Z" duration="0.000173" asserts="1">
+            <failure>
+              <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.NoAmbientRollCannotCreateAnAnimal() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 37
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.NoAmbientRollCannotCreateAnAnimal() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 37
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1004" name="NoHostileRollDoesNotMintATerritoryHolder" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.NoHostileRollDoesNotMintATerritoryHolder" methodname="NoHostileRollDoesNotMintATerritoryHolder" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" seed="943398909" result="Failed" start-time="2026-09-28T02:08:38.8577120Z" end-time="2026-09-28T02:08:38.8578800Z" duration="0.000168" asserts="1">
+            <failure>
+              <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.NoHostileRollDoesNotMintATerritoryHolder() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 29
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.NoHostileRollDoesNotMintATerritoryHolder() in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 29
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1003" name="OccupiedBankReplacesExactlyTheExistingHostileAllowance" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.OccupiedBankReplacesExactlyTheExistingHostileAllowance" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T02:08:38.8578940Z" end-time="2026-09-28T02:08:38.8583180Z" duration="0.000424" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="OccupiedBankReplacesExactlyTheExistingHostileAllowance(&quot;Viper&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.OccupiedBankReplacesExactlyTheExistingHostileAllowance(&quot;Viper&quot;)" methodname="OccupiedBankReplacesExactlyTheExistingHostileAllowance" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" seed="1215076982" result="Failed" start-time="2026-09-28T02:08:38.8579080Z" end-time="2026-09-28T02:08:38.8581560Z" duration="0.000248" asserts="1">
+              <failure>
+                <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.OccupiedBankReplacesExactlyTheExistingHostileAllowance(String hostile) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 24
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.OccupiedBankReplacesExactlyTheExistingHostileAllowance(String hostile) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 24
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="OccupiedBankReplacesExactlyTheExistingHostileAllowance(&quot;MarlbackScrabbler&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.OccupiedBankReplacesExactlyTheExistingHostileAllowance(&quot;MarlbackScrabbler&quot;)" methodname="OccupiedBankReplacesExactlyTheExistingHostileAllowance" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" seed="653366124" result="Failed" start-time="2026-09-28T02:08:38.8581690Z" end-time="2026-09-28T02:08:38.8583020Z" duration="0.000133" asserts="1">
+              <failure>
+                <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.OccupiedBankReplacesExactlyTheExistingHostileAllowance(String hostile) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 24
+   at InvokeStub_SpreadExplorationSourcePolicyTests.OccupiedBankReplacesExactlyTheExistingHostileAllowance(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.OccupiedBankReplacesExactlyTheExistingHostileAllowance(String hostile) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 24
+   at InvokeStub_SpreadExplorationSourcePolicyTests.OccupiedBankReplacesExactlyTheExistingHostileAllowance(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1013" name="ResourceFamiliesDoNotChangeNormalPopulation" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T02:08:38.8583240Z" end-time="2026-09-28T02:08:38.8586990Z" duration="0.000375" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1010" name="ResourceFamiliesDoNotChangeNormalPopulation(&quot;RoadSpill&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(&quot;RoadSpill&quot;)" methodname="ResourceFamiliesDoNotChangeNormalPopulation" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" seed="61970390" result="Failed" start-time="2026-09-28T02:08:38.8583280Z" end-time="2026-09-28T02:08:38.8584720Z" duration="0.000144" asserts="1">
+              <failure>
+                <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 48
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 48
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="ResourceFamiliesDoNotChangeNormalPopulation(&quot;WateringMargin&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(&quot;WateringMargin&quot;)" methodname="ResourceFamiliesDoNotChangeNormalPopulation" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" seed="917213769" result="Failed" start-time="2026-09-28T02:08:38.8584770Z" end-time="2026-09-28T02:08:38.8585990Z" duration="0.000122" asserts="1">
+              <failure>
+                <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 48
+   at InvokeStub_SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 48
+   at InvokeStub_SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1012" name="ResourceFamiliesDoNotChangeNormalPopulation(&quot;None&quot;)" fullname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(&quot;None&quot;)" methodname="ResourceFamiliesDoNotChangeNormalPopulation" classname="CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests" runstate="Runnable" seed="1183021649" result="Failed" start-time="2026-09-28T02:08:38.8586080Z" end-time="2026-09-28T02:08:38.8586820Z" duration="0.000074" asserts="1">
+              <failure>
+                <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 48
+   at InvokeStub_SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Regional source budgets must be applied to actual rolls, not extra spawns after generation.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.Rewrite(PopulationTable table, String[] rolled, String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 15
+   at CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(String family) in /private/tmp/coo-questfree-implementation/e2/SpreadExplorationSourcePolicyTests.cs:line 48
+   at InvokeStub_SpreadExplorationSourcePolicyTests.ResourceFamiliesDoNotChangeNormalPopulation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

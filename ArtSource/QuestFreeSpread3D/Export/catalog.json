@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "id": "questfree-spread-original-forms",
+  "palette": [
+    "#082C28",
+    "#103E36",
+    "#1A4B40",
+    "#26594A",
+    "#A0A77C",
+    "#CBC697",
+    "#647353",
+    "#235D25",
+    "#40872C",
+    "#65AE3D",
+    "#435A53",
+    "#62786C",
+    "#819489",
+    "#16883B",
+    "#45CB4B",
+    "#A0E772",
+    "#207838",
+    "#D2D3B4",
+    "#B77B43",
+    "#403D28",
+    "#756C40",
+    "#A39456",
+    "#C4B877",
+    "#243E39"
+  ],
+  "models": [
+    {
+      "id": "questfree-spread-grazer",
+      "sourceBlueprint": "ReedbackGrazer",
+      "path": "models/questfree-spread-grazer.fbx",
+      "rigFamily": "quadruped",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Neck",
+        "Head",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R",
+        "Tail"
+      ],
+      "triangles": 420,
+      "boundsBlender": {
+        "min": [
+          -0.28999999165534973,
+          -0.7090000510215759,
+          0.0
+        ],
+        "max": [
+          0.28999999165534973,
+          0.5724999904632568,
+          0.7350000143051147
+        ]
+      },
+      "sha256": "e2bcab96298c8d4ee4cf4df58847ac32fe034f7a5e7029719b0fc459bbd464d4",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "questfree-spread-grazer-remains",
+      "sourceBlueprint": "ReedbackGrazerCorpse",
+      "path": "models/questfree-spread-grazer-remains.fbx",
+      "rigFamily": "",
+      "rigged": false,
+      "clips": [],
+      "sockets": [],
+      "bones": [],
+      "triangles": 120,
+      "boundsBlender": {
+        "min": [
+          -0.35999998450279236,
+          -0.6200000047683716,
+          0.004500001668930054
+        ],
+        "max": [
+          0.35999998450279236,
+          0.3449999988079071,
+          0.26749998331069946
+        ]
+      },
+      "sha256": "0a27e54b867cac08208f0c86574aa195758f1d5852a7d2df0fe22ec9f0b485ac",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "questfree-spread-draw-full",
+      "sourceBlueprint": "SpreadDrawPoint",
+      "path": "models/questfree-spread-draw-full.fbx",
+      "rigFamily": "",
+      "rigged": false,
+      "clips": [],
+      "sockets": [],
+      "bones": [],
+      "triangles": 168,
+      "boundsBlender": {
+        "min": [
+          -0.48500001430511475,
+          -0.4749999940395355,
+          0.0
+        ],
+        "max": [
+          0.48500001430511475,
+          0.3700000047683716,
+          0.4300000071525574
+        ]
+      },
+      "sha256": "4065ddc058b1638d79b8e552a70eff352d754ebf3ea224f1e320cfb746b0ee20",
+      "status": "private-source-not-native-adopted"
+    },
+    {
+      "id": "questfree-spread-draw-empty",
+      "sourceBlueprint": "SpreadDrawPoint",
+      "path": "models/questfree-spread-draw-empty.fbx",
+      "rigFamily": "",
+      "rigged": false,
+      "clips": [],
+      "sockets": [],
+      "bones": [],
+      "triangles": 156,
+      "boundsBlender": {
+        "min": [
+          -0.48500001430511475,
+          -0.4749999940395355,
+          0.0
+        ],
+        "max": [
+          0.48500001430511475,
+          0.3700000047683716,
+          0.4300000071525574
+        ]
+      },
+      "sha256": "78171ae59a2d7d5b587a1a6485f55f059df4154f409c9f08739f8db4fe79e642",
+      "status": "private-source-not-native-adopted"
+    }
+  ]
+}
