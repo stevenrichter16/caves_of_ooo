@@ -27,6 +27,7 @@ namespace CavesOfOoo.Editor
         public static void LaunchAffordances()=>LaunchMode("affordances");
         public static void LaunchPassage()=>LaunchMode("passage");
         public static void LaunchExchange()=>LaunchMode("exchange");
+        public static void LaunchCooking()=>LaunchMode("cooking");
         private static int SeedForMode(string mode)=>mode=="exchange"?3:64;
         private static void LaunchMode(string mode)
         {
@@ -76,7 +77,7 @@ namespace CavesOfOoo.Editor
             var driver=new GameObject("Quest Free Spread State Native Audit").AddComponent<QuestFreeSpreadStateNativePlayer>();
             var context=new ScenarioContext(zone,factory,player,turns);
             string mode=SessionState.GetString(Prefix+"mode","states");
-            if(mode=="passage")driver.InitializePassage(context);else if(mode=="exchange")driver.InitializeExchange(context);else if(mode=="collector")driver.InitializeCollector(context);else if(mode=="affordances")driver.InitializeAffordances(context);else driver.Initialize(context);
+            if(mode=="cooking")driver.InitializeCooking(context);else if(mode=="passage")driver.InitializePassage(context);else if(mode=="exchange")driver.InitializeExchange(context);else if(mode=="collector")driver.InitializeCollector(context);else if(mode=="affordances")driver.InitializeAffordances(context);else driver.Initialize(context);
         }
         private static void Poll()
         {

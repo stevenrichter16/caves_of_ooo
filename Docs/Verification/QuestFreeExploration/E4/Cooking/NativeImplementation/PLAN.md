@@ -1,0 +1,9 @@
+# Native local cooking witness — private
+
+Seed64 only. At most eight canonical eligible Spread FieldStrips addresses from the actual frozen manifest; actual unspent RipeCropRow and dry adjacent approach, original player only setup transfer. Real world menu Harvest, exact finite Emberwheat unit packed with no overflow. Second disclosed player-only setup transfer to an existing CampfirePart owner in Sill (`WorldMap.StartingZoneID`, established DensityCompletionNativePlayer source). No station, item, stats, enemies or RNG are modified/granted.
+
+Actual inventory Cook at the exact current nearest eligible source; one paid action, one-for-one prepared output, no raw remainder or extra stack. Drop is the native free inventory command. One real adjacent step keeps the player from occupying the food view. Grounded prepared output must have exact approved spread-toasted-emberwheat model; root owns pending art. Save while prepared food is on the ground, then real Take plus paid step, F6 replaces graphs and restores exact food ID/count/location, original actor stats/gear/currency/clock and cached harvested row. Recheck restored ground model then native Take; this closes finite source→food→cooked item→ground→carried persistence without inventing a journey claim.
+
+At most six paid inputs (Harvest, Cook, one view-clearing step, two Takes, one checkpoint step),150seconds, existing isolated launcher cleanup/watchdog. No extra wait/seed/admission retry on failure. Fixed source absence or art absence is reported as incomplete; no successful native claim until root runs and views captures. Existing authored campfire proves legacy cooking only, not the future finite residual-coal station lifetime.
+
+Test first: two reflection native mode tests (missing LaunchCooking and InitializeCooking isolation); private test-reference compile then root missing-mode RED. Existing restoration/mode suites stay unchanged. Source/core cooking136 is separate authority.

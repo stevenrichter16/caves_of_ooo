@@ -1,0 +1,896 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/cooking/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="37" result="Failed" start-time="2026-09-28T14:25:12.2615960Z" end-time="2026-09-28T14:25:13.0739510Z" duration="0.812347" total="37" passed="4" failed="33" inconclusive="0" skipped="0" warnings="0" asserts="272" random-seed="1920586588">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/cooking/runner/bin/Debug/net8.0/EditModeRunner.dll --where "class == CavesOfOoo.Tests.FiniteCookingSourceTests" --result=/tmp/coo-questfree-implementation/cooking/grain-core-red.xml]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.FiniteCookingSourceTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1045" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/cooking/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="37" result="Failed" site="Child" start-time="2026-09-28T14:25:12.2615960Z" end-time="2026-09-28T14:25:13.0739510Z" duration="0.812347" total="37" passed="4" failed="33" warnings="0" inconclusive="0" skipped="0" asserts="272">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+      <setting name="NumberOfTestWorkers" value="10" />
+    </settings>
+    <properties>
+      <property name="_PID" value="87270" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1046" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="37" result="Failed" site="Child" start-time="2026-09-28T14:25:12.2632800Z" end-time="2026-09-28T14:25:13.0739480Z" duration="0.810672" total="37" passed="4" failed="33" warnings="0" inconclusive="0" skipped="0" asserts="272">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1047" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="37" result="Failed" site="Child" start-time="2026-09-28T14:25:12.2633840Z" end-time="2026-09-28T14:25:13.0739410Z" duration="0.810561" total="37" passed="4" failed="33" warnings="0" inconclusive="0" skipped="0" asserts="272">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="FiniteCookingSourceTests" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" testcasecount="37" result="Failed" site="Child" start-time="2026-09-28T14:25:12.2638180Z" end-time="2026-09-28T14:25:13.0739290Z" duration="0.810114" total="37" passed="4" failed="33" warnings="0" inconclusive="0" skipped="0" asserts="272">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1038" name="ActualFiniteRowYieldCanToastWithoutIncreasingTheHarvestBudget" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.ActualFiniteRowYieldCanToastWithoutIncreasingTheHarvestBudget" methodname="ActualFiniteRowYieldCanToastWithoutIncreasingTheHarvestBudget" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1969451420" result="Failed" start-time="2026-09-28T14:25:12.2647950Z" end-time="2026-09-28T14:25:12.4069360Z" duration="0.142169" asserts="12">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.ActualFiniteRowYieldCanToastWithoutIncreasingTheHarvestBudget() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.Grain.cs:line 38
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.ActualFiniteRowYieldCanToastWithoutIncreasingTheHarvestBudget() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.Grain.cs:line 38
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1030" name="ActualLocalMaterialTicksCloseStoredHeatWindowWithoutInventingBurningOrFuelUse" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.ActualLocalMaterialTicksCloseStoredHeatWindowWithoutInventingBurningOrFuelUse" methodname="ActualLocalMaterialTicksCloseStoredHeatWindowWithoutInventingBurningOrFuelUse" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1858322611" result="Failed" start-time="2026-09-28T14:25:12.4075130Z" end-time="2026-09-28T14:25:12.4296280Z" duration="0.022115" asserts="6">
+            <failure>
+              <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.ActualLocalMaterialTicksCloseStoredHeatWindowWithoutInventingBurningOrFuelUse() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 144
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.ActualLocalMaterialTicksCloseStoredHeatWindowWithoutInventingBurningOrFuelUse() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 144
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1015" name="EstablishedAuthoredStationsRemainUsableWhenColdSpentOrThermalless" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.EstablishedAuthoredStationsRemainUsableWhenColdSpentOrThermalless" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T14:25:12.4297120Z" end-time="2026-09-28T14:25:12.4853170Z" duration="0.055604" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="22">
+            <test-case id="1013" name="EstablishedAuthoredStationsRemainUsableWhenColdSpentOrThermalless(False)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.EstablishedAuthoredStationsRemainUsableWhenColdSpentOrThermalless(False)" methodname="EstablishedAuthoredStationsRemainUsableWhenColdSpentOrThermalless" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1142286071" result="Passed" start-time="2026-09-28T14:25:12.4298230Z" end-time="2026-09-28T14:25:12.4633030Z" duration="0.033480" asserts="11" />
+            <test-case id="1014" name="EstablishedAuthoredStationsRemainUsableWhenColdSpentOrThermalless(True)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.EstablishedAuthoredStationsRemainUsableWhenColdSpentOrThermalless(True)" methodname="EstablishedAuthoredStationsRemainUsableWhenColdSpentOrThermalless" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="675849165" result="Passed" start-time="2026-09-28T14:25:12.4633400Z" end-time="2026-09-28T14:25:12.4842290Z" duration="0.020890" asserts="11" />
+          </test-suite>
+          <test-case id="1029" name="ExhaustedFirstNeighborDoesNotHideTheNextUsableAuthoredStation" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.ExhaustedFirstNeighborDoesNotHideTheNextUsableAuthoredStation" methodname="ExhaustedFirstNeighborDoesNotHideTheNextUsableAuthoredStation" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="126686647" result="Failed" start-time="2026-09-28T14:25:12.4859840Z" end-time="2026-09-28T14:25:12.5034690Z" duration="0.017486" asserts="6">
+            <failure>
+              <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.ExhaustedFirstNeighborDoesNotHideTheNextUsableAuthoredStation() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 138
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.ExhaustedFirstNeighborDoesNotHideTheNextUsableAuthoredStation() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 138
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1016" name="FactoryAndPlainCampfirePartsDoNotOptEstablishedSourcesIn" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.FactoryAndPlainCampfirePartsDoNotOptEstablishedSourcesIn" methodname="FactoryAndPlainCampfirePartsDoNotOptEstablishedSourcesIn" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="131848083" result="Failed" start-time="2026-09-28T14:25:12.5035660Z" end-time="2026-09-28T14:25:12.5270730Z" duration="0.023507" asserts="4">
+            <failure>
+              <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.FactoryAndPlainCampfirePartsDoNotOptEstablishedSourcesIn() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 95
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.FactoryAndPlainCampfirePartsDoNotOptEstablishedSourcesIn() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 95
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1035" name="FullSaveRestoresSameOptInHeatFuelAndCookingOutcome" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T14:25:12.5271650Z" end-time="2026-09-28T14:25:12.6671750Z" duration="0.140011" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="35">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1031" name="FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(True,500.0f,200.0f,True)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(True,500.0f,200.0f,True)" methodname="FullSaveRestoresSameOptInHeatFuelAndCookingOutcome" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1108055066" result="Failed" start-time="2026-09-28T14:25:12.5271990Z" end-time="2026-09-28T14:25:12.5479880Z" duration="0.020789" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Boolean finite, Single temperature, Single amount, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 154
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Boolean finite, Single temperature, Single amount, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 154
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1032" name="FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(True,140.0f,200.0f,False)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(True,140.0f,200.0f,False)" methodname="FullSaveRestoresSameOptInHeatFuelAndCookingOutcome" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="992337807" result="Failed" start-time="2026-09-28T14:25:12.5480090Z" end-time="2026-09-28T14:25:12.5692630Z" duration="0.021254" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Boolean finite, Single temperature, Single amount, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 154
+   at InvokeStub_FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Boolean finite, Single temperature, Single amount, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 154
+   at InvokeStub_FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1033" name="FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(True,500.0f,0.0f,False)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(True,500.0f,0.0f,False)" methodname="FullSaveRestoresSameOptInHeatFuelAndCookingOutcome" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="617813830" result="Failed" start-time="2026-09-28T14:25:12.5692920Z" end-time="2026-09-28T14:25:12.5878390Z" duration="0.018547" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Boolean finite, Single temperature, Single amount, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 154
+   at InvokeStub_FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Boolean finite, Single temperature, Single amount, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 154
+   at InvokeStub_FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1034" name="FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(False,25.0f,0.0f,True)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(False,25.0f,0.0f,True)" methodname="FullSaveRestoresSameOptInHeatFuelAndCookingOutcome" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1889608220" result="Failed" start-time="2026-09-28T14:25:12.5879120Z" end-time="2026-09-28T14:25:12.6671190Z" duration="0.079207" asserts="17">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.IsFinite(Entity station) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 63
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Boolean finite, Single temperature, Single amount, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 162
+   at InvokeStub_FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.IsFinite(Entity station) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 63
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Boolean finite, Single temperature, Single amount, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 162
+   at InvokeStub_FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1037" name="GrainRecipeKeepsOneForOneFoodWeightAndDeliberateModestValue" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.GrainRecipeKeepsOneForOneFoodWeightAndDeliberateModestValue" methodname="GrainRecipeKeepsOneForOneFoodWeightAndDeliberateModestValue" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1409877759" result="Failed" start-time="2026-09-28T14:25:12.6672080Z" end-time="2026-09-28T14:25:12.6903550Z" duration="0.023147" asserts="4">
+            <failure>
+              <message><![CDATA[  Existing finite field yield needs the explicitly approved new recipe.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.GrainRecipeKeepsOneForOneFoodWeightAndDeliberateModestValue() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.Grain.cs:line 21
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Existing finite field yield needs the explicitly approved new recipe.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.GrainRecipeKeepsOneForOneFoodWeightAndDeliberateModestValue() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.Grain.cs:line 21
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1012" name="MalformedFiniteSourceDoesNotFallBackToLegacy" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T14:25:12.6904300Z" end-time="2026-09-28T14:25:12.7324460Z" duration="0.042016" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1010" name="MalformedFiniteSourceDoesNotFallBackToLegacy(&quot;Fuel&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy(&quot;Fuel&quot;)" methodname="MalformedFiniteSourceDoesNotFallBackToLegacy" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1336042289" result="Failed" start-time="2026-09-28T14:25:12.6904650Z" end-time="2026-09-28T14:25:12.7134280Z" duration="0.022964" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy(String part) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 84
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy(String part) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 84
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="MalformedFiniteSourceDoesNotFallBackToLegacy(&quot;Thermal&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy(&quot;Thermal&quot;)" methodname="MalformedFiniteSourceDoesNotFallBackToLegacy" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="960580165" result="Failed" start-time="2026-09-28T14:25:12.7134500Z" end-time="2026-09-28T14:25:12.7324250Z" duration="0.018975" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy(String part) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 84
+   at InvokeStub_FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy(String part) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 84
+   at InvokeStub_FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1042" name="MissingStationPreservesTheSameCarriedGrainUnits" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.MissingStationPreservesTheSameCarriedGrainUnits" methodname="MissingStationPreservesTheSameCarriedGrainUnits" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1797763801" result="Passed" start-time="2026-09-28T14:25:12.7324550Z" end-time="2026-09-28T14:25:12.7549910Z" duration="0.022537" asserts="10" />
+          <test-case id="1036" name="OldZeroFieldCampfirePartWireLoadsAsLegacyWithoutRetrofit" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OldZeroFieldCampfirePartWireLoadsAsLegacyWithoutRetrofit" methodname="OldZeroFieldCampfirePartWireLoadsAsLegacyWithoutRetrofit" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="189565121" result="Failed" start-time="2026-09-28T14:25:12.7550110Z" end-time="2026-09-28T14:25:12.7732600Z" duration="0.018249" asserts="5">
+            <failure>
+              <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OldZeroFieldCampfirePartWireLoadsAsLegacyWithoutRetrofit() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 175
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OldZeroFieldCampfirePartWireLoadsAsLegacyWithoutRetrofit() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 175
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1009" name="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-28T14:25:12.7732810Z" end-time="2026-09-28T14:25:12.9265150Z" duration="0.153235" total="8" passed="0" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="48">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(150.0f,200.0f,True)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(150.0f,200.0f,True)" methodname="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="404170046" result="Failed" start-time="2026-09-28T14:25:12.7733060Z" end-time="2026-09-28T14:25:12.7885880Z" duration="0.015283" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(149.99f,200.0f,False)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(149.99f,200.0f,False)" methodname="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="931947681" result="Failed" start-time="2026-09-28T14:25:12.7886240Z" end-time="2026-09-28T14:25:12.8097130Z" duration="0.021089" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(500.0f,0.0f,False)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(500.0f,0.0f,False)" methodname="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1546984161" result="Failed" start-time="2026-09-28T14:25:12.8097330Z" end-time="2026-09-28T14:25:12.8259180Z" duration="0.016186" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(500.0f,200.0f,True)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(500.0f,200.0f,True)" methodname="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1783746884" result="Failed" start-time="2026-09-28T14:25:12.8259670Z" end-time="2026-09-28T14:25:12.8483950Z" duration="0.022429" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(float.NaN,200.0f,False)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(float.NaN,200.0f,False)" methodname="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1538056847" result="Failed" start-time="2026-09-28T14:25:12.8484330Z" end-time="2026-09-28T14:25:12.8659670Z" duration="0.017534" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(150.0f,float.NaN,False)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(150.0f,float.NaN,False)" methodname="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="948024248" result="Failed" start-time="2026-09-28T14:25:12.8659880Z" end-time="2026-09-28T14:25:12.8816810Z" duration="0.015693" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(float.PositiveInfinity,200.0f,False)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(float.PositiveInfinity,200.0f,False)" methodname="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="81012700" result="Failed" start-time="2026-09-28T14:25:12.8817120Z" end-time="2026-09-28T14:25:12.9025110Z" duration="0.020799" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(150.0f,float.PositiveInfinity,False)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(150.0f,float.PositiveInfinity,False)" methodname="OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1537573548" result="Failed" start-time="2026-09-28T14:25:12.9025300Z" end-time="2026-09-28T14:25:12.9264800Z" duration="0.023950" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Single temperature, Single fuel, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 78
+   at InvokeStub_FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1021" name="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T14:25:12.9265400Z" end-time="2026-09-28T14:25:12.9794890Z" duration="0.052949" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="41">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1017" name="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;unchanged&quot;)" methodname="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1911256536" result="Passed" start-time="2026-09-28T14:25:12.9265880Z" end-time="2026-09-28T14:25:12.9502330Z" duration="0.023645" asserts="12" />
+            <test-case id="1018" name="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;remove-part&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;remove-part&quot;)" methodname="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1874231890" result="Failed" start-time="2026-09-28T14:25:12.9502540Z" end-time="2026-09-28T14:25:12.9604430Z" duration="0.010189" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 111
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 111
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1019" name="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;replace-part&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;replace-part&quot;)" methodname="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="818007152" result="Failed" start-time="2026-09-28T14:25:12.9604750Z" end-time="2026-09-28T14:25:12.9667170Z" duration="0.006242" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 111
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 111
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1020" name="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;move-adjacent&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;move-adjacent&quot;)" methodname="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="714740054" result="Failed" start-time="2026-09-28T14:25:12.9667410Z" end-time="2026-09-28T14:25:12.9794550Z" duration="0.012715" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 111
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 111
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1028" name="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T14:25:12.9795130Z" end-time="2026-09-28T14:25:13.0348860Z" duration="0.055373" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="36">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1022" name="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(&quot;unchanged&quot;)" methodname="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1534128300" result="Failed" start-time="2026-09-28T14:25:12.9795330Z" end-time="2026-09-28T14:25:12.9872640Z" duration="0.007731" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 119
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 119
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1023" name="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(&quot;replace-fuel&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(&quot;replace-fuel&quot;)" methodname="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="881183057" result="Failed" start-time="2026-09-28T14:25:12.9872960Z" end-time="2026-09-28T14:25:12.9998470Z" duration="0.012552" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 119
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 119
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1024" name="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(&quot;replace-thermal&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(&quot;replace-thermal&quot;)" methodname="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="328741783" result="Failed" start-time="2026-09-28T14:25:12.9998720Z" end-time="2026-09-28T14:25:13.0091000Z" duration="0.009229" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 119
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 119
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1025" name="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(&quot;cool&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(&quot;cool&quot;)" methodname="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1455429157" result="Failed" start-time="2026-09-28T14:25:13.0091320Z" end-time="2026-09-28T14:25:13.0152560Z" duration="0.006125" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 119
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 119
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1026" name="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(&quot;spent&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(&quot;spent&quot;)" methodname="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1781021527" result="Failed" start-time="2026-09-28T14:25:13.0152840Z" end-time="2026-09-28T14:25:13.0271920Z" duration="0.011908" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 119
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 119
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1027" name="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(&quot;clear-opt-in&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(&quot;clear-opt-in&quot;)" methodname="OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="721030540" result="Failed" start-time="2026-09-28T14:25:13.0272110Z" end-time="2026-09-28T14:25:13.0348580Z" duration="0.007648" asserts="6">
+              <failure>
+                <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 119
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  New utility source needs an explicit saved opt-in; established stations must default to legacy.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 60
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite(Entity station, Boolean value) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 62
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.Station(Boolean finite, Int32 x, Int32 y) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 65
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 119
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1043" name="PreparedGrainRemainsFoodAndConsumesOneWithTheAuthoredHealingRange" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.PreparedGrainRemainsFoodAndConsumesOneWithTheAuthoredHealingRange" methodname="PreparedGrainRemainsFoodAndConsumesOneWithTheAuthoredHealingRange" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="869160131" result="Failed" start-time="2026-09-28T14:25:13.0349110Z" end-time="2026-09-28T14:25:13.0449560Z" duration="0.010045" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.PreparedGrainRemainsFoodAndConsumesOneWithTheAuthoredHealingRange() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.Grain.cs:line 57
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.PreparedGrainRemainsFoodAndConsumesOneWithTheAuthoredHealingRange() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.Grain.cs:line 57
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1044" name="SavedPreparedStackRetainsExactIdentityQuantityAndNoRawRecipe" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.SavedPreparedStackRetainsExactIdentityQuantityAndNoRawRecipe" methodname="SavedPreparedStackRetainsExactIdentityQuantityAndNoRawRecipe" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="640869764" result="Failed" start-time="2026-09-28T14:25:13.0449770Z" end-time="2026-09-28T14:25:13.0570330Z" duration="0.012056" asserts="9">
+            <failure>
+              <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.SavedPreparedStackRetainsExactIdentityQuantityAndNoRawRecipe() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.Grain.cs:line 64
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.SavedPreparedStackRetainsExactIdentityQuantityAndNoRawRecipe() in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.Grain.cs:line 64
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1041" name="WholeGrainStackToastsAtExactCapacityAndCannotRepeat" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T14:25:13.0570800Z" end-time="2026-09-28T14:25:13.0738620Z" duration="0.016782" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1039" name="WholeGrainStackToastsAtExactCapacityAndCannotRepeat(1)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat(1)" methodname="WholeGrainStackToastsAtExactCapacityAndCannotRepeat" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="386594816" result="Failed" start-time="2026-09-28T14:25:13.0571070Z" end-time="2026-09-28T14:25:13.0637300Z" duration="0.006623" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat(Int32 count) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.Grain.cs:line 47
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat(Int32 count) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.Grain.cs:line 47
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1040" name="WholeGrainStackToastsAtExactCapacityAndCannotRepeat(3)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat(3)" methodname="WholeGrainStackToastsAtExactCapacityAndCannotRepeat" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="283238551" result="Failed" start-time="2026-09-28T14:25:13.0637640Z" end-time="2026-09-28T14:25:13.0738330Z" duration="0.010069" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat(Int32 count) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.Grain.cs:line 47
+   at InvokeStub_FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat(Int32 count) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.Grain.cs:line 47
+   at InvokeStub_FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

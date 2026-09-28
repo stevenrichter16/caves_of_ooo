@@ -1,0 +1,11 @@
+# Prepared grain: narrow import/binding plan
+
+Test-only first. Root must adopt actual ToastedEmberwheat content and raw Cookable recipe before executing `CavesOfOoo.Tests.ToastedEmberwheatArtTests`16 cases. The current fixture only references existing compiled APIs/Resources and compiles0errors; do not count absent content as missing-art evidence.
+
+After actual meaningful RED, implement a small optional `SpreadCooking3DLibrary` with the single exact model `spread-toasted-emberwheat`, the supplied original FBX/kit source hash and one borrowed approved glade material. Inert root: Transform/MeshFilter/MeshRenderer only, no scene scripts/rig/physics. Preserve readable native vertices/normals/UV, one material/submesh, reviewed160 triangles and bounds; no cube replacement or new procedural per-frame mesh.
+
+Use the existing field-gate/scoped-library importer pattern, with output-only persistent writes and all preflight before writing. Import only this one namespace; do not rebuild the portable/native-static packs or mutate borrowed palette/source assets. Explicit generated-assets/metas receipt is required. Source input is ArtSource/SpreadCooking3D/Export/models/spread-toasted-emberwheat.fbx only after exact manifest adoption.
+
+Narrow receiving-Spread refinement: exact original ToastedEmberwheat, current recipe owner/zone membership, visible owned Render/Physics, Takeable/noncreature/nonNatural, no custom visual or footprint, uncarried/unequipped and positive actual food stack; preserve prior named refusals. Stable single form follows identity after movement/drop; no new saved visual field. Reflect original portable guards; do not grant generic FoodItem admission. Add exact catalog/library load dispatch, approved source evidence and voxel registration by model ID, preserving current gate/beam/collector hooks. Review every shared preimage afresh after parent publications.
+
+Root executes native import,16 focused tests plus relevant portable/current-style neighbors, then a small actual camera raw/prepared pair and real Cook/drop if content source is ready. No workspot geometry, thermal/readout/ember patch, recipe output mutation, item icon system, or full-suite claim belongs to this art package.

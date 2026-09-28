@@ -1,0 +1,364 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 39,
+    "passed": 4,
+    "failed": 35,
+    "skipped": 0,
+    "durationSeconds": 4.230062,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "ActualFiniteRowYieldCanToastWithoutIncreasingTheHarvestBudget",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.ActualFiniteRowYieldCanToastWithoutIncreasingTheHarvestBudget",
+      "state": "Failed",
+      "durationSeconds": 0.088689,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.ActualFiniteRowYieldCanToastWithoutIncreasingTheHarvestBudget () [0x00101] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.Grain.cs:38\n",
+      "output": ""
+    },
+    {
+      "name": "ActualLocalMaterialTicksCloseStoredHeatWindowWithoutInventingBurningOrFuelUse",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.ActualLocalMaterialTicksCloseStoredHeatWindowWithoutInventingBurningOrFuelUse",
+      "state": "Failed",
+      "durationSeconds": 0.0309807,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.ActualLocalMaterialTicksCloseStoredHeatWindowWithoutInventingBurningOrFuelUse () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:157\n",
+      "output": ""
+    },
+    {
+      "name": "EstablishedAuthoredStationsRemainUsableWhenColdSpentOrThermalless(False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.EstablishedAuthoredStationsRemainUsableWhenColdSpentOrThermalless(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0346492,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "EstablishedAuthoredStationsRemainUsableWhenColdSpentOrThermalless(True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.EstablishedAuthoredStationsRemainUsableWhenColdSpentOrThermalless(True)",
+      "state": "Passed",
+      "durationSeconds": 0.0294132,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExhaustedFirstNeighborDoesNotHideTheNextUsableAuthoredStation",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.ExhaustedFirstNeighborDoesNotHideTheNextUsableAuthoredStation",
+      "state": "Failed",
+      "durationSeconds": 0.0295536,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.ExhaustedFirstNeighborDoesNotHideTheNextUsableAuthoredStation () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:151\n",
+      "output": ""
+    },
+    {
+      "name": "FactoryAndPlainCampfirePartsDoNotOptEstablishedSourcesIn",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.FactoryAndPlainCampfirePartsDoNotOptEstablishedSourcesIn",
+      "state": "Failed",
+      "durationSeconds": 0.0287092,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.FactoryAndPlainCampfirePartsDoNotOptEstablishedSourcesIn () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:95\n",
+      "output": ""
+    },
+    {
+      "name": "FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(True,500.0f,200.0f,True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(True,500.0f,200.0f,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0304661,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome (System.Boolean finite, System.Single temperature, System.Single amount, System.Boolean expected) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:167\n",
+      "output": ""
+    },
+    {
+      "name": "FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(True,140.0f,200.0f,False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(True,140.0f,200.0f,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0278716,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome (System.Boolean finite, System.Single temperature, System.Single amount, System.Boolean expected) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:167\n",
+      "output": ""
+    },
+    {
+      "name": "FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(True,500.0f,0.0f,False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(True,500.0f,0.0f,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0273837,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome (System.Boolean finite, System.Single temperature, System.Single amount, System.Boolean expected) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:167\n",
+      "output": ""
+    },
+    {
+      "name": "FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(False,25.0f,0.0f,True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome(False,25.0f,0.0f,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0441418,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.IsFinite (CavesOfOoo.Core.Entity station) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:63\nat CavesOfOoo.Tests.FiniteCookingSourceTests.FullSaveRestoresSameOptInHeatFuelAndCookingOutcome (System.Boolean finite, System.Single temperature, System.Single amount, System.Boolean expected) [0x00249] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:175\n",
+      "output": ""
+    },
+    {
+      "name": "GrainRecipeKeepsOneForOneFoodWeightAndDeliberateModestValue",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.GrainRecipeKeepsOneForOneFoodWeightAndDeliberateModestValue",
+      "state": "Failed",
+      "durationSeconds": 0.0458963,
+      "message": "  Existing finite field yield needs the explicitly approved new recipe.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.GrainRecipeKeepsOneForOneFoodWeightAndDeliberateModestValue () [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.Grain.cs:21\n",
+      "output": ""
+    },
+    {
+      "name": "MalformedFiniteSourceDoesNotFallBackToLegacy(\"Fuel\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy(\"Fuel\")",
+      "state": "Failed",
+      "durationSeconds": 0.0295211,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy (System.String part) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:84\n",
+      "output": ""
+    },
+    {
+      "name": "MalformedFiniteSourceDoesNotFallBackToLegacy(\"Thermal\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy(\"Thermal\")",
+      "state": "Failed",
+      "durationSeconds": 0.0290851,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.MalformedFiniteSourceDoesNotFallBackToLegacy (System.String part) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:84\n",
+      "output": ""
+    },
+    {
+      "name": "MissingStationPreservesTheSameCarriedGrainUnits",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.MissingStationPreservesTheSameCarriedGrainUnits",
+      "state": "Passed",
+      "durationSeconds": 0.028926,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "OldZeroFieldCampfirePartWireLoadsAsLegacyWithoutRetrofit",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OldZeroFieldCampfirePartWireLoadsAsLegacyWithoutRetrofit",
+      "state": "Failed",
+      "durationSeconds": 0.0275366,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OldZeroFieldCampfirePartWireLoadsAsLegacyWithoutRetrofit () [0x00090] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:188\n",
+      "output": ""
+    },
+    {
+      "name": "OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(150.0f,200.0f,True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(150.0f,200.0f,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0340415,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning (System.Single temperature, System.Single fuel, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:78\n",
+      "output": ""
+    },
+    {
+      "name": "OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(149.99f,200.0f,False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(149.99f,200.0f,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0307533,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning (System.Single temperature, System.Single fuel, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:78\n",
+      "output": ""
+    },
+    {
+      "name": "OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(500.0f,0.0f,False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(500.0f,0.0f,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0316846,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning (System.Single temperature, System.Single fuel, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:78\n",
+      "output": ""
+    },
+    {
+      "name": "OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(500.0f,200.0f,True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(500.0f,200.0f,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0314309,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning (System.Single temperature, System.Single fuel, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:78\n",
+      "output": ""
+    },
+    {
+      "name": "OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(float.NaN,200.0f,False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(float.NaN,200.0f,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0362768,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning (System.Single temperature, System.Single fuel, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:78\n",
+      "output": ""
+    },
+    {
+      "name": "OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(150.0f,float.NaN,False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(150.0f,float.NaN,False)",
+      "state": "Failed",
+      "durationSeconds": 0.025457,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning (System.Single temperature, System.Single fuel, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:78\n",
+      "output": ""
+    },
+    {
+      "name": "OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(float.PositiveInfinity,200.0f,False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(float.PositiveInfinity,200.0f,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0310815,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning (System.Single temperature, System.Single fuel, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:78\n",
+      "output": ""
+    },
+    {
+      "name": "OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(150.0f,float.PositiveInfinity,False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning(150.0f,float.PositiveInfinity,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0364908,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OptedInSourceRequiresFiniteUsableHeatAndFuelWithoutRequiringBurning (System.Single temperature, System.Single fuel, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:78\n",
+      "output": ""
+    },
+    {
+      "name": "OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(\"unchanged\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(\"unchanged\")",
+      "state": "Passed",
+      "durationSeconds": 0.0390929,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(\"remove-part\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(\"remove-part\")",
+      "state": "Failed",
+      "durationSeconds": 0.0399535,
+      "message": "  Expected: False\n  But was:  True\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck (CavesOfOoo.Core.Entity raw, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:71\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation (System.String mutation) [0x00061] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(\"replace-part\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(\"replace-part\")",
+      "state": "Failed",
+      "durationSeconds": 0.6550367,
+      "message": "  Expected: False\n  But was:  True\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck (CavesOfOoo.Core.Entity raw, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:71\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation (System.String mutation) [0x00061] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(\"move-adjacent\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(\"move-adjacent\")",
+      "state": "Failed",
+      "durationSeconds": 0.1880082,
+      "message": "  Expected: False\n  But was:  True\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck (CavesOfOoo.Core.Entity raw, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:71\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation (System.String mutation) [0x00061] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "OutputFactoryCannotKeepPermissionFromReplacedInputParts(\"recipe\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts(\"recipe\")",
+      "state": "Failed",
+      "durationSeconds": 0.1625843,
+      "message": "  Expected: False\n  But was:  True\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck (CavesOfOoo.Core.Entity raw, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:71\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts (System.String mutation) [0x00061] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:126\n",
+      "output": ""
+    },
+    {
+      "name": "OutputFactoryCannotKeepPermissionFromReplacedInputParts(\"stack\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts(\"stack\")",
+      "state": "Failed",
+      "durationSeconds": 0.1845411,
+      "message": "  Expected: False\n  But was:  True\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck (CavesOfOoo.Core.Entity raw, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:71\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts (System.String mutation) [0x00061] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:126\n",
+      "output": ""
+    },
+    {
+      "name": "OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(\"unchanged\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(\"unchanged\")",
+      "state": "Failed",
+      "durationSeconds": 0.1665399,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility (System.String mutation) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:132\n",
+      "output": ""
+    },
+    {
+      "name": "OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(\"replace-fuel\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(\"replace-fuel\")",
+      "state": "Failed",
+      "durationSeconds": 0.3030531,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility (System.String mutation) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:132\n",
+      "output": ""
+    },
+    {
+      "name": "OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(\"replace-thermal\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(\"replace-thermal\")",
+      "state": "Failed",
+      "durationSeconds": 0.2052581,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility (System.String mutation) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:132\n",
+      "output": ""
+    },
+    {
+      "name": "OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(\"cool\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(\"cool\")",
+      "state": "Failed",
+      "durationSeconds": 0.1207019,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility (System.String mutation) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:132\n",
+      "output": ""
+    },
+    {
+      "name": "OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(\"spent\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(\"spent\")",
+      "state": "Failed",
+      "durationSeconds": 0.2032552,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility (System.String mutation) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:132\n",
+      "output": ""
+    },
+    {
+      "name": "OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(\"clear-opt-in\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility(\"clear-opt-in\")",
+      "state": "Failed",
+      "durationSeconds": 0.1727672,
+      "message": "  New utility source needs an explicit saved opt-in; established stations must default to legacy.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.Flag () [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:60\nat CavesOfOoo.Tests.FiniteCookingSourceTests.SetFinite (CavesOfOoo.Core.Entity station, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:62\nat CavesOfOoo.Tests.FiniteCookingSourceTests.Station (System.Boolean finite, System.Int32 x, System.Int32 y) [0x0002d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:65\nat CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryRechecksExactOptedInPartsAndCurrentEligibility (System.String mutation) [0x0000d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs:132\n",
+      "output": ""
+    },
+    {
+      "name": "PreparedGrainRemainsFoodAndConsumesOneWithTheAuthoredHealingRange",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.PreparedGrainRemainsFoodAndConsumesOneWithTheAuthoredHealingRange",
+      "state": "Failed",
+      "durationSeconds": 0.2465793,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.PreparedGrainRemainsFoodAndConsumesOneWithTheAuthoredHealingRange () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.Grain.cs:57\n",
+      "output": ""
+    },
+    {
+      "name": "SavedPreparedStackRetainsExactIdentityQuantityAndNoRawRecipe",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.SavedPreparedStackRetainsExactIdentityQuantityAndNoRawRecipe",
+      "state": "Failed",
+      "durationSeconds": 0.2387886,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.SavedPreparedStackRetainsExactIdentityQuantityAndNoRawRecipe () [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.Grain.cs:64\n",
+      "output": ""
+    },
+    {
+      "name": "WholeGrainStackToastsAtExactCapacityAndCannotRepeat(1)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat(1)",
+      "state": "Failed",
+      "durationSeconds": 0.1847297,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat (System.Int32 count) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.Grain.cs:47\n",
+      "output": ""
+    },
+    {
+      "name": "WholeGrainStackToastsAtExactCapacityAndCannotRepeat(3)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat(3)",
+      "state": "Failed",
+      "durationSeconds": 0.2332068,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingSourceTests.WholeGrainStackToastsAtExactCapacityAndCannotRepeat (System.Int32 count) [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.Grain.cs:47\n",
+      "output": ""
+    }
+  ]
+}

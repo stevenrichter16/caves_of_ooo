@@ -1,6 +1,6 @@
 # Environmental exploration: passages, hauling and useful fire
 
-Status: E4 implementation in progress after E3 shipped as `4f95768a`. The parent exploration and expansion plans remain authoritative; this document records the next bounded implementation slices. This is original Caves of Ooo design. Qud is the exploration inspiration, not a claim of source-verified implementation parity.
+Status: E4 implementation in progress. Field passages and stable hauled-beam appearance shipped as `856690a6`, following E3 `4f95768a`. Grain cooking and its original model pass full native verification under [the cooking ledger](QUEST-FREE-COOKING-IMPLEMENTATION.md). The parent exploration and expansion plans remain authoritative. This is original Caves of Ooo design. Qud is the exploration inspiration, not a claim of source-verified implementation parity.
 
 ## Goal and sequence
 
@@ -42,7 +42,8 @@ For each slice: executed RED, minimum repair, paired and adversarial controls, a
 | Field passage helper/versioning | Native 258/258 GREEN, including actual source pipelines, literal saved versions and nearby exploration families | Full native 21,527/21,527 GREEN; ordinary discovery and a second decision-changing variant remain open |
 | Timber gate art | Two original imported models; native 17/17 within the 88-test art/haul sweep; four axes and removal covered | Actual closed/open/focused/loaded field views accepted locally; no distant-discovery or hinge-animation claim |
 | Haulable identity | Fixed locally; native 71/71 includes four identity/save/control cases plus recipe/style/drag neighbors | Exact FallenBeam saved-ID hash; old saves may select a different cosmetic shape once. No new haul encounter or smooth-animation claim |
-| Hauling situations, finite cooking, predator/prey | Source assessment/private planning | Separate tested playable implementations |
+| Harvested grain cooking | Native core136/136, art/neighbors126/126 and isolated-mode/restoration62/62 GREEN; actual input/save witness12/12 | Full native21,584/21,584, zero failures/skips; see the cooking ledger |
+| Hauling situations, finite workspot placement, predator/prey | Source assessment/private planning | Separate tested playable implementations |
 | Ordinary exploration quality | Open | Fixed ordinary-walk sample and human experience; local scripted proof does not substitute |
 
 Existing E3 limits remain: F5/F7 lived approaches and a complete generated collector journey are unverified; two collector observations met real threats. Do not keep repairing low-value observers or suppress the living world to manufacture a successful scene. Ownership, duplication, saving and essential-route failures remain significant and must be fixed.
@@ -82,9 +83,9 @@ No unresolved significant source, ownership, route or save defect was found in t
 
 ## Next source correction: connect gleaning to cooking
 
-Ordinary Spread crates/sacks provide prepared food, and Magpie apples are not a usable trade source. Current Emberwheat is edible 2d4 grain but has no Cookable mapping, so a generic cooking spot would often have no locally acquired ingredient. The next bounded content proposal adds an original ToastedEmberwheat transformation, one sheaf to one prepared portion at the same weight, with a modest 2d4→3d4 healing improvement and proposed commerce 10→12. It must use actually harvested/carried grain, never increase row yield or inject an ingredient to rescue placement.
+The pre-implementation audit found that ordinary Spread crates/sacks provide prepared food, Magpie apples are not a usable trade source, and Emberwheat lacked a Cookable mapping. The integrated candidate now adds an original ToastedEmberwheat transformation: one sheaf to one prepared portion at the same weight, with a 2d4→3d4 healing improvement and commerce 10→12. Actual native core and existing neighbors pass 136/136. Row yield remains unchanged. The original prepared-food model passes its 126-case native art/neighbor gate; the actual harvest→Cook→drop/pickup→F5/F6 witness passes12/12. Full native regression passes21,584/21,584, zero failures/skips; [the cooking ledger](QUEST-FREE-COOKING-IMPLEMENTATION.md) records current acceptance.
 
-Finite cooking remains opt-in for new work spots. Existing authored stations retain their semantics. Prove exact source identity before/after ingredient-output callbacks, truthful hot/cold actions and art, useful approach timing, and an explicit single-station placement budget before registration. Residual heat is not automatically burning fuel; no invented refuel action or danger claim is allowed. This section records the next plan, not shipped cooking content.
+Finite cooking admission is an explicit new opt-in; established authored stations retain their semantics. Exact source and ingredient identity across output callbacks are covered by the current native core gate. No finite workspot is registered yet: truthful heat/fuel actions and art, useful approach timing, and an explicit single-station placement budget remain required. Residual heat is not automatically burning fuel; no invented refuel action or danger claim is allowed. The retained [activation plan](Verification/QuestFreeExploration/E4/Cooking/ActivationPlan/ACTIVATION-PLAN.md) separates those future gates from the implemented grain recipe.
 
 
 ## Hauling feasibility correction before registration

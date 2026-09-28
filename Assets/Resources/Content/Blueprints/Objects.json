@@ -3379,9 +3379,91 @@
       ]
     },
     {
+      "Name": "ToastedEmberwheat",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "toasted emberwheat"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "3d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Toasted emberwheat, dry and crisp."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "Emberwheat",
       "Inherits": "FoodItem",
       "Parts": [
+        {
+          "Name": "Cookable",
+          "Params": [
+            {
+              "Key": "Into",
+              "Value": "ToastedEmberwheat"
+            }
+          ]
+        },
         {
           "Name": "Render",
           "Params": [

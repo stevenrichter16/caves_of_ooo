@@ -14,7 +14,7 @@
 
 The final unfiltered suite is `Verification/QuestFreeExploration/E3/Integration/native-full-suite-green.json` (job `c4f23ef8bf8c455d9a7c48469d0bbf9d`). It predates the scenario-only Exchange observer extension; that extension has a separate14/14 focused pass and8/8 local witness (`E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/report.json`). No later21,456-case full rerun is claimed. Focused receipts remain separate overlapping runs, not counts to add to that suite. Current source/evidence details and historical failures are in `QUEST-FREE-EXPANSION-PLAN.md` and `Verification/QuestFreeExploration/E3`. Setup-transfer witnesses are local action proofs, not ordinary discovery or human-awareness measurements.
 
-E4 is now in progress under [Environmental exploration implementation](QUEST-FREE-ENVIRONMENT-IMPLEMENTATION.md): useful field passages and stable hauled-object appearance pass native focused and live local gates. The full native sweep passes 21,527/21,527. Hauling situations, finite cooking, hunting and meaningful second variants remain separate unfinished slices; the next cooking proposal connects actually harvested emberwheat to a modest prepared meal.
+E4 is now in progress under [Environmental exploration implementation](QUEST-FREE-ENVIRONMENT-IMPLEMENTATION.md): useful field passages and stable hauled-object appearance pass native focused and live local gates. The full native sweep passes 21,527/21,527. Harvested emberwheat now has a prepared-meal recipe with native core136/136, art/neighbors126/126, mode/restoration62/62 and actual input/save12/12 acceptance; its full native regression passes21,584/21,584 with zero failures/skips. See [the cooking ledger](QUEST-FREE-COOKING-IMPLEMENTATION.md). Hauling situations, finite workspot placement, hunting and meaningful second variants remain separate unfinished slices.
 
 ## 1. Player outcome and scope
 
@@ -463,8 +463,8 @@ The recommended **first implementation tranche** is E0–E2: baseline and source
 | E0 baseline and measurement | Initial planning checkpoint (superseded by §12) | At planning time HEAD equaled origin/main at8b01bf02; no new receipts had yet been obtained. |
 | E1 regional planning and durable state | Implemented candidate; see §12 | Native persistence/geometry/integration evidence, with experience gates still open. |
 | E2 first four playable families | Implemented candidate; see §12 | Four connected families, native core/art checks; bounded live observation still underway. |
-| E3 second four families | Private implementation in progress | F5/F7 source/placement and v3 save-compatibility work; no E3 publication yet. |
-| E4 final four families | Not started | No new behavior shipped. |
+| E3 second four families | Shipped as `4f95768a`; experience limits remain | Native source/art/regression and local trade acceptance are recorded above; complete collector journey and F5/F7 ordinary approaches remain unverified. |
+| E4 final four families | Partly implemented; see the environmental and cooking ledgers | F12 passages and the F9 identity prerequisite shipped as `856690a6`. Grain cooking passes its full native21,584-case regression; finite site placement, actual hauling situations and F11 remain unfinished. |
 | E5 full Spread breadth, tuning and acceptance | Not started | No twenty-chunk acceptance sample executed. |
 | E6 other biomes | Deferred until Spread acceptance | Needs per-biome source audit and content design. |
 

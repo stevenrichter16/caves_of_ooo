@@ -1,0 +1,14 @@
+var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+var beforePath = scene.path;
+var beforeDirty = scene.isDirty;
+var result = CavesOfOoo.Editor.SpreadCookingBuilder.Build(
+    "/Users/steven/caves-of-ooo/ArtSource/SpreadCooking3D/Export",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Cooking/Art/native-import.json");
+var library = CavesOfOoo.Rendering.SpreadCooking3DLibrary.Load();
+if (result.status == "success" && library != null) library.Validate();
+return new {
+    result.status, result.error, result.models, result.sourceHash, result.assets,
+    liveEntries = library == null || library.Entries == null ? 0 : library.Entries.Length,
+    scenePathUnchanged = beforePath == UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,
+    sceneDirtyUnchanged = beforeDirty == UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty
+};

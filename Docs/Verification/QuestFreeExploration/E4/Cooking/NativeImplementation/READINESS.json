@@ -1,0 +1,40 @@
+{
+  "status": "Private observer implementation; native execution and image review pending",
+  "entryPoint": "CavesOfOoo.Editor.QuestFreeSpreadStateNativeBatch.LaunchCooking",
+  "seed": 64,
+  "candidateAddressLimit": 8,
+  "paidInputLimit": 6,
+  "secondsLimit": 150,
+  "setup": "Two disclosed original-player-only transfers; actual generated row then existing Sill fire",
+  "nativeRed": "Docs/Verification/QuestFreeExploration/E4/Integration/native-cooking-mode-red.json",
+  "nativeRedCases": 2,
+  "referenceCompiles": {
+    "CavesOfOoo": {
+      "exitCode": 0,
+      "logSha256": "e14d4418a16712f4f0e1cbfa045133bbbd8885d0a711ed8c20eb372567f64871",
+      "responseFileSha256": "9e965f3b30f53e4592179f36a0cc04ebbfd26e4759747e2def7513bbe56c56d3"
+    },
+    "Assembly-CSharp-Editor": {
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "responseFileSha256": "a5a401e3fb9240be82ac6bca3a635ce25226d4a7b7908f1a517ee7da6aa213d7"
+    },
+    "EditModeTests": {
+      "exitCode": 0,
+      "logSha256": "7b9e630bf575c2b76790f77d9dc5fc1452e5aa79a2b429840e0ad4fa4015a633",
+      "responseFileSha256": "ccf5cbd3a145875c997c4f8554a93a25e4498c0f2fcbd57275178c4e8febfcba"
+    }
+  },
+  "limits": [
+    "Local legacy campfire, not future finite cooking-site lifetime.",
+    "No ordinary discovery or travel claim.",
+    "No source/food/station/HP/RNG grants.",
+    "Exact model and bounds require imported SpreadCooking3D/Library and root image review.",
+    "Core cooking136 is separate from this native observer."
+  ],
+  "dependencies": [
+    "SpreadCooking3DLibrary shared source + imported SpreadCooking3D/Library (required for output visual gate)"
+  ],
+  "peerReview": "peer-review.json",
+  "outputDirectory": "Docs/Verification/QuestFreeExploration/E4/Cooking/Native/<runId>"
+}

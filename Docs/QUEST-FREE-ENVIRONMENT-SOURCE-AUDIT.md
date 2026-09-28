@@ -1,6 +1,6 @@
 # Environmental utility source audit (E4 preparation)
 
-Status: read-only source verification while E3 collector/action-cue integration continues. No E4 family is registered or implemented by this audit. This refines the existing parent plan; it does not replace its source/route/save/native gates.
+Status: historical read-only source verification performed before the E4 implementations. “Current” findings in the table describe that inspected baseline, not later source. Field passages and hauled-beam identity subsequently shipped as `856690a6`; exact cooking admission and the grain recipe are now verified locally under [the current cooking ledger](QUEST-FREE-COOKING-IMPLEMENTATION.md), with full regression in progress. No implementation is claimed by this audit itself.
 
 ## Corrections before implementation
 

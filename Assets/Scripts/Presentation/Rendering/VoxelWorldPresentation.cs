@@ -48,6 +48,8 @@ namespace CavesOfOoo.Rendering
                 if(collectors!=null){collectors.Validate();foreach(var e in collectors.Entries)generated.Add(e.Mesh);}
                 var fieldGates=SpreadFieldGate3DLibrary.Load();
                 if(fieldGates!=null){fieldGates.Validate();foreach(var e in fieldGates.Entries)generated.Add(e.Mesh);}
+                var cooking=SpreadCooking3DLibrary.Load();
+                if(cooking!=null){cooking.Validate();foreach(var e in cooking.Entries)generated.Add(e.Mesh);}
                 var exploration = QuestFreeSpreadArtLibrary.Load();
                 if (exploration != null) { exploration.Validate(); foreach (var entry in exploration.Entries) generated.Add(entry.Mesh); }
                 var creatures=SpreadCreature3DLibrary.Load();if(creatures==null)throw new InvalidOperationException("Scoped creature library missing.");

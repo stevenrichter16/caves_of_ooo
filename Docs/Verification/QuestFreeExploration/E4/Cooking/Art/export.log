@@ -1,0 +1,16 @@
+/tmp/coo-questfree-implementation/e4/cooking-art/export_source.py:15: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat=bpy.data.materials.new('ApprovedGladePalette');mat.use_nodes=True;tex=mat.node_tree.nodes.new('ShaderNodeTexImage');tex.image=img;tex.interpolation='Closest';mat.node_tree.links.new(tex.outputs['Color'],mat.node_tree.nodes['Principled BSDF'].inputs['Base Color']);mat.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value=1
+/tmp/coo-questfree-implementation/e4/cooking-art/export_source.py:32: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  scene.world.use_nodes=True;scene.world.node_tree.nodes['Background'].inputs[0].default_value=(.3,.32,.29,1);scene.world.node_tree.nodes['Background'].inputs[1].default_value=.8
+/tmp/coo-questfree-implementation/e4/cooking-art/export_source.py:33: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  floor=bpy.data.materials.new('ReviewOnlyGround');floor.use_nodes=True;floor.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value=(.014,.053,.042,1);floor.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value=1;bpy.ops.mesh.primitive_plane_add(size=100,location=(0,0,-.002));bpy.context.object.data.materials.append(floor)
+00:08.964  render           | Saved: '/private/tmp/coo-questfree-implementation/e4/cooking-art/Export/renders/toasted-grain-oblique.png'
+00:17.802  render           | Saved: '/private/tmp/coo-questfree-implementation/e4/cooking-art/Export/renders/toasted-grain-top.png'
+
+FBX export starting... '/private/tmp/coo-questfree-implementation/e4/cooking-art/Export/models/spread-toasted-emberwheat.fbx'
+export finished in 0.0061 sec.
+Info: Saved as "toasted-grain-source-review.blend"
+TOASTED_GRAIN_SOURCE {"id": "spread-toasted-emberwheat", "sourceBlueprint": "ToastedEmberwheat", "path": "models/spread-toasted-emberwheat.fbx", "kind": "entity", "rigged": false, "clips": [], "sockets": [], "triangles": 160, "sha256": "05de9f4f17101a8c5dbd7cde92c60610b8e6dadcb2ce72ca4f9a7074fd41f77b", "status": "private original source; not native-adopted"}
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

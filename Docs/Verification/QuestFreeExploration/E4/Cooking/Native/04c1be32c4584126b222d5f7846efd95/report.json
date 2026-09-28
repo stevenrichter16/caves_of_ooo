@@ -1,0 +1,571 @@
+{
+  "runId": "04c1be32c4584126b222d5f7846efd95",
+  "seed": 64,
+  "requestedSeed": 64,
+  "mode": "cooking",
+  "finished": true,
+  "complete": true,
+  "failures": 0,
+  "fatal": null,
+  "seconds": 11.249284699999999,
+  "paidInputs": 6,
+  "checks": [
+    {
+      "label": "ordinary_fresh_opted_in_world",
+      "pass": true
+    },
+    {
+      "label": "native_harvest_exact_source_and_one_packed_unit",
+      "pass": true
+    },
+    {
+      "label": "native_cook_one_for_one_original_food",
+      "pass": true
+    },
+    {
+      "label": "native_free_drop_keeps_exact_prepared_owner",
+      "pass": true
+    },
+    {
+      "label": "native_save_ground_food_and_cached_spent_row",
+      "pass": true
+    },
+    {
+      "label": "native_take_same_prepared_item",
+      "pass": true
+    },
+    {
+      "label": "native_unsaved_graph_and_clock_mutation",
+      "pass": true
+    },
+    {
+      "label": "native_load_exact_food_stubble_and_player",
+      "pass": true
+    },
+    {
+      "label": "native_restored_food_is_still_usable_owned_food",
+      "pass": true
+    },
+    {
+      "label": "final_inventory_read_is_free",
+      "pass": true
+    },
+    {
+      "label": "ordinary_cooking_no_grants_or_extra_food",
+      "pass": true
+    },
+    {
+      "label": "bounded_cooking_finish",
+      "pass": true
+    }
+  ],
+  "observations": [
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "None",
+      "zone": "Overworld.10.15.0",
+      "owner": "3205",
+      "arrival": [
+        55,
+        4
+      ],
+      "accepted": true,
+      "criterion": "actual unspent single-unit Emberwheat row and current safe adjacent visible approach",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "disclosed-player-only-transfer",
+      "label": "actual generated ripe Emberwheat row",
+      "zone": "Overworld.10.15.0",
+      "x": 55,
+      "y": 4,
+      "player": "2697",
+      "tick": 10,
+      "nativeEntryAdditions": [],
+      "boundary": "Setup transfer to an actual generated source; not an ordinary journey. Original source owners are preserved. Normal native entry-hook additions such as travellers are recorded separately, never suppressed."
+    },
+    {
+      "phase": "native-real-row-harvest",
+      "kind": "local",
+      "beforeTick": 10,
+      "afterTick": 20,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "fc296dda",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790608145531,
+          "Turn": 10,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"04c1be32c4584126b222d5f7846efd95\",\"label\":\"native-real-row-harvest\"}"
+        },
+        {
+          "TraceId": "786d1e2e",
+          "Category": "loot",
+          "Kind": "FieldHarvested",
+          "TimestampUnixMs": 1790608146106,
+          "Turn": 10,
+          "ActorId": "2697",
+          "TargetId": "3205",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"yield\":\"Emberwheat\",\"count\":1,\"dropped\":0}"
+        },
+        {
+          "TraceId": "3bd7d0c2",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790608146108,
+          "Turn": 10,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "61cfcdeb",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790608146108,
+          "Turn": 20,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "disclosed-player-only-transfer",
+      "label": "existing authored Sill cooking campfire",
+      "zone": "Overworld.10.10.0",
+      "x": 10,
+      "y": 15,
+      "player": "2697",
+      "tick": 20,
+      "nativeEntryAdditions": [],
+      "boundary": "Setup transfer to an actual generated source; not an ordinary journey. Original source owners are preserved. Normal native entry-hook additions such as travellers are recorded separately, never suppressed."
+    },
+    {
+      "phase": "actual-cooking-source",
+      "zone": "Overworld.10.10.0",
+      "owner": "7727",
+      "blueprint": "Campfire",
+      "position": {
+        "Item1": 11,
+        "Item2": 16
+      },
+      "finite": false,
+      "temperature": 500.0,
+      "fuel": 200.0,
+      "boundary": "Existing authored legacy station. No finite new-site lifetime claim."
+    },
+    {
+      "phase": "native-earned-grain-cook",
+      "kind": "local",
+      "beforeTick": 20,
+      "afterTick": 30,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "fee7237a",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790608147505,
+          "Turn": 20,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"04c1be32c4584126b222d5f7846efd95\",\"label\":\"native-earned-grain-cook\"}"
+        },
+        {
+          "TraceId": "e7a65db5",
+          "Category": "event",
+          "Kind": "FoodCooked",
+          "TimestampUnixMs": 1790608148465,
+          "Turn": 20,
+          "ActorId": "2697",
+          "TargetId": "5008",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"from\":\"Emberwheat\",\"into\":\"ToastedEmberwheat\",\"count\":1,\"station\":\"Campfire\"}"
+        },
+        {
+          "TraceId": "4391d73f",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790608148466,
+          "Turn": 20,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "4eabcc4e",
+          "Category": "event",
+          "Kind": "StoryletFired",
+          "TimestampUnixMs": 1790608148466,
+          "Turn": null,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"storyletId\":\"SillHearsIt\",\"oneShot\":true}"
+        },
+        {
+          "TraceId": "1c613db3",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790608148467,
+          "Turn": 30,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "6f542112",
+          "Category": "effect",
+          "Kind": "NativeSpellPrepared",
+          "TimestampUnixMs": 1790608148478,
+          "Turn": 30,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.10.10.0\",\"backend\":\"native\",\"LoadSeconds\":0.0,\"ValidationSeconds\":0.0,\"PoolSeconds\":0.0026418,\"ViewCount\":384,\"UsedCachedLibrary\":true}"
+        }
+      ]
+    },
+    {
+      "phase": "native-free-prepared-drop",
+      "owner": "7918",
+      "beforeTick": 30,
+      "afterTick": 30,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "rows": [
+        {
+          "TraceId": "b5f9dc48",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790608148653,
+          "Turn": 30,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"04c1be32c4584126b222d5f7846efd95\",\"label\":\"native-free-prepared-drop\"}"
+        },
+        {
+          "TraceId": "e0c15f7a",
+          "Category": "event",
+          "Kind": "ItemDispositionApplied",
+          "TimestampUnixMs": 1790608149733,
+          "Turn": 30,
+          "ActorId": "2697",
+          "TargetId": "7918",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"action\":\"Drop\",\"quantity\":1,\"source\":\"2697\",\"destination\":\"Overworld.10.10.0\",\"reason\":null}"
+        },
+        {
+          "TraceId": "fc3f4169",
+          "Category": "effect",
+          "Kind": "NativeSpellPrepared",
+          "TimestampUnixMs": 1790608149874,
+          "Turn": 30,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.10.10.0\",\"backend\":\"native\",\"LoadSeconds\":0.0,\"ValidationSeconds\":0.0,\"PoolSeconds\":0.002282,\"ViewCount\":384,\"UsedCachedLibrary\":true}"
+        }
+      ]
+    },
+    {
+      "phase": "native-step-beside-prepared-food",
+      "kind": "local",
+      "beforeTick": 30,
+      "afterTick": 40,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "3f05fdbf",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790608150047,
+          "Turn": 30,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"04c1be32c4584126b222d5f7846efd95\",\"label\":\"native-step-beside-prepared-food\"}"
+        },
+        {
+          "TraceId": "6e5b0094",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790608150051,
+          "Turn": 30,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "dae3fecd",
+          "Category": "event",
+          "Kind": "StoryletFired",
+          "TimestampUnixMs": 1790608150051,
+          "Turn": null,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"storyletId\":\"UrquSignsAwaken\",\"oneShot\":true}"
+        },
+        {
+          "TraceId": "b060b6f4",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790608150076,
+          "Turn": 40,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "actual-current-style",
+      "owner": "7918",
+      "blueprint": "ToastedEmberwheat",
+      "model": "spread-toasted-emberwheat",
+      "pieces": 1,
+      "camera": {
+        "pixelWidth": 1461,
+        "pixelHeight": 918
+      },
+      "boundary": "All-piece identity and bounds do not prove unoccluded pixels or human readability; images require review."
+    },
+    {
+      "phase": "native-prepared-food-pickup",
+      "kind": "local",
+      "beforeTick": 40,
+      "afterTick": 50,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "0298ff08",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790608150835,
+          "Turn": 40,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"04c1be32c4584126b222d5f7846efd95\",\"label\":\"native-prepared-food-pickup\"}"
+        },
+        {
+          "TraceId": "9f59a3ba",
+          "Category": "event",
+          "Kind": "ItemAcquisitionApplied",
+          "TimestampUnixMs": 1790608151268,
+          "Turn": 40,
+          "ActorId": "2697",
+          "TargetId": "7918",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"action\":\"Pickup\",\"source\":\"Overworld.10.10.0\",\"quantity\":1,\"reason\":null}"
+        },
+        {
+          "TraceId": "9c4616cd",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790608151269,
+          "Turn": 40,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d88c027b",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790608151292,
+          "Turn": 50,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "native-cooking-checkpoint-step",
+      "kind": "local",
+      "beforeTick": 50,
+      "afterTick": 60,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "ee1be5a8",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790608151607,
+          "Turn": 50,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"04c1be32c4584126b222d5f7846efd95\",\"label\":\"native-cooking-checkpoint-step\"}"
+        },
+        {
+          "TraceId": "badb4003",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790608151611,
+          "Turn": 50,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "19735239",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790608151636,
+          "Turn": 60,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "actual-current-style",
+      "owner": "7918",
+      "blueprint": "ToastedEmberwheat",
+      "model": "spread-toasted-emberwheat",
+      "pieces": 1,
+      "camera": {
+        "pixelWidth": 1461,
+        "pixelHeight": 918
+      },
+      "boundary": "All-piece identity and bounds do not prove unoccluded pixels or human readability; images require review."
+    },
+    {
+      "phase": "native-restored-food-pickup",
+      "kind": "local",
+      "beforeTick": 40,
+      "afterTick": 50,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "9a48d462",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790608152804,
+          "Turn": 40,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"04c1be32c4584126b222d5f7846efd95\",\"label\":\"native-restored-food-pickup\"}"
+        },
+        {
+          "TraceId": "bea393ef",
+          "Category": "event",
+          "Kind": "ItemAcquisitionApplied",
+          "TimestampUnixMs": 1790608153230,
+          "Turn": 40,
+          "ActorId": "2697",
+          "TargetId": "7918",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"action\":\"Pickup\",\"source\":\"Overworld.10.10.0\",\"quantity\":1,\"reason\":null}"
+        },
+        {
+          "TraceId": "506bab63",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790608153230,
+          "Turn": 40,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "f615011f",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790608153252,
+          "Turn": 50,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Cooking/Native/04c1be32c4584126b222d5f7846efd95/00-ordinary-start.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Cooking/Native/04c1be32c4584126b222d5f7846efd95/01-real-ripe-row-before-harvest.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Cooking/Native/04c1be32c4584126b222d5f7846efd95/02-harvested-row-stubble.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Cooking/Native/04c1be32c4584126b222d5f7846efd95/03-real-existing-sill-campfire.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Cooking/Native/04c1be32c4584126b222d5f7846efd95/04-real-prepared-food-dropped.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Cooking/Native/04c1be32c4584126b222d5f7846efd95/05-real-pickup-and-checkpoint-mutation.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Cooking/Native/04c1be32c4584126b222d5f7846efd95/06-native-restored-prepared-food.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Cooking/Native/04c1be32c4584126b222d5f7846efd95/07-final-carried-prepared-food.png"
+  ],
+  "unverifiedFamilies": [],
+  "humanAwarenessMeasured": false,
+  "boundary": "Seed64, at most eight canonical eligible FieldStrips addresses. Real generated ripe row and existing authored Sill campfire; two disclosed original-player setup transfers. Native Harvest/Cook/drop/Take and F5/Take/step/F6 replacement graph. No ingredient, station, actor, stats, source rates, RNG or time grants. Six paid inputs maximum;150seconds. This is a local legacy-campfire cooking and prepared-food persistence witness, not ordinary discovery/travel or finite residual-coal station lifetime. Approved world model/bounds require separately reviewed pixels.",
+  "settings": {
+    "screenWidth": 2271,
+    "screenHeight": 1251,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "lowDetail": false
+  }
+}

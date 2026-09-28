@@ -1,0 +1,91 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using NUnit.Framework;
+using UnityEngine;
+namespace CavesOfOoo.Tests
+{
+ // Private planning measurement. No new station, manifest family or gameplay edits.
+ public sealed class CookingActivationCensus
+ {
+  sealed class OrdinaryFields:OverworldZoneManager
+  {
+   internal SpreadCompositionBuilder Terrain;
+   internal OrdinaryFields(EntityFactory f,int seed):base(f,seed){}
+   protected override ZoneGenerationPipeline GetPipelineForZone(string id)
+   {
+    var p=base.GetPipelineForZone(id);Terrain=p.Builders.OfType<SpreadCompositionBuilder>().SingleOrDefault();
+    p.RemoveBuilders<SpreadExplorationBuilder>();
+    foreach(var population in p.Builders.OfType<PopulationBuilder>())population.ExplorationManager=null;
+    return p;
+   }
+  }
+  static readonly int[] dx={1,-1,0,0},dy={0,0,1,-1};
+  static bool In(int x,int y)=>x>=0&&x<Zone.Width&&y>=0&&y<Zone.Height;
+  static int[,] Dist(bool[,] walk,int x,int y)
+  {
+   var d=new int[Zone.Width,Zone.Height];for(int yy=0;yy<Zone.Height;yy++)for(int xx=0;xx<Zone.Width;xx++)d[xx,yy]=-1;
+   if(!In(x,y)||!walk[x,y])return d;var q=new Queue<(int x,int y)>();q.Enqueue((x,y));d[x,y]=0;
+   while(q.Count>0){var a=q.Dequeue();for(int n=0;n<4;n++){int xx=a.x+dx[n],yy=a.y+dy[n];if(In(xx,yy)&&walk[xx,yy]&&d[xx,yy]<0){d[xx,yy]=d[a.x,a.y]+1;q.Enqueue((xx,yy));}}}return d;
+  }
+  static List<(int x,int y)> Adj(bool[,] walk,int x,int y)=>Enumerable.Range(0,4).Select(n=>(x:x+dx[n],y:y+dy[n])).Where(a=>In(a.x,a.y)&&walk[a.x,a.y]).ToList();
+  static int Min(IEnumerable<int> values){var a=values.Where(x=>x>=0).ToArray();return a.Length==0?-1:a.Min();}
+  [TestCase(1)][TestCase(64)][TestCase(1729)] public void MeasureExistingFieldsOnly(int seed)
+  {
+   using(var scope=new DensityLootTestScope())
+   {
+    FactionManager.Initialize(File.ReadAllText(Path.Combine(Application.dataPath,"Resources/Content/Data/Factions.json")));
+    var index=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);
+    var entries=index.Exploration.Entries.Where(e=>e.PlacementEligible&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.FieldStrips).ToArray();
+    var output=new List<object>();int viable=0,allReady=0,grain=0;
+    foreach(var entry in entries)
+    {
+     scope.Seed(unchecked(seed^FormationSelector.StableIndex(entry.ZoneID,int.MaxValue)));var manager=new OrdinaryFields(scope.Factory,seed);var z=manager.GetZone(entry.ZoneID);
+     if(z==null){output.Add(new{zone=entry.ZoneID,error="generation-refused"});continue;}
+     var plan=manager.Terrain.Plan;var player=scope.Factory.CreateEntity("Player");
+     var rows=z.GetReadOnlyEntities().Where(e=>e.BlueprintName=="RipeCropRow"&&e.GetPart<FieldHarvestPart>()?.Harvested==false&&e.GetPart<FieldHarvestPart>().YieldBlueprint=="Emberwheat"&&e.GetPart<FieldHarvestPart>().YieldCount==1).ToArray();grain+=rows.Length;
+     var hostiles=z.GetReadOnlyEntities().Where(e=>e.GetPart<BrainPart>()!=null&&FactionManager.IsHostile(e,player)).Select(z.GetEntityPosition).ToArray();
+     var walk=new bool[Zone.Width,Zone.Height];var bare=new bool[Zone.Width,Zone.Height];
+     for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
+     {
+      var c=z.GetCell(x,y);bool safe=z.TileState.Get(x,y)?.IsEmpty!=false&&!c.IsInterior&&!c.BlocksMovement();
+      bool ground=false,empty=true;
+      foreach(var e in c.Occupants){if(e.HasTag("Creature")||e.HasPart<LiquidPoolPart>()||e.HasPart<GasPoolPart>()||e.HasPart<TriggerOnStepPart>())safe=false;if(DoorPart.IsBareGround(e))ground=true;else empty=false;}
+      if(Environment.GetEnvironmentVariable("COO_COOK_CLEARANCE")=="3"&&hostiles.Any(h=>Math.Max(Math.Abs(h.x-x),Math.Abs(h.y-y))<=3))safe=false;
+      walk[x,y]=safe;bare[x,y]=safe&&ground&&empty&&!z.GenReservedCells.Contains((x,y))&&x>=2&&x<Zone.Width-2&&y>=2&&y<Zone.Height-2;
+     }
+     var ports=new[]{(x:0,y:plan.WestY),(x:Zone.Width-1,y:plan.EastY),(x:plan.NorthX,y:0),(x:plan.SouthX,y:Zone.Height-1)};
+     var distances=ports.Select(a=>Dist(walk,a.x,a.y)).ToArray();
+     int candidates=0,safeCandidates=0,bestMax=int.MaxValue,bestMin=-1,bestX=-1,bestY=-1,stepsFromRow=-1;string rowID=null;int[] bestPorts=null;
+     foreach(var row in rows)
+     {
+      var at=z.GetEntityPosition(row);var rowAdj=Adj(walk,at.x,at.y);if(rowAdj.Count<2)continue;
+      foreach(var stand in rowAdj)
+      {
+       var rowPaths=Dist(walk,stand.x,stand.y);var approach=distances.Select(d=>d[stand.x,stand.y]).ToArray();if(approach.Any(d=>d<0))continue;
+       for(int y=Math.Max(2,at.y-5);y<=Math.Min(Zone.Height-3,at.y+5);y++)for(int x=Math.Max(2,at.x-5);x<=Math.Min(Zone.Width-3,at.x+5);x++)
+       {
+        int rowRange=Math.Max(Math.Abs(x-at.x),Math.Abs(y-at.y));if(rowRange<2||rowRange>5||!bare[x,y])continue;
+        var stationAdj=Adj(walk,x,y);if(stationAdj.Count<2)continue;int fromRow=Min(stationAdj.Select(a=>rowPaths[a.x,a.y]));if(fromRow<0||fromRow>8)continue;candidates++;
+        if(hostiles.Any(h=>Math.Max(Math.Abs(h.x-x),Math.Abs(h.y-y))<=6))continue;safeCandidates++;
+        // Entry completion + Harvest completion + Cook completion are each one
+        // local material pass on this modeled input path. Four cardinal ports,
+        // no global-tick conversion; NPC turns/survival/native UI not simulated.
+        var passes=approach.Select(n=>n+fromRow+3).ToArray();int maximum=passes.Max();
+        if(maximum<bestMax){bestMax=maximum;bestMin=passes.Min();bestX=x;bestY=y;stepsFromRow=fromRow;rowID=row.ID;bestPorts=passes;}
+       }
+      }
+     }
+     if(bestX>=0)viable++;if(bestMax<67)allReady++;
+     output.Add(new{zone=entry.ZoneID,currentFamily=entry.Family.ToString(),topology=entry.Topology.ToString(),condition=plan.Condition,ripeRows=rows.Select(e=>new{id=e.ID,pos=z.GetEntityPosition(e)}).ToArray(),hostiles=hostiles.Length,candidateTuples=candidates,clearance6Tuples=safeCandidates,best=bestX<0?null:new{sourceX=bestX,sourceY=bestY,rowID,rowToSourceSteps=stepsFromRow,minMaterialPasses=bestMin,maxMaterialPasses=bestMax,portPasses=bestPorts,defaultTemperatureAfter=25+475*Math.Pow(.98,bestMax)}});
+    }
+    var report=new{seed,routeThreatClearance=Environment.GetEnvironmentVariable("COO_COOK_CLEARANCE")=="3"?3:0,eligibleFields=entries.Length,ripeRows=grain,geometryAndClearanceCandidates=viable,allFourPortsBeforeDefaultCold=allReady,boundary="Private deterministic-hash core generation; all placement-eligible FieldStrips, current F3 composer and ambient rewrite disabled, other ordinary production retained. No v6 allocation or source placement. Cardinal static dry paths from four authored ports, actual hostile6-cell source clearance; optional route mask uses current hostile radius3 (explicit field); candidateTuples include repeated row/standing anchors. Does not prove path hostility, UI, visibility, NPC timing, heat conduction or native outcomes.",rows=output};
+    File.WriteAllText("/tmp/coo-questfree-implementation/cooking/activation/"+(Environment.GetEnvironmentVariable("COO_COOK_CLEARANCE")=="3"?"clearance3-":"")+"seed-"+seed+".json",Newtonsoft.Json.JsonConvert.SerializeObject(report,Newtonsoft.Json.Formatting.Indented));
+    Assert.AreEqual(entries.Length,output.Count);TestContext.WriteLine(seed+": fields="+entries.Length+", grain="+grain+", candidate="+viable+", all4default="+allReady);
+   }
+  }
+ }
+}

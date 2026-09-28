@@ -1,0 +1,31 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 2,
+    "passed": 0,
+    "failed": 2,
+    "skipped": 0,
+    "durationSeconds": 0.0629289,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "ActualCookingHasItsOwnNoArgumentLauncher",
+      "fullName": "CavesOfOoo.Tests.QuestFreeCookingNativeModeTests.ActualCookingHasItsOwnNoArgumentLauncher",
+      "state": "Failed",
+      "durationSeconds": 0.0065537,
+      "message": "  Missing bounded real-entry cooking mode\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeCookingNativeModeTests.ActualCookingHasItsOwnNoArgumentLauncher () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeCookingNativeModeTests.cs:21\n",
+      "output": ""
+    },
+    {
+      "name": "CookingRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+      "fullName": "CavesOfOoo.Tests.QuestFreeCookingNativeModeTests.CookingRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+      "state": "Failed",
+      "durationSeconds": 0.0076985,
+      "message": "  Missing explicit isolated cooking initializer\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeCookingNativeModeTests.CookingRefusesWithoutSaveIsolationBeforeChangingInputOrWorld () [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeCookingNativeModeTests.cs:32\n",
+      "output": ""
+    }
+  ]
+}

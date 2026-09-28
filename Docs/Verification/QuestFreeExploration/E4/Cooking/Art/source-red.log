@@ -1,0 +1,78 @@
+test_each_grain_is_closed_finite_grounded_and_has_nonzero_faces (__main__.ToastedSourceTests.test_each_grain_is_closed_finite_grounded_and_has_nonzero_faces) ... FAIL
+test_existing_raw_sheaf_and_other_food_sources_unchanged (__main__.ToastedSourceTests.test_existing_raw_sheaf_and_other_food_sources_unchanged) ... ok
+test_no_borrowed_sheaf_or_new_food_parts_in_source (__main__.ToastedSourceTests.test_no_borrowed_sheaf_or_new_food_parts_in_source) ... FAIL
+test_one_exact_static_food_without_container_rig_or_effect (__main__.ToastedSourceTests.test_one_exact_static_food_without_container_rig_or_effect) ... FAIL
+test_original_low_asymmetric_cluster_fits_portable_cell (__main__.ToastedSourceTests.test_original_low_asymmetric_cluster_fits_portable_cell) ... FAIL
+test_palette_is_approved_and_grain_has_brown_pale_and_charred_faces (__main__.ToastedSourceTests.test_palette_is_approved_and_grain_has_brown_pale_and_charred_faces) ... FAIL
+test_source_budget_is_small_and_no_duplicate_coplanar_parts (__main__.ToastedSourceTests.test_source_budget_is_small_and_no_duplicate_coplanar_parts) ... FAIL
+
+======================================================================
+FAIL: test_each_grain_is_closed_finite_grounded_and_has_nonzero_faces (__main__.ToastedSourceTests.test_each_grain_is_closed_finite_grounded_and_has_nonzero_faces)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 21, in test_each_grain_is_closed_finite_grounded_and_has_nonzero_faces
+    _,m=self.model()
+        ^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 7, in model
+    self.assertTrue((P/'kit.json').exists(),'Original prepared-grain source is not authored yet.')
+AssertionError: False is not true : Original prepared-grain source is not authored yet.
+
+======================================================================
+FAIL: test_no_borrowed_sheaf_or_new_food_parts_in_source (__main__.ToastedSourceTests.test_no_borrowed_sheaf_or_new_food_parts_in_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 29, in test_no_borrowed_sheaf_or_new_food_parts_in_source
+    _,m=self.model();self.assertNotIn('parts',m);self.assertNotIn('quantity',m);self.assertNotIn('healing',m);self.assertNotIn('weight',m);self.assertNotIn('Physics',json.dumps(m));self.assertTrue(all(k['part']!='bowl' for k in m['kernels']))
+        ^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 7, in model
+    self.assertTrue((P/'kit.json').exists(),'Original prepared-grain source is not authored yet.')
+AssertionError: False is not true : Original prepared-grain source is not authored yet.
+
+======================================================================
+FAIL: test_one_exact_static_food_without_container_rig_or_effect (__main__.ToastedSourceTests.test_one_exact_static_food_without_container_rig_or_effect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 10, in test_one_exact_static_food_without_container_rig_or_effect
+    d,m=self.model();self.assertEqual(m['id'],'spread-toasted-emberwheat');self.assertEqual(m['blueprint'],'ToastedEmberwheat');self.assertEqual(m['clips'],[]);self.assertEqual(m['sockets'],[]);self.assertFalse(m['rigged']);self.assertEqual(m['kind'],'entity');self.assertNotIn('source',m)
+        ^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 7, in model
+    self.assertTrue((P/'kit.json').exists(),'Original prepared-grain source is not authored yet.')
+AssertionError: False is not true : Original prepared-grain source is not authored yet.
+
+======================================================================
+FAIL: test_original_low_asymmetric_cluster_fits_portable_cell (__main__.ToastedSourceTests.test_original_low_asymmetric_cluster_fits_portable_cell)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 13, in test_original_low_asymmetric_cluster_fits_portable_cell
+    _,m=self.model();v=[v for k in m['kernels'] for v in k['vertices']];self.assertGreaterEqual(len(m['kernels']),6);self.assertLessEqual(len(m['kernels']),12)
+        ^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 7, in model
+    self.assertTrue((P/'kit.json').exists(),'Original prepared-grain source is not authored yet.')
+AssertionError: False is not true : Original prepared-grain source is not authored yet.
+
+======================================================================
+FAIL: test_palette_is_approved_and_grain_has_brown_pale_and_charred_faces (__main__.ToastedSourceTests.test_palette_is_approved_and_grain_has_brown_pale_and_charred_faces)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 19, in test_palette_is_approved_and_grain_has_brown_pale_and_charred_faces
+    d,m=self.model();self.assertEqual(d['palette'],json.loads((R/'ArtSource/ReferenceGlade3D/kit.json').read_text())['palette']);colors={i for k in m['kernels'] for i in k['faceColors']};self.assertTrue(colors.issubset({18,19,20,21,22}));self.assertTrue({18,19,22}.issubset(colors))
+        ^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 7, in model
+    self.assertTrue((P/'kit.json').exists(),'Original prepared-grain source is not authored yet.')
+AssertionError: False is not true : Original prepared-grain source is not authored yet.
+
+======================================================================
+FAIL: test_source_budget_is_small_and_no_duplicate_coplanar_parts (__main__.ToastedSourceTests.test_source_budget_is_small_and_no_duplicate_coplanar_parts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 31, in test_source_budget_is_small_and_no_duplicate_coplanar_parts
+    _,m=self.model();self.assertLessEqual(sum(sum(len(f)-2 for f in k['faces']) for k in m['kernels']),240);self.assertEqual(len({json.dumps(k['vertices']) for k in m['kernels']}),len(m['kernels']))
+        ^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 7, in model
+    self.assertTrue((P/'kit.json').exists(),'Original prepared-grain source is not authored yet.')
+AssertionError: False is not true : Original prepared-grain source is not authored yet.
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.014s
+
+FAILED (failures=6)

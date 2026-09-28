@@ -1,0 +1,15 @@
+# Prepared-grain native acceptance — bounded independent review
+
+Status: one-form native import succeeded; exactly ten generated files were recorded, all1,894 borrowed byte snapshots remained unchanged, and the active scene remained clean/unchanged. Actual focused art16 and listed neighbors110 passed126/126 with0 skip in32.8956421s; durable receipt is `E4/Integration/native-cooking-art-neighbors-green.json`. This is scoped validation, not a new unfiltered full-suite claim.
+
+Independently opened original1920×1080 screenshots `04-real-prepared-food-dropped.png`, `06-native-restored-prepared-food.png`, and `07-final-carried-prepared-food.png` from run `04c1be32c4584126b222d5f7846efd95` under `Docs/Verification/QuestFreeExploration/E4/Cooking/Native`.
+
+- In04 a small gold/brown irregular cluster is visible on the ground west of the player and campfire; it is separated from the tall ordinary campfire and nearby ground patches. No obvious floating material/geometry artifact is visible in the reviewed local view.
+- In06 the restored ground cluster retains that position and appearance. The screenshot alone does not establish saved identity; the actual report separately pins the replacement graph, owner7918, exact `spread-toasted-emberwheat`, one approved submitted piece, and cached spent row.
+- In07 the actual Inventory screen clearly lists selected `toasted emberwheat`, one pound/value12 with Eat/Examine. That is readable item identity after real pickup; it is not a 3D inventory icon or consumption/healing proof.
+
+The report completes12/12 checks,0 failures,6 paid inputs in11.2492847s: actual generated row in Overworld.10.15.0, real one-unit harvest, existing authored Sill campfire in Overworld.10.10.0 at11,16, actual Cook/drop/checkpoint/pickup/load/recovery. Both source visits used explicitly disclosed player-only setup transfers. This is a real local acquisition/use/save demonstration, not continuous ordinary travel or discovery. No raw-food grant or manufactured source was used. The old authored campfire remains finite=false; this run cannot validate the future finite residual-coal site or its availability window.
+
+The cluster is tiny at the full-zone camera scale. This accepts a coherent visible near-player food form, with no claim of distant recognition, detailed kernel readability at every zoom, every background contrast, or a matched on-ground raw/prepared pair (raw grain remained carried until cooking). Source preview approval and persistent mesh evidence complement these limited pixels; neither replaces them. No additional model change is warranted from this bounded review.
+
+Q1: same prepared owner remains visually consistent across real ground/drop/load and disappears through actual pickup. Q2: raw sheaf, other foods and authored campfire remain unchanged. Q3:16 art/source/ownership/save cases plus110 neighbors are actual native GREEN; the12-check local route and three independently viewed frames support the stated limit only. Q4: Toasted source/native files are frozen; future coal source art is a separate unactivated milestone.

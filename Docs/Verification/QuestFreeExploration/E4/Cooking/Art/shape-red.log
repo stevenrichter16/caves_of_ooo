@@ -1,0 +1,22 @@
+test_each_grain_is_closed_finite_grounded_and_has_nonzero_faces (__main__.ToastedSourceTests.test_each_grain_is_closed_finite_grounded_and_has_nonzero_faces) ... ok
+test_each_kernel_is_low_and_elongated_not_an_upright_stone (__main__.ToastedSourceTests.test_each_kernel_is_low_and_elongated_not_an_upright_stone) ... FAIL
+test_existing_raw_sheaf_and_other_food_sources_unchanged (__main__.ToastedSourceTests.test_existing_raw_sheaf_and_other_food_sources_unchanged) ... ok
+test_no_borrowed_sheaf_or_new_food_parts_in_source (__main__.ToastedSourceTests.test_no_borrowed_sheaf_or_new_food_parts_in_source) ... ok
+test_one_exact_static_food_without_container_rig_or_effect (__main__.ToastedSourceTests.test_one_exact_static_food_without_container_rig_or_effect) ... ok
+test_original_low_asymmetric_cluster_fits_portable_cell (__main__.ToastedSourceTests.test_original_low_asymmetric_cluster_fits_portable_cell) ... ok
+test_palette_is_approved_and_grain_has_brown_pale_and_charred_faces (__main__.ToastedSourceTests.test_palette_is_approved_and_grain_has_brown_pale_and_charred_faces) ... ok
+test_source_budget_is_small_and_no_duplicate_coplanar_parts (__main__.ToastedSourceTests.test_source_budget_is_small_and_no_duplicate_coplanar_parts) ... ok
+
+======================================================================
+FAIL: test_each_kernel_is_low_and_elongated_not_an_upright_stone (__main__.ToastedSourceTests.test_each_kernel_is_low_and_elongated_not_an_upright_stone)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-art/test_source.py", line 38, in test_each_kernel_is_low_and_elongated_not_an_upright_stone
+    self.assertGreaterEqual(length/width,2.4,k['part']);self.assertLessEqual(height/length,.30,k['part'])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2.2352957773310282 not greater than or equal to 2.4 : toasted-kernel-0
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.019s
+
+FAILED (failures=1)

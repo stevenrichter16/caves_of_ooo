@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/cooking/activation/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="19" result="Passed" start-time="2026-09-28T14:45:46.9886000Z" end-time="2026-09-28T14:45:48.7171880Z" duration="1.728520" total="3" passed="3" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="3" random-seed="772863858">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/cooking/activation/runner/bin/Debug/net8.0/EditModeRunner.dll --where "class == CavesOfOoo.Tests.CookingActivationCensus" --result=/tmp/coo-questfree-implementation/cooking/activation/census-clearance3.xml]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.CookingActivationCensus</class>
+  </filter>
+  <test-suite type="Assembly" id="1024" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/cooking/activation/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-09-28T14:45:46.9886000Z" end-time="2026-09-28T14:45:48.7171880Z" duration="1.728520" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="3">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+      <setting name="NumberOfTestWorkers" value="10" />
+    </settings>
+    <properties>
+      <property name="_PID" value="91569" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestSuite" id="1025" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-09-28T14:45:46.9904160Z" end-time="2026-09-28T14:45:48.7171860Z" duration="1.726743" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="3">
+      <test-suite type="TestSuite" id="1026" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-09-28T14:45:46.9905320Z" end-time="2026-09-28T14:45:48.7171730Z" duration="1.726614" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="3">
+        <test-suite type="TestFixture" id="1019" name="CookingActivationCensus" fullname="CavesOfOoo.Tests.CookingActivationCensus" classname="CavesOfOoo.Tests.CookingActivationCensus" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T14:45:46.9909000Z" end-time="2026-09-28T14:45:48.7171540Z" duration="1.726228" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="3">
+          <test-suite type="ParameterizedMethod" id="1023" name="MeasureExistingFieldsOnly" fullname="CavesOfOoo.Tests.CookingActivationCensus.MeasureExistingFieldsOnly" classname="CavesOfOoo.Tests.CookingActivationCensus" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T14:45:46.9918140Z" end-time="2026-09-28T14:45:48.7169220Z" duration="1.725081" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <test-case id="1020" name="MeasureExistingFieldsOnly(1)" fullname="CavesOfOoo.Tests.CookingActivationCensus.MeasureExistingFieldsOnly(1)" methodname="MeasureExistingFieldsOnly" classname="CavesOfOoo.Tests.CookingActivationCensus" runstate="Runnable" seed="407567004" result="Passed" start-time="2026-09-28T14:45:46.9919040Z" end-time="2026-09-28T14:45:47.6817950Z" duration="0.689923" asserts="1">
+              <output><![CDATA[1: fields=30, grain=63, candidate=28, all4default=23
+]]></output>
+            </test-case>
+            <test-case id="1021" name="MeasureExistingFieldsOnly(64)" fullname="CavesOfOoo.Tests.CookingActivationCensus.MeasureExistingFieldsOnly(64)" methodname="MeasureExistingFieldsOnly" classname="CavesOfOoo.Tests.CookingActivationCensus" runstate="Runnable" seed="1901246950" result="Passed" start-time="2026-09-28T14:45:47.6824590Z" end-time="2026-09-28T14:45:48.2189120Z" duration="0.536445" asserts="1">
+              <output><![CDATA[64: fields=30, grain=65, candidate=28, all4default=23
+]]></output>
+            </test-case>
+            <test-case id="1022" name="MeasureExistingFieldsOnly(1729)" fullname="CavesOfOoo.Tests.CookingActivationCensus.MeasureExistingFieldsOnly(1729)" methodname="MeasureExistingFieldsOnly" classname="CavesOfOoo.Tests.CookingActivationCensus" runstate="Runnable" seed="403286334" result="Passed" start-time="2026-09-28T14:45:48.2189460Z" end-time="2026-09-28T14:45:48.7164820Z" duration="0.497529" asserts="1">
+              <output><![CDATA[1729: fields=29, grain=65, candidate=29, all4default=21
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

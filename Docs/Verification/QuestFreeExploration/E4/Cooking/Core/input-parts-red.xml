@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/cooking/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="39" result="Failed" start-time="2026-09-28T14:26:45.1881550Z" end-time="2026-09-28T14:26:45.4181970Z" duration="0.230008" total="6" passed="1" failed="5" inconclusive="0" skipped="0" warnings="0" asserts="61" random-seed="1554505583">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/cooking/runner/bin/Debug/net8.0/EditModeRunner.dll --where "method == OutputFactoryCannotKeepPermissionFromReplacedInputParts or method == OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" --result=/tmp/coo-questfree-implementation/cooking/input-parts-red.xml]]></command-line>
+  <filter>
+    <or>
+      <method>OutputFactoryCannotKeepPermissionFromReplacedInputParts</method>
+      <method>OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation</method>
+    </or>
+  </filter>
+  <test-suite type="Assembly" id="1048" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/cooking/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-09-28T14:26:45.1881550Z" end-time="2026-09-28T14:26:45.4181970Z" duration="0.230008" total="6" passed="1" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="61">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+      <setting name="NumberOfTestWorkers" value="10" />
+    </settings>
+    <properties>
+      <property name="_PID" value="87617" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1049" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-09-28T14:26:45.1898060Z" end-time="2026-09-28T14:26:45.4181920Z" duration="0.228387" total="6" passed="1" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="61">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1050" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-09-28T14:26:45.1899330Z" end-time="2026-09-28T14:26:45.4181650Z" duration="0.228234" total="6" passed="1" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="61">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="FiniteCookingSourceTests" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-09-28T14:26:45.1902950Z" end-time="2026-09-28T14:26:45.4181580Z" duration="0.227863" total="6" passed="1" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="61">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1021" name="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T14:26:45.1912190Z" end-time="2026-09-28T14:26:45.3720350Z" duration="0.180816" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="41">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1017" name="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;unchanged&quot;)" methodname="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="108557224" result="Passed" start-time="2026-09-28T14:26:45.1913200Z" end-time="2026-09-28T14:26:45.2823800Z" duration="0.091086" asserts="12" />
+            <test-case id="1018" name="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;remove-part&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;remove-part&quot;)" methodname="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="793400390" result="Failed" start-time="2026-09-28T14:26:45.2829700Z" end-time="2026-09-28T14:26:45.3206510Z" duration="0.037682" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 111
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 111
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1019" name="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;replace-part&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;replace-part&quot;)" methodname="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="356338344" result="Failed" start-time="2026-09-28T14:26:45.3207120Z" end-time="2026-09-28T14:26:45.3487940Z" duration="0.028083" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 111
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 111
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1020" name="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;move-adjacent&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(&quot;move-adjacent&quot;)" methodname="OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="28704758" result="Failed" start-time="2026-09-28T14:26:45.3488210Z" end-time="2026-09-28T14:26:45.3700510Z" duration="0.021230" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 111
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 111
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromChangedExactLegacyStation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1024" name="OutputFactoryCannotKeepPermissionFromReplacedInputParts" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T14:26:45.3721920Z" end-time="2026-09-28T14:26:45.4180810Z" duration="0.045889" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1022" name="OutputFactoryCannotKeepPermissionFromReplacedInputParts(&quot;recipe&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts(&quot;recipe&quot;)" methodname="OutputFactoryCannotKeepPermissionFromReplacedInputParts" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="447224012" result="Failed" start-time="2026-09-28T14:26:45.3722060Z" end-time="2026-09-28T14:26:45.3937080Z" duration="0.021503" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 126
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 126
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1023" name="OutputFactoryCannotKeepPermissionFromReplacedInputParts(&quot;stack&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts(&quot;stack&quot;)" methodname="OutputFactoryCannotKeepPermissionFromReplacedInputParts" classname="CavesOfOoo.Tests.FiniteCookingSourceTests" runstate="Runnable" seed="1340178770" result="Failed" start-time="2026-09-28T14:26:45.3937860Z" end-time="2026-09-28T14:26:45.4180190Z" duration="0.024233" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 126
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingSourceTests.CookAndCheck(Entity raw, Boolean expected) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 71
+   at CavesOfOoo.Tests.FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts(String mutation) in /tmp/coo-questfree-implementation/cooking/FiniteCookingSourceTests.cs:line 126
+   at InvokeStub_FiniteCookingSourceTests.OutputFactoryCannotKeepPermissionFromReplacedInputParts(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

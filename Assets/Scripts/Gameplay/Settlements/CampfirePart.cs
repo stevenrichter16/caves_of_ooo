@@ -10,6 +10,10 @@ namespace CavesOfOoo.Core
     {
         public override string Name => "Campfire";
 
+        /// <summary>New finite cooking sources opt in explicitly. Existing authored
+        /// stations and older saves retain their established cooking/rest policy.</summary>
+        public bool FiniteCooking = false;
+
         private int _renderFrameCounter;
         private bool _proximityMessageShown;
 

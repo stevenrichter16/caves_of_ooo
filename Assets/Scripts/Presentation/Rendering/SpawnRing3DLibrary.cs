@@ -73,6 +73,7 @@ namespace CavesOfOoo.Rendering
             ?? (SpreadCollectorArtLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadCollectorArtLibrary>(load, SpreadCollectorArtLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (QuestFreeSpreadArtLibrary.Blueprint(modelId)!=null ? LoadExtension<QuestFreeSpreadArtLibrary>(load, QuestFreeSpreadArtLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadFieldGate3DLibrary.IsModelId(modelId) ? LoadExtension<SpreadFieldGate3DLibrary>(load, SpreadFieldGate3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (SpreadCooking3DLibrary.IsModelId(modelId) ? LoadExtension<SpreadCooking3DLibrary>(load, SpreadCooking3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadVisitorCreatureSource.Find(modelId)!=null ? LoadExtension<SpreadVisitorCreatureLibrary>(load, SpreadVisitorCreatureLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (modelId.StartsWith("spread-creature-",StringComparison.Ordinal) ? LoadExtension<SpreadCreature3DLibrary>(load, SpreadCreature3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadScenerySource.IsModelId(modelId) ? LoadExtension<SpreadScenery3DLibrary>(load, SpreadScenery3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
