@@ -1,0 +1,12 @@
+using System;using System.Collections;using System.Reflection;
+public static class CooRunProgram {
+ public static int Main(string[] args){try{
+  var registry=typeof(CavesOfOoo.Data.LootTableRegistry);var flags=BindingFlags.NonPublic|BindingFlags.Static;
+  var map=(IDictionary)registry.GetField("_byName",flags).GetValue(null);var marker=new CavesOfOoo.Data.LootTableData{Name="private-snapshot-control"};map.Add(marker.Name,marker);registry.GetField("_initialized",flags).SetValue(null,true);
+  System.Console.WriteLine(SpreadComponentMeasurement.Run(args[0],"standalone-net8-stablehash"));
+  if(map.Count!=1||!object.ReferenceEquals(map[marker.Name],marker)||!CavesOfOoo.Data.LootTableRegistry.IsInitialized)throw new Exception("Existing initialized registry not restored");
+  map.Clear();registry.GetField("_initialized",flags).SetValue(null,false);var nested=typeof(SpreadComponentMeasurement).GetNestedType("LootRegistrySnapshot",BindingFlags.NonPublic);var scope=(IDisposable)Activator.CreateInstance(nested,true);map.Add(marker.Name,marker);registry.GetField("_initialized",flags).SetValue(null,true);scope.Dispose();
+  if(map.Count!=0||CavesOfOoo.Data.LootTableRegistry.IsInitialized)throw new Exception("Original false/empty registry not restored");
+  System.Console.WriteLine("registry restoration true/nonempty and false/empty controls passed");return 0;
+ }catch(Exception e){System.Console.Error.WriteLine(e);return 1;}}
+}

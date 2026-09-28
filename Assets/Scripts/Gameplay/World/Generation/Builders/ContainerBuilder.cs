@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CavesOfOoo.Data;
 
 namespace CavesOfOoo.Core
@@ -20,6 +21,10 @@ namespace CavesOfOoo.Core
         public string Name => "ContainerBuilder";
         public int Priority => 4100;
 
+        /// <summary>Opt-in, transient provenance; never serialized or used on revisit.</summary>
+        public bool CaptureSourceReceipts;
+        public SpreadGenerationReceipt SourceReceipt { get; private set; }
+        private int sourceRevision;
         private readonly BiomeType _biome;
         private readonly int _tier;
         private readonly ContainerPlacementService.ZoneKind _kind;
@@ -34,13 +39,18 @@ namespace CavesOfOoo.Core
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
+            SourceReceipt = null; int revision = ++sourceRevision;
+            var owners = CaptureSourceReceipts ? new List<Entity>() : null;
             // The service takes the factory from its own static hook
             // (bootstrap-wired, CorpsePart convention); fall back to the
             // pipeline's factory so headless/test pipelines work too.
             if (ContainerPlacementService.Factory == null)
                 ContainerPlacementService.Factory = factory;
 
-            ContainerPlacementService.Populate(zone, _biome, _tier, _kind, rng);
+            var sourceFactory = ContainerPlacementService.Factory;
+            int expected = ContainerPlacementService.Populate(zone, _biome, _tier, _kind, rng, owners);
+            if (owners != null && CaptureSourceReceipts && revision == sourceRevision)
+                SourceReceipt = new SpreadGenerationReceipt(this, zone, sourceFactory, revision, owners, expected);
             return true;
         }
     }

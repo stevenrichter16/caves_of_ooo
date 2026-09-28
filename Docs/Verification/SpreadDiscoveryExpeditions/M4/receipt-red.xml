@@ -1,0 +1,614 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="41" result="Failed" start-time="2026-09-27T23:12:44.5313750Z" end-time="2026-09-27T23:12:45.1389020Z" duration="0.607506" total="25" passed="2" failed="23" inconclusive="0" skipped="0" warnings="0" asserts="25" random-seed="1520844080">
+  <command-line><![CDATA[/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-spread-discovery-m4/receipt-red.xml --where "class == CavesOfOoo.Tests.SpreadGenerationReceiptTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadGenerationReceiptTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1054" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-09-27T23:12:44.5313750Z" end-time="2026-09-27T23:12:45.1389020Z" duration="0.607506" total="25" passed="2" failed="23" warnings="0" inconclusive="0" skipped="0" asserts="25">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-spread-discovery-m4/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-spread-discovery-m4/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="79797" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1055" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-09-27T23:12:44.5328400Z" end-time="2026-09-27T23:12:45.1388990Z" duration="0.606047" total="25" passed="2" failed="23" warnings="0" inconclusive="0" skipped="0" asserts="25">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1056" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-09-27T23:12:44.5329370Z" end-time="2026-09-27T23:12:45.1388770Z" duration="0.605928" total="25" passed="2" failed="23" warnings="0" inconclusive="0" skipped="0" asserts="25">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1019" name="SpreadGenerationReceiptTests" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-09-27T23:12:44.5332600Z" end-time="2026-09-27T23:12:45.1388710Z" duration="0.605598" total="25" passed="2" failed="23" warnings="0" inconclusive="0" skipped="0" asserts="25">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1038" name="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27T23:12:44.5340980Z" end-time="2026-09-27T23:12:44.6650010Z" duration="0.130900" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1035" name="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(&quot;ambient&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(&quot;ambient&quot;)" methodname="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="914439145" result="Failed" start-time="2026-09-27T23:12:44.5341790Z" end-time="2026-09-27T23:12:44.6159710Z" duration="0.081816" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 57
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 57
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1036" name="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(&quot;other-group&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(&quot;other-group&quot;)" methodname="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="119977584" result="Failed" start-time="2026-09-27T23:12:44.6166570Z" end-time="2026-09-27T23:12:44.6452500Z" duration="0.028593" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 57
+   at InvokeStub_SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 57
+   at InvokeStub_SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1037" name="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(&quot;table-name&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(&quot;table-name&quot;)" methodname="AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="292965050" result="Failed" start-time="2026-09-27T23:12:44.6453120Z" end-time="2026-09-27T23:12:44.6645470Z" duration="0.019235" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 57
+   at InvokeStub_SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 57
+   at InvokeStub_SpreadGenerationReceiptTests.AmbiguousOrForeignGroupCannotBecomeOrdinaryHostileAuthority(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1028" name="DisabledCaptureLeavesNoReceipt" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T23:12:44.6652530Z" end-time="2026-09-27T23:12:44.7067550Z" duration="0.041501" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1026" name="DisabledCaptureLeavesNoReceipt(True)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt(True)" methodname="DisabledCaptureLeavesNoReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="716692529" result="Failed" start-time="2026-09-27T23:12:44.6652780Z" end-time="2026-09-27T23:12:44.6848730Z" duration="0.019595" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 48
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 48
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1027" name="DisabledCaptureLeavesNoReceipt(False)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt(False)" methodname="DisabledCaptureLeavesNoReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1675608889" result="Failed" start-time="2026-09-27T23:12:44.6849230Z" end-time="2026-09-27T23:12:44.7067230Z" duration="0.021800" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 48
+   at InvokeStub_SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 48
+   at InvokeStub_SpreadGenerationReceiptTests.DisabledCaptureLeavesNoReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1022" name="LegacySourcesStillGenerateOrdinaryContentWithoutOptIn" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.LegacySourcesStillGenerateOrdinaryContentWithoutOptIn" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-27T23:12:44.7068390Z" end-time="2026-09-27T23:12:44.7859580Z" duration="0.079117" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <test-case id="1020" name="LegacySourcesStillGenerateOrdinaryContentWithoutOptIn(True)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.LegacySourcesStillGenerateOrdinaryContentWithoutOptIn(True)" methodname="LegacySourcesStillGenerateOrdinaryContentWithoutOptIn" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="693219942" result="Passed" start-time="2026-09-27T23:12:44.7068750Z" end-time="2026-09-27T23:12:44.7613170Z" duration="0.054442" asserts="1" />
+            <test-case id="1021" name="LegacySourcesStillGenerateOrdinaryContentWithoutOptIn(False)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.LegacySourcesStillGenerateOrdinaryContentWithoutOptIn(False)" methodname="LegacySourcesStillGenerateOrdinaryContentWithoutOptIn" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1381816007" result="Passed" start-time="2026-09-27T23:12:44.7613430Z" end-time="2026-09-27T23:12:44.7859320Z" duration="0.024589" asserts="1" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1025" name="OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T23:12:44.7860060Z" end-time="2026-09-27T23:12:44.8253020Z" duration="0.039296" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1023" name="OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(True)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(True)" methodname="OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="421385981" result="Failed" start-time="2026-09-27T23:12:44.7860170Z" end-time="2026-09-27T23:12:44.8069430Z" duration="0.020926" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 41
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 41
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1024" name="OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(False)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(False)" methodname="OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1332026342" result="Failed" start-time="2026-09-27T23:12:44.8069740Z" end-time="2026-09-27T23:12:44.8252280Z" duration="0.018254" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 41
+   at InvokeStub_SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 41
+   at InvokeStub_SpreadGenerationReceiptTests.OptInCapturesActualSourceOwnersAndExactZoneWithoutRngOrShapeChanges(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1034" name="OptOutRebuildInvalidatesAndClearsPriorReceipt" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T23:12:44.8253410Z" end-time="2026-09-27T23:12:44.8621660Z" duration="0.036824" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1032" name="OptOutRebuildInvalidatesAndClearsPriorReceipt(True)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt(True)" methodname="OptOutRebuildInvalidatesAndClearsPriorReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1860176802" result="Failed" start-time="2026-09-27T23:12:44.8253680Z" end-time="2026-09-27T23:12:44.8467580Z" duration="0.021389" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 54
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 54
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1033" name="OptOutRebuildInvalidatesAndClearsPriorReceipt(False)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt(False)" methodname="OptOutRebuildInvalidatesAndClearsPriorReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="729911883" result="Failed" start-time="2026-09-27T23:12:44.8468140Z" end-time="2026-09-27T23:12:44.8620700Z" duration="0.015255" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 54
+   at InvokeStub_SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 54
+   at InvokeStub_SpreadGenerationReceiptTests.OptOutRebuildInvalidatesAndClearsPriorReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1046" name="OwnerMutationInvalidatesPopulationReceipt" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-27T23:12:44.8622200Z" end-time="2026-09-27T23:12:44.9766890Z" duration="0.114466" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1040" name="OwnerMutationInvalidatesPopulationReceipt(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(&quot;moved&quot;)" methodname="OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1434025519" result="Failed" start-time="2026-09-27T23:12:44.8622700Z" end-time="2026-09-27T23:12:44.8806060Z" duration="0.018335" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 62
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 62
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1041" name="OwnerMutationInvalidatesPopulationReceipt(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(&quot;removed&quot;)" methodname="OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1863127155" result="Failed" start-time="2026-09-27T23:12:44.8806210Z" end-time="2026-09-27T23:12:44.8991020Z" duration="0.018481" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 62
+   at InvokeStub_SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 62
+   at InvokeStub_SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1042" name="OwnerMutationInvalidatesPopulationReceipt(&quot;same-id-replacement&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(&quot;same-id-replacement&quot;)" methodname="OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="365977181" result="Failed" start-time="2026-09-27T23:12:44.8991410Z" end-time="2026-09-27T23:12:44.9194960Z" duration="0.020355" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 62
+   at InvokeStub_SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 62
+   at InvokeStub_SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1043" name="OwnerMutationInvalidatesPopulationReceipt(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(&quot;carried&quot;)" methodname="OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1427503612" result="Failed" start-time="2026-09-27T23:12:44.9195360Z" end-time="2026-09-27T23:12:44.9349200Z" duration="0.015384" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 62
+   at InvokeStub_SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 62
+   at InvokeStub_SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1044" name="OwnerMutationInvalidatesPopulationReceipt(&quot;physics-backlink&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(&quot;physics-backlink&quot;)" methodname="OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1104581959" result="Failed" start-time="2026-09-27T23:12:44.9349420Z" end-time="2026-09-27T23:12:44.9533040Z" duration="0.018363" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 62
+   at InvokeStub_SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 62
+   at InvokeStub_SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1045" name="OwnerMutationInvalidatesPopulationReceipt(&quot;health&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(&quot;health&quot;)" methodname="OwnerMutationInvalidatesPopulationReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1931014999" result="Failed" start-time="2026-09-27T23:12:44.9533280Z" end-time="2026-09-27T23:12:44.9766210Z" duration="0.023293" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 62
+   at InvokeStub_SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 62
+   at InvokeStub_SpreadGenerationReceiptTests.OwnerMutationInvalidatesPopulationReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1039" name="PreexistingSameBlueprintOwnersAndStampContainersAreNotCaptured" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.PreexistingSameBlueprintOwnersAndStampContainersAreNotCaptured" methodname="PreexistingSameBlueprintOwnersAndStampContainersAreNotCaptured" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="382248824" result="Failed" start-time="2026-09-27T23:12:44.9767250Z" end-time="2026-09-27T23:12:45.0006810Z" duration="0.023956" asserts="1">
+            <failure>
+              <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.PreexistingSameBlueprintOwnersAndStampContainersAreNotCaptured() in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 59
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.PreexistingSameBlueprintOwnersAndStampContainersAreNotCaptured() in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 59
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1031" name="SameAddressDifferentBuildInvalidatesPriorReceipt" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T23:12:45.0007020Z" end-time="2026-09-27T23:12:45.0371930Z" duration="0.036491" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1029" name="SameAddressDifferentBuildInvalidatesPriorReceipt(True)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt(True)" methodname="SameAddressDifferentBuildInvalidatesPriorReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="740316560" result="Failed" start-time="2026-09-27T23:12:45.0007140Z" end-time="2026-09-27T23:12:45.0213440Z" duration="0.020630" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 51
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 51
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="SameAddressDifferentBuildInvalidatesPriorReceipt(False)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt(False)" methodname="SameAddressDifferentBuildInvalidatesPriorReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="12556124" result="Failed" start-time="2026-09-27T23:12:45.0213590Z" end-time="2026-09-27T23:12:45.0370100Z" duration="0.015651" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 51
+   at InvokeStub_SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 51
+   at InvokeStub_SpreadGenerationReceiptTests.SameAddressDifferentBuildInvalidatesPriorReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1050" name="StockMutationInvalidatesContainerReceipt" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27T23:12:45.0372080Z" end-time="2026-09-27T23:12:45.0985240Z" duration="0.061315" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1047" name="StockMutationInvalidatesContainerReceipt(&quot;remove-item&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(&quot;remove-item&quot;)" methodname="StockMutationInvalidatesContainerReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="131869827" result="Failed" start-time="2026-09-27T23:12:45.0372370Z" end-time="2026-09-27T23:12:45.0574640Z" duration="0.020227" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 67
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 67
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1048" name="StockMutationInvalidatesContainerReceipt(&quot;quantity&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(&quot;quantity&quot;)" methodname="StockMutationInvalidatesContainerReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="686763437" result="Failed" start-time="2026-09-27T23:12:45.0575040Z" end-time="2026-09-27T23:12:45.0791650Z" duration="0.021661" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 67
+   at InvokeStub_SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 67
+   at InvokeStub_SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1049" name="StockMutationInvalidatesContainerReceipt(&quot;replaced-part&quot;)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(&quot;replaced-part&quot;)" methodname="StockMutationInvalidatesContainerReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1902267307" result="Failed" start-time="2026-09-27T23:12:45.0791820Z" end-time="2026-09-27T23:12:45.0983870Z" duration="0.019205" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 67
+   at InvokeStub_SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(String change) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 67
+   at InvokeStub_SpreadGenerationReceiptTests.StockMutationInvalidatesContainerReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1053" name="UnrelatedLaterPlacementDoesNotInvalidateExactReceipt" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T23:12:45.0985640Z" end-time="2026-09-27T23:12:45.1388130Z" duration="0.040248" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1051" name="UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(True)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(True)" methodname="UnrelatedLaterPlacementDoesNotInvalidateExactReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="1544461267" result="Failed" start-time="2026-09-27T23:12:45.0986060Z" end-time="2026-09-27T23:12:45.1188180Z" duration="0.020212" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 71
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 71
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1052" name="UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(False)" fullname="CavesOfOoo.Tests.SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(False)" methodname="UnrelatedLaterPlacementDoesNotInvalidateExactReceipt" classname="CavesOfOoo.Tests.SpreadGenerationReceiptTests" runstate="Runnable" seed="753348038" result="Failed" start-time="2026-09-27T23:12:45.1188870Z" end-time="2026-09-27T23:12:45.1387850Z" duration="0.019898" asserts="1">
+              <failure>
+                <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 71
+   at InvokeStub_SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Optional exact source capture must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.Capture(Object builder, Boolean enabled) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(Boolean population) in /tmp/coo-spread-discovery-m4/SpreadGenerationReceiptTests.cs:line 71
+   at InvokeStub_SpreadGenerationReceiptTests.UnrelatedLaterPlacementDoesNotInvalidateExactReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

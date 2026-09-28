@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="99" result="Failed" start-time="2026-09-27T23:47:44.6546770Z" end-time="2026-09-27T23:47:45.0139160Z" duration="0.359188" total="2" passed="1" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="12" random-seed="1498413014">
+  <command-line><![CDATA[/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-spread-discovery-m4/current-wayhouse-red.xml --where "method == CurrentWayhouseReplacementCannotSpendThisZonesOrdinarySources"]]></command-line>
+  <filter>
+    <method>CurrentWayhouseReplacementCannotSpendThisZonesOrdinarySources</method>
+  </filter>
+  <test-suite type="Assembly" id="1126" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="99" result="Failed" site="Child" start-time="2026-09-27T23:47:44.6546770Z" end-time="2026-09-27T23:47:45.0139160Z" duration="0.359188" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="12">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-spread-discovery-m4/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-spread-discovery-m4/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="88958" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1127" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="99" result="Failed" site="Child" start-time="2026-09-27T23:47:44.6574170Z" end-time="2026-09-27T23:47:45.0139110Z" duration="0.356487" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="12">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1128" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="99" result="Failed" site="Child" start-time="2026-09-27T23:47:44.6575640Z" end-time="2026-09-27T23:47:45.0138960Z" duration="0.356326" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="12">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1097" name="SpreadWildernessSituationAdversarialTests" fullname="CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests" classname="CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests" runstate="Runnable" testcasecount="23" result="Failed" site="Child" start-time="2026-09-27T23:47:44.6579700Z" end-time="2026-09-27T23:47:45.0138580Z" duration="0.355882" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="12">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1119" name="CurrentWayhouseReplacementCannotSpendThisZonesOrdinarySources" fullname="CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests.CurrentWayhouseReplacementCannotSpendThisZonesOrdinarySources" classname="CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T23:47:44.6604360Z" end-time="2026-09-27T23:47:45.0135880Z" duration="0.353145" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1117" name="CurrentWayhouseReplacementCannotSpendThisZonesOrdinarySources(True)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests.CurrentWayhouseReplacementCannotSpendThisZonesOrdinarySources(True)" methodname="CurrentWayhouseReplacementCannotSpendThisZonesOrdinarySources" classname="CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests" runstate="Runnable" seed="8842353" result="Failed" start-time="2026-09-27T23:47:44.6607090Z" end-time="2026-09-27T23:47:44.9464650Z" duration="0.285780" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected string length 47065 but was 47064. Strings differ at index 27981.
+  Expected: "...:15:2096/Hatchet/1;2097/Sack@(46, 18):0:2098/StoneburrSeed..."
+  But was:  "...:15:2096/Hatchet/1;2097/Sack@(74, 2):0:2098/StoneburrSeed/..."
+  --------------------------------------------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests.CurrentWayhouseReplacementCannotSpendThisZonesOrdinarySources(Boolean selectsHere) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationAdversarialTests.cs:line 66
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 47065 but was 47064. Strings differ at index 27981.
+  Expected: "...:15:2096/Hatchet/1;2097/Sack@(46, 18):0:2098/StoneburrSeed..."
+  But was:  "...:15:2096/Hatchet/1;2097/Sack@(74, 2):0:2098/StoneburrSeed/..."
+  --------------------------------------------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests.CurrentWayhouseReplacementCannotSpendThisZonesOrdinarySources(Boolean selectsHere) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationAdversarialTests.cs:line 66
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1118" name="CurrentWayhouseReplacementCannotSpendThisZonesOrdinarySources(False)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests.CurrentWayhouseReplacementCannotSpendThisZonesOrdinarySources(False)" methodname="CurrentWayhouseReplacementCannotSpendThisZonesOrdinarySources" classname="CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests" runstate="Runnable" seed="1621475784" result="Passed" start-time="2026-09-27T23:47:44.9472740Z" end-time="2026-09-27T23:47:45.0131590Z" duration="0.065884" asserts="6" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-cold-eye/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="55" result="Failed" start-time="2026-09-28T00:11:26.4909030Z" end-time="2026-09-28T00:11:28.7133730Z" duration="2.222464" total="39" passed="31" failed="8" inconclusive="0" skipped="0" warnings="0" asserts="293" random-seed="1827419970">
+  <command-line><![CDATA[/private/tmp/coo-spread-discovery-cold-eye/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-spread-discovery-cold-eye/goods-before.xml --where "class == CavesOfOoo.Tests.SpreadWayhouseAdversarialTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadWayhouseAdversarialTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1067" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-cold-eye/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="55" result="Failed" site="Child" start-time="2026-09-28T00:11:26.4909030Z" end-time="2026-09-28T00:11:28.7133730Z" duration="2.222464" total="39" passed="31" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="293">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-spread-discovery-cold-eye/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-spread-discovery-cold-eye/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="97144" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1068" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="55" result="Failed" site="Child" start-time="2026-09-28T00:11:26.4931080Z" end-time="2026-09-28T00:11:28.7133690Z" duration="2.220266" total="39" passed="31" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="293">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1069" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="55" result="Failed" site="Child" start-time="2026-09-28T00:11:26.4932480Z" end-time="2026-09-28T00:11:28.7133640Z" duration="2.220121" total="39" passed="31" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="293">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1019" name="SpreadWayhouseAdversarialTests" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-09-28T00:11:26.4937510Z" end-time="2026-09-28T00:11:28.7133540Z" duration="2.219608" total="39" passed="31" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="293">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1039" name="BothRoutesRequireReachableOutsideKeyStation" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.BothRoutesRequireReachableOutsideKeyStation" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T00:11:26.4950580Z" end-time="2026-09-28T00:11:26.7360510Z" duration="0.240993" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <test-case id="1037" name="BothRoutesRequireReachableOutsideKeyStation(False)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.BothRoutesRequireReachableOutsideKeyStation(False)" methodname="BothRoutesRequireReachableOutsideKeyStation" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1498742521" result="Passed" start-time="2026-09-28T00:11:26.4951680Z" end-time="2026-09-28T00:11:26.6737820Z" duration="0.178647" asserts="8" />
+            <test-case id="1038" name="BothRoutesRequireReachableOutsideKeyStation(True)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.BothRoutesRequireReachableOutsideKeyStation(True)" methodname="BothRoutesRequireReachableOutsideKeyStation" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1730629991" result="Passed" start-time="2026-09-28T00:11:26.6747030Z" end-time="2026-09-28T00:11:26.7355660Z" duration="0.060863" asserts="16" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1063" name="ClaimedOrChangedOrdinarySourceCannotBeSpentTwice" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.ClaimedOrChangedOrdinarySourceCannotBeSpentTwice" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T00:11:26.7362730Z" end-time="2026-09-28T00:11:26.8288880Z" duration="0.092615" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <test-case id="1061" name="ClaimedOrChangedOrdinarySourceCannotBeSpentTwice(False)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.ClaimedOrChangedOrdinarySourceCannotBeSpentTwice(False)" methodname="ClaimedOrChangedOrdinarySourceCannotBeSpentTwice" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1350054571" result="Passed" start-time="2026-09-28T00:11:26.7362970Z" end-time="2026-09-28T00:11:26.7881660Z" duration="0.051869" asserts="10" />
+            <test-case id="1062" name="ClaimedOrChangedOrdinarySourceCannotBeSpentTwice(True)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.ClaimedOrChangedOrdinarySourceCannotBeSpentTwice(True)" methodname="ClaimedOrChangedOrdinarySourceCannotBeSpentTwice" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1090510013" result="Passed" start-time="2026-09-28T00:11:26.7882000Z" end-time="2026-09-28T00:11:26.8288450Z" duration="0.040646" asserts="10" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1060" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-09-28T00:11:26.8289290Z" end-time="2026-09-28T00:11:27.7264200Z" duration="0.897493" total="14" passed="10" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="135">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1046" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;unchanged&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1954052738" result="Passed" start-time="2026-09-28T00:11:26.8289980Z" end-time="2026-09-28T00:11:26.8903490Z" duration="0.061352" asserts="9" />
+            <test-case id="1047" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;empty-key-id&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;empty-key-id&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="451980418" result="Passed" start-time="2026-09-28T00:11:26.8905620Z" end-time="2026-09-28T00:11:26.9491830Z" duration="0.058621" asserts="10" />
+            <test-case id="1048" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;existing-id&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;existing-id&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1881339157" result="Passed" start-time="2026-09-28T00:11:26.9492090Z" end-time="2026-09-28T00:11:26.9986680Z" duration="0.049459" asserts="10" />
+            <test-case id="1049" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;shared-goods-id&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;shared-goods-id&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="982514477" result="Passed" start-time="2026-09-28T00:11:26.9986910Z" end-time="2026-09-28T00:11:27.0556720Z" duration="0.056982" asserts="10" />
+            <test-case id="1050" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;key-part&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;key-part&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1427012484" result="Passed" start-time="2026-09-28T00:11:27.0557340Z" end-time="2026-09-28T00:11:27.1325460Z" duration="0.076813" asserts="10" />
+            <test-case id="1051" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;door-owned&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;door-owned&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1571221718" result="Passed" start-time="2026-09-28T00:11:27.1325720Z" end-time="2026-09-28T00:11:27.1940650Z" duration="0.061494" asserts="10" />
+            <test-case id="1052" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;door-lock&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;door-lock&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1567269943" result="Passed" start-time="2026-09-28T00:11:27.1940860Z" end-time="2026-09-28T00:11:27.2625610Z" duration="0.068476" asserts="10" />
+            <test-case id="1053" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;hidden-wall&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;hidden-wall&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1134989237" result="Passed" start-time="2026-09-28T00:11:27.2625910Z" end-time="2026-09-28T00:11:27.3267460Z" duration="0.064155" asserts="10" />
+            <test-case id="1054" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;gear-backlink&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;gear-backlink&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1030634451" result="Passed" start-time="2026-09-28T00:11:27.3268170Z" end-time="2026-09-28T00:11:27.3975090Z" duration="0.070693" asserts="10" />
+            <test-case id="1055" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;inventory-backlink&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;inventory-backlink&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="860151389" result="Passed" start-time="2026-09-28T00:11:27.3976360Z" end-time="2026-09-28T00:11:27.4641350Z" duration="0.066499" asserts="10" />
+            <test-case id="1056" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;reward-count&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;reward-count&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="869431698" result="Failed" start-time="2026-09-28T00:11:27.4641620Z" end-time="2026-09-28T00:11:27.5507890Z" duration="0.086628" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 164
+   at InvokeStub_SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 164
+   at InvokeStub_SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1057" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;reward-value&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;reward-value&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="141794838" result="Failed" start-time="2026-09-28T00:11:27.5509030Z" end-time="2026-09-28T00:11:27.6084160Z" duration="0.057514" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 164
+   at InvokeStub_SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 164
+   at InvokeStub_SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1058" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;tradeable-key&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;tradeable-key&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1834042674" result="Failed" start-time="2026-09-28T00:11:27.6084870Z" end-time="2026-09-28T00:11:27.6718710Z" duration="0.063384" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 164
+   at InvokeStub_SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 164
+   at InvokeStub_SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1059" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;key-count&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;key-count&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1778491357" result="Failed" start-time="2026-09-28T00:11:27.6718940Z" end-time="2026-09-28T00:11:27.7264000Z" duration="0.054506" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 164
+   at InvokeStub_SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 164
+   at InvokeStub_SpreadWayhouseAdversarialTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1036" name="FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-28T00:11:27.7264330Z" end-time="2026-09-28T00:11:27.9028860Z" duration="0.176453" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="46">
+            <test-case id="1032" name="FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver(&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver(&quot;unchanged&quot;)" methodname="FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1467622166" result="Passed" start-time="2026-09-28T00:11:27.7264490Z" end-time="2026-09-28T00:11:27.7898100Z" duration="0.063362" asserts="10" />
+            <test-case id="1033" name="FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver(&quot;foreign-zone&quot;)" methodname="FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1284484895" result="Passed" start-time="2026-09-28T00:11:27.7899180Z" end-time="2026-09-28T00:11:27.8349480Z" duration="0.045030" asserts="13" />
+            <test-case id="1034" name="FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver(&quot;foreign-inventory&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver(&quot;foreign-inventory&quot;)" methodname="FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="224552830" result="Passed" start-time="2026-09-28T00:11:27.8350500Z" end-time="2026-09-28T00:11:27.8744340Z" duration="0.039384" asserts="11" />
+            <test-case id="1035" name="FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver(&quot;already-stocked&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver(&quot;already-stocked&quot;)" methodname="FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="301547650" result="Passed" start-time="2026-09-28T00:11:27.8745280Z" end-time="2026-09-28T00:11:27.9028630Z" duration="0.028335" asserts="12" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1028" name="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-28T00:11:27.9028970Z" end-time="2026-09-28T00:11:28.2785820Z" duration="0.375686" total="8" passed="4" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1020" name="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;unchanged&quot;)" methodname="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="4235087" result="Passed" start-time="2026-09-28T00:11:27.9029120Z" end-time="2026-09-28T00:11:27.9629720Z" duration="0.060060" asserts="4" />
+            <test-case id="1021" name="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;owned-door&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;owned-door&quot;)" methodname="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1510851452" result="Passed" start-time="2026-09-28T00:11:27.9629940Z" end-time="2026-09-28T00:11:27.9954880Z" duration="0.032495" asserts="4" />
+            <test-case id="1022" name="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;removed-cache&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;removed-cache&quot;)" methodname="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1269369420" result="Passed" start-time="2026-09-28T00:11:27.9955640Z" end-time="2026-09-28T00:11:28.0500380Z" duration="0.054474" asserts="4" />
+            <test-case id="1023" name="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;plan-replaced&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;plan-replaced&quot;)" methodname="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1521878999" result="Passed" start-time="2026-09-28T00:11:28.0501480Z" end-time="2026-09-28T00:11:28.0893500Z" duration="0.039202" asserts="4" />
+            <test-case id="1024" name="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;reward-count&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;reward-count&quot;)" methodname="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="173126304" result="Failed" start-time="2026-09-28T00:11:28.0893940Z" end-time="2026-09-28T00:11:28.1272370Z" duration="0.037843" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 49
+   at InvokeStub_SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 49
+   at InvokeStub_SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1025" name="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;reward-value&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;reward-value&quot;)" methodname="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1197328158" result="Failed" start-time="2026-09-28T00:11:28.1272620Z" end-time="2026-09-28T00:11:28.1777950Z" duration="0.050534" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 49
+   at InvokeStub_SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 49
+   at InvokeStub_SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1026" name="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;tradeable-key&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;tradeable-key&quot;)" methodname="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="17282046" result="Failed" start-time="2026-09-28T00:11:28.1778790Z" end-time="2026-09-28T00:11:28.2337810Z" duration="0.055903" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 49
+   at InvokeStub_SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 49
+   at InvokeStub_SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1027" name="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;key-count&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(&quot;key-count&quot;)" methodname="FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1555577490" result="Failed" start-time="2026-09-28T00:11:28.2338080Z" end-time="2026-09-28T00:11:28.2785620Z" duration="0.044754" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 49
+   at InvokeStub_SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseAdversarialTests.cs:line 49
+   at InvokeStub_SpreadWayhouseAdversarialTests.FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1066" name="FullSaveRetainsExactDepletedOrUntouchedRewardGraph" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FullSaveRetainsExactDepletedOrUntouchedRewardGraph" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T00:11:28.2785930Z" end-time="2026-09-28T00:11:28.5557470Z" duration="0.277155" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <test-case id="1064" name="FullSaveRetainsExactDepletedOrUntouchedRewardGraph(False)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FullSaveRetainsExactDepletedOrUntouchedRewardGraph(False)" methodname="FullSaveRetainsExactDepletedOrUntouchedRewardGraph" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1261859304" result="Passed" start-time="2026-09-28T00:11:28.2786030Z" end-time="2026-09-28T00:11:28.4383830Z" duration="0.159781" asserts="9" />
+            <test-case id="1065" name="FullSaveRetainsExactDepletedOrUntouchedRewardGraph(True)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.FullSaveRetainsExactDepletedOrUntouchedRewardGraph(True)" methodname="FullSaveRetainsExactDepletedOrUntouchedRewardGraph" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1706469301" result="Passed" start-time="2026-09-28T00:11:28.4384420Z" end-time="2026-09-28T00:11:28.5556590Z" duration="0.117218" asserts="11" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1031" name="RepeatBuildCannotErasePendingFinalAcceptance" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.RepeatBuildCannotErasePendingFinalAcceptance" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T00:11:28.5557690Z" end-time="2026-09-28T00:11:28.6504290Z" duration="0.094661" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="17">
+            <test-case id="1029" name="RepeatBuildCannotErasePendingFinalAcceptance(False)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.RepeatBuildCannotErasePendingFinalAcceptance(False)" methodname="RepeatBuildCannotErasePendingFinalAcceptance" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1698892604" result="Passed" start-time="2026-09-28T00:11:28.5557990Z" end-time="2026-09-28T00:11:28.6067640Z" duration="0.050966" asserts="8" />
+            <test-case id="1030" name="RepeatBuildCannotErasePendingFinalAcceptance(True)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.RepeatBuildCannotErasePendingFinalAcceptance(True)" methodname="RepeatBuildCannotErasePendingFinalAcceptance" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="946750704" result="Passed" start-time="2026-09-28T00:11:28.6068070Z" end-time="2026-09-28T00:11:28.6503360Z" duration="0.043529" asserts="9" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1045" name="SafeRouteUsesActualHazardsAndPhysicalBlockers" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.SafeRouteUsesActualHazardsAndPhysicalBlockers" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-28T00:11:28.6504500Z" end-time="2026-09-28T00:11:28.7131580Z" duration="0.062708" total="5" passed="5" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="7">
+            <test-case id="1040" name="SafeRouteUsesActualHazardsAndPhysicalBlockers(&quot;clear&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.SafeRouteUsesActualHazardsAndPhysicalBlockers(&quot;clear&quot;)" methodname="SafeRouteUsesActualHazardsAndPhysicalBlockers" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="297455473" result="Passed" start-time="2026-09-28T00:11:28.6504800Z" end-time="2026-09-28T00:11:28.6664710Z" duration="0.015991" asserts="1" />
+            <test-case id="1041" name="SafeRouteUsesActualHazardsAndPhysicalBlockers(&quot;cold&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.SafeRouteUsesActualHazardsAndPhysicalBlockers(&quot;cold&quot;)" methodname="SafeRouteUsesActualHazardsAndPhysicalBlockers" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="20174035" result="Passed" start-time="2026-09-28T00:11:28.6664980Z" end-time="2026-09-28T00:11:28.6781090Z" duration="0.011610" asserts="1" />
+            <test-case id="1042" name="SafeRouteUsesActualHazardsAndPhysicalBlockers(&quot;charge&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.SafeRouteUsesActualHazardsAndPhysicalBlockers(&quot;charge&quot;)" methodname="SafeRouteUsesActualHazardsAndPhysicalBlockers" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1744746626" result="Passed" start-time="2026-09-28T00:11:28.6781330Z" end-time="2026-09-28T00:11:28.6930470Z" duration="0.014914" asserts="1" />
+            <test-case id="1043" name="SafeRouteUsesActualHazardsAndPhysicalBlockers(&quot;cloud&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.SafeRouteUsesActualHazardsAndPhysicalBlockers(&quot;cloud&quot;)" methodname="SafeRouteUsesActualHazardsAndPhysicalBlockers" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="1625603632" result="Passed" start-time="2026-09-28T00:11:28.6931290Z" end-time="2026-09-28T00:11:28.7019520Z" duration="0.008824" asserts="1" />
+            <test-case id="1044" name="SafeRouteUsesActualHazardsAndPhysicalBlockers(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests.SafeRouteUsesActualHazardsAndPhysicalBlockers(&quot;creature&quot;)" methodname="SafeRouteUsesActualHazardsAndPhysicalBlockers" classname="CavesOfOoo.Tests.SpreadWayhouseAdversarialTests" runstate="Runnable" seed="880837268" result="Passed" start-time="2026-09-28T00:11:28.7020180Z" end-time="2026-09-28T00:11:28.7131210Z" duration="0.011104" asserts="3" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

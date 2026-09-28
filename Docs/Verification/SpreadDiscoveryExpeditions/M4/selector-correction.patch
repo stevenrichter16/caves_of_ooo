@@ -1,0 +1,20 @@
+--- before-low-bit-selector
++++ candidate-avalanche-and-current-exclusions
+@@ -14,13 +14,16 @@
+         public static bool IsEligible(OverworldZoneManager manager,string id,string excludedWayhouseZoneID="")
+         {
+             if(!SpreadRareEncounterPlan.IsEligible(manager,id)||id==ReferenceGladePlan.ZoneID||id==excludedWayhouseZoneID
+-                ||id==manager.RareEncounters?.PairZoneID||id==manager.RareEncounters?.ViperZoneID)return false;
++                ||id==manager.Wayhouse?.ZoneID||id==manager.RareEncounters?.PairZoneID||id==manager.RareEncounters?.ViperZoneID)return false;
+             return !RegionalSituations.Definitions.Any(d=>d.SourceZoneId==id||d.RecipientZoneId==id);
+         }
+         public static string Select(OverworldZoneManager manager,string id,string excludedWayhouseZoneID="")
+         {
+             if(!IsEligible(manager,id,excludedWayhouseZoneID))return "";
+             uint rank;unchecked{rank=2166136261^(uint)manager.WorldSeed;foreach(char c in "SpreadWildernessSituation.v1|"+id)rank=(rank^c)*16777619;}
++            // Avalanche before reducing: two salted FNV low-bit selectors otherwise
++            // correlate and can select only one formation for an entire seed.
++            unchecked{rank^=rank>>16;rank*=0x7feb352d;rank^=rank>>15;rank*=0x846ca68b;rank^=rank>>16;}
+             if(rank%8!=0)return "";
+             var formation=FormationSelector.For(BiomeType.Spread,id);
+             return formation==Formation.OldRoad?"cargo":formation==Formation.FieldStrips?"gleanings"

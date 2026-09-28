@@ -138,7 +138,7 @@ namespace CavesOfOoo.Core
         /// any zone: a null factory or zone no-ops.
         /// </summary>
         public static int Populate(Zone zone, BiomeType biome, int tier,
-            ZoneKind kind, System.Random rng)
+            ZoneKind kind, System.Random rng, List<Entity> placedOwners = null)
         {
             if (zone == null || Factory == null || rng == null) return 0;
 
@@ -191,6 +191,10 @@ namespace CavesOfOoo.Core
                 // spends the player's walk and their expectation. Floor
                 // it with pocket change.
                 if (stocked == 0) StockFallback(container, tier, rng);
+                // Capture only this invocation's still-present exact product,
+                // after both table and fallback stock have completed.
+                if (placedOwners != null && container.BlueprintName == blueprint && zone.GetEntityCell(container) == cell)
+                    placedOwners.Add(container);
             }
 
             if (placed > 0 && Diag.IsChannelEnabled("worldgen"))

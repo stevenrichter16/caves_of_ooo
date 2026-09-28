@@ -1,0 +1,23 @@
+{
+  "boundary": "Isolated actual terrain/population/container/haulable builders with explicit deterministic source RNG. Not the full manager native pipeline; no scene/image/player-flow proof.",
+  "rows": [
+    {
+      "case": "ThreeSeedRealSourceCensusKeepsEveryOwnerAndCallerRng(1)",
+      "result": "Passed",
+      "duration": "7.181024",
+      "output": "seed=1 selected=8 committed=6\nOverworld.9.0.0 shelter refused:source actors=Viper,Viper containers=Crate\nOverworld.7.6.0 shelter shelter actors=MarlbackScrabbler containers=Crate,Sack\nOverworld.8.7.0 cargo cargo actors=MarlbackScrabbler containers=Sack\nOverworld.5.8.0 shelter refused:source actors=Viper,Viper containers=Sack,Crate\nOverworld.8.9.0 shelter shelter actors=MarlbackScrabbler containers=Sack\nOverworld.9.11.0 cargo cargo actors=Viper containers=Crate\nOverworld.8.14.0 shelter shelter actors=MarlbackScrabbler containers=Sack,Sack\nOverworld.6.15.0 shelter shelter actors=MarlbackScrabbler,MarlbackScrabbler containers=Crate,Crate\n"
+    },
+    {
+      "case": "ThreeSeedRealSourceCensusKeepsEveryOwnerAndCallerRng(64)",
+      "result": "Passed",
+      "duration": "6.456195",
+      "output": "seed=64 selected=7 committed=5\nOverworld.11.1.0 shelter refused:source actors=Viper,Viper containers=Sack\nOverworld.11.2.0 shelter shelter actors=MarlbackScrabbler containers=Sack,Crate\nOverworld.9.4.0 shelter shelter actors=MarlbackScrabbler containers=Crate,StrongBox\nOverworld.10.7.0 shelter shelter actors=MarlbackScrabbler containers=Crate,Crate\nOverworld.14.8.0 shelter shelter actors=MarlbackScrabbler containers=Crate\nOverworld.6.9.0 cargo cargo actors=Viper,Viper containers=Sack,Sack\nOverworld.8.9.0 shelter refused:source actors=Viper,Viper containers=Crate,Sack\n"
+    },
+    {
+      "case": "ThreeSeedRealSourceCensusKeepsEveryOwnerAndCallerRng(1729)",
+      "result": "Passed",
+      "duration": "7.036459",
+      "output": "seed=1729 selected=10 committed=4\nOverworld.7.2.0 shelter refused:source actors=Viper containers=Sack\nOverworld.6.7.0 shelter refused:source actors=Viper,Viper containers=Crate\nOverworld.11.7.0 cargo cargo actors=MarlbackScrabbler containers=Crate,StrongBox\nOverworld.14.8.0 shelter shelter actors=MarlbackScrabbler,MarlbackScrabbler containers=Sack,Crate\nOverworld.4.9.0 shelter refused:source actors=Viper,Viper containers=Crate,Crate\nOverworld.11.12.0 cargo refused:no-rolled-open-cache actors=MarlbackScrabbler containers=StrongBox\nOverworld.5.13.0 shelter shelter actors=MarlbackScrabbler containers=Crate\nOverworld.10.13.0 shelter shelter actors=MarlbackScrabbler containers=Crate,StrongBox\nOverworld.6.15.0 shelter refused:source actors=Viper,Viper containers=Sack,Crate\nOverworld.7.15.0 shelter refused:source actors=Viper,Viper containers=Crate,Crate\n"
+    }
+  ]
+}

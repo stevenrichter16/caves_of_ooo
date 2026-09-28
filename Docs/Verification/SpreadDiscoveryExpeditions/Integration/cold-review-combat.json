@@ -1,0 +1,176 @@
+{
+  "scope": "Read-only final source review; M1 completed logic, M4 composer peer, root Wayhouse source/save/manager",
+  "reviewed": [
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadWayhousePlan.cs",
+      "sha256": "47976776aa92e584e83b571c57e4f8ca898469e3a7e74a7a4d5071c6a90c39f2",
+      "snapshot": "/tmp/coo-discovery-wayhouse-review/SpreadWayhousePlan.cs"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadWayhouseBuilder.cs",
+      "sha256": "bd17337a7268e67038436fef0600ecbd5af6362a51f3c340c959aa6e48382f60",
+      "snapshot": "/tmp/coo-discovery-wayhouse-review/SpreadWayhouseBuilder.cs"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+      "sha256": "fd52742d78c596688293a02abecb4c59938ce69114ee7084fc35e871b6f1b9a7",
+      "snapshot": "/tmp/coo-discovery-wayhouse-review/OverworldZoneManager.cs"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Save/SaveSystem.cs",
+      "sha256": "20835b74c1b6ccd89c0709b3b7fafc850188dffc1786be91f021c6612e7f18c2",
+      "snapshot": "/tmp/coo-discovery-wayhouse-review/SaveSystem.cs"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs",
+      "sha256": "d60fc290215d6da97be1f23ea7d9e3c9fac0ae714ec8448082e58c6cfdb394f3",
+      "snapshot": "/tmp/coo-discovery-wayhouse-review/SpreadWayhouseTests.cs"
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseAdversarialTests.cs",
+      "sha256": "90f64eb812786d79fc78d6cfc2ada76900e79f431408512c366db03668ab0712",
+      "snapshot": "/tmp/coo-discovery-wayhouse-review/SpreadWayhouseAdversarialTests.cs"
+    }
+  ],
+  "findings": [
+    {
+      "priority": "P1",
+      "subject": "Final validator can be lost when plan changes or builder is called again",
+      "files": [
+        "Assets/Scripts/Gameplay/World/Generation/SpreadWayhousePlan.cs",
+        "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadWayhouseBuilder.cs",
+        "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs"
+      ],
+      "evidence": "FinalizeGenerated returns true for a zone not equal to PendingZone; manager invokes only current Wayhouse. Replacing the plan in OnZoneGenerated or repeated BuildZone clearing pending fields skips prior validation. Existing tests do not exercise final acceptance after those changes.",
+      "status": "Source-grounded finding sent to root; actual paired reproduction/repair remains root-owned.",
+      "resolution": "Resolved; original evidence remains historical. See followup exact source hashes/native receipt."
+    },
+    {
+      "priority": "P1",
+      "subject": "Captured furniture can become foreign before later stocking",
+      "files": [
+        "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadWayhouseBuilder.cs"
+      ],
+      "evidence": "Key/reward factory callbacks run before AddItem; staged SpatialZone check follows stocking. A captured sack/cache moved into a foreign zone or inventory during ObjectCreated is mutated before refusal.",
+      "status": "Source-grounded finding sent to root; pair unchanged callback with foreign owner and assert foreign contents untouched.",
+      "resolution": "Resolved; original evidence remains historical. See followup exact source hashes/native receipt."
+    },
+    {
+      "priority": "P2",
+      "subject": "Guard inventory graph lacks the container graph's backlink checks",
+      "files": [
+        "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadWayhouseBuilder.cs"
+      ],
+      "evidence": "Packet checks ContainerPart.ParentEntity and child InInventory, but InventoryPart branch enqueues objects/equipment without equivalent inventory/body/Physics ownership checks.",
+      "status": "Narrow same-packet counter recommended; no claim of executed reproduction.",
+      "resolution": "Resolved; original evidence remains historical. See followup exact source hashes/native receipt."
+    }
+  ],
+  "boundaries": [
+    "No Unity calls, source edits or staging by reviewer",
+    "M1 native54 GREEN is distinct from pending keyboard dialogue/journal/save acceptance",
+    "Wayhouse native source generation and save fixtures are not full earned-reward route proof"
+  ],
+  "followup": {
+    "job": "f0f7ee05c1034d84ab4051713c771a8f",
+    "nativeXml": "Docs/Verification/SpreadDiscoveryExpeditions/Tests/wayhouse-m4-green-launcher-red.xml",
+    "nativeClassCounts": {
+      "CavesOfOoo.Tests.NativeDensitySceneRestorationTests": {
+        "total": 42,
+        "passed": 40,
+        "failed": 2
+      },
+      "CavesOfOoo.Tests.SpreadGenerationReceiptTests": {
+        "total": 34,
+        "passed": 34,
+        "failed": 0
+      },
+      "CavesOfOoo.Tests.SpreadWayhouseAdversarialTests": {
+        "total": 31,
+        "passed": 31,
+        "failed": 0
+      },
+      "CavesOfOoo.Tests.SpreadWayhouseTests": {
+        "total": 11,
+        "passed": 11,
+        "failed": 0
+      },
+      "CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests": {
+        "total": 23,
+        "passed": 23,
+        "failed": 0
+      },
+      "CavesOfOoo.Tests.SpreadWildernessSituationTests": {
+        "total": 26,
+        "passed": 26,
+        "failed": 0
+      }
+    },
+    "reviewedCurrent": [
+      {
+        "path": "Assets/Scripts/Gameplay/World/Generation/SpreadWayhousePlan.cs",
+        "sha256": "1bc5de5ee744ddcf2a7c8fa29573586f7c82e6cb1a3e0638e67722b671b9613f"
+      },
+      {
+        "path": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadWayhouseBuilder.cs",
+        "sha256": "443ed2299ef2a8156a8522b1675220d14e6ff1f08c6834a4904800c01083cd60"
+      },
+      {
+        "path": "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+        "sha256": "2ea03d8d7c9efda3678b60c3f98426ad78053128c947b07a9b4e60179e9ad078"
+      },
+      {
+        "path": "Assets/Scripts/Gameplay/Save/SaveSystem.cs",
+        "sha256": "20835b74c1b6ccd89c0709b3b7fafc850188dffc1786be91f021c6612e7f18c2"
+      },
+      {
+        "path": "Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs",
+        "sha256": "d60fc290215d6da97be1f23ea7d9e3c9fac0ae714ec8448082e58c6cfdb394f3"
+      },
+      {
+        "path": "Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseAdversarialTests.cs",
+        "sha256": "28f50616607146628272201a6b80cb942230bb3ceb02a5bf4bbe378b8db5379c"
+      }
+    ],
+    "result": "All three named findings resolved in bounded source reread and paired native42 Wayhouse GREEN. M4 native83 GREEN. Natural pipeline census and gameplay/native journey remain separate gates.",
+    "corrections": [
+      "Manager pins original StagedWayhouse before final callback completion; repeated build no longer clears pending validation.",
+      "Exact fresh unattached empty containers rechecked after key/reward factory callbacks and before AddItem.",
+      "Guard InventoryPart parent, carried/equipped Physics and body references checked by packet traversal."
+    ]
+  },
+  "pipelineFollowup": {
+    "result": "Actual natural wiring/paired full-manager census GREEN; bounded projection reread clear. No gameplay journey or exhaustive graph serialization claim.",
+    "receipts": [
+      {
+        "job": "e4d4cd49dafc48bc913f304257f86dd9",
+        "path": "Docs/Verification/SpreadDiscoveryExpeditions/Tests/full-pipeline-wayhouse-focused-green.xml",
+        "total": 97,
+        "passed": 97
+      },
+      {
+        "job": "be0866b1212f43b88fc822987d069d08",
+        "path": "Docs/Verification/SpreadDiscoveryExpeditions/Tests/native-census-launcher-green.xml",
+        "total": 45,
+        "passed": 45
+      }
+    ],
+    "commitsSelected": [
+      {
+        "seed": 1,
+        "committed": 3,
+        "selected": 8
+      },
+      {
+        "seed": 64,
+        "committed": 4,
+        "selected": 7
+      },
+      {
+        "seed": 1729,
+        "committed": 7,
+        "selected": 10
+      }
+    ]
+  }
+}

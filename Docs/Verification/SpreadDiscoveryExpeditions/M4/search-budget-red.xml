@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="97" result="Failed" start-time="2026-09-27T23:43:01.6879490Z" end-time="2026-09-27T23:43:01.7831370Z" duration="0.095176" total="1" passed="0" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="1" random-seed="1732995253">
+  <command-line><![CDATA[/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-spread-discovery-m4/search-budget-red.xml --where "method == NoBypassHasAnExplicitFinitePlanBudget"]]></command-line>
+  <filter>
+    <method>NoBypassHasAnExplicitFinitePlanBudget</method>
+  </filter>
+  <test-suite type="Assembly" id="1123" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="97" result="Failed" site="Child" start-time="2026-09-27T23:43:01.6879490Z" end-time="2026-09-27T23:43:01.7831370Z" duration="0.095176" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="1">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-spread-discovery-m4/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-spread-discovery-m4/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="87479" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1124" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="97" result="Failed" site="Child" start-time="2026-09-27T23:43:01.6895460Z" end-time="2026-09-27T23:43:01.7831080Z" duration="0.093560" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="1">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1125" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="97" result="Failed" site="Child" start-time="2026-09-27T23:43:01.6896530Z" end-time="2026-09-27T23:43:01.7830990Z" duration="0.093444" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="1">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1097" name="SpreadWildernessSituationAdversarialTests" fullname="CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests" classname="CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-09-27T23:43:01.6900700Z" end-time="2026-09-27T23:43:01.7829980Z" duration="0.092926" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="1">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1117" name="NoBypassHasAnExplicitFinitePlanBudget" fullname="CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests.NoBypassHasAnExplicitFinitePlanBudget" methodname="NoBypassHasAnExplicitFinitePlanBudget" classname="CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests" runstate="Runnable" seed="1704352837" result="Failed" start-time="2026-09-27T23:43:01.6910150Z" end-time="2026-09-27T23:43:01.7821030Z" duration="0.091112" asserts="1">
+            <failure>
+              <message><![CDATA[  Full physical trials need a bounded per-build budget.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests.NoBypassHasAnExplicitFinitePlanBudget() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationAdversarialTests.cs:line 59
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Full physical trials need a bounded per-build budget.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests.NoBypassHasAnExplicitFinitePlanBudget() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationAdversarialTests.cs:line 59
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

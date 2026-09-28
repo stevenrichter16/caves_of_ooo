@@ -1,0 +1,27 @@
+{
+  "job": "d484895eae954485bd835761a823c4e9",
+  "xml": {
+    "id": "2",
+    "testcasecount": "20633",
+    "result": "Failed(Child)",
+    "total": "20633",
+    "passed": "20632",
+    "failed": "1",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-09-28 00:27:14Z",
+    "end-time": "2026-09-28 00:41:51Z",
+    "duration": "876.8094541"
+  },
+  "xmlSha256": "cdc11f3aec6dacad166352054022afc10517284c862ea47b7b5710cfc49eeea4",
+  "failures": [
+    {
+      "name": "CavesOfOoo.Tests.LightSourceFlickerPartTests.HandleEvent_RenderFires_UpdatesIntensity",
+      "message": "  Render event handler must drive flicker. Across 30 Render events, at least one must shift Intensity away from base.\n  Expected: True\n  But was:  False\n"
+    }
+  ],
+  "boundary": "Original full native run retained unchanged. One old timing-dependent fixture failure; no passing full-run claim. Test-only correction and two additional persistence cases are verified separately after this run."
+}

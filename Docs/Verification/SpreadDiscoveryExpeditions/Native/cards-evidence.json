@@ -1,0 +1,70 @@
+{
+  "runId": "ca59dcb2ac6f46b59474d5b5ee753e8d",
+  "report": {
+    "path": "Docs/Verification/SpreadDiscoveryExpeditions/Native/ca59dcb2ac6f46b59474d5b5ee753e8d/report.json",
+    "sha256": "79c98d9836afd77927a30ac1012806b30fef2833bc8d2261f5688ec34b9895f7"
+  },
+  "mode": "generated-source-cards",
+  "complete": true,
+  "requiredChecks": 9,
+  "passedChecks": [
+    "ordinary_start",
+    "cargo_actual_source",
+    "cargo_native_layout",
+    "cargo_native_cache_reader",
+    "shelter_actual_source",
+    "shelter_native_layout",
+    "shelter_native_cache_reader",
+    "shelter_native_bypass",
+    "cards_finish"
+  ],
+  "failures": 0,
+  "unexpectedErrors": 0,
+  "seconds": 23.7730665,
+  "screenshots": 13,
+  "paidLocalInputs": 24,
+  "mapSteps": 0,
+  "sourceZones": {
+    "cargo": "Overworld.6.9.0",
+    "shelter": "Overworld.10.7.0",
+    "optionalPairClue": "Overworld.10.2.0"
+  },
+  "viewRefusal": "Overworld.11.2.0 generated, but no card view met all-owner observer admission. Not a generation refusal.",
+  "rootViewedImages": [
+    {
+      "path": "Docs/Verification/SpreadDiscoveryExpeditions/Native/ca59dcb2ac6f46b59474d5b5ee753e8d/cards-cargo-layout.png",
+      "sha256": "3f580499dab95e933202b57f58bfbea069532b2ef3b574c12d11820e7cc139b4"
+    },
+    {
+      "path": "Docs/Verification/SpreadDiscoveryExpeditions/Native/ca59dcb2ac6f46b59474d5b5ee753e8d/cards-shelter-layout.png",
+      "sha256": "70f4da98569102cda250ef01f7c0cb350e3a80ffd6a26c2708c3114216896fd1"
+    },
+    {
+      "path": "Docs/Verification/SpreadDiscoveryExpeditions/Native/ca59dcb2ac6f46b59474d5b5ee753e8d/cards-shelter-bypass-complete.png",
+      "sha256": "ddda0afed6f0d4f2416067a0f98c066120856c21fa665796a208ce845bd12a1b"
+    },
+    {
+      "path": "Docs/Verification/SpreadDiscoveryExpeditions/Native/ca59dcb2ac6f46b59474d5b5ee753e8d/cards-pair-clue-reader-page-0.png",
+      "sha256": "209c6e8dc17f74fc786de6d7386248e8c1e42b73d4fd25414daef16cf7971374"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/SpreadDiscoveryNativePlayer.cs",
+      "sha256": "8f8549932e7b6b2a13701d4bff466529c0317e4b83083d7f03fdf9cf00a61543"
+    },
+    {
+      "path": "Assets/Editor/Scenarios/SpreadDiscoveryNativeBatch.cs",
+      "sha256": "8519fa81607b5a863db2246deb016f54f851277beb6cc1cff64434f592adb25f"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/SpreadDiscoveryNativePlayer.Cards.cs",
+      "sha256": "1e65b57612baf8a3794066c68cbb623d700a3988d382f3d3e074e6365d1664fe"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/SpreadDiscoveryNativePlayer.Cards.cs.meta",
+      "sha256": "d787030b8c3b5f073c53d0a34081d639ffd87adccef4cdf13d4610265a0a968a"
+    }
+  ],
+  "limits": "Disclosed original-player transfers only for initial views and bypass start. The 24-step crossing itself used ordinary native keys. No cache acquisition, fight, ordinary journey, permanent safety or universal visibility claim. Exact selected owner/stock/gear preserved while unrelated ambient AI is allowed."
+}

@@ -1,0 +1,799 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="67" result="Failed" start-time="2026-09-27T23:17:53.6379720Z" end-time="2026-09-27T23:17:54.2375480Z" duration="0.599551" total="26" passed="0" failed="26" inconclusive="0" skipped="0" warnings="0" asserts="28" random-seed="1723358140">
+  <command-line><![CDATA[/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-spread-discovery-m4/composition-red.xml --where "class == CavesOfOoo.Tests.SpreadWildernessSituationTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadWildernessSituationTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1086" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="67" result="Failed" site="Child" start-time="2026-09-27T23:17:53.6379720Z" end-time="2026-09-27T23:17:54.2375480Z" duration="0.599551" total="26" passed="0" failed="26" warnings="0" inconclusive="0" skipped="0" asserts="28">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-spread-discovery-m4/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-spread-discovery-m4/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="81057" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1087" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="67" result="Failed" site="Child" start-time="2026-09-27T23:17:53.6394820Z" end-time="2026-09-27T23:17:54.2375070Z" duration="0.598014" total="26" passed="0" failed="26" warnings="0" inconclusive="0" skipped="0" asserts="28">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1088" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="67" result="Failed" site="Child" start-time="2026-09-27T23:17:53.6396050Z" end-time="2026-09-27T23:17:54.2374690Z" duration="0.597853" total="26" passed="0" failed="26" warnings="0" inconclusive="0" skipped="0" asserts="28">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1054" name="SpreadWildernessSituationTests" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-09-27T23:17:53.6400540Z" end-time="2026-09-27T23:17:54.2374600Z" duration="0.597396" total="26" passed="0" failed="26" warnings="0" inconclusive="0" skipped="0" asserts="28">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1078" name="ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27T23:17:53.6408340Z" end-time="2026-09-27T23:17:53.7550020Z" duration="0.114165" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1076" name="ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(&quot;cargo&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(&quot;cargo&quot;)" methodname="ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1188470620" result="Failed" start-time="2026-09-27T23:17:53.6409110Z" end-time="2026-09-27T23:17:53.7325990Z" duration="0.091711" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 52
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 52
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1077" name="ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(&quot;shelter&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(&quot;shelter&quot;)" methodname="ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1709691029" result="Failed" start-time="2026-09-27T23:17:53.7331840Z" end-time="2026-09-27T23:17:53.7546280Z" duration="0.021444" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 52
+   at InvokeStub_SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 52
+   at InvokeStub_SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1072" name="CurrentAuthorityChangesRefuseRatherThanReroll" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27T23:17:53.7551890Z" end-time="2026-09-27T23:17:53.8120360Z" duration="0.056845" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1069" name="CurrentAuthorityChangesRefuseRatherThanReroll(&quot;wayhouse&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(&quot;wayhouse&quot;)" methodname="CurrentAuthorityChangesRefuseRatherThanReroll" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1184959970" result="Failed" start-time="2026-09-27T23:17:53.7552140Z" end-time="2026-09-27T23:17:53.7748990Z" duration="0.019685" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 42
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 42
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1070" name="CurrentAuthorityChangesRefuseRatherThanReroll(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(&quot;biome&quot;)" methodname="CurrentAuthorityChangesRefuseRatherThanReroll" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="136276854" result="Failed" start-time="2026-09-27T23:17:53.7749210Z" end-time="2026-09-27T23:17:53.7913470Z" duration="0.016426" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 42
+   at InvokeStub_SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 42
+   at InvokeStub_SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1071" name="CurrentAuthorityChangesRefuseRatherThanReroll(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(&quot;poi&quot;)" methodname="CurrentAuthorityChangesRefuseRatherThanReroll" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="2061708197" result="Failed" start-time="2026-09-27T23:17:53.7913680Z" end-time="2026-09-27T23:17:53.8120050Z" duration="0.020637" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 42
+   at InvokeStub_SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 42
+   at InvokeStub_SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1058" name="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27T23:17:53.8120760Z" end-time="2026-09-27T23:17:53.8789500Z" duration="0.066874" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1055" name="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(1)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(1)" methodname="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="982948033" result="Failed" start-time="2026-09-27T23:17:53.8120870Z" end-time="2026-09-27T23:17:53.8320240Z" duration="0.019937" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(Int32 seed) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 33
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(Int32 seed) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 33
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1056" name="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(64)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(64)" methodname="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="2059360846" result="Failed" start-time="2026-09-27T23:17:53.8320440Z" end-time="2026-09-27T23:17:53.8527260Z" duration="0.020682" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(Int32 seed) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 33
+   at InvokeStub_SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(Int32 seed) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 33
+   at InvokeStub_SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1057" name="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(1729)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(1729)" methodname="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="851733490" result="Failed" start-time="2026-09-27T23:17:53.8527450Z" end-time="2026-09-27T23:17:53.8789210Z" duration="0.026175" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(Int32 seed) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 33
+   at InvokeStub_SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(Int32 seed) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 33
+   at InvokeStub_SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1074" name="FailedTerrainBuildClearsExactSourceReceipt" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.FailedTerrainBuildClearsExactSourceReceipt" methodname="FailedTerrainBuildClearsExactSourceReceipt" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="71832533" result="Failed" start-time="2026-09-27T23:17:53.8789590Z" end-time="2026-09-27T23:17:53.9088490Z" duration="0.029890" asserts="2">
+            <failure>
+              <message><![CDATA[  Composition must retain exact successful source graph.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Source(SpreadCompositionBuilder b) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.FailedTerrainBuildClearsExactSourceReceipt() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 46
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Composition must retain exact successful source graph.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Source(SpreadCompositionBuilder b) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.FailedTerrainBuildClearsExactSourceReceipt() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 46
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1066" name="InvalidCanonicalSourceRefusesWithoutGenerating" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-27T23:17:53.9088690Z" end-time="2026-09-27T23:17:54.0423030Z" duration="0.133431" total="7" passed="0" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="7">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1059" name="InvalidCanonicalSourceRefusesWithoutGenerating(null)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(null)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="704112954" result="Failed" start-time="2026-09-27T23:17:53.9088820Z" end-time="2026-09-27T23:17:53.9295790Z" duration="0.020696" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1060" name="InvalidCanonicalSourceRefusesWithoutGenerating(&quot;&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(&quot;&quot;)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1106064030" result="Failed" start-time="2026-09-27T23:17:53.9295990Z" end-time="2026-09-27T23:17:53.9468080Z" duration="0.017208" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+   at InvokeStub_SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+   at InvokeStub_SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1061" name="InvalidCanonicalSourceRefusesWithoutGenerating(&quot;bad&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(&quot;bad&quot;)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="604443559" result="Failed" start-time="2026-09-27T23:17:53.9468310Z" end-time="2026-09-27T23:17:53.9629040Z" duration="0.016073" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+   at InvokeStub_SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+   at InvokeStub_SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1062" name="InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.08.8.0&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.08.8.0&quot;)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1885844113" result="Failed" start-time="2026-09-27T23:17:53.9629180Z" end-time="2026-09-27T23:17:53.9853850Z" duration="0.022467" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+   at InvokeStub_SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+   at InvokeStub_SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1063" name="InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.8.8.1&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.8.8.1&quot;)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="420921136" result="Failed" start-time="2026-09-27T23:17:53.9854050Z" end-time="2026-09-27T23:17:54.0041310Z" duration="0.018727" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+   at InvokeStub_SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+   at InvokeStub_SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1064" name="InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.-1.8.0&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.-1.8.0&quot;)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="252244389" result="Failed" start-time="2026-09-27T23:17:54.0041560Z" end-time="2026-09-27T23:17:54.0209770Z" duration="0.016821" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+   at InvokeStub_SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+   at InvokeStub_SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1065" name="InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.999999999999.8.0&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.999999999999.8.0&quot;)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1924887373" result="Failed" start-time="2026-09-27T23:17:54.0210020Z" end-time="2026-09-27T23:17:54.0422840Z" duration="0.021282" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+   at InvokeStub_SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 36
+   at InvokeStub_SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1085" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-27T23:17:54.0423140Z" end-time="2026-09-27T23:17:54.1610480Z" duration="0.118732" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1079" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;cache&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;cache&quot;)" methodname="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1298606507" result="Failed" start-time="2026-09-27T23:17:54.0423260Z" end-time="2026-09-27T23:17:54.0602870Z" duration="0.017960" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 61
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 61
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1080" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;same-id-zone&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;same-id-zone&quot;)" methodname="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="864621086" result="Failed" start-time="2026-09-27T23:17:54.0603070Z" end-time="2026-09-27T23:17:54.0777550Z" duration="0.017448" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 61
+   at InvokeStub_SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 61
+   at InvokeStub_SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1081" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;wrong-factory&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;wrong-factory&quot;)" methodname="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="2034654679" result="Failed" start-time="2026-09-27T23:17:54.0777820Z" end-time="2026-09-27T23:17:54.0972910Z" duration="0.019509" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 61
+   at InvokeStub_SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 61
+   at InvokeStub_SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1082" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;reserved&quot;)" methodname="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1605006329" result="Failed" start-time="2026-09-27T23:17:54.0973140Z" end-time="2026-09-27T23:17:54.1184950Z" duration="0.021181" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 61
+   at InvokeStub_SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 61
+   at InvokeStub_SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1083" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;hazard&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;hazard&quot;)" methodname="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="127493910" result="Failed" start-time="2026-09-27T23:17:54.1185930Z" end-time="2026-09-27T23:17:54.1445660Z" duration="0.025972" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 61
+   at InvokeStub_SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 61
+   at InvokeStub_SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1084" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;viper&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;viper&quot;)" methodname="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="779155753" result="Failed" start-time="2026-09-27T23:17:54.1445850Z" end-time="2026-09-27T23:17:54.1609560Z" duration="0.016371" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 61
+   at InvokeStub_SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 18
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.<>c__DisplayClass10_0.<Selected>b__0(String id) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected(String kind) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 22
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(String change) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 61
+   at InvokeStub_SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1075" name="LateComposerRunsAfterAllRandomHaulables" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.LateComposerRunsAfterAllRandomHaulables" methodname="LateComposerRunsAfterAllRandomHaulables" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="934059963" result="Failed" start-time="2026-09-27T23:17:54.1610720Z" end-time="2026-09-27T23:17:54.1784770Z" duration="0.017404" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing late exact-owner composer.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Composer(OverworldZoneManager m, SpreadCompositionBuilder terrain, PopulationBuilder population, ContainerBuilder containers, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 25
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.LateComposerRunsAfterAllRandomHaulables() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 48
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing late exact-owner composer.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Composer(OverworldZoneManager m, SpreadCompositionBuilder terrain, PopulationBuilder population, ContainerBuilder containers, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 25
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.LateComposerRunsAfterAllRandomHaulables() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 48
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1067" name="NullManagerRefuses" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.NullManagerRefuses" methodname="NullManagerRefuses" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="324079640" result="Failed" start-time="2026-09-27T23:17:54.1784950Z" end-time="2026-09-27T23:17:54.1936860Z" duration="0.015190" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.NullManagerRefuses() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 37
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.NullManagerRefuses() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 37
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1068" name="ProtectedSourcesAlwaysRemainExcluded" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.ProtectedSourcesAlwaysRemainExcluded" methodname="ProtectedSourcesAlwaysRemainExcluded" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="958859327" result="Failed" start-time="2026-09-27T23:17:54.1937150Z" end-time="2026-09-27T23:17:54.2138650Z" duration="0.020150" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.ProtectedSourcesAlwaysRemainExcluded() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 39
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible(OverworldZoneManager m, String id, String excluded) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 17
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.ProtectedSourcesAlwaysRemainExcluded() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 39
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1073" name="SuccessfulTerrainReceiptIsExactAndReplacedByAnotherSameIdBuild" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.SuccessfulTerrainReceiptIsExactAndReplacedByAnotherSameIdBuild" methodname="SuccessfulTerrainReceiptIsExactAndReplacedByAnotherSameIdBuild" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="2039679892" result="Failed" start-time="2026-09-27T23:17:54.2138960Z" end-time="2026-09-27T23:17:54.2373570Z" duration="0.023461" asserts="2">
+            <failure>
+              <message><![CDATA[  Composition must retain exact successful source graph.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Source(SpreadCompositionBuilder b) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.SuccessfulTerrainReceiptIsExactAndReplacedByAnotherSameIdBuild() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 44
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Composition must retain exact successful source graph.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWildernessSituationTests.Source(SpreadCompositionBuilder b) in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadWildernessSituationTests.SuccessfulTerrainReceiptIsExactAndReplacedByAnotherSameIdBuild() in /tmp/coo-spread-discovery-m4/SpreadWildernessSituationTests.cs:line 44
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

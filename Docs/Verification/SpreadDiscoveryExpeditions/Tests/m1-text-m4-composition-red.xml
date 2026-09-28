@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="28" result="Failed(Child)" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-27 23:21:17Z" end-time="2026-09-27 23:21:21Z" duration="4.2536665">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="20539" result="Failed" site="Child" start-time="2026-09-27 23:21:17Z" end-time="2026-09-27 23:21:21Z" duration="4.253667" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="25174" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="20539" result="Failed" site="Child" start-time="2026-09-27 23:21:17Z" end-time="2026-09-27 23:21:21Z" duration="4.148542" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37276" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="25175" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="20539" result="Failed" site="Child" start-time="2026-09-27 23:21:17Z" end-time="2026-09-27 23:21:21Z" duration="3.960880" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="25176" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="20539" result="Failed" site="Child" start-time="2026-09-27 23:21:18Z" end-time="2026-09-27 23:21:21Z" duration="3.759524" total="28" passed="0" failed="28" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="4644" name="SpreadDiscoveryTextTests" fullname="CavesOfOoo.Tests.SpreadDiscoveryTextTests" classname="CavesOfOoo.Tests.SpreadDiscoveryTextTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27 23:21:18Z" end-time="2026-09-27 23:21:18Z" duration="0.595488" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="4647" name="FullReportIsReadableBeforeRememberingAndDoesNotRewriteAuthoredNode" fullname="CavesOfOoo.Tests.SpreadDiscoveryTextTests.FullReportIsReadableBeforeRememberingAndDoesNotRewriteAuthoredNode" classname="CavesOfOoo.Tests.SpreadDiscoveryTextTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27 23:21:18Z" end-time="2026-09-27 23:21:18Z" duration="0.390036" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="4645" name="FullReportIsReadableBeforeRememberingAndDoesNotRewriteAuthoredNode(&quot;Scribe_1&quot;,&quot;RegionOverview&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryTextTests.FullReportIsReadableBeforeRememberingAndDoesNotRewriteAuthoredNode(&quot;Scribe_1&quot;,&quot;RegionOverview&quot;)" methodname="FullReportIsReadableBeforeRememberingAndDoesNotRewriteAuthoredNode" classname="CavesOfOoo.Tests.SpreadDiscoveryTextTests" runstate="Runnable" seed="262207516" result="Failed" start-time="2026-09-27 23:21:18Z" end-time="2026-09-27 23:21:18Z" duration="0.122919" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "ditch-cutters"
+  But was:  "there are other villages along the road."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.SpreadDiscoveryTextTests.FullReportIsReadableBeforeRememberingAndDoesNotRewriteAuthoredNode (System.String conversation, System.String node) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryTextTests.cs:18
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="4646" name="FullReportIsReadableBeforeRememberingAndDoesNotRewriteAuthoredNode(&quot;Innkeeper_1&quot;,&quot;Rumors&quot;)" fullname="CavesOfOoo.Tests.SpreadDiscoveryTextTests.FullReportIsReadableBeforeRememberingAndDoesNotRewriteAuthoredNode(&quot;Innkeeper_1&quot;,&quot;Rumors&quot;)" methodname="FullReportIsReadableBeforeRememberingAndDoesNotRewriteAuthoredNode" classname="CavesOfOoo.Tests.SpreadDiscoveryTextTests" runstate="Runnable" seed="506861669" result="Failed" start-time="2026-09-27 23:21:18Z" end-time="2026-09-27 23:21:18Z" duration="0.068303" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "ditch-cutters"
+  But was:  "there are other villages along the road."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.SpreadDiscoveryTextTests.FullReportIsReadableBeforeRememberingAndDoesNotRewriteAuthoredNode (System.String conversation, System.String node) [0x0002e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryTextTests.cs:18
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="16547" name="SpreadWildernessSituationTests" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-09-27 23:21:18Z" end-time="2026-09-27 23:21:21Z" duration="3.062975" total="26" passed="0" failed="26" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="16571" name="ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-27 23:21:18Z" end-time="2026-09-27 23:21:20Z" duration="1.881707" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16569" name="ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(&quot;cargo&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(&quot;cargo&quot;)" methodname="ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1822460188" result="Failed" start-time="2026-09-27 23:21:18Z" end-time="2026-09-27 23:21:19Z" duration="0.232469" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:18
+at CavesOfOoo.Tests.SpreadWildernessSituationTests+<>c__DisplayClass10_0.<Selected>b__0 (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate, System.Boolean& found) [0x0003f] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00000] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected (System.String kind) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng (System.String kind) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16570" name="ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(&quot;shelter&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng(&quot;shelter&quot;)" methodname="ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="263933085" result="Failed" start-time="2026-09-27 23:21:19Z" end-time="2026-09-27 23:21:20Z" duration="1.547604" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:18
+at CavesOfOoo.Tests.SpreadWildernessSituationTests+<>c__DisplayClass10_0.<Selected>b__0 (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate, System.Boolean& found) [0x0003f] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00000] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected (System.String kind) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.ActualSourcesCanComposeOnceWithoutChangingAnyOwnerStockOrCallerRng (System.String kind) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16565" name="CurrentAuthorityChangesRefuseRatherThanReroll" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27 23:21:20Z" end-time="2026-09-27 23:21:20Z" duration="0.107043" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16562" name="CurrentAuthorityChangesRefuseRatherThanReroll(&quot;wayhouse&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(&quot;wayhouse&quot;)" methodname="CurrentAuthorityChangesRefuseRatherThanReroll" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="2135461280" result="Failed" start-time="2026-09-27 23:21:20Z" end-time="2026-09-27 23:21:20Z" duration="0.031014" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:18
+at CavesOfOoo.Tests.SpreadWildernessSituationTests+<>c__DisplayClass10_0.<Selected>b__0 (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate, System.Boolean& found) [0x0003f] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00000] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected (System.String kind) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16563" name="CurrentAuthorityChangesRefuseRatherThanReroll(&quot;biome&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(&quot;biome&quot;)" methodname="CurrentAuthorityChangesRefuseRatherThanReroll" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1053898071" result="Failed" start-time="2026-09-27 23:21:20Z" end-time="2026-09-27 23:21:20Z" duration="0.029058" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:18
+at CavesOfOoo.Tests.SpreadWildernessSituationTests+<>c__DisplayClass10_0.<Selected>b__0 (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate, System.Boolean& found) [0x0003f] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00000] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected (System.String kind) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16564" name="CurrentAuthorityChangesRefuseRatherThanReroll(&quot;poi&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll(&quot;poi&quot;)" methodname="CurrentAuthorityChangesRefuseRatherThanReroll" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="30008028" result="Failed" start-time="2026-09-27 23:21:20Z" end-time="2026-09-27 23:21:20Z" duration="0.026558" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:18
+at CavesOfOoo.Tests.SpreadWildernessSituationTests+<>c__DisplayClass10_0.<Selected>b__0 (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate, System.Boolean& found) [0x0003f] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00000] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected (System.String kind) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentAuthorityChangesRefuseRatherThanReroll (System.String change) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:42
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16551" name="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27 23:21:20Z" end-time="2026-09-27 23:21:21Z" duration="0.205654" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16548" name="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(1)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(1)" methodname="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="983398583" result="Failed" start-time="2026-09-27 23:21:20Z" end-time="2026-09-27 23:21:20Z" duration="0.031988" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:17
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold (System.Int32 seed) [0x00058] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16549" name="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(64)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(64)" methodname="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1677165505" result="Failed" start-time="2026-09-27 23:21:20Z" end-time="2026-09-27 23:21:21Z" duration="0.027307" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:17
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold (System.Int32 seed) [0x00058] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16550" name="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(1729)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold(1729)" methodname="CurrentMapHashHasExactFormationKindsAndLeavesWorldCold" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="882419674" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.033365" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:17
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.CurrentMapHashHasExactFormationKindsAndLeavesWorldCold (System.Int32 seed) [0x00058] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:33
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="16567" name="FailedTerrainBuildClearsExactSourceReceipt" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.FailedTerrainBuildClearsExactSourceReceipt" methodname="FailedTerrainBuildClearsExactSourceReceipt" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1091104987" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.054406" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Composition must retain exact successful source graph.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.Source (CavesOfOoo.Core.SpreadCompositionBuilder b) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:23
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.FailedTerrainBuildClearsExactSourceReceipt () [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:46
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="16559" name="InvalidCanonicalSourceRefusesWithoutGenerating" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.308485" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16552" name="InvalidCanonicalSourceRefusesWithoutGenerating(null)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(null)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="123268207" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.027384" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:17
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16553" name="InvalidCanonicalSourceRefusesWithoutGenerating(&quot;&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(&quot;&quot;)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1874698515" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.027622" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:17
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16554" name="InvalidCanonicalSourceRefusesWithoutGenerating(&quot;bad&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(&quot;bad&quot;)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="245224617" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.059317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:17
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16555" name="InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.08.8.0&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.08.8.0&quot;)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="372854002" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.029865" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:17
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16556" name="InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.8.8.1&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.8.8.1&quot;)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1091019270" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.034786" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:17
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16557" name="InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.-1.8.0&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.-1.8.0&quot;)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="401819491" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.032737" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:17
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16558" name="InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.999999999999.8.0&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating(&quot;Overworld.999999999999.8.0&quot;)" methodname="InvalidCanonicalSourceRefusesWithoutGenerating" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1033730979" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.045002" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:17
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidCanonicalSourceRefusesWithoutGenerating (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:36
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16578" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.257280" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16572" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;cache&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;cache&quot;)" methodname="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1753982393" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.028324" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:18
+at CavesOfOoo.Tests.SpreadWildernessSituationTests+<>c__DisplayClass10_0.<Selected>b__0 (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate, System.Boolean& found) [0x0003f] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00000] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected (System.String kind) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16573" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;same-id-zone&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;same-id-zone&quot;)" methodname="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="671554505" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.026685" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:18
+at CavesOfOoo.Tests.SpreadWildernessSituationTests+<>c__DisplayClass10_0.<Selected>b__0 (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate, System.Boolean& found) [0x0003f] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00000] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected (System.String kind) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16574" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;wrong-factory&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;wrong-factory&quot;)" methodname="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1832242652" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.037259" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:18
+at CavesOfOoo.Tests.SpreadWildernessSituationTests+<>c__DisplayClass10_0.<Selected>b__0 (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate, System.Boolean& found) [0x0003f] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00000] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected (System.String kind) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16575" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;reserved&quot;)" methodname="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1035841042" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.027457" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:18
+at CavesOfOoo.Tests.SpreadWildernessSituationTests+<>c__DisplayClass10_0.<Selected>b__0 (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate, System.Boolean& found) [0x0003f] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00000] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected (System.String kind) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16576" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;hazard&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;hazard&quot;)" methodname="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1143483126" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.064384" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:18
+at CavesOfOoo.Tests.SpreadWildernessSituationTests+<>c__DisplayClass10_0.<Selected>b__0 (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate, System.Boolean& found) [0x0003f] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00000] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected (System.String kind) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16577" name="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;viper&quot;)" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure(&quot;viper&quot;)" methodname="InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1325645786" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.030060" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Select (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:18
+at CavesOfOoo.Tests.SpreadWildernessSituationTests+<>c__DisplayClass10_0.<Selected>b__0 (System.String id) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate, System.Boolean& found) [0x0003f] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Func`2[T,TResult] predicate) [0x00000] in <2a8fff6ff3e54cfa88259e180adc29eb>:0
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Selected (System.String kind) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:22
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.InvalidLateSourceIsAnOptionalNoOpNotGenerationFailure (System.String change) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="16568" name="LateComposerRunsAfterAllRandomHaulables" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.LateComposerRunsAfterAllRandomHaulables" methodname="LateComposerRunsAfterAllRandomHaulables" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="532818779" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.035054" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing late exact-owner composer.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.Composer (CavesOfOoo.Core.OverworldZoneManager m, CavesOfOoo.Core.SpreadCompositionBuilder terrain, CavesOfOoo.Core.PopulationBuilder population, CavesOfOoo.Core.ContainerBuilder containers, System.String excluded) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:25
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.LateComposerRunsAfterAllRandomHaulables () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:48
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="16560" name="NullManagerRefuses" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.NullManagerRefuses" methodname="NullManagerRefuses" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="1883432581" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.034093" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:17
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.NullManagerRefuses () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:37
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="16561" name="ProtectedSourcesAlwaysRemainExcluded" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.ProtectedSourcesAlwaysRemainExcluded" methodname="ProtectedSourcesAlwaysRemainExcluded" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="712949088" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.031225" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing bounded situation selection.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.PlanType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:16
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.Eligible (CavesOfOoo.Core.OverworldZoneManager m, System.String id, System.String excluded) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:17
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.ProtectedSourcesAlwaysRemainExcluded () [0x00083] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:39
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="16566" name="SuccessfulTerrainReceiptIsExactAndReplacedByAnotherSameIdBuild" fullname="CavesOfOoo.Tests.SpreadWildernessSituationTests.SuccessfulTerrainReceiptIsExactAndReplacedByAnotherSameIdBuild" methodname="SuccessfulTerrainReceiptIsExactAndReplacedByAnotherSameIdBuild" classname="CavesOfOoo.Tests.SpreadWildernessSituationTests" runstate="Runnable" seed="543555115" result="Failed" start-time="2026-09-27 23:21:21Z" end-time="2026-09-27 23:21:21Z" duration="0.044594" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Composition must retain exact successful source graph.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessSituationTests.Source (CavesOfOoo.Core.SpreadCompositionBuilder b) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:23
+at CavesOfOoo.Tests.SpreadWildernessSituationTests.SuccessfulTerrainReceiptIsExactAndReplacedByAnotherSameIdBuild () [0x00030] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs:44
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

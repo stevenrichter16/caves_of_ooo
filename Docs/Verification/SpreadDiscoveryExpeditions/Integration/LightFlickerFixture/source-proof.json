@@ -1,0 +1,21 @@
+{
+  "baseline": "6015ba8",
+  "files": [
+    {
+      "path": "Assets/Scripts/Gameplay/Entities/LightSourceFlickerPart.cs",
+      "currentSha256": "689d51d1e817e99bcb1d82f9eb8ce91e79baa475deaa0ef8f8a0fdce4904be48",
+      "baselineSha256": "689d51d1e817e99bcb1d82f9eb8ce91e79baa475deaa0ef8f8a0fdce4904be48",
+      "unchanged": true
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/Entities/LightSourceFlickerPartTests.cs",
+      "currentSha256": "b2f2889b15a00880a5870a56b9cd24b428e9f5a19515c09defc188c9985eead4",
+      "baselineSha256": "b2f2889b15a00880a5870a56b9cd24b428e9f5a19515c09defc188c9985eead4",
+      "unchanged": true
+    }
+  ],
+  "mutant": "Private copied HandleEvent condition Render -> __severed_Render_control__",
+  "mutantCases": "7 total:1 revised hook failure/6 controls pass",
+  "restoredPrivateProductionMatchesShared": true,
+  "clockBoundary": "Isolated shim fixed5 to model one native frame; no Unity source/time changes."
+}

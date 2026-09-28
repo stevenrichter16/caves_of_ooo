@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="105" result="Passed" start-time="2026-09-27T23:54:09.6654750Z" end-time="2026-09-27T23:54:11.4259050Z" duration="1.760414" total="3" passed="3" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="54304" random-seed="2053892289">
+  <command-line><![CDATA[/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-spread-discovery-m4/full-pipeline-before.xml --where "class == CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1136" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="105" result="Passed" start-time="2026-09-27T23:54:09.6654750Z" end-time="2026-09-27T23:54:11.4259050Z" duration="1.760414" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="54304">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-spread-discovery-m4/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-spread-discovery-m4/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="90830" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestSuite" id="1137" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="105" result="Passed" start-time="2026-09-27T23:54:09.6669560Z" end-time="2026-09-27T23:54:11.4259030Z" duration="1.758942" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="54304">
+      <test-suite type="TestSuite" id="1138" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="105" result="Passed" start-time="2026-09-27T23:54:09.6670620Z" end-time="2026-09-27T23:54:11.4259010Z" duration="1.758834" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="54304">
+        <test-suite type="TestFixture" id="1131" name="SpreadWildernessPipelineCensusTests" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests" classname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27T23:54:09.6673970Z" end-time="2026-09-27T23:54:11.4258870Z" duration="1.758486" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="54304">
+          <test-suite type="ParameterizedMethod" id="1135" name="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates" classname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27T23:54:09.6682400Z" end-time="2026-09-27T23:54:11.4256640Z" duration="1.757420" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="54304">
+            <test-case id="1132" name="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(1)" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(1)" methodname="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates" classname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests" runstate="Runnable" seed="1097126927" result="Passed" start-time="2026-09-27T23:54:09.6683130Z" end-time="2026-09-27T23:54:10.2747030Z" duration="0.606415" asserts="17318">
+              <output><![CDATA[{
+  "seed": 1,
+  "selected": 8,
+  "committed": 4,
+  "refused": 4,
+  "boundary": "Actual full manager cold GetZone, paired no-composer subclass vs current wiring; per-zone global loadout/trader/death RNG reset. Test-only last builder samples caller next RNG equally. No journey, player balance, save replay or native pixels claimed.",
+  "rows": [
+    {
+      "zone": "Overworld.9.0.0",
+      "kind": "shelter",
+      "result": "refused:source",
+      "owners": 2179,
+      "containers": 1,
+      "creatures": 3,
+      "moved": 0,
+      "nextRng": 2086227725,
+      "movedIds": [],
+      "rolledActors": [
+        "Viper",
+        "Viper"
+      ],
+      "rolledContainers": [
+        "StrongBox"
+      ]
+    },
+    {
+      "zone": "Overworld.7.6.0",
+      "kind": "shelter",
+      "result": "shelter",
+      "owners": 2185,
+      "containers": 2,
+      "creatures": 2,
+      "moved": 2,
+      "nextRng": 1661255740,
+      "movedIds": [
+        "8769",
+        "8773"
+      ],
+      "rolledActors": [
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "Crate",
+        "Crate"
+      ]
+    },
+    {
+      "zone": "Overworld.8.7.0",
+      "kind": "cargo",
+      "result": "cargo",
+      "owners": 2102,
+      "containers": 1,
+      "creatures": 3,
+      "moved": 1,
+      "nextRng": 1611248257,
+      "movedIds": [
+        "12994"
+      ],
+      "rolledActors": [
+        "Viper",
+        "Viper"
+      ],
+      "rolledContainers": [
+        "Sack"
+      ]
+    },
+    {
+      "zone": "Overworld.5.8.0",
+      "kind": "shelter",
+      "result": "refused:source",
+      "owners": 2149,
+      "containers": 1,
+      "creatures": 3,
+      "moved": 0,
+      "nextRng": 1681285869,
+      "movedIds": [],
+      "rolledActors": [
+        "Viper",
+        "Viper"
+      ],
+      "rolledContainers": [
+        "StrongBox"
+      ]
+    },
+    {
+      "zone": "Overworld.8.9.0",
+      "kind": "shelter",
+      "result": "refused:source",
+      "owners": 2172,
+      "containers": 3,
+      "creatures": 3,
+      "moved": 0,
+      "nextRng": 1584296284,
+      "movedIds": [],
+      "rolledActors": [
+        "Viper"
+      ],
+      "rolledContainers": [
+        "Crate",
+        "Sack"
+      ]
+    },
+    {
+      "zone": "Overworld.9.11.0",
+      "kind": "cargo",
+      "result": "refused:no-rolled-open-cache",
+      "owners": 2089,
+      "containers": 1,
+      "creatures": 3,
+      "moved": 0,
+      "nextRng": 597273573,
+      "movedIds": [],
+      "rolledActors": [
+        "MarlbackScrabbler",
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "StrongBox"
+      ]
+    },
+    {
+      "zone": "Overworld.8.14.0",
+      "kind": "shelter",
+      "result": "shelter",
+      "owners": 2164,
+      "containers": 2,
+      "creatures": 2,
+      "moved": 2,
+      "nextRng": 552005813,
+      "movedIds": [
+        "30285",
+        "30302"
+      ],
+      "rolledActors": [
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "StrongBox",
+        "Sack"
+      ]
+    },
+    {
+      "zone": "Overworld.6.15.0",
+      "kind": "shelter",
+      "result": "shelter",
+      "owners": 2168,
+      "containers": 1,
+      "creatures": 4,
+      "moved": 3,
+      "nextRng": 2002013552,
+      "movedIds": [
+        "34656",
+        "34658",
+        "34661"
+      ],
+      "rolledActors": [
+        "MarlbackScrabbler",
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "Crate"
+      ]
+    }
+  ]
+}
+]]></output>
+            </test-case>
+            <test-case id="1133" name="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(64)" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(64)" methodname="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates" classname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests" runstate="Runnable" seed="606754224" result="Passed" start-time="2026-09-27T23:54:10.2754050Z" end-time="2026-09-27T23:54:10.7774970Z" duration="0.502091" asserts="15175">
+              <output><![CDATA[{
+  "seed": 64,
+  "selected": 7,
+  "committed": 5,
+  "refused": 2,
+  "boundary": "Actual full manager cold GetZone, paired no-composer subclass vs current wiring; per-zone global loadout/trader/death RNG reset. Test-only last builder samples caller next RNG equally. No journey, player balance, save replay or native pixels claimed.",
+  "rows": [
+    {
+      "zone": "Overworld.11.1.0",
+      "kind": "shelter",
+      "result": "refused:source",
+      "owners": 2163,
+      "containers": 1,
+      "creatures": 4,
+      "moved": 0,
+      "nextRng": 503996503,
+      "movedIds": [],
+      "rolledActors": [
+        "Viper"
+      ],
+      "rolledContainers": [
+        "Crate"
+      ]
+    },
+    {
+      "zone": "Overworld.11.2.0",
+      "kind": "shelter",
+      "result": "refused:source",
+      "owners": 2192,
+      "containers": 2,
+      "creatures": 3,
+      "moved": 0,
+      "nextRng": 1416051627,
+      "movedIds": [],
+      "rolledActors": [
+        "Viper",
+        "Viper"
+      ],
+      "rolledContainers": [
+        "Crate",
+        "Crate"
+      ]
+    },
+    {
+      "zone": "Overworld.9.4.0",
+      "kind": "shelter",
+      "result": "shelter",
+      "owners": 2149,
+      "containers": 1,
+      "creatures": 2,
+      "moved": 2,
+      "nextRng": 1199010927,
+      "movedIds": [
+        "13071",
+        "13075"
+      ],
+      "rolledActors": [
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "Crate"
+      ]
+    },
+    {
+      "zone": "Overworld.10.7.0",
+      "kind": "shelter",
+      "result": "shelter",
+      "owners": 2143,
+      "containers": 1,
+      "creatures": 4,
+      "moved": 3,
+      "nextRng": 403141306,
+      "movedIds": [
+        "17376",
+        "17379",
+        "17382"
+      ],
+      "rolledActors": [
+        "MarlbackScrabbler",
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "Sack"
+      ]
+    },
+    {
+      "zone": "Overworld.14.8.0",
+      "kind": "shelter",
+      "result": "shelter",
+      "owners": 2164,
+      "containers": 1,
+      "creatures": 5,
+      "moved": 3,
+      "nextRng": 1803690805,
+      "movedIds": [
+        "21729",
+        "21732",
+        "21736"
+      ],
+      "rolledActors": [
+        "MarlbackScrabbler",
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "Crate"
+      ]
+    },
+    {
+      "zone": "Overworld.6.9.0",
+      "kind": "cargo",
+      "result": "cargo",
+      "owners": 2103,
+      "containers": 2,
+      "creatures": 2,
+      "moved": 1,
+      "nextRng": 256241888,
+      "movedIds": [
+        "25961"
+      ],
+      "rolledActors": [
+        "Viper"
+      ],
+      "rolledContainers": [
+        "Sack",
+        "Crate"
+      ]
+    },
+    {
+      "zone": "Overworld.8.9.0",
+      "kind": "shelter",
+      "result": "shelter",
+      "owners": 2158,
+      "containers": 2,
+      "creatures": 4,
+      "moved": 3,
+      "nextRng": 793409871,
+      "movedIds": [
+        "30295",
+        "30298",
+        "30301"
+      ],
+      "rolledActors": [
+        "MarlbackScrabbler",
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "Crate",
+        "Crate"
+      ]
+    }
+  ]
+}
+]]></output>
+            </test-case>
+            <test-case id="1134" name="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(1729)" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests.ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates(1729)" methodname="ActualManagerColdGenerationChangesOnlyAuthorizedCoordinates" classname="CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests" runstate="Runnable" seed="1616638109" result="Passed" start-time="2026-09-27T23:54:10.7775320Z" end-time="2026-09-27T23:54:11.4250630Z" duration="0.647529" asserts="21811">
+              <output><![CDATA[{
+  "seed": 1729,
+  "selected": 10,
+  "committed": 6,
+  "refused": 4,
+  "boundary": "Actual full manager cold GetZone, paired no-composer subclass vs current wiring; per-zone global loadout/trader/death RNG reset. Test-only last builder samples caller next RNG equally. No journey, player balance, save replay or native pixels claimed.",
+  "rows": [
+    {
+      "zone": "Overworld.7.2.0",
+      "kind": "shelter",
+      "result": "shelter",
+      "owners": 2189,
+      "containers": 1,
+      "creatures": 5,
+      "moved": 3,
+      "nextRng": 622913311,
+      "movedIds": [
+        "4388",
+        "4390",
+        "4394"
+      ],
+      "rolledActors": [
+        "MarlbackScrabbler",
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "Crate"
+      ]
+    },
+    {
+      "zone": "Overworld.6.7.0",
+      "kind": "shelter",
+      "result": "shelter",
+      "owners": 2178,
+      "containers": 3,
+      "creatures": 3,
+      "moved": 2,
+      "nextRng": 453569232,
+      "movedIds": [
+        "8802",
+        "8808"
+      ],
+      "rolledActors": [
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "Sack",
+        "Sack"
+      ]
+    },
+    {
+      "zone": "Overworld.11.7.0",
+      "kind": "cargo",
+      "result": "cargo",
+      "owners": 2110,
+      "containers": 2,
+      "creatures": 3,
+      "moved": 1,
+      "nextRng": 1798942443,
+      "movedIds": [
+        "13054"
+      ],
+      "rolledActors": [
+        "MarlbackScrabbler",
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "Crate",
+        "Crate"
+      ]
+    },
+    {
+      "zone": "Overworld.14.8.0",
+      "kind": "shelter",
+      "result": "shelter",
+      "owners": 2184,
+      "containers": 3,
+      "creatures": 4,
+      "moved": 3,
+      "nextRng": 1496789533,
+      "movedIds": [
+        "17477",
+        "17479",
+        "17482"
+      ],
+      "rolledActors": [
+        "MarlbackScrabbler",
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "Crate",
+        "Crate"
+      ]
+    },
+    {
+      "zone": "Overworld.4.9.0",
+      "kind": "shelter",
+      "result": "refused:source",
+      "owners": 2174,
+      "containers": 2,
+      "creatures": 2,
+      "moved": 0,
+      "nextRng": 1669162915,
+      "movedIds": [],
+      "rolledActors": [
+        "Viper"
+      ],
+      "rolledContainers": [
+        "Sack",
+        "StrongBox"
+      ]
+    },
+    {
+      "zone": "Overworld.11.12.0",
+      "kind": "cargo",
+      "result": "cargo",
+      "owners": 2113,
+      "containers": 3,
+      "creatures": 4,
+      "moved": 1,
+      "nextRng": 120301606,
+      "movedIds": [
+        "26166"
+      ],
+      "rolledActors": [
+        "Viper",
+        "Viper"
+      ],
+      "rolledContainers": [
+        "Crate",
+        "Sack"
+      ]
+    },
+    {
+      "zone": "Overworld.5.13.0",
+      "kind": "shelter",
+      "result": "refused:source",
+      "owners": 2177,
+      "containers": 2,
+      "creatures": 2,
+      "moved": 0,
+      "nextRng": 211733801,
+      "movedIds": [],
+      "rolledActors": [
+        "Viper"
+      ],
+      "rolledContainers": [
+        "Crate",
+        "Crate"
+      ]
+    },
+    {
+      "zone": "Overworld.10.13.0",
+      "kind": "shelter",
+      "result": "refused:source",
+      "owners": 2174,
+      "containers": 2,
+      "creatures": 4,
+      "moved": 0,
+      "nextRng": 1601381390,
+      "movedIds": [],
+      "rolledActors": [
+        "Viper",
+        "Viper"
+      ],
+      "rolledContainers": [
+        "Sack"
+      ]
+    },
+    {
+      "zone": "Overworld.6.15.0",
+      "kind": "shelter",
+      "result": "refused:source",
+      "owners": 2169,
+      "containers": 2,
+      "creatures": 5,
+      "moved": 0,
+      "nextRng": 1622134273,
+      "movedIds": [],
+      "rolledActors": [
+        "Viper"
+      ],
+      "rolledContainers": [
+        "Sack",
+        "Crate"
+      ]
+    },
+    {
+      "zone": "Overworld.7.15.0",
+      "kind": "shelter",
+      "result": "shelter",
+      "owners": 2203,
+      "containers": 2,
+      "creatures": 2,
+      "moved": 2,
+      "nextRng": 1926309590,
+      "movedIds": [
+        "43730",
+        "43734"
+      ],
+      "rolledActors": [
+        "MarlbackScrabbler"
+      ],
+      "rolledContainers": [
+        "Sack",
+        "Crate"
+      ]
+    }
+  ]
+}
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

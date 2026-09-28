@@ -122,6 +122,7 @@ namespace CavesOfOoo.Core
 
         private static void RegisterDefaults()
         {
+            RegisterRequired(SpreadDiscoveryReports.ActionName, SpreadDiscoveryReports.TryRemember);
             RegisterRequired(RegionalGuidance.ActionName, (speaker, listener, id) => RegionalGuidance.TryRemember(SettlementRuntime.ActiveZone, speaker, listener, id));
 
             // Add a message to the game log

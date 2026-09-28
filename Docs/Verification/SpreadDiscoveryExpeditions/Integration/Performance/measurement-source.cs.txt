@@ -1,0 +1,191 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using Newtonsoft.Json;
+
+public static class SpreadComponentMeasurement
+{
+    const BindingFlags All=BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance|BindingFlags.Static;
+    const int Pairs=5,UiBatch=200;
+    static int sink;
+    public sealed class Sample
+    {
+        public string component,arm,zone,result;public int pair,operations,seed,owners,moved,layoutTrials,nextRng,gc0,gc1,gc2;
+        public double milliseconds,lateMilliseconds;public long allocatedBytes,lateAllocatedBytes;
+    }
+    public sealed class Report
+    {
+        public string runtime,beganUtc,completedUtc,boundary,sourceAssembly;public bool complete;
+        public int pairs,uiOperationsPerSample,sink;public List<Sample> samples=new List<Sample>();public List<string> checks=new List<string>();
+    }
+    public static string Run(string outputPath,string runtimeLabel)
+    {
+        if(UnityEngine.Application.isPlaying)throw new InvalidOperationException("Run only idle, with fixture-owned graphs.");
+        using(var registry=new LootRegistrySnapshot())
+        {
+        var report=new Report{runtime=runtimeLabel,beganUtc=DateTime.UtcNow.ToString("O"),pairs=Pairs,uiOperationsPerSample=UiBatch,sourceAssembly=typeof(Entity).Assembly.Location,
+          boundary="Same-process fixture CPU/allocation measurement: five alternating paired samples after one warm pair. Disabled-feature control is current runtime, not an old compiled build. UI measurements exclude draw/typewriter/input/GPU. Cold GetZone contains equal diagnostic source projections; late probe excludes those projections. Standalone stable hash/stubs can change realized sites and is not Unity speed. No Assets writes or player journey; native fixture setup/cleanup uses its existing isolated temporary save root outside all timers and restores prior save/pref state. No forced GC or timing thresholds."};
+        MeasureUi(report);
+        MeasureCold(report,64,"Overworld.6.9.0","cargo");
+        MeasureCold(report,64,"Overworld.10.7.0","shelter");
+        MeasureCold(report,64,"Overworld.11.1.0","refusal");
+        MeasureCold(report,64,null,"wayhouse");
+        report.sink=sink;report.complete=true;report.completedUtc=DateTime.UtcNow.ToString("O");
+        string json=JsonConvert.SerializeObject(report,Formatting.Indented);var parsed=JsonConvert.DeserializeObject<Report>(json);
+        Need(parsed.complete&&parsed.samples.Count==6*Pairs*2,"serialized exact60 sample rows");
+        Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outputPath)));File.WriteAllText(outputPath,json);return outputPath;
+        }
+    }
+    sealed class LootRegistrySnapshot:IDisposable
+    {
+        readonly FieldInfo initialized=typeof(LootTableRegistry).GetField("_initialized",All);
+        readonly IDictionary dictionary=(IDictionary)typeof(LootTableRegistry).GetField("_byName",All).GetValue(null);
+        readonly DictionaryEntry[] entries;readonly object flag;
+        internal LootRegistrySnapshot(){var saved=new List<DictionaryEntry>();foreach(DictionaryEntry entry in dictionary)saved.Add(entry);entries=saved.ToArray();flag=initialized.GetValue(null);}
+        public void Dispose(){dictionary.Clear();foreach(var e in entries)dictionary.Add(e.Key,e.Value);initialized.SetValue(null,flag);}
+    }
+    static Type Find(string fullName)
+    {
+        var types=AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType(fullName,false)).Where(t=>t!=null).ToArray();
+        Need(types.Length==1,"exact loaded type "+fullName);return types[0];
+    }
+    static object Get(object target,string name)=>target.GetType().GetField(name,All).GetValue(target);
+    static object Call(object target,string name,params object[] args)=>target.GetType().GetMethod(name,All).Invoke(target,args);
+    static string Properties(Entity e)=>string.Join("|",e.Properties.OrderBy(p=>p.Key,StringComparer.Ordinal).Select(p=>p.Key+"="+p.Value));
+    static void Need(bool value,string name){if(!value)throw new InvalidOperationException("Component measurement: "+name);}
+    static Sample Timed(string component,string arm,int pair,int operations,Action action)
+    {
+        int g0=GC.CollectionCount(0),g1=GC.CollectionCount(1),g2=GC.CollectionCount(2);long allocated=GC.GetAllocatedBytesForCurrentThread(),began=Stopwatch.GetTimestamp();action();
+        double ms=(Stopwatch.GetTimestamp()-began)*1000d/Stopwatch.Frequency;long bytes=GC.GetAllocatedBytesForCurrentThread()-allocated;
+        return new Sample{component=component,arm=arm,pair=pair,operations=operations,milliseconds=ms,allocatedBytes=bytes,gc0=GC.CollectionCount(0)-g0,gc1=GC.CollectionCount(1)-g1,gc2=GC.CollectionCount(2)-g2};
+    }
+    static void Paired(Report report,string component,Action<bool> prepare,Action action,Action verify)
+    {
+        for(int pair=-1;pair<Pairs;pair++)for(int order=0;order<2;order++)
+        {
+            bool enabled=((pair<0?0:pair)%2==0)?order==1:order==0;prepare(enabled);
+            var row=Timed(component,enabled?"current":"disabled-control",pair,UiBatch,()=>{for(int n=0;n<UiBatch;n++)action();});verify();
+            if(pair>=0)report.samples.Add(row);
+        }
+    }
+    static void MeasureUi(Report report)
+    {
+        var type=Find("CavesOfOoo.Tests.SpreadDiscoveryFixture");var fixture=Activator.CreateInstance(type,new object[]{"Scribe_1","RegionOverview",true});
+        try
+        {
+            var manager=(OverworldZoneManager)Get(fixture,"Manager");var player=(Entity)Get(fixture,"Player");var zone=(Zone)Get(fixture,"Zone");var speaker=(Entity)Get(fixture,"Speaker");
+            var rare=manager.RareEncounters;var wayhouse=manager.Wayhouse;int cached=manager.CachedZoneCount,clock=WorldClock.CurrentTick;string properties=Properties(player);var playerAt=zone.GetEntityPosition(player);var speakerAt=zone.GetEntityPosition(speaker);
+            ConversationManager.CurrentNode.Text="I can mark nearby settlements in your travel notes. Directions start here; use the world map to travel.";
+            Action stable=()=>Need(manager.CachedZoneCount==cached&&WorldClock.CurrentTick==clock&&Properties(player)==properties&&zone.GetEntityPosition(player)==playerAt&&zone.GetEntityPosition(speaker)==speakerAt,"report read preserves graph/properties/clock/positions");
+            Paired(report,"report-refresh-and-text",enabled=>{
+                Call(fixture,"Plan",enabled?rare:SpreadRareEncounterPlan.Restore(null));Call(fixture,"Wayhouse",enabled?wayhouse:SpreadWayhousePlan.Restore(null));ConversationManager.RefreshVisibleChoices();
+                Need(ConversationManager.VisibleChoices.Count(c=>c.Actions!=null&&c.Actions.Any(a=>a.Key==SpreadDiscoveryReports.ActionName))==(enabled?3:0),"0/3 actual offers");
+            },()=>{ConversationManager.RefreshVisibleChoices();sink+=ConversationManager.CurrentText.Length+ConversationManager.VisibleChoices.Count;},stable);
+            Call(fixture,"Plan",rare);Call(fixture,"Wayhouse",wayhouse);ConversationManager.RefreshVisibleChoices();
+            foreach(var family in new[]{"ditch-cutters","chalk-ring-viper","turnbank-wayhouse"})
+            {var choice=(ChoiceData)Call(fixture,"Offer",family);Call(fixture,"Select",choice);}
+            var notes=player.Properties.Where(p=>p.Key.StartsWith(SpreadDiscoveryNotes.Prefix,StringComparison.Ordinal)).ToArray();Need(notes.Length==3&&SpreadDiscoveryNotes.Read(player).Count==3,"three real remembered notes before read measurement");
+            var unrelated=player.Properties.Where(p=>!p.Key.StartsWith(SpreadDiscoveryNotes.Prefix,StringComparison.Ordinal)).ToArray();string expected=null;
+            Paired(report,"note-read-and-format",enabled=>{
+                foreach(var note in notes)player.Properties.Remove(note.Key);if(enabled)foreach(var note in notes)player.Properties[note.Key]=note.Value;
+                Need(SpreadDiscoveryNotes.Read(player).Count==(enabled?3:0),"0/3 valid saved records");expected=Properties(player);
+            },()=>{var read=SpreadDiscoveryNotes.Read(player);sink+=read.Count;foreach(string text in read)sink+=text.Length;},()=>{
+                Need(Properties(player)==expected&&manager.CachedZoneCount==cached&&WorldClock.CurrentTick==clock,"note read does not rewrite or generate");foreach(var pair in unrelated)Need(player.Properties[pair.Key]==pair.Value,"unrelated note preserved");
+            });
+            report.checks.Add("M1 actual fixture reflection resolved;0/3 report actions and0/3 remembered records; native API calls are read-only during timing; no cache/property/clock/position mutation.");
+        }
+        finally{((IDisposable)fixture).Dispose();}
+    }
+    sealed class Probe:IZoneBuilder
+    {
+        readonly int priority;readonly Action<Zone,Random> action;public Probe(int p,Action<Zone,Random>a){priority=p;action=a;}public string Name=>"PrivateComponentProbe";public int Priority=>priority;
+        public bool BuildZone(Zone z,EntityFactory f,Random rng){action(z,rng);return true;}
+    }
+    sealed class Observed:OverworldZoneManager
+    {
+        readonly bool enabled,wayhouse;internal Entity[] Before;internal (int x,int y)[] Positions;internal string[] Facts;
+        internal SpreadWildernessSituationBuilder Composer;internal PopulationBuilder Population;internal ContainerBuilder Containers;internal int NextRng;internal long LateBytes;internal double LateMs;long start,allocated;
+        internal Observed(EntityFactory f,int seed,bool enabled,bool wayhouse):base(f,seed){this.enabled=enabled;this.wayhouse=wayhouse;}
+        protected override ZoneGenerationPipeline GetPipelineForZone(string id)
+        {
+            var p=base.GetPipelineForZone(id);Composer=p.Builders.OfType<SpreadWildernessSituationBuilder>().SingleOrDefault();
+            Need(wayhouse?p.Builders.OfType<SpreadWayhouseBuilder>().Count()==1:Composer!=null,"actual selected current builder registered");
+            Population=p.Builders.OfType<PopulationBuilder>().Single();Containers=p.Builders.OfType<ContainerBuilder>().Single();
+            if(!enabled){if(wayhouse)p.RemoveBuilders<SpreadWayhouseBuilder>();else p.RemoveBuilders<SpreadWildernessSituationBuilder>();}
+            p.AddBuilder(new Probe(4299,(z,r)=>{Before=z.GetReadOnlyEntities().ToArray();Positions=Before.Select(e=>z.GetEntityPosition(e)).ToArray();Facts=Before.Select(Exact).ToArray();allocated=GC.GetAllocatedBytesForCurrentThread();start=Stopwatch.GetTimestamp();}));
+            p.AddBuilder(new Probe(4301,(z,r)=>{LateMs=(Stopwatch.GetTimestamp()-start)*1000d/Stopwatch.Frequency;LateBytes=GC.GetAllocatedBytesForCurrentThread()-allocated;}));
+            p.AddBuilder(new Probe(int.MaxValue,(z,r)=>NextRng=r.Next()));return p;
+        }
+    }
+    sealed class Captured
+    {internal Observed manager;internal Zone zone;internal Sample sample;internal string[] shapes;internal string tiles;}
+    static string Stats(Entity e)=>string.Join("/",e.Statistics.OrderBy(s=>s.Key,StringComparer.Ordinal).Select(s=>s.Key+":"+s.Value.BaseValue+":"+s.Value.Bonus+":"+s.Value.Penalty+":"+s.Value.Value));
+    static IEnumerable<Entity> Gear(Entity e)=>e.GetPart<InventoryPart>()==null?Enumerable.Empty<Entity>():e.GetPart<InventoryPart>().Objects.Concat(e.GetPart<InventoryPart>().EquippedItems.Values).Distinct();
+    static IEnumerable<Entity> Goods(Entity e)=>(e.GetPart<ContainerPart>()?.Contents??new List<Entity>()).Concat(Gear(e)).Distinct();
+    static string Item(Entity e)=>e.BlueprintName+":"+(e.GetPart<StackerPart>()?.StackCount??1)+":"+Stats(e)+":"+string.Join(",",e.Tags.OrderBy(x=>x.Key,StringComparer.Ordinal).Select(x=>x.Key+"="+x.Value));
+    static string Shape(Entity e)=>Item(e)+";goods="+string.Join(",",Goods(e).Select(Item).OrderBy(x=>x,StringComparer.Ordinal));
+    static string Exact(Entity e)=>e.ID+":"+Shape(e)+";links="+string.Join(",",Goods(e).Select(i=>i.ID+":"+i.GetPart<PhysicsPart>()?.InInventory?.ID+":"+i.GetPart<PhysicsPart>()?.Equipped?.ID).OrderBy(x=>x,StringComparer.Ordinal));
+    static Captured One(object scope,EntityFactory factory,int seed,string address,bool enabled,string kind,int pair)
+    {
+        var manager=new Observed(factory,seed,enabled,kind=="wayhouse");string id=address??manager.Wayhouse.ZoneID;Need(!string.IsNullOrEmpty(id),"selected wayhouse address");
+        Call(scope,"Seed",unchecked(seed^FormationSelector.StableIndex(id,int.MaxValue)));Zone zone=null;
+        var sample=Timed(kind,enabled?"current":"disabled-control",pair,1,()=>zone=manager.GetZone(id));Need(zone!=null,"cold generation returns valid graph");
+        sample.seed=seed;sample.zone=id;sample.owners=zone.GetReadOnlyEntities().Count;sample.layoutTrials=kind=="wayhouse"?-1:manager.Composer?.LayoutTrials??0;sample.nextRng=manager.NextRng;sample.lateMilliseconds=manager.LateMs;sample.lateAllocatedBytes=manager.LateBytes;
+        sample.result=!enabled?"builder-removed":kind=="wayhouse"?(zone.GetReadOnlyEntities().Any(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="anchor")?"wayhouse":"refused"):manager.Composer.LastResult;
+        return new Captured{manager=manager,zone=zone,sample=sample,shapes=manager.Before.Select(Shape).ToArray(),tiles=zone.TileState.ToSaveString()};
+    }
+    static void Compare(Captured baseline,Captured current,string kind)
+    {
+        var b=baseline.manager;var c=current.manager;Need(baseline.sample.zone==current.sample.zone&&baseline.shapes.SequenceEqual(current.shapes)&&b.Positions.SequenceEqual(c.Positions),"identical cold pre4300 rolls/stock/state/coordinates");
+        var owners=current.zone.GetReadOnlyEntities();
+        if(kind!="wayhouse")
+        {
+            Need(baseline.sample.nextRng==current.sample.nextRng&&baseline.tiles==current.tiles,"composer final RNG/tile state");
+            Need(c.Before.SequenceEqual(owners)&&c.Facts.SequenceEqual(owners.Select(Exact)),"exact composer references/items/links/stat projection");
+            var allowed=new HashSet<Entity>();var cache=c.Containers.SourceReceipt.Owners.FirstOrDefault(e=>(e.BlueprintName=="Crate"||e.BlueprintName=="Sack")&&!e.GetPart<ContainerPart>().IsLocked);if(cache!=null)allowed.Add(cache);
+            if(current.sample.result=="shelter")foreach(var e in c.Population.SourceReceipt.Owners)allowed.Add(e);
+            for(int i=0;i<c.Before.Length;i++)if(current.zone.GetEntityPosition(c.Before[i])!=c.Positions[i]){Need(allowed.Contains(c.Before[i]),"only selected source coordinate may change");current.sample.moved++;}
+            if(current.sample.result.StartsWith("refused:",StringComparison.Ordinal))Need(current.sample.moved==0,"refusal does not move owners");else Need(current.sample.moved>0,"commit actually moves cache");
+            Need(kind=="refusal"?current.sample.result.StartsWith("refused:",StringComparison.Ordinal):current.sample.result==kind,"chosen actual native/source cohort retains declared result");
+        }
+        else
+        {
+            var removed=new HashSet<Entity>(c.Population.SourceReceipt.Owners.Concat(new[]{c.Containers.SourceReceipt.Owners[0]}));
+            for(int i=0;i<c.Before.Length;i++)
+            {
+                var e=c.Before[i];if(current.zone.GetEntityCell(e)==null){Need(removed.Contains(e)||(e.BlueprintName=="Bush"&&!e.HasPart<HarvestablePart>()),"only actual sources/plain scrub removed");continue;}
+                Need(current.zone.GetEntityPosition(e)==c.Positions[i]&&Exact(e)==c.Facts[i],"wayhouse unrelated owner/state remains");
+            }
+            if(current.sample.result=="wayhouse")
+            {
+                var cache=owners.Single(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="cache");var sack=owners.Single(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="key-sack");
+                var reward=cache.GetPart<ContainerPart>().Contents.Single();var key=sack.GetPart<ContainerPart>().Contents.Single();
+                Need(reward.BlueprintName=="Buckler"&&reward.GetPart<PhysicsPart>().InInventory==cache&&key.BlueprintName=="IronKey"&&key.GetPart<PhysicsPart>().InInventory==sack,"exact real wayhouse goods/backlinks");
+            }
+            else Need(c.Before.SequenceEqual(owners)&&c.Facts.SequenceEqual(owners.Select(Exact)),"optional wayhouse refusal retains source graph");
+        }
+    }
+    static void MeasureCold(Report report,int seed,string address,string kind)
+    {
+        var scope=Activator.CreateInstance(Find("CavesOfOoo.Tests.DensityLootTestScope"));
+        try
+        {
+            var factory=(EntityFactory)Get(scope,"Factory");
+            for(int pair=-1;pair<Pairs;pair++)
+            {
+                Captured baseline,current;
+                if(pair%2==1){current=One(scope,factory,seed,address,true,kind,pair);baseline=One(scope,factory,seed,address,false,kind,pair);}
+                else{baseline=One(scope,factory,seed,address,false,kind,pair);current=One(scope,factory,seed,address,true,kind,pair);}
+                Compare(baseline,current,kind);if(pair>=0){report.samples.Add(baseline.sample);report.samples.Add(current.sample);}
+            }
+            report.checks.Add(kind+" five matched cold pairs validated at seed"+seed+" address"+(address??"actual frozen wayhouse")+"; no timing threshold.");
+        }
+        finally{((IDisposable)scope).Dispose();}
+    }
+}

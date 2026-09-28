@@ -1,0 +1,16 @@
+--- a/Assets/Scripts/Gameplay/World/Generation/Builders/SpreadWayhouseBuilder.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/Builders/SpreadWayhouseBuilder.cs
+@@ -184,8 +184,11 @@
+                 &&l?.ParentEntity==door&&l.IsLocked&&l.KeyId==keyID&&door.GetPart<RenderPart>().RenderString=="+"
+                 &&guard.GetPart<BrainPart>()?.ParentEntity==guard&&guard.GetPart<BrainPart>().SightRadius==10
+                 &&guard.GetStatValue("Hitpoints")==15&&guard.BlueprintName=="MarlbackScrabbler"
+-                &&key.BlueprintName=="IronKey"&&key.GetPart<KeyPart>()?.ParentEntity==key&&key.GetPart<KeyPart>().KeyId==keyID
+-                &&reward.BlueprintName=="Buckler"&&sack.GetPart<ContainerPart>()?.Contents.Count==1
++                &&key.BlueprintName=="IronKey"&&key.HasTag("NoTrade")&&(key.GetPart<StackerPart>()?.StackCount??1)==1
++                &&key.GetPart<KeyPart>()?.ParentEntity==key&&key.GetPart<KeyPart>().KeyId==keyID
++                &&reward.BlueprintName=="Buckler"&&(reward.GetPart<StackerPart>()?.StackCount??1)==1
++                &&reward.GetPart<CommercePart>()?.ParentEntity==reward&&reward.GetPart<CommercePart>().Value==20
++                &&sack.GetPart<ContainerPart>()?.Contents.Count==1
+                 &&sack.GetPart<ContainerPart>().Contents[0]==key&&cache.GetPart<ContainerPart>()?.Contents.Count==1
+                 &&cache.GetPart<ContainerPart>().Contents[0]==reward;
+         }

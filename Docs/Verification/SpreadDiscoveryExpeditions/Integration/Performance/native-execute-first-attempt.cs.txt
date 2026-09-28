@@ -1,0 +1,33 @@
+// C#6 execute_code body. Root only, idle editor; no Assets imports or writes.
+if(UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode||UnityEditor.EditorApplication.isCompiling)
+ throw new System.InvalidOperationException("Idle compiled editor required.");
+System.Func<string,string> sha=path=>{using(var h=System.Security.Cryptography.SHA256.Create())return System.BitConverter.ToString(h.ComputeHash(System.IO.File.ReadAllBytes(path))).Replace("-","").ToLowerInvariant();};
+var dll="/tmp/coo-spread-discovery-performance/SpreadComponentMeasurement.dll";
+if(sha(dll)!="8d3079524ed341b46e7c7d5e26da180d65c7807bcdc451e53250ff158b294048")throw new System.InvalidOperationException("Private measurement DLL changed.");
+System.Func<string> scenes=()=>{var b=new System.Text.StringBuilder();b.Append(UnityEngine.SceneManagement.SceneManager.GetActiveScene().path);for(int i=0;i<UnityEngine.SceneManagement.SceneManager.sceneCount;i++){var s=UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);b.Append("|").Append(s.path).Append(":").Append(s.handle).Append(":").Append(s.isDirty).Append(":").Append(s.isLoaded);}return b.ToString();};
+var sceneBefore=scenes();
+var flags=System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.Public|System.Reflection.BindingFlags.NonPublic;
+var saveType=typeof(CavesOfOoo.Core.SaveGameService);
+var saveRoot=saveType.GetProperty("SaveRootOverride",flags);
+if(saveRoot==null)throw new System.InvalidOperationException("Existing fixture save isolation is required.");
+var rootBefore=saveRoot.GetValue(null,null);
+var active=saveType.GetField("_activeGameID",flags);var activeBefore=active.GetValue(null);
+var key=CavesOfOoo.Core.SaveGameService.LastGameIDPrefsKey;
+bool hadBefore=UnityEngine.PlayerPrefs.HasKey(key);var valueBefore=UnityEngine.PlayerPrefs.GetString(key);
+var output="/Users/steven/caves-of-ooo/Docs/Verification/SpreadDiscoveryExpeditions/Integration/Performance/native-components.json";
+try{
+ System.Reflection.Assembly assembly=null;foreach(var a in System.AppDomain.CurrentDomain.GetAssemblies())if(a.Location==dll){assembly=a;break;}
+ if(assembly==null)assembly=System.Reflection.Assembly.LoadFile(dll);
+ var type=assembly.GetType("SpreadComponentMeasurement",true);
+ try{type.GetMethod("Run").Invoke(null,new object[]{output,"unity-editor-native-current"});}
+ catch(System.Reflection.TargetInvocationException ex){throw ex.InnerException??ex;}
+}finally{
+ if(sceneBefore!=scenes()||!object.Equals(rootBefore,saveRoot.GetValue(null,null))||!object.Equals(activeBefore,active.GetValue(null))||hadBefore!=UnityEngine.PlayerPrefs.HasKey(key)||valueBefore!=UnityEngine.PlayerPrefs.GetString(key))
+  throw new System.InvalidOperationException("Fixture restoration mismatch: scene/save root/active game/LastGame.");
+}
+var result=Newtonsoft.Json.JsonConvert.DeserializeObject<Newtonsoft.Json.Linq.JObject>(System.IO.File.ReadAllText(output));
+if(!(bool)result["complete"]||((Newtonsoft.Json.Linq.JArray)result["samples"]).Count!=60)throw new System.InvalidOperationException("Incomplete measurement output.");
+var receipt=new{output=output,dllSha256=sha(dll),outputSha256=sha(output),rows=60,sceneStateUnchanged=true,saveRootUnchanged=true,activeGameUnchanged=true,lastGamePreferenceUnchanged=true,scope="Fixture temporary saves are isolated and cleaned outside timers. No Assets edits, no actual player journey, no GPU or UI draw timing."};
+var text=Newtonsoft.Json.JsonConvert.SerializeObject(receipt,Newtonsoft.Json.Formatting.Indented);
+System.IO.File.WriteAllText(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(output),"native-execution-state.json"),text);
+return text;

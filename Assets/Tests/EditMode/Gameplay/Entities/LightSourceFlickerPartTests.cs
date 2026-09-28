@@ -230,21 +230,25 @@ namespace CavesOfOoo.Tests
             var flicker = entity.GetPart<LightSourceFlickerPart>();
             var lightSource = entity.GetPart<LightSourcePart>();
 
-            // Fire 30 Render events; at least one must shift Intensity
-            // away from 1.0.
-            bool changed = false;
-            for (int i = 0; i < 30 && !changed; i++)
+            // Render samples the current frame time. Repeated synchronous
+            // events do not advance it, and a legitimate noise midpoint can
+            // equal the base intensity. Prove dispatch independently of that
+            // value; the explicit-time tests above cover variation and bounds.
+            flicker.UpdateIntensityAt(UnityEngine.Time.time);
+            float expected = lightSource.Intensity;
+            lightSource.Intensity = -123f;
+            var ev = GameEvent.New("Render");
+            try
             {
-                var ev = GameEvent.New("Render");
-                flicker.HandleEvent(ev);
-                if (System.Math.Abs(lightSource.Intensity - 1.0f) > 0.001f)
-                    changed = true;
+                Assert.IsTrue(flicker.HandleEvent(ev));
+                Assert.AreEqual(expected, lightSource.Intensity, 1e-5f,
+                    "Render must replace the sentinel with the same-frame "
+                    + "flicker result, including a valid base-intensity midpoint.");
             }
-
-            Assert.IsTrue(changed,
-                "Render event handler must drive flicker. Across 30 "
-                + "Render events, at least one must shift Intensity "
-                + "away from base.");
+            finally
+            {
+                ev.Release();
+            }
         }
     }
 }

@@ -1,0 +1,3799 @@
+{
+  "runId": "1d50380d963f4287b24fa61c7a1fa8a4",
+  "complete": false,
+  "failures": 2,
+  "unexpectedErrors": 1,
+  "seconds": 3.5068824,
+  "fatal": "System.InvalidOperationException: Spread discovery precondition: finite currently safe route to actual owner 7495\n  at CavesOfOoo.Scenarios.Custom.SpreadDiscoveryNativePlayer.Require (System.Boolean value, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/SpreadDiscoveryNativePlayer.cs:422 \n  at CavesOfOoo.Scenarios.Custom.SpreadDiscoveryNativePlayer+<Approach>d__125.MoveNext () [0x00191] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/SpreadDiscoveryNativePlayer.cs:323 \n  at CavesOfOoo.Scenarios.Custom.SpreadDiscoveryNativePlayer+<RunSafely>d__142.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/SpreadDiscoveryNativePlayer.cs:434 ",
+  "audit": [
+    "PASS ordinary_start",
+    "PASS ordinary_native_sill_entry",
+    "FAIL native_precondition_failed"
+  ],
+  "requiredChecks": [
+    "ordinary_start",
+    "ordinary_native_sill_entry",
+    "real_informant_report",
+    "explicit_notes_acquired",
+    "native_field_notes",
+    "generated_field_lane_transfer",
+    "native_finite_gleaning",
+    "generated_wayhouse_transfer",
+    "native_notice",
+    "native_key_acquired",
+    "native_front_unlock",
+    "native_front_open",
+    "native_reward_once",
+    "native_reward_equipped",
+    "depleted_checkpoint_saved",
+    "real_unsaved_step",
+    "restored_exact_notes_and_depleted_site",
+    "cached_depleted_site_not_refilled",
+    "bounded_finish"
+  ],
+  "keys": [
+    {
+      "sequence": 0,
+      "keys": "N",
+      "state": "Normal",
+      "tick": 10
+    },
+    {
+      "sequence": 1,
+      "keys": "LeftShift,Comma",
+      "state": "Normal",
+      "tick": 10
+    },
+    {
+      "sequence": 2,
+      "keys": "A",
+      "state": "Normal",
+      "tick": 20
+    },
+    {
+      "sequence": 3,
+      "keys": "LeftShift,Period",
+      "state": "Normal",
+      "tick": 40
+    },
+    {
+      "sequence": 4,
+      "keys": "A",
+      "state": "Normal",
+      "tick": 50
+    },
+    {
+      "sequence": 5,
+      "keys": "A",
+      "state": "Normal",
+      "tick": 60
+    },
+    {
+      "sequence": 6,
+      "keys": "A",
+      "state": "Normal",
+      "tick": 70
+    },
+    {
+      "sequence": 7,
+      "keys": "A",
+      "state": "Normal",
+      "tick": 80
+    }
+  ],
+  "observations": [
+    {
+      "phase": "ordinary_start",
+      "player": "2697",
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 10,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2698:Dagger:1:owner=2697|2699:HealingTonic:2:owner=2697|2700:DriedMeat:2:owner=2697|2701:WateringGrimoire:1:owner=2697|2702:CandyCarrotSeed:4:owner=2697|2703:EmberwheatSeed:2:owner=2697;slots=;body=;owners=2698:Dagger:1:carried=2697:equipped=|2699:HealingTonic:2:carried=2697:equipped=|2700:DriedMeat:2:carried=2697:equipped=|2701:WateringGrimoire:1:carried=2697:equipped=|2702:CandyCarrotSeed:4:carried=2697:equipped=|2703:EmberwheatSeed:2:carried=2697:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "Starting a new game. Initial checkpoint saved."
+    },
+    {
+      "phase": "native-map-ascend",
+      "player": "2697",
+      "zone": "WorldMap",
+      "x": 41,
+      "y": 13,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 20,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2698:Dagger:1:owner=2697|2699:HealingTonic:2:owner=2697|2700:DriedMeat:2:owner=2697|2701:WateringGrimoire:1:owner=2697|2702:CandyCarrotSeed:4:owner=2697|2703:EmberwheatSeed:2:owner=2697;slots=;body=;owners=2698:Dagger:1:carried=2697:equipped=|2699:HealingTonic:2:carried=2697:equipped=|2700:DriedMeat:2:carried=2697:equipped=|2701:WateringGrimoire:1:carried=2697:equipped=|2702:CandyCarrotSeed:4:carried=2697:equipped=|2703:EmberwheatSeed:2:carried=2697:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "native-worldmap-step",
+      "player": "2697",
+      "zone": "WorldMap",
+      "x": 40,
+      "y": 13,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 40,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2698:Dagger:1:owner=2697|2699:HealingTonic:2:owner=2697|2700:DriedMeat:2:owner=2697|2701:WateringGrimoire:1:owner=2697|2702:CandyCarrotSeed:4:owner=2697|2703:EmberwheatSeed:2:owner=2697;slots=;body=;owners=2698:Dagger:1:carried=2697:equipped=|2699:HealingTonic:2:carried=2697:equipped=|2700:DriedMeat:2:carried=2697:equipped=|2701:WateringGrimoire:1:carried=2697:equipped=|2702:CandyCarrotSeed:4:carried=2697:equipped=|2703:EmberwheatSeed:2:carried=2697:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "native-map-descend",
+      "player": "2697",
+      "zone": "Overworld.10.10.0",
+      "x": 39,
+      "y": 11,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 50,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2698:Dagger:1:owner=2697|2699:HealingTonic:2:owner=2697|2700:DriedMeat:2:owner=2697|2701:WateringGrimoire:1:owner=2697|2702:CandyCarrotSeed:4:owner=2697|2703:EmberwheatSeed:2:owner=2697;slots=;body=;owners=2698:Dagger:1:carried=2697:equipped=|2699:HealingTonic:2:carried=2697:equipped=|2700:DriedMeat:2:carried=2697:equipped=|2701:WateringGrimoire:1:carried=2697:equipped=|2702:CandyCarrotSeed:4:carried=2697:equipped=|2703:EmberwheatSeed:2:carried=2697:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "The elder stops mid-sentence -- something in the water said a word from a story their great-grandparent told, and doesn't say it again."
+    },
+    {
+      "phase": "ordinary_native_sill_entry",
+      "player": "2697",
+      "zone": "Overworld.10.10.0",
+      "x": 39,
+      "y": 11,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 50,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2698:Dagger:1:owner=2697|2699:HealingTonic:2:owner=2697|2700:DriedMeat:2:owner=2697|2701:WateringGrimoire:1:owner=2697|2702:CandyCarrotSeed:4:owner=2697|2703:EmberwheatSeed:2:owner=2697;slots=;body=;owners=2698:Dagger:1:carried=2697:equipped=|2699:HealingTonic:2:carried=2697:equipped=|2700:DriedMeat:2:carried=2697:equipped=|2701:WateringGrimoire:1:carried=2697:equipped=|2702:CandyCarrotSeed:4:carried=2697:equipped=|2703:EmberwheatSeed:2:carried=2697:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "The elder stops mid-sentence -- something in the water said a word from a story their great-grandparent told, and doesn't say it again."
+    },
+    {
+      "phase": "ground-step",
+      "player": "2697",
+      "zone": "Overworld.10.10.0",
+      "x": 38,
+      "y": 11,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 60,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2698:Dagger:1:owner=2697|2699:HealingTonic:2:owner=2697|2700:DriedMeat:2:owner=2697|2701:WateringGrimoire:1:owner=2697|2702:CandyCarrotSeed:4:owner=2697|2703:EmberwheatSeed:2:owner=2697;slots=;body=;owners=2698:Dagger:1:carried=2697:equipped=|2699:HealingTonic:2:carried=2697:equipped=|2700:DriedMeat:2:carried=2697:equipped=|2701:WateringGrimoire:1:carried=2697:equipped=|2702:CandyCarrotSeed:4:carried=2697:equipped=|2703:EmberwheatSeed:2:carried=2697:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "The elder stops mid-sentence -- something in the water said a word from a story their great-grandparent told, and doesn't say it again."
+    },
+    {
+      "phase": "ground-step",
+      "player": "2697",
+      "zone": "Overworld.10.10.0",
+      "x": 37,
+      "y": 11,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 70,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2698:Dagger:1:owner=2697|2699:HealingTonic:2:owner=2697|2700:DriedMeat:2:owner=2697|2701:WateringGrimoire:1:owner=2697|2702:CandyCarrotSeed:4:owner=2697|2703:EmberwheatSeed:2:owner=2697;slots=;body=;owners=2698:Dagger:1:carried=2697:equipped=|2699:HealingTonic:2:carried=2697:equipped=|2700:DriedMeat:2:carried=2697:equipped=|2701:WateringGrimoire:1:carried=2697:equipped=|2702:CandyCarrotSeed:4:carried=2697:equipped=|2703:EmberwheatSeed:2:carried=2697:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "The elder stops mid-sentence -- something in the water said a word from a story their great-grandparent told, and doesn't say it again."
+    },
+    {
+      "phase": "ground-step",
+      "player": "2697",
+      "zone": "Overworld.10.10.0",
+      "x": 36,
+      "y": 11,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 80,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2698:Dagger:1:owner=2697|2699:HealingTonic:2:owner=2697|2700:DriedMeat:2:owner=2697|2701:WateringGrimoire:1:owner=2697|2702:CandyCarrotSeed:4:owner=2697|2703:EmberwheatSeed:2:owner=2697;slots=;body=;owners=2698:Dagger:1:carried=2697:equipped=|2699:HealingTonic:2:carried=2697:equipped=|2700:DriedMeat:2:carried=2697:equipped=|2701:WateringGrimoire:1:carried=2697:equipped=|2702:CandyCarrotSeed:4:carried=2697:equipped=|2703:EmberwheatSeed:2:carried=2697:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "The elder stops mid-sentence -- something in the water said a word from a story their great-grandparent told, and doesn't say it again."
+    },
+    {
+      "phase": "ground-step",
+      "player": "2697",
+      "zone": "Overworld.10.10.0",
+      "x": 35,
+      "y": 11,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 90,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2698:Dagger:1:owner=2697|2699:HealingTonic:2:owner=2697|2700:DriedMeat:2:owner=2697|2701:WateringGrimoire:1:owner=2697|2702:CandyCarrotSeed:4:owner=2697|2703:EmberwheatSeed:2:owner=2697;slots=;body=;owners=2698:Dagger:1:carried=2697:equipped=|2699:HealingTonic:2:carried=2697:equipped=|2700:DriedMeat:2:carried=2697:equipped=|2701:WateringGrimoire:1:carried=2697:equipped=|2702:CandyCarrotSeed:4:carried=2697:equipped=|2703:EmberwheatSeed:2:carried=2697:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "The elder stops mid-sentence -- something in the water said a word from a story their great-grandparent told, and doesn't say it again."
+    },
+    {
+      "phase": "route_refusal",
+      "goal": "owner 7495 at 20,5",
+      "zone": "Overworld.10.10.0",
+      "x": 35,
+      "y": 11,
+      "hp": 40,
+      "tick": 90,
+      "threatClearance": 1,
+      "candidates": [
+        {
+          "x": 19,
+          "y": 4,
+          "physicallyAdmitted": false,
+          "observerSafe": false,
+          "owners": [
+            "5183:Grass",
+            "6840:VineWall"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 19,
+              "y": 4,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 19,
+          "y": 5,
+          "physicallyAdmitted": true,
+          "observerSafe": true,
+          "owners": [
+            "6841:StoneFloor"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 19,
+              "y": 5,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 19,
+          "y": 6,
+          "physicallyAdmitted": true,
+          "observerSafe": true,
+          "owners": [
+            "6842:StoneFloor"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 19,
+              "y": 6,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 20,
+          "y": 4,
+          "physicallyAdmitted": false,
+          "observerSafe": false,
+          "owners": [
+            "5208:Grass",
+            "6844:VineWall"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 20,
+              "y": 4,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 20,
+          "y": 6,
+          "physicallyAdmitted": true,
+          "observerSafe": true,
+          "owners": [
+            "6846:StoneFloor"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 20,
+              "y": 6,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 21,
+          "y": 4,
+          "physicallyAdmitted": false,
+          "observerSafe": false,
+          "owners": [
+            "5233:Grass",
+            "6848:VineWall"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 21,
+              "y": 4,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 21,
+          "y": 5,
+          "physicallyAdmitted": false,
+          "observerSafe": false,
+          "owners": [
+            "6849:StoneFloor",
+            "7486:Scribe"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 21,
+              "y": 5,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 21,
+          "y": 6,
+          "physicallyAdmitted": true,
+          "observerSafe": true,
+          "owners": [
+            "6850:StoneFloor"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 21,
+              "y": 6,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        }
+      ],
+      "neighbors": [
+        {
+          "x": 36,
+          "y": 11,
+          "physicallyAdmitted": true,
+          "observerSafe": true,
+          "owners": [
+            "5615:Grass"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 36,
+              "y": 11,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 34,
+          "y": 11,
+          "physicallyAdmitted": true,
+          "observerSafe": true,
+          "owners": [
+            "5565:Grass"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 34,
+              "y": 11,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 35,
+          "y": 12,
+          "physicallyAdmitted": true,
+          "observerSafe": true,
+          "owners": [
+            "5591:Grass"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 35,
+              "y": 12,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 35,
+          "y": 10,
+          "physicallyAdmitted": true,
+          "observerSafe": true,
+          "owners": [
+            "5589:Grass"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 35,
+              "y": 10,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 36,
+          "y": 12,
+          "physicallyAdmitted": true,
+          "observerSafe": true,
+          "owners": [
+            "5616:Grass"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 36,
+              "y": 12,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 36,
+          "y": 10,
+          "physicallyAdmitted": true,
+          "observerSafe": true,
+          "owners": [
+            "5614:Grass"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 36,
+              "y": 10,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 34,
+          "y": 12,
+          "physicallyAdmitted": true,
+          "observerSafe": true,
+          "owners": [
+            "5566:Grass"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 34,
+              "y": 12,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        },
+        {
+          "x": 34,
+          "y": 10,
+          "physicallyAdmitted": true,
+          "observerSafe": true,
+          "owners": [
+            "5564:Grass"
+          ],
+          "activeThreats": [],
+          "tileStates": [
+            {
+              "x": 34,
+              "y": 10,
+              "heat": 0,
+              "cold": 0,
+              "charge": 0,
+              "cloud": "",
+              "cloudTurns": 0,
+              "coatings": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "native_precondition_failed",
+      "player": "2697",
+      "zone": "Overworld.10.10.0",
+      "x": 35,
+      "y": 11,
+      "hp": 40,
+      "stats": "Agility:18:18:0:0:0:999|DV:0:0:0:0:-50:200|Ego:16:16:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:18:18:0:0:0:999|Toughness:18:18:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 90,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2698:Dagger:1:owner=2697|2699:HealingTonic:2:owner=2697|2700:DriedMeat:2:owner=2697|2701:WateringGrimoire:1:owner=2697|2702:CandyCarrotSeed:4:owner=2697|2703:EmberwheatSeed:2:owner=2697;slots=;body=;owners=2698:Dagger:1:carried=2697:equipped=|2699:HealingTonic:2:carried=2697:equipped=|2700:DriedMeat:2:carried=2697:equipped=|2701:WateringGrimoire:1:carried=2697:equipped=|2702:CandyCarrotSeed:4:carried=2697:equipped=|2703:EmberwheatSeed:2:carried=2697:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "The elder stops mid-sentence -- something in the water said a word from a story their great-grandparent told, and doesn't say it again."
+    }
+  ],
+  "windows": [
+    {
+      "label": "native-map-ascend",
+      "kind": "local",
+      "marker": "3f2ce053",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 10,
+      "afterTick": 20,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "3f2ce053",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790553767423,
+          "Turn": 10,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"1d50380d963f4287b24fa61c7a1fa8a4\",\"label\":\"native-map-ascend\"}"
+        },
+        {
+          "TraceId": "40bf857d",
+          "Category": "worldmap",
+          "Kind": "Ascended",
+          "TimestampUnixMs": 1790553767458,
+          "Turn": 10,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromZoneID\":\"Overworld.11.10.0\",\"fromZoneX\":40,\"fromZoneY\":12,\"toWorldX\":11,\"toWorldY\":10,\"toZoneCellX\":41,\"toZoneCellY\":13}"
+        },
+        {
+          "TraceId": "31f91313",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553767666,
+          "Turn": 10,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "3983a02e",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553767667,
+          "Turn": 20,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "label": "native-worldmap-step",
+      "kind": "map",
+      "marker": "1f34e407",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 20,
+      "afterTick": 40,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 10,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "1f34e407",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790553767825,
+          "Turn": 20,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"1d50380d963f4287b24fa61c7a1fa8a4\",\"label\":\"native-worldmap-step\"}"
+        },
+        {
+          "TraceId": "c62ae1bc",
+          "Category": "worldmap",
+          "Kind": "Stepped",
+          "TimestampUnixMs": 1790553767828,
+          "Turn": 30,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"toZoneX\":40,\"toZoneY\":13,\"toWorldX\":10,\"toWorldY\":10,\"turnsCost\":10}"
+        },
+        {
+          "TraceId": "34f37e47",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553767828,
+          "Turn": 30,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "30f51dba",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553767828,
+          "Turn": 40,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "label": "native-map-descend",
+      "kind": "local",
+      "marker": "56c10ac7",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 40,
+      "afterTick": 50,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "56c10ac7",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790553767976,
+          "Turn": 40,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"1d50380d963f4287b24fa61c7a1fa8a4\",\"label\":\"native-map-descend\"}"
+        },
+        {
+          "TraceId": "b7f91c34",
+          "Category": "worldgen",
+          "Kind": "ConnectivityConnected",
+          "TimestampUnixMs": 1790553768006,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneID\":\"Overworld.10.10.0\"}"
+        },
+        {
+          "TraceId": "d871bf53",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768014,
+          "Turn": 40,
+          "ActorId": "7287",
+          "TargetId": "7292",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherGloves\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "b37bbf61",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768014,
+          "Turn": 40,
+          "ActorId": "7287",
+          "TargetId": "7293",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherBoots\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "9b9ef4c2",
+          "Category": "worldgen",
+          "Kind": "StructurePlaced",
+          "TimestampUnixMs": 1790553768015,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"stamp\":\"TheSmithy\",\"zone\":\"Overworld.10.10.0\",\"ax\":13,\"ay\":15}"
+        },
+        {
+          "TraceId": "4b03e1c1",
+          "Category": "worldgen",
+          "Kind": "StructurePlaced",
+          "TimestampUnixMs": 1790553768016,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"stamp\":\"TheBulwark\",\"zone\":\"Overworld.10.10.0\",\"ax\":30,\"ay\":4}"
+        },
+        {
+          "TraceId": "a7a4ff6f",
+          "Category": "worldgen",
+          "Kind": "StructurePlaced",
+          "TimestampUnixMs": 1790553768017,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"stamp\":\"TheAlembic\",\"zone\":\"Overworld.10.10.0\",\"ax\":35,\"ay\":3}"
+        },
+        {
+          "TraceId": "c589f7d3",
+          "Category": "worldgen",
+          "Kind": "StructurePlaced",
+          "TimestampUnixMs": 1790553768017,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"stamp\":\"TheInkwell\",\"zone\":\"Overworld.10.10.0\",\"ax\":69,\"ay\":8}"
+        },
+        {
+          "TraceId": "9144fb0c",
+          "Category": "worldgen",
+          "Kind": "StructurePlaced",
+          "TimestampUnixMs": 1790553768018,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"stamp\":\"TheLarder\",\"zone\":\"Overworld.10.10.0\",\"ax\":57,\"ay\":2}"
+        },
+        {
+          "TraceId": "4b30103f",
+          "Category": "worldgen",
+          "Kind": "VillageDoorsPlaced",
+          "TimestampUnixMs": 1790553768019,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"recorded\":7,\"placed\":6,\"refused\":1}"
+        },
+        {
+          "TraceId": "91d4e74b",
+          "Category": "loot",
+          "Kind": "TableRolled",
+          "TimestampUnixMs": 1790553768022,
+          "Turn": 40,
+          "ActorId": "7412",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"VillageGrimoireChest\",\"rolledCount\":3,\"added\":3}"
+        },
+        {
+          "TraceId": "404ce0da",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790553768023,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"VillageDecor\",\"zone\":null,\"blueprint\":\"Campfire\",\"group\":null,\"count\":1,\"roll\":0.87601230380870976,\"rollKind\":\"chance\",\"threshold\":0.42857142857142855,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "2cc49246",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790553768024,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"VillageDecor\",\"zone\":null,\"blueprint\":\"Well\",\"group\":null,\"count\":1,\"roll\":-1.0,\"rollKind\":\"fixed_count\",\"threshold\":null,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "8fed00d8",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790553768024,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"VillageDecor\",\"zone\":null,\"blueprint\":\"MarketStall\",\"group\":null,\"count\":0,\"roll\":0.36963521054463239,\"rollKind\":\"chance\",\"threshold\":0.2857142857142857,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "b439318e",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768027,
+          "Turn": 40,
+          "ActorId": "7433",
+          "TargetId": "7436",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherCap\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "2c7d7256",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768027,
+          "Turn": 40,
+          "ActorId": "7433",
+          "TargetId": "7437",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherBoots\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "087f9882",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768027,
+          "Turn": 40,
+          "ActorId": "7438",
+          "TargetId": "7443",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"ShortSword\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "1946e22f",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768027,
+          "Turn": 40,
+          "ActorId": "7438",
+          "TargetId": "7444",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherBoots\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "bc5d904a",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768027,
+          "Turn": 40,
+          "ActorId": "7451",
+          "TargetId": "7455",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Spear\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "c7615a19",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768027,
+          "Turn": 40,
+          "ActorId": "7451",
+          "TargetId": "7456",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherArmor\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "2790c677",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768027,
+          "Turn": 40,
+          "ActorId": "7451",
+          "TargetId": "7457",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherBoots\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "d0771566",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768027,
+          "Turn": 40,
+          "ActorId": "7461",
+          "TargetId": "7466",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LongSword\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "e3b3537e",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768027,
+          "Turn": 40,
+          "ActorId": "7461",
+          "TargetId": "7467",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherArmor\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "9be69791",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768027,
+          "Turn": 40,
+          "ActorId": "7461",
+          "TargetId": "7468",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherBoots\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "bc655f8a",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768028,
+          "Turn": 40,
+          "ActorId": "7469",
+          "TargetId": "7475",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherBoots\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "92a5eba3",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768028,
+          "Turn": 40,
+          "ActorId": "7469",
+          "TargetId": "7476",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherCap\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "e9f365a3",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768028,
+          "Turn": 40,
+          "ActorId": "7477",
+          "TargetId": "7484",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherBoots\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "800f25b6",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768028,
+          "Turn": 40,
+          "ActorId": "7477",
+          "TargetId": "7485",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherGloves\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "2413b1fc",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768028,
+          "Turn": 40,
+          "ActorId": "7486",
+          "TargetId": "7491",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherGloves\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "1da7a62a",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768028,
+          "Turn": 40,
+          "ActorId": "7486",
+          "TargetId": "7492",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherCap\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "4e977d50",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768029,
+          "Turn": 40,
+          "ActorId": "7514",
+          "TargetId": "7515",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Dagger\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "83aebc69",
+          "Category": "loot",
+          "Kind": "TableRolled",
+          "TimestampUnixMs": 1790553768033,
+          "Turn": 40,
+          "ActorId": "7563",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"CrateT1\",\"rolledCount\":9,\"added\":9}"
+        },
+        {
+          "TraceId": "09fb754c",
+          "Category": "loot",
+          "Kind": "TableRolled",
+          "TimestampUnixMs": 1790553768033,
+          "Turn": 40,
+          "ActorId": "7573",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"CrateT1\",\"rolledCount\":6,\"added\":6}"
+        },
+        {
+          "TraceId": "b816a457",
+          "Category": "worldgen",
+          "Kind": "ContainersPlaced",
+          "TimestampUnixMs": 1790553768033,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"biome\":\"Cave\",\"zoneKind\":\"Village\",\"tier\":1,\"budget\":2,\"placed\":2}"
+        },
+        {
+          "TraceId": "1bdd60cb",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768036,
+          "Turn": 40,
+          "ActorId": "7580",
+          "TargetId": "7583",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherCap\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "176cd9d2",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768036,
+          "Turn": 40,
+          "ActorId": "7580",
+          "TargetId": "7584",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherBoots\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "7a082642",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768036,
+          "Turn": 40,
+          "ActorId": "7589",
+          "TargetId": "7596",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"ShortSword\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "5bb3c789",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768036,
+          "Turn": 40,
+          "ActorId": "7589",
+          "TargetId": "7597",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherBoots\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "ea8b47ff",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768037,
+          "Turn": 40,
+          "ActorId": "7598",
+          "TargetId": "7604",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherGloves\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "cdb1444a",
+          "Category": "event",
+          "Kind": "LoadoutEquipResult",
+          "TimestampUnixMs": 1790553768037,
+          "Turn": 40,
+          "ActorId": "7598",
+          "TargetId": "7605",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"LeatherCap\",\"equipped\":true,\"reason\":\"equipped\"}"
+        },
+        {
+          "TraceId": "711a458a",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7378",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "372bf510",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7333",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "5ffc42fd",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7451",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "f08ae57a",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7495",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "500db8f2",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7486",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "c5f6d739",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7310",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "28a13786",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7477",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "08bbd4a7",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7438",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "16a39b68",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7469",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "9ef37c5b",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7357",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "3fc3aea1",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7508",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "9f053ecc",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7287",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "e86e2b83",
+          "Category": "worldgen",
+          "Kind": "LocalResidentNamed",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "7503",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.10.10.0\",\"reason\":\"\"}"
+        },
+        {
+          "TraceId": "fb16a488",
+          "Category": "worldmap",
+          "Kind": "Descended",
+          "TimestampUnixMs": 1790553768038,
+          "Turn": 40,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromWorldX\":10,\"fromWorldY\":10,\"toZoneID\":\"Overworld.10.10.0\",\"toZoneX\":39,\"toZoneY\":11,\"usedSavedLocation\":false}"
+        },
+        {
+          "TraceId": "88976c99",
+          "Category": "worldgen",
+          "Kind": "VoxelPresentationBound",
+          "TimestampUnixMs": 1790553768067,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.10.10.0\",\"bindings\":410}"
+        },
+        {
+          "TraceId": "bab3f690",
+          "Category": "effect",
+          "Kind": "NativeSpellPrepared",
+          "TimestampUnixMs": 1790553768154,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"WorldMap\",\"backend\":\"native\",\"LoadSeconds\":2E-07,\"ValidationSeconds\":0.0,\"PoolSeconds\":0.002047,\"ViewCount\":384,\"UsedCachedLibrary\":true}"
+        },
+        {
+          "TraceId": "b4f34823",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768495,
+          "Turn": 40,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "fc8f31f8",
+          "Category": "event",
+          "Kind": "StoryletFired",
+          "TimestampUnixMs": 1790553768495,
+          "Turn": null,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"storyletId\":\"SillHearsIt\",\"oneShot\":true}"
+        },
+        {
+          "TraceId": "d2e09eb4",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768496,
+          "Turn": 50,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "label": "ground-step",
+      "kind": "local",
+      "marker": "100f1220",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 50,
+      "afterTick": 60,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "100f1220",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790553768703,
+          "Turn": 50,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"1d50380d963f4287b24fa61c7a1fa8a4\",\"label\":\"ground-step\"}"
+        },
+        {
+          "TraceId": "a868e393",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768709,
+          "Turn": 50,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "0d175d78",
+          "Category": "event",
+          "Kind": "StoryletFired",
+          "TimestampUnixMs": 1790553768709,
+          "Turn": null,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"storyletId\":\"UrquSignsAwaken\",\"oneShot\":true}"
+        },
+        {
+          "TraceId": "6509dc79",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768709,
+          "Turn": 50,
+          "ActorId": "7287",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Weaponsmith\",\"hp\":20}"
+        },
+        {
+          "TraceId": "87bd5aef",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768710,
+          "Turn": 50,
+          "ActorId": "7287",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Weaponsmith\",\"hp\":20}"
+        },
+        {
+          "TraceId": "8aac0641",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768710,
+          "Turn": 50,
+          "ActorId": "7310",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Armorer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "e8c44eba",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768710,
+          "Turn": 50,
+          "ActorId": "7310",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Armorer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "dd8faaea",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768710,
+          "Turn": 50,
+          "ActorId": "7333",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Apothecary\",\"hp\":20}"
+        },
+        {
+          "TraceId": "f5261b2a",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768711,
+          "Turn": 50,
+          "ActorId": "7333",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Apothecary\",\"hp\":20}"
+        },
+        {
+          "TraceId": "97486a7c",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768711,
+          "Turn": 50,
+          "ActorId": "7357",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Arcanist\",\"hp\":20}"
+        },
+        {
+          "TraceId": "db13b1e7",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768711,
+          "Turn": 50,
+          "ActorId": "7357",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Arcanist\",\"hp\":20}"
+        },
+        {
+          "TraceId": "ef7a7c20",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768711,
+          "Turn": 50,
+          "ActorId": "7378",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Provisioner\",\"hp\":20}"
+        },
+        {
+          "TraceId": "54d1b89d",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768712,
+          "Turn": 50,
+          "ActorId": "7378",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Provisioner\",\"hp\":20}"
+        },
+        {
+          "TraceId": "bac7a08b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768712,
+          "Turn": 50,
+          "ActorId": "7433",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "db1bbce4",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768713,
+          "Turn": 50,
+          "ActorId": "7433",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "579ca499",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768713,
+          "Turn": 50,
+          "ActorId": "7438",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "d93ad150",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768715,
+          "Turn": 50,
+          "ActorId": "7438",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "9be09fde",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768715,
+          "Turn": 50,
+          "ActorId": "7451",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Quartermaster\",\"hp\":30}"
+        },
+        {
+          "TraceId": "2e3a4e3c",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768716,
+          "Turn": 50,
+          "ActorId": "7451",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Quartermaster\",\"hp\":30}"
+        },
+        {
+          "TraceId": "22278f13",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768716,
+          "Turn": 50,
+          "ActorId": "7461",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Warden\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d47a6a6d",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768716,
+          "Turn": 50,
+          "ActorId": "7461",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Warden\",\"hp\":40}"
+        },
+        {
+          "TraceId": "ea639360",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768716,
+          "Turn": 50,
+          "ActorId": "7469",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"WellKeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "35065200",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768717,
+          "Turn": 50,
+          "ActorId": "7469",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"WellKeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "9a09c396",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768717,
+          "Turn": 50,
+          "ActorId": "7477",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "9c48dcd6",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768717,
+          "Turn": 50,
+          "ActorId": "7477",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "edb88592",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768717,
+          "Turn": 50,
+          "ActorId": "7486",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "7f86f53d",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768718,
+          "Turn": 50,
+          "ActorId": "7486",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "f9fab799",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768718,
+          "Turn": 50,
+          "ActorId": "7495",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Innkeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "62f86374",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768718,
+          "Turn": 50,
+          "ActorId": "7495",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Innkeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "b34d4231",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768718,
+          "Turn": 50,
+          "ActorId": "7501",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "251a0de1",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768719,
+          "Turn": 50,
+          "ActorId": "7501",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "345afa02",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768719,
+          "Turn": 50,
+          "ActorId": "7502",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "5b2b03bb",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768720,
+          "Turn": 50,
+          "ActorId": "7502",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "86e34991",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768720,
+          "Turn": 50,
+          "ActorId": "7503",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "f762deb0",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768720,
+          "Turn": 50,
+          "ActorId": "7503",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "52f42ca1",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768720,
+          "Turn": 50,
+          "ActorId": "7508",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "579745a6",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768721,
+          "Turn": 50,
+          "ActorId": "7508",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "ce0f2a6a",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768721,
+          "Turn": 50,
+          "ActorId": "7511",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "21550c59",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768722,
+          "Turn": 50,
+          "ActorId": "7511",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "6c52a497",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768722,
+          "Turn": 50,
+          "ActorId": "7514",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"SootGremlin\",\"hp\":15}"
+        },
+        {
+          "TraceId": "a537e322",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768722,
+          "Turn": 50,
+          "ActorId": "7514",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"SootGremlin\",\"hp\":15}"
+        },
+        {
+          "TraceId": "e1199e02",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768722,
+          "Turn": 50,
+          "ActorId": "7516",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "8a6d40f7",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768724,
+          "Turn": 50,
+          "ActorId": "7516",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "29bc7067",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768724,
+          "Turn": 50,
+          "ActorId": "7580",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "f33cc426",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768724,
+          "Turn": 50,
+          "ActorId": "7580",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "930e5283",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768724,
+          "Turn": 50,
+          "ActorId": "7585",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "dabba5ac",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768737,
+          "Turn": 50,
+          "ActorId": "7585",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "660fc6c1",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768737,
+          "Turn": 50,
+          "ActorId": "7589",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "01e31c4f",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768738,
+          "Turn": 50,
+          "ActorId": "7589",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "7eb438c8",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768738,
+          "Turn": 50,
+          "ActorId": "7598",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "26d5998a",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768738,
+          "Turn": 50,
+          "ActorId": "7598",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "b1c75bea",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768739,
+          "Turn": 60,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "label": "ground-step",
+      "kind": "local",
+      "marker": "888f44c4",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 60,
+      "afterTick": 70,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "888f44c4",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790553768915,
+          "Turn": 60,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"1d50380d963f4287b24fa61c7a1fa8a4\",\"label\":\"ground-step\"}"
+        },
+        {
+          "TraceId": "41107e33",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768921,
+          "Turn": 60,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "8e8b2301",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768921,
+          "Turn": 60,
+          "ActorId": "7287",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Weaponsmith\",\"hp\":20}"
+        },
+        {
+          "TraceId": "4077a9b1",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768922,
+          "Turn": 60,
+          "ActorId": "7287",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Weaponsmith\",\"hp\":20}"
+        },
+        {
+          "TraceId": "32deb4e3",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768922,
+          "Turn": 60,
+          "ActorId": "7310",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Armorer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "a9385177",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768922,
+          "Turn": 60,
+          "ActorId": "7310",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Armorer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "c5c17c21",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768922,
+          "Turn": 60,
+          "ActorId": "7333",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Apothecary\",\"hp\":20}"
+        },
+        {
+          "TraceId": "8ff5cb52",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768923,
+          "Turn": 60,
+          "ActorId": "7333",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Apothecary\",\"hp\":20}"
+        },
+        {
+          "TraceId": "d1a9834b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768923,
+          "Turn": 60,
+          "ActorId": "7357",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Arcanist\",\"hp\":20}"
+        },
+        {
+          "TraceId": "9adb4339",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768924,
+          "Turn": 60,
+          "ActorId": "7357",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Arcanist\",\"hp\":20}"
+        },
+        {
+          "TraceId": "0003f473",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768924,
+          "Turn": 60,
+          "ActorId": "7378",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Provisioner\",\"hp\":20}"
+        },
+        {
+          "TraceId": "fb6a4337",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768924,
+          "Turn": 60,
+          "ActorId": "7378",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Provisioner\",\"hp\":20}"
+        },
+        {
+          "TraceId": "22f501ec",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768924,
+          "Turn": 60,
+          "ActorId": "7433",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "75eae94f",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768925,
+          "Turn": 60,
+          "ActorId": "7433",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "69180aa9",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768925,
+          "Turn": 60,
+          "ActorId": "7438",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "8147a351",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768925,
+          "Turn": 60,
+          "ActorId": "7438",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "97af1111",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768925,
+          "Turn": 60,
+          "ActorId": "7451",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Quartermaster\",\"hp\":30}"
+        },
+        {
+          "TraceId": "153ac465",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768926,
+          "Turn": 60,
+          "ActorId": "7451",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Quartermaster\",\"hp\":30}"
+        },
+        {
+          "TraceId": "98002670",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768926,
+          "Turn": 60,
+          "ActorId": "7461",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Warden\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d868e45d",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768926,
+          "Turn": 60,
+          "ActorId": "7461",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Warden\",\"hp\":40}"
+        },
+        {
+          "TraceId": "5ffaa8fe",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768926,
+          "Turn": 60,
+          "ActorId": "7469",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"WellKeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "56a8c066",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768926,
+          "Turn": 60,
+          "ActorId": "7469",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"WellKeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "ba4a76bf",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768926,
+          "Turn": 60,
+          "ActorId": "7477",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "14883036",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768927,
+          "Turn": 60,
+          "ActorId": "7477",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "95a30736",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768927,
+          "Turn": 60,
+          "ActorId": "7486",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "77098d0f",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768928,
+          "Turn": 60,
+          "ActorId": "7486",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "6e2ed501",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768928,
+          "Turn": 60,
+          "ActorId": "7495",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Innkeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "c3b3cd3d",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768928,
+          "Turn": 60,
+          "ActorId": "7495",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Innkeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "2b910530",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768928,
+          "Turn": 60,
+          "ActorId": "7501",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "6871373d",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768929,
+          "Turn": 60,
+          "ActorId": "7501",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "ab681b09",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768929,
+          "Turn": 60,
+          "ActorId": "7502",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "4c5c6f0e",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768931,
+          "Turn": 60,
+          "ActorId": "7502",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "172acb71",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768931,
+          "Turn": 60,
+          "ActorId": "7503",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "b17f17be",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768932,
+          "Turn": 60,
+          "ActorId": "7503",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "95103027",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768932,
+          "Turn": 60,
+          "ActorId": "7508",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "d0d3683c",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768932,
+          "Turn": 60,
+          "ActorId": "7508",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "974cafd8",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768932,
+          "Turn": 60,
+          "ActorId": "7511",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "344972d5",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768933,
+          "Turn": 60,
+          "ActorId": "7511",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "c8d82154",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768933,
+          "Turn": 60,
+          "ActorId": "7514",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"SootGremlin\",\"hp\":15}"
+        },
+        {
+          "TraceId": "aba9ed40",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768933,
+          "Turn": 60,
+          "ActorId": "7514",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"SootGremlin\",\"hp\":15}"
+        },
+        {
+          "TraceId": "55ee8178",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768933,
+          "Turn": 60,
+          "ActorId": "7516",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "2e8205e0",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768934,
+          "Turn": 60,
+          "ActorId": "7516",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "ed3e2c78",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768934,
+          "Turn": 60,
+          "ActorId": "7580",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "abcc5f64",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768935,
+          "Turn": 60,
+          "ActorId": "7580",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "5a6f9893",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768935,
+          "Turn": 60,
+          "ActorId": "7585",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "7665e05f",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768947,
+          "Turn": 60,
+          "ActorId": "7585",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "ab74d02d",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768947,
+          "Turn": 60,
+          "ActorId": "7589",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "d5c01daa",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768948,
+          "Turn": 60,
+          "ActorId": "7589",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "fc304c0a",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768948,
+          "Turn": 60,
+          "ActorId": "7598",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "eb5466ac",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553768948,
+          "Turn": 60,
+          "ActorId": "7598",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "7256ae93",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553768948,
+          "Turn": 70,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "label": "ground-step",
+      "kind": "local",
+      "marker": "e24eee09",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 70,
+      "afterTick": 80,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "e24eee09",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790553769126,
+          "Turn": 70,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"1d50380d963f4287b24fa61c7a1fa8a4\",\"label\":\"ground-step\"}"
+        },
+        {
+          "TraceId": "c2970cf0",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769133,
+          "Turn": 70,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "0ba510fd",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769133,
+          "Turn": 70,
+          "ActorId": "7287",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Weaponsmith\",\"hp\":20}"
+        },
+        {
+          "TraceId": "d9fcf60e",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769134,
+          "Turn": 70,
+          "ActorId": "7287",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Weaponsmith\",\"hp\":20}"
+        },
+        {
+          "TraceId": "392b3081",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769134,
+          "Turn": 70,
+          "ActorId": "7310",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Armorer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "d70d23f5",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769135,
+          "Turn": 70,
+          "ActorId": "7310",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Armorer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "cf5c0967",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769135,
+          "Turn": 70,
+          "ActorId": "7333",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Apothecary\",\"hp\":20}"
+        },
+        {
+          "TraceId": "52821c66",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769135,
+          "Turn": 70,
+          "ActorId": "7333",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Apothecary\",\"hp\":20}"
+        },
+        {
+          "TraceId": "e68edcc6",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769135,
+          "Turn": 70,
+          "ActorId": "7357",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Arcanist\",\"hp\":20}"
+        },
+        {
+          "TraceId": "63d6ae70",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769136,
+          "Turn": 70,
+          "ActorId": "7357",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Arcanist\",\"hp\":20}"
+        },
+        {
+          "TraceId": "14f8ec82",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769136,
+          "Turn": 70,
+          "ActorId": "7378",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Provisioner\",\"hp\":20}"
+        },
+        {
+          "TraceId": "d9f018e9",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769136,
+          "Turn": 70,
+          "ActorId": "7378",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Provisioner\",\"hp\":20}"
+        },
+        {
+          "TraceId": "f7f3bcca",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769136,
+          "Turn": 70,
+          "ActorId": "7433",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "088a8874",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769137,
+          "Turn": 70,
+          "ActorId": "7433",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "db71b1ab",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769137,
+          "Turn": 70,
+          "ActorId": "7438",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "69678138",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769137,
+          "Turn": 70,
+          "ActorId": "7438",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "67f196d8",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769137,
+          "Turn": 70,
+          "ActorId": "7451",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Quartermaster\",\"hp\":30}"
+        },
+        {
+          "TraceId": "b7ef0c4c",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769138,
+          "Turn": 70,
+          "ActorId": "7451",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Quartermaster\",\"hp\":30}"
+        },
+        {
+          "TraceId": "bae911b7",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769138,
+          "Turn": 70,
+          "ActorId": "7461",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Warden\",\"hp\":40}"
+        },
+        {
+          "TraceId": "05b189bc",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769138,
+          "Turn": 70,
+          "ActorId": "7461",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Warden\",\"hp\":40}"
+        },
+        {
+          "TraceId": "94e6988b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769138,
+          "Turn": 70,
+          "ActorId": "7469",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"WellKeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "6ec7e78e",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769138,
+          "Turn": 70,
+          "ActorId": "7469",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"WellKeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "e8f27089",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769138,
+          "Turn": 70,
+          "ActorId": "7477",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "c683f7c1",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769138,
+          "Turn": 70,
+          "ActorId": "7477",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "ae03db72",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769139,
+          "Turn": 70,
+          "ActorId": "7486",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "88612de6",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769139,
+          "Turn": 70,
+          "ActorId": "7486",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "9e84b731",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769139,
+          "Turn": 70,
+          "ActorId": "7495",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Innkeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "e1de721e",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769140,
+          "Turn": 70,
+          "ActorId": "7495",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Innkeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "da748b68",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769140,
+          "Turn": 70,
+          "ActorId": "7501",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "0b6e44c8",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769140,
+          "Turn": 70,
+          "ActorId": "7501",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "c0a6ed2b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769140,
+          "Turn": 70,
+          "ActorId": "7502",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "b0bc18d1",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769143,
+          "Turn": 70,
+          "ActorId": "7502",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "7bf96d1b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769143,
+          "Turn": 70,
+          "ActorId": "7503",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "e8c98135",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769143,
+          "Turn": 70,
+          "ActorId": "7503",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "4edb363b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769143,
+          "Turn": 70,
+          "ActorId": "7508",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "d8684c31",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769144,
+          "Turn": 70,
+          "ActorId": "7508",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "1d2bebf5",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769144,
+          "Turn": 70,
+          "ActorId": "7511",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "4163681a",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769145,
+          "Turn": 70,
+          "ActorId": "7511",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "022b754b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769145,
+          "Turn": 70,
+          "ActorId": "7514",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"SootGremlin\",\"hp\":15}"
+        },
+        {
+          "TraceId": "a4a7391c",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769145,
+          "Turn": 70,
+          "ActorId": "7514",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"SootGremlin\",\"hp\":15}"
+        },
+        {
+          "TraceId": "d866ba37",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769145,
+          "Turn": 70,
+          "ActorId": "7516",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "237ad0c3",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769146,
+          "Turn": 70,
+          "ActorId": "7516",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "896b7352",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769146,
+          "Turn": 70,
+          "ActorId": "7580",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "2247d6c0",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769147,
+          "Turn": 70,
+          "ActorId": "7580",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "7e32c37e",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769147,
+          "Turn": 70,
+          "ActorId": "7585",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "9d3ac8d2",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769163,
+          "Turn": 70,
+          "ActorId": "7585",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "f6119a5a",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769163,
+          "Turn": 70,
+          "ActorId": "7589",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "3f36ec2d",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769167,
+          "Turn": 70,
+          "ActorId": "7589",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "3b3f4531",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769167,
+          "Turn": 70,
+          "ActorId": "7598",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "2dbff6ab",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769168,
+          "Turn": 70,
+          "ActorId": "7598",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "0a955ecb",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769168,
+          "Turn": 80,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "label": "ground-step",
+      "kind": "local",
+      "marker": "f67afc50",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 80,
+      "afterTick": 90,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "f67afc50",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790553769351,
+          "Turn": 80,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"1d50380d963f4287b24fa61c7a1fa8a4\",\"label\":\"ground-step\"}"
+        },
+        {
+          "TraceId": "0175e97e",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769358,
+          "Turn": 80,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "ff2f069a",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769358,
+          "Turn": 80,
+          "ActorId": "7287",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Weaponsmith\",\"hp\":20}"
+        },
+        {
+          "TraceId": "a4776ba2",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769359,
+          "Turn": 80,
+          "ActorId": "7287",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Weaponsmith\",\"hp\":20}"
+        },
+        {
+          "TraceId": "ad43dfd4",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769359,
+          "Turn": 80,
+          "ActorId": "7310",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Armorer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "809002fc",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769360,
+          "Turn": 80,
+          "ActorId": "7310",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Armorer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "24833477",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769360,
+          "Turn": 80,
+          "ActorId": "7333",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Apothecary\",\"hp\":20}"
+        },
+        {
+          "TraceId": "5c7b1919",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769360,
+          "Turn": 80,
+          "ActorId": "7333",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Apothecary\",\"hp\":20}"
+        },
+        {
+          "TraceId": "53207f63",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769360,
+          "Turn": 80,
+          "ActorId": "7357",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Arcanist\",\"hp\":20}"
+        },
+        {
+          "TraceId": "c99a471b",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769361,
+          "Turn": 80,
+          "ActorId": "7357",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Arcanist\",\"hp\":20}"
+        },
+        {
+          "TraceId": "a508dd7e",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769361,
+          "Turn": 80,
+          "ActorId": "7378",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Provisioner\",\"hp\":20}"
+        },
+        {
+          "TraceId": "8237bbac",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769362,
+          "Turn": 80,
+          "ActorId": "7378",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Provisioner\",\"hp\":20}"
+        },
+        {
+          "TraceId": "6832b06f",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769362,
+          "Turn": 80,
+          "ActorId": "7433",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "d5996b3d",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769362,
+          "Turn": 80,
+          "ActorId": "7433",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "4f294fd4",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769362,
+          "Turn": 80,
+          "ActorId": "7438",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "4cb42c9c",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769362,
+          "Turn": 80,
+          "ActorId": "7438",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "75c6161d",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769362,
+          "Turn": 80,
+          "ActorId": "7451",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Quartermaster\",\"hp\":30}"
+        },
+        {
+          "TraceId": "7ea4996b",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769363,
+          "Turn": 80,
+          "ActorId": "7451",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Quartermaster\",\"hp\":30}"
+        },
+        {
+          "TraceId": "a535c9ae",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769363,
+          "Turn": 80,
+          "ActorId": "7461",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Warden\",\"hp\":40}"
+        },
+        {
+          "TraceId": "84dfa853",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769363,
+          "Turn": 80,
+          "ActorId": "7461",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Warden\",\"hp\":40}"
+        },
+        {
+          "TraceId": "407ef5c0",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769363,
+          "Turn": 80,
+          "ActorId": "7469",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"WellKeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "9b5894d6",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769363,
+          "Turn": 80,
+          "ActorId": "7469",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"WellKeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "6b3bb19d",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769363,
+          "Turn": 80,
+          "ActorId": "7477",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "09c70b7f",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769364,
+          "Turn": 80,
+          "ActorId": "7477",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+        },
+        {
+          "TraceId": "da060e50",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769364,
+          "Turn": 80,
+          "ActorId": "7486",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "375419a0",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769364,
+          "Turn": 80,
+          "ActorId": "7486",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "0bbb1462",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769364,
+          "Turn": 80,
+          "ActorId": "7495",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Innkeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "83b19669",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769365,
+          "Turn": 80,
+          "ActorId": "7495",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Innkeeper\",\"hp\":20}"
+        },
+        {
+          "TraceId": "99355cda",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769365,
+          "Turn": 80,
+          "ActorId": "7501",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "2980f3ce",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769365,
+          "Turn": 80,
+          "ActorId": "7501",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "0db47a18",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769365,
+          "Turn": 80,
+          "ActorId": "7502",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "46736dda",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769368,
+          "Turn": 80,
+          "ActorId": "7502",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"VillageChild\",\"hp\":10}"
+        },
+        {
+          "TraceId": "44ac5d0b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769368,
+          "Turn": 80,
+          "ActorId": "7503",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "6a93c3f5",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769368,
+          "Turn": 80,
+          "ActorId": "7503",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "96963a9f",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769368,
+          "Turn": 80,
+          "ActorId": "7508",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "3f947fdb",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769369,
+          "Turn": 80,
+          "ActorId": "7508",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "5e76162e",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769369,
+          "Turn": 80,
+          "ActorId": "7511",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "3cbd6393",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769369,
+          "Turn": 80,
+          "ActorId": "7511",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "e89ef808",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769369,
+          "Turn": 80,
+          "ActorId": "7514",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"SootGremlin\",\"hp\":15}"
+        },
+        {
+          "TraceId": "fc2deb8d",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769369,
+          "Turn": 80,
+          "ActorId": "7514",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"SootGremlin\",\"hp\":15}"
+        },
+        {
+          "TraceId": "f7297aa2",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769369,
+          "Turn": 80,
+          "ActorId": "7516",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "34c42a83",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769399,
+          "Turn": 80,
+          "ActorId": "7516",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "286a7ed0",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769399,
+          "Turn": 80,
+          "ActorId": "7580",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "6ce5cdb7",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769400,
+          "Turn": 80,
+          "ActorId": "7580",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Elder\",\"hp\":30}"
+        },
+        {
+          "TraceId": "e2e57ced",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769400,
+          "Turn": 80,
+          "ActorId": "7585",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "67639136",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769414,
+          "Turn": 80,
+          "ActorId": "7585",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Villager\",\"hp\":20}"
+        },
+        {
+          "TraceId": "a58581bf",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769414,
+          "Turn": 80,
+          "ActorId": "7589",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "3e197494",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769417,
+          "Turn": 80,
+          "ActorId": "7589",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Merchant\",\"hp\":20}"
+        },
+        {
+          "TraceId": "10fa03fa",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769417,
+          "Turn": 80,
+          "ActorId": "7598",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "e213d311",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1790553769417,
+          "Turn": 80,
+          "ActorId": "7598",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Scribe\",\"hp\":20}"
+        },
+        {
+          "TraceId": "130391c2",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790553769418,
+          "Turn": 90,
+          "ActorId": "2697",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    }
+  ],
+  "timings": [],
+  "notes": [
+    "NO SAFE ROUTE Overworld.10.10.0@39,11 threats=7514@69,7",
+    "NO SAFE ROUTE Overworld.10.10.0@35,11 threats=7514@66,5"
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/SpreadDiscoveryExpeditions/Native/1d50380d963f4287b24fa61c7a1fa8a4/01-ordinary-start.png"
+  ],
+  "localInputs": 6,
+  "mapSteps": 1,
+  "completedPlayerTurns": 7,
+  "pureClock": 10,
+  "checkpointHash": null,
+  "threatClearance": 1,
+  "passedChecks": [
+    "ordinary_start",
+    "ordinary_native_sill_entry"
+  ],
+  "unmetChecks": [
+    "real_informant_report",
+    "explicit_notes_acquired",
+    "native_field_notes",
+    "generated_field_lane_transfer",
+    "native_finite_gleaning",
+    "generated_wayhouse_transfer",
+    "native_notice",
+    "native_key_acquired",
+    "native_front_unlock",
+    "native_front_open",
+    "native_reward_once",
+    "native_reward_equipped",
+    "depleted_checkpoint_saved",
+    "real_unsaved_step",
+    "restored_exact_notes_and_depleted_site",
+    "cached_depleted_site_not_refilled",
+    "bounded_finish"
+  ],
+  "canVerify": "Only the named passedChecks were observed in this run; intendedCapability is the planned route, not a completion claim. Partial failures and unmetChecks remain explicit.",
+  "intendedCapability": "Ordinary seed64 N bootstrap and native map travel to actual Sill informant, explicit report notes/Q-Tab. Disclosed original-player transfers to unchanged generated field and selected wayhouse. Actual harvest, live-guard rear path with baseline reload, front key/door/reward, F5/unsaved-step/F6 notes and depleted-graph identity.",
+  "cannotVerify": "Not an ordinary continuous expedition journey: field/wayhouse transfers and a saved rear/front branch replay are explicit fixture setup. No generated source edits or HP/AI/gear/loot grants. No all-seed/balance/permanent-safety claim. Only passedChecks are observed; source generation/route refusal is retained. Screenshots require independent viewing."
+}

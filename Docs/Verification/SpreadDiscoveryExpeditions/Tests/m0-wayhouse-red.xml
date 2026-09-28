@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Failed(Child)" total="6" passed="3" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-27 23:11:44Z" end-time="2026-09-27 23:11:48Z" duration="3.39195">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="20412" result="Failed" site="Child" start-time="2026-09-27 23:11:44Z" end-time="2026-09-27 23:11:48Z" duration="3.391950" total="6" passed="3" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="25012" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="20412" result="Failed" site="Child" start-time="2026-09-27 23:11:44Z" end-time="2026-09-27 23:11:48Z" duration="3.268947" total="6" passed="3" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37276" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="25013" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="20412" result="Failed" site="Child" start-time="2026-09-27 23:11:45Z" end-time="2026-09-27 23:11:48Z" duration="3.094855" total="6" passed="3" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="25014" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="20412" result="Failed" site="Child" start-time="2026-09-27 23:11:45Z" end-time="2026-09-27 23:11:48Z" duration="2.895005" total="6" passed="3" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="16271" name="SpreadDiscoveryCensusTests" fullname="CavesOfOoo.Tests.SpreadDiscoveryCensusTests" classname="CavesOfOoo.Tests.SpreadDiscoveryCensusTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27 23:11:45Z" end-time="2026-09-27 23:11:47Z" duration="2.522962" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="16275" name="RecordCurrentBoundedGeneratedSources" fullname="CavesOfOoo.Tests.SpreadDiscoveryCensusTests.RecordCurrentBoundedGeneratedSources" classname="CavesOfOoo.Tests.SpreadDiscoveryCensusTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-27 23:11:45Z" end-time="2026-09-27 23:11:47Z" duration="2.319036" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16272" name="RecordCurrentBoundedGeneratedSources(1)" fullname="CavesOfOoo.Tests.SpreadDiscoveryCensusTests.RecordCurrentBoundedGeneratedSources(1)" methodname="RecordCurrentBoundedGeneratedSources" classname="CavesOfOoo.Tests.SpreadDiscoveryCensusTests" runstate="Runnable" seed="388221022" result="Passed" start-time="2026-09-27 23:11:45Z" end-time="2026-09-27 23:11:46Z" duration="0.793201" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[seed=1 eligible=128 generated=20 phase=before
+]]></output>
+              </test-case>
+              <test-case id="16273" name="RecordCurrentBoundedGeneratedSources(64)" fullname="CavesOfOoo.Tests.SpreadDiscoveryCensusTests.RecordCurrentBoundedGeneratedSources(64)" methodname="RecordCurrentBoundedGeneratedSources" classname="CavesOfOoo.Tests.SpreadDiscoveryCensusTests" runstate="Runnable" seed="529737959" result="Passed" start-time="2026-09-27 23:11:46Z" end-time="2026-09-27 23:11:47Z" duration="0.588139" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[seed=64 eligible=128 generated=18 phase=before
+]]></output>
+              </test-case>
+              <test-case id="16274" name="RecordCurrentBoundedGeneratedSources(1729)" fullname="CavesOfOoo.Tests.SpreadDiscoveryCensusTests.RecordCurrentBoundedGeneratedSources(1729)" methodname="RecordCurrentBoundedGeneratedSources" classname="CavesOfOoo.Tests.SpreadDiscoveryCensusTests" runstate="Runnable" seed="897984861" result="Passed" start-time="2026-09-27 23:11:47Z" end-time="2026-09-27 23:11:47Z" duration="0.737903" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[seed=1729 eligible=127 generated=20 phase=before
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="16412" name="SpreadWayhouseTests" fullname="CavesOfOoo.Tests.SpreadWayhouseTests" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27 23:11:47Z" end-time="2026-09-27 23:11:48Z" duration="0.270724" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="16416" name="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27 23:11:47Z" end-time="2026-09-27 23:11:48Z" duration="0.194891" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16413" name="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt(1)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt(1)" methodname="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="1007183118" result="Failed" start-time="2026-09-27 23:11:48Z" end-time="2026-09-27 23:11:48Z" duration="0.033700" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh worlds need an independent saved expedition source.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWayhouseTests.FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt (System.Int32 seed) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs:17
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16414" name="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt(64)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt(64)" methodname="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="111518244" result="Failed" start-time="2026-09-27 23:11:48Z" end-time="2026-09-27 23:11:48Z" duration="0.031378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh worlds need an independent saved expedition source.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWayhouseTests.FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt (System.Int32 seed) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs:17
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16415" name="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt(1729)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt(1729)" methodname="FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="768026746" result="Failed" start-time="2026-09-27 23:11:48Z" end-time="2026-09-27 23:11:48Z" duration="0.029675" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Fresh worlds need an independent saved expedition source.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWayhouseTests.FreshWorldOwnsOneIndependentExpeditionDestinationWithoutGeneratingIt (System.Int32 seed) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs:17
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

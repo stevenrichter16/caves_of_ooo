@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
 
@@ -16,6 +17,10 @@ namespace CavesOfOoo.Core
         public string Name => "PopulationBuilder";
         public int Priority => 4000;
         public PopulationTable Table;
+        /// <summary>Opt-in, transient provenance for a later composition pass.</summary>
+        public bool CaptureSourceReceipts;
+        public SpreadGenerationReceipt SourceReceipt { get; private set; }
+        private int sourceRevision;
         /// <summary>Only ordinary selected Spread sources may replace their one hostile group.</summary>
         public SpreadRareEncounterBuilder SpreadEncounter;
         /// <summary>Optional cold-generation habitat predicate. A rolled
@@ -29,6 +34,8 @@ namespace CavesOfOoo.Core
 
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
+            SourceReceipt = null; int revision = ++sourceRevision;
+            var receiptOwners = CaptureSourceReceipts ? new List<Entity>() : null;
             if (Table == null) return true;
             bool replaceSpread = Table.Name == "SpreadTier1" && SpreadEncounter != null
                 && SpreadEncounter.TryPlace(zone, factory);
@@ -46,6 +53,12 @@ namespace CavesOfOoo.Core
 
             // Roll the population table
             var toSpawn = Table.Roll(rng, zone.ZoneID);
+            // Roll is intentionally unchanged. Ambiguous duplicate blueprint rows
+            // cannot identify group provenance and therefore grant no authority.
+            var group = receiptOwners == null || Table.Name != "SpreadTier1" || Table.Entries == null ? new HashSet<string>()
+                : new HashSet<string>(Table.Entries.Where(e => e != null && e.EncounterGroup == "SpreadTier1Encounter")
+                    .Select(e => e.BlueprintName).Where(bp => Table.Entries.All(e => e == null || e.BlueprintName != bp || e.EncounterGroup == "SpreadTier1Encounter")));
+            int expected = replaceSpread ? 0 : toSpawn.Count(group.Contains);
 
             // Place each entity in a random open cell
             foreach (var blueprintName in toSpawn)
@@ -100,10 +113,16 @@ namespace CavesOfOoo.Core
                             x, y, reason = "blocks_static_passage" });
                 }
 
+                if (receiptOwners != null && !replaceSpread && group.Contains(blueprintName)
+                    && spawned != null && spawned.BlueprintName == blueprintName && zone.GetEntityCell(spawned) != null)
+                    receiptOwners.Add(spawned);
+
                 // Remove used cell to prevent double-placement of solid entities
                 openCells.RemoveAt(idx);
             }
 
+            if (receiptOwners != null && CaptureSourceReceipts && revision == sourceRevision)
+                SourceReceipt = new SpreadGenerationReceipt(this, zone, factory, revision, receiptOwners, expected);
             return true;
         }
 

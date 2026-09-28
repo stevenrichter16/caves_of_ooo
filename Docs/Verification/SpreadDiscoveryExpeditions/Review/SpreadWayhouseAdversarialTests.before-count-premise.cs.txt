@@ -1,0 +1,195 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using NUnit.Framework;
+
+namespace CavesOfOoo.Tests
+{
+    public sealed class SpreadWayhouseAdversarialTests
+    {
+        DensityLootTestScope scope;
+        OverworldZoneManager manager;
+        [SetUp] public void Setup() { scope=new DensityLootTestScope();manager=OverworldZoneManager.CreateDetached(scope.Factory,64); }
+        [TearDown] public void Cleanup() { Mutation.Callback=null;scope.Dispose(); }
+        public sealed class Mutation : Part
+        {
+            public static Action<Entity> Callback;
+            public override string Name=>"WayhouseMutation";
+            public override bool HandleEvent(GameEvent e) { if(e.ID=="ObjectCreated")Callback?.Invoke(ParentEntity);return true; }
+        }
+        sealed class FinalCallbackManager : OverworldZoneManager
+        {
+            internal string Change;
+            internal bool SawPacket;
+            internal FinalCallbackManager(CavesOfOoo.Data.EntityFactory factory):base(factory,64){}
+            protected override void OnZoneGenerated(Zone zone,string id)
+            {
+                base.OnZoneGenerated(zone,id);
+                var door=zone.GetReadOnlyEntities().SingleOrDefault(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="door");
+                SawPacket=door!=null;if(door==null)return;
+                var reward=zone.GetReadOnlyEntities().Single(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="cache").GetPart<ContainerPart>().Contents.Single();
+                var key=zone.GetReadOnlyEntities().Single(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="key-sack").GetPart<ContainerPart>().Contents.Single();
+                if(Change=="reward-count")reward.AddPart(new StackerPart{StackCount=2});
+                if(Change=="reward-value")reward.GetPart<CommercePart>().Value=999;
+                if(Change=="tradeable-key")key.Tags.Remove("NoTrade");
+                if(Change=="key-count")key.AddPart(new StackerPart{StackCount=2});
+                if(Change=="owned-door")door.GetPart<DoorPart>().OwnerId="another-owner";
+                if(Change=="removed-cache")zone.RemoveEntity(zone.GetReadOnlyEntities().Single(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="cache"));
+                if(Change=="plan-replaced")typeof(OverworldZoneManager).GetProperty("Wayhouse").SetValue(this,SpreadWayhousePlan.Restore(null));
+            }
+        }
+        [TestCase("unchanged")][TestCase("owned-door")][TestCase("removed-cache")][TestCase("plan-replaced")]
+        [TestCase("reward-count")][TestCase("reward-value")][TestCase("tradeable-key")][TestCase("key-count")]
+        public void FinalAcceptanceRejectsChangedPacketBeforeCachingOrSavingInstallation(string change)
+        {
+            var m=new FinalCallbackManager(scope.Factory){Change=change};
+            string id=m.Wayhouse.ZoneID;var z=m.GetZone(id);Assert.True(m.SawPacket,"The final callback must actually inspect a staged packet.");
+            Assert.AreEqual(change=="unchanged",z!=null);Assert.AreEqual(change=="unchanged",m.CachedZones.ContainsKey(id));
+            var world=SpreadWayhousePlan.BindForSave(m,null);
+            Assert.AreEqual(change=="unchanged",world?.Properties.ContainsKey(SpreadWayhousePlan.InstallationKey)==true);
+        }
+        [TestCase(false)][TestCase(true)]
+        public void RepeatBuildCannotErasePendingFinalAcceptance(bool repeat)
+        {
+            var f=Pocket();Assert.True(f.builder.BuildZone(f.zone,scope.Factory,new Random(1)));
+            if(repeat)Assert.True(f.builder.BuildZone(f.zone,scope.Factory,new Random(1)));
+            var door=f.zone.GetReadOnlyEntities().Single(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="door");
+            door.GetPart<DoorPart>().OwnerId="foreign-owner";
+            var final=typeof(OverworldZoneManager).GetMethod("CommitGeneratedZone",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
+            Assert.False((bool)final.Invoke(manager,new object[]{f.zone,f.zone.ZoneID}));
+        }
+        void Observe(string bp,Action<Entity> action)
+        {
+            scope.Factory.RegisterPartType<Mutation>("WayhouseMutation");
+            scope.Factory.Blueprints[bp].Parts["WayhouseMutation"]=new Dictionary<string,string>();
+            Mutation.Callback=action;
+        }
+        (Zone zone,SpreadWayhouseBuilder builder) Pocket()
+        {
+            var z=new Zone(manager.Wayhouse.ZoneID);var terrain=new SpreadCompositionBuilder(64);
+            Assert.True(terrain.BuildZone(z,scope.Factory,new Random(1)));
+            // Explicit empty-ground geometry fixture. The actors and cache below
+            // still come from their real producer and exact successful receipt.
+            foreach(var e in z.GetReadOnlyEntities().Where(e=>e.BlueprintName!="Grass" && e.BlueprintName!="Dirt" && e.BlueprintName!="Sand").ToArray())z.RemoveEntity(e);
+            z.GenReservedCells.Clear();z.ForEachCell((cell,x,y)=>z.TileState.Clear(x,y));
+            var p=new PopulationBuilder(new PopulationTable{Name="SpreadTier1",Entries=new List<PopulationEntry>{
+                new PopulationEntry{BlueprintName="MarlbackScrabbler",EncounterGroup="SpreadTier1Encounter",MinCount=1,MaxCount=1}}});
+            var c=new ContainerBuilder(BiomeType.Spread,1,ContainerPlacementService.ZoneKind.Wilderness);
+            var b=new SpreadWayhouseBuilder(manager,terrain,p,c);
+            Assert.True(p.BuildZone(z,scope.Factory,new Random(14)));Assert.True(c.BuildZone(z,scope.Factory,new Random(14)));
+            Assert.True(p.SourceReceipt.IsCurrent);Assert.True(c.SourceReceipt.IsCurrent);Assert.IsNotEmpty(c.SourceReceipt.Owners);
+            return(z,b);
+        }
+        static string Graph(Zone z)=>string.Join(";",z.GetReadOnlyEntities().OrderBy(e=>e.ID).Select(e=>e.ID+":"+e.BlueprintName+":"+z.GetEntityPosition(e)+":"+string.Join(",",(e.GetPart<ContainerPart>()?.Contents??new List<Entity>()).Concat(DensityLootTestScope.Gear(e)).Select(i=>i.ID+":"+i.BlueprintName))));
+        [TestCase("unchanged")][TestCase("foreign-zone")][TestCase("foreign-inventory")][TestCase("already-stocked")]
+        public void FactoryCallbackCannotSpendGoodsIntoAContainerItHasTakenOver(string change)
+        {
+            var f=Pocket();var foreign=new Zone("Overworld.1.1.0");Entity sack=null;int calls=0;
+            foreach(string bp in new[]{"Sack","Buckler"})
+            {scope.Factory.RegisterPartType<Mutation>("WayhouseMutation");scope.Factory.Blueprints[bp].Parts["WayhouseMutation"]=new Dictionary<string,string>();}
+            Mutation.Callback=e=>{
+                if(e.BlueprintName=="Sack")sack=e;
+                if(e.BlueprintName!="Buckler")return;calls++;Assert.NotNull(sack);
+                if(change=="foreign-zone")Assert.True(foreign.AddEntity(sack,4,4));
+                if(change=="foreign-inventory")sack.GetPart<PhysicsPart>().InInventory=new Entity();
+                if(change=="already-stocked")Assert.True(sack.GetPart<ContainerPart>().AddItem(scope.Factory.CreateEntity("IronKey")));
+            };
+            Assert.True(f.builder.BuildZone(f.zone,scope.Factory,new Random(1)));Assert.AreEqual(1,calls);
+            if(change=="unchanged")Assert.True(f.zone.GetReadOnlyEntities().Any(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="anchor"));
+            else
+            {
+                Assert.False(f.zone.GetReadOnlyEntities().Any(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="anchor"));
+                Assert.AreEqual(change=="already-stocked"?1:0,sack.GetPart<ContainerPart>().Contents.Count);
+                if(change=="foreign-zone")Assert.AreSame(sack,foreign.GetCell(4,4).Objects.Single());
+            }
+        }
+        [TestCase(false)][TestCase(true)]
+        public void BothRoutesRequireReachableOutsideKeyStation(bool sealKey)
+        {
+            var f=Pocket();Assert.True(f.builder.BuildZone(f.zone,scope.Factory,new Random(1)));
+            var owners=f.zone.GetReadOnlyEntities();
+            var notice=owners.Single(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="notice");
+            var guard=owners.Single(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="guard");
+            var cache=owners.Single(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="cache");
+            var sack=owners.Single(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="key-sack");
+            var flags=System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic;
+            var before=typeof(SpreadWayhouseBuilder).GetMethod("Reachable",flags).Invoke(null,new object[]{f.zone,null,null});
+            if(sealKey){var at=f.zone.GetEntityPosition(sack);for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++)if(x!=0||y!=0)Assert.True(f.zone.AddEntity(scope.Factory.CreateEntity("StoneWall"),at.x+x,at.y+y));}
+            Assert.AreEqual(!sealKey,typeof(SpreadWayhouseBuilder).GetMethod("Routes",flags).Invoke(null,new object[]{f.zone,notice,guard,cache,before}));
+        }
+        [TestCase("clear")][TestCase("cold")][TestCase("charge")][TestCase("cloud")][TestCase("creature")]
+        public void SafeRouteUsesActualHazardsAndPhysicalBlockers(string change)
+        {
+            var z=new Zone(manager.Wayhouse.ZoneID);
+            if(change=="cold")z.TileState.AddCold(5,5,1);
+            if(change=="charge")z.TileState.AddCharge(5,5,1);
+            if(change=="cloud")z.TileState.WriteCloud(5,5,"poison",4);
+            if(change=="creature"){var actor=scope.Factory.CreateEntity("MarlbackScrabbler");Assert.True(actor.GetPart<PhysicsPart>().Solid);Assert.True(z.AddEntity(actor,5,5));}
+            var method=typeof(SpreadWayhouseBuilder).GetMethod("Passable",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic);
+            Assert.AreEqual(change=="clear",method.Invoke(null,new object[]{z,5,5}));
+        }
+        [TestCase("unchanged")][TestCase("empty-key-id")][TestCase("existing-id")][TestCase("shared-goods-id")]
+        [TestCase("key-part")][TestCase("door-owned")][TestCase("door-lock")][TestCase("hidden-wall")]
+        [TestCase("gear-backlink")][TestCase("inventory-backlink")]
+        [TestCase("reward-count")][TestCase("reward-value")][TestCase("tradeable-key")][TestCase("key-count")]
+        public void CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(string change)
+        {
+            var f=Pocket();string before=Graph(f.zone);Entity key=null,door=null,wall=null,guard=null;int calls=0;
+            foreach(string bp in new[]{"StoneWall","VillageDoor","IronKey","Buckler","MarlbackScrabbler"})
+            {scope.Factory.RegisterPartType<Mutation>("WayhouseMutation");scope.Factory.Blueprints[bp].Parts["WayhouseMutation"]=new Dictionary<string,string>();}
+            Mutation.Callback=e=>{
+                if(e.BlueprintName=="StoneWall")wall=e;
+                if(e.BlueprintName=="MarlbackScrabbler")guard=e;
+                if(e.BlueprintName=="VillageDoor")door=e;
+                if(e.BlueprintName=="IronKey")key=e;
+                if(e.BlueprintName!="Buckler")return;calls++;
+                if(change=="reward-count")e.AddPart(new StackerPart{StackCount=2});
+                if(change=="reward-value")e.GetPart<CommercePart>().Value=999;
+                if(change=="tradeable-key")key.Tags.Remove("NoTrade");
+                if(change=="key-count")key.AddPart(new StackerPart{StackCount=2});
+                if(change=="empty-key-id")key.ID="";
+                if(change=="existing-id")key.ID=f.zone.GetReadOnlyEntities().First().ID;
+                if(change=="shared-goods-id")e.ID=key.ID;
+                if(change=="key-part")key.RemovePart(key.GetPart<KeyPart>());
+                if(change=="door-owned")door.GetPart<DoorPart>().OwnerId="foreign-owner";
+                if(change=="door-lock")door.GetPart<LockPart>().KeyId="different-key";
+                if(change=="hidden-wall")wall.GetPart<RenderPart>().Visible=false;
+                if(change=="gear-backlink")guard.GetPart<InventoryPart>().EquippedItems.Values.First().GetPart<PhysicsPart>().Equipped=new Entity();
+                if(change=="inventory-backlink")guard.GetPart<InventoryPart>().ParentEntity=new Entity();
+            };
+            Assert.DoesNotThrow(()=>f.builder.BuildZone(f.zone,scope.Factory,new Random(1)));Assert.AreEqual(1,calls);
+            bool installed=f.zone.GetReadOnlyEntities().Any(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="anchor");
+            Assert.AreEqual(change=="unchanged",installed);
+            if(change!="unchanged")Assert.AreEqual(before,Graph(f.zone),"Refusal must preserve exact ordinary owners and stock.");
+        }
+        [TestCase(false)][TestCase(true)]
+        public void ClaimedOrChangedOrdinarySourceCannotBeSpentTwice(bool changed)
+        {
+            var f=Pocket();if(changed)f.zone.GetReadOnlyEntities().Single(e=>e.BlueprintName=="MarlbackScrabbler").GetStat("Hitpoints").BaseValue--;
+            string before=Graph(f.zone);Assert.True(f.builder.BuildZone(f.zone,scope.Factory,new Random(1)));
+            if(changed)Assert.AreEqual(before,Graph(f.zone));
+            else Assert.True(f.zone.GetReadOnlyEntities().Any(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="anchor"));
+            string after=Graph(f.zone);Assert.True(f.builder.BuildZone(f.zone,scope.Factory,new Random(1)));Assert.AreEqual(after,Graph(f.zone));
+        }
+        [TestCase(false)][TestCase(true)]
+        public void FullSaveRetainsExactDepletedOrUntouchedRewardGraph(bool depleted)
+        {
+            var z=manager.GetZone(manager.Wayhouse.ZoneID);Assert.NotNull(z);
+            var cache=z.GetReadOnlyEntities().Single(e=>e.GetProperty(SpreadWayhouseBuilder.RoleKey)=="cache");
+            var reward=cache.GetPart<ContainerPart>().Contents.Single();var player=scope.Factory.CreateEntity("Player");
+            Assert.True(z.AddEntity(player,0,0));manager.SetActiveZone(z);
+            if(depleted){Assert.True(cache.GetPart<ContainerPart>().RemoveItem(reward));Assert.True(player.GetPart<InventoryPart>().AddObject(reward));}
+            var turns=new TurnManager();turns.RestoreSavedState(0,true,player,new List<TurnManager.SavedTurnEntry>{new TurnManager.SavedTurnEntry{Entity=player,Energy=1000}});
+            var restored=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("wayhouse-test","test",manager,turns,player));
+            var saved=restored.ZoneManager.GetZone(z.ZoneID);Assert.AreNotSame(z,saved);Assert.AreEqual(z.ZoneID,restored.ZoneManager.Wayhouse.ZoneID);
+            var savedCache=saved.GetReadOnlyEntities().Single(e=>e.ID==cache.ID);
+            Assert.AreEqual(depleted?0:1,savedCache.GetPart<ContainerPart>().Contents.Count);
+            var actual=depleted?restored.Player.GetPart<InventoryPart>().Objects.Single(e=>e.ID==reward.ID):savedCache.GetPart<ContainerPart>().Contents.Single();
+            Assert.AreEqual(reward.ID,actual.ID);Assert.AreNotSame(reward,actual);
+            Assert.AreSame(depleted?restored.Player:savedCache,actual.GetPart<PhysicsPart>().InInventory);
+            restored.ZoneManager.UnloadZone(z.ZoneID);Assert.AreSame(saved,restored.ZoneManager.GetZone(z.ZoneID));
+        }
+    }
+}

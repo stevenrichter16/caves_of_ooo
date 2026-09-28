@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-28 00:09:54Z" end-time="2026-09-28 00:09:55Z" duration="0.6508758">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="20625" result="Passed" start-time="2026-09-28 00:09:54Z" end-time="2026-09-28 00:09:55Z" duration="0.650876" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="25287" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="20625" result="Passed" start-time="2026-09-28 00:09:54Z" end-time="2026-09-28 00:09:55Z" duration="0.642889" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="92139" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="25288" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="20625" result="Passed" start-time="2026-09-28 00:09:54Z" end-time="2026-09-28 00:09:55Z" duration="0.638096" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="25289" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="20625" result="Passed" start-time="2026-09-28 00:09:54Z" end-time="2026-09-28 00:09:55Z" duration="0.633537" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="16599" name="SpreadWayhouseEconomyCensusTests" fullname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests" classname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28 00:09:54Z" end-time="2026-09-28 00:09:55Z" duration="0.627857" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="16603" name="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta" fullname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests.ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta" classname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28 00:09:54Z" end-time="2026-09-28 00:09:55Z" duration="0.626093" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="16600" name="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(1)" fullname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests.ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(1)" methodname="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta" classname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests" runstate="Runnable" seed="1102506847" result="Passed" start-time="2026-09-28 00:09:54Z" end-time="2026-09-28 00:09:55Z" duration="0.236872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[{
+    "seed": 1,
+    "worldX": 12,
+    "worldY": 13,
+    "mapDistanceFromSill": 3,
+    "mapDistanceFromDefaultGlade": 3,
+    "oldHostiles": 1,
+    "newHostiles": 1,
+    "oldContainers": 2,
+    "newContainers": 3,
+    "ordinaryLootContainersBefore": 2,
+    "ordinaryLootContainersAfter": 2,
+    "removedBushes": 0,
+    "zone": "Overworld.12.13.0",
+    "boundary": "Actual isolated full manager cold GetZone, paired no-wayhouse-builder baseline with same frozen selection and reset global source RNG. Records generated stock/gear commerce, not sell price, player income, natural acquisition, death drops or campaign balance. Added ordinary guard may consume extra loadout RNG; no unchanged-RNG claim.",
+    "rewardId": "4321",
+    "keyId": "4320",
+    "refusalReason": "",
+    "generationReceipts": [
+        "SpreadWayhouseStaged:{\"zone\":\"Overworld.12.13.0\",\"x\":51,\"y\":11,\"replacedActors\":1,\"replacedContainers\":1,\"reward\":\"4321\"}"
+    ],
+    "installed": true,
+    "oldHostileBlueprints": [
+        "MarlbackScrabbler"
+    ],
+    "oldHostileIds": [
+        "4263"
+    ],
+    "oldCacheStockValue": 28,
+    "oldHostileGearValue": 8,
+    "newGuardGearValue": 20,
+    "rewardValue": 20,
+    "totalStockGearBefore": 288,
+    "totalStockGearAfter": 292,
+    "intentionalStockGearDelta": 4,
+    "replacedStock": [
+        {
+            "id": "4269",
+            "blueprint": "GoldCoin",
+            "units": 13,
+            "baseValue": 1,
+            "totalValue": 13,
+            "noTrade": false
+        },
+        {
+            "id": "4282",
+            "blueprint": "HealingTonic",
+            "units": 1,
+            "baseValue": 15,
+            "totalValue": 15,
+            "noTrade": false
+        }
+    ],
+    "oldHostileGear": [
+        {
+            "id": "4264",
+            "blueprint": "Cudgel",
+            "units": 1,
+            "baseValue": 8,
+            "totalValue": 8,
+            "noTrade": false
+        }
+    ],
+    "newGuardGear": [
+        {
+            "id": "4315",
+            "blueprint": "LeatherGloves",
+            "units": 1,
+            "baseValue": 8,
+            "totalValue": 8,
+            "noTrade": false
+        },
+        {
+            "id": "4316",
+            "blueprint": "Hatchet",
+            "units": 1,
+            "baseValue": 12,
+            "totalValue": 12,
+            "noTrade": false
+        }
+    ]
+}
+]]></output>
+              </test-case>
+              <test-case id="16601" name="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(64)" fullname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests.ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(64)" methodname="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta" classname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests" runstate="Runnable" seed="263963636" result="Passed" start-time="2026-09-28 00:09:55Z" end-time="2026-09-28 00:09:55Z" duration="0.210097" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[{
+    "seed": 64,
+    "worldX": 11,
+    "worldY": 7,
+    "mapDistanceFromSill": 3,
+    "mapDistanceFromDefaultGlade": 3,
+    "oldHostiles": 2,
+    "newHostiles": 1,
+    "oldContainers": 1,
+    "newContainers": 2,
+    "ordinaryLootContainersBefore": 1,
+    "ordinaryLootContainersAfter": 1,
+    "removedBushes": 0,
+    "zone": "Overworld.11.7.0",
+    "boundary": "Actual isolated full manager cold GetZone, paired no-wayhouse-builder baseline with same frozen selection and reset global source RNG. Records generated stock/gear commerce, not sell price, player income, natural acquisition, death drops or campaign balance. Added ordinary guard may consume extra loadout RNG; no unchanged-RNG claim.",
+    "rewardId": "4270",
+    "keyId": "4269",
+    "refusalReason": "",
+    "generationReceipts": [
+        "SpreadWayhouseStaged:{\"zone\":\"Overworld.11.7.0\",\"x\":51,\"y\":2,\"replacedActors\":2,\"replacedContainers\":1,\"reward\":\"4270\"}"
+    ],
+    "installed": true,
+    "oldHostileBlueprints": [
+        "MarlbackScrabbler",
+        "MarlbackScrabbler"
+    ],
+    "oldHostileIds": [
+        "4218",
+        "4220"
+    ],
+    "oldCacheStockValue": 3,
+    "oldHostileGearValue": 36,
+    "newGuardGearValue": 10,
+    "rewardValue": 20,
+    "totalStockGearBefore": 168,
+    "totalStockGearAfter": 159,
+    "intentionalStockGearDelta": -9,
+    "replacedStock": [
+        {
+            "id": "4226",
+            "blueprint": "GoldCoin",
+            "units": 3,
+            "baseValue": 1,
+            "totalValue": 3,
+            "noTrade": false
+        }
+    ],
+    "oldHostileGear": [
+        {
+            "id": "4219",
+            "blueprint": "Dagger",
+            "units": 1,
+            "baseValue": 10,
+            "totalValue": 10,
+            "noTrade": false
+        },
+        {
+            "id": "4221",
+            "blueprint": "LeatherCap",
+            "units": 1,
+            "baseValue": 8,
+            "totalValue": 8,
+            "noTrade": false
+        },
+        {
+            "id": "4222",
+            "blueprint": "LeatherGloves",
+            "units": 1,
+            "baseValue": 8,
+            "totalValue": 8,
+            "noTrade": false
+        },
+        {
+            "id": "4223",
+            "blueprint": "Dagger",
+            "units": 1,
+            "baseValue": 10,
+            "totalValue": 10,
+            "noTrade": false
+        }
+    ],
+    "newGuardGear": [
+        {
+            "id": "4265",
+            "blueprint": "Dagger",
+            "units": 1,
+            "baseValue": 10,
+            "totalValue": 10,
+            "noTrade": false
+        }
+    ]
+}
+]]></output>
+              </test-case>
+              <test-case id="16602" name="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(1729)" fullname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests.ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(1729)" methodname="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta" classname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests" runstate="Runnable" seed="1843160984" result="Passed" start-time="2026-09-28 00:09:55Z" end-time="2026-09-28 00:09:55Z" duration="0.174425" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[{
+    "seed": 1729,
+    "worldX": 14,
+    "worldY": 13,
+    "mapDistanceFromSill": 4,
+    "mapDistanceFromDefaultGlade": 3,
+    "oldHostiles": 1,
+    "newHostiles": 1,
+    "oldContainers": 1,
+    "newContainers": 2,
+    "ordinaryLootContainersBefore": 1,
+    "ordinaryLootContainersAfter": 1,
+    "removedBushes": 0,
+    "zone": "Overworld.14.13.0",
+    "boundary": "Actual isolated full manager cold GetZone, paired no-wayhouse-builder baseline with same frozen selection and reset global source RNG. Records generated stock/gear commerce, not sell price, player income, natural acquisition, death drops or campaign balance. Added ordinary guard may consume extra loadout RNG; no unchanged-RNG claim.",
+    "rewardId": "4352",
+    "keyId": "4351",
+    "refusalReason": "",
+    "generationReceipts": [
+        "SpreadWayhouseStaged:{\"zone\":\"Overworld.14.13.0\",\"x\":18,\"y\":2,\"replacedActors\":1,\"replacedContainers\":1,\"reward\":\"4352\"}"
+    ],
+    "installed": true,
+    "oldHostileBlueprints": [
+        "Viper"
+    ],
+    "oldHostileIds": [
+        "4312"
+    ],
+    "oldCacheStockValue": 24,
+    "oldHostileGearValue": 0,
+    "newGuardGearValue": 8,
+    "rewardValue": 20,
+    "totalStockGearBefore": 49,
+    "totalStockGearAfter": 53,
+    "intentionalStockGearDelta": 4,
+    "replacedStock": [
+        {
+            "id": "4315",
+            "blueprint": "GoldCoin",
+            "units": 4,
+            "baseValue": 1,
+            "totalValue": 4,
+            "noTrade": false
+        },
+        {
+            "id": "4319",
+            "blueprint": "FireTonic",
+            "units": 1,
+            "baseValue": 20,
+            "totalValue": 20,
+            "noTrade": false
+        }
+    ],
+    "oldHostileGear": [],
+    "newGuardGear": [
+        {
+            "id": "4347",
+            "blueprint": "Cudgel",
+            "units": 1,
+            "baseValue": 8,
+            "totalValue": 8,
+            "noTrade": false
+        }
+    ]
+}
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,411 @@
+{
+  "runtime": "standalone-net8-stablehash",
+  "complete": true,
+  "sampleRows": 60,
+  "components": {
+    "report-refresh-and-text": {
+      "arms": {
+        "disabled-control": {
+          "perOperationMsMedian": 0.019755,
+          "perOperationMsMin": 0.018861455,
+          "perOperationMsMax": 0.021745,
+          "perOperationBytesMedian": 24808.0,
+          "lateBuilderMsMedian": 0.0,
+          "lateBuilderBytesMedian": 0,
+          "gcCollections": [
+            3,
+            1,
+            0
+          ],
+          "results": [
+            null
+          ],
+          "layoutTrials": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "moved": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "current": {
+          "perOperationMsMedian": 0.0275875,
+          "perOperationMsMin": 0.026950625000000002,
+          "perOperationMsMax": 0.030835835,
+          "perOperationBytesMedian": 37305.04,
+          "lateBuilderMsMedian": 0.0,
+          "lateBuilderBytesMedian": 0,
+          "gcCollections": [
+            5,
+            0,
+            0
+          ],
+          "results": [
+            null
+          ],
+          "layoutTrials": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "moved": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "pairedMsDeltaMedian": 0.008219164999999999,
+      "pairedMsDeltaMin": 0.005205625,
+      "pairedMsDeltaMax": 0.01197438
+    },
+    "note-read-and-format": {
+      "arms": {
+        "disabled-control": {
+          "perOperationMsMedian": 8.520500000000001e-05,
+          "perOperationMsMin": 7.6665e-05,
+          "perOperationMsMax": 0.000139795,
+          "perOperationBytesMedian": 384.0,
+          "lateBuilderMsMedian": 0.0,
+          "lateBuilderBytesMedian": 0,
+          "gcCollections": [
+            0,
+            0,
+            0
+          ],
+          "results": [
+            null
+          ],
+          "layoutTrials": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "moved": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "current": {
+          "perOperationMsMedian": 0.01508229,
+          "perOperationMsMin": 0.01490646,
+          "perOperationMsMax": 0.016310415,
+          "perOperationBytesMedian": 14808.0,
+          "lateBuilderMsMedian": 0.0,
+          "lateBuilderBytesMedian": 0,
+          "gcCollections": [
+            2,
+            0,
+            0
+          ],
+          "results": [
+            null
+          ],
+          "layoutTrials": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "moved": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "pairedMsDeltaMedian": 0.015005625,
+      "pairedMsDeltaMin": 0.014823959999999999,
+      "pairedMsDeltaMax": 0.01622521
+    },
+    "cargo": {
+      "arms": {
+        "disabled-control": {
+          "perOperationMsMedian": 13.563125,
+          "perOperationMsMin": 12.164625,
+          "perOperationMsMax": 18.191042,
+          "perOperationBytesMedian": 7324544.0,
+          "lateBuilderMsMedian": 0.00025,
+          "lateBuilderBytesMedian": 0,
+          "gcCollections": [
+            5,
+            2,
+            0
+          ],
+          "results": [
+            "builder-removed"
+          ],
+          "layoutTrials": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "moved": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "current": {
+          "perOperationMsMedian": 39.902167,
+          "perOperationMsMin": 38.119875,
+          "perOperationMsMax": 41.033583,
+          "perOperationBytesMedian": 8244544.0,
+          "lateBuilderMsMedian": 24.882833,
+          "lateBuilderBytesMedian": 919592,
+          "gcCollections": [
+            5,
+            3,
+            0
+          ],
+          "results": [
+            "cargo"
+          ],
+          "layoutTrials": [
+            61,
+            61,
+            61,
+            61,
+            61
+          ],
+          "moved": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "pairedMsDeltaMedian": 27.246415999999996,
+      "pairedMsDeltaMin": 21.711125,
+      "pairedMsDeltaMax": 28.223
+    },
+    "shelter": {
+      "arms": {
+        "disabled-control": {
+          "perOperationMsMedian": 13.618375,
+          "perOperationMsMin": 11.455667,
+          "perOperationMsMax": 18.247375,
+          "perOperationBytesMedian": 7863384.0,
+          "lateBuilderMsMedian": 0.000291,
+          "lateBuilderBytesMedian": 0,
+          "gcCollections": [
+            5,
+            2,
+            1
+          ],
+          "results": [
+            "builder-removed"
+          ],
+          "layoutTrials": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "moved": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "current": {
+          "perOperationMsMedian": 18.552916,
+          "perOperationMsMin": 14.624166,
+          "perOperationMsMax": 19.982042,
+          "perOperationBytesMedian": 8043840.0,
+          "lateBuilderMsMedian": 3.646959,
+          "lateBuilderBytesMedian": 180032,
+          "gcCollections": [
+            5,
+            3,
+            1
+          ],
+          "results": [
+            "shelter"
+          ],
+          "layoutTrials": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "moved": [
+            3,
+            3,
+            3,
+            3,
+            3
+          ]
+        }
+      },
+      "pairedMsDeltaMedian": 1.7346669999999982,
+      "pairedMsDeltaMin": 0.7700829999999996,
+      "pairedMsDeltaMax": 6.278958000000001
+    },
+    "refusal": {
+      "arms": {
+        "disabled-control": {
+          "perOperationMsMedian": 13.123708,
+          "perOperationMsMin": 11.103792,
+          "perOperationMsMax": 20.987417,
+          "perOperationBytesMedian": 7887976.0,
+          "lateBuilderMsMedian": 0.000166,
+          "lateBuilderBytesMedian": 0,
+          "gcCollections": [
+            5,
+            1,
+            0
+          ],
+          "results": [
+            "builder-removed"
+          ],
+          "layoutTrials": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "moved": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "current": {
+          "perOperationMsMedian": 16.838916,
+          "perOperationMsMin": 13.179542,
+          "perOperationMsMax": 18.722125,
+          "perOperationBytesMedian": 7904560.0,
+          "lateBuilderMsMedian": 0.103208,
+          "lateBuilderBytesMedian": 16584,
+          "gcCollections": [
+            8,
+            4,
+            3
+          ],
+          "results": [
+            "refused:source"
+          ],
+          "layoutTrials": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "moved": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "pairedMsDeltaMedian": 3.9445820000000005,
+      "pairedMsDeltaMin": -7.807875000000001,
+      "pairedMsDeltaMax": 7.618332999999998
+    },
+    "wayhouse": {
+      "arms": {
+        "disabled-control": {
+          "perOperationMsMedian": 12.476917,
+          "perOperationMsMin": 11.93375,
+          "perOperationMsMax": 17.705875,
+          "perOperationBytesMedian": 7574096.0,
+          "lateBuilderMsMedian": 0.000208,
+          "lateBuilderBytesMedian": 0,
+          "gcCollections": [
+            6,
+            2,
+            2
+          ],
+          "results": [
+            "builder-removed"
+          ],
+          "layoutTrials": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "moved": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "current": {
+          "perOperationMsMedian": 21.303542,
+          "perOperationMsMin": 20.032791,
+          "perOperationMsMax": 26.501083,
+          "perOperationBytesMedian": 7961072.0,
+          "lateBuilderMsMedian": 6.767583,
+          "lateBuilderBytesMedian": 358208,
+          "gcCollections": [
+            7,
+            3,
+            2
+          ],
+          "results": [
+            "wayhouse"
+          ],
+          "layoutTrials": [
+            -1,
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "moved": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "pairedMsDeltaMedian": 8.826625,
+      "pairedMsDeltaMin": 2.3269160000000007,
+      "pairedMsDeltaMax": 14.567333000000001
+    }
+  },
+  "sourceSha256": "daf1ef5024ea95347e33da3428050628d2bd04a3b0be8800fa6f4d4c0f229d18",
+  "resultsSha256": "b0c181d4ecd4f200ca649f4af8b924865b52133dc1443531a270488802dab0fd"
+}

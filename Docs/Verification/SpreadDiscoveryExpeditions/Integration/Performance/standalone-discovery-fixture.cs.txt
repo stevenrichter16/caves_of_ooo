@@ -1,0 +1,121 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using CavesOfOoo.Rendering;
+using CavesOfOoo.Storylets;
+using NUnit.Framework;
+using UnityEngine;
+
+namespace CavesOfOoo.Tests
+{
+    internal sealed class SpreadDiscoveryFixture : IDisposable
+    {
+        internal const string Action = "RememberSpreadDiscovery";
+        internal const string Prefix = "SpreadDiscoveryNote.v1:";
+        readonly HotbarSaveFixture scope = new HotbarSaveFixture(false, false);
+        readonly List<(FieldInfo field, object original, DictionaryEntry[] entries)> statics = new();
+        public readonly OverworldZoneManager Manager;
+        public readonly Zone Zone;
+        public readonly Entity Player;
+        public readonly Entity Speaker;
+
+        public SpreadDiscoveryFixture(string conversation = "Scribe_1", string node = "RegionOverview", bool includeWayhouse = false)
+        {
+            Snapshot(typeof(ConversationActions));
+            var reportType = typeof(Entity).Assembly.GetType("CavesOfOoo.Core.SpreadDiscoveryReports");
+            if (reportType != null) Snapshot(reportType);
+            Manager = OverworldZoneManager.CreateDetached(null, 64);
+            if (!includeWayhouse) Wayhouse(SpreadWayhousePlan.Restore(null));
+            Zone = new Zone("Overworld.10.10.0");
+            Manager.SetActiveZone(Zone);
+            SettlementRuntime.ActiveZone = Zone;
+            Player = Actor("reader", true); Speaker = Actor("Mera", false);
+            Speaker.AddPart(new ConversationPart { ConversationID = conversation });
+            Assert.True(Zone.AddEntity(Player, 10, 10)); Assert.True(Zone.AddEntity(Speaker, 11, 10));
+            StoryletPart.Current = new StoryletPart(); StoryletPart.LocalPlayer = Player;
+            ConversationManager.Speaker = Speaker; ConversationManager.Listener = Player;
+            ConversationManager.CurrentConversation = new ConversationData { ID = conversation };
+            Node(node);
+            Assert.IsNotEmpty(Manager.RareEncounters.PairZoneID);
+            Assert.IsNotEmpty(Manager.RareEncounters.ViperZoneID);
+        }
+
+        static Entity Actor(string name, bool player)
+        {
+            var e = new Entity { ID = Guid.NewGuid().ToString("N"), BlueprintName = player ? "Player" : "Scribe" };
+            e.AddPart(new PhysicsPart()); e.AddPart(new RenderPart { DisplayName = name });
+            e.Statistics["Hitpoints"] = new Stat { Name = "Hitpoints", BaseValue = 40, Max = 40, Owner = e };
+            if (player) e.SetTag("Player");
+            return e;
+        }
+
+        void Snapshot(Type type)
+        {
+            foreach (var f in type.GetFields(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
+            {
+                if (f.IsLiteral) continue;
+                var value = f.GetValue(null);
+                DictionaryEntry[] entries = null;
+                if (value is IDictionary dictionary)
+                {
+                    var copy = new List<DictionaryEntry>();
+                    foreach (DictionaryEntry entry in dictionary) copy.Add(entry);
+                    entries = copy.ToArray();
+                }
+                if (!f.IsInitOnly || entries != null) statics.Add((f, value, entries));
+            }
+        }
+
+        public void Node(string id)
+        {
+            ConversationManager.CurrentNode = new NodeData { ID = id };
+            ConversationManager.RefreshVisibleChoices();
+        }
+        public ChoiceData[] Reports => ConversationManager.VisibleChoices.Where(c => c.Actions?.Any(a => a.Key == Action) == true).ToArray();
+        public ChoiceData Offer(string family)
+        {
+            var result = Reports.SingleOrDefault(c => c.Actions.Any(a => a.Key == Action && a.Value.StartsWith(family + "|", StringComparison.Ordinal)));
+            Assert.NotNull(result, "The current real dialogue must offer " + family + ".");
+            return result;
+        }
+        public bool Execute(ChoiceData choice) => ConversationActions.TryExecuteAll(choice.Actions, ConversationManager.Speaker, ConversationManager.Listener);
+        public void Select(ChoiceData choice)
+        {
+            int i = ConversationManager.VisibleChoices.ToList().IndexOf(choice); Assert.GreaterOrEqual(i, 0);
+            ConversationManager.SelectChoice(i);
+        }
+        public static string[] Read(Entity player)
+        {
+            var type = typeof(Entity).Assembly.GetType("CavesOfOoo.Core.SpreadDiscoveryNotes");
+            Assert.NotNull(type, "Missing historical discovery-note provider.");
+            var method = type.GetMethod("Read", BindingFlags.Public | BindingFlags.Static, null, new[] { typeof(Entity) }, null);
+            Assert.NotNull(method); return ((IEnumerable)method.Invoke(null, new object[] { player })).Cast<string>().ToArray();
+        }
+        public void Plan(SpreadRareEncounterPlan plan)
+            => typeof(OverworldZoneManager).GetProperty("RareEncounters").GetSetMethod(true).Invoke(Manager, new object[] { plan });
+        public void Wayhouse(SpreadWayhousePlan plan)
+            => typeof(OverworldZoneManager).GetProperty("Wayhouse").GetSetMethod(true).Invoke(Manager, new object[] { plan });
+        public int NoteCount => Player.Properties.Keys.Count(k => k.StartsWith(Prefix, StringComparison.Ordinal));
+        public void Dispose()
+        {
+            ConversationManager.EndConversation();
+            for (int i = statics.Count - 1; i >= 0; i--)
+            {
+                var s = statics[i];
+                if (s.entries != null)
+                {
+                    var d = (IDictionary)s.original; d.Clear();
+                    foreach (var e in s.entries) d.Add(e.Key, e.Value);
+                }
+                if (!s.field.IsInitOnly) s.field.SetValue(null, s.original);
+            }
+            scope.Dispose();
+        }
+    }
+
+}

@@ -1,0 +1,22 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Collections;
+using System.Collections.Generic;
+using NUnitLite;
+using CavesOfOoo.Data;
+public static class CooRunProgram
+{
+    public static int Main(string[] args)
+    {
+        LootTableRegistry.Initialize(File.ReadAllText(Path.Combine(Environment.GetEnvironmentVariable("COO_REPO"),"Assets/Resources/Content/Data/Loot/LootTables.json")));
+        var field=typeof(LootTableRegistry).GetField("_byName",BindingFlags.Static|BindingFlags.NonPublic);
+        var original=(IDictionary)field.GetValue(null);var entries=new List<DictionaryEntry>();foreach(DictionaryEntry entry in original)entries.Add(entry);
+        if(entries.Count==0||!LootTableRegistry.IsInitialized)throw new Exception("Nonempty initialized registry control was not established.");
+        int result=new AutoRun(typeof(CooRunProgram).Assembly).Execute(args);
+        bool restored=ReferenceEquals(original,field.GetValue(null))&&original.Count==entries.Count&&LootTableRegistry.IsInitialized&&entries.All(e=>ReferenceEquals(e.Value,original[e.Key]));
+        Console.WriteLine("Original nonempty initialized loot registry restored exactly: "+restored+" ("+entries.Count+" original entries)");
+        return restored?result:1;
+    }
+}

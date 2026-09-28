@@ -1,0 +1,13 @@
+# Existing flicker fixture failure
+
+Root's full native run `d484895eae954485bd835761a823c4e9` reported `LightSourceFlickerPartTests.HandleEvent_RenderFires_UpdatesIntensity`: no change from base over30 Render events. This document does not replace the authoritative full-run receipt.
+
+`LightSourceFlickerPart.cs` and its test are byte-unchanged versus6015ba8. `HandleEvent` dispatches directly to `UpdateIntensityAt(Time.time)`; there is no static RNG. The test calls all30 events synchronously and never advances a frame/time. The source legitimately permits Perlin noise zero (or close enough for the0.001 test threshold) at that single timestamp. Repeating the same sample cannot prove modulation across different times. Thus the observed failure is consistent with a time-dependent fixture premise, not evidence of a new lighting regression. No sampled native time/noise was retained, so the precise failing numeric midpoint cannot be reconstructed from the assertion alone.
+
+The root-approved correction changes exactly that existing test: prime the actual flicker at current frame time, capture expected intensity, assign an impossible sentinel, fire the actual Render event, and require it restores the expected same-frame result. The event is released in finally. It fails if dispatch is severed even when the legitimate expected value equals base. Six existing explicit-time/absence/determinism/bounds controls stay unchanged. There is no lighting production change, timeScale change, wait, relaxed tolerance or extra test.
+
+Private evidence:7/7 pass against current source. A separate copied production fault changes the Render condition to an impossible event name: exactly the revised event-hook test fails, six controls pass. The copied production file is then restored byte-identical to current source. The isolated host freezes its Time.time shim at5 to model Unity's one-frame timestamp; its Perlin shim is not a substitute for native numerical/light rendering acceptance. Actual current EditModeTests reference compilation is zero errors. Root must run the existing7 native cases after the full run ends; report this focused correction separately from the retained failed full run.
+
+## Later native result
+
+Native job `79b6620947d042e5b89a39f37c32761c` passed50/50, including both new persistence cases and all seven corrected lighting-class cases. These are separate from the original full20633 run, whose one original fixture failure is retained. See `Docs/Verification/SpreadDiscoveryExpeditions/Integration/README.md` for exact counts, scopes and limits. Earlier pending statements above describe the private pre-publication checkpoint.

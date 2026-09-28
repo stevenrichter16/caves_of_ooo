@@ -12,11 +12,13 @@ namespace CavesOfOoo.Core
         public int Priority=>2000;
         public Formation FormationOverride=Formation.None;
         public SpreadCompositionPlan Plan {get;private set;}
+        /// <summary>Exact successful cold-build graph; cleared before every attempt.</summary>
+        public Zone SourceZone {get;private set;}
         private readonly int seed;
         public SpreadCompositionBuilder(int worldSeed){seed=worldSeed;}
         public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
         {
-            Plan=null;
+            Plan=null;SourceZone=null;
             if(zone==null||factory==null||zone.EntityCount!=0)
             {
                 Diag.Record("worldgen","SpreadCompositionRejected",payload:new{reason=zone==null?"missing-zone":factory==null?"missing-factory":"nonempty-zone"});
@@ -37,6 +39,7 @@ namespace CavesOfOoo.Core
                 if(BuilderSpawn.TryPlace(zone,factory,bp,x,y)==null)return Reject("missing-object");
                 objects++;
             }
+            SourceZone=zone;
             Diag.Record("worldgen","SpreadCompositionPlanned",payload:new{zoneId=zone.ZoneID,seed,
                 formation=Plan.Formation.ToString(),condition=Plan.Condition,objects,water});
             return true;

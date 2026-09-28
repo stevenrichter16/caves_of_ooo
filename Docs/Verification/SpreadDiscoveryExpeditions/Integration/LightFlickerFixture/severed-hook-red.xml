@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-light-flicker-fixture/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="7" result="Failed" start-time="2026-09-28T00:38:40.8794080Z" end-time="2026-09-28T00:38:40.9035630Z" duration="0.024146" total="7" passed="6" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="107" random-seed="561513779">
+  <command-line><![CDATA[/private/tmp/coo-light-flicker-fixture/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-light-flicker-fixture/severed-hook-red.xml --where "class == CavesOfOoo.Tests.LightSourceFlickerPartTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.LightSourceFlickerPartTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1008" name="EditModeRunner.dll" fullname="/private/tmp/coo-light-flicker-fixture/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-28T00:38:40.8794080Z" end-time="2026-09-28T00:38:40.9035630Z" duration="0.024146" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="107">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-light-flicker-fixture/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-light-flicker-fixture/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="4877" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1009" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-28T00:38:40.8809280Z" end-time="2026-09-28T00:38:40.9035610Z" duration="0.022633" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="107">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1010" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-28T00:38:40.8810510Z" end-time="2026-09-28T00:38:40.9035460Z" duration="0.022495" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="107">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="LightSourceFlickerPartTests" fullname="CavesOfOoo.Tests.LightSourceFlickerPartTests" classname="CavesOfOoo.Tests.LightSourceFlickerPartTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-28T00:38:40.8814400Z" end-time="2026-09-28T00:38:40.9034550Z" duration="0.022015" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="107">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1006" name="Adversarial_LightSourceWithoutFlickerPart_IntensityNeverChanges" fullname="CavesOfOoo.Tests.LightSourceFlickerPartTests.Adversarial_LightSourceWithoutFlickerPart_IntensityNeverChanges" methodname="Adversarial_LightSourceWithoutFlickerPart_IntensityNeverChanges" classname="CavesOfOoo.Tests.LightSourceFlickerPartTests" runstate="Runnable" seed="688909019" result="Passed" start-time="2026-09-28T00:38:40.8823320Z" end-time="2026-09-28T00:38:40.8866750Z" duration="0.004365" asserts="1" />
+          <test-case id="1007" name="HandleEvent_RenderFires_UpdatesIntensity" fullname="CavesOfOoo.Tests.LightSourceFlickerPartTests.HandleEvent_RenderFires_UpdatesIntensity" methodname="HandleEvent_RenderFires_UpdatesIntensity" classname="CavesOfOoo.Tests.LightSourceFlickerPartTests" runstate="Runnable" seed="1287327884" result="Failed" start-time="2026-09-28T00:38:40.8872330Z" end-time="2026-09-28T00:38:40.9009400Z" duration="0.013707" asserts="2">
+            <failure>
+              <message><![CDATA[  Render must replace the sentinel with the same-frame flicker result, including a valid base-intensity midpoint.
+  Expected: 1.0847176313400269d +/- 9.9999997473787516E-06d
+  But was:  -123.0d
+  Off by:   124.08471763134003d
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.LightSourceFlickerPartTests.HandleEvent_RenderFires_UpdatesIntensity() in /tmp/coo-light-flicker-fixture/LightSourceFlickerPartTests.cs:line 244
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Render must replace the sentinel with the same-frame flicker result, including a valid base-intensity midpoint.
+  Expected: 1.0847176313400269d +/- 9.9999997473787516E-06d
+  But was:  -123.0d
+  Off by:   124.08471763134003d
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.LightSourceFlickerPartTests.HandleEvent_RenderFires_UpdatesIntensity() in /tmp/coo-light-flicker-fixture/LightSourceFlickerPartTests.cs:line 244
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1004" name="UpdateIntensityAt_DifferentEntityIds_DifferentPhaseOffsets" fullname="CavesOfOoo.Tests.LightSourceFlickerPartTests.UpdateIntensityAt_DifferentEntityIds_DifferentPhaseOffsets" methodname="UpdateIntensityAt_DifferentEntityIds_DifferentPhaseOffsets" classname="CavesOfOoo.Tests.LightSourceFlickerPartTests" runstate="Runnable" seed="215631182" result="Passed" start-time="2026-09-28T00:38:40.9010160Z" end-time="2026-09-28T00:38:40.9012060Z" duration="0.000190" asserts="1" />
+          <test-case id="1005" name="UpdateIntensityAt_IntensityStaysWithinWobbleBound" fullname="CavesOfOoo.Tests.LightSourceFlickerPartTests.UpdateIntensityAt_IntensityStaysWithinWobbleBound" methodname="UpdateIntensityAt_IntensityStaysWithinWobbleBound" classname="CavesOfOoo.Tests.LightSourceFlickerPartTests" runstate="Runnable" seed="2006736043" result="Passed" start-time="2026-09-28T00:38:40.9012180Z" end-time="2026-09-28T00:38:40.9022260Z" duration="0.001008" asserts="100" />
+          <test-case id="1003" name="UpdateIntensityAt_SameEntityId_SameIntensity" fullname="CavesOfOoo.Tests.LightSourceFlickerPartTests.UpdateIntensityAt_SameEntityId_SameIntensity" methodname="UpdateIntensityAt_SameEntityId_SameIntensity" classname="CavesOfOoo.Tests.LightSourceFlickerPartTests" runstate="Runnable" seed="1208520940" result="Passed" start-time="2026-09-28T00:38:40.9022530Z" end-time="2026-09-28T00:38:40.9023840Z" duration="0.000131" asserts="1" />
+          <test-case id="1002" name="UpdateIntensityAt_WithLightSource_ModulatesIntensity" fullname="CavesOfOoo.Tests.LightSourceFlickerPartTests.UpdateIntensityAt_WithLightSource_ModulatesIntensity" methodname="UpdateIntensityAt_WithLightSource_ModulatesIntensity" classname="CavesOfOoo.Tests.LightSourceFlickerPartTests" runstate="Runnable" seed="613788579" result="Passed" start-time="2026-09-28T00:38:40.9024030Z" end-time="2026-09-28T00:38:40.9024820Z" duration="0.000080" asserts="1" />
+          <test-case id="1001" name="UpdateIntensityAt_WithoutLightSourcePart_NoOp" fullname="CavesOfOoo.Tests.LightSourceFlickerPartTests.UpdateIntensityAt_WithoutLightSourcePart_NoOp" methodname="UpdateIntensityAt_WithoutLightSourcePart_NoOp" classname="CavesOfOoo.Tests.LightSourceFlickerPartTests" runstate="Runnable" seed="256441668" result="Passed" start-time="2026-09-28T00:38:40.9024940Z" end-time="2026-09-28T00:38:40.9031480Z" duration="0.000654" asserts="1" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

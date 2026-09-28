@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RollForward>Major</RollForward>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <Nullable>disable</Nullable>
+    <RepoRoot Condition="'$(COO_REPO)' != ''">$(COO_REPO)</RepoRoot>
+    <RepoRoot Condition="'$(RepoRoot)' == ''">$(MSBuildThisFileDirectory)../..</RepoRoot>
+    <DefineConstants>UNITY_INCLUDE_TESTS</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnitLite" Version="3.14.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <Compile Include="Program.cs;Stubs/*.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Gameplay/**/*.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Data/**/*.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Shared/**/*.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Scenarios/Core/**/*.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Scenarios/Builders/**/*.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Scenarios/Custom/DensityPhase1Bench.cs"
+             Condition="Exists('$(RepoRoot)/Assets/Scripts/Scenarios/Custom/DensityPhase1Bench.cs')" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Presentation/Rendering/QudColorParser.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Presentation/Rendering/AsciiWorldRenderPolicy.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Presentation/Rendering/ZoneRenderHooks.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Scripts/Presentation/Rendering/EntityVisualHooks.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Tests/EditMode/TestSupport/ScenarioTestHarness.cs" />
+    <Compile Include="$(RepoRoot)/Assets/Tests/EditMode/TestSupport/ScenarioContextExtensions.cs" />
+  </ItemGroup>
+  <Import Project="patched.props" Condition="Exists('patched.props')" />
+  <Import Project="tests.props" Condition="Exists('tests.props')" />
+</Project>

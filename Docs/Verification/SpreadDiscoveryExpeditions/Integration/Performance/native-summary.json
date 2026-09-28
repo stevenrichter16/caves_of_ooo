@@ -1,0 +1,293 @@
+{
+  "runtime": "unity-editor-native-current",
+  "complete": true,
+  "sampleRows": 60,
+  "measurementSourceSha256": "daf1ef5024ea95347e33da3428050628d2bd04a3b0be8800fa6f4d4c0f229d18",
+  "rawSha256": "0dfecc390623f9d640e28669d3b273f73543b127f843f604b6fc0d6b0d46ba45",
+  "allocationAvailability": "Unavailable: all native counters returned zero; separate actual 1 MiB allocation probe also returned 0 before/after. Zero fields do not mean zero allocations.",
+  "sampleMethod": "Five alternating same-process enabled/disabled pairs after one excluded warm pair; 200 calls per UI row, one cold generation per generation row. No forced GC.",
+  "components": {
+    "report-refresh-and-text": {
+      "arms": {
+        "disabled-control": {
+          "perOperationMsMedian": 0.0541025,
+          "perOperationMsMin": 0.050916499999999996,
+          "perOperationMsMax": 0.1169215,
+          "lateBuilderMsMedian": 0.0,
+          "gcCollectionDeltas": [
+            0,
+            0,
+            0
+          ],
+          "results": [
+            null
+          ],
+          "layoutTrials": [
+            0
+          ],
+          "moved": [
+            0
+          ]
+        },
+        "current": {
+          "perOperationMsMedian": 0.0793225,
+          "perOperationMsMin": 0.07207849999999999,
+          "perOperationMsMax": 0.19443000000000002,
+          "lateBuilderMsMedian": 0.0,
+          "gcCollectionDeltas": [
+            1,
+            1,
+            1
+          ],
+          "results": [
+            null
+          ],
+          "layoutTrials": [
+            0
+          ],
+          "moved": [
+            0
+          ]
+        }
+      },
+      "pairedMsDeltaMedian": 0.025880500000000008,
+      "pairedMsDeltaMin": -0.002392000000000003,
+      "pairedMsDeltaMax": 0.07750850000000002
+    },
+    "note-read-and-format": {
+      "arms": {
+        "disabled-control": {
+          "perOperationMsMedian": 0.0005455,
+          "perOperationMsMin": 0.0005055,
+          "perOperationMsMax": 0.0005845000000000001,
+          "lateBuilderMsMedian": 0.0,
+          "gcCollectionDeltas": [
+            0,
+            0,
+            0
+          ],
+          "results": [
+            null
+          ],
+          "layoutTrials": [
+            0
+          ],
+          "moved": [
+            0
+          ]
+        },
+        "current": {
+          "perOperationMsMedian": 0.0176745,
+          "perOperationMsMin": 0.017407,
+          "perOperationMsMax": 0.0181385,
+          "lateBuilderMsMedian": 0.0,
+          "gcCollectionDeltas": [
+            0,
+            0,
+            0
+          ],
+          "results": [
+            null
+          ],
+          "layoutTrials": [
+            0
+          ],
+          "moved": [
+            0
+          ]
+        }
+      },
+      "pairedMsDeltaMedian": 0.0171005,
+      "pairedMsDeltaMin": 0.016861499999999998,
+      "pairedMsDeltaMax": 0.017633
+    },
+    "cargo": {
+      "arms": {
+        "disabled-control": {
+          "perOperationMsMedian": 31.6715,
+          "perOperationMsMin": 29.3695,
+          "perOperationMsMax": 47.1511,
+          "lateBuilderMsMedian": 0.0005,
+          "gcCollectionDeltas": [
+            0,
+            0,
+            0
+          ],
+          "results": [
+            "builder-removed"
+          ],
+          "layoutTrials": [
+            0
+          ],
+          "moved": [
+            0
+          ]
+        },
+        "current": {
+          "perOperationMsMedian": 43.1814,
+          "perOperationMsMin": 40.3321,
+          "perOperationMsMax": 46.6012,
+          "lateBuilderMsMedian": 12.0954,
+          "gcCollectionDeltas": [
+            0,
+            0,
+            0
+          ],
+          "results": [
+            "cargo"
+          ],
+          "layoutTrials": [
+            62
+          ],
+          "moved": [
+            1
+          ]
+        }
+      },
+      "pairedMsDeltaMedian": 10.508599999999998,
+      "pairedMsDeltaMin": -0.5499000000000009,
+      "pairedMsDeltaMax": 12.460899999999999
+    },
+    "shelter": {
+      "arms": {
+        "disabled-control": {
+          "perOperationMsMedian": 30.7585,
+          "perOperationMsMin": 29.3632,
+          "perOperationMsMax": 31.4079,
+          "lateBuilderMsMedian": 0.0003,
+          "gcCollectionDeltas": [
+            0,
+            0,
+            0
+          ],
+          "results": [
+            "builder-removed"
+          ],
+          "layoutTrials": [
+            0
+          ],
+          "moved": [
+            0
+          ]
+        },
+        "current": {
+          "perOperationMsMedian": 38.6598,
+          "perOperationMsMin": 37.8472,
+          "perOperationMsMax": 71.273,
+          "lateBuilderMsMedian": 7.4482,
+          "gcCollectionDeltas": [
+            1,
+            1,
+            1
+          ],
+          "results": [
+            "shelter"
+          ],
+          "layoutTrials": [
+            1
+          ],
+          "moved": [
+            3
+          ]
+        }
+      },
+      "pairedMsDeltaMedian": 8.484000000000002,
+      "pairedMsDeltaMin": 7.152799999999999,
+      "pairedMsDeltaMax": 39.8651
+    },
+    "refusal": {
+      "arms": {
+        "disabled-control": {
+          "perOperationMsMedian": 30.1792,
+          "perOperationMsMin": 28.9623,
+          "perOperationMsMax": 38.5969,
+          "lateBuilderMsMedian": 0.0002,
+          "gcCollectionDeltas": [
+            0,
+            0,
+            0
+          ],
+          "results": [
+            "builder-removed"
+          ],
+          "layoutTrials": [
+            0
+          ],
+          "moved": [
+            0
+          ]
+        },
+        "current": {
+          "perOperationMsMedian": 30.4662,
+          "perOperationMsMin": 29.5222,
+          "perOperationMsMax": 62.8711,
+          "lateBuilderMsMedian": 0.2579,
+          "gcCollectionDeltas": [
+            1,
+            1,
+            1
+          ],
+          "results": [
+            "refused:source"
+          ],
+          "layoutTrials": [
+            0
+          ],
+          "moved": [
+            0
+          ]
+        }
+      },
+      "pairedMsDeltaMedian": 1.5039000000000016,
+      "pairedMsDeltaMin": -0.4433000000000007,
+      "pairedMsDeltaMax": 24.2742
+    },
+    "wayhouse": {
+      "arms": {
+        "disabled-control": {
+          "perOperationMsMedian": 29.6422,
+          "perOperationMsMin": 27.6722,
+          "perOperationMsMax": 75.2169,
+          "lateBuilderMsMedian": 0.0005,
+          "gcCollectionDeltas": [
+            1,
+            1,
+            1
+          ],
+          "results": [
+            "builder-removed"
+          ],
+          "layoutTrials": [
+            -1
+          ],
+          "moved": [
+            0
+          ]
+        },
+        "current": {
+          "perOperationMsMedian": 50.9177,
+          "perOperationMsMin": 48.1172,
+          "perOperationMsMax": 52.232,
+          "lateBuilderMsMedian": 16.0994,
+          "gcCollectionDeltas": [
+            0,
+            0,
+            0
+          ],
+          "results": [
+            "wayhouse"
+          ],
+          "layoutTrials": [
+            -1
+          ],
+          "moved": [
+            0
+          ]
+        }
+      },
+      "pairedMsDeltaMedian": 21.1397,
+      "pairedMsDeltaMin": -24.299199999999992,
+      "pairedMsDeltaMax": 23.816599999999998
+    }
+  }
+}

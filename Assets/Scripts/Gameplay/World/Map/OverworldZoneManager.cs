@@ -16,6 +16,11 @@ namespace CavesOfOoo.Core
         public SettlementManager SettlementManager { get; private set; }
         /// <summary>Bounded new-world rare source selection; restored saves never reroll it.</summary>
         public SpreadRareEncounterPlan RareEncounters { get; internal set; }
+        /// <summary>Independent bounded expedition; missing saved metadata stays disabled.</summary>
+        public SpreadWayhousePlan Wayhouse { get; internal set; }
+        // Final validation belongs to the generation attempt even if a callback
+        // replaces the selected plan before acceptance.
+        internal SpreadWayhousePlan StagedWayhouse;
         private System.Func<int> _turnProvider;
 
         public OverworldZoneManager(EntityFactory factory, int worldSeed = 0)
@@ -27,6 +32,7 @@ namespace CavesOfOoo.Core
         {
             WorldMap = WorldGenerator.Generate(WorldSeed);
             RareEncounters = SpreadRareEncounterPlan.Create(this);
+            Wayhouse = SpreadWayhousePlan.Create(this);
             SettlementManager = new SettlementManager(
                 currentTurnProvider: null,
                 poiResolver: ResolvePointOfInterestForSettlement,
@@ -155,6 +161,23 @@ namespace CavesOfOoo.Core
                         foreach (var builder in spread.Builders)
                             if (builder is PopulationBuilder population && population.Table?.Name == "SpreadTier1")
                                 population.SpreadEncounter = new SpreadRareEncounterBuilder(this);
+                    bool wayhouseSelected=Wayhouse?.Selects(this,zoneID)==true;
+                    string situation=SpreadWildernessSituationPlan.Select(this,zoneID,Wayhouse?.ZoneID);
+                    if (wayhouseSelected||situation=="cargo"||situation=="shelter")
+                    {
+                        SpreadCompositionBuilder land=null;PopulationBuilder people=null;ContainerBuilder caches=null;
+                        foreach(var builder in spread.Builders)
+                        {
+                            if(builder is SpreadCompositionBuilder composition)land=composition;
+                            if(builder is PopulationBuilder source)people=source;
+                            if(builder is ContainerBuilder container)caches=container;
+                        }
+                        if(land!=null&&people!=null&&caches!=null)
+                        {
+                            if(wayhouseSelected)spread.AddBuilder(new SpreadWayhouseBuilder(this,land,people,caches));
+                            else spread.AddBuilder(new SpreadWildernessSituationBuilder(this,land,people,caches,Wayhouse?.ZoneID));
+                        }
+                    }
                     return spread;
                 case BiomeType.Sodden:
                     return CreateSoddenPipeline(tier, composed: SoddenCompositionPlan.IsWildernessZone(zoneID));
@@ -1091,9 +1114,14 @@ namespace CavesOfOoo.Core
         protected override bool CommitGeneratedZone(Zone zone, string zoneID)
         {
             LegendaryLairEncounters.TryApplyGeneratedFinal(zone, this);
-            return LairStacks.CommitGenerated(zone, this);
+            bool lairAccepted=LairStacks.CommitGenerated(zone,this);
+            var staged=StagedWayhouse;
+            if(staged?.PendingZone!=zone)return lairAccepted;
+            StagedWayhouse=null;
+            return staged.FinalizeGenerated(zone)&&lairAccepted;
         }
-        protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID);
+        protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID)
+            && Wayhouse?.Retain(this,zoneID)!=true;
 
         protected override void OnZoneAttached(Zone zone)
         {

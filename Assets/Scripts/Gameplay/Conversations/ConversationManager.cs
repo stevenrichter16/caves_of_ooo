@@ -17,12 +17,12 @@ namespace CavesOfOoo.Core
         public static bool IsActive => CurrentConversation != null;
 
         /// <summary>Per-speaker presentation; shared authored nodes remain immutable.</summary>
-        public static string CurrentText => FirstHourGuidance.Describe(Speaker, Listener,
+        public static string CurrentText => SpreadDiscoveryReports.AppendText(FirstHourGuidance.Describe(Speaker, Listener,
             CurrentConversation?.ID, CurrentNode?.ID,
             WorldTravellers.DescribeConversation(Speaker, Listener,
             CurrentConversation?.ID, CurrentNode?.ID,
             LocalPeople.DescribeConversation(Speaker, Listener,
-                CurrentConversation?.ID, CurrentNode?.ID, CurrentNode?.Text ?? "")));
+                CurrentConversation?.ID, CurrentNode?.ID, CurrentNode?.Text ?? ""))));
 
         /// <summary>
         /// Set by the StartTrade action before conversation ends.
@@ -167,6 +167,7 @@ namespace CavesOfOoo.Core
             Speaker = null;
             Listener = null;
             _visibleChoices.Clear();
+            SpreadDiscoveryReports.ClearOffers();
         }
 
         /// <summary>
@@ -197,6 +198,7 @@ namespace CavesOfOoo.Core
         public static void RefreshVisibleChoices()
         {
             _visibleChoices.Clear();
+            SpreadDiscoveryReports.ClearOffers();
             if (CurrentNode == null) return;
 
             for (int i = 0; i < CurrentNode.Choices.Count; i++)
@@ -207,6 +209,7 @@ namespace CavesOfOoo.Core
             }
 
             RegionalGuidance.AppendChoices(_visibleChoices);
+            SpreadDiscoveryReports.AppendChoices(_visibleChoices);
 
             // Auto-inject "[Let's trade.]" only when the speaker can
             // ACTUALLY trade. This used to fire for any speaker with an

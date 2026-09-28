@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-09-27 23:53:08Z" end-time="2026-09-27 23:53:08Z" duration="0.3555382">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="20619" result="Failed" site="Child" start-time="2026-09-27 23:53:08Z" end-time="2026-09-27 23:53:08Z" duration="0.355538" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="25277" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="20619" result="Failed" site="Child" start-time="2026-09-27 23:53:08Z" end-time="2026-09-27 23:53:08Z" duration="0.311617" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37276" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="25278" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="20619" result="Failed" site="Child" start-time="2026-09-27 23:53:08Z" end-time="2026-09-27 23:53:08Z" duration="0.304899" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="25279" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="20619" result="Failed" site="Child" start-time="2026-09-27 23:53:08Z" end-time="2026-09-27 23:53:08Z" duration="0.299228" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="16614" name="SpreadWildernessPipelineTests" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineTests" classname="CavesOfOoo.Tests.SpreadWildernessPipelineTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27 23:53:08Z" end-time="2026-09-27 23:53:08Z" duration="0.293463" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="16618" name="ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineTests.ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances" classname="CavesOfOoo.Tests.SpreadWildernessPipelineTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27 23:53:08Z" end-time="2026-09-27 23:53:08Z" duration="0.291412" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16615" name="ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances(1)" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineTests.ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances(1)" methodname="ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances" classname="CavesOfOoo.Tests.SpreadWildernessPipelineTests" runstate="Runnable" seed="1788199284" result="Failed" start-time="2026-09-27 23:53:08Z" end-time="2026-09-27 23:53:08Z" duration="0.130591" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.9.0.0 shelter
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessPipelineTests.ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances (System.Int32 seed) [0x000a7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessPipelineTests.cs:22
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16616" name="ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances(64)" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineTests.ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances(64)" methodname="ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances" classname="CavesOfOoo.Tests.SpreadWildernessPipelineTests" runstate="Runnable" seed="99122177" result="Failed" start-time="2026-09-27 23:53:08Z" end-time="2026-09-27 23:53:08Z" duration="0.086097" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.11.1.0 shelter
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessPipelineTests.ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances (System.Int32 seed) [0x000a7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessPipelineTests.cs:22
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16617" name="ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances(1729)" fullname="CavesOfOoo.Tests.SpreadWildernessPipelineTests.ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances(1729)" methodname="ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances" classname="CavesOfOoo.Tests.SpreadWildernessPipelineTests" runstate="Runnable" seed="1869691559" result="Failed" start-time="2026-09-27 23:53:08Z" end-time="2026-09-27 23:53:08Z" duration="0.049496" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Overworld.7.2.0 shelter
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpreadWildernessPipelineTests.ActualColdPipelineBindsOnlySelectedOrdinarySourceInstances (System.Int32 seed) [0x000a7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWildernessPipelineTests.cs:22
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

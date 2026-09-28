@@ -345,6 +345,7 @@ namespace CavesOfOoo.Core
             World = LocalPeople.BindForSave(ZoneManager, World);
             World = LairStacks.BindForSave(ZoneManager, World);
             World = SpreadRareEncounterPlan.BindForSave(ZoneManager, World);
+            World = SpreadWayhousePlan.BindForSave(ZoneManager, World);
             writer.WriteHeader(GameVersion);
             writer.WriteCheck("GameSession.Begin");
             writer.Write(SaveVersion);
@@ -418,7 +419,11 @@ namespace CavesOfOoo.Core
 
             LairStacks.Restore(state.ZoneManager, state.World);
             if (state.ZoneManager != null)
+            {
                 state.ZoneManager.RareEncounters = SpreadRareEncounterPlan.Restore(state.World);
+                state.ZoneManager.Wayhouse = SpreadWayhousePlan.Restore(state.World);
+                state.ZoneManager.Wayhouse.RestoreInstalledGraph(state.ZoneManager,state.World);
+            }
             // Parser failures leave the live session untouched. Load-hook or
             // bootstrap application exceptions are separate from this boundary.
             state.TurnManager?.Activate();

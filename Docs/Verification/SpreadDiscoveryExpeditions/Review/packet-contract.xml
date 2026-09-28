@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-cold-eye/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="50" result="Failed" start-time="2026-09-28T00:09:18.3703800Z" end-time="2026-09-28T00:09:19.1514240Z" duration="0.781004" total="13" passed="10" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="126" random-seed="1555411527">
+  <command-line><![CDATA[/private/tmp/coo-spread-discovery-cold-eye/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-spread-discovery-cold-eye/packet-contract.xml --where "class == CavesOfOoo.Tests.SpreadWayhouseColdEyeTests && method == CompletePacketRequiresDistinctGoodsAndUsableCurrentParts"]]></command-line>
+  <filter>
+    <and>
+      <class>CavesOfOoo.Tests.SpreadWayhouseColdEyeTests</class>
+      <method>CompletePacketRequiresDistinctGoodsAndUsableCurrentParts</method>
+    </and>
+  </filter>
+  <test-suite type="Assembly" id="1062" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-cold-eye/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-09-28T00:09:18.3703800Z" end-time="2026-09-28T00:09:19.1514240Z" duration="0.781004" total="13" passed="10" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="126">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-spread-discovery-cold-eye/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-spread-discovery-cold-eye/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="96189" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1063" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-09-28T00:09:18.3725680Z" end-time="2026-09-28T00:09:19.1514160Z" duration="0.778842" total="13" passed="10" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="126">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1064" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-09-28T00:09:18.3727280Z" end-time="2026-09-28T00:09:19.1513800Z" duration="0.778646" total="13" passed="10" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="126">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1019" name="SpreadWayhouseColdEyeTests" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" testcasecount="34" result="Failed" site="Child" start-time="2026-09-28T00:09:18.3732750Z" end-time="2026-09-28T00:09:19.1513720Z" duration="0.778091" total="13" passed="10" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="126">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1055" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-09-28T00:09:18.3746590Z" end-time="2026-09-28T00:09:19.1511030Z" duration="0.776437" total="13" passed="10" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="126">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1042" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;unchanged&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;unchanged&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="1996974759" result="Passed" start-time="2026-09-28T00:09:18.3747730Z" end-time="2026-09-28T00:09:18.5556240Z" duration="0.180876" asserts="9" />
+            <test-case id="1043" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;empty-key-id&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;empty-key-id&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="374325100" result="Passed" start-time="2026-09-28T00:09:18.5563600Z" end-time="2026-09-28T00:09:18.6076090Z" duration="0.051249" asserts="10" />
+            <test-case id="1044" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;existing-id&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;existing-id&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="1747563526" result="Passed" start-time="2026-09-28T00:09:18.6076550Z" end-time="2026-09-28T00:09:18.6539070Z" duration="0.046252" asserts="10" />
+            <test-case id="1045" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;shared-goods-id&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;shared-goods-id&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="703702269" result="Passed" start-time="2026-09-28T00:09:18.6539300Z" end-time="2026-09-28T00:09:18.7067650Z" duration="0.052835" asserts="10" />
+            <test-case id="1046" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;key-part&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;key-part&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="551219364" result="Passed" start-time="2026-09-28T00:09:18.7067920Z" end-time="2026-09-28T00:09:18.7501700Z" duration="0.043378" asserts="10" />
+            <test-case id="1047" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;door-owned&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;door-owned&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="924476195" result="Passed" start-time="2026-09-28T00:09:18.7502060Z" end-time="2026-09-28T00:09:18.7973240Z" duration="0.047118" asserts="10" />
+            <test-case id="1048" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;door-lock&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;door-lock&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="1562077704" result="Passed" start-time="2026-09-28T00:09:18.7973450Z" end-time="2026-09-28T00:09:18.8536650Z" duration="0.056321" asserts="10" />
+            <test-case id="1049" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;hidden-wall&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;hidden-wall&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="2070563819" result="Passed" start-time="2026-09-28T00:09:18.8536990Z" end-time="2026-09-28T00:09:18.9023780Z" duration="0.048680" asserts="10" />
+            <test-case id="1050" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;gear-backlink&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;gear-backlink&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="673199561" result="Passed" start-time="2026-09-28T00:09:18.9024150Z" end-time="2026-09-28T00:09:18.9468160Z" duration="0.044401" asserts="10" />
+            <test-case id="1051" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;inventory-backlink&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;inventory-backlink&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="1142480858" result="Passed" start-time="2026-09-28T00:09:18.9468370Z" end-time="2026-09-28T00:09:18.9893520Z" duration="0.042515" asserts="10" />
+            <test-case id="1052" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;reward-count&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;reward-count&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="2085540237" result="Failed" start-time="2026-09-28T00:09:18.9894310Z" end-time="2026-09-28T00:09:19.0515120Z" duration="0.062081" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseColdEyeTests.cs:line 156
+   at InvokeStub_SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseColdEyeTests.cs:line 156
+   at InvokeStub_SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1053" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;reward-value&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;reward-value&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="2104488017" result="Failed" start-time="2026-09-28T00:09:19.0515880Z" end-time="2026-09-28T00:09:19.1024130Z" duration="0.050825" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseColdEyeTests.cs:line 156
+   at InvokeStub_SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseColdEyeTests.cs:line 156
+   at InvokeStub_SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1054" name="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;tradeable-key&quot;)" fullname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(&quot;tradeable-key&quot;)" methodname="CompletePacketRequiresDistinctGoodsAndUsableCurrentParts" classname="CavesOfOoo.Tests.SpreadWayhouseColdEyeTests" runstate="Runnable" seed="603893517" result="Failed" start-time="2026-09-28T00:09:19.1024460Z" end-time="2026-09-28T00:09:19.1502790Z" duration="0.047833" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseColdEyeTests.cs:line 156
+   at InvokeStub_SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(String change) in /tmp/coo-spread-discovery-cold-eye/SpreadWayhouseColdEyeTests.cs:line 156
+   at InvokeStub_SpreadWayhouseColdEyeTests.CompletePacketRequiresDistinctGoodsAndUsableCurrentParts(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

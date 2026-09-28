@@ -89,6 +89,7 @@ namespace CavesOfOoo.Rendering
             _noteLines.Clear();
             AppendNotes(RegionalTravelNotes.Read(StoryletPart.LocalPlayer));
             AppendNotes(RegionalSituationNotes.Read(StoryletPart.LocalPlayer));
+            AppendNotes(SpreadDiscoveryNotes.Read(StoryletPart.LocalPlayer));
             NotesPage=Mathf.Clamp(NotesPage,0,Mathf.Max(0,(_noteLines.Count-1)/NotesLinesPerPage));
         }
 

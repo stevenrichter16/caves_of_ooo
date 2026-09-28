@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="108" result="Failed" start-time="2026-09-27T23:58:50.8349360Z" end-time="2026-09-27T23:58:51.6706420Z" duration="0.835644" total="3" passed="2" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="8454" random-seed="2110626678">
+  <command-line><![CDATA[/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-spread-discovery-m4/wayhouse-economy-first.xml --where "class == CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1141" name="EditModeRunner.dll" fullname="/private/tmp/coo-spread-discovery-m4/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="108" result="Failed" site="Child" start-time="2026-09-27T23:58:50.8349360Z" end-time="2026-09-27T23:58:51.6706420Z" duration="0.835644" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="8454">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-spread-discovery-m4/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-spread-discovery-m4/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="92775" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1142" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="108" result="Failed" site="Child" start-time="2026-09-27T23:58:50.8375720Z" end-time="2026-09-27T23:58:51.6706320Z" duration="0.833054" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="8454">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1143" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="108" result="Failed" site="Child" start-time="2026-09-27T23:58:50.8377540Z" end-time="2026-09-27T23:58:51.6703940Z" duration="0.832633" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="8454">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1136" name="SpreadWayhouseEconomyCensusTests" fullname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests" classname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27T23:58:50.8382950Z" end-time="2026-09-27T23:58:51.6701380Z" duration="0.831836" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="8454">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1140" name="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta" fullname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests.ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta" classname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-27T23:58:50.8393780Z" end-time="2026-09-27T23:58:51.6697680Z" duration="0.830384" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="8454">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1137" name="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(1)" fullname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests.ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(1)" methodname="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta" classname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests" runstate="Runnable" seed="1494692447" result="Passed" start-time="2026-09-27T23:58:50.8395520Z" end-time="2026-09-27T23:58:51.1928240Z" duration="0.353433" asserts="4205">
+              <output><![CDATA[{
+  "seed": 1,
+  "worldX": 12,
+  "worldY": 13,
+  "mapDistanceFromSill": 3,
+  "mapDistanceFromDefaultGlade": 3,
+  "oldHostiles": 1,
+  "newHostiles": 1,
+  "oldContainers": 2,
+  "newContainers": 3,
+  "ordinaryLootContainersBefore": 2,
+  "ordinaryLootContainersAfter": 2,
+  "removedBushes": 0,
+  "zone": "Overworld.12.13.0",
+  "boundary": "Actual isolated full manager cold GetZone, paired no-wayhouse-builder baseline with same frozen selection and reset global source RNG. Records generated stock/gear commerce, not sell price, player income, natural acquisition, death drops or campaign balance. Added ordinary guard may consume extra loadout RNG; no unchanged-RNG claim.",
+  "rewardId": "4231",
+  "keyId": "4230",
+  "oldHostileBlueprints": [
+    "MarlbackScrabbler"
+  ],
+  "oldHostileIds": [
+    "4187"
+  ],
+  "oldCacheStockValue": 1,
+  "oldHostileGearValue": 8,
+  "newGuardGearValue": 20,
+  "rewardValue": 20,
+  "totalStockGearBefore": 56,
+  "totalStockGearAfter": 87,
+  "intentionalStockGearDelta": 31,
+  "replacedStock": [
+    {
+      "id": "4191",
+      "blueprint": "GoldCoin",
+      "units": 1,
+      "baseValue": 1,
+      "totalValue": 1,
+      "noTrade": false
+    }
+  ],
+  "oldHostileGear": [
+    {
+      "id": "4188",
+      "blueprint": "Cudgel",
+      "units": 1,
+      "baseValue": 8,
+      "totalValue": 8,
+      "noTrade": false
+    }
+  ],
+  "newGuardGear": [
+    {
+      "id": "4225",
+      "blueprint": "LeatherGloves",
+      "units": 1,
+      "baseValue": 8,
+      "totalValue": 8,
+      "noTrade": false
+    },
+    {
+      "id": "4226",
+      "blueprint": "Hatchet",
+      "units": 1,
+      "baseValue": 12,
+      "totalValue": 12,
+      "noTrade": false
+    }
+  ]
+}
+]]></output>
+            </test-case>
+            <test-case id="1138" name="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(64)" fullname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests.ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(64)" methodname="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta" classname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests" runstate="Runnable" seed="1446912729" result="Passed" start-time="2026-09-27T23:58:51.1943390Z" end-time="2026-09-27T23:58:51.3618330Z" duration="0.167493" asserts="4238">
+              <output><![CDATA[{
+  "seed": 64,
+  "worldX": 11,
+  "worldY": 7,
+  "mapDistanceFromSill": 3,
+  "mapDistanceFromDefaultGlade": 3,
+  "oldHostiles": 2,
+  "newHostiles": 1,
+  "oldContainers": 2,
+  "newContainers": 3,
+  "ordinaryLootContainersBefore": 2,
+  "ordinaryLootContainersAfter": 2,
+  "removedBushes": 0,
+  "zone": "Overworld.11.7.0",
+  "boundary": "Actual isolated full manager cold GetZone, paired no-wayhouse-builder baseline with same frozen selection and reset global source RNG. Records generated stock/gear commerce, not sell price, player income, natural acquisition, death drops or campaign balance. Added ordinary guard may consume extra loadout RNG; no unchanged-RNG claim.",
+  "rewardId": "4314",
+  "keyId": "4313",
+  "oldHostileBlueprints": [
+    "MarlbackScrabbler",
+    "MarlbackScrabbler"
+  ],
+  "oldHostileIds": [
+    "4242",
+    "4244"
+  ],
+  "oldCacheStockValue": 1,
+  "oldHostileGearValue": 36,
+  "newGuardGearValue": 10,
+  "rewardValue": 20,
+  "totalStockGearBefore": 310,
+  "totalStockGearAfter": 303,
+  "intentionalStockGearDelta": -7,
+  "replacedStock": [
+    {
+      "id": "4252",
+      "blueprint": "GoldCoin",
+      "units": 1,
+      "baseValue": 1,
+      "totalValue": 1,
+      "noTrade": false
+    }
+  ],
+  "oldHostileGear": [
+    {
+      "id": "4243",
+      "blueprint": "Dagger",
+      "units": 1,
+      "baseValue": 10,
+      "totalValue": 10,
+      "noTrade": false
+    },
+    {
+      "id": "4245",
+      "blueprint": "LeatherCap",
+      "units": 1,
+      "baseValue": 8,
+      "totalValue": 8,
+      "noTrade": false
+    },
+    {
+      "id": "4246",
+      "blueprint": "LeatherGloves",
+      "units": 1,
+      "baseValue": 8,
+      "totalValue": 8,
+      "noTrade": false
+    },
+    {
+      "id": "4247",
+      "blueprint": "Dagger",
+      "units": 1,
+      "baseValue": 10,
+      "totalValue": 10,
+      "noTrade": false
+    }
+  ],
+  "newGuardGear": [
+    {
+      "id": "4309",
+      "blueprint": "Dagger",
+      "units": 1,
+      "baseValue": 10,
+      "totalValue": 10,
+      "noTrade": false
+    }
+  ]
+}
+]]></output>
+            </test-case>
+            <test-case id="1139" name="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(1729)" fullname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests.ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(1729)" methodname="ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta" classname="CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests" runstate="Runnable" seed="1253021821" result="Failed" start-time="2026-09-27T23:58:51.3630260Z" end-time="2026-09-27T23:58:51.6688010Z" duration="0.305774" asserts="11">
+              <failure>
+                <message><![CDATA[  Expected: some item equal to <Entity(viper)>
+  But was:  <empty>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests.ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(Int32 seed) in /tmp/coo-spread-discovery-m4/SpreadWayhouseEconomyCensusTests.cs:line 60
+   at InvokeStub_SpreadWayhouseEconomyCensusTests.ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: some item equal to <Entity(viper)>
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests.ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(Int32 seed) in /tmp/coo-spread-discovery-m4/SpreadWayhouseEconomyCensusTests.cs:line 60
+   at InvokeStub_SpreadWayhouseEconomyCensusTests.ActualColdWayhouseReplacementMeasuresBoundedIntentionalRewardDelta(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

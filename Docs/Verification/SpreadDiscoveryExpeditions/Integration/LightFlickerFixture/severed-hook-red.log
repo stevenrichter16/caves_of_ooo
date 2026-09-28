@@ -1,0 +1,41 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /private/tmp/coo-light-flicker-fixture/runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-28 00:38:40Z
+    End time: 2026-09-28 00:38:40Z
+    Duration: 0.022 seconds
+
+Test Filters
+    Where: class == CavesOfOoo.Tests.LightSourceFlickerPartTests
+
+Errors, Failures and Warnings
+
+1) Failed : CavesOfOoo.Tests.LightSourceFlickerPartTests.HandleEvent_RenderFires_UpdatesIntensity
+  Render must replace the sentinel with the same-frame flicker result, including a valid base-intensity midpoint.
+  Expected: 1.0847176313400269d +/- 9.9999997473787516E-06d
+  But was:  -123.0d
+  Off by:   124.08471763134003d
+   at CavesOfOoo.Tests.LightSourceFlickerPartTests.HandleEvent_RenderFires_UpdatesIntensity() in /tmp/coo-light-flicker-fixture/LightSourceFlickerPartTests.cs:line 244
+
+Run Settings
+    Number of Test Workers: 1
+    Work Directory: /private/tmp/coo-light-flicker-fixture/runner
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Failed
+  Test Count: 7, Passed: 6, Failed: 1, Warnings: 0, Inconclusive: 0, Skipped: 0
+    Failed Tests - Failures: 1, Errors: 0, Invalid: 0
+  Start time: 2026-09-28 00:38:40Z
+    End time: 2026-09-28 00:38:40Z
+    Duration: 0.024 seconds
+
+Results (nunit3) saved as /tmp/coo-light-flicker-fixture/severed-hook-red.xml
