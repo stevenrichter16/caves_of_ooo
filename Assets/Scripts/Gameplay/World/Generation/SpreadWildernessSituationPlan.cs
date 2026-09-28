@@ -55,7 +55,8 @@ namespace CavesOfOoo.Core
             snapshots=owners.Select(e=>new OwnerSnapshot(zone,e)).ToArray();
         }
         bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&(ReferenceEquals(p.SourceReceipt,this)||ReferenceEquals(p.LooseSourceReceipt,this)||ReferenceEquals(p.AmbientSourceReceipt,this)||ReferenceEquals(p.AmbientReplacementReceipt,this)||ReferenceEquals(p.ForageSourceReceipt,this))
-            : source is ContainerBuilder c&&c.CaptureSourceReceipts&&ReferenceEquals(c.SourceReceipt,this);
+            : source is ContainerBuilder c ? c.CaptureSourceReceipts&&ReferenceEquals(c.SourceReceipt,this)
+            : source is SpreadCompositionBuilder terrain&&terrain.OwnsPassageReceipt(this);
         public bool IsCurrent => !consumed&&complete&&SourceCurrent&&snapshots.All(s=>s.Matches(true));
         /// <summary>Claim this exact source once after all transaction preflights.
         /// Consumption is ephemeral and never changes its owners or saved graph.</summary>
@@ -74,6 +75,16 @@ namespace CavesOfOoo.Core
                 return ()=>false;
             var state=exact.Select(e=>new OwnerSnapshot(zone,e)).ToArray();
             return ()=>state.All(s=>s.Matches(true));
+        }
+
+        // Exact removed terrain owner retained only for the scoped substitution's
+        // rollback/final cold proof. No saved claim or general pickup authority.
+        internal static Func<bool> CaptureDetachedState(Entity owner)
+        {
+            if(owner==null||owner.SpatialZone!=null)return ()=>false;
+            var snapshot=new EntitySnapshot(owner);
+            return ()=>snapshot.Children.Length==0&&owner.SpatialZone==null
+                &&owner.GetPart<PhysicsPart>()?.InInventory==null&&owner.GetPart<PhysicsPart>()?.Equipped==null&&snapshot.Matches();
         }
 
         sealed class OwnerSnapshot

@@ -36214,6 +36214,62 @@
       "Tags": []
     },
     {
+      "Name": "SpreadFieldGate",
+      "Inherits": "VillageDoor",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "field gate"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "+"
+            }
+          ]
+        },
+        {
+          "Name": "Door",
+          "Params": [
+            {
+              "Key": "IsOpen",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "10"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "10"
+            },
+            {
+              "Key": "WreckageBlueprint",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Timber rails hang between short posts. A plain latch rests below the top rail."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "VillageDoor",
       "Inherits": "PhysicalObject",
       "Parts": [

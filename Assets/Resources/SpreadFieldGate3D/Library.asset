@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 011b9a2083674e7dbe813ad66c0bce3c, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.SpreadFieldGate3DLibrary
+  SourceSha256: c413dd9390a4ec23347c9042f8f2127e9723300c9899abfa22fa6d96135171b3
+  Entries:
+  - Id: spread-field-gate-closed
+    Prefab: {fileID: 5377548793992833566, guid: 8184ea8a74d3a4d60b1f703cd52b2acd, type: 3}
+    Mesh: {fileID: 4300000, guid: 662aedfc852af4d1c817010ecffe609a, type: 2}
+    Material: {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
+    Spec:
+      id: spread-field-gate-closed
+      path: Assets/Resources/SpreadFieldGate3D/spread-field-gate-closed.prefab
+      kind: entity
+      rigFamily: 
+      materialFamily: reference-glade-palette
+      sourceBlueprint: SpreadFieldGate
+      rigged: 0
+      boundsCenter: {x: 0.000000044703484, y: 0.4, z: -0.2565}
+      boundsSize: {x: 0.94200003, y: 0.8, z: 0.17500015}
+      triangles: 156
+      clips: []
+      sockets: []
+  - Id: spread-field-gate-open
+    Prefab: {fileID: 8850678740509983393, guid: 264761df360d54120a451409f600b453, type: 3}
+    Mesh: {fileID: 4300000, guid: 5241be277cc7f4a2eaf89c773af63a6c, type: 2}
+    Material: {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
+    Spec:
+      id: spread-field-gate-open
+      path: Assets/Resources/SpreadFieldGate3D/spread-field-gate-open.prefab
+      kind: entity
+      rigFamily: 
+      materialFamily: reference-glade-palette
+      sourceBlueprint: SpreadFieldGate
+      rigged: 0
+      boundsCenter: {x: 0.000000044703484, y: 0.4, z: 0.030499965}
+      boundsSize: {x: 0.94200003, y: 0.8, z: 0.7490001}
+      triangles: 156
+      clips: []
+      sockets: []

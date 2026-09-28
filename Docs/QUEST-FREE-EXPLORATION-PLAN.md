@@ -1,6 +1,6 @@
 # Quest-free exploration: a varied, persistent wilderness
 
-**Current status: E0–E2 shipped as `f094ae21`; E3 F5–F8 and version4 source/save integration are adopted locally, with focused native checks passing. The frozen E3 native suite passes21,450/21,450; the bounded live-experience limits below remain open.** This plan was prepared against `8b01bf02b743d75463baa504e055c1b10b9823d5` on 2026-09-27 (local date), before execution was authorized. The original audit and chronological records below retain their historical scope; this summary is the current checkpoint. Execution instructions are in `QUEST-FREE-EXPLORATION-EXECUTION-PROMPT.md`.
+**Current status: E0–E2 shipped as `f094ae21`; E3 F5–F8 and version4 source/save integration shipped as `4f95768a`, with focused native checks passing. The frozen E3 native suite passes21,450/21,450; the bounded live-experience limits below remain open.** This plan was prepared against `8b01bf02b743d75463baa504e055c1b10b9823d5` on 2026-09-27 (local date), before execution was authorized. The original audit and chronological records below retain their historical scope; this summary is the current checkpoint. Execution instructions are in `QUEST-FREE-EXPLORATION-EXECUTION-PROMPT.md`.
 
 | Milestone / family | Current evidence | Remaining acceptance |
 |---|---|---|
@@ -13,6 +13,8 @@
 | E3 integration and E4–E6 | Frozen native21,450/21,450 pass,0 failures/skips,1254.6228703s; bounded gameplay/source Q1–Q4 review found no new significant production blocker. | F8 local trade/return is accepted separately; collector and F5/F7 live limits remain. E4 families and broad exploration/regional acceptance are not complete. |
 
 The final unfiltered suite is `Verification/QuestFreeExploration/E3/Integration/native-full-suite-green.json` (job `c4f23ef8bf8c455d9a7c48469d0bbf9d`). It predates the scenario-only Exchange observer extension; that extension has a separate14/14 focused pass and8/8 local witness (`E3/Exchange/Native/3dc45efa833d4801a089292e24a6fd97/report.json`). No later21,456-case full rerun is claimed. Focused receipts remain separate overlapping runs, not counts to add to that suite. Current source/evidence details and historical failures are in `QUEST-FREE-EXPANSION-PLAN.md` and `Verification/QuestFreeExploration/E3`. Setup-transfer witnesses are local action proofs, not ordinary discovery or human-awareness measurements.
+
+E4 is now in progress under [Environmental exploration implementation](QUEST-FREE-ENVIRONMENT-IMPLEMENTATION.md): useful field passages and stable hauled-object appearance pass native focused and live local gates. The full native sweep passes 21,527/21,527. Hauling situations, finite cooking, hunting and meaningful second variants remain separate unfinished slices; the next cooking proposal connects actually harvested emberwheat to a modest prepared meal.
 
 ## 1. Player outcome and scope
 

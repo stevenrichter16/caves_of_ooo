@@ -1,0 +1,28 @@
+// Root-owned idle-editor invocation; this body imports only the reviewed two-state pack.
+var root = System.IO.Path.GetFullPath(".");
+var destination = System.IO.Path.Combine(root, "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art");
+System.IO.Directory.CreateDirectory(destination);
+var scene = UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene();
+if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode || scene.isDirty) throw new System.InvalidOperationException("Idle clean active scene required.");
+System.Func<string,string> hash = p => { using(var sha=System.Security.Cryptography.SHA256.Create())return System.BitConverter.ToString(sha.ComputeHash(System.IO.File.ReadAllBytes(p))).Replace("-", "").ToLowerInvariant(); };
+var before = new System.Collections.Generic.SortedDictionary<string,string>(System.StringComparer.Ordinal);
+// Resolve the actual library asset path rather than assuming a resource folder spelling.
+var paletteLibrary = CavesOfOoo.Rendering.ReferenceGladeVoxelLibrary.Load();
+if (paletteLibrary == null) throw new System.InvalidOperationException("Approved palette unavailable.");
+var borrowed = UnityEditor.AssetDatabase.GetDependencies(UnityEditor.AssetDatabase.GetAssetPath(paletteLibrary), true);
+foreach(var p in borrowed) if(System.IO.File.Exists(p)) { before[p]=hash(p); if(System.IO.File.Exists(p+".meta"))before[p+".meta"]=hash(p+".meta"); }
+foreach(var p in System.IO.Directory.GetFiles("ArtSource/SpreadFieldGate3D", "*", System.IO.SearchOption.AllDirectories))before[p]=hash(p);
+var result = CavesOfOoo.Editor.SpreadFieldGateBuilder.Build(System.IO.Path.Combine(root,"ArtSource/SpreadFieldGate3D/Export"),System.IO.Path.Combine(destination,"import.json"));
+foreach(var pair in before)if(!System.IO.File.Exists(pair.Key)||hash(pair.Key)!=pair.Value)throw new System.InvalidOperationException("Borrowed/source bytes changed: "+pair.Key);
+if(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene()!=scene || scene.isDirty)throw new System.InvalidOperationException("Active scene changed during import.");
+if(result.status!="success"||result.models!=2)throw new System.InvalidOperationException(result.error ?? "Incomplete field-gate import.");
+var owned = new System.Collections.Generic.List<string>();
+foreach(var id in new[]{"spread-field-gate-closed","spread-field-gate-open"}){owned.Add("Assets/Art3D/SpreadFieldGate/"+id+".fbx");owned.Add("Assets/Resources/SpreadFieldGate3D/"+id+".asset");owned.Add("Assets/Resources/SpreadFieldGate3D/"+id+".prefab");}
+owned.Add("Assets/Resources/SpreadFieldGate3D/Library.asset");
+var originals=owned.ToArray();foreach(var p in originals)owned.Add(p+".meta");owned.Add("Assets/Art3D/SpreadFieldGate.meta");owned.Add("Assets/Resources/SpreadFieldGate3D.meta");
+owned.Sort(System.StringComparer.Ordinal);
+var receipt=new System.Collections.Generic.SortedDictionary<string,string>(System.StringComparer.Ordinal);
+foreach(var p in owned){if(!System.IO.File.Exists(p))throw new System.InvalidOperationException("Missing exact generated output: "+p);receipt[p]=hash(p);}
+// Newtonsoft is already provided by this project's editor packages; dictionaries are explicit.
+System.IO.File.WriteAllText(System.IO.Path.Combine(destination,"native-import-owned-files.json"),Newtonsoft.Json.JsonConvert.SerializeObject(new { status="success",models=2,files=receipt,sourceAndBorrowedBefore=before,sourceAndBorrowedBytesPreserved=true,activeScenePreserved=true,sceneDirty=scene.isDirty },Newtonsoft.Json.Formatting.Indented));
+return UnityEngine.JsonUtility.ToJson(result,true);

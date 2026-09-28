@@ -1,0 +1,40 @@
+{
+  "status": "source-review-only; native tests/import/current gameplay camera not executed",
+  "viewed": [
+    {
+      "path": "Export/renders/field-gate-front-context.png",
+      "sha256": "0339b1a2717bbe512861203a591307486e0d15aad1315d326360addb5e790a86"
+    },
+    {
+      "path": "Export/renders/field-gate-oblique-context.png",
+      "sha256": "c9e2b74cdd3409acb1cbc07276b9e42cac2dccd065a62d45b75a79a8a8b09a0c"
+    },
+    {
+      "path": "Export/renders/field-gate-two-states.png",
+      "sha256": "0bd020b9746978415ade87524099daefbcd68c986167295e818b4b9949cb5edc"
+    }
+  ],
+  "finding": "Closed horizontal timber rails read as a small field barrier; open rotated leaf leaves a clear central gap. The oblique image exposes the same leaf geometry. Gate is modestly taller than the unchanged hedge source, with warm upper rail and pale endgrain accents. No new material/geometry blocker identified in these source images. Native scale, crop/hedge occlusion, quarter-turn approaches and current collision remain unverified.",
+  "sourceTests": {
+    "baseline": "6 missing-model assertion failures / 1 approved-palette control pass; source-only, not Unity",
+    "coplanarCounter": "1 failure / 7 controls before small rail and hinge extension",
+    "final": "8 / 8 pass"
+  },
+  "models": [
+    {
+      "id": "spread-field-gate-closed",
+      "boxes": 13,
+      "triangles": 156
+    },
+    {
+      "id": "spread-field-gate-open",
+      "boxes": 13,
+      "triangles": 156
+    }
+  ],
+  "exactBorrowedInputsUnchanged": true,
+  "independentPeerReview": {
+    "reviewer": "standalone_verify",
+    "result": "No concrete blocker in bounded current source/kit geometry review. Identical fixed posts/hinges and rigid leaf transform preserve one-cell envelope and central opening. No native physics, imported axis or gameplay readability claim; native quarter-turn binding/images remain gates."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "runtime": "isolated non-Unity runner with existing stable-hash shims",
+  "result": "9/9 PASS; actual-reference compile0",
+  "bounds": "One sample per address/arm; projection-only conservation; no native or frame-time claim",
+  "seeds": [
+    {
+      "seed": 1,
+      "selected": 5,
+      "committed": 5,
+      "refused": 0,
+      "closedStepsMin": 17,
+      "closedStepsMax": 23,
+      "baselineMedianMs": 16.5162,
+      "candidateMedianMs": 58.0978,
+      "baselineTotalMs": 92.7398,
+      "candidateTotalMs": 273.7366
+    },
+    {
+      "seed": 64,
+      "selected": 8,
+      "committed": 8,
+      "refused": 0,
+      "closedStepsMin": 17,
+      "closedStepsMax": 23,
+      "baselineMedianMs": 16.551949999999998,
+      "candidateMedianMs": 50.788700000000006,
+      "baselineTotalMs": 144.7892,
+      "candidateTotalMs": 395.2429
+    },
+    {
+      "seed": 1729,
+      "selected": 7,
+      "committed": 7,
+      "refused": 0,
+      "closedStepsMin": 12,
+      "closedStepsMax": 27,
+      "baselineMedianMs": 15.9199,
+      "candidateMedianMs": 51.0786,
+      "baselineTotalMs": 111.5687,
+      "candidateTotalMs": 377.2644
+    }
+  ]
+}

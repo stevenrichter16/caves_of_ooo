@@ -1,0 +1,203 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /private/tmp/coo-questfree-implementation/passage/runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-28 13:37:39Z
+    End time: 2026-09-28 13:37:39Z
+    Duration: 0.026 seconds
+
+Test Filters
+    Where: class =~ /SpreadFieldPassage/
+
+Errors, Failures and Warnings
+
+1) Failed : CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(1)
+  Expected: 5
+  But was:  4
+   at CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Int32 seed) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageManifestTests.cs:line 39
+
+2) Failed : CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(64)
+  Expected: 5
+  But was:  4
+   at CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Int32 seed) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageManifestTests.cs:line 39
+   at InvokeStub_SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Object, Span`1)
+
+3) Failed : CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(1729)
+  Expected: 5
+  But was:  4
+   at CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Int32 seed) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageManifestTests.cs:line 39
+   at InvokeStub_SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Object, Span`1)
+
+4) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(False)
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(Boolean opened) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 165
+
+5) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(True)
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(Boolean opened) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 165
+   at InvokeStub_SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(Object, Span`1)
+
+6) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(False)
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(Boolean opened) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 152
+
+7) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(True)
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(Boolean opened) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 152
+   at InvokeStub_SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(Object, Span`1)
+
+8) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.ExactProducerHedgeBecomesOneClosedGateWithoutChangingOtherOwnersOrStock
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.ExactProducerHedgeBecomesOneClosedGateWithoutChangingOtherOwnersOrStock() in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 104
+
+9) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(False)
+  The scoped field-gate source is not implemented yet.
+  Expected: True
+  But was:  False
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(Boolean replace) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 133
+
+10) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(True)
+  The scoped field-gate source is not implemented yet.
+  Expected: True
+  But was:  False
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(Boolean replace) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 133
+   at InvokeStub_SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(Object, Span`1)
+
+11) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange("unchanged",True)
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+
+12) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange("offroute",True)
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+   at InvokeStub_SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(Object, Span`1)
+
+13) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange("open",False)
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+   at InvokeStub_SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(Object, Span`1)
+
+14) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange("axis",False)
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+   at InvokeStub_SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(Object, Span`1)
+
+15) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange("approach",False)
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+   at InvokeStub_SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(Object, Span`1)
+
+16) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted("denied")
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+
+17) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted("reserved")
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+
+18) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted("interior")
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+
+19) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted("wet")
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+
+20) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted("owned")
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+
+21) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted("damaged")
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+
+22) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted("same-id-decoy")
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+
+23) Failed : CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted("wrong-producer")
+  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+
+Run Settings
+    Number of Test Workers: 1
+    Work Directory: /private/tmp/coo-questfree-implementation/passage/runner
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Failed
+  Test Count: 30, Passed: 7, Failed: 23, Warnings: 0, Inconclusive: 0, Skipped: 0
+    Failed Tests - Failures: 23, Errors: 0, Invalid: 0
+  Start time: 2026-09-28 13:37:39Z
+    End time: 2026-09-28 13:37:40Z
+    Duration: 0.936 seconds
+
+Results (nunit3) saved as /tmp/coo-questfree-implementation/passage/final-red.xml

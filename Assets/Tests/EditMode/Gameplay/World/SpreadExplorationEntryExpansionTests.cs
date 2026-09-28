@@ -34,7 +34,7 @@ namespace CavesOfOoo.Tests
 
         [TestCase(1)][TestCase(64)][TestCase(1729)] public void NewFamiliesAreFrozenColdAndHabitatSpecific(int seed)
         {
-            var a=Fresh(seed);var b=Fresh(seed);Assert.AreEqual(4,a.Exploration.Version);Assert.Zero(a.CachedZoneCount);
+            var a=Fresh(seed);var b=Fresh(seed);Assert.AreEqual(5,a.Exploration.Version);Assert.Zero(a.CachedZoneCount);
             CollectionAssert.AreEqual(a.Exploration.Entries.Select(e=>e.ZoneID+e.Family),b.Exploration.Entries.Select(e=>e.ZoneID+e.Family));
             foreach(string f in new[]{"CollectorReturn","RoadsideExchange"})
             {
@@ -128,7 +128,7 @@ namespace CavesOfOoo.Tests
         {
             var m=Fresh();var e=Exchange(m);var z=Activate(m,e);Assert.True(Mark(m,z,e,()=>true));
             var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("entry-v4","fixture",m,null,null));
-            Assert.AreEqual(4,loaded.ZoneManager.Exploration.Version);var now=loaded.ZoneManager.GetZone(e.ZoneID);Assert.AreNotSame(z,now);
+            Assert.AreEqual(5,loaded.ZoneManager.Exploration.Version);var now=loaded.ZoneManager.GetZone(e.ZoneID);Assert.AreNotSame(z,now);
             Assert.AreEqual(2,loaded.ZoneManager.Exploration.DispositionFor(e.ZoneID));Assert.False(Accepted(loaded.ZoneManager,now,out _));
             loaded.ZoneManager.UnloadZone(e.ZoneID);Assert.AreSame(now,loaded.ZoneManager.GetZone(e.ZoneID));
         }
@@ -137,7 +137,7 @@ namespace CavesOfOoo.Tests
             var m=Fresh(64);var e=m.Exploration.Entries.First(x=>x.PlacementEligible&&FormationSelector.For(BiomeType.Spread,x.ZoneID)==Formation.OldRoad);
             string wire=version+"|64|1\n"+e.ZoneID+"|3|1|1|0";Restore(m,wire);Assert.AreEqual(version,m.Exploration.Version);Assert.AreEqual("RoadSpill",m.Exploration.Find(e.ZoneID).Family.ToString());Assert.AreEqual(wire,Wire(m));Assert.Zero(m.CachedZoneCount);
         }
-        [TestCase(2,7)][TestCase(3,7)][TestCase(3,8)][TestCase(5,1)] public void OldOrFutureHeaderCannotAuthorizeNewFamily(int version,int family)
+        [TestCase(2,7)][TestCase(3,7)][TestCase(3,8)][TestCase(999,1)] public void OldOrFutureHeaderCannotAuthorizeNewFamily(int version,int family)
         {
             var m=Fresh(64);var e=m.Exploration.Entries.First(x=>x.PlacementEligible&&FormationSelector.For(BiomeType.Spread,x.ZoneID)==Formation.OldRoad);
             Assert.Throws<InvalidDataException>(()=>Restore(m,version+"|64|1\n"+e.ZoneID+"|3|"+family+"|1|0"));

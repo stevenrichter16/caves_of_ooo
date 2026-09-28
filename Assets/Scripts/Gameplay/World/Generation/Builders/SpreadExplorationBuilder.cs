@@ -37,8 +37,33 @@ namespace CavesOfOoo.Core
     case SpreadExplorationFamily.SnakeForage:return Encounter(zone,factory,entry,true);
     case SpreadExplorationFamily.WorkGang:return Encounter(zone,factory,entry,false);
     case SpreadExplorationFamily.CollectorReturn:return Collector(zone,factory,entry);
+    case SpreadExplorationFamily.FieldPassage:return Passage(zone,factory,entry);
     default:return Refuse(zone,entry,"unsupported-family");
    }
+  }
+  bool Passage(Zone z,EntityFactory f,SpreadExplorationEntry entry)
+  {
+   if(terrain.Plan.Formation!=Formation.Hedgerow||!terrain.CapturePassageSources)return Refuse(z,entry,"passage-source");
+   // Eligibility precedes the source cap; edge/owned/spent scenery cannot starve
+   // a valid interior source. There are at most two orientations per candidate.
+   var candidates=terrain.PassageSources.Where(r=>r.IsCurrent&&r.Owners.Count==1&&SpreadExplorationPassage.Eligible(z,r.Owners[0]))
+    .OrderBy(r=>z.GetEntityPosition(r.Owners[0]).y).ThenBy(r=>z.GetEntityPosition(r.Owners[0]).x).Take(32).ToArray();
+   foreach(var receipt in candidates)
+   {
+    var hedge=receipt.Owners[0];
+    var all=z.GetReadOnlyEntities().Where(e=>e==hedge||!DoorPart.IsBareGround(e)).ToArray();
+    var original=SpreadGenerationReceipt.CaptureFinalState(z,all);
+    var others=SpreadGenerationReceipt.CaptureFinalState(z,all.Where(e=>e!=hedge));
+    bool preparing=true;
+    // Our factory/substitution cannot change any existing packet. Later normal
+    // OnZoneGenerated work (including resident naming) is independently owned;
+    // final passage authority covers the gate, supports and useful geometry.
+    bool Authority()=>Current(z,f,entry)&&terrain.OwnsPassageReceipt(receipt)&&(!preparing||others());
+    if(SpreadExplorationPassage.TryPlace(z,f,terrain,hedge,Authority,out var gate,out var final))
+     {preparing=false;return Commit(z,f,entry,new[]{gate},()=>Authority()&&final());}
+    if(!Current(z,f,entry)||!original())return false;
+   }
+   return Refuse(z,entry,"no-useful-field-passage");
   }
   bool Collector(Zone z,EntityFactory f,SpreadExplorationEntry entry)
   {

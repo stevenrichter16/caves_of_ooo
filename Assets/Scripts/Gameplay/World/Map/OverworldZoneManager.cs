@@ -72,7 +72,7 @@ namespace CavesOfOoo.Core
                 SpreadCompositionBuilder land=null;PopulationBuilder population=null;ContainerBuilder containers=null;
                 foreach(var builder in pipeline.Builders)
                 {
-                    if(builder is SpreadCompositionBuilder composition){composition.Topology=assignment.Topology;land=composition;}
+                    if(builder is SpreadCompositionBuilder composition){composition.Topology=assignment.Topology;composition.CapturePassageSources=captured.Version>=5&&assignment.Family==SpreadExplorationFamily.FieldPassage;land=composition;}
                     if(builder is PopulationBuilder people)population=people;
                     if(builder is ContainerBuilder stock)containers=stock;
                 }

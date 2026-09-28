@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/passage/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="56" result="Failed" start-time="2026-09-28T13:59:05.6460770Z" end-time="2026-09-28T13:59:17.8113420Z" duration="12.165361" total="40" passed="38" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="102982" random-seed="1384247632">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/passage/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/passage/first-candidate.xml --where "class =~ /SpreadFieldPassage/"]]></command-line>
+  <filter>
+    <class re="1">SpreadFieldPassage</class>
+  </filter>
+  <test-suite type="Assembly" id="1073" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/passage/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-09-28T13:59:05.6460770Z" end-time="2026-09-28T13:59:17.8113420Z" duration="12.165361" total="40" passed="38" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="102982">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/passage/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/passage/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="81059" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1074" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-09-28T13:59:05.6476460Z" end-time="2026-09-28T13:59:17.8113020Z" duration="12.163760" total="40" passed="38" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="102982">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1075" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="56" result="Failed" site="Child" start-time="2026-09-28T13:59:05.6477830Z" end-time="2026-09-28T13:59:17.8112980Z" duration="12.163619" total="40" passed="38" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="102982">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1019" name="SpreadFieldPassageManifestTests" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-09-28T13:59:05.6481590Z" end-time="2026-09-28T13:59:05.9153880Z" duration="0.267232" total="9" passed="9" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="227">
+          <test-suite type="ParameterizedMethod" id="1023" name="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T13:59:05.6492500Z" end-time="2026-09-28T13:59:05.7820580Z" duration="0.132808" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="203">
+            <test-case id="1020" name="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(1)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(1)" methodname="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="234830414" result="Passed" start-time="2026-09-28T13:59:05.6493440Z" end-time="2026-09-28T13:59:05.7366300Z" duration="0.087313" asserts="57" />
+            <test-case id="1021" name="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(64)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(64)" methodname="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="1759658870" result="Passed" start-time="2026-09-28T13:59:05.7372210Z" end-time="2026-09-28T13:59:05.7607590Z" duration="0.023539" asserts="76" />
+            <test-case id="1022" name="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(1729)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(1729)" methodname="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="1967381421" result="Passed" start-time="2026-09-28T13:59:05.7607840Z" end-time="2026-09-28T13:59:05.7815940Z" duration="0.020811" asserts="70" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1031" name="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T13:59:05.7823090Z" end-time="2026-09-28T13:59:05.8525720Z" duration="0.070264" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <test-case id="1028" name="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse(999,&quot;Hedgerow&quot;,0)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse(999,&quot;Hedgerow&quot;,0)" methodname="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="1864825327" result="Passed" start-time="2026-09-28T13:59:05.7823230Z" end-time="2026-09-28T13:59:05.8052650Z" duration="0.022942" asserts="3" />
+            <test-case id="1029" name="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse(4,&quot;Hedgerow&quot;,9)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse(4,&quot;Hedgerow&quot;,9)" methodname="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="233612764" result="Passed" start-time="2026-09-28T13:59:05.8052940Z" end-time="2026-09-28T13:59:05.8256990Z" duration="0.020405" asserts="3" />
+            <test-case id="1030" name="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse(5,&quot;FlowerMeadow&quot;,9)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse(5,&quot;FlowerMeadow&quot;,9)" methodname="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="982742232" result="Passed" start-time="2026-09-28T13:59:05.8257150Z" end-time="2026-09-28T13:59:05.8525470Z" duration="0.026833" asserts="3" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1027" name="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T13:59:05.8525800Z" end-time="2026-09-28T13:59:05.9153000Z" duration="0.062721" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="15">
+            <test-case id="1024" name="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(2,2)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(2,2)" methodname="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="1542394941" result="Passed" start-time="2026-09-28T13:59:05.8525890Z" end-time="2026-09-28T13:59:05.8723560Z" duration="0.019768" asserts="5" />
+            <test-case id="1025" name="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(3,2)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(3,2)" methodname="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="975121667" result="Passed" start-time="2026-09-28T13:59:05.8723750Z" end-time="2026-09-28T13:59:05.8966490Z" duration="0.024274" asserts="5" />
+            <test-case id="1026" name="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(4,7)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(4,7)" methodname="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="1241886136" result="Passed" start-time="2026-09-28T13:59:05.8966750Z" end-time="2026-09-28T13:59:05.9152830Z" duration="0.018608" asserts="5" />
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1060" name="SpreadFieldPassagePipelineTests" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T13:59:05.9157790Z" end-time="2026-09-28T13:59:08.7411470Z" duration="2.825392" total="9" passed="7" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="68542">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1072" name="ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T13:59:05.9158540Z" end-time="2026-09-28T13:59:06.7930010Z" duration="0.877154" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="13587">
+            <test-case id="1070" name="ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(False)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(False)" methodname="ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="1928799433" result="Passed" start-time="2026-09-28T13:59:05.9158700Z" end-time="2026-09-28T13:59:06.3791200Z" duration="0.463254" asserts="6795" />
+            <test-case id="1071" name="ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(True)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(True)" methodname="ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="235096918" result="Passed" start-time="2026-09-28T13:59:06.3791400Z" end-time="2026-09-28T13:59:06.7929580Z" duration="0.413822" asserts="6792" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1069" name="FinalCallbackKeepsUsefulRouteAndExactGateAuthority" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-28T13:59:06.7930160Z" end-time="2026-09-28T13:59:07.7148090Z" duration="0.921801" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="222">
+            <test-case id="1065" name="FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;unchanged&quot;,True)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;unchanged&quot;,True)" methodname="FinalCallbackKeepsUsefulRouteAndExactGateAuthority" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="723375912" result="Passed" start-time="2026-09-28T13:59:06.7930530Z" end-time="2026-09-28T13:59:07.1652250Z" duration="0.372175" asserts="53" />
+            <test-case id="1066" name="FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;offroute&quot;,True)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;offroute&quot;,True)" methodname="FinalCallbackKeepsUsefulRouteAndExactGateAuthority" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="1672875215" result="Passed" start-time="2026-09-28T13:59:07.1652580Z" end-time="2026-09-28T13:59:07.4247810Z" duration="0.259526" asserts="54" />
+            <test-case id="1067" name="FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;replace-gate&quot;,False)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;replace-gate&quot;,False)" methodname="FinalCallbackKeepsUsefulRouteAndExactGateAuthority" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="1140926164" result="Passed" start-time="2026-09-28T13:59:07.4248140Z" end-time="2026-09-28T13:59:07.5669440Z" duration="0.142132" asserts="58" />
+            <test-case id="1068" name="FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;block-approach&quot;,False)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;block-approach&quot;,False)" methodname="FinalCallbackKeepsUsefulRouteAndExactGateAuthority" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="2136956042" result="Passed" start-time="2026-09-28T13:59:07.5669750Z" end-time="2026-09-28T13:59:07.7147710Z" duration="0.147798" asserts="57" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1064" name="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T13:59:07.7148210Z" end-time="2026-09-28T13:59:08.7411350Z" duration="1.026323" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="54733">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1061" name="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(1)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(1)" methodname="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="296767237" result="Failed" start-time="2026-09-28T13:59:07.7148360Z" end-time="2026-09-28T13:59:07.8337160Z" duration="0.118881" asserts="5">
+              <failure>
+                <message><![CDATA[  Overworld.10.7.0 current
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 105
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.10.7.0 current
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 105
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1062" name="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(64)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(64)" methodname="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="1243659579" result="Passed" start-time="2026-09-28T13:59:07.8337910Z" end-time="2026-09-28T13:59:08.6275300Z" duration="0.793747" asserts="54723">
+              <output><![CDATA[{
+  "seed": 64,
+  "selected": 8,
+  "committed": 8,
+  "refused": 0,
+  "boundary": "Fixed v5 selections, actual cold full pipeline paired with only composer removed. Per-zone global RNG reset; same source policy. Exact current owners/positions/parts and explicit stock/gear/stats/tags/property projection. Not full graph serialization, native journey or v4 economy equivalence.",
+  "rows": [
+    {
+      "zone": "Overworld.10.13.0",
+      "result": "FieldPassage",
+      "owners": 2239,
+      "closedSteps": 23,
+      "nextRng": 1793925180,
+      "committed": true
+    },
+    {
+      "zone": "Overworld.10.8.0",
+      "result": "FieldPassage",
+      "owners": 2283,
+      "closedSteps": 21,
+      "nextRng": 1468410685,
+      "committed": true
+    },
+    {
+      "zone": "Overworld.12.5.0",
+      "result": "FieldPassage",
+      "owners": 2258,
+      "closedSteps": 17,
+      "nextRng": 2117069684,
+      "committed": true
+    },
+    {
+      "zone": "Overworld.15.9.0",
+      "result": "FieldPassage",
+      "owners": 2280,
+      "closedSteps": 17,
+      "nextRng": 1170581466,
+      "committed": true
+    },
+    {
+      "zone": "Overworld.4.13.0",
+      "result": "FieldPassage",
+      "owners": 2231,
+      "closedSteps": 23,
+      "nextRng": 1716593775,
+      "committed": true
+    },
+    {
+      "zone": "Overworld.7.6.0",
+      "result": "FieldPassage",
+      "owners": 2239,
+      "closedSteps": 17,
+      "nextRng": 534326960,
+      "committed": true
+    },
+    {
+      "zone": "Overworld.8.10.0",
+      "result": "FieldPassage",
+      "owners": 2279,
+      "closedSteps": 17,
+      "nextRng": 1002971226,
+      "committed": true
+    },
+    {
+      "zone": "Overworld.9.7.0",
+      "result": "FieldPassage",
+      "owners": 2260,
+      "closedSteps": 21,
+      "nextRng": 1666245088,
+      "committed": true
+    }
+  ]
+}
+]]></output>
+            </test-case>
+            <test-case id="1063" name="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(1729)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(1729)" methodname="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="1544027698" result="Failed" start-time="2026-09-28T13:59:08.6275550Z" end-time="2026-09-28T13:59:08.7411060Z" duration="0.113552" asserts="5">
+              <failure>
+                <message><![CDATA[  Overworld.10.13.0 current
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 105
+   at InvokeStub_SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.10.13.0 current
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 105
+   at InvokeStub_SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1032" name="SpreadFieldPassageTests" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-09-28T13:59:08.7411550Z" end-time="2026-09-28T13:59:17.8112850Z" duration="9.070208" total="22" passed="22" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="34213">
+          <test-suite type="ParameterizedMethod" id="1059" name="ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T13:59:08.7412800Z" end-time="2026-09-28T13:59:08.9227600Z" duration="0.181481" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="35">
+            <test-case id="1057" name="ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(False)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(False)" methodname="ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="2072673394" result="Passed" start-time="2026-09-28T13:59:08.7412970Z" end-time="2026-09-28T13:59:08.8327570Z" duration="0.091461" asserts="17" />
+            <test-case id="1058" name="ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(True)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(True)" methodname="ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="105417851" result="Passed" start-time="2026-09-28T13:59:08.8328300Z" end-time="2026-09-28T13:59:08.9227390Z" duration="0.089911" asserts="18" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1056" name="BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T13:59:08.9227720Z" end-time="2026-09-28T13:59:10.5670980Z" duration="1.644340" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="9101">
+            <test-case id="1054" name="BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(False)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(False)" methodname="BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="554068322" result="Passed" start-time="2026-09-28T13:59:08.9227860Z" end-time="2026-09-28T13:59:09.7458860Z" duration="0.823107" asserts="4550" />
+            <test-case id="1055" name="BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(True)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(True)" methodname="BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="688649598" result="Passed" start-time="2026-09-28T13:59:09.7459120Z" end-time="2026-09-28T13:59:10.5670590Z" duration="0.821154" asserts="4551" />
+          </test-suite>
+          <test-case id="1034" name="ExactProducerHedgeBecomesOneClosedGateWithoutChangingOtherOwnersOrStock" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.ExactProducerHedgeBecomesOneClosedGateWithoutChangingOtherOwnersOrStock" methodname="ExactProducerHedgeBecomesOneClosedGateWithoutChangingOtherOwnersOrStock" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="423606114" result="Passed" start-time="2026-09-28T13:59:10.5671110Z" end-time="2026-09-28T13:59:10.5991760Z" duration="0.032066" asserts="4557" />
+          <test-case id="1033" name="ExistingPhysicalHedgeAndOrdinaryDoorHaveARealBypassAndSeparateOpeningAction" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.ExistingPhysicalHedgeAndOrdinaryDoorHaveARealBypassAndSeparateOpeningAction" methodname="ExistingPhysicalHedgeAndOrdinaryDoorHaveARealBypassAndSeparateOpeningAction" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1251887406" result="Passed" start-time="2026-09-28T13:59:10.5991950Z" end-time="2026-09-28T13:59:10.6175230Z" duration="0.018328" asserts="18" />
+          <test-suite type="ParameterizedMethod" id="1047" name="FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T13:59:10.6175570Z" end-time="2026-09-28T13:59:10.6707250Z" duration="0.053167" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="23">
+            <test-case id="1045" name="FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(False)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(False)" methodname="FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="979837995" result="Passed" start-time="2026-09-28T13:59:10.6175960Z" end-time="2026-09-28T13:59:10.6454290Z" duration="0.027834" asserts="11" />
+            <test-case id="1046" name="FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(True)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(True)" methodname="FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1592729599" result="Passed" start-time="2026-09-28T13:59:10.6454550Z" end-time="2026-09-28T13:59:10.6707010Z" duration="0.025246" asserts="12" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1053" name="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-09-28T13:59:10.6707380Z" end-time="2026-09-28T13:59:10.8196750Z" duration="0.148939" total="5" passed="5" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="52">
+            <test-case id="1048" name="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;unchanged&quot;,True)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;unchanged&quot;,True)" methodname="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="998047858" result="Passed" start-time="2026-09-28T13:59:10.6707570Z" end-time="2026-09-28T13:59:10.6992930Z" duration="0.028536" asserts="10" />
+            <test-case id="1049" name="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;offroute&quot;,True)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;offroute&quot;,True)" methodname="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1476708357" result="Passed" start-time="2026-09-28T13:59:10.6993230Z" end-time="2026-09-28T13:59:10.7340270Z" duration="0.034704" asserts="11" />
+            <test-case id="1050" name="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;open&quot;,False)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;open&quot;,False)" methodname="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="87839104" result="Passed" start-time="2026-09-28T13:59:10.7340690Z" end-time="2026-09-28T13:59:10.7602950Z" duration="0.026226" asserts="10" />
+            <test-case id="1051" name="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;axis&quot;,False)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;axis&quot;,False)" methodname="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1971599267" result="Passed" start-time="2026-09-28T13:59:10.7603210Z" end-time="2026-09-28T13:59:10.7885040Z" duration="0.028183" asserts="10" />
+            <test-case id="1052" name="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;approach&quot;,False)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;approach&quot;,False)" methodname="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="924836413" result="Passed" start-time="2026-09-28T13:59:10.7885230Z" end-time="2026-09-28T13:59:10.8196510Z" duration="0.031128" asserts="11" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1044" name="UnavailableOrUnprovenSourceCannotBeSubstituted" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-09-28T13:59:10.8196840Z" end-time="2026-09-28T13:59:17.8112600Z" duration="6.991636" total="9" passed="9" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="20427">
+            <test-case id="1035" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;capture-disabled&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;capture-disabled&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="162132542" result="Passed" start-time="2026-09-28T13:59:10.8196980Z" end-time="2026-09-28T13:59:11.5817080Z" duration="0.762016" asserts="2270" />
+            <test-case id="1036" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;denied&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;denied&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="844850441" result="Passed" start-time="2026-09-28T13:59:11.5817390Z" end-time="2026-09-28T13:59:12.4193710Z" duration="0.837635" asserts="2269" />
+            <test-case id="1037" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;reserved&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1003810371" result="Passed" start-time="2026-09-28T13:59:12.4193890Z" end-time="2026-09-28T13:59:13.1920680Z" duration="0.772686" asserts="2269" />
+            <test-case id="1038" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;interior&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="750546990" result="Passed" start-time="2026-09-28T13:59:13.1920880Z" end-time="2026-09-28T13:59:13.9673870Z" duration="0.775306" asserts="2269" />
+            <test-case id="1039" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;wet&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="2140307510" result="Passed" start-time="2026-09-28T13:59:13.9674100Z" end-time="2026-09-28T13:59:14.7464840Z" duration="0.779082" asserts="2269" />
+            <test-case id="1040" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;owned&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;owned&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="802125868" result="Passed" start-time="2026-09-28T13:59:14.7465040Z" end-time="2026-09-28T13:59:15.5085600Z" duration="0.762063" asserts="2269" />
+            <test-case id="1041" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;damaged&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;damaged&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1197607453" result="Passed" start-time="2026-09-28T13:59:15.5085950Z" end-time="2026-09-28T13:59:16.2697460Z" duration="0.761158" asserts="2271" />
+            <test-case id="1042" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;same-id-decoy&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;same-id-decoy&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="625760791" result="Passed" start-time="2026-09-28T13:59:16.2697690Z" end-time="2026-09-28T13:59:17.0343320Z" duration="0.764570" asserts="2271" />
+            <test-case id="1043" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;wrong-producer&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;wrong-producer&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="965354825" result="Passed" start-time="2026-09-28T13:59:17.0344180Z" end-time="2026-09-28T13:59:17.8112250Z" duration="0.776814" asserts="2270" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

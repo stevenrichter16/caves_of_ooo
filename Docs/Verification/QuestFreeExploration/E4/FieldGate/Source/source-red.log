@@ -1,0 +1,90 @@
+test_closed_barrier_and_open_walk_gap_are_visibly_different (__main__.SourceTests.test_closed_barrier_and_open_walk_gap_are_visibly_different) ... FAIL
+test_every_piece_is_connected_to_a_grounded_post (__main__.SourceTests.test_every_piece_is_connected_to_a_grounded_post) ... FAIL
+test_exact_two_static_states_not_animation_or_new_gameplay (__main__.SourceTests.test_exact_two_static_states_not_animation_or_new_gameplay) ... FAIL
+test_finite_small_geometry_inside_cell_for_all_quarter_turns (__main__.SourceTests.test_finite_small_geometry_inside_cell_for_all_quarter_turns) ... FAIL
+test_open_leaf_is_same_leaf_rotated_about_its_original_hinge (__main__.SourceTests.test_open_leaf_is_same_leaf_rotated_about_its_original_hinge) ... FAIL
+test_palette_is_exact_existing_approved_source (__main__.SourceTests.test_palette_is_exact_existing_approved_source) ... ok
+test_posts_are_identical_grounded_timber_in_both_states (__main__.SourceTests.test_posts_are_identical_grounded_timber_in_both_states) ... FAIL
+
+======================================================================
+FAIL: test_closed_barrier_and_open_walk_gap_are_visibly_different (__main__.SourceTests.test_closed_barrier_and_open_walk_gap_are_visibly_different)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/field-gate/test_source.py", line 31, in test_closed_barrier_and_open_walk_gap_are_visibly_different
+    a,b=self.pair()
+        ^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/field-gate/test_source.py", line 10, in pair
+    self.assertEqual(set(self.models),IDS,'Two original states must exist; absence is not a fallback gate.')
+AssertionError: Items in the second set but not the first:
+'spread-field-gate-closed'
+'spread-field-gate-open' : Two original states must exist; absence is not a fallback gate.
+
+======================================================================
+FAIL: test_every_piece_is_connected_to_a_grounded_post (__main__.SourceTests.test_every_piece_is_connected_to_a_grounded_post)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/field-gate/test_source.py", line 46, in test_every_piece_is_connected_to_a_grounded_post
+    for m in self.pair():
+             ^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/field-gate/test_source.py", line 10, in pair
+    self.assertEqual(set(self.models),IDS,'Two original states must exist; absence is not a fallback gate.')
+AssertionError: Items in the second set but not the first:
+'spread-field-gate-closed'
+'spread-field-gate-open' : Two original states must exist; absence is not a fallback gate.
+
+======================================================================
+FAIL: test_exact_two_static_states_not_animation_or_new_gameplay (__main__.SourceTests.test_exact_two_static_states_not_animation_or_new_gameplay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/field-gate/test_source.py", line 13, in test_exact_two_static_states_not_animation_or_new_gameplay
+    for m in self.pair():
+             ^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/field-gate/test_source.py", line 10, in pair
+    self.assertEqual(set(self.models),IDS,'Two original states must exist; absence is not a fallback gate.')
+AssertionError: Items in the second set but not the first:
+'spread-field-gate-closed'
+'spread-field-gate-open' : Two original states must exist; absence is not a fallback gate.
+
+======================================================================
+FAIL: test_finite_small_geometry_inside_cell_for_all_quarter_turns (__main__.SourceTests.test_finite_small_geometry_inside_cell_for_all_quarter_turns)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/field-gate/test_source.py", line 39, in test_finite_small_geometry_inside_cell_for_all_quarter_turns
+    for m in self.pair():
+             ^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/field-gate/test_source.py", line 10, in pair
+    self.assertEqual(set(self.models),IDS,'Two original states must exist; absence is not a fallback gate.')
+AssertionError: Items in the second set but not the first:
+'spread-field-gate-closed'
+'spread-field-gate-open' : Two original states must exist; absence is not a fallback gate.
+
+======================================================================
+FAIL: test_open_leaf_is_same_leaf_rotated_about_its_original_hinge (__main__.SourceTests.test_open_leaf_is_same_leaf_rotated_about_its_original_hinge)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/field-gate/test_source.py", line 23, in test_open_leaf_is_same_leaf_rotated_about_its_original_hinge
+    a,b=self.pair();aa={p['part']:p for p in a['boxes'] if p['part'].startswith('leaf-')};bb={p['part']:p for p in b['boxes'] if p['part'].startswith('leaf-')}
+        ^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/field-gate/test_source.py", line 10, in pair
+    self.assertEqual(set(self.models),IDS,'Two original states must exist; absence is not a fallback gate.')
+AssertionError: Items in the second set but not the first:
+'spread-field-gate-closed'
+'spread-field-gate-open' : Two original states must exist; absence is not a fallback gate.
+
+======================================================================
+FAIL: test_posts_are_identical_grounded_timber_in_both_states (__main__.SourceTests.test_posts_are_identical_grounded_timber_in_both_states)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/field-gate/test_source.py", line 18, in test_posts_are_identical_grounded_timber_in_both_states
+    a,b=self.pair();pa=[p for p in a['boxes'] if p['part'].startswith('fixed-')];pb=[p for p in b['boxes'] if p['part'].startswith('fixed-')]
+        ^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/field-gate/test_source.py", line 10, in pair
+    self.assertEqual(set(self.models),IDS,'Two original states must exist; absence is not a fallback gate.')
+AssertionError: Items in the second set but not the first:
+'spread-field-gate-closed'
+'spread-field-gate-open' : Two original states must exist; absence is not a fallback gate.
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.003s
+
+FAILED (failures=6)

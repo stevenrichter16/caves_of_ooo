@@ -1,0 +1,604 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/passage/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="46" result="Failed" start-time="2026-09-28T13:37:39.1531110Z" end-time="2026-09-28T13:37:40.0895560Z" duration="0.936438" total="30" passed="7" failed="23" inconclusive="0" skipped="0" warnings="0" asserts="109" random-seed="579742379">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/passage/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/passage/final-red.xml --where "class =~ /SpreadFieldPassage/"]]></command-line>
+  <filter>
+    <class re="1">SpreadFieldPassage</class>
+  </filter>
+  <test-suite type="Assembly" id="1059" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/passage/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="46" result="Failed" site="Child" start-time="2026-09-28T13:37:39.1531110Z" end-time="2026-09-28T13:37:40.0895560Z" duration="0.936438" total="30" passed="7" failed="23" warnings="0" inconclusive="0" skipped="0" asserts="109">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/passage/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/passage/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="76386" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1060" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="46" result="Failed" site="Child" start-time="2026-09-28T13:37:39.1549560Z" end-time="2026-09-28T13:37:40.0895540Z" duration="0.934603" total="30" passed="7" failed="23" warnings="0" inconclusive="0" skipped="0" asserts="109">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1061" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="46" result="Failed" site="Child" start-time="2026-09-28T13:37:39.1550720Z" end-time="2026-09-28T13:37:40.0895530Z" duration="0.934486" total="30" passed="7" failed="23" warnings="0" inconclusive="0" skipped="0" asserts="109">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1019" name="SpreadFieldPassageManifestTests" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T13:37:39.1554300Z" end-time="2026-09-28T13:37:39.4390190Z" duration="0.283590" total="9" passed="6" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="27">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1023" name="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T13:37:39.1565300Z" end-time="2026-09-28T13:37:39.2979790Z" duration="0.141450" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1020" name="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(1)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(1)" methodname="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="449147050" result="Failed" start-time="2026-09-28T13:37:39.1566370Z" end-time="2026-09-28T13:37:39.2531710Z" duration="0.096561" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: 5
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Int32 seed) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageManifestTests.cs:line 39
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 5
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Int32 seed) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageManifestTests.cs:line 39
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1021" name="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(64)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(64)" methodname="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="1768526024" result="Failed" start-time="2026-09-28T13:37:39.2538300Z" end-time="2026-09-28T13:37:39.2773010Z" duration="0.023472" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: 5
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Int32 seed) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageManifestTests.cs:line 39
+   at InvokeStub_SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 5
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Int32 seed) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageManifestTests.cs:line 39
+   at InvokeStub_SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1022" name="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(1729)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(1729)" methodname="FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="6023597" result="Failed" start-time="2026-09-28T13:37:39.2773310Z" end-time="2026-09-28T13:37:39.2975230Z" duration="0.020193" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: 5
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Int32 seed) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageManifestTests.cs:line 39
+   at InvokeStub_SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 5
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Int32 seed) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageManifestTests.cs:line 39
+   at InvokeStub_SpreadFieldPassageManifestTests.FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1031" name="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T13:37:39.2981910Z" end-time="2026-09-28T13:37:39.3731980Z" duration="0.075007" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <test-case id="1028" name="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse(999,&quot;Hedgerow&quot;,0)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse(999,&quot;Hedgerow&quot;,0)" methodname="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="575679174" result="Passed" start-time="2026-09-28T13:37:39.2982140Z" end-time="2026-09-28T13:37:39.3255520Z" duration="0.027338" asserts="3" />
+            <test-case id="1029" name="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse(4,&quot;Hedgerow&quot;,9)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse(4,&quot;Hedgerow&quot;,9)" methodname="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="771234959" result="Passed" start-time="2026-09-28T13:37:39.3255740Z" end-time="2026-09-28T13:37:39.3471330Z" duration="0.021560" asserts="3" />
+            <test-case id="1030" name="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse(5,&quot;FlowerMeadow&quot;,9)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse(5,&quot;FlowerMeadow&quot;,9)" methodname="FutureHeaderOldVersionNewFamilyAndWrongHabitatRefuse" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="421604934" result="Passed" start-time="2026-09-28T13:37:39.3471470Z" end-time="2026-09-28T13:37:39.3731590Z" duration="0.026012" asserts="3" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1027" name="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T13:37:39.3732050Z" end-time="2026-09-28T13:37:39.4389180Z" duration="0.065713" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="15">
+            <test-case id="1024" name="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(2,2)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(2,2)" methodname="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="1577345785" result="Passed" start-time="2026-09-28T13:37:39.3732200Z" end-time="2026-09-28T13:37:39.3959520Z" duration="0.022732" asserts="5" />
+            <test-case id="1025" name="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(3,2)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(3,2)" methodname="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="1961774342" result="Passed" start-time="2026-09-28T13:37:39.3959820Z" end-time="2026-09-28T13:37:39.4198050Z" duration="0.023824" asserts="5" />
+            <test-case id="1026" name="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(4,7)" fullname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests.LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(4,7)" methodname="LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill" classname="CavesOfOoo.Tests.SpreadFieldPassageManifestTests" runstate="Runnable" seed="2021989981" result="Passed" start-time="2026-09-28T13:37:39.4198290Z" end-time="2026-09-28T13:37:39.4388840Z" duration="0.019055" asserts="5" />
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1032" name="SpreadFieldPassageTests" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" testcasecount="21" result="Failed" site="Child" start-time="2026-09-28T13:37:39.4394950Z" end-time="2026-09-28T13:37:40.0895500Z" duration="0.650059" total="21" passed="1" failed="20" warnings="0" inconclusive="0" skipped="0" asserts="82">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1058" name="ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T13:37:39.4396660Z" end-time="2026-09-28T13:37:39.4998420Z" duration="0.060176" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1056" name="ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(False)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(False)" methodname="ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="2135399968" result="Failed" start-time="2026-09-28T13:37:39.4396820Z" end-time="2026-09-28T13:37:39.4767580Z" duration="0.037077" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(Boolean opened) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 165
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(Boolean opened) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 165
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1057" name="ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(True)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(True)" methodname="ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1341943419" result="Failed" start-time="2026-09-28T13:37:39.4767810Z" end-time="2026-09-28T13:37:39.4998140Z" duration="0.023033" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(Boolean opened) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 165
+   at InvokeStub_SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(Boolean opened) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 165
+   at InvokeStub_SpreadFieldPassageTests.ActualGateStateAndRemovedHedgeSurviveAFullSavedReplacementGraph(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1055" name="BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T13:37:39.4998510Z" end-time="2026-09-28T13:37:39.5547400Z" duration="0.054890" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1053" name="BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(False)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(False)" methodname="BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1225163338" result="Failed" start-time="2026-09-28T13:37:39.4998590Z" end-time="2026-09-28T13:37:39.5298630Z" duration="0.030004" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(Boolean opened) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 152
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(Boolean opened) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 152
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1054" name="BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(True)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(True)" methodname="BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="578200822" result="Failed" start-time="2026-09-28T13:37:39.5298830Z" end-time="2026-09-28T13:37:39.5547230Z" duration="0.024840" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(Boolean opened) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 152
+   at InvokeStub_SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(Boolean opened) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 152
+   at InvokeStub_SpreadFieldPassageTests.BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1034" name="ExactProducerHedgeBecomesOneClosedGateWithoutChangingOtherOwnersOrStock" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.ExactProducerHedgeBecomesOneClosedGateWithoutChangingOtherOwnersOrStock" methodname="ExactProducerHedgeBecomesOneClosedGateWithoutChangingOtherOwnersOrStock" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1778649373" result="Failed" start-time="2026-09-28T13:37:39.5547490Z" end-time="2026-09-28T13:37:39.5896900Z" duration="0.034941" asserts="3">
+            <failure>
+              <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.ExactProducerHedgeBecomesOneClosedGateWithoutChangingOtherOwnersOrStock() in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 104
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.ExactProducerHedgeBecomesOneClosedGateWithoutChangingOtherOwnersOrStock() in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 104
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1033" name="ExistingPhysicalHedgeAndOrdinaryDoorHaveARealBypassAndSeparateOpeningAction" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.ExistingPhysicalHedgeAndOrdinaryDoorHaveARealBypassAndSeparateOpeningAction" methodname="ExistingPhysicalHedgeAndOrdinaryDoorHaveARealBypassAndSeparateOpeningAction" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="657154058" result="Passed" start-time="2026-09-28T13:37:39.5897130Z" end-time="2026-09-28T13:37:39.6263000Z" duration="0.036588" asserts="18" />
+          <test-suite type="ParameterizedMethod" id="1046" name="FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T13:37:39.6263190Z" end-time="2026-09-28T13:37:39.6822880Z" duration="0.055970" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1044" name="FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(False)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(False)" methodname="FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="2019420510" result="Failed" start-time="2026-09-28T13:37:39.6263310Z" end-time="2026-09-28T13:37:39.6575950Z" duration="0.031264" asserts="3">
+              <failure>
+                <message><![CDATA[  The scoped field-gate source is not implemented yet.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(Boolean replace) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 133
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The scoped field-gate source is not implemented yet.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(Boolean replace) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 133
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1045" name="FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(True)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(True)" methodname="FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1591963936" result="Failed" start-time="2026-09-28T13:37:39.6576160Z" end-time="2026-09-28T13:37:39.6822660Z" duration="0.024650" asserts="3">
+              <failure>
+                <message><![CDATA[  The scoped field-gate source is not implemented yet.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(Boolean replace) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 133
+   at InvokeStub_SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The scoped field-gate source is not implemented yet.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(Boolean replace) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 133
+   at InvokeStub_SpreadFieldPassageTests.FactoryCallbacksRevalidateExactSourceAndPreserveForeignReplacement(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1052" name="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-28T13:37:39.6822970Z" end-time="2026-09-28T13:37:39.8168810Z" duration="0.134584" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="15">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1047" name="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;unchanged&quot;,True)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;unchanged&quot;,True)" methodname="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1081985063" result="Failed" start-time="2026-09-28T13:37:39.6823130Z" end-time="2026-09-28T13:37:39.7080130Z" duration="0.025700" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1048" name="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;offroute&quot;,True)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;offroute&quot;,True)" methodname="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="776776578" result="Failed" start-time="2026-09-28T13:37:39.7080290Z" end-time="2026-09-28T13:37:39.7345780Z" duration="0.026550" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+   at InvokeStub_SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+   at InvokeStub_SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1049" name="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;open&quot;,False)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;open&quot;,False)" methodname="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="660067878" result="Failed" start-time="2026-09-28T13:37:39.7345960Z" end-time="2026-09-28T13:37:39.7576240Z" duration="0.023028" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+   at InvokeStub_SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+   at InvokeStub_SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1050" name="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;axis&quot;,False)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;axis&quot;,False)" methodname="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="640966526" result="Failed" start-time="2026-09-28T13:37:39.7576470Z" end-time="2026-09-28T13:37:39.7896580Z" duration="0.032012" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+   at InvokeStub_SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+   at InvokeStub_SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1051" name="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;approach&quot;,False)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(&quot;approach&quot;,False)" methodname="FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1866820939" result="Failed" start-time="2026-09-28T13:37:39.7896800Z" end-time="2026-09-28T13:37:39.8168610Z" duration="0.027182" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+   at InvokeStub_SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(String change, Boolean expected) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 143
+   at InvokeStub_SpreadFieldPassageTests.FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1043" name="UnavailableOrUnprovenSourceCannotBeSubstituted" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-28T13:37:39.8168920Z" end-time="2026-09-28T13:37:40.0895340Z" duration="0.272645" total="8" passed="0" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="28">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1035" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;denied&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;denied&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="104964057" result="Failed" start-time="2026-09-28T13:37:39.8169040Z" end-time="2026-09-28T13:37:39.8495940Z" duration="0.032691" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1036" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;reserved&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;reserved&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="71015846" result="Failed" start-time="2026-09-28T13:37:39.8496230Z" end-time="2026-09-28T13:37:39.8834530Z" duration="0.033837" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1037" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;interior&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="670635530" result="Failed" start-time="2026-09-28T13:37:39.8835770Z" end-time="2026-09-28T13:37:39.9347730Z" duration="0.051197" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1038" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;wet&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;wet&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1420967131" result="Failed" start-time="2026-09-28T13:37:39.9347890Z" end-time="2026-09-28T13:37:39.9650480Z" duration="0.030260" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1039" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;owned&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;owned&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="659569059" result="Failed" start-time="2026-09-28T13:37:39.9650690Z" end-time="2026-09-28T13:37:39.9937350Z" duration="0.028667" asserts="3">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1040" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;damaged&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;damaged&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1473055940" result="Failed" start-time="2026-09-28T13:37:39.9937840Z" end-time="2026-09-28T13:37:40.0239860Z" duration="0.030203" asserts="4">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1041" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;same-id-decoy&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;same-id-decoy&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1158327750" result="Failed" start-time="2026-09-28T13:37:40.0240080Z" end-time="2026-09-28T13:37:40.0543930Z" duration="0.030386" asserts="5">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1042" name="UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;wrong-producer&quot;)" fullname="CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(&quot;wrong-producer&quot;)" methodname="UnavailableOrUnprovenSourceCannotBeSubstituted" classname="CavesOfOoo.Tests.SpreadFieldPassageTests" runstate="Runnable" seed="1457483882" result="Failed" start-time="2026-09-28T13:37:40.0544150Z" end-time="2026-09-28T13:37:40.0895070Z" duration="0.035092" asserts="4">
+              <failure>
+                <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 needs the scoped exact-producer passage helper, not a matching-name scenery rewrite.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassageTests.Place(Entity& gate, Func`1& final, Func`1 authority, SpreadCompositionBuilder producer, Entity source) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 76
+   at CavesOfOoo.Tests.SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(String fault) in /tmp/coo-questfree-implementation/passage/SpreadFieldPassageTests.cs:line 125
+   at InvokeStub_SpreadFieldPassageTests.UnavailableOrUnprovenSourceCannotBeSubstituted(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

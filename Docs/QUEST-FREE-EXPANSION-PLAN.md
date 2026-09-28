@@ -1,6 +1,8 @@
 # Exploration expansion: interaction first, regional identity second
 
-**Current status: X0 shipped and locally accepted; X1–X3 gameplay/source integration and version4 saved assignments are adopted locally. The frozen E3 native suite passes21,450/21,450; the explicit live-experience limits below remain open.** This continues `QUEST-FREE-EXPLORATION-PLAN.md` and its E0–E6 roadmap. The planning/execution prompts and source assessment remain beside this file. Chronological records below retain the result known at each checkpoint; the current table in §5 supersedes their pending-status wording.
+**Current status: X0 shipped and locally accepted; X1–X3 gameplay/source integration and version4 saved assignments shipped as `4f95768a`. The frozen E3 native suite passes21,450/21,450; the explicit live-experience limits below remain open.** This continues `QUEST-FREE-EXPLORATION-PLAN.md` and its E0–E6 roadmap. The planning/execution prompts and source assessment remain beside this file. Chronological records below retain the result known at each checkpoint; the current table in §5 supersedes their pending-status wording.
+
+Current E4 work is tracked in [Environmental exploration implementation](QUEST-FREE-ENVIRONMENT-IMPLEMENTATION.md): the first real field-passage variant and stable hauled-beam appearance pass local native gates, with the full native sweep passing 21,527/21,527. Cooking/hauling/hunting remain separate unfinished work. Regional expansion still waits on the broader Spread experience gate.
 
 ## 1. Decision and current evidence
 

@@ -1,0 +1,20 @@
+/tmp/coo-questfree-implementation/e4/field-gate/export_source.py:18: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  MAT=bpy.data.materials.new('BorrowedApprovedPalette');MAT.use_nodes=True;tex=MAT.node_tree.nodes.new('ShaderNodeTexImage');tex.image=img;tex.interpolation='Closest';shader=MAT.node_tree.nodes.get('Principled BSDF');MAT.node_tree.links.new(tex.outputs['Color'],shader.inputs['Base Color']);shader.inputs['Roughness'].default_value=1
+/tmp/coo-questfree-implementation/e4/field-gate/export_source.py:47: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  SCENE.world.use_nodes=True;SCENE.world.node_tree.nodes['Background'].inputs[0].default_value=(.28,.32,.30,1);SCENE.world.node_tree.nodes['Background'].inputs[1].default_value=.8
+/tmp/coo-questfree-implementation/e4/field-gate/export_source.py:48: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  floor=bpy.data.materials.new('ReviewGroundOnly');floor.use_nodes=True;floor.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value=(.003,.025,.021,1);floor.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value=1
+00:23.361  render           | Saved: '/private/tmp/coo-questfree-implementation/e4/field-gate/Export/renders/field-gate-front-context.png'
+00:49.419  render           | Saved: '/private/tmp/coo-questfree-implementation/e4/field-gate/Export/renders/field-gate-oblique-context.png'
+01:13.355  render           | Saved: '/private/tmp/coo-questfree-implementation/e4/field-gate/Export/renders/field-gate-two-states.png'
+
+FBX export starting... '/private/tmp/coo-questfree-implementation/e4/field-gate/Export/models/spread-field-gate-closed.fbx'
+export finished in 0.0030 sec.
+
+FBX export starting... '/private/tmp/coo-questfree-implementation/e4/field-gate/Export/models/spread-field-gate-open.fbx'
+export finished in 0.0034 sec.
+Info: Saved as "field-gate-source-review.blend"
+FIELD_GATE_ORIGINAL_SOURCE [{"id": "spread-field-gate-closed", "sourceBlueprint": "SpreadFieldGate", "path": "models/spread-field-gate-closed.fbx", "kind": "entity", "rigged": false, "clips": [], "sockets": [], "triangles": 156, "boundsBlender": {"min": [-0.4710000157356262, -0.3440000116825104, 0.0], "max": [0.4710000157356262, -0.16899999976158142, 0.800000011920929]}, "sha256": "044816af230870b9f290a2e38e5214abf24b4375e429930bd23f710930dd5fa2", "status": "private-source-not-native-adopted"}, {"id": "spread-field-gate-open", "sourceBlueprint": "SpreadFieldGate", "path": "models/spread-field-gate-open.fbx", "kind": "entity", "rigged": false, "clips": [], "sockets": [], "triangles": 156, "boundsBlender": {"min": [-0.4710000157356262, -0.3440000116825104, 0.0], "max": [0.4710000157356262, 0.4050000309944153, 0.800000011920929]}, "sha256": "75c6fbaa3b404537a4e5852aea3d6d2fba18424ab3d06d423048a567b614890c", "status": "private-source-not-native-adopted"}]
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

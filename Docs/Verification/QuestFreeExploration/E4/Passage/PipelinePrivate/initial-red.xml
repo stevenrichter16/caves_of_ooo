@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/passage-pipeline/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="9" result="Failed" start-time="2026-09-28T13:52:27.5955270Z" end-time="2026-09-28T13:52:28.2046820Z" duration="0.609091" total="9" passed="0" failed="9" inconclusive="0" skipped="0" warnings="0" asserts="9" random-seed="2047730732">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/passage-pipeline/runner/bin/Debug/net8.0/EditModeRunner.dll --test=CavesOfOoo.Tests.SpreadFieldPassagePipelineTests --result=/tmp/coo-questfree-implementation/passage-pipeline/initial-red.xml]]></command-line>
+  <filter>
+    <test>CavesOfOoo.Tests.SpreadFieldPassagePipelineTests</test>
+  </filter>
+  <test-suite type="Assembly" id="1013" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/passage-pipeline/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T13:52:27.5955270Z" end-time="2026-09-28T13:52:28.2046820Z" duration="0.609091" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="9">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="LOAD" value="System.Collections.Generic.List`1[System.String]" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+      <setting name="NumberOfTestWorkers" value="10" />
+    </settings>
+    <properties>
+      <property name="_PID" value="79728" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1014" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T13:52:27.6038600Z" end-time="2026-09-28T13:52:28.2046780Z" duration="0.600823" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="9">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1015" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T13:52:27.6142090Z" end-time="2026-09-28T13:52:28.2046650Z" duration="0.590460" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="9">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadFieldPassagePipelineTests" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T13:52:27.6152450Z" end-time="2026-09-28T13:52:28.2046470Z" duration="0.589407" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="9">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1012" name="ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T13:52:27.6183230Z" end-time="2026-09-28T13:52:28.0120800Z" duration="0.393760" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="2">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1010" name="ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(False)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(False)" methodname="ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="924375672" result="Failed" start-time="2026-09-28T13:52:27.6188240Z" end-time="2026-09-28T13:52:27.9350830Z" duration="0.316292" asserts="1">
+              <failure>
+                <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 117
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(Boolean broken) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 136
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 117
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(Boolean broken) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 136
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(True)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(True)" methodname="ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="208585346" result="Failed" start-time="2026-09-28T13:52:27.9381460Z" end-time="2026-09-28T13:52:28.0115810Z" duration="0.073436" asserts="1">
+              <failure>
+                <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 117
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(Boolean broken) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 136
+   at InvokeStub_SpreadFieldPassagePipelineTests.ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 117
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(Boolean broken) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 136
+   at InvokeStub_SpreadFieldPassagePipelineTests.ActualOpenedOrBrokenGateSurvivesAwaySaveAndReturnWithoutReplacingHedge(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1009" name="FinalCallbackKeepsUsefulRouteAndExactGateAuthority" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T13:52:28.0123660Z" end-time="2026-09-28T13:52:28.1156870Z" duration="0.103322" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1005" name="FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;unchanged&quot;,True)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;unchanged&quot;,True)" methodname="FinalCallbackKeepsUsefulRouteAndExactGateAuthority" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="957850232" result="Failed" start-time="2026-09-28T13:52:28.0123900Z" end-time="2026-09-28T13:52:28.0380350Z" duration="0.025646" asserts="1">
+              <failure>
+                <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 117
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 121
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 117
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 121
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;offroute&quot;,True)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;offroute&quot;,True)" methodname="FinalCallbackKeepsUsefulRouteAndExactGateAuthority" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="744932535" result="Failed" start-time="2026-09-28T13:52:28.0380530Z" end-time="2026-09-28T13:52:28.0622060Z" duration="0.024153" asserts="1">
+              <failure>
+                <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 117
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 121
+   at InvokeStub_SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 117
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 121
+   at InvokeStub_SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;replace-gate&quot;,False)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;replace-gate&quot;,False)" methodname="FinalCallbackKeepsUsefulRouteAndExactGateAuthority" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="618240119" result="Failed" start-time="2026-09-28T13:52:28.0622260Z" end-time="2026-09-28T13:52:28.0907690Z" duration="0.028543" asserts="1">
+              <failure>
+                <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 117
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 121
+   at InvokeStub_SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 117
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 121
+   at InvokeStub_SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;block-approach&quot;,False)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(&quot;block-approach&quot;,False)" methodname="FinalCallbackKeepsUsefulRouteAndExactGateAuthority" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="1989308904" result="Failed" start-time="2026-09-28T13:52:28.0907920Z" end-time="2026-09-28T13:52:28.1156040Z" duration="0.024813" asserts="1">
+              <failure>
+                <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 117
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 121
+   at InvokeStub_SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 117
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 121
+   at InvokeStub_SpreadFieldPassagePipelineTests.FinalCallbackKeepsUsefulRouteAndExactGateAuthority(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1004" name="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T13:52:28.1157070Z" end-time="2026-09-28T13:52:28.2045430Z" duration="0.088837" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(1)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(1)" methodname="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="1447126110" result="Failed" start-time="2026-09-28T13:52:28.1157290Z" end-time="2026-09-28T13:52:28.1476910Z" duration="0.031963" asserts="1">
+              <failure>
+                <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 101
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 101
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(64)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(64)" methodname="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="1600192450" result="Failed" start-time="2026-09-28T13:52:28.1477200Z" end-time="2026-09-28T13:52:28.1725440Z" duration="0.024824" asserts="1">
+              <failure>
+                <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 101
+   at InvokeStub_SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 101
+   at InvokeStub_SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(1729)" fullname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(1729)" methodname="RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget" classname="CavesOfOoo.Tests.SpreadFieldPassagePipelineTests" runstate="Runnable" seed="1997354880" result="Failed" start-time="2026-09-28T13:52:28.1725700Z" end-time="2026-09-28T13:52:28.2044680Z" duration="0.031899" asserts="1">
+              <failure>
+                <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 101
+   at InvokeStub_SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.
+  Expected: 5
+  But was:  4
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 69
+   at CavesOfOoo.Tests.SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Int32 seed) in /tmp/coo-questfree-implementation/passage-pipeline/SpreadFieldPassagePipelineTests.cs:line 101
+   at InvokeStub_SpreadFieldPassagePipelineTests.RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

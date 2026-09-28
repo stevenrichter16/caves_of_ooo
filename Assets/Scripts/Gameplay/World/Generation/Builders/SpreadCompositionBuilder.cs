@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
 namespace CavesOfOoo.Core
@@ -16,11 +17,22 @@ namespace CavesOfOoo.Core
         public SpreadCompositionPlan Plan {get;private set;}
         /// <summary>Exact successful cold-build graph; cleared before every attempt.</summary>
         public Zone SourceZone {get;private set;}
+        /// <summary>Opt-in exact Hedge provenance for the new-world passage family.
+        /// This must be enabled before the cold build; it grants no live rewrite authority.</summary>
+        public bool CapturePassageSources;
+        readonly Dictionary<Entity,SpreadGenerationReceipt> passageSources=new Dictionary<Entity,SpreadGenerationReceipt>();
+        EntityFactory passageFactory; SpreadCompositionPlan passagePlan; int passageRevision;
+        internal IReadOnlyList<SpreadGenerationReceipt> PassageSources=>passageSources.Values.ToArray();
+        internal bool OwnsPassageReceipt(SpreadGenerationReceipt receipt)=>CapturePassageSources&&receipt!=null
+            &&SourceZone==receipt.Zone&&passageFactory==receipt.Factory&&passageRevision==receipt.Revision
+            &&ReferenceEquals(Plan,passagePlan)&&receipt.Owners.Count==1
+            &&passageSources.TryGetValue(receipt.Owners[0],out var current)&&ReferenceEquals(current,receipt);
+        internal SpreadGenerationReceipt PassageSource(Entity hedge)=>hedge!=null&&passageSources.TryGetValue(hedge,out var receipt)&&OwnsPassageReceipt(receipt)?receipt:null;
         private readonly int seed;
         public SpreadCompositionBuilder(int worldSeed){seed=worldSeed;}
         public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
         {
-            Plan=null;SourceZone=null;
+            Plan=null;SourceZone=null;passageSources.Clear();passageFactory=null;passagePlan=null;int revision=++passageRevision;
             if(zone==null||factory==null||zone.EntityCount!=0)
             {
                 Diag.Record("worldgen","SpreadCompositionRejected",payload:new{reason=zone==null?"missing-zone":factory==null?"missing-factory":"nonempty-zone"});
@@ -38,10 +50,13 @@ namespace CavesOfOoo.Core
                 string bp=Plan.ObjectAt(x,y);
                 if(bp==null)continue;
                 if(ripe.Contains(y*Zone.Width+x))bp="RipeCropRow";
-                if(BuilderSpawn.TryPlace(zone,factory,bp,x,y)==null)return Reject("missing-object");
+                var created=BuilderSpawn.TryPlace(zone,factory,bp,x,y);
+                if(created==null)return Reject("missing-object");
+                if(CapturePassageSources&&bp=="Hedge"&&created.BlueprintName==bp)
+                    passageSources.Add(created,new SpreadGenerationReceipt(this,zone,factory,revision,new[]{created},1));
                 objects++;
             }
-            SourceZone=zone;
+            SourceZone=zone;passageFactory=factory;passagePlan=Plan;
             Diag.Record("worldgen","SpreadCompositionPlanned",payload:new{zoneId=zone.ZoneID,seed,
                 formation=Plan.Formation.ToString(),condition=Plan.Condition,objects,water});
             return true;

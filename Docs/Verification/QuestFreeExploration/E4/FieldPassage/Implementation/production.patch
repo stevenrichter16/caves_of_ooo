@@ -1,0 +1,427 @@
+--- Assets/Scripts/Gameplay/World/Generation/Builders/SpreadCompositionBuilder.cs
++++ Assets/Scripts/Gameplay/World/Generation/Builders/SpreadCompositionBuilder.cs
+@@ -1,5 +1,6 @@
+ using System;
+ using System.Collections.Generic;
++using System.Linq;
+ using CavesOfOoo.Data;
+ using CavesOfOoo.Diagnostics;
+ namespace CavesOfOoo.Core
+@@ -16,11 +17,22 @@
+         public SpreadCompositionPlan Plan {get;private set;}
+         /// <summary>Exact successful cold-build graph; cleared before every attempt.</summary>
+         public Zone SourceZone {get;private set;}
++        /// <summary>Opt-in exact Hedge provenance for the new-world passage family.
++        /// This must be enabled before the cold build; it grants no live rewrite authority.</summary>
++        public bool CapturePassageSources;
++        readonly Dictionary<Entity,SpreadGenerationReceipt> passageSources=new Dictionary<Entity,SpreadGenerationReceipt>();
++        EntityFactory passageFactory; SpreadCompositionPlan passagePlan; int passageRevision;
++        internal IReadOnlyList<SpreadGenerationReceipt> PassageSources=>passageSources.Values.ToArray();
++        internal bool OwnsPassageReceipt(SpreadGenerationReceipt receipt)=>CapturePassageSources&&receipt!=null
++            &&SourceZone==receipt.Zone&&passageFactory==receipt.Factory&&passageRevision==receipt.Revision
++            &&ReferenceEquals(Plan,passagePlan)&&receipt.Owners.Count==1
++            &&passageSources.TryGetValue(receipt.Owners[0],out var current)&&ReferenceEquals(current,receipt);
++        internal SpreadGenerationReceipt PassageSource(Entity hedge)=>hedge!=null&&passageSources.TryGetValue(hedge,out var receipt)&&OwnsPassageReceipt(receipt)?receipt:null;
+         private readonly int seed;
+         public SpreadCompositionBuilder(int worldSeed){seed=worldSeed;}
+         public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
+         {
+-            Plan=null;SourceZone=null;
++            Plan=null;SourceZone=null;passageSources.Clear();passageFactory=null;passagePlan=null;int revision=++passageRevision;
+             if(zone==null||factory==null||zone.EntityCount!=0)
+             {
+                 Diag.Record("worldgen","SpreadCompositionRejected",payload:new{reason=zone==null?"missing-zone":factory==null?"missing-factory":"nonempty-zone"});
+@@ -38,10 +50,13 @@
+                 string bp=Plan.ObjectAt(x,y);
+                 if(bp==null)continue;
+                 if(ripe.Contains(y*Zone.Width+x))bp="RipeCropRow";
+-                if(BuilderSpawn.TryPlace(zone,factory,bp,x,y)==null)return Reject("missing-object");
++                var created=BuilderSpawn.TryPlace(zone,factory,bp,x,y);
++                if(created==null)return Reject("missing-object");
++                if(CapturePassageSources&&bp=="Hedge"&&created.BlueprintName==bp)
++                    passageSources.Add(created,new SpreadGenerationReceipt(this,zone,factory,revision,new[]{created},1));
+                 objects++;
+             }
+-            SourceZone=zone;
++            SourceZone=zone;passageFactory=factory;passagePlan=Plan;
+             Diag.Record("worldgen","SpreadCompositionPlanned",payload:new{zoneId=zone.ZoneID,seed,
+                 formation=Plan.Formation.ToString(),condition=Plan.Condition,objects,water});
+             return true;
+--- Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationBuilder.cs
++++ Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationBuilder.cs
+@@ -37,8 +37,33 @@
+     case SpreadExplorationFamily.SnakeForage:return Encounter(zone,factory,entry,true);
+     case SpreadExplorationFamily.WorkGang:return Encounter(zone,factory,entry,false);
+     case SpreadExplorationFamily.CollectorReturn:return Collector(zone,factory,entry);
++    case SpreadExplorationFamily.FieldPassage:return Passage(zone,factory,entry);
+     default:return Refuse(zone,entry,"unsupported-family");
+    }
++  }
++  bool Passage(Zone z,EntityFactory f,SpreadExplorationEntry entry)
++  {
++   if(terrain.Plan.Formation!=Formation.Hedgerow||!terrain.CapturePassageSources)return Refuse(z,entry,"passage-source");
++   // Eligibility precedes the source cap; edge/owned/spent scenery cannot starve
++   // a valid interior source. There are at most two orientations per candidate.
++   var candidates=terrain.PassageSources.Where(r=>r.IsCurrent&&r.Owners.Count==1&&SpreadExplorationPassage.Eligible(z,r.Owners[0]))
++    .OrderBy(r=>z.GetEntityPosition(r.Owners[0]).y).ThenBy(r=>z.GetEntityPosition(r.Owners[0]).x).Take(32).ToArray();
++   foreach(var receipt in candidates)
++   {
++    var hedge=receipt.Owners[0];
++    var all=z.GetReadOnlyEntities().Where(e=>e==hedge||!DoorPart.IsBareGround(e)).ToArray();
++    var original=SpreadGenerationReceipt.CaptureFinalState(z,all);
++    var others=SpreadGenerationReceipt.CaptureFinalState(z,all.Where(e=>e!=hedge));
++    bool preparing=true;
++    // Our factory/substitution cannot change any existing packet. Later normal
++    // OnZoneGenerated work (including resident naming) is independently owned;
++    // final passage authority covers the gate, supports and useful geometry.
++    bool Authority()=>Current(z,f,entry)&&terrain.OwnsPassageReceipt(receipt)&&(!preparing||others());
++    if(SpreadExplorationPassage.TryPlace(z,f,terrain,hedge,Authority,out var gate,out var final))
++     {preparing=false;return Commit(z,f,entry,new[]{gate},()=>Authority()&&final());}
++    if(!Current(z,f,entry)||!original())return false;
++   }
++   return Refuse(z,entry,"no-useful-field-passage");
+   }
+   bool Collector(Zone z,EntityFactory f,SpreadExplorationEntry entry)
+   {
+--- Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPassage.cs
++++ Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPassage.cs
+@@ -0,0 +1,122 @@
++using System;
++using System.Collections.Generic;
++using System.Linq;
++using CavesOfOoo.Data;
++namespace CavesOfOoo.Core
++{
++    /// <summary>Cold, opt-in substitution of one exact terrain-produced hedge.
++    /// Caller supplies current generation-attempt authority; this never edits a
++    /// loaded/live passage, relocates stock, or grants a second terrain budget.</summary>
++    public static class SpreadExplorationPassage
++    {
++        internal static bool Eligible(Zone z,Entity e)
++        {
++            if(z==null||e?.BlueprintName!="Hedge"||e.SpatialZone!=z||z.GetEntityCell(e)==null)return false;
++            var p=e.GetPart<PhysicsPart>();var hp=e.GetPart<DestructiblePart>();var at=z.GetEntityPosition(e);
++            return p?.ParentEntity==e&&p.Solid&&!p.Takeable&&p.InInventory==null&&p.Equipped==null
++                &&hp?.ParentEntity==e&&hp.HP==10&&hp.MaxHP==10&&!hp.Gone&&!hp.Indestructible
++                &&e.GetPart<RenderPart>()?.ParentEntity==e&&!e.HasTag("Owned")&&!e.HasTag("QuestItem")&&!e.HasTag("Unique")
++                &&!e.HasPart<InventoryPart>()&&!e.HasPart<ContainerPart>()&&!e.HasTag("Creature")&&!e.HasPart<SpatialFootprintPart>()
++                &&at.x>=4&&at.y>=4&&at.x<Zone.Width-4&&at.y<Zone.Height-4
++                &&!z.GenReservedCells.Contains(at)&&!z.GetCell(at.x,at.y).IsInterior
++                &&z.TileState.Get(at.x,at.y)?.IsEmpty!=false;
++        }
++        public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder producer,Entity hedge,
++            Func<bool> authority,out Entity gate,out Func<bool> finalState)
++        {
++            gate=null;finalState=null;
++            var receipt=producer?.PassageSource(hedge);
++            bool Source()=>Eligible(zone,hedge)&&receipt!=null&&receipt.Zone==zone&&ReferenceEquals(receipt.Factory,factory)
++                &&ReferenceEquals(producer.PassageSource(hedge),receipt)&&receipt.IsCurrent;
++            if(factory==null||authority==null||!Source()||!authority()||!Source()||!factory.Blueprints.ContainsKey("SpreadFieldGate"))return false;
++            var at=zone.GetEntityPosition(hedge);
++            var original=new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>());
++            var opened=new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>{hedge});
++            if(!opened.Place(at.x,at.y))return false;
++            bool horizontal=false;Entity[] sides=null;bool found=false;
++            foreach(bool crossX in new[]{true,false})
++            {
++                var first=zone.GetCell(at.x-(crossX?0:1),at.y-(crossX?1:0)).Occupants.Where(e=>e.BlueprintName=="Hedge").ToArray();
++                var second=zone.GetCell(at.x+(crossX?0:1),at.y+(crossX?1:0)).Occupants.Where(e=>e.BlueprintName=="Hedge").ToArray();
++                if(first.Length!=1||second.Length!=1)continue;
++                if(!Layout(zone,hedge,at,crossX,original))continue;
++                horizontal=crossX;sides=new[]{first[0],second[0]};found=true;break;
++            }
++            if(!found)return false;
++            var sideProof=SpreadGenerationReceipt.CaptureFinalState(zone,sides);
++            bool Ready()=>Source()&&sideProof()&&Layout(zone,hedge,at,horizontal,original);
++            if(!authority()||!Ready())return false;
++            var made=factory.CreateEntity("SpreadFieldGate");
++            if(!ValidGate(made,false)||!authority()||!Ready()||!ValidGate(made,false)
++                ||zone.GetReadOnlyEntities().Any(e=>e.ID==made.ID))return false;
++            made.GetPart<DoorPart>().QuarterTurns=horizontal?1:0;
++            if(!receipt.TryConsume())return false;
++            bool removed=false,placed=false,success=false;Func<bool> detached=null,gateProof=null;
++            try
++            {
++                removed=zone.RemoveEntity(hedge);if(!removed)return false;
++                detached=SpreadGenerationReceipt.CaptureDetachedState(hedge);
++                if(!detached())return false;
++                placed=zone.AddEntity(made,at.x,at.y);if(!placed)return false;
++                gateProof=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{made});
++                bool Final()=>authority()&&producer.OwnsPassageReceipt(receipt)&&sideProof()&&detached()
++                    &&!zone.GetReadOnlyEntities().Any(e=>e.ID==hedge.ID)
++                    &&gateProof()&&ValidGate(made,true)&&zone.GetEntityPosition(made)==at
++                    &&Layout(zone,made,at,horizontal,original);
++                if(!Final())return false;
++                gate=made;finalState=Final;success=true;return true;
++            }
++            finally
++            {
++                if(!success)
++                {
++                    // Preserve independent callback replacements/state. The caller
++                    // must reject a changed packet instead of accepting it as refusal.
++                    if(placed&&gateProof?.Invoke()==true)zone.RemoveEntity(made);
++                    if(removed&&detached?.Invoke()==true&&!zone.GetReadOnlyEntities().Any(e=>e.ID==hedge.ID)
++                        &&new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>()).Place(at.x,at.y))
++                        zone.AddEntity(hedge,at.x,at.y);
++                }
++            }
++        }
++        static bool ValidGate(Entity e,bool placed)
++        {
++            var p=e?.GetPart<PhysicsPart>();var d=e?.GetPart<DoorPart>();var h=e?.GetPart<DestructiblePart>();var r=e?.GetPart<RenderPart>();
++            return e?.BlueprintName=="SpreadFieldGate"&&!string.IsNullOrEmpty(e.ID)&&e.Parts.All(part=>part!=null&&part.ParentEntity==e)
++                &&p?.ParentEntity==e&&!p.Solid&&!p.Takeable&&p.InInventory==null&&p.Equipped==null
++                &&d?.ParentEntity==e&&d.IsClosed&&string.IsNullOrEmpty(d.OwnerId)&&d.QuarterTurns>=0&&d.QuarterTurns<=3
++                &&h?.ParentEntity==e&&h.HP==10&&h.MaxHP==10&&!h.Gone&&!h.Indestructible&&h.Hardness==0&&string.IsNullOrEmpty(h.WreckageBlueprint)
++                &&r?.ParentEntity==e&&r.RenderString=="+"&&string.IsNullOrEmpty(r.VisualID)&&string.IsNullOrEmpty(r.VisualVariant)
++                &&(placed?e.SpatialZone!=null:e.SpatialZone==null)&&!e.HasTag("Solid")&&!e.HasTag("Creature")&&!e.HasTag("Owned")
++                &&!e.HasPart<LockPart>()&&!e.HasPart<InventoryPart>()&&!e.HasPart<ContainerPart>()&&!e.HasPart<SpatialFootprintPart>();
++        }
++        static bool Layout(Zone z,Entity obstruction,(int x,int y) at,bool horizontal,SpreadWildernessSituationBuilder.Geometry original)
++        {
++            if(z.GetEntityPosition(obstruction)!=at)return false;
++            var g=new SpreadWildernessSituationBuilder.Geometry(z,new HashSet<Entity>{obstruction});
++            if(!g.Place(at.x,at.y))return false;
++            var a=(x:at.x-(horizontal?1:0),y:at.y-(horizontal?0:1));var b=(x:at.x+(horizontal?1:0),y:at.y+(horizontal?0:1));
++            var blocked=new HashSet<(int x,int y)>{at};
++            if(!g.Walk(a.x,a.y,blocked)||!g.Walk(b.x,b.y,blocked)||!g.BorderReach[a.x,a.y]||!g.BorderReach[b.x,b.y])return false;
++            int cardinal=Distance(g,a,b,blocked,false);
++            if(cardinal<8||cardinal>60||Distance(g,a,b,blocked,true)<=3)return false;
++            // Use the real physical path API too: actor-aware navigation plans
++            // to open a closed door and therefore cannot establish bypass cost.
++            var native=FindPath.Search(z,a.x,a.y,b.x,b.y);
++            if(!native.Usable||native.Steps.Count<=3||native.Steps.Count>60)return false;
++            int x=a.x,y=a.y;foreach(var step in native.Steps){x+=step.dx;y+=step.dy;if(!g.Walk(x,y,blocked))return false;}
++            return (x,y)==b&&g.PreservesAgainst(original,new[]{at});
++        }
++        static int Distance(SpreadWildernessSituationBuilder.Geometry g,(int x,int y) a,(int x,int y) b,HashSet<(int x,int y)> blocked,bool diagonal)
++        {
++            var seen=new bool[Zone.Width,Zone.Height];var q=new Queue<(int x,int y,int d)>();q.Enqueue((a.x,a.y,0));seen[a.x,a.y]=true;
++            while(q.Count>0)
++            {
++                var p=q.Dequeue();if((p.x,p.y)==b)return p.d;if(p.d>=60)continue;
++                for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)
++                {if(dx==0&&dy==0||!diagonal&&dx!=0&&dy!=0)continue;int xx=p.x+dx,yy=p.y+dy;if(!g.Walk(xx,yy,blocked)||seen[xx,yy])continue;seen[xx,yy]=true;q.Enqueue((xx,yy,p.d+1));}
++            }
++            return -1;
++        }
++    }
++}
+--- Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs
++++ Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs
+@@ -10,7 +10,7 @@
+ 
+ namespace CavesOfOoo.Core
+ {
+-    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin, SnakeForage, WorkGang, CollectorReturn, RoadsideExchange }
++    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin, SnakeForage, WorkGang, CollectorReturn, RoadsideExchange, FieldPassage }
+ 
+     /// <summary>Frozen assignment, not evidence that its optional content was placed.</summary>
+     public sealed class SpreadExplorationEntry
+@@ -36,7 +36,7 @@
+     public sealed class SpreadExplorationPlan
+     {
+         public const string PropertyKey="SpreadExploration.Manifest";
+-        public const int CurrentVersion=4;
++        public const int CurrentVersion=5;
+         private const int MaxRecords=WorldMap.Width*WorldMap.Height;
+         private const int MaxWireLength=65536;
+         private readonly OverworldZoneManager owner;
+@@ -95,7 +95,9 @@
+         private static SpreadExplorationFamily FamilyFor(Formation formation,int version,int seed,string id)
+         {
+             switch(formation){case Formation.OldRoad:return version>=4&&WorldTravellers.EntrySample(seed,id)%8==0?SpreadExplorationFamily.RoadsideExchange:SpreadExplorationFamily.RoadSpill;
+-                case Formation.Hedgerow:return version>=4&&Rank(seed,id,"family-variant")%2==0?SpreadExplorationFamily.CollectorReturn:SpreadExplorationFamily.OccupiedBank;
++                case Formation.Hedgerow:
++                    if(version>=5){uint variant=Rank(seed,id,"family-variant")%3;return variant==0?SpreadExplorationFamily.OccupiedBank:variant==1?SpreadExplorationFamily.CollectorReturn:SpreadExplorationFamily.FieldPassage;}
++                    return version>=4&&Rank(seed,id,"family-variant")%2==0?SpreadExplorationFamily.CollectorReturn:SpreadExplorationFamily.OccupiedBank;
+                 case Formation.Fallow:return version==2?SpreadExplorationFamily.OccupiedBank:SpreadExplorationFamily.WorkGang;
+                 case Formation.FlowerMeadow:return version==2?SpreadExplorationFamily.None:SpreadExplorationFamily.SnakeForage;
+                 case Formation.FieldStrips:return SpreadExplorationFamily.LastGleanings;
+@@ -279,14 +281,14 @@
+             var lines=wire.Split('\n');var header=lines[0].Split('|');
+             if(header.Length!=3)throw Invalid("header");
+             int version=Number(header[0]);
+-            if((version!=2&&version!=3&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
++            if((version!=2&&version!=3&&version!=4&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
+             int count=Number(header[2]);if(count<0||count>MaxRecords||lines.Length!=count+1)throw Invalid("record count");
+             var rows=new Dictionary<string,SpreadExplorationEntry>(StringComparer.Ordinal);var saved=new Dictionary<string,int>(StringComparer.Ordinal);
+             for(int i=1;i<lines.Length;i++)
+             {
+                 var f=lines[i].Split('|');if(f.Length!=5||!Supported(f[0])||rows.ContainsKey(f[0]))throw Invalid("address");
+                 int mask=Number(f[1]),family=Number(f[2]),topology=Number(f[3]),disposition=Number(f[4]);
+-                if((mask!=1&&mask!=3)||family<0||family>(version==2?4:version==3?6:8)||topology<0||topology>3||disposition<0||disposition>2
++                if((mask!=1&&mask!=3)||family<0||family>(version==2?4:version==3?6:version==4?8:9)||topology<0||topology>3||disposition<0||disposition>2
+                     ||(mask==1&&(family!=0||topology!=0))||(disposition==2&&(mask!=3||family==0)))throw Invalid("enum/mask/disposition");
+                 var selected=(SpreadExplorationFamily)family;
+                 if(selected!=SpreadExplorationFamily.None&&selected!=FamilyFor(FormationSelector.For(BiomeType.Spread,f[0]),version,manager.WorldSeed,f[0]))throw Invalid("family habitat");
+--- Assets/Scripts/Gameplay/World/Generation/SpreadWildernessSituationPlan.cs
++++ Assets/Scripts/Gameplay/World/Generation/SpreadWildernessSituationPlan.cs
+@@ -55,7 +55,8 @@
+             snapshots=owners.Select(e=>new OwnerSnapshot(zone,e)).ToArray();
+         }
+         bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&(ReferenceEquals(p.SourceReceipt,this)||ReferenceEquals(p.LooseSourceReceipt,this)||ReferenceEquals(p.AmbientSourceReceipt,this)||ReferenceEquals(p.AmbientReplacementReceipt,this)||ReferenceEquals(p.ForageSourceReceipt,this))
+-            : source is ContainerBuilder c&&c.CaptureSourceReceipts&&ReferenceEquals(c.SourceReceipt,this);
++            : source is ContainerBuilder c ? c.CaptureSourceReceipts&&ReferenceEquals(c.SourceReceipt,this)
++            : source is SpreadCompositionBuilder terrain&&terrain.OwnsPassageReceipt(this);
+         public bool IsCurrent => !consumed&&complete&&SourceCurrent&&snapshots.All(s=>s.Matches(true));
+         /// <summary>Claim this exact source once after all transaction preflights.
+         /// Consumption is ephemeral and never changes its owners or saved graph.</summary>
+@@ -74,6 +75,16 @@
+                 return ()=>false;
+             var state=exact.Select(e=>new OwnerSnapshot(zone,e)).ToArray();
+             return ()=>state.All(s=>s.Matches(true));
++        }
++
++        // Exact removed terrain owner retained only for the scoped substitution's
++        // rollback/final cold proof. No saved claim or general pickup authority.
++        internal static Func<bool> CaptureDetachedState(Entity owner)
++        {
++            if(owner==null||owner.SpatialZone!=null)return ()=>false;
++            var snapshot=new EntitySnapshot(owner);
++            return ()=>snapshot.Children.Length==0&&owner.SpatialZone==null
++                &&owner.GetPart<PhysicsPart>()?.InInventory==null&&owner.GetPart<PhysicsPart>()?.Equipped==null&&snapshot.Matches();
+         }
+ 
+         sealed class OwnerSnapshot
+--- Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
++++ Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+@@ -72,7 +72,7 @@
+                 SpreadCompositionBuilder land=null;PopulationBuilder population=null;ContainerBuilder containers=null;
+                 foreach(var builder in pipeline.Builders)
+                 {
+-                    if(builder is SpreadCompositionBuilder composition){composition.Topology=assignment.Topology;land=composition;}
++                    if(builder is SpreadCompositionBuilder composition){composition.Topology=assignment.Topology;composition.CapturePassageSources=captured.Version>=5&&assignment.Family==SpreadExplorationFamily.FieldPassage;land=composition;}
+                     if(builder is PopulationBuilder people)population=people;
+                     if(builder is ContainerBuilder stock)containers=stock;
+                 }
+--- Assets/Tests/EditMode/Gameplay/World/SpreadExplorationCatalogExpansionTests.cs
++++ Assets/Tests/EditMode/Gameplay/World/SpreadExplorationCatalogExpansionTests.cs
+@@ -11,7 +11,7 @@
+   public void FreshCatalogAddsActualForageAndWorkGangAssignments(int seed)
+   {using(var s=new DensityLootTestScope()){
+    var m=OverworldZoneManager.CreateDetached(s.Factory,seed,true);
+-   Assert.AreEqual(4,m.Exploration.Version,"New distribution has an explicit version; existing v2/v3 worlds must retain theirs.");
++   Assert.AreEqual(5,m.Exploration.Version,"New distribution has an explicit version; existing v2/v3 worlds must retain theirs.");
+    foreach(string family in new[]{"SnakeForage","WorkGang"})Assert.True(m.Exploration.Entries.Any(e=>e.Family.ToString()==family),family);
+    foreach(var e in m.Exploration.Entries.Where(e=>e.Family.ToString()=="SnakeForage"))Assert.AreEqual(Formation.FlowerMeadow,FormationSelector.For(BiomeType.Spread,e.ZoneID));
+    foreach(var e in m.Exploration.Entries.Where(e=>e.Family.ToString()=="WorkGang"))Assert.AreEqual(Formation.Fallow,FormationSelector.For(BiomeType.Spread,e.ZoneID));
+@@ -20,7 +20,7 @@
+   [TestCase(2,"Fallow",2,true)][TestCase(2,"Fallow",6,false)]
+   [TestCase(2,"FlowerMeadow",5,false)][TestCase(3,"Fallow",6,true)]
+   [TestCase(3,"Fallow",2,false)][TestCase(3,"FlowerMeadow",5,true)]
+-  [TestCase(3,"FlowerMeadow",6,false)][TestCase(4,"FlowerMeadow",5,true)][TestCase(5,"FlowerMeadow",5,false)]
++  [TestCase(3,"FlowerMeadow",6,false)][TestCase(4,"FlowerMeadow",5,true)][TestCase(999,"FlowerMeadow",5,false)]
+   [TestCase(1,"Fallow",2,false)][TestCase(3,"FlowerMeadow",7,false)]
+   public void SavedCatalogVersionOwnsItsFamilyHabitat(int version,string formation,int family,bool accepted)
+   {using(var s=new DensityLootTestScope()){
+--- Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEntryExpansionTests.cs
++++ Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEntryExpansionTests.cs
+@@ -34,7 +34,7 @@
+ 
+         [TestCase(1)][TestCase(64)][TestCase(1729)] public void NewFamiliesAreFrozenColdAndHabitatSpecific(int seed)
+         {
+-            var a=Fresh(seed);var b=Fresh(seed);Assert.AreEqual(4,a.Exploration.Version);Assert.Zero(a.CachedZoneCount);
++            var a=Fresh(seed);var b=Fresh(seed);Assert.AreEqual(5,a.Exploration.Version);Assert.Zero(a.CachedZoneCount);
+             CollectionAssert.AreEqual(a.Exploration.Entries.Select(e=>e.ZoneID+e.Family),b.Exploration.Entries.Select(e=>e.ZoneID+e.Family));
+             foreach(string f in new[]{"CollectorReturn","RoadsideExchange"})
+             {
+@@ -128,7 +128,7 @@
+         {
+             var m=Fresh();var e=Exchange(m);var z=Activate(m,e);Assert.True(Mark(m,z,e,()=>true));
+             var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("entry-v4","fixture",m,null,null));
+-            Assert.AreEqual(4,loaded.ZoneManager.Exploration.Version);var now=loaded.ZoneManager.GetZone(e.ZoneID);Assert.AreNotSame(z,now);
++            Assert.AreEqual(5,loaded.ZoneManager.Exploration.Version);var now=loaded.ZoneManager.GetZone(e.ZoneID);Assert.AreNotSame(z,now);
+             Assert.AreEqual(2,loaded.ZoneManager.Exploration.DispositionFor(e.ZoneID));Assert.False(Accepted(loaded.ZoneManager,now,out _));
+             loaded.ZoneManager.UnloadZone(e.ZoneID);Assert.AreSame(now,loaded.ZoneManager.GetZone(e.ZoneID));
+         }
+@@ -137,7 +137,7 @@
+             var m=Fresh(64);var e=m.Exploration.Entries.First(x=>x.PlacementEligible&&FormationSelector.For(BiomeType.Spread,x.ZoneID)==Formation.OldRoad);
+             string wire=version+"|64|1\n"+e.ZoneID+"|3|1|1|0";Restore(m,wire);Assert.AreEqual(version,m.Exploration.Version);Assert.AreEqual("RoadSpill",m.Exploration.Find(e.ZoneID).Family.ToString());Assert.AreEqual(wire,Wire(m));Assert.Zero(m.CachedZoneCount);
+         }
+-        [TestCase(2,7)][TestCase(3,7)][TestCase(3,8)][TestCase(5,1)] public void OldOrFutureHeaderCannotAuthorizeNewFamily(int version,int family)
++        [TestCase(2,7)][TestCase(3,7)][TestCase(3,8)][TestCase(999,1)] public void OldOrFutureHeaderCannotAuthorizeNewFamily(int version,int family)
+         {
+             var m=Fresh(64);var e=m.Exploration.Entries.First(x=>x.PlacementEligible&&FormationSelector.For(BiomeType.Spread,x.ZoneID)==Formation.OldRoad);
+             Assert.Throws<InvalidDataException>(()=>Restore(m,version+"|64|1\n"+e.ZoneID+"|3|"+family+"|1|0"));
+--- Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestAdversarialTests.cs
++++ Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestAdversarialTests.cs
+@@ -178,7 +178,7 @@
+             {
+                 System.Globalization.CultureInfo.CurrentCulture=culture;
+                 var m=OverworldZoneManager.CreateDetached(scope.Factory,-64,true);
+-                string wire=Wire(m);Assert.True(wire.StartsWith("4|-64|",StringComparison.Ordinal));
++                string wire=Wire(m);Assert.True(wire.StartsWith("5|-64|",StringComparison.Ordinal));
+                 var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("culture","fixture",m,null,null));
+                 Assert.True(loaded.ZoneManager.Exploration.Enabled);Assert.AreEqual(-64,loaded.ZoneManager.WorldSeed);
+             }
+--- Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestTests.cs
++++ Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestTests.cs
+@@ -60,7 +60,7 @@
+         public void FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(int seed)
+         {
+             var rng=new Random(714); LoadoutPart.Rng=rng;
+-            var m=Fresh(seed); var p=Plan(m); Assert.True((bool)Value(p,"Enabled")); Assert.AreEqual(4,Value(p,"Version"));
++            var m=Fresh(seed); var p=Plan(m); Assert.True((bool)Value(p,"Enabled")); Assert.AreEqual(5,Value(p,"Version"));
+             var rows=Entries(p).ToArray(); Assert.Greater(rows.Length,0); Assert.LessOrEqual(rows.Length,WorldMap.Width*WorldMap.Height);
+             Assert.AreEqual(rows.Length,rows.Select(ID).Distinct().Count()); Assert.AreEqual(0,m.CachedZoneCount);
+             Assert.AreEqual(new Random(714).Next(),rng.Next(),"Planner reads may not spend actor loadout draws.");
+@@ -80,7 +80,7 @@
+         [TestCase(1)][TestCase(64)][TestCase(1729)]
+         public void ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(int seed)
+         {
+-            var p=Plan(Fresh(seed)); var rows=Entries(p).ToArray(); var allowed=new[]{"None","RoadSpill","OccupiedBank","LastGleanings","WateringMargin","SnakeForage","WorkGang","CollectorReturn","RoadsideExchange"};
++            var p=Plan(Fresh(seed)); var rows=Entries(p).ToArray(); var allowed=new[]{"None","RoadSpill","OccupiedBank","LastGleanings","WateringMargin","SnakeForage","WorkGang","CollectorReturn","RoadsideExchange","FieldPassage"};
+             Assert.True(rows.Any(e=>Flag(e,"PlacementEligible")&&Family(e)=="None")); Assert.Greater(rows.Count(e=>Family(e)!="None"),0);
+             foreach(var e in rows) { CollectionAssert.Contains(allowed,Family(e)); if(Family(e)=="None")continue;
+                 foreach(string neighbor in Adjacent(ID(e))) { var other=Find(p,neighbor); if(other!=null)Assert.AreNotEqual(Family(e),Family(other),ID(e)+" / "+neighbor); }
+--- Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassageTests.cs
++++ Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassageTests.cs
+@@ -113,10 +113,13 @@
+             foreach(var e in owners.Where(e=>e!=hedge)){Assert.AreSame(e,zone.GetCell(at[e].x,at[e].y).Objects.Single(x=>x==e));Assert.AreEqual(facts[e],Facts(e));}
+             Assert.False(Place(out var again,out var repeated));Assert.Null(again);Assert.Null(repeated);Assert.AreEqual(owners.Length,zone.EntityCount);
+         }
+-        [TestCase("capture-disabled")][TestCase("denied")][TestCase("reserved")][TestCase("interior")][TestCase("wet")][TestCase("owned")][TestCase("damaged")][TestCase("same-id-decoy")][TestCase("wrong-producer")]
++        [TestCase("capture-disabled")][TestCase("late-capture")][TestCase("rebuilt-producer")][TestCase("denied")][TestCase("reserved")][TestCase("interior")][TestCase("wet")][TestCase("owned")][TestCase("damaged")][TestCase("same-id-decoy")][TestCase("wrong-producer")]
+         public void UnavailableOrUnprovenSourceCannotBeSubstituted(string fault)
+         {
++            if(fault=="late-capture")
++            {terrain.CapturePassageSources=false;zone=new Zone(ZoneID);Assert.True(terrain.BuildZone(zone,scope.Factory,new Random(64)));terrain.CapturePassageSources=true;FindUsefulBoundary();}
+             Entity source=hedge;SpreadCompositionBuilder producer=terrain;
++            if(fault=="rebuilt-producer")Assert.True(terrain.BuildZone(new Zone(ZoneID),scope.Factory,new Random(64)));
+             if(fault=="capture-disabled"){var field=typeof(SpreadCompositionBuilder).GetField("CapturePassageSources",All);Assert.NotNull(field,"Exact terrain provenance must be an explicit pre-build opt-in.");field.SetValue(terrain,false);}
+             if(fault=="reserved")zone.GenReservedCells.Add(anchor);if(fault=="interior")zone.GetCell(anchor.x,anchor.y).IsInterior=true;
+             if(fault=="wet")zone.TileState.WriteCoating(anchor.x,anchor.y,"water",2);if(fault=="owned")hedge.SetTag("Owned");
+@@ -139,16 +142,30 @@
+             if(replace){NoNewGate();Assert.AreSame(foreign,zone.GetCell(anchor.x,anchor.y).Objects.Single(e=>e==foreign));Assert.Null(zone.GetEntityCell(hedge));}
+             else{Assert.NotNull(gate);Assert.True(final());}
+         }
+-        [TestCase("unchanged",true)][TestCase("offroute",true)][TestCase("open",false)][TestCase("axis",false)][TestCase("approach",false)]
++        [TestCase("unchanged",true)][TestCase("offroute",true)][TestCase("open",false)][TestCase("axis",false)][TestCase("approach",false)][TestCase("support",false)][TestCase("returned-source",false)]
+         public void FinalProofPinsGateAndUsefulRouteButPermitsHarmlessOffrouteChange(string change,bool expected)
+         {
+             Assert.True(Place(out var gate,out var final));Assert.True(final());
+             if(change=="offroute")Assert.True(zone.AddEntity(scope.Factory.CreateEntity("Cudgel"),0,0));
+             if(change=="open"){gate.GetPart<DoorPart>().IsOpen=true;gate.GetPart<DoorPart>().Initialize();}
+             if(change=="axis")gate.GetPart<DoorPart>().QuarterTurns=(gate.GetPart<DoorPart>().QuarterTurns+1)%4;
++            if(change=="support"){var side=zone.GetCell(anchor.x+(a.x!=b.x?0:1),anchor.y+(a.x!=b.x?1:0)).Objects.Single(e=>e.BlueprintName=="Hedge");Assert.True(zone.RemoveEntity(side));}
++            if(change=="returned-source")Assert.True(zone.AddEntity(hedge,0,0));
+             if(change=="approach")Assert.True(zone.AddEntity(scope.Factory.CreateEntity("StoneWall"),a.x,a.y));
+             Assert.AreEqual(expected,final());Assert.AreSame(gate,zone.GetCell(anchor.x,anchor.y).Objects.Single(e=>e==gate));
+         }
++        [TestCase("damaged")][TestCase("already-placed")][TestCase("empty-id")][TestCase("duplicate-id")]
++        public void MalformedFactoryGateRefusesWithoutRepairingOrRemovingForeignWork(string fault)
++        {
++            scope.Factory.RegisterPartType<CreationProbe>();scope.Factory.Blueprints["SpreadFieldGate"].Parts[nameof(CreationProbe)]=new Dictionary<string,string>();
++            Entity made=null;CreationProbe.Callback=e=>{made=e;if(fault=="damaged")e.GetPart<DestructiblePart>().HP=9;else if(fault=="empty-id")e.ID="";else if(fault=="duplicate-id")e.ID=zone.GetReadOnlyEntities().First(v=>v!=hedge).ID;else Assert.True(zone.AddEntity(e,0,0));};
++            Assert.False(Place(out var gate,out var final));Assert.Null(gate);Assert.Null(final);Assert.NotNull(made);Assert.AreSame(zone.GetCell(anchor.x,anchor.y),zone.GetEntityCell(hedge));
++            if(fault=="damaged"){Assert.AreEqual(9,made.GetPart<DestructiblePart>().HP);Assert.Null(zone.GetEntityCell(made));}
++            else if(fault=="empty-id"){Assert.IsEmpty(made.ID);Assert.Null(zone.GetEntityCell(made));}
++            else if(fault=="duplicate-id")Assert.Null(zone.GetEntityCell(made));
++            else Assert.AreSame(zone.GetCell(0,0),zone.GetEntityCell(made));
++        }
++
+         [TestCase(false)][TestCase(true)] public void BreakingClosedOrOpenGateUsesTenStructuralHPAndSavesAnEmptyGap(bool opened)
+         {
+             Assert.True(Place(out var gate,out var final));Assert.True(final());var player=Player();if(opened)Assert.True(Open(gate,player,true));

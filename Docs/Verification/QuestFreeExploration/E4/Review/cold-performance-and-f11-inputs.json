@@ -1,0 +1,150 @@
+{
+  "scope": "Read-only F12 cold-cost / F11 source audit; no source or Unity changes. Timing summaries derived from actual root native captures, not new execution.",
+  "nativeColdTimings": [
+    {
+      "seed": 1,
+      "selected": 5,
+      "committed": 5,
+      "pairedBaselineMedianMs": 64.89370000000001,
+      "pairedCurrentMedianMs": 174.5154,
+      "pairedMaximumCurrentMs": 228.4001,
+      "plainSamples": 15,
+      "plainMedianMs": 154.1284,
+      "plainMaximumMs": 903.4488,
+      "plainWarmRepeatMedianMs": 143.1909,
+      "allPlainCommitted": true
+    },
+    {
+      "seed": 64,
+      "selected": 8,
+      "committed": 8,
+      "pairedBaselineMedianMs": 63.9887,
+      "pairedCurrentMedianMs": 170.07925,
+      "pairedMaximumCurrentMs": 1446.0326,
+      "plainSamples": 24,
+      "plainMedianMs": 132.33010000000002,
+      "plainMaximumMs": 143.1742,
+      "plainWarmRepeatMedianMs": 132.04865,
+      "allPlainCommitted": true
+    },
+    {
+      "seed": 1729,
+      "selected": 7,
+      "committed": 7,
+      "pairedBaselineMedianMs": 61.3372,
+      "pairedCurrentMedianMs": 167.2075,
+      "pairedMaximumCurrentMs": 232.8069,
+      "plainSamples": 21,
+      "plainMedianMs": 135.81810000000002,
+      "plainMaximumMs": 202.61090000000002,
+      "plainWarmRepeatMedianMs": 135.37225,
+      "allPlainCommitted": true
+    }
+  ],
+  "sources": [
+    {
+      "path": "Docs/QUEST-FREE-EXPLORATION-PLAN.md",
+      "sha256": "d58a2ac5bbeb469add816a8b5fc26023ad15c0ff6ed02ab43c9c5fe02811e092"
+    },
+    {
+      "path": "Docs/QUEST-FREE-ENVIRONMENT-IMPLEMENTATION.md",
+      "sha256": "e98487fcd12be83156c8c9885201768cca5aad8ee1dfdcdc4a4ce42c167050f4"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPassage.cs",
+      "sha256": "41a4271784292a48a3014f51f94f35226f8d044687790523e5098e94047cea5c"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationBuilder.cs",
+      "sha256": "589c53ceb233543702d4ae9c014c954cfa73544083d49150c71f3c5d2b92597f"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadWildernessSituationPlan.cs",
+      "sha256": "a67992686219b2588b3dc2bf27443d9f2771c4870d3820dbd5d73727ceda6f32"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadWildernessSituationBuilder.cs",
+      "sha256": "e68173125037c2a6b85a896c523214d11382a97c3575fec2beca1f65c427297b"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPopulationPolicy.cs",
+      "sha256": "2f63e098cdd62cadd4a3d836e0fda31e0fefcdfe070a91e9add754ed06042f7f"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/PopulationBuilder.cs",
+      "sha256": "12f10f55ed9c8e57cb43e7f430d1638e48e1e646cf1bf9adeab9b8f90024403d"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/TradeStockBuilder.cs",
+      "sha256": "2e4e9b1fe8e7bd0a2542e1c127aee79cf7c561688bcb2e7de77a493154f16623"
+    },
+    {
+      "path": "Assets/Scripts/Data/Tables/PopulationTable.cs",
+      "sha256": "cec85854d5d938d04c0679010914e0ae8e57827160912720f60cecfe6eb933f3"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/SpreadGrazerPart.cs",
+      "sha256": "ddc018ae2279aa5f21f49bbfbceb97370c498f9422c3b433237f3a405b810fe7"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/SpreadTerritoryPart.cs",
+      "sha256": "c826ef8a2ed9d9a6927289abe198145f254c9e97bb2b08ec115d870bdc558ca0"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/Goals/BoredGoal.cs",
+      "sha256": "46036b14d6a08ab39dff1975bb3ba8a66bb29e65037217167fc703feaba3d965"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/Goals/KillGoal.cs",
+      "sha256": "ef891f43cba3960392fdbaf61aacdaca925a489e117c74c17a468839f48b7e40"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/Goals/FleeGoal.cs",
+      "sha256": "c8c71bcfe5b2e775e2d4d79dd5918d5fbaa0d4336ea308564b952bde0f7e4b07"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/AIHelpers.cs",
+      "sha256": "66962eaec3d2037034efe151f6c7d309888ab27f52ebeed592adfea0bdcebca9"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/FactionManager.cs",
+      "sha256": "ec3bc24793d6d4fb8d95bbffc7d05fb9a927112845a622ecb538659464324ff3"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/AI/BrainPart.cs",
+      "sha256": "7cbe446f728dcd0080dbb18439029509d4324157b72dbcb96e111201aa40e331"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Entities/CorpsePart.cs",
+      "sha256": "e83de1e2138c628cd2a3302dcbfb0b8b2ed2ca8cf69e181083a446a6a9cacf14"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Items/HarvestablePart.cs",
+      "sha256": "0fc5e1619c9ad4d3a8ca880396c78980f3e752b3fb1f7a8e1160f2258faab330"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/Save/SaveSystem.cs",
+      "sha256": "44fe2924d6c1181285cbd6c18f71e13d1bc39010a0c315d09e6644bb1a345b9b"
+    },
+    {
+      "path": "Assets/Resources/Content/Blueprints/Objects.json",
+      "sha256": "50bf0fab582e3096417be8a585a9307d31b7a27f50ae9ebd76ab19fe6404d37c"
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/NativeCensus/plain-production-cold-samples.json",
+      "sha256": "2d6c8a1a35c659fa60d3ee684c96fbe904c02752a8d176d0700d5a8136660c7c"
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/NativeCensus/seed-1.json",
+      "sha256": "1f1133bd6264845891c5f69bb042af1a9f0288249fb3b51a9db2edca2216f129"
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/NativeCensus/seed-1729.json",
+      "sha256": "00f97e2815ea4f06a4dbc63b3f022959b1519c0fd1640b4d67d0e981ecd3f00e"
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/NativeCensus/seed-64.json",
+      "sha256": "007e57ad231464536b2693801980f0fd708baf163bcf71fc47091793545e296f"
+    }
+  ]
+}

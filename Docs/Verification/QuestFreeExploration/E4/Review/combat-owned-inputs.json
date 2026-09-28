@@ -1,0 +1,1015 @@
+{
+  "scope": "Exact parent-owned E4 ledger audit; source/read-only review, not a whole-project ownership grant. Full native 21527 sweep pending at audit time.",
+  "ledger": "/tmp/coo-questfree-implementation/e4-owned-working.json",
+  "ledgerSha256": "a063af60756b0990d9fe7ad89ba5c890bbbbcc688cd63f8debdf4a0264d819d3",
+  "pathCount": 183,
+  "uniquePaths": 183,
+  "totalBytes": 15502198,
+  "missingPaths": [],
+  "newAssetMissingLedgerMetas": [],
+  "importOutputHashMismatches": [],
+  "borrowedAndSourceHashMismatches": [],
+  "parsedBlueprintDelta": {
+    "added": [
+      "SpreadFieldGate"
+    ],
+    "removed": [],
+    "modified": [],
+    "fieldGate": {
+      "Name": "SpreadFieldGate",
+      "Inherits": "VillageDoor",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "field gate"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "+"
+            }
+          ]
+        },
+        {
+          "Name": "Door",
+          "Params": [
+            {
+              "Key": "IsOpen",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "10"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "10"
+            },
+            {
+              "Key": "WreckageBlueprint",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Timber rails hang between short posts. A plain latch rests below the top rail."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    }
+  },
+  "largeFiles": [
+    {
+      "path": "ArtSource/SpreadFieldGate3D/Export/renders/field-gate-front-context.png",
+      "bytes": 2000480
+    },
+    {
+      "path": "ArtSource/SpreadFieldGate3D/Export/renders/field-gate-oblique-context.png",
+      "bytes": 2161470
+    }
+  ],
+  "files": [
+    {
+      "path": "ArtSource/SpreadFieldGate3D/Export/catalog.json",
+      "sha256": "c413dd9390a4ec23347c9042f8f2127e9723300c9899abfa22fa6d96135171b3",
+      "bytes": 1758
+    },
+    {
+      "path": "ArtSource/SpreadFieldGate3D/Export/field-gate-source-review.blend",
+      "sha256": "d8e5cc124aa10b8d19fc755c2a0f7033cf4f4a93d89de9c4d648174fb62bd217",
+      "bytes": 120441
+    },
+    {
+      "path": "ArtSource/SpreadFieldGate3D/Export/models/spread-field-gate-closed.fbx",
+      "sha256": "044816af230870b9f290a2e38e5214abf24b4375e429930bd23f710930dd5fa2",
+      "bytes": 21948
+    },
+    {
+      "path": "ArtSource/SpreadFieldGate3D/Export/models/spread-field-gate-open.fbx",
+      "sha256": "75c6fbaa3b404537a4e5852aea3d6d2fba18424ab3d06d423048a567b614890c",
+      "bytes": 21932
+    },
+    {
+      "path": "ArtSource/SpreadFieldGate3D/Export/renders/field-gate-front-context.png",
+      "sha256": "0339b1a2717bbe512861203a591307486e0d15aad1315d326360addb5e790a86",
+      "bytes": 2000480
+    },
+    {
+      "path": "ArtSource/SpreadFieldGate3D/Export/renders/field-gate-oblique-context.png",
+      "sha256": "c9e2b74cdd3409acb1cbc07276b9e42cac2dccd065a62d45b75a79a8a8b09a0c",
+      "bytes": 2161470
+    },
+    {
+      "path": "ArtSource/SpreadFieldGate3D/Export/renders/field-gate-two-states.png",
+      "sha256": "0bd020b9746978415ade87524099daefbcd68c986167295e818b4b9949cb5edc",
+      "bytes": 1921832
+    },
+    {
+      "path": "ArtSource/SpreadFieldGate3D/Export/textures/SpreadBiomePalette.png",
+      "sha256": "bbecc00baf0f9d0a0392d81d9023d4c7b1d878260c52895af4ea59f37b946b69",
+      "bytes": 141
+    },
+    {
+      "path": "ArtSource/SpreadFieldGate3D/build_source.py",
+      "sha256": "64ab035a02f15c7e93e54ed5a2b26ffb572998a44856fd359477dce445769b2b",
+      "bytes": 1987
+    },
+    {
+      "path": "ArtSource/SpreadFieldGate3D/export_source.py",
+      "sha256": "43ff950d2ff80f9464d23d3821c69d779a0747772dd3b597a6b5694eb44f5f59",
+      "bytes": 5938
+    },
+    {
+      "path": "ArtSource/SpreadFieldGate3D/kit.json",
+      "sha256": "375ef3665f5fc0c8d041dd5d1a360b5f9aa2727eff04e0f141e2906ea3911c03",
+      "bytes": 7840
+    },
+    {
+      "path": "ArtSource/SpreadFieldGate3D/test_source.py",
+      "sha256": "5df4f1d14617480c1df073b5db4d1c69dcb25f5136c0869de428ce35fc4c720e",
+      "bytes": 4434
+    },
+    {
+      "path": "Assets/Art3D/SpreadFieldGate.meta",
+      "sha256": "869d9f6c59c0123a4f20443c996d8f2367cf5990b4b50d879411831e579cd570",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/Art3D/SpreadFieldGate/spread-field-gate-closed.fbx",
+      "sha256": "044816af230870b9f290a2e38e5214abf24b4375e429930bd23f710930dd5fa2",
+      "bytes": 21948
+    },
+    {
+      "path": "Assets/Art3D/SpreadFieldGate/spread-field-gate-closed.fbx.meta",
+      "sha256": "55dd56ab2d169af373cf2bad6c4f6d5ba294ea865efac9406c410ec1795d224d",
+      "bytes": 2861
+    },
+    {
+      "path": "Assets/Art3D/SpreadFieldGate/spread-field-gate-open.fbx",
+      "sha256": "75c6fbaa3b404537a4e5852aea3d6d2fba18424ab3d06d423048a567b614890c",
+      "bytes": 21932
+    },
+    {
+      "path": "Assets/Art3D/SpreadFieldGate/spread-field-gate-open.fbx.meta",
+      "sha256": "ca73457a84b74330882c48256584934240b4fcad27db552215ecff460d45afd4",
+      "bytes": 2861
+    },
+    {
+      "path": "Assets/Editor/Art/SpreadFieldGateBuilder.cs",
+      "sha256": "31fc5db10b61df47256e47cf5fcadb3b5b929de1801c1db50eec3beda9d25c5b",
+      "bytes": 13046
+    },
+    {
+      "path": "Assets/Editor/Art/SpreadFieldGateBuilder.cs.meta",
+      "sha256": "0d498a2549e1760a95a66f9110f0298b3f15fea7dfd63c2ee0c8996292ad00d5",
+      "bytes": 60
+    },
+    {
+      "path": "Assets/Editor/Scenarios/QuestFreeSpreadStateNativeBatch.cs",
+      "sha256": "940c213541066989330e71ae3f29d69fe3b8ea80aefa06e105f8246421e8116c",
+      "bytes": 8834
+    },
+    {
+      "path": "Assets/Resources/Content/Blueprints/Objects.json",
+      "sha256": "50bf0fab582e3096417be8a585a9307d31b7a27f50ae9ebd76ab19fe6404d37c",
+      "bytes": 830390
+    },
+    {
+      "path": "Assets/Resources/SpreadFieldGate3D.meta",
+      "sha256": "4b506e002882c6b408ed8b44cf14e26ecbb793470e43227912ffdf49fbcf845a",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/Resources/SpreadFieldGate3D/Library.asset",
+      "sha256": "1e6cf162f06fa79fae1b821d829d8753b1110e1f43f317182357dcb731e27452",
+      "bytes": 1980
+    },
+    {
+      "path": "Assets/Resources/SpreadFieldGate3D/Library.asset.meta",
+      "sha256": "aabe89b9feb9dd8407daafd829c6eeaa3d1fa08ac93558c751029f2e56805be9",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/Resources/SpreadFieldGate3D/spread-field-gate-closed.asset",
+      "sha256": "930e936d5843ee7584430a2ec355d35337da1176e75529df94d421498486ff14",
+      "bytes": 25344
+    },
+    {
+      "path": "Assets/Resources/SpreadFieldGate3D/spread-field-gate-closed.asset.meta",
+      "sha256": "7480df2b9d58a34025bbac79996935f2b1cbc3c188f1e9135dafa09e7008aed2",
+      "bytes": 188
+    },
+    {
+      "path": "Assets/Resources/SpreadFieldGate3D/spread-field-gate-closed.prefab",
+      "sha256": "9dce92f63c09b7f58c58a027282d7c6122f93898a1d1f4be03d29cbf37143f91",
+      "bytes": 2650
+    },
+    {
+      "path": "Assets/Resources/SpreadFieldGate3D/spread-field-gate-closed.prefab.meta",
+      "sha256": "4b84f748f2725edd2649f18c3c8afc9001e97da12964ae17ec36958819143559",
+      "bytes": 154
+    },
+    {
+      "path": "Assets/Resources/SpreadFieldGate3D/spread-field-gate-open.asset",
+      "sha256": "e611ad499de451182b465ea3e07215d65e14898a914dc5b46fb20230b50d67d8",
+      "bytes": 25350
+    },
+    {
+      "path": "Assets/Resources/SpreadFieldGate3D/spread-field-gate-open.asset.meta",
+      "sha256": "69cec8cf1d956a0a2898995b7db7ac0b1e5359f1e14e64dcf89a5b8321bf1116",
+      "bytes": 188
+    },
+    {
+      "path": "Assets/Resources/SpreadFieldGate3D/spread-field-gate-open.prefab",
+      "sha256": "b9d80f10cfec7e1c43192bd61145d4530199f199abe328d12b9f9ac67e398b35",
+      "bytes": 2650
+    },
+    {
+      "path": "Assets/Resources/SpreadFieldGate3D/spread-field-gate-open.prefab.meta",
+      "sha256": "60f018827ab9d493256ec257b5bf5f0d7a10c97eb4864105b2c889319312223c",
+      "bytes": 154
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadCompositionBuilder.cs",
+      "sha256": "8f39e1aa43697380635b1f6c095ec869da3b0eb5d4127400b47b9c16204aa694",
+      "bytes": 5279
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationBuilder.cs",
+      "sha256": "589c53ceb233543702d4ae9c014c954cfa73544083d49150c71f3c5d2b92597f",
+      "bytes": 21710
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPassage.cs",
+      "sha256": "41a4271784292a48a3014f51f94f35226f8d044687790523e5098e94047cea5c",
+      "bytes": 8380
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPassage.cs.meta",
+      "sha256": "30ec6fd72bb23ddfd99d4ac61e1b16cf4e1136f9bf17c3e105f999fe6db9aa04",
+      "bytes": 60
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs",
+      "sha256": "fdf60d091640ff485c4d3a9c4e580e8fce9dcb6ef8678f8a84e8ce18464ac233",
+      "bytes": 23158
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadWildernessSituationPlan.cs",
+      "sha256": "a67992686219b2588b3dc2bf27443d9f2771c4870d3820dbd5d73727ceda6f32",
+      "bytes": 11430
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+      "sha256": "21a614ee2930c8da6eccbf4fc44db3bd1e5460c83bce962f1db14611f59eecd5",
+      "bytes": 81189
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpawnRing3DCatalog.cs",
+      "sha256": "3f816c57139163cc393838740f4a1f1490961feafda7d2b5ffdc53bf555fedaa",
+      "bytes": 20547
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpawnRing3DLibrary.cs",
+      "sha256": "8142c8118384a0d1ba53664218ed868b26216068381495b768563baab13371c4",
+      "bytes": 9758
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpawnRing3DRecipes.cs",
+      "sha256": "f70f66434814ab6ae7d4459785ad5f2968606efe67852b1181c4824ff20ba0b8",
+      "bytes": 47238
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadBiomeStyleEvidence.cs",
+      "sha256": "607a1873432ada83de8b85e5b29cd0376bda41ad3d24cfaf833239baa563d0dd",
+      "bytes": 6808
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadFieldGate3DLibrary.cs",
+      "sha256": "a66101ca8f90499093eae4cb715585837915cccbd6dceaf1c614761850298dc1",
+      "bytes": 7535
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/SpreadFieldGate3DLibrary.cs.meta",
+      "sha256": "67d34a1d044687776f6055706d0cc4a54420a3e4bbdb28f070a6ec6a659e9da7",
+      "bytes": 60
+    },
+    {
+      "path": "Assets/Scripts/Presentation/Rendering/VoxelWorldPresentation.cs",
+      "sha256": "00141dda84be5bb50476bc5a1bde7e671a197bc7f05aecbca0995b64a970fede",
+      "bytes": 21219
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.Exchange.cs",
+      "sha256": "01ebd5f317f973b8edf0f833e951cbd8046793865ae8567f317bdb67faf7b441",
+      "bytes": 22129
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.Passage.cs",
+      "sha256": "39e5ca0355f97a54cfcc413f0a73b45109622364968a5811c0349c0b5e403ef6",
+      "bytes": 9185
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.Passage.cs.meta",
+      "sha256": "512b1036f0fff291c518c099164717aedf97ea066d652b760912794d046fd260",
+      "bytes": 60
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.cs",
+      "sha256": "2b8e54e88ae60f2fd74945835410390d6954f2c89ab4de22e32f7c7151e4785a",
+      "bytes": 41276
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationCatalogExpansionTests.cs",
+      "sha256": "26fe3244786ab2197ed5e9ebe42386ec9952ed479a9e7f21fe8cdef488ee4c68",
+      "bytes": 3786
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEntryExpansionTests.cs",
+      "sha256": "22c11d42d1e74188caba19a9dc0da3fcdf20c4ce35346106e2acb1b0c937a1fa",
+      "bytes": 11524
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestAdversarialTests.cs",
+      "sha256": "2f3565853ee86493db652ee43c9162382757a625637b38af315b651946755ce0",
+      "bytes": 21149
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestTests.cs",
+      "sha256": "e97dda8fcce7ede59257725dc78a54832dd0cedcbc03b259a0bfb108a4dce78a",
+      "bytes": 15487
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassageManifestTests.cs",
+      "sha256": "4d0f6bfd8d225328ff89f61a11ec2d6422030b1401272dfcaddfbb0423d42c4c",
+      "bytes": 5343
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassageManifestTests.cs.meta",
+      "sha256": "e851ed8b8d1a5d604ca33b94ae355102d05f6a850ded7feefe7761fc9b6a4138",
+      "bytes": 60
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassagePipelineTests.cs",
+      "sha256": "1d23b0443b33795d482865c507c2fea16f411f57605df8d6889ddd2f45c5dda8",
+      "bytes": 19844
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassagePipelineTests.cs.meta",
+      "sha256": "b7e5cbbb5d4cfc9ec2dff518ded4435e9b2c0c6f95df8db7bf4ab112d38295de",
+      "bytes": 60
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassageTests.cs",
+      "sha256": "a12b685592bf931913a2dfdeb35e9aa3ef16497efd7eae206b419eae0cf60971",
+      "bytes": 20042
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassageTests.cs.meta",
+      "sha256": "aef9b85c3f9154f56e9b5b4c07b6a989fe9e63930de5ef40c2c7375e620d0196",
+      "bytes": 60
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/HaulablePresentationIdentityTests.cs",
+      "sha256": "100b2d650985f906a2cd48130a2b6170e6731c9fcd64cb06d7f148eb4117643f",
+      "bytes": 12038
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/HaulablePresentationIdentityTests.cs.meta",
+      "sha256": "0e046098072e6b47c1a016be46000f28c6832927ca2c92d91b394c9a8e5b515a",
+      "bytes": 60
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/QuestFreePassageNativeModeTests.cs",
+      "sha256": "52c645665c010aaf68bed331c2f8b829a1c04893df53fdb76a9ec78ef9213026",
+      "bytes": 2469
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/QuestFreePassageNativeModeTests.cs.meta",
+      "sha256": "16bfc365006af8f93fa4e8592fe012de5505ca4e552e5773e4564e92c14d2a5a",
+      "bytes": 60
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadFieldGateArtTests.cs",
+      "sha256": "1bf500836ac6a22f0489cf41ff4edfc5229d3754957fdac3b2206f99c341f006",
+      "bytes": 12710
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadFieldGateArtTests.cs.meta",
+      "sha256": "b3e965269e2b6c6f26774d56b2be33c76133e37ab83defda2a0d447b20f04b01",
+      "bytes": 60
+    },
+    {
+      "path": "Docs/QUEST-FREE-ENVIRONMENT-IMPLEMENTATION.md",
+      "sha256": "73599c93677f37512e7308cd45599b7f099c40ff70c0be1759ac0dc2bf91e60d",
+      "bytes": 14238
+    },
+    {
+      "path": "Docs/QUEST-FREE-EXPANSION-PLAN.md",
+      "sha256": "b6873ed3d43483bdbcba9a3dd9afba578c861e4dc2453a0231c86929fe8d1a4a",
+      "bytes": 36519
+    },
+    {
+      "path": "Docs/QUEST-FREE-EXPLORATION-PLAN.md",
+      "sha256": "e725d97adfc739e07e804795809120af7aab25e974c28c09ce07f4918abbf74c",
+      "bytes": 107097
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldGate/Source/ASSET-PLAN.md",
+      "sha256": "60ca36b5ba1eecc624d2023c12e4a3b3190bb382eaf0a2b3ecafd883d1f86456",
+      "bytes": 5494
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldGate/Source/borrowed-source-inputs.json",
+      "sha256": "616ab02062a6ceaf8d3865b06cc7b8bbe568a8ded0e9affd0379ec41b2c7a405",
+      "bytes": 877
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldGate/Source/export.log",
+      "sha256": "808e232f43834f9fd867d36dc1234d7a37d5106b3a0b9c01c1ffca24e41c5410",
+      "bytes": 3026
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldGate/Source/face-red.log",
+      "sha256": "f757820a0010aea754e71283429e2976f78c3e2b0585499ab0372ae27154633e",
+      "bytes": 2033
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldGate/Source/kit-before-face-repair.json",
+      "sha256": "6d6ed2314d6b8011d5f33ccb093333b5fc17adc19cd5024c224360c23be891d4",
+      "bytes": 7844
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldGate/Source/source-green.log",
+      "sha256": "18bf441fe4b9b80fe0c138278b9ec260bfadc26d6954e744227417f4b7e094af",
+      "bytes": 1248
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldGate/Source/source-red.log",
+      "sha256": "a9885d0ebe71acd9632b4b067ad8beb05f4a4386af796fa1cc3e11c3c8595b0a",
+      "bytes": 6704
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldGate/Source/source-review.json",
+      "sha256": "e6b727350a27474ac73351f2d10ae6d046b9e8bf109c9cff73092627ad6f7990",
+      "bytes": 1895
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/Assembly-CSharp-Editor.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/CavesOfOoo.log",
+      "sha256": "41e078961b5205b0f5a453fb8ff1e9361d56b7458a41c344d6bcb9a6e0953044",
+      "bytes": 894
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/EditModeTests.log",
+      "sha256": "e52c4691b83dc23807604faef62744c1f59a38c314af5d14003fcff3389d7dd7",
+      "bytes": 5707
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/README.md",
+      "sha256": "cd8d102bd861fa0d2e73a58bbb0dc23f9db51ea0d401af18b0edbe3740ef6d35",
+      "bytes": 6053
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/SpawnRing3DCatalog.cs.patch",
+      "sha256": "7a66c193b7ec54fb5670eb4c0dbc79ccd62243a8c47b26339d23ea5322c20321",
+      "bytes": 1430
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/SpawnRing3DLibrary.cs.patch",
+      "sha256": "96ec49c71825532aca7b006bb7731f4753d057528148dcc9f72b450355ebf9a1",
+      "bytes": 1442
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/SpawnRing3DRecipes.cs.patch",
+      "sha256": "d8b5f9df17505409f6766b28ab4c6ae6b4c1903b9335eddc1f749b9731d31b77",
+      "bytes": 1707
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/SpreadBiomeStyleEvidence.cs.patch",
+      "sha256": "de26dc28bcd20921f5d018d1116b9c930c8472f5e74a11dfbe5bbb0ff0d40420",
+      "bytes": 838
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/VoxelWorldPresentation.cs.patch",
+      "sha256": "b35b33652bdbaf21fda1bef0b60c08bf4dc31bb6bc979902579ba9a7282abcdf",
+      "bytes": 1026
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/compile.py",
+      "sha256": "95af2f698d4ca677809decc2aa63778c1ffd1acb2d825a799c121a6ea1793bc7",
+      "bytes": 1634
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/manifest.json",
+      "sha256": "36eccf29b85e54af2ed9637fe67dfc14e2b3c884efebb67fe60924f96770d5f0",
+      "bytes": 3551
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/native-import.cs.txt",
+      "sha256": "dfb670a8e60d6ed963e7f4cc80d769432a096d79612012672fb15f002c014164",
+      "bytes": 3576
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/Binding/validation.json",
+      "sha256": "b1fda273a15e97bb9c77cfd74168c66275d34c0cc05bd11352fe641d6fd46934",
+      "bytes": 1320
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/import.json",
+      "sha256": "255a45a41b572a660c7bb5de9f220fc89963029a5361b034114f2281b719b682",
+      "bytes": 750
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Art/native-import-owned-files.json",
+      "sha256": "108129d9b2da759395965cbc38f27129831a934cf54a6c758e1e99f38dcf1da7",
+      "bytes": 33776
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/Census/seed-1.json",
+      "sha256": "96f9f25d21da76079656ec7942e6ade161930c382f83490ab4a69c7e0e49bac7",
+      "bytes": 1987
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/Census/seed-1729.json",
+      "sha256": "aca55ccaafdb82ad39e3cb72ea02359e184397958967094e960bcc029aa899d4",
+      "bytes": 2572
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/Census/seed-64.json",
+      "sha256": "c020cb9db4d25eaa1cb9b87433671c39e1db4f2f249543344d58088a633c5616",
+      "bytes": 2869
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/IMPLEMENTATION.md",
+      "sha256": "6516df17f0eaa1441c2639036342fe231cff50685a6229774a49b893a7cfd8d9",
+      "bytes": 4550
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/SpreadExplorationPassage.before-identity.cs.txt",
+      "sha256": "b76f83a918108f37b294d891591b0ff8c2209115dee134ec3795e9b41d575998",
+      "bytes": 8260
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/diagnostic.xml.gz",
+      "sha256": "ca69e0fc65f418607ce2c3a9f203a88ee85f9f7ac54d7d895a74959edf075f2e",
+      "bytes": 2451
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/final-green.xml.gz",
+      "sha256": "9af960aed1c69cad58b974834f9b2588858c18064a5650dab380a11586ba4959",
+      "bytes": 20672
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/first-candidate.xml.gz",
+      "sha256": "1a9f1577efc1403de91d379b47a8626169c3500864fa3d90e1088fc66a4f3d95",
+      "bytes": 4665
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/identity-red.xml.gz",
+      "sha256": "ddad3b3d260fcfe4e67910a26de9d175c5e48c8c410b0692d6caebc0d5e7322e",
+      "bytes": 1473
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/neighbor-pins-red.xml.gz",
+      "sha256": "9381195567954b50ccf314dba2f865dab58a3b0d0417b316729aa4134a37c675",
+      "bytes": 10037
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/production-manifest.json",
+      "sha256": "59f9e9bb9693c7d500c227d1f99f96f270a59c2588325097e0c6b76712cc10ba",
+      "bytes": 6119
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/production.patch",
+      "sha256": "b22547c75dd3b5681a2abcd2dcd4470813fa6e4d81d2811f8cc57e6372cd36a5",
+      "bytes": 33707
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/runtime-compile.log",
+      "sha256": "9e592066414ea33bfdf549243743f852627efb3beae4da038e51ad8c84328e18",
+      "bytes": 894
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/second-candidate.xml.gz",
+      "sha256": "886c0990bd1b0e3f159b0c8618c8fa50e8cb0188e0fcd1afb72baa8b05da2382",
+      "bytes": 4839
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/source-corrections.md",
+      "sha256": "feae453a7daf7a2954000ab20443fde65e05605d8dbe3382997f7f931c411474",
+      "bytes": 1630
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/tests-compile.log",
+      "sha256": "7b9e630bf575c2b76790f77d9dc5fc1452e5aa79a2b429840e0ad4fa4015a633",
+      "bytes": 5707
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Implementation/verification-summary.json",
+      "sha256": "a8881e81b7cac175376ceaf6ef657c1ac24b4b555a07b2adcb9f3a532cd3a5e6",
+      "bytes": 6611
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/00-ordinary-start.png",
+      "sha256": "c1cd9d42e343f5be13ca4fd05a88d7416a23f4be5541991eea3383e7cc63942c",
+      "bytes": 1101685
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/01-generated-closed-field-gate.png",
+      "sha256": "74eb16bde88f3f61e5abd361fdb0194fe832e48718175cf0df946f57c3bdada5",
+      "bytes": 940590
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/02-current-field-gate-open-hint.png",
+      "sha256": "709bab43bee2c2acb5f8f4098e0eab015ab68674b9740bca503cfdd84d63308e",
+      "bytes": 940808
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/03-native-open-clear-passage.png",
+      "sha256": "25c447d30e603a2b17ab13c2446c3c558afb69e26db3e587b492791396af4c9b",
+      "bytes": 943237
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/04-native-crossing-and-closed-boundary.png",
+      "sha256": "8ed6fffe4cddea07205fb5ae785a1a22ec601e482d751f706b2015480a3bbaea",
+      "bytes": 943267
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/05-return-to-opened-field-passage.png",
+      "sha256": "44ca416b9f345983793e6a48e03aaa11a53b0f0b5c7ab7dabef3925a0a4f74f1",
+      "bytes": 939118
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/06-native-loaded-open-field-passage.png",
+      "sha256": "2521f21e5d1d4051b8d4a1fa8f206ca05bf8cfc898dcadc503b818f8478d2147",
+      "bytes": 939608
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/report.json",
+      "sha256": "923d22d35232b1e7bac47a4805427bde7128f9005dec54f45760149f142e5b06",
+      "bytes": 12760
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/NativeCensus/plain-production-cold-samples.json",
+      "sha256": "2d6c8a1a35c659fa60d3ee684c96fbe904c02752a8d176d0700d5a8136660c7c",
+      "bytes": 10861
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/NativeCensus/seed-1.json",
+      "sha256": "1f1133bd6264845891c5f69bb042af1a9f0288249fb3b51a9db2edca2216f129",
+      "bytes": 2348
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/NativeCensus/seed-1729.json",
+      "sha256": "00f97e2815ea4f06a4dbc63b3f022959b1519c0fd1640b4d67d0e981ecd3f00e",
+      "bytes": 3061
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/NativeCensus/seed-64.json",
+      "sha256": "007e57ad231464536b2693801980f0fd708baf163bcf71fc47091793545e296f",
+      "bytes": 3429
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Observer/Assembly-CSharp-Editor-compile.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Observer/CavesOfOoo-compile.log",
+      "sha256": "71576dbada5325b7f047c65fd7d994ba83dc71e857fe51804adcbb068e67e715",
+      "bytes": 894
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Observer/CavesOfOoo-first-compile.log",
+      "sha256": "f6723f38c2114efe6d1564320a2ecd6a6edf97c5c2e7f84f4efa1ac1798e545a",
+      "bytes": 1161
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Observer/PLAN.md",
+      "sha256": "45ba499e4b5016a02248dc034d755a42ebd81bcef72198b9dc71767abf4ea8ee",
+      "bytes": 2318
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Observer/production-manifest.json",
+      "sha256": "83e7e8c4eb17a20d6f7c2e84e48dec3c0dc78c6ec7ff79c82c8b1244274c472c",
+      "bytes": 1821
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Red/PLAN.md",
+      "sha256": "b7a793c1be6161e25314fac237a26c449045da21b20c90f3fe321f40920fc1fe",
+      "bytes": 9369
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Red/READINESS.md",
+      "sha256": "801d15b2a5bd4f9457df2932503cf496f697c2b46cb1cca986d231f821af2bba",
+      "bytes": 3751
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Red/final-red.log",
+      "sha256": "2e6e6d207585fef023a5eee7bbcfd0ce87cfb9f3e6c6050873f1b0624da93ec4",
+      "bytes": 17185
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Red/final-red.xml",
+      "sha256": "fed621e4d232da3d1a2705421c8b87c62fa3539eb1313718a6486c4e6c2c5f1c",
+      "bytes": 61867
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Red/private-build.log",
+      "sha256": "7a9f820624c99375a7d757c9fd55fbcbdfeb33fa4594a52129cebed1bdc3748e",
+      "bytes": 17514
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Red/runtime-compile.log",
+      "sha256": "e14d4418a16712f4f0e1cbfa045133bbbd8885d0a711ed8c20eb372567f64871",
+      "bytes": 894
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Red/source-inputs.json",
+      "sha256": "a00445e617ddf66c550f24e6197c67bf544613ca4f068d19b4548da17ecf6a5d",
+      "bytes": 1578
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Red/test-manifest.json",
+      "sha256": "da35f7219d6724e58659e5744bdb3535e7e13f1328027c818de4a389f177ac82",
+      "bytes": 1864
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/FieldPassage/Red/tests-compile.log",
+      "sha256": "0218095a73cd170951cd6a7cf52ee2a9acf142690912b49490461b3295d76ce0",
+      "bytes": 5707
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/HaulIdentity/HaulablePresentationIdentityTests.cs.patch",
+      "sha256": "9ba37772b5765ff1eb6ee5174e8681d28fa0c67fca2c6afb0b4780a040a23c07",
+      "bytes": 4204
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/HaulIdentity/README.md",
+      "sha256": "89feba28ec21d63c9fb512c729dfb3f0d12c266308fd16d2b7382c8edb5924e9",
+      "bytes": 4231
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/HaulIdentity/SpawnRing3DRecipes.cs.patch",
+      "sha256": "f3ed94f7c30d0f5c4be3f06d234c1f100cece7595d90f664dd17d74fc7d56c9b",
+      "bytes": 1380
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/HaulIdentity/manifest.json",
+      "sha256": "85035cded31cdbdb5bfeeaf5d541f32c8e889d6d0dbfc7afb16d8ab89b801937",
+      "bytes": 936
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/HaulIdentity/native-green-extract.json",
+      "sha256": "5210c20a49dfca6ac9d138a119e9f3f89e3f37c16a2dded8d896b9792f617664",
+      "bytes": 2061
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/HaulIdentity/native-red-extract.json",
+      "sha256": "5e61e4b2fbc95476f59c1d00e1b78e0555f0411ba1f36cfa35c79f2808093d4d",
+      "bytes": 1510
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/HaulIdentity/runtime-compile.log",
+      "sha256": "e14d4418a16712f4f0e1cbfa045133bbbd8885d0a711ed8c20eb372567f64871",
+      "bytes": 894
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/HaulIdentity/tests-compile.log",
+      "sha256": "e52c4691b83dc23807604faef62744c1f59a38c314af5d14003fcff3389d7dd7",
+      "bytes": 5707
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/HaulIdentity/validation.json",
+      "sha256": "6e5fff890c1a34cc9081086bd293c54631518fa2e7e805328e57f8fb7a2f7102",
+      "bytes": 837
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Integration/blueprint-parsed-diff.json",
+      "sha256": "fa41869adee97476fbf9e7dc153e2f7195e526eae6101eaff0b310b3991ce415",
+      "bytes": 259
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Integration/final-scope-check.json",
+      "sha256": "fd8630cd17bbf61abe51549f6068f421450d876e0341efaac812f383840bba40",
+      "bytes": 1699
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Integration/native-beam-and-neighbors-green.json",
+      "sha256": "6ca2916a21339bc321bb8eda5f6f3746eb8e605cba062fcc55e9e0eab575a21e",
+      "bytes": 24831
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Integration/native-gate-art-and-haul-green.json",
+      "sha256": "7eb6c35a2568c468c4347c249f0176230b4c22152127bd74d75ce26346996fd7",
+      "bytes": 31060
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Integration/native-gate-art-and-optin-red.json",
+      "sha256": "d1f7649446753a16db0bbe22654954a4e128c358e5c9d29fa5cd1bd99f1f0276",
+      "bytes": 37499
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Integration/native-initial-red.json",
+      "sha256": "f6772aee4a91991ff9e7525fc758560f991e48d25f588c05a14265b2cc2a4af0",
+      "bytes": 26639
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Integration/native-passage-observer-green.json",
+      "sha256": "d5625daeba6c762577eaa23a15a636e5099de57266ac8aba37d4689629c9982f",
+      "bytes": 3650
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Integration/native-passage-observer-red.json",
+      "sha256": "d42545283ac99a2c9eb2c5690c6d2683f1437040f4d26a5015edd217e10218dc",
+      "bytes": 4279
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Integration/native-passage-pipeline-and-neighbors-green.json",
+      "sha256": "2f7d2a4979146b3e5cd6068818eb82f1e0bfbcf7c8a80cea4ff8d8d6937305cc",
+      "bytes": 114197
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Integration/native-passage-pipeline-red.json",
+      "sha256": "4c257e5e298bf0247fd0a9c37dd87aafca49285ed3a2a1cd3c1cd44141137b92",
+      "bytes": 10066
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/READINESS.md",
+      "sha256": "7816a37e01ec1f63aa3da2accafb243fffa8050fbad3656f28e37da7a2484ae5",
+      "bytes": 9790
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/SpreadFieldPassagePipelineTests.before-phase-boundary.cs.txt",
+      "sha256": "d262244f23dc2fee258aea638bf67e6f7747c9eafe44cb71a3842d3713bea2f2",
+      "bytes": 17915
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/SpreadFieldPassagePipelineTests.cs",
+      "sha256": "1d23b0443b33795d482865c507c2fea16f411f57605df8d6889ddd2f45c5dda8",
+      "bytes": 19844
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/SpreadFieldPassagePipelineTests.cs.meta",
+      "sha256": "b7e5cbbb5d4cfc9ec2dff518ded4435e9b2c0c6f95df8db7bf4ab112d38295de",
+      "bytes": 60
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/candidate-census/seed-1.json",
+      "sha256": "f966deb8c7001a637dd461ad21e4ada85faca7f559dae4554350b4dc22827a4b",
+      "bytes": 1984
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/candidate-census/seed-1729.json",
+      "sha256": "89e26a98325d20eb7b21fcaa3b40b5b8fdb4bfcc75b6478d2dd0378ec326b483",
+      "bytes": 2572
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/candidate-census/seed-64.json",
+      "sha256": "e2d67e87e2eb4dc33293eb591b39cf0075fe42d31afe91e2f01224c61860ef84",
+      "bytes": 2870
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/candidate-green.log",
+      "sha256": "ec233d8ff7008e916244fc74655178e3e055963c163620e7ee706e5a01c597b6",
+      "bytes": 17466
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/candidate-green.xml",
+      "sha256": "067bf62db97c7417e2c9571ec2f2c6ed208cfa8fabf6431fb8eeb0a380918d6c",
+      "bytes": 17531
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/candidate-inputs.json",
+      "sha256": "58448c8d1c4fa27ded4e9808f52f0e29de023d7626044f2533d5f5a3b02562df",
+      "bytes": 2908
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/candidate-summary.json",
+      "sha256": "8ca166c76f0d69567a6a151c727df55ce73d8fe5815faec6902192018c042d16",
+      "bytes": 1143
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/compile-tests.py",
+      "sha256": "5a0b0ede0a0d08a749ffbf0ecb242ba98025a023f79369d54b709f981b184275",
+      "bytes": 1016
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/final-census/seed-1.json",
+      "sha256": "4e256c3e5718bdb9560ca5eeac50f72a354e35fc47ba6fe08c6cd46dcc79d350",
+      "bytes": 1985
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/final-census/seed-1729.json",
+      "sha256": "0dcb92641b16f89fb604b886002c6502c87686ec7019d8eaf2028983ee43d14a",
+      "bytes": 2573
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/final-census/seed-64.json",
+      "sha256": "37e72a1fd16eb985412e5d6e6987c06b6f4681c204e4000dcc4142a8a3bfc505",
+      "bytes": 2867
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/final-green.log",
+      "sha256": "3fbb92c791800e12b1e6ed75a76abf08abbae028f092e3f834144af2740e2ba2",
+      "bytes": 17461
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/final-green.xml",
+      "sha256": "9225d9a00ceb4ed80ef3e9feed3eb856fb7719ea5acec669b57f7f0f06b9db82",
+      "bytes": 17522
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/final-input-drift.json",
+      "sha256": "ffe2211f5335bbab862f8a760cef4c22011bd2766ca108a4fcf94137f7a818dd",
+      "bytes": 64
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/final-inputs.json",
+      "sha256": "2aec91b9822b9b4ca1f1d0a941199caffa1de68a3f5829b8136f08f824961318",
+      "bytes": 2744
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/final-summary.json",
+      "sha256": "507ec4493afb935bdd6954e678156e50d60bac1ea448a8a3290aa4da2d56d09f",
+      "bytes": 944
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/fixture-compile-premise.log",
+      "sha256": "30d5ef6c2be2c7aa1c6c797485b623b7768f8e46342cab9d3a4693da4bec65c8",
+      "bytes": 9251
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/initial-integrated-false-premise.xml",
+      "sha256": "1cb45707bff85b4c5e6d86f7a05e169fc929f8a6be614f16b604593d8ac9b5b7",
+      "bytes": 37054
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/initial-red.log",
+      "sha256": "587f80d37046695e1e4458a2e124a5665ee1cbfe678338f5d4b6c4d4a658d852",
+      "bytes": 17564
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/initial-red.xml",
+      "sha256": "e6a6f8c582efe52965d0f649458ffb3dbff7359dbb675c7aa5abe396d314f84f",
+      "bytes": 27744
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/native-reference-compile.log",
+      "sha256": "c2c48626dbec6b8ef0ff027276157d421e8b2703f5592347772a9303cb192bdd",
+      "bytes": 5707
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/native-reference-duplicate-premise.log",
+      "sha256": "dc67c0e6420b09ae1407f7793ecb6741731a207edc3f4ee48d9aa7449f1b2dac",
+      "bytes": 5338
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/phase-boundary.patch",
+      "sha256": "e5dbb5b019cd3ddb2d214a201f2a233fa81737e3c08a66602f3431289e0811d6",
+      "bytes": 9906
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/source-preimages.json",
+      "sha256": "541f193da9868cbd602dc0f1f9a0ec9dab22cff26e74d6444a5aeeedadb2e08e",
+      "bytes": 1924
+    },
+    {
+      "path": "Docs/Verification/QuestFreeExploration/E4/Passage/PipelinePrivate/test-manifest.json",
+      "sha256": "b321d3b35c8081b9d5af7a08d9aaebe459fc51ce2f264f8aa14b1fe5663a0b49",
+      "bytes": 998
+    }
+  ],
+  "driftDuringRead": [],
+  "conclusion": "No significant blocker found in bounded source/scope/current-owner/persistence review. Full native 21527 suite pending; no new test execution.",
+  "reviewedNativeRun": {
+    "runId": "44580a155f804ba0bd6733ee30806e23",
+    "checks": 13,
+    "failures": 0,
+    "paidInputs": 8,
+    "independentlyViewedFrames": [
+      "01-generated-closed-field-gate.png",
+      "03-native-open-clear-passage.png"
+    ],
+    "scope": "Actual generated site; disclosed original-player setup transfer; not ordinary discovery or native destruction."
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "seed": 1729,
+  "selection": "First20 eligible Fallow/Hedgerow metadata ranks, F9-feasibility-v1, frozen before GetZone",
+  "selected": [
+    "Overworld.17.12.0",
+    "Overworld.12.6.0",
+    "Overworld.5.13.0",
+    "Overworld.7.12.0",
+    "Overworld.8.9.0",
+    "Overworld.11.14.0",
+    "Overworld.11.2.0",
+    "Overworld.7.15.0",
+    "Overworld.14.8.0",
+    "Overworld.4.13.0",
+    "Overworld.10.0.0",
+    "Overworld.12.11.0",
+    "Overworld.11.9.0",
+    "Overworld.10.13.0",
+    "Overworld.11.5.0",
+    "Overworld.12.5.0",
+    "Overworld.15.10.0",
+    "Overworld.6.15.0",
+    "Overworld.7.11.0",
+    "Overworld.7.6.0"
+  ],
+  "sourceCount": 10,
+  "compatible": 6,
+  "admitted": 1,
+  "rows": [
+    {
+      "zone": "Overworld.17.12.0",
+      "source": null,
+      "reason": "ordinary-roll-or-placement-empty"
+    },
+    {
+      "zone": "Overworld.12.6.0",
+      "formation": "Fallow",
+      "source": "FallenBeam",
+      "sourceId": "4438",
+      "origin": {
+        "Item1": 56,
+        "Item2": 19
+      },
+      "verdict": "Ok",
+      "strength": 18,
+      "weight": 60,
+      "narrowGapScreens": 10,
+      "trials": 20,
+      "reason": "no-useful-existing-gap-and-parking",
+      "options": []
+    },
+    {
+      "zone": "Overworld.5.13.0",
+      "formation": "Fallow",
+      "source": "FallenBeam",
+      "sourceId": "6732",
+      "origin": {
+        "Item1": 34,
+        "Item2": 20
+      },
+      "verdict": "Ok",
+      "strength": 18,
+      "weight": 60,
+      "narrowGapScreens": 3,
+      "trials": 6,
+      "reason": "useful-actual-drag-proof",
+      "options": [
+        {
+          "cut": {
+            "Item1": 64,
+            "Item2": 4
+          },
+          "start": {
+            "Item1": 64,
+            "Item2": 3
+          },
+          "goal": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "parking": {
+            "Item1": 63,
+            "Item2": 2
+          },
+          "trail": [
+            {
+              "Item1": 64,
+              "Item2": 2
+            },
+            {
+              "Item1": 63,
+              "Item2": 2
+            },
+            {
+              "Item1": 62,
+              "Item2": 2
+            }
+          ],
+          "variant": "roomy-corner",
+          "beforeSteps": 10,
+          "afterSteps": 3,
+          "haulSteps": 3,
+          "conservativeUsefulMargin": 1,
+          "success": true,
+          "initialSpeed": 100,
+          "heldSpeed": 76,
+          "restoredSpeed": 100,
+          "finalLoad": {
+            "Item1": 63,
+            "Item2": 2
+          }
+        }
+      ]
+    },
+    {
+      "zone": "Overworld.7.12.0",
+      "formation": "Hedgerow",
+      "source": "HaulBarrel",
+      "sourceId": "9018",
+      "origin": {
+        "Item1": 1,
+        "Item2": 7
+      },
+      "verdict": "Ok",
+      "strength": 18,
+      "weight": 75,
+      "narrowGapScreens": 4,
+      "trials": 8,
+      "reason": "no-useful-existing-gap-and-parking",
+      "options": []
+    },
+    {
+      "zone": "Overworld.8.9.0",
+      "formation": "Fallow",
+      "source": "HaulBarrel",
+      "sourceId": "11264",
+      "origin": {
+        "Item1": 59,
+        "Item2": 5
+      },
+      "verdict": "Ok",
+      "strength": 18,
+      "weight": 75,
+      "narrowGapScreens": 12,
+      "trials": 24,
+      "reason": "no-useful-existing-gap-and-parking",
+      "options": []
+    },
+    {
+      "zone": "Overworld.11.14.0",
+      "source": "MillStone",
+      "sourceId": "13563",
+      "origin": {
+        "Item1": 5,
+        "Item2": 15
+      },
+      "verdict": "TooHeavy",
+      "reason": "source-not-beam-or-barrel"
+    },
+    {
+      "zone": "Overworld.11.2.0",
+      "source": "MillStone",
+      "sourceId": "15839",
+      "origin": {
+        "Item1": 11,
+        "Item2": 5
+      },
+      "verdict": "TooHeavy",
+      "reason": "source-not-beam-or-barrel"
+    },
+    {
+      "zone": "Overworld.7.15.0",
+      "source": null,
+      "reason": "ordinary-roll-or-placement-empty"
+    },
+    {
+      "zone": "Overworld.14.8.0",
+      "source": "MillStone",
+      "sourceId": "20461",
+      "origin": {
+        "Item1": 41,
+        "Item2": 17
+      },
+      "verdict": "TooHeavy",
+      "reason": "source-not-beam-or-barrel"
+    },
+    {
+      "zone": "Overworld.4.13.0",
+      "source": null,
+      "reason": "ordinary-roll-or-placement-empty"
+    },
+    {
+      "zone": "Overworld.10.0.0",
+      "formation": "Hedgerow",
+      "source": "HaulBarrel",
+      "sourceId": "25075",
+      "origin": {
+        "Item1": 63,
+        "Item2": 5
+      },
+      "verdict": "Ok",
+      "strength": 18,
+      "weight": 75,
+      "narrowGapScreens": 2,
+      "trials": 4,
+      "reason": "no-useful-existing-gap-and-parking",
+      "options": []
+    },
+    {
+      "zone": "Overworld.12.11.0",
+      "source": null,
+      "reason": "ordinary-roll-or-placement-empty"
+    },
+    {
+      "zone": "Overworld.11.9.0",
+      "formation": "Fallow",
+      "source": "FallenBeam",
+      "sourceId": "29672",
+      "origin": {
+        "Item1": 60,
+        "Item2": 7
+      },
+      "verdict": "Ok",
+      "strength": 18,
+      "weight": 60,
+      "narrowGapScreens": 6,
+      "trials": 12,
+      "reason": "no-useful-existing-gap-and-parking",
+      "options": []
+    },
+    {
+      "zone": "Overworld.10.13.0",
+      "source": "MillStone",
+      "sourceId": "32009",
+      "origin": {
+        "Item1": 6,
+        "Item2": 17
+      },
+      "verdict": "TooHeavy",
+      "reason": "source-not-beam-or-barrel"
+    },
+    {
+      "zone": "Overworld.11.5.0",
+      "source": null,
+      "reason": "ordinary-roll-or-placement-empty"
+    },
+    {
+      "zone": "Overworld.12.5.0",
+      "source": null,
+      "reason": "ordinary-roll-or-placement-empty"
+    },
+    {
+      "zone": "Overworld.15.10.0",
+      "source": null,
+      "reason": "ordinary-roll-or-placement-empty"
+    },
+    {
+      "zone": "Overworld.6.15.0",
+      "source": null,
+      "reason": "ordinary-roll-or-placement-empty"
+    },
+    {
+      "zone": "Overworld.7.11.0",
+      "source": null,
+      "reason": "ordinary-roll-or-placement-empty"
+    },
+    {
+      "zone": "Overworld.7.6.0",
+      "source": null,
+      "reason": "ordinary-roll-or-placement-empty"
+    }
+  ],
+  "boundary": "Private copied core runner with disclosed stable hash and Unity shims. Real pipeline/drag commands, no native keyboard, frame, scheduler or ordinary travel claim. No gameplay source changes. Exact4200 owner observed rather than granted receipt authority. Candidate diagnostic relocates/restores only that source and a factory Player; no source grant."
+}

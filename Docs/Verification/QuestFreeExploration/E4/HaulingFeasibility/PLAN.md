@@ -1,0 +1,76 @@
+# F9 — one movable obstruction with somewhere useful to put it
+
+Status: **private feasibility complete; accidental-gap implementation deferred**. No gameplay implementation, registration, shared publication or Unity execution. The beam identity repair already passed its separate71 native checks; that does not create a hauling situation. The gate's accepted local passage remains F12. The60-chunk private core census found only one marginal usable layout. Root accepted no F9 registration or unused receipt repair; a new optional terrain variant is proposed below for separate review.
+
+## Recommended bounded experience
+
+One original rolled **FallenBeam**, with HaulBarrel as the supported same-mechanic alternative, lies in a genuinely shorter *optional* passage. The player can walk the longer intact way around, or take hold and pull the obstruction into a nearby dry shoulder. Leaving the load in the wrong place still obstructs movement; parking and releasing it matters. This uses the current physical burden, speed penalty and trailing movement, not a new push/pull puzzle command or cash reward.
+
+A straight pull into a broad shoulder and a pull around one roomy corner are the two proposed geometry variants. Accept the second only when ordinary step-by-step DragSystem movement demonstrably succeeds. The shoulder and longer route must exist in the original physical landscape. This original accidental-gap proposal moves only the exact hauled producer owner and does not clear vegetation, move companions, add a fence, create a reward or hide a critical exit. The separately proposed next terrain design below intentionally changes only approved composition geometry. This differs from F12's open/close gate: the moved material remains wherever released and the player is slowed while holding it. No sight-cover claim is valid.
+
+## Verified source corrections
+
+| Source | Actual contract | Consequence |
+|---|---|---|
+| `Assets/Scripts/Gameplay/World/Generation/Builders/HaulablePropBuilder.cs:25–96` | Priority4200;35% roll, one of barrel/beam/millstone, at most40 positions, at mostone owner. The summary's “one or two” is stale. Existing placement avoids plugging a gap and returns true on refusal. | Capture the existing roll/owner with an optional receipt; no new random draws or second attempt/allowance. Composer may relocate only after proving a bypass. Empty/refused sources remain ordinary empty/refused sources. |
+| `Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs:69–85,895–910` | Surface pipeline already owns a real HaulablePropBuilder; optional exploration runs4300 after it. | Retain and pass that actual builder, rather than searching the finished zone for a matching blueprint. Preserve default and old-save paths. |
+| `Assets/Scripts/Gameplay/World/Generation/SpreadWildernessSituationPlan.cs:37–73` | Exact ephemeral SpreadGenerationReceipt pins source instance, zone/factory, revision, complete owners/state and consumption. It currently recognizes population, containers and passage terrain, not haulables. | Add only the haulable producer case after native RED. Do not broaden another producer's authority or introduce a saved receipt. |
+| `Assets/Resources/Content/Blueprints/Objects.json` exact Player/HaulBarrel/FallenBeam/MillStone rows; `GameBootstrap.cs:303` | Actual fresh Player is factory-created with Strength18; beam60/barrel75 are nonTakeable, nonCarryable, Handling-present, no minimum strength. Millstone150 exceeds18×8=144. | Do not use the old tests' synthetic Strength40 as a starting-character guarantee. Beam/barrel are initially haulable; millstone stays untouched/refused for this slice. Actor damage/equipment may legitimately change later admission. |
+| `Assets/Scripts/Gameplay/World/DragRules.cs:119–147`; `DragSystem.cs:245–278,349–400` | Real lift admission first; weight capacity and minimum strength; beam costs24/barrel30 Speed penalty subject to floor20. After a successful actor move the load enters the vacated cell; illegal follow slips/releases. | Use real command/movement in tests. No higher Strength, synthetic load movement, forced successful corner or sticky grip. |
+| `Assets/Scripts/Gameplay/Items/HandlingPart.cs:23–35,63–101`; `InputHandler.cs:2953–2996` | Actual Haul/LetGo menu commands exist; generic dispatch does not spend a turn. Movement while holding is paid at current reduced Speed. | Do not claim grab/release are extra paid actions. Native evidence must measure actual input cost and restoration; no new action-cue promise. |
+| `Assets/Scripts/Gameplay/World/Map/Cell.cs:99–141`; `Assets/Scripts/Gameplay/Combat/PhysicsPart.cs:102–142` | Physics.Solid haulables obstruct movement; IsSolid sight logic differs. Single-cell movement checks the destination, with no separate diagonal-side-cell rejection here. | No ranged-cover promise. Include actual diagonal squeezing when measuring the detour; do not invent a stricter corner rule to make hauling look useful. |
+| `Assets/Scripts/Gameplay/World/Generation/SpreadCompositionPlan.cs:153–177,179–206` | Repaired/working lanes are three cells wide and reserved; Hedgerow's authored openings are three cells wide too. | A single-cell beam usually cannot make these routes meaningfully longer. Do not simply place a beam on a road and call it an encounter. Existing narrow, unreserved gaps are a **feasibility gate**, not assumed common content. |
+| `SpreadWildernessSituationBuilder.cs:167–235` | Existing immutable Geometry supports dry/bare admission and preserving critical route components, but its flood/labels are cardinal. | Reuse its source/protection screen, then independently measure actual physical eight-direction route/corner behavior as F12 does. A cardinal detour alone is not player benefit. |
+
+## Placement and budget contract to test before implementation
+
+1. Opt-in receipt records the exact original0/1 haulable roll, factory and build revision. Retains ordinary chance, pool, RNG tail, placement and all other owners when only observing. A missing rolled blueprint cannot yield a complete allowance. Preexisting/stamped same-blueprint objects never enter the receipt.
+2. Only exact FallenBeam/HaulBarrel with current native Render/Physics/Handling backlinks, expected nonportable single-cell semantics, positive finite weight, no current carrier/grip, no saved-world mutation and unchanged source snapshot. No living loads, rooted scenery, unknown child aliases or millstone substitution.
+3. Screen at most32 source/layout candidates and256 placement trials. One original source only. Original location may become empty; no stock, actor, key, currency, material or source stat changes. Preserve all unrelated source owners and received RNG state.
+4. The proposed blocked cell is original dry bare noninterior ground, outside reserved/arrival/stair/protected regions, with a valid approach, an existing longer route and a short drag path ending in a usable parking cell. Both the blocked and parked layouts preserve original critical connectivity. No essential exit depends on Strength.
+5. Compare a fixed pair of meaningful approach cells on opposite sides of the obstruction. Require an eight-direction physical detour that is longer than the actual planned haul movements plus the clear route, with a small nonzero margin. This threshold is a proposed acceptance budget, not measured game balance. Record both step counts and actual elapsed turns/Speed in the native witness.
+6. Revalidate source, authority and physical geometry after movement callbacks and at final cold acceptance. Optional clean refusal preserves the exact original object/position and reports why. Cleanup touches only the still-owned moved owner; foreign callback transfer must never be “repaired” by stealing it back. Cached/load attachment never reruns this composition.
+7. Do not add a family/version slot until the same deterministic metadata cohort demonstrates useful occurrence. Retain v2–v5 saved assignments literally. Root owns any future assignment/version decision; this private work does not claim current new-world v5 is F9-complete.
+
+## Executed private feasibility and decision
+
+The isolated source/core run executed15 cases: **11 expected missing-receipt-API failures, one unchanged ordinary-producer control PASS, and three feasibility observers PASS**. The actual Unity test-reference compile for the12 receipt cases passed. This is private .NET execution with stable-hash/Unity shims, **not Unity or native input**; the seed-specific source layouts can differ in the editor. Exact files/counts are retained in `summary.json`, `receipt-red-feasibility.xml` and `census/seed-*.json`. The11 failures describe an optional API that does not exist, not a diagnosed shipped gameplay bug.
+
+The cohort froze the first20 eligible Fallow/Hedgerow metadata entries per seed under the independent `F9-feasibility-v1` rank before any `GetZone`. The current v5 generation pipeline and ordinary haulable producer remained unchanged. A read-only pre/post producer observer identified exact newly produced owner references. No exploration family was disabled, no source roll was retried, and no player walked these chunks.
+
+| Seed | Frozen chunks | Original haulable rolls | Beam/barrel | Useful existing layout |
+|---|---:|---:|---:|---:|
+|1|20|3|2|0|
+|64|20|9|5|0|
+|1729|20|10|6|1|
+|Total|60|22|13|1|
+
+The sole admitted source was a FallenBeam in core-run `Overworld.5.13.0` seed1729: original `(34,20)`, proposed obstruction `(64,4)`, parking `(63,2)`. The roomy-corner route used three actual DragSystem/MovementSystem steps; beam weight60 and real factory Player Strength18 produced Speed100→76→100. The physical eight-direction detour was10 steps and cleared route3, leaving only a one-step margin under the conservative `detour > 2×haul + cleared route` screen. The parking is near the map edge, though outside the screen's protected/reserved cells. All exact original owners and anchors were restored after the diagnostic Player/load staging. No straight-pull candidate passed. Nine MillStone rolls remained TooHeavy for the actual starting Strength.
+
+**Decision, approved by root: do not register F9 or implement unused receipt machinery from this result.** One marginal layout in60 sampled chunks does not support a useful ordinary encounter. This is bounded negative feasibility, not proof that no possible layout exists. The unapplied receipt fixture and original proposal are retained as evidence; no shared tests, runtime files or data were changed by this investigation.
+
+## Proposed next design: an original optional hedge-side aperture
+
+The user authorizes meaningful chunk changes. The next proposal therefore changes the optional terrain deliberately instead of hoping accidental gaps make a rolled beam useful. This is design only, with no family/version or source adoption:
+
+- Add one small original hedge-side strip variant with a single-cell short aperture, a broad dry parking shoulder on one side, and a substantial always-open walk-around route around the strip's end. A short rigid hedge boundary should make the aperture legible; use existing approved hedge/dirt/grass forms first. Do not wall a whole chunk, narrow a critical road, or imitate the new timber gate.
+- Integrate its cells into the composition plan before entities are produced, using an explicit finite existing hedge/terrain budget and reservations. Preserve the original critical exits, arrival lanes, water/settlement/quest exclusions and ordinary actor/container counts. Root must decide how an eventual v6 optional geometry is selected; literal v2–v5 behavior remains frozen. Do not silently reinterpret old saved plans.
+- The actual unchanged35% haulable roll remains authoritative. Only its exact original beam/barrel may occupy the aperture. Missing roll, millstone or a refused current source leaves the optional gap usable; no substitute load, reward, forced new roll, extra loot or generic receipt framework. Do not derive authority from a nearby matching blueprint.
+- Design the dry shoulder for both straight and one roomy corner parking, with at least a three-cell turning area as a proposal to test, not a guarantee. Preserve open space after parking. Choose barrier length only after real eight-direction path measurements show a meaningful advantage even with current Speed penalties and diagonal squeezing. No cover/sight claim.
+- The key acceptance pair is a normal starting actor choosing the unblocked longer route versus real Haul→reduced-Speed movement→LetGo→short passage. Compare measured ordinary inputs/time, unchanged exact load/model, no exit loss, and actual loaded persistence. A geometry cell count or extra source budget alone is not acceptance.
+
+This can share a later root-owned v6 catalog with a FieldStrips cooking-workspot terrain variant, but the two interactions keep separate source budgets, state and art. No version bump, producer repair or code is authorized by this document itself.
+
+## Remaining gates if the new terrain proposal is chosen
+
+1. Before implementation, execute test-first optional terrain geometry and budget pairs: default/literal legacy equality, real diagonal detour, both original blocked and parked critical connectivity, finite source allowance, no roll/source substitution, protected/arrival/refusal cases.
+2. Only after geometry proves utility, add the minimum exact haulable producer authority needed by the chosen composer and rerun the same fixed multi-seed cohort. Cached/load must not rerun placement. Check post-callback owner/authority and rollback without reclaiming a foreign-transferred entity.
+3. Use one bounded native local-action witness with a disclosed player-only setup transfer if needed, real haul/release menu actions and paid movement. Observe speed/cost, owner/model and clear route, then cached/full-save replacement. A staged local route is not an ordinary twenty-chunk journey.
+4. View matched before/held/parked/cleared images. Existing approved beam/barrel models suffice initially; no new smooth dragging animation or action cue is claimed. Current action query lacks Haul, so the existing C menu remains truthful until separately extended/tested.
+
+## Q1–Q4 review
+
+- **Q1, user benefit:** current accidental terrain did not deliver reliable useful hauling. A deliberate optional aperture/shoulder offers a distinct route-versus-burden decision without adding rewards or enemies; it remains a proposed benefit.
+- **Q2, ownership and scope:** exact producer observation preserved native source budgets; the one staged diagnostic restored every original anchor/reference. No shared Assets, registration, version, RNG or gameplay change occurred.
+- **Q3, evidence:** actual private15-case run and fixed60-source census are retained; native seed parity, ordinary paid inputs, persistence and pixels for the proposed new terrain are unverified. Existing beam71 native checks and FieldGate acceptance do not validate F9.
+- **Q4, severity and next action:** no shipped defect is alleged by missing optional receipts. Root accepted deferring that repair. Prioritize the bounded ToastedEmberwheat/residual-coal presentation audit, then revisit original terrain only through a separately approved test-first unit.

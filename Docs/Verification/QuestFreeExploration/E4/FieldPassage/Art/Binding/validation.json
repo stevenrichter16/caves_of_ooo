@@ -1,0 +1,37 @@
+{
+  "nativeRed": {
+    "receipt": "Docs/Verification/QuestFreeExploration/E4/Integration/native-gate-art-and-optin-red.json",
+    "fixture": "CavesOfOoo.Tests.SpreadFieldGateArtTests",
+    "failures": 8,
+    "controlsPassed": 9,
+    "sourceChildPresent": true
+  },
+  "referenceCompiles": [
+    {
+      "log": "CavesOfOoo.log",
+      "sha256": "41e078961b5205b0f5a453fb8ff1e9361d56b7458a41c344d6bcb9a6e0953044",
+      "exitCode": 0,
+      "errors": 0
+    },
+    {
+      "log": "Assembly-CSharp-Editor.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exitCode": 0,
+      "errors": 0
+    },
+    {
+      "log": "EditModeTests.log",
+      "sha256": "e52c4691b83dc23807604faef62744c1f59a38c314af5d14003fcff3389d7dd7",
+      "exitCode": 0,
+      "errors": 0
+    }
+  ],
+  "peer": {
+    "agent": "standalone_verify",
+    "result": "No concrete blocker in current-owner/state, exact static contract, scoped importer and cleanup; native import/state/pixels pending"
+  },
+  "rootReview": "Library/importer and five narrow hooks read; no concrete blocker",
+  "sourceCatalogSha256": "c413dd9390a4ec23347c9042f8f2127e9723300c9899abfa22fa6d96135171b3",
+  "productionManifestSha256": "36eccf29b85e54af2ed9637fe67dfc14e2b3c884efebb67fe60924f96770d5f0",
+  "nativeCandidateExecuted": false
+}

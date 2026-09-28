@@ -1,0 +1,116 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /private/tmp/coo-questfree-implementation/e4/hauling-plan/runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-28 14:26:44Z
+    End time: 2026-09-28 14:26:44Z
+    Duration: 0.028 seconds
+
+Test Filters
+    Where: class == CavesOfOoo.Tests.SpreadHaulableReceiptTests or class == CavesOfOoo.Tests.HaulingFeasibilityCensus
+
+Errors, Failures and Warnings
+
+1) Failed : CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(1)
+  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Int32 seed) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 32
+
+2) Failed : CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(64)
+  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Int32 seed) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 32
+   at InvokeStub_SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Object, Span`1)
+
+3) Failed : CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(1729)
+  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Int32 seed) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 32
+   at InvokeStub_SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Object, Span`1)
+
+4) Failed : CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt("moved")
+  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(String fault) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 48
+
+5) Failed : CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt("hidden")
+  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(String fault) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 48
+   at InvokeStub_SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(Object, Span`1)
+
+6) Failed : CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt("handling")
+  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(String fault) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 48
+   at InvokeStub_SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(Object, Span`1)
+
+7) Failed : CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt("foreign-physics")
+  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(String fault) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 48
+   at InvokeStub_SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(Object, Span`1)
+
+8) Failed : CavesOfOoo.Tests.SpreadHaulableReceiptTests.FailedOrdinaryRollIsAnExplicitCurrentEmptySourceWithoutASecondTry
+  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.FailedOrdinaryRollIsAnExplicitCurrentEmptySourceWithoutASecondTry() in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 41
+
+9) Failed : CavesOfOoo.Tests.SpreadHaulableReceiptTests.MissingRolledBlueprintCannotAuthorizeACompleteNonemptyAllowance
+  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.MissingRolledBlueprintCannotAuthorizeACompleteNonemptyAllowance() in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 43
+
+10) Failed : CavesOfOoo.Tests.SpreadHaulableReceiptTests.PreexistingMatchingBeamIsNeverClaimedAsThisProducersRoll
+  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.PreexistingMatchingBeamIsNeverClaimedAsThisProducersRoll() in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 39
+
+11) Failed : CavesOfOoo.Tests.SpreadHaulableReceiptTests.RebuildAndOptOutInvalidateOldExactGraphRatherThanBorrowingTheSameAddress
+  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.RebuildAndOptOutInvalidateOldExactGraphRatherThanBorrowingTheSameAddress() in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 45
+
+Run Settings
+    Number of Test Workers: 1
+    Work Directory: /private/tmp/coo-questfree-implementation/e4/hauling-plan/runner
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Failed
+  Test Count: 15, Passed: 4, Failed: 11, Warnings: 0, Inconclusive: 0, Skipped: 0
+    Failed Tests - Failures: 11, Errors: 0, Invalid: 0
+  Start time: 2026-09-28 14:26:44Z
+    End time: 2026-09-28 14:26:48Z
+    Duration: 3.226 seconds
+
+Results (nunit3) saved as /tmp/coo-questfree-implementation/e4/hauling-plan/receipt-red-feasibility.xml

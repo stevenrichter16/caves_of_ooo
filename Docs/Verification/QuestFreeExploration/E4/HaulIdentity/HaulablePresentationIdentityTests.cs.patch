@@ -1,0 +1,67 @@
+--- Assets/Tests/EditMode/Presentation/Rendering/HaulablePresentationIdentityTests.cs
++++ Assets/Tests/EditMode/Presentation/Rendering/HaulablePresentationIdentityTests.cs
+@@ -108,6 +108,64 @@
+             }
+         }
+ 
++        [Test]
++        public void ReleasedBeamRetainsItsExactMovedModelAcrossARealSavedReplacementGraph()
++        {
++            using (var f = new SpawnRing3DIntegrationFixture("Overworld.11.10.0"))
++            {
++                var at = FindPlainCorridor(f);
++                Assert.True(f.Zone.MoveEntity(f.Player, at.x, at.y));
++                var beam = f.Add("FallenBeam", at.x + 1, at.y);
++                string id = beam.ID;
++                var properties = beam.Properties.OrderBy(p => p.Key).ToArray();
++                try
++                {
++                    Assert.AreEqual(DragVerdict.Ok, DragSystem.TryGrab(f.Player, beam, f.Zone));
++                    Assert.True(MovementSystem.TryMoveTo(f.Player, f.Zone, at.x - 1, at.y));
++                    Assert.AreEqual((at.x, at.y), f.Zone.GetEntityPosition(beam));
++                }
++                finally { DragSystem.Release(f.Player); }
++                f.Refresh();
++                var before = Recipe(f, beam); var source = Style(f, beam);
++                var position = f.Zone.GetEntityPosition(beam);
++                CollectionAssert.AreEqual(properties, beam.Properties.OrderBy(p => p.Key).ToArray(),
++                    "Resolving a stable cosmetic variant must not stamp a new saved visual property.");
++                var loaded = f.RoundTrip(); f.BindLoaded(loaded);
++                var current = f.Zone.GetReadOnlyEntities().Single(e => e.ID == id);
++                Assert.AreNotSame(beam, current); Assert.AreEqual("FallenBeam", current.BlueprintName);
++                Assert.AreEqual(position, f.Zone.GetEntityPosition(current));
++                Assert.False(DragSystem.IsBeingDragged(current));
++                CollectionAssert.AreEqual(properties, current.Properties.OrderBy(p => p.Key).ToArray());
++                var after = Recipe(f, current); var restored = Style(f, current);
++                Assert.AreEqual(before.ModelId, after.ModelId); Assert.AreEqual(before.QuarterTurns, after.QuarterTurns);
++                Assert.AreSame(source.ExpectedMesh, restored.ExpectedMesh); Assert.AreSame(source.ExpectedMaterial, restored.ExpectedMaterial);
++                Assert.False(((SpawnRing3DPresenter)f.Presenter).TryGetApprovedStyle(beam, out _),
++                    "The pre-load reference cannot claim the replacement owner's rendered proof.");
++            }
++        }
++
++        [Test]
++        public void UnrelatedStaticFamilyRetainsItsExistingCoordinateBasedVariation()
++        {
++            using (var f = new SpawnRing3DIntegrationFixture("Overworld.11.10.0"))
++            {
++                var at = FindPlainCorridor(f); Assert.True(f.Zone.MoveEntity(f.Player, at.x - 1, at.y));
++                var stone = f.Add("TepuiStone", at.x + 1, at.y); string id = stone.ID;
++                f.Refresh(); var before = Recipe(f, stone); var source = Style(f, stone);
++                StringAssert.StartsWith("ring-tepui-stone-", before.ModelId);
++                // Diagnostic relocation is explicit for this unrelated static
++                // control; it does not claim that the player can haul a stone tile.
++                Assert.True(f.Zone.MoveEntity(stone, at.x, at.y)); f.Refresh();
++                var after = Recipe(f, stone); var moved = Style(f, stone);
++                Assert.AreEqual(id, stone.ID); Assert.AreSame(stone, after.Owner);
++                Assert.AreEqual(before.Position + Vector3.left, after.Position);
++                Assert.AreNotEqual(before.ModelId, after.ModelId,
++                    "The fix must not freeze all ordinary positional scenery variants.");
++                Assert.AreNotSame(source.ExpectedMesh, moved.ExpectedMesh);
++                Assert.AreSame(source.ExpectedMaterial, moved.ExpectedMaterial);
++            }
++        }
++
+         static SpawnRing3DRecipe Recipe(SpawnRing3DIntegrationFixture f, Entity owner)
+         {
+             var recipe = SpawnRing3DRecipes.Resolve(f.Zone, owner, f.Library.Definition);

@@ -1,0 +1,128 @@
+{
+  "kind": "private-core feasibility; not Unity/native play",
+  "productionChanges": false,
+  "registration": false,
+  "receiptRepair": false,
+  "decision": "Do not implement or register the accidental-gap F9 proposal; consider a separately reviewed optional original terrain variant.",
+  "executed": {
+    "startUtc": "2026-09-28T14:26:44.8132520Z",
+    "endUtc": "2026-09-28T14:26:48.0387810Z",
+    "durationSeconds": 3.225533,
+    "total": 15,
+    "passed": 4,
+    "failed": 11,
+    "receiptCases": {
+      "total": 12,
+      "passed": 1,
+      "missingApiFailures": 11
+    },
+    "censusCases": {
+      "total": 3,
+      "passed": 3
+    }
+  },
+  "seeds": [
+    {
+      "seed": 1,
+      "metadataSelected": 20,
+      "ordinaryHaulableSources": 3,
+      "beamOrBarrel": 2,
+      "usefulLayouts": 0
+    },
+    {
+      "seed": 64,
+      "metadataSelected": 20,
+      "ordinaryHaulableSources": 9,
+      "beamOrBarrel": 5,
+      "usefulLayouts": 0
+    },
+    {
+      "seed": 1729,
+      "metadataSelected": 20,
+      "ordinaryHaulableSources": 10,
+      "beamOrBarrel": 6,
+      "usefulLayouts": 1
+    }
+  ],
+  "total": {
+    "metadataSelected": 60,
+    "ordinaryHaulableSources": 22,
+    "beamOrBarrel": 13,
+    "usefulLayouts": 1
+  },
+  "witnesses": [
+    {
+      "seed": 1729,
+      "zone": "Overworld.5.13.0",
+      "formation": "Fallow",
+      "source": "FallenBeam",
+      "sourceId": "6732",
+      "origin": {
+        "Item1": 34,
+        "Item2": 20
+      },
+      "verdict": "Ok",
+      "strength": 18,
+      "weight": 60,
+      "narrowGapScreens": 3,
+      "trials": 6,
+      "reason": "useful-actual-drag-proof",
+      "options": [
+        {
+          "cut": {
+            "Item1": 64,
+            "Item2": 4
+          },
+          "start": {
+            "Item1": 64,
+            "Item2": 3
+          },
+          "goal": {
+            "Item1": 64,
+            "Item2": 5
+          },
+          "parking": {
+            "Item1": 63,
+            "Item2": 2
+          },
+          "trail": [
+            {
+              "Item1": 64,
+              "Item2": 2
+            },
+            {
+              "Item1": 63,
+              "Item2": 2
+            },
+            {
+              "Item1": 62,
+              "Item2": 2
+            }
+          ],
+          "variant": "roomy-corner",
+          "beforeSteps": 10,
+          "afterSteps": 3,
+          "haulSteps": 3,
+          "conservativeUsefulMargin": 1,
+          "success": true,
+          "initialSpeed": 100,
+          "heldSpeed": 76,
+          "restoredSpeed": 100,
+          "finalLoad": {
+            "Item1": 63,
+            "Item2": 2
+          }
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Stable-hash and Unity-shim isolated core runner; seed-specific layouts can differ from Unity Mono.",
+    "Metadata cohort freezes before source generation; it is not contiguous ordinary travel.",
+    "Actual core DragSystem/MovementSystem admission, following and release were executed for one original load after disclosed diagnostic relocation and factory Player placement, then exact source anchors/references restored.",
+    "No native keyboard, scheduler/paid-time, picture, human-awareness, or native save/scene restoration claim.",
+    "Two proposed layouts and bounded search only; this does not prove every conceivable existing gap is unusable.",
+    "Only one near-edge roomy-corner witness with conservative one-step margin; no straight layout passed.",
+    "Eleven missing optional receipt API failures establish absent proposed instrumentation, not an existing gameplay bug. No unused receipt repair is recommended."
+  ]
+}

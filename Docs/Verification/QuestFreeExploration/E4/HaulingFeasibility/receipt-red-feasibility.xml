@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e4/hauling-plan/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="31" result="Failed" start-time="2026-09-28T14:26:44.8132520Z" end-time="2026-09-28T14:26:48.0387810Z" duration="3.225533" total="15" passed="4" failed="11" inconclusive="0" skipped="0" warnings="0" asserts="2442" random-seed="1824361585">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/e4/hauling-plan/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/e4/hauling-plan/receipt-red-feasibility.xml --where "class == CavesOfOoo.Tests.SpreadHaulableReceiptTests or class == CavesOfOoo.Tests.HaulingFeasibilityCensus"]]></command-line>
+  <filter>
+    <or>
+      <class>CavesOfOoo.Tests.SpreadHaulableReceiptTests</class>
+      <class>CavesOfOoo.Tests.HaulingFeasibilityCensus</class>
+    </or>
+  </filter>
+  <test-suite type="Assembly" id="1039" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/e4/hauling-plan/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="31" result="Failed" site="Child" start-time="2026-09-28T14:26:44.8132520Z" end-time="2026-09-28T14:26:48.0387810Z" duration="3.225533" total="15" passed="4" failed="11" warnings="0" inconclusive="0" skipped="0" asserts="2442">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/e4/hauling-plan/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/e4/hauling-plan/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="87616" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1040" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="31" result="Failed" site="Child" start-time="2026-09-28T14:26:44.8149060Z" end-time="2026-09-28T14:26:48.0387780Z" duration="3.223887" total="15" passed="4" failed="11" warnings="0" inconclusive="0" skipped="0" asserts="2442">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1041" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="31" result="Failed" site="Child" start-time="2026-09-28T14:26:44.8150070Z" end-time="2026-09-28T14:26:48.0387740Z" duration="3.223781" total="15" passed="4" failed="11" warnings="0" inconclusive="0" skipped="0" asserts="2442">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1034" name="HaulingFeasibilityCensus" fullname="CavesOfOoo.Tests.HaulingFeasibilityCensus" classname="CavesOfOoo.Tests.HaulingFeasibilityCensus" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T14:26:44.8153540Z" end-time="2026-09-28T14:26:47.7286830Z" duration="2.913342" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="2424">
+          <test-suite type="ParameterizedMethod" id="1038" name="ObserveFixedMetadataCohortBeforeAnyHaulableProductionChange" fullname="CavesOfOoo.Tests.HaulingFeasibilityCensus.ObserveFixedMetadataCohortBeforeAnyHaulableProductionChange" classname="CavesOfOoo.Tests.HaulingFeasibilityCensus" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-28T14:26:44.8162420Z" end-time="2026-09-28T14:26:47.7284240Z" duration="2.912195" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="2424">
+            <test-case id="1035" name="ObserveFixedMetadataCohortBeforeAnyHaulableProductionChange(1)" fullname="CavesOfOoo.Tests.HaulingFeasibilityCensus.ObserveFixedMetadataCohortBeforeAnyHaulableProductionChange(1)" methodname="ObserveFixedMetadataCohortBeforeAnyHaulableProductionChange" classname="CavesOfOoo.Tests.HaulingFeasibilityCensus" runstate="Runnable" seed="2113208512" result="Passed" start-time="2026-09-28T14:26:44.8163470Z" end-time="2026-09-28T14:26:45.6375860Z" duration="0.821270" asserts="41" />
+            <test-case id="1036" name="ObserveFixedMetadataCohortBeforeAnyHaulableProductionChange(64)" fullname="CavesOfOoo.Tests.HaulingFeasibilityCensus.ObserveFixedMetadataCohortBeforeAnyHaulableProductionChange(64)" methodname="ObserveFixedMetadataCohortBeforeAnyHaulableProductionChange" classname="CavesOfOoo.Tests.HaulingFeasibilityCensus" runstate="Runnable" seed="1100711727" result="Passed" start-time="2026-09-28T14:26:45.6382520Z" end-time="2026-09-28T14:26:46.2390800Z" duration="0.600830" asserts="41" />
+            <test-case id="1037" name="ObserveFixedMetadataCohortBeforeAnyHaulableProductionChange(1729)" fullname="CavesOfOoo.Tests.HaulingFeasibilityCensus.ObserveFixedMetadataCohortBeforeAnyHaulableProductionChange(1729)" methodname="ObserveFixedMetadataCohortBeforeAnyHaulableProductionChange" classname="CavesOfOoo.Tests.HaulingFeasibilityCensus" runstate="Runnable" seed="1473579205" result="Passed" start-time="2026-09-28T14:26:46.2391320Z" end-time="2026-09-28T14:26:47.7279480Z" duration="1.488824" asserts="2342" />
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1019" name="SpreadHaulableReceiptTests" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-28T14:26:47.7289530Z" end-time="2026-09-28T14:26:48.0387690Z" duration="0.309817" total="12" passed="1" failed="11" warnings="0" inconclusive="0" skipped="0" asserts="18">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1024" name="CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T14:26:47.7290190Z" end-time="2026-09-28T14:26:47.8249520Z" duration="0.095933" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1021" name="CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(1)" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(1)" methodname="CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" seed="62559697" result="Failed" start-time="2026-09-28T14:26:47.7290580Z" end-time="2026-09-28T14:26:47.7660740Z" duration="0.037017" asserts="2">
+              <failure>
+                <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Int32 seed) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 32
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Int32 seed) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 32
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1022" name="CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(64)" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(64)" methodname="CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" seed="1458500109" result="Failed" start-time="2026-09-28T14:26:47.7661850Z" end-time="2026-09-28T14:26:47.7925030Z" duration="0.026318" asserts="2">
+              <failure>
+                <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Int32 seed) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 32
+   at InvokeStub_SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Int32 seed) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 32
+   at InvokeStub_SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1023" name="CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(1729)" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(1729)" methodname="CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" seed="2128256018" result="Failed" start-time="2026-09-28T14:26:47.7925320Z" end-time="2026-09-28T14:26:47.8249180Z" duration="0.032387" asserts="2">
+              <failure>
+                <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Int32 seed) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 32
+   at InvokeStub_SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Int32 seed) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 32
+   at InvokeStub_SpreadHaulableReceiptTests.CapturePreservesActualOrdinaryChancePlacementAndNextRandomValue(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1033" name="ChangedActualSourceCannotRemainAnUntouchedProducerReceipt" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T14:26:47.8249740Z" end-time="2026-09-28T14:26:47.9216290Z" duration="0.096655" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1029" name="ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(&quot;moved&quot;)" methodname="ChangedActualSourceCannotRemainAnUntouchedProducerReceipt" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" seed="197982132" result="Failed" start-time="2026-09-28T14:26:47.8249940Z" end-time="2026-09-28T14:26:47.8502870Z" duration="0.025294" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(String fault) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 48
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(String fault) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 48
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(&quot;hidden&quot;)" methodname="ChangedActualSourceCannotRemainAnUntouchedProducerReceipt" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" seed="1614020329" result="Failed" start-time="2026-09-28T14:26:47.8503110Z" end-time="2026-09-28T14:26:47.8737440Z" duration="0.023435" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(String fault) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 48
+   at InvokeStub_SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(String fault) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 48
+   at InvokeStub_SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1031" name="ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(&quot;handling&quot;)" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(&quot;handling&quot;)" methodname="ChangedActualSourceCannotRemainAnUntouchedProducerReceipt" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" seed="1069255751" result="Failed" start-time="2026-09-28T14:26:47.8737660Z" end-time="2026-09-28T14:26:47.8963440Z" duration="0.022579" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(String fault) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 48
+   at InvokeStub_SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(String fault) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 48
+   at InvokeStub_SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1032" name="ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(&quot;foreign-physics&quot;)" methodname="ChangedActualSourceCannotRemainAnUntouchedProducerReceipt" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" seed="1269314095" result="Failed" start-time="2026-09-28T14:26:47.8963730Z" end-time="2026-09-28T14:26:47.9215990Z" duration="0.025227" asserts="1">
+              <failure>
+                <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(String fault) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 48
+   at InvokeStub_SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(String fault) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 48
+   at InvokeStub_SpreadHaulableReceiptTests.ChangedActualSourceCannotRemainAnUntouchedProducerReceipt(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1026" name="FailedOrdinaryRollIsAnExplicitCurrentEmptySourceWithoutASecondTry" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.FailedOrdinaryRollIsAnExplicitCurrentEmptySourceWithoutASecondTry" methodname="FailedOrdinaryRollIsAnExplicitCurrentEmptySourceWithoutASecondTry" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" seed="1412001769" result="Failed" start-time="2026-09-28T14:26:47.9216550Z" end-time="2026-09-28T14:26:47.9473830Z" duration="0.025729" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.FailedOrdinaryRollIsAnExplicitCurrentEmptySourceWithoutASecondTry() in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 41
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.FailedOrdinaryRollIsAnExplicitCurrentEmptySourceWithoutASecondTry() in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 41
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1027" name="MissingRolledBlueprintCannotAuthorizeACompleteNonemptyAllowance" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.MissingRolledBlueprintCannotAuthorizeACompleteNonemptyAllowance" methodname="MissingRolledBlueprintCannotAuthorizeACompleteNonemptyAllowance" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" seed="288707853" result="Failed" start-time="2026-09-28T14:26:47.9474020Z" end-time="2026-09-28T14:26:47.9690450Z" duration="0.021644" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.MissingRolledBlueprintCannotAuthorizeACompleteNonemptyAllowance() in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 43
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.MissingRolledBlueprintCannotAuthorizeACompleteNonemptyAllowance() in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 43
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1025" name="PreexistingMatchingBeamIsNeverClaimedAsThisProducersRoll" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.PreexistingMatchingBeamIsNeverClaimedAsThisProducersRoll" methodname="PreexistingMatchingBeamIsNeverClaimedAsThisProducersRoll" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" seed="1646642016" result="Failed" start-time="2026-09-28T14:26:47.9690640Z" end-time="2026-09-28T14:26:47.9953540Z" duration="0.026291" asserts="2">
+            <failure>
+              <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.PreexistingMatchingBeamIsNeverClaimedAsThisProducersRoll() in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 39
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.PreexistingMatchingBeamIsNeverClaimedAsThisProducersRoll() in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 39
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1028" name="RebuildAndOptOutInvalidateOldExactGraphRatherThanBorrowingTheSameAddress" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.RebuildAndOptOutInvalidateOldExactGraphRatherThanBorrowingTheSameAddress" methodname="RebuildAndOptOutInvalidateOldExactGraphRatherThanBorrowingTheSameAddress" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" seed="1336631338" result="Failed" start-time="2026-09-28T14:26:47.9953720Z" end-time="2026-09-28T14:26:48.0159010Z" duration="0.020529" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.RebuildAndOptOutInvalidateOldExactGraphRatherThanBorrowingTheSameAddress() in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 45
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing optional exact haulable producer capture.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.Capture(HaulablePropBuilder b, Boolean value) in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 16
+   at CavesOfOoo.Tests.SpreadHaulableReceiptTests.RebuildAndOptOutInvalidateOldExactGraphRatherThanBorrowingTheSameAddress() in /tmp/coo-questfree-implementation/e4/hauling-plan/SpreadHaulableReceiptTests.cs:line 45
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1020" name="UnmodifiedLegacyProducerStillPlacesAtMostOneRealOrdinarySource" fullname="CavesOfOoo.Tests.SpreadHaulableReceiptTests.UnmodifiedLegacyProducerStillPlacesAtMostOneRealOrdinarySource" methodname="UnmodifiedLegacyProducerStillPlacesAtMostOneRealOrdinarySource" classname="CavesOfOoo.Tests.SpreadHaulableReceiptTests" runstate="Runnable" seed="495482708" result="Passed" start-time="2026-09-28T14:26:48.0159220Z" end-time="2026-09-28T14:26:48.0387360Z" duration="0.022815" asserts="3" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,20 @@
+var flags=System.Reflection.BindingFlags.Public|System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance;
+var type=System.AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType("CavesOfOoo.Tests.SpreadFieldPassagePipelineTests",false)).First(t=>t!=null);
+var fixture=System.Activator.CreateInstance(type);var rows=new System.Collections.Generic.List<object>();
+type.GetMethod("Setup",flags).Invoke(fixture,null);
+try {
+var scope=type.GetField("scope",flags).GetValue(fixture);
+var factory=(CavesOfOoo.Data.EntityFactory)scope.GetType().GetField("Factory",flags).GetValue(scope);
+foreach(int seed in new[]{1,64,1729}) {
+var ids=(string[])type.GetMethod("Selected",flags).Invoke(fixture,new object[]{seed});
+for(int repetition=0;repetition<3;repetition++) foreach(string id in ids) {
+type.GetMethod("Seed",flags).Invoke(fixture,new object[]{seed,id});
+var manager=CavesOfOoo.Core.OverworldZoneManager.CreateDetached(factory,seed,true);
+var watch=System.Diagnostics.Stopwatch.StartNew();var zone=manager.GetZone(id);watch.Stop();
+rows.Add(new{seed,zoneId=id,repetition,milliseconds=watch.Elapsed.TotalMilliseconds,accepted=zone!=null,committed=manager.Exploration.DispositionFor(id)==2});
+}
+}
+} finally {type.GetMethod("Cleanup",flags).Invoke(fixture,null);}
+var report=new{boundary="Three fixed repeats over twenty actual v5 assignments using plain production detached manager; no pipeline Probe, snapshots, assertions or scene rendering inside timed GetZone. Same factory/real content, fixed existing test scope for restoring globals. Single editor process sequential samples, not a frame or statistical significance claim; no legacy/version4 equivalence.",rows};
+System.IO.File.WriteAllText("/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/FieldPassage/NativeCensus/plain-production-cold-samples.json",Newtonsoft.Json.JsonConvert.SerializeObject(report,Newtonsoft.Json.Formatting.Indented));
+return new{samples=rows.Count};

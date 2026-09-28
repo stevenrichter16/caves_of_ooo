@@ -1,0 +1,25 @@
+{
+  "source": "Docs/Verification/QuestFreeExploration/E4/Integration/native-initial-red.json",
+  "sourceSha256": "f6772aee4a91991ff9e7525fc758560f991e48d25f588c05a14265b2cc2a4af0",
+  "scope": "Extract of the actual2-case beam fixture; combined32 also includes separate F12 failures",
+  "actualCases": [
+    {
+      "name": "SameFallenBeamKeepsItsAuthoredShapeAcrossAnActualDrag(True)",
+      "fullName": "CavesOfOoo.Tests.HaulablePresentationIdentityTests.SameFallenBeamKeepsItsAuthoredShapeAcrossAnActualDrag(True)",
+      "state": "Failed",
+      "durationSeconds": 2.2820541,
+      "message": "  Dragging changes location, not the same physical timber's authored variant.\n  String lengths are both 18. Strings differ at index 17.\n  Expected: \"ring-fallen-beam-0\"\n  But was:  \"ring-fallen-beam-1\"\n  ----------------------------^\n",
+      "stackTrace": "at CavesOfOoo.Tests.HaulablePresentationIdentityTests.SameFallenBeamKeepsItsAuthoredShapeAcrossAnActualDrag (System.Boolean grabbed) [0x00573] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/HaulablePresentationIdentityTests.cs:91\n",
+      "output": ""
+    },
+    {
+      "name": "SameFallenBeamKeepsItsAuthoredShapeAcrossAnActualDrag(False)",
+      "fullName": "CavesOfOoo.Tests.HaulablePresentationIdentityTests.SameFallenBeamKeepsItsAuthoredShapeAcrossAnActualDrag(False)",
+      "state": "Passed",
+      "durationSeconds": 0.2712614,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    }
+  ]
+}

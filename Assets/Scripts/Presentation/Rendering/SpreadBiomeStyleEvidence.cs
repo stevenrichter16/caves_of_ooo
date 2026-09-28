@@ -56,6 +56,8 @@ namespace CavesOfOoo.Rendering
    if (latchcoil != null) { latchcoil.Validate(); foreach (var e in latchcoil.Entries) Add(e.Id,e.Mesh,latchcoil.Material); }
    var collectors=SpreadCollectorArtLibrary.Load();
    if(collectors!=null){collectors.Validate();foreach(var e in collectors.Entries)Add(e.Id,e.Mesh,e.Materials[0],e.Materials);}
+   var fieldGates=SpreadFieldGate3DLibrary.Load();
+   if(fieldGates!=null){fieldGates.Validate();foreach(var e in fieldGates.Entries)Add(e.Id,e.Mesh,e.Material);}
    var exploration = QuestFreeSpreadArtLibrary.Load();
    if (exploration != null) { exploration.Validate(); foreach (var e in exploration.Entries) Add(e.Id,e.Mesh,e.Materials[0],e.Materials); }
   }

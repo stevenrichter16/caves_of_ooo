@@ -1,0 +1,426 @@
+{
+  "schemaVersion": 1,
+  "id": "spread-field-gate-original",
+  "coordinates": "Unity X east/Y up/Z north; one unit per cell",
+  "hinge": [
+    -0.325,
+    0,
+    -0.25
+  ],
+  "palette": [
+    "#082C28",
+    "#103E36",
+    "#1A4B40",
+    "#26594A",
+    "#A0A77C",
+    "#CBC697",
+    "#647353",
+    "#235D25",
+    "#40872C",
+    "#65AE3D",
+    "#435A53",
+    "#62786C",
+    "#819489",
+    "#16883B",
+    "#45CB4B",
+    "#A0E772",
+    "#207838",
+    "#D2D3B4",
+    "#B77B43",
+    "#403D28",
+    "#756C40",
+    "#A39456",
+    "#C4B877",
+    "#243E39"
+  ],
+  "models": [
+    {
+      "id": "spread-field-gate-closed",
+      "blueprint": "SpreadFieldGate",
+      "rigged": false,
+      "kind": "entity",
+      "rigFamily": "",
+      "clips": [],
+      "bones": [],
+      "sockets": [],
+      "boxes": [
+        {
+          "part": "fixed-post-L",
+          "center": [
+            -0.405,
+            0.385,
+            -0.25
+          ],
+          "size": [
+            0.13,
+            0.77,
+            0.16
+          ],
+          "color": 19
+        },
+        {
+          "part": "fixed-endgrain-L",
+          "center": [
+            -0.405,
+            0.785,
+            -0.25
+          ],
+          "size": [
+            0.132,
+            0.03,
+            0.162
+          ],
+          "color": 21
+        },
+        {
+          "part": "fixed-post-face-L",
+          "center": [
+            -0.405,
+            0.40040000000000003,
+            -0.337
+          ],
+          "size": [
+            0.073,
+            0.5236000000000001,
+            0.014
+          ],
+          "color": 20
+        },
+        {
+          "part": "fixed-post-R",
+          "center": [
+            0.405,
+            0.365,
+            -0.25
+          ],
+          "size": [
+            0.13,
+            0.73,
+            0.16
+          ],
+          "color": 19
+        },
+        {
+          "part": "fixed-endgrain-R",
+          "center": [
+            0.405,
+            0.745,
+            -0.25
+          ],
+          "size": [
+            0.132,
+            0.03,
+            0.162
+          ],
+          "color": 21
+        },
+        {
+          "part": "fixed-post-face-R",
+          "center": [
+            0.405,
+            0.3796,
+            -0.337
+          ],
+          "size": [
+            0.073,
+            0.4964,
+            0.014
+          ],
+          "color": 20
+        },
+        {
+          "part": "fixed-hinge-0",
+          "center": [
+            -0.338,
+            0.22,
+            -0.25
+          ],
+          "size": [
+            0.054,
+            0.045,
+            0.11
+          ],
+          "color": 10
+        },
+        {
+          "part": "fixed-hinge-1",
+          "center": [
+            -0.338,
+            0.56,
+            -0.25
+          ],
+          "size": [
+            0.054,
+            0.045,
+            0.11
+          ],
+          "color": 10
+        },
+        {
+          "part": "leaf-upright-L",
+          "center": [
+            -0.295,
+            0.4,
+            -0.25
+          ],
+          "size": [
+            0.06,
+            0.54,
+            0.065
+          ],
+          "color": 20
+        },
+        {
+          "part": "leaf-upright-R",
+          "center": [
+            0.295,
+            0.4,
+            -0.25
+          ],
+          "size": [
+            0.06,
+            0.54,
+            0.065
+          ],
+          "color": 20
+        },
+        {
+          "part": "leaf-rail-0",
+          "center": [
+            0,
+            0.18,
+            -0.25
+          ],
+          "size": [
+            0.65,
+            0.075,
+            0.08
+          ],
+          "color": 20
+        },
+        {
+          "part": "leaf-rail-1",
+          "center": [
+            0,
+            0.4,
+            -0.25
+          ],
+          "size": [
+            0.65,
+            0.075,
+            0.08
+          ],
+          "color": 20
+        },
+        {
+          "part": "leaf-rail-2",
+          "center": [
+            0,
+            0.62,
+            -0.25
+          ],
+          "size": [
+            0.65,
+            0.075,
+            0.08
+          ],
+          "color": 18
+        }
+      ]
+    },
+    {
+      "id": "spread-field-gate-open",
+      "blueprint": "SpreadFieldGate",
+      "rigged": false,
+      "kind": "entity",
+      "rigFamily": "",
+      "clips": [],
+      "bones": [],
+      "sockets": [],
+      "boxes": [
+        {
+          "part": "fixed-post-L",
+          "center": [
+            -0.405,
+            0.385,
+            -0.25
+          ],
+          "size": [
+            0.13,
+            0.77,
+            0.16
+          ],
+          "color": 19
+        },
+        {
+          "part": "fixed-endgrain-L",
+          "center": [
+            -0.405,
+            0.785,
+            -0.25
+          ],
+          "size": [
+            0.132,
+            0.03,
+            0.162
+          ],
+          "color": 21
+        },
+        {
+          "part": "fixed-post-face-L",
+          "center": [
+            -0.405,
+            0.40040000000000003,
+            -0.337
+          ],
+          "size": [
+            0.073,
+            0.5236000000000001,
+            0.014
+          ],
+          "color": 20
+        },
+        {
+          "part": "fixed-post-R",
+          "center": [
+            0.405,
+            0.365,
+            -0.25
+          ],
+          "size": [
+            0.13,
+            0.73,
+            0.16
+          ],
+          "color": 19
+        },
+        {
+          "part": "fixed-endgrain-R",
+          "center": [
+            0.405,
+            0.745,
+            -0.25
+          ],
+          "size": [
+            0.132,
+            0.03,
+            0.162
+          ],
+          "color": 21
+        },
+        {
+          "part": "fixed-post-face-R",
+          "center": [
+            0.405,
+            0.3796,
+            -0.337
+          ],
+          "size": [
+            0.073,
+            0.4964,
+            0.014
+          ],
+          "color": 20
+        },
+        {
+          "part": "fixed-hinge-0",
+          "center": [
+            -0.338,
+            0.22,
+            -0.25
+          ],
+          "size": [
+            0.054,
+            0.045,
+            0.11
+          ],
+          "color": 10
+        },
+        {
+          "part": "fixed-hinge-1",
+          "center": [
+            -0.338,
+            0.56,
+            -0.25
+          ],
+          "size": [
+            0.054,
+            0.045,
+            0.11
+          ],
+          "color": 10
+        },
+        {
+          "part": "leaf-upright-L",
+          "center": [
+            -0.325,
+            0.4,
+            -0.21999999999999997
+          ],
+          "size": [
+            0.065,
+            0.54,
+            0.06
+          ],
+          "color": 20
+        },
+        {
+          "part": "leaf-upright-R",
+          "center": [
+            -0.325,
+            0.4,
+            0.37
+          ],
+          "size": [
+            0.065,
+            0.54,
+            0.06
+          ],
+          "color": 20
+        },
+        {
+          "part": "leaf-rail-0",
+          "center": [
+            -0.325,
+            0.18,
+            0.07500000000000001
+          ],
+          "size": [
+            0.08,
+            0.075,
+            0.65
+          ],
+          "color": 20
+        },
+        {
+          "part": "leaf-rail-1",
+          "center": [
+            -0.325,
+            0.4,
+            0.07500000000000001
+          ],
+          "size": [
+            0.08,
+            0.075,
+            0.65
+          ],
+          "color": 20
+        },
+        {
+          "part": "leaf-rail-2",
+          "center": [
+            -0.325,
+            0.62,
+            0.07500000000000001
+          ],
+          "size": [
+            0.08,
+            0.075,
+            0.65
+          ],
+          "color": 18
+        }
+      ]
+    }
+  ]
+}

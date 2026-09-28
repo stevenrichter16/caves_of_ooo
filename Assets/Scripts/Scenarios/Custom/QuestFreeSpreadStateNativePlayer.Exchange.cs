@@ -56,7 +56,7 @@ namespace CavesOfOoo.Scenarios.Custom
         }
         IEnumerator Exchange()
         {
-            Require(Zone.ZoneID=="Overworld.11.10.0"&&Manager.Exploration.Version==4,"ordinary current default start and v4 manifest");
+            Require(Zone.ZoneID=="Overworld.11.10.0"&&Manager.Exploration.Version==SpreadExplorationPlan.CurrentVersion,"ordinary current default start and current manifest");
             Check("fixed_actual_winner_metadata",Manager.Exploration.TryGetPlacement(Manager,ExchangeZone,out var selected)&&selected.Family==SpreadExplorationFamily.RoadsideExchange);
             var originalPlayer=Player;int originalCount=Player.GetIntProperty("TravellerCount:3");
             Require(originalCount<WorldTravellers.MaximumEncounters&&!Player.IntProperties.ContainsKey(ExchangeRoll)&&Player.GetProperty(ExchangeReceipt)==null,"unused actual target entry and remaining ordinary allowance");

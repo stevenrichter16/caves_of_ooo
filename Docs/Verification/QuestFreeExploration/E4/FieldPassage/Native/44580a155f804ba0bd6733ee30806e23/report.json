@@ -1,0 +1,405 @@
+{
+  "runId": "44580a155f804ba0bd6733ee30806e23",
+  "seed": 64,
+  "requestedSeed": 64,
+  "mode": "passage",
+  "finished": true,
+  "complete": true,
+  "failures": 0,
+  "fatal": null,
+  "seconds": 10.168446699999999,
+  "paidInputs": 8,
+  "checks": [
+    {
+      "label": "ordinary_fresh_opted_in_world",
+      "pass": true
+    },
+    {
+      "label": "actual_closed_gate_and_longer_bypass",
+      "pass": true
+    },
+    {
+      "label": "focused_real_open_action_cue",
+      "pass": true
+    },
+    {
+      "label": "native_open_stays_at_approach",
+      "pass": true
+    },
+    {
+      "label": "native_step_into_open_gate",
+      "pass": true
+    },
+    {
+      "label": "occupied_gate_refuses_without_closing",
+      "pass": true
+    },
+    {
+      "label": "native_step_reaches_other_side",
+      "pass": true
+    },
+    {
+      "label": "native_close_restores_boundary",
+      "pass": true
+    },
+    {
+      "label": "return_keeps_same_open_source",
+      "pass": true
+    },
+    {
+      "label": "native_checkpoint_saves_open_passage",
+      "pass": true
+    },
+    {
+      "label": "native_close_is_later_checkpoint_mutation",
+      "pass": true
+    },
+    {
+      "label": "native_load_restores_open_passage_and_player",
+      "pass": true
+    },
+    {
+      "label": "bounded_passage_finish",
+      "pass": true
+    }
+  ],
+  "observations": [
+    {
+      "phase": "bounded-actual-source-selection",
+      "family": "FieldPassage",
+      "zone": "Overworld.10.13.0",
+      "owner": "4959",
+      "arrival": [
+        5,
+        4
+      ],
+      "accepted": true,
+      "criterion": "committed closed gate, dry cardinal crossing, actual longer physical bypass, no hostile within eight cells",
+      "boundary": "Metadata chooses up to eight addresses in canonical order; actual source/current geometry chooses an observation cell. This is not an uninformed player decision."
+    },
+    {
+      "phase": "disclosed-player-only-transfer",
+      "label": "actual generated field passage",
+      "zone": "Overworld.10.13.0",
+      "x": 5,
+      "y": 4,
+      "player": "2699",
+      "tick": 10,
+      "nativeEntryAdditions": [],
+      "boundary": "Setup transfer to an actual generated source; not an ordinary journey. Original source owners are preserved. Normal native entry-hook additions such as travellers are recorded separately, never suppressed."
+    },
+    {
+      "phase": "actual-passage-geometry",
+      "zone": "Overworld.10.13.0",
+      "owner": "4959",
+      "quarter": 1,
+      "anchor": [
+        6,
+        4
+      ],
+      "arrival": [
+        5,
+        4
+      ],
+      "opposite": [
+        7,
+        4
+      ],
+      "closedPhysicalSteps": 23,
+      "openCrossingSteps": 2,
+      "openActionCost": 1,
+      "boundary": "Measured native physical route; whole bypass not walked by this local observer."
+    },
+    {
+      "phase": "actual-current-style",
+      "owner": "4959",
+      "blueprint": "SpreadFieldGate",
+      "model": "spread-field-gate-closed",
+      "pieces": 1,
+      "camera": {
+        "pixelWidth": 1461,
+        "pixelHeight": 918
+      },
+      "boundary": "All-piece identity and bounds do not prove unoccluded pixels or human readability; images require review."
+    },
+    {
+      "phase": "native-passage-door-action",
+      "owner": "4959",
+      "command": "OpenDoor",
+      "paid": true,
+      "beforeTick": 10,
+      "afterTick": 20,
+      "cost": 1000,
+      "open": true
+    },
+    {
+      "phase": "actual-current-style",
+      "owner": "4959",
+      "blueprint": "SpreadFieldGate",
+      "model": "spread-field-gate-open",
+      "pieces": 1,
+      "camera": {
+        "pixelWidth": 1461,
+        "pixelHeight": 918
+      },
+      "boundary": "All-piece identity and bounds do not prove unoccluded pixels or human readability; images require review."
+    },
+    {
+      "phase": "native-enter-gate",
+      "key": "D",
+      "beforeTick": 20,
+      "afterTick": 30,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "cost": 1000,
+      "beforeHp": 40,
+      "afterHp": 40
+    },
+    {
+      "phase": "native-passage-door-action",
+      "owner": "4959",
+      "command": "CloseDoor",
+      "paid": false,
+      "beforeTick": 30,
+      "afterTick": 30,
+      "cost": 0,
+      "open": true
+    },
+    {
+      "phase": "native-cross-field-boundary",
+      "key": "D",
+      "beforeTick": 30,
+      "afterTick": 40,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "cost": 1000,
+      "beforeHp": 40,
+      "afterHp": 40
+    },
+    {
+      "phase": "native-passage-door-action",
+      "owner": "4959",
+      "command": "CloseDoor",
+      "paid": true,
+      "beforeTick": 40,
+      "afterTick": 50,
+      "cost": 1000,
+      "open": false
+    },
+    {
+      "phase": "native-passage-door-action",
+      "owner": "4959",
+      "command": "OpenDoor",
+      "paid": true,
+      "beforeTick": 50,
+      "afterTick": 60,
+      "cost": 1000,
+      "open": true
+    },
+    {
+      "phase": "passage-native-exit",
+      "kind": "local",
+      "beforeTick": 60,
+      "afterTick": 70,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "a7dfb832",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790605057542,
+          "Turn": 60,
+          "ActorId": "2699",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"44580a155f804ba0bd6733ee30806e23\",\"label\":\"passage-native-exit\"}"
+        },
+        {
+          "TraceId": "4457761f",
+          "Category": "worldmap",
+          "Kind": "Ascended",
+          "TimestampUnixMs": 1790605057583,
+          "Turn": 60,
+          "ActorId": "2699",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromZoneID\":\"Overworld.10.13.0\",\"fromZoneX\":7,\"fromZoneY\":4,\"toWorldX\":10,\"toWorldY\":13,\"toZoneCellX\":40,\"toZoneCellY\":16}"
+        },
+        {
+          "TraceId": "657b36b1",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790605057915,
+          "Turn": 60,
+          "ActorId": "2699",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "29c913a4",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790605057915,
+          "Turn": 70,
+          "ActorId": "2699",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "passage-native-return",
+      "kind": "local",
+      "beforeTick": 70,
+      "afterTick": 80,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "a7178152",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790605058092,
+          "Turn": 70,
+          "ActorId": "2699",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"44580a155f804ba0bd6733ee30806e23\",\"label\":\"passage-native-return\"}"
+        },
+        {
+          "TraceId": "6619e134",
+          "Category": "worldmap",
+          "Kind": "Descended",
+          "TimestampUnixMs": 1790605058097,
+          "Turn": 70,
+          "ActorId": "2699",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromWorldX\":10,\"fromWorldY\":13,\"toZoneID\":\"Overworld.10.13.0\",\"toZoneX\":7,\"toZoneY\":4,\"usedSavedLocation\":true}"
+        },
+        {
+          "TraceId": "09d326ef",
+          "Category": "worldgen",
+          "Kind": "VoxelPresentationBound",
+          "TimestampUnixMs": 1790605058140,
+          "Turn": 70,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.10.13.0\",\"bindings\":410}"
+        },
+        {
+          "TraceId": "878e3cd2",
+          "Category": "effect",
+          "Kind": "NativeSpellPrepared",
+          "TimestampUnixMs": 1790605058244,
+          "Turn": 70,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"WorldMap\",\"backend\":\"native\",\"LoadSeconds\":0.0,\"ValidationSeconds\":0.0,\"PoolSeconds\":0.00229,\"ViewCount\":384,\"UsedCachedLibrary\":true}"
+        },
+        {
+          "TraceId": "58786a07",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790605058588,
+          "Turn": 70,
+          "ActorId": "2699",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "c68515bc",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790605058588,
+          "Turn": 80,
+          "ActorId": "2699",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "1ec540bf",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790605058591,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":51,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "28def2ee",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790605058591,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":52,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "native-passage-door-action",
+      "owner": "4959",
+      "command": "CloseDoor",
+      "paid": true,
+      "beforeTick": 80,
+      "afterTick": 90,
+      "cost": 1000,
+      "open": false
+    },
+    {
+      "phase": "actual-current-style",
+      "owner": "4959",
+      "blueprint": "SpreadFieldGate",
+      "model": "spread-field-gate-open",
+      "pieces": 1,
+      "camera": {
+        "pixelWidth": 1461,
+        "pixelHeight": 918
+      },
+      "boundary": "All-piece identity and bounds do not prove unoccluded pixels or human readability; images require review."
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/00-ordinary-start.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/01-generated-closed-field-gate.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/02-current-field-gate-open-hint.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/03-native-open-clear-passage.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/04-native-crossing-and-closed-boundary.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/05-return-to-opened-field-passage.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native/44580a155f804ba0bd6733ee30806e23/06-native-loaded-open-field-passage.png"
+  ],
+  "unverifiedFamilies": [],
+  "humanAwarenessMeasured": false,
+  "boundary": "Seed64, first eight canonical FieldPassage assignments; actual generated committed gate, disclosed original-player setup transfer. Native menu opening, crossing, occupied closure refusal, real exit/return and F5/F6 checkpoint. No source, stock, actor, RNG or state grants. Ten paid inputs maximum;150seconds. Structural bypass is measured, not a claim of ordinary discovery or human route preference. Images require review.",
+  "settings": {
+    "screenWidth": 2271,
+    "screenHeight": 1251,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "lowDetail": false
+  }
+}
