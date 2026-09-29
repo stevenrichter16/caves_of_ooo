@@ -12,6 +12,9 @@ namespace CavesOfOoo.Core
         public readonly int Seed, WorldX, WorldY, FocalX, FocalY, WestY, EastY, NorthX, SouthX;
         public readonly Formation Formation;
         public readonly SpreadExplorationTopology Topology;
+        /// <summary>Cold-built local landscape vocabulary. Null retains the
+        /// original formation grammar; saved entity graphs never reconstruct it.</summary>
+        public readonly string Landscape;
         private readonly bool[,] road;
         private readonly bool[,] approach=new bool[Zone.Width,Zone.Height];
         private readonly Parcel[] parcels;
@@ -56,6 +59,13 @@ namespace CavesOfOoo.Core
             ZoneID=id;Seed=seed;WorldX=wx;WorldY=wy;
             Formation=form==Formation.None?FormationSelector.For(BiomeType.Spread,id):form;
             if(Formation<Formation.Hedgerow||Formation>Formation.RiverMeadow)throw new ArgumentException("Unsupported Spread formation.");
+            if(topology!=SpreadExplorationTopology.Legacy&&IsWildernessZone(id)&&id!=ReferenceGladePlan.ZoneID)
+            {
+                if(Formation==Formation.Fallow)Landscape="overgrown crofts";
+                else if(Formation==Formation.FlowerMeadow)
+                    Landscape=id=="Overworld.12.10.0"?"flower avenues":id=="Overworld.11.11.0"?"crescent hollow"
+                        :Hash(wx,wy,137)%2==0?"flower avenues":"crescent hollow";
+            }
             var rng=new Random(unchecked(seed^FormationSelector.StableIndex(id,int.MaxValue)));
             Condition=new[]{"tended","after harvest","returning scrub"}[rng.Next(3)];
             mirrored=rng.Next(2)==0;FocalX=33+rng.Next(15);FocalY=10+rng.Next(5);
@@ -195,6 +205,7 @@ namespace CavesOfOoo.Core
         public string ObjectAt(int x,int y)
         {
             if(!InBounds(x,y)||x<2||x>77||y<2||y>22||IsApproach(x,y)||IsLawn(x,y)||IsWater(x,y))return null;
+            if(Landscape!=null)return LandscapeObjectAt(x,y);
             foreach(var p in parcels)
             {
                 if(!p.Contains(x,y))continue;
@@ -226,6 +237,65 @@ namespace CavesOfOoo.Core
             if(shelter<1.2&&Roll(x,y,83)<(Condition=="returning scrub"?23:15))return "Tree";
             if(shelter<1.6&&Roll(x,y,89)<14)return "Bush";
             return null;
+        }
+        private string LandscapeObjectAt(int x,int y)
+        {
+            if(Landscape=="overgrown crofts")
+            {
+                foreach(var p in parcels)
+                {
+                    if(!p.Contains(x,y))continue;
+                    // Long surviving hedge runs with broad collapsed gaps, and
+                    // a coherent belt of trees at one end of each former plot.
+                    if(p.Boundary(x,y))return Roll(x/4,y/2,701)<76?"Hedge":null;
+                    // Surviving work paths thread the regrowth. These are bare
+                    // ground, not reserved approach lanes, so native actors can
+                    // use both sides of tree cover without adding any owners.
+                    if((x-p.X)%3==1)return null;
+                    double cx=p.X+p.Width*(mirrored?.76:.24),cy=p.Y+p.Height*.5;
+                    if(Ellipse(x,y,cx,cy,3.4,2.2)<1&&Roll(x,y,703)<78)return "Tree";
+                    if(Ellipse(x,y,cx,cy,5.4,3.1)<1&&Roll(x,y,709)<38)return "Bush";
+                    return null;
+                }
+            }
+            else if(Landscape=="flower avenues")
+            {
+                double wave=Math.Sin((x+Hash(WorldX,WorldY,719)%25)*.095)*1.8;
+                double band=Math.Min(Math.Abs(y-5-wave),Math.Min(Math.Abs(y-12-wave),Math.Abs(y-19-wave)));
+                if(Ellipse(x,y,12,10,3,2.3)<1||Ellipse(x,y,67,15,3,2.3)<1)
+                    return Roll(x,y,727)<72?"Tree":"Bush";
+                if(x>5&&x<75&&band<1.65&&Roll(x,y,733)<70)return "FlowerField";
+            }
+            else
+            {
+                double ring=Ellipse(x,y,FocalX,FocalY,20,7.8);
+                double opening=(mirrored?-1:1)*(x-FocalX);
+                if(Ellipse(x,y,FocalX+(mirrored?-4:4),FocalY,5.7,3.3)<1)
+                    return Roll(x,y,739)<70?"Tree":"Bush";
+                if(ring>.44&&ring<1.18&&!(opening>0&&Math.Abs(y-FocalY)<2.4)&&Roll(x,y,743)<83)
+                    return "FlowerField";
+            }
+            // A few shrubs feather the outer edges instead of filling every
+            // empty cell. Open ground remains a meaningful part of the layout.
+            double px=mirrored?79-x:x;
+            if((Ellipse(px,y,8,19,9,3)<1||Ellipse(px,y,71,5,8,3)<1)&&Roll(x,y,751)<27)return "Bush";
+            return null;
+        }
+        private static double Ellipse(double x,double y,double cx,double cy,double rx,double ry)
+            =>(x-cx)*(x-cx)/(rx*rx)+(y-cy)*(y-cy)/(ry*ry);
+
+        /// <summary>Local geometric cues only; never promises unrolled forage,
+        /// actors or loot. Native object text and action menus remain intact.</summary>
+        public string LandscapeContext(string blueprint)
+        {
+            if(blueprint!="Tree"&&blueprint!="Hedge"&&blueprint!="FlowerField")return null;
+            switch(Landscape)
+            {
+                case "overgrown crofts":return "The old crofts survive as broken hedge runs and crowded tree belts. Broad gaps lead around the surviving boundaries; trunks obstruct the shorter passages.";
+                case "flower avenues":return "Wind-combed blooms form long avenues across the meadow. The open lanes between them widen around small stands of trees.";
+                case "crescent hollow":return "A crescent of blooms curls around this wooded hollow. Gaps through the trees offer a closer passage; open ground follows the outer flower bank.";
+                default:return null;
+            }
         }
         public int Roll(int x,int y,int salt)=>Hash(WorldX*Zone.Width+x,WorldY*Zone.Height+y,salt)%100;
         private int Hash(int x,int y,int salt)

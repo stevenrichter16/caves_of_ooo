@@ -72,6 +72,9 @@ namespace CavesOfOoo.Core
                 if(ripe.Contains(y*Zone.Width+x))bp="RipeCropRow";
                 var created=BuilderSpawn.TryPlace(zone,factory,bp,x,y);
                 if(created==null)return Reject("missing-object");
+                string context=Plan.LandscapeContext(bp);
+                if(context!=null&&created.GetPart<ExaminablePart>() is ExaminablePart examine)
+                    examine.Text=examine.Text+" "+context;
                 if(CapturePassageSources&&bp=="Hedge"&&created.BlueprintName==bp)
                     passageSources.Add(created,new SpreadGenerationReceipt(this,zone,factory,revision,new[]{created},1));
                 if(CaptureCookingSources&&bp=="RipeCropRow"&&created.BlueprintName==bp)
@@ -82,7 +85,7 @@ namespace CavesOfOoo.Core
             }
             SourceZone=zone;passageFactory=factory;passagePlan=Plan;
             Diag.Record("worldgen","SpreadCompositionPlanned",payload:new{zoneId=zone.ZoneID,seed,
-                formation=Plan.Formation.ToString(),condition=Plan.Condition,objects,water});
+                formation=Plan.Formation.ToString(),condition=Plan.Condition,landscape=Plan.Landscape,objects,water});
             return true;
         }
         // Rank the existing planned rows, never alter their footprint or consume

@@ -59,7 +59,7 @@ namespace CavesOfOoo.Tests
      Assert.Greater(committed,0,family+" must be realized by actual ordinary generation, not only declared.");
    }
   }
-  [Test]public void LegacyAndProtectedPlacesNeverGetNewRolesOrDrawPoints()
+  [Test]public void ProtectedPlacesKeepTheirAuthoredDrawPointsWithoutNewRoles()
   {
    using(var scope=new DensityLootTestScope())
    {
@@ -67,7 +67,13 @@ namespace CavesOfOoo.Tests
     {
      var m=enabled?Fresh(scope.Factory,64):OverworldZoneManager.CreateDetached(scope.Factory,64);
      foreach(string id in new[]{ReferenceGladePlan.ZoneID,m.Wayhouse.ZoneID,m.RareEncounters.PairZoneID,m.RareEncounters.ViperZoneID}.Where(s=>!string.IsNullOrEmpty(s)).Distinct())
-     {var z=m.GetZone(id);Assert.NotNull(z);Assert.False(z.GetReadOnlyEntities().Any(e=>e.BlueprintName=="ReedbackGrazer"||e.BlueprintName=="SpreadDrawPoint"||e.HasPart("SpreadTerritory")),id);}
+     {
+      var z=m.GetZone(id);Assert.NotNull(z);
+      Assert.False(z.GetReadOnlyEntities().Any(e=>e.BlueprintName=="ReedbackGrazer"||e.HasPart("SpreadTerritory")),id);
+      var basins=z.GetReadOnlyEntities().Where(e=>e.BlueprintName=="SpreadDrawPoint").ToArray();
+      Assert.AreEqual(id==ReferenceGladePlan.ZoneID?1:0,basins.Length,id);
+      if(id==ReferenceGladePlan.ZoneID)Assert.AreEqual((36,9),z.GetEntityPosition(basins[0]));
+     }
     }
    }
   }
