@@ -10,7 +10,7 @@ namespace CavesOfOoo.Rendering
     {
         public const string ResourcePath="ReferenceGlade3D/Library";
         public const int VariantCount=4;
-        public static IReadOnlyList<string> Families{get;}=Array.AsReadOnly(new[]{"ground","pale-reeds","green-grass","dark-ruin","low-wall","lit-wall","gravel","chest","barrel","mushroom-ring"});
+        public static IReadOnlyList<string> Families{get;}=Array.AsReadOnly(new[]{"ground","pale-reeds","green-grass","dark-ruin","low-wall","lit-wall","gravel","chest","barrel","mushroom-ring","cooking-fire","cooled-fire","fallen-beam"});
         [Serializable]public sealed class Entry{public string Id;public GameObject Prefab;public Mesh Mesh;public SpawnRing3DCatalog.Model Spec;}
         public Entry[] Entries;
         public static IReadOnlyList<string> ActorModelIds{get;}=Array.AsReadOnly(new[]{"ring-player","ring-sien","ring-nam","ring-snapjaw","ring-marlback-gleaner","ring-marlback-tunnelguard","ring-marlback-wallkeeper","ring-snapjaw-warlord"});
@@ -27,7 +27,7 @@ namespace CavesOfOoo.Rendering
         {
             index=null;actorPaints=null;
             if(Material==null||Material.shader==null||!Material.HasProperty("_FogLight")||!Material.HasProperty("_Transient")||Material.GetTexture("_BaseMap")==null||Entries==null||Entries.Length!=Ids.Length)
-                throw new InvalidOperationException("Reference glade kit requires40 models and its native fog-aware palette.");
+                throw new InvalidOperationException("Reference glade kit requires52 models and its native fog-aware palette.");
             var next=new Dictionary<string,Entry>(StringComparer.Ordinal);
             foreach(var e in Entries)
             {

@@ -15,5 +15,5 @@ class SeventhFeedbackTests(unittest.TestCase):
  def test_other_thirtysix_models_and_palette_are_exact(self):
   def digest(value):return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':')).encode()).hexdigest()
   b=self.kit();self.assertEqual('4e6a23e3be626fb4508e0f70cfbfffc69b992cf6c5c205792a8a9ecdff2260c6',digest(b['palette']))
-  self.assertEqual('0ead394977572a238acbff44d1a4b27bfd239c9481d65a526440271a1da828f3',digest([m for m in b['models'] if m['family']!='green-grass']))
+  self.assertEqual('0ead394977572a238acbff44d1a4b27bfd239c9481d65a526440271a1da828f3',digest([m for m in b['models'] if m['family'] not in ('green-grass','cooking-fire','cooled-fire','fallen-beam')]))
 if __name__=='__main__':unittest.main()

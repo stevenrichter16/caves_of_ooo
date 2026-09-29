@@ -52,13 +52,14 @@ namespace CavesOfOoo.Core
             Add("MushroomRing",34,19);Add("MushroomRing",50,21);
             Add("MarlbackScrabbler",42,19);Add("MarlbackGleaner",44,20);Add("MarlbackScrabbler",22,5);
             Add("Warden",35,15);Add("Villager",38,21);Add("PetDog",33,23);
+            AddDiscoveries();
             // A few remnant blocks give the left silhouette depth without an
             // invisible barrier: BrokenColumn is deliberately passable rubble.
             for(int y=12;y<24;y++)for(int x=18;x<28;x++)
-                if(!IsApproach(x,y)&&Hash(x,y,7)%100<34)Add("BrokenColumn",x,y,"dark-ruin");
+                if(!IsApproach(x,y)&&!IsDiscoveryGround(x,y)&&Hash(x,y,7)%100<34)Add("BrokenColumn",x,y,"dark-ruin");
             for(int y=0;y<25;y++)for(int x=0;x<80;x++)
             {
-                if(occupied[x,y]||IsApproach(x,y)||Math.Max(Math.Abs(x-40),Math.Abs(y-12))<=2)continue;
+                if(occupied[x,y]||IsApproach(x,y)||IsDiscoveryGround(x,y)||Math.Max(Math.Abs(x-40),Math.Abs(y-12))<=2)continue;
                 bool pale=(x>=27&&x<=35&&y<8)||(x>=32&&x<=36&&y>=21)||(x>=55&&y>=10)||(x>=40&&x<=43&&y<6);
                 bool gravel=Ellipse(x,y,48,3,6,4)||Ellipse(x,y,29,8,4,2)||Ellipse(x,y,36,14,5,2)||Ellipse(x,y,32,24,4,3);
                 uint h=Hash(x,y,11);
@@ -69,6 +70,37 @@ namespace CavesOfOoo.Core
             }
             Placements=placements.AsReadOnly();
         }
+        private void AddDiscoveries()
+        {
+            // Broad silhouettes make the uses legible at the actual game scale.
+            // Water is scenery; the separate basin owns the finite drink supply.
+            for(int y=1;y<=9;y++)for(int x=28;x<=39;x++)
+            {
+                if(y<9&&Ellipse(x,y,34,5,5.5,4.5)&&!IsPond(x,y))
+                    Add("Reeds",x,y,"pale-reeds");
+            }
+            for(int x=29;x<=38;x++)if(x!=36)Add("RoadStone",x,9);
+            Add("SpreadDrawPoint",36,9);
+            Add("Waterskin",37,10);
+
+            for(int x=43;x<=49;x++)Add("Wall",x,6,"low-wall");
+            Add("Wall",50,6,"low-wall");Add("Wall",50,7,"low-wall");
+            Add("Campfire",42,8);
+            for(int x=41;x<=51;x++)Add("RoadStone",x,9);
+            for(int x=44;x<=50;x+=2)for(int y=10;y<=14;y++)
+                Add((x==44&&y==10)||(x==46&&y==12)||(x==50&&y==14)?"RipeCropRow":"CropRow",x,y);
+            Add("Signpost",43,11);
+
+            // The beam obstructs a short doorway, never the main y16 route.
+            for(int y=14;y<=21;y++)if(y!=16&&y!=19)Add("Wall",26,y,"dark-ruin");
+            Add("FallenBeam",26,19);
+            for(int x=24;x<=29;x++)if(x!=26)Add("RoadStone",x,19);
+        }
+        /// <summary>Native wet ground for the cold-built reed pond. Does not
+        /// imply a refillable source; SpreadDrawPoint owns the three drams.</summary>
+        public static bool IsPond(int x,int y)=>x>=29&&x<=38&&y>=2&&y<=8&&Ellipse(x,y,34,5,4.6,3.4);
+        private static bool IsDiscoveryGround(int x,int y)=>(x>=28&&x<=39&&y>=1&&y<=10)
+            ||(x>=41&&x<=51&&y>=6&&y<=14)||(x>=24&&x<=29&&y>=14&&y<=21);
         /// <summary>Open border band and central cross for ordinary world travel.</summary>
         public static bool IsApproach(int x,int y)=>x<2||x>77||y==12&&x<20||x==40&&y>=6&&y<=18||y==16;
         private void Add(string bp,int x,int y,string visual=null)

@@ -1,0 +1,43 @@
+{
+    "runId": "8a40b5171c4c48a18c6d359e3773cfba",
+    "zone": "Overworld.11.10.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: live ordinary actor while walking\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:312 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<WalkTo>d__127.MoveNext () [0x00035] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:203 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__140.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:332 ",
+    "canVerify": "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz/grain harvest, vessel pickup and basin draw, cooking, beam hauling, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
+    "cannotVerify": "Routes are script-selected through real keyboard input. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim.",
+    "mode": "visual-content-route",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS keyboard_moves_one_native_cell",
+        "PASS starting_dagger_equipped_by_keyboard",
+        "PASS native_pickup_of_basin_vessel",
+        "PASS native_draw_spends_exact_basin",
+        "PASS native_grain_leaves_spent_stubble",
+        "PASS native_shelter_cooks_real_grain",
+        "PASS native_pull_opens_ruin_shortcut",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/8a40b5171c4c48a18c6d359e3773cfba/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/8a40b5171c4c48a18c6d359e3773cfba/02-composition-full-reveal.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/8a40b5171c4c48a18c6d359e3773cfba/03-world-only-full-reveal.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/8a40b5171c4c48a18c6d359e3773cfba/discovery-01-reed-bank-drawn.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/8a40b5171c4c48a18c6d359e3773cfba/discovery-02-working-shelter.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/8a40b5171c4c48a18c6d359e3773cfba/discovery-03-opened-ruin-shortcut.png"
+    ],
+    "descriptions": [],
+    "cases": 9,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "errorsFinalized": true,
+    "seconds": 14.0572673,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

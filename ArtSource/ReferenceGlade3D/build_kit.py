@@ -1,7 +1,7 @@
 """Original block-based glade art, offline. Writes only an explicit JSON path."""
 import argparse,json,random
 from pathlib import Path
-FAMILIES=['ground','pale-reeds','green-grass','dark-ruin','low-wall','lit-wall','gravel','chest','barrel','mushroom-ring']
+FAMILIES=['ground','pale-reeds','green-grass','dark-ruin','low-wall','lit-wall','gravel','chest','barrel','mushroom-ring','cooking-fire','cooled-fire','fallen-beam']
 PALETTE=['#082C28','#103E36','#1A4B40','#26594A',
          '#A0A77C','#CBC697','#647353',
          '#235D25','#40872C','#65AE3D',
@@ -114,6 +114,38 @@ def make(family,variant):
    box(x,h+.099,z,w-.034,.024,w-.038,22)
    box(x+.02,h+.117,z-.02,.048,.013,.053,5)
    box(x,h*.19,z,.087,.057,.086,4)
+ elif family in ['cooking-fire','cooled-fire']:
+  # Separate stones and crossed charred logs stay legible at the native camera.
+  # The warm pieces are solid coals: no particles, light or flame simulation.
+  for i,(x,z) in enumerate([(-.29,-.29),(0,-.36),(.29,-.29),(.36,0),(.29,.29),(0,.36),(-.29,.29),(-.36,0)]):
+   h=.13+((i+variant)%3)*.025
+   box(x,h*.5,z,.19,h,.18,10+(i+variant)%3)
+   box(x-.018,h+.012,z-.014,.12,.025,.11,12)
+  box(0,.14,0,.62,.12,.17,19);box(0,.205,0,.17,.12,.57,19)
+  for x in [-.265,.265]:box(x+(variant-1.5)*.006,.145,0,.065,.105,.14,20)
+  for z in [-.245,.245]:box(0,.21,z,.145,.10,.06,18)
+  for i in range(3):box((i-1)*.058,.269,0,.027,.015,.39,20)
+  if family=='cooking-fire':
+   for i,(x,z,h) in enumerate([(-.115,-.075,.20),(.045,.035,.34),(.14,-.09,.16)]):
+    box(x,.265+h*.5,z,.13,h,.13,18)
+    box(x-.012,.27+h*.50,z-.013,.082,h*.69,.085,22)
+    box(x-.019,.27+h*.77,z-.019,.043,h*.24,.047,5)
+  else:
+   for x,z in [(-.12,-.06),(.075,.055),(.13,-.08)]:
+    box(x,.28,z,.14,.055,.12,19);box(x-.02,.315,z-.01,.07,.025,.065,10)
+ elif family=='fallen-beam':
+  # Long exposed faces, broad grain and a charred broken end, within one cell.
+  box(0,.145,0,.97,.25,.27,20)
+  box(-.433,.15,0,.104,.255,.276,19)
+  box(.471,.15,0,.03,.23,.25,22)
+  for i,z in enumerate([-.086,0,.086]):
+   box(.005+(variant-1.5)*.012,.278,z,.78-i*.07,.018,.024,19)
+   box(.03,.289,z+.016,.69-i*.07,.008,.014,21)
+  for z in [-.141,.141]:
+   box(.025,.11,z,.79,.027,.014,19);box(.06,.21,z,.74,.021,.014,21)
+  box(.475,.205,-.055,.034,.025,.065,19)
+  box(.475,.105,.051,.034,.031,.063,19)
+  box(-.08+variant*.035,.284,.035,.09,.017,.055,19)
  return {'id':'reference-glade-'+family+'-'+str(variant),'family':family,'variant':variant,'boxes':boxes}
 
 def build():return {'schemaVersion':1,'palette':PALETTE,'models':[make(f,v) for f in FAMILIES for v in range(4)]}

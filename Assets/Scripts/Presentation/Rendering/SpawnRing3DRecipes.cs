@@ -70,9 +70,26 @@ namespace CavesOfOoo.Rendering
                 string family=ReferenceGladeVoxelLibrary.Family(entity);
                 if (family == null && string.IsNullOrEmpty(render.VisualID))
                     family = entity.BlueprintName == "Chest" ? "chest" : entity.BlueprintName == "WoodenBarrel" ? "barrel" : entity.BlueprintName == "MushroomRing" ? "mushroom-ring" : null;
+                if (family == null && string.IsNullOrEmpty(render.VisualID) && string.IsNullOrEmpty(render.VisualVariant))
+                {
+                    // The starter worksite retains its exact native owners. Warm
+                    // coal color follows physical heat, even after fuel is spent.
+                    var fire = entity.GetPart<CampfirePart>();
+                    var heat = entity.GetPart<ThermalPart>();
+                    if (entity.BlueprintName == "Campfire" && fire?.FiniteCooking == true
+                        && fire.ParentEntity == entity && heat?.ParentEntity == entity
+                        && entity.GetPart<FuelPart>()?.ParentEntity == entity
+                        && !float.IsNaN(heat.Temperature) && !float.IsInfinity(heat.Temperature))
+                        family = heat.Temperature >= CookingService.MinimumFiniteCookingTemperature ? "cooking-fire" : "cooled-fire";
+                    else if (entity.BlueprintName == "FallenBeam" && entity.GetPart<HandlingPart>()?.ParentEntity == entity)
+                        family = "fallen-beam";
+                }
                 if(family!=null)
                 {
-                    string id=ReferenceGladeVoxelLibrary.ModelId(family,Variant(zone.ZoneID,entity.BlueprintName,entity.ID,cell.X,cell.Y,4));
+                    // Timber does not change its cuts or grain when dragged.
+                    int variant = family == "fallen-beam" ? Variant(null,entity.BlueprintName,entity.ID,0,0,4)
+                        : Variant(zone.ZoneID,entity.BlueprintName,entity.ID,cell.X,cell.Y,4);
+                    string id=ReferenceGladeVoxelLibrary.ModelId(family,variant);
                     int turn=((entity.GetIntProperty("ReferenceGladeQuarterTurns")%4)+4)%4;
                     return new SpawnRing3DRecipe(entity,id,null,Village3DProjection.CellCentre(cell.X,cell.Y),false,true,quarterTurns:turn);
                 }

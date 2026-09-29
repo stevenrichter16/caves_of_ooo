@@ -1,0 +1,62 @@
+{
+    "runId": "3cff8ad991a846ef82ab9c72367863fb",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz/grain harvest, vessel pickup and basin draw, cooking, beam hauling, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
+    "cannotVerify": "Routes are script-selected through real keyboard input. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim.",
+    "mode": "visual-content-route",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS keyboard_moves_one_native_cell",
+        "PASS starting_dagger_equipped_by_keyboard",
+        "PASS native_pickup_of_basin_vessel",
+        "PASS native_draw_spends_exact_basin",
+        "PASS native_grain_leaves_spent_stubble",
+        "PASS native_shelter_cooks_real_grain",
+        "PASS native_pull_opens_ruin_shortcut",
+        "PASS native_chest_contents_taken",
+        "PASS gray_wall_blocks_keyboard_movement",
+        "PASS actual_lit_seam_harvested",
+        "PASS native_save_load_restores_position_and_depletion",
+        "PASS discoveries_keep_spent_and_moved_state_after_native_load",
+        "PASS observed_live_hostile_attrition",
+        "PASS native_east_exit",
+        "PASS return_does_not_refill_glade_chest",
+        "PASS normal_input_after_return"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/3cff8ad991a846ef82ab9c72367863fb/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/3cff8ad991a846ef82ab9c72367863fb/02-composition-full-reveal.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/3cff8ad991a846ef82ab9c72367863fb/03-world-only-full-reveal.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/3cff8ad991a846ef82ab9c72367863fb/discovery-01-reed-bank-drawn.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/3cff8ad991a846ef82ab9c72367863fb/discovery-02-working-shelter.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/3cff8ad991a846ef82ab9c72367863fb/discovery-03-opened-ruin-shortcut.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/3cff8ad991a846ef82ab9c72367863fb/04-chest-loot.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/3cff8ad991a846ef82ab9c72367863fb/05-solid-wall.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/3cff8ad991a846ef82ab9c72367863fb/06-harvested-green-seam.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/DensityCompletion/ReferenceGlade/Native/3cff8ad991a846ef82ab9c72367863fb/07-returned-from-world.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Native checkpoint proof",
+            "source": "F5, one verified keyboard step, F6",
+            "text": "Checkpoint a2418cd63144a2d308cfdc9d68f796bed3a85f446e45edb8cdca6b97f3d32d4d; restored player 2695, tick 844, energy 1064, HP 40.",
+            "units": 0
+        }
+    ],
+    "cases": 17,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": false,
+    "errorsFinalized": true,
+    "seconds": 36.6549599,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

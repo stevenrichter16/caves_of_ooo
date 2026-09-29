@@ -31,7 +31,8 @@ namespace CavesOfOoo.Scenarios.Custom
         private Keyboard _keyboard;
         private InputSettings _oldSettings, _settings;
         private bool _oldBackground, _oldScenario, _cleaned, _errorsFinalized, _summaryEmitted;
-        private int _failures, _unexpectedErrors;
+        private int _failures, _unexpectedErrors, _discoveryTonicsUsed;
+        private readonly List<Entity> _discoveryTonics=new List<Entity>();
         private string _ownedRoot, _fatal;
         private System.Diagnostics.Stopwatch _clock;
         private bool _measurePerformance,_profiling;
@@ -91,6 +92,8 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return ItemAction(dagger,"equip_auto");if(State()=="InventoryOpen")yield return Tap(Key.I);
             Require(State()=="Normal","equipment menu closes");
             Check("starting_dagger_equipped_by_keyboard",dagger.GetPart<PhysicsPart>().Equipped==_input.PlayerEntity);
+            _discoveryTonics.AddRange(_input.PlayerEntity.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName=="HealingTonic"));
+            yield return WalkDiscoveries();
             var chest=_stagedZone.GetAllEntities().Single(e=>e.BlueprintName=="Chest");
             yield return WalkTo(50,8);yield return WorldAction(chest,"OpenContainer");
             Require(State()=="PickupOpen","native chest loot popup");yield return Capture("04-chest-loot");
@@ -129,6 +132,11 @@ namespace CavesOfOoo.Scenarios.Custom
                 &&!_input.CurrentZone.GetAllEntities().Any(e=>e.ID==veinID)
                 &&_input.CurrentZone.GetAllEntities().Count(e=>e.BlueprintName=="GlowQuartzVein")==initialVeins-1
                 &&_input.PlayerEntity.GetPart<InventoryPart>().Objects.Any(e=>e.BlueprintName=="GlowQuartz"));
+            Check("discoveries_keep_spent_and_moved_state_after_native_load",
+                _input.CurrentZone.GetCell(44,10).Objects.Single(e=>e.BlueprintName=="RipeCropRow").GetPart<FieldHarvestPart>().Harvested
+                &&_input.CurrentZone.GetCell(36,9).Objects.Single(e=>e.BlueprintName=="SpreadDrawPoint").GetPart<LiquidPoolPart>().Volume==0
+                &&_input.CurrentZone.GetCell(27,19).Objects.Any(e=>e.BlueprintName=="FallenBeam")
+                &&_input.PlayerEntity.GetPart<InventoryPart>().Objects.Any(e=>e.BlueprintName=="Waterskin"&&e.GetPart<WaterskinPart>().Charges==3));
             Check("observed_live_hostile_attrition",_input.CurrentZone.GetAllEntities().Count(e=>e.BlueprintName.StartsWith("Marlback")&&e.HasTag("Creature"))<3
                 ||_input.CurrentZone.GetAllEntities().Any(e=>e.BlueprintName=="MarlbackCorpse")
                 ||_input.CurrentZone.GetAllEntities().Any(e=>e.BlueprintName.StartsWith("Marlback")&&e.GetStat("Hitpoints")!=null&&e.GetStat("Hitpoints").Value<e.GetStat("Hitpoints").Max));
@@ -154,11 +162,60 @@ namespace CavesOfOoo.Scenarios.Custom
         }
         private void Update(){if(_profiling&&_frameTimes.Count<60000)_frameTimes.Add(Time.unscaledDeltaTime*1000);}
         private Cell Cell()=>_input.CurrentZone.GetEntityCell(_input.PlayerEntity);
+        private IEnumerator WalkDiscoveries()
+        {
+            // Exercise the actual new-game owners with normal keys. The existing
+            // isolated launcher and later F5/F6 check own setup and restoration.
+            var zone=_input.CurrentZone;var inventory=_input.PlayerEntity.GetPart<InventoryPart>();
+            var vessel=zone.GetCell(37,10).Objects.Single(e=>e.BlueprintName=="Waterskin");
+            yield return WalkTo(37,10);yield return Tap(Key.G);
+            if(State()=="PickupOpen")yield return Tap(Key.Tab);
+            if(State()!="Normal")yield return Tap(Key.Escape);
+            Check("native_pickup_of_basin_vessel",inventory.Objects.Contains(vessel)&&vessel.GetPart<WaterskinPart>().Charges==0);
+            yield return WalkTo(36,10);yield return ItemAction(vessel,"FillWaterskin");
+            if(State()=="InventoryOpen")yield return Tap(Key.I);
+            Check("native_draw_spends_exact_basin",vessel.GetPart<WaterskinPart>().Charges==3
+                &&zone.GetCell(36,9).Objects.Single(e=>e.BlueprintName=="SpreadDrawPoint").GetPart<LiquidPoolPart>().Volume==0);
+            yield return Capture("discovery-01-reed-bank-drawn");
+            var row=zone.GetCell(44,10).Objects.Single(e=>e.BlueprintName=="RipeCropRow");
+            yield return WalkTo(43,10);yield return WorldAction(row,"Harvest");
+            Check("native_grain_leaves_spent_stubble",row.GetPart<FieldHarvestPart>().Harvested);
+            if(State()=="LookMode")yield return Tap(Key.Escape);
+            var food=inventory.Objects.Single(e=>e.BlueprintName=="Emberwheat");string cooked=food.GetPart<CookablePart>().Into;
+            int before=inventory.Objects.Where(e=>e.BlueprintName==cooked).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
+            yield return WalkTo(42,9);yield return ItemAction(food,"Cook");
+            if(State()=="InventoryOpen")yield return Tap(Key.I);
+            Check("native_shelter_cooks_real_grain",!inventory.Objects.Contains(food)
+                &&inventory.Objects.Where(e=>e.BlueprintName==cooked).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1)==before+1);
+            yield return Capture("discovery-02-working-shelter");
+            var beam=zone.GetCell(26,19).Objects.Single(e=>e.BlueprintName=="FallenBeam");
+            yield return WalkTo(27,19);yield return WorldAction(beam,"HaulObject");
+            if(State()=="LookMode")yield return Tap(Key.Escape);
+            yield return Tap(Key.D);
+            yield return WorldAction(beam,"ReleaseHaul");
+            if(State()=="LookMode")yield return Tap(Key.Escape);
+            Check("native_pull_opens_ruin_shortcut",zone.GetEntityPosition(beam)==(27,19)
+                &&!zone.GetCell(26,19).BlocksMovement(_input.PlayerEntity)&&!DragSystem.IsDragging(_input.PlayerEntity));
+            yield return Capture("discovery-03-opened-ruin-shortcut");
+        }
         private IEnumerator WalkTo(int x,int y)
         {
             for(int step=0;step<160;step++)
             {
-                Require(State()=="Normal"&&!CombatSystem.IsDeathHandled(_input.PlayerEntity),"live ordinary actor while walking");
+                if(!_biomeOnly&&!_combatOnly)yield return CombatDismissEarnedAdvancement();
+                Require(State()=="Normal"&&!CombatSystem.IsDeathHandled(_input.PlayerEntity),"live ordinary actor while walking; state="+State()+"; HP="+_input.PlayerEntity.GetStatValue("Hitpoints"));
+                var inventory=_input.PlayerEntity.GetPart<InventoryPart>();var hp=_input.PlayerEntity.GetStat("Hitpoints");
+                var tonic=_discoveryTonics.FirstOrDefault(e=>inventory.Objects.Contains(e));
+                if(!_biomeOnly&&!_combatOnly&&_discoveryTonicsUsed<2&&hp.Value*3<=hp.Max*2&&tonic!=null)
+                {
+                    int units=_discoveryTonics.Where(e=>inventory.Objects.Contains(e)).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1);
+                    int beforeHP=hp.Value;yield return ItemAction(tonic,"ApplyTonic");
+                    if(State()=="InventoryOpen")yield return Tap(Key.I);
+                    Require(_discoveryTonics.Where(e=>inventory.Objects.Contains(e)).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1)==units-1,"one original carried tonic consumed");
+                    _discoveryTonicsUsed++;
+                    _descriptions.Add(new Description{subject="Native route healing",source=tonic.ID,text="Original starting tonic consumed via inventory; HP "+beforeHP+" -> "+hp.Value,units=1});
+                    continue;
+                }
                 var c=Cell();if(c.X==x&&c.Y==y)yield break;
                 (int dx,int dy) d;
                 if(_biomeOnly)
@@ -319,7 +376,7 @@ namespace CavesOfOoo.Scenarios.Custom
             { runId = RunId, cases = _audit.Count, failures = Failures, complete = Complete, errorsFinalized = _errorsFinalized, screenshots = _screenshots.Count });
         }
         private bool Complete => Finished && _errorsFinalized && Failures == 0
-            && (_biomeOnly ? BiomeComplete : _combatOnly ? CombatComplete : _audit.Count == (_measurePerformance?12:11) && _screenshots.Count >= 7);
+            && (_biomeOnly ? BiomeComplete : _combatOnly ? CombatComplete : _audit.Count == (_measurePerformance?18:17) && _screenshots.Count >= 10);
         private void WriteReport()
         {
             Directory.CreateDirectory(DirectoryPath); ReportPath = Path.Combine(DirectoryPath, "report.json");
@@ -332,8 +389,8 @@ namespace CavesOfOoo.Scenarios.Custom
                 profileSeconds=_profileSeconds,profileFrames=_frameTimes.Count,profileFrameMeanMs=_frameTimes.Count==0?0:_frameTimes.Average(),
                 profileFrameP95Ms=_frameTimes.Count==0?0:_frameTimes.OrderBy(x=>x).ElementAt((int)((_frameTimes.Count-1)*.95)),
                 zone = _stagedZone?.ZoneID, fatal = _fatal, audit = _audit.ToArray(), screenshots = _screenshots.ToArray(), descriptions = _descriptions.ToArray(),
-                canVerify = _biomeOnly ? "Real isolated seed64 starting graph; original dagger drop/pickup; native F5, movement, F6 replacement and unchanged saved bytes; real keyboard Spread border exit/return; actual finite harvest, one paid action and saved depletion; generated village door and committed lair stairs; current-owner submitted profile/body observation; foreign-biome negative profile; finite60-second editor keyboard movement sample." : _combatOnly ? "Actual authored northern encounter; ordinary starting actor and kit; real movement and attack keys; exact diagnostic actor/target/cause correlation, attempted retaliation, exact death attribution and corpse/original-owned-drop provenance, and native animation/frame observation. No direct attack, pose or damage calls." : "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz harvest, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
-                cannotVerify = _biomeOnly ? "Four explicitly logged actor travel shortcuts cover actual generated POI, lair, foreign control and original return. Source selection is script-selected and first-floor generation is preflighted; no natural acquisition, discovery, combat balance or all-chunk visual coverage claim. At most eight actual original Calm casts may defend against a visible pursuing threat on an exact legal ray before native movement/harvest; exact owner, payment, cooldown and live pacification are recorded. No Rime, cooldown waits or scripted combat. Ordinary scheduler remains active; no grants, reseeding or forced models. Native screenshots require visual inspection. Frame times describe this editor run, not standalone build performance or allocations. Separate census and normal randomized N/Continue gates remain necessary." : _combatOnly ? "One fixed authored encounter and finite script-selected keyboard route. At most two original starting healing tonics may be used at or below two-thirds HP through native inventory keys. One ready Rime Grip may be used only after real retaliation. Their actual costs/effects are recorded. The prior dagger-only death remains a separate failed receipt. No combat-balance, natural discovery, animation quality or enjoyment claim. Native pose observation and saved frames still need visual assessment; unrelated NPC activity remains enabled." : "Routes are script-selected through real keyboard input. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim."
+                canVerify = _biomeOnly ? "Real isolated seed64 starting graph; original dagger drop/pickup; native F5, movement, F6 replacement and unchanged saved bytes; real keyboard Spread border exit/return; actual finite harvest, one paid action and saved depletion; generated village door and committed lair stairs; current-owner submitted profile/body observation; foreign-biome negative profile; finite60-second editor keyboard movement sample." : _combatOnly ? "Actual authored northern encounter; ordinary starting actor and kit; real movement and attack keys; exact diagnostic actor/target/cause correlation, attempted retaliation, exact death attribution and corpse/original-owned-drop provenance, and native animation/frame observation. No direct attack, pose or damage calls." : "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz/grain harvest, vessel pickup and basin draw, cooking, beam hauling, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
+                cannotVerify = _biomeOnly ? "Four explicitly logged actor travel shortcuts cover actual generated POI, lair, foreign control and original return. Source selection is script-selected and first-floor generation is preflighted; no natural acquisition, discovery, combat balance or all-chunk visual coverage claim. At most eight actual original Calm casts may defend against a visible pursuing threat on an exact legal ray before native movement/harvest; exact owner, payment, cooldown and live pacification are recorded. No Rime, cooldown waits or scripted combat. Ordinary scheduler remains active; no grants, reseeding or forced models. Native screenshots require visual inspection. Frame times describe this editor run, not standalone build performance or allocations. Separate census and normal randomized N/Continue gates remain necessary." : _combatOnly ? "One fixed authored encounter and finite script-selected keyboard route. At most two original starting healing tonics may be used at or below two-thirds HP through native inventory keys. One ready Rime Grip may be used only after real retaliation. Their actual costs/effects are recorded. The prior dagger-only death remains a separate failed receipt. No combat-balance, natural discovery, animation quality or enjoyment claim. Native pose observation and saved frames still need visual assessment; unrelated NPC activity remains enabled." : "Routes are script-selected through real keyboard input. At most two original starting tonic units may be used at or below two-thirds HP through native inventory keys; actual consumption is recorded. Naturally earned advancement announcements are dismissed without changing gains. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim."
             }, true));
             Debug.Log("[ReferenceGladeNative] report=" + ReportPath + " failures=" + Failures);
         }

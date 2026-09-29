@@ -4,7 +4,7 @@ class RefinementTests(unittest.TestCase):
  def kit(self):return json.loads((Path(__file__).parent/'kit.json').read_text())
  def models(self,f):return [m for m in self.kit()['models'] if m['family']==f]
  def test_chest_and_barrel_are_four_real_variants_each(self):
-  self.assertEqual(40,len(self.kit()['models']))
+  self.assertEqual(52,len(self.kit()['models']))
   for f in ['chest','barrel']:self.assertEqual(4,len(self.models(f)))
  def test_ground_has_quiet_surface_and_readable_specks(self):
   for m in self.models('ground'):

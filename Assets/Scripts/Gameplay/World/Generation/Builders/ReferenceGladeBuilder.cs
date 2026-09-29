@@ -17,7 +17,8 @@ namespace CavesOfOoo.Core
             "Grass", "Wall", "GlowQuartzVein", "Chest", "WoodenBarrel", "Torch",
             "Signpost", "MushroomRing", "MarlbackScrabbler", "MarlbackGleaner",
             "Warden", "Villager", "PetDog", "BrokenColumn", "Reeds", "Rubble",
-            "Bush", "HealingTonic", "DriedMeat"
+            "Bush", "HealingTonic", "DriedMeat", "RoadStone", "CropRow",
+            "RipeCropRow", "SpreadDrawPoint", "Campfire", "FallenBeam", "Emberwheat", "Waterskin"
         };
         public ReferenceGladeBuilder(int seed){this.seed=seed;}
         /// <summary>Read-only content-pack capability check. A minimal/modded
@@ -31,7 +32,14 @@ namespace CavesOfOoo.Core
                     || blueprint == null || !blueprint.Parts.ContainsKey("Render")) return false;
             return factory.Blueprints["Chest"].Parts.ContainsKey("Container")
                 && factory.Blueprints["Wall"].Parts.ContainsKey("Destructible")
-                && factory.Blueprints["GlowQuartzVein"].Parts.ContainsKey("Harvestable");
+                && factory.Blueprints["GlowQuartzVein"].Parts.ContainsKey("Harvestable")
+                && factory.Blueprints["RipeCropRow"].Parts.ContainsKey("FieldHarvest")
+                && factory.Blueprints["SpreadDrawPoint"].Parts.ContainsKey("LiquidPool")
+                && factory.Blueprints["Campfire"].Parts.ContainsKey("Campfire")
+                && factory.Blueprints["Campfire"].Parts.ContainsKey("Thermal")
+                && factory.Blueprints["Campfire"].Parts.ContainsKey("Fuel")
+                && factory.Blueprints["FallenBeam"].Parts.ContainsKey("Handling")
+                && factory.Blueprints["Waterskin"].Parts.ContainsKey("Waterskin");
         }
         public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
         {
@@ -52,9 +60,14 @@ namespace CavesOfOoo.Core
                     if(render==null)return Reject(zone,"missing-native-render");
                     if(p.VisualID.Length>0)render.VisualID=p.VisualID;
                     if(p.Blueprint=="Wall"||p.Blueprint=="GlowQuartzVein")
-                        e.SetIntProperty("ReferenceGladeQuarterTurns",p.VisualID=="reference-glade-lit-wall"||p.X==53||p.X==47||p.X==23&&p.Y>11&&p.Y<22?1:0);
+                        e.SetIntProperty("ReferenceGladeQuarterTurns",p.VisualID=="reference-glade-lit-wall"||p.X==53||p.X==47
+                            ||p.X==23&&p.Y>11&&p.Y<22||p.X==26&&p.Y>=14&&p.Y<=21||p.X==50&&p.Y==7?1:0);
                     if(p.Blueprint=="Wall"&&!e.HasPart<DestructiblePart>())return Reject(zone,"missing-native-destruction");
                     if(p.Blueprint=="GlowQuartzVein"&&!e.HasPart<HarvestablePart>())return Reject(zone,"missing-native-harvest");
+                    if(p.Blueprint=="RipeCropRow"&&!e.HasPart<FieldHarvestPart>())return Reject(zone,"missing-native-grain");
+                    if(p.Blueprint=="SpreadDrawPoint"&&!e.HasPart<LiquidPoolPart>())return Reject(zone,"missing-native-water");
+                    if(p.Blueprint=="FallenBeam"&&!e.HasPart<HandlingPart>())return Reject(zone,"missing-native-hauling");
+                    if(p.Blueprint=="Waterskin"&&!e.HasPart<WaterskinPart>())return Reject(zone,"missing-native-vessel");
                     if(p.VisualID=="reference-glade-lit-wall")
                         e.AddPart(new LightSourcePart{LightColor="&G",Radius=2,Intensity=.35f});
                     if(p.Blueprint=="Chest")
@@ -64,6 +77,7 @@ namespace CavesOfOoo.Core
                         foreach(string bp in supplies)
                         {var item=factory.CreateEntity(bp);if(item==null||!container.AddItem(item))return Reject(zone,"container-refused");}
                     }
+                    DescribeDiscovery(e,p);
                     staged.Add(e);
                 }
             }
@@ -80,10 +94,45 @@ namespace CavesOfOoo.Core
                 {for(int j=0;j<i;j++)zone.RemoveEntity(staged[j]);return Reject(zone,"placement-refused");}
             }
             for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
+            {
+                if(ReferenceGladePlan.IsPond(x,y))
+                {zone.TileState.WriteCoating(x,y,"water",ZoneTileState.Permanent);zone.GenReservedCells.Add((x,y));}
                 if(ReferenceGladePlan.IsApproach(x,y)||Math.Max(Math.Abs(x-40),Math.Abs(y-12))<=2)
                     zone.GenReservedCells.Add((x,y));
-            Diag.Record("worldgen","ReferenceGladeBuilt",payload:new{zoneId=zone.ZoneID,seed,owners=staged.Count});
+            }
+            Diag.Record("worldgen","ReferenceGladeBuilt",payload:new{zoneId=zone.ZoneID,seed,owners=staged.Count,
+                discoveries="reed-pond,working-shelter,ruin-shortcut",grain=3,waterDrams=3});
             return true;
+        }
+        private static void DescribeDiscovery(Entity entity,ReferenceGladePlan.Placement placement)
+        {
+            string text=null;
+            switch(placement.Blueprint)
+            {
+                case "Campfire":
+                    entity.GetPart<CampfirePart>().FiniteCooking=true;
+                    entity.GetPart<RenderPart>().DisplayName="gleaners' cooking fire";
+                    text="A low ruined wall shelters this working fire. Ripe heads remain in the nearby emberwheat strips. Gather grain by hand, then cook it beside the fire while its fuel and heat last. Rest here only when the surroundings are safe.";
+                    break;
+                case "SpreadDrawPoint":
+                    entity.GetPart<RenderPart>().DisplayName="reed-bank water basin";
+                    text="A stone-lined pocket collects a little clear water at the reed pond's edge. Fill a carried vessel here; the basin holds only three drams. The surrounding wet ground cannot replenish it.";
+                    break;
+                case "FallenBeam":
+                    text="This fallen roof timber blocks the short doorway through the old store-room. Take hold from the clear eastern shoulder and pull it aside, or follow the open passage to the north. Moving the beam changes the route; it does not hide you from watchful eyes.";
+                    break;
+                case "Signpost":
+                    text=placement.X==43
+                        ?"Three worn cuts point to the reed basin northwest, the gleaners' fire north, and the broken store-room west. Beyond the western edge lies Sill. Ripe grain, a few clear drinks, and a loose roof timber reward a closer look."
+                        :"SILL lies west through the ruined wall. The north track runs into fallow ground; the east and south open into flower meadows. Below the post, an older hand has scratched: clear water by the reeds; grain beside the sheltered fire.";
+                    break;
+            }
+            if(text!=null)
+            {
+                var examine=entity.GetPart<ExaminablePart>();
+                if(examine==null){examine=new ExaminablePart();entity.AddPart(examine);}
+                examine.Text=text;
+            }
         }
         private static bool Reject(Zone zone,string reason)
         {Diag.Record("worldgen","ReferenceGladeRejected",payload:new{zoneId=zone?.ZoneID,reason});return false;}

@@ -1,0 +1,67 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 6,
+    "passed": 2,
+    "failed": 4,
+    "skipped": 0,
+    "durationSeconds": 2.3203696,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "ActualHauledTimberKeepsDetailedShapeAndOwner",
+      "fullName": "CavesOfOoo.Tests.StartingGladePropArtTests.ActualHauledTimberKeepsDetailedShapeAndOwner",
+      "state": "Failed",
+      "durationSeconds": 0.9441952,
+      "message": "  Expected: String starting with \"reference-glade-fallen-beam-\"\n  But was:  \"ring-fallen-beam-3\"\n",
+      "stackTrace": "at CavesOfOoo.Tests.StartingGladePropArtTests.MeshFor (CavesOfOoo.Rendering.SpawnRing3DRecipe r, System.String family) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/StartingGladePropArtTests.cs:13\nat CavesOfOoo.Tests.StartingGladePropArtTests.ActualHauledTimberKeepsDetailedShapeAndOwner () [0x0005e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/StartingGladePropArtTests.cs:42\n",
+      "output": ""
+    },
+    {
+      "name": "CurrentFireHasStonesLogsAndThermallyTruthfulCoals(500.0f,\"cooking-fire\")",
+      "fullName": "CavesOfOoo.Tests.StartingGladePropArtTests.CurrentFireHasStonesLogsAndThermallyTruthfulCoals(500.0f,\"cooking-fire\")",
+      "state": "Failed",
+      "durationSeconds": 0.2477171,
+      "message": "  Expected: String starting with \"reference-glade-cooking-fire-\"\n  But was:  \"ring-campfire\"\n",
+      "stackTrace": "at CavesOfOoo.Tests.StartingGladePropArtTests.MeshFor (CavesOfOoo.Rendering.SpawnRing3DRecipe r, System.String family) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/StartingGladePropArtTests.cs:13\nat CavesOfOoo.Tests.StartingGladePropArtTests.CurrentFireHasStonesLogsAndThermallyTruthfulCoals (System.Single heat, System.String family) [0x00033] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/StartingGladePropArtTests.cs:22\n",
+      "output": ""
+    },
+    {
+      "name": "CurrentFireHasStonesLogsAndThermallyTruthfulCoals(25.0f,\"cooled-fire\")",
+      "fullName": "CavesOfOoo.Tests.StartingGladePropArtTests.CurrentFireHasStonesLogsAndThermallyTruthfulCoals(25.0f,\"cooled-fire\")",
+      "state": "Failed",
+      "durationSeconds": 0.1896771,
+      "message": "  Expected: String starting with \"reference-glade-cooled-fire-\"\n  But was:  \"ring-campfire\"\n",
+      "stackTrace": "at CavesOfOoo.Tests.StartingGladePropArtTests.MeshFor (CavesOfOoo.Rendering.SpawnRing3DRecipe r, System.String family) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/StartingGladePropArtTests.cs:13\nat CavesOfOoo.Tests.StartingGladePropArtTests.CurrentFireHasStonesLogsAndThermallyTruthfulCoals (System.Single heat, System.String family) [0x00033] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/StartingGladePropArtTests.cs:22\n",
+      "output": ""
+    },
+    {
+      "name": "EmptyFuelDoesNotPretendPhysicallyHotCoalsAreCold",
+      "fullName": "CavesOfOoo.Tests.StartingGladePropArtTests.EmptyFuelDoesNotPretendPhysicallyHotCoalsAreCold",
+      "state": "Failed",
+      "durationSeconds": 0.4567277,
+      "message": "  Expected: String starting with \"reference-glade-cooking-fire-\"\n  But was:  \"ring-campfire\"\n",
+      "stackTrace": "at CavesOfOoo.Tests.StartingGladePropArtTests.MeshFor (CavesOfOoo.Rendering.SpawnRing3DRecipe r, System.String family) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/StartingGladePropArtTests.cs:13\nat CavesOfOoo.Tests.StartingGladePropArtTests.EmptyFuelDoesNotPretendPhysicallyHotCoalsAreCold () [0x0004e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/StartingGladePropArtTests.cs:34\n",
+      "output": ""
+    },
+    {
+      "name": "OtherNativeRegionsKeepTheirExistingModel(\"Campfire\")",
+      "fullName": "CavesOfOoo.Tests.StartingGladePropArtTests.OtherNativeRegionsKeepTheirExistingModel(\"Campfire\")",
+      "state": "Passed",
+      "durationSeconds": 0.2631887,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "OtherNativeRegionsKeepTheirExistingModel(\"FallenBeam\")",
+      "fullName": "CavesOfOoo.Tests.StartingGladePropArtTests.OtherNativeRegionsKeepTheirExistingModel(\"FallenBeam\")",
+      "state": "Passed",
+      "durationSeconds": 0.1159741,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    }
+  ]
+}

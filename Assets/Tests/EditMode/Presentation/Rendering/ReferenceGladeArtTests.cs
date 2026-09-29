@@ -8,12 +8,12 @@ namespace CavesOfOoo.Tests
 {
     public sealed class ReferenceGladeArtTests
     {
-        static readonly string[] Families={"ground","pale-reeds","green-grass","dark-ruin","low-wall","lit-wall","gravel","chest","barrel","mushroom-ring"};
+        static readonly string[] Families={"ground","pale-reeds","green-grass","dark-ruin","low-wall","lit-wall","gravel","chest","barrel","mushroom-ring","cooking-fire","cooled-fire","fallen-beam"};
         static Type KitType(){var t=typeof(SpawnRing3DLibrary).Assembly.GetType("CavesOfOoo.Rendering.ReferenceGladeVoxelLibrary");Assert.NotNull(t,"Reference glade art library must exist.");return t;}
         static object Load(){var value=Resources.Load("ReferenceGlade3D/Library",KitType());Assert.NotNull(value,"Import actual reference kit before GREEN.");KitType().GetMethod("Validate").Invoke(value,null);return value;}
-        [Test]public void NativeKitContainsExactlyFortyMeasuredModelsWithPrivatePalette()
+        [Test]public void NativeKitContainsExactlyFiftyTwoMeasuredModelsWithPrivatePalette()
         {
-            var kit=Load();var entries=(Array)KitType().GetField("Entries").GetValue(kit);Assert.AreEqual(40,entries.Length);
+            var kit=Load();var entries=(Array)KitType().GetField("Entries").GetValue(kit);Assert.AreEqual(52,entries.Length);
             var material=(Material)KitType().GetField("Material").GetValue(kit);Assert.NotNull(material);Assert.AreNotSame(Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath).WorldMaterial,material);
             Assert.IsTrue(material.HasProperty("_FogLight"));Assert.IsTrue(material.HasProperty("_Transient"));Assert.NotNull(material.GetTexture("_BaseMap"));
             foreach(string family in Families)for(int i=0;i<4;i++)

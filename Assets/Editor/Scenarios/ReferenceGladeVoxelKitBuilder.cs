@@ -26,7 +26,7 @@ namespace CavesOfOoo.Editor
                 if(EditorApplication.isPlayingOrWillChangePlaymode||EditorApplication.isCompiling)throw new InvalidOperationException("Wait for clean Edit mode before importing the glade kit.");
                 string json=File.ReadAllText(Source);var kit=JsonUtility.FromJson<Kit>(json);
                 using(var sha=SHA256.Create())report.sourceSha256=BitConverter.ToString(sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(json))).Replace("-","").ToLowerInvariant();
-                if(kit==null||kit.schemaVersion!=1||kit.palette==null||kit.palette.Length!=24||kit.models==null||kit.models.Length!=40)throw new InvalidOperationException("Incomplete reference glade source kit.");
+                if(kit==null||kit.schemaVersion!=1||kit.palette==null||kit.palette.Length!=24||kit.models==null||kit.models.Length!=ReferenceGladeVoxelLibrary.Families.Count*ReferenceGladeVoxelLibrary.VariantCount)throw new InvalidOperationException("Incomplete reference glade source kit.");
                 var colors=new Color[24];for(int i=0;i<24;i++)if(!ColorUtility.TryParseHtmlString(kit.palette[i],out colors[i]))throw new InvalidOperationException("Invalid palette color.");
                 var expected=new HashSet<string>(StringComparer.Ordinal);
                 foreach(string family in ReferenceGladeVoxelLibrary.Families)for(int v=0;v<4;v++)expected.Add(ReferenceGladeVoxelLibrary.ModelId(family,v));
@@ -47,7 +47,7 @@ namespace CavesOfOoo.Editor
                 if(material==null){RefuseWrongType(materialPath);material=new Material(ring.WorldMaterial){name="Reference glade native palette"};AssetDatabase.CreateAsset(material,materialPath);}
                 material.SetTexture("_BaseMap",palette);material.SetColor("_BaseColor",Color.white);material.enableInstancing=true;EditorUtility.SetDirty(material);
                 primitive=GameObject.CreatePrimitive(PrimitiveType.Cube);var cube=primitive.GetComponent<MeshFilter>().sharedMesh;var cv=cube.vertices;var ct=cube.triangles;
-                var entries=new List<ReferenceGladeVoxelLibrary.Entry>(40);
+                var entries=new List<ReferenceGladeVoxelLibrary.Entry>(kit.models.Length);
                 foreach(var model in kit.models)
                 {
                     var vertices=new List<Vector3>(model.boxes.Length*24);var uv=new List<Vector2>(model.boxes.Length*24);var triangles=new List<int>(model.boxes.Length*36);

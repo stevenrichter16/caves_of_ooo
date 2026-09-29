@@ -1,11 +1,11 @@
 import json,unittest
 from pathlib import Path
 ROOT=Path(__file__).parent
-FAMILIES={'ground','pale-reeds','green-grass','dark-ruin','low-wall','lit-wall','gravel','chest','barrel','mushroom-ring'}
+FAMILIES={'ground','pale-reeds','green-grass','dark-ruin','low-wall','lit-wall','gravel','chest','barrel','mushroom-ring','cooking-fire','cooled-fire','fallen-beam'}
 class GladeKitTests(unittest.TestCase):
  def read(self):return json.loads((ROOT/'kit.json').read_text())
- def test_exact_ten_families_four_variants(self):
-  d=self.read();self.assertEqual(40,len(d['models']));self.assertEqual({'reference-glade-'+f+'-'+str(v) for f in FAMILIES for v in range(4)},{m['id'] for m in d['models']})
+ def test_exact_thirteen_families_four_variants(self):
+  d=self.read();self.assertEqual(52,len(d['models']));self.assertEqual({'reference-glade-'+f+'-'+str(v) for f in FAMILIES for v in range(4)},{m['id'] for m in d['models']})
  def test_boxes_stay_inside_native_cell_and_have_volume(self):
   for m in self.read()['models']:
    self.assertTrue(m['boxes'],m['id'])
@@ -17,7 +17,7 @@ class GladeKitTests(unittest.TestCase):
   for m in d['models']:
    for b in m['boxes']:self.assertIn(b['color'],range(24))
  def test_low_plant_and_wall_height_hierarchy(self):
-  d=self.read();ranges={'ground':(.005,.1),'pale-reeds':(.4,.95),'green-grass':(.12,.5),'dark-ruin':(.35,.9),'low-wall':(.35,.75),'lit-wall':(.35,.75),'gravel':(.02,.16),'chest':(.3,.7),'barrel':(.3,.7),'mushroom-ring':(.25,.5)}
+  d=self.read();ranges={'ground':(.005,.1),'pale-reeds':(.4,.95),'green-grass':(.12,.5),'dark-ruin':(.35,.9),'low-wall':(.35,.75),'lit-wall':(.35,.75),'gravel':(.02,.16),'chest':(.3,.7),'barrel':(.3,.7),'mushroom-ring':(.25,.5),'cooking-fire':(.3,.7),'cooled-fire':(.18,.4),'fallen-beam':(.18,.4)}
   for m in d['models']:
    y=[b['center']['y']+s*b['size']['y']*.5 for b in m['boxes'] for s in [-1,1]];height=max(y)-min(y);a,b=ranges[m['family']];self.assertGreaterEqual(height,a);self.assertLessEqual(height,b)
  def test_variants_have_real_geometric_changes(self):

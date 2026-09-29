@@ -1,11 +1,10 @@
 # Reference glade source kit
 
 The authoritative original art recipe is `build_kit.py` → `kit.json`. Native
-`ReferenceGladeVoxelKitBuilder.Run` reads this source and builds40 persistent
-combined meshes/prefabs with a private24-color fog-aware palette. Run the 30
-source checks with `python3 -m unittest discover -s ArtSource/ReferenceGlade3D`.
+`ReferenceGladeVoxelKitBuilder.Run` reads this source and builds52 persistent
+combined meshes/prefabs with a private24-color fog-aware palette. Run the source checks with `python3 -m unittest discover -s ArtSource/ReferenceGlade3D`.
 
-`kit-review.blend` matches the current seventh-pass JSON:40 models and2,391
+`kit-review.blend` is the historical seventh-pass review of the original40 models and2,391
 cuboids. The reviewed gallery is archived under the seventh-pass verification
 folder. Blender uses separate review lighting; Unity remains the gameplay authority.
 `preview_kit.py --output <new-directory>` reproduces it and the gallery when run
@@ -59,3 +58,5 @@ lower tufts; the other36 models and palette are exact. Its native grass tests
 first failed against the previous imported kit. Native builder adoption and all four grass geometry cases passed. The seventh
 Blender review file/gallery were rebuilt and inspected; a new actual gameplay
 screenshot is still required.
+
+The starting-glade prop addition appends12 models (four variants each of cooking-fire, cooled-fire and fallen-beam). The original40 model rows and24-color palette are unchanged. The actual finite campfire selects warm/cool coals at150°C independent of fuel; meshes add no light, particles or animation. The beam keeps its saved-ID variant after dragging. Native gameplay images, rather than the historical Blender gallery, are the acceptance gate for these additions.
