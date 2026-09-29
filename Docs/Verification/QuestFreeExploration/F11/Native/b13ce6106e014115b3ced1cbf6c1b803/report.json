@@ -1,0 +1,4871 @@
+{
+  "runId": "b13ce6106e014115b3ced1cbf6c1b803",
+  "seed": 64,
+  "requestedSeed": 64,
+  "mode": "hunting",
+  "finished": true,
+  "complete": true,
+  "failures": 0,
+  "fatal": null,
+  "seconds": 9.6975033,
+  "paidInputs": 16,
+  "checks": [
+    {
+      "label": "ordinary_fresh_opted_in_world",
+      "pass": true
+    },
+    {
+      "label": "frozen_canonical_hunt_metadata",
+      "pass": true
+    },
+    {
+      "label": "hunting_same_original_player",
+      "pass": true
+    },
+    {
+      "label": "02-actual-hunter-reader_free_current_readout",
+      "pass": true
+    },
+    {
+      "label": "hunt_inactive_native_save_free",
+      "pass": true
+    },
+    {
+      "label": "hunt_inactive_no_offscreen_progress",
+      "pass": true
+    },
+    {
+      "label": "hunt_exact_inactive_replacement",
+      "pass": true
+    },
+    {
+      "label": "bounded_hunting_finish",
+      "pass": true
+    }
+  ],
+  "observations": [
+    {
+      "phase": "hunting-predeclared-cohort",
+      "canonicalIndex": 5,
+      "entries": [
+        {
+          "index": 0,
+          "zone": "Overworld.12.6.0",
+          "PlacementEligible": true,
+          "family": "HuntThroughCover",
+          "ActorSeed": 112944338,
+          "RewardSeed": -928832356
+        },
+        {
+          "index": 1,
+          "zone": "Overworld.14.8.0",
+          "PlacementEligible": true,
+          "family": "HuntThroughCover",
+          "ActorSeed": -1641088615,
+          "RewardSeed": 2144591369
+        },
+        {
+          "index": 2,
+          "zone": "Overworld.5.13.0",
+          "PlacementEligible": true,
+          "family": "HuntThroughCover",
+          "ActorSeed": -778618265,
+          "RewardSeed": 1896903041
+        },
+        {
+          "index": 3,
+          "zone": "Overworld.5.8.0",
+          "PlacementEligible": true,
+          "family": "HuntThroughCover",
+          "ActorSeed": -474313413,
+          "RewardSeed": -548613082
+        },
+        {
+          "index": 4,
+          "zone": "Overworld.6.7.0",
+          "PlacementEligible": true,
+          "family": "HuntThroughCover",
+          "ActorSeed": -554597921,
+          "RewardSeed": 414414984
+        },
+        {
+          "index": 5,
+          "zone": "Overworld.7.2.0",
+          "PlacementEligible": true,
+          "family": "HuntThroughCover",
+          "ActorSeed": 1746448393,
+          "RewardSeed": -1949570653
+        },
+        {
+          "index": 6,
+          "zone": "Overworld.8.9.0",
+          "PlacementEligible": true,
+          "family": "HuntThroughCover",
+          "ActorSeed": 1385413873,
+          "RewardSeed": -567879321
+        }
+      ],
+      "boundary": "One index is selected before generation/outcome inspection. Other entries are not attempted in this run. Preserve separate RunIds for successive predetermined indices."
+    },
+    {
+      "phase": "hunting-source-attempt",
+      "index": 5,
+      "zone": "Overworld.7.2.0",
+      "disposition": 2,
+      "hunter": "4931",
+      "prey": "4932",
+      "reason": "admitted",
+      "watch": [
+        73,
+        1
+      ],
+      "records": [
+        {
+          "TraceId": "29b000b2",
+          "Category": "worldgen",
+          "Kind": "SpreadCompositionPlanned",
+          "TimestampUnixMs": 1790667019722,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.7.2.0\",\"seed\":64,\"formation\":\"Fallow\",\"condition\":\"after harvest\",\"objects\":205,\"water\":0}"
+        },
+        {
+          "TraceId": "7a785b6e",
+          "Category": "worldgen",
+          "Kind": "ConnectivityConnected",
+          "TimestampUnixMs": 1790667019727,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneID\":\"Overworld.7.2.0\"}"
+        },
+        {
+          "TraceId": "55e9253c",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790667019729,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.7.2.0\",\"blueprint\":\"Magpie\",\"group\":null,\"count\":2,\"roll\":0.20678581726121986,\"rollKind\":\"chance\",\"threshold\":0.23809523809523808,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "74a8de32",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790667019729,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.7.2.0\",\"blueprint\":\"PetDog\",\"group\":null,\"count\":0,\"roll\":0.127603691130692,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "6a3d7d97",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790667019729,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.7.2.0\",\"blueprint\":\"Viper\",\"group\":\"SpreadTier1Encounter\",\"count\":0,\"roll\":0.78296425509404588,\"rollKind\":\"weighted_choice\",\"threshold\":null,\"selectionStart\":0.0,\"selectionEnd\":0.5,\"reason\":\"not_selected\"}"
+        },
+        {
+          "TraceId": "510b107d",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790667019729,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.7.2.0\",\"blueprint\":\"MarlbackScrabbler\",\"group\":\"SpreadTier1Encounter\",\"count\":2,\"roll\":0.78296425509404588,\"rollKind\":\"weighted_choice\",\"threshold\":null,\"selectionStart\":0.5,\"selectionEnd\":1.0,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "235e7f16",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790667019729,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.7.2.0\",\"blueprint\":\"BerryBush\",\"group\":null,\"count\":1,\"roll\":0.82532752623098327,\"rollKind\":\"chance\",\"threshold\":0.19047619047619047,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "a2187941",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790667019729,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.7.2.0\",\"blueprint\":\"Beehive\",\"group\":null,\"count\":0,\"roll\":0.39775540092855477,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "f3d26a64",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790667019729,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.7.2.0\",\"blueprint\":\"HollowStump\",\"group\":null,\"count\":0,\"roll\":0.29053472554801718,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "fb01f396",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790667019729,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.7.2.0\",\"blueprint\":\"Signpost\",\"group\":null,\"count\":1,\"roll\":0.03041420273036426,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "de10813c",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790667019729,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.7.2.0\",\"blueprint\":\"Hatchet\",\"group\":null,\"count\":0,\"roll\":0.76644996729048431,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "eaa29b22",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790667019729,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.7.2.0\",\"blueprint\":\"Cudgel\",\"group\":null,\"count\":0,\"roll\":0.075876703521179367,\"rollKind\":\"chance\",\"threshold\":0.047619047619047616,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "7ca694d2",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1790667019729,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.7.2.0\",\"blueprint\":\"LeatherBoots\",\"group\":null,\"count\":1,\"roll\":0.022995604678520749,\"rollKind\":\"chance\",\"threshold\":0.047619047619047616,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "8eee1fc5",
+          "Category": "ai",
+          "Kind": "SpreadHuntAdmission",
+          "TimestampUnixMs": 1790667019824,
+          "Turn": 10,
+          "ActorId": "4931",
+          "TargetId": "4932",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"pair-admitted\",\"phase\":\"Watching\",\"pursuitRemaining\":24,\"searchRemaining\":6,\"feedProgress\":0}"
+        },
+        {
+          "TraceId": "be014622",
+          "Category": "worldgen",
+          "Kind": "SpreadExplorationCommitted",
+          "TimestampUnixMs": 1790667019839,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.7.2.0\",\"family\":\"HuntThroughCover\",\"owners\":[\"4931\",\"4932\"]}"
+        },
+        {
+          "TraceId": "556d7550",
+          "Category": "worldgen",
+          "Kind": "ContainersPlaced",
+          "TimestampUnixMs": 1790667019840,
+          "Turn": 10,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.7.2.0\",\"biome\":\"Spread\",\"zoneKind\":\"Wilderness\",\"tier\":1,\"budget\":2,\"placed\":2}"
+        }
+      ]
+    },
+    {
+      "phase": "disclosed-player-only-transfer",
+      "label": "actual original hunt pair; observer-only destination",
+      "zone": "Overworld.7.2.0",
+      "x": 73,
+      "y": 1,
+      "player": "2700",
+      "tick": 10,
+      "nativeEntryAdditions": [],
+      "boundary": "Setup transfer to an actual generated source; not an ordinary journey. Original source owners are preserved. Normal native entry-hook additions such as travellers are recorded separately, never suppressed."
+    },
+    {
+      "phase": "actual-current-style",
+      "owner": "4931",
+      "blueprint": "Furrowstalker",
+      "model": "spread-furrowstalker",
+      "pieces": 1,
+      "camera": {
+        "pixelWidth": 1461,
+        "pixelHeight": 918
+      },
+      "boundary": "All-piece identity and bounds do not prove unoccluded pixels or human readability; images require review."
+    },
+    {
+      "phase": "initial-hunter",
+      "owner": "4931",
+      "blueprint": "Furrowstalker",
+      "model": "spread-furrowstalker",
+      "mesh": "spread-furrowstalker",
+      "material": "Palette",
+      "Batched": false,
+      "boundary": "Current submitted mesh/palette proof; no claim of unoccluded readable pixels."
+    },
+    {
+      "phase": "actual-current-style",
+      "owner": "4932",
+      "blueprint": "ReedbackGrazer",
+      "model": "questfree-spread-grazer",
+      "pieces": 1,
+      "camera": {
+        "pixelWidth": 1461,
+        "pixelHeight": 918
+      },
+      "boundary": "All-piece identity and bounds do not prove unoccluded pixels or human readability; images require review."
+    },
+    {
+      "phase": "initial-grazer",
+      "owner": "4932",
+      "blueprint": "ReedbackGrazer",
+      "model": "questfree-spread-grazer",
+      "mesh": "questfree-spread-grazer",
+      "material": "Palette",
+      "Batched": false,
+      "boundary": "Current submitted mesh/palette proof; no claim of unoccluded readable pixels."
+    },
+    {
+      "phase": "initial-live-pair",
+      "wait": 0,
+      "tick": 10,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 59,
+            "Item2": 4
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Watching",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": false,
+            "LastSeenX": 0,
+            "LastSeenY": 0,
+            "PursuitRemaining": 24,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 55,
+            "Item2": 4
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 0,
+            "ThreatX": 0,
+            "ThreatY": 0,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 59,
+            "Item2": 4
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 0,
+          "goals": [],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 55,
+            "Item2": 4
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 0,
+          "goals": [],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 14
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 18
+        }
+      ]
+    },
+    {
+      "phase": "02-actual-hunter-reader-current-state",
+      "owner": "4931",
+      "expected": "It watches from a low crouch, waiting for a nearby grazer to move.",
+      "boundary": "Missing active prose may be correct under another current goal; it is not credited as hunt-state reader acceptance."
+    },
+    {
+      "phase": "02-actual-hunter-reader",
+      "owner": "4931",
+      "pages": 1,
+      "text": "You see a furrowstalker.  A low, narrow hunter with a wedge-shaped muzzle and a tapering tail. Its four feet follow the furrows quietly; a pale jaw opens beneath its dark brow. It watches from a low crouch, waiting for a nearby grazer to move."
+    },
+    {
+      "phase": "observed-phase-Watching",
+      "wait": 0,
+      "tick": 10,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 59,
+            "Item2": 4
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Watching",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": false,
+            "LastSeenX": 0,
+            "LastSeenY": 0,
+            "PursuitRemaining": 24,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 55,
+            "Item2": 4
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 0,
+            "ThreatX": 0,
+            "ThreatY": 0,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 59,
+            "Item2": 4
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 0,
+          "goals": [],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 55,
+            "Item2": 4
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 0,
+          "goals": [],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 14
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 18
+        }
+      ]
+    },
+    {
+      "phase": "actual-hunting-animation-frame",
+      "owner": "4931",
+      "pose": "Walk",
+      "normalizedTime": 0.152826056,
+      "model": "spread-furrowstalker",
+      "role": "Pursuing",
+      "headWorldUp": 0.187455922,
+      "boundary": "Current running Animator plus CPU BakeMesh measurement; no SampleAnimation/Animator.Update or claim of unoccluded pixels."
+    },
+    {
+      "phase": "hunting-native-wait-1",
+      "kind": "local",
+      "beforeTick": 10,
+      "afterTick": 20,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "6e325630",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667023827,
+          "Turn": 10,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-1\"}"
+        },
+        {
+          "TraceId": "2082aa86",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667023828,
+          "Turn": 10,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "b4873e45",
+          "Category": "ai",
+          "Kind": "SpreadHuntTransition",
+          "TimestampUnixMs": 1790667023828,
+          "Turn": 20,
+          "ActorId": "4931",
+          "TargetId": "4932",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"quarry-seen\",\"phase\":\"Pursuing\",\"pursuitRemaining\":23,\"searchRemaining\":6,\"feedProgress\":0}"
+        },
+        {
+          "TraceId": "3f4aa128",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667023828,
+          "Turn": 20,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "ed5f9738",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667023832,
+          "Turn": 20,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "8f37074f",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667023833,
+          "Turn": 20,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-1",
+      "wait": 1,
+      "tick": 20,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 58,
+            "Item2": 4
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 55,
+            "LastSeenY": 4,
+            "PursuitRemaining": 23,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 55,
+            "Item2": 4
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 0,
+            "ThreatX": 0,
+            "ThreatY": 0,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 58,
+            "Item2": 4
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 100,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 1
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 55,
+            "Item2": 4
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 15
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 18
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 1,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "2082aa86",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667023828,
+          "Turn": 10,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "b4873e45",
+          "Category": "ai",
+          "Kind": "SpreadHuntTransition",
+          "TimestampUnixMs": 1790667023828,
+          "Turn": 20,
+          "ActorId": "4931",
+          "TargetId": "4932",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"quarry-seen\",\"phase\":\"Pursuing\",\"pursuitRemaining\":23,\"searchRemaining\":6,\"feedProgress\":0}"
+        },
+        {
+          "TraceId": "3f4aa128",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667023828,
+          "Turn": 20,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "observed-phase-Pursuing",
+      "wait": 1,
+      "tick": 20,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 58,
+            "Item2": 4
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 55,
+            "LastSeenY": 4,
+            "PursuitRemaining": 23,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 55,
+            "Item2": 4
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 0,
+            "ThreatX": 0,
+            "ThreatY": 0,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 58,
+            "Item2": 4
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 100,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 1
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 55,
+            "Item2": 4
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 15
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 18
+        }
+      ]
+    },
+    {
+      "phase": "hunting-native-wait-2",
+      "kind": "local",
+      "beforeTick": 20,
+      "afterTick": 30,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "7242e973",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667024056,
+          "Turn": 20,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-2\"}"
+        },
+        {
+          "TraceId": "4f1fcad9",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667024057,
+          "Turn": 20,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "b27f7254",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667024058,
+          "Turn": 30,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d79efe77",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667024061,
+          "Turn": 30,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "0a6815a8",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667024061,
+          "Turn": 30,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-2",
+      "wait": 2,
+      "tick": 30,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 57,
+            "Item2": 3
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 54,
+            "LastSeenY": 3,
+            "PursuitRemaining": 22,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 54,
+            "Item2": 3
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 2,
+            "ThreatX": 58,
+            "ThreatY": 4,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 57,
+            "Item2": 3
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 200,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 2
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 54,
+            "Item2": 3
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 1
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 16
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 19
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 2,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "4f1fcad9",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667024057,
+          "Turn": 20,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "b27f7254",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667024058,
+          "Turn": 30,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunting-native-wait-3",
+      "kind": "local",
+      "beforeTick": 30,
+      "afterTick": 40,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "8462e553",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667024215,
+          "Turn": 30,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-3\"}"
+        },
+        {
+          "TraceId": "a30bc9e3",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667024219,
+          "Turn": 30,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "f13397b9",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667024220,
+          "Turn": 40,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "4fc70f47",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667024222,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "5b92003f",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667024222,
+          "Turn": 40,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-3",
+      "wait": 3,
+      "tick": 40,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 56,
+            "Item2": 2
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 53,
+            "LastSeenY": 2,
+            "PursuitRemaining": 21,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 53,
+            "Item2": 2
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 2,
+            "ThreatX": 57,
+            "ThreatY": 3,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 56,
+            "Item2": 2
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 300,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 3
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 53,
+            "Item2": 2
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 2
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 17
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 20
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 3,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "a30bc9e3",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667024219,
+          "Turn": 30,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "f13397b9",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667024220,
+          "Turn": 40,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunting-native-wait-4",
+      "kind": "local",
+      "beforeTick": 40,
+      "afterTick": 50,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "5de473ee",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667024376,
+          "Turn": 40,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-4\"}"
+        },
+        {
+          "TraceId": "a7ffe9d7",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667024379,
+          "Turn": 40,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "e6845fc9",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667024379,
+          "Turn": 50,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "f1e3228d",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667024382,
+          "Turn": 50,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "39b4e436",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667024382,
+          "Turn": 50,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-4",
+      "wait": 4,
+      "tick": 50,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 55,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 52,
+            "LastSeenY": 1,
+            "PursuitRemaining": 20,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 52,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 2,
+            "ThreatX": 56,
+            "ThreatY": 2,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 55,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 400,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 4
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 52,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 3
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 18
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 21
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 4,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "a7ffe9d7",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667024379,
+          "Turn": 40,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "e6845fc9",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667024379,
+          "Turn": 50,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunting-native-wait-5",
+      "kind": "local",
+      "beforeTick": 50,
+      "afterTick": 60,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "a7f4a64c",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667024535,
+          "Turn": 50,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-5\"}"
+        },
+        {
+          "TraceId": "212f5aad",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667024538,
+          "Turn": 50,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "30c70203",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667024538,
+          "Turn": 60,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "373eed9d",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667024541,
+          "Turn": 60,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "748c7565",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667024541,
+          "Turn": 60,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-5",
+      "wait": 5,
+      "tick": 60,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 54,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 51,
+            "LastSeenY": 1,
+            "PursuitRemaining": 19,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 51,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 2,
+            "ThreatX": 55,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 54,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 500,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 5
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 51,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 4
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 19
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 22
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 5,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "212f5aad",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667024538,
+          "Turn": 50,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "30c70203",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667024538,
+          "Turn": 60,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunting-native-wait-6",
+      "kind": "local",
+      "beforeTick": 60,
+      "afterTick": 70,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "5a1129aa",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667024694,
+          "Turn": 60,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-6\"}"
+        },
+        {
+          "TraceId": "bf50dd73",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667024697,
+          "Turn": 60,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "9c1bc622",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667024698,
+          "Turn": 70,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "6d311e78",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667024701,
+          "Turn": 70,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "d560a56e",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667024701,
+          "Turn": 70,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-6",
+      "wait": 6,
+      "tick": 70,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 53,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 50,
+            "LastSeenY": 1,
+            "PursuitRemaining": 18,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 50,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 2,
+            "ThreatX": 54,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 53,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 600,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 6
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 50,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 5
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 20
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 23
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 6,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "bf50dd73",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667024697,
+          "Turn": 60,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "9c1bc622",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667024698,
+          "Turn": 70,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunting-native-wait-7",
+      "kind": "local",
+      "beforeTick": 70,
+      "afterTick": 80,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "9710daeb",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667024856,
+          "Turn": 70,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-7\"}"
+        },
+        {
+          "TraceId": "3a90e332",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667024859,
+          "Turn": 70,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d69e8814",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667024860,
+          "Turn": 80,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "18952727",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667024862,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "8bfe51eb",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667024862,
+          "Turn": 80,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-7",
+      "wait": 7,
+      "tick": 80,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 52,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 49,
+            "LastSeenY": 1,
+            "PursuitRemaining": 17,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 49,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 2,
+            "ThreatX": 53,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 52,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 700,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 7
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 49,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 6
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 21
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 24
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 7,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "3a90e332",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667024859,
+          "Turn": 70,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d69e8814",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667024860,
+          "Turn": 80,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunting-native-wait-8",
+      "kind": "local",
+      "beforeTick": 80,
+      "afterTick": 90,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "23259c3c",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667025016,
+          "Turn": 80,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-8\"}"
+        },
+        {
+          "TraceId": "37c4889f",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667025019,
+          "Turn": 80,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "f2261a70",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667025020,
+          "Turn": 90,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "7c07752a",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667025023,
+          "Turn": 90,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "39eb5fde",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667025023,
+          "Turn": 90,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-8",
+      "wait": 8,
+      "tick": 90,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 51,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 48,
+            "LastSeenY": 1,
+            "PursuitRemaining": 16,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 48,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 2,
+            "ThreatX": 52,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 51,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 800,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 8
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 48,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 7
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 22
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 25
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 8,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "37c4889f",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667025019,
+          "Turn": 80,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "f2261a70",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667025020,
+          "Turn": 90,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunting-native-wait-9",
+      "kind": "local",
+      "beforeTick": 90,
+      "afterTick": 100,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "e2eb10e0",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667025177,
+          "Turn": 90,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-9\"}"
+        },
+        {
+          "TraceId": "340bab3f",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667025180,
+          "Turn": 90,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "df20b0b6",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667025181,
+          "Turn": 100,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "e9083763",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667025183,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "922c47d7",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667025183,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-9",
+      "wait": 9,
+      "tick": 100,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 50,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 47,
+            "LastSeenY": 1,
+            "PursuitRemaining": 15,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 47,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 2,
+            "ThreatX": 51,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 50,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 900,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 9
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 47,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 8
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 23
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 26
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 9,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "340bab3f",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667025180,
+          "Turn": 90,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "df20b0b6",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667025181,
+          "Turn": 100,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunting-native-wait-10",
+      "kind": "local",
+      "beforeTick": 100,
+      "afterTick": 110,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "274a29ba",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667025339,
+          "Turn": 100,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-10\"}"
+        },
+        {
+          "TraceId": "b5847f58",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667025342,
+          "Turn": 100,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "b595c827",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667025343,
+          "Turn": 110,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "9143c3fe",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667025345,
+          "Turn": 110,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "233295d5",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667025345,
+          "Turn": 110,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-10",
+      "wait": 10,
+      "tick": 110,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 48,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 46,
+            "LastSeenY": 1,
+            "PursuitRemaining": 13,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 2,
+            "ThreatX": 50,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 48,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 0,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 11
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 9
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 25
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 27
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 10,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "b5847f58",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667025342,
+          "Turn": 100,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "b595c827",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667025343,
+          "Turn": 110,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunting-native-wait-11",
+      "kind": "local",
+      "beforeTick": 110,
+      "afterTick": 120,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "3d810d55",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667025499,
+          "Turn": 110,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-11\"}"
+        },
+        {
+          "TraceId": "756fa98f",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667025502,
+          "Turn": 110,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "99d2c9a0",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667025503,
+          "Turn": 120,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "f6306b44",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667025506,
+          "Turn": 120,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "6f70253b",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667025506,
+          "Turn": 120,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-11",
+      "wait": 11,
+      "tick": 120,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 47,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 45,
+            "LastSeenY": 1,
+            "PursuitRemaining": 12,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 45,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 2,
+            "ThreatX": 48,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 47,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 100,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 12
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 45,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 10
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 26
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 28
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 11,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "756fa98f",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667025502,
+          "Turn": 110,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "99d2c9a0",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667025503,
+          "Turn": 120,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunting-native-wait-12",
+      "kind": "local",
+      "beforeTick": 120,
+      "afterTick": 130,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "a7488494",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667025660,
+          "Turn": 120,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-12\"}"
+        },
+        {
+          "TraceId": "5411796c",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667025663,
+          "Turn": 120,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "8dd805c2",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667025664,
+          "Turn": 130,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "5ffad6cc",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667025666,
+          "Turn": 130,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "d57bcbc1",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667025666,
+          "Turn": 130,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-12",
+      "wait": 12,
+      "tick": 130,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Pursuing",
+            "PreyID": "4932",
+            "prey": "4932",
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 44,
+            "LastSeenY": 1,
+            "PursuitRemaining": 11,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 44,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": "4931",
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 2,
+            "ThreatX": 47,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 200,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 13
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 44,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 11
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 27
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 29
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 12,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "5411796c",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667025663,
+          "Turn": 120,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "8dd805c2",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667025664,
+          "Turn": 130,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunting-native-wait-13",
+      "kind": "local",
+      "beforeTick": 130,
+      "afterTick": 140,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "b38a07bb",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667025820,
+          "Turn": 130,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunting-native-wait-13\"}"
+        },
+        {
+          "TraceId": "65f81ac7",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667025823,
+          "Turn": 130,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "645a8d2d",
+          "Category": "ai",
+          "Kind": "SpreadHuntOutcome",
+          "TimestampUnixMs": 1790667025824,
+          "Turn": 138,
+          "ActorId": "4931",
+          "TargetId": "4932",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"outside-home-leash\",\"phase\":\"Aborted\",\"pursuitRemaining\":11,\"searchRemaining\":6,\"feedProgress\":0}"
+        },
+        {
+          "TraceId": "9ae7ba40",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667025824,
+          "Turn": 140,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "e058a31b",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667025827,
+          "Turn": 140,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "4ec49850",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667025827,
+          "Turn": 140,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "after-paid-wait-13",
+      "wait": 13,
+      "tick": 140,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Aborted",
+            "PreyID": "4932",
+            "prey": null,
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 44,
+            "LastSeenY": 1,
+            "PursuitRemaining": 11,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 43,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": null,
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 0,
+            "ThreatX": 46,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 300,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 14
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 43,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 12
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 27
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 30
+        }
+      ]
+    },
+    {
+      "phase": "hunt-action-window",
+      "wait": 13,
+      "attacks": 0,
+      "interactions": 0,
+      "records": [
+        {
+          "TraceId": "65f81ac7",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667025823,
+          "Turn": 130,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "645a8d2d",
+          "Category": "ai",
+          "Kind": "SpreadHuntOutcome",
+          "TimestampUnixMs": 1790667025824,
+          "Turn": 138,
+          "ActorId": "4931",
+          "TargetId": "4932",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"outside-home-leash\",\"phase\":\"Aborted\",\"pursuitRemaining\":11,\"searchRemaining\":6,\"feedProgress\":0}"
+        },
+        {
+          "TraceId": "9ae7ba40",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667025824,
+          "Turn": 140,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "observed-phase-Aborted",
+      "wait": 13,
+      "tick": 140,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Aborted",
+            "PreyID": "4932",
+            "prey": null,
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 44,
+            "LastSeenY": 1,
+            "PursuitRemaining": 11,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 43,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": null,
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 0,
+            "ThreatX": 46,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 300,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 14
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 43,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 12
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 27
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 30
+        }
+      ]
+    },
+    {
+      "phase": "bounded-outcome",
+      "wait": 13,
+      "tick": 140,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Aborted",
+            "PreyID": "4932",
+            "prey": null,
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 44,
+            "LastSeenY": 1,
+            "PursuitRemaining": 11,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 43,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": null,
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 0,
+            "ThreatX": 46,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 300,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 14
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 43,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 12
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 27
+        },
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 30
+        }
+      ]
+    },
+    {
+      "phase": "hunt-native-source-exit",
+      "kind": "local",
+      "beforeTick": 140,
+      "afterTick": 150,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "3260fb35",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667026109,
+          "Turn": 140,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunt-native-source-exit\"}"
+        },
+        {
+          "TraceId": "b86dc87b",
+          "Category": "worldmap",
+          "Kind": "Ascended",
+          "TimestampUnixMs": 1790667026141,
+          "Turn": 140,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromZoneID\":\"Overworld.7.2.0\",\"fromZoneX\":73,\"fromZoneY\":1,\"toWorldX\":7,\"toWorldY\":2,\"toZoneCellX\":37,\"toZoneCellY\":5}"
+        },
+        {
+          "TraceId": "1932c1f5",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667026423,
+          "Turn": 140,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d17dddcb",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667026424,
+          "Turn": 150,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunt-inactive-checkpoint-boundary",
+      "observedBeforeExit": "Aborted",
+      "savedPhase": "Aborted",
+      "midphaseSaved": false,
+      "beforeExit": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Aborted",
+            "PreyID": "4932",
+            "prey": null,
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 44,
+            "LastSeenY": 1,
+            "PursuitRemaining": 11,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 43,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": null,
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 0,
+            "ThreatX": 46,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "inactive": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Aborted",
+            "PreyID": "4932",
+            "prey": null,
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 44,
+            "LastSeenY": 1,
+            "PursuitRemaining": 11,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 43,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": null,
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 0,
+            "ThreatX": 46,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "boundary": "The paid exit may advance native actors. Compare only the actual now-inactive graph; do not freeze or rewind NPC actions."
+    },
+    {
+      "phase": "hunt-native-unsaved-map-step",
+      "kind": "map",
+      "beforeTick": 150,
+      "afterTick": 170,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 10,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "5d1ce789",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667027000,
+          "Turn": 150,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunt-native-unsaved-map-step\"}"
+        },
+        {
+          "TraceId": "d0da93bf",
+          "Category": "worldmap",
+          "Kind": "Stepped",
+          "TimestampUnixMs": 1790667027002,
+          "Turn": 160,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"toZoneX\":38,\"toZoneY\":5,\"toWorldX\":8,\"toWorldY\":2,\"turnsCost\":10}"
+        },
+        {
+          "TraceId": "4961bf49",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667027002,
+          "Turn": 160,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "4b14a62e",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667027003,
+          "Turn": 170,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hunt-native-restored-source-return",
+      "kind": "local",
+      "beforeTick": 150,
+      "afterTick": 160,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "ec8879f2",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667027726,
+          "Turn": 150,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunt-native-restored-source-return\"}"
+        },
+        {
+          "TraceId": "1e246958",
+          "Category": "worldmap",
+          "Kind": "Descended",
+          "TimestampUnixMs": 1790667027728,
+          "Turn": 150,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromWorldX\":7,\"fromWorldY\":2,\"toZoneID\":\"Overworld.7.2.0\",\"toZoneX\":73,\"toZoneY\":1,\"usedSavedLocation\":true}"
+        },
+        {
+          "TraceId": "f02cea99",
+          "Category": "worldgen",
+          "Kind": "VoxelPresentationBound",
+          "TimestampUnixMs": 1790667027756,
+          "Turn": 150,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.7.2.0\",\"bindings\":410}"
+        },
+        {
+          "TraceId": "a4ab10fa",
+          "Category": "effect",
+          "Kind": "NativeSpellPrepared",
+          "TimestampUnixMs": 1790667027836,
+          "Turn": 150,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"WorldMap\",\"backend\":\"native\",\"LoadSeconds\":0.0,\"ValidationSeconds\":0.0,\"PoolSeconds\":0.0022326,\"ViewCount\":384,\"UsedCachedLibrary\":true}"
+        },
+        {
+          "TraceId": "ca97f218",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667028253,
+          "Turn": 150,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d94d37c7",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667028254,
+          "Turn": 160,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "bf209fb6",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667028257,
+          "Turn": 160,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "57b13794",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667028257,
+          "Turn": 160,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "ordinary-return-may-advance-hunt",
+      "wait": 13,
+      "tick": 160,
+      "player": {
+        "ID": "2700",
+        "hp": 40,
+        "x": 73,
+        "y": 1,
+        "energy": 1000
+      },
+      "source": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Aborted",
+            "PreyID": "4932",
+            "prey": null,
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 44,
+            "LastSeenY": 1,
+            "PursuitRemaining": 11,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 43,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": null,
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 0,
+            "ThreatX": 46,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "actors": [
+        {
+          "owner": "4931",
+          "blueprint": "Furrowstalker",
+          "current": true,
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "hp": 12,
+          "visible": true,
+          "registered": true,
+          "energy": 100,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 15
+            },
+            {
+              "type": "WaitGoal",
+              "Age": 0
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        },
+        {
+          "owner": "4932",
+          "blueprint": "ReedbackGrazer",
+          "current": true,
+          "position": {
+            "Item1": 43,
+            "Item2": 1
+          },
+          "hp": 10,
+          "visible": true,
+          "registered": true,
+          "energy": 1000,
+          "goals": [
+            {
+              "type": "BoredGoal",
+              "Age": 12
+            }
+          ],
+          "brainZone": "Overworld.7.2.0"
+        }
+      ],
+      "threats": [
+        {
+          "ID": "4932",
+          "BlueprintName": "ReedbackGrazer",
+          "distance": 30
+        },
+        {
+          "ID": "4931",
+          "BlueprintName": "Furrowstalker",
+          "distance": 27
+        }
+      ]
+    },
+    {
+      "phase": "actual-current-style",
+      "owner": "4931",
+      "blueprint": "Furrowstalker",
+      "model": "spread-furrowstalker",
+      "pieces": 1,
+      "camera": {
+        "pixelWidth": 1461,
+        "pixelHeight": 918
+      },
+      "boundary": "All-piece identity and bounds do not prove unoccluded pixels or human readability; images require review."
+    },
+    {
+      "phase": "returned-current-hunter",
+      "owner": "4931",
+      "blueprint": "Furrowstalker",
+      "model": "spread-furrowstalker",
+      "mesh": "spread-furrowstalker",
+      "material": "Palette",
+      "Batched": false,
+      "boundary": "Current submitted mesh/palette proof; no claim of unoccluded readable pixels."
+    },
+    {
+      "phase": "hunt-native-return",
+      "present": true,
+      "beforeReturn": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Aborted",
+            "PreyID": "4932",
+            "prey": null,
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 44,
+            "LastSeenY": 1,
+            "PursuitRemaining": 11,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 43,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": null,
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 0,
+            "ThreatX": 46,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "afterReturn": {
+        "zone": "Overworld.7.2.0",
+        "hunter": {
+          "id": "4931",
+          "blueprint": "Furrowstalker",
+          "position": {
+            "Item1": 46,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 12,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": {
+            "Configured": true,
+            "ZoneID": "Overworld.7.2.0",
+            "phase": "Aborted",
+            "PreyID": "4932",
+            "prey": null,
+            "CorpseID": null,
+            "corpse": null,
+            "HomeX": 59,
+            "HomeY": 4,
+            "HasLastSeen": true,
+            "LastSeenX": 44,
+            "LastSeenY": 1,
+            "PursuitRemaining": 11,
+            "SearchRemaining": 6,
+            "CorpseX": 0,
+            "CorpseY": 0,
+            "FeedProgress": 0
+          },
+          "flight": null
+        },
+        "prey": {
+          "id": "4932",
+          "blueprint": "ReedbackGrazer",
+          "position": {
+            "Item1": 43,
+            "Item2": 1
+          },
+          "current": true,
+          "hp": 10,
+          "units": 1,
+          "source": null,
+          "sourceID": null,
+          "killer": null,
+          "killerBlueprint": null,
+          "hunt": null,
+          "flight": {
+            "hunter": null,
+            "HuntZoneID": "Overworld.7.2.0",
+            "FlightRemaining": 0,
+            "ThreatX": 46,
+            "ThreatY": 1,
+            "Configured": false,
+            "Fed": false,
+            "food": null,
+            "reserve": null
+          }
+        },
+        "corpse": null
+      },
+      "records": [
+        {
+          "TraceId": "ec8879f2",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790667027726,
+          "Turn": 150,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"b13ce6106e014115b3ced1cbf6c1b803\",\"label\":\"hunt-native-restored-source-return\"}"
+        },
+        {
+          "TraceId": "1e246958",
+          "Category": "worldmap",
+          "Kind": "Descended",
+          "TimestampUnixMs": 1790667027728,
+          "Turn": 150,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromWorldX\":7,\"fromWorldY\":2,\"toZoneID\":\"Overworld.7.2.0\",\"toZoneX\":73,\"toZoneY\":1,\"usedSavedLocation\":true}"
+        },
+        {
+          "TraceId": "f02cea99",
+          "Category": "worldgen",
+          "Kind": "VoxelPresentationBound",
+          "TimestampUnixMs": 1790667027756,
+          "Turn": 150,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.7.2.0\",\"bindings\":410}"
+        },
+        {
+          "TraceId": "a4ab10fa",
+          "Category": "effect",
+          "Kind": "NativeSpellPrepared",
+          "TimestampUnixMs": 1790667027836,
+          "Turn": 150,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"WorldMap\",\"backend\":\"native\",\"LoadSeconds\":0.0,\"ValidationSeconds\":0.0,\"PoolSeconds\":0.0022326,\"ViewCount\":384,\"UsedCachedLibrary\":true}"
+        },
+        {
+          "TraceId": "ca97f218",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790667028253,
+          "Turn": 150,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d94d37c7",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790667028254,
+          "Turn": 160,
+          "ActorId": "2700",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "bf209fb6",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667028257,
+          "Turn": 160,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":4,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "57b13794",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790667028257,
+          "Turn": 160,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":9,\"y\":5,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ],
+      "boundary": "Normal NPC scheduling on return is allowed. Model/phase/history is observed, never rewound to a desired outcome."
+    },
+    {
+      "phase": "07-returned-current-hunter-reader",
+      "owner": "4931",
+      "unverified": "Current visible owner exceeds existing bounded reader cursor route; no observer move."
+    },
+    {
+      "phase": "hunting-coverage",
+      "waitInputs": 13,
+      "totalPaid": 16,
+      "attacks": 0,
+      "interactions": 0,
+      "checkpoint": true,
+      "midphaseSaved": false,
+      "currentStateReaders": 1,
+      "actualPoseFrames": [
+        "Walk"
+      ],
+      "boundary": "Absent strike, feeding, corpse or midphase save is unverified, not forced. One run need not show both escape and kill. No human-awareness claim."
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/F11/Native/b13ce6106e014115b3ced1cbf6c1b803/00-ordinary-start.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/F11/Native/b13ce6106e014115b3ced1cbf6c1b803/01-generated-current-pair.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/F11/Native/b13ce6106e014115b3ced1cbf6c1b803/02-actual-hunter-reader-0.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/F11/Native/b13ce6106e014115b3ced1cbf6c1b803/03-phase-Watching.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/F11/Native/b13ce6106e014115b3ced1cbf6c1b803/live-Walk.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/F11/Native/b13ce6106e014115b3ced1cbf6c1b803/03-phase-Pursuing.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/F11/Native/b13ce6106e014115b3ced1cbf6c1b803/03-phase-Aborted.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/F11/Native/b13ce6106e014115b3ced1cbf6c1b803/04-current-bounded-outcome.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/F11/Native/b13ce6106e014115b3ced1cbf6c1b803/05-inactive-native-load.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/F11/Native/b13ce6106e014115b3ced1cbf6c1b803/06-returned-current-hunt.png"
+  ],
+  "unverifiedFamilies": [],
+  "humanAwarenessMeasured": false,
+  "boundary": "One predeclared canonical index in the frozen first eight seed64/version8 HuntThroughCover metadata assignments. One disclosed original-player transfer to current dry watching ground outside initial hunter sight; no source retry after transfer. At most40 real paid waits plus3 checkpoint actions and150seconds. No source/actor/HP/gear/clock/RNG edits, guaranteed corpse, actor pause, simulated attack, clip sampling or forced presentation refresh after paid input. Actual outcomes and unavailable phases are retained. Inactive F5/F6 checks only the listed source projection; ordinary NPC turns on exit/return are allowed. This is instrumented local observation, not ordinary discovery, balance or human-awareness evidence. Pixels need independent review.",
+  "settings": {
+    "screenWidth": 2077,
+    "screenHeight": 1251,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "lowDetail": false
+  }
+}

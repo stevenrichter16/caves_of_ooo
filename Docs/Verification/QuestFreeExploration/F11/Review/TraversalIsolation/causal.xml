@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/traversal-isolation/causal-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="2" result="Passed" start-time="2026-09-29T08:13:19.6255350Z" end-time="2026-09-29T08:13:19.9064080Z" duration="0.280859" total="2" passed="2" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="13" random-seed="285429219">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/traversal-isolation/causal-runner/bin/Debug/net8.0/EditModeRunner.dll --test=CavesOfOoo.Tests.TraversalFactoryCausalProbe --result=../causal.xml --workers=0]]></command-line>
+  <filter>
+    <test>CavesOfOoo.Tests.TraversalFactoryCausalProbe</test>
+  </filter>
+  <test-suite type="Assembly" id="1004" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/traversal-isolation/causal-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T08:13:19.6255350Z" end-time="2026-09-29T08:13:19.9064080Z" duration="0.280859" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="13">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/traversal-isolation/causal-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="LOAD" value="System.Collections.Generic.List`1[System.String]" />
+      <setting name="NumberOfTestWorkers" value="0" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/traversal-isolation/causal-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="67354" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestSuite" id="1005" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T08:13:19.6269800Z" end-time="2026-09-29T08:13:19.9064060Z" duration="0.279424" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="13">
+      <test-suite type="TestSuite" id="1006" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T08:13:19.6270970Z" end-time="2026-09-29T08:13:19.9064040Z" duration="0.279304" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="13">
+        <test-suite type="TestFixture" id="1000" name="TraversalFactoryCausalProbe" fullname="CavesOfOoo.Tests.TraversalFactoryCausalProbe" classname="CavesOfOoo.Tests.TraversalFactoryCausalProbe" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T08:13:19.6271100Z" end-time="2026-09-29T08:13:19.9063870Z" duration="0.279275" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="13">
+          <test-suite type="ParameterizedMethod" id="1003" name="UnchangedOriginalGroundFixtureDependsOnAmbientFactory" fullname="CavesOfOoo.Tests.TraversalFactoryCausalProbe.UnchangedOriginalGroundFixtureDependsOnAmbientFactory" classname="CavesOfOoo.Tests.TraversalFactoryCausalProbe" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T08:13:19.6279060Z" end-time="2026-09-29T08:13:19.9062840Z" duration="0.278375" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="13">
+            <test-case id="1001" name="UnchangedOriginalGroundFixtureDependsOnAmbientFactory(False)" fullname="CavesOfOoo.Tests.TraversalFactoryCausalProbe.UnchangedOriginalGroundFixtureDependsOnAmbientFactory(False)" methodname="UnchangedOriginalGroundFixtureDependsOnAmbientFactory" classname="CavesOfOoo.Tests.TraversalFactoryCausalProbe" runstate="Runnable" seed="239454138" result="Passed" start-time="2026-09-29T08:13:19.6279880Z" end-time="2026-09-29T08:13:19.8000780Z" duration="0.172112" asserts="7">
+              <output><![CDATA[[Error] EntityFactory: unknown blueprint 'Sack'
+[Error] EntityFactory: unknown blueprint 'AlchemyShelf'
+[Error] EntityFactory: unknown blueprint 'WoodenBarrel'
+[Error] EntityFactory: unknown blueprint 'AlchemyShelf'
+[Error] EntityFactory: unknown blueprint 'Sack'
+[Error] EntityFactory: unknown blueprint 'WoodenBarrel'
+[Error] EntityFactory: unknown blueprint 'WeaponRack'
+[Error] EntityFactory: unknown blueprint 'WoodenBarrel'
+[Error] EntityFactory: unknown blueprint 'WoodenBarrel'
+[Error] EntityFactory: unknown blueprint 'Crate'
+[Error] EntityFactory: unknown blueprint 'Crate'
+[Error] EntityFactory: unknown blueprint 'WeaponRack'
+completeFactory=False unknownBlueprintErrors=12 sameFactory=False
+]]></output>
+            </test-case>
+            <test-case id="1002" name="UnchangedOriginalGroundFixtureDependsOnAmbientFactory(True)" fullname="CavesOfOoo.Tests.TraversalFactoryCausalProbe.UnchangedOriginalGroundFixtureDependsOnAmbientFactory(True)" methodname="UnchangedOriginalGroundFixtureDependsOnAmbientFactory" classname="CavesOfOoo.Tests.TraversalFactoryCausalProbe" runstate="Runnable" seed="40111892" result="Passed" start-time="2026-09-29T08:13:19.8006830Z" end-time="2026-09-29T08:13:19.9059480Z" duration="0.105264" asserts="6">
+              <output><![CDATA[[Warn] [LootTableRegistry] Unknown loot table 'SackT1'
+completeFactory=True unknownBlueprintErrors=0 sameFactory=True
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

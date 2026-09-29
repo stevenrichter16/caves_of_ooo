@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using NUnit.Framework;
+using Newtonsoft.Json;
+using UnityEngine;
+namespace CavesOfOoo.Tests
+{
+ public sealed class HuntArrivalProbeTests
+ {
+  const string Root="/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival";
+  sealed class Selection{public Site[] rows;}
+  sealed class Site{public int seed;public string zone,nativeHunter,variant;}
+  sealed class Manager:OverworldZoneManager
+  {
+   readonly bool baseline;public PopulationBuilder Source;
+   public Manager(EntityFactory f,int seed,bool disabled):base(f,seed){baseline=disabled;}
+   protected override ZoneGenerationPipeline GetPipelineForZone(string id)
+   {var pipeline=base.GetPipelineForZone(id);if(Exploration.Find(id)?.Family==SpreadExplorationFamily.HuntThroughCover){Source=pipeline.Builders.OfType<PopulationBuilder>().Single();if(baseline)pipeline.RemoveBuilders<SpreadExplorationBuilder>();}return pipeline;}
+  }
+  static string Pos(Zone z,Entity e)=>z.GetEntityCell(e)==null?null:z.GetEntityPosition(e).ToString();
+  static object Actor(Zone z,Entity e,Entity player)
+  {var b=e.GetPart<BrainPart>();var a=z.GetEntityCell(e);var p=z.GetEntityCell(player);return new{id=e.ID,bp=e.BlueprintName,at=Pos(z,e),hp=e.GetStatValue("Hitpoints"),sight=b?.SightRadius,dist=a==null?-1:AIHelpers.ChebyshevDistance(a.X,a.Y,p.X,p.Y),los=a!=null&&AIHelpers.HasLineOfSight(z,a.X,a.Y,p.X,p.Y),hostile=FactionManager.IsHostile(e,player),target=b?.Target?.ID,targetBp=b?.Target?.BlueprintName,targetIsPlayer=b?.Target==player,goals=b?.GetGoalsSnapshot().Select(g=>g.GetType().Name).ToArray(),phase=e.GetPart<SpreadPredatorPart>()?.Phase.ToString()};}
+  [Test]public void ObserveAllFrozenAddressesAtActualDefaultDescent()
+  {
+   var selection=JsonConvert.DeserializeObject<Selection>(File.ReadAllText(Root+"/selection-before-generation.json"));Assert.AreEqual(18,selection.rows.Length);var reports=new List<object>();
+   var oldCorpse=CorpsePart.Factory;var oldAttack=EntityVisualHooks.AttackCallback;
+   try
+   {
+    foreach(var site in selection.rows)foreach(bool baseline in new[]{true,false})
+    using(var scope=new HaulingContentScope())
+    {
+     FactionManager.Initialize(File.ReadAllText(Path.Combine(Application.dataPath,"Resources/Content/Data/Factions.json")));CorpsePart.Factory=scope.Factory;
+     var manager=new Manager(scope.Factory,site.seed,baseline);var map=manager.GetZone(WorldMap.WorldMapZoneID);var coords=site.zone.Split('.');var mapCell=WorldMap.WorldCellToZoneCell(int.Parse(coords[1]),int.Parse(coords[2]));
+     var player=scope.Factory.CreateEntity("Player");Assert.True(map.AddEntity(player,mapCell.zoneX,mapCell.zoneY));Assert.False(player.GetPart<WorldMapPart>()?.HasSavedSurface??false);
+     scope.Seed(unchecked(site.seed^FormationSelector.StableIndex(site.zone,int.MaxValue)));
+     var result=WorldMapTraversal.Descend(player,map,manager);Assert.True(result.Success,result.ErrorReason);var zone=result.NewZone;Assert.AreEqual(site.zone,zone.ZoneID);manager.SetActiveZone(zone);
+     var actors=baseline?manager.Source.SourceReceipt.Owners.ToArray():zone.GetReadOnlyEntities().Where(e=>e.HasPart<SpreadPredatorPart>()).ToArray();Assert.IsNotEmpty(actors);
+     foreach(var e in zone.GetReadOnlyEntities()){var brain=e.GetPart<BrainPart>();if(brain!=null)brain.CurrentZone=zone;}
+     var before=actors.Select(e=>Actor(zone,e,player)).ToArray();int beforeHP=player.GetStatValue("Hitpoints");var attacks=new List<object>();EntityVisualHooks.AttackCallback=(a,t,z)=>attacks.Add(new{actor=a.ID,actorBp=a.BlueprintName,target=t.ID,targetBp=t.BlueprintName,targetIsPlayer=t==player});
+     foreach(var e in actors)e.FireEventAndRelease(GameEvent.New("TakeTurn"));
+     var row=new{site.seed,site.zone,site.variant,site.nativeHunter,baseline,arrival=Pos(zone,player),beforeHP,afterHP=player.GetStatValue("Hitpoints"),before,after=actors.Select(e=>Actor(zone,e,player)).ToArray(),attacks};reports.Add(row);
+     File.WriteAllText(Root+"/arrival-observations.json",JsonConvert.SerializeObject(new{boundary="Actual core WorldMapTraversal.Descend and one actual TakeTurn per hunter/original hostile. All other NPCs remain present but are not advanced in this first-action isolation. No native input/rendering/full scheduler claim. Private stable-hash geometry differs from Unity; address cohort is identical and predetermined. Attack and target acquisition are recorded separately. Native corpse RNG remains ordinary.",rows=reports},Formatting.Indented));
+    }
+   }
+   finally{CorpsePart.Factory=oldCorpse;EntityVisualHooks.AttackCallback=oldAttack;}
+   Assert.AreEqual(36,reports.Count);
+  }
+ }
+}

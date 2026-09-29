@@ -1,0 +1,112 @@
+{
+  "boundary": "Private .NET managed-runtime allocation attribution only; cached delegates invoke actual stage4 candidate methods.64warmups+512each, setup outside measure, diagnostics off, positive counter validated. NOT Unity GC/frame timing/gameplay profiling or release performance acceptance.",
+  "runtime": ".NET 10.0.5",
+  "assembly": "/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage4/attribution/bin/Debug/net8.0/EditModeRunner.dll",
+  "rows": [
+    {
+      "name": "empty-counter-control",
+      "count": 512,
+      "high": [],
+      "minBytes": 0,
+      "medianBytes": 0,
+      "maxBytes": 0,
+      "medianMicroseconds": 0.0,
+      "p99Microseconds": 0.042
+    },
+    {
+      "name": "byte-array-positive-control",
+      "count": 512,
+      "high": [],
+      "minBytes": 1048,
+      "medianBytes": 1048,
+      "maxBytes": 1048,
+      "medianMicroseconds": 0.0,
+      "p99Microseconds": 1.458
+    },
+    {
+      "name": "Eligible-real-method",
+      "count": 512,
+      "high": [],
+      "minBytes": 0,
+      "medianBytes": 0,
+      "maxBytes": 0,
+      "medianMicroseconds": 0.875,
+      "p99Microseconds": 0.958
+    },
+    {
+      "name": "IsCurrentPair-real-method",
+      "count": 512,
+      "high": [],
+      "minBytes": 24,
+      "medianBytes": 24,
+      "maxBytes": 24,
+      "medianMicroseconds": 2.083,
+      "p99Microseconds": 2.333
+    },
+    {
+      "name": "hunter-unseen-wait-no-move",
+      "count": 512,
+      "high": [],
+      "minBytes": 112,
+      "medianBytes": 112,
+      "maxBytes": 112,
+      "medianMicroseconds": 8.5,
+      "p99Microseconds": 9.25
+    },
+    {
+      "name": "unpaired-grazer-idle-no-move",
+      "count": 512,
+      "high": [],
+      "minBytes": 64,
+      "medianBytes": 64,
+      "maxBytes": 64,
+      "medianMicroseconds": 1.833,
+      "p99Microseconds": 2.083
+    },
+    {
+      "name": "existing-MovementSystem-only",
+      "count": 512,
+      "high": [],
+      "minBytes": 32,
+      "medianBytes": 32,
+      "maxBytes": 32,
+      "medianMicroseconds": 1.917,
+      "p99Microseconds": 2.458
+    },
+    {
+      "name": "paired-grazer-flight-with-move",
+      "count": 512,
+      "high": [
+        {
+          "iteration": 201,
+          "bytes": 560
+        }
+      ],
+      "minBytes": 120,
+      "medianBytes": 120,
+      "maxBytes": 560,
+      "medianMicroseconds": 26.25,
+      "p99Microseconds": 37.833
+    },
+    {
+      "name": "GetGoalsSnapshot-three-goals",
+      "count": 512,
+      "high": [],
+      "minBytes": 80,
+      "medianBytes": 80,
+      "maxBytes": 80,
+      "medianMicroseconds": 0.042,
+      "p99Microseconds": 0.084
+    },
+    {
+      "name": "paired-pacing-flight-with-move",
+      "count": 512,
+      "high": [],
+      "minBytes": 144,
+      "medianBytes": 144,
+      "maxBytes": 144,
+      "medianMicroseconds": 28.125,
+      "p99Microseconds": 34.833
+    }
+  ]
+}

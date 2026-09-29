@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="55" result="Passed" start-time="2026-09-29T07:43:39.3381430Z" end-time="2026-09-29T07:43:42.3470430Z" duration="3.008892" total="10" passed="10" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="182" random-seed="1585014111">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 "--where=class =~ /SpreadHuntArrivalTests/" --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/arrival-green.xml]]></command-line>
+  <filter>
+    <class re="1">SpreadHuntArrivalTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1072" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="55" result="Passed" start-time="2026-09-29T07:43:39.3381430Z" end-time="2026-09-29T07:43:42.3470430Z" duration="3.008892" total="10" passed="10" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="182">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="60026" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestSuite" id="1073" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="55" result="Passed" start-time="2026-09-29T07:43:39.3397120Z" end-time="2026-09-29T07:43:42.3470410Z" duration="3.007339" total="10" passed="10" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="182">
+      <test-suite type="TestSuite" id="1074" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="55" result="Passed" start-time="2026-09-29T07:43:39.3398200Z" end-time="2026-09-29T07:43:42.3470380Z" duration="3.007229" total="10" passed="10" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="182">
+        <test-suite type="TestFixture" id="1040" name="SpreadHuntArrivalTests" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-09-29T07:43:39.3401510Z" end-time="2026-09-29T07:43:42.3470250Z" duration="3.006884" total="10" passed="10" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="182">
+          <test-case id="1054" name="ArrivalBoundaryUsesTheAlreadyAuthoredHunterSightInsteadOfASecondMagicRadius" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.ArrivalBoundaryUsesTheAlreadyAuthoredHunterSightInsteadOfASecondMagicRadius" methodname="ArrivalBoundaryUsesTheAlreadyAuthoredHunterSightInsteadOfASecondMagicRadius" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="661003656" result="Passed" start-time="2026-09-29T07:43:39.3410170Z" end-time="2026-09-29T07:43:39.3989600Z" duration="0.057967" asserts="3" />
+          <test-suite type="ParameterizedMethod" id="1047" name="BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T07:43:39.3995280Z" end-time="2026-09-29T07:43:40.8915700Z" duration="1.492048" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="28">
+            <test-case id="1045" name="BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(False)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(False)" methodname="BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="1033293304" result="Passed" start-time="2026-09-29T07:43:39.3995970Z" end-time="2026-09-29T07:43:40.1703160Z" duration="0.770722" asserts="14" />
+            <test-case id="1046" name="BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(True)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(True)" methodname="BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="564598200" result="Passed" start-time="2026-09-29T07:43:40.1703570Z" end-time="2026-09-29T07:43:40.8911030Z" duration="0.720749" asserts="14" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1044" name="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-29T07:43:40.8917810Z" end-time="2026-09-29T07:43:42.1607150Z" duration="1.268938" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="99">
+            <test-case id="1041" name="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1)" methodname="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="166713989" result="Passed" start-time="2026-09-29T07:43:40.8918130Z" end-time="2026-09-29T07:43:41.3453080Z" duration="0.453497" asserts="28">
+              <output><![CDATA[1 Overworld.10.4.0 hunter(63,4) arrival(40,12) distance=23 sight=True target= playerHP=40->40
+1 Overworld.14.13.0 hunter(9,4) arrival(40,12) distance=31 sight=True target= playerHP=40->40
+1 Overworld.14.8.0 hunter(71,16) arrival(40,12) distance=31 sight=True target= playerHP=40->40
+1 Overworld.8.1.0 hunter(55,4) arrival(40,12) distance=15 sight=True target= playerHP=40->40
+1 Overworld.8.14.0 hunter(49,15) arrival(40,12) distance=9 sight=True target= playerHP=40->40
+]]></output>
+            </test-case>
+            <test-case id="1042" name="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(64)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(64)" methodname="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="1160899056" result="Passed" start-time="2026-09-29T07:43:41.3453340Z" end-time="2026-09-29T07:43:41.8118290Z" duration="0.466497" asserts="38">
+              <output><![CDATA[64 Overworld.12.6.0 hunter(59,4) arrival(40,12) distance=19 sight=True target= playerHP=40->40
+64 Overworld.14.8.0 hunter(19,5) arrival(40,12) distance=21 sight=True target= playerHP=40->40
+64 Overworld.5.13.0 hunter(52,8) arrival(40,12) distance=12 sight=True target= playerHP=40->40
+64 Overworld.5.8.0 hunter(75,4) arrival(40,12) distance=35 sight=True target= playerHP=40->40
+64 Overworld.6.7.0 hunter(64,6) arrival(40,12) distance=24 sight=False target= playerHP=40->40
+64 Overworld.7.2.0 hunter(61,15) arrival(40,12) distance=21 sight=True target= playerHP=40->40
+64 Overworld.8.9.0 hunter(75,19) arrival(40,12) distance=35 sight=True target= playerHP=40->40
+]]></output>
+            </test-case>
+            <test-case id="1043" name="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1729)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1729)" methodname="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="179941402" result="Passed" start-time="2026-09-29T07:43:41.8118590Z" end-time="2026-09-29T07:43:42.1606680Z" duration="0.348810" asserts="33">
+              <output><![CDATA[1729 Overworld.10.4.0 hunter(50,9) arrival(40,12) distance=10 sight=True target= playerHP=40->40
+1729 Overworld.11.9.0 hunter(75,15) arrival(40,12) distance=35 sight=True target= playerHP=40->40
+1729 Overworld.12.6.0 hunter(19,15) arrival(40,12) distance=21 sight=True target= playerHP=40->40
+1729 Overworld.14.8.0 hunter(31,18) arrival(40,12) distance=9 sight=True target= playerHP=40->40
+1729 Overworld.5.13.0 hunter(8,6) arrival(40,12) distance=32 sight=True target= playerHP=40->40
+1729 Overworld.8.14.0 hunter(27,20) arrival(40,12) distance=13 sight=True target= playerHP=40->40
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1053" name="FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T07:43:42.1607250Z" end-time="2026-09-29T07:43:42.2552280Z" duration="0.094504" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="28">
+            <test-case id="1051" name="FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(False)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(False)" methodname="FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="495509860" result="Passed" start-time="2026-09-29T07:43:42.1607450Z" end-time="2026-09-29T07:43:42.2084790Z" duration="0.047734" asserts="14" />
+            <test-case id="1052" name="FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(True)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(True)" methodname="FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="35576029" result="Passed" start-time="2026-09-29T07:43:42.2085050Z" end-time="2026-09-29T07:43:42.2551990Z" duration="0.046694" asserts="14" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1050" name="NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T07:43:42.2552530Z" end-time="2026-09-29T07:43:42.3469430Z" duration="0.091690" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <test-case id="1048" name="NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt(False)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt(False)" methodname="NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="2012725434" result="Passed" start-time="2026-09-29T07:43:42.2552780Z" end-time="2026-09-29T07:43:42.2988540Z" duration="0.043577" asserts="12" />
+            <test-case id="1049" name="NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt(True)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt(True)" methodname="NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="1517567853" result="Passed" start-time="2026-09-29T07:43:42.2988840Z" end-time="2026-09-29T07:43:42.3469130Z" duration="0.048029" asserts="12" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

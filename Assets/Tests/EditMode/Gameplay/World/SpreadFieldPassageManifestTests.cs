@@ -36,7 +36,7 @@ namespace CavesOfOoo.Tests
         public void FreshCurrentUsesFrozenHedgerowFourWayAllocationWithoutGeneratingGraphs(int seed)
         {
             var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);var plan=m.Exploration;
-            Assert.AreEqual(7,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
+            Assert.AreEqual(8,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
             var rows=plan.Entries.Where(e=>e.Family.ToString()=="FieldPassage").ToArray();Assert.IsNotEmpty(rows,"Fixed corpus must provide real selected opportunities before any geometry claim.");
             foreach(var e in plan.Entries.Where(e=>e.Family!=SpreadExplorationFamily.None&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.Hedgerow))
                 Assert.AreEqual(new[]{"OccupiedBank","CollectorReturn","FieldPassage","HeavySalvage"}[Variant(seed,e.ZoneID)],e.Family.ToString());

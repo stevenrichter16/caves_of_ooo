@@ -1,0 +1,42 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5/runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-29 07:23:31Z
+    End time: 2026-09-29 07:23:31Z
+    Duration: 0.028 seconds
+
+Test Filters
+    Where: class =~ /SpreadHuntPhaseValidationTests|SpreadHuntAllocationTests|SpreadPredatorStage1Tests/
+
+=> CavesOfOoo.Tests.SpreadHuntAllocationTests.AllocationCounterCalibratesEmptySingleAndMultipleAllocations
+private managed-runtime bytes: empty=0, single=1048, multiple=1400
+=> CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepAvoidsRecurringSearchAllocations(False)
+private managed-runtime bytes: empty=0, single=1048, multiple=1400
+private managed-runtime bytes: pacing=False, worst=96, limit=512
+=> CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepAvoidsRecurringSearchAllocations(True)
+private managed-runtime bytes: empty=0, single=1048, multiple=1400
+private managed-runtime bytes: pacing=True, worst=96, limit=512
+=> CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.RepeatedBoundsValidationDoesNotAllocateOrBoxItsPhase
+Repeated phase validation allocation amount=0 (native events / private bytes).
+
+Run Settings
+    Number of Test Workers: 1
+    Work Directory: /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Passed
+  Test Count: 79, Passed: 79, Failed: 0, Warnings: 0, Inconclusive: 0, Skipped: 0
+  Start time: 2026-09-29 07:23:31Z
+    End time: 2026-09-29 07:23:33Z
+    Duration: 1.034 seconds
+
+Results (nunit3) saved as /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5/phase-and-neighbors-green.xml

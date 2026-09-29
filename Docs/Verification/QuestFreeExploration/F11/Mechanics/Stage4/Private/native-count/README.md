@@ -1,0 +1,9 @@
+# Maintained allocation regression: explicit native event counts
+
+The root native132-case receipt contains130passes and2Inconclusive diagnostics, not130scheduled cases. Both GC.Alloc recorders were valid and produced0 empty events,1 event for1KB and1 event for16KB. Their unit was TimeNanoseconds; sample.Value is timing, never allocation bytes. No synchronous native bytes are claimed. The earlier managed native counter returned0 for a positive allocation, invalidating its two apparent budget passes. Both raw receipts must remain retained.
+
+The maintained14 test delta selects by build environment. Unity Editor uses current-thread GC.Alloc sample.Count totals, without frame aggregation, and independently calibrates0/1/5 allocation events before each budget test.128-slot overflow/truncation fails; unsupported calibration is explicitly Inconclusive. The provisional4-event limit derives from one threat delegate, boxed phase validation, ordinary move-result allocation, plus the second phase validation on pacing. Actual native RED and GREEN must validate that limit, not guessed lowering/loosening.
+
+The private managed runner preserves the genuine512-byte budget with positive byte calibration. Updated14cases pass, reporting0/1048/1400 controls and120/144bytes per actual warmed action. The full actual EditMode-reference assembly compiles with the native branch. Production remains the prior two-file stage4 candidate, unchanged. No broad359 rerun for measurement-only test edits.
+
+Replace the existing SpreadHuntAllocationTests via test-delta-manifest.json. Root may preserve the temporary2-case native-counter probe source/meta and raw results in Docs evidence, then remove only those temporary Assets before the final suite. This folder does not modify gameplay or build a profiling framework.

@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="55" result="Failed" start-time="2026-09-29T07:39:43.7803520Z" end-time="2026-09-29T07:39:45.5798070Z" duration="1.799429" total="10" passed="4" failed="6" inconclusive="0" skipped="0" warnings="0" asserts="171" random-seed="1124563193">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 "--where=class =~ /SpreadHuntArrivalTests/" --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/arrival-red.xml]]></command-line>
+  <filter>
+    <class re="1">SpreadHuntArrivalTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1072" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="55" result="Failed" site="Child" start-time="2026-09-29T07:39:43.7803520Z" end-time="2026-09-29T07:39:45.5798070Z" duration="1.799429" total="10" passed="4" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="171">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="59104" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1073" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="55" result="Failed" site="Child" start-time="2026-09-29T07:39:43.7818090Z" end-time="2026-09-29T07:39:45.5798020Z" duration="1.797980" total="10" passed="4" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="171">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1074" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="55" result="Failed" site="Child" start-time="2026-09-29T07:39:43.7819150Z" end-time="2026-09-29T07:39:45.5797910Z" duration="1.797864" total="10" passed="4" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="171">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1040" name="SpreadHuntArrivalTests" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-09-29T07:39:43.7822340Z" end-time="2026-09-29T07:39:45.5797730Z" duration="1.797526" total="10" passed="4" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="171">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1054" name="ArrivalBoundaryUsesTheAlreadyAuthoredHunterSightInsteadOfASecondMagicRadius" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.ArrivalBoundaryUsesTheAlreadyAuthoredHunterSightInsteadOfASecondMagicRadius" methodname="ArrivalBoundaryUsesTheAlreadyAuthoredHunterSightInsteadOfASecondMagicRadius" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="476853846" result="Failed" start-time="2026-09-29T07:39:43.7830900Z" end-time="2026-09-29T07:39:43.8518850Z" duration="0.068819" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.ArrivalBoundaryUsesTheAlreadyAuthoredHunterSightInsteadOfASecondMagicRadius() in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 133
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.ArrivalBoundaryUsesTheAlreadyAuthoredHunterSightInsteadOfASecondMagicRadius() in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 133
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1047" name="BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T07:39:43.8524730Z" end-time="2026-09-29T07:39:44.0461870Z" duration="0.193713" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1045" name="BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(False)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(False)" methodname="BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="1833849735" result="Failed" start-time="2026-09-29T07:39:43.8525460Z" end-time="2026-09-29T07:39:43.9611590Z" duration="0.108612" asserts="10">
+              <failure>
+                <message><![CDATA[  No approximate fallback arrival or synthetic Player is authorized.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 85
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No approximate fallback arrival or synthetic Player is authorized.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 85
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1046" name="BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(True)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(True)" methodname="BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="60035469" result="Failed" start-time="2026-09-29T07:39:43.9611960Z" end-time="2026-09-29T07:39:44.0458030Z" duration="0.084606" asserts="10">
+              <failure>
+                <message><![CDATA[  No approximate fallback arrival or synthetic Player is authorized.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 85
+   at InvokeStub_SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  No approximate fallback arrival or synthetic Player is authorized.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 85
+   at InvokeStub_SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1044" name="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-29T07:39:44.0463640Z" end-time="2026-09-29T07:39:45.3150590Z" duration="1.268686" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="99">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1041" name="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1)" methodname="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="147400146" result="Failed" start-time="2026-09-29T07:39:44.0463870Z" end-time="2026-09-29T07:39:44.4662580Z" duration="0.419869" asserts="28">
+              <failure>
+                <message><![CDATA[  A default arrival should leave the new hunt available to observe, not immediately divert it into player combat.
+  Expected: <empty>
+  But was:  < "1 Overworld.8.14.0 hunter(41,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 73
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1 Overworld.10.4.0 hunter(63,4) arrival(40,12) distance=23 sight=True target= playerHP=40->40
+1 Overworld.14.13.0 hunter(9,4) arrival(40,12) distance=31 sight=True target= playerHP=40->40
+1 Overworld.14.8.0 hunter(71,16) arrival(40,12) distance=31 sight=True target= playerHP=40->40
+1 Overworld.8.1.0 hunter(55,4) arrival(40,12) distance=15 sight=True target= playerHP=40->40
+1 Overworld.8.14.0 hunter(41,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  A default arrival should leave the new hunt available to observe, not immediately divert it into player combat.
+  Expected: <empty>
+  But was:  < "1 Overworld.8.14.0 hunter(41,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 73
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1042" name="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(64)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(64)" methodname="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="1583643075" result="Passed" start-time="2026-09-29T07:39:44.4662880Z" end-time="2026-09-29T07:39:44.9258420Z" duration="0.459551" asserts="38">
+              <output><![CDATA[64 Overworld.12.6.0 hunter(59,4) arrival(40,12) distance=19 sight=True target= playerHP=40->40
+64 Overworld.14.8.0 hunter(19,5) arrival(40,12) distance=21 sight=True target= playerHP=40->40
+64 Overworld.5.13.0 hunter(52,8) arrival(40,12) distance=12 sight=True target= playerHP=40->40
+64 Overworld.5.8.0 hunter(75,4) arrival(40,12) distance=35 sight=True target= playerHP=40->40
+64 Overworld.6.7.0 hunter(64,6) arrival(40,12) distance=24 sight=False target= playerHP=40->40
+64 Overworld.7.2.0 hunter(61,15) arrival(40,12) distance=21 sight=True target= playerHP=40->40
+64 Overworld.8.9.0 hunter(75,19) arrival(40,12) distance=35 sight=True target= playerHP=40->40
+]]></output>
+            </test-case>
+            <test-case id="1043" name="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1729)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1729)" methodname="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="1864856272" result="Failed" start-time="2026-09-29T07:39:44.9258850Z" end-time="2026-09-29T07:39:45.3150180Z" duration="0.389131" asserts="33">
+              <failure>
+                <message><![CDATA[  A default arrival should leave the new hunt available to observe, not immediately divert it into player combat.
+  Expected: <empty>
+  But was:  < "1729 Overworld.14.8.0 hunter(36,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 73
+   at InvokeStub_SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1729 Overworld.10.4.0 hunter(50,9) arrival(40,12) distance=10 sight=True target= playerHP=40->40
+1729 Overworld.11.9.0 hunter(75,15) arrival(40,12) distance=35 sight=True target= playerHP=40->40
+1729 Overworld.12.6.0 hunter(19,15) arrival(40,12) distance=21 sight=True target= playerHP=40->40
+1729 Overworld.14.8.0 hunter(36,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40
+1729 Overworld.5.13.0 hunter(8,6) arrival(40,12) distance=32 sight=True target= playerHP=40->40
+1729 Overworld.8.14.0 hunter(27,20) arrival(40,12) distance=13 sight=True target= playerHP=40->40
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  A default arrival should leave the new hunt available to observe, not immediately divert it into player combat.
+  Expected: <empty>
+  But was:  < "1729 Overworld.14.8.0 hunter(36,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 73
+   at InvokeStub_SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1053" name="FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T07:39:45.3150690Z" end-time="2026-09-29T07:39:45.4420210Z" duration="0.126951" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="26">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1051" name="FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(False)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(False)" methodname="FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="179515829" result="Failed" start-time="2026-09-29T07:39:45.3150870Z" end-time="2026-09-29T07:39:45.3746970Z" duration="0.059611" asserts="12">
+              <failure>
+                <message><![CDATA[  One surviving border bypass cannot substitute for a current walkable default arrival.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(Boolean blockCenter) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 119
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  One surviving border bypass cannot substitute for a current walkable default arrival.
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(Boolean blockCenter) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 119
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1052" name="FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(True)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(True)" methodname="FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="1414319998" result="Passed" start-time="2026-09-29T07:39:45.3747230Z" end-time="2026-09-29T07:39:45.4419960Z" duration="0.067274" asserts="14" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1050" name="NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T07:39:45.4420310Z" end-time="2026-09-29T07:39:45.5797360Z" duration="0.137703" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <test-case id="1048" name="NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt(False)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt(False)" methodname="NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="402871912" result="Passed" start-time="2026-09-29T07:39:45.4420540Z" end-time="2026-09-29T07:39:45.5099800Z" duration="0.067926" asserts="12" />
+            <test-case id="1049" name="NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt(True)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt(True)" methodname="NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="1616674324" result="Passed" start-time="2026-09-29T07:39:45.5100150Z" end-time="2026-09-29T07:39:45.5797010Z" duration="0.069686" asserts="12" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

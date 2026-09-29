@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="50" result="Failed" start-time="2026-09-29T04:20:16.7974450Z" end-time="2026-09-29T04:20:17.2712350Z" duration="0.473773" total="27" passed="1" failed="26" inconclusive="0" skipped="0" warnings="0" asserts="126" random-seed="466896386">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/red.xml --where "class =~ /SpreadPredatorStage1Tests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadPredatorStage1Tests</class>
+  </filter>
+  <test-suite type="Assembly" id="1057" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-09-29T04:20:16.7974450Z" end-time="2026-09-29T04:20:17.2712350Z" duration="0.473773" total="27" passed="1" failed="26" warnings="0" inconclusive="0" skipped="0" asserts="126">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="16087" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1058" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-09-29T04:20:16.7990220Z" end-time="2026-09-29T04:20:17.2712330Z" duration="0.472210" total="27" passed="1" failed="26" warnings="0" inconclusive="0" skipped="0" asserts="126">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1059" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-09-29T04:20:16.7991310Z" end-time="2026-09-29T04:20:17.2712300Z" duration="0.472098" total="27" passed="1" failed="26" warnings="0" inconclusive="0" skipped="0" asserts="126">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadPredatorStage1Tests" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="27" result="Failed" site="Child" start-time="2026-09-29T04:20:16.7994620Z" end-time="2026-09-29T04:20:17.2712240Z" duration="0.471761" total="27" passed="1" failed="26" warnings="0" inconclusive="0" skipped="0" asserts="126">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1026" name="AdjacentQuarryReceivesOneNativeAttemptWithoutChildGoal" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdjacentQuarryReceivesOneNativeAttemptWithoutChildGoal" methodname="AdjacentQuarryReceivesOneNativeAttemptWithoutChildGoal" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1103842308" result="Failed" start-time="2026-09-29T04:20:16.8003050Z" end-time="2026-09-29T04:20:16.8708210Z" duration="0.070540" asserts="5">
+            <failure>
+              <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdjacentQuarryReceivesOneNativeAttemptWithoutChildGoal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 41
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdjacentQuarryReceivesOneNativeAttemptWithoutChildGoal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 41
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1014" name="BlockedVisibleHuntStopsAtGlobalBudget" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.BlockedVisibleHuntStopsAtGlobalBudget" methodname="BlockedVisibleHuntStopsAtGlobalBudget" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="313444245" result="Failed" start-time="2026-09-29T04:20:16.8713880Z" end-time="2026-09-29T04:20:16.8891440Z" duration="0.017756" asserts="4">
+            <failure>
+              <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.BlockedVisibleHuntStopsAtGlobalBudget() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 34
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.BlockedVisibleHuntStopsAtGlobalBudget() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 34
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1018" name="DamageInstalledPersonalTargetDoesNotTurnHealthyFlightIntoKillGoal" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.DamageInstalledPersonalTargetDoesNotTurnHealthyFlightIntoKillGoal" methodname="DamageInstalledPersonalTargetDoesNotTurnHealthyFlightIntoKillGoal" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1490928619" result="Failed" start-time="2026-09-29T04:20:16.8891710Z" end-time="2026-09-29T04:20:16.9051260Z" duration="0.015955" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.DamageInstalledPersonalTargetDoesNotTurnHealthyFlightIntoKillGoal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 36
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.DamageInstalledPersonalTargetDoesNotTurnHealthyFlightIntoKillGoal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 36
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1001" name="ExactPairAdmissionPreservesFactionAndGrazerFoodFields" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.ExactPairAdmissionPreservesFactionAndGrazerFoodFields" methodname="ExactPairAdmissionPreservesFactionAndGrazerFoodFields" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1310735631" result="Failed" start-time="2026-09-29T04:20:16.9051520Z" end-time="2026-09-29T04:20:16.9195540Z" duration="0.014402" asserts="4">
+            <failure>
+              <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.ExactPairAdmissionPreservesFactionAndGrazerFoodFields() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 28
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.ExactPairAdmissionPreservesFactionAndGrazerFoodFields() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 28
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1017" name="HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T04:20:16.9195810Z" end-time="2026-09-29T04:20:16.9505200Z" duration="0.030939" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1015" name="HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(False)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(False)" methodname="HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1744860779" result="Failed" start-time="2026-09-29T04:20:16.9196980Z" end-time="2026-09-29T04:20:16.9348710Z" duration="0.015173" asserts="6">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(Boolean blocked) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 35
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(Boolean blocked) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 35
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1016" name="HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(True)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(True)" methodname="HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1560113064" result="Failed" start-time="2026-09-29T04:20:16.9348930Z" end-time="2026-09-29T04:20:16.9501700Z" duration="0.015277" asserts="6">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(Boolean blocked) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 35
+   at InvokeStub_SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(Boolean blocked) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 35
+   at InvokeStub_SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1013" name="HiddenPositionsCannotChangeSearchEvenAfterReplacementSave" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T04:20:16.9507050Z" end-time="2026-09-29T04:20:16.9851430Z" duration="0.034438" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="8">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1011" name="HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(False)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(False)" methodname="HiddenPositionsCannotChangeSearchEvenAfterReplacementSave" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="389558570" result="Failed" start-time="2026-09-29T04:20:16.9507240Z" end-time="2026-09-29T04:20:16.9691340Z" duration="0.018410" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(Boolean save) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 32
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(Boolean save) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 32
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1012" name="HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(True)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(True)" methodname="HiddenPositionsCannotChangeSearchEvenAfterReplacementSave" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1024789363" result="Failed" start-time="2026-09-29T04:20:16.9691540Z" end-time="2026-09-29T04:20:16.9851070Z" duration="0.015953" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(Boolean save) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 32
+   at InvokeStub_SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(Boolean save) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 32
+   at InvokeStub_SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1023" name="HigherPriorityHunterStateDoesNotSpendHuntBudget" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-29T04:20:16.9851600Z" end-time="2026-09-29T04:20:17.0464150Z" duration="0.061255" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1019" name="HigherPriorityHunterStateDoesNotSpendHuntBudget(&quot;calm&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(&quot;calm&quot;)" methodname="HigherPriorityHunterStateDoesNotSpendHuntBudget" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="2095027226" result="Failed" start-time="2026-09-29T04:20:16.9851690Z" end-time="2026-09-29T04:20:16.9989340Z" duration="0.013765" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 38
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 38
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1020" name="HigherPriorityHunterStateDoesNotSpendHuntBudget(&quot;work&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(&quot;work&quot;)" methodname="HigherPriorityHunterStateDoesNotSpendHuntBudget" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1141275620" result="Failed" start-time="2026-09-29T04:20:16.9989530Z" end-time="2026-09-29T04:20:17.0134830Z" duration="0.014530" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 38
+   at InvokeStub_SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 38
+   at InvokeStub_SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1021" name="HigherPriorityHunterStateDoesNotSpendHuntBudget(&quot;conversation&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(&quot;conversation&quot;)" methodname="HigherPriorityHunterStateDoesNotSpendHuntBudget" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1408564463" result="Failed" start-time="2026-09-29T04:20:17.0135160Z" end-time="2026-09-29T04:20:17.0286370Z" duration="0.015121" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 38
+   at InvokeStub_SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 38
+   at InvokeStub_SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1022" name="HigherPriorityHunterStateDoesNotSpendHuntBudget(&quot;follow&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(&quot;follow&quot;)" methodname="HigherPriorityHunterStateDoesNotSpendHuntBudget" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="583426688" result="Failed" start-time="2026-09-29T04:20:17.0286610Z" end-time="2026-09-29T04:20:17.0463900Z" duration="0.017728" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 38
+   at InvokeStub_SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 38
+   at InvokeStub_SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1024" name="ImmediateOrdinaryHostileTakesPriorityOverAdjacentPrey" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.ImmediateOrdinaryHostileTakesPriorityOverAdjacentPrey" methodname="ImmediateOrdinaryHostileTakesPriorityOverAdjacentPrey" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1043863731" result="Failed" start-time="2026-09-29T04:20:17.0464300Z" end-time="2026-09-29T04:20:17.0604210Z" duration="0.013990" asserts="6">
+            <failure>
+              <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.ImmediateOrdinaryHostileTakesPriorityOverAdjacentPrey() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 39
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.ImmediateOrdinaryHostileTakesPriorityOverAdjacentPrey() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 39
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1031" name="InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-29T04:20:17.0604440Z" end-time="2026-09-29T04:20:17.1209950Z" duration="0.060551" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1027" name="InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(&quot;removed&quot;)" methodname="InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1151776946" result="Failed" start-time="2026-09-29T04:20:17.0604570Z" end-time="2026-09-29T04:20:17.0745940Z" duration="0.014136" asserts="5">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 43
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 43
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1028" name="InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(&quot;dead&quot;)" methodname="InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1261545942" result="Failed" start-time="2026-09-29T04:20:17.0746150Z" end-time="2026-09-29T04:20:17.0894390Z" duration="0.014824" asserts="5">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 43
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 43
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1029" name="InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(&quot;recruited&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(&quot;recruited&quot;)" methodname="InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1484147229" result="Failed" start-time="2026-09-29T04:20:17.0894610Z" end-time="2026-09-29T04:20:17.1050380Z" duration="0.015577" asserts="5">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 43
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 43
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(&quot;role-detached&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(&quot;role-detached&quot;)" methodname="InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1784263295" result="Failed" start-time="2026-09-29T04:20:17.1050590Z" end-time="2026-09-29T04:20:17.1209750Z" duration="0.015916" asserts="5">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 43
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 43
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1010" name="InvalidPairRefusesWithoutReciprocalMutation" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-29T04:20:17.1210060Z" end-time="2026-09-29T04:20:17.2397030Z" duration="0.118697" total="8" passed="0" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="32">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1002" name="InvalidPairRefusesWithoutReciprocalMutation(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(&quot;dead&quot;)" methodname="InvalidPairRefusesWithoutReciprocalMutation" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1534030044" result="Failed" start-time="2026-09-29T04:20:17.1210230Z" end-time="2026-09-29T04:20:17.1368990Z" duration="0.015876" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="InvalidPairRefusesWithoutReciprocalMutation(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(&quot;foreign&quot;)" methodname="InvalidPairRefusesWithoutReciprocalMutation" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1300461155" result="Failed" start-time="2026-09-29T04:20:17.1369130Z" end-time="2026-09-29T04:20:17.1508610Z" duration="0.013948" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="InvalidPairRefusesWithoutReciprocalMutation(&quot;party-hunter&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(&quot;party-hunter&quot;)" methodname="InvalidPairRefusesWithoutReciprocalMutation" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1219870837" result="Failed" start-time="2026-09-29T04:20:17.1508780Z" end-time="2026-09-29T04:20:17.1667230Z" duration="0.015845" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="InvalidPairRefusesWithoutReciprocalMutation(&quot;party-prey&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(&quot;party-prey&quot;)" methodname="InvalidPairRefusesWithoutReciprocalMutation" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1583932561" result="Failed" start-time="2026-09-29T04:20:17.1667390Z" end-time="2026-09-29T04:20:17.1837560Z" duration="0.017017" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="InvalidPairRefusesWithoutReciprocalMutation(&quot;pet&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(&quot;pet&quot;)" methodname="InvalidPairRefusesWithoutReciprocalMutation" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="899159268" result="Failed" start-time="2026-09-29T04:20:17.1837860Z" end-time="2026-09-29T04:20:17.2006760Z" duration="0.016890" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="InvalidPairRefusesWithoutReciprocalMutation(&quot;service&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(&quot;service&quot;)" methodname="InvalidPairRefusesWithoutReciprocalMutation" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="902522123" result="Failed" start-time="2026-09-29T04:20:17.2007000Z" end-time="2026-09-29T04:20:17.2162210Z" duration="0.015521" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="InvalidPairRefusesWithoutReciprocalMutation(&quot;work&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(&quot;work&quot;)" methodname="InvalidPairRefusesWithoutReciprocalMutation" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="706038705" result="Failed" start-time="2026-09-29T04:20:17.2162420Z" end-time="2026-09-29T04:20:17.2273390Z" duration="0.011097" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="InvalidPairRefusesWithoutReciprocalMutation(&quot;wrong-prey&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(&quot;wrong-prey&quot;)" methodname="InvalidPairRefusesWithoutReciprocalMutation" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1498847711" result="Failed" start-time="2026-09-29T04:20:17.2273590Z" end-time="2026-09-29T04:20:17.2396810Z" duration="0.012323" asserts="4">
+              <failure>
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 30
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1025" name="LowHealthHunterDoesNotStrikeQuarry" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.LowHealthHunterDoesNotStrikeQuarry" methodname="LowHealthHunterDoesNotStrikeQuarry" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="864322636" result="Failed" start-time="2026-09-29T04:20:17.2397130Z" end-time="2026-09-29T04:20:17.2513620Z" duration="0.011649" asserts="5">
+            <failure>
+              <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.LowHealthHunterDoesNotStrikeQuarry() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 40
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing scoped exact-pair predator role
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 19
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 20
+   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.LowHealthHunterDoesNotStrikeQuarry() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 40
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1032" name="OrdinaryUnpairedGrazerStillFleesPlayer" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.OrdinaryUnpairedGrazerStillFleesPlayer" methodname="OrdinaryUnpairedGrazerStillFleesPlayer" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="71745835" result="Passed" start-time="2026-09-29T04:20:17.2513800Z" end-time="2026-09-29T04:20:17.2711830Z" duration="0.019803" asserts="8" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,324 @@
+// Minimal UnityEngine surface so the Unity-free game core (Gameplay, Data,
+// Shared, Scenarios core) and selected EditMode tests compile and run under
+// plain .NET with NUnitLite. Semantics follow Unity where tests can observe
+// them: Resources/TextAsset read Assets/Resources from disk, JsonUtility
+// serializes FIELDS only (public or [SerializeField]), Mathf rounds
+// banker-style like Unity's RoundToInt. Everything visual is inert.
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+
+namespace CooRun
+{
+    public static class CooEnv
+    {
+        static string _root;
+        /// <summary>COO_REPO, else the nearest ancestor of the binary that
+        /// holds Assets/Resources (the runner lives in Tools/EditModeRunner).</summary>
+        public static string RepoRoot => _root ??= Environment.GetEnvironmentVariable("COO_REPO") ?? Find();
+        static string Find()
+        {
+            for (var d = new DirectoryInfo(AppContext.BaseDirectory); d != null; d = d.Parent)
+                if (Directory.Exists(Path.Combine(d.FullName, "Assets", "Resources"))) return d.FullName;
+            throw new InvalidOperationException("EditModeRunner: set COO_REPO to the repo root");
+        }
+    }
+}
+
+namespace UnityEngine
+{
+    public class Object
+    {
+        public string name { get; set; } = "";
+        public static implicit operator bool(Object o) => !ReferenceEquals(o, null);
+        public static T[] FindObjectsByType<T>(FindObjectsSortMode mode) where T : Object => new T[0];
+        public static T FindFirstObjectByType<T>() where T : Object => null;
+        public static T FindAnyObjectByType<T>() where T : Object => null;
+    }
+    public enum FindObjectsSortMode { None, InstanceID }
+
+    public class TextAsset : Object
+    {
+        public string text { get; }
+        public byte[] bytes => System.Text.Encoding.UTF8.GetBytes(text ?? "");
+        public TextAsset(string text) { this.text = text; }
+        public TextAsset() { text = ""; }
+    }
+
+    public static class Resources
+    {
+        static string Root => Path.Combine(CooRun.CooEnv.RepoRoot, "Assets", "Resources");
+        static readonly string[] TextExt = { ".json", ".txt", ".bytes", ".csv", ".xml", ".md", ".yaml" };
+
+        public static T Load<T>(string path) where T : Object
+        {
+            if (typeof(T) != typeof(TextAsset) && typeof(T) != typeof(Object)) return null;
+            foreach (var ext in TextExt)
+            {
+                string f = Path.Combine(Root, path + ext);
+                if (File.Exists(f)) return (T)(Object)new TextAsset(File.ReadAllText(f)) { name = Path.GetFileNameWithoutExtension(f) };
+            }
+            return null;
+        }
+
+        public static T[] LoadAll<T>(string path) where T : Object
+        {
+            string dir = Path.Combine(Root, path);
+            if (typeof(T) != typeof(TextAsset) || !Directory.Exists(dir)) return new T[0];
+            return Directory.GetFiles(dir)
+                .Where(f => TextExt.Contains(Path.GetExtension(f).ToLowerInvariant()))
+                .OrderBy(f => f, StringComparer.Ordinal)
+                .Select(f => (T)(Object)new TextAsset(File.ReadAllText(f)) { name = Path.GetFileNameWithoutExtension(f) })
+                .ToArray();
+        }
+    }
+
+    public static class Application
+    {
+        public static string dataPath => Path.Combine(CooRun.CooEnv.RepoRoot, "Assets");
+        public static string persistentDataPath => Path.Combine(Path.GetTempPath(), "coorun-persistent");
+        public static bool isPlaying => false;
+        public static bool isEditor => true;
+        public static string version => "coorun";
+        public static bool runInBackground { get; set; }
+    }
+
+    public static class Debug
+    {
+        public static bool Quiet = Environment.GetEnvironmentVariable("COO_QUIET") == "1";
+        public static void Log(object m) { if (!Quiet) Console.WriteLine("[Log] " + m); }
+        public static void Log(object m, Object ctx) => Log(m);
+        public static void LogWarning(object m) { if (!Quiet) Console.WriteLine("[Warn] " + m); }
+        public static void LogWarning(object m, Object ctx) => LogWarning(m);
+        public static void LogError(object m) { UnityEngine.TestTools.LogAssert.Errors.Add(m.ToString()); Console.WriteLine("[Error] " + m); }
+        public static void LogError(object m, Object ctx) => LogError(m);
+        public static void LogException(Exception e) { Console.WriteLine("[Exception] " + e); }
+        public static void LogFormat(string f, params object[] a) => Log(string.Format(f, a));
+        public static void LogWarningFormat(string f, params object[] a) => LogWarning(string.Format(f, a));
+        public static void LogErrorFormat(string f, params object[] a) => LogError(string.Format(f, a));
+        public static void Assert(bool c) { }
+        public static void Assert(bool c, object m) { }
+        public static bool isDebugBuild => true;
+    }
+
+    public static class Mathf
+    {
+        public const float PI = (float)Math.PI;
+        public const float Infinity = float.PositiveInfinity;
+        public const float Epsilon = float.Epsilon;
+        public static int Min(int a, int b) => Math.Min(a, b);
+        public static float Min(float a, float b) => Math.Min(a, b);
+        public static int Max(int a, int b) => Math.Max(a, b);
+        public static float Max(float a, float b) => Math.Max(a, b);
+        public static int Min(params int[] v) => v.Min();
+        public static int Max(params int[] v) => v.Max();
+        public static int Clamp(int v, int lo, int hi) => v < lo ? lo : v > hi ? hi : v;
+        public static float Clamp(float v, float lo, float hi) => v < lo ? lo : v > hi ? hi : v;
+        public static float Clamp01(float v) => Clamp(v, 0f, 1f);
+        public static int RoundToInt(float f) => (int)Math.Round(f, MidpointRounding.ToEven);
+        public static int FloorToInt(float f) => (int)Math.Floor(f);
+        public static int CeilToInt(float f) => (int)Math.Ceiling(f);
+        public static float Round(float f) => (float)Math.Round(f, MidpointRounding.ToEven);
+        public static float Floor(float f) => (float)Math.Floor(f);
+        public static float Ceil(float f) => (float)Math.Ceiling(f);
+        public static int Abs(int v) => Math.Abs(v);
+        public static float Abs(float v) => Math.Abs(v);
+        public static float Sqrt(float v) => (float)Math.Sqrt(v);
+        public static float Pow(float a, float b) => (float)Math.Pow(a, b);
+        public static float Sin(float a) => (float)Math.Sin(a);
+        public static float Cos(float a) => (float)Math.Cos(a);
+        public static float Atan2(float y, float x) => (float)Math.Atan2(y, x);
+        public static float Lerp(float a, float b, float t) => a + (b - a) * Clamp01(t);
+        public static float InverseLerp(float a, float b, float v) => a == b ? 0f : Clamp01((v - a) / (b - a));
+        public static float Sign(float f) => f >= 0f ? 1f : -1f;
+        public static bool Approximately(float a, float b) => Math.Abs(b - a) < Math.Max(1E-06f * Math.Max(Math.Abs(a), Math.Abs(b)), float.Epsilon * 8f);
+        public static float PerlinNoise(float x, float y)
+        {
+            // Deterministic smooth-ish value noise in [0,1]; not Unity's exact
+            // Perlin. Any test depending on exact PerlinNoise values must be
+            // treated as unverifiable under this runner.
+            double v = Math.Sin(x * 12.9898 + y * 78.233) * 43758.5453;
+            return (float)(v - Math.Floor(v));
+        }
+    }
+
+    public struct Color
+    {
+        public float r, g, b, a;
+        public Color(float r, float g, float b, float a = 1f) { this.r = r; this.g = g; this.b = b; this.a = a; }
+        public static Color white => new Color(1, 1, 1, 1);
+        public static Color black => new Color(0, 0, 0, 1);
+        public static Color clear => new Color(0, 0, 0, 0);
+        public static Color red => new Color(1, 0, 0, 1);
+        public static Color green => new Color(0, 1, 0, 1);
+        public static Color blue => new Color(0, 0, 1, 1);
+        public static Color yellow => new Color(1, 0.92f, 0.016f, 1);
+        public static Color gray => new Color(0.5f, 0.5f, 0.5f, 1);
+        public static Color grey => gray;
+        public static Color cyan => new Color(0, 1, 1, 1);
+        public static Color magenta => new Color(1, 0, 1, 1);
+        public static Color Lerp(Color x, Color y, float t)
+        {
+            t = Mathf.Clamp01(t);
+            return new Color(x.r + (y.r - x.r) * t, x.g + (y.g - x.g) * t, x.b + (y.b - x.b) * t, x.a + (y.a - x.a) * t);
+        }
+        public static Color operator *(Color c, float f) => new Color(c.r * f, c.g * f, c.b * f, c.a * f);
+        public static Color operator *(Color x, Color y) => new Color(x.r * y.r, x.g * y.g, x.b * y.b, x.a * y.a);
+        public static Color operator +(Color x, Color y) => new Color(x.r + y.r, x.g + y.g, x.b + y.b, x.a + y.a);
+        public static bool operator ==(Color x, Color y) => x.r == y.r && x.g == y.g && x.b == y.b && x.a == y.a;
+        public static bool operator !=(Color x, Color y) => !(x == y);
+        public override bool Equals(object o) => o is Color c && c == this;
+        public override int GetHashCode() => (r, g, b, a).GetHashCode();
+        public override string ToString() => $"RGBA({r:F3}, {g:F3}, {b:F3}, {a:F3})";
+    }
+
+    public struct Color32
+    {
+        public byte r, g, b, a;
+        public Color32(byte r, byte g, byte b, byte a) { this.r = r; this.g = g; this.b = b; this.a = a; }
+        public static implicit operator Color(Color32 c) => new Color(c.r / 255f, c.g / 255f, c.b / 255f, c.a / 255f);
+        public static implicit operator Color32(Color c) => new Color32((byte)Math.Round(Mathf.Clamp01(c.r) * 255), (byte)Math.Round(Mathf.Clamp01(c.g) * 255), (byte)Math.Round(Mathf.Clamp01(c.b) * 255), (byte)Math.Round(Mathf.Clamp01(c.a) * 255));
+    }
+
+    public struct Vector2Int : IEquatable<Vector2Int>
+    {
+        public int x, y;
+        public Vector2Int(int x, int y) { this.x = x; this.y = y; }
+        public static Vector2Int zero => new Vector2Int(0, 0);
+        public static Vector2Int one => new Vector2Int(1, 1);
+        public static Vector2Int up => new Vector2Int(0, 1);
+        public static Vector2Int down => new Vector2Int(0, -1);
+        public static Vector2Int left => new Vector2Int(-1, 0);
+        public static Vector2Int right => new Vector2Int(1, 0);
+        public static Vector2Int operator +(Vector2Int a, Vector2Int b) => new Vector2Int(a.x + b.x, a.y + b.y);
+        public static Vector2Int operator -(Vector2Int a, Vector2Int b) => new Vector2Int(a.x - b.x, a.y - b.y);
+        public static Vector2Int operator *(Vector2Int a, int k) => new Vector2Int(a.x * k, a.y * k);
+        public static bool operator ==(Vector2Int a, Vector2Int b) => a.x == b.x && a.y == b.y;
+        public static bool operator !=(Vector2Int a, Vector2Int b) => !(a == b);
+        public bool Equals(Vector2Int o) => this == o;
+        public override bool Equals(object o) => o is Vector2Int v && v == this;
+        public override int GetHashCode() => (x, y).GetHashCode();
+        public override string ToString() => $"({x}, {y})";
+    }
+
+    public struct Vector2
+    {
+        public float x, y;
+        public Vector2(float x, float y) { this.x = x; this.y = y; }
+        public static Vector2 zero => new Vector2(0, 0);
+    }
+
+    public struct Vector3
+    {
+        public float x, y, z;
+        public Vector3(float x, float y, float z = 0f) { this.x = x; this.y = y; this.z = z; }
+        public static Vector3 zero => new Vector3(0, 0, 0);
+    }
+
+    public static class Time
+    {
+        public static float time => (float)(DateTime.UtcNow - Start).TotalSeconds;
+        public static float realtimeSinceStartup => time;
+        public static float unscaledTime => time;
+        public static float deltaTime => 0.016f;
+        public static float timeScale { get; set; } = 1f;
+        public static int frameCount => 0;
+        static readonly DateTime Start = DateTime.UtcNow;
+    }
+
+    public static class PlayerPrefs
+    {
+        static readonly Dictionary<string, string> Store = new Dictionary<string, string>();
+        public static string GetString(string k, string d = "") => Store.TryGetValue(k, out var v) ? v : d;
+        public static void SetString(string k, string v) => Store[k] = v;
+        public static int GetInt(string k, int d = 0) => Store.TryGetValue(k, out var v) && int.TryParse(v, out int i) ? i : d;
+        public static void SetInt(string k, int v) => Store[k] = v.ToString();
+        public static bool HasKey(string k) => Store.ContainsKey(k);
+        public static void DeleteKey(string k) => Store.Remove(k);
+        public static void Save() { }
+    }
+
+    [AttributeUsage(AttributeTargets.Field)] public sealed class SerializeField : Attribute { }
+    [AttributeUsage(AttributeTargets.Field)] public sealed class HideInInspector : Attribute { }
+    [AttributeUsage(AttributeTargets.Field)] public sealed class TooltipAttribute : Attribute { public TooltipAttribute(string t) { } }
+    [AttributeUsage(AttributeTargets.Field)] public sealed class HeaderAttribute : Attribute { public HeaderAttribute(string t) { } }
+    [AttributeUsage(AttributeTargets.Field)] public sealed class RangeAttribute : Attribute { public RangeAttribute(float a, float b) { } }
+    [AttributeUsage(AttributeTargets.Class)] public sealed class DisallowMultipleComponent : Attribute { }
+    public enum RuntimeInitializeLoadType { AfterSceneLoad, BeforeSceneLoad, AfterAssembliesLoaded, BeforeSplashScreen, SubsystemRegistration }
+    [AttributeUsage(AttributeTargets.Method)]
+    public sealed class RuntimeInitializeOnLoadMethodAttribute : Attribute
+    {
+        public RuntimeInitializeOnLoadMethodAttribute() { }
+        public RuntimeInitializeOnLoadMethodAttribute(RuntimeInitializeLoadType t) { }
+    }
+
+    public static class JsonUtility
+    {
+        sealed class FieldsOnly : DefaultContractResolver
+        {
+            protected override List<MemberInfo> GetSerializableMembers(Type t)
+            {
+                var list = new List<MemberInfo>();
+                for (var cur = t; cur != null && cur != typeof(object); cur = cur.BaseType)
+                    foreach (var f in cur.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
+                        if ((f.IsPublic || f.GetCustomAttribute<SerializeField>() != null)
+                            && !f.IsInitOnly && f.GetCustomAttribute<System.NonSerializedAttribute>() == null)
+                            list.Add(f);
+                return list;
+            }
+            protected override JsonProperty CreateProperty(MemberInfo m, MemberSerialization ms)
+            {
+                var p = base.CreateProperty(m, ms);
+                p.Readable = true; p.Writable = true;
+                return p;
+            }
+        }
+        static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
+        {
+            ContractResolver = new FieldsOnly(),
+            MissingMemberHandling = MissingMemberHandling.Ignore,
+            NullValueHandling = NullValueHandling.Include,
+            ObjectCreationHandling = ObjectCreationHandling.Replace,
+        };
+        public static T FromJson<T>(string json) => JsonConvert.DeserializeObject<T>(json, Settings);
+        public static object FromJson(string json, Type t) => JsonConvert.DeserializeObject(json, t, Settings);
+        public static void FromJsonOverwrite(string json, object target) => JsonConvert.PopulateObject(json, target, Settings);
+        public static string ToJson(object o) => JsonConvert.SerializeObject(o, Settings);
+        public static string ToJson(object o, bool prettyPrint) => JsonConvert.SerializeObject(o, prettyPrint ? Formatting.Indented : Formatting.None, Settings);
+    }
+}
+
+namespace UnityEngine.Pool
+{
+    public static class ListPool<T>
+    {
+        public static List<T> Get() => new List<T>();
+        public static void Release(List<T> l) => l.Clear();
+    }
+    public static class HashSetPool<T>
+    {
+        public static HashSet<T> Get() => new HashSet<T>();
+        public static void Release(HashSet<T> s) => s.Clear();
+    }
+    public static class DictionaryPool<TK, TV>
+    {
+        public static Dictionary<TK, TV> Get() => new Dictionary<TK, TV>();
+        public static void Release(Dictionary<TK, TV> d) => d.Clear();
+    }
+}
+
+namespace Unity.Profiling
+{
+    public readonly struct ProfilerMarker
+    {
+        public ProfilerMarker(string name) { }
+        public AutoScope Auto() => default;
+        public void Begin() { }
+        public void End() { }
+        public readonly struct AutoScope : IDisposable { public void Dispose() { } }
+    }
+}

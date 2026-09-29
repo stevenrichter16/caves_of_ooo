@@ -1,0 +1,24 @@
+using System;using System.IO;using System.Linq;using System.Reflection;using NUnit.Framework;using CavesOfOoo.Core;using CavesOfOoo.Data;using UnityEngine.TestTools;
+namespace CavesOfOoo.Tests
+{
+ public class TraversalFactoryCausalProbe
+ {
+  [TestCase(false)][TestCase(true)]
+  public void UnchangedOriginalGroundFixtureDependsOnAmbientFactory(bool completeFactory)
+  {
+   var oldFactory=ContainerPlacementService.Factory;var oldSettlement=SettlementManager.Current;
+   try
+   {
+    EntityFactory supplied=null;
+    if(completeFactory){supplied=new EntityFactory();supplied.LoadBlueprints(File.ReadAllText(Path.Combine(UnityEngine.Application.dataPath,"Resources/Content/Blueprints/Objects.json")));}
+    ContainerPlacementService.Factory=supplied;LogAssert.Errors.Clear();
+    new OriginalWorldMapTraversalTests().Ascend_FromGroundZone_TransitionsToWorldMap();
+    int count=LogAssert.Errors.Count(x=>x.Contains("unknown blueprint"));
+    TestContext.WriteLine("completeFactory="+completeFactory+" unknownBlueprintErrors="+count+" sameFactory="+ReferenceEquals(supplied,ContainerPlacementService.Factory));
+    if(completeFactory){Assert.Zero(count);Assert.AreSame(supplied,ContainerPlacementService.Factory);}
+    else{Assert.Greater(count,0);Assert.NotNull(ContainerPlacementService.Factory);Assert.False(ContainerPlacementService.Factory.Blueprints.ContainsKey("Crate"));}
+   }
+   finally{ContainerPlacementService.Factory=oldFactory;typeof(SettlementManager).GetProperty("Current",BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic).SetValue(null,oldSettlement);LogAssert.Errors.Clear();}
+  }
+ }
+}

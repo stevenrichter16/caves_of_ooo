@@ -1,0 +1,260 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace CavesOfOoo.Scenarios.Custom
+{
+    public sealed partial class QuestFreeSpreadStateNativePlayer
+    {
+        const string HuntingBoundary="One predeclared canonical index in the frozen first eight seed64/version8 HuntThroughCover metadata assignments. One disclosed original-player transfer to current dry watching ground outside initial hunter sight; no source retry after transfer. At most40 real paid waits plus3 checkpoint actions and150seconds. No source/actor/HP/gear/clock/RNG edits, guaranteed corpse, actor pause, simulated attack, clip sampling or forced presentation refresh after paid input. Actual outcomes and unavailable phases are retained. Inactive F5/F6 checks only the listed source projection; ordinary NPC turns on exit/return are allowed. This is instrumented local observation, not ordinary discovery, balance or human-awareness evidence. Pixels need independent review.";
+        static readonly string[] HuntingFrozen64={"Overworld.12.6.0","Overworld.14.8.0","Overworld.5.13.0","Overworld.5.8.0","Overworld.6.7.0","Overworld.7.2.0","Overworld.8.9.0"};
+        int _huntCandidateIndex,_huntWaits,_huntAttacks,_huntInteractions,_huntReadouts;
+        Entity _huntObserved;Coroutine _huntFrames;string _huntObserverError;
+        bool _huntSubscribed;readonly HashSet<string> _huntPoseFrames=new HashSet<string>(StringComparer.Ordinal);
+        public void InitializeHunting(ScenarioContext context)=>InitializeHunting(context,0);
+        public void InitializeHunting(ScenarioContext context,int canonicalIndex)
+        {
+            if(string.IsNullOrWhiteSpace(SaveGameService.SaveRootOverride))throw new InvalidOperationException("Isolated launcher required before bootstrap.");
+            if(canonicalIndex<0||canonicalIndex>=8)throw new ArgumentOutOfRangeException(nameof(canonicalIndex));
+            _huntCandidateIndex=canonicalIndex;InitializeMode(context,"hunting");
+        }
+        void BeginHuntingDiagnostics()
+        {
+            foreach(string channel in new[]{"ai","combat"})
+            {_exchangeOldChannels[channel]=_exchangeChannelStore.TryGetValue(channel,out bool old)?(bool?)old:null;Diag.SetChannel(channel,true);}
+        }
+        static bool HuntGround(Zone zone,Entity owner)
+        {
+            var cell=owner==null?null:zone?.GetEntityCell(owner);var physics=owner?.GetPart<PhysicsPart>();
+            return cell!=null&&cell.ParentZone==zone&&owner.SpatialZone==zone&&cell.Objects.Contains(owner)
+                &&physics?.ParentEntity==owner&&physics.InInventory==null&&physics.Equipped==null;
+        }
+        static Entity HuntFind(Zone zone,string id)
+        {
+            if(string.IsNullOrEmpty(id))return null;
+            var found=zone.GetReadOnlyEntities().Where(e=>e.ID==id).ToArray();Require(found.Length<=1,"unique native hunt owner ID");return found.SingleOrDefault();
+        }
+        bool HuntPair(Zone zone,Entity hunter,Entity prey)
+        {
+            var role=hunter?.GetPart<SpreadPredatorPart>();var flight=prey?.GetPart<SpreadGrazerPart>();
+            return HuntGround(zone,hunter)&&HuntGround(zone,prey)&&hunter.BlueprintName=="Furrowstalker"&&prey.BlueprintName=="ReedbackGrazer"
+                &&role?.ParentEntity==hunter&&role.Configured&&role.ZoneID==zone.ZoneID&&role.Phase==SpreadHuntPhase.Watching
+                &&role.Prey==prey&&role.PreyID==prey.ID&&role.Corpse==null&&role.FeedProgress==0
+                &&flight?.ParentEntity==prey&&flight.Hunter==hunter&&flight.HuntZoneID==zone.ZoneID
+                &&hunter.GetStatValue("Hitpoints")>0&&prey.GetStatValue("Hitpoints")>0;
+        }
+        Entity[] HuntThreats(Zone zone)=>zone.GetReadOnlyEntities().Where(e=>e!=Player&&e.HasTag("Creature")&&e.GetStatValue("Hitpoints")>0
+            &&(FactionManager.IsHostile(e,Player)||FactionManager.IsHostile(Player,e)||e.GetPart<BrainPart>()?.IsPersonallyHostileTo(Player)==true||e.GetPart<BrainPart>()?.Target==Player)).ToArray();
+        bool HuntSafe(Zone zone,Cell cell,Entity hunter)
+        {
+            if(!DrySafe(zone,cell,null))return false;
+            if(HuntThreats(zone).Any(e=>SpatialQuery.DistanceToCell(zone,e,cell.X,cell.Y)<=3))return false;
+            return !HuntGround(zone,hunter)||SpatialQuery.DistanceToCell(zone,hunter,cell.X,cell.Y)>(hunter.GetPart<BrainPart>()?.SightRadius??8);
+        }
+        Cell HuntWatchCell(Zone zone,Entity hunter,Entity prey)
+        {
+            var h=zone.GetEntityCell(hunter);var p=zone.GetEntityCell(prey);
+            // Initial geometry only; actual native FOV/current view is checked after the sole transfer.
+            return CellsNear(zone,h,9,14).Where(c=>HuntSafe(zone,c,hunter)&&SpatialQuery.DistanceToCell(zone,prey,c.X,c.Y)>3
+                &&AIHelpers.HasLineOfSight(zone,c.X,c.Y,h.X,h.Y)&&AIHelpers.HasLineOfSight(zone,c.X,c.Y,p.X,p.Y))
+                .OrderByDescending(c=>HuntThreats(zone).Select(e=>SpatialQuery.DistanceToCell(zone,e,c.X,c.Y)).DefaultIfEmpty(99).Min())
+                .ThenBy(c=>c.Y).ThenBy(c=>c.X).FirstOrDefault();
+        }
+        IEnumerator Hunting()
+        {
+            Require(Manager.WorldSeed==64&&Manager.Exploration.Version==8,"exact declared seed64 v8 cohort");
+            Require(Enum.TryParse("HuntThroughCover",out SpreadExplorationFamily family),"current hunt metadata family");
+            var cohort=Candidates(family).ToArray();
+            Check("frozen_canonical_hunt_metadata",cohort.Select(e=>e.ZoneID).SequenceEqual(HuntingFrozen64));
+            _observations.Add(new{phase="hunting-predeclared-cohort",canonicalIndex=_huntCandidateIndex,entries=cohort.Select((e,i)=>new{index=i,zone=e.ZoneID,e.PlacementEligible,family=e.Family.ToString(),e.ActorSeed,e.RewardSeed}).ToArray(),boundary="One index is selected before generation/outcome inspection. Other entries are not attempted in this run. Preserve separate RunIds for successive predetermined indices."});WriteReport();
+            if(_huntCandidateIndex>=cohort.Length){Unverified("hunt-source","Requested index has no assignment inside the frozen first eight.");yield break;}
+            var entry=cohort[_huntCandidateIndex];string marker=ExchangeMarker("generate-declared-hunt-source");
+            var site=Manager.GetZone(entry.ZoneID);var window=ExchangeWindow(marker);
+            var commits=window.Where(e=>e.Category=="worldgen"&&e.Kind=="SpreadExplorationCommitted"&&Payload(e,"zone")==entry.ZoneID&&Payload(e,"family")=="HuntThroughCover").ToArray();
+            string reason="missing-exact-commit";Entity hunter=null,prey=null;Cell watch=null;
+            if(site!=null&&Manager.Exploration.DispositionFor(entry.ZoneID)==2&&commits.Length==1)
+            {
+                var ids=((JArray)JObject.Parse(commits[0].PayloadJson)["owners"])?.Values<string>().ToArray();
+                if(ids?.Length==2&&ids[0]!=ids[1]){hunter=HuntFind(site,ids[0]);prey=HuntFind(site,ids[1]);}
+                reason=HuntPair(site,hunter,prey)?"no-safe-current-watch-cell":"commit-is-not-current-reciprocal-pair";
+                if(HuntPair(site,hunter,prey)){watch=HuntWatchCell(site,hunter,prey);if(watch!=null)reason="admitted";}
+            }
+            _observations.Add(new{phase="hunting-source-attempt",index=_huntCandidateIndex,zone=entry.ZoneID,disposition=Manager.Exploration.DispositionFor(entry.ZoneID),hunter=hunter?.ID,prey=prey?.ID,reason,watch=watch==null?null:new[]{watch.X,watch.Y},records=window.Where(e=>e.Category=="worldgen"||e.Kind.StartsWith("SpreadHunt",StringComparison.Ordinal)).ToArray()});WriteReport();
+            if(watch==null){Unverified("hunt-source",reason+"; no alternate candidate generated by this run.");yield break;}
+            string hunterID=hunter.ID,preyID=prey.ID,originalGear=CookingGear(Player),originalPlayer=PlayerSignature();
+            yield return Transfer(site,watch,"actual original hunt pair; observer-only destination");
+            Check("hunting_same_original_player",PlayerSignature()==originalPlayer&&CookingGear(Player)==originalGear&&HuntPair(site,hunter,prey));
+            if(!HuntVisible(hunter)||!HuntVisible(prey)||!HuntSafe(Zone,At,hunter))
+            {Unverified("hunt-view","The sole transferred watch cell did not supply actual FOV/current views/safety. No second transfer or forced visibility.");yield return Capture("98-current-view-unverified");yield break;}
+            HuntStyle(hunter,"spread-furrowstalker","initial-hunter");HuntStyle(prey,"questfree-spread-grazer","initial-grazer");
+            StartHuntingObservation(hunter);HuntRecord(hunter,preyID,"initial-live-pair");yield return Capture("01-generated-current-pair");
+            yield return HuntRead(hunter,"02-actual-hunter-reader");
+            bool checkpoint=false,midphaseSaved=false;var seenPhases=new HashSet<SpreadHuntPhase>();
+            while(_huntWaits<40)
+            {
+                Require(_huntObserverError==null,"native hunt event/frame observer: "+_huntObserverError);
+                Require(Player.GetStatValue("Hitpoints")==40&&CookingGear(Player)==originalGear,"original observer HP and gear unchanged");
+                if(!HuntGround(Zone,hunter)||hunter.GetStatValue("Hitpoints")<=0)
+                {Unverified("hunt-continuation","Actual hunter died or left its source before the bounded witness completed.");break;}
+                var role=hunter.GetPart<SpreadPredatorPart>();Require(role?.ParentEntity==hunter&&role.Configured&&role.ZoneID==Zone.ZoneID&&role.PreyID==preyID,"same current hunt role");
+                if(!HuntSafe(Zone,At,hunter))
+                {HuntRecord(hunter,preyID,"safety-stop");Unverified("hunt-continuation","Current threat entered observer safety range; stop before another input. No NPC suppression or retry.");break;}
+                if(seenPhases.Add(role.Phase))
+                {HuntRecord(hunter,preyID,"observed-phase-"+role.Phase);yield return Capture("03-phase-"+role.Phase);}
+                if(!checkpoint&&(role.Phase==SpreadHuntPhase.Searching||role.Phase==SpreadHuntPhase.Feeding))
+                {
+                    yield return HuntCheckpoint(hunter,preyID);checkpoint=_huntCheckpointSucceeded;
+                    hunter=HuntFind(Zone,hunterID);midphaseSaved=_huntSavedMidphase;
+                    if(hunter==null){Unverified("hunt-continuation","Hunter absent after ordinary return; inactive saved graph was already checked.");break;}
+                    StartHuntingObservation(hunter);continue;
+                }
+                if(HuntTerminal(role.Phase))break;
+                int attackBefore=_huntAttacks,interactBefore=_huntInteractions;
+                yield return ExchangePaid(Tap(Key.Period),"local","hunting-native-wait-"+(_huntWaits+1));_huntWaits++;
+                HuntRecord(hunter,preyID,"after-paid-wait-"+_huntWaits);
+                _observations.Add(new{phase="hunt-action-window",wait=_huntWaits,attacks=_huntAttacks-attackBefore,interactions=_huntInteractions-interactBefore,records=_exchangeLastWindow.Where(e=>e.Category=="ai"||e.Category=="combat"||e.Category=="turn").ToArray()});WriteReport();
+            }
+            Require(_huntObserverError==null,"native hunt observation remains valid");
+            if(HuntGround(Zone,hunter))
+            {
+                var final=hunter.GetPart<SpreadPredatorPart>();HuntRecord(hunter,preyID,"bounded-outcome");
+                if(!HuntTerminal(final.Phase))Unverified("hunt-outcome","Finite wait/safety bound ended before an actual terminal hunt outcome.");
+                yield return Capture("04-current-bounded-outcome");
+                if(!checkpoint&&HuntSafe(Zone,At,hunter)&&Player.GetStatValue("Hitpoints")==40)
+                {yield return HuntCheckpoint(hunter,preyID);checkpoint=_huntCheckpointSucceeded;midphaseSaved=_huntSavedMidphase;hunter=HuntFind(Zone,hunterID);}
+                if(HuntVisible(hunter))yield return HuntRead(hunter,"07-returned-current-hunter-reader");
+            }
+            if(!checkpoint)Unverified("hunt-save","No safe actual inactive save/load return was executed.");
+            if(_huntReadouts==0)Unverified("hunt-readout","No actual current hunt-state sentence was verified through the native reader.");
+            _observations.Add(new{phase="hunting-coverage",waitInputs=_huntWaits,totalPaid=_paidInputs,attacks=_huntAttacks,interactions=_huntInteractions,checkpoint,midphaseSaved,currentStateReaders=_huntReadouts,actualPoseFrames=_huntPoseFrames.ToArray(),boundary="Absent strike, feeding, corpse or midphase save is unverified, not forced. One run need not show both escape and kill. No human-awareness claim."});WriteReport();StopHuntingObservation();
+        }
+        static bool HuntTerminal(SpreadHuntPhase p)=>p==SpreadHuntPhase.Escaped||p==SpreadHuntPhase.Exhausted||p==SpreadHuntPhase.Aborted||p==SpreadHuntPhase.PreyGone||p==SpreadHuntPhase.Fed;
+        bool HuntVisible(Entity owner)=>HuntGround(Zone,owner)&&Zone.GetEntityCell(owner).IsVisible&&owner.GetPart<RenderPart>()?.Visible==true&&Presenter.IsRenderedEntity(owner);
+        void HuntStyle(Entity owner,string model,string label)
+        {
+            Visual(owner,model,1);Require(Presenter.TryGetApprovedStyle(owner,out var proof)&&proof.ModelId==model,"exact current hunt style");
+            _observations.Add(new{phase=label,owner=owner.ID,blueprint=owner.BlueprintName,model,mesh=proof.ExpectedMesh.name,material=proof.ExpectedMaterial.name,proof.Batched,boundary="Current submitted mesh/palette proof; no claim of unoccluded readable pixels."});WriteReport();
+        }
+        void HuntRecord(Entity hunter,string preyID,string label)
+        {
+            var role=hunter?.GetPart<SpreadPredatorPart>();var prey=HuntFind(Zone,preyID);var corpse=HuntFind(Zone,role?.CorpseID);
+            var actorRows=new[]{hunter,prey,corpse}.Where(e=>e!=null).Select(e=>new{owner=e.ID,blueprint=e.BlueprintName,current=HuntGround(Zone,e),position=Zone.GetEntityPosition(e),hp=e.GetStat("Hitpoints")==null?(int?)null:e.GetStatValue("Hitpoints"),visible=Zone.GetEntityCell(e)?.IsVisible,registered=_input.TurnManager.IsRegistered(e),energy=_input.TurnManager.GetEnergy(e),goals=e.GetPart<BrainPart>()?.GetGoalsSnapshot().Select(g=>new{type=g.GetType().Name,g.Age}).ToArray(),brainZone=e.GetPart<BrainPart>()?.CurrentZone?.ZoneID}).ToArray();
+            _observations.Add(new{phase=label,wait=_huntWaits,tick=Tick,player=new{Player.ID,hp=Player.GetStatValue("Hitpoints"),x=At.X,y=At.Y,energy=Energy},source=JsonConvert.DeserializeObject(HuntProjection(Zone,hunter?.ID,preyID)),actors=actorRows,threats=HuntThreats(Zone).Select(e=>new{e.ID,e.BlueprintName,distance=SpatialQuery.DistanceToCell(Zone,e,At.X,At.Y)}).ToArray()});WriteReport();
+        }
+        static object HuntOwnerProjection(Zone zone,Entity owner)
+        {
+            if(owner==null)return null;
+            var flight=owner.GetPart<SpreadGrazerPart>();var role=owner.GetPart<SpreadPredatorPart>();
+            return new{id=owner.ID,blueprint=owner.BlueprintName,position=zone.GetEntityPosition(owner),current=HuntGround(zone,owner),hp=owner.GetStat("Hitpoints")==null?(int?)null:owner.GetStatValue("Hitpoints"),units=owner.GetPart<StackerPart>()?.StackCount??1,
+                source=owner.GetProperty("SourceBlueprint"),sourceID=owner.GetProperty("SourceID"),killer=owner.GetProperty("KillerID"),killerBlueprint=owner.GetProperty("KillerBlueprint"),
+                hunt=role==null?null:new{role.Configured,role.ZoneID,phase=role.Phase.ToString(),role.PreyID,prey=role.Prey?.ID,role.CorpseID,corpse=role.Corpse?.ID,role.HomeX,role.HomeY,role.HasLastSeen,role.LastSeenX,role.LastSeenY,role.PursuitRemaining,role.SearchRemaining,role.CorpseX,role.CorpseY,role.FeedProgress},
+                flight=flight==null?null:new{hunter=flight.Hunter?.ID,flight.HuntZoneID,flight.FlightRemaining,flight.ThreatX,flight.ThreatY,flight.Configured,flight.Fed,food=flight.Food?.ID,reserve=flight.ReservedRow?.ID}};
+        }
+        static string HuntProjection(Zone zone,string hunterID,string preyID)
+        {var hunter=HuntFind(zone,hunterID);return JsonConvert.SerializeObject(new{zone=zone.ZoneID,hunter=HuntOwnerProjection(zone,hunter),prey=HuntOwnerProjection(zone,HuntFind(zone,preyID)),corpse=HuntOwnerProjection(zone,HuntFind(zone,hunter?.GetPart<SpreadPredatorPart>()?.CorpseID))});}
+        static void HuntAliases(Zone zone,Entity hunter,string preyID)
+        {
+            Require(HuntGround(zone,hunter),"current replacement hunt owner");var role=hunter.GetPart<SpreadPredatorPart>();var prey=HuntFind(zone,preyID);var corpse=HuntFind(zone,role.CorpseID);
+            Require(role.ParentEntity==hunter&&role.PreyID==preyID&&role.ZoneID==zone.ZoneID,"saved exact hunt authority");
+            if(role.Prey!=null)Require(role.Prey==prey&&prey.GetPart<SpreadGrazerPart>().Hunter==hunter,"replacement reciprocal live quarry alias");
+            if(role.Corpse!=null)Require(role.Corpse==corpse&&HuntGround(zone,corpse)&&corpse.GetProperty("SourceID")==preyID&&corpse.GetProperty("KillerID")==hunter.ID,"replacement exact current meal alias");
+            if(HuntTerminal(role.Phase))Require(role.Prey==null&&role.Corpse==null,"terminal historical IDs have no invented live aliases");
+            if(role.Phase==SpreadHuntPhase.Fed)Require(corpse==null&&role.FeedProgress==2,"actually spent native corpse stays absent");
+        }
+        bool _huntSavedMidphase,_huntCheckpointSucceeded;
+        IEnumerator HuntCheckpoint(Entity hunter,string preyID)
+        {
+            string id=hunter.ID,zoneID=Zone.ZoneID;var originalZone=Zone;var departure=(At.X,At.Y);var before=HuntProjection(Zone,id,preyID);var priorPhase=hunter.GetPart<SpreadPredatorPart>().Phase;
+            StopHuntingObservation();yield return ExchangePaid(Tap(Key.LeftShift,Key.Comma),"local","hunt-native-source-exit");
+            Require(WorldMap.IsWorldMapZoneID(Zone.ZoneID)&&ReferenceEquals(Manager.CachedZones[zoneID],originalZone),"actual cached inactive hunt source");
+            var source=HuntFind(originalZone,id);if(source==null){Unverified("hunt-save","Hunter genuinely absent after paid native exit; no substitute graph saved.");yield break;}
+            HuntAliases(originalZone,source,preyID);string projection=HuntProjection(originalZone,id,preyID);var savedRole=source.GetPart<SpreadPredatorPart>();
+            _huntSavedMidphase=savedRole.Phase==SpreadHuntPhase.Searching||savedRole.Phase==SpreadHuntPhase.Feeding;
+            _observations.Add(new{phase="hunt-inactive-checkpoint-boundary",observedBeforeExit=priorPhase.ToString(),savedPhase=savedRole.Phase.ToString(),midphaseSaved=_huntSavedMidphase,beforeExit=JsonConvert.DeserializeObject(before),inactive=JsonConvert.DeserializeObject(projection),boundary="The paid exit may advance native actors. Compare only the actual now-inactive graph; do not freeze or rewind NPC actions."});
+            var oldPlayer=Player;var oldManager=Manager;var oldMap=Zone;var oldOwners=originalZone.GetReadOnlyEntities().ToArray();
+            string player=PlayerSignature(),gear=CookingGear(Player),stats=CookingStats(Player);int tick=Tick,energy=Energy,world=WorldClock.CurrentTick;var mapAt=(At.X,At.Y);
+            var info=SaveGameService.GetSaveInfo("Quick");Require(info!=null,"actual isolated quick-save metadata");string path=Path.Combine(SaveGameService.SaveRootOverride,info.GameID,"Quick.sav.gz"),hash=PassageHash(path);long serial=MessageLog.NextSerialValue;
+            yield return Tap(Key.F5);yield return Settled();string saved=PassageHash(path);
+            Check("hunt_inactive_native_save_free",saved!=hash&&MessageLog.NextSerialValue>serial&&MessageLog.GetLast()=="Game saved."&&SaveGameService.GetSaveInfo("Quick").ActiveZoneID==Zone.ZoneID&&Tick==tick&&Energy==energy&&WorldClock.CurrentTick==world&&HuntProjection(originalZone,id,preyID)==projection);
+            var next=Directions.Select(d=>Zone.GetCell(At.X+d.x,At.Y+d.y)).FirstOrDefault(c=>c!=null&&c.IsPassable());Require(next!=null,"one ordinary unsaved map step");
+            yield return ExchangePaid(Tap(Direction(next.X-At.X,next.Y-At.Y)),"map","hunt-native-unsaved-map-step");
+            Check("hunt_inactive_no_offscreen_progress",At==next&&(Tick!=tick||Energy!=energy)&&PassageHash(path)==saved&&HuntProjection(originalZone,id,preyID)==projection);
+            yield return Tap(Key.F6);double began=Time.realtimeSinceStartupAsDouble;while(ReferenceEquals(Player,oldPlayer)){Require(Time.realtimeSinceStartupAsDouble-began<8,"native hunt F6 replaces graph");yield return null;}yield return Settled();
+            Require(Manager.CachedZones.TryGetValue(zoneID,out var loaded),"actual inactive hunt graph loaded without generation");var replacement=HuntFind(loaded,id);
+            Check("hunt_exact_inactive_replacement",Manager!=oldManager&&Zone!=oldMap&&loaded!=originalZone&&replacement!=null&&replacement!=source
+                &&HuntProjection(loaded,id,preyID)==projection&&loaded.GetReadOnlyEntities().Where(e=>e.ID==id||e.ID==preyID||e.ID==savedRole.CorpseID).All(e=>!oldOwners.Contains(e))
+                &&Player.ID==oldPlayer.ID&&(At.X,At.Y)==mapAt&&PlayerSignature()==player&&CookingGear(Player)==gear&&CookingStats(Player)==stats&&Tick==tick&&Energy==energy&&WorldClock.CurrentTick==world&&PassageHash(path)==saved&&Manager.Exploration.DispositionFor(zoneID)==2);
+            HuntAliases(loaded,replacement,preyID);yield return Capture("05-inactive-native-load");
+            var snapshot=replacement.GetPart<SpreadPredatorPart>();var terminal=snapshot.Phase;int progress=snapshot.FeedProgress,pursuit=snapshot.PursuitRemaining;string corpseID=snapshot.CorpseID;
+            yield return ExchangePaid(Tap(Key.LeftShift,Key.Period),"local","hunt-native-restored-source-return");
+            Require(Zone==loaded&&(At.X,At.Y)==departure,"ordinary return to saved source/departure cell");
+            var current=HuntFind(Zone,id);
+            if(current!=null)
+            {
+                var after=current.GetPart<SpreadPredatorPart>();Require(current==replacement&&after==snapshot,"same replacement role after native return");
+                Require(after.PursuitRemaining<=pursuit&&after.FeedProgress>=progress,"native return never rearms hunt/feeding allowance");
+                if(HuntTerminal(terminal))Require(after.Phase==terminal&&after.Prey==null&&after.Corpse==null,"terminal hunt remains spent on ordinary return");
+                if(terminal==SpreadHuntPhase.Fed)Require(HuntFind(Zone,corpseID)==null,"consumed body cannot regrow on return");
+                HuntRecord(current,preyID,"ordinary-return-may-advance-hunt");
+                if(HuntVisible(current))HuntStyle(current,"spread-furrowstalker","returned-current-hunter");
+            }
+            _observations.Add(new{phase="hunt-native-return",present=current!=null,beforeReturn=JsonConvert.DeserializeObject(projection),afterReturn=JsonConvert.DeserializeObject(HuntProjection(Zone,id,preyID)),records=_exchangeLastWindow,boundary="Normal NPC scheduling on return is allowed. Model/phase/history is observed, never rewound to a desired outcome."});WriteReport();yield return Capture("06-returned-current-hunt");_huntCheckpointSucceeded=true;
+        }
+        IEnumerator HuntRead(Entity owner,string label)
+        {
+            if(!HuntVisible(owner))yield break;
+            var at=Zone.GetEntityCell(owner);if(Math.Abs(At.X-at.X)+Math.Abs(At.Y-at.Y)>17)
+            {_observations.Add(new{phase=label,owner=owner.ID,unverified="Current visible owner exceeds existing bounded reader cursor route; no observer move."});yield break;}
+            string state=owner.GetPart<SpreadPredatorPart>()?.DescribeState();
+            _observations.Add(new{phase=label+"-current-state",owner=owner.ID,expected=state,boundary="Missing active prose may be correct under another current goal; it is not credited as hunt-state reader acceptance."});
+            yield return Examine(owner,label,string.IsNullOrEmpty(state)?"furrowstalker":state);
+            if(!string.IsNullOrEmpty(state))_huntReadouts++;
+        }
+        void StartHuntingObservation(Entity hunter)
+        {
+            StopHuntingObservation();_huntObserved=hunter;EntityVisualHooks.AttackCallback+=OnHuntAttack;EntityVisualHooks.InteractionCallback+=OnHuntInteraction;_huntSubscribed=true;_huntFrames=StartCoroutine(HuntingFrames());
+        }
+        void StopHuntingObservation()
+        {
+            if(_huntSubscribed){EntityVisualHooks.AttackCallback-=OnHuntAttack;EntityVisualHooks.InteractionCallback-=OnHuntInteraction;_huntSubscribed=false;}
+            _huntObserved=null;if(_huntFrames!=null){StopCoroutine(_huntFrames);_huntFrames=null;}
+        }
+        void OnHuntAttack(Entity actor,Entity target,Zone zone)
+        {
+            if(actor!=_huntObserved||zone!=Zone)return;
+            _huntAttacks++;_observations.Add(new{phase="actual-hunt-attack-hook",actor=actor.ID,target=target?.ID,tick=Tick,quarry=actor.GetPart<SpreadPredatorPart>()?.PreyID});
+        }
+        void OnHuntInteraction(Entity actor,Entity target,Zone zone)
+        {
+            if(actor!=_huntObserved||zone!=Zone)return;
+            var role=actor.GetPart<SpreadPredatorPart>();bool committed=role?.Phase==SpreadHuntPhase.Feeding&&role.Corpse==target&&target?.ID==role.CorpseID&&role.FeedProgress>=1&&role.FeedProgress<=2&&HuntGround(zone,actor)&&HuntGround(zone,target);
+            _huntInteractions++;_observations.Add(new{phase="actual-hunt-feed-hook",actor=actor.ID,target=target?.ID,tick=Tick,committed,progress=role?.FeedProgress});
+            if(!committed)_huntObserverError="Observed feed gesture without exact committed live meal/progress.";
+        }
+        IEnumerator HuntingFrames()
+        {
+            while(_huntObserved!=null)
+            {
+                yield return new WaitForEndOfFrame();
+                try
+                {
+                    var hunter=_huntObserved;if(!HuntVisible(hunter)||!Presenter.TryGetEntityView(hunter,out var root,out var model))continue;
+                    var animator=root.GetComponentInChildren<Animator>();if(animator==null)continue;var state=animator.GetCurrentAnimatorStateInfo(0);
+                    string pose=new[]{"Attack","Interact","Walk"}.FirstOrDefault(n=>state.IsName(n));if(pose==null||_huntPoseFrames.Contains(pose)||state.normalizedTime<.15f||state.normalizedTime>.85f)continue;
+                    Require(Presenter.TryGetApprovedStyle(hunter,out var proof)&&proof.ModelId=="spread-furrowstalker"&&model==proof.ModelId,"actual running original hunter style");
+                    _observations.Add(new{phase="actual-hunting-animation-frame",owner=hunter.ID,pose,state.normalizedTime,model,role=hunter.GetPart<SpreadPredatorPart>().Phase.ToString(),headWorldUp=HeadHeight(root),boundary="Current running Animator plus CPU BakeMesh measurement; no SampleAnimation/Animator.Update or claim of unoccluded pixels."});
+                    string path=Path.Combine(DirectoryPath,"live-"+pose+".png");Directory.CreateDirectory(DirectoryPath);DensityNativeScreenshot.CaptureToFile(path);Require(File.Exists(path)&&new FileInfo(path).Length>0,"actual native hunting pose capture");_images.Add(path);_huntPoseFrames.Add(pose);WriteReport();
+                }
+                catch(Exception error){_huntObserverError=error.ToString();yield break;}
+            }
+        }
+    }
+}

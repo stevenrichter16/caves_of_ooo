@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="68" result="Failed" start-time="2026-09-29T04:37:21.6377810Z" end-time="2026-09-29T04:37:21.7310460Z" duration="0.093245" total="2" passed="1" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="11" random-seed="1234041454">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/cold-admission-red.xml --where "method =~ /AdmissionAcceptsUnwired/"]]></command-line>
+  <filter>
+    <method re="1">AdmissionAcceptsUnwired</method>
+  </filter>
+  <test-suite type="Assembly" id="1081" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="68" result="Failed" site="Child" start-time="2026-09-29T04:37:21.6377810Z" end-time="2026-09-29T04:37:21.7310460Z" duration="0.093245" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="11">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="20551" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1082" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="68" result="Failed" site="Child" start-time="2026-09-29T04:37:21.6393720Z" end-time="2026-09-29T04:37:21.7310210Z" duration="0.091648" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="11">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1083" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="68" result="Failed" site="Child" start-time="2026-09-29T04:37:21.6394770Z" end-time="2026-09-29T04:37:21.7309940Z" duration="0.091516" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="11">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadPredatorStage1Tests" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="43" result="Failed" site="Child" start-time="2026-09-29T04:37:21.6398080Z" end-time="2026-09-29T04:37:21.7309590Z" duration="0.091150" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="11">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1051" name="AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T04:37:21.6405950Z" end-time="2026-09-29T04:37:21.7307790Z" duration="0.090183" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="11">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1049" name="AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone(False)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone(False)" methodname="AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="378786031" result="Failed" start-time="2026-09-29T04:37:21.6407040Z" end-time="2026-09-29T04:37:21.7120740Z" duration="0.071393" asserts="5">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone(Boolean foreign) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 49
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone(Boolean foreign) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 49
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1050" name="AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone(True)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone(True)" methodname="AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1358949821" result="Passed" start-time="2026-09-29T04:37:21.7126120Z" end-time="2026-09-29T04:37:21.7304120Z" duration="0.017799" asserts="6" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

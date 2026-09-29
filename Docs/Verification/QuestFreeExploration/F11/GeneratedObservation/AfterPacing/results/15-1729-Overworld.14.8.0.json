@@ -1,0 +1,5449 @@
+{
+  "site": {
+    "seed": 1729,
+    "zone": "Overworld.14.8.0",
+    "variant": "open",
+    "expectedHunter": "(36, 20)",
+    "expectedPrey": "(32, 16)"
+  },
+  "status": "terminal-Aborted",
+  "exception": null,
+  "actualVariant": "open",
+  "hunterID": "2311",
+  "preyID": "2312",
+  "playerID": "2321",
+  "watchCell": "(11, 2)",
+  "initialHunter": "(36, 20)",
+  "initialPrey": "(32, 16)",
+  "disposition": 2,
+  "waits": 12,
+  "ticks": 130,
+  "creatureCount": 4,
+  "coordinateMatchesPriorCensus": true,
+  "boundary": "Actual candidate source/factory/generated terrain, ordinary all-creature TurnManager. One factory Player setup placement with no grants. Unseeded live brain/death/drop RNG; deterministic runner world hash differs from Unity. World TickEnd services are absent; no native keys, rendering, FOV, or balance proof.",
+  "path": [
+    {
+      "waits": 0,
+      "tick": 0,
+      "phase": "Watching",
+      "HasLastSeen": false,
+      "LastSeenX": 0,
+      "LastSeenY": 0,
+      "PursuitRemaining": 24,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 0,
+      "threatX": 0,
+      "threatY": 0,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 4,
+      "playerDistance": 25,
+      "playerLos": true,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(36, 20)",
+        "hp": 12,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 0,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(32, 16)",
+        "hp": 10,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 0,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 0,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 0,
+      "tick": 10,
+      "phase": "Pursuing",
+      "HasLastSeen": true,
+      "LastSeenX": 32,
+      "LastSeenY": 16,
+      "PursuitRemaining": 23,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 0,
+      "threatX": 0,
+      "threatY": 0,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 3,
+      "playerDistance": 24,
+      "playerLos": true,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(35, 19)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 100,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(32, 16)",
+        "hp": 10,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 1,
+      "tick": 20,
+      "phase": "Pursuing",
+      "HasLastSeen": true,
+      "LastSeenX": 31,
+      "LastSeenY": 15,
+      "PursuitRemaining": 22,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 2,
+      "threatX": 35,
+      "threatY": 19,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 3,
+      "playerDistance": 23,
+      "playerLos": true,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(34, 18)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 200,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(31, 15)",
+        "hp": 10,
+        "dead": false,
+        "state": "Wander",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 2,
+      "tick": 30,
+      "phase": "Pursuing",
+      "HasLastSeen": true,
+      "LastSeenX": 30,
+      "LastSeenY": 14,
+      "PursuitRemaining": 21,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 2,
+      "threatX": 34,
+      "threatY": 18,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 3,
+      "playerDistance": 22,
+      "playerLos": true,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(33, 17)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 300,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(30, 14)",
+        "hp": 10,
+        "dead": false,
+        "state": "Wander",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 3,
+      "tick": 40,
+      "phase": "Pursuing",
+      "HasLastSeen": true,
+      "LastSeenX": 29,
+      "LastSeenY": 13,
+      "PursuitRemaining": 20,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 2,
+      "threatX": 33,
+      "threatY": 17,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 3,
+      "playerDistance": 21,
+      "playerLos": true,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(32, 16)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 400,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(29, 13)",
+        "hp": 10,
+        "dead": false,
+        "state": "Wander",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 4,
+      "tick": 50,
+      "phase": "Pursuing",
+      "HasLastSeen": true,
+      "LastSeenX": 28,
+      "LastSeenY": 12,
+      "PursuitRemaining": 19,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 2,
+      "threatX": 32,
+      "threatY": 16,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 3,
+      "playerDistance": 20,
+      "playerLos": true,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(31, 15)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 500,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(28, 12)",
+        "hp": 10,
+        "dead": false,
+        "state": "Wander",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 5,
+      "tick": 60,
+      "phase": "Pursuing",
+      "HasLastSeen": true,
+      "LastSeenX": 27,
+      "LastSeenY": 11,
+      "PursuitRemaining": 18,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 2,
+      "threatX": 31,
+      "threatY": 15,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 3,
+      "playerDistance": 19,
+      "playerLos": true,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(30, 14)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 600,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(27, 11)",
+        "hp": 10,
+        "dead": false,
+        "state": "Wander",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 6,
+      "tick": 70,
+      "phase": "Pursuing",
+      "HasLastSeen": true,
+      "LastSeenX": 26,
+      "LastSeenY": 10,
+      "PursuitRemaining": 17,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 2,
+      "threatX": 30,
+      "threatY": 14,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 3,
+      "playerDistance": 18,
+      "playerLos": true,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(29, 13)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 700,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(26, 10)",
+        "hp": 10,
+        "dead": false,
+        "state": "Wander",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 7,
+      "tick": 80,
+      "phase": "Pursuing",
+      "HasLastSeen": true,
+      "LastSeenX": 25,
+      "LastSeenY": 9,
+      "PursuitRemaining": 16,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 2,
+      "threatX": 29,
+      "threatY": 13,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 3,
+      "playerDistance": 17,
+      "playerLos": true,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(28, 12)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 800,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(25, 9)",
+        "hp": 10,
+        "dead": false,
+        "state": "Wander",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 8,
+      "tick": 90,
+      "phase": "Pursuing",
+      "HasLastSeen": true,
+      "LastSeenX": 24,
+      "LastSeenY": 8,
+      "PursuitRemaining": 15,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 2,
+      "threatX": 28,
+      "threatY": 12,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 3,
+      "playerDistance": 16,
+      "playerLos": true,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(27, 11)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 900,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(24, 8)",
+        "hp": 10,
+        "dead": false,
+        "state": "Wander",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 9,
+      "tick": 100,
+      "phase": "Pursuing",
+      "HasLastSeen": true,
+      "LastSeenX": 23,
+      "LastSeenY": 7,
+      "PursuitRemaining": 13,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 2,
+      "threatX": 27,
+      "threatY": 11,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 2,
+      "playerDistance": 14,
+      "playerLos": true,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(25, 9)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 0,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(23, 7)",
+        "hp": 10,
+        "dead": false,
+        "state": "Wander",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 10,
+      "tick": 110,
+      "phase": "Pursuing",
+      "HasLastSeen": true,
+      "LastSeenX": 22,
+      "LastSeenY": 6,
+      "PursuitRemaining": 12,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 2,
+      "threatX": 25,
+      "threatY": 9,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 2,
+      "playerDistance": 13,
+      "playerLos": false,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(24, 8)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 100,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(22, 6)",
+        "hp": 10,
+        "dead": false,
+        "state": "Wander",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 11,
+      "tick": 120,
+      "phase": "Pursuing",
+      "HasLastSeen": true,
+      "LastSeenX": 21,
+      "LastSeenY": 5,
+      "PursuitRemaining": 11,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": "2312",
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 2,
+      "threatX": 24,
+      "threatY": 8,
+      "reciprocalHunter": "2311",
+      "los": true,
+      "distance": 2,
+      "playerDistance": 12,
+      "playerLos": false,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(23, 7)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 200,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(21, 5)",
+        "hp": 10,
+        "dead": false,
+        "state": "Wander",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    },
+    {
+      "waits": 12,
+      "tick": 130,
+      "phase": "Aborted",
+      "HasLastSeen": true,
+      "LastSeenX": 21,
+      "LastSeenY": 5,
+      "PursuitRemaining": 11,
+      "SearchRemaining": 6,
+      "FeedProgress": 0,
+      "PreyID": "2312",
+      "preyRef": null,
+      "CorpseID": null,
+      "corpseRef": null,
+      "corpseAt": null,
+      "corpseCurrent": false,
+      "flight": 0,
+      "threatX": 23,
+      "threatY": 7,
+      "reciprocalHunter": null,
+      "los": true,
+      "distance": 3,
+      "playerDistance": 12,
+      "playerLos": false,
+      "hunter": {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(23, 7)",
+        "hp": 12,
+        "dead": false,
+        "state": "Chase",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 300,
+        "speed": 110
+      },
+      "prey": {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(20, 4)",
+        "hp": 10,
+        "dead": false,
+        "state": "Wander",
+        "target": null,
+        "targetBP": null,
+        "goals": [
+          "BoredGoal"
+        ],
+        "goalDetails": [
+          "BoredGoal"
+        ],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "player": {
+        "id": "2321",
+        "bp": "Player",
+        "at": "(11, 2)",
+        "hp": 40,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 1000,
+        "speed": 100
+      },
+      "others": [
+        {
+          "id": "2268",
+          "bp": "Farmer",
+          "at": "(50, 7)",
+          "hp": 20,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "kind": "move",
+      "tick": 10,
+      "waits": 0,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 36,
+        "oy": 20,
+        "nx": 35,
+        "ny": 19,
+        "forced": false
+      },
+      "pair": {
+        "waits": 0,
+        "tick": 10,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 32,
+        "LastSeenY": 16,
+        "PursuitRemaining": 23,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 0,
+        "threatX": 0,
+        "threatY": 0,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 24,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(35, 19)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1100,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(32, 16)",
+          "hp": 10,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [],
+            "goalDetails": [],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 1000,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 10,
+      "waits": 1,
+      "actor": "2312",
+      "actorBP": "ReedbackGrazer",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 32,
+        "oy": 16,
+        "nx": 31,
+        "ny": 15,
+        "forced": false
+      },
+      "pair": {
+        "waits": 1,
+        "tick": 10,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 32,
+        "LastSeenY": 16,
+        "PursuitRemaining": 23,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 35,
+        "threatY": 19,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 4,
+        "playerDistance": 24,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(35, 19)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 100,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(31, 15)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 0,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 19,
+      "waits": 1,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 35,
+        "oy": 19,
+        "nx": 34,
+        "ny": 18,
+        "forced": false
+      },
+      "pair": {
+        "waits": 1,
+        "tick": 19,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 31,
+        "LastSeenY": 15,
+        "PursuitRemaining": 22,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 35,
+        "threatY": 19,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 23,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(34, 18)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1090,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(31, 15)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 900,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 900,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 900,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 20,
+      "waits": 2,
+      "actor": "2312",
+      "actorBP": "ReedbackGrazer",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 31,
+        "oy": 15,
+        "nx": 30,
+        "ny": 14,
+        "forced": false
+      },
+      "pair": {
+        "waits": 2,
+        "tick": 20,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 31,
+        "LastSeenY": 15,
+        "PursuitRemaining": 22,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 34,
+        "threatY": 18,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 4,
+        "playerDistance": 23,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(34, 18)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 200,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(30, 14)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 0,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 28,
+      "waits": 2,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 34,
+        "oy": 18,
+        "nx": 33,
+        "ny": 17,
+        "forced": false
+      },
+      "pair": {
+        "waits": 2,
+        "tick": 28,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 30,
+        "LastSeenY": 14,
+        "PursuitRemaining": 21,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 34,
+        "threatY": 18,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 22,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(33, 17)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1080,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(30, 14)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 800,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 800,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 800,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 30,
+      "waits": 3,
+      "actor": "2312",
+      "actorBP": "ReedbackGrazer",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 30,
+        "oy": 14,
+        "nx": 29,
+        "ny": 13,
+        "forced": false
+      },
+      "pair": {
+        "waits": 3,
+        "tick": 30,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 30,
+        "LastSeenY": 14,
+        "PursuitRemaining": 21,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 33,
+        "threatY": 17,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 4,
+        "playerDistance": 22,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(33, 17)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 300,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(29, 13)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 0,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 37,
+      "waits": 3,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 33,
+        "oy": 17,
+        "nx": 32,
+        "ny": 16,
+        "forced": false
+      },
+      "pair": {
+        "waits": 3,
+        "tick": 37,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 29,
+        "LastSeenY": 13,
+        "PursuitRemaining": 20,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 33,
+        "threatY": 17,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 21,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(32, 16)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1070,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(29, 13)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 700,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 700,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 700,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 40,
+      "waits": 4,
+      "actor": "2312",
+      "actorBP": "ReedbackGrazer",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 29,
+        "oy": 13,
+        "nx": 28,
+        "ny": 12,
+        "forced": false
+      },
+      "pair": {
+        "waits": 4,
+        "tick": 40,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 29,
+        "LastSeenY": 13,
+        "PursuitRemaining": 20,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 32,
+        "threatY": 16,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 4,
+        "playerDistance": 21,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(32, 16)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 400,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(28, 12)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 0,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 46,
+      "waits": 4,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 32,
+        "oy": 16,
+        "nx": 31,
+        "ny": 15,
+        "forced": false
+      },
+      "pair": {
+        "waits": 4,
+        "tick": 46,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 28,
+        "LastSeenY": 12,
+        "PursuitRemaining": 19,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 32,
+        "threatY": 16,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 20,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(31, 15)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1060,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(28, 12)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 600,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 600,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 600,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 50,
+      "waits": 5,
+      "actor": "2312",
+      "actorBP": "ReedbackGrazer",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 28,
+        "oy": 12,
+        "nx": 27,
+        "ny": 11,
+        "forced": false
+      },
+      "pair": {
+        "waits": 5,
+        "tick": 50,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 28,
+        "LastSeenY": 12,
+        "PursuitRemaining": 19,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 31,
+        "threatY": 15,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 4,
+        "playerDistance": 20,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(31, 15)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 500,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(27, 11)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 0,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 55,
+      "waits": 5,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 31,
+        "oy": 15,
+        "nx": 30,
+        "ny": 14,
+        "forced": false
+      },
+      "pair": {
+        "waits": 5,
+        "tick": 55,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 27,
+        "LastSeenY": 11,
+        "PursuitRemaining": 18,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 31,
+        "threatY": 15,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 19,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(30, 14)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1050,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(27, 11)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 500,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 500,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 500,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 60,
+      "waits": 6,
+      "actor": "2312",
+      "actorBP": "ReedbackGrazer",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 27,
+        "oy": 11,
+        "nx": 26,
+        "ny": 10,
+        "forced": false
+      },
+      "pair": {
+        "waits": 6,
+        "tick": 60,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 27,
+        "LastSeenY": 11,
+        "PursuitRemaining": 18,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 30,
+        "threatY": 14,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 4,
+        "playerDistance": 19,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(30, 14)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 600,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(26, 10)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 0,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 64,
+      "waits": 6,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 30,
+        "oy": 14,
+        "nx": 29,
+        "ny": 13,
+        "forced": false
+      },
+      "pair": {
+        "waits": 6,
+        "tick": 64,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 26,
+        "LastSeenY": 10,
+        "PursuitRemaining": 17,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 30,
+        "threatY": 14,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 18,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(29, 13)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1040,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(26, 10)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 400,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 400,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 400,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 70,
+      "waits": 7,
+      "actor": "2312",
+      "actorBP": "ReedbackGrazer",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 26,
+        "oy": 10,
+        "nx": 25,
+        "ny": 9,
+        "forced": false
+      },
+      "pair": {
+        "waits": 7,
+        "tick": 70,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 26,
+        "LastSeenY": 10,
+        "PursuitRemaining": 17,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 29,
+        "threatY": 13,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 4,
+        "playerDistance": 18,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(29, 13)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 700,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(25, 9)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 0,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 73,
+      "waits": 7,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 29,
+        "oy": 13,
+        "nx": 28,
+        "ny": 12,
+        "forced": false
+      },
+      "pair": {
+        "waits": 7,
+        "tick": 73,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 25,
+        "LastSeenY": 9,
+        "PursuitRemaining": 16,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 29,
+        "threatY": 13,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 17,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(28, 12)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1030,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(25, 9)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 300,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 300,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 300,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 80,
+      "waits": 8,
+      "actor": "2312",
+      "actorBP": "ReedbackGrazer",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 25,
+        "oy": 9,
+        "nx": 24,
+        "ny": 8,
+        "forced": false
+      },
+      "pair": {
+        "waits": 8,
+        "tick": 80,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 25,
+        "LastSeenY": 9,
+        "PursuitRemaining": 16,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 28,
+        "threatY": 12,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 4,
+        "playerDistance": 17,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(28, 12)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 800,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(24, 8)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 0,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 82,
+      "waits": 8,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 28,
+        "oy": 12,
+        "nx": 27,
+        "ny": 11,
+        "forced": false
+      },
+      "pair": {
+        "waits": 8,
+        "tick": 82,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 24,
+        "LastSeenY": 8,
+        "PursuitRemaining": 15,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 28,
+        "threatY": 12,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 16,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(27, 11)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1020,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(24, 8)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 200,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 200,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 200,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 90,
+      "waits": 9,
+      "actor": "2312",
+      "actorBP": "ReedbackGrazer",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 24,
+        "oy": 8,
+        "nx": 23,
+        "ny": 7,
+        "forced": false
+      },
+      "pair": {
+        "waits": 9,
+        "tick": 90,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 24,
+        "LastSeenY": 8,
+        "PursuitRemaining": 15,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 27,
+        "threatY": 11,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 4,
+        "playerDistance": 16,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(27, 11)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 900,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(23, 7)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 0,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 91,
+      "waits": 9,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 27,
+        "oy": 11,
+        "nx": 26,
+        "ny": 10,
+        "forced": false
+      },
+      "pair": {
+        "waits": 9,
+        "tick": 91,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 23,
+        "LastSeenY": 7,
+        "PursuitRemaining": 14,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 27,
+        "threatY": 11,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 15,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(26, 10)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1010,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(23, 7)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 100,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 100,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 100,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 100,
+      "waits": 9,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 26,
+        "oy": 10,
+        "nx": 25,
+        "ny": 9,
+        "forced": false
+      },
+      "pair": {
+        "waits": 9,
+        "tick": 100,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 23,
+        "LastSeenY": 7,
+        "PursuitRemaining": 13,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 27,
+        "threatY": 11,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 2,
+        "playerDistance": 14,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(25, 9)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(23, 7)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 1000,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 100,
+      "waits": 10,
+      "actor": "2312",
+      "actorBP": "ReedbackGrazer",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 23,
+        "oy": 7,
+        "nx": 22,
+        "ny": 6,
+        "forced": false
+      },
+      "pair": {
+        "waits": 10,
+        "tick": 100,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 23,
+        "LastSeenY": 7,
+        "PursuitRemaining": 13,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 25,
+        "threatY": 9,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 14,
+        "playerLos": true,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(25, 9)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(22, 6)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 0,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 110,
+      "waits": 10,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 25,
+        "oy": 9,
+        "nx": 24,
+        "ny": 8,
+        "forced": false
+      },
+      "pair": {
+        "waits": 10,
+        "tick": 110,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 22,
+        "LastSeenY": 6,
+        "PursuitRemaining": 12,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 25,
+        "threatY": 9,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 2,
+        "playerDistance": 13,
+        "playerLos": false,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(24, 8)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1100,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(22, 6)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 1000,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 110,
+      "waits": 11,
+      "actor": "2312",
+      "actorBP": "ReedbackGrazer",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 22,
+        "oy": 6,
+        "nx": 21,
+        "ny": 5,
+        "forced": false
+      },
+      "pair": {
+        "waits": 11,
+        "tick": 110,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 22,
+        "LastSeenY": 6,
+        "PursuitRemaining": 12,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 24,
+        "threatY": 8,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 13,
+        "playerLos": false,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(24, 8)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 100,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(21, 5)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 0,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 119,
+      "waits": 11,
+      "actor": "2311",
+      "actorBP": "Furrowstalker",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 24,
+        "oy": 8,
+        "nx": 23,
+        "ny": 7,
+        "forced": false
+      },
+      "pair": {
+        "waits": 11,
+        "tick": 119,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 21,
+        "LastSeenY": 5,
+        "PursuitRemaining": 11,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 24,
+        "threatY": 8,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 2,
+        "playerDistance": 12,
+        "playerLos": false,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(23, 7)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1090,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(21, 5)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 900,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 900,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 900,
+            "speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "kind": "move",
+      "tick": 120,
+      "waits": 12,
+      "actor": "2312",
+      "actorBP": "ReedbackGrazer",
+      "target": null,
+      "targetBP": null,
+      "detail": {
+        "ox": 21,
+        "oy": 5,
+        "nx": 20,
+        "ny": 4,
+        "forced": false
+      },
+      "pair": {
+        "waits": 12,
+        "tick": 120,
+        "phase": "Pursuing",
+        "HasLastSeen": true,
+        "LastSeenX": 21,
+        "LastSeenY": 5,
+        "PursuitRemaining": 11,
+        "SearchRemaining": 6,
+        "FeedProgress": 0,
+        "PreyID": "2312",
+        "preyRef": "2312",
+        "CorpseID": null,
+        "corpseRef": null,
+        "corpseAt": null,
+        "corpseCurrent": false,
+        "flight": 2,
+        "threatX": 23,
+        "threatY": 7,
+        "reciprocalHunter": "2311",
+        "los": true,
+        "distance": 3,
+        "playerDistance": 12,
+        "playerLos": false,
+        "hunter": {
+          "id": "2311",
+          "bp": "Furrowstalker",
+          "at": "(23, 7)",
+          "hp": 12,
+          "dead": false,
+          "state": "Chase",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 200,
+          "speed": 110
+        },
+        "prey": {
+          "id": "2312",
+          "bp": "ReedbackGrazer",
+          "at": "(20, 4)",
+          "hp": 10,
+          "dead": false,
+          "state": "Wander",
+          "target": null,
+          "targetBP": null,
+          "goals": [
+            "BoredGoal"
+          ],
+          "goalDetails": [
+            "BoredGoal"
+          ],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 1000,
+          "speed": 100
+        },
+        "player": {
+          "id": "2321",
+          "bp": "Player",
+          "at": "(11, 2)",
+          "hp": 40,
+          "dead": false,
+          "state": "Idle",
+          "target": null,
+          "targetBP": null,
+          "goals": [],
+          "goalDetails": [],
+          "shakenDuration": null,
+          "registered": true,
+          "energy": 0,
+          "speed": 100
+        },
+        "others": [
+          {
+            "id": "2268",
+            "bp": "Farmer",
+            "at": "(50, 7)",
+            "hp": 20,
+            "dead": false,
+            "state": "Idle",
+            "target": null,
+            "targetBP": null,
+            "goals": [
+              "BoredGoal"
+            ],
+            "goalDetails": [
+              "BoredGoal"
+            ],
+            "shakenDuration": null,
+            "registered": true,
+            "energy": 0,
+            "speed": 100
+          }
+        ]
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 10,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "ai",
+      "Kind": "SpreadHuntTransition",
+      "Turn": 10,
+      "ActorId": "2311",
+      "TargetId": "2312",
+      "PayloadJson": "{\"reason\":\"quarry-seen\",\"phase\":\"Pursuing\",\"pursuitRemaining\":23,\"searchRemaining\":6,\"feedProgress\":0}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 10,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 10,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "End",
+      "Turn": 10,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 10,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 10,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 10,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 10,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 19,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 19,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 20,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "End",
+      "Turn": 20,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 20,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 20,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 20,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 20,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 28,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 28,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 30,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "End",
+      "Turn": 30,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 30,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 30,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 30,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 30,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 37,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 37,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 40,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "End",
+      "Turn": 40,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 40,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 40,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 40,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 40,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 46,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 46,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 50,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "End",
+      "Turn": 50,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 50,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 50,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 50,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 50,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 55,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 55,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 60,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "End",
+      "Turn": 60,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 60,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 60,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 60,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 60,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 64,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 64,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 70,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "End",
+      "Turn": 70,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 70,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 70,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 70,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 70,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 73,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 73,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 80,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "End",
+      "Turn": 80,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 80,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 80,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 80,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 80,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 82,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 82,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 90,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "End",
+      "Turn": 90,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 90,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 90,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 90,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 90,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 91,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 91,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 100,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 100,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 100,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "End",
+      "Turn": 100,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 100,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 100,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 100,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 100,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 110,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 110,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 110,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "End",
+      "Turn": 110,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 110,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 110,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 110,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 110,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 119,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 119,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 120,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "End",
+      "Turn": 120,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 120,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 120,
+      "ActorId": "2268",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Farmer\",\"hp\":20}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 120,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 120,
+      "ActorId": "2312",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "Begin",
+      "Turn": 128,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "ai",
+      "Kind": "SpreadHuntOutcome",
+      "Turn": 128,
+      "ActorId": "2311",
+      "TargetId": "2312",
+      "PayloadJson": "{\"reason\":\"outside-home-leash\",\"phase\":\"Aborted\",\"pursuitRemaining\":11,\"searchRemaining\":6,\"feedProgress\":0}"
+    },
+    {
+      "Category": "turn-verbose",
+      "Kind": "End",
+      "Turn": 128,
+      "ActorId": "2311",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+    },
+    {
+      "Category": "turn",
+      "Kind": "Begin",
+      "Turn": 130,
+      "ActorId": "2321",
+      "TargetId": null,
+      "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+    }
+  ],
+  "terrain": {
+    "trees": [
+      {
+        "id": "167",
+        "at": "(4, 2)"
+      },
+      {
+        "id": "174",
+        "at": "(9, 2)"
+      },
+      {
+        "id": "178",
+        "at": "(12, 2)"
+      },
+      {
+        "id": "187",
+        "at": "(19, 2)"
+      },
+      {
+        "id": "189",
+        "at": "(20, 2)"
+      },
+      {
+        "id": "258",
+        "at": "(5, 3)"
+      },
+      {
+        "id": "562",
+        "at": "(5, 6)"
+      },
+      {
+        "id": "1529",
+        "at": "(68, 16)"
+      },
+      {
+        "id": "1534",
+        "at": "(72, 16)"
+      },
+      {
+        "id": "1537",
+        "at": "(74, 16)"
+      },
+      {
+        "id": "1619",
+        "at": "(63, 17)"
+      },
+      {
+        "id": "1621",
+        "at": "(64, 17)"
+      },
+      {
+        "id": "1637",
+        "at": "(77, 17)"
+      },
+      {
+        "id": "1725",
+        "at": "(74, 18)"
+      },
+      {
+        "id": "1727",
+        "at": "(75, 18)"
+      },
+      {
+        "id": "1729",
+        "at": "(76, 18)"
+      },
+      {
+        "id": "1799",
+        "at": "(56, 19)"
+      },
+      {
+        "id": "1808",
+        "at": "(64, 19)"
+      },
+      {
+        "id": "1813",
+        "at": "(68, 19)"
+      },
+      {
+        "id": "1821",
+        "at": "(74, 19)"
+      },
+      {
+        "id": "1823",
+        "at": "(75, 19)"
+      },
+      {
+        "id": "1826",
+        "at": "(77, 19)"
+      },
+      {
+        "id": "1900",
+        "at": "(55, 20)"
+      },
+      {
+        "id": "1902",
+        "at": "(56, 20)"
+      },
+      {
+        "id": "1909",
+        "at": "(62, 20)"
+      },
+      {
+        "id": "1914",
+        "at": "(66, 20)"
+      },
+      {
+        "id": "1918",
+        "at": "(69, 20)"
+      },
+      {
+        "id": "1923",
+        "at": "(73, 20)"
+      },
+      {
+        "id": "1995",
+        "at": "(63, 21)"
+      },
+      {
+        "id": "1999",
+        "at": "(66, 21)"
+      },
+      {
+        "id": "2002",
+        "at": "(68, 21)"
+      },
+      {
+        "id": "2013",
+        "at": "(76, 21)"
+      },
+      {
+        "id": "2015",
+        "at": "(77, 21)"
+      },
+      {
+        "id": "2082",
+        "at": "(63, 22)"
+      },
+      {
+        "id": "2084",
+        "at": "(64, 22)"
+      }
+    ],
+    "initialNPCs": [
+      {
+        "id": "2268",
+        "bp": "Farmer",
+        "at": "(50, 7)",
+        "hp": 20,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 0,
+        "speed": 100
+      },
+      {
+        "id": "2311",
+        "bp": "Furrowstalker",
+        "at": "(36, 20)",
+        "hp": 12,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 0,
+        "speed": 110
+      },
+      {
+        "id": "2312",
+        "bp": "ReedbackGrazer",
+        "at": "(32, 16)",
+        "hp": 10,
+        "dead": false,
+        "state": "Idle",
+        "target": null,
+        "targetBP": null,
+        "goals": [],
+        "goalDetails": [],
+        "shakenDuration": null,
+        "registered": true,
+        "energy": 0,
+        "speed": 100
+      }
+    ]
+  },
+  "final": {
+    "phase": "Aborted",
+    "hunterHP": 12,
+    "preyHP": 10,
+    "playerHP": 40,
+    "hunterDead": false,
+    "preyDead": false,
+    "playerDead": false,
+    "corpseClaim": null,
+    "FeedProgress": 0,
+    "corpses": []
+  }
+}

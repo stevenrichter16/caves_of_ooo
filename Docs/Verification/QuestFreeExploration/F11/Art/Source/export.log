@@ -1,0 +1,21 @@
+/Users/steven/.codex/scratch/caves-of-ooo/f11/art/export_source.py:20: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  MAT=bpy.data.materials.new('SpreadBiomePalette');MAT.use_nodes=True;tex=MAT.node_tree.nodes.new('ShaderNodeTexImage');tex.image=img;tex.interpolation='Closest';shader=MAT.node_tree.nodes.get('Principled BSDF');MAT.node_tree.links.new(tex.outputs['Color'],shader.inputs['Base Color']);shader.inputs['Roughness'].default_value=1;WATER=bpy.data.materials.new('SemanticWater');WATER.use_nodes=True;WATER.node_tree.nodes.get('Principled BSDF').inputs['Base Color'].default_value=(0,.667,.667,1);WATER.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value=.85
+/Users/steven/.codex/scratch/caves-of-ooo/f11/art/export_source.py:128: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  SCENE.world.use_nodes=True;SCENE.world.node_tree.nodes['Background'].inputs[0].default_value=(.28,.32,.30,1);SCENE.world.node_tree.nodes['Background'].inputs[1].default_value=.8
+/Users/steven/.codex/scratch/caves-of-ooo/f11/art/export_source.py:129: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  floor=bpy.data.materials.new('ReviewGround');floor.use_nodes=True;floor.node_tree.nodes.get('Principled BSDF').inputs['Base Color'].default_value=(.003,.025,.021,1);floor.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value=1
+00:16.792  render           | Saved: '/Users/steven/.codex/scratch/caves-of-ooo/f11/art/Export/renders/furrowstalker-top.png'
+00:33.277  render           | Saved: '/Users/steven/.codex/scratch/caves-of-ooo/f11/art/Export/renders/furrowstalker-oblique.png'
+00:50.396  render           | Saved: '/Users/steven/.codex/scratch/caves-of-ooo/f11/art/Export/renders/furrowstalker-poses.png'
+
+FBX export starting... '/Users/steven/.codex/scratch/caves-of-ooo/f11/art/Export/models/spread-furrowstalker.fbx'
+(bpy.data.armatures['spread-furrowstalker_Skeleton.001'], 'POSE')
+export finished in 0.0369 sec.
+
+FBX export starting... '/Users/steven/.codex/scratch/caves-of-ooo/f11/art/Export/models/spread-furrowstalker-remains.fbx'
+export finished in 0.0016 sec.
+Info: Saved as "furrowstalker-review.blend"
+FURROWSTALKER_SOURCE [{"id": "spread-furrowstalker", "sourceBlueprint": "Furrowstalker", "path": "models/spread-furrowstalker.fbx", "rigFamily": "quadruped", "rigged": true, "clips": ["Idle", "Walk", "Interact", "Attack", "Hit"], "sockets": [], "bones": ["Root", "Body", "Neck", "Head", "Jaw", "LegFront.L", "LegRear.L", "LegFront.R", "LegRear.R", "Tail", "TailTip"], "triangles": 480, "boundsBlender": {"min": [-0.2304999977350235, -0.7229999899864197, 0.0], "max": [0.2304999977350235, 0.8329999446868896, 0.4925000071525574]}, "sha256": "b4fc0f6e80fb0015b5b015319d37480e992f693ebab2024d904bc96855339481"}, {"id": "spread-furrowstalker-remains", "sourceBlueprint": "FurrowstalkerCorpse", "path": "models/spread-furrowstalker-remains.fbx", "rigFamily": "", "rigged": false, "clips": [], "sockets": [], "bones": [], "triangles": 192, "boundsBlender": {"min": [-0.28999999165534973, -0.7354999780654907, 0.001499999314546585], "max": [0.28999999165534973, 0.7505000233650208, 0.23999999463558197]}, "sha256": "d280a7fe6997c041a3a04d796aa6e62205fa68ed79106fb542929d1e4a1e9dc7"}]
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

@@ -57,7 +57,7 @@ namespace CavesOfOoo.Core
         bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&(ReferenceEquals(p.SourceReceipt,this)||ReferenceEquals(p.LooseSourceReceipt,this)||ReferenceEquals(p.AmbientSourceReceipt,this)||ReferenceEquals(p.AmbientReplacementReceipt,this)||ReferenceEquals(p.ForageSourceReceipt,this))
             : source is HaulablePropBuilder h ? h.OwnsSourceReceipt(this)
             : source is ContainerBuilder c ? c.CaptureSourceReceipts&&ReferenceEquals(c.SourceReceipt,this)
-            : source is SpreadCompositionBuilder terrain&&(terrain.OwnsPassageReceipt(this)||terrain.OwnsCookingReceipt(this));
+            : source is SpreadCompositionBuilder terrain&&(terrain.OwnsPassageReceipt(this)||terrain.OwnsCookingReceipt(this)||terrain.OwnsCoverReceipt(this));
         public bool IsCurrent => !consumed&&complete&&SourceCurrent&&snapshots.All(s=>s.Matches(true));
         /// <summary>Claim this exact source once after all transaction preflights.
         /// Consumption is ephemeral and never changes its owners or saved graph.</summary>
@@ -65,6 +65,15 @@ namespace CavesOfOoo.Core
         // A consuming transaction owns intentional position changes, but must
         // still establish source and complete item/state identity at commit.
         internal bool MatchesOwnedState()=>complete&&SourceCurrent&&snapshots.All(s=>s.Matches(false));
+        // One consuming actor substitution may intentionally detach only these
+        // roots. Their original carried/equipped graphs remain fully pinned.
+        internal bool MatchesOwnedState(ISet<Entity> detached)=>complete&&SourceCurrent&&detached!=null
+            &&snapshots.Select((s,i)=>detached.Contains(owners[i])?s.MatchesDetached():s.Matches(false)).All(v=>v);
+        internal Func<bool> CaptureDetachedOwnerState(Entity owner)
+        {
+            int index=Array.IndexOf(owners,owner);
+            return ()=>consumed&&complete&&SourceCurrent&&index>=0&&snapshots[index].MatchesDetached();
+        }
 
         // Seal the realized packet after its authorized mutations. Final generation
         // callbacks must not leave a commitment pointing at replaced/depleted owners.
@@ -117,6 +126,9 @@ namespace CavesOfOoo.Core
                 &&(idCounts==null?zone.GetReadOnlyEntities().Count(e=>e.ID==owner.ID)
                     :owner.ID==null?nullIds:idCounts.TryGetValue(owner.ID,out int count)?count:0)==1
                 &&(!location||zone.GetEntityPosition(owner)==position)&&graph.All(e=>e.Matches());
+            internal bool MatchesDetached()=>valid&&owner.SpatialZone==null&&zone.GetEntityCell(owner)==null
+                &&owner.GetPart<PhysicsPart>()?.InInventory==null&&owner.GetPart<PhysicsPart>()?.Equipped==null
+                &&!zone.GetReadOnlyEntities().Any(e=>e.ID==owner.ID)&&graph.All(e=>e.Matches(owner));
         }
         // A bounded snapshot for the already-produced graph, not a save schema.
         // Field reads avoid description/event callbacks. Collection membership
@@ -143,7 +155,7 @@ namespace CavesOfOoo.Core
                 Children=(contents??Array.Empty<Entity>()).Concat(carried??Array.Empty<Entity>()).Concat(equipped?.Select(k=>k.Value)??Enumerable.Empty<Entity>())
                     .Concat(slots?.SelectMany(s=>new[]{s.Equipped,s.Cybernetics,s.DefaultBehavior})??Enumerable.Empty<Entity>()).Where(e=>e!=null).Distinct().ToArray();
             }
-            internal bool Matches()=>entity.ID==id&&entity.BlueprintName==blueprint&&entity.SpatialZone==spatialZone&&Same(entity.Tags,tags)&&Same(entity.Properties,properties)&&Same(entity.IntProperties,ints)&&Same(entity.Statistics,stats)
+            internal bool Matches(Entity detachedRoot=null)=>entity.ID==id&&entity.BlueprintName==blueprint&&entity.SpatialZone==(entity==detachedRoot?null:spatialZone)&&Same(entity.Tags,tags)&&Same(entity.Properties,properties)&&Same(entity.IntProperties,ints)&&Same(entity.Statistics,stats)
                 &&entity.Parts.SequenceEqual(parts)&&parts.All(p=>p!=null&&ReferenceEquals(p.ParentEntity,entity))&&values.All(v=>v.Matches())
                 &&Sequence(entity.GetPart<ContainerPart>()?.Contents,contents)&&Sequence(entity.GetPart<InventoryPart>()?.Objects,carried)
                 &&SameNullable(entity.GetPart<InventoryPart>()?.EquippedItems,equipped)&&Sequence(entity.GetPart<Body>()?.GetParts(),slots)

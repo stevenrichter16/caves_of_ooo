@@ -1,0 +1,93 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-29 07:39:43Z
+    End time: 2026-09-29 07:39:43Z
+    Duration: 0.023 seconds
+
+Test Filters
+    Where: class =~ /SpreadHuntArrivalTests/
+
+=> CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1)
+1 Overworld.10.4.0 hunter(63,4) arrival(40,12) distance=23 sight=True target= playerHP=40->40
+1 Overworld.14.13.0 hunter(9,4) arrival(40,12) distance=31 sight=True target= playerHP=40->40
+1 Overworld.14.8.0 hunter(71,16) arrival(40,12) distance=31 sight=True target= playerHP=40->40
+1 Overworld.8.1.0 hunter(55,4) arrival(40,12) distance=15 sight=True target= playerHP=40->40
+1 Overworld.8.14.0 hunter(41,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40
+=> CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(64)
+64 Overworld.12.6.0 hunter(59,4) arrival(40,12) distance=19 sight=True target= playerHP=40->40
+64 Overworld.14.8.0 hunter(19,5) arrival(40,12) distance=21 sight=True target= playerHP=40->40
+64 Overworld.5.13.0 hunter(52,8) arrival(40,12) distance=12 sight=True target= playerHP=40->40
+64 Overworld.5.8.0 hunter(75,4) arrival(40,12) distance=35 sight=True target= playerHP=40->40
+64 Overworld.6.7.0 hunter(64,6) arrival(40,12) distance=24 sight=False target= playerHP=40->40
+64 Overworld.7.2.0 hunter(61,15) arrival(40,12) distance=21 sight=True target= playerHP=40->40
+64 Overworld.8.9.0 hunter(75,19) arrival(40,12) distance=35 sight=True target= playerHP=40->40
+=> CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1729)
+1729 Overworld.10.4.0 hunter(50,9) arrival(40,12) distance=10 sight=True target= playerHP=40->40
+1729 Overworld.11.9.0 hunter(75,15) arrival(40,12) distance=35 sight=True target= playerHP=40->40
+1729 Overworld.12.6.0 hunter(19,15) arrival(40,12) distance=21 sight=True target= playerHP=40->40
+1729 Overworld.14.8.0 hunter(36,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40
+1729 Overworld.5.13.0 hunter(8,6) arrival(40,12) distance=32 sight=True target= playerHP=40->40
+1729 Overworld.8.14.0 hunter(27,20) arrival(40,12) distance=13 sight=True target= playerHP=40->40
+
+Errors, Failures and Warnings
+
+1) Failed : CavesOfOoo.Tests.SpreadHuntArrivalTests.ArrivalBoundaryUsesTheAlreadyAuthoredHunterSightInsteadOfASecondMagicRadius
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.SpreadHuntArrivalTests.ArrivalBoundaryUsesTheAlreadyAuthoredHunterSightInsteadOfASecondMagicRadius() in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 133
+
+2) Failed : CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(False)
+  No approximate fallback arrival or synthetic Player is authorized.
+  Expected: False
+  But was:  True
+   at CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 85
+
+3) Failed : CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(True)
+  No approximate fallback arrival or synthetic Player is authorized.
+  Expected: False
+  But was:  True
+   at CavesOfOoo.Tests.SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 85
+   at InvokeStub_SpreadHuntArrivalTests.BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(Object, Span`1)
+
+4) Failed : CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1)
+  A default arrival should leave the new hunt available to observe, not immediately divert it into player combat.
+  Expected: <empty>
+  But was:  < "1 Overworld.8.14.0 hunter(41,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40" >
+   at CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 73
+
+5) Failed : CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1729)
+  A default arrival should leave the new hunt available to observe, not immediately divert it into player combat.
+  Expected: <empty>
+  But was:  < "1729 Overworld.14.8.0 hunter(36,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40" >
+   at CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 73
+   at InvokeStub_SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Object, Span`1)
+
+6) Failed : CavesOfOoo.Tests.SpreadHuntArrivalTests.FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(False)
+  One surviving border bypass cannot substitute for a current walkable default arrival.
+  Expected: True
+  But was:  False
+   at CavesOfOoo.Tests.SpreadHuntArrivalTests.FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(Boolean blockCenter) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 119
+
+Run Settings
+    Number of Test Workers: 1
+    Work Directory: /Users/steven/caves-of-ooo
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Failed
+  Test Count: 10, Passed: 4, Failed: 6, Warnings: 0, Inconclusive: 0, Skipped: 0
+    Failed Tests - Failures: 6, Errors: 0, Invalid: 0
+  Start time: 2026-09-29 07:39:43Z
+    End time: 2026-09-29 07:39:45Z
+    Duration: 1.799 seconds
+
+Results (nunit3) saved as /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/arrival-red.xml

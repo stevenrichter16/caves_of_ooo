@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="106" result="Failed" start-time="2026-09-29T04:48:21.6964240Z" end-time="2026-09-29T04:48:21.8537910Z" duration="0.157349" total="4" passed="0" failed="4" inconclusive="0" skipped="0" warnings="0" asserts="60" random-seed="189960285">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/paused-look-red.xml --where "method =~ /LookDoesNotClaim/"]]></command-line>
+  <filter>
+    <method re="1">LookDoesNotClaim</method>
+  </filter>
+  <test-suite type="Assembly" id="1127" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="106" result="Failed" site="Child" start-time="2026-09-29T04:48:21.6964240Z" end-time="2026-09-29T04:48:21.8537910Z" duration="0.157349" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="60">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="23494" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1128" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="106" result="Failed" site="Child" start-time="2026-09-29T04:48:21.6981530Z" end-time="2026-09-29T04:48:21.8537640Z" duration="0.155610" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="60">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1129" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="106" result="Failed" site="Child" start-time="2026-09-29T04:48:21.6982700Z" end-time="2026-09-29T04:48:21.8537590Z" duration="0.155488" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="60">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1087" name="SpreadPredatorFeedingTests" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="32" result="Failed" site="Child" start-time="2026-09-29T04:48:21.6986280Z" end-time="2026-09-29T04:48:21.8537200Z" duration="0.155091" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="60">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1124" name="LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-29T04:48:21.6995120Z" end-time="2026-09-29T04:48:21.8535380Z" duration="0.154024" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="60">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1120" name="LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(&quot;calm&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(&quot;calm&quot;)" methodname="LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1426326378" result="Failed" start-time="2026-09-29T04:48:21.6995820Z" end-time="2026-09-29T04:48:21.7967680Z" duration="0.097218" asserts="15">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  "It crouches over its own kill, feeding a little at a time. The remains can still be taken."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 40
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  "It crouches over its own kill, feeding a little at a time. The remains can still be taken."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 40
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1121" name="LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(&quot;work&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(&quot;work&quot;)" methodname="LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1801906090" result="Failed" start-time="2026-09-29T04:48:21.7973470Z" end-time="2026-09-29T04:48:21.8169000Z" duration="0.019553" asserts="15">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  "It crouches over its own kill, feeding a little at a time. The remains can still be taken."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 40
+   at InvokeStub_SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  "It crouches over its own kill, feeding a little at a time. The remains can still be taken."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 40
+   at InvokeStub_SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1122" name="LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(&quot;conversation&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(&quot;conversation&quot;)" methodname="LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="635606438" result="Failed" start-time="2026-09-29T04:48:21.8169270Z" end-time="2026-09-29T04:48:21.8342060Z" duration="0.017279" asserts="15">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  "It crouches over its own kill, feeding a little at a time. The remains can still be taken."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 40
+   at InvokeStub_SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  "It crouches over its own kill, feeding a little at a time. The remains can still be taken."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 40
+   at InvokeStub_SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1123" name="LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(&quot;combat&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(&quot;combat&quot;)" methodname="LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="975555162" result="Failed" start-time="2026-09-29T04:48:21.8342320Z" end-time="2026-09-29T04:48:21.8531580Z" duration="0.018926" asserts="15">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  "It crouches over its own kill, feeding a little at a time. The remains can still be taken."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 40
+   at InvokeStub_SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  "It crouches over its own kill, feeding a little at a time. The remains can still be taken."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 40
+   at InvokeStub_SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

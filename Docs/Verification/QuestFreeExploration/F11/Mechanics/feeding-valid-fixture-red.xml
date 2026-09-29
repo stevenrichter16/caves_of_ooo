@@ -1,0 +1,786 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="97" result="Failed" start-time="2026-09-29T04:43:28.7135300Z" end-time="2026-09-29T04:43:29.2354770Z" duration="0.521929" total="29" passed="0" failed="29" inconclusive="0" skipped="0" warnings="0" asserts="282" random-seed="1324771761">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/feeding-valid-fixture-red.xml --where "class =~ /SpreadPredatorFeedingTests/ or method =~ /AbortDoesNotMutateForeign/"]]></command-line>
+  <filter>
+    <or>
+      <class re="1">SpreadPredatorFeedingTests</class>
+      <method re="1">AbortDoesNotMutateForeign</method>
+    </or>
+  </filter>
+  <test-suite type="Assembly" id="1116" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="97" result="Failed" site="Child" start-time="2026-09-29T04:43:28.7135300Z" end-time="2026-09-29T04:43:29.2354770Z" duration="0.521929" total="29" passed="0" failed="29" warnings="0" inconclusive="0" skipped="0" asserts="282">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="22426" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1117" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="97" result="Failed" site="Child" start-time="2026-09-29T04:43:28.7150190Z" end-time="2026-09-29T04:43:29.2354750Z" duration="0.520451" total="29" passed="0" failed="29" warnings="0" inconclusive="0" skipped="0" asserts="282">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1118" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="97" result="Failed" site="Child" start-time="2026-09-29T04:43:28.7151260Z" end-time="2026-09-29T04:43:29.2354730Z" duration="0.520342" total="29" passed="0" failed="29" warnings="0" inconclusive="0" skipped="0" asserts="282">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1081" name="SpreadPredatorFeedingTests" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2026-09-29T04:43:28.7154610Z" end-time="2026-09-29T04:43:29.2257990Z" duration="0.510334" total="28" passed="0" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="275">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1114" name="CreatedOwnerReceiptIsReadOnlyAndTransient" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.CreatedOwnerReceiptIsReadOnlyAndTransient" methodname="CreatedOwnerReceiptIsReadOnlyAndTransient" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="523927322" result="Failed" start-time="2026-09-29T04:43:28.7163130Z" end-time="2026-09-29T04:43:28.8072500Z" duration="0.090965" asserts="10">
+            <failure>
+              <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.CreatedOwnerReceiptIsReadOnlyAndTransient() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 40
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.CreatedOwnerReceiptIsReadOnlyAndTransient() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 40
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1099" name="DeathCallbackReplacementWithCopiedProvenanceIsNotOriginalReceipt" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.DeathCallbackReplacementWithCopiedProvenanceIsNotOriginalReceipt" methodname="DeathCallbackReplacementWithCopiedProvenanceIsNotOriginalReceipt" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1802948084" result="Failed" start-time="2026-09-29T04:43:28.8078440Z" end-time="2026-09-29T04:43:28.8257660Z" duration="0.017922" asserts="11">
+            <failure>
+              <message><![CDATA[  String lengths are both 8. Strings differ at index 1.
+  Expected: "PreyGone"
+  But was:  "Pursuing"
+  ------------^
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.DeathCallbackReplacementWithCopiedProvenanceIsNotOriginalReceipt() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 34
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  String lengths are both 8. Strings differ at index 1.
+  Expected: "PreyGone"
+  But was:  "Pursuing"
+  ------------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.DeathCallbackReplacementWithCopiedProvenanceIsNotOriginalReceipt() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 34
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1102" name="ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T04:43:28.8258390Z" end-time="2026-09-29T04:43:28.8606070Z" duration="0.034768" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1100" name="ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(False)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(False)" methodname="ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="632371686" result="Failed" start-time="2026-09-29T04:43:28.8260450Z" end-time="2026-09-29T04:43:28.8426440Z" duration="0.016599" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing saved field Corpse
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Get(String f) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(Boolean sameKiller) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 35
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing saved field Corpse
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Get(String f) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(Boolean sameKiller) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 35
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1101" name="ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(True)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(True)" methodname="ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1060827761" result="Failed" start-time="2026-09-29T04:43:28.8426680Z" end-time="2026-09-29T04:43:28.8602350Z" duration="0.017567" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing saved field Corpse
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Get(String f) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(Boolean sameKiller) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 35
+   at InvokeStub_SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing saved field Corpse
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Get(String f) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(Boolean sameKiller) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 35
+   at InvokeStub_SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1108" name="HigherPriorityStatePreemptsMeal" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-29T04:43:28.8607920Z" end-time="2026-09-29T04:43:28.9429840Z" duration="0.082191" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="50">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1103" name="HigherPriorityStatePreemptsMeal(&quot;calm&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(&quot;calm&quot;)" methodname="HigherPriorityStatePreemptsMeal" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="14677259" result="Failed" start-time="2026-09-29T04:43:28.8608120Z" end-time="2026-09-29T04:43:28.8798540Z" duration="0.019042" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1104" name="HigherPriorityStatePreemptsMeal(&quot;work&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(&quot;work&quot;)" methodname="HigherPriorityStatePreemptsMeal" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1946782238" result="Failed" start-time="2026-09-29T04:43:28.8798720Z" end-time="2026-09-29T04:43:28.8946190Z" duration="0.014747" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1105" name="HigherPriorityStatePreemptsMeal(&quot;conversation&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(&quot;conversation&quot;)" methodname="HigherPriorityStatePreemptsMeal" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1486455318" result="Failed" start-time="2026-09-29T04:43:28.8946390Z" end-time="2026-09-29T04:43:28.9109480Z" duration="0.016309" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1106" name="HigherPriorityStatePreemptsMeal(&quot;party&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(&quot;party&quot;)" methodname="HigherPriorityStatePreemptsMeal" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="258849080" result="Failed" start-time="2026-09-29T04:43:28.9109640Z" end-time="2026-09-29T04:43:28.9267480Z" duration="0.015784" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1107" name="HigherPriorityStatePreemptsMeal(&quot;hostile&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(&quot;hostile&quot;)" methodname="HigherPriorityStatePreemptsMeal" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="296449024" result="Failed" start-time="2026-09-29T04:43:28.9267690Z" end-time="2026-09-29T04:43:28.9429300Z" duration="0.016161" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1098" name="InvalidMealCancelsWithoutConsumingMatchingDecoy" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-29T04:43:28.9429980Z" end-time="2026-09-29T04:43:29.0831300Z" duration="0.140131" total="7" passed="0" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="70">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1091" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;moved&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="504856185" result="Failed" start-time="2026-09-29T04:43:28.9430160Z" end-time="2026-09-29T04:43:28.9569310Z" duration="0.013915" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1092" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;picked-up&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;picked-up&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="768138264" result="Failed" start-time="2026-09-29T04:43:28.9569460Z" end-time="2026-09-29T04:43:28.9729630Z" duration="0.016017" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1093" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;foreign&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1409412522" result="Failed" start-time="2026-09-29T04:43:28.9729830Z" end-time="2026-09-29T04:43:28.9963880Z" duration="0.023405" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1094" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;source-id&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;source-id&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1543437271" result="Failed" start-time="2026-09-29T04:43:28.9964110Z" end-time="2026-09-29T04:43:29.0185770Z" duration="0.022166" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1095" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;killer-id&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;killer-id&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="2023710210" result="Failed" start-time="2026-09-29T04:43:29.0186060Z" end-time="2026-09-29T04:43:29.0393930Z" duration="0.020787" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1096" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;source-bp&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;source-bp&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="410850852" result="Failed" start-time="2026-09-29T04:43:29.0394140Z" end-time="2026-09-29T04:43:29.0621000Z" duration="0.022686" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1097" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;replaced&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;replaced&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="312071427" result="Failed" start-time="2026-09-29T04:43:29.0621200Z" end-time="2026-09-29T04:43:29.0831040Z" duration="0.020984" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1112" name="MalformedProgressCannotConsumeAfterSave" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-29T04:43:29.0831470Z" end-time="2026-09-29T04:43:29.1234590Z" duration="0.040312" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="30">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1109" name="MalformedProgressCannotConsumeAfterSave(-1)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(-1)" methodname="MalformedProgressCannotConsumeAfterSave" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="940582096" result="Failed" start-time="2026-09-29T04:43:29.0831550Z" end-time="2026-09-29T04:43:29.0997480Z" duration="0.016593" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 38
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 38
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1110" name="MalformedProgressCannotConsumeAfterSave(3)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(3)" methodname="MalformedProgressCannotConsumeAfterSave" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="811307003" result="Failed" start-time="2026-09-29T04:43:29.0997630Z" end-time="2026-09-29T04:43:29.1117820Z" duration="0.012019" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 38
+   at InvokeStub_SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 38
+   at InvokeStub_SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1111" name="MalformedProgressCannotConsumeAfterSave(99)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(99)" methodname="MalformedProgressCannotConsumeAfterSave" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="20484327" result="Failed" start-time="2026-09-29T04:43:29.1118070Z" end-time="2026-09-29T04:43:29.1234370Z" duration="0.011630" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 38
+   at InvokeStub_SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 38
+   at InvokeStub_SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1084" name="OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T04:43:29.1234730Z" end-time="2026-09-29T04:43:29.1451570Z" duration="0.021684" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="22">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1082" name="OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(69,True)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(69,True)" methodname="OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="712601812" result="Failed" start-time="2026-09-29T04:43:29.1234800Z" end-time="2026-09-29T04:43:29.1341250Z" duration="0.010645" asserts="11">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(Int32 roll, Boolean success) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 29
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(Int32 roll, Boolean success) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 29
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1083" name="OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(70,False)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(70,False)" methodname="OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="950835844" result="Failed" start-time="2026-09-29T04:43:29.1341420Z" end-time="2026-09-29T04:43:29.1451350Z" duration="0.010994" asserts="11">
+              <failure>
+                <message><![CDATA[  String lengths are both 8. Strings differ at index 1.
+  Expected: "PreyGone"
+  But was:  "Pursuing"
+  ------------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(Int32 roll, Boolean success) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 29
+   at InvokeStub_SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  String lengths are both 8. Strings differ at index 1.
+  Expected: "PreyGone"
+  But was:  "Pursuing"
+  ------------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(Int32 roll, Boolean success) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 29
+   at InvokeStub_SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1113" name="ProgressCallbackRemovalPreventsAnyLaterConsumptionOrReplacementClaim" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ProgressCallbackRemovalPreventsAnyLaterConsumptionOrReplacementClaim" methodname="ProgressCallbackRemovalPreventsAnyLaterConsumptionOrReplacementClaim" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="500912616" result="Failed" start-time="2026-09-29T04:43:29.1451680Z" end-time="2026-09-29T04:43:29.1556080Z" duration="0.010440" asserts="10">
+            <failure>
+              <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ProgressCallbackRemovalPreventsAnyLaterConsumptionOrReplacementClaim() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 39
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ProgressCallbackRemovalPreventsAnyLaterConsumptionOrReplacementClaim() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 39
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1090" name="ReplacementSavePreservesFiniteProgressAndExactCorpse" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-29T04:43:29.1556270Z" end-time="2026-09-29T04:43:29.1991300Z" duration="0.043502" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="40">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1086" name="ReplacementSavePreservesFiniteProgressAndExactCorpse(0)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(0)" methodname="ReplacementSavePreservesFiniteProgressAndExactCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="543593032" result="Failed" start-time="2026-09-29T04:43:29.1556360Z" end-time="2026-09-29T04:43:29.1676390Z" duration="0.012001" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1087" name="ReplacementSavePreservesFiniteProgressAndExactCorpse(1)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(1)" methodname="ReplacementSavePreservesFiniteProgressAndExactCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1858903776" result="Failed" start-time="2026-09-29T04:43:29.1676570Z" end-time="2026-09-29T04:43:29.1791980Z" duration="0.011541" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+   at InvokeStub_SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+   at InvokeStub_SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1088" name="ReplacementSavePreservesFiniteProgressAndExactCorpse(2)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(2)" methodname="ReplacementSavePreservesFiniteProgressAndExactCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="384060183" result="Failed" start-time="2026-09-29T04:43:29.1792190Z" end-time="2026-09-29T04:43:29.1884560Z" duration="0.009237" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+   at InvokeStub_SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+   at InvokeStub_SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1089" name="ReplacementSavePreservesFiniteProgressAndExactCorpse(3)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(3)" methodname="ReplacementSavePreservesFiniteProgressAndExactCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="838346126" result="Failed" start-time="2026-09-29T04:43:29.1884750Z" end-time="2026-09-29T04:43:29.1991090Z" duration="0.010634" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+   at InvokeStub_SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+   at InvokeStub_SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1085" name="TwoPaidProgressActionsThenThirdConsumesExactOwnerWithoutRewardOrExtraPose" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.TwoPaidProgressActionsThenThirdConsumesExactOwnerWithoutRewardOrExtraPose" methodname="TwoPaidProgressActionsThenThirdConsumesExactOwnerWithoutRewardOrExtraPose" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1542115861" result="Failed" start-time="2026-09-29T04:43:29.1991450Z" end-time="2026-09-29T04:43:29.2093300Z" duration="0.010184" asserts="10">
+            <failure>
+              <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.TwoPaidProgressActionsThenThirdConsumesExactOwnerWithoutRewardOrExtraPose() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 30
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Feeding"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.TwoPaidProgressActionsThenThirdConsumesExactOwnerWithoutRewardOrExtraPose() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 30
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1115" name="WorldLookReportsActualLocalPhaseWithoutMutatingOrPromisingHarvest" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.WorldLookReportsActualLocalPhaseWithoutMutatingOrPromisingHarvest" methodname="WorldLookReportsActualLocalPhaseWithoutMutatingOrPromisingHarvest" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1457738062" result="Failed" start-time="2026-09-29T04:43:29.2093450Z" end-time="2026-09-29T04:43:29.2257570Z" duration="0.016412" asserts="6">
+            <failure>
+              <message><![CDATA[  Expected: String containing "watch"
+  But was:  "you see a reedback grazer.
+
+a squat four-footed grazer with a blunt muzzle and a ridge of stiff reed-like hair. its split hooves pick between the worked rows; it shies from close footsteps."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.WorldLookReportsActualLocalPhaseWithoutMutatingOrPromisingHarvest() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 41
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "watch"
+  But was:  "you see a reedback grazer.
+
+a squat four-footed grazer with a blunt muzzle and a ridge of stiff reed-like hair. its split hooves pick between the worked rows; it shies from close footsteps."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.WorldLookReportsActualLocalPhaseWithoutMutatingOrPromisingHarvest() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 41
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+        <test-suite type="TestFixture" id="1000" name="SpreadPredatorStage1Tests" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="46" result="Failed" site="Child" start-time="2026-09-29T04:43:29.2260640Z" end-time="2026-09-29T04:43:29.2354660Z" duration="0.009402" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="7">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1055" name="AbortDoesNotMutateForeignGrazerPartBacklink" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.AbortDoesNotMutateForeignGrazerPartBacklink" methodname="AbortDoesNotMutateForeignGrazerPartBacklink" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1725723625" result="Failed" start-time="2026-09-29T04:43:29.2261120Z" end-time="2026-09-29T04:43:29.2354450Z" duration="0.009333" asserts="7">
+            <failure>
+              <message><![CDATA[  Expected: same as <Entity(reedback grazer)>
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AbortDoesNotMutateForeignGrazerPartBacklink() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorStage1Tests.cs:line 66
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: same as <Entity(reedback grazer)>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AbortDoesNotMutateForeignGrazerPartBacklink() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorStage1Tests.cs:line 66
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

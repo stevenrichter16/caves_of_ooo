@@ -67,7 +67,7 @@ namespace CavesOfOoo.Tests
         void Seed(int seed,string id)=>scope.Seed(unchecked(seed^FormationSelector.StableIndex(id,int.MaxValue)));
         string[] Selected(int seed)
         {
-            var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);Assert.AreEqual(7,m.Exploration.Version,"F12 pipeline tests exercise the current source policy; literal older assignments remain in manifest tests.");
+            var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);Assert.AreEqual(8,m.Exploration.Version,"F12 pipeline tests exercise the current source policy; literal older assignments remain in manifest tests.");
             var ids=m.Exploration.Entries.Where(e=>e.PlacementEligible&&e.Family.ToString()=="FieldPassage").Select(e=>e.ZoneID).ToArray();Assert.IsNotEmpty(ids);Assert.Zero(m.CachedZoneCount);return ids;
         }
         static (Cell a,Cell b,int closed) Approaches(Zone z,Entity gate)
@@ -155,7 +155,7 @@ namespace CavesOfOoo.Tests
             // real keyboard travel/save is a separate native acceptance gate.
             var away=m.GetZone(ReferenceGladePlan.ZoneID);Assert.NotNull(away);Cell target=null;away.ForEachCell((c,x,y)=>{if(target==null&&away.CanPlaceFootprint(player,x,y))target=c;});Assert.NotNull(target);Assert.True(z.RemoveEntity(player));Assert.True(away.AddEntity(player,target.X,target.Y));m.SetActiveZone(away);m.UnloadZone(id);Assert.AreSame(z,m.GetZone(id));
             var state=GameSessionState.Capture("field-passage","direct-core-away-save",m,null,player);GameSessionState loaded;using(var stream=new MemoryStream()){state.Save(new SaveWriter(stream));stream.Position=0;loaded=GameSessionState.Load(new SaveReader(stream,scope.Factory));}
-            var restored=(OverworldZoneManager)loaded.ZoneManager;Assert.AreNotSame(m,restored);Assert.AreNotSame(player,loaded.Player);Assert.AreEqual(ReferenceGladePlan.ZoneID,restored.ActiveZone.ZoneID);Assert.AreEqual(7,restored.Exploration.Version);Assert.AreEqual(2,restored.Exploration.DispositionFor(id));var returned=restored.GetZone(id);Assert.NotNull(returned);Assert.AreNotSame(z,returned);Assert.AreEqual(expected.Count,returned.EntityCount);Assert.AreEqual(money,TradeSystem.GetDrams(loaded.Player));
+            var restored=(OverworldZoneManager)loaded.ZoneManager;Assert.AreNotSame(m,restored);Assert.AreNotSame(player,loaded.Player);Assert.AreEqual(ReferenceGladePlan.ZoneID,restored.ActiveZone.ZoneID);Assert.AreEqual(8,restored.Exploration.Version);Assert.AreEqual(2,restored.Exploration.DispositionFor(id));var returned=restored.GetZone(id);Assert.NotNull(returned);Assert.AreNotSame(z,returned);Assert.AreEqual(expected.Count,returned.EntityCount);Assert.AreEqual(money,TradeSystem.GetDrams(loaded.Player));
             foreach(var owner in returned.GetReadOnlyEntities()){Assert.True(expected.ContainsKey(owner.ID));Assert.AreEqual(expected[owner.ID].pos,returned.GetEntityPosition(owner));Assert.AreEqual(expected[owner.ID].facts,Exact(owner));}
             Assert.False(returned.GetReadOnlyEntities().Any(e=>e.ID==hedgeID));Assert.False(returned.GetCell(pos.x,pos.y).BlocksMovement());
             if(broken)Assert.False(returned.GetReadOnlyEntities().Any(e=>e.ID==gateID));else{var saved=returned.GetReadOnlyEntities().Single(e=>e.ID==gateID);Assert.AreNotSame(gate,saved);Assert.True(saved.GetPart<DoorPart>().IsOpen);Assert.AreEqual(axis,saved.GetPart<DoorPart>().QuarterTurns);}

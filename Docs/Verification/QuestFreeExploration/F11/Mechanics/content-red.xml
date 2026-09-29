@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="110" result="Failed" start-time="2026-09-29T04:50:51.7948510Z" end-time="2026-09-29T04:50:51.9109590Z" duration="0.116093" total="4" passed="1" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="10" random-seed="397982040">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/content-red.xml --where "class =~ /FurrowstalkerContentTests/"]]></command-line>
+  <filter>
+    <class re="1">FurrowstalkerContentTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1132" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-09-29T04:50:51.7948510Z" end-time="2026-09-29T04:50:51.9109590Z" duration="0.116093" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="10">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="24194" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1133" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-09-29T04:50:51.7963150Z" end-time="2026-09-29T04:50:51.9109560Z" duration="0.114639" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="10">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1134" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-09-29T04:50:51.7964250Z" end-time="2026-09-29T04:50:51.9109430Z" duration="0.114517" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="10">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1127" name="FurrowstalkerContentTests" fullname="CavesOfOoo.Tests.FurrowstalkerContentTests" classname="CavesOfOoo.Tests.FurrowstalkerContentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-29T04:50:51.7967540Z" end-time="2026-09-29T04:50:51.9108270Z" duration="0.114072" total="4" passed="1" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="10">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1131" name="ExistingGrazerCorpseChanceAndHandRecipePopulationAreUnchanged" fullname="CavesOfOoo.Tests.FurrowstalkerContentTests.ExistingGrazerCorpseChanceAndHandRecipePopulationAreUnchanged" methodname="ExistingGrazerCorpseChanceAndHandRecipePopulationAreUnchanged" classname="CavesOfOoo.Tests.FurrowstalkerContentTests" runstate="Runnable" seed="1474023700" result="Passed" start-time="2026-09-29T04:50:51.7975760Z" end-time="2026-09-29T04:50:51.8506520Z" duration="0.053099" asserts="7" />
+          <test-case id="1129" name="OrdinaryHunterStatsAndFactionRemainLocalRatherThanGlobalPreyHostility" fullname="CavesOfOoo.Tests.FurrowstalkerContentTests.OrdinaryHunterStatsAndFactionRemainLocalRatherThanGlobalPreyHostility" methodname="OrdinaryHunterStatsAndFactionRemainLocalRatherThanGlobalPreyHostility" classname="CavesOfOoo.Tests.FurrowstalkerContentTests" runstate="Runnable" seed="1399933072" result="Failed" start-time="2026-09-29T04:50:51.8511920Z" end-time="2026-09-29T04:50:51.8796530Z" duration="0.028461" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing original source Furrowstalker
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FurrowstalkerContentTests.Make(String name) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/FurrowstalkerContentTests.cs:line 14
+   at CavesOfOoo.Tests.FurrowstalkerContentTests.OrdinaryHunterStatsAndFactionRemainLocalRatherThanGlobalPreyHostility() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/FurrowstalkerContentTests.cs:line 16
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing original source Furrowstalker
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FurrowstalkerContentTests.Make(String name) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/FurrowstalkerContentTests.cs:line 14
+   at CavesOfOoo.Tests.FurrowstalkerContentTests.OrdinaryHunterStatsAndFactionRemainLocalRatherThanGlobalPreyHostility() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/FurrowstalkerContentTests.cs:line 16
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1130" name="OriginalBodyAndRemainsKeepDistinctAuthoredRenderAndNoBonusHarvest" fullname="CavesOfOoo.Tests.FurrowstalkerContentTests.OriginalBodyAndRemainsKeepDistinctAuthoredRenderAndNoBonusHarvest" methodname="OriginalBodyAndRemainsKeepDistinctAuthoredRenderAndNoBonusHarvest" classname="CavesOfOoo.Tests.FurrowstalkerContentTests" runstate="Runnable" seed="729760219" result="Failed" start-time="2026-09-29T04:50:51.8797270Z" end-time="2026-09-29T04:50:51.8943700Z" duration="0.014644" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing original source Furrowstalker
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FurrowstalkerContentTests.Make(String name) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/FurrowstalkerContentTests.cs:line 14
+   at CavesOfOoo.Tests.FurrowstalkerContentTests.OriginalBodyAndRemainsKeepDistinctAuthoredRenderAndNoBonusHarvest() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/FurrowstalkerContentTests.cs:line 17
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing original source Furrowstalker
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FurrowstalkerContentTests.Make(String name) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/FurrowstalkerContentTests.cs:line 14
+   at CavesOfOoo.Tests.FurrowstalkerContentTests.OriginalBodyAndRemainsKeepDistinctAuthoredRenderAndNoBonusHarvest() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/FurrowstalkerContentTests.cs:line 17
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1128" name="OriginalHunterUsesRegisteredExactRoleAndQuadrupedBodyBite" fullname="CavesOfOoo.Tests.FurrowstalkerContentTests.OriginalHunterUsesRegisteredExactRoleAndQuadrupedBodyBite" methodname="OriginalHunterUsesRegisteredExactRoleAndQuadrupedBodyBite" classname="CavesOfOoo.Tests.FurrowstalkerContentTests" runstate="Runnable" seed="267724778" result="Failed" start-time="2026-09-29T04:50:51.8943990Z" end-time="2026-09-29T04:50:51.9104430Z" duration="0.016044" asserts="1">
+            <failure>
+              <message><![CDATA[  Missing original source Furrowstalker
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FurrowstalkerContentTests.Make(String name) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/FurrowstalkerContentTests.cs:line 14
+   at CavesOfOoo.Tests.FurrowstalkerContentTests.OriginalHunterUsesRegisteredExactRoleAndQuadrupedBodyBite() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/FurrowstalkerContentTests.cs:line 15
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing original source Furrowstalker
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FurrowstalkerContentTests.Make(String name) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/FurrowstalkerContentTests.cs:line 14
+   at CavesOfOoo.Tests.FurrowstalkerContentTests.OriginalHunterUsesRegisteredExactRoleAndQuadrupedBodyBite() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/FurrowstalkerContentTests.cs:line 15
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

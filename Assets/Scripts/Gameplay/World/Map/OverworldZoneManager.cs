@@ -72,7 +72,7 @@ namespace CavesOfOoo.Core
                 SpreadCompositionBuilder land=null;PopulationBuilder population=null;ContainerBuilder containers=null;HaulablePropBuilder haul=null;
                 foreach(var builder in pipeline.Builders)
                 {
-                    if(builder is SpreadCompositionBuilder composition){composition.Topology=assignment.Topology;composition.CapturePassageSources=captured.Version>=5&&(assignment.Family==SpreadExplorationFamily.FieldPassage||captured.Version>=7&&assignment.Family==SpreadExplorationFamily.HeavySalvage);composition.CaptureCookingSources=captured.Version>=6&&assignment.Family==SpreadExplorationFamily.CoolingWorkPatch;land=composition;}
+                    if(builder is SpreadCompositionBuilder composition){composition.Topology=assignment.Topology;composition.CapturePassageSources=captured.Version>=5&&(assignment.Family==SpreadExplorationFamily.FieldPassage||captured.Version>=7&&assignment.Family==SpreadExplorationFamily.HeavySalvage);composition.CaptureCookingSources=captured.Version>=6&&assignment.Family==SpreadExplorationFamily.CoolingWorkPatch;composition.CaptureCoverSources=captured.Version>=8&&assignment.Family==SpreadExplorationFamily.HuntThroughCover;land=composition;}
                     if(builder is PopulationBuilder people)population=people;
                     if(builder is ContainerBuilder stock)containers=stock;
                     if(builder is HaulablePropBuilder heavy){heavy.CaptureSourceReceipts=captured.Version>=7&&assignment.Family==SpreadExplorationFamily.HeavySalvage;haul=heavy;}
@@ -80,7 +80,7 @@ namespace CavesOfOoo.Core
                 // A v2 quiet address stays quiet; it must not borrow the old independent selector.
                 pipeline.RemoveBuilders<SpreadWildernessSituationBuilder>();
                 if(assignment.Family!=SpreadExplorationFamily.None&&land!=null&&population!=null&&containers!=null)
-                    pipeline.AddBuilder(new SpreadExplorationBuilder(this,land,population,containers,haul));
+                    pipeline.AddBuilder(new SpreadExplorationBuilder(this,land,population,containers,haul,captured.Version>=8&&assignment.Family==SpreadExplorationFamily.HuntThroughCover));
             }
             if(guard!=null)pipeline.AddBuilder(guard);
             return pipeline;

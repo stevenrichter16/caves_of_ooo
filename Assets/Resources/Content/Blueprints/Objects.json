@@ -36883,6 +36883,175 @@
       "Tags": []
     },
     {
+      "Name": "Furrowstalker",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "furrowstalker"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "f"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "Passive",
+              "Value": "false"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "false"
+            },
+            {
+              "Key": "WandersRandomly",
+              "Value": "false"
+            },
+            {
+              "Key": "SightRadius",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "SpreadPredator",
+          "Params": []
+        },
+        {
+          "Name": "MeleeWeapon",
+          "Params": [
+            {
+              "Key": "BaseDamage",
+              "Value": "1d4"
+            }
+          ]
+        },
+        {
+          "Name": "Corpse",
+          "Params": [
+            {
+              "Key": "CorpseChance",
+              "Value": "70"
+            },
+            {
+              "Key": "CorpseBlueprint",
+              "Value": "FurrowstalkerCorpse"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A low, narrow hunter with a wedge-shaped muzzle and a tapering tail. Its four feet follow the furrows quietly; a pale jaw opens beneath its dark brow."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 12,
+          "Min": 0,
+          "Max": 12
+        },
+        {
+          "Name": "Strength",
+          "Value": 10
+        },
+        {
+          "Name": "Agility",
+          "Value": 14
+        },
+        {
+          "Name": "Toughness",
+          "Value": 8
+        },
+        {
+          "Name": "XPValue",
+          "Value": 10
+        },
+        {
+          "Name": "Speed",
+          "Value": 110
+        }
+      ],
+      "Props": [
+        {
+          "Key": "Anatomy",
+          "Value": "Quadruped"
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Faction",
+          "Value": "Beasts"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "AllowIdleBehavior",
+          "Value": ""
+        },
+        {
+          "Key": "BodyNaturalAttack",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "FurrowstalkerCorpse",
+      "Inherits": "CreatureCorpse",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "furrowstalker remains"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A narrow body lies folded over four still feet, its long muzzle resting against the soil."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "SpreadDrawPoint",
       "Inherits": "PhysicalObject",
       "Parts": [

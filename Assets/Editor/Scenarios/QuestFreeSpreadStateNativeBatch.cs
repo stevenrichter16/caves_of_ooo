@@ -27,12 +27,18 @@ namespace CavesOfOoo.Editor
         public static void LaunchAffordances()=>LaunchMode("affordances");
         public static void LaunchPassage()=>LaunchMode("passage");
         public static void LaunchHauling()=>LaunchMode("hauling");
+        public static void LaunchHunting()=>LaunchHuntingCandidate(0);
+        public static void LaunchHuntingCandidate(int canonicalIndex)
+        {
+            if(canonicalIndex<0||canonicalIndex>=8)throw new ArgumentOutOfRangeException(nameof(canonicalIndex), "Choose one of the frozen first eight canonical metadata entries.");
+            LaunchMode("hunting",canonicalIndex);
+        }
         public static void LaunchExchange()=>LaunchMode("exchange");
         public static void LaunchCooking()=>LaunchMode("cooking");
         public static void LaunchFiniteCooking()=>LaunchMode("finite-cooking");
         public static void LaunchControlledFiniteCooking()=>LaunchMode("finite-cooking-controlled");
         private static int SeedForMode(string mode)=>mode=="exchange"?3:64;
-        private static void LaunchMode(string mode)
+        private static void LaunchMode(string mode,int huntingIndex=0)
         {
             int seed=SeedForMode(mode);
             bool exitEditor=false;
@@ -52,6 +58,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
             SessionState.SetInt(Prefix + "seed", seed);
             SessionState.SetString(Prefix + "mode", mode);
+            SessionState.SetInt(Prefix + "huntingIndex", huntingIndex);
             SessionState.SetBool(Prefix + "active", true);
             SessionState.SetBool(Prefix + "restoreScenes", false);
             SessionState.SetBool(Prefix + "exitEditor", exitEditor);
@@ -80,7 +87,7 @@ namespace CavesOfOoo.Editor
             var driver=new GameObject("Quest Free Spread State Native Audit").AddComponent<QuestFreeSpreadStateNativePlayer>();
             var context=new ScenarioContext(zone,factory,player,turns);
             string mode=SessionState.GetString(Prefix+"mode","states");
-            if(mode=="hauling")driver.InitializeHauling(context);else if(mode=="finite-cooking-controlled")driver.InitializeControlledFiniteCooking(context);else if(mode=="finite-cooking")driver.InitializeFiniteCooking(context);else if(mode=="cooking")driver.InitializeCooking(context);else if(mode=="passage")driver.InitializePassage(context);else if(mode=="exchange")driver.InitializeExchange(context);else if(mode=="collector")driver.InitializeCollector(context);else if(mode=="affordances")driver.InitializeAffordances(context);else driver.Initialize(context);
+            if(mode=="hunting")driver.InitializeHunting(context,SessionState.GetInt(Prefix+"huntingIndex",0));else if(mode=="hauling")driver.InitializeHauling(context);else if(mode=="finite-cooking-controlled")driver.InitializeControlledFiniteCooking(context);else if(mode=="finite-cooking")driver.InitializeFiniteCooking(context);else if(mode=="cooking")driver.InitializeCooking(context);else if(mode=="passage")driver.InitializePassage(context);else if(mode=="exchange")driver.InitializeExchange(context);else if(mode=="collector")driver.InitializeCollector(context);else if(mode=="affordances")driver.InitializeAffordances(context);else driver.Initialize(context);
         }
         private static void Poll()
         {

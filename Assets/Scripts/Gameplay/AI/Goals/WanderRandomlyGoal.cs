@@ -15,6 +15,13 @@ namespace CavesOfOoo.Core
 
         public override void TakeAction()
         {
+            // A paired grazer may use this one pacing step to evade its current
+            // nearby hunter. Keep the parent duration/effect lifecycle intact.
+            if (ParentEntity.GetPart<SpreadGrazerPart>()?.TryWanderFlight(ParentBrain, CurrentZone, this) == true)
+            {
+                _acted = true;
+                return;
+            }
             var (dx, dy) = AIHelpers.RandomPassableDirection(ParentEntity, CurrentZone, Rng);
             if (dx != 0 || dy != 0)
                 MovementSystem.TryMove(ParentEntity, CurrentZone, dx, dy);

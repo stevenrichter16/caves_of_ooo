@@ -1,0 +1,1148 @@
+{
+  "schemaVersion": 1,
+  "id": "spread-furrowstalker-original",
+  "coordinates": "Unity X east/Y up/Z north; source forward -Z; one unit per native cell",
+  "palette": [
+    "#082C28",
+    "#103E36",
+    "#1A4B40",
+    "#26594A",
+    "#A0A77C",
+    "#CBC697",
+    "#647353",
+    "#235D25",
+    "#40872C",
+    "#65AE3D",
+    "#435A53",
+    "#62786C",
+    "#819489",
+    "#16883B",
+    "#45CB4B",
+    "#A0E772",
+    "#207838",
+    "#D2D3B4",
+    "#B77B43",
+    "#403D28",
+    "#756C40",
+    "#A39456",
+    "#C4B877",
+    "#243E39"
+  ],
+  "effects": [],
+  "physics": [],
+  "models": [
+    {
+      "id": "spread-furrowstalker",
+      "blueprint": "Furrowstalker",
+      "rigged": true,
+      "rigFamily": "quadruped",
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        {
+          "name": "Root",
+          "head": [
+            0,
+            0,
+            0
+          ],
+          "tail": [
+            0,
+            0.08,
+            0
+          ],
+          "parent": null
+        },
+        {
+          "name": "Body",
+          "head": [
+            0,
+            0.2,
+            0.06
+          ],
+          "tail": [
+            0,
+            0.43,
+            0.06
+          ],
+          "parent": "Root"
+        },
+        {
+          "name": "Neck",
+          "head": [
+            0,
+            0.32,
+            -0.23
+          ],
+          "tail": [
+            0,
+            0.31,
+            -0.38
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Head",
+          "head": [
+            0,
+            0.3,
+            -0.39
+          ],
+          "tail": [
+            0,
+            0.26,
+            -0.58
+          ],
+          "parent": "Neck"
+        },
+        {
+          "name": "Jaw",
+          "head": [
+            0,
+            0.235,
+            -0.43
+          ],
+          "tail": [
+            0,
+            0.215,
+            -0.64
+          ],
+          "parent": "Head"
+        },
+        {
+          "name": "LegFront.L",
+          "head": [
+            -0.173,
+            0.265,
+            -0.18
+          ],
+          "tail": [
+            -0.173,
+            0.06,
+            -0.22
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "LegRear.L",
+          "head": [
+            -0.137,
+            0.265,
+            0.335
+          ],
+          "tail": [
+            -0.137,
+            0.06,
+            0.29500000000000004
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "LegFront.R",
+          "head": [
+            0.173,
+            0.265,
+            -0.18
+          ],
+          "tail": [
+            0.173,
+            0.06,
+            -0.22
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "LegRear.R",
+          "head": [
+            0.137,
+            0.265,
+            0.335
+          ],
+          "tail": [
+            0.137,
+            0.06,
+            0.29500000000000004
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "Tail",
+          "head": [
+            0,
+            0.31,
+            0.415
+          ],
+          "tail": [
+            0.08,
+            0.255,
+            0.6
+          ],
+          "parent": "Body"
+        },
+        {
+          "name": "TailTip",
+          "head": [
+            0.08,
+            0.255,
+            0.6
+          ],
+          "tail": [
+            0.18,
+            0.22,
+            0.77
+          ],
+          "parent": "Tail"
+        }
+      ],
+      "boxes": [
+        {
+          "part": "long-torso",
+          "center": [
+            0,
+            0.295,
+            0.045
+          ],
+          "size": [
+            0.32,
+            0.25,
+            0.65
+          ],
+          "color": 19,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "drawn-waist",
+          "center": [
+            0,
+            0.27,
+            0.245
+          ],
+          "size": [
+            0.245,
+            0.2,
+            0.24
+          ],
+          "color": 20,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "forward-shoulders",
+          "center": [
+            0,
+            0.34,
+            -0.18
+          ],
+          "size": [
+            0.375,
+            0.28,
+            0.23
+          ],
+          "color": 20,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "high-shoulder-fur",
+          "center": [
+            0,
+            0.47,
+            -0.21
+          ],
+          "size": [
+            0.255,
+            0.045,
+            0.175
+          ],
+          "color": 21,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "tucked-hips",
+          "center": [
+            0,
+            0.31,
+            0.335
+          ],
+          "size": [
+            0.28,
+            0.235,
+            0.22
+          ],
+          "color": 19,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "breast-keel",
+          "center": [
+            0,
+            0.205,
+            -0.2
+          ],
+          "size": [
+            0.2,
+            0.12,
+            0.21
+          ],
+          "color": 18,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "low-neck",
+          "center": [
+            0,
+            0.305,
+            -0.335
+          ],
+          "size": [
+            0.235,
+            0.21,
+            0.22
+          ],
+          "color": 20,
+          "bone": "Neck",
+          "material": "palette"
+        },
+        {
+          "part": "wedge-head",
+          "center": [
+            0,
+            0.285,
+            -0.48
+          ],
+          "size": [
+            0.245,
+            0.16,
+            0.24
+          ],
+          "color": 19,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "flat-tapered-muzzle",
+          "center": [
+            0,
+            0.246,
+            -0.622
+          ],
+          "size": [
+            0.175,
+            0.115,
+            0.16
+          ],
+          "color": 20,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "black-nose",
+          "center": [
+            0,
+            0.262,
+            -0.71
+          ],
+          "size": [
+            0.15,
+            0.045,
+            0.026
+          ],
+          "color": 0,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "lower-jaw",
+          "center": [
+            0,
+            0.196,
+            -0.572
+          ],
+          "size": [
+            0.165,
+            0.045,
+            0.265
+          ],
+          "color": 19,
+          "bone": "Jaw",
+          "material": "palette"
+        },
+        {
+          "part": "pale-throat",
+          "center": [
+            0,
+            0.168,
+            -0.518
+          ],
+          "size": [
+            0.115,
+            0.018,
+            0.15
+          ],
+          "color": 5,
+          "bone": "Jaw",
+          "material": "palette"
+        },
+        {
+          "part": "flat-ear-L",
+          "center": [
+            -0.124,
+            0.38,
+            -0.398
+          ],
+          "size": [
+            0.075,
+            0.1,
+            0.09
+          ],
+          "color": 19,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "ear-face-L",
+          "center": [
+            -0.13,
+            0.4,
+            -0.432
+          ],
+          "size": [
+            0.048,
+            0.05,
+            0.018
+          ],
+          "color": 18,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "recessed-eye-L",
+          "center": [
+            -0.125,
+            0.314,
+            -0.52
+          ],
+          "size": [
+            0.016,
+            0.027,
+            0.036
+          ],
+          "color": 0,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "pale-cheek-L",
+          "center": [
+            -0.125,
+            0.245,
+            -0.486
+          ],
+          "size": [
+            0.014,
+            0.055,
+            0.095
+          ],
+          "color": 21,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "upper-LegFront.L",
+          "center": [
+            -0.173,
+            0.195,
+            -0.18
+          ],
+          "size": [
+            0.105,
+            0.21,
+            0.145
+          ],
+          "color": 19,
+          "bone": "LegFront.L",
+          "material": "palette"
+        },
+        {
+          "part": "ankle-LegFront.L",
+          "center": [
+            -0.173,
+            0.082,
+            -0.215
+          ],
+          "size": [
+            0.073,
+            0.12,
+            0.092
+          ],
+          "color": 20,
+          "bone": "LegFront.L",
+          "material": "palette"
+        },
+        {
+          "part": "foot-LegFront.L",
+          "center": [
+            -0.173,
+            0.025,
+            -0.254
+          ],
+          "size": [
+            0.115,
+            0.05,
+            0.17
+          ],
+          "color": 0,
+          "bone": "LegFront.L",
+          "material": "palette"
+        },
+        {
+          "part": "upper-LegRear.L",
+          "center": [
+            -0.137,
+            0.195,
+            0.335
+          ],
+          "size": [
+            0.105,
+            0.21,
+            0.145
+          ],
+          "color": 19,
+          "bone": "LegRear.L",
+          "material": "palette"
+        },
+        {
+          "part": "ankle-LegRear.L",
+          "center": [
+            -0.137,
+            0.082,
+            0.30000000000000004
+          ],
+          "size": [
+            0.073,
+            0.12,
+            0.092
+          ],
+          "color": 20,
+          "bone": "LegRear.L",
+          "material": "palette"
+        },
+        {
+          "part": "foot-LegRear.L",
+          "center": [
+            -0.137,
+            0.025,
+            0.261
+          ],
+          "size": [
+            0.115,
+            0.05,
+            0.17
+          ],
+          "color": 0,
+          "bone": "LegRear.L",
+          "material": "palette"
+        },
+        {
+          "part": "broken-flank-L0",
+          "center": [
+            -0.163,
+            0.325,
+            -0.065
+          ],
+          "size": [
+            0.012,
+            0.06,
+            0.055
+          ],
+          "color": 18,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "broken-flank-L1",
+          "center": [
+            -0.163,
+            0.3,
+            0.095
+          ],
+          "size": [
+            0.012,
+            0.06,
+            0.055
+          ],
+          "color": 18,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "flat-ear-R",
+          "center": [
+            0.124,
+            0.38,
+            -0.398
+          ],
+          "size": [
+            0.075,
+            0.1,
+            0.09
+          ],
+          "color": 19,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "ear-face-R",
+          "center": [
+            0.13,
+            0.4,
+            -0.432
+          ],
+          "size": [
+            0.048,
+            0.05,
+            0.018
+          ],
+          "color": 18,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "recessed-eye-R",
+          "center": [
+            0.125,
+            0.314,
+            -0.52
+          ],
+          "size": [
+            0.016,
+            0.027,
+            0.036
+          ],
+          "color": 0,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "pale-cheek-R",
+          "center": [
+            0.125,
+            0.245,
+            -0.486
+          ],
+          "size": [
+            0.014,
+            0.055,
+            0.095
+          ],
+          "color": 21,
+          "bone": "Head",
+          "material": "palette"
+        },
+        {
+          "part": "upper-LegFront.R",
+          "center": [
+            0.173,
+            0.195,
+            -0.18
+          ],
+          "size": [
+            0.105,
+            0.21,
+            0.145
+          ],
+          "color": 19,
+          "bone": "LegFront.R",
+          "material": "palette"
+        },
+        {
+          "part": "ankle-LegFront.R",
+          "center": [
+            0.173,
+            0.082,
+            -0.215
+          ],
+          "size": [
+            0.073,
+            0.12,
+            0.092
+          ],
+          "color": 20,
+          "bone": "LegFront.R",
+          "material": "palette"
+        },
+        {
+          "part": "foot-LegFront.R",
+          "center": [
+            0.173,
+            0.025,
+            -0.254
+          ],
+          "size": [
+            0.115,
+            0.05,
+            0.17
+          ],
+          "color": 0,
+          "bone": "LegFront.R",
+          "material": "palette"
+        },
+        {
+          "part": "upper-LegRear.R",
+          "center": [
+            0.137,
+            0.195,
+            0.335
+          ],
+          "size": [
+            0.105,
+            0.21,
+            0.145
+          ],
+          "color": 19,
+          "bone": "LegRear.R",
+          "material": "palette"
+        },
+        {
+          "part": "ankle-LegRear.R",
+          "center": [
+            0.137,
+            0.082,
+            0.30000000000000004
+          ],
+          "size": [
+            0.073,
+            0.12,
+            0.092
+          ],
+          "color": 20,
+          "bone": "LegRear.R",
+          "material": "palette"
+        },
+        {
+          "part": "foot-LegRear.R",
+          "center": [
+            0.137,
+            0.025,
+            0.261
+          ],
+          "size": [
+            0.115,
+            0.05,
+            0.17
+          ],
+          "color": 0,
+          "bone": "LegRear.R",
+          "material": "palette"
+        },
+        {
+          "part": "broken-flank-R0",
+          "center": [
+            0.163,
+            0.325,
+            -0.065
+          ],
+          "size": [
+            0.012,
+            0.06,
+            0.055
+          ],
+          "color": 18,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "broken-flank-R1",
+          "center": [
+            0.163,
+            0.3,
+            0.095
+          ],
+          "size": [
+            0.012,
+            0.06,
+            0.055
+          ],
+          "color": 18,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "tail-root",
+          "center": [
+            0.022,
+            0.285,
+            0.475
+          ],
+          "size": [
+            0.11,
+            0.095,
+            0.21
+          ],
+          "color": 19,
+          "bone": "Tail",
+          "material": "palette"
+        },
+        {
+          "part": "tail-bend",
+          "center": [
+            0.075,
+            0.247,
+            0.62
+          ],
+          "size": [
+            0.085,
+            0.07,
+            0.17
+          ],
+          "color": 20,
+          "bone": "Tail",
+          "material": "palette"
+        },
+        {
+          "part": "tail-tip",
+          "center": [
+            0.108,
+            0.228,
+            0.738
+          ],
+          "size": [
+            0.085,
+            0.07,
+            0.19
+          ],
+          "color": 19,
+          "bone": "TailTip",
+          "material": "palette"
+        },
+        {
+          "part": "tail-pale-underside",
+          "center": [
+            0.108,
+            0.19,
+            0.72
+          ],
+          "size": [
+            0.055,
+            0.015,
+            0.105
+          ],
+          "color": 21,
+          "bone": "TailTip",
+          "material": "palette"
+        }
+      ],
+      "motion": {
+        "Idle": {
+          "frames": 48,
+          "loop": true,
+          "rootMotion": false,
+          "breathScale": 0.012
+        },
+        "Walk": {
+          "frames": 16,
+          "loop": true,
+          "rootMotion": false,
+          "legPitch": 0.24
+        },
+        "Interact": {
+          "frames": 14,
+          "loop": false,
+          "rootMotion": false,
+          "headPitch": 0.48,
+          "jawPitch": 0.19
+        },
+        "Attack": {
+          "frames": 6,
+          "loop": false,
+          "rootMotion": false,
+          "headPitch": -0.19,
+          "jawPitch": 0.48
+        },
+        "Hit": {
+          "frames": 6,
+          "loop": false,
+          "rootMotion": false,
+          "bodyPitch": 0.11
+        }
+      }
+    },
+    {
+      "id": "spread-furrowstalker-remains",
+      "blueprint": "FurrowstalkerCorpse",
+      "rigged": false,
+      "rigFamily": "",
+      "clips": [],
+      "sockets": [],
+      "bones": [],
+      "boxes": [
+        {
+          "part": "collapsed-long-body",
+          "center": [
+            0,
+            0.115,
+            0.04
+          ],
+          "size": [
+            0.37,
+            0.22,
+            0.66
+          ],
+          "color": 19,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "collapsed-shoulder",
+          "center": [
+            -0.025,
+            0.16,
+            -0.21
+          ],
+          "size": [
+            0.38,
+            0.16,
+            0.22
+          ],
+          "color": 20,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "flat-head",
+          "center": [
+            -0.06,
+            0.11,
+            -0.465
+          ],
+          "size": [
+            0.28,
+            0.16,
+            0.29
+          ],
+          "color": 19,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "folded-muzzle",
+          "center": [
+            -0.075,
+            0.064,
+            -0.64
+          ],
+          "size": [
+            0.2,
+            0.075,
+            0.15
+          ],
+          "color": 20,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "pale-throat",
+          "center": [
+            -0.072,
+            0.022,
+            -0.545
+          ],
+          "size": [
+            0.14,
+            0.025,
+            0.16
+          ],
+          "color": 5,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "closed-nose",
+          "center": [
+            -0.075,
+            0.082,
+            -0.723
+          ],
+          "size": [
+            0.16,
+            0.035,
+            0.025
+          ],
+          "color": 0,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "folded-foot--1-0.16",
+          "center": [
+            -0.21,
+            0.029,
+            -0.16
+          ],
+          "size": [
+            0.16,
+            0.055,
+            0.115
+          ],
+          "color": 0,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "folded-foot--10.27",
+          "center": [
+            -0.21,
+            0.029,
+            0.27
+          ],
+          "size": [
+            0.16,
+            0.055,
+            0.115
+          ],
+          "color": 0,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "laid-ear--1",
+          "center": [
+            -0.22,
+            0.14,
+            -0.355
+          ],
+          "size": [
+            0.105,
+            0.05,
+            0.09
+          ],
+          "color": 19,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "visible-flank--1",
+          "center": [
+            -0.15,
+            0.22,
+            0.1
+          ],
+          "size": [
+            0.016,
+            0.026,
+            0.09
+          ],
+          "color": 18,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "folded-foot-1-0.16",
+          "center": [
+            0.21,
+            0.029,
+            -0.16
+          ],
+          "size": [
+            0.16,
+            0.055,
+            0.115
+          ],
+          "color": 0,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "folded-foot-10.27",
+          "center": [
+            0.21,
+            0.029,
+            0.27
+          ],
+          "size": [
+            0.16,
+            0.055,
+            0.115
+          ],
+          "color": 0,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "laid-ear-1",
+          "center": [
+            0.1,
+            0.14,
+            -0.355
+          ],
+          "size": [
+            0.105,
+            0.05,
+            0.09
+          ],
+          "color": 19,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "visible-flank-1",
+          "center": [
+            0.15,
+            0.22,
+            0.1
+          ],
+          "size": [
+            0.016,
+            0.026,
+            0.09
+          ],
+          "color": 18,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "folded-tail-root",
+          "center": [
+            0.06,
+            0.08,
+            0.44
+          ],
+          "size": [
+            0.14,
+            0.08,
+            0.27
+          ],
+          "color": 19,
+          "bone": "Body",
+          "material": "palette"
+        },
+        {
+          "part": "folded-tapered-tail",
+          "center": [
+            0.145,
+            0.055,
+            0.648
+          ],
+          "size": [
+            0.065,
+            0.055,
+            0.205
+          ],
+          "color": 20,
+          "bone": "Body",
+          "material": "palette"
+        }
+      ]
+    }
+  ]
+}

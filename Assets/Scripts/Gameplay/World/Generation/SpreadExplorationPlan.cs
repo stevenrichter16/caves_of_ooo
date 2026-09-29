@@ -10,7 +10,7 @@ using CavesOfOoo.Data;
 
 namespace CavesOfOoo.Core
 {
-    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin, SnakeForage, WorkGang, CollectorReturn, RoadsideExchange, FieldPassage, CoolingWorkPatch, HeavySalvage }
+    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin, SnakeForage, WorkGang, CollectorReturn, RoadsideExchange, FieldPassage, CoolingWorkPatch, HeavySalvage, HuntThroughCover }
 
     /// <summary>Frozen assignment, not evidence that its optional content was placed.</summary>
     public sealed class SpreadExplorationEntry
@@ -36,7 +36,7 @@ namespace CavesOfOoo.Core
     public sealed class SpreadExplorationPlan
     {
         public const string PropertyKey="SpreadExploration.Manifest";
-        public const int CurrentVersion=7;
+        public const int CurrentVersion=8;
         private const int MaxRecords=WorldMap.Width*WorldMap.Height;
         private const int MaxWireLength=65536;
         private readonly OverworldZoneManager owner;
@@ -99,7 +99,7 @@ namespace CavesOfOoo.Core
                     if(version>=7){uint variant=Rank(seed,id,"family-variant")%4;return variant==0?SpreadExplorationFamily.OccupiedBank:variant==1?SpreadExplorationFamily.CollectorReturn:variant==2?SpreadExplorationFamily.FieldPassage:SpreadExplorationFamily.HeavySalvage;}
                     if(version>=5){uint variant=Rank(seed,id,"family-variant")%3;return variant==0?SpreadExplorationFamily.OccupiedBank:variant==1?SpreadExplorationFamily.CollectorReturn:SpreadExplorationFamily.FieldPassage;}
                     return version>=4&&Rank(seed,id,"family-variant")%2==0?SpreadExplorationFamily.CollectorReturn:SpreadExplorationFamily.OccupiedBank;
-                case Formation.Fallow:return version==2?SpreadExplorationFamily.OccupiedBank:SpreadExplorationFamily.WorkGang;
+                case Formation.Fallow:return version>=8&&Rank(seed,id,"family-variant")%2==1?SpreadExplorationFamily.HuntThroughCover:version==2?SpreadExplorationFamily.OccupiedBank:SpreadExplorationFamily.WorkGang;
                 case Formation.FlowerMeadow:return version==2?SpreadExplorationFamily.None:SpreadExplorationFamily.SnakeForage;
                 case Formation.FieldStrips:return version>=6&&Rank(seed,id,"family-variant")%2==1?SpreadExplorationFamily.CoolingWorkPatch:SpreadExplorationFamily.LastGleanings;
                 case Formation.RiverMeadow:return SpreadExplorationFamily.WateringMargin;
@@ -282,14 +282,14 @@ namespace CavesOfOoo.Core
             var lines=wire.Split('\n');var header=lines[0].Split('|');
             if(header.Length!=3)throw Invalid("header");
             int version=Number(header[0]);
-            if((version!=2&&version!=3&&version!=4&&version!=5&&version!=6&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
+            if((version!=2&&version!=3&&version!=4&&version!=5&&version!=6&&version!=7&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
             int count=Number(header[2]);if(count<0||count>MaxRecords||lines.Length!=count+1)throw Invalid("record count");
             var rows=new Dictionary<string,SpreadExplorationEntry>(StringComparer.Ordinal);var saved=new Dictionary<string,int>(StringComparer.Ordinal);
             for(int i=1;i<lines.Length;i++)
             {
                 var f=lines[i].Split('|');if(f.Length!=5||!Supported(f[0])||rows.ContainsKey(f[0]))throw Invalid("address");
                 int mask=Number(f[1]),family=Number(f[2]),topology=Number(f[3]),disposition=Number(f[4]);
-                if((mask!=1&&mask!=3)||family<0||family>(version==2?4:version==3?6:version==4?8:version==5?9:version==6?10:11)||topology<0||topology>3||disposition<0||disposition>2
+                if((mask!=1&&mask!=3)||family<0||family>(version==2?4:version==3?6:version==4?8:version==5?9:version==6?10:version==7?11:12)||topology<0||topology>3||disposition<0||disposition>2
                     ||(mask==1&&(family!=0||topology!=0))||(disposition==2&&(mask!=3||family==0)))throw Invalid("enum/mask/disposition");
                 var selected=(SpreadExplorationFamily)family;
                 if(selected!=SpreadExplorationFamily.None&&selected!=FamilyFor(FormationSelector.For(BiomeType.Spread,f[0]),version,manager.WorldSeed,f[0]))throw Invalid("family habitat");

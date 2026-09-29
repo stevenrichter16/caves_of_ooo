@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="103" result="Failed" start-time="2026-09-29T05:02:53.0762540Z" end-time="2026-09-29T05:02:53.3026660Z" duration="0.226393" total="2" passed="1" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="19" random-seed="250883691">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "test =~ /SecondOwnerAuthorization/" --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/second-owner-red.xml]]></command-line>
+  <filter>
+    <test re="1">SecondOwnerAuthorization</test>
+  </filter>
+  <test-suite type="Assembly" id="1127" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="103" result="Failed" site="Child" start-time="2026-09-29T05:02:53.0762540Z" end-time="2026-09-29T05:02:53.3026660Z" duration="0.226393" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="19">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="26934" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1128" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="103" result="Failed" site="Child" start-time="2026-09-29T05:02:53.0778530Z" end-time="2026-09-29T05:02:53.3026650Z" duration="0.224810" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="19">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1129" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="103" result="Failed" site="Child" start-time="2026-09-29T05:02:53.0779600Z" end-time="2026-09-29T05:02:53.3026620Z" duration="0.224700" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="19">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1042" name="SpreadHuntAdversarialTests" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-09-29T05:02:53.0782900Z" end-time="2026-09-29T05:02:53.3026470Z" duration="0.224355" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="19">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1055" name="SecondOwnerAuthorizationCannotChangeEarlierPlacedHunter" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests.SecondOwnerAuthorizationCannotChangeEarlierPlacedHunter" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T05:02:53.0791190Z" end-time="2026-09-29T05:02:53.3024610Z" duration="0.223340" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="19">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1053" name="SecondOwnerAuthorizationCannotChangeEarlierPlacedHunter(&quot;move&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests.SecondOwnerAuthorizationCannotChangeEarlierPlacedHunter(&quot;move&quot;)" methodname="SecondOwnerAuthorizationCannotChangeEarlierPlacedHunter" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" seed="390148474" result="Passed" start-time="2026-09-29T05:02:53.0792190Z" end-time="2026-09-29T05:02:53.2228700Z" duration="0.143674" asserts="11" />
+            <test-case id="1054" name="SecondOwnerAuthorizationCannotChangeEarlierPlacedHunter(&quot;damage&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests.SecondOwnerAuthorizationCannotChangeEarlierPlacedHunter(&quot;damage&quot;)" methodname="SecondOwnerAuthorizationCannotChangeEarlierPlacedHunter" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" seed="1334182474" result="Failed" start-time="2026-09-29T05:02:53.2234760Z" end-time="2026-09-29T05:02:53.3021090Z" duration="0.078632" asserts="8">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.SecondOwnerAuthorizationCannotChangeEarlierPlacedHunter(String fault) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 31
+   at InvokeStub_SpreadHuntAdversarialTests.SecondOwnerAuthorizationCannotChangeEarlierPlacedHunter(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.SecondOwnerAuthorizationCannotChangeEarlierPlacedHunter(String fault) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 31
+   at InvokeStub_SpreadHuntAdversarialTests.SecondOwnerAuthorizationCannotChangeEarlierPlacedHunter(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

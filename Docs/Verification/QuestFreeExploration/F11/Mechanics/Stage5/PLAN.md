@@ -1,0 +1,3 @@
+# Stage5: pacing allocation attribution
+
+Actual native stage4 count14fixture has ordinary3 events (within4) but pacing5, with all0/1/5calibration passing. Do not loosen threshold. IsCurrentPair runs twice on pacing and once on ordinary; ValidSavedBounds calls reflective Enum.IsDefined on a fixed9-state enum. Hypothesis: one extra validation costs2 native events. First run bounded native attribution through cached delegates to actual current methods and boxed Enum.IsDefined-vs-direct-defined-case controls. No production until attribution confirms or root approves narrower alternate. Keep stage4 artifacts frozen.

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="34" result="Failed" start-time="2026-09-29T07:38:42.6108800Z" end-time="2026-09-29T07:38:44.0785550Z" duration="1.467651" total="3" passed="1" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="99" random-seed="116206810">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 "--where=class =~ /SpreadHuntArrivalTests/" --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/arrival-red-initial.xml]]></command-line>
+  <filter>
+    <class re="1">SpreadHuntArrivalTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1045" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="34" result="Failed" site="Child" start-time="2026-09-29T07:38:42.6108800Z" end-time="2026-09-29T07:38:44.0785550Z" duration="1.467651" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="99">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="58824" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1046" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="34" result="Failed" site="Child" start-time="2026-09-29T07:38:42.6123450Z" end-time="2026-09-29T07:38:44.0785540Z" duration="1.466199" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="99">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1047" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="34" result="Failed" site="Child" start-time="2026-09-29T07:38:42.6124470Z" end-time="2026-09-29T07:38:44.0785510Z" duration="1.466094" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="99">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1040" name="SpreadHuntArrivalTests" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-29T07:38:42.6127650Z" end-time="2026-09-29T07:38:44.0785350Z" duration="1.465760" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="99">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1044" name="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-29T07:38:42.6136550Z" end-time="2026-09-29T07:38:44.0783460Z" duration="1.464681" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="99">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1041" name="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1)" methodname="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="577124279" result="Failed" start-time="2026-09-29T07:38:42.6137290Z" end-time="2026-09-29T07:38:43.1143630Z" duration="0.500656" asserts="28">
+              <failure>
+                <message><![CDATA[  A default arrival should leave the new hunt available to observe, not immediately divert it into player combat.
+  Expected: <empty>
+  But was:  < "1 Overworld.8.14.0 hunter(41,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 72
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1 Overworld.10.4.0 hunter(63,4) arrival(40,12) distance=23 sight=True target= playerHP=40->40
+1 Overworld.14.13.0 hunter(9,4) arrival(40,12) distance=31 sight=True target= playerHP=40->40
+1 Overworld.14.8.0 hunter(71,16) arrival(40,12) distance=31 sight=True target= playerHP=40->40
+1 Overworld.8.1.0 hunter(55,4) arrival(40,12) distance=15 sight=True target= playerHP=40->40
+1 Overworld.8.14.0 hunter(41,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  A default arrival should leave the new hunt available to observe, not immediately divert it into player combat.
+  Expected: <empty>
+  But was:  < "1 Overworld.8.14.0 hunter(41,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 72
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1042" name="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(64)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(64)" methodname="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="236292747" result="Passed" start-time="2026-09-29T07:38:43.1149440Z" end-time="2026-09-29T07:38:43.6245290Z" duration="0.509581" asserts="38">
+              <output><![CDATA[64 Overworld.12.6.0 hunter(59,4) arrival(40,12) distance=19 sight=True target= playerHP=40->40
+64 Overworld.14.8.0 hunter(19,5) arrival(40,12) distance=21 sight=True target= playerHP=40->40
+64 Overworld.5.13.0 hunter(52,8) arrival(40,12) distance=12 sight=True target= playerHP=40->40
+64 Overworld.5.8.0 hunter(75,4) arrival(40,12) distance=35 sight=True target= playerHP=40->40
+64 Overworld.6.7.0 hunter(64,6) arrival(40,12) distance=24 sight=False target= playerHP=40->40
+64 Overworld.7.2.0 hunter(61,15) arrival(40,12) distance=21 sight=True target= playerHP=40->40
+64 Overworld.8.9.0 hunter(75,19) arrival(40,12) distance=35 sight=True target= playerHP=40->40
+]]></output>
+            </test-case>
+            <test-case id="1043" name="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1729)" fullname="CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(1729)" methodname="CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn" classname="CavesOfOoo.Tests.SpreadHuntArrivalTests" runstate="Runnable" seed="19139479" result="Failed" start-time="2026-09-29T07:38:43.6245670Z" end-time="2026-09-29T07:38:44.0779360Z" duration="0.453366" asserts="33">
+              <failure>
+                <message><![CDATA[  A default arrival should leave the new hunt available to observe, not immediately divert it into player combat.
+  Expected: <empty>
+  But was:  < "1729 Overworld.14.8.0 hunter(36,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 72
+   at InvokeStub_SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[1729 Overworld.10.4.0 hunter(50,9) arrival(40,12) distance=10 sight=True target= playerHP=40->40
+1729 Overworld.11.9.0 hunter(75,15) arrival(40,12) distance=35 sight=True target= playerHP=40->40
+1729 Overworld.12.6.0 hunter(19,15) arrival(40,12) distance=21 sight=True target= playerHP=40->40
+1729 Overworld.14.8.0 hunter(36,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40
+1729 Overworld.5.13.0 hunter(8,6) arrival(40,12) distance=32 sight=True target= playerHP=40->40
+1729 Overworld.8.14.0 hunter(27,20) arrival(40,12) distance=13 sight=True target= playerHP=40->40
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  A default arrival should leave the new hunt available to observe, not immediately divert it into player combat.
+  Expected: <empty>
+  But was:  < "1729 Overworld.14.8.0 hunter(36,20) arrival(40,12) distance=8 sight=True target=Player playerHP=40->40" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/arrival/SpreadHuntArrivalTests.cs:line 72
+   at InvokeStub_SpreadHuntArrivalTests.CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

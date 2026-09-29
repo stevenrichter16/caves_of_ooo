@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="168" result="Failed" start-time="2026-09-29T05:18:50.7188200Z" end-time="2026-09-29T05:18:51.1978590Z" duration="0.479016" total="24" passed="11" failed="13" inconclusive="0" skipped="0" warnings="0" asserts="416" random-seed="1608061620">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=../live-gap-red.xml --where "class =~ SpreadHuntLiveGapTests"]]></command-line>
+  <filter>
+    <class re="1">SpreadHuntLiveGapTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1203" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="168" result="Failed" site="Child" start-time="2026-09-29T05:18:50.7188200Z" end-time="2026-09-29T05:18:51.1978590Z" duration="0.479016" total="24" passed="11" failed="13" warnings="0" inconclusive="0" skipped="0" asserts="416">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="30450" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1204" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="168" result="Failed" site="Child" start-time="2026-09-29T05:18:50.7203960Z" end-time="2026-09-29T05:18:51.1978580Z" duration="0.477454" total="24" passed="11" failed="13" warnings="0" inconclusive="0" skipped="0" asserts="416">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1205" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="168" result="Failed" site="Child" start-time="2026-09-29T05:18:50.7205030Z" end-time="2026-09-29T05:18:51.1978560Z" duration="0.477345" total="24" passed="11" failed="13" warnings="0" inconclusive="0" skipped="0" asserts="416">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1171" name="SpreadHuntLiveGapTests" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-09-29T05:18:50.7208480Z" end-time="2026-09-29T05:18:51.1978410Z" duration="0.476985" total="24" passed="11" failed="13" warnings="0" inconclusive="0" skipped="0" asserts="416">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1191" name="AdmissionDiagnosticsArePredicatePairedAndUseTopLevelOwners" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.AdmissionDiagnosticsArePredicatePairedAndUseTopLevelOwners" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T05:18:50.7216970Z" end-time="2026-09-29T05:18:50.8097480Z" duration="0.088049" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="14">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1189" name="AdmissionDiagnosticsArePredicatePairedAndUseTopLevelOwners(True)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.AdmissionDiagnosticsArePredicatePairedAndUseTopLevelOwners(True)" methodname="AdmissionDiagnosticsArePredicatePairedAndUseTopLevelOwners" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="170640600" result="Failed" label="Error" start-time="2026-09-29T05:18:50.7217760Z" end-time="2026-09-29T05:18:50.7912430Z" duration="0.069491" asserts="7">
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[   at System.Linq.ThrowHelper.ThrowNoMatchException()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.AdmissionDiagnosticsArePredicatePairedAndUseTopLevelOwners(Boolean valid) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 54
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1190" name="AdmissionDiagnosticsArePredicatePairedAndUseTopLevelOwners(False)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.AdmissionDiagnosticsArePredicatePairedAndUseTopLevelOwners(False)" methodname="AdmissionDiagnosticsArePredicatePairedAndUseTopLevelOwners" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="590580773" result="Failed" label="Error" start-time="2026-09-29T05:18:50.7918430Z" end-time="2026-09-29T05:18:50.8093730Z" duration="0.017530" asserts="7">
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[   at System.Linq.ThrowHelper.ThrowNoMatchException()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.AdmissionDiagnosticsArePredicatePairedAndUseTopLevelOwners(Boolean valid) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 54
+   at InvokeStub_SpreadHuntLiveGapTests.AdmissionDiagnosticsArePredicatePairedAndUseTopLevelOwners(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1194" name="DisabledDiagnosticsDoNotChangeHuntOrCreateRecords" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.DisabledDiagnosticsDoNotChangeHuntOrCreateRecords" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T05:18:50.8099170Z" end-time="2026-09-29T05:18:50.8551460Z" duration="0.045228" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="21">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1192" name="DisabledDiagnosticsDoNotChangeHuntOrCreateRecords(True)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.DisabledDiagnosticsDoNotChangeHuntOrCreateRecords(True)" methodname="DisabledDiagnosticsDoNotChangeHuntOrCreateRecords" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="978699494" result="Failed" start-time="2026-09-29T05:18:50.8099390Z" end-time="2026-09-29T05:18:50.8370160Z" duration="0.027076" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.DisabledDiagnosticsDoNotChangeHuntOrCreateRecords(Boolean enabled) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 56
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.DisabledDiagnosticsDoNotChangeHuntOrCreateRecords(Boolean enabled) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 56
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1193" name="DisabledDiagnosticsDoNotChangeHuntOrCreateRecords(False)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.DisabledDiagnosticsDoNotChangeHuntOrCreateRecords(False)" methodname="DisabledDiagnosticsDoNotChangeHuntOrCreateRecords" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="778349048" result="Passed" start-time="2026-09-29T05:18:50.8370380Z" end-time="2026-09-29T05:18:50.8551130Z" duration="0.018075" asserts="12" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1202" name="FeedingDiagnosticsDescribeActualNativeReceiptAndConsumption" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.FeedingDiagnosticsDescribeActualNativeReceiptAndConsumption" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T05:18:50.8551610Z" end-time="2026-09-29T05:18:50.9061280Z" duration="0.050966" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="23">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1200" name="FeedingDiagnosticsDescribeActualNativeReceiptAndConsumption(69,True)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.FeedingDiagnosticsDescribeActualNativeReceiptAndConsumption(69,True)" methodname="FeedingDiagnosticsDescribeActualNativeReceiptAndConsumption" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="1368045770" result="Failed" label="Error" start-time="2026-09-29T05:18:50.8551700Z" end-time="2026-09-29T05:18:50.8905350Z" duration="0.035365" asserts="11">
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[   at System.Linq.ThrowHelper.ThrowNoMatchException()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.FeedingDiagnosticsDescribeActualNativeReceiptAndConsumption(Int32 roll, Boolean created) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 66
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1201" name="FeedingDiagnosticsDescribeActualNativeReceiptAndConsumption(70,False)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.FeedingDiagnosticsDescribeActualNativeReceiptAndConsumption(70,False)" methodname="FeedingDiagnosticsDescribeActualNativeReceiptAndConsumption" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="2096867628" result="Failed" label="Error" start-time="2026-09-29T05:18:50.8905680Z" end-time="2026-09-29T05:18:50.9061000Z" duration="0.015532" asserts="12">
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[   at System.Linq.ThrowHelper.ThrowNoMatchException()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.FeedingDiagnosticsDescribeActualNativeReceiptAndConsumption(Int32 roll, Boolean created) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 66
+   at InvokeStub_SpreadHuntLiveGapTests.FeedingDiagnosticsDescribeActualNativeReceiptAndConsumption(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1175" name="GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-29T05:18:50.9061500Z" end-time="2026-09-29T05:18:50.9596360Z" duration="0.053486" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="28">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1172" name="GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(&quot;random&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(&quot;random&quot;)" methodname="GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="166506393" result="Failed" start-time="2026-09-29T05:18:50.9061590Z" end-time="2026-09-29T05:18:50.9237470Z" duration="0.017588" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: greater than or equal to 3
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 34
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: greater than or equal to 3
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 34
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1173" name="GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(&quot;duration&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(&quot;duration&quot;)" methodname="GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="2004975270" result="Failed" start-time="2026-09-29T05:18:50.9237690Z" end-time="2026-09-29T05:18:50.9385430Z" duration="0.014774" asserts="9">
+              <failure>
+                <message><![CDATA[  Expected: greater than or equal to 3
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 34
+   at InvokeStub_SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: greater than or equal to 3
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 34
+   at InvokeStub_SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1174" name="GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(&quot;shaken&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(&quot;shaken&quot;)" methodname="GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="792989564" result="Failed" start-time="2026-09-29T05:18:50.9385630Z" end-time="2026-09-29T05:18:50.9596110Z" duration="0.021047" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: greater than or equal to 3
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 34
+   at InvokeStub_SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: greater than or equal to 3
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 34
+   at InvokeStub_SpreadHuntLiveGapTests.GenuineNearbyHunterInterruptsOnlyPacingStepAndPreservesItsOwner(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1187" name="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.HigherAuthorityStillOwnsPacingChildEvenWithHunterNear" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-29T05:18:50.9596520Z" end-time="2026-09-29T05:18:51.0475790Z" duration="0.087926" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="70">
+            <test-case id="1181" name="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear(&quot;calm&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.HigherAuthorityStillOwnsPacingChildEvenWithHunterNear(&quot;calm&quot;)" methodname="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="135825187" result="Passed" start-time="2026-09-29T05:18:50.9596600Z" end-time="2026-09-29T05:18:50.9735720Z" duration="0.013912" asserts="12" />
+            <test-case id="1182" name="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear(&quot;work&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.HigherAuthorityStillOwnsPacingChildEvenWithHunterNear(&quot;work&quot;)" methodname="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="1800057141" result="Passed" start-time="2026-09-29T05:18:50.9735940Z" end-time="2026-09-29T05:18:50.9876750Z" duration="0.014081" asserts="12" />
+            <test-case id="1183" name="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear(&quot;follow&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.HigherAuthorityStillOwnsPacingChildEvenWithHunterNear(&quot;follow&quot;)" methodname="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="1389823182" result="Passed" start-time="2026-09-29T05:18:50.9877150Z" end-time="2026-09-29T05:18:51.0029190Z" duration="0.015204" asserts="12" />
+            <test-case id="1184" name="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear(&quot;combat&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.HigherAuthorityStillOwnsPacingChildEvenWithHunterNear(&quot;combat&quot;)" methodname="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="1349235669" result="Passed" start-time="2026-09-29T05:18:51.0029370Z" end-time="2026-09-29T05:18:51.0175260Z" duration="0.014588" asserts="12" />
+            <test-case id="1185" name="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear(&quot;conversation&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.HigherAuthorityStillOwnsPacingChildEvenWithHunterNear(&quot;conversation&quot;)" methodname="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="393073759" result="Passed" start-time="2026-09-29T05:18:51.0175440Z" end-time="2026-09-29T05:18:51.0312550Z" duration="0.013711" asserts="11" />
+            <test-case id="1186" name="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear(&quot;party&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.HigherAuthorityStillOwnsPacingChildEvenWithHunterNear(&quot;party&quot;)" methodname="HigherAuthorityStillOwnsPacingChildEvenWithHunterNear" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="939754652" result="Passed" start-time="2026-09-29T05:18:51.0312760Z" end-time="2026-09-29T05:18:51.0475590Z" duration="0.016282" asserts="11" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1180" name="NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-09-29T05:18:51.0475930Z" end-time="2026-09-29T05:18:51.1118110Z" duration="0.064217" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="51">
+            <test-case id="1176" name="NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative(&quot;far&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative(&quot;far&quot;)" methodname="NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="1187167847" result="Passed" start-time="2026-09-29T05:18:51.0476010Z" end-time="2026-09-29T05:18:51.0625270Z" duration="0.014926" asserts="13" />
+            <test-case id="1177" name="NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative(&quot;hidden&quot;)" methodname="NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="39200464" result="Passed" start-time="2026-09-29T05:18:51.0625460Z" end-time="2026-09-29T05:18:51.0773330Z" duration="0.014787" asserts="14" />
+            <test-case id="1178" name="NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative(&quot;unpaired&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative(&quot;unpaired&quot;)" methodname="NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="1023901761" result="Passed" start-time="2026-09-29T05:18:51.0773480Z" end-time="2026-09-29T05:18:51.0934570Z" duration="0.016109" asserts="12" />
+            <test-case id="1179" name="NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative(&quot;spent&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative(&quot;spent&quot;)" methodname="NoCurrentVisibleNearPairLeavesOrdinaryPacingAuthoritative" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="924728314" result="Passed" start-time="2026-09-29T05:18:51.0934720Z" end-time="2026-09-29T05:18:51.1117910Z" duration="0.018319" asserts="12" />
+          </test-suite>
+          <test-case id="1188" name="ShakenPacingFlightSpendsOneScheduledActionAndEffectStillTicks" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.ShakenPacingFlightSpendsOneScheduledActionAndEffectStillTicks" methodname="ShakenPacingFlightSpendsOneScheduledActionAndEffectStillTicks" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="324310675" result="Failed" start-time="2026-09-29T05:18:51.1118200Z" end-time="2026-09-29T05:18:51.1277350Z" duration="0.015915" asserts="16">
+            <failure>
+              <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.ShakenPacingFlightSpendsOneScheduledActionAndEffectStillTicks() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 52
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 2
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.ShakenPacingFlightSpendsOneScheduledActionAndEffectStillTicks() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 52
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1195" name="SightLossAndReacquisitionRecordOncePerTransitionWithoutSearchSpam" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.SightLossAndReacquisitionRecordOncePerTransitionWithoutSearchSpam" methodname="SightLossAndReacquisitionRecordOncePerTransitionWithoutSearchSpam" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="2139129110" result="Failed" start-time="2026-09-29T05:18:51.1277550Z" end-time="2026-09-29T05:18:51.1501640Z" duration="0.022409" asserts="168">
+            <failure>
+              <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.SightLossAndReacquisitionRecordOncePerTransitionWithoutSearchSpam() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 58
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.SightLossAndReacquisitionRecordOncePerTransitionWithoutSearchSpam() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 58
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1199" name="TerminalOutcomeKeepsExactTargetAndReasonOnce" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.TerminalOutcomeKeepsExactTargetAndReasonOnce" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-29T05:18:51.1501940Z" end-time="2026-09-29T05:18:51.1977720Z" duration="0.047576" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="25">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1196" name="TerminalOutcomeKeepsExactTargetAndReasonOnce(&quot;exhausted&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.TerminalOutcomeKeepsExactTargetAndReasonOnce(&quot;exhausted&quot;)" methodname="TerminalOutcomeKeepsExactTargetAndReasonOnce" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="1406990764" result="Failed" label="Error" start-time="2026-09-29T05:18:51.1502160Z" end-time="2026-09-29T05:18:51.1656650Z" duration="0.015449" asserts="8">
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[   at System.Linq.ThrowHelper.ThrowNoMatchException()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.TerminalOutcomeKeepsExactTargetAndReasonOnce(String fault) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 61
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1197" name="TerminalOutcomeKeepsExactTargetAndReasonOnce(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.TerminalOutcomeKeepsExactTargetAndReasonOnce(&quot;removed&quot;)" methodname="TerminalOutcomeKeepsExactTargetAndReasonOnce" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="885041747" result="Failed" label="Error" start-time="2026-09-29T05:18:51.1656860Z" end-time="2026-09-29T05:18:51.1819950Z" duration="0.016309" asserts="8">
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[   at System.Linq.ThrowHelper.ThrowNoMatchException()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.TerminalOutcomeKeepsExactTargetAndReasonOnce(String fault) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 61
+   at InvokeStub_SpreadHuntLiveGapTests.TerminalOutcomeKeepsExactTargetAndReasonOnce(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1198" name="TerminalOutcomeKeepsExactTargetAndReasonOnce(&quot;leash&quot;)" fullname="CavesOfOoo.Tests.SpreadHuntLiveGapTests.TerminalOutcomeKeepsExactTargetAndReasonOnce(&quot;leash&quot;)" methodname="TerminalOutcomeKeepsExactTargetAndReasonOnce" classname="CavesOfOoo.Tests.SpreadHuntLiveGapTests" runstate="Runnable" seed="1708687497" result="Failed" label="Error" start-time="2026-09-29T05:18:51.1820130Z" end-time="2026-09-29T05:18:51.1977500Z" duration="0.015737" asserts="9">
+              <failure>
+                <message><![CDATA[System.InvalidOperationException : Sequence contains no matching element]]></message>
+                <stack-trace><![CDATA[   at System.Linq.ThrowHelper.ThrowNoMatchException()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at CavesOfOoo.Tests.SpreadHuntLiveGapTests.TerminalOutcomeKeepsExactTargetAndReasonOnce(String fault) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage3/SpreadHuntLiveGapTests.cs:line 61
+   at InvokeStub_SpreadHuntLiveGapTests.TerminalOutcomeKeepsExactTargetAndReasonOnce(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

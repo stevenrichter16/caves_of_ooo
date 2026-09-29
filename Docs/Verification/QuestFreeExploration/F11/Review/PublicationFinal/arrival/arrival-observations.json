@@ -1,0 +1,2014 @@
+{
+  "boundary": "Actual core WorldMapTraversal.Descend and one actual TakeTurn per hunter/original hostile. All other NPCs remain present but are not advanced in this first-action isolation. No native input/rendering/full scheduler claim. Private stable-hash geometry differs from Unity; address cohort is identical and predetermined. Attack and target acquisition are recorded separately. Native corpse RNG remains ordinary.",
+  "rows": [
+    {
+      "seed": 1,
+      "zone": "Overworld.10.4.0",
+      "variant": "covered",
+      "nativeHunter": "(63, 4)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4265",
+          "bp": "Viper",
+          "at": "(5, 17)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 35,
+          "los": false,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4265",
+          "bp": "Viper",
+          "at": "(4, 17)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 36,
+          "los": false,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1,
+      "zone": "Overworld.10.4.0",
+      "variant": "covered",
+      "nativeHunter": "(63, 4)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4267",
+          "bp": "Furrowstalker",
+          "at": "(63, 4)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 23,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4267",
+          "bp": "Furrowstalker",
+          "at": "(64, 4)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 24,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1,
+      "zone": "Overworld.14.13.0",
+      "variant": "covered",
+      "nativeHunter": "(9, 4)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4291",
+          "bp": "Viper",
+          "at": "(38, 8)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 4,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        },
+        {
+          "id": "4292",
+          "bp": "Viper",
+          "at": "(47, 17)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 7,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4291",
+          "bp": "Viper",
+          "at": "(39, 9)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 3,
+          "los": true,
+          "hostile": true,
+          "target": "2001",
+          "targetBp": "Player",
+          "targetIsPlayer": true,
+          "goals": [
+            "BoredGoal",
+            "KillGoal"
+          ],
+          "phase": null
+        },
+        {
+          "id": "4292",
+          "bp": "Viper",
+          "at": "(46, 16)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 6,
+          "los": true,
+          "hostile": true,
+          "target": "2001",
+          "targetBp": "Player",
+          "targetIsPlayer": true,
+          "goals": [
+            "BoredGoal",
+            "KillGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1,
+      "zone": "Overworld.14.13.0",
+      "variant": "covered",
+      "nativeHunter": "(9, 4)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4294",
+          "bp": "Furrowstalker",
+          "at": "(9, 4)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 31,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4294",
+          "bp": "Furrowstalker",
+          "at": "(8, 4)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 32,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1,
+      "zone": "Overworld.14.8.0",
+      "variant": "covered",
+      "nativeHunter": "(71, 16)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4242",
+          "bp": "MarlbackScrabbler",
+          "at": "(55, 0)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 15,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4242",
+          "bp": "MarlbackScrabbler",
+          "at": "(54, 1)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 14,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1,
+      "zone": "Overworld.14.8.0",
+      "variant": "covered",
+      "nativeHunter": "(71, 16)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4248",
+          "bp": "Furrowstalker",
+          "at": "(71, 16)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 31,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4248",
+          "bp": "Furrowstalker",
+          "at": "(72, 16)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 32,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1,
+      "zone": "Overworld.8.1.0",
+      "variant": "covered",
+      "nativeHunter": "(55, 4)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4267",
+          "bp": "MarlbackScrabbler",
+          "at": "(16, 24)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 24,
+          "los": false,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        },
+        {
+          "id": "4269",
+          "bp": "MarlbackScrabbler",
+          "at": "(16, 17)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 24,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4267",
+          "bp": "MarlbackScrabbler",
+          "at": "(15, 24)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 25,
+          "los": false,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        },
+        {
+          "id": "4269",
+          "bp": "MarlbackScrabbler",
+          "at": "(17, 16)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 23,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1,
+      "zone": "Overworld.8.1.0",
+      "variant": "covered",
+      "nativeHunter": "(55, 4)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4275",
+          "bp": "Furrowstalker",
+          "at": "(55, 4)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 15,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4275",
+          "bp": "Furrowstalker",
+          "at": "(56, 4)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 16,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1,
+      "zone": "Overworld.8.14.0",
+      "variant": "open",
+      "nativeHunter": "(5, 18)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4203",
+          "bp": "Viper",
+          "at": "(42, 21)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 9,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        },
+        {
+          "id": "4204",
+          "bp": "Viper",
+          "at": "(8, 14)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 32,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4203",
+          "bp": "Viper",
+          "at": "(41, 20)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 8,
+          "los": true,
+          "hostile": true,
+          "target": "2001",
+          "targetBp": "Player",
+          "targetIsPlayer": true,
+          "goals": [
+            "BoredGoal",
+            "KillGoal"
+          ],
+          "phase": null
+        },
+        {
+          "id": "4204",
+          "bp": "Viper",
+          "at": "(8, 13)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 32,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1,
+      "zone": "Overworld.8.14.0",
+      "variant": "open",
+      "nativeHunter": "(5, 18)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4207",
+          "bp": "Furrowstalker",
+          "at": "(41, 20)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 8,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4207",
+          "bp": "Furrowstalker",
+          "at": "(40, 19)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 7,
+          "los": true,
+          "hostile": true,
+          "target": "2001",
+          "targetBp": "Player",
+          "targetIsPlayer": true,
+          "goals": [
+            "BoredGoal",
+            "KillGoal"
+          ],
+          "phase": "Watching"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.12.6.0",
+      "variant": "open",
+      "nativeHunter": "(46, 20)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4265",
+          "bp": "MarlbackScrabbler",
+          "at": "(60, 2)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 20,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        },
+        {
+          "id": "4268",
+          "bp": "MarlbackScrabbler",
+          "at": "(0, 0)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 40,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4265",
+          "bp": "MarlbackScrabbler",
+          "at": "(61, 3)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 21,
+          "los": true,
+          "hostile": true,
+          "target": "4264",
+          "targetBp": "Magpie",
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "KillGoal"
+          ],
+          "phase": null
+        },
+        {
+          "id": "4268",
+          "bp": "MarlbackScrabbler",
+          "at": "(1, 0)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 39,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.12.6.0",
+      "variant": "open",
+      "nativeHunter": "(46, 20)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4271",
+          "bp": "Furrowstalker",
+          "at": "(59, 4)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 19,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4271",
+          "bp": "Furrowstalker",
+          "at": "(58, 4)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 18,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.14.8.0",
+      "variant": "covered",
+      "nativeHunter": "(19, 5)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4245",
+          "bp": "Viper",
+          "at": "(14, 14)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 26,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4245",
+          "bp": "Viper",
+          "at": "(14, 13)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 26,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.14.8.0",
+      "variant": "covered",
+      "nativeHunter": "(19, 5)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4249",
+          "bp": "Furrowstalker",
+          "at": "(19, 5)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 21,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4249",
+          "bp": "Furrowstalker",
+          "at": "(20, 5)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 20,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.5.13.0",
+      "variant": "open",
+      "nativeHunter": "(70, 20)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4262",
+          "bp": "Viper",
+          "at": "(52, 8)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 12,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4262",
+          "bp": "Viper",
+          "at": "(51, 9)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 11,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.5.13.0",
+      "variant": "open",
+      "nativeHunter": "(70, 20)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4264",
+          "bp": "Furrowstalker",
+          "at": "(52, 8)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 12,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4264",
+          "bp": "Furrowstalker",
+          "at": "(51, 8)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 11,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.5.8.0",
+      "variant": "open",
+      "nativeHunter": "(28, 20)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4245",
+          "bp": "Viper",
+          "at": "(79, 7)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 39,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        },
+        {
+          "id": "4246",
+          "bp": "Viper",
+          "at": "(28, 3)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 12,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4245",
+          "bp": "Viper",
+          "at": "(79, 6)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 39,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        },
+        {
+          "id": "4246",
+          "bp": "Viper",
+          "at": "(29, 2)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 11,
+          "los": true,
+          "hostile": true,
+          "target": "4244",
+          "targetBp": "Magpie",
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "KillGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.5.8.0",
+      "variant": "open",
+      "nativeHunter": "(28, 20)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4248",
+          "bp": "Furrowstalker",
+          "at": "(75, 4)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 35,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4248",
+          "bp": "Furrowstalker",
+          "at": "(75, 5)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 35,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.6.7.0",
+      "variant": "covered",
+      "nativeHunter": "(64, 6)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4279",
+          "bp": "MarlbackScrabbler",
+          "at": "(33, 5)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 7,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4279",
+          "bp": "MarlbackScrabbler",
+          "at": "(34, 6)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 6,
+          "los": true,
+          "hostile": true,
+          "target": "4278",
+          "targetBp": "Magpie",
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "KillGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.6.7.0",
+      "variant": "covered",
+      "nativeHunter": "(64, 6)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4283",
+          "bp": "Furrowstalker",
+          "at": "(64, 6)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 24,
+          "los": false,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4283",
+          "bp": "Furrowstalker",
+          "at": "(63, 6)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 23,
+          "los": false,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.7.2.0",
+      "variant": "open",
+      "nativeHunter": "(59, 4)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4252",
+          "bp": "MarlbackScrabbler",
+          "at": "(61, 15)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 21,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4252",
+          "bp": "MarlbackScrabbler",
+          "at": "(60, 15)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 20,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.7.2.0",
+      "variant": "open",
+      "nativeHunter": "(59, 4)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4256",
+          "bp": "Furrowstalker",
+          "at": "(61, 15)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 21,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4256",
+          "bp": "Furrowstalker",
+          "at": "(61, 14)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 21,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.8.9.0",
+      "variant": "open",
+      "nativeHunter": "(65, 4)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4254",
+          "bp": "Viper",
+          "at": "(78, 22)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 38,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        },
+        {
+          "id": "4255",
+          "bp": "Viper",
+          "at": "(14, 9)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 26,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4254",
+          "bp": "Viper",
+          "at": "(77, 21)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 37,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        },
+        {
+          "id": "4255",
+          "bp": "Viper",
+          "at": "(15, 10)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 25,
+          "los": true,
+          "hostile": true,
+          "target": "4253",
+          "targetBp": "Magpie",
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "KillGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 64,
+      "zone": "Overworld.8.9.0",
+      "variant": "open",
+      "nativeHunter": "(65, 4)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4258",
+          "bp": "Furrowstalker",
+          "at": "(75, 19)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 35,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4258",
+          "bp": "Furrowstalker",
+          "at": "(74, 18)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 34,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1729,
+      "zone": "Overworld.10.4.0",
+      "variant": "covered",
+      "nativeHunter": "(50, 9)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4281",
+          "bp": "Viper",
+          "at": "(36, 12)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 4,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        },
+        {
+          "id": "4282",
+          "bp": "Viper",
+          "at": "(5, 3)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 35,
+          "los": false,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4281",
+          "bp": "Viper",
+          "at": "(37, 12)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 3,
+          "los": true,
+          "hostile": true,
+          "target": "2001",
+          "targetBp": "Player",
+          "targetIsPlayer": true,
+          "goals": [
+            "BoredGoal",
+            "KillGoal"
+          ],
+          "phase": null
+        },
+        {
+          "id": "4282",
+          "bp": "Viper",
+          "at": "(6, 4)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 34,
+          "los": false,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1729,
+      "zone": "Overworld.10.4.0",
+      "variant": "covered",
+      "nativeHunter": "(50, 9)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4288",
+          "bp": "Furrowstalker",
+          "at": "(50, 9)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 10,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4288",
+          "bp": "Furrowstalker",
+          "at": "(51, 8)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 11,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1729,
+      "zone": "Overworld.11.9.0",
+      "variant": "covered",
+      "nativeHunter": "(75, 15)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4233",
+          "bp": "MarlbackScrabbler",
+          "at": "(56, 17)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 16,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        },
+        {
+          "id": "4236",
+          "bp": "MarlbackScrabbler",
+          "at": "(68, 24)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 28,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4233",
+          "bp": "MarlbackScrabbler",
+          "at": "(57, 18)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 17,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        },
+        {
+          "id": "4236",
+          "bp": "MarlbackScrabbler",
+          "at": "(67, 23)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 27,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1729,
+      "zone": "Overworld.11.9.0",
+      "variant": "covered",
+      "nativeHunter": "(75, 15)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4242",
+          "bp": "Furrowstalker",
+          "at": "(75, 15)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 35,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4242",
+          "bp": "Furrowstalker",
+          "at": "(74, 15)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 34,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1729,
+      "zone": "Overworld.12.6.0",
+      "variant": "open",
+      "nativeHunter": "(74, 6)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4190",
+          "bp": "MarlbackScrabbler",
+          "at": "(19, 15)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 21,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4190",
+          "bp": "MarlbackScrabbler",
+          "at": "(20, 14)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 20,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1729,
+      "zone": "Overworld.12.6.0",
+      "variant": "open",
+      "nativeHunter": "(74, 6)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4193",
+          "bp": "Furrowstalker",
+          "at": "(19, 15)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 21,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4193",
+          "bp": "Furrowstalker",
+          "at": "(18, 15)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 22,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1729,
+      "zone": "Overworld.14.8.0",
+      "variant": "open",
+      "nativeHunter": "(19, 20)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4304",
+          "bp": "Viper",
+          "at": "(39, 24)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 12,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4304",
+          "bp": "Viper",
+          "at": "(38, 24)",
+          "hp": 8,
+          "sight": 10,
+          "dist": 12,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1729,
+      "zone": "Overworld.14.8.0",
+      "variant": "open",
+      "nativeHunter": "(19, 20)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4309",
+          "bp": "Furrowstalker",
+          "at": "(36, 20)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 8,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4309",
+          "bp": "Furrowstalker",
+          "at": "(37, 19)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 7,
+          "los": true,
+          "hostile": true,
+          "target": "2001",
+          "targetBp": "Player",
+          "targetIsPlayer": true,
+          "goals": [
+            "BoredGoal",
+            "KillGoal"
+          ],
+          "phase": "Watching"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1729,
+      "zone": "Overworld.5.13.0",
+      "variant": "covered",
+      "nativeHunter": "(8, 6)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4277",
+          "bp": "MarlbackScrabbler",
+          "at": "(65, 3)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 25,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        },
+        {
+          "id": "4280",
+          "bp": "MarlbackScrabbler",
+          "at": "(30, 20)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 10,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4277",
+          "bp": "MarlbackScrabbler",
+          "at": "(64, 4)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 24,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "WanderRandomlyGoal"
+          ],
+          "phase": null
+        },
+        {
+          "id": "4280",
+          "bp": "MarlbackScrabbler",
+          "at": "(31, 19)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 9,
+          "los": true,
+          "hostile": true,
+          "target": "2001",
+          "targetBp": "Player",
+          "targetIsPlayer": true,
+          "goals": [
+            "BoredGoal",
+            "KillGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1729,
+      "zone": "Overworld.5.13.0",
+      "variant": "covered",
+      "nativeHunter": "(8, 6)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4285",
+          "bp": "Furrowstalker",
+          "at": "(8, 6)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 32,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4285",
+          "bp": "Furrowstalker",
+          "at": "(7, 6)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 33,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1729,
+      "zone": "Overworld.8.14.0",
+      "variant": "open",
+      "nativeHunter": "(7, 17)",
+      "baseline": true,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4264",
+          "bp": "MarlbackScrabbler",
+          "at": "(28, 23)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 12,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": null
+        }
+      ],
+      "after": [
+        {
+          "id": "4264",
+          "bp": "MarlbackScrabbler",
+          "at": "(27, 24)",
+          "hp": 15,
+          "sight": 10,
+          "dist": 13,
+          "los": true,
+          "hostile": true,
+          "target": "4261",
+          "targetBp": "Magpie",
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal",
+            "KillGoal"
+          ],
+          "phase": null
+        }
+      ],
+      "attacks": []
+    },
+    {
+      "seed": 1729,
+      "zone": "Overworld.8.14.0",
+      "variant": "open",
+      "nativeHunter": "(7, 17)",
+      "baseline": false,
+      "arrival": "(40, 12)",
+      "beforeHP": 40,
+      "afterHP": 40,
+      "before": [
+        {
+          "id": "4268",
+          "bp": "Furrowstalker",
+          "at": "(27, 20)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 13,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [],
+          "phase": "Watching"
+        }
+      ],
+      "after": [
+        {
+          "id": "4268",
+          "bp": "Furrowstalker",
+          "at": "(26, 19)",
+          "hp": 12,
+          "sight": 8,
+          "dist": 14,
+          "los": true,
+          "hostile": true,
+          "target": null,
+          "targetBp": null,
+          "targetIsPlayer": false,
+          "goals": [
+            "BoredGoal"
+          ],
+          "phase": "Pursuing"
+        }
+      ],
+      "attacks": []
+    }
+  ]
+}

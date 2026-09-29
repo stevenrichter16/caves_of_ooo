@@ -1,0 +1,139 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 14,
+    "passed": 12,
+    "failed": 2,
+    "skipped": 0,
+    "durationSeconds": 2.74978,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "AllocationCounterCalibratesEmptySingleAndMultipleAllocations",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.AllocationCounterCalibratesEmptySingleAndMultipleAllocations",
+      "state": "Passed",
+      "durationSeconds": 0.1946665,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\nnative GC.Alloc events: empty=0, single=1, multiple=5\n"
+    },
+    {
+      "name": "HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave(False)",
+      "state": "Passed",
+      "durationSeconds": 0.1256635,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave(True)",
+      "state": "Passed",
+      "durationSeconds": 0.2891028,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "IndexedPacingAdmissionStillRequiresParentOnCurrentStack(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.IndexedPacingAdmissionStillRequiresParentOnCurrentStack(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0973727,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "IndexedPacingAdmissionStillRequiresParentOnCurrentStack(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.IndexedPacingAdmissionStillRequiresParentOnCurrentStack(True)",
+      "state": "Passed",
+      "durationSeconds": 0.085015,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MovementCallbackReentryMatchesSequentialSearch(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.MovementCallbackReentryMatchesSequentialSearch(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0595177,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MovementCallbackReentryMatchesSequentialSearch(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.MovementCallbackReentryMatchesSequentialSearch(True)",
+      "state": "Passed",
+      "durationSeconds": 0.0878567,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers(False)",
+      "state": "Passed",
+      "durationSeconds": 0.1033112,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers(True)",
+      "state": "Passed",
+      "durationSeconds": 0.1194473,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ReusedSearchPreservesRouteAndRespondsToChangedBlocker(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.ReusedSearchPreservesRouteAndRespondsToChangedBlocker(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0898521,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ReusedSearchPreservesRouteAndRespondsToChangedBlocker(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.ReusedSearchPreservesRouteAndRespondsToChangedBlocker(True)",
+      "state": "Passed",
+      "durationSeconds": 0.0854706,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "TwoGrazersKeepIndependentSearchAndState",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.TwoGrazersKeepIndependentSearchAndState",
+      "state": "Passed",
+      "durationSeconds": 0.0862422,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "WarmedFlightStepAvoidsRecurringSearchAllocations(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepAvoidsRecurringSearchAllocations(False)",
+      "state": "Failed",
+      "durationSeconds": 0.1239142,
+      "message": "  Warmed actual flight must not recreate its bounded search collections per action. native GC.Alloc events; diagnostics and setup are outside the measured call.\n  Expected: less than or equal to 4\n  But was:  21\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepAvoidsRecurringSearchAllocations (System.Boolean pacing) [0x00134] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadHuntAllocationTests.cs:138\n",
+      "output": "[FactionLoader] Loaded 14 factions.\nnative GC.Alloc events: empty=0, single=1, multiple=5\nnative GC.Alloc events: pacing=False, worst=21, limit=4\n"
+    },
+    {
+      "name": "WarmedFlightStepAvoidsRecurringSearchAllocations(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepAvoidsRecurringSearchAllocations(True)",
+      "state": "Failed",
+      "durationSeconds": 0.1327311,
+      "message": "  Warmed actual flight must not recreate its bounded search collections per action. native GC.Alloc events; diagnostics and setup are outside the measured call.\n  Expected: less than or equal to 4\n  But was:  27\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepAvoidsRecurringSearchAllocations (System.Boolean pacing) [0x00134] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadHuntAllocationTests.cs:138\n",
+      "output": "[FactionLoader] Loaded 14 factions.\nnative GC.Alloc events: empty=0, single=1, multiple=5\nnative GC.Alloc events: pacing=True, worst=27, limit=4\n"
+    }
+  ]
+}

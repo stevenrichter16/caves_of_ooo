@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "id": "spread-furrowstalker-original",
+  "palette": [
+    "#082C28",
+    "#103E36",
+    "#1A4B40",
+    "#26594A",
+    "#A0A77C",
+    "#CBC697",
+    "#647353",
+    "#235D25",
+    "#40872C",
+    "#65AE3D",
+    "#435A53",
+    "#62786C",
+    "#819489",
+    "#16883B",
+    "#45CB4B",
+    "#A0E772",
+    "#207838",
+    "#D2D3B4",
+    "#B77B43",
+    "#403D28",
+    "#756C40",
+    "#A39456",
+    "#C4B877",
+    "#243E39"
+  ],
+  "models": [
+    {
+      "id": "spread-furrowstalker",
+      "sourceBlueprint": "Furrowstalker",
+      "path": "models/spread-furrowstalker.fbx",
+      "rigFamily": "quadruped",
+      "rigged": true,
+      "clips": [
+        "Idle",
+        "Walk",
+        "Interact",
+        "Attack",
+        "Hit"
+      ],
+      "sockets": [],
+      "bones": [
+        "Root",
+        "Body",
+        "Neck",
+        "Head",
+        "Jaw",
+        "LegFront.L",
+        "LegRear.L",
+        "LegFront.R",
+        "LegRear.R",
+        "Tail",
+        "TailTip"
+      ],
+      "triangles": 480,
+      "boundsBlender": {
+        "min": [
+          -0.2304999977350235,
+          -0.7229999899864197,
+          0.0
+        ],
+        "max": [
+          0.2304999977350235,
+          0.8329999446868896,
+          0.4925000071525574
+        ]
+      },
+      "sha256": "b4fc0f6e80fb0015b5b015319d37480e992f693ebab2024d904bc96855339481"
+    },
+    {
+      "id": "spread-furrowstalker-remains",
+      "sourceBlueprint": "FurrowstalkerCorpse",
+      "path": "models/spread-furrowstalker-remains.fbx",
+      "rigFamily": "",
+      "rigged": false,
+      "clips": [],
+      "sockets": [],
+      "bones": [],
+      "triangles": 192,
+      "boundsBlender": {
+        "min": [
+          -0.28999999165534973,
+          -0.7354999780654907,
+          0.001499999314546585
+        ],
+        "max": [
+          0.28999999165534973,
+          0.7505000233650208,
+          0.23999999463558197
+        ]
+      },
+      "sha256": "d280a7fe6997c041a3a04d796aa6e62205fa68ed79106fb542929d1e4a1e9dc7"
+    }
+  ]
+}

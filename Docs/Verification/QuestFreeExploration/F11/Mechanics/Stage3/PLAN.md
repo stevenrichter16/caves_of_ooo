@@ -1,0 +1,7 @@
+# F11 generated-observation follow-up
+
+Immutable stage2 remains the baseline. Root approved a narrow paired test for ordinary wandering masking visible paired danger, plus new ai-category action/gate diagnostics. Pre-implementation correction: actual source 64/Overworld.5.8.0 was WitnessedEffect-controlled pacing, proved by real effect OnApply at tick100 after Magpie death, not ordinary idle. Root explicitly approved this specific status-motion correction after reviewing WitnessedEffect: only the real pacing step yields to current visible nearby paired danger; effect and duration parent retain their original lifetime. No global control/faction changes.
+
+Diagnostic slice: enabled-channel admission rejection/commit, sight loss/reacquisition only on transition, own-kill meal claim, and terminal outcomes with explicit reasons. Actor/target live IDs remain standard top-level fields; disabled channel must avoid payload construction. No per-turn move/wait spam. Finite feed outcome reports actual removal, not pre-removal intent. Paired disabled-channel, immutable action/budget, rejected admission, no-corpse and meal-removed controls precede implementation.
+
+All18 original actual-generated observation outcomes remain under mechanics-generated-observation/results. Any changed-mechanics corpus is a separate directory; same cohort, no rerun selection and unseeded RNG means changed outcomes alone are not causal balance proof.

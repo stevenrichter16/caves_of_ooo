@@ -1,0 +1,850 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 93,
+    "passed": 4,
+    "failed": 89,
+    "skipped": 0,
+    "durationSeconds": 12.3889687,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "ExistingGrazerCorpseChanceAndHandRecipePopulationAreUnchanged",
+      "fullName": "CavesOfOoo.Tests.FurrowstalkerContentTests.ExistingGrazerCorpseChanceAndHandRecipePopulationAreUnchanged",
+      "state": "Passed",
+      "durationSeconds": 0.1615661,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "OrdinaryHunterStatsAndFactionRemainLocalRatherThanGlobalPreyHostility",
+      "fullName": "CavesOfOoo.Tests.FurrowstalkerContentTests.OrdinaryHunterStatsAndFactionRemainLocalRatherThanGlobalPreyHostility",
+      "state": "Failed",
+      "durationSeconds": 0.0870043,
+      "message": "  Missing original source Furrowstalker\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FurrowstalkerContentTests.Make (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FurrowstalkerContentTests.cs:14\nat CavesOfOoo.Tests.FurrowstalkerContentTests.OrdinaryHunterStatsAndFactionRemainLocalRatherThanGlobalPreyHostility () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FurrowstalkerContentTests.cs:16\n",
+      "output": ""
+    },
+    {
+      "name": "OriginalBodyAndRemainsKeepDistinctAuthoredRenderAndNoBonusHarvest",
+      "fullName": "CavesOfOoo.Tests.FurrowstalkerContentTests.OriginalBodyAndRemainsKeepDistinctAuthoredRenderAndNoBonusHarvest",
+      "state": "Failed",
+      "durationSeconds": 0.0864168,
+      "message": "  Missing original source Furrowstalker\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FurrowstalkerContentTests.Make (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FurrowstalkerContentTests.cs:14\nat CavesOfOoo.Tests.FurrowstalkerContentTests.OriginalBodyAndRemainsKeepDistinctAuthoredRenderAndNoBonusHarvest () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FurrowstalkerContentTests.cs:17\n",
+      "output": ""
+    },
+    {
+      "name": "OriginalHunterUsesRegisteredExactRoleAndQuadrupedBodyBite",
+      "fullName": "CavesOfOoo.Tests.FurrowstalkerContentTests.OriginalHunterUsesRegisteredExactRoleAndQuadrupedBodyBite",
+      "state": "Failed",
+      "durationSeconds": 0.0854343,
+      "message": "  Missing original source Furrowstalker\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.FurrowstalkerContentTests.Make (System.String name) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FurrowstalkerContentTests.cs:14\nat CavesOfOoo.Tests.FurrowstalkerContentTests.OriginalHunterUsesRegisteredExactRoleAndQuadrupedBodyBite () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/FurrowstalkerContentTests.cs:15\n",
+      "output": ""
+    },
+    {
+      "name": "ActualHuntingHasItsOwnNoArgumentLauncher",
+      "fullName": "CavesOfOoo.Tests.QuestFreeHuntingNativeModeTests.ActualHuntingHasItsOwnNoArgumentLauncher",
+      "state": "Failed",
+      "durationSeconds": 0.0067692,
+      "message": "  Missing bounded real-entry hunting mode\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeHuntingNativeModeTests.ActualHuntingHasItsOwnNoArgumentLauncher () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeHuntingNativeModeTests.cs:21\n",
+      "output": ""
+    },
+    {
+      "name": "HuntingRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+      "fullName": "CavesOfOoo.Tests.QuestFreeHuntingNativeModeTests.HuntingRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+      "state": "Failed",
+      "durationSeconds": 0.0025521,
+      "message": "  Missing explicit isolated hunting initializer\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeHuntingNativeModeTests.HuntingRefusesWithoutSaveIsolationBeforeChangingInputOrWorld () [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeHuntingNativeModeTests.cs:32\n",
+      "output": ""
+    },
+    {
+      "name": "NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene",
+      "fullName": "CavesOfOoo.Tests.QuestFreeSpreadStateNativeRestorationTests.NoPendingRestoreRemovesTheRetryWithoutOpeningAnyScene",
+      "state": "Passed",
+      "durationSeconds": 0.0037443,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles",
+      "fullName": "CavesOfOoo.Tests.QuestFreeSpreadStateNativeRestorationTests.RepeatedSchedulingKeepsOneFallbackUntilTheEditorSettles",
+      "state": "Passed",
+      "durationSeconds": 0.0019653,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "CreatedOwnerReceiptIsReadOnlyAndTransient",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.CreatedOwnerReceiptIsReadOnlyAndTransient",
+      "state": "Failed",
+      "durationSeconds": 0.1095464,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "DeathCallbackReplacementWithCopiedProvenanceIsNotOriginalReceipt",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.DeathCallbackReplacementWithCopiedProvenanceIsNotOriginalReceipt",
+      "state": "Failed",
+      "durationSeconds": 0.0890992,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0850523,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(True)",
+      "state": "Failed",
+      "durationSeconds": 0.088762,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HigherPriorityStatePreemptsMeal(\"calm\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(\"calm\")",
+      "state": "Failed",
+      "durationSeconds": 0.0855212,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HigherPriorityStatePreemptsMeal(\"work\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(\"work\")",
+      "state": "Failed",
+      "durationSeconds": 0.0860326,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HigherPriorityStatePreemptsMeal(\"conversation\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(\"conversation\")",
+      "state": "Failed",
+      "durationSeconds": 0.0844385,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HigherPriorityStatePreemptsMeal(\"party\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(\"party\")",
+      "state": "Failed",
+      "durationSeconds": 0.0833464,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HigherPriorityStatePreemptsMeal(\"hostile\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(\"hostile\")",
+      "state": "Failed",
+      "durationSeconds": 0.085279,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidMealCancelsWithoutConsumingMatchingDecoy(\"moved\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(\"moved\")",
+      "state": "Failed",
+      "durationSeconds": 0.085608,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidMealCancelsWithoutConsumingMatchingDecoy(\"picked-up\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(\"picked-up\")",
+      "state": "Failed",
+      "durationSeconds": 0.0833895,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidMealCancelsWithoutConsumingMatchingDecoy(\"foreign\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(\"foreign\")",
+      "state": "Failed",
+      "durationSeconds": 0.0846207,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidMealCancelsWithoutConsumingMatchingDecoy(\"source-id\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(\"source-id\")",
+      "state": "Failed",
+      "durationSeconds": 0.0834161,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidMealCancelsWithoutConsumingMatchingDecoy(\"killer-id\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(\"killer-id\")",
+      "state": "Failed",
+      "durationSeconds": 0.0861068,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidMealCancelsWithoutConsumingMatchingDecoy(\"source-bp\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(\"source-bp\")",
+      "state": "Failed",
+      "durationSeconds": 0.0811273,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidMealCancelsWithoutConsumingMatchingDecoy(\"replaced\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(\"replaced\")",
+      "state": "Failed",
+      "durationSeconds": 0.0554012,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(\"calm\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(\"calm\")",
+      "state": "Failed",
+      "durationSeconds": 0.0576856,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(\"work\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(\"work\")",
+      "state": "Failed",
+      "durationSeconds": 0.0884372,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(\"conversation\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(\"conversation\")",
+      "state": "Failed",
+      "durationSeconds": 0.0874262,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(\"combat\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.LookDoesNotClaimActiveFeedingWhenHigherBehaviorOwnsActor(\"combat\")",
+      "state": "Failed",
+      "durationSeconds": 0.0555182,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MalformedProgressCannotConsumeAfterSave(-1)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(-1)",
+      "state": "Failed",
+      "durationSeconds": 0.0850149,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MalformedProgressCannotConsumeAfterSave(3)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(3)",
+      "state": "Failed",
+      "durationSeconds": 0.0839751,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MalformedProgressCannotConsumeAfterSave(99)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(99)",
+      "state": "Failed",
+      "durationSeconds": 0.0798198,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "OrdinaryBeastLootRemainsIndependentAndIsNotConsumedOrRerolled(69,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.OrdinaryBeastLootRemainsIndependentAndIsNotConsumedOrRerolled(69,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0861848,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "OrdinaryBeastLootRemainsIndependentAndIsNotConsumedOrRerolled(70,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.OrdinaryBeastLootRemainsIndependentAndIsNotConsumedOrRerolled(70,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0850161,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(69,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(69,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0832308,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(70,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(70,False)",
+      "state": "Failed",
+      "durationSeconds": 0.082825,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ProgressCallbackRemovalPreventsAnyLaterConsumptionOrReplacementClaim",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.ProgressCallbackRemovalPreventsAnyLaterConsumptionOrReplacementClaim",
+      "state": "Failed",
+      "durationSeconds": 0.1050983,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ReplacementSavePreservesFiniteProgressAndExactCorpse(0)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(0)",
+      "state": "Failed",
+      "durationSeconds": 0.1227437,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ReplacementSavePreservesFiniteProgressAndExactCorpse(1)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(1)",
+      "state": "Failed",
+      "durationSeconds": 0.1180608,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ReplacementSavePreservesFiniteProgressAndExactCorpse(2)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(2)",
+      "state": "Failed",
+      "durationSeconds": 0.4525405,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ReplacementSavePreservesFiniteProgressAndExactCorpse(3)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(3)",
+      "state": "Failed",
+      "durationSeconds": 0.0867279,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "TwoPaidProgressActionsThenThirdConsumesExactOwnerWithoutRewardOrExtraPose",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.TwoPaidProgressActionsThenThirdConsumesExactOwnerWithoutRewardOrExtraPose",
+      "state": "Failed",
+      "durationSeconds": 0.0731831,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "WorldLookReportsActualLocalPhaseWithoutMutatingOrPromisingHarvest",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorFeedingTests.WorldLookReportsActualLocalPhaseWithoutMutatingOrPromisingHarvest",
+      "state": "Failed",
+      "durationSeconds": 0.0528557,
+      "message": "SetUp :   Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Setup () [0x001b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs:20\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "AbortDoesNotMutateForeignGrazerPartBacklink",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.AbortDoesNotMutateForeignGrazerPartBacklink",
+      "state": "Failed",
+      "durationSeconds": 0.0957376,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.AbortDoesNotMutateForeignGrazerPartBacklink () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:66\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "AdjacentQuarryReceivesOneNativeAttemptWithoutChildGoal",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdjacentQuarryReceivesOneNativeAttemptWithoutChildGoal",
+      "state": "Failed",
+      "durationSeconds": 0.0588433,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdjacentQuarryReceivesOneNativeAttemptWithoutChildGoal () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:42\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0921155,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone (System.Boolean foreign) [0x00031] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:50\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone(True)",
+      "state": "Failed",
+      "durationSeconds": 0.0939704,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.AdmissionAcceptsUnwiredColdBrainsButRefusesForeignZone (System.Boolean foreign) [0x00031] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:50\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "BlockedVisibleHuntStopsAtGlobalBudget",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.BlockedVisibleHuntStopsAtGlobalBudget",
+      "state": "Failed",
+      "durationSeconds": 0.0819258,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.BlockedVisibleHuntStopsAtGlobalBudget () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:35\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "DamagedHealthyPreyKeepsFlightDespiteOrdinaryOrExplicitPersonalTarget(False,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.DamagedHealthyPreyKeepsFlightDespiteOrdinaryOrExplicitPersonalTarget(False,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0895522,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.DamagedHealthyPreyKeepsFlightDespiteOrdinaryOrExplicitPersonalTarget (System.Boolean playerDamage, System.Boolean explicitHostility) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:37\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "DamagedHealthyPreyKeepsFlightDespiteOrdinaryOrExplicitPersonalTarget(False,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.DamagedHealthyPreyKeepsFlightDespiteOrdinaryOrExplicitPersonalTarget(False,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0883945,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.DamagedHealthyPreyKeepsFlightDespiteOrdinaryOrExplicitPersonalTarget (System.Boolean playerDamage, System.Boolean explicitHostility) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:37\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "DamagedHealthyPreyKeepsFlightDespiteOrdinaryOrExplicitPersonalTarget(True,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.DamagedHealthyPreyKeepsFlightDespiteOrdinaryOrExplicitPersonalTarget(True,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0846919,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.DamagedHealthyPreyKeepsFlightDespiteOrdinaryOrExplicitPersonalTarget (System.Boolean playerDamage, System.Boolean explicitHostility) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:37\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ExactPairAdmissionPreservesFactionAndGrazerFoodFields",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.ExactPairAdmissionPreservesFactionAndGrazerFoodFields",
+      "state": "Failed",
+      "durationSeconds": 0.0896061,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.ExactPairAdmissionPreservesFactionAndGrazerFoodFields () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:29\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0860402,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked (System.Boolean blocked) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:36\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked(True)",
+      "state": "Failed",
+      "durationSeconds": 0.0861162,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.HealthyPairedPreyUsesOpenSideExitWhenCardinalFlightBlocked (System.Boolean blocked) [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:36\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0832865,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave (System.Boolean save) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:33\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave(True)",
+      "state": "Failed",
+      "durationSeconds": 0.0840756,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.HiddenPositionsCannotChangeSearchEvenAfterReplacementSave (System.Boolean save) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:33\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HigherPriorityHunterStateDoesNotSpendHuntBudget(\"calm\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(\"calm\")",
+      "state": "Failed",
+      "durationSeconds": 0.0862062,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget (System.String mode) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:39\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HigherPriorityHunterStateDoesNotSpendHuntBudget(\"work\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(\"work\")",
+      "state": "Failed",
+      "durationSeconds": 0.0856812,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget (System.String mode) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:39\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HigherPriorityHunterStateDoesNotSpendHuntBudget(\"conversation\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(\"conversation\")",
+      "state": "Failed",
+      "durationSeconds": 0.0870304,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget (System.String mode) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:39\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HigherPriorityHunterStateDoesNotSpendHuntBudget(\"follow\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget(\"follow\")",
+      "state": "Failed",
+      "durationSeconds": 0.0864937,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.HigherPriorityHunterStateDoesNotSpendHuntBudget (System.String mode) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:39\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ImmediateOrdinaryHostileTakesPriorityOverAdjacentPrey",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.ImmediateOrdinaryHostileTakesPriorityOverAdjacentPrey",
+      "state": "Failed",
+      "durationSeconds": 0.087754,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.ImmediateOrdinaryHostileTakesPriorityOverAdjacentPrey () [0x00020] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:40\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(\"removed\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(\"removed\")",
+      "state": "Failed",
+      "durationSeconds": 0.0663287,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy (System.String mode) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:44\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(\"dead\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(\"dead\")",
+      "state": "Failed",
+      "durationSeconds": 0.0633812,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy (System.String mode) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:44\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(\"recruited\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(\"recruited\")",
+      "state": "Failed",
+      "durationSeconds": 0.0893377,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy (System.String mode) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:44\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(\"role-detached\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy(\"role-detached\")",
+      "state": "Failed",
+      "durationSeconds": 0.0801148,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidatedExactPairDoesNotAttackOrRetargetMatchingDecoy (System.String mode) [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:44\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidPairRefusesWithoutReciprocalMutation(\"dead\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(\"dead\")",
+      "state": "Failed",
+      "durationSeconds": 0.0907881,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation (System.String mode) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:31\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidPairRefusesWithoutReciprocalMutation(\"foreign\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(\"foreign\")",
+      "state": "Failed",
+      "durationSeconds": 0.0937622,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation (System.String mode) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:31\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidPairRefusesWithoutReciprocalMutation(\"party-hunter\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(\"party-hunter\")",
+      "state": "Failed",
+      "durationSeconds": 0.0829714,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation (System.String mode) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:31\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidPairRefusesWithoutReciprocalMutation(\"party-prey\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(\"party-prey\")",
+      "state": "Failed",
+      "durationSeconds": 0.0951823,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation (System.String mode) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:31\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidPairRefusesWithoutReciprocalMutation(\"pet\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(\"pet\")",
+      "state": "Failed",
+      "durationSeconds": 0.0885339,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation (System.String mode) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:31\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidPairRefusesWithoutReciprocalMutation(\"service\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(\"service\")",
+      "state": "Failed",
+      "durationSeconds": 0.0897398,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation (System.String mode) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:31\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidPairRefusesWithoutReciprocalMutation(\"work\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(\"work\")",
+      "state": "Failed",
+      "durationSeconds": 0.0873779,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation (System.String mode) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:31\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidPairRefusesWithoutReciprocalMutation(\"wrong-prey\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation(\"wrong-prey\")",
+      "state": "Failed",
+      "durationSeconds": 0.0866375,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidPairRefusesWithoutReciprocalMutation (System.String mode) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:31\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidSavedFlightMemoryIsSpentWithoutMotion(4,10,10)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(4,10,10)",
+      "state": "Failed",
+      "durationSeconds": 0.0905959,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion (System.Int32 remaining, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:67\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidSavedFlightMemoryIsSpentWithoutMotion(-1,10,10)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(-1,10,10)",
+      "state": "Failed",
+      "durationSeconds": 0.0849611,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion (System.Int32 remaining, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:67\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidSavedFlightMemoryIsSpentWithoutMotion(2,-1,10)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(2,-1,10)",
+      "state": "Failed",
+      "durationSeconds": 0.0839331,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion (System.Int32 remaining, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:67\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidSavedFlightMemoryIsSpentWithoutMotion(2,10,25)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(2,10,25)",
+      "state": "Failed",
+      "durationSeconds": 0.0898129,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion (System.Int32 remaining, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:67\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "InvalidSavedFlightMemoryIsSpentWithoutMotion(2,int.MinValue,int.MaxValue)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(2,int.MinValue,int.MaxValue)",
+      "state": "Failed",
+      "durationSeconds": 0.0905972,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion (System.Int32 remaining, System.Int32 x, System.Int32 y) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:67\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "LowHealthHunterDoesNotStrikeQuarry",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.LowHealthHunterDoesNotStrikeQuarry",
+      "state": "Failed",
+      "durationSeconds": 0.0782012,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.LowHealthHunterDoesNotStrikeQuarry () [0x00010] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:41\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MalformedSavedBoundsAbortWithoutAction(\"PursuitRemaining\",25)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(\"PursuitRemaining\",25)",
+      "state": "Failed",
+      "durationSeconds": 0.0917487,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction (System.String field, System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:48\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MalformedSavedBoundsAbortWithoutAction(\"PursuitRemaining\",-1)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(\"PursuitRemaining\",-1)",
+      "state": "Failed",
+      "durationSeconds": 0.0841064,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction (System.String field, System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:48\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MalformedSavedBoundsAbortWithoutAction(\"SearchRemaining\",7)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(\"SearchRemaining\",7)",
+      "state": "Failed",
+      "durationSeconds": 0.064512,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction (System.String field, System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:48\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MalformedSavedBoundsAbortWithoutAction(\"SearchRemaining\",-1)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(\"SearchRemaining\",-1)",
+      "state": "Failed",
+      "durationSeconds": 0.0598207,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction (System.String field, System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:48\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MalformedSavedBoundsAbortWithoutAction(\"HomeX\",-1)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(\"HomeX\",-1)",
+      "state": "Failed",
+      "durationSeconds": 0.2284399,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction (System.String field, System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:48\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MalformedSavedBoundsAbortWithoutAction(\"HomeY\",25)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(\"HomeY\",25)",
+      "state": "Failed",
+      "durationSeconds": 0.5494578,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction (System.String field, System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:48\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MalformedSavedBoundsAbortWithoutAction(\"LastSeenX\",80)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(\"LastSeenX\",80)",
+      "state": "Failed",
+      "durationSeconds": 0.2351255,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction (System.String field, System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:48\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MalformedSavedBoundsAbortWithoutAction(\"LastSeenY\",-1)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(\"LastSeenY\",-1)",
+      "state": "Failed",
+      "durationSeconds": 0.2237476,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction (System.String field, System.Int32 value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:48\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "NeverSeenPreyDoesNotRouteToDefaultCoordinate",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.NeverSeenPreyDoesNotRouteToDefaultCoordinate",
+      "state": "Failed",
+      "durationSeconds": 0.2125355,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.NeverSeenPreyDoesNotRouteToDefaultCoordinate () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:45\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "OneRealTreeChangesInterleavedTerminationWithoutGuaranteeingDeath(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.OneRealTreeChangesInterleavedTerminationWithoutGuaranteeingDeath(False)",
+      "state": "Failed",
+      "durationSeconds": 0.2115314,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.OneRealTreeChangesInterleavedTerminationWithoutGuaranteeingDeath (System.Boolean cover) [0x000e8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:56\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "OneRealTreeChangesInterleavedTerminationWithoutGuaranteeingDeath(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.OneRealTreeChangesInterleavedTerminationWithoutGuaranteeingDeath(True)",
+      "state": "Failed",
+      "durationSeconds": 0.2441317,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.OneRealTreeChangesInterleavedTerminationWithoutGuaranteeingDeath (System.Boolean cover) [0x000e8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:56\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "OrdinaryUnpairedGrazerStillFleesPlayer",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.OrdinaryUnpairedGrazerStillFleesPlayer",
+      "state": "Passed",
+      "durationSeconds": 0.2776106,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "TerminalReciprocalStateRemainsSpentAcrossSave(\"Escaped\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.TerminalReciprocalStateRemainsSpentAcrossSave(\"Escaped\")",
+      "state": "Failed",
+      "durationSeconds": 0.2842062,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.TerminalReciprocalStateRemainsSpentAcrossSave (System.String result) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:46\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "TerminalReciprocalStateRemainsSpentAcrossSave(\"Aborted\")",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.TerminalReciprocalStateRemainsSpentAcrossSave(\"Aborted\")",
+      "state": "Failed",
+      "durationSeconds": 0.3050448,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.TerminalReciprocalStateRemainsSpentAcrossSave (System.String result) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:46\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "UnknownSavedPhaseAbortsWithoutAction",
+      "fullName": "CavesOfOoo.Tests.SpreadPredatorStage1Tests.UnknownSavedPhaseAbortsWithoutAction",
+      "state": "Failed",
+      "durationSeconds": 0.2949487,
+      "message": "  Missing scoped exact-pair predator role\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadPredatorStage1Tests.AddRole () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:20\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.Configure () [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:21\nat CavesOfOoo.Tests.SpreadPredatorStage1Tests.UnknownSavedPhaseAbortsWithoutAction () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs:49\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    }
+  ]
+}

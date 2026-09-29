@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="79" result="Failed" start-time="2026-09-29T04:45:03.2322980Z" end-time="2026-09-29T04:45:04.0469560Z" duration="0.814618" total="26" passed="0" failed="26" inconclusive="0" skipped="0" warnings="0" asserts="163" random-seed="1678977401">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "class =~ /SpreadHunt(Layout|DetachedReceipt|Adversarial)Tests/" --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/transaction-red.xml]]></command-line>
+  <filter>
+    <class re="1">SpreadHunt(Layout|DetachedReceipt|Adversarial)Tests</class>
+  </filter>
+  <test-suite type="Assembly" id="1098" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="79" result="Failed" site="Child" start-time="2026-09-29T04:45:03.2322980Z" end-time="2026-09-29T04:45:04.0469560Z" duration="0.814618" total="26" passed="0" failed="26" warnings="0" inconclusive="0" skipped="0" asserts="163">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="22758" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1099" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="79" result="Failed" site="Child" start-time="2026-09-29T04:45:03.2339510Z" end-time="2026-09-29T04:45:04.0469260Z" duration="0.812968" total="26" passed="0" failed="26" warnings="0" inconclusive="0" skipped="0" asserts="163">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1100" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="79" result="Failed" site="Child" start-time="2026-09-29T04:45:03.2340550Z" end-time="2026-09-29T04:45:04.0468970Z" duration="0.812835" total="26" passed="0" failed="26" warnings="0" inconclusive="0" skipped="0" asserts="163">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1042" name="SpreadHuntAdversarialTests" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-29T04:45:03.2343870Z" end-time="2026-09-29T04:45:03.5148350Z" duration="0.280445" total="8" passed="0" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="48">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1049" name="AForeignBlockerAtTheOriginalCellSurvivesRollback" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests.AForeignBlockerAtTheOriginalCellSurvivesRollback" methodname="AForeignBlockerAtTheOriginalCellSurvivesRollback" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" seed="992681077" result="Failed" start-time="2026-09-29T04:45:03.2352220Z" end-time="2026-09-29T04:45:03.3391860Z" duration="0.103988" asserts="6">
+            <failure>
+              <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.AForeignBlockerAtTheOriginalCellSurvivesRollback() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 23
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.AForeignBlockerAtTheOriginalCellSurvivesRollback() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 23
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1046" name="CallbackAfterFirstDetachRestoresCleanSourcesButKeepsForeignAddition" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests.CallbackAfterFirstDetachRestoresCleanSourcesButKeepsForeignAddition" methodname="CallbackAfterFirstDetachRestoresCleanSourcesButKeepsForeignAddition" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" seed="972619292" result="Failed" start-time="2026-09-29T04:45:03.3397510Z" end-time="2026-09-29T04:45:03.3682020Z" duration="0.028451" asserts="6">
+            <failure>
+              <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.CallbackAfterFirstDetachRestoresCleanSourcesButKeepsForeignAddition() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 17
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.CallbackAfterFirstDetachRestoresCleanSourcesButKeepsForeignAddition() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 17
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1048" name="ChangedDetachedSourceGraphIsNotReclaimedByRollback" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests.ChangedDetachedSourceGraphIsNotReclaimedByRollback" methodname="ChangedDetachedSourceGraphIsNotReclaimedByRollback" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" seed="1986762327" result="Failed" start-time="2026-09-29T04:45:03.3682350Z" end-time="2026-09-29T04:45:03.3936760Z" duration="0.025441" asserts="6">
+            <failure>
+              <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.ChangedDetachedSourceGraphIsNotReclaimedByRollback() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 21
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.ChangedDetachedSourceGraphIsNotReclaimedByRollback() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 21
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1050" name="FinalAuthorizationCannotAddAnOwnerAfterBothPairLinksWereConfigured" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests.FinalAuthorizationCannotAddAnOwnerAfterBothPairLinksWereConfigured" methodname="FinalAuthorizationCannotAddAnOwnerAfterBothPairLinksWereConfigured" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" seed="1359703722" result="Failed" start-time="2026-09-29T04:45:03.3936990Z" end-time="2026-09-29T04:45:03.4167370Z" duration="0.023038" asserts="6">
+            <failure>
+              <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.FinalAuthorizationCannotAddAnOwnerAfterBothPairLinksWereConfigured() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 25
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.FinalAuthorizationCannotAddAnOwnerAfterBothPairLinksWereConfigured() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 25
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1043" name="FirstAuthorizationCannotAddAnUnrelatedOwnerBeforeTheSnapshot" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests.FirstAuthorizationCannotAddAnUnrelatedOwnerBeforeTheSnapshot" methodname="FirstAuthorizationCannotAddAnUnrelatedOwnerBeforeTheSnapshot" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" seed="1066674309" result="Failed" start-time="2026-09-29T04:45:03.4167720Z" end-time="2026-09-29T04:45:03.4407840Z" duration="0.023999" asserts="6">
+            <failure>
+              <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.FirstAuthorizationCannotAddAnUnrelatedOwnerBeforeTheSnapshot() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 11
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.FirstAuthorizationCannotAddAnUnrelatedOwnerBeforeTheSnapshot() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 11
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1047" name="IndependentlyMovedOriginalOwnerIsNotClobberedDuringPartialRollback" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests.IndependentlyMovedOriginalOwnerIsNotClobberedDuringPartialRollback" methodname="IndependentlyMovedOriginalOwnerIsNotClobberedDuringPartialRollback" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" seed="1382186247" result="Failed" start-time="2026-09-29T04:45:03.4408010Z" end-time="2026-09-29T04:45:03.4682060Z" duration="0.027405" asserts="6">
+            <failure>
+              <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.IndependentlyMovedOriginalOwnerIsNotClobberedDuringPartialRollback() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 19
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.IndependentlyMovedOriginalOwnerIsNotClobberedDuringPartialRollback() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 19
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1044" name="OrdinaryReadOnlyAuthorizationPermitsTheSameCompleteTransaction" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests.OrdinaryReadOnlyAuthorizationPermitsTheSameCompleteTransaction" methodname="OrdinaryReadOnlyAuthorizationPermitsTheSameCompleteTransaction" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" seed="1649408555" result="Failed" start-time="2026-09-29T04:45:03.4682250Z" end-time="2026-09-29T04:45:03.4903570Z" duration="0.022131" asserts="6">
+            <failure>
+              <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.OrdinaryReadOnlyAuthorizationPermitsTheSameCompleteTransaction() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 13
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.OrdinaryReadOnlyAuthorizationPermitsTheSameCompleteTransaction() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 13
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1045" name="SourceDamageDuringAuthorizationIsNotSilentlyRepaired" fullname="CavesOfOoo.Tests.SpreadHuntAdversarialTests.SourceDamageDuringAuthorizationIsNotSilentlyRepaired" methodname="SourceDamageDuringAuthorizationIsNotSilentlyRepaired" classname="CavesOfOoo.Tests.SpreadHuntAdversarialTests" runstate="Runnable" seed="823510635" result="Failed" start-time="2026-09-29T04:45:03.4903720Z" end-time="2026-09-29T04:45:03.5144590Z" duration="0.024087" asserts="6">
+            <failure>
+              <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.SourceDamageDuringAuthorizationIsNotSilentlyRepaired() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 15
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntAdversarialTests.SourceDamageDuringAuthorizationIsNotSilentlyRepaired() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntAdversarialTests.cs:line 15
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+        <test-suite type="TestFixture" id="1051" name="SpreadHuntDetachedReceiptTests" fullname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests" classname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-29T04:45:03.5152550Z" end-time="2026-09-29T04:45:03.6620360Z" duration="0.146780" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="42">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1057" name="AForeignOwnerCannotObtainARemovalProofFromThisReceipt" fullname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.AForeignOwnerCannotObtainARemovalProofFromThisReceipt" methodname="AForeignOwnerCannotObtainARemovalProofFromThisReceipt" classname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests" runstate="Runnable" seed="1071053526" result="Failed" start-time="2026-09-29T04:45:03.5152990Z" end-time="2026-09-29T04:45:03.5361110Z" duration="0.020811" asserts="7">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.Removed(SpreadGenerationReceipt r, Entity owner) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.AForeignOwnerCannotObtainARemovalProofFromThisReceipt() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 25
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.Removed(SpreadGenerationReceipt r, Entity owner) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.AForeignOwnerCannotObtainARemovalProofFromThisReceipt() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 25
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1052" name="PartialAndCompleteGroupDetachPreserveTheExactOriginalGraphs" fullname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.PartialAndCompleteGroupDetachPreserveTheExactOriginalGraphs" methodname="PartialAndCompleteGroupDetachPreserveTheExactOriginalGraphs" classname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests" runstate="Runnable" seed="1738646779" result="Failed" start-time="2026-09-29T04:45:03.5361330Z" end-time="2026-09-29T04:45:03.5670500Z" duration="0.030917" asserts="7">
+            <failure>
+              <message><![CDATA[  Preserve exact original owned actor graphs across our intentional root detach.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.Matches(SpreadGenerationReceipt r, ISet`1 removed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.PartialAndCompleteGroupDetachPreserveTheExactOriginalGraphs() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 15
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Preserve exact original owned actor graphs across our intentional root detach.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.Matches(SpreadGenerationReceipt r, ISet`1 removed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.PartialAndCompleteGroupDetachPreserveTheExactOriginalGraphs() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 15
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1053" name="PretendingAStillPlacedOwnerIsDetachedOrOmittingARemovedOwnerRefuses" fullname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.PretendingAStillPlacedOwnerIsDetachedOrOmittingARemovedOwnerRefuses" methodname="PretendingAStillPlacedOwnerIsDetachedOrOmittingARemovedOwnerRefuses" classname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests" runstate="Runnable" seed="76091683" result="Failed" start-time="2026-09-29T04:45:03.5670900Z" end-time="2026-09-29T04:45:03.5891060Z" duration="0.022016" asserts="7">
+            <failure>
+              <message><![CDATA[  Preserve exact original owned actor graphs across our intentional root detach.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.Matches(SpreadGenerationReceipt r, ISet`1 removed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.PretendingAStillPlacedOwnerIsDetachedOrOmittingARemovedOwnerRefuses() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 17
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Preserve exact original owned actor graphs across our intentional root detach.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.Matches(SpreadGenerationReceipt r, ISet`1 removed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 12
+   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.PretendingAStillPlacedOwnerIsDetachedOrOmittingARemovedOwnerRefuses() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 17
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1054" name="RemovedActorProofStillPinsActualCarriedEquipmentState" fullname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.RemovedActorProofStillPinsActualCarriedEquipmentState" methodname="RemovedActorProofStillPinsActualCarriedEquipmentState" classname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests" runstate="Runnable" seed="1451044416" result="Failed" start-time="2026-09-29T04:45:03.5891360Z" end-time="2026-09-29T04:45:03.6121700Z" duration="0.023034" asserts="7">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.Removed(SpreadGenerationReceipt r, Entity owner) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.RemovedActorProofStillPinsActualCarriedEquipmentState() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 19
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.Removed(SpreadGenerationReceipt r, Entity owner) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.RemovedActorProofStillPinsActualCarriedEquipmentState() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 19
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1055" name="SameIdReplacementInTheOriginalZoneCannotValidateDetachedAuthority" fullname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.SameIdReplacementInTheOriginalZoneCannotValidateDetachedAuthority" methodname="SameIdReplacementInTheOriginalZoneCannotValidateDetachedAuthority" classname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests" runstate="Runnable" seed="499589475" result="Failed" start-time="2026-09-29T04:45:03.6121930Z" end-time="2026-09-29T04:45:03.6328960Z" duration="0.020703" asserts="7">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.Removed(SpreadGenerationReceipt r, Entity owner) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.SameIdReplacementInTheOriginalZoneCannotValidateDetachedAuthority() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 21
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.Removed(SpreadGenerationReceipt r, Entity owner) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.SameIdReplacementInTheOriginalZoneCannotValidateDetachedAuthority() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 21
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1056" name="TransferOfRemovedOwnerToAnotherZoneInvalidatesTheProof" fullname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.TransferOfRemovedOwnerToAnotherZoneInvalidatesTheProof" methodname="TransferOfRemovedOwnerToAnotherZoneInvalidatesTheProof" classname="CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests" runstate="Runnable" seed="935545321" result="Failed" start-time="2026-09-29T04:45:03.6329170Z" end-time="2026-09-29T04:45:03.6619950Z" duration="0.029079" asserts="7">
+            <failure>
+              <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.Removed(SpreadGenerationReceipt r, Entity owner) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.TransferOfRemovedOwnerToAnotherZoneInvalidatesTheProof() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 23
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.Removed(SpreadGenerationReceipt r, Entity owner) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests.TransferOfRemovedOwnerToAnotherZoneInvalidatesTheProof() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntDetachedReceiptTests.cs:line 23
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+        <test-suite type="TestFixture" id="1058" name="SpreadHuntLayoutTests" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-09-29T04:45:03.6620600Z" end-time="2026-09-29T04:45:04.0468910Z" duration="0.384828" total="12" passed="0" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="73">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1069" name="ForeignFactoryCannotClaimOtherwiseMatchingOriginalSources" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.ForeignFactoryCannotClaimOtherwiseMatchingOriginalSources" methodname="ForeignFactoryCannotClaimOtherwiseMatchingOriginalSources" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="2109468963" result="Failed" start-time="2026-09-29T04:45:03.6621340Z" end-time="2026-09-29T04:45:03.6916570Z" duration="0.029522" asserts="6">
+            <failure>
+              <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.ForeignFactoryCannotClaimOtherwiseMatchingOriginalSources() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 40
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.ForeignFactoryCannotClaimOtherwiseMatchingOriginalSources() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 40
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1070" name="MissingActualCoverNeverUsesALateMatchingTreeDecoy" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.MissingActualCoverNeverUsesALateMatchingTreeDecoy" methodname="MissingActualCoverNeverUsesALateMatchingTreeDecoy" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="625877713" result="Failed" start-time="2026-09-29T04:45:03.6916760Z" end-time="2026-09-29T04:45:03.7278750Z" duration="0.036199" asserts="7">
+            <failure>
+              <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.MissingActualCoverNeverUsesALateMatchingTreeDecoy() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 42
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.MissingActualCoverNeverUsesALateMatchingTreeDecoy() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 42
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1068" name="MissingOptionalActorBlueprintLeavesEveryOriginalOwnerAndReceiptUntouched" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.MissingOptionalActorBlueprintLeavesEveryOriginalOwnerAndReceiptUntouched" methodname="MissingOptionalActorBlueprintLeavesEveryOriginalOwnerAndReceiptUntouched" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="784392058" result="Failed" start-time="2026-09-29T04:45:03.7279070Z" end-time="2026-09-29T04:45:03.7616850Z" duration="0.033778" asserts="6">
+            <failure>
+              <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.MissingOptionalActorBlueprintLeavesEveryOriginalOwnerAndReceiptUntouched() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 38
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.MissingOptionalActorBlueprintLeavesEveryOriginalOwnerAndReceiptUntouched() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 38
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1071" name="NewPairCreationDoesNotSpendUndeclaredLoadoutOrDeathRandomness" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.NewPairCreationDoesNotSpendUndeclaredLoadoutOrDeathRandomness" methodname="NewPairCreationDoesNotSpendUndeclaredLoadoutOrDeathRandomness" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="249973531" result="Failed" start-time="2026-09-29T04:45:03.7617070Z" end-time="2026-09-29T04:45:03.7840470Z" duration="0.022341" asserts="6">
+            <failure>
+              <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.NewPairCreationDoesNotSpendUndeclaredLoadoutOrDeathRandomness() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 44
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.NewPairCreationDoesNotSpendUndeclaredLoadoutOrDeathRandomness() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 44
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1067" name="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-29T04:45:03.7840680Z" end-time="2026-09-29T04:45:04.0468400Z" duration="0.262770" total="8" passed="0" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="48">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1059" name="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(1,False,False)" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(1,False,False)" methodname="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="1105409100" result="Failed" start-time="2026-09-29T04:45:03.7842130Z" end-time="2026-09-29T04:45:03.8187900Z" duration="0.034577" asserts="6">
+              <failure>
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1060" name="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(1,False,True)" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(1,False,True)" methodname="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="1581626483" result="Failed" start-time="2026-09-29T04:45:03.8188120Z" end-time="2026-09-29T04:45:03.8536660Z" duration="0.034854" asserts="6">
+              <failure>
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1061" name="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(2,False,False)" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(2,False,False)" methodname="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="1048909946" result="Failed" start-time="2026-09-29T04:45:03.8536840Z" end-time="2026-09-29T04:45:03.8833390Z" duration="0.029655" asserts="6">
+              <failure>
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1062" name="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(2,False,True)" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(2,False,True)" methodname="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="246632489" result="Failed" start-time="2026-09-29T04:45:03.8833520Z" end-time="2026-09-29T04:45:03.9189270Z" duration="0.035575" asserts="6">
+              <failure>
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1063" name="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(1,True,False)" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(1,True,False)" methodname="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="1599228417" result="Failed" start-time="2026-09-29T04:45:03.9189550Z" end-time="2026-09-29T04:45:03.9495500Z" duration="0.030595" asserts="6">
+              <failure>
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1064" name="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(1,True,True)" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(1,True,True)" methodname="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="369145728" result="Failed" start-time="2026-09-29T04:45:03.9495710Z" end-time="2026-09-29T04:45:03.9817400Z" duration="0.032169" asserts="6">
+              <failure>
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1065" name="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(2,True,False)" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(2,True,False)" methodname="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="874212946" result="Failed" start-time="2026-09-29T04:45:03.9817680Z" end-time="2026-09-29T04:45:04.0166620Z" duration="0.034894" asserts="6">
+              <failure>
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1066" name="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(2,True,True)" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(2,True,True)" methodname="WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="2109045342" result="Failed" start-time="2026-09-29T04:45:04.0166870Z" end-time="2026-09-29T04:45:04.0468240Z" duration="0.030137" asserts="6">
+              <failure>
+                <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Implement the early exact-source pair transaction and meaningful cover layout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.HuntFixture.Place(Boolean covered, Func`1 authority, EntityFactory factory) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 28
+   at CavesOfOoo.Tests.SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Int32 count, Boolean marl, Boolean covered) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 36
+   at InvokeStub_SpreadHuntLayoutTests.WholeOrdinaryGroupAndOneExactMagpieBecomeOneBoundedPair(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

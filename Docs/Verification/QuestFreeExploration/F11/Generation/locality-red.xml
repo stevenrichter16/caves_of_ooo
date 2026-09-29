@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="110" result="Failed" start-time="2026-09-29T05:06:06.9529920Z" end-time="2026-09-29T05:06:07.1791460Z" duration="0.226134" total="2" passed="0" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="18" random-seed="1699922815">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "test =~ /OpenHuntUsesTheOriginalEncounterNeighborhood/" --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/locality-red.xml]]></command-line>
+  <filter>
+    <test re="1">OpenHuntUsesTheOriginalEncounterNeighborhood</test>
+  </filter>
+  <test-suite type="Assembly" id="1137" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-09-29T05:06:06.9529920Z" end-time="2026-09-29T05:06:07.1791460Z" duration="0.226134" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="27646" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1138" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-09-29T05:06:06.9544780Z" end-time="2026-09-29T05:06:07.1791440Z" duration="0.224664" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1139" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="110" result="Failed" site="Child" start-time="2026-09-29T05:06:06.9545900Z" end-time="2026-09-29T05:06:07.1791410Z" duration="0.224550" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1084" name="SpreadHuntLayoutTests" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-09-29T05:06:06.9549170Z" end-time="2026-09-29T05:06:07.1791240Z" duration="0.224205" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1096" name="OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T05:06:06.9557700Z" end-time="2026-09-29T05:06:07.1788790Z" duration="0.223107" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1094" name="OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner(17)" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner(17)" methodname="OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="622823873" result="Failed" start-time="2026-09-29T05:06:06.9558440Z" end-time="2026-09-29T05:06:07.1163600Z" duration="0.160540" asserts="9">
+              <failure>
+                <message><![CDATA[  Admit a useful lane near this original roll, not a fixed corner in every chunk.
+  Expected: less than or equal to 8
+  But was:  9
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLayoutTests.OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 38
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Admit a useful lane near this original roll, not a fixed corner in every chunk.
+  Expected: less than or equal to 8
+  But was:  9
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLayoutTests.OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 38
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1095" name="OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner(73)" fullname="CavesOfOoo.Tests.SpreadHuntLayoutTests.OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner(73)" methodname="OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner" classname="CavesOfOoo.Tests.SpreadHuntLayoutTests" runstate="Runnable" seed="1675058015" result="Failed" start-time="2026-09-29T05:06:07.1168840Z" end-time="2026-09-29T05:06:07.1784600Z" duration="0.061575" asserts="9">
+              <failure>
+                <message><![CDATA[  Admit a useful lane near this original roll, not a fixed corner in every chunk.
+  Expected: less than or equal to 8
+  But was:  15
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLayoutTests.OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 38
+   at InvokeStub_SpreadHuntLayoutTests.OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Admit a useful lane near this original roll, not a fixed corner in every chunk.
+  Expected: less than or equal to 8
+  But was:  15
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntLayoutTests.OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntLayoutTests.cs:line 38
+   at InvokeStub_SpreadHuntLayoutTests.OpenHuntUsesTheOriginalEncounterNeighborhoodInsteadOfARepeatedCorner(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,138 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using CavesOfOoo.Core;
+using NUnit.Framework;
+using UnityEngine;
+
+namespace CavesOfOoo.Tests
+{
+    // Actual ordinary default descent, not the observing scenario's disclosed
+    // transfer. Only the first new hunter action is isolated here; other current
+    // NPCs remain present, and no immunity, gear or faction override is granted.
+    public sealed class SpreadHuntArrivalTests
+    {
+        [TestCase(1)] [TestCase(64)] [TestCase(1729)]
+        public void CommittedHuntsDoNotAcquirePlayerOnTheDefaultDescentTurn(int seed)
+        {
+            var failures = new List<string>();
+            using (var scope = new HaulingContentScope())
+            {
+                FactionManager.Initialize(File.ReadAllText(Path.Combine(Application.dataPath, "Resources/Content/Data/Factions.json")));
+                var selection = OverworldZoneManager.CreateDetached(scope.Factory, seed, true).Exploration.Entries
+                    .Where(e => e.Family == SpreadExplorationFamily.HuntThroughCover).Select(e => e.ZoneID).ToArray();
+                Assert.IsNotEmpty(selection);
+                int committed = 0;
+                foreach (string id in selection)
+                {
+                    var manager = OverworldZoneManager.CreateDetached(scope.Factory, seed, true);
+                    var map = manager.GetZone(WorldMap.WorldMapZoneID);
+                    var address = WorldMap.FromZoneID(id);
+                    var mapCell = WorldMap.WorldCellToZoneCell(address.x, address.y);
+                    var player = scope.Factory.CreateEntity("Player");
+                    Assert.True(map.AddEntity(player, mapCell.zoneX, mapCell.zoneY));
+                    Assert.False(player.GetPart<WorldMapPart>()?.HasSavedSurface ?? false);
+                    scope.Seed(unchecked(seed ^ FormationSelector.StableIndex(id, int.MaxValue)));
+                    var descent = WorldMapTraversal.Descend(player, map, manager);
+                    Assert.True(descent.Success, descent.ErrorReason);
+                    var zone = descent.NewZone;
+                    manager.SetActiveZone(zone);
+                    var hunters = zone.GetReadOnlyEntities().Where(e => e.HasPart<SpreadPredatorPart>()).ToArray();
+                    if (manager.Exploration.DispositionFor(id) != 2)
+                    {
+                        Assert.IsEmpty(hunters, "Refused layout must not leave a synthetic pair.");
+                        TestContext.WriteLine(seed + " " + id + " placement refused; not an arrival proof.");
+                        continue;
+                    }
+                    committed++;
+                    Assert.AreEqual(1, hunters.Length);
+                    var hunter = hunters.Single();
+                    foreach (var owner in zone.GetReadOnlyEntities())
+                    {
+                        var brain = owner.GetPart<BrainPart>();
+                        if (brain != null) brain.CurrentZone = zone;
+                    }
+                    var at = zone.GetEntityCell(hunter);
+                    var arriving = zone.GetEntityCell(player);
+                    var hunterBrain = hunter.GetPart<BrainPart>();
+                    int distance = AIHelpers.ChebyshevDistance(at.X, at.Y, arriving.X, arriving.Y);
+                    bool sight = AIHelpers.HasLineOfSight(zone, at.X, at.Y, arriving.X, arriving.Y);
+                    Assert.IsNull(hunterBrain.Target, "New cold hunter has no pre-existing combat target.");
+                    int hp = player.GetStatValue("Hitpoints");
+                    hunter.FireEventAndRelease(GameEvent.New("TakeTurn"));
+                    string observed = seed + " " + id + " hunter(" + at.X + "," + at.Y + ") arrival(" + arriving.X + "," + arriving.Y
+                        + ") distance=" + distance + " sight=" + sight + " target=" + hunterBrain.Target?.BlueprintName
+                        + " playerHP=" + hp + "->" + player.GetStatValue("Hitpoints");
+                    TestContext.WriteLine(observed);
+                    if (hunterBrain.Target == player || player.GetStatValue("Hitpoints") < hp) failures.Add(observed);
+                }
+                Assert.Greater(committed, 0, "The existing frozen-corpus release floor separately prevents all-refusal vacuity.");
+            }
+            Assert.That(failures, Is.Empty, "A default arrival should leave the new hunt available to observe, not immediately divert it into player combat.");
+        }
+        [TestCase(false)] [TestCase(true)]
+        public void BlockingTheDefaultCenterDeclinesWithoutChangingOriginalSources(bool covered)
+        {
+            using (var f = new HuntFixture())
+            {
+                Assert.False(f.Zone.GetCell(40, 12).BlocksMovement(), "Fixture has an ordinary open default center.");
+                var blocker = f.Factory.CreateEntity("Tree");
+                Assert.True(f.Zone.AddEntity(blocker, 40, 12));
+                var owners = f.Zone.GetReadOnlyEntities().ToArray();
+                var unchanged = f.Proof(owners);
+                Assert.False(f.Place(covered), "No approximate fallback arrival or synthetic Player is authorized.");
+                Assert.True(unchanged());
+                CollectionAssert.AreEquivalent(owners, f.Zone.GetReadOnlyEntities());
+                Assert.True(f.Population.SourceReceipt.IsCurrent);
+                Assert.True(f.Population.AmbientSourceReceipt.IsCurrent);
+            }
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void NearbyOffCenterTreeKeepsTheEquivalentUsefulHunt(bool covered)
+        {
+            using (var f = new HuntFixture())
+            {
+                Assert.False(f.Zone.GetCell(40, 12).BlocksMovement());
+                var blocker = f.Factory.CreateEntity("Tree");
+                Assert.True(f.Zone.AddEntity(blocker, 40, 13));
+                Assert.True(f.Place(covered), "A nearby prop is not a blanket reason to erase the encounter.");
+                Assert.True(f.Final());
+                Assert.AreEqual((40, 13), f.Zone.GetEntityPosition(blocker));
+            }
+        }
+
+        [TestCase(false)] [TestCase(true)]
+        public void FinalProofKeepsCheckingTheActualCenterAfterLaterBuilders(bool blockCenter)
+        {
+            using (var f = new HuntFixture())
+            {
+                Assert.False(f.Zone.GetCell(40, 12).BlocksMovement());
+                Assert.True(f.Place(false));
+                Assert.True(f.Final());
+                var hunter = f.Hunter;
+                var prey = f.Grazer;
+                var blocker = f.Factory.CreateEntity("Tree");
+                Assert.True(f.Zone.AddEntity(blocker, 40, blockCenter ? 12 : 13));
+                Assert.AreEqual(!blockCenter, f.Final(), "One surviving border bypass cannot substitute for a current walkable default arrival.");
+                Assert.AreSame(hunter, f.Hunter);
+                Assert.AreSame(prey, f.Grazer);
+            }
+        }
+
+        [Test]
+        public void ArrivalBoundaryUsesTheAlreadyAuthoredHunterSightInsteadOfASecondMagicRadius()
+        {
+            using (var scope = new HaulingContentScope())
+            {
+                var hunter = scope.Factory.CreateEntity("Furrowstalker");
+                Assert.AreEqual(8, hunter.GetPart<BrainPart>().SightRadius);
+                var radius = typeof(SpreadExplorationHunt).GetField("InitialHunterSight", BindingFlags.NonPublic | BindingFlags.Static);
+                Assert.NotNull(radius);
+                Assert.AreEqual(hunter.GetPart<BrainPart>().SightRadius, radius.GetValue(null));
+            }
+        }
+    }
+}

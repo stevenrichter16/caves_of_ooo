@@ -1,0 +1,3 @@
+# Phase validation peer review
+
+Read-only stage4→stage5 SpreadPredatorPart delta. The only behavior expression changed is Enum.IsDefined(typeof(SpreadHuntPhase), Phase)→IsDefinedPhase(Phase). The explicit switch lists every current declared non-flags value exactly once: Watching0, Pursuing1, Searching2, Escaped3, Exhausted4, Aborted5, PreyGone6, Feeding7, Fed8. Default rejects every undeclared integer, matching the old validator. Other saved bounds, terminal predicates, fields, priority/readout/movement/feeding behavior are untouched. No concrete semantic widening or blocker found. This review does not execute or claim allocation/native performance results.

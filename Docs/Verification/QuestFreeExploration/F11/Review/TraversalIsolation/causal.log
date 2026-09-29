@@ -1,0 +1,49 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/traversal-isolation/causal-runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-29 08:13:19Z
+    End time: 2026-09-29 08:13:19Z
+    Duration: 0.019 seconds
+
+Test Filters
+    Test: CavesOfOoo.Tests.TraversalFactoryCausalProbe
+
+=> CavesOfOoo.Tests.TraversalFactoryCausalProbe.UnchangedOriginalGroundFixtureDependsOnAmbientFactory(False)
+[Error] EntityFactory: unknown blueprint 'Sack'
+[Error] EntityFactory: unknown blueprint 'AlchemyShelf'
+[Error] EntityFactory: unknown blueprint 'WoodenBarrel'
+[Error] EntityFactory: unknown blueprint 'AlchemyShelf'
+[Error] EntityFactory: unknown blueprint 'Sack'
+[Error] EntityFactory: unknown blueprint 'WoodenBarrel'
+[Error] EntityFactory: unknown blueprint 'WeaponRack'
+[Error] EntityFactory: unknown blueprint 'WoodenBarrel'
+[Error] EntityFactory: unknown blueprint 'WoodenBarrel'
+[Error] EntityFactory: unknown blueprint 'Crate'
+[Error] EntityFactory: unknown blueprint 'Crate'
+[Error] EntityFactory: unknown blueprint 'WeaponRack'
+completeFactory=False unknownBlueprintErrors=12 sameFactory=False
+=> CavesOfOoo.Tests.TraversalFactoryCausalProbe.UnchangedOriginalGroundFixtureDependsOnAmbientFactory(True)
+[Warn] [LootTableRegistry] Unknown loot table 'SackT1'
+completeFactory=True unknownBlueprintErrors=0 sameFactory=True
+
+Run Settings
+    Number of Test Workers: 0
+    Work Directory: /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/traversal-isolation/causal-runner
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Passed
+  Test Count: 2, Passed: 2, Failed: 0, Warnings: 0, Inconclusive: 0, Skipped: 0
+  Start time: 2026-09-29 08:13:19Z
+    End time: 2026-09-29 08:13:19Z
+    Duration: 0.281 seconds
+
+Results (nunit3) saved as /Users/steven/.codex/scratch/caves-of-ooo/f11/review/publication-final/traversal-isolation/causal-runner/../causal.xml

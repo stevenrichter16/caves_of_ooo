@@ -1,0 +1,210 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using CavesOfOoo.Data;
+namespace CavesOfOoo.Core
+{
+    /// <summary>One pre-stock hunt from a complete original hostile group and
+    /// one exact original Magpie. Trees remain in place; no synthetic sources,
+    /// actor death, added loot or caller RNG. Saved graphs never replay this.</summary>
+    public static class SpreadExplorationHunt
+    {
+        const int InitialGap=4,MaxTrees=32,MaxTrials=256;
+        static readonly (int x,int y)[] Directions={(-1,-1),(0,-1),(1,-1),(-1,0),(1,0),(-1,1),(0,1),(1,1)};
+        static int Distance((int x,int y)a,(int x,int y)b)=>Math.Max(Math.Abs(a.x-b.x),Math.Abs(a.y-b.y));
+        static bool Interior((int x,int y)p)=>p.x>=4&&p.x<Zone.Width-4&&p.y>=4&&p.y<Zone.Height-4;
+        static bool OriginalActor(Zone z,Entity e)
+        {
+            var b=e?.GetPart<BrainPart>();var p=e?.GetPart<PhysicsPart>();var c=z?.GetEntityCell(e);
+            return c!=null&&e.SpatialZone==z&&e.HasTag("Creature")&&e.GetStatValue("Hitpoints")>0
+                &&p?.ParentEntity==e&&p.InInventory==null&&p.Equipped==null&&b?.ParentEntity==e
+                &&(b.CurrentZone==null||b.CurrentZone==z)&&b.Target==null&&!b.HasGoalOtherThan("BoredGoal")
+                &&b.PartyLeader==null&&b.PartyMembers.Count==0&&!e.HasTag("Player")&&!e.HasTag("Pet")
+                &&!e.HasTag("Companion")&&!e.HasTag("Owned")&&!e.HasTag("Unique")&&!e.HasTag("QuestItem")
+                &&!e.HasPart<TraderPart>()&&!e.HasPart<ConversationPart>()&&!e.HasPart<SpreadTerritoryPart>()
+                &&!e.HasPart<SpreadCollectorPart>()&&!e.HasPart<SpreadGrazerPart>()&&!e.HasPart<SpreadPredatorPart>()
+                &&!e.HasPart<DragPart>()&&!e.HasPart<DraggedPart>()&&!e.HasPart<SpatialFootprintPart>()
+                &&!c.IsInterior&&!z.GenReservedCells.Contains((c.X,c.Y))&&z.TileState.Get(c.X,c.Y)?.IsEmpty!=false
+                &&e.Parts.All(part=>part!=null&&part.ParentEntity==e)&&!CombatSystem.IsDeathHandled(e);
+        }
+        internal static bool EligibleTree(Zone z,Entity e)
+        {
+            var at=z?.GetEntityCell(e);var p=e?.GetPart<PhysicsPart>();
+            return at!=null&&e.SpatialZone==z&&e.BlueprintName=="Tree"&&e.HasTag("Solid")&&p?.Solid==true
+                &&p.ParentEntity==e&&p.InInventory==null&&p.Equipped==null&&e.GetPart<DestructiblePart>()?.HP==30
+                &&!e.HasTag("Owned")&&!e.HasTag("QuestItem")&&!e.HasTag("Unique")&&!e.HasTag("Creature")
+                &&!e.HasPart<DraggedPart>()&&!e.HasPart<DragPart>()&&!e.HasPart<SpatialFootprintPart>()
+                &&e.Parts.All(part=>part!=null&&part.ParentEntity==e)&&!at.IsInterior
+                &&!z.GenReservedCells.Contains((at.X,at.Y))&&z.TileState.Get(at.X,at.Y)?.IsEmpty!=false;
+        }
+        /// <summary>Atomic cold replacement at priority4001, before Magpie stock.
+        /// The final proof permits later unrelated stock but pins both new actors,
+        /// the exact removed source graphs, actual cover and useful geometry.</summary>
+        public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder terrain,
+            PopulationBuilder population,bool covered,Func<bool> authority,out Entity hunter,out Entity grazer,out Func<bool> finalState)
+        {
+            hunter=null;grazer=null;finalState=null;
+            var hostile=population?.SourceReceipt;var ambient=population?.AmbientSourceReceipt;
+            Entity bird=ambient?.Owners.FirstOrDefault(e=>e.BlueprintName=="Magpie");
+            bool Identity()=>zone!=null&&factory!=null&&terrain?.SourceZone==zone&&terrain.Plan?.Formation==Formation.Fallow
+                &&terrain.CaptureCoverSources&&population?.CaptureSourceReceipts==true
+                &&hostile!=null&&ambient!=null&&population.SourceReceipt==hostile&&population.AmbientSourceReceipt==ambient
+                &&hostile.Zone==zone&&ambient.Zone==zone&&hostile.Factory==factory&&ambient.Factory==factory&&hostile.Revision==ambient.Revision;
+            bool Source()=>Identity()&&hostile.IsCurrent&&ambient.IsCurrent&&bird!=null&&OriginalActor(zone,bird)
+                &&hostile.Owners.Count>=1&&hostile.Owners.Count<=2&&hostile.Owners.Select(e=>e.BlueprintName).Distinct().Count()==1
+                &&hostile.Owners.All(e=>(e.BlueprintName=="Viper"||e.BlueprintName=="MarlbackScrabbler")&&OriginalActor(zone,e));
+            if(authority==null||!Source()||!factory.Blueprints.ContainsKey("Furrowstalker")||!factory.Blueprints.ContainsKey("ReedbackGrazer"))return false;
+            var all=new HashSet<Entity>(zone.GetReadOnlyEntities());
+            var initial=SpreadGenerationReceipt.CaptureFinalState(zone,all.Where(e=>!DoorPart.IsBareGround(e)));
+            if(!authority()||!Source()||!all.SetEquals(zone.GetReadOnlyEntities())||!initial())return false;
+            var originals=hostile.Owners.Concat(new[]{bird}).ToArray();var selected=new HashSet<Entity>(originals);
+            var before=new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>());
+            var design=Find(zone,terrain,factory,covered,selected,before,zone.GetEntityPosition(hostile.Owners[0]));if(design==null)return false;
+            var plan=terrain.Plan;var treeReceipt=design.Tree==null?null:terrain.CoverSource(design.Tree);
+            bool Provenance()=>Identity()&&terrain.Plan==plan&&(treeReceipt==null||terrain.OwnsCoverReceipt(treeReceipt));
+            var unchanged=SpreadGenerationReceipt.CaptureFinalState(zone,all.Where(e=>!selected.Contains(e)&&!DoorPart.IsBareGround(e)));
+            var removed=new HashSet<Entity>();var added=new HashSet<Entity>();
+            var originalAt=originals.Select(zone.GetEntityPosition).ToArray();
+            bool Others()=>all.Except(removed).Concat(added).ToHashSet().SetEquals(zone.GetReadOnlyEntities())&&unchanged();
+            bool Owned()=>Provenance()&&hostile.MatchesOwnedState(removed)&&ambient.MatchesOwnedState(removed)
+                &&(treeReceipt==null||treeReceipt.MatchesOwnedState())
+                &&originals.Select((e,i)=>removed.Contains(e)||zone.GetEntityPosition(e)==originalAt[i]).All(v=>v);
+            if(!authority()||!Source()||!Others()||!design.Fits(zone,selected,before))return false;
+            // ObjectCreated is a callback boundary. Existing graph/authority is
+            // checked after each creation; no new actor is yet in the zone.
+            var predator=factory.CreateEntity("Furrowstalker");
+            if(!authority()||!Source()||!Others()||predator==null||predator.SpatialZone!=null)return false;
+            var prey=factory.CreateEntity("ReedbackGrazer");
+            if(!authority()||!Source()||!Others()||prey==null||prey.SpatialZone!=null)return false;
+            if(predator.GetPart<SpreadPredatorPart>()==null||prey.GetPart<SpreadGrazerPart>()==null)return false;
+            if(!hostile.TryConsume()||!ambient.TryConsume()||(treeReceipt!=null&&!treeReceipt.TryConsume()))return false;
+            var detached=originals.Select(e=>(hostile.Owners.Contains(e)?hostile:ambient).CaptureDetachedOwnerState(e)).ToArray();
+            var newOwners=new[]{predator,prey};var positions=new[]{design.Hunter,design.Prey};
+            var newProof=new Func<bool>[2];bool success=false;
+            bool NewState()=>newProof.Where(p=>p!=null).All(p=>p());
+            try
+            {
+                for(int i=0;i<originals.Length;i++)
+                {
+                    if(!authority()||!Owned()||!Others())return false;
+                    if(!zone.RemoveEntity(originals[i]))return false;removed.Add(originals[i]);
+                    if(!authority()||!Owned()||!Others())return false;
+                }
+                for(int i=0;i<newOwners.Length;i++)
+                {
+                    if(!authority()||!Owned()||!Others()||!NewState()||!new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>()).Place(positions[i].x,positions[i].y))return false;
+                    if(!zone.AddEntity(newOwners[i],positions[i].x,positions[i].y))return false;added.Add(newOwners[i]);
+                    newProof[i]=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{newOwners[i]});
+                    if(!authority()||!Owned()||!Others()||!NewState())return false;
+                }
+                if(!predator.GetPart<SpreadPredatorPart>().Configure(zone,prey))return false;
+                for(int i=0;i<newOwners.Length;i++)newProof[i]=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{newOwners[i]});
+                var packet=SpreadGenerationReceipt.CaptureFinalState(zone,newOwners.Concat(design.Tree==null?Array.Empty<Entity>():new[]{design.Tree}));
+                bool Final()=>authority()&&Provenance()&&packet()&&detached.All(p=>p())
+                    &&design.Fits(zone,new HashSet<Entity>(newOwners),before);
+                if(!Final()||!Owned()||!Others())return false;
+                hunter=predator;grazer=prey;finalState=Final;success=true;return true;
+            }
+            finally
+            {
+                if(!success)
+                {
+                    // Never reclaim a callback-changed, moved, replaced or
+                    // transferred owner. The caller rejects such a cold graph.
+                    for(int i=1;i>=0;i--)if(added.Contains(newOwners[i])&&newProof[i]?.Invoke()==true)zone.RemoveEntity(newOwners[i]);
+                    for(int i=originals.Length-1;i>=0;i--)if(removed.Contains(originals[i])&&detached[i]()
+                        &&new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>()).Place(originalAt[i].x,originalAt[i].y))
+                        zone.AddEntity(originals[i],originalAt[i].x,originalAt[i].y);
+                }
+            }
+        }
+        sealed class Design
+        {
+            internal Entity Tree;internal (int x,int y) Hunter,Prey,End,Direction;
+            internal bool Fits(Zone zone,HashSet<Entity> ignored,SpreadWildernessSituationBuilder.Geometry original)
+            {
+                var g=new SpreadWildernessSituationBuilder.Geometry(zone,ignored);
+                if(!Interior(Hunter)||!Interior(Prey)||!g.Place(Hunter.x,Hunter.y)||!g.Place(Prey.x,Prey.y)
+                    ||Distance(Hunter,Prey)!=InitialGap||!AIHelpers.HasLineOfSight(zone,Hunter.x,Hunter.y,Prey.x,Prey.y))return false;
+                if(Tree!=null)
+                {if(!EligibleTree(zone,Tree)||!Escape(zone,g,Hunter,Prey,Tree,out var end)||end!=End)return false;}
+                else for(int n=0;n<=4;n++)
+                {var p=(x:Prey.x+n*Direction.x,y:Prey.y+n*Direction.y);if(!Interior(p)||!g.Walk(p.x,p.y,null)||!AIHelpers.HasLineOfSight(zone,Hunter.x,Hunter.y,p.x,p.y))return false;}
+                return g.PreservesAgainst(original,new[]{Hunter,Prey})&&Bypass(zone,g,Hunter,Prey);
+            }
+        }
+        static Design Find(Zone zone,SpreadCompositionBuilder terrain,EntityFactory factory,bool covered,HashSet<Entity> ignored,SpreadWildernessSituationBuilder.Geometry original,(int x,int y) sourceAnchor)
+        {
+            var g=new SpreadWildernessSituationBuilder.Geometry(zone,ignored);int trials=0;
+            if(covered)
+            {
+                var trees=terrain.CoverSources.Where(r=>r.Zone==zone&&r.Factory==factory&&r.IsCurrent&&r.Owners.Count==1&&EligibleTree(zone,r.Owners[0])&&Interior(zone.GetEntityPosition(r.Owners[0])))
+                    .Select(r=>r.Owners[0]).OrderBy(e=>zone.GetEntityPosition(e).y).ThenBy(e=>zone.GetEntityPosition(e).x).Take(MaxTrees);
+                foreach(var tree in trees)
+                {
+                    var at=zone.GetEntityPosition(tree);
+                    for(int radius=1;radius<=2;radius++)for(int y=at.y-radius;y<=at.y+radius;y++)for(int x=at.x-radius;x<=at.x+radius;x++)
+                    {
+                        var prey=(x:x,y:y);if(Distance(at,prey)!=radius||!Interior(prey)||!g.Place(x,y))continue;
+                        foreach(var d in Directions)
+                        {
+                            var hunter=(x:x+InitialGap*d.x,y:y+InitialGap*d.y);
+                            if(!Interior(hunter)||!g.Place(hunter.x,hunter.y)||!AIHelpers.HasLineOfSight(zone,hunter.x,hunter.y,x,y))continue;
+                            if(++trials>MaxTrials)return null;
+                            if(!Escape(zone,g,hunter,prey,tree,out var end))continue;
+                            var design=new Design{Tree=tree,Hunter=hunter,Prey=prey,End=end};if(design.Fits(zone,ignored,original))return design;
+                        }
+                    }
+                }
+            }
+            else foreach(var hunter in from y in Enumerable.Range(4,Zone.Height-8) from x in Enumerable.Range(4,Zone.Width-8)
+                orderby Distance(sourceAnchor,(x,y)),y,x select(x:x,y:y))
+            {
+                int x=hunter.x,y=hunter.y;if(!g.Place(x,y))continue;
+                foreach(var d in Directions)
+                {
+                    var prey=(x:x+InitialGap*d.x,y:y+InitialGap*d.y);if(!Interior(prey)||!g.Place(prey.x,prey.y))continue;
+                    bool lane=true;for(int n=0;n<=4;n++){var at=(x:prey.x+n*d.x,y:prey.y+n*d.y);if(!Interior(at)||!g.Walk(at.x,at.y,null)||!AIHelpers.HasLineOfSight(zone,x,y,at.x,at.y)){lane=false;break;}}
+                    if(!lane)continue;if(++trials>MaxTrials)return null;
+                    var design=new Design{Hunter=hunter,Prey=prey,Direction=d};if(design.Fits(zone,ignored,original))return design;
+                }
+            }
+            return null;
+        }
+        static bool Escape(Zone z,SpreadWildernessSituationBuilder.Geometry g,(int x,int y) hunter,(int x,int y) prey,Entity tree,out (int x,int y) end)
+        {
+            end=(-1,-1);var blocked=new HashSet<(int x,int y)>{hunter};var seen=new HashSet<(int x,int y)>{prey};var q=new Queue<((int x,int y)p,int n)>();q.Enqueue((prey,0));
+            while(q.Count>0)
+            {
+                var item=q.Dequeue();var p=item.p;
+                if(item.n>=1&&Distance(hunter,p)>=InitialGap&&!AIHelpers.HasLineOfSight(z,hunter.x,hunter.y,p.x,p.y)&&SightWithout(z,hunter,p,tree)){end=p;return true;}
+                if(item.n==4)continue;
+                foreach(var d in Directions){var next=(x:p.x+d.x,y:p.y+d.y);if(Distance(prey,next)>4||Distance(hunter,next)<InitialGap-1||!g.Walk(next.x,next.y,blocked)||!seen.Add(next))continue;q.Enqueue((next,item.n+1));}
+            }
+            return false;
+        }
+        static bool Bypass(Zone z,SpreadWildernessSituationBuilder.Geometry g,(int x,int y) hunter,(int x,int y) prey)
+        {
+            var blocked=new HashSet<(int x,int y)>{hunter,prey};
+            bool Cross(bool vertical)
+            {
+                var seen=new bool[Zone.Width,Zone.Height];var q=new Queue<(int x,int y)>();
+                void Add(int x,int y){if(!g.In(x,y)||seen[x,y]||!g.Walk(x,y,blocked)||(Distance(hunter,(x,y))<=8&&AIHelpers.HasLineOfSight(z,hunter.x,hunter.y,x,y)))return;seen[x,y]=true;q.Enqueue((x,y));}
+                if(vertical){for(int x=0;x<Zone.Width;x++)Add(x,0);}else for(int y=0;y<Zone.Height;y++)Add(0,y);
+                while(q.Count>0){var p=q.Dequeue();if(vertical?p.y==Zone.Height-1:p.x==Zone.Width-1)return true;foreach(var d in Directions)Add(p.x+d.x,p.y+d.y);}return false;
+            }
+            return Cross(false)||Cross(true);
+        }
+        static bool SightWithout(Zone z,(int x,int y)a,(int x,int y)b,Entity ignored)
+        {
+            int dx=Math.Abs(b.x-a.x),dy=Math.Abs(b.y-a.y),sx=a.x<b.x?1:-1,sy=a.y<b.y?1:-1,err=dx-dy,x=a.x,y=a.y;
+            while(x!=b.x||y!=b.y)
+            {
+                int e2=2*err;if(e2>-dy){err-=dy;x+=sx;}if(e2<dx){err+=dx;y+=sy;}if(x==b.x&&y==b.y)break;
+                var c=z.GetCell(x,y);if(c!=null&&(MorrowfastSceneRuntime.BlockingOwner(c)!=null||z.TileState.ObscuresSight(x,y)
+                    ||c.Occupants.Any(e=>e!=ignored&&(e.HasTag("Solid")||e.GetPart<DoorPart>()?.IsClosed==true||e.GetPart<SealedLibraryBarrierPart>()?.IsClosed==true))))return false;
+            }
+            return true;
+        }
+    }
+}

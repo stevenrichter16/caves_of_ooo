@@ -27,6 +27,8 @@ namespace CavesOfOoo.Core
             // acquisition. Higher goals (Calm, work, follow, combat) still win.
             var territory = ParentEntity.GetPart<SpreadTerritoryPart>();
             if (territory != null && territory.TakeIdleAction(ParentBrain, CurrentZone)) return;
+            var hunter = ParentEntity.GetPart<SpreadPredatorPart>();
+            if (hunter != null && hunter.TakeIdleAction(ParentBrain, CurrentZone)) return;
             var grazer = ParentEntity.GetPart<SpreadGrazerPart>();
             if (grazer != null && grazer.TakeIdleAction(ParentBrain, CurrentZone)) return;
 

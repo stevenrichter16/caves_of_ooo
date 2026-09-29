@@ -71,6 +71,7 @@ namespace CavesOfOoo.Rendering
             ?? (SpreadRareMarlbackLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadRareMarlbackLibrary>(load, SpreadRareMarlbackLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadLatchcoilLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadLatchcoilLibrary>(load, SpreadLatchcoilLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadCollectorArtLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadCollectorArtLibrary>(load, SpreadCollectorArtLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (FurrowstalkerLibrary.Blueprint(modelId)!=null ? LoadExtension<FurrowstalkerLibrary>(load, FurrowstalkerLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (QuestFreeSpreadArtLibrary.Blueprint(modelId)!=null ? LoadExtension<QuestFreeSpreadArtLibrary>(load, QuestFreeSpreadArtLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadFieldGate3DLibrary.IsModelId(modelId) ? LoadExtension<SpreadFieldGate3DLibrary>(load, SpreadFieldGate3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadCooking3DLibrary.IsModelId(modelId) ? LoadExtension<SpreadCooking3DLibrary>(load, SpreadCooking3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)

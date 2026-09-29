@@ -1,0 +1,265 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 28,
+    "passed": 26,
+    "failed": 2,
+    "skipped": 0,
+    "durationSeconds": 3.5438105,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "AllocationCounterCalibratesEmptySingleAndMultipleAllocations",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.AllocationCounterCalibratesEmptySingleAndMultipleAllocations",
+      "state": "Passed",
+      "durationSeconds": 0.1921267,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\nnative GC.Alloc events: empty=0, single=1, multiple=5\n"
+    },
+    {
+      "name": "HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave(False)",
+      "state": "Passed",
+      "durationSeconds": 0.1230581,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave(True)",
+      "state": "Passed",
+      "durationSeconds": 0.3376013,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "IndexedPacingAdmissionStillRequiresParentOnCurrentStack(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.IndexedPacingAdmissionStillRequiresParentOnCurrentStack(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0718926,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "IndexedPacingAdmissionStillRequiresParentOnCurrentStack(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.IndexedPacingAdmissionStillRequiresParentOnCurrentStack(True)",
+      "state": "Passed",
+      "durationSeconds": 0.0896778,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MovementCallbackReentryMatchesSequentialSearch(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.MovementCallbackReentryMatchesSequentialSearch(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0567215,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "MovementCallbackReentryMatchesSequentialSearch(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.MovementCallbackReentryMatchesSequentialSearch(True)",
+      "state": "Passed",
+      "durationSeconds": 0.089036,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers(False)",
+      "state": "Passed",
+      "durationSeconds": 0.1211359,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers(True)",
+      "state": "Passed",
+      "durationSeconds": 0.1160244,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ReusedSearchPreservesRouteAndRespondsToChangedBlocker(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.ReusedSearchPreservesRouteAndRespondsToChangedBlocker(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0808687,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ReusedSearchPreservesRouteAndRespondsToChangedBlocker(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.ReusedSearchPreservesRouteAndRespondsToChangedBlocker(True)",
+      "state": "Passed",
+      "durationSeconds": 0.0897702,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "TwoGrazersKeepIndependentSearchAndState",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.TwoGrazersKeepIndependentSearchAndState",
+      "state": "Passed",
+      "durationSeconds": 0.0918731,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "WarmedFlightStepAvoidsRecurringSearchAllocations(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepAvoidsRecurringSearchAllocations(False)",
+      "state": "Passed",
+      "durationSeconds": 0.1206916,
+      "message": null,
+      "stackTrace": null,
+      "output": "[FactionLoader] Loaded 14 factions.\nnative GC.Alloc events: empty=0, single=1, multiple=5\nnative GC.Alloc events: pacing=False, worst=3, limit=4\n"
+    },
+    {
+      "name": "WarmedFlightStepAvoidsRecurringSearchAllocations(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepAvoidsRecurringSearchAllocations(True)",
+      "state": "Failed",
+      "durationSeconds": 0.1395648,
+      "message": "  Warmed actual flight must not recreate its bounded search collections per action. native GC.Alloc events; diagnostics and setup are outside the measured call.\n  Expected: less than or equal to 4\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepAvoidsRecurringSearchAllocations (System.Boolean pacing) [0x00134] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadHuntAllocationTests.cs:138\n",
+      "output": "[FactionLoader] Loaded 14 factions.\nnative GC.Alloc events: empty=0, single=1, multiple=5\nnative GC.Alloc events: pacing=True, worst=5, limit=4\n"
+    },
+    {
+      "name": "RepeatedBoundsValidationDoesNotAllocateOrBoxItsPhase",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.RepeatedBoundsValidationDoesNotAllocateOrBoxItsPhase",
+      "state": "Failed",
+      "durationSeconds": 0.009239,
+      "message": "  Validation of the finite saved phase must not allocate each time a hunter/grazer checks its current pair.\n  Expected: 0\n  But was:  2\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.RepeatedBoundsValidationDoesNotAllocateOrBoxItsPhase () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/SpreadHuntPhaseValidationTests.cs:66\n",
+      "output": "Repeated phase validation allocation amount=2 (native events / private bytes).\n"
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(0,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(0,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0027739,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(1,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(1,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0038145,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(2,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(2,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0037608,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(3,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(3,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0036533,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(4,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(4,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0037058,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(5,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(5,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0036425,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(6,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(6,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0037841,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(7,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(7,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0038118,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(8,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(8,True)",
+      "state": "Passed",
+      "durationSeconds": 0.003825,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(-1,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(-1,False)",
+      "state": "Passed",
+      "durationSeconds": 0.0037844,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(9,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(9,False)",
+      "state": "Passed",
+      "durationSeconds": 0.0038164,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(int.MinValue,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(int.MinValue,False)",
+      "state": "Passed",
+      "durationSeconds": 0.0038187,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(int.MaxValue,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(int.MaxValue,False)",
+      "state": "Passed",
+      "durationSeconds": 0.0039143,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    }
+  ]
+}

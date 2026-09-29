@@ -9,13 +9,14 @@ namespace CavesOfOoo.Core
  /// runs only in the captured cold attempt; graph attachment never rebuilds it.</summary>
  public sealed class SpreadExplorationBuilder:IZoneBuilder
  {
-  public string Name=>"SpreadExploration";public int Priority=>4300;
+  public string Name=>"SpreadExploration";public int Priority{get;}
   public string LastResult{get;private set;}="";
   readonly OverworldZoneManager manager;readonly SpreadExplorationPlan plan;
   readonly SpreadCompositionBuilder terrain;readonly PopulationBuilder population;readonly ContainerBuilder containers;readonly HaulablePropBuilder haul;
   const int MaxTrials=256;
-  public SpreadExplorationBuilder(OverworldZoneManager manager,SpreadCompositionBuilder terrain,PopulationBuilder population,ContainerBuilder containers,HaulablePropBuilder haul=null)
+  public SpreadExplorationBuilder(OverworldZoneManager manager,SpreadCompositionBuilder terrain,PopulationBuilder population,ContainerBuilder containers,HaulablePropBuilder haul=null,bool earlyHunt=false)
   {
+   Priority=earlyHunt?4001:4300;
    this.manager=manager;plan=manager?.Exploration;this.terrain=terrain;this.population=population;this.containers=containers;this.haul=haul;
    if(population!=null){population.CaptureSourceReceipts=true;population.ExplorationManager=manager;}
    if(containers!=null)containers.CaptureSourceReceipts=true;
@@ -40,8 +41,20 @@ namespace CavesOfOoo.Core
     case SpreadExplorationFamily.FieldPassage:return Passage(zone,factory,entry);
     case SpreadExplorationFamily.CoolingWorkPatch:return Cooking(zone,factory,entry);
     case SpreadExplorationFamily.HeavySalvage:return Hauling(zone,factory,entry);
+    case SpreadExplorationFamily.HuntThroughCover:return Hunt(zone,factory,entry);
     default:return Refuse(zone,entry,"unsupported-family");
    }
+  }
+  bool Hunt(Zone z,EntityFactory f,SpreadExplorationEntry entry)
+  {
+   if(Priority!=4001||terrain.Plan.Formation!=Formation.Fallow||!terrain.CaptureCoverSources)return Refuse(z,entry,"hunt-source-boundary");
+   var owners=new HashSet<Entity>(z.GetReadOnlyEntities());
+   var original=SpreadGenerationReceipt.CaptureFinalState(z,owners.Where(e=>!DoorPart.IsBareGround(e)));
+   bool covered=SpreadExplorationPlan.Rank(manager.WorldSeed,z.ZoneID,"hunt-variant")%2==0;
+   if(SpreadExplorationHunt.TryPlace(z,f,terrain,population,covered,()=>Current(z,f,entry),out var hunter,out var grazer,out var final))
+    return Commit(z,f,entry,new[]{hunter,grazer},final);
+   if(!Current(z,f,entry)||!original()||!owners.SetEquals(z.GetReadOnlyEntities()))return false;
+   return Refuse(z,entry,"no-original-pair-or-useful-hunt-layout");
   }
   bool Hauling(Zone z,EntityFactory f,SpreadExplorationEntry entry)
   {

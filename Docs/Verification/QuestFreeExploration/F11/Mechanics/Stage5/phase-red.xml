@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="373" result="Failed" start-time="2026-09-29T07:22:48.0738950Z" end-time="2026-09-29T07:22:48.1003930Z" duration="0.026483" total="14" passed="13" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="53" random-seed="1985741732">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "class =~ /SpreadHuntPhaseValidationTests/" --result=phase-red.xml]]></command-line>
+  <filter>
+    <class re="1">SpreadHuntPhaseValidationTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1433" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="373" result="Failed" site="Child" start-time="2026-09-29T07:22:48.0738950Z" end-time="2026-09-29T07:22:48.1003930Z" duration="0.026483" total="14" passed="13" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="53">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5" />
+    </settings>
+    <properties>
+      <property name="_PID" value="53781" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1434" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="373" result="Failed" site="Child" start-time="2026-09-29T07:22:48.0754070Z" end-time="2026-09-29T07:22:48.1003890Z" duration="0.024982" total="14" passed="13" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="53">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1435" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="373" result="Failed" site="Child" start-time="2026-09-29T07:22:48.0755190Z" end-time="2026-09-29T07:22:48.1003730Z" duration="0.024854" total="14" passed="13" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="53">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1417" name="SpreadHuntPhaseValidationTests" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-09-29T07:22:48.0758360Z" end-time="2026-09-29T07:22:48.1003460Z" duration="0.024510" total="14" passed="13" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="53">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1432" name="RepeatedBoundsValidationDoesNotAllocateOrBoxItsPhase" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.RepeatedBoundsValidationDoesNotAllocateOrBoxItsPhase" methodname="RepeatedBoundsValidationDoesNotAllocateOrBoxItsPhase" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="1024226174" result="Failed" start-time="2026-09-29T07:22:48.0766750Z" end-time="2026-09-29T07:22:48.0948470Z" duration="0.018201" asserts="1">
+            <failure>
+              <message><![CDATA[  Validation of the finite saved phase must not allocate each time a hunter/grazer checks its current pair.
+  Expected: 0
+  But was:  24
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.RepeatedBoundsValidationDoesNotAllocateOrBoxItsPhase() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5/SpreadHuntPhaseValidationTests.cs:line 66
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[Repeated phase validation allocation amount=24 (native events / private bytes).
+]]></output>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Validation of the finite saved phase must not allocate each time a hunter/grazer checks its current pair.
+  Expected: 0
+  But was:  24
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.RepeatedBoundsValidationDoesNotAllocateOrBoxItsPhase() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5/SpreadHuntPhaseValidationTests.cs:line 66
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1431" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-09-29T07:22:48.0953740Z" end-time="2026-09-29T07:22:48.1001400Z" duration="0.004766" total="13" passed="13" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="52">
+            <test-case id="1418" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(0,True)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(0,True)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="2136987548" result="Passed" start-time="2026-09-29T07:22:48.0954460Z" end-time="2026-09-29T07:22:48.0966440Z" duration="0.001198" asserts="4" />
+            <test-case id="1419" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(1,True)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(1,True)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="2019367404" result="Passed" start-time="2026-09-29T07:22:48.0966640Z" end-time="2026-09-29T07:22:48.0986310Z" duration="0.001967" asserts="4" />
+            <test-case id="1420" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(2,True)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(2,True)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="1020136553" result="Passed" start-time="2026-09-29T07:22:48.0986480Z" end-time="2026-09-29T07:22:48.0988360Z" duration="0.000187" asserts="4" />
+            <test-case id="1421" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(3,True)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(3,True)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="1440163248" result="Passed" start-time="2026-09-29T07:22:48.0988520Z" end-time="2026-09-29T07:22:48.0989250Z" duration="0.000073" asserts="4" />
+            <test-case id="1422" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(4,True)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(4,True)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="973849378" result="Passed" start-time="2026-09-29T07:22:48.0989630Z" end-time="2026-09-29T07:22:48.0990310Z" duration="0.000068" asserts="4" />
+            <test-case id="1423" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(5,True)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(5,True)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="1710670076" result="Passed" start-time="2026-09-29T07:22:48.0990500Z" end-time="2026-09-29T07:22:48.0992060Z" duration="0.000156" asserts="4" />
+            <test-case id="1424" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(6,True)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(6,True)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="752460603" result="Passed" start-time="2026-09-29T07:22:48.0992170Z" end-time="2026-09-29T07:22:48.0993020Z" duration="0.000085" asserts="4" />
+            <test-case id="1425" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(7,True)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(7,True)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="280294255" result="Passed" start-time="2026-09-29T07:22:48.0993200Z" end-time="2026-09-29T07:22:48.0993930Z" duration="0.000073" asserts="4" />
+            <test-case id="1426" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(8,True)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(8,True)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="109826146" result="Passed" start-time="2026-09-29T07:22:48.0994080Z" end-time="2026-09-29T07:22:48.0994810Z" duration="0.000072" asserts="4" />
+            <test-case id="1427" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(-1,False)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(-1,False)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="1559160972" result="Passed" start-time="2026-09-29T07:22:48.0994950Z" end-time="2026-09-29T07:22:48.0995630Z" duration="0.000068" asserts="4" />
+            <test-case id="1428" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(9,False)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(9,False)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="85632159" result="Passed" start-time="2026-09-29T07:22:48.0995780Z" end-time="2026-09-29T07:22:48.0996460Z" duration="0.000069" asserts="4" />
+            <test-case id="1429" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(int.MinValue,False)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(int.MinValue,False)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="2052136665" result="Passed" start-time="2026-09-29T07:22:48.0996610Z" end-time="2026-09-29T07:22:48.0997300Z" duration="0.000069" asserts="4" />
+            <test-case id="1430" name="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(int.MaxValue,False)" fullname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues(int.MaxValue,False)" methodname="SavedBoundsRecognizeEveryDefinedPhaseAndRejectMalformedValues" classname="CavesOfOoo.Tests.SpreadHuntPhaseValidationTests" runstate="Runnable" seed="953372330" result="Passed" start-time="2026-09-29T07:22:48.0997430Z" end-time="2026-09-29T07:22:48.0998100Z" duration="0.000066" asserts="4" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

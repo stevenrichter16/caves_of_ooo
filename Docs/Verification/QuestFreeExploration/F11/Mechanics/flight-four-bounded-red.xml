@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="105" result="Failed" start-time="2026-09-29T04:48:44.1990720Z" end-time="2026-09-29T04:48:44.3727270Z" duration="0.173640" total="4" passed="0" failed="4" inconclusive="0" skipped="0" warnings="0" asserts="25" random-seed="2090906688">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/flight-four-bounded-red.xml --where "method =~ /InvalidSavedFlight/"]]></command-line>
+  <filter>
+    <method re="1">InvalidSavedFlight</method>
+  </filter>
+  <test-suite type="Assembly" id="1126" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="105" result="Failed" site="Child" start-time="2026-09-29T04:48:44.1990720Z" end-time="2026-09-29T04:48:44.3727270Z" duration="0.173640" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="25">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="23605" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1127" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="105" result="Failed" site="Child" start-time="2026-09-29T04:48:44.2005400Z" end-time="2026-09-29T04:48:44.3727260Z" duration="0.172184" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="25">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1128" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="105" result="Failed" site="Child" start-time="2026-09-29T04:48:44.2006410Z" end-time="2026-09-29T04:48:44.3727230Z" duration="0.172081" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="25">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadPredatorStage1Tests" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-09-29T04:48:44.2009570Z" end-time="2026-09-29T04:48:44.3727100Z" duration="0.171751" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="25">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1060" name="InvalidSavedFlightMemoryIsSpentWithoutMotion" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-29T04:48:44.2017730Z" end-time="2026-09-29T04:48:44.3724880Z" duration="0.170713" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="25">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1056" name="InvalidSavedFlightMemoryIsSpentWithoutMotion(4,10,10)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(4,10,10)" methodname="InvalidSavedFlightMemoryIsSpentWithoutMotion" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1467576263" result="Failed" start-time="2026-09-29T04:48:44.2018460Z" end-time="2026-09-29T04:48:44.3093640Z" duration="0.107541" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: (14, 10)
+  But was:  (15, 9)
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Int32 remaining, Int32 x, Int32 y) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorStage1Tests.cs:line 67
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: (14, 10)
+  But was:  (15, 9)
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Int32 remaining, Int32 x, Int32 y) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorStage1Tests.cs:line 67
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1057" name="InvalidSavedFlightMemoryIsSpentWithoutMotion(-1,10,10)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(-1,10,10)" methodname="InvalidSavedFlightMemoryIsSpentWithoutMotion" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1437361951" result="Failed" start-time="2026-09-29T04:48:44.3099250Z" end-time="2026-09-29T04:48:44.3311390Z" duration="0.021213" asserts="7">
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  -1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Int32 remaining, Int32 x, Int32 y) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorStage1Tests.cs:line 67
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 0
+  But was:  -1
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Int32 remaining, Int32 x, Int32 y) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorStage1Tests.cs:line 67
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1058" name="InvalidSavedFlightMemoryIsSpentWithoutMotion(2,-1,10)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(2,-1,10)" methodname="InvalidSavedFlightMemoryIsSpentWithoutMotion" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="976626266" result="Failed" start-time="2026-09-29T04:48:44.3311780Z" end-time="2026-09-29T04:48:44.3507380Z" duration="0.019561" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: (14, 10)
+  But was:  (15, 9)
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Int32 remaining, Int32 x, Int32 y) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorStage1Tests.cs:line 67
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: (14, 10)
+  But was:  (15, 9)
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Int32 remaining, Int32 x, Int32 y) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorStage1Tests.cs:line 67
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1059" name="InvalidSavedFlightMemoryIsSpentWithoutMotion(2,10,25)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(2,10,25)" methodname="InvalidSavedFlightMemoryIsSpentWithoutMotion" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1413058905" result="Failed" start-time="2026-09-29T04:48:44.3507720Z" end-time="2026-09-29T04:48:44.3720520Z" duration="0.021279" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: (14, 10)
+  But was:  (13, 9)
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Int32 remaining, Int32 x, Int32 y) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorStage1Tests.cs:line 67
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: (14, 10)
+  But was:  (13, 9)
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Int32 remaining, Int32 x, Int32 y) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorStage1Tests.cs:line 67
+   at InvokeStub_SpreadPredatorStage1Tests.InvalidSavedFlightMemoryIsSpentWithoutMotion(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner-baseline/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="27" result="Failed" start-time="2026-09-29T05:14:01.2635490Z" end-time="2026-09-29T05:14:01.4910710Z" duration="0.227505" total="3" passed="2" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="26" random-seed="36473265">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner-baseline/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "test =~ /GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances/" --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/wayhouse-baseline.xml]]></command-line>
+  <filter>
+    <test re="1">GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances</test>
+  </filter>
+  <test-suite type="Assembly" id="1034" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner-baseline/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="27" result="Failed" site="Child" start-time="2026-09-29T05:14:01.2635490Z" end-time="2026-09-29T05:14:01.4910710Z" duration="0.227505" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="26">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="29326" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1035" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="27" result="Failed" site="Child" start-time="2026-09-29T05:14:01.2649910Z" end-time="2026-09-29T05:14:01.4910700Z" duration="0.226075" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="26">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1036" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="27" result="Failed" site="Child" start-time="2026-09-29T05:14:01.2650900Z" end-time="2026-09-29T05:14:01.4910670Z" duration="0.225974" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="26">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1019" name="SpreadWayhouseTests" fullname="CavesOfOoo.Tests.SpreadWayhouseTests" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-09-29T05:14:01.2654130Z" end-time="2026-09-29T05:14:01.4910520Z" duration="0.225635" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="26">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1023" name="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-29T05:14:01.2661860Z" end-time="2026-09-29T05:14:01.4908690Z" duration="0.224679" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="26">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1020" name="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(1)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(1)" methodname="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="286140406" result="Passed" start-time="2026-09-29T05:14:01.2662560Z" end-time="2026-09-29T05:14:01.4025750Z" duration="0.136340" asserts="12" />
+            <test-case id="1021" name="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(64)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(64)" methodname="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="821707006" result="Passed" start-time="2026-09-29T05:14:01.4031940Z" end-time="2026-09-29T05:14:01.4469520Z" duration="0.043757" asserts="12" />
+            <test-case id="1022" name="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(1729)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(1729)" methodname="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="1040614160" result="Failed" start-time="2026-09-29T05:14:01.4469800Z" end-time="2026-09-29T05:14:01.4905040Z" duration="0.043523" asserts="2">
+              <failure>
+                <message><![CDATA[  The selected native zone must admit a real complete expedition.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs:line 20
+   at InvokeStub_SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The selected native zone must admit a real complete expedition.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs:line 20
+   at InvokeStub_SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

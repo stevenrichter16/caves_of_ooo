@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="66" result="Failed" start-time="2026-09-29T04:36:38.8725920Z" end-time="2026-09-29T04:36:39.1302300Z" duration="0.257622" total="9" passed="1" failed="8" inconclusive="0" skipped="0" warnings="0" asserts="56" random-seed="1296438923">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/saved-bounds-red.xml --where "method =~ /MalformedSavedBounds|UnknownSavedPhase/"]]></command-line>
+  <filter>
+    <method re="1">MalformedSavedBounds|UnknownSavedPhase</method>
+  </filter>
+  <test-suite type="Assembly" id="1078" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="66" result="Failed" site="Child" start-time="2026-09-29T04:36:38.8725920Z" end-time="2026-09-29T04:36:39.1302300Z" duration="0.257622" total="9" passed="1" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="56">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="20343" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1079" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="66" result="Failed" site="Child" start-time="2026-09-29T04:36:38.8740500Z" end-time="2026-09-29T04:36:39.1302280Z" duration="0.256176" total="9" passed="1" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="56">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1080" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="66" result="Failed" site="Child" start-time="2026-09-29T04:36:38.8741570Z" end-time="2026-09-29T04:36:39.1302260Z" duration="0.256067" total="9" passed="1" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="56">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadPredatorStage1Tests" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="41" result="Failed" site="Child" start-time="2026-09-29T04:36:38.8744760Z" end-time="2026-09-29T04:36:39.1302110Z" duration="0.255733" total="9" passed="1" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="56">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1047" name="MalformedSavedBoundsAbortWithoutAction" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-29T04:36:38.8753160Z" end-time="2026-09-29T04:36:39.1117650Z" duration="0.236448" total="8" passed="1" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="50">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1039" name="MalformedSavedBoundsAbortWithoutAction(&quot;PursuitRemaining&quot;,25)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(&quot;PursuitRemaining&quot;,25)" methodname="MalformedSavedBoundsAbortWithoutAction" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="178132280" result="Failed" start-time="2026-09-29T04:36:38.8753900Z" end-time="2026-09-29T04:36:38.9785650Z" duration="0.103199" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1040" name="MalformedSavedBoundsAbortWithoutAction(&quot;PursuitRemaining&quot;,-1)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(&quot;PursuitRemaining&quot;,-1)" methodname="MalformedSavedBoundsAbortWithoutAction" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1416024875" result="Failed" start-time="2026-09-29T04:36:38.9791510Z" end-time="2026-09-29T04:36:38.9995100Z" duration="0.020359" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 9. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Exhausted"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+   at InvokeStub_SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 9. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Exhausted"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+   at InvokeStub_SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1041" name="MalformedSavedBoundsAbortWithoutAction(&quot;SearchRemaining&quot;,7)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(&quot;SearchRemaining&quot;,7)" methodname="MalformedSavedBoundsAbortWithoutAction" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="1123707679" result="Failed" start-time="2026-09-29T04:36:38.9995450Z" end-time="2026-09-29T04:36:39.0194620Z" duration="0.019918" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+   at InvokeStub_SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+   at InvokeStub_SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1042" name="MalformedSavedBoundsAbortWithoutAction(&quot;SearchRemaining&quot;,-1)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(&quot;SearchRemaining&quot;,-1)" methodname="MalformedSavedBoundsAbortWithoutAction" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="651099424" result="Failed" start-time="2026-09-29T04:36:39.0194870Z" end-time="2026-09-29T04:36:39.0376570Z" duration="0.018170" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+   at InvokeStub_SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+   at InvokeStub_SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1043" name="MalformedSavedBoundsAbortWithoutAction(&quot;HomeX&quot;,-1)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(&quot;HomeX&quot;,-1)" methodname="MalformedSavedBoundsAbortWithoutAction" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="503390038" result="Failed" start-time="2026-09-29T04:36:39.0376820Z" end-time="2026-09-29T04:36:39.0564570Z" duration="0.018775" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+   at InvokeStub_SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+   at InvokeStub_SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1044" name="MalformedSavedBoundsAbortWithoutAction(&quot;HomeY&quot;,25)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(&quot;HomeY&quot;,25)" methodname="MalformedSavedBoundsAbortWithoutAction" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="2083786938" result="Passed" start-time="2026-09-29T04:36:39.0564780Z" end-time="2026-09-29T04:36:39.0753310Z" duration="0.018852" asserts="8" />
+            <test-case id="1045" name="MalformedSavedBoundsAbortWithoutAction(&quot;LastSeenX&quot;,80)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(&quot;LastSeenX&quot;,80)" methodname="MalformedSavedBoundsAbortWithoutAction" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="903398487" result="Failed" start-time="2026-09-29T04:36:39.0753530Z" end-time="2026-09-29T04:36:39.0936710Z" duration="0.018318" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+   at InvokeStub_SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+   at InvokeStub_SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1046" name="MalformedSavedBoundsAbortWithoutAction(&quot;LastSeenY&quot;,-1)" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(&quot;LastSeenY&quot;,-1)" methodname="MalformedSavedBoundsAbortWithoutAction" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="90360990" result="Failed" start-time="2026-09-29T04:36:39.0936960Z" end-time="2026-09-29T04:36:39.1113330Z" duration="0.017637" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+   at InvokeStub_SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(String field, Int32 value) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 47
+   at InvokeStub_SpreadPredatorStage1Tests.MalformedSavedBoundsAbortWithoutAction(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1048" name="UnknownSavedPhaseAbortsWithoutAction" fullname="CavesOfOoo.Tests.SpreadPredatorStage1Tests.UnknownSavedPhaseAbortsWithoutAction" methodname="UnknownSavedPhaseAbortsWithoutAction" classname="CavesOfOoo.Tests.SpreadPredatorStage1Tests" runstate="Runnable" seed="579239203" result="Failed" start-time="2026-09-29T04:36:39.1119770Z" end-time="2026-09-29T04:36:39.1301670Z" duration="0.018190" asserts="6">
+            <failure>
+              <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.UnknownSavedPhaseAbortsWithoutAction() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 48
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected string length 7 but was 8. Strings differ at index 0.
+  Expected: "Aborted"
+  But was:  "Pursuing"
+  -----------^
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorStage1Tests.UnknownSavedPhaseAbortsWithoutAction() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage1/SpreadPredatorStage1Tests.cs:line 48
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

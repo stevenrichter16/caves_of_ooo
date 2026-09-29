@@ -1,0 +1,11 @@
+# F11 shaken-flight delta review
+
+2026-09-29: **no new significant defect found** in the frozen three-source delta. Exact candidate and base hashes verified against `mechanics-stage3/production-delta-manifest.json`; `inputs.json` pins review inputs. This is a read-only review, not a new execution claim.
+
+`SpreadGrazerPart.TryWanderFlight` requires the exact current reciprocal pair, the executing top step's actual Brain owner, and a whole stack containing only exact Bored/WanderDuration/WanderRandomly types. It refuses conversation, Calm/work/follow/combat ancestry, party-invalid pairs, a hidden hunter and distance beyond3. The narrower entry does not let remembered hidden coordinates take ownership of a pacing step. The existing nearest-threat choice remains authoritative once current visible paired danger admits flight.
+
+`WanderRandomlyGoal.TakeAction` substitutes only that single step, marks it finished and returns without pushing another child or taking the old random step. The existing MovementSystem hook supplies the actual Walk movement cue; no synthetic Attack/Interact is emitted. `WanderDurationGoal` still advances its own tick before executing the child, retains the shaken thought, and performs its normal pop cleanup. `WitnessedEffect` and its exact owned parent goal are neither replaced nor removed by the patch. The scheduled-action, effect-removal and saved replacement pairs are meaningful for those boundaries.
+
+Predator changes are conditional ai diagnostics around actual admission, sight transitions and outcomes. They do not change current body/pose admission, corpse selection, finite feed progress or pause-aware readout. Consumption records the result after removal; no per-turn pacing message or fabricated motion is introduced. Existing two progress gestures remain current-owner actions; terminal consumption emits none.
+
+Parsed retained private receipts: initial24=13RED/11controls, matched24GREEN, final28GREEN, affected336GREEN; actual-reference compile logs are the author's evidence, not rerun by this review. These private results do not prove native effect/animation timing or generated stochastic outcomes. No further source/test expansion recommended from this bounded read; existing native gates remain.

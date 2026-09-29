@@ -14,6 +14,8 @@ namespace CavesOfOoo.Core
     return pool.Volume==0?"The draw point is empty. The surrounding wet ground supplies no further drinks.":"The draw point holds "+pool.Volume+" drink"+(pool.Volume==1?"":"s")+" of water. Drawing it reduces that supply.";
    }
    if(!SpreadActorContext.Actor(owner,zone,out _))return null;
+   var hunt=owner.GetPart<SpreadPredatorPart>()?.DescribeState();
+   if(!string.IsNullOrEmpty(hunt))return hunt;
    var grazer=owner.GetPart<SpreadGrazerPart>();
    if(grazer?.ParentEntity==owner&&grazer.Configured&&grazer.ZoneID==zone.ZoneID)
    {

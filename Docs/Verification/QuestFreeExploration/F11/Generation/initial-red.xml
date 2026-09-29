@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="52" result="Failed" start-time="2026-09-29T04:37:43.5192490Z" end-time="2026-09-29T04:37:43.8506700Z" duration="0.331405" total="21" passed="13" failed="8" inconclusive="0" skipped="0" warnings="0" asserts="7225" random-seed="1843739185">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "class =~ /SpreadHunt(Manifest|Source)Tests/" --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/initial-red.xml]]></command-line>
+  <filter>
+    <class re="1">SpreadHunt(Manifest|Source)Tests</class>
+  </filter>
+  <test-suite type="Assembly" id="1066" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="52" result="Failed" site="Child" start-time="2026-09-29T04:37:43.5192490Z" end-time="2026-09-29T04:37:43.8506700Z" duration="0.331405" total="21" passed="13" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="7225">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="20685" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1067" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="52" result="Failed" site="Child" start-time="2026-09-29T04:37:43.5207040Z" end-time="2026-09-29T04:37:43.8506680Z" duration="0.329961" total="21" passed="13" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="7225">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1068" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="52" result="Failed" site="Child" start-time="2026-09-29T04:37:43.5208120Z" end-time="2026-09-29T04:37:43.8506660Z" duration="0.329852" total="21" passed="13" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="7225">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1040" name="SpreadHuntManifestTests" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" testcasecount="17" result="Failed" site="Child" start-time="2026-09-29T04:37:43.5211290Z" end-time="2026-09-29T04:37:43.7828890Z" duration="0.261757" total="17" passed="13" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="7221">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1041" name="FreshCatalogAppendsHuntAtTwelveAndUsesVersionEight" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.FreshCatalogAppendsHuntAtTwelveAndUsesVersionEight" methodname="FreshCatalogAppendsHuntAtTwelveAndUsesVersionEight" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="593399326" result="Failed" start-time="2026-09-29T04:37:43.5219760Z" end-time="2026-09-29T04:37:43.5362920Z" duration="0.014340" asserts="1">
+            <failure>
+              <message><![CDATA[  Expected: 8
+  But was:  7
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntManifestTests.FreshCatalogAppendsHuntAtTwelveAndUsesVersionEight() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntManifestTests.cs:line 13
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 8
+  But was:  7
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntManifestTests.FreshCatalogAppendsHuntAtTwelveAndUsesVersionEight() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntManifestTests.cs:line 13
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1052" name="FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-29T04:37:43.5368300Z" end-time="2026-09-29T04:37:43.6399240Z" duration="0.103093" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1049" name="FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(1)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(1)" methodname="FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="1938470003" result="Failed" start-time="2026-09-29T04:37:43.5368950Z" end-time="2026-09-29T04:37:43.6020840Z" duration="0.065188" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntManifestTests.cs:line 18
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntManifestTests.cs:line 18
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1050" name="FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(64)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(64)" methodname="FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="1230976418" result="Failed" start-time="2026-09-29T04:37:43.6021140Z" end-time="2026-09-29T04:37:43.6210540Z" duration="0.018940" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntManifestTests.cs:line 18
+   at InvokeStub_SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntManifestTests.cs:line 18
+   at InvokeStub_SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1051" name="FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(1729)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(1729)" methodname="FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="157680543" result="Failed" start-time="2026-09-29T04:37:43.6210710Z" end-time="2026-09-29T04:37:43.6395390Z" duration="0.018468" asserts="2">
+              <failure>
+                <message><![CDATA[  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntManifestTests.cs:line 18
+   at InvokeStub_SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not <empty>
+  But was:  <empty>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(Int32 seed) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntManifestTests.cs:line 18
+   at InvokeStub_SpreadHuntManifestTests.FreshHuntAssignmentsUseOnlyOrdinaryEligibleFallow(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1048" name="LiteralOlderFallowKeepsItsOrdinaryFamily" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.LiteralOlderFallowKeepsItsOrdinaryFamily" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-29T04:37:43.6401340Z" end-time="2026-09-29T04:37:43.6504710Z" duration="0.010337" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="7200">
+            <test-case id="1042" name="LiteralOlderFallowKeepsItsOrdinaryFamily(2)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.LiteralOlderFallowKeepsItsOrdinaryFamily(2)" methodname="LiteralOlderFallowKeepsItsOrdinaryFamily" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="424810896" result="Passed" start-time="2026-09-29T04:37:43.6401500Z" end-time="2026-09-29T04:37:43.6424580Z" duration="0.002308" asserts="1200" />
+            <test-case id="1043" name="LiteralOlderFallowKeepsItsOrdinaryFamily(3)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.LiteralOlderFallowKeepsItsOrdinaryFamily(3)" methodname="LiteralOlderFallowKeepsItsOrdinaryFamily" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="1872095724" result="Passed" start-time="2026-09-29T04:37:43.6424720Z" end-time="2026-09-29T04:37:43.6454540Z" duration="0.002982" asserts="1200" />
+            <test-case id="1044" name="LiteralOlderFallowKeepsItsOrdinaryFamily(4)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.LiteralOlderFallowKeepsItsOrdinaryFamily(4)" methodname="LiteralOlderFallowKeepsItsOrdinaryFamily" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="843802026" result="Passed" start-time="2026-09-29T04:37:43.6454650Z" end-time="2026-09-29T04:37:43.6466320Z" duration="0.001167" asserts="1200" />
+            <test-case id="1045" name="LiteralOlderFallowKeepsItsOrdinaryFamily(5)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.LiteralOlderFallowKeepsItsOrdinaryFamily(5)" methodname="LiteralOlderFallowKeepsItsOrdinaryFamily" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="516219001" result="Passed" start-time="2026-09-29T04:37:43.6466440Z" end-time="2026-09-29T04:37:43.6477360Z" duration="0.001092" asserts="1200" />
+            <test-case id="1046" name="LiteralOlderFallowKeepsItsOrdinaryFamily(6)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.LiteralOlderFallowKeepsItsOrdinaryFamily(6)" methodname="LiteralOlderFallowKeepsItsOrdinaryFamily" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="1720162875" result="Passed" start-time="2026-09-29T04:37:43.6477460Z" end-time="2026-09-29T04:37:43.6489230Z" duration="0.001177" asserts="1200" />
+            <test-case id="1047" name="LiteralOlderFallowKeepsItsOrdinaryFamily(7)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.LiteralOlderFallowKeepsItsOrdinaryFamily(7)" methodname="LiteralOlderFallowKeepsItsOrdinaryFamily" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="1712559805" result="Passed" start-time="2026-09-29T04:37:43.6489280Z" end-time="2026-09-29T04:37:43.6504500Z" duration="0.001522" asserts="1200" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1059" name="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-29T04:37:43.6504840Z" end-time="2026-09-29T04:37:43.7614880Z" duration="0.111003" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1053" name="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts(2)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts(2)" methodname="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="1044184945" result="Passed" start-time="2026-09-29T04:37:43.6504910Z" end-time="2026-09-29T04:37:43.6731470Z" duration="0.022656" asserts="2" />
+            <test-case id="1054" name="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts(3)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts(3)" methodname="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="695031589" result="Passed" start-time="2026-09-29T04:37:43.6731590Z" end-time="2026-09-29T04:37:43.6910540Z" duration="0.017895" asserts="2" />
+            <test-case id="1055" name="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts(4)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts(4)" methodname="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="1249225956" result="Passed" start-time="2026-09-29T04:37:43.6910710Z" end-time="2026-09-29T04:37:43.7100690Z" duration="0.018998" asserts="2" />
+            <test-case id="1056" name="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts(5)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts(5)" methodname="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="62928980" result="Passed" start-time="2026-09-29T04:37:43.7100860Z" end-time="2026-09-29T04:37:43.7259520Z" duration="0.015866" asserts="2" />
+            <test-case id="1057" name="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts(6)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts(6)" methodname="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="1885793811" result="Passed" start-time="2026-09-29T04:37:43.7259690Z" end-time="2026-09-29T04:37:43.7452450Z" duration="0.019276" asserts="2" />
+            <test-case id="1058" name="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts(7)" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts(7)" methodname="SavedLiteralFallowAssignmentsRoundTripWithoutAdoptingHunts" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="73105002" result="Passed" start-time="2026-09-29T04:37:43.7452710Z" end-time="2026-09-29T04:37:43.7614620Z" duration="0.016191" asserts="2" />
+          </test-suite>
+          <test-case id="1060" name="VersionSevenCannotSilentlyAdoptTheNewFamily" fullname="CavesOfOoo.Tests.SpreadHuntManifestTests.VersionSevenCannotSilentlyAdoptTheNewFamily" methodname="VersionSevenCannotSilentlyAdoptTheNewFamily" classname="CavesOfOoo.Tests.SpreadHuntManifestTests" runstate="Runnable" seed="494438538" result="Passed" start-time="2026-09-29T04:37:43.7615030Z" end-time="2026-09-29T04:37:43.7828380Z" duration="0.021335" asserts="2" />
+        </test-suite>
+        <test-suite type="TestFixture" id="1061" name="SpreadHuntSourceTests" fullname="CavesOfOoo.Tests.SpreadHuntSourceTests" classname="CavesOfOoo.Tests.SpreadHuntSourceTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-29T04:37:43.7831730Z" end-time="2026-09-29T04:37:43.8506620Z" duration="0.067488" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1065" name="ChangedOriginalTreeLosesItsSourceAuthority" fullname="CavesOfOoo.Tests.SpreadHuntSourceTests.ChangedOriginalTreeLosesItsSourceAuthority" methodname="ChangedOriginalTreeLosesItsSourceAuthority" classname="CavesOfOoo.Tests.SpreadHuntSourceTests" runstate="Runnable" seed="760045951" result="Failed" start-time="2026-09-29T04:37:43.7832250Z" end-time="2026-09-29T04:37:43.8008540Z" duration="0.017629" asserts="1">
+            <failure>
+              <message><![CDATA[  Capture only successful original opaque Trees before the cold pair transaction.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntSourceTests.Enable(SpreadCompositionBuilder b, Boolean enabled) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntSourceTests.ChangedOriginalTreeLosesItsSourceAuthority() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 23
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Capture only successful original opaque Trees before the cold pair transaction.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntSourceTests.Enable(SpreadCompositionBuilder b, Boolean enabled) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntSourceTests.ChangedOriginalTreeLosesItsSourceAuthority() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 23
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1062" name="CoverCaptureRecordsExactOriginalTreesAndPreservesOrdinaryShapeAndRng" fullname="CavesOfOoo.Tests.SpreadHuntSourceTests.CoverCaptureRecordsExactOriginalTreesAndPreservesOrdinaryShapeAndRng" methodname="CoverCaptureRecordsExactOriginalTreesAndPreservesOrdinaryShapeAndRng" classname="CavesOfOoo.Tests.SpreadHuntSourceTests" runstate="Runnable" seed="1726569763" result="Failed" start-time="2026-09-29T04:37:43.8008710Z" end-time="2026-09-29T04:37:43.8195150Z" duration="0.018644" asserts="1">
+            <failure>
+              <message><![CDATA[  Capture only successful original opaque Trees before the cold pair transaction.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntSourceTests.Enable(SpreadCompositionBuilder b, Boolean enabled) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntSourceTests.CoverCaptureRecordsExactOriginalTreesAndPreservesOrdinaryShapeAndRng() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 17
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Capture only successful original opaque Trees before the cold pair transaction.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntSourceTests.Enable(SpreadCompositionBuilder b, Boolean enabled) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntSourceTests.CoverCaptureRecordsExactOriginalTreesAndPreservesOrdinaryShapeAndRng() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 17
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1063" name="MatchingLateTreeCannotBecomeAnOriginalCoverSource" fullname="CavesOfOoo.Tests.SpreadHuntSourceTests.MatchingLateTreeCannotBecomeAnOriginalCoverSource" methodname="MatchingLateTreeCannotBecomeAnOriginalCoverSource" classname="CavesOfOoo.Tests.SpreadHuntSourceTests" runstate="Runnable" seed="761022291" result="Failed" start-time="2026-09-29T04:37:43.8195360Z" end-time="2026-09-29T04:37:43.8360440Z" duration="0.016509" asserts="1">
+            <failure>
+              <message><![CDATA[  Capture only successful original opaque Trees before the cold pair transaction.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntSourceTests.Enable(SpreadCompositionBuilder b, Boolean enabled) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntSourceTests.MatchingLateTreeCannotBecomeAnOriginalCoverSource() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 19
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Capture only successful original opaque Trees before the cold pair transaction.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntSourceTests.Enable(SpreadCompositionBuilder b, Boolean enabled) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntSourceTests.MatchingLateTreeCannotBecomeAnOriginalCoverSource() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 19
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1064" name="RebuildAndInvalidRetryCannotReuseAnOlderTreeReceipt" fullname="CavesOfOoo.Tests.SpreadHuntSourceTests.RebuildAndInvalidRetryCannotReuseAnOlderTreeReceipt" methodname="RebuildAndInvalidRetryCannotReuseAnOlderTreeReceipt" classname="CavesOfOoo.Tests.SpreadHuntSourceTests" runstate="Runnable" seed="2059335875" result="Failed" start-time="2026-09-29T04:37:43.8360680Z" end-time="2026-09-29T04:37:43.8506380Z" duration="0.014570" asserts="1">
+            <failure>
+              <message><![CDATA[  Capture only successful original opaque Trees before the cold pair transaction.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntSourceTests.Enable(SpreadCompositionBuilder b, Boolean enabled) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntSourceTests.RebuildAndInvalidRetryCannotReuseAnOlderTreeReceipt() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 21
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Capture only successful original opaque Trees before the cold pair transaction.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntSourceTests.Enable(SpreadCompositionBuilder b, Boolean enabled) in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 13
+   at CavesOfOoo.Tests.SpreadHuntSourceTests.RebuildAndInvalidRetryCannotReuseAnOlderTreeReceipt() in /Users/steven/.codex/scratch/caves-of-ooo/f11/generation/SpreadHuntSourceTests.cs:line 21
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

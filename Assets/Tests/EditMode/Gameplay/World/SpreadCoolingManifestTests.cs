@@ -36,7 +36,7 @@ namespace CavesOfOoo.Tests
         public void FreshCurrentSelectsOneFieldPrincipalWithoutGeneratingGraphs(int seed)
         {
             var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);var p=m.Exploration;
-            Assert.AreEqual(7,p.Version);Assert.AreEqual(10,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"CoolingWorkPatch")));
+            Assert.AreEqual(8,p.Version);Assert.AreEqual(10,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"CoolingWorkPatch")));
             var fields=p.Entries.Where(e=>e.Family!=SpreadExplorationFamily.None&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.FieldStrips).ToArray();
             Assert.IsNotEmpty(fields);Assert.True(fields.Any(e=>e.Family.ToString()=="CoolingWorkPatch"));
             foreach(var e in fields)Assert.AreEqual(Variant(seed,e.ZoneID)==0?"LastGleanings":"CoolingWorkPatch",e.Family.ToString());
@@ -54,7 +54,7 @@ namespace CavesOfOoo.Tests
         {public ObservedManager(EntityFactory f,int seed):base(f,seed){}public SpreadCompositionBuilder Terrain(string id)=>base.GetPipelineForZone(id).Builders.OfType<SpreadCompositionBuilder>().Single();}
         [Test] public void OnlySelectedCurrentCookingFamilyOptsIntoTerrainRowReceipts()
         {
-            var m=new ObservedManager(scope.Factory,64);Assert.AreEqual(7,m.Exploration.Version);
+            var m=new ObservedManager(scope.Factory,64);Assert.AreEqual(8,m.Exploration.Version);
             var fields=m.Exploration.Entries.Where(e=>e.PlacementEligible&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.FieldStrips).ToArray();
             Assert.True(fields.Any(e=>e.Family.ToString()=="CoolingWorkPatch"));Assert.True(fields.Any(e=>e.Family.ToString()=="LastGleanings"));Assert.True(fields.Any(e=>e.Family==SpreadExplorationFamily.None));
             var flag=typeof(SpreadCompositionBuilder).GetField("CaptureCookingSources",All);Assert.NotNull(flag);

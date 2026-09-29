@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="1186" result="Failed" start-time="2026-09-29T05:13:39.3405420Z" end-time="2026-09-29T05:13:39.6478540Z" duration="0.307285" total="6" passed="5" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="9284" random-seed="459619143">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "test =~ /ActiveCatalogIsClosed|GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances/" --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/pins-wayhouse-current.xml]]></command-line>
+  <filter>
+    <test re="1">ActiveCatalogIsClosed|GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances</test>
+  </filter>
+  <test-suite type="Assembly" id="2482" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/generation/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="1186" result="Failed" site="Child" start-time="2026-09-29T05:13:39.3405420Z" end-time="2026-09-29T05:13:39.6478540Z" duration="0.307285" total="6" passed="5" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="9284">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="29218" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="2483" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="1186" result="Failed" site="Child" start-time="2026-09-29T05:13:39.3421110Z" end-time="2026-09-29T05:13:39.6478520Z" duration="0.305736" total="6" passed="5" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="9284">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="2484" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="1186" result="Failed" site="Child" start-time="2026-09-29T05:13:39.3422270Z" end-time="2026-09-29T05:13:39.6478500Z" duration="0.305618" total="6" passed="5" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="9284">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="2304" name="SpreadExplorationManifestTests" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" testcasecount="29" result="Passed" start-time="2026-09-29T05:13:39.3425570Z" end-time="2026-09-29T05:13:39.4689560Z" duration="0.126398" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="9258">
+          <test-suite type="ParameterizedMethod" id="2316" name="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-29T05:13:39.3456480Z" end-time="2026-09-29T05:13:39.4687370Z" duration="0.123087" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="9258">
+            <test-case id="2313" name="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(1)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(1)" methodname="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1150044719" result="Passed" start-time="2026-09-29T05:13:39.3457470Z" end-time="2026-09-29T05:13:39.4216950Z" duration="0.075971" asserts="3167" />
+            <test-case id="2314" name="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(64)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(64)" methodname="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="2115566350" result="Passed" start-time="2026-09-29T05:13:39.4223120Z" end-time="2026-09-29T05:13:39.4464020Z" duration="0.024090" asserts="2982" />
+            <test-case id="2315" name="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(1729)" fullname="CavesOfOoo.Tests.SpreadExplorationManifestTests.ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(1729)" methodname="ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge" classname="CavesOfOoo.Tests.SpreadExplorationManifestTests" runstate="Runnable" seed="1593864378" result="Passed" start-time="2026-09-29T05:13:39.4464320Z" end-time="2026-09-29T05:13:39.4682310Z" duration="0.021799" asserts="3109" />
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1802" name="SpreadWayhouseTests" fullname="CavesOfOoo.Tests.SpreadWayhouseTests" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" testcasecount="11" result="Failed" site="Child" start-time="2026-09-29T05:13:39.4692210Z" end-time="2026-09-29T05:13:39.6478380Z" duration="0.178615" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="26">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1806" name="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-29T05:13:39.4738970Z" end-time="2026-09-29T05:13:39.6478150Z" duration="0.173915" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="26">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1803" name="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(1)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(1)" methodname="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="368013435" result="Passed" start-time="2026-09-29T05:13:39.4739210Z" end-time="2026-09-29T05:13:39.5586360Z" duration="0.084714" asserts="12" />
+            <test-case id="1804" name="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(64)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(64)" methodname="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="637258644" result="Passed" start-time="2026-09-29T05:13:39.5586690Z" end-time="2026-09-29T05:13:39.5976840Z" duration="0.039014" asserts="12" />
+            <test-case id="1805" name="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(1729)" fullname="CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(1729)" methodname="GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances" classname="CavesOfOoo.Tests.SpreadWayhouseTests" runstate="Runnable" seed="2008498558" result="Failed" start-time="2026-09-29T05:13:39.5977130Z" end-time="2026-09-29T05:13:39.6477390Z" duration="0.050025" asserts="2">
+              <failure>
+                <message><![CDATA[  The selected native zone must admit a real complete expedition.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs:line 20
+   at InvokeStub_SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  The selected native zone must admit a real complete expedition.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs:line 20
+   at InvokeStub_SpreadWayhouseTests.GeneratedDestinationHasOneFiniteRewardAndDistinctKeyWithBothEntrances(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

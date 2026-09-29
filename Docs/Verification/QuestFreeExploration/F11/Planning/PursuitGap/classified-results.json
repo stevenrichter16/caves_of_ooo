@@ -1,0 +1,312 @@
+{
+  "runtime": ".NET SDK 10.0.105; net8.0 target rolls forward to installed .NET 10; Unity stubs, not native Unity",
+  "total": 43,
+  "passed": 31,
+  "failed": 12,
+  "findingCount": 1,
+  "classification": "Twelve failing cases expose one physical-path-filter defect. Thirty-one controls pass. No production correction attempted.",
+  "initialReceipt": "baseline.xml retains four additional invalid wide-actor preflight failures; corrected to ToContact in fixture only, details SETUP-CORRECTIONS.md.",
+  "cases": [
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(\"FallenBeam\")",
+      "state": "Passed",
+      "durationSeconds": 0.058141,
+      "message": null,
+      "trace": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(\"HaulBarrel\")",
+      "state": "Passed",
+      "durationSeconds": 0.018191,
+      "message": null,
+      "trace": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(\"Hedge\")",
+      "state": "Passed",
+      "durationSeconds": 0.017147,
+      "message": null,
+      "trace": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract(\"capable\")",
+      "state": "Passed",
+      "durationSeconds": 0.029645,
+      "message": null,
+      "trace": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract(\"incapable\")",
+      "state": "Passed",
+      "durationSeconds": 0.015381,
+      "message": null,
+      "trace": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract(\"locked\")",
+      "state": "Passed",
+      "durationSeconds": 0.017286,
+      "message": null,
+      "trace": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(False)",
+      "state": "Passed",
+      "durationSeconds": 0.014861,
+      "message": null,
+      "trace": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(True)",
+      "state": "Passed",
+      "durationSeconds": 0.013661,
+      "message": null,
+      "trace": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(False)",
+      "state": "Passed",
+      "durationSeconds": 0.016898,
+      "message": null,
+      "trace": "physical bypass steps=6\n0:(7, 10):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(True)",
+      "state": "Failed",
+      "durationSeconds": 0.02687,
+      "message": "  load should alter route cost, not disable pursuit: 0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n  Expected: True\n  But was:  False\n",
+      "trace": "physical bypass steps=10\n0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute(False)",
+      "state": "Failed",
+      "durationSeconds": 0.015214,
+      "message": "  first planned step must execute; explicit footprint=False\n  Expected: True\n  But was:  False\n",
+      "trace": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute(True)",
+      "state": "Passed",
+      "durationSeconds": 0.018887,
+      "message": null,
+      "trace": null
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"FallenBeam\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.017378,
+      "message": "  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n  Expected: True\n  But was:  False\n",
+      "trace": "physical bypass steps=10\n0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"FallenBeam\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.014483,
+      "message": null,
+      "trace": "physical bypass steps=10\n0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"HaulBarrel\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.017029,
+      "message": "  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n  Expected: True\n  But was:  False\n",
+      "trace": "physical bypass steps=10\n0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"HaulBarrel\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.014812,
+      "message": null,
+      "trace": "physical bypass steps=10\n0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"Hedge\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.017254,
+      "message": "  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n  Expected: True\n  But was:  False\n",
+      "trace": "physical bypass steps=10\n0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"Hedge\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.016164,
+      "message": null,
+      "trace": "physical bypass steps=10\n0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"Wall\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.014864,
+      "message": null,
+      "trace": "physical bypass steps=10\n0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass(\"FallenBeam\")",
+      "state": "Passed",
+      "durationSeconds": 0.015496,
+      "message": null,
+      "trace": "executed bypass=10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass(\"HaulBarrel\")",
+      "state": "Passed",
+      "durationSeconds": 0.016343,
+      "message": null,
+      "trace": "executed bypass=10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass(\"Hedge\")",
+      "state": "Passed",
+      "durationSeconds": 0.01595,
+      "message": null,
+      "trace": "executed bypass=10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"FallenBeam\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.022066,
+      "message": "  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n  Expected: 1\n  But was:  6\n",
+      "trace": "physical bypass steps=10\nwaits=30 ticks=310 energy=0 0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"FallenBeam\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.01696,
+      "message": null,
+      "trace": "physical bypass steps=9\nwaits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"HaulBarrel\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.016382,
+      "message": "  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n  Expected: 1\n  But was:  6\n",
+      "trace": "physical bypass steps=10\nwaits=30 ticks=310 energy=0 0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"HaulBarrel\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.018021,
+      "message": null,
+      "trace": "physical bypass steps=9\nwaits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Hedge\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.017386,
+      "message": "  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n  Expected: 1\n  But was:  6\n",
+      "trace": "physical bypass steps=10\nwaits=30 ticks=310 energy=0 0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Hedge\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.015434,
+      "message": null,
+      "trace": "physical bypass steps=9\nwaits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Wall\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.015436,
+      "message": null,
+      "trace": "physical bypass steps=10\nwaits=8 ticks=90 energy=0 0:(6, 9) 1:(6, 8) 2:(6, 7) 3:(6, 6) 4:(7, 5) 5:(8, 6) 6:(9, 7) 7:(10, 8) 8:(11, 9)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Wall\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.015903,
+      "message": null,
+      "trace": "physical bypass steps=9\nwaits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute(\"FallenBeam\")",
+      "state": "Failed",
+      "durationSeconds": 0.016618,
+      "message": "  Expected: False\n  But was:  True\n",
+      "trace": "0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute(\"Wall\")",
+      "state": "Passed",
+      "durationSeconds": 0.017456,
+      "message": null,
+      "trace": "0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"FallenBeam\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.014224,
+      "message": null,
+      "trace": "6,9\n6,8\n6,7\n6,6\n7,5\n8,6\n9,7\n10,8\n11,9\n12,10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"FallenBeam\",True)",
+      "state": "Failed",
+      "durationSeconds": 0.014965,
+      "message": "  planned stationary FallenBeam at 7,10\n  Expected: False\n  But was:  True\n",
+      "trace": "7,10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"HaulBarrel\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.015092,
+      "message": null,
+      "trace": "6,9\n6,8\n6,7\n6,6\n7,5\n8,6\n9,7\n10,8\n11,9\n12,10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"HaulBarrel\",True)",
+      "state": "Failed",
+      "durationSeconds": 0.014508,
+      "message": "  planned stationary HaulBarrel at 7,10\n  Expected: False\n  But was:  True\n",
+      "trace": "7,10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Hedge\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.013726,
+      "message": null,
+      "trace": "6,9\n6,8\n6,7\n6,6\n7,5\n8,6\n9,7\n10,8\n11,9\n12,10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Hedge\",True)",
+      "state": "Failed",
+      "durationSeconds": 0.016737,
+      "message": "  planned stationary Hedge at 7,10\n  Expected: False\n  But was:  True\n",
+      "trace": "7,10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Wall\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.015325,
+      "message": null,
+      "trace": "6,9\n6,8\n6,7\n6,6\n7,5\n8,6\n9,7\n10,8\n11,9\n12,10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Wall\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.017898,
+      "message": null,
+      "trace": "6,9\n6,8\n6,7\n6,6\n7,5\n8,6\n9,7\n10,8\n11,9\n12,10\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt(\"FallenBeam\")",
+      "state": "Passed",
+      "durationSeconds": 0.015756,
+      "message": null,
+      "trace": "0:(7, 11):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt(\"HaulBarrel\")",
+      "state": "Passed",
+      "durationSeconds": 0.013106,
+      "message": null,
+      "trace": "0:(7, 11):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True\n"
+    },
+    {
+      "name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt(\"Hedge\")",
+      "state": "Passed",
+      "durationSeconds": 0.014173,
+      "message": null,
+      "trace": "0:(7, 11):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True\n"
+    }
+  ]
+}

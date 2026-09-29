@@ -112,6 +112,12 @@ namespace CavesOfOoo.Core
 
         private Random _rng;
 
+        /// <summary>The exact owner from this spawner's last successful death drop.
+        /// Transient, read-only receipt: consumers must verify it after the complete
+        /// native death call. It is not discovered by text/provenance scans and is
+        /// not serialized (save reflection reads public fields only).</summary>
+        public Entity CreatedCorpse { get; private set; }
+
         // ====================================================================
         // Event handling.
         // ====================================================================
@@ -127,6 +133,7 @@ namespace CavesOfOoo.Core
 
         private void HandleDied(GameEvent e)
         {
+            CreatedCorpse = null;
             if (ParentEntity == null) return;
 
             // Suppression flag (Qud parity: SuppressCorpseDrops int property).
@@ -242,7 +249,7 @@ namespace CavesOfOoo.Core
                 });
             }
 
-            zone.AddEntity(corpse, cell.X, cell.Y);
+            if (zone.AddEntity(corpse, cell.X, cell.Y)) CreatedCorpse = corpse;
         }
     }
 }

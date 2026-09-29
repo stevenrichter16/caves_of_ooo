@@ -1,0 +1,10 @@
+// Private runner-only assertion shim. Native LogScope behavior is not simulated.
+namespace UnityEngine.TestTools
+{
+ public static class LogAssert
+ {
+  public static bool ignoreFailingMessages;
+  public static readonly System.Collections.Generic.List<string> Errors=new System.Collections.Generic.List<string>();
+  public static void NoUnexpectedReceived()=>NUnit.Framework.Assert.IsEmpty(Errors,"Unexpected error logs in private traversal run");
+ }
+}

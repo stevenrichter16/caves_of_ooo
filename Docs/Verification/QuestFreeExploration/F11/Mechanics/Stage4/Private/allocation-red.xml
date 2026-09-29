@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage4/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="359" result="Failed" start-time="2026-09-29T06:45:59.6106010Z" end-time="2026-09-29T06:45:59.9578210Z" duration="0.347199" total="14" passed="12" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="1333" random-seed="1628040272">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage4/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "class =~ /SpreadHuntAllocationTests/" --result=allocation-red.xml]]></command-line>
+  <filter>
+    <class re="1">SpreadHuntAllocationTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1417" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage4/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="359" result="Failed" site="Child" start-time="2026-09-29T06:45:59.6106010Z" end-time="2026-09-29T06:45:59.9578210Z" duration="0.347199" total="14" passed="12" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="1333">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage4" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage4" />
+    </settings>
+    <properties>
+      <property name="_PID" value="45705" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1418" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="359" result="Failed" site="Child" start-time="2026-09-29T06:45:59.6121570Z" end-time="2026-09-29T06:45:59.9578200Z" duration="0.345657" total="14" passed="12" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="1333">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1419" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="359" result="Failed" site="Child" start-time="2026-09-29T06:45:59.6122890Z" end-time="2026-09-29T06:45:59.9578170Z" duration="0.345522" total="14" passed="12" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="1333">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1396" name="SpreadHuntAllocationTests" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-09-29T06:45:59.6127290Z" end-time="2026-09-29T06:45:59.9578000Z" duration="0.345066" total="14" passed="12" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="1333">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1397" name="AllocationCounterHasAnEmptyAndPositiveControl" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.AllocationCounterHasAnEmptyAndPositiveControl" methodname="AllocationCounterHasAnEmptyAndPositiveControl" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="2009755295" result="Passed" start-time="2026-09-29T06:45:59.6137460Z" end-time="2026-09-29T06:45:59.6798160Z" duration="0.066092" asserts="11" />
+          <test-suite type="ParameterizedMethod" id="1406" name="HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T06:45:59.6804190Z" end-time="2026-09-29T06:45:59.7493940Z" duration="0.068974" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="380">
+            <test-case id="1404" name="HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave(False)" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave(False)" methodname="HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="598098613" result="Passed" start-time="2026-09-29T06:45:59.6804860Z" end-time="2026-09-29T06:45:59.7030170Z" duration="0.022531" asserts="190" />
+            <test-case id="1405" name="HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave(True)" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave(True)" methodname="HiddenHunterPositionDoesNotChangeRememberedFlightAfterWarmOrSave" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="126921666" result="Passed" start-time="2026-09-29T06:45:59.7030480Z" end-time="2026-09-29T06:45:59.7490420Z" duration="0.045993" asserts="190" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1416" name="IndexedPacingAdmissionStillRequiresParentOnCurrentStack" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.IndexedPacingAdmissionStillRequiresParentOnCurrentStack" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T06:45:59.7495450Z" end-time="2026-09-29T06:45:59.7814740Z" duration="0.031929" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="22">
+            <test-case id="1414" name="IndexedPacingAdmissionStillRequiresParentOnCurrentStack(False)" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.IndexedPacingAdmissionStillRequiresParentOnCurrentStack(False)" methodname="IndexedPacingAdmissionStillRequiresParentOnCurrentStack" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="1403851611" result="Passed" start-time="2026-09-29T06:45:59.7495670Z" end-time="2026-09-29T06:45:59.7642960Z" duration="0.014729" asserts="11" />
+            <test-case id="1415" name="IndexedPacingAdmissionStillRequiresParentOnCurrentStack(True)" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.IndexedPacingAdmissionStillRequiresParentOnCurrentStack(True)" methodname="IndexedPacingAdmissionStillRequiresParentOnCurrentStack" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="2036037876" result="Passed" start-time="2026-09-29T06:45:59.7643130Z" end-time="2026-09-29T06:45:59.7814490Z" duration="0.017136" asserts="11" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1413" name="MovementCallbackReentryMatchesSequentialSearch" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.MovementCallbackReentryMatchesSequentialSearch" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T06:45:59.7814810Z" end-time="2026-09-29T06:45:59.8117140Z" duration="0.030233" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="34">
+            <test-case id="1411" name="MovementCallbackReentryMatchesSequentialSearch(False)" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.MovementCallbackReentryMatchesSequentialSearch(False)" methodname="MovementCallbackReentryMatchesSequentialSearch" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="313695739" result="Passed" start-time="2026-09-29T06:45:59.7814900Z" end-time="2026-09-29T06:45:59.7967880Z" duration="0.015298" asserts="17" />
+            <test-case id="1412" name="MovementCallbackReentryMatchesSequentialSearch(True)" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.MovementCallbackReentryMatchesSequentialSearch(True)" methodname="MovementCallbackReentryMatchesSequentialSearch" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="563188385" result="Passed" start-time="2026-09-29T06:45:59.7968080Z" end-time="2026-09-29T06:45:59.8116890Z" duration="0.014881" asserts="17" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1410" name="ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T06:45:59.8117230Z" end-time="2026-09-29T06:45:59.8508940Z" duration="0.039170" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="37">
+            <test-case id="1408" name="ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers(False)" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers(False)" methodname="ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="1814509126" result="Passed" start-time="2026-09-29T06:45:59.8117310Z" end-time="2026-09-29T06:45:59.8331620Z" duration="0.021431" asserts="18" />
+            <test-case id="1409" name="ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers(True)" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers(True)" methodname="ReplacementSaveKeepsStateAndFirstStepIndependentOfWarmBuffers" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="552383205" result="Passed" start-time="2026-09-29T06:45:59.8331800Z" end-time="2026-09-29T06:45:59.8508710Z" duration="0.017690" asserts="19" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1403" name="ReusedSearchPreservesRouteAndRespondsToChangedBlocker" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.ReusedSearchPreservesRouteAndRespondsToChangedBlocker" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T06:45:59.8509030Z" end-time="2026-09-29T06:45:59.8872480Z" duration="0.036345" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="36">
+            <test-case id="1401" name="ReusedSearchPreservesRouteAndRespondsToChangedBlocker(False)" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.ReusedSearchPreservesRouteAndRespondsToChangedBlocker(False)" methodname="ReusedSearchPreservesRouteAndRespondsToChangedBlocker" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="1440215822" result="Passed" start-time="2026-09-29T06:45:59.8509110Z" end-time="2026-09-29T06:45:59.8683790Z" duration="0.017468" asserts="17" />
+            <test-case id="1402" name="ReusedSearchPreservesRouteAndRespondsToChangedBlocker(True)" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.ReusedSearchPreservesRouteAndRespondsToChangedBlocker(True)" methodname="ReusedSearchPreservesRouteAndRespondsToChangedBlocker" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="1563408703" result="Passed" start-time="2026-09-29T06:45:59.8683930Z" end-time="2026-09-29T06:45:59.8872320Z" duration="0.018839" asserts="19" />
+          </test-suite>
+          <test-case id="1407" name="TwoGrazersKeepIndependentSearchAndState" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.TwoGrazersKeepIndependentSearchAndState" methodname="TwoGrazersKeepIndependentSearchAndState" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="1752229674" result="Passed" start-time="2026-09-29T06:45:59.8872550Z" end-time="2026-09-29T06:45:59.9013650Z" duration="0.014109" asserts="25" />
+          <test-suite type="ParameterizedMethod" id="1400" name="WarmedFlightStepStaysWithin512Bytes" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepStaysWithin512Bytes" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T06:45:59.9013890Z" end-time="2026-09-29T06:45:59.9577520Z" duration="0.056363" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="788">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1398" name="WarmedFlightStepStaysWithin512Bytes(False)" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepStaysWithin512Bytes(False)" methodname="WarmedFlightStepStaysWithin512Bytes" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="950121354" result="Failed" start-time="2026-09-29T06:45:59.9014000Z" end-time="2026-09-29T06:45:59.9360110Z" duration="0.034610" asserts="394">
+              <failure>
+                <message><![CDATA[  Warmed actual flight must not recreate its bounded search collections per action. Diagnostics and setup are outside the measured call.
+  Expected: less than or equal to 512
+  But was:  5080
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepStaysWithin512Bytes(Boolean pacing) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage4/SpreadHuntAllocationTests.cs:line 94
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Warmed actual flight must not recreate its bounded search collections per action. Diagnostics and setup are outside the measured call.
+  Expected: less than or equal to 512
+  But was:  5080
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepStaysWithin512Bytes(Boolean pacing) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage4/SpreadHuntAllocationTests.cs:line 94
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1399" name="WarmedFlightStepStaysWithin512Bytes(True)" fullname="CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepStaysWithin512Bytes(True)" methodname="WarmedFlightStepStaysWithin512Bytes" classname="CavesOfOoo.Tests.SpreadHuntAllocationTests" runstate="Runnable" seed="940174174" result="Failed" start-time="2026-09-29T06:45:59.9360750Z" end-time="2026-09-29T06:45:59.9577280Z" duration="0.021653" asserts="394">
+              <failure>
+                <message><![CDATA[  Warmed actual flight must not recreate its bounded search collections per action. Diagnostics and setup are outside the measured call.
+  Expected: less than or equal to 512
+  But was:  5184
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepStaysWithin512Bytes(Boolean pacing) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage4/SpreadHuntAllocationTests.cs:line 94
+   at InvokeStub_SpreadHuntAllocationTests.WarmedFlightStepStaysWithin512Bytes(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Warmed actual flight must not recreate its bounded search collections per action. Diagnostics and setup are outside the measured call.
+  Expected: less than or equal to 512
+  But was:  5184
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadHuntAllocationTests.WarmedFlightStepStaysWithin512Bytes(Boolean pacing) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage4/SpreadHuntAllocationTests.cs:line 94
+   at InvokeStub_SpreadHuntAllocationTests.WarmedFlightStepStaysWithin512Bytes(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

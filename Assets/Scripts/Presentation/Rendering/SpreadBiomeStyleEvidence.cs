@@ -62,6 +62,8 @@ namespace CavesOfOoo.Rendering
    if(cooking!=null){cooking.Validate();foreach(var e in cooking.Entries)Add(e.Id,e.Mesh,e.Material);}
    var coals=SpreadCookingCoalsLibrary.Load();
    if(coals!=null){coals.Validate();foreach(var e in coals.Entries)Add(e.Id,e.Mesh,e.Material);}
+   var hunters=FurrowstalkerLibrary.Load();
+   if(hunters!=null){hunters.Validate();foreach(var e in hunters.Entries)Add(e.Id,e.Mesh,e.Materials[0],e.Materials);}
    var exploration = QuestFreeSpreadArtLibrary.Load();
    if (exploration != null) { exploration.Validate(); foreach (var e in exploration.Entries) Add(e.Id,e.Mesh,e.Materials[0],e.Materials); }
   }

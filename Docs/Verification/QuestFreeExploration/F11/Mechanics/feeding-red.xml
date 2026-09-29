@@ -1,0 +1,760 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="96" result="Failed" start-time="2026-09-29T04:42:00.0352960Z" end-time="2026-09-29T04:42:00.5652910Z" duration="0.529974" total="28" passed="0" failed="28" inconclusive="0" skipped="0" warnings="0" asserts="172" random-seed="2103187993">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/feeding-red.xml --where "class =~ /SpreadPredatorFeedingTests/"]]></command-line>
+  <filter>
+    <class re="1">SpreadPredatorFeedingTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1115" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="96" result="Failed" site="Child" start-time="2026-09-29T04:42:00.0352960Z" end-time="2026-09-29T04:42:00.5652910Z" duration="0.529974" total="28" passed="0" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="172">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="21888" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1116" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="96" result="Failed" site="Child" start-time="2026-09-29T04:42:00.0368570Z" end-time="2026-09-29T04:42:00.5652890Z" duration="0.528427" total="28" passed="0" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="172">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1117" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="96" result="Failed" site="Child" start-time="2026-09-29T04:42:00.0369700Z" end-time="2026-09-29T04:42:00.5652860Z" duration="0.528313" total="28" passed="0" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="172">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1080" name="SpreadPredatorFeedingTests" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2026-09-29T04:42:00.0373010Z" end-time="2026-09-29T04:42:00.5652720Z" duration="0.527966" total="28" passed="0" failed="28" warnings="0" inconclusive="0" skipped="0" asserts="172">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1113" name="CreatedOwnerReceiptIsReadOnlyAndTransient" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.CreatedOwnerReceiptIsReadOnlyAndTransient" methodname="CreatedOwnerReceiptIsReadOnlyAndTransient" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="512957829" result="Failed" start-time="2026-09-29T04:42:00.0381410Z" end-time="2026-09-29T04:42:00.1240330Z" duration="0.085920" asserts="6">
+            <failure>
+              <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.CreatedOwnerReceiptIsReadOnlyAndTransient() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 40
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.CreatedOwnerReceiptIsReadOnlyAndTransient() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 40
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1098" name="DeathCallbackReplacementWithCopiedProvenanceIsNotOriginalReceipt" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.DeathCallbackReplacementWithCopiedProvenanceIsNotOriginalReceipt" methodname="DeathCallbackReplacementWithCopiedProvenanceIsNotOriginalReceipt" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1880127769" result="Failed" start-time="2026-09-29T04:42:00.1246150Z" end-time="2026-09-29T04:42:00.1428330Z" duration="0.018218" asserts="6">
+            <failure>
+              <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.DeathCallbackReplacementWithCopiedProvenanceIsNotOriginalReceipt() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 34
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.DeathCallbackReplacementWithCopiedProvenanceIsNotOriginalReceipt() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 34
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1101" name="ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T04:42:00.1428710Z" end-time="2026-09-29T04:42:00.1825130Z" duration="0.039642" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1099" name="ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(False)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(False)" methodname="ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1925501312" result="Failed" start-time="2026-09-29T04:42:00.1429580Z" end-time="2026-09-29T04:42:00.1640040Z" duration="0.021045" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing saved field Corpse
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Get(String f) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(Boolean sameKiller) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 35
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing saved field Corpse
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Get(String f) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(Boolean sameKiller) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 35
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1100" name="ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(True)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(True)" methodname="ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="991399306" result="Failed" start-time="2026-09-29T04:42:00.1640250Z" end-time="2026-09-29T04:42:00.1821720Z" duration="0.018147" asserts="8">
+              <failure>
+                <message><![CDATA[  Missing saved field Corpse
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Get(String f) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(Boolean sameKiller) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 35
+   at InvokeStub_SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Missing saved field Corpse
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Get(String f) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 23
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(Boolean sameKiller) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 35
+   at InvokeStub_SpreadPredatorFeedingTests.ExternalDeathNeverClaimsMealEvenWhenKillerIDMatches(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1107" name="HigherPriorityStatePreemptsMeal" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-09-29T04:42:00.1827150Z" end-time="2026-09-29T04:42:00.2631770Z" duration="0.080462" total="5" passed="0" failed="5" warnings="0" inconclusive="0" skipped="0" asserts="30">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1102" name="HigherPriorityStatePreemptsMeal(&quot;calm&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(&quot;calm&quot;)" methodname="HigherPriorityStatePreemptsMeal" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1615342402" result="Failed" start-time="2026-09-29T04:42:00.1827360Z" end-time="2026-09-29T04:42:00.1999650Z" duration="0.017229" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1103" name="HigherPriorityStatePreemptsMeal(&quot;work&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(&quot;work&quot;)" methodname="HigherPriorityStatePreemptsMeal" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="961932906" result="Failed" start-time="2026-09-29T04:42:00.1999920Z" end-time="2026-09-29T04:42:00.2152130Z" duration="0.015221" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1104" name="HigherPriorityStatePreemptsMeal(&quot;conversation&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(&quot;conversation&quot;)" methodname="HigherPriorityStatePreemptsMeal" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="622502515" result="Failed" start-time="2026-09-29T04:42:00.2152340Z" end-time="2026-09-29T04:42:00.2316800Z" duration="0.016446" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1105" name="HigherPriorityStatePreemptsMeal(&quot;party&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(&quot;party&quot;)" methodname="HigherPriorityStatePreemptsMeal" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1721970336" result="Failed" start-time="2026-09-29T04:42:00.2317020Z" end-time="2026-09-29T04:42:00.2478270Z" duration="0.016125" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1106" name="HigherPriorityStatePreemptsMeal(&quot;hostile&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(&quot;hostile&quot;)" methodname="HigherPriorityStatePreemptsMeal" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="119948807" result="Failed" start-time="2026-09-29T04:42:00.2478470Z" end-time="2026-09-29T04:42:00.2631450Z" duration="0.015298" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 37
+   at InvokeStub_SpreadPredatorFeedingTests.HigherPriorityStatePreemptsMeal(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1097" name="InvalidMealCancelsWithoutConsumingMatchingDecoy" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-29T04:42:00.2631940Z" end-time="2026-09-29T04:42:00.4036860Z" duration="0.140491" total="7" passed="0" failed="7" warnings="0" inconclusive="0" skipped="0" asserts="42">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1090" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;moved&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="528222828" result="Failed" start-time="2026-09-29T04:42:00.2632040Z" end-time="2026-09-29T04:42:00.2776900Z" duration="0.014486" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1091" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;picked-up&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;picked-up&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="152322010" result="Failed" start-time="2026-09-29T04:42:00.2777120Z" end-time="2026-09-29T04:42:00.2939100Z" duration="0.016198" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1092" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;foreign&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="224491870" result="Failed" start-time="2026-09-29T04:42:00.2939320Z" end-time="2026-09-29T04:42:00.3162630Z" duration="0.022332" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1093" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;source-id&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;source-id&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="576581620" result="Failed" start-time="2026-09-29T04:42:00.3162820Z" end-time="2026-09-29T04:42:00.3383300Z" duration="0.022048" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1094" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;killer-id&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;killer-id&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="814898655" result="Failed" start-time="2026-09-29T04:42:00.3383490Z" end-time="2026-09-29T04:42:00.3614020Z" duration="0.023053" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1095" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;source-bp&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;source-bp&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1590613333" result="Failed" start-time="2026-09-29T04:42:00.3614440Z" end-time="2026-09-29T04:42:00.3835800Z" duration="0.022138" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1096" name="InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;replaced&quot;)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(&quot;replaced&quot;)" methodname="InvalidMealCancelsWithoutConsumingMatchingDecoy" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="875723404" result="Failed" start-time="2026-09-29T04:42:00.3836040Z" end-time="2026-09-29T04:42:00.4036670Z" duration="0.020064" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(String mode) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 33
+   at InvokeStub_SpreadPredatorFeedingTests.InvalidMealCancelsWithoutConsumingMatchingDecoy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1111" name="MalformedProgressCannotConsumeAfterSave" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-29T04:42:00.4036960Z" end-time="2026-09-29T04:42:00.4491130Z" duration="0.045417" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1108" name="MalformedProgressCannotConsumeAfterSave(-1)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(-1)" methodname="MalformedProgressCannotConsumeAfterSave" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="87967541" result="Failed" start-time="2026-09-29T04:42:00.4037060Z" end-time="2026-09-29T04:42:00.4204160Z" duration="0.016710" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 38
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 38
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1109" name="MalformedProgressCannotConsumeAfterSave(3)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(3)" methodname="MalformedProgressCannotConsumeAfterSave" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="351623513" result="Failed" start-time="2026-09-29T04:42:00.4204400Z" end-time="2026-09-29T04:42:00.4326520Z" duration="0.012212" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 38
+   at InvokeStub_SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 38
+   at InvokeStub_SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1110" name="MalformedProgressCannotConsumeAfterSave(99)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(99)" methodname="MalformedProgressCannotConsumeAfterSave" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="549213936" result="Failed" start-time="2026-09-29T04:42:00.4326720Z" end-time="2026-09-29T04:42:00.4490900Z" duration="0.016418" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 38
+   at InvokeStub_SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 38
+   at InvokeStub_SpreadPredatorFeedingTests.MalformedProgressCannotConsumeAfterSave(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1083" name="OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T04:42:00.4491310Z" end-time="2026-09-29T04:42:00.4714810Z" duration="0.022350" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1081" name="OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(69,True)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(69,True)" methodname="OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="271018712" result="Failed" start-time="2026-09-29T04:42:00.4491450Z" end-time="2026-09-29T04:42:00.4599140Z" duration="0.010770" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(Int32 roll, Boolean success) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 29
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(Int32 roll, Boolean success) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 29
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1082" name="OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(70,False)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(70,False)" methodname="OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="181596558" result="Failed" start-time="2026-09-29T04:42:00.4599330Z" end-time="2026-09-29T04:42:00.4714560Z" duration="0.011523" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(Int32 roll, Boolean success) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 29
+   at InvokeStub_SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(Int32 roll, Boolean success) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 29
+   at InvokeStub_SpreadPredatorFeedingTests.OwnNativeKillBindsOnlySuccessfulSeventyPercentCorpse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1112" name="ProgressCallbackRemovalPreventsAnyLaterConsumptionOrReplacementClaim" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ProgressCallbackRemovalPreventsAnyLaterConsumptionOrReplacementClaim" methodname="ProgressCallbackRemovalPreventsAnyLaterConsumptionOrReplacementClaim" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1940210154" result="Failed" start-time="2026-09-29T04:42:00.4714960Z" end-time="2026-09-29T04:42:00.4831640Z" duration="0.011668" asserts="6">
+            <failure>
+              <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ProgressCallbackRemovalPreventsAnyLaterConsumptionOrReplacementClaim() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 39
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ProgressCallbackRemovalPreventsAnyLaterConsumptionOrReplacementClaim() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 39
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1089" name="ReplacementSavePreservesFiniteProgressAndExactCorpse" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-29T04:42:00.4831830Z" end-time="2026-09-29T04:42:00.5351610Z" duration="0.051978" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1085" name="ReplacementSavePreservesFiniteProgressAndExactCorpse(0)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(0)" methodname="ReplacementSavePreservesFiniteProgressAndExactCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1019603491" result="Failed" start-time="2026-09-29T04:42:00.4832030Z" end-time="2026-09-29T04:42:00.4964110Z" duration="0.013207" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1086" name="ReplacementSavePreservesFiniteProgressAndExactCorpse(1)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(1)" methodname="ReplacementSavePreservesFiniteProgressAndExactCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="537032784" result="Failed" start-time="2026-09-29T04:42:00.4964280Z" end-time="2026-09-29T04:42:00.5120850Z" duration="0.015657" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+   at InvokeStub_SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+   at InvokeStub_SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1087" name="ReplacementSavePreservesFiniteProgressAndExactCorpse(2)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(2)" methodname="ReplacementSavePreservesFiniteProgressAndExactCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1071949253" result="Failed" start-time="2026-09-29T04:42:00.5121030Z" end-time="2026-09-29T04:42:00.5248670Z" duration="0.012764" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+   at InvokeStub_SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+   at InvokeStub_SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1088" name="ReplacementSavePreservesFiniteProgressAndExactCorpse(3)" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(3)" methodname="ReplacementSavePreservesFiniteProgressAndExactCorpse" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="923890608" result="Failed" start-time="2026-09-29T04:42:00.5248840Z" end-time="2026-09-29T04:42:00.5351380Z" duration="0.010254" asserts="6">
+              <failure>
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+   at InvokeStub_SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Int32 progress) in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 31
+   at InvokeStub_SpreadPredatorFeedingTests.ReplacementSavePreservesFiniteProgressAndExactCorpse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1084" name="TwoPaidProgressActionsThenThirdConsumesExactOwnerWithoutRewardOrExtraPose" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.TwoPaidProgressActionsThenThirdConsumesExactOwnerWithoutRewardOrExtraPose" methodname="TwoPaidProgressActionsThenThirdConsumesExactOwnerWithoutRewardOrExtraPose" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="1087342296" result="Failed" start-time="2026-09-29T04:42:00.5351710Z" end-time="2026-09-29T04:42:00.5466050Z" duration="0.011434" asserts="6">
+            <failure>
+              <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.TwoPaidProgressActionsThenThirdConsumesExactOwnerWithoutRewardOrExtraPose() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 30
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Fixture's real native strike must reach death before feeding assertion
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Kill() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 26
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.Meal() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 27
+   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.TwoPaidProgressActionsThenThirdConsumesExactOwnerWithoutRewardOrExtraPose() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 30
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1114" name="WorldLookReportsActualLocalPhaseWithoutMutatingOrPromisingHarvest" fullname="CavesOfOoo.Tests.SpreadPredatorFeedingTests.WorldLookReportsActualLocalPhaseWithoutMutatingOrPromisingHarvest" methodname="WorldLookReportsActualLocalPhaseWithoutMutatingOrPromisingHarvest" classname="CavesOfOoo.Tests.SpreadPredatorFeedingTests" runstate="Runnable" seed="963027329" result="Failed" start-time="2026-09-29T04:42:00.5466270Z" end-time="2026-09-29T04:42:00.5652080Z" duration="0.018581" asserts="6">
+            <failure>
+              <message><![CDATA[  Expected: String containing "watch"
+  But was:  "you see a reedback grazer.
+
+a squat four-footed grazer with a blunt muzzle and a ridge of stiff reed-like hair. its split hooves pick between the worked rows; it shies from close footsteps."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.WorldLookReportsActualLocalPhaseWithoutMutatingOrPromisingHarvest() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 41
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "watch"
+  But was:  "you see a reedback grazer.
+
+a squat four-footed grazer with a blunt muzzle and a ridge of stiff reed-like hair. its split hooves pick between the worked rows; it shies from close footsteps."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadPredatorFeedingTests.WorldLookReportsActualLocalPhaseWithoutMutatingOrPromisingHarvest() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage2/SpreadPredatorFeedingTests.cs:line 41
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

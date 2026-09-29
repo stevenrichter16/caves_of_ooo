@@ -1,0 +1,43 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5/runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-29 07:22:48Z
+    End time: 2026-09-29 07:22:48Z
+    Duration: 0.028 seconds
+
+Test Filters
+    Where: class =~ /SpreadHuntPhaseValidationTests/
+
+=> CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.RepeatedBoundsValidationDoesNotAllocateOrBoxItsPhase
+Repeated phase validation allocation amount=24 (native events / private bytes).
+
+Errors, Failures and Warnings
+
+1) Failed : CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.RepeatedBoundsValidationDoesNotAllocateOrBoxItsPhase
+  Validation of the finite saved phase must not allocate each time a hunter/grazer checks its current pair.
+  Expected: 0
+  But was:  24
+   at CavesOfOoo.Tests.SpreadHuntPhaseValidationTests.RepeatedBoundsValidationDoesNotAllocateOrBoxItsPhase() in /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5/SpreadHuntPhaseValidationTests.cs:line 66
+
+Run Settings
+    Number of Test Workers: 1
+    Work Directory: /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Failed
+  Test Count: 14, Passed: 13, Failed: 1, Warnings: 0, Inconclusive: 0, Skipped: 0
+    Failed Tests - Failures: 1, Errors: 0, Invalid: 0
+  Start time: 2026-09-29 07:22:48Z
+    End time: 2026-09-29 07:22:48Z
+    Duration: 0.026 seconds
+
+Results (nunit3) saved as /Users/steven/.codex/scratch/caves-of-ooo/f11/private/mechanics-stage5/phase-red.xml
