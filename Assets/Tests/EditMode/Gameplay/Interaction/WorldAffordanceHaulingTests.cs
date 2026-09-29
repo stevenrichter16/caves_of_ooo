@@ -1,0 +1,203 @@
+using System;
+using System.IO;
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Data;
+using NUnit.Framework;
+using UnityEngine;
+
+namespace CavesOfOoo.Tests
+{
+    public sealed class WorldAffordanceHaulingTests
+    {
+        internal sealed class Fixture : IDisposable
+        {
+            readonly System.Collections.Generic.List<MessageLog.Entry> messages = MessageLog.GetAllEntries();
+            readonly System.Collections.Generic.List<string> announcements = MessageLog.GetPendingAnnouncementsSnapshot();
+            readonly int serial = MessageLog.NextSerialValue, flash = MessageLog.FlashStamp;
+            readonly Action<string> oldMessage = MessageLog.OnMessage;
+            public readonly WorldAffordanceQueryTests.Fixture Core;
+            public readonly Entity Load;
+            public Entity Player => Core.Player;
+            public Zone Zone => Core.Zone;
+            public Fixture(string blueprint = "FallenBeam")
+            {
+                try
+                {
+                    MessageLog.OnMessage = null;
+                    Core = new WorldAffordanceQueryTests.Fixture();
+                    Player.Tags["Creature"] = "";
+                    Player.Statistics["Strength"] = new Stat { Name = "Strength", Owner = Player, BaseValue = 18 };
+                    Player.Statistics["Speed"] = new Stat { Name = "Speed", Owner = Player, BaseValue = 100, Min = 0, Max = 1000 };
+                    Assert.AreEqual(100, Player.GetStatValue("Speed"), "explicit fixture Speed bounds");
+                    var factory = new EntityFactory();
+                    factory.LoadBlueprints(File.ReadAllText(Path.Combine(Application.dataPath, "Resources/Content/Blueprints/Objects.json")));
+                    Load = factory.CreateEntity(blueprint);
+                    Assert.NotNull(Load?.GetPart<HandlingPart>(), "real authored haulable prerequisite");
+                    Assert.True(Zone.AddEntity(Load, 11, 10));
+                    Zone.GetCell(11, 10).IsVisible = Zone.GetCell(11, 10).Explored = true;
+                }
+                catch { Dispose(); throw; }
+            }
+            public WorldAffordance? Find(bool focused = false) => WorldAffordanceQuery.Find(Player, Zone, focused, 11, 10);
+            public void Menu(string command)
+            {
+                var rows = WorldInteractionSystem.GatherActions(Load, Player);
+                Assert.AreEqual(1, rows.Count(a => a.Command == command), "actual menu command");
+                Assert.False(rows.Any(a => a.Command == (command == HandlingPart.HaulCommand ? HandlingPart.ReleaseCommand : HandlingPart.HaulCommand)));
+            }
+            public WorldAffordance Cue(string command, bool focused = false)
+            {
+                var q = Find(focused);
+                Assert.True(q.HasValue, "missing current hauling opportunity");
+                Assert.AreSame(Load, q.Value.Target);
+                Assert.AreSame(Zone.GetEntityCell(Load), q.Value.Cell);
+                Assert.AreEqual(command, q.Value.Command);
+                Assert.AreEqual((focused ? "Enter" : "C, D") + ": menu / " + (command == HandlingPart.HaulCommand ? "haul" : "let go"), q.Value.Hint);
+                return q.Value;
+            }
+            public void Grab() => Assert.AreEqual(DragVerdict.Ok, DragSystem.TryGrab(Player, Load, Zone));
+            public void Dispose()
+            {
+                if (Core != null) { DragSystem.Release(Player); Core.Dispose(); }
+                MessageLog.Restore(messages, announcements, flash, serial);
+                MessageLog.FlashStamp = flash;
+                MessageLog.OnMessage = oldMessage;
+            }
+        }
+
+        [TestCase("FallenBeam")]
+        [TestCase("HaulBarrel")]
+        public void ActualGroundOwnerHasTheSameHaulCommandAsItsMenu(string blueprint)
+        {
+            using (var f = new Fixture(blueprint))
+            {
+                Assert.AreEqual(DragVerdict.Ok, DragRules.CanDrag(f.Player, f.Load));
+                f.Menu(HandlingPart.HaulCommand); f.Cue(HandlingPart.HaulCommand);
+                Assert.IsNull(DragSystem.GetDragged(f.Player)); Assert.AreEqual(100, f.Player.GetStatValue("Speed"));
+            }
+        }
+
+        [Test]
+        public void FocusUsesExistingEnterAndCannotBorrowAnAdjacentCue()
+        {
+            using (var f = new Fixture())
+            {
+                f.Menu(HandlingPart.HaulCommand); f.Cue(HandlingPart.HaulCommand, true);
+                Assert.IsNull(WorldAffordanceQuery.Find(f.Player, f.Zone, true, 9, 10));
+            }
+        }
+
+        [Test]
+        public void RealGripAndReleaseFlipOnlyTheCurrentCommandWithoutMovingOwners()
+        {
+            using (var f = new Fixture())
+            {
+                var original = f.Zone.GetEntityPosition(f.Load);
+                var haul = f.Cue(HandlingPart.HaulCommand);
+                f.Grab(); f.Menu(HandlingPart.ReleaseCommand);
+                Assert.False(WorldAffordanceQuery.Current(f.Player, f.Zone, haul));
+                var release = f.Cue(HandlingPart.ReleaseCommand);
+                Assert.True(DragSystem.Release(f.Player)); f.Menu(HandlingPart.HaulCommand);
+                Assert.False(WorldAffordanceQuery.Current(f.Player, f.Zone, release));
+                f.Cue(HandlingPart.HaulCommand);
+                Assert.AreEqual(original, f.Zone.GetEntityPosition(f.Load)); Assert.AreEqual(100, f.Player.GetStatValue("Speed"));
+            }
+        }
+
+        [TestCase("FallenBeam", 7, false)] [TestCase("FallenBeam", 8, true)]
+        [TestCase("HaulBarrel", 9, false)] [TestCase("HaulBarrel", 10, true)]
+        public void ActualStrengthBoundaryMatchesMenuAndCue(string blueprint, int strength, bool allowed)
+        {
+            using (var f = new Fixture(blueprint))
+            {
+                f.Player.GetStat("Strength").BaseValue = strength;
+                Assert.AreEqual(allowed, DragRules.CanDrag(f.Player, f.Load) == DragVerdict.Ok);
+                Assert.AreEqual(allowed, WorldInteractionSystem.GatherActions(f.Load, f.Player).Any(a => a.Command == HandlingPart.HaulCommand));
+                if (allowed) f.Cue(HandlingPart.HaulCommand); else Assert.IsNull(f.Find());
+            }
+        }
+
+        [Test]
+        public void DeclaredMinimumGripStrengthIsRespectedButDoesNotPreventLetGo()
+        {
+            using (var f = new Fixture())
+            {
+                f.Load.GetPart<HandlingPart>().MinLiftStrength = 19;
+                Assert.AreEqual(DragVerdict.NotStrongEnough, DragRules.CanDrag(f.Player, f.Load)); Assert.IsNull(f.Find());
+                f.Player.GetStat("Strength").BaseValue = 19; f.Menu(HandlingPart.HaulCommand); f.Cue(HandlingPart.HaulCommand);
+                f.Grab(); f.Player.GetStat("Strength").BaseValue = 1;
+                f.Menu(HandlingPart.ReleaseCommand); f.Cue(HandlingPart.ReleaseCommand);
+            }
+        }
+
+        [TestCase("hidden-cell")] [TestCase("hidden-owner")] [TestCase("carried")]
+        [TestCase("equipped")] [TestCase("removed")] [TestCase("foreign-zone")]
+        [TestCase("foreign-handling")] [TestCase("far")]
+        public void UnavailableWorldSourcesHaveNoHaulCue(string reason)
+        {
+            using (var f = new Fixture())
+            {
+                f.Menu(HandlingPart.HaulCommand);
+                switch (reason)
+                {
+                    case "hidden-cell": f.Zone.GetEntityCell(f.Load).IsVisible = false; break;
+                    case "hidden-owner": f.Load.GetPart<RenderPart>().Visible = false; break;
+                    case "carried": f.Load.GetPart<PhysicsPart>().InInventory = f.Player; break;
+                    case "equipped": f.Load.GetPart<PhysicsPart>().Equipped = f.Player; break;
+                    case "removed": Assert.True(f.Zone.RemoveEntity(f.Load)); break;
+                    case "foreign-zone": Assert.True(f.Zone.RemoveEntity(f.Load)); Assert.True(new Zone(f.Zone.ZoneID).AddEntity(f.Load, 11, 10)); break;
+                    case "foreign-handling": f.Load.GetPart<HandlingPart>().ParentEntity = f.Player; break;
+                    case "far": Assert.True(f.Zone.MoveEntity(f.Load, 14, 10)); break;
+                }
+                Assert.IsNull(f.Find()); Assert.IsNull(f.Find(true)); Assert.IsNull(DragSystem.GetDragged(f.Player));
+            }
+        }
+
+        [Test]
+        public void AnotherCurrentHaulerPreventsAPlayerHaulCueEvenThoughMenuDeclaresIt()
+        {
+            using (var f = new Fixture())
+            {
+                var other = f.Core.Owner("other", 12, 10);
+                other.Statistics["Strength"] = new Stat { Name = "Strength", Owner = other, BaseValue = 18 };
+                Assert.AreEqual(DragVerdict.Ok, DragSystem.TryGrab(other, f.Load, f.Zone));
+                try { f.Menu(HandlingPart.HaulCommand); Assert.IsNull(f.Find()); Assert.AreSame(other, DragSystem.GetDragger(f.Load)); }
+                finally { DragSystem.Release(other); }
+                f.Cue(HandlingPart.HaulCommand);
+            }
+        }
+
+        [Test]
+        public void QueryDoesNotDispatchActionsMutateGripOrChangePlayerClock()
+        {
+            using (var f = new Fixture())
+            {
+                f.Grab(); var grip = f.Player.GetPart<DragPart>(); var held = f.Load.GetPart<DraggedPart>();
+                int speed = f.Player.GetStatValue("Speed"), tick = WorldClock.CurrentTick, logCount = MessageLog.Count;
+                var actorTrap = new WorldAffordanceQueryTests.Trap(); var loadTrap = new WorldAffordanceQueryTests.Trap();
+                f.Player.AddPart(actorTrap); f.Load.AddPart(loadTrap);
+                try
+                {
+                    for (int i = 0; i < 20; i++) f.Cue(HandlingPart.ReleaseCommand);
+                    Assert.AreEqual(0, actorTrap.Calls + loadTrap.Calls);
+                    Assert.AreSame(grip, f.Player.GetPart<DragPart>()); Assert.AreSame(held, f.Load.GetPart<DraggedPart>());
+                    Assert.AreEqual(speed, f.Player.GetStatValue("Speed")); Assert.AreEqual(tick, WorldClock.CurrentTick);
+                    Assert.AreEqual(logCount, MessageLog.Count); Assert.AreEqual((11, 10), f.Zone.GetEntityPosition(f.Load));
+                }
+                finally { f.Player.RemovePart(actorTrap); f.Load.RemovePart(loadTrap); }
+            }
+        }
+
+        [Test]
+        public void OrdinaryExistingActionPriorityDoesNotChangeOnAHandlingOwner()
+        {
+            using (var f = new Fixture())
+            {
+                f.Load.AddPart(new ContainerPart());
+                Assert.AreEqual("OpenContainer", f.Find().Value.Command);
+                Assert.True(WorldInteractionSystem.GatherActions(f.Load, f.Player).Any(a => a.Command == HandlingPart.HaulCommand));
+            }
+        }
+    }
+}

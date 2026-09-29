@@ -55,6 +55,7 @@ namespace CavesOfOoo.Core
             snapshots=owners.Select(e=>new OwnerSnapshot(zone,e)).ToArray();
         }
         bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&(ReferenceEquals(p.SourceReceipt,this)||ReferenceEquals(p.LooseSourceReceipt,this)||ReferenceEquals(p.AmbientSourceReceipt,this)||ReferenceEquals(p.AmbientReplacementReceipt,this)||ReferenceEquals(p.ForageSourceReceipt,this))
+            : source is HaulablePropBuilder h ? h.OwnsSourceReceipt(this)
             : source is ContainerBuilder c ? c.CaptureSourceReceipts&&ReferenceEquals(c.SourceReceipt,this)
             : source is SpreadCompositionBuilder terrain&&(terrain.OwnsPassageReceipt(this)||terrain.OwnsCookingReceipt(this));
         public bool IsCurrent => !consumed&&complete&&SourceCurrent&&snapshots.All(s=>s.Matches(true));
@@ -74,7 +75,15 @@ namespace CavesOfOoo.Core
             if(zone==null||exact==null||exact.Any(e=>e==null)||exact.Distinct().Count()!=exact.Length)
                 return ()=>false;
             var state=exact.Select(e=>new OwnerSnapshot(zone,e)).ToArray();
-            return ()=>state.All(s=>s.Matches(true));
+            return ()=>
+            {
+                // One fresh scan for this synchronous proof, never a cache across
+                // callbacks. Only the captured owners' IDs require uniqueness.
+                var idCounts=new Dictionary<string,int>(StringComparer.Ordinal);int nullIds=0;
+                foreach(var e in zone.GetReadOnlyEntities())
+                {if(e.ID==null)nullIds++;else{idCounts.TryGetValue(e.ID,out int count);idCounts[e.ID]=count+1;}}
+                return state.All(s=>s.Matches(true,idCounts,nullIds));
+            };
         }
 
         // Exact removed terrain owner retained only for the scoped substitution's
@@ -103,9 +112,10 @@ namespace CavesOfOoo.Core
                 }
                 valid=owner!=null&&position.x>=0&&pending.Count==0;
             }
-            internal bool Matches(bool location)=>valid&&owner.SpatialZone==zone&&zone.GetEntityCell(owner)!=null
+            internal bool Matches(bool location,Dictionary<string,int> idCounts=null,int nullIds=0)=>valid&&owner.SpatialZone==zone&&zone.GetEntityCell(owner)!=null
                 &&owner.GetPart<PhysicsPart>()?.InInventory==null&&owner.GetPart<PhysicsPart>()?.Equipped==null
-                &&zone.GetReadOnlyEntities().Count(e=>e.ID==owner.ID)==1
+                &&(idCounts==null?zone.GetReadOnlyEntities().Count(e=>e.ID==owner.ID)
+                    :owner.ID==null?nullIds:idCounts.TryGetValue(owner.ID,out int count)?count:0)==1
                 &&(!location||zone.GetEntityPosition(owner)==position)&&graph.All(e=>e.Matches());
         }
         // A bounded snapshot for the already-produced graph, not a save schema.

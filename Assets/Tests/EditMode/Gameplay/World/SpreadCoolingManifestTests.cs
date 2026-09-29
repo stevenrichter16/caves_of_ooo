@@ -33,10 +33,10 @@ namespace CavesOfOoo.Tests
         static uint Variant(int seed,string id)
         {unchecked{uint h=2166136261u^(uint)seed;foreach(char c in "SpreadExploration.v2|family-variant|"+id)h=(h^c)*16777619u;h^=h>>16;h*=0x7feb352du;h^=h>>15;h*=0x846ca68bu;return (h^(h>>16))%2;}}
         [TestCase(1)][TestCase(64)][TestCase(1729)]
-        public void FreshSixSelectsOneFieldPrincipalWithoutGeneratingGraphs(int seed)
+        public void FreshCurrentSelectsOneFieldPrincipalWithoutGeneratingGraphs(int seed)
         {
             var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);var p=m.Exploration;
-            Assert.AreEqual(6,p.Version);Assert.AreEqual(10,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"CoolingWorkPatch")));
+            Assert.AreEqual(7,p.Version);Assert.AreEqual(10,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"CoolingWorkPatch")));
             var fields=p.Entries.Where(e=>e.Family!=SpreadExplorationFamily.None&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.FieldStrips).ToArray();
             Assert.IsNotEmpty(fields);Assert.True(fields.Any(e=>e.Family.ToString()=="CoolingWorkPatch"));
             foreach(var e in fields)Assert.AreEqual(Variant(seed,e.ZoneID)==0?"LastGleanings":"CoolingWorkPatch",e.Family.ToString());
@@ -54,7 +54,7 @@ namespace CavesOfOoo.Tests
         {public ObservedManager(EntityFactory f,int seed):base(f,seed){}public SpreadCompositionBuilder Terrain(string id)=>base.GetPipelineForZone(id).Builders.OfType<SpreadCompositionBuilder>().Single();}
         [Test] public void OnlySelectedCurrentCookingFamilyOptsIntoTerrainRowReceipts()
         {
-            var m=new ObservedManager(scope.Factory,64);Assert.AreEqual(6,m.Exploration.Version);
+            var m=new ObservedManager(scope.Factory,64);Assert.AreEqual(7,m.Exploration.Version);
             var fields=m.Exploration.Entries.Where(e=>e.PlacementEligible&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.FieldStrips).ToArray();
             Assert.True(fields.Any(e=>e.Family.ToString()=="CoolingWorkPatch"));Assert.True(fields.Any(e=>e.Family.ToString()=="LastGleanings"));Assert.True(fields.Any(e=>e.Family==SpreadExplorationFamily.None));
             var flag=typeof(SpreadCompositionBuilder).GetField("CaptureCookingSources",All);Assert.NotNull(flag);

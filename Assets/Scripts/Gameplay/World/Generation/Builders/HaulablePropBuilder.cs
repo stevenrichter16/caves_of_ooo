@@ -12,7 +12,7 @@ namespace CavesOfOoo.Core
     /// object anywhere in the world. A mechanic the player cannot meet is
     /// not shipped.</para>
     ///
-    /// <para><b>Deliberately sparse.</b> One or two per zone at most, and
+    /// <para><b>Deliberately sparse.</b> One per zone at most, and
     /// often none. A millstone is a landmark, not scenery — finding one
     /// should be a small event, and a floor littered with anvils would make
     /// the whole thing feel like debris.</para>
@@ -28,6 +28,13 @@ namespace CavesOfOoo.Core
         /// <summary>Per-mille chance of placing anything at all in a zone.
         /// 350 = roughly a third of zones have one.</summary>
         public int ChancePerMille = 350;
+        /// <summary>Opt-in exact ordinary cold source, never scan or replay authority.</summary>
+        public bool CaptureSourceReceipts;
+        public SpreadGenerationReceipt SourceReceipt { get; private set; }
+        private int sourceRevision;
+        internal bool OwnsSourceReceipt(SpreadGenerationReceipt receipt)=>CaptureSourceReceipts&&receipt!=null
+            &&ReferenceEquals(SourceReceipt,receipt)&&receipt.Revision==sourceRevision;
+
 
         private readonly BiomeType _biome;
 
@@ -64,6 +71,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public bool BuildZone(Zone zone, EntityFactory factory, System.Random rng)
         {
+            SourceReceipt=null;int revision=++sourceRevision;
             if (zone == null || factory == null || rng == null) return true;
             if (!Pools.TryGetValue(_biome, out string[] pool) || pool.Length == 0) return true;
             if (rng.Next(1000) >= ChancePerMille) return true;
@@ -88,8 +96,12 @@ namespace CavesOfOoo.Core
                 // they may not be strong enough to use.
                 if (!HasOpenNeighbourOnBothSides(zone, x, y)) continue;
 
-                if (BuilderSpawn.TryPlace(zone, factory, blueprint, x, y) != null)
+                var made=BuilderSpawn.TryPlace(zone, factory, blueprint, x, y);
+                if (made != null)
+                {
+                    if(CaptureSourceReceipts)SourceReceipt=new SpreadGenerationReceipt(this,zone,factory,revision,new[]{made},1);
                     return true;
+                }
             }
 
             return true;   // no room for one; the zone is still fine

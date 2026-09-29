@@ -1,0 +1,95 @@
+{
+  "private-red.xml": {
+    "sha256": "8b2f4c7b4ca1202030c25ffcc9af05214002bc2442c7a42ad206c17793657ebb",
+    "total": "68",
+    "passed": "58",
+    "failed": "10",
+    "skipped": "0",
+    "duration": "0.574134",
+    "start-time": "2026-09-29T03:49:12.6930360Z",
+    "end-time": "2026-09-29T03:49:13.2671730Z",
+    "failedNames": [
+      "CavesOfOoo.Tests.WorldAffordanceHaulingAdversarialTests.CachedHaulCueCannotSurviveStrengthLossOrAnotherGrip",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualGroundOwnerHasTheSameHaulCommandAsItsMenu(\"FallenBeam\")",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualGroundOwnerHasTheSameHaulCommandAsItsMenu(\"HaulBarrel\")",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualStrengthBoundaryMatchesMenuAndCue(\"FallenBeam\",8,True)",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualStrengthBoundaryMatchesMenuAndCue(\"HaulBarrel\",10,True)",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.AnotherCurrentHaulerPreventsAPlayerHaulCueEvenThoughMenuDeclaresIt",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.DeclaredMinimumGripStrengthIsRespectedButDoesNotPreventLetGo",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.FocusUsesExistingEnterAndCannotBorrowAnAdjacentCue",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.QueryDoesNotDispatchActionsMutateGripOrChangePlayerClock",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.RealGripAndReleaseFlipOnlyTheCurrentCommandWithoutMovingOwners"
+    ]
+  },
+  "private-corrected-red.xml": {
+    "sha256": "dc282d710ad44a6c6210ae4c160fe5604b6e23e0c7aa75510b496552b9ab27a1",
+    "total": "68",
+    "passed": "58",
+    "failed": "10",
+    "skipped": "0",
+    "duration": "0.506149",
+    "start-time": "2026-09-29T03:54:55.4795400Z",
+    "end-time": "2026-09-29T03:54:55.9856970Z",
+    "failedNames": [
+      "CavesOfOoo.Tests.WorldAffordanceHaulingAdversarialTests.CachedHaulCueCannotSurviveStrengthLossOrAnotherGrip",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualGroundOwnerHasTheSameHaulCommandAsItsMenu(\"FallenBeam\")",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualGroundOwnerHasTheSameHaulCommandAsItsMenu(\"HaulBarrel\")",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualStrengthBoundaryMatchesMenuAndCue(\"FallenBeam\",8,True)",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualStrengthBoundaryMatchesMenuAndCue(\"HaulBarrel\",10,True)",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.AnotherCurrentHaulerPreventsAPlayerHaulCueEvenThoughMenuDeclaresIt",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.DeclaredMinimumGripStrengthIsRespectedButDoesNotPreventLetGo",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.FocusUsesExistingEnterAndCannotBorrowAnAdjacentCue",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.QueryDoesNotDispatchActionsMutateGripOrChangePlayerClock",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.RealGripAndReleaseFlipOnlyTheCurrentCommandWithoutMovingOwners"
+    ]
+  },
+  "private-candidate-premise-red.xml": {
+    "sha256": "4d28777d649e37bce91bf45905d4a72842665a0d3a6219d450553a63f73497a7",
+    "total": "68",
+    "passed": "65",
+    "failed": "3",
+    "skipped": "0",
+    "duration": "0.452441",
+    "start-time": "2026-09-29T03:53:14.1059550Z",
+    "end-time": "2026-09-29T03:53:14.5584100Z",
+    "failedNames": [
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualGroundOwnerHasTheSameHaulCommandAsItsMenu(\"FallenBeam\")",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualGroundOwnerHasTheSameHaulCommandAsItsMenu(\"HaulBarrel\")",
+      "CavesOfOoo.Tests.WorldAffordanceHaulingTests.RealGripAndReleaseFlipOnlyTheCurrentCommandWithoutMovingOwners"
+    ]
+  },
+  "private-green.xml": {
+    "sha256": "9c6f4e7404c5a0d7dac657d071c10f22cb43a6a022532ef3fd87762b3f25412f",
+    "total": "68",
+    "passed": "68",
+    "failed": "0",
+    "skipped": "0",
+    "duration": "0.485717",
+    "start-time": "2026-09-29T03:56:54.4263370Z",
+    "end-time": "2026-09-29T03:56:54.9120600Z",
+    "failedNames": []
+  },
+  "nativeRed": {
+    "job": "ec95cf673e164ebb9e8fb5ae22119b7f",
+    "sha256": "b45557c1c576d92fd078d25a5dc81a0db21d394de799be94d7e3338b09f23a0e",
+    "total": 44,
+    "passed": 34,
+    "failed": 10,
+    "skipped": 0,
+    "durationSeconds": 2.3127685,
+    "resultState": "Failed(Child)"
+  },
+  "referenceCompile": {
+    "runtimeExitCode": 0,
+    "fullEditModeTestsExitCode": 0,
+    "runtimeLogSha256": "9e592066414ea33bfdf549243743f852627efb3beae4da038e51ad8c84328e18",
+    "testsLogSha256": "0218095a73cd170951cd6a7cf52ee2a9acf142690912b49490461b3295d76ce0"
+  },
+  "sourceHashes": {
+    "WorldAffordanceQuery.before.cs.txt": "7606cfca7fee69a0188d58e942e01eea451d3747571d0f38fc1131e3cf9e0ed9",
+    "WorldAffordanceQuery.cs": "f7f8e574917e35fb08d2690a84f6d098f93f8e4991c9677d7054994a17b4e663",
+    "WorldAffordanceHaulingTests.before.cs.txt": "f86a35d3c517d70cd2ec2002890da28032ae6bb9263b44471df448933f4c8bf1",
+    "WorldAffordanceHaulingTests.cs": "1f9f1d8ed7f0a2e840495561741e1e5b0d90305945b006645c5d4e0e00cf1a2e",
+    "WorldAffordanceHaulingAdversarialTests.cs": "51ee3ccea26a4297c79c3fcd1641d3c0e396c67c8726fe82361dc3c6bb702d12"
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "baselineCommit": "d0fb582ca14131d3828384a701e46d6bdeb0e37f",
+  "censusReceiptPath": "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Hauling/Integration/paired-census-receipts.json",
+  "pairedCensusHashesVerified": [
+    true,
+    true
+  ],
+  "candidateOwnerCount": 313232,
+  "baselineOwnerCount": 313257,
+  "pairedZoneBlueprintDelta": [
+    {
+      "zone": "Overworld.11.7.0",
+      "blueprint": "Crate",
+      "candidate": 0,
+      "baseline": 1,
+      "baselineMinusCandidate": 1
+    },
+    {
+      "zone": "Overworld.11.7.0",
+      "blueprint": "MarlbackScrabbler",
+      "candidate": 2,
+      "baseline": 1,
+      "baselineMinusCandidate": -1
+    },
+    {
+      "zone": "Overworld.11.7.0",
+      "blueprint": "Signpost",
+      "candidate": 0,
+      "baseline": 1,
+      "baselineMinusCandidate": 1
+    },
+    {
+      "zone": "Overworld.11.7.0",
+      "blueprint": "SpreadWayhouseState",
+      "candidate": 0,
+      "baseline": 1,
+      "baselineMinusCandidate": 1
+    },
+    {
+      "zone": "Overworld.11.7.0",
+      "blueprint": "StoneWall",
+      "candidate": 0,
+      "baseline": 22,
+      "baselineMinusCandidate": 22
+    },
+    {
+      "zone": "Overworld.11.7.0",
+      "blueprint": "VillageDoor",
+      "candidate": 0,
+      "baseline": 1,
+      "baselineMinusCandidate": 1
+    }
+  ],
+  "allOtherZoneBlueprintCountsMatch": true,
+  "historicalArtifactInBaselineCommit": {
+    "path": "Docs/Verification/DensityCompletion/SpreadBiome/NativeCoverage/64-all-current-Spread-ecac1e05238a4dc7b99be9e69e204d7e.json.gz",
+    "sha256": "b4ce5a842ece502d5d1b28df6ebbb12766f1eaea62c19ddb733e722761c1479e",
+    "totalOwners": 313228,
+    "failureCount": 0,
+    "wayhouseAnchorCount": 0,
+    "candidate11_7BlueprintCountsEqualHistorical": true,
+    "zone11_7Counts": {
+      "Grass": 1744,
+      "Bush": 39,
+      "Tree": 45,
+      "RoadStone": 256,
+      "StairsDown": 1,
+      "PeatBog": 4,
+      "SteamVent": 3,
+      "CopperPipe": 1,
+      "Magpie": 4,
+      "MarlbackScrabbler": 2,
+      "BerryBush": 1,
+      "Sack": 1
+    }
+  },
+  "candidateRestoration": {
+    "frozenFiles": 41,
+    "mismatches": []
+  },
+  "examinedSourceHashes": [
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/SpreadWayhouseBuilder.cs",
+      "baselineSha256": "8a061a7d2a257ff44706e7cf2360db81c8d91ecdd9da74e960051295a230a4cb",
+      "candidateSha256": "8a061a7d2a257ff44706e7cf2360db81c8d91ecdd9da74e960051295a230a4cb",
+      "identical": true
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadWayhousePlan.cs",
+      "baselineSha256": "1bc5de5ee744ddcf2a7c8fa29573586f7c82e6cb1a3e0638e67722b671b9613f",
+      "candidateSha256": "1bc5de5ee744ddcf2a7c8fa29573586f7c82e6cb1a3e0638e67722b671b9613f",
+      "identical": true
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/SpreadWildernessSituationPlan.cs",
+      "baselineSha256": "ce1391430932cdeb2e764f7fd84658301358064afe610bcef29b69e629924449",
+      "candidateSha256": "f6be3b8fd7967568d7b5a5e0b0f1211ad34a6d3dd0634f4575f310fc2c7fa84f",
+      "identical": false
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs",
+      "baselineSha256": "5dae55e43a0954f4183c32df5a291f3abc813e1e61bbc83d7d511e784676df12",
+      "candidateSha256": "c299a211430f2e60ebd4ba4efb6b9ab617a58b5deb9f60216cf1b9cc95a25784",
+      "identical": false
+    },
+    {
+      "path": "Assets/Tests/EditMode/Presentation/Rendering/SpreadBiomeCoverageTests.cs",
+      "baselineSha256": "65fa6fe4c92471021d151a89f6e676e57021fa14c5fe3e51ac94e75b280bcdcb",
+      "candidateSha256": "65fa6fe4c92471021d151a89f6e676e57021fa14c5fe3e51ac94e75b280bcdcb",
+      "identical": true
+    },
+    {
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs",
+      "baselineSha256": "d60fc290215d6da97be1f23ea7d9e3c9fac0ae714ec8448082e58c6cfdb394f3",
+      "candidateSha256": "d60fc290215d6da97be1f23ea7d9e3c9fac0ae714ec8448082e58c6cfdb394f3",
+      "identical": true
+    }
+  ],
+  "evidenceInputHashes": [
+    {
+      "path": "/Users/steven/.codex/scratch/caves-of-ooo/f9/native-full-result.json",
+      "sha256": "8f832a702a7c1f5dc4e50da9dacd59d2dcfbb068096f1677699a3d2f5bea0f7d"
+    },
+    {
+      "path": "/Users/steven/.codex/scratch/caves-of-ooo/f9/native-full-comparison.json",
+      "sha256": "fdd67140f8bdf8055abb874f639456c038c54517f6670f35be0e02d5ea218d4a"
+    },
+    {
+      "path": "/Users/steven/.codex/scratch/caves-of-ooo/f9/paired-timing-comparison.json",
+      "sha256": "9ffba207d052f3d1c440d7e7814c0d8558c18d582c7e26454be48f6c7b52e8d2"
+    },
+    {
+      "path": "/Users/steven/.codex/scratch/caves-of-ooo/f9/native-baseline-timing-result.json",
+      "sha256": "143598696f0e0437c120a19742850afcb5602dcfe03fc30398384bd08839c0f5"
+    },
+    {
+      "path": "/Users/steven/.codex/scratch/caves-of-ooo/f9/baseline-comparison-overlay.json",
+      "sha256": "33b3e25b02a2c7a0bb7c31a558d6ffa98618ffffdb716c15a0f584fe451eae61"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Hauling/Integration/paired-census-receipts.json",
+      "sha256": "6c80be3b17118bbfd97cb353de6eb3e47594d2c88f6715bf8136863e6e2d031b"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Integration/native-workspot-full-suite-green.json",
+      "sha256": "84ca9aaa1041edd5976180eab6b68275b688cb8b59cb5ead14f9cfaad5aab793"
+    },
+    {
+      "path": "/Users/steven/caves-of-ooo/Docs/QUEST-FREE-HAULING-IMPLEMENTATION.md",
+      "sha256": "fc6a80646776835d2eb421c9232cebda982fa42b55c2612a539a1d00d58fb5fe"
+    }
+  ]
+}

@@ -69,17 +69,18 @@ namespace CavesOfOoo.Core
             var pipeline=CreatePipelineForZone(zoneID);
             if(captured?.TryGetPlacement(this,zoneID,out var assignment)==true)
             {
-                SpreadCompositionBuilder land=null;PopulationBuilder population=null;ContainerBuilder containers=null;
+                SpreadCompositionBuilder land=null;PopulationBuilder population=null;ContainerBuilder containers=null;HaulablePropBuilder haul=null;
                 foreach(var builder in pipeline.Builders)
                 {
-                    if(builder is SpreadCompositionBuilder composition){composition.Topology=assignment.Topology;composition.CapturePassageSources=captured.Version>=5&&assignment.Family==SpreadExplorationFamily.FieldPassage;composition.CaptureCookingSources=captured.Version>=6&&assignment.Family==SpreadExplorationFamily.CoolingWorkPatch;land=composition;}
+                    if(builder is SpreadCompositionBuilder composition){composition.Topology=assignment.Topology;composition.CapturePassageSources=captured.Version>=5&&(assignment.Family==SpreadExplorationFamily.FieldPassage||captured.Version>=7&&assignment.Family==SpreadExplorationFamily.HeavySalvage);composition.CaptureCookingSources=captured.Version>=6&&assignment.Family==SpreadExplorationFamily.CoolingWorkPatch;land=composition;}
                     if(builder is PopulationBuilder people)population=people;
                     if(builder is ContainerBuilder stock)containers=stock;
+                    if(builder is HaulablePropBuilder heavy){heavy.CaptureSourceReceipts=captured.Version>=7&&assignment.Family==SpreadExplorationFamily.HeavySalvage;haul=heavy;}
                 }
                 // A v2 quiet address stays quiet; it must not borrow the old independent selector.
                 pipeline.RemoveBuilders<SpreadWildernessSituationBuilder>();
                 if(assignment.Family!=SpreadExplorationFamily.None&&land!=null&&population!=null&&containers!=null)
-                    pipeline.AddBuilder(new SpreadExplorationBuilder(this,land,population,containers));
+                    pipeline.AddBuilder(new SpreadExplorationBuilder(this,land,population,containers,haul));
             }
             if(guard!=null)pipeline.AddBuilder(guard);
             return pipeline;

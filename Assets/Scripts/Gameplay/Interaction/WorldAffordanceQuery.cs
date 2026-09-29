@@ -15,19 +15,19 @@ namespace CavesOfOoo.Core
         public string Hint => WorldAffordanceQuery.Hints[VerbIndex*10+Direction];
     }
 
-    /// <summary>Bounded read-only hints for four native interaction families.
+    /// <summary>Bounded read-only hints for native interaction families.
     /// Checks current prerequisites, not future event vetoes. The existing menu
     /// remains authoritative. No GetInventoryActions, lazy loading or callbacks.</summary>
     public static class WorldAffordanceQuery
     {
-        internal static readonly string[] Commands={"Harvest","OpenContainer",DoorPart.OpenCommand,DoorPart.CloseCommand,"Examine"};
+        internal static readonly string[] Commands={"Harvest","OpenContainer",DoorPart.OpenCommand,DoorPart.CloseCommand,"Examine",HandlingPart.HaulCommand,HandlingPart.ReleaseCommand};
         internal static readonly string[] Hints=BuildHints();
         private static string[] BuildHints()
         {
             var keys=new[]{"Y","W","U","A",".","D","B","S","N","Enter"};
-            var verbs=new[]{"harvest","open","open door","close door","read"};
-            var rows=new string[50];
-            for(int v=0;v<5;v++)for(int d=0;d<10;d++)rows[v*10+d]=(d==9?"Enter": "C, "+keys[d])+": menu / "+verbs[v];
+            var verbs=new[]{"harvest","open","open door","close door","read","haul","let go"};
+            var rows=new string[verbs.Length*10];
+            for(int v=0;v<verbs.Length;v++)for(int d=0;d<10;d++)rows[v*10+d]=(d==9?"Enter": "C, "+keys[d])+": menu / "+verbs[v];
             return rows;
         }
         public static WorldAffordance? Find(Entity actor,Zone zone,bool focused,int x,int y)
@@ -134,7 +134,24 @@ namespace CavesOfOoo.Core
             var examine=owner.GetPart<ExaminablePart>();var sign=owner.GetPart<RegionalSignpostPart>();
             if(examine!=null&&examine.GetType()==typeof(ExaminablePart)&&examine.ParentEntity==owner
                 &&((sign!=null&&sign.ParentEntity==owner)||owner.BlueprintName=="Signpost"||owner.BlueprintName=="GroveSign"))return 4;
-            return -1;
+            return HaulVerb(actor,owner);
+        }
+        private static int HaulVerb(Entity actor,Entity owner)
+        {
+            // Match the sealed menu provider without firing GetInventoryActions.
+            // At/OwnerCurrent already prove visible, reachable world ownership.
+            var handling=owner.GetPart<HandlingPart>();
+            if(handling==null||handling.ParentEntity!=owner)return -1;
+            var grip=actor.GetPart<DragPart>();var held=owner.GetPart<DraggedPart>();
+            if(grip!=null)
+            {
+                // Let Go remains available after strength/weight changes, but a
+                // stale or one-sided link must never be repaired by this query.
+                return grip.ParentEntity==actor&&grip.Dragged==owner
+                    &&held!=null&&held.ParentEntity==owner&&held.Dragger==actor?6:-1;
+            }
+            if(held!=null)return -1;
+            return DragRules.CanDrag(actor,owner)==DragVerdict.Ok?5:-1;
         }
         private static bool KnownYield(string id,bool takeable)
         {

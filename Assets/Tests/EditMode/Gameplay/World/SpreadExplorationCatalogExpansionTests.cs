@@ -11,7 +11,7 @@ namespace CavesOfOoo.Tests
   public void FreshCatalogAddsActualForageAndWorkGangAssignments(int seed)
   {using(var s=new DensityLootTestScope()){
    var m=OverworldZoneManager.CreateDetached(s.Factory,seed,true);
-   Assert.AreEqual(6,m.Exploration.Version,"New distribution has an explicit version; existing v2/v3 worlds must retain theirs.");
+   Assert.AreEqual(7,m.Exploration.Version,"New distribution has an explicit version; existing v2/v3 worlds must retain theirs.");
    foreach(string family in new[]{"SnakeForage","WorkGang"})Assert.True(m.Exploration.Entries.Any(e=>e.Family.ToString()==family),family);
    foreach(var e in m.Exploration.Entries.Where(e=>e.Family.ToString()=="SnakeForage"))Assert.AreEqual(Formation.FlowerMeadow,FormationSelector.For(BiomeType.Spread,e.ZoneID));
    foreach(var e in m.Exploration.Entries.Where(e=>e.Family.ToString()=="WorkGang"))Assert.AreEqual(Formation.Fallow,FormationSelector.For(BiomeType.Spread,e.ZoneID));

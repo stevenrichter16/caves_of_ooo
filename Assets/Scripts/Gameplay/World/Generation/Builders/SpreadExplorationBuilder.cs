@@ -12,11 +12,11 @@ namespace CavesOfOoo.Core
   public string Name=>"SpreadExploration";public int Priority=>4300;
   public string LastResult{get;private set;}="";
   readonly OverworldZoneManager manager;readonly SpreadExplorationPlan plan;
-  readonly SpreadCompositionBuilder terrain;readonly PopulationBuilder population;readonly ContainerBuilder containers;
+  readonly SpreadCompositionBuilder terrain;readonly PopulationBuilder population;readonly ContainerBuilder containers;readonly HaulablePropBuilder haul;
   const int MaxTrials=256;
-  public SpreadExplorationBuilder(OverworldZoneManager manager,SpreadCompositionBuilder terrain,PopulationBuilder population,ContainerBuilder containers)
+  public SpreadExplorationBuilder(OverworldZoneManager manager,SpreadCompositionBuilder terrain,PopulationBuilder population,ContainerBuilder containers,HaulablePropBuilder haul=null)
   {
-   this.manager=manager;plan=manager?.Exploration;this.terrain=terrain;this.population=population;this.containers=containers;
+   this.manager=manager;plan=manager?.Exploration;this.terrain=terrain;this.population=population;this.containers=containers;this.haul=haul;
    if(population!=null){population.CaptureSourceReceipts=true;population.ExplorationManager=manager;}
    if(containers!=null)containers.CaptureSourceReceipts=true;
   }
@@ -39,8 +39,19 @@ namespace CavesOfOoo.Core
     case SpreadExplorationFamily.CollectorReturn:return Collector(zone,factory,entry);
     case SpreadExplorationFamily.FieldPassage:return Passage(zone,factory,entry);
     case SpreadExplorationFamily.CoolingWorkPatch:return Cooking(zone,factory,entry);
+    case SpreadExplorationFamily.HeavySalvage:return Hauling(zone,factory,entry);
     default:return Refuse(zone,entry,"unsupported-family");
    }
+  }
+  bool Hauling(Zone z,EntityFactory f,SpreadExplorationEntry entry)
+  {
+   if(terrain.Plan.Formation!=Formation.Hedgerow||!terrain.CapturePassageSources||haul?.SourceReceipt==null)return Refuse(z,entry,"no-ordinary-haul-source");
+   var owners=new HashSet<Entity>(z.GetReadOnlyEntities());
+   var original=SpreadGenerationReceipt.CaptureFinalState(z,z.GetReadOnlyEntities().Where(e=>!DoorPart.IsBareGround(e)));
+   if(SpreadExplorationHauling.TryPlace(z,terrain,haul,()=>Current(z,f,entry),out var load,out var final))
+    return Commit(z,f,entry,new[]{load},final);
+   if(!Current(z,f,entry)||!original()||!owners.SetEquals(z.GetReadOnlyEntities()))return false;
+   return Refuse(z,entry,"no-useful-heavy-salvage-layout");
   }
   bool Cooking(Zone z,EntityFactory f,SpreadExplorationEntry entry)
   {

@@ -1,0 +1,49 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "durationSeconds": 225.7953345,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "Diag_DisabledChannelOverhead_BoundedPerCall",
+      "fullName": "CavesOfOoo.Tests.DiagPerfTests.Diag_DisabledChannelOverhead_BoundedPerCall",
+      "state": "Failed",
+      "durationSeconds": 0.05956,
+      "message": "  Disabled-channel Diag.Record overhead 579 ns/call exceeded ceiling 200 ns/call. The IsChannelEnabled short-circuit may have regressed (extra allocation? lock contention? full-method dispatch?).\n  Expected: less than 200.0d\n  But was:  579.07799999999997d\n",
+      "stackTrace": "at CavesOfOoo.Tests.DiagPerfTests.Diag_DisabledChannelOverhead_BoundedPerCall () [0x000b1] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Diagnostics/DiagPerfTests.cs:75\n",
+      "output": ""
+    },
+    {
+      "name": "Diag_EnabledChannelOverhead_BoundedPerCall",
+      "fullName": "CavesOfOoo.Tests.DiagPerfTests.Diag_EnabledChannelOverhead_BoundedPerCall",
+      "state": "Passed",
+      "durationSeconds": 0.195487,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "RemoveEffect_With_Diag_Hook_CompletesUnderBudget",
+      "fullName": "CavesOfOoo.Tests.DiagPerfTests.RemoveEffect_With_Diag_Hook_CompletesUnderBudget",
+      "state": "Passed",
+      "durationSeconds": 0.1072623,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "EveryActualSurfaceAndCommittedLairHasNativeGeometry(64)",
+      "fullName": "CavesOfOoo.Tests.SpreadBiomeCoverageTests.EveryActualSurfaceAndCommittedLairHasNativeGeometry(64)",
+      "state": "Failed",
+      "durationSeconds": 224.4558623,
+      "message": "Timeout value of 180000 ms was exceeded. If this is intended, increase the timeout value using a TimeoutAttribute.",
+      "stackTrace": "",
+      "output": "[HouseDramaLoader] Loaded 2 drama(s).\n[HouseDramaRuntime] Drama 'Thresker' activated.\n[Conversation] Loaded 74 conversations from 29 files.\n[HouseDramaZoneBuilder] Seeded drama 'Thresker' into zone 'Overworld.15.6.0'.\n[HouseDramaRuntime] Drama 'Vex' activated.\n[HouseDramaZoneBuilder] Seeded drama 'Vex' into zone 'Overworld.13.7.0'.\n[HouseDramaZoneBuilder] Seeded drama 'Vex' into zone 'Overworld.7.8.0'.\n[HouseDramaZoneBuilder] Seeded drama 'Thresker' into zone 'Overworld.5.9.0'.\n[HouseDramaZoneBuilder] Seeded drama 'Thresker' into zone 'Overworld.14.9.0'.\n[HouseDramaZoneBuilder] Seeded drama 'Thresker' into zone 'Overworld.10.10.0'.\n[HouseDramaZoneBuilder] Seeded drama 'Vex' into zone 'Overworld.16.11.0'.\n[HouseDramaZoneBuilder] Seeded drama 'Thresker' into zone 'Overworld.12.12.0'.\n[HouseDramaZoneBuilder] Seeded drama 'Thresker' into zone 'Overworld.10.14.0'.\n"
+    }
+  ]
+}

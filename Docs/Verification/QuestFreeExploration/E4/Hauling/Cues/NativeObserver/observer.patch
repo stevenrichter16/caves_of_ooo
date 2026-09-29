@@ -1,0 +1,82 @@
+--- a/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.Hauling.cs
++++ b/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.Hauling.cs
+@@ -81,7 +81,7 @@
+             Check("current_generated_hauling_geometry",Manager.Exploration.DispositionFor(Zone.ZoneID)==2&&site.Hedges.Length==12&&site.Aperture.BlocksMovement(Player)&&At==site.Approach);
+             _observations.Add(new{phase="actual-hauling-geometry",zone=Zone.ZoneID,owner=site.Load.ID,blueprint=site.Load.BlueprintName,aperture=HaulXY(site.Aperture),approach=HaulXY(site.Approach),opposite=HaulXY(site.Opposite),parked=HaulXY(site.Parked),finalPlayer=HaulXY(site.FinalPlayer),hedges=supports.Select(s=>new{id=s.Owner.ID,position=new[]{s.Position.x,s.Position.y}}).ToArray(),initialBypassSteps=bypass.Count,initialBypass=bypass.Select(HaulXY).ToArray(),predictedClearSteps=predicted.Count,predictedClearPath=predicted.Select(HaulXY).ToArray(),boundary="Read-only equal-step eight-direction physical dry route; the long bypass is not walked. Prediction ignores only the exact load at its original cell and blocks its proposed parked cell."});
+             var style=HaulVisual(site.Load,null,"initial-approved-haulable");
+-            yield return Capture("01-generated-obstructed-shortcut");
++            yield return HaulCueCapture(site.Load,HandlingPart.HaulCommand,"01-generated-obstructed-shortcut");
+             yield return HaulMenu(site.Load,false,"native-grab-original-source");
+             HaulCurrent(site,loadState,supports,site.Aperture,true);
+             int penalty=DragSystem.PenaltyFor(site.Load),applied=Math.Min(penalty,Math.Max(0,speed-DragSystem.MinimumHaulingSpeed));
+@@ -98,11 +98,11 @@
+             }
+             Check("two_actual_pulls_reach_parking",At==site.FinalPlayer&&Zone.GetEntityCell(site.Load)==site.Parked);
+             _observations.Add(new{phase="two-paid-haul-cost",beforeTick=haulTick,afterTick=Tick,beforeEnergy=haulEnergy,afterEnergy=Energy,speed=Player.GetStatValue("Speed"),paidSteps=2,work=(long)haulEnergy+(long)(Tick-haulTick)*Player.GetStatValue("Speed")-Energy});
+-            yield return Capture("02-native-held-load-after-two-pulls");
++            yield return HaulCueCapture(site.Load,HandlingPart.ReleaseCommand,"02-native-held-load-after-two-pulls");
+             yield return HaulMenu(site.Load,true,"native-release-parked-source");
+             HaulCurrent(site,loadState,supports,site.Parked,false);
+             Check("native_release_refunds_only_grip",Player.GetStatValue("Speed")==speed&&Player.GetPart<DragPart>()==null&&site.Load.GetPart<DraggedPart>()==null&&!site.Aperture.BlocksMovement(Player));
+-            HaulVisual(site.Load,style,"released-parked-style");yield return Capture("03-native-parked-load-and-open-gap");
++            HaulVisual(site.Load,style,"released-parked-style");yield return HaulCueCapture(site.Load,HandlingPart.HaulCommand,"03-native-parked-load-and-open-gap");
+             var clear=HaulPath(Zone,At,site.Opposite,null,null);
+             Require(clear!=null&&clear.Count<=6&&clear.Contains(site.Aperture),"current short route actually crosses the cleared aperture");
+             int clearTick=Tick,clearEnergy=Energy;
+@@ -205,6 +205,56 @@
+             yield return Tap(Key.G);yield return Settled();var rows=ExchangeWindow(marker);
+             Check(label+"_free_exact_native_command",State=="Normal"&&At==at&&Tick==tick&&Energy==energy&&WorldClock.CurrentTick==world&&HaulFacts(load)==before&&PlayerSignature()==player&&rows.Count(e=>e.Category=="drag"&&e.Kind==(release?"Released":"Grabbed")&&e.ActorId==Player.ID&&e.TargetId==load.ID)==1&&!rows.Any(e=>e.Category=="turn"&&e.Kind=="End"&&e.ActorId==Player.ID));
+             _observations.Add(new{phase=label,owner=load.ID,command,beforeTick=tick,afterTick=Tick,beforeEnergy=energy,afterEnergy=Energy,rows});WriteReport();
++        }
++        IEnumerator HaulCueCapture(Entity load,string expectedCommand,string label)
++        {
++            Require(State=="Normal"&&CookingCurrent(load),"current Normal-state hauling cue observation");
++            // Observe the normal renderer after LateUpdate; never force a redraw,
++            // focus, menu action or a different nearby selection to obtain a cue.
++            yield return new WaitForEndOfFrame();
++            int tick=Tick,energy=Energy,world=WorldClock.CurrentTick,speed=Player.GetStatValue("Speed");
++            var standing=At;var loadCell=Zone.GetEntityCell(load);var grip=Player.GetPart<DragPart>();var held=load.GetPart<DraggedPart>();
++            string player=PlayerSignature(),facts=HaulFacts(load);
++            var actual=_input.QueryWorldAffordance(Zone,Player);var cached=(WorldAffordance?)Field(_input.ZoneRenderer,"_worldAffordance");
++            var draw=(WorldAffordanceRenderer)Field(_input.ZoneRenderer,"_worldAffordanceRenderer");
++            string[] sidebar=HaulSidebarRows();
++            bool selectedLoad=actual.HasValue&&ReferenceEquals(actual.Value.Target,load);
++            bool submitted=draw!=null&&(actual.HasValue
++                ?cached.HasValue&&ReferenceEquals(cached.Value.Target,actual.Value.Target)&&ReferenceEquals(cached.Value.Cell,actual.Value.Cell)
++                    &&cached.Value.Command==actual.Value.Command&&cached.Value.Hint==actual.Value.Hint&&draw.IsVisible
++                    &&draw.CurrentCell==new Vector2Int(actual.Value.Cell.X,actual.Value.Cell.Y)
++                :!cached.HasValue&&!draw.IsVisible);
++            bool hintSubmitted=!actual.HasValue||sidebar.Any(line=>line.Contains(actual.Value.Hint));
++            _observations.Add(new{phase="normal-hauling-cue",label,state=State,load=load.ID,expectedCommand,selectedLoad,
++                target=actual?.Target?.ID,blueprint=actual?.Target?.BlueprintName,command=actual?.Command,hint=actual?.Hint,
++                cell=actual.HasValue?HaulXY(actual.Value.Cell):null,cachedTarget=cached?.Target?.ID,cachedCommand=cached?.Command,
++                markerVisible=draw?.IsVisible,markerCell=draw==null?null:new[]{draw.CurrentCell.x,draw.CurrentCell.y},submitted,hintSubmitted,sidebarRows=sidebar,
++                boundary="Actual Normal-state selection and submitted sidebar glyphs/corner state. Another normal-priority owner is permitted and reported; no focused query, Look rectangle or forced selection. Pixels and human readability require image review."});
++            yield return Capture(label);
++            Check(label+"_current_normal_cue_and_free_capture",submitted&&hintSubmitted&&(!selectedLoad||actual.Value.Command==expectedCommand)
++                &&State=="Normal"&&At==standing&&Tick==tick&&Energy==energy&&WorldClock.CurrentTick==world&&PlayerSignature()==player
++                &&CookingCurrent(load)&&Zone.GetEntityCell(load)==loadCell&&HaulFacts(load)==facts&&Player.GetStatValue("Speed")==speed
++                &&ReferenceEquals(Player.GetPart<DragPart>(),grip)&&ReferenceEquals(load.GetPart<DraggedPart>(),held));
++        }
++        string[] HaulSidebarRows()
++        {
++            var map=_input.ZoneRenderer.SidebarTilemap;
++            Require(map!=null&&map.gameObject.activeInHierarchy,"actual live sidebar tilemap");
++            var bounds=map.cellBounds;var rows=new List<string>();
++            for(int y=bounds.yMax-1;y>=bounds.yMin;y--)
++            {
++                var chars=new char[bounds.size.x];for(int i=0;i<chars.Length;i++)chars[i]=' ';
++                for(int x=bounds.xMin;x<bounds.xMax;x++)
++                {
++                    var sprite=map.GetSprite(new Vector3Int(x,y,0));
++                    if(sprite==null||!sprite.name.StartsWith("Text_",StringComparison.Ordinal))continue;
++                    if(!int.TryParse(sprite.name.Substring(5),NumberStyles.HexNumber,CultureInfo.InvariantCulture,out int code)||code<32||code>126)continue;
++                    Require(ReferenceEquals(sprite,CP437TilesetGenerator.GetTextTile((char)code)?.sprite),"actual submitted sidebar text atlas");
++                    chars[x-bounds.xMin]=(char)code;
++                }
++                string line=new string(chars).Trim();if(line.Length>0)rows.Add(line);
++            }
++            return rows.ToArray();
+         }
+         HaulStyle HaulVisual(Entity load,HaulStyle before,string label)
+         {

@@ -1,0 +1,12 @@
+--- a/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs
+@@ -28,7 +28,8 @@
+                     Core = new WorldAffordanceQueryTests.Fixture();
+                     Player.Tags["Creature"] = "";
+                     Player.Statistics["Strength"] = new Stat { Name = "Strength", Owner = Player, BaseValue = 18 };
+-                    Player.Statistics["Speed"] = new Stat { Name = "Speed", Owner = Player, BaseValue = 100 };
++                    Player.Statistics["Speed"] = new Stat { Name = "Speed", Owner = Player, BaseValue = 100, Min = 0, Max = 1000 };
++                    Assert.AreEqual(100, Player.GetStatValue("Speed"), "explicit fixture Speed bounds");
+                     var factory = new EntityFactory();
+                     factory.LoadBlueprints(File.ReadAllText(Path.Combine(Application.dataPath, "Resources/Content/Blueprints/Objects.json")));
+                     Load = factory.CreateEntity(blueprint);

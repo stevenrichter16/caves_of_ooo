@@ -1,0 +1,84 @@
+[
+  {
+    "test": "RealPullPreservesAuthoredFactsWhileFacingTracksMotion(\"FallenBeam\",-1,0,West)",
+    "result": "Failed",
+    "changedFields": [
+      {
+        "part": "CavesOfOoo.Core.RenderPart",
+        "field": "VisualFacing",
+        "before": "South",
+        "after": "West"
+      }
+    ]
+  },
+  {
+    "test": "RealPullPreservesAuthoredFactsWhileFacingTracksMotion(\"HaulBarrel\",-1,0,West)",
+    "result": "Failed",
+    "changedFields": [
+      {
+        "part": "CavesOfOoo.Core.RenderPart",
+        "field": "VisualFacing",
+        "before": "South",
+        "after": "West"
+      }
+    ]
+  },
+  {
+    "test": "RealPullPreservesAuthoredFactsWhileFacingTracksMotion(\"FallenBeam\",1,0,East)",
+    "result": "Failed",
+    "changedFields": [
+      {
+        "part": "CavesOfOoo.Core.RenderPart",
+        "field": "VisualFacing",
+        "before": "South",
+        "after": "East"
+      }
+    ]
+  },
+  {
+    "test": "RealPullPreservesAuthoredFactsWhileFacingTracksMotion(\"HaulBarrel\",1,0,East)",
+    "result": "Failed",
+    "changedFields": [
+      {
+        "part": "CavesOfOoo.Core.RenderPart",
+        "field": "VisualFacing",
+        "before": "South",
+        "after": "East"
+      }
+    ]
+  },
+  {
+    "test": "RealPullPreservesAuthoredFactsWhileFacingTracksMotion(\"FallenBeam\",0,-1,North)",
+    "result": "Failed",
+    "changedFields": [
+      {
+        "part": "CavesOfOoo.Core.RenderPart",
+        "field": "VisualFacing",
+        "before": "South",
+        "after": "North"
+      }
+    ]
+  },
+  {
+    "test": "RealPullPreservesAuthoredFactsWhileFacingTracksMotion(\"HaulBarrel\",0,-1,North)",
+    "result": "Failed",
+    "changedFields": [
+      {
+        "part": "CavesOfOoo.Core.RenderPart",
+        "field": "VisualFacing",
+        "before": "South",
+        "after": "North"
+      }
+    ]
+  },
+  {
+    "test": "RealPullPreservesAuthoredFactsWhileFacingTracksMotion(\"FallenBeam\",0,1,South)",
+    "result": "Passed",
+    "changedFields": []
+  },
+  {
+    "test": "RealPullPreservesAuthoredFactsWhileFacingTracksMotion(\"HaulBarrel\",0,1,South)",
+    "result": "Passed",
+    "changedFields": []
+  }
+]

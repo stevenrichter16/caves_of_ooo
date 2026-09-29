@@ -17,7 +17,7 @@ namespace CavesOfOoo.Core
         public SpreadCompositionPlan Plan {get;private set;}
         /// <summary>Exact successful cold-build graph; cleared before every attempt.</summary>
         public Zone SourceZone {get;private set;}
-        /// <summary>Opt-in exact Hedge provenance for the new-world passage family.
+        /// <summary>Opt-in exact Hedge provenance for new-world FieldPassage or HeavySalvage.
         /// This must be enabled before the cold build; it grants no live rewrite authority.</summary>
         public bool CapturePassageSources;
         readonly Dictionary<Entity,SpreadGenerationReceipt> passageSources=new Dictionary<Entity,SpreadGenerationReceipt>();

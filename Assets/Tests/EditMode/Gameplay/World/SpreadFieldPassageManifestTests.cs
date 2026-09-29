@@ -31,15 +31,15 @@ namespace CavesOfOoo.Tests
         }
         static void Bind(OverworldZoneManager manager,SpreadExplorationPlan plan)=>typeof(OverworldZoneManager).GetProperty("Exploration",All).SetValue(manager,plan);
         static uint Variant(int seed,string id)
-        {unchecked{uint h=2166136261u^(uint)seed;foreach(char c in "SpreadExploration.v2|family-variant|"+id)h=(h^c)*16777619u;h^=h>>16;h*=0x7feb352du;h^=h>>15;h*=0x846ca68bu;return (h^(h>>16))%3;}}
+        {unchecked{uint h=2166136261u^(uint)seed;foreach(char c in "SpreadExploration.v2|family-variant|"+id)h=(h^c)*16777619u;h^=h>>16;h*=0x7feb352du;h^=h>>15;h*=0x846ca68bu;return (h^(h>>16))%4;}}
         [TestCase(1)][TestCase(64)][TestCase(1729)]
-        public void FreshCurrentUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(int seed)
+        public void FreshCurrentUsesFrozenHedgerowFourWayAllocationWithoutGeneratingGraphs(int seed)
         {
             var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);var plan=m.Exploration;
-            Assert.AreEqual(6,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
+            Assert.AreEqual(7,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
             var rows=plan.Entries.Where(e=>e.Family.ToString()=="FieldPassage").ToArray();Assert.IsNotEmpty(rows,"Fixed corpus must provide real selected opportunities before any geometry claim.");
             foreach(var e in plan.Entries.Where(e=>e.Family!=SpreadExplorationFamily.None&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.Hedgerow))
-                Assert.AreEqual(new[]{"OccupiedBank","CollectorReturn","FieldPassage"}[Variant(seed,e.ZoneID)],e.Family.ToString());
+                Assert.AreEqual(new[]{"OccupiedBank","CollectorReturn","FieldPassage","HeavySalvage"}[Variant(seed,e.ZoneID)],e.Family.ToString());
             foreach(var e in rows){Assert.True(e.PlacementEligible);Assert.AreEqual(Formation.Hedgerow,FormationSelector.For(BiomeType.Spread,e.ZoneID));Assert.AreNotEqual(ReferenceGladePlan.ZoneID,e.ZoneID);Assert.AreNotEqual(m.RareEncounters?.PairZoneID,e.ZoneID);Assert.AreNotEqual(m.RareEncounters?.ViperZoneID,e.ZoneID);Assert.AreNotEqual(m.Wayhouse?.ZoneID,e.ZoneID);}
             string wire=SpreadExplorationPlan.BindForSave(m,null).GetProperty(SpreadExplorationPlan.PropertyKey);Bind(m,Restore(m,wire));
             Assert.AreEqual(wire,SpreadExplorationPlan.BindForSave(m,null).GetProperty(SpreadExplorationPlan.PropertyKey));Assert.Zero(m.CachedZoneCount);Assert.Zero(m.Exploration.RetainedGraphCount);

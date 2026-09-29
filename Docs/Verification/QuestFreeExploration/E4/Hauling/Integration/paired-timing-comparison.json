@@ -1,0 +1,51 @@
+{
+  "baselineCommit": "d0fb582ca14131d3828384a701e46d6bdeb0e37f",
+  "scope": "Same four tests; exact41 F9 Assets temporarily restored to published preimages, all other workspace files unchanged. Candidate restored afterward and exact hashes verified. No threshold or setting change. Both runs editor-unfocused; desktop UI unavailable while locked; causal platform mechanism unproven.",
+  "baselineSummary": {
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "durationSeconds": 230.933168,
+    "resultState": "Failed(Child)"
+  },
+  "candidateSummary": {
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "skipped": 0,
+    "durationSeconds": 225.7953345,
+    "resultState": "Failed(Child)"
+  },
+  "newlyFailing": [],
+  "cases": [
+    {
+      "name": "CavesOfOoo.Tests.DiagPerfTests.Diag_DisabledChannelOverhead_BoundedPerCall",
+      "baselineState": "Failed",
+      "candidateState": "Failed",
+      "baselineSeconds": 0.0655357,
+      "candidateSeconds": 0.05956
+    },
+    {
+      "name": "CavesOfOoo.Tests.DiagPerfTests.Diag_EnabledChannelOverhead_BoundedPerCall",
+      "baselineState": "Passed",
+      "candidateState": "Passed",
+      "baselineSeconds": 0.1016186,
+      "candidateSeconds": 0.195487
+    },
+    {
+      "name": "CavesOfOoo.Tests.DiagPerfTests.RemoveEffect_With_Diag_Hook_CompletesUnderBudget",
+      "baselineState": "Passed",
+      "candidateState": "Passed",
+      "baselineSeconds": 0.0431159,
+      "candidateSeconds": 0.1072623
+    },
+    {
+      "name": "CavesOfOoo.Tests.SpreadBiomeCoverageTests.EveryActualSurfaceAndCommittedLairHasNativeGeometry(64)",
+      "baselineState": "Failed",
+      "candidateState": "Failed",
+      "baselineSeconds": 229.7377111,
+      "candidateSeconds": 224.4558623
+    }
+  ]
+}

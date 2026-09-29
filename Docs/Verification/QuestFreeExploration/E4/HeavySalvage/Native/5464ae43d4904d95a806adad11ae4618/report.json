@@ -1,0 +1,1568 @@
+{
+  "runId": "5464ae43d4904d95a806adad11ae4618",
+  "seed": 64,
+  "requestedSeed": 64,
+  "mode": "hauling",
+  "finished": true,
+  "complete": true,
+  "failures": 0,
+  "fatal": null,
+  "seconds": 7.9396834999999992,
+  "paidInputs": 9,
+  "checks": [
+    {
+      "label": "ordinary_fresh_opted_in_world",
+      "pass": true
+    },
+    {
+      "label": "current_generated_hauling_geometry",
+      "pass": true
+    },
+    {
+      "label": "01-generated-obstructed-shortcut_current_normal_cue_and_free_capture",
+      "pass": true
+    },
+    {
+      "label": "native-grab-original-source_free_exact_native_command",
+      "pass": true
+    },
+    {
+      "label": "native_grip_exact_penalty",
+      "pass": true
+    },
+    {
+      "label": "native_pull_1_exact_follow",
+      "pass": true
+    },
+    {
+      "label": "native_pull_1_actual_movement_facing",
+      "pass": true
+    },
+    {
+      "label": "native_pull_2_exact_follow",
+      "pass": true
+    },
+    {
+      "label": "native_pull_2_actual_movement_facing",
+      "pass": true
+    },
+    {
+      "label": "two_actual_pulls_reach_parking",
+      "pass": true
+    },
+    {
+      "label": "02-native-held-load-after-two-pulls_current_normal_cue_and_free_capture",
+      "pass": true
+    },
+    {
+      "label": "native-release-parked-source_free_exact_native_command",
+      "pass": true
+    },
+    {
+      "label": "native_release_refunds_only_grip",
+      "pass": true
+    },
+    {
+      "label": "03-native-parked-load-and-open-gap_current_normal_cue_and_free_capture",
+      "pass": true
+    },
+    {
+      "label": "native_cleared_shortcut_reaches_other_side",
+      "pass": true
+    },
+    {
+      "label": "save_inactive_parked_hauling_graph",
+      "pass": true
+    },
+    {
+      "label": "inactive_parked_source_stays_unchanged",
+      "pass": true
+    },
+    {
+      "label": "load_exact_parked_replacement_and_player",
+      "pass": true
+    },
+    {
+      "label": "native_return_keeps_parked_clear_shortcut",
+      "pass": true
+    },
+    {
+      "label": "bounded_original_hauling_aftermath",
+      "pass": true
+    },
+    {
+      "label": "bounded_hauling_finish",
+      "pass": true
+    }
+  ],
+  "observations": [
+    {
+      "phase": "hauling-source-selection",
+      "zone": "Overworld.10.8.0",
+      "disposition": 1,
+      "owner": null,
+      "reason": "no-complete-current-source",
+      "admitted": false
+    },
+    {
+      "phase": "hauling-source-selection",
+      "zone": "Overworld.15.9.0",
+      "disposition": 2,
+      "owner": "7287",
+      "reason": "admitted",
+      "admitted": true
+    },
+    {
+      "phase": "disclosed-player-only-transfer",
+      "label": "actual generated two-pull hauling shortcut",
+      "zone": "Overworld.15.9.0",
+      "x": 30,
+      "y": 11,
+      "player": "2698",
+      "tick": 10,
+      "nativeEntryAdditions": [],
+      "boundary": "Setup transfer to an actual generated source; not an ordinary journey. Original source owners are preserved. Normal native entry-hook additions such as travellers are recorded separately, never suppressed."
+    },
+    {
+      "phase": "actual-hauling-geometry",
+      "zone": "Overworld.15.9.0",
+      "owner": "7287",
+      "blueprint": "FallenBeam",
+      "aperture": [
+        31,
+        11
+      ],
+      "approach": [
+        30,
+        11
+      ],
+      "opposite": [
+        32,
+        11
+      ],
+      "parked": [
+        29,
+        11
+      ],
+      "finalPlayer": [
+        28,
+        11
+      ],
+      "hedges": [
+        {
+          "id": "5496",
+          "position": [
+            31,
+            5
+          ]
+        },
+        {
+          "id": "5584",
+          "position": [
+            31,
+            6
+          ]
+        },
+        {
+          "id": "5672",
+          "position": [
+            31,
+            7
+          ]
+        },
+        {
+          "id": "5763",
+          "position": [
+            31,
+            8
+          ]
+        },
+        {
+          "id": "5765",
+          "position": [
+            31,
+            9
+          ]
+        },
+        {
+          "id": "5767",
+          "position": [
+            31,
+            10
+          ]
+        },
+        {
+          "id": "6383",
+          "position": [
+            31,
+            12
+          ]
+        },
+        {
+          "id": "6387",
+          "position": [
+            31,
+            13
+          ]
+        },
+        {
+          "id": "5769",
+          "position": [
+            31,
+            14
+          ]
+        },
+        {
+          "id": "6385",
+          "position": [
+            31,
+            15
+          ]
+        },
+        {
+          "id": "6381",
+          "position": [
+            31,
+            16
+          ]
+        },
+        {
+          "id": "6496",
+          "position": [
+            31,
+            17
+          ]
+        }
+      ],
+      "initialBypassSteps": 27,
+      "initialBypass": [
+        [
+          30,
+          10
+        ],
+        [
+          30,
+          9
+        ],
+        [
+          30,
+          8
+        ],
+        [
+          30,
+          7
+        ],
+        [
+          30,
+          6
+        ],
+        [
+          30,
+          5
+        ],
+        [
+          30,
+          4
+        ],
+        [
+          30,
+          3
+        ],
+        [
+          31,
+          2
+        ],
+        [
+          32,
+          1
+        ],
+        [
+          33,
+          0
+        ],
+        [
+          34,
+          0
+        ],
+        [
+          35,
+          0
+        ],
+        [
+          36,
+          0
+        ],
+        [
+          37,
+          0
+        ],
+        [
+          38,
+          1
+        ],
+        [
+          39,
+          2
+        ],
+        [
+          40,
+          3
+        ],
+        [
+          39,
+          4
+        ],
+        [
+          38,
+          5
+        ],
+        [
+          37,
+          6
+        ],
+        [
+          36,
+          7
+        ],
+        [
+          35,
+          7
+        ],
+        [
+          34,
+          8
+        ],
+        [
+          34,
+          9
+        ],
+        [
+          33,
+          10
+        ],
+        [
+          32,
+          11
+        ]
+      ],
+      "predictedClearSteps": 4,
+      "predictedClearPath": [
+        [
+          29,
+          10
+        ],
+        [
+          30,
+          10
+        ],
+        [
+          31,
+          11
+        ],
+        [
+          32,
+          11
+        ]
+      ],
+      "boundary": "Read-only equal-step eight-direction physical dry route; the long bypass is not walked. Prediction ignores only the exact load at its original cell and blocks its proposed parked cell."
+    },
+    {
+      "phase": "initial-approved-haulable",
+      "owner": "7287",
+      "blueprint": "FallenBeam",
+      "position": [
+        31,
+        11
+      ],
+      "ModelId": "ring-fallen-beam-1",
+      "Batched": true,
+      "QuarterTurns": 0,
+      "pieces": [
+        {
+          "slot": 0,
+          "expectedMesh": "ring-fallen-beam-1",
+          "submittedMesh": "Reference glade patch palette",
+          "expectedMaterial": "Palette",
+          "submittedMaterial": "Palette"
+        }
+      ],
+      "viewport": [
+        0.5187005,
+        0.529762,
+        22.2711143
+      ],
+      "boundary": "Submitted batch proof covers this exact current contribution. Patch bounds are not isolated owner bounds. Human readability and unobscured pixels require image review."
+    },
+    {
+      "phase": "normal-hauling-cue",
+      "label": "01-generated-obstructed-shortcut",
+      "state": "Normal",
+      "load": "7287",
+      "expectedCommand": "HaulObject",
+      "selectedLoad": true,
+      "target": "7287",
+      "blueprint": "FallenBeam",
+      "command": "HaulObject",
+      "hint": "C, D: menu / haul",
+      "cell": [
+        31,
+        11
+      ],
+      "cachedTarget": "7287",
+      "cachedCommand": "HaulObject",
+      "markerVisible": true,
+      "markerCell": [
+        31,
+        11
+      ],
+      "submitted": true,
+      "hintSubmitted": true,
+      "sidebarRows": [
+        "VITALS",
+        "HP 40/40 | MP -",
+        "LV 1 | XP 0/115",
+        "AV 0 | DV 7",
+        "WT 12/270 | DR 50",
+        "TIME Dawn",
+        "ST -",
+        "FOCUS",
+        "C, D: menu / haul",
+        "[30,11] you",
+        "HP 40/40",
+        "Contents: grass, you",
+        "LOG",
+        ":: Save detected. Press [C] to",
+        "continue, [N] for new game.",
+        ":: Move with WASD/arrows; bump",
+        "enemies to attack.",
+        "[I]nventory, [C] talk,",
+        "[G]et, [L]ook.",
+        ":: [X] skills, [M] abilities,",
+        "[F5] save, [F1] full",
+        "controls.",
+        ":: Surface: [< / Shift+,]",
+        "world map; move to a [!]",
+        "settlement, [> / Shift+.]",
+        "enter selected destination.",
+        ":: Villagers have work for you",
+        "? press [Q] for your quest",
+        "log.",
+        ":: Starting a new game.",
+        "Initial checkpoint saved.",
+        ":: Autosaved."
+      ],
+      "boundary": "Actual Normal-state selection and submitted sidebar glyphs/corner state. Another normal-priority owner is permitted and reported; no focused query, Look rectangle or forced selection. Pixels and human readability require image review."
+    },
+    {
+      "phase": "native-grab-original-source",
+      "owner": "7287",
+      "command": "HaulObject",
+      "beforeTick": 10,
+      "afterTick": 10,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "rows": [
+        {
+          "TraceId": "a60cf545",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790655921736,
+          "Turn": 10,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"5464ae43d4904d95a806adad11ae4618\",\"label\":\"native-grab-original-source\"}"
+        },
+        {
+          "TraceId": "3db2eba8",
+          "Category": "drag",
+          "Kind": "Grabbed",
+          "TimestampUnixMs": 1790655922023,
+          "Turn": 10,
+          "ActorId": "2698",
+          "TargetId": "7287",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"FallenBeam\",\"weight\":60,\"dragCapacity\":144}"
+        }
+      ]
+    },
+    {
+      "phase": "native-straight-haul-1",
+      "kind": "local",
+      "beforeTick": 10,
+      "afterTick": 24,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1064,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "1f7e0d63",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790655922167,
+          "Turn": 10,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"5464ae43d4904d95a806adad11ae4618\",\"label\":\"native-straight-haul-1\"}"
+        },
+        {
+          "TraceId": "a6c3f668",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790655922171,
+          "Turn": 10,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "1360db22",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790655922173,
+          "Turn": 24,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "6b75c665",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655922177,
+          "Turn": 24,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":63,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "d691e8fb",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655922178,
+          "Turn": 24,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":62,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "06ccd4a8",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655922178,
+          "Turn": 24,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":61,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "held-after-pull-1",
+      "owner": "7287",
+      "blueprint": "FallenBeam",
+      "position": [
+        30,
+        11
+      ],
+      "ModelId": "ring-fallen-beam-1",
+      "Batched": true,
+      "QuarterTurns": 0,
+      "pieces": [
+        {
+          "slot": 0,
+          "expectedMesh": "ring-fallen-beam-1",
+          "submittedMesh": "Reference glade patch palette",
+          "expectedMaterial": "Palette",
+          "submittedMaterial": "Palette"
+        }
+      ],
+      "viewport": [
+        0.51870054,
+        0.529762,
+        22.2711143
+      ],
+      "boundary": "Submitted batch proof covers this exact current contribution. Patch bounds are not isolated owner bounds. Human readability and unobscured pixels require image review."
+    },
+    {
+      "phase": "native-straight-haul-2",
+      "kind": "local",
+      "beforeTick": 24,
+      "afterTick": 37,
+      "beforeEnergy": 1064,
+      "afterEnergy": 1052,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "816e1da4",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790655922352,
+          "Turn": 24,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"5464ae43d4904d95a806adad11ae4618\",\"label\":\"native-straight-haul-2\"}"
+        },
+        {
+          "TraceId": "c0f7e43a",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790655922356,
+          "Turn": 24,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "31c8a8c4",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790655922356,
+          "Turn": 37,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d3740342",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655922359,
+          "Turn": 37,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":63,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "1b85eef4",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655922359,
+          "Turn": 37,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":62,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "ab6c3eb9",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655922359,
+          "Turn": 37,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":61,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "held-after-pull-2",
+      "owner": "7287",
+      "blueprint": "FallenBeam",
+      "position": [
+        29,
+        11
+      ],
+      "ModelId": "ring-fallen-beam-1",
+      "Batched": true,
+      "QuarterTurns": 0,
+      "pieces": [
+        {
+          "slot": 0,
+          "expectedMesh": "ring-fallen-beam-1",
+          "submittedMesh": "Reference glade patch palette",
+          "expectedMaterial": "Palette",
+          "submittedMaterial": "Palette"
+        }
+      ],
+      "viewport": [
+        0.5187005,
+        0.529762,
+        22.2711143
+      ],
+      "boundary": "Submitted batch proof covers this exact current contribution. Patch bounds are not isolated owner bounds. Human readability and unobscured pixels require image review."
+    },
+    {
+      "phase": "two-paid-haul-cost",
+      "beforeTick": 10,
+      "afterTick": 37,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1052,
+      "speed": 76,
+      "paidSteps": 2,
+      "work": 2000
+    },
+    {
+      "phase": "normal-hauling-cue",
+      "label": "02-native-held-load-after-two-pulls",
+      "state": "Normal",
+      "load": "7287",
+      "expectedCommand": "ReleaseHaul",
+      "selectedLoad": true,
+      "target": "7287",
+      "blueprint": "FallenBeam",
+      "command": "ReleaseHaul",
+      "hint": "C, D: menu / let go",
+      "cell": [
+        29,
+        11
+      ],
+      "cachedTarget": "7287",
+      "cachedCommand": "ReleaseHaul",
+      "markerVisible": true,
+      "markerCell": [
+        29,
+        11
+      ],
+      "submitted": true,
+      "hintSubmitted": true,
+      "sidebarRows": [
+        "VITALS",
+        "HP 40/40 | MP -",
+        "LV 1 | XP 0/115",
+        "AV 0 | DV 7",
+        "WT 12/270 | DR 50",
+        "TIME Dawn",
+        "ST -",
+        "FOCUS",
+        "C, D: menu / let go",
+        "[28,11] you",
+        "HP 40/40",
+        "Contents: grass, you",
+        "LOG ^",
+        "enemies to attack.",
+        "[I]nventory, [C] talk,",
+        "[G]et, [L]ook.",
+        ":: [X] skills, [M] abilities,",
+        "[F5] save, [F1] full",
+        "controls.",
+        ":: Surface: [< / Shift+,]",
+        "world map; move to a [!]",
+        "settlement, [> / Shift+.]",
+        "enter selected destination.",
+        ":: Villagers have work for you",
+        "? press [Q] for your quest",
+        "log.",
+        ":: Starting a new game.",
+        "Initial checkpoint saved.",
+        ":: Autosaved.",
+        ":: Interact ? choose a",
+        "direction, or . for",
+        "underfoot.",
+        ":: You take hold of fallen",
+        "beam.",
+        "::"
+      ],
+      "boundary": "Actual Normal-state selection and submitted sidebar glyphs/corner state. Another normal-priority owner is permitted and reported; no focused query, Look rectangle or forced selection. Pixels and human readability require image review."
+    },
+    {
+      "phase": "native-release-parked-source",
+      "owner": "7287",
+      "command": "ReleaseHaul",
+      "beforeTick": 37,
+      "afterTick": 37,
+      "beforeEnergy": 1052,
+      "afterEnergy": 1052,
+      "rows": [
+        {
+          "TraceId": "d0c2c413",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790655922591,
+          "Turn": 37,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"5464ae43d4904d95a806adad11ae4618\",\"label\":\"native-release-parked-source\"}"
+        },
+        {
+          "TraceId": "ad6d7042",
+          "Category": "drag",
+          "Kind": "Released",
+          "TimestampUnixMs": 1790655922870,
+          "Turn": 37,
+          "ActorId": "2698",
+          "TargetId": "7287",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"FallenBeam\"}"
+        }
+      ]
+    },
+    {
+      "phase": "released-parked-style",
+      "owner": "7287",
+      "blueprint": "FallenBeam",
+      "position": [
+        29,
+        11
+      ],
+      "ModelId": "ring-fallen-beam-1",
+      "Batched": true,
+      "QuarterTurns": 0,
+      "pieces": [
+        {
+          "slot": 0,
+          "expectedMesh": "ring-fallen-beam-1",
+          "submittedMesh": "Reference glade patch palette",
+          "expectedMaterial": "Palette",
+          "submittedMaterial": "Palette"
+        }
+      ],
+      "viewport": [
+        0.5187005,
+        0.529762,
+        22.2711143
+      ],
+      "boundary": "Submitted batch proof covers this exact current contribution. Patch bounds are not isolated owner bounds. Human readability and unobscured pixels require image review."
+    },
+    {
+      "phase": "normal-hauling-cue",
+      "label": "03-native-parked-load-and-open-gap",
+      "state": "Normal",
+      "load": "7287",
+      "expectedCommand": "HaulObject",
+      "selectedLoad": true,
+      "target": "7287",
+      "blueprint": "FallenBeam",
+      "command": "HaulObject",
+      "hint": "C, D: menu / haul",
+      "cell": [
+        29,
+        11
+      ],
+      "cachedTarget": "7287",
+      "cachedCommand": "HaulObject",
+      "markerVisible": true,
+      "markerCell": [
+        29,
+        11
+      ],
+      "submitted": true,
+      "hintSubmitted": true,
+      "sidebarRows": [
+        "VITALS",
+        "HP 40/40 | MP -",
+        "LV 1 | XP 0/115",
+        "AV 0 | DV 7",
+        "WT 12/270 | DR 50",
+        "TIME Dawn",
+        "ST -",
+        "FOCUS",
+        "C, D: menu / haul",
+        "[28,11] you",
+        "HP 40/40",
+        "Contents: grass, you",
+        "LOG ^",
+        "[F5] save, [F1] full",
+        "controls.",
+        ":: Surface: [< / Shift+,]",
+        "world map; move to a [!]",
+        "settlement, [> / Shift+.]",
+        "enter selected destination.",
+        ":: Villagers have work for you",
+        "? press [Q] for your quest",
+        "log.",
+        ":: Starting a new game.",
+        "Initial checkpoint saved.",
+        ":: Autosaved.",
+        ":: Interact ? choose a",
+        "direction, or . for",
+        "underfoot.",
+        ":: You take hold of fallen",
+        "beam.",
+        "::",
+        ":: Interact ? choose a",
+        "direction, or . for",
+        "underfoot.",
+        ":: You let go of fallen beam."
+      ],
+      "boundary": "Actual Normal-state selection and submitted sidebar glyphs/corner state. Another normal-priority owner is permitted and reported; no focused query, Look rectangle or forced selection. Pixels and human readability require image review."
+    },
+    {
+      "phase": "native-cleared-shortcut-step",
+      "kind": "local",
+      "beforeTick": 37,
+      "afterTick": 47,
+      "beforeEnergy": 1052,
+      "afterEnergy": 1052,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "19ee22db",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790655923075,
+          "Turn": 37,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"5464ae43d4904d95a806adad11ae4618\",\"label\":\"native-cleared-shortcut-step\"}"
+        },
+        {
+          "TraceId": "776313c4",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790655923076,
+          "Turn": 37,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "ca0fcb65",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790655923078,
+          "Turn": 47,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "27bf2c83",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655923080,
+          "Turn": 47,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":63,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "b69a1792",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655923080,
+          "Turn": 47,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":62,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "fcbaedd9",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655923080,
+          "Turn": 47,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":61,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "native-cleared-shortcut-step",
+      "kind": "local",
+      "beforeTick": 47,
+      "afterTick": 57,
+      "beforeEnergy": 1052,
+      "afterEnergy": 1052,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "8ee06ac5",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790655923250,
+          "Turn": 47,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"5464ae43d4904d95a806adad11ae4618\",\"label\":\"native-cleared-shortcut-step\"}"
+        },
+        {
+          "TraceId": "27372910",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790655923253,
+          "Turn": 47,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "577465e1",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790655923254,
+          "Turn": 57,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "4774afa0",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655923256,
+          "Turn": 57,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":63,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "bc7d587b",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655923256,
+          "Turn": 57,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":62,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "80742d62",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655923256,
+          "Turn": 57,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":61,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "native-cleared-shortcut-step",
+      "kind": "local",
+      "beforeTick": 57,
+      "afterTick": 67,
+      "beforeEnergy": 1052,
+      "afterEnergy": 1052,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "26233242",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790655923426,
+          "Turn": 57,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"5464ae43d4904d95a806adad11ae4618\",\"label\":\"native-cleared-shortcut-step\"}"
+        },
+        {
+          "TraceId": "a684a174",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790655923429,
+          "Turn": 57,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "bb64625d",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790655923430,
+          "Turn": 67,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "095ec216",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655923433,
+          "Turn": 67,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":63,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "91abb4b7",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655923433,
+          "Turn": 67,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":62,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "53b37a53",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655923433,
+          "Turn": 67,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":61,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "native-cleared-shortcut-step",
+      "kind": "local",
+      "beforeTick": 67,
+      "afterTick": 77,
+      "beforeEnergy": 1052,
+      "afterEnergy": 1052,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "31c05d3d",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790655923601,
+          "Turn": 67,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"5464ae43d4904d95a806adad11ae4618\",\"label\":\"native-cleared-shortcut-step\"}"
+        },
+        {
+          "TraceId": "a3c7e38a",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790655923604,
+          "Turn": 67,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "b578b486",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790655923605,
+          "Turn": 77,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "efe6291a",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655923608,
+          "Turn": 77,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":63,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "8966b2f5",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655923608,
+          "Turn": 77,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":62,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "6f22360d",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655923608,
+          "Turn": 77,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":61,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "actual-cleared-crossing",
+      "paidSteps": 4,
+      "path": [
+        [
+          29,
+          10
+        ],
+        [
+          30,
+          10
+        ],
+        [
+          31,
+          11
+        ],
+        [
+          32,
+          11
+        ]
+      ],
+      "beforeTick": 37,
+      "afterTick": 77,
+      "beforeEnergy": 1052,
+      "afterEnergy": 1052,
+      "work": 4000,
+      "initialMeasuredBypassSteps": 27,
+      "boundary": "Only two haul steps plus this clear route were walked; no native matched-detour timing claim."
+    },
+    {
+      "phase": "cleared-crossing-current-style",
+      "owner": "7287",
+      "blueprint": "FallenBeam",
+      "position": [
+        29,
+        11
+      ],
+      "ModelId": "ring-fallen-beam-1",
+      "Batched": true,
+      "QuarterTurns": 0,
+      "pieces": [
+        {
+          "slot": 0,
+          "expectedMesh": "ring-fallen-beam-1",
+          "submittedMesh": "Reference glade patch palette",
+          "expectedMaterial": "Palette",
+          "submittedMaterial": "Palette"
+        }
+      ],
+      "viewport": [
+        0.4438985,
+        0.529762,
+        22.2711143
+      ],
+      "boundary": "Submitted batch proof covers this exact current contribution. Patch bounds are not isolated owner bounds. Human readability and unobscured pixels require image review."
+    },
+    {
+      "phase": "hauling-native-source-exit",
+      "kind": "local",
+      "beforeTick": 77,
+      "afterTick": 87,
+      "beforeEnergy": 1052,
+      "afterEnergy": 1052,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "9ee4ea2c",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790655923841,
+          "Turn": 77,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"5464ae43d4904d95a806adad11ae4618\",\"label\":\"hauling-native-source-exit\"}"
+        },
+        {
+          "TraceId": "9757b936",
+          "Category": "worldmap",
+          "Kind": "Ascended",
+          "TimestampUnixMs": 1790655923877,
+          "Turn": 77,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromZoneID\":\"Overworld.15.9.0\",\"fromZoneX\":32,\"fromZoneY\":11,\"toWorldX\":15,\"toWorldY\":9,\"toZoneCellX\":45,\"toZoneCellY\":12}"
+        },
+        {
+          "TraceId": "09b56f03",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790655924260,
+          "Turn": 77,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "593c174b",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790655924260,
+          "Turn": 87,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hauling-native-unsaved-map-step",
+      "kind": "map",
+      "beforeTick": 87,
+      "afterTick": 107,
+      "beforeEnergy": 1052,
+      "afterEnergy": 1052,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 10,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "91b20422",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790655925049,
+          "Turn": 87,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"5464ae43d4904d95a806adad11ae4618\",\"label\":\"hauling-native-unsaved-map-step\"}"
+        },
+        {
+          "TraceId": "a9c5faf9",
+          "Category": "worldmap",
+          "Kind": "Stepped",
+          "TimestampUnixMs": 1790655925052,
+          "Turn": 97,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"toZoneX\":46,\"toZoneY\":12,\"toWorldX\":16,\"toWorldY\":9,\"turnsCost\":10}"
+        },
+        {
+          "TraceId": "2a483585",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790655925053,
+          "Turn": 97,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "ca57e28b",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790655925053,
+          "Turn": 107,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "hauling-native-restored-source-return",
+      "kind": "local",
+      "beforeTick": 87,
+      "afterTick": 97,
+      "beforeEnergy": 1052,
+      "afterEnergy": 1052,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "4fa94665",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790655925824,
+          "Turn": 87,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"5464ae43d4904d95a806adad11ae4618\",\"label\":\"hauling-native-restored-source-return\"}"
+        },
+        {
+          "TraceId": "b6e568dd",
+          "Category": "worldmap",
+          "Kind": "Descended",
+          "TimestampUnixMs": 1790655925827,
+          "Turn": 87,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromWorldX\":15,\"fromWorldY\":9,\"toZoneID\":\"Overworld.15.9.0\",\"toZoneX\":32,\"toZoneY\":11,\"usedSavedLocation\":true}"
+        },
+        {
+          "TraceId": "02dc2d00",
+          "Category": "worldgen",
+          "Kind": "VoxelPresentationBound",
+          "TimestampUnixMs": 1790655925855,
+          "Turn": 87,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.15.9.0\",\"bindings\":410}"
+        },
+        {
+          "TraceId": "0571be7c",
+          "Category": "effect",
+          "Kind": "NativeSpellPrepared",
+          "TimestampUnixMs": 1790655925985,
+          "Turn": 87,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"WorldMap\",\"backend\":\"native\",\"LoadSeconds\":2E-07,\"ValidationSeconds\":0.0,\"PoolSeconds\":0.0019656,\"ViewCount\":384,\"UsedCachedLibrary\":true}"
+        },
+        {
+          "TraceId": "61d34d95",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790655926352,
+          "Turn": 87,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "e5110d81",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790655926352,
+          "Turn": 97,
+          "ActorId": "2698",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "685f2c6c",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655926355,
+          "Turn": 97,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":61,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "c2dc447d",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655926355,
+          "Turn": 97,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":62,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "12ae5ecf",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1790655926355,
+          "Turn": 97,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":63,\"y\":9,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "phase": "loaded-parked-current-style",
+      "owner": "7287",
+      "blueprint": "FallenBeam",
+      "position": [
+        29,
+        11
+      ],
+      "ModelId": "ring-fallen-beam-1",
+      "Batched": true,
+      "QuarterTurns": 0,
+      "pieces": [
+        {
+          "slot": 0,
+          "expectedMesh": "ring-fallen-beam-1",
+          "submittedMesh": "Reference glade patch palette",
+          "expectedMaterial": "Palette",
+          "submittedMaterial": "Palette"
+        }
+      ],
+      "viewport": [
+        0.4438985,
+        0.529762,
+        22.2711143
+      ],
+      "boundary": "Submitted batch proof covers this exact current contribution. Patch bounds are not isolated owner bounds. Human readability and unobscured pixels require image review."
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/HeavySalvage/Native/5464ae43d4904d95a806adad11ae4618/00-ordinary-start.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/HeavySalvage/Native/5464ae43d4904d95a806adad11ae4618/01-generated-obstructed-shortcut.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/HeavySalvage/Native/5464ae43d4904d95a806adad11ae4618/02-native-held-load-after-two-pulls.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/HeavySalvage/Native/5464ae43d4904d95a806adad11ae4618/03-native-parked-load-and-open-gap.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/HeavySalvage/Native/5464ae43d4904d95a806adad11ae4618/04-native-player-through-cleared-gap.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/HeavySalvage/Native/5464ae43d4904d95a806adad11ae4618/05-loaded-parked-source-and-open-shortcut.png"
+  ],
+  "unverifiedFamilies": [],
+  "humanAwarenessMeasured": false,
+  "boundary": "Seed64, first eight canonical HeavySalvage assignments; actual committed beam/barrel and twelve original hedges. One disclosed original-player transfer to the source-side approach. Native C/direction/G grab, two paid pulls, release, short crossing, inactive F5/F6 replacement and actual cache return. Long eight-direction bypass is measured geometry, not walked. No source, item, health, strength, clock, RNG or NPC-scheduling grants. Thirty paid inputs maximum;150seconds. Batched source/submitted proof is not an unoccluded-pixel or human-readability claim; images require review.",
+  "settings": {
+    "screenWidth": 2077,
+    "screenHeight": 1251,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "lowDetail": false
+  }
+}

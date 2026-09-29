@@ -1,0 +1,409 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 44,
+    "passed": 34,
+    "failed": 10,
+    "skipped": 0,
+    "durationSeconds": 2.3127685,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "CachedHaulCueCannotSurviveStrengthLossOrAnotherGrip",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingAdversarialTests.CachedHaulCueCannotSurviveStrengthLossOrAnotherGrip",
+      "state": "Failed",
+      "durationSeconds": 0.0417749,
+      "message": "  missing current hauling opportunity\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.WorldAffordanceHaulingTests+Fixture.Cue (System.String command, System.Boolean focused) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:51\nat CavesOfOoo.Tests.WorldAffordanceHaulingAdversarialTests.CachedHaulCueCannotSurviveStrengthLossOrAnotherGrip () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingAdversarialTests.cs:37\n",
+      "output": ""
+    },
+    {
+      "name": "StaleReleaseSourceIsRefusedWithoutRepairingOrRefundingTheGrip(\"inverse\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingAdversarialTests.StaleReleaseSourceIsRefusedWithoutRepairingOrRefundingTheGrip(\"inverse\")",
+      "state": "Passed",
+      "durationSeconds": 0.0335235,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "StaleReleaseSourceIsRefusedWithoutRepairingOrRefundingTheGrip(\"inverse-owner\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingAdversarialTests.StaleReleaseSourceIsRefusedWithoutRepairingOrRefundingTheGrip(\"inverse-owner\")",
+      "state": "Passed",
+      "durationSeconds": 0.0171612,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "StaleReleaseSourceIsRefusedWithoutRepairingOrRefundingTheGrip(\"grip-owner\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingAdversarialTests.StaleReleaseSourceIsRefusedWithoutRepairingOrRefundingTheGrip(\"grip-owner\")",
+      "state": "Passed",
+      "durationSeconds": 0.021794,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "StaleReleaseSourceIsRefusedWithoutRepairingOrRefundingTheGrip(\"hidden\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingAdversarialTests.StaleReleaseSourceIsRefusedWithoutRepairingOrRefundingTheGrip(\"hidden\")",
+      "state": "Passed",
+      "durationSeconds": 0.0180667,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "StaleReleaseSourceIsRefusedWithoutRepairingOrRefundingTheGrip(\"handling-removed\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingAdversarialTests.StaleReleaseSourceIsRefusedWithoutRepairingOrRefundingTheGrip(\"handling-removed\")",
+      "state": "Passed",
+      "durationSeconds": 0.0176817,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "StaleReleaseSourceIsRefusedWithoutRepairingOrRefundingTheGrip(\"carried\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingAdversarialTests.StaleReleaseSourceIsRefusedWithoutRepairingOrRefundingTheGrip(\"carried\")",
+      "state": "Passed",
+      "durationSeconds": 0.0176714,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualGroundOwnerHasTheSameHaulCommandAsItsMenu(\"FallenBeam\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualGroundOwnerHasTheSameHaulCommandAsItsMenu(\"FallenBeam\")",
+      "state": "Failed",
+      "durationSeconds": 0.0277946,
+      "message": "  missing current hauling opportunity\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.WorldAffordanceHaulingTests+Fixture.Cue (System.String command, System.Boolean focused) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:51\nat CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualGroundOwnerHasTheSameHaulCommandAsItsMenu (System.String blueprint) [0x00033] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:75\n",
+      "output": ""
+    },
+    {
+      "name": "ActualGroundOwnerHasTheSameHaulCommandAsItsMenu(\"HaulBarrel\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualGroundOwnerHasTheSameHaulCommandAsItsMenu(\"HaulBarrel\")",
+      "state": "Failed",
+      "durationSeconds": 0.0178045,
+      "message": "  missing current hauling opportunity\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.WorldAffordanceHaulingTests+Fixture.Cue (System.String command, System.Boolean focused) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:51\nat CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualGroundOwnerHasTheSameHaulCommandAsItsMenu (System.String blueprint) [0x00033] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:75\n",
+      "output": ""
+    },
+    {
+      "name": "ActualStrengthBoundaryMatchesMenuAndCue(\"FallenBeam\",7,False)",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualStrengthBoundaryMatchesMenuAndCue(\"FallenBeam\",7,False)",
+      "state": "Passed",
+      "durationSeconds": 0.0188012,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualStrengthBoundaryMatchesMenuAndCue(\"FallenBeam\",8,True)",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualStrengthBoundaryMatchesMenuAndCue(\"FallenBeam\",8,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0211567,
+      "message": "  missing current hauling opportunity\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.WorldAffordanceHaulingTests+Fixture.Cue (System.String command, System.Boolean focused) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:51\nat CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualStrengthBoundaryMatchesMenuAndCue (System.String blueprint, System.Int32 strength, System.Boolean allowed) [0x00089] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:116\n",
+      "output": ""
+    },
+    {
+      "name": "ActualStrengthBoundaryMatchesMenuAndCue(\"HaulBarrel\",9,False)",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualStrengthBoundaryMatchesMenuAndCue(\"HaulBarrel\",9,False)",
+      "state": "Passed",
+      "durationSeconds": 0.018271,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualStrengthBoundaryMatchesMenuAndCue(\"HaulBarrel\",10,True)",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualStrengthBoundaryMatchesMenuAndCue(\"HaulBarrel\",10,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0178075,
+      "message": "  missing current hauling opportunity\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.WorldAffordanceHaulingTests+Fixture.Cue (System.String command, System.Boolean focused) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:51\nat CavesOfOoo.Tests.WorldAffordanceHaulingTests.ActualStrengthBoundaryMatchesMenuAndCue (System.String blueprint, System.Int32 strength, System.Boolean allowed) [0x00089] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:116\n",
+      "output": ""
+    },
+    {
+      "name": "AnotherCurrentHaulerPreventsAPlayerHaulCueEvenThoughMenuDeclaresIt",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.AnotherCurrentHaulerPreventsAPlayerHaulCueEvenThoughMenuDeclaresIt",
+      "state": "Failed",
+      "durationSeconds": 0.0177061,
+      "message": "  missing current hauling opportunity\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.WorldAffordanceHaulingTests+Fixture.Cue (System.String command, System.Boolean focused) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:51\nat CavesOfOoo.Tests.WorldAffordanceHaulingTests.AnotherCurrentHaulerPreventsAPlayerHaulCueEvenThoughMenuDeclaresIt () [0x000a8] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:166\n",
+      "output": ""
+    },
+    {
+      "name": "DeclaredMinimumGripStrengthIsRespectedButDoesNotPreventLetGo",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.DeclaredMinimumGripStrengthIsRespectedButDoesNotPreventLetGo",
+      "state": "Failed",
+      "durationSeconds": 0.0172937,
+      "message": "  missing current hauling opportunity\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.WorldAffordanceHaulingTests+Fixture.Cue (System.String command, System.Boolean focused) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:51\nat CavesOfOoo.Tests.WorldAffordanceHaulingTests.DeclaredMinimumGripStrengthIsRespectedButDoesNotPreventLetGo () [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:127\n",
+      "output": ""
+    },
+    {
+      "name": "FocusUsesExistingEnterAndCannotBorrowAnAdjacentCue",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.FocusUsesExistingEnterAndCannotBorrowAnAdjacentCue",
+      "state": "Failed",
+      "durationSeconds": 0.0172774,
+      "message": "  missing current hauling opportunity\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.WorldAffordanceHaulingTests+Fixture.Cue (System.String command, System.Boolean focused) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:51\nat CavesOfOoo.Tests.WorldAffordanceHaulingTests.FocusUsesExistingEnterAndCannotBorrowAnAdjacentCue () [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:85\n",
+      "output": ""
+    },
+    {
+      "name": "OrdinaryExistingActionPriorityDoesNotChangeOnAHandlingOwner",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.OrdinaryExistingActionPriorityDoesNotChangeOnAHandlingOwner",
+      "state": "Passed",
+      "durationSeconds": 0.0178035,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "QueryDoesNotDispatchActionsMutateGripOrChangePlayerClock",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.QueryDoesNotDispatchActionsMutateGripOrChangePlayerClock",
+      "state": "Failed",
+      "durationSeconds": 0.0174313,
+      "message": "  missing current hauling opportunity\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.WorldAffordanceHaulingTests+Fixture.Cue (System.String command, System.Boolean focused) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:51\nat CavesOfOoo.Tests.WorldAffordanceHaulingTests.QueryDoesNotDispatchActionsMutateGripOrChangePlayerClock () [0x00076] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:181\n",
+      "output": ""
+    },
+    {
+      "name": "RealGripAndReleaseFlipOnlyTheCurrentCommandWithoutMovingOwners",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.RealGripAndReleaseFlipOnlyTheCurrentCommandWithoutMovingOwners",
+      "state": "Failed",
+      "durationSeconds": 0.0174656,
+      "message": "  missing current hauling opportunity\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.WorldAffordanceHaulingTests+Fixture.Cue (System.String command, System.Boolean focused) [0x00008] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:51\nat CavesOfOoo.Tests.WorldAffordanceHaulingTests.RealGripAndReleaseFlipOnlyTheCurrentCommandWithoutMovingOwners () [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Interaction/WorldAffordanceHaulingTests.cs:96\n",
+      "output": ""
+    },
+    {
+      "name": "UnavailableWorldSourcesHaveNoHaulCue(\"hidden-cell\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.UnavailableWorldSourcesHaveNoHaulCue(\"hidden-cell\")",
+      "state": "Passed",
+      "durationSeconds": 0.0179726,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "UnavailableWorldSourcesHaveNoHaulCue(\"hidden-owner\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.UnavailableWorldSourcesHaveNoHaulCue(\"hidden-owner\")",
+      "state": "Passed",
+      "durationSeconds": 0.0181803,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "UnavailableWorldSourcesHaveNoHaulCue(\"carried\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.UnavailableWorldSourcesHaveNoHaulCue(\"carried\")",
+      "state": "Passed",
+      "durationSeconds": 0.017544,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "UnavailableWorldSourcesHaveNoHaulCue(\"equipped\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.UnavailableWorldSourcesHaveNoHaulCue(\"equipped\")",
+      "state": "Passed",
+      "durationSeconds": 0.0168246,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "UnavailableWorldSourcesHaveNoHaulCue(\"removed\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.UnavailableWorldSourcesHaveNoHaulCue(\"removed\")",
+      "state": "Passed",
+      "durationSeconds": 0.0237606,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "UnavailableWorldSourcesHaveNoHaulCue(\"foreign-zone\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.UnavailableWorldSourcesHaveNoHaulCue(\"foreign-zone\")",
+      "state": "Passed",
+      "durationSeconds": 0.0308355,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "UnavailableWorldSourcesHaveNoHaulCue(\"foreign-handling\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.UnavailableWorldSourcesHaveNoHaulCue(\"foreign-handling\")",
+      "state": "Passed",
+      "durationSeconds": 0.0463433,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "UnavailableWorldSourcesHaveNoHaulCue(\"far\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceHaulingTests.UnavailableWorldSourcesHaveNoHaulCue(\"far\")",
+      "state": "Passed",
+      "durationSeconds": 0.0181713,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "DisposeReleasesOwnedMarkerMaterialAndChildrenOnly",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.DisposeReleasesOwnedMarkerMaterialAndChildrenOnly",
+      "state": "Passed",
+      "durationSeconds": 0.006675,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "HintIsFirstFocusLineAndSharesItsExistingLineBudget",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.HintIsFirstFocusLineAndSharesItsExistingLineBudget",
+      "state": "Passed",
+      "durationSeconds": 0.0007987,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "NonWorldInputStatesShowNoActionCue(\"InventoryOpen\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.NonWorldInputStatesShowNoActionCue(\"InventoryOpen\")",
+      "state": "Passed",
+      "durationSeconds": 0.0030906,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "NonWorldInputStatesShowNoActionCue(\"WorldActionMenuOpen\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.NonWorldInputStatesShowNoActionCue(\"WorldActionMenuOpen\")",
+      "state": "Passed",
+      "durationSeconds": 0.0028726,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "NonWorldInputStatesShowNoActionCue(\"AwaitingTalkDirection\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.NonWorldInputStatesShowNoActionCue(\"AwaitingTalkDirection\")",
+      "state": "Passed",
+      "durationSeconds": 0.0025237,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "NonWorldInputStatesShowNoActionCue(\"WaitingForFxResolution\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.NonWorldInputStatesShowNoActionCue(\"WaitingForFxResolution\")",
+      "state": "Passed",
+      "durationSeconds": 0.0024159,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "NonWorldInputStatesShowNoActionCue(\"AnnouncementOpen\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.NonWorldInputStatesShowNoActionCue(\"AnnouncementOpen\")",
+      "state": "Passed",
+      "durationSeconds": 0.0024256,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "NormalAndLookUseRealDifferentMenuKeysWithoutPaying",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.NormalAndLookUseRealDifferentMenuKeysWithoutPaying",
+      "state": "Passed",
+      "durationSeconds": 0.0031002,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "OnlyActualCurrentPlayerInputCanAdvertise(\"no-menu\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.OnlyActualCurrentPlayerInputCanAdvertise(\"no-menu\")",
+      "state": "Passed",
+      "durationSeconds": 0.0029944,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "OnlyActualCurrentPlayerInputCanAdvertise(\"not-turn\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.OnlyActualCurrentPlayerInputCanAdvertise(\"not-turn\")",
+      "state": "Passed",
+      "durationSeconds": 0.0022566,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "OnlyActualCurrentPlayerInputCanAdvertise(\"other-actor\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.OnlyActualCurrentPlayerInputCanAdvertise(\"other-actor\")",
+      "state": "Passed",
+      "durationSeconds": 0.0021756,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "OnlyActualCurrentPlayerInputCanAdvertise(\"disabled\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.OnlyActualCurrentPlayerInputCanAdvertise(\"disabled\")",
+      "state": "Passed",
+      "durationSeconds": 0.0020978,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "OnlyActualCurrentPlayerInputCanAdvertise(\"foreign-zone\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.OnlyActualCurrentPlayerInputCanAdvertise(\"foreign-zone\")",
+      "state": "Passed",
+      "durationSeconds": 0.002368,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "RetainedMarkerCannotRevealOrKeepStaleSource(\"spent\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.RetainedMarkerCannotRevealOrKeepStaleSource(\"spent\")",
+      "state": "Passed",
+      "durationSeconds": 0.007181,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "RetainedMarkerCannotRevealOrKeepStaleSource(\"hidden\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.RetainedMarkerCannotRevealOrKeepStaleSource(\"hidden\")",
+      "state": "Passed",
+      "durationSeconds": 0.0029577,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "RetainedMarkerCannotRevealOrKeepStaleSource(\"foreign\")",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.RetainedMarkerCannotRevealOrKeepStaleSource(\"foreign\")",
+      "state": "Passed",
+      "durationSeconds": 0.0026294,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SingleSubtleMarkerUsesCurrentCellAndNoPickingGeometry",
+      "fullName": "CavesOfOoo.Tests.WorldAffordanceUiTests.SingleSubtleMarkerUsesCurrentCellAndNoPickingGeometry",
+      "state": "Passed",
+      "durationSeconds": 0.0032556,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    }
+  ]
+}
