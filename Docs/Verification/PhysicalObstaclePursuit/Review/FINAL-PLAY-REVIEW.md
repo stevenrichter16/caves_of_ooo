@@ -1,0 +1,21 @@
+# Final controlled pursuit Play — independent acceptance review
+
+Actual run `8e875c8e4c40495dab0b746ba3b248ce` is finished and complete:12/12 checks passed, zero failures/unverified families,12 actual paid receipts in6.2377948 seconds. These are one paid east pull and11 paid waits, with free native grab/release. All paid windows contain one completed player turn, not merely attempted inputs.
+
+The corrected partial selects the first existing canonical metadata entry with Family=None, disposition0, no cached graph, and current exact TryGetPlacement authority. It chose `Overworld.10.1.0`. It does not generate an opportunity, alter the plan or suppress entry callbacks. Original cache11.10 is retained by exact reference; successful setup asserts all prior cache references, exactly one new arena and unchanged retained graph count1. The staged arena remains explicit; it is not ordinary exploration content. Normal transition autosave remains enabled and no unexpected save error is recorded. The screenshots show the ordinary Autosaved log. This run does not test native load/replacement.
+
+Original player2697 is transferred once with unchanged stats, inventory/gear, purse, tick and energy. Current native entry has no extra actors; player enters at1000 energy and the ordinary factory Marlback4713 at0. The same2000 Grass, eight Hedges and one original beam use the prior fixed coordinates. The beam moves36,12→37,12 as player moves37,12→38,12; release restores speed100. Assertions continue to pin current source identities, authored facts, physical blocking without sight blocking, approved model/palette and free Haul/LetGo cues. No forced path, NPC turn, target, energy, RNG, health or rendering update is introduced.
+
+Actual observed pursuer path is `(34,12),(35,12),(36,12),(36,11),(36,10),(36,9),(36,8),(37,7),(38,8),(38,9),(38,10),(38,11)`:12 unforced legal adjacent moves, visibly through the north open end at37,7. Final contact distance1 occurs at tick134, player38,12, playerHP40/pursuerHP15. All post-wait goal snapshots remain exactly BoredGoal then active top KillGoal targeting the original player. No unrelated goal or actor accounts for the detour.
+
+Individually viewed `04-actual-scheduled-open-end-bypass.png` and `05-actual-pursuer-contact-after-detour.png`. The actual pursuer is above the northern hedge end, then east of the hedge adjacent to the player; the beam remains in the throat. Small native model silhouettes, Haul hint, HP40 and grab/release/autosave log are consistent with the report. Stills do not establish full movement timing by themselves, and no new art/animation-feel claim is made.
+
+## Distinguish the three relevant receipts
+
+- Baseline `b6c113bf59b24d58ad9b71c75e933204`:31 validated inputs; ordinary top KillGoal receives turns but remains36,12 from wait2 through30. Its original-start-address arena invalidated retained save identity; it is movement RED with that setup/save limitation, not clean Play.
+- First fixed `a0b3ba924cac492aa637cd3a48084105`:same observer and address/layout,12 gameplay checks pass and detour/contact succeeds, but unexpected autosave error remains. Exact paired input records differ only in FindPath. This is the matched movement differential, not a clean save result.
+- Final fixed `8e875c8e4c40495dab0b746ba3b248ce`:observer-only cache-preserving address correction, same geometry/source/action rules, clean complete execution. Comparing candidate-inputs versus candidate-clean-inputs changes only the observer partial from `f11f38b6…` to `b70dc1d4…`; FindPath stays `968ce054…`. It is a clean follow-up, not an identical-address baseline pair.
+
+Root's final restoration receipt independently confirms stopped Play, no active observer/isolation, restored save root/preferences and clean Main/SampleScene. This read found no new concrete blocker. The final10 observer tests were still running when assigned; this note makes no result claim for them. No shared edits, Unity calls or Git changes were made.
+
+The accepted scope is fair ordinary pursuit around physical noncreature blockers in a disclosed controlled arena, plus clean native setup/teardown. It does not prove useful defensive separation, generic movable cover, ordinary encounter frequency, save/load of a new encounter, or an ordinary20-chunk experience.

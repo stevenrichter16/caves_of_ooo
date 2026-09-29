@@ -1,0 +1,7 @@
+{
+  "type": "execute_code",
+  "params": {
+    "action": "execute",
+    "code": "string iso=\"CavesOfOoo.NativeSaveIsolation.\"; string owner=\"QuestFreeSpreadState.Native.\"; bool had=UnityEditor.SessionState.GetBool(iso+\"hadPref\",false); string oldRoot=UnityEditor.SessionState.GetBool(iso+\"rootWasNull\",false)?null:UnityEditor.SessionState.GetString(iso+\"oldRoot\",\"\"); var scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene(); return new { playing=UnityEditor.EditorApplication.isPlaying, activeIsolation=UnityEditor.SessionState.GetBool(iso+\"active\",false), activeObserver=UnityEditor.SessionState.GetBool(owner+\"active\",false), rootRestored=CavesOfOoo.Core.SaveGameService.SaveRootOverride==oldRoot, prefsRestored=UnityEngine.PlayerPrefs.HasKey(CavesOfOoo.Core.SaveGameService.LastGameIDPrefsKey)==had && (!had || UnityEngine.PlayerPrefs.GetString(CavesOfOoo.Core.SaveGameService.LastGameIDPrefsKey)==UnityEditor.SessionState.GetString(iso+\"oldPref\",\"\")), scene=scene.path, dirty=scene.isDirty };"
+  }
+}

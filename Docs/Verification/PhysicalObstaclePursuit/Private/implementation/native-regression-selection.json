@@ -1,0 +1,147 @@
+{
+  "scope": "Proposal after a narrow FindPath noncreature-physics fix; do not schedule before the next slice is approved. No unchanged full-world census or art suite required absent a changed concern.",
+  "fixtureCount": 32,
+  "baseline": "/Users/steven/.codex/scratch/caves-of-ooo/f9/native-full-result.json",
+  "baselineSha256": "8f832a702a7c1f5dc4e50da9dacd59d2dcfbb068096f1677699a3d2f5bea0f7d",
+  "oldCases": 531,
+  "oldNonPassed": [],
+  "absentFromF9": [
+    "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests",
+    "CavesOfOoo.Tests.SpreadPredatorStage1Tests",
+    "CavesOfOoo.Tests.SpreadPredatorFeedingTests",
+    "CavesOfOoo.Tests.SpreadHuntLiveGapTests",
+    "CavesOfOoo.Tests.SpreadHuntAllocationTests",
+    "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests"
+  ],
+  "fixtures": [
+    {
+      "fixture": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests",
+      "path": "proposed private audit fixture, requires native test-only adoption first"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.FindPathTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/FindPathTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.CombatPathfindingTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/CombatPathfindingTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.MultiCellMovementTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellMovementTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.MultiCellTargetingTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellTargetingTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.MultiCellTargetingAdversarialTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellTargetingAdversarialTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.MultiCellSpatialTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellSpatialTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.MultiCellSpatialAdversarialTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/Spatial/MultiCellSpatialAdversarialTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.DensityGeneratedDoorTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/DensityGeneratedDoorTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.DensityGeneratedDoorAdversarialTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/DensityGeneratedDoorAdversarialTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.DensityGeneratedDoorNativeFollowupTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/DensityGeneratedDoorNativeFollowupTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.GasNavigationWeightTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/GasNavigationWeightTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.DensityTerrainNavigationTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/DensityTerrainNavigationTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.DensityTerrainNavigationAdversarialTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/DensityTerrainNavigationAdversarialTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.HotSteamNavigationTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/HotSteamNavigationTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.FollowLeaderGoalTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/FollowLeaderGoalTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.MoveToInteriorExteriorGoalTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/MoveToInteriorExteriorGoalTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.Phase6GoalsTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/Phase6GoalsTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.GoalStackTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/GoalStackTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.TurnMovementTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/Movement/TurnMovementTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.DragGrabTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/DragGrabTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.DragFollowTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/DragFollowTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.DragRulesTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/DragRulesTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.DragWeightAndEdgesTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/DragWeightAndEdgesTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.GameAuditHaulingLifecycleTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/GameAuditHaulingLifecycleTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.GameAuditHaulingAdversarialTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/GameAuditHaulingAdversarialTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.SpreadPredatorStage1Tests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorStage1Tests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.SpreadPredatorFeedingTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/SpreadPredatorFeedingTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.SpreadHuntLiveGapTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/SpreadHuntLiveGapTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.SpreadHuntAllocationTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/SpreadHuntAllocationTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.SpreadHuntPhaseValidationTests",
+      "path": "Assets/Tests/EditMode/Gameplay/AI/SpreadHuntPhaseValidationTests.cs"
+    },
+    {
+      "fixture": "CavesOfOoo.Tests.SpreadHuntArrivalTests",
+      "path": "Assets/Tests/EditMode/Gameplay/World/SpreadHuntArrivalTests.cs"
+    }
+  ],
+  "why": "Planner/execution/target contact and creature omission; doors; terrain/gas preferences; ordinary goals/following; turn accounting; drag lifecycle; newly shipped finite hunter/prey calls and their measured action budget. Current F11 receipts supply baselines for new classes absent from F9. Also retains the newly adopted F11 default-arrival guard after its publication."
+}

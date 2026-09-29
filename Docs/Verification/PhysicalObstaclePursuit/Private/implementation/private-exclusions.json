@@ -1,0 +1,6 @@
+{
+  "fixtures": [
+    "CavesOfOoo.Tests.MultiCellSpatialAdversarialTests"
+  ],
+  "reason": "The whole fixture requires DecodeIsolationFixture, whose native scope needs UnityEngine.TestTools and NewGameSaveFixture. Do not fabricate a replacement scope for this bounded private pre-check. It remains selected in the actual native regression request and passed actual-reference full test compilation."
+}

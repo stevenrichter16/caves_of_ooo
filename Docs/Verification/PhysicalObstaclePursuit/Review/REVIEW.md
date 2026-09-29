@@ -1,0 +1,17 @@
+# Controlled pursuit observer — bounded independent source review
+
+Reviewed frozen production manifest c1ce66331ef93bd7c51b7cdcf3138c14bfac34a0114f97084fbb2fbd18ed2d9b, PLAN.md, the new PhysicalPursuit partial, and small existing launcher/core dispatch/cleanup deltas. All four source hashes match. Existing paid-action, menu, capture, cleanup and transition contracts were checked only where needed. No Unity run, shared edit or test execution was performed by this review.
+
+The root/author independently confirmed a blocking observer-only issue during the first live attempt: raw Unity Color AmbientTint enters Newtonsoft serialization and recursively traverses Color properties. That attempt before paid inputs is not a pursuit baseline. Author owns a separate scalar-projection/serialization-test delta; the frozen reviewed source is not silently relabelled repaired here.
+
+No OTHER raw Unity struct or Unity object was found in the new payloads. GetEntityPosition yields ValueTuple<int,int>; HaulXY yields int[]; HaulFacts, CookingGear and signatures are strings; style is projected to model ID/piece count/batched scalars. Floor/owner projections store identifiers and these primitive values, not raw Entity/Cell/render objects. The new ambient Color is the sole direct Unity-value leak found in this bounded source read.
+
+The controlled setup is clearly disclosed as staged factory terrain/actor plus one original-player transfer, not generated exploration or unchanged population. Ordinary native transition registration owns the staged actor; actual paid inputs use the existing energy/clock receipt. The observer does not push a goal, move the pursuer, grant energy/HP/equipment, change its RNG or suspend it. Actual faction/LOS/single-cell premises are checked before inputs.
+
+Acceptance uses the actual unforced one-cell movement hook, a physically clear visited cell, a boundary crossing outside the hedge ends and contact on the far side; a calculated BFS route alone cannot pass. Actual same-load drag position, grip/release, restored speed, exact unchanged hedge sources and obstacle facts are pinned. Failed/stopped movement is not described as a tactical benefit. Timer/input bounds and HP abort remain present. No save, tactical advantage, universal cover, native frame-time or natural-frequency claim is made.
+
+Cleanup unsubscribes only the owned movement observer, releases an exact owned grip if needed and relies on existing isolated Play teardown instead of rewriting live graphs or rewinding clocks. Diagnostic channels are distinct from the exchange/drag channels and use the shared restoration ledger. Mode dispatch/report boundaries and save/input/scene restoration remain scoped to this new mode.
+
+One nonblocking interpretation limit: CurrentPursuit proves Brain.Target and a retained KillGoal.Target, not that KillGoal is the top currently executing goal. The trace records the whole stack. If an unrelated higher-priority goal intervenes, inspect that trace and classify the attempt as interference rather than a navigation failure. No such case was observed or executed by this reviewer; do not expand runtime behavior or add speculative tests merely for this note. The baseline/fixed comparisons must keep the actual raw path/goal/clock traces.
+
+Conclusion: besides the already-confirmed raw Color serialization defect, no additional important authority, scheduler, barrier-acceptance or cleanup defect found in this bounded read. Author's scalar-only patch and its actual native tests/replay remain separate acceptance gates.

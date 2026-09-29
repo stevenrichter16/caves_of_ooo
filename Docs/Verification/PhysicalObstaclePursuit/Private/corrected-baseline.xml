@@ -1,0 +1,511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="43" result="Failed" start-time="2026-09-29T07:45:12.1088920Z" end-time="2026-09-29T07:45:12.8734230Z" duration="0.764522" total="43" passed="31" failed="12" inconclusive="0" skipped="0" warnings="0" asserts="1385" random-seed="652909087">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=../corrected-baseline.xml --where "class =~ /MovableObstaclePursuitAuditTests/"]]></command-line>
+  <filter>
+    <class re="1">MovableObstaclePursuitAuditTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1055" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="43" result="Failed" site="Child" start-time="2026-09-29T07:45:12.1088920Z" end-time="2026-09-29T07:45:12.8734230Z" duration="0.764522" total="43" passed="31" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="1385">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="60369" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1056" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="43" result="Failed" site="Child" start-time="2026-09-29T07:45:12.1105200Z" end-time="2026-09-29T07:45:12.8734210Z" duration="0.762903" total="43" passed="31" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="1385">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1057" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="43" result="Failed" site="Child" start-time="2026-09-29T07:45:12.1106360Z" end-time="2026-09-29T07:45:12.8734190Z" duration="0.762785" total="43" passed="31" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="1385">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="MovableObstaclePursuitAuditTests" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="43" result="Failed" site="Child" start-time="2026-09-29T07:45:12.1109780Z" end-time="2026-09-29T07:45:12.8734040Z" duration="0.762428" total="43" passed="31" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="1385">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1004" name="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-29T07:45:12.1118430Z" end-time="2026-09-29T07:45:12.2063860Z" duration="0.094543" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="33">
+            <test-case id="1001" name="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(&quot;FallenBeam&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(&quot;FallenBeam&quot;)" methodname="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="851576131" result="Passed" start-time="2026-09-29T07:45:12.1119250Z" end-time="2026-09-29T07:45:12.1700420Z" duration="0.058141" asserts="11" />
+            <test-case id="1002" name="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(&quot;HaulBarrel&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(&quot;HaulBarrel&quot;)" methodname="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="610608598" result="Passed" start-time="2026-09-29T07:45:12.1706100Z" end-time="2026-09-29T07:45:12.1888010Z" duration="0.018191" asserts="11" />
+            <test-case id="1003" name="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(&quot;Hedge&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(&quot;Hedge&quot;)" methodname="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1175407463" result="Passed" start-time="2026-09-29T07:45:12.1888270Z" end-time="2026-09-29T07:45:12.2059740Z" duration="0.017147" asserts="11" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1044" name="ClosedDoorKeepsItsExplicitOperationContract" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-29T07:45:12.2065540Z" end-time="2026-09-29T07:45:12.2689620Z" duration="0.062408" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="167">
+            <test-case id="1041" name="ClosedDoorKeepsItsExplicitOperationContract(&quot;capable&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract(&quot;capable&quot;)" methodname="ClosedDoorKeepsItsExplicitOperationContract" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1619759645" result="Passed" start-time="2026-09-29T07:45:12.2065760Z" end-time="2026-09-29T07:45:12.2362200Z" duration="0.029645" asserts="57" />
+            <test-case id="1042" name="ClosedDoorKeepsItsExplicitOperationContract(&quot;incapable&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract(&quot;incapable&quot;)" methodname="ClosedDoorKeepsItsExplicitOperationContract" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="962382818" result="Passed" start-time="2026-09-29T07:45:12.2362440Z" end-time="2026-09-29T07:45:12.2516250Z" duration="0.015381" asserts="55" />
+            <test-case id="1043" name="ClosedDoorKeepsItsExplicitOperationContract(&quot;locked&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract(&quot;locked&quot;)" methodname="ClosedDoorKeepsItsExplicitOperationContract" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1289888622" result="Passed" start-time="2026-09-29T07:45:12.2516430Z" end-time="2026-09-29T07:45:12.2689290Z" duration="0.017286" asserts="55" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1016" name="IgnoreCreaturesChangesOnlyTheOccupyingActorRoute" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.IgnoreCreaturesChangesOnlyTheOccupyingActorRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T07:45:12.2689800Z" end-time="2026-09-29T07:45:12.2975460Z" duration="0.028566" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1014" name="IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(False)" methodname="IgnoreCreaturesChangesOnlyTheOccupyingActorRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="876891213" result="Passed" start-time="2026-09-29T07:45:12.2689890Z" end-time="2026-09-29T07:45:12.2838500Z" duration="0.014861" asserts="6" />
+            <test-case id="1015" name="IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(True)" methodname="IgnoreCreaturesChangesOnlyTheOccupyingActorRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="950664442" result="Passed" start-time="2026-09-29T07:45:12.2838660Z" end-time="2026-09-29T07:45:12.2975270Z" duration="0.013661" asserts="6" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1050" name="LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T07:45:12.2975510Z" end-time="2026-09-29T07:45:12.3413910Z" duration="0.043841" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="56">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1048" name="LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(False)" methodname="LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="2132884864" result="Passed" start-time="2026-09-29T07:45:12.2975570Z" end-time="2026-09-29T07:45:12.3144560Z" duration="0.016898" asserts="25">
+              <output><![CDATA[physical bypass steps=6
+0:(7, 10):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True
+]]></output>
+            </test-case>
+            <test-case id="1049" name="LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(True)" methodname="LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1381673103" result="Failed" start-time="2026-09-29T07:45:12.3144730Z" end-time="2026-09-29T07:45:12.3413430Z" duration="0.026870" asserts="31">
+              <failure>
+                <message><![CDATA[  load should alter route cost, not disable pursuit: 0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(Boolean load) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 41
+   at InvokeStub_MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[physical bypass steps=10
+0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  load should alter route cost, not disable pursuit: 0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(Boolean load) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 41
+   at InvokeStub_MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1040" name="OneCellExplicitFootprintPreservesPhysicalRoute" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T07:45:12.3414100Z" end-time="2026-09-29T07:45:12.3755630Z" duration="0.034153" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="45">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1038" name="OneCellExplicitFootprintPreservesPhysicalRoute(False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute(False)" methodname="OneCellExplicitFootprintPreservesPhysicalRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="602151655" result="Failed" start-time="2026-09-29T07:45:12.3414220Z" end-time="2026-09-29T07:45:12.3566360Z" duration="0.015214" asserts="22">
+              <failure>
+                <message><![CDATA[  first planned step must execute; explicit footprint=False
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute(Boolean footprint) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 33
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  first planned step must execute; explicit footprint=False
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute(Boolean footprint) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 33
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1039" name="OneCellExplicitFootprintPreservesPhysicalRoute(True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute(True)" methodname="OneCellExplicitFootprintPreservesPhysicalRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1056449579" result="Passed" start-time="2026-09-29T07:45:12.3566560Z" end-time="2026-09-29T07:45:12.3755440Z" duration="0.018887" asserts="23" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1028" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-09-29T07:45:12.3755760Z" end-time="2026-09-29T07:45:12.4877310Z" duration="0.112155" total="7" passed="4" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="217">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1021" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;FallenBeam&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;FallenBeam&quot;,False)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1706189699" result="Failed" start-time="2026-09-29T07:45:12.3755840Z" end-time="2026-09-29T07:45:12.3929620Z" duration="0.017378" asserts="31">
+              <failure>
+                <message><![CDATA[  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(String bp, Boolean tag) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 28
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[physical bypass steps=10
+0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(String bp, Boolean tag) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 28
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1022" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;FallenBeam&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;FallenBeam&quot;,True)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1849194447" result="Passed" start-time="2026-09-29T07:45:12.3929960Z" end-time="2026-09-29T07:45:12.4074790Z" duration="0.014483" asserts="31">
+              <output><![CDATA[physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+]]></output>
+            </test-case>
+            <test-case id="1023" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;HaulBarrel&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;HaulBarrel&quot;,False)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1269914315" result="Failed" start-time="2026-09-29T07:45:12.4075120Z" end-time="2026-09-29T07:45:12.4245410Z" duration="0.017029" asserts="31">
+              <failure>
+                <message><![CDATA[  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(String bp, Boolean tag) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 28
+   at InvokeStub_MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[physical bypass steps=10
+0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(String bp, Boolean tag) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 28
+   at InvokeStub_MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1024" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;HaulBarrel&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;HaulBarrel&quot;,True)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="898686571" result="Passed" start-time="2026-09-29T07:45:12.4245610Z" end-time="2026-09-29T07:45:12.4393730Z" duration="0.014812" asserts="31">
+              <output><![CDATA[physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+]]></output>
+            </test-case>
+            <test-case id="1025" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;Hedge&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;Hedge&quot;,False)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1190523286" result="Failed" start-time="2026-09-29T07:45:12.4393930Z" end-time="2026-09-29T07:45:12.4566470Z" duration="0.017254" asserts="31">
+              <failure>
+                <message><![CDATA[  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(String bp, Boolean tag) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 28
+   at InvokeStub_MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[physical bypass steps=10
+0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(String bp, Boolean tag) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 28
+   at InvokeStub_MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1026" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;Hedge&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;Hedge&quot;,True)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1867959692" result="Passed" start-time="2026-09-29T07:45:12.4566640Z" end-time="2026-09-29T07:45:12.4728270Z" duration="0.016164" asserts="31">
+              <output><![CDATA[physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+]]></output>
+            </test-case>
+            <test-case id="1027" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;Wall&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;Wall&quot;,False)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="484808750" result="Passed" start-time="2026-09-29T07:45:12.4728450Z" end-time="2026-09-29T07:45:12.4877090Z" duration="0.014864" asserts="31">
+              <output><![CDATA[physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1054" name="RespectingPhysicalOwnersProducesAnEntireExecutableBypass" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-29T07:45:12.4877380Z" end-time="2026-09-29T07:45:12.5355890Z" duration="0.047851" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="99">
+            <test-case id="1051" name="RespectingPhysicalOwnersProducesAnEntireExecutableBypass(&quot;FallenBeam&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass(&quot;FallenBeam&quot;)" methodname="RespectingPhysicalOwnersProducesAnEntireExecutableBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="808579587" result="Passed" start-time="2026-09-29T07:45:12.4877470Z" end-time="2026-09-29T07:45:12.5032430Z" duration="0.015496" asserts="33">
+              <output><![CDATA[executed bypass=10
+]]></output>
+            </test-case>
+            <test-case id="1052" name="RespectingPhysicalOwnersProducesAnEntireExecutableBypass(&quot;HaulBarrel&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass(&quot;HaulBarrel&quot;)" methodname="RespectingPhysicalOwnersProducesAnEntireExecutableBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1758550803" result="Passed" start-time="2026-09-29T07:45:12.5032560Z" end-time="2026-09-29T07:45:12.5195990Z" duration="0.016343" asserts="33">
+              <output><![CDATA[executed bypass=10
+]]></output>
+            </test-case>
+            <test-case id="1053" name="RespectingPhysicalOwnersProducesAnEntireExecutableBypass(&quot;Hedge&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass(&quot;Hedge&quot;)" methodname="RespectingPhysicalOwnersProducesAnEntireExecutableBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1860214993" result="Passed" start-time="2026-09-29T07:45:12.5196160Z" end-time="2026-09-29T07:45:12.5355660Z" duration="0.015950" asserts="33">
+              <output><![CDATA[executed bypass=10
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1037" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-29T07:45:12.5355960Z" end-time="2026-09-29T07:45:12.6733700Z" duration="0.137774" total="8" passed="5" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="414">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1029" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;FallenBeam&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;FallenBeam&quot;,False)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1108965643" result="Failed" start-time="2026-09-29T07:45:12.5356090Z" end-time="2026-09-29T07:45:12.5576750Z" duration="0.022066" asserts="65">
+              <failure>
+                <message><![CDATA[  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)
+  Expected: 1
+  But was:  6
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(String bp, Boolean wide) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 31
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[physical bypass steps=10
+waits=30 ticks=310 energy=0 0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)
+  Expected: 1
+  But was:  6
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(String bp, Boolean wide) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 31
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;FallenBeam&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;FallenBeam&quot;,True)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="778378955" result="Passed" start-time="2026-09-29T07:45:12.5576970Z" end-time="2026-09-29T07:45:12.5746580Z" duration="0.016960" asserts="44">
+              <output><![CDATA[physical bypass steps=9
+waits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)
+]]></output>
+            </test-case>
+            <test-case id="1031" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;HaulBarrel&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;HaulBarrel&quot;,False)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1841384771" result="Failed" start-time="2026-09-29T07:45:12.5746820Z" end-time="2026-09-29T07:45:12.5910640Z" duration="0.016382" asserts="65">
+              <failure>
+                <message><![CDATA[  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)
+  Expected: 1
+  But was:  6
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(String bp, Boolean wide) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 31
+   at InvokeStub_MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[physical bypass steps=10
+waits=30 ticks=310 energy=0 0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)
+  Expected: 1
+  But was:  6
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(String bp, Boolean wide) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 31
+   at InvokeStub_MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1032" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;HaulBarrel&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;HaulBarrel&quot;,True)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="214700423" result="Passed" start-time="2026-09-29T07:45:12.5910800Z" end-time="2026-09-29T07:45:12.6091010Z" duration="0.018021" asserts="44">
+              <output><![CDATA[physical bypass steps=9
+waits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)
+]]></output>
+            </test-case>
+            <test-case id="1033" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Hedge&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Hedge&quot;,False)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1432190780" result="Failed" start-time="2026-09-29T07:45:12.6091210Z" end-time="2026-09-29T07:45:12.6265070Z" duration="0.017386" asserts="65">
+              <failure>
+                <message><![CDATA[  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)
+  Expected: 1
+  But was:  6
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(String bp, Boolean wide) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 31
+   at InvokeStub_MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[physical bypass steps=10
+waits=30 ticks=310 energy=0 0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)
+  Expected: 1
+  But was:  6
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(String bp, Boolean wide) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 31
+   at InvokeStub_MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1034" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Hedge&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Hedge&quot;,True)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1913589585" result="Passed" start-time="2026-09-29T07:45:12.6265290Z" end-time="2026-09-29T07:45:12.6419630Z" duration="0.015434" asserts="44">
+              <output><![CDATA[physical bypass steps=9
+waits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)
+]]></output>
+            </test-case>
+            <test-case id="1035" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Wall&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Wall&quot;,False)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="519898188" result="Passed" start-time="2026-09-29T07:45:12.6419870Z" end-time="2026-09-29T07:45:12.6574230Z" duration="0.015436" asserts="43">
+              <output><![CDATA[physical bypass steps=10
+waits=8 ticks=90 energy=0 0:(6, 9) 1:(6, 8) 2:(6, 7) 3:(6, 6) 4:(7, 5) 5:(8, 6) 6:(9, 7) 7:(10, 8) 8:(11, 9)
+]]></output>
+            </test-case>
+            <test-case id="1036" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Wall&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Wall&quot;,True)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="278542700" result="Passed" start-time="2026-09-29T07:45:12.6574380Z" end-time="2026-09-29T07:45:12.6733410Z" duration="0.015903" asserts="44">
+              <output><![CDATA[physical bypass steps=9
+waits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1047" name="SealedPhysicalBoundaryMustNotReturnAUsableRoute" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-29T07:45:12.6733780Z" end-time="2026-09-29T07:45:12.7075260Z" duration="0.034148" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="108">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1045" name="SealedPhysicalBoundaryMustNotReturnAUsableRoute(&quot;FallenBeam&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute(&quot;FallenBeam&quot;)" methodname="SealedPhysicalBoundaryMustNotReturnAUsableRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1860624671" result="Failed" start-time="2026-09-29T07:45:12.6733970Z" end-time="2026-09-29T07:45:12.6900150Z" duration="0.016618" asserts="54">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute(String bp) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 39
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute(String bp) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 39
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1046" name="SealedPhysicalBoundaryMustNotReturnAUsableRoute(&quot;Wall&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute(&quot;Wall&quot;)" methodname="SealedPhysicalBoundaryMustNotReturnAUsableRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="549737903" result="Passed" start-time="2026-09-29T07:45:12.6900380Z" end-time="2026-09-29T07:45:12.7074940Z" duration="0.017456" asserts="54">
+              <output><![CDATA[0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1013" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-29T07:45:12.7075350Z" end-time="2026-09-29T07:45:12.8301800Z" duration="0.122645" total="8" passed="5" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="216">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1005" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;FallenBeam&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;FallenBeam&quot;,False)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1509631835" result="Passed" start-time="2026-09-29T07:45:12.7075510Z" end-time="2026-09-29T07:45:12.7217740Z" duration="0.014224" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+            <test-case id="1006" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;FallenBeam&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;FallenBeam&quot;,True)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="2056115001" result="Failed" start-time="2026-09-29T07:45:12.7217980Z" end-time="2026-09-29T07:45:12.7367630Z" duration="0.014965" asserts="22">
+              <failure>
+                <message><![CDATA[  planned stationary FallenBeam at 7,10
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(String bp, Boolean ignore) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 20
+   at InvokeStub_MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[7,10
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  planned stationary FallenBeam at 7,10
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(String bp, Boolean ignore) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 20
+   at InvokeStub_MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;HaulBarrel&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;HaulBarrel&quot;,False)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="101172906" result="Passed" start-time="2026-09-29T07:45:12.7367870Z" end-time="2026-09-29T07:45:12.7518790Z" duration="0.015092" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+            <test-case id="1008" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;HaulBarrel&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;HaulBarrel&quot;,True)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="433076064" result="Failed" start-time="2026-09-29T07:45:12.7518960Z" end-time="2026-09-29T07:45:12.7664040Z" duration="0.014508" asserts="22">
+              <failure>
+                <message><![CDATA[  planned stationary HaulBarrel at 7,10
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(String bp, Boolean ignore) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 20
+   at InvokeStub_MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[7,10
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  planned stationary HaulBarrel at 7,10
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(String bp, Boolean ignore) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 20
+   at InvokeStub_MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Hedge&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Hedge&quot;,False)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1204501931" result="Passed" start-time="2026-09-29T07:45:12.7664170Z" end-time="2026-09-29T07:45:12.7801430Z" duration="0.013726" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+            <test-case id="1010" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Hedge&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Hedge&quot;,True)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="2082011620" result="Failed" start-time="2026-09-29T07:45:12.7801670Z" end-time="2026-09-29T07:45:12.7969040Z" duration="0.016737" asserts="22">
+              <failure>
+                <message><![CDATA[  planned stationary Hedge at 7,10
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(String bp, Boolean ignore) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 20
+   at InvokeStub_MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[7,10
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  planned stationary Hedge at 7,10
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(String bp, Boolean ignore) in /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/MovableObstaclePursuitAuditTests.cs:line 20
+   at InvokeStub_MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Wall&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Wall&quot;,False)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="133398888" result="Passed" start-time="2026-09-29T07:45:12.7969260Z" end-time="2026-09-29T07:45:12.8122500Z" duration="0.015325" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+            <test-case id="1012" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Wall&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Wall&quot;,True)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1289479718" result="Passed" start-time="2026-09-29T07:45:12.8122680Z" end-time="2026-09-29T07:45:12.8301660Z" duration="0.017898" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1020" name="SingleOwnerStillHasAnExecutableFallbackAroundIt" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-29T07:45:12.8302260Z" end-time="2026-09-29T07:45:12.8733620Z" duration="0.043136" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <test-case id="1017" name="SingleOwnerStillHasAnExecutableFallbackAroundIt(&quot;FallenBeam&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt(&quot;FallenBeam&quot;)" methodname="SingleOwnerStillHasAnExecutableFallbackAroundIt" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="2046882731" result="Passed" start-time="2026-09-29T07:45:12.8302620Z" end-time="2026-09-29T07:45:12.8460180Z" duration="0.015756" asserts="6">
+              <output><![CDATA[0:(7, 11):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True
+]]></output>
+            </test-case>
+            <test-case id="1018" name="SingleOwnerStillHasAnExecutableFallbackAroundIt(&quot;HaulBarrel&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt(&quot;HaulBarrel&quot;)" methodname="SingleOwnerStillHasAnExecutableFallbackAroundIt" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="279299199" result="Passed" start-time="2026-09-29T07:45:12.8460430Z" end-time="2026-09-29T07:45:12.8591500Z" duration="0.013106" asserts="6">
+              <output><![CDATA[0:(7, 11):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True
+]]></output>
+            </test-case>
+            <test-case id="1019" name="SingleOwnerStillHasAnExecutableFallbackAroundIt(&quot;Hedge&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt(&quot;Hedge&quot;)" methodname="SingleOwnerStillHasAnExecutableFallbackAroundIt" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="505430417" result="Passed" start-time="2026-09-29T07:45:12.8591660Z" end-time="2026-09-29T07:45:12.8733390Z" duration="0.014173" asserts="6">
+              <output><![CDATA[0:(7, 11):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

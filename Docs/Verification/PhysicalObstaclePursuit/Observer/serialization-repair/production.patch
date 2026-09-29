@@ -1,0 +1,25 @@
+--- a/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.PhysicalPursuit.cs
++++ b/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.PhysicalPursuit.cs
+@@ -45,7 +45,7 @@
+             string loadFacts=HaulFacts(load);var hedgeFacts=hedges.ToDictionary(e=>e,e=>HaulFacts(e));
+             var hedgePositions=hedges.ToDictionary(e=>e,e=>arena.GetEntityPosition(e));
+             _observations.Add(new{phase="controlled-arena-authorship",address=arena.ZoneID,originalAddress=originalZone.ZoneID,
+-                originalPlayer=Player.ID,originalPlayerPosition=HaulXY(originalCell),lighting=new{arena.AmbientLevel,arena.AmbientTint},
++                originalPlayer=Player.ID,originalPlayerPosition=HaulXY(originalCell),lighting=PhysicalLightingSnapshot(arena),
+                 floor=floor.Select(e=>new{e.ID,e.BlueprintName,position=arena.GetEntityPosition(e)}).ToArray(),
+                 owners=hedges.Concat(new[]{load,pursuer}).Select(e=>new{e.ID,e.BlueprintName,position=arena.GetEntityPosition(e),facts=HaulFacts(e),gear=e.HasPart<InventoryPart>()?CookingGear(e):null}).ToArray(),
+                 boundary="All listed terrain/actor owners are explicitly factory-staged in a disposable controlled graph. No generated-source, unchanged ecology or natural acquisition claim."});
+@@ -105,6 +105,13 @@
+                 actualContact=SpatialQuery.Distance(arena,pursuer,Player),playerHp=Player.GetStatValue("Hitpoints"),npcHp=pursuer.GetStatValue("Hitpoints"),
+                 boundary="Real ordinary pursuit through the bypass, not a forced path, save test, natural site, LOS cover or measured net defensive advantage."});
+         }
++        static object PhysicalLightingSnapshot(Zone zone)
++        {
++            // Unity Color exposes recursive computed properties to Json.NET;
++            // report only detached observed channels, without altering lighting.
++            var tint=zone.AmbientTint;
++            return new{ambientLevel=zone.AmbientLevel,ambientTint=new{tint.r,tint.g,tint.b,tint.a}};
++        }
+         Entity PhysicalPlace(Zone zone,string blueprint,int x,int y)
+         {var e=_context.Factory.CreateEntity(blueprint);Require(e!=null&&zone.AddEntity(e,x,y),"factory controlled placement "+blueprint);return e;}
+         void PhysicalPursuerMoved(Entity entity,Zone zone,int ox,int oy,int nx,int ny,bool forced)

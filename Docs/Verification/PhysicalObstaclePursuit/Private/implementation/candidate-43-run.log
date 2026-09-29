@@ -1,0 +1,187 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/implementation/runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-29 08:05:06Z
+    End time: 2026-09-29 08:05:06Z
+    Duration: 0.024 seconds
+
+Test Filters
+    Where: class =~ /MovableObstaclePursuitAuditTests/
+
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(False)
+physical bypass steps=6
+0:(7, 10):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(True)
+physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary("FallenBeam",False)
+physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary("FallenBeam",True)
+physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary("HaulBarrel",False)
+physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary("HaulBarrel",True)
+physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary("Hedge",False)
+physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary("Hedge",True)
+physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary("Wall",False)
+physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass("FallenBeam")
+executed bypass=10
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass("HaulBarrel")
+executed bypass=10
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass("Hedge")
+executed bypass=10
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass("FallenBeam",False)
+physical bypass steps=10
+waits=8 ticks=90 energy=0 0:(6, 9) 1:(6, 8) 2:(6, 7) 3:(6, 6) 4:(7, 5) 5:(8, 6) 6:(9, 7) 7:(10, 8) 8:(11, 9)
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass("FallenBeam",True)
+physical bypass steps=9
+waits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass("HaulBarrel",False)
+physical bypass steps=10
+waits=8 ticks=90 energy=0 0:(6, 9) 1:(6, 8) 2:(6, 7) 3:(6, 6) 4:(7, 5) 5:(8, 6) 6:(9, 7) 7:(10, 8) 8:(11, 9)
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass("HaulBarrel",True)
+physical bypass steps=9
+waits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass("Hedge",False)
+physical bypass steps=10
+waits=8 ticks=90 energy=0 0:(6, 9) 1:(6, 8) 2:(6, 7) 3:(6, 6) 4:(7, 5) 5:(8, 6) 6:(9, 7) 7:(10, 8) 8:(11, 9)
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass("Hedge",True)
+physical bypass steps=9
+waits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass("Wall",False)
+physical bypass steps=10
+waits=8 ticks=90 energy=0 0:(6, 9) 1:(6, 8) 2:(6, 7) 3:(6, 6) 4:(7, 5) 5:(8, 6) 6:(9, 7) 7:(10, 8) 8:(11, 9)
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass("Wall",True)
+physical bypass steps=9
+waits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute("FallenBeam")
+0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute("Wall")
+0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy("FallenBeam",False)
+6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy("FallenBeam",True)
+6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy("HaulBarrel",False)
+6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy("HaulBarrel",True)
+6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy("Hedge",False)
+6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy("Hedge",True)
+6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy("Wall",False)
+6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy("Wall",True)
+6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt("FallenBeam")
+0:(7, 9):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt("HaulBarrel")
+0:(7, 9):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True
+=> CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt("Hedge")
+0:(7, 9):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True
+
+Run Settings
+    Number of Test Workers: 1
+    Work Directory: /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/implementation/runner
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Passed
+  Test Count: 43, Passed: 43, Failed: 0, Warnings: 0, Inconclusive: 0, Skipped: 0
+  Start time: 2026-09-29 08:05:06Z
+    End time: 2026-09-29 08:05:06Z
+    Duration: 0.720 seconds
+
+Results (nunit3) saved as /Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/implementation/runner/../candidate-43.xml

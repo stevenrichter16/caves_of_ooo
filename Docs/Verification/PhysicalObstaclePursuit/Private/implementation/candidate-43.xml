@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/implementation/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="43" result="Passed" start-time="2026-09-29T08:05:06.1598730Z" end-time="2026-09-29T08:05:06.8794310Z" duration="0.719546" total="43" passed="43" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="1343" random-seed="525464474">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/implementation/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=../candidate-43.xml --where "class =~ /MovableObstaclePursuitAuditTests/"]]></command-line>
+  <filter>
+    <class re="1">MovableObstaclePursuitAuditTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1055" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/implementation/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="43" result="Passed" start-time="2026-09-29T08:05:06.1598730Z" end-time="2026-09-29T08:05:06.8794310Z" duration="0.719546" total="43" passed="43" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1343">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/implementation/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/implementation/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="64923" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestSuite" id="1056" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="43" result="Passed" start-time="2026-09-29T08:05:06.1613550Z" end-time="2026-09-29T08:05:06.8794290Z" duration="0.718075" total="43" passed="43" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1343">
+      <test-suite type="TestSuite" id="1057" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="43" result="Passed" start-time="2026-09-29T08:05:06.1614930Z" end-time="2026-09-29T08:05:06.8794260Z" duration="0.717935" total="43" passed="43" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1343">
+        <test-suite type="TestFixture" id="1000" name="MovableObstaclePursuitAuditTests" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="43" result="Passed" start-time="2026-09-29T08:05:06.1618550Z" end-time="2026-09-29T08:05:06.8794110Z" duration="0.717557" total="43" passed="43" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1343">
+          <test-suite type="ParameterizedMethod" id="1004" name="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-29T08:05:06.1628370Z" end-time="2026-09-29T08:05:06.2577300Z" duration="0.094893" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="33">
+            <test-case id="1001" name="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(&quot;FallenBeam&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(&quot;FallenBeam&quot;)" methodname="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1259243576" result="Passed" start-time="2026-09-29T08:05:06.1629140Z" end-time="2026-09-29T08:05:06.2215870Z" duration="0.058697" asserts="11" />
+            <test-case id="1002" name="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(&quot;HaulBarrel&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(&quot;HaulBarrel&quot;)" methodname="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="2036410831" result="Passed" start-time="2026-09-29T08:05:06.2221860Z" end-time="2026-09-29T08:05:06.2403000Z" duration="0.018114" asserts="11" />
+            <test-case id="1003" name="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(&quot;Hedge&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(&quot;Hedge&quot;)" methodname="ActualBlueprintBlocksMovementWithoutBeingAVisibleWall" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1547153820" result="Passed" start-time="2026-09-29T08:05:06.2403290Z" end-time="2026-09-29T08:05:06.2573590Z" duration="0.017030" asserts="11" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1044" name="ClosedDoorKeepsItsExplicitOperationContract" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-29T08:05:06.2579110Z" end-time="2026-09-29T08:05:06.3197730Z" duration="0.061861" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="167">
+            <test-case id="1041" name="ClosedDoorKeepsItsExplicitOperationContract(&quot;capable&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract(&quot;capable&quot;)" methodname="ClosedDoorKeepsItsExplicitOperationContract" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1796765190" result="Passed" start-time="2026-09-29T08:05:06.2579320Z" end-time="2026-09-29T08:05:06.2871020Z" duration="0.029170" asserts="57" />
+            <test-case id="1042" name="ClosedDoorKeepsItsExplicitOperationContract(&quot;incapable&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract(&quot;incapable&quot;)" methodname="ClosedDoorKeepsItsExplicitOperationContract" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="896719621" result="Passed" start-time="2026-09-29T08:05:06.2871210Z" end-time="2026-09-29T08:05:06.3024680Z" duration="0.015347" asserts="55" />
+            <test-case id="1043" name="ClosedDoorKeepsItsExplicitOperationContract(&quot;locked&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract(&quot;locked&quot;)" methodname="ClosedDoorKeepsItsExplicitOperationContract" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="402642881" result="Passed" start-time="2026-09-29T08:05:06.3024870Z" end-time="2026-09-29T08:05:06.3197440Z" duration="0.017258" asserts="55" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1016" name="IgnoreCreaturesChangesOnlyTheOccupyingActorRoute" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.IgnoreCreaturesChangesOnlyTheOccupyingActorRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T08:05:06.3197870Z" end-time="2026-09-29T08:05:06.3482740Z" duration="0.028487" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="12">
+            <test-case id="1014" name="IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(False)" methodname="IgnoreCreaturesChangesOnlyTheOccupyingActorRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1863132535" result="Passed" start-time="2026-09-29T08:05:06.3197950Z" end-time="2026-09-29T08:05:06.3345560Z" duration="0.014761" asserts="6" />
+            <test-case id="1015" name="IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(True)" methodname="IgnoreCreaturesChangesOnlyTheOccupyingActorRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1187086585" result="Passed" start-time="2026-09-29T08:05:06.3345680Z" end-time="2026-09-29T08:05:06.3482570Z" duration="0.013689" asserts="6" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1050" name="LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T08:05:06.3482800Z" end-time="2026-09-29T08:05:06.3802680Z" duration="0.031989" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="56">
+            <test-case id="1048" name="LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(False)" methodname="LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1876672783" result="Passed" start-time="2026-09-29T08:05:06.3482870Z" end-time="2026-09-29T08:05:06.3650840Z" duration="0.016797" asserts="25">
+              <output><![CDATA[physical bypass steps=6
+0:(7, 10):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True
+]]></output>
+            </test-case>
+            <test-case id="1049" name="LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(True)" methodname="LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="759393511" result="Passed" start-time="2026-09-29T08:05:06.3651020Z" end-time="2026-09-29T08:05:06.3802500Z" duration="0.015148" asserts="31">
+              <output><![CDATA[physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1040" name="OneCellExplicitFootprintPreservesPhysicalRoute" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T08:05:06.3802730Z" end-time="2026-09-29T08:05:06.4133830Z" duration="0.033109" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="45">
+            <test-case id="1038" name="OneCellExplicitFootprintPreservesPhysicalRoute(False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute(False)" methodname="OneCellExplicitFootprintPreservesPhysicalRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="454116195" result="Passed" start-time="2026-09-29T08:05:06.3802820Z" end-time="2026-09-29T08:05:06.3948320Z" duration="0.014551" asserts="22" />
+            <test-case id="1039" name="OneCellExplicitFootprintPreservesPhysicalRoute(True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute(True)" methodname="OneCellExplicitFootprintPreservesPhysicalRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="190971084" result="Passed" start-time="2026-09-29T08:05:06.3948460Z" end-time="2026-09-29T08:05:06.4133680Z" duration="0.018523" asserts="23" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1028" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-09-29T08:05:06.4133900Z" end-time="2026-09-29T08:05:06.5167660Z" duration="0.103376" total="7" passed="7" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="217">
+            <test-case id="1021" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;FallenBeam&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;FallenBeam&quot;,False)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1151007302" result="Passed" start-time="2026-09-29T08:05:06.4133970Z" end-time="2026-09-29T08:05:06.4269980Z" duration="0.013601" asserts="31">
+              <output><![CDATA[physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+]]></output>
+            </test-case>
+            <test-case id="1022" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;FallenBeam&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;FallenBeam&quot;,True)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1053529006" result="Passed" start-time="2026-09-29T08:05:06.4270220Z" end-time="2026-09-29T08:05:06.4415390Z" duration="0.014517" asserts="31">
+              <output><![CDATA[physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+]]></output>
+            </test-case>
+            <test-case id="1023" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;HaulBarrel&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;HaulBarrel&quot;,False)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1595939450" result="Passed" start-time="2026-09-29T08:05:06.4415700Z" end-time="2026-09-29T08:05:06.4572780Z" duration="0.015708" asserts="31">
+              <output><![CDATA[physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+]]></output>
+            </test-case>
+            <test-case id="1024" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;HaulBarrel&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;HaulBarrel&quot;,True)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1870237116" result="Passed" start-time="2026-09-29T08:05:06.4572960Z" end-time="2026-09-29T08:05:06.4719280Z" duration="0.014632" asserts="31">
+              <output><![CDATA[physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+]]></output>
+            </test-case>
+            <test-case id="1025" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;Hedge&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;Hedge&quot;,False)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="769030903" result="Passed" start-time="2026-09-29T08:05:06.4719440Z" end-time="2026-09-29T08:05:06.4858430Z" duration="0.013899" asserts="31">
+              <output><![CDATA[physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+]]></output>
+            </test-case>
+            <test-case id="1026" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;Hedge&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;Hedge&quot;,True)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1382562922" result="Passed" start-time="2026-09-29T08:05:06.4858510Z" end-time="2026-09-29T08:05:06.5024190Z" duration="0.016568" asserts="31">
+              <output><![CDATA[physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+]]></output>
+            </test-case>
+            <test-case id="1027" name="OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;Wall&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(&quot;Wall&quot;,False)" methodname="OrdinaryApproachMustUseTheRealOpenEndOfABoundary" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="457082694" result="Passed" start-time="2026-09-29T08:05:06.5024340Z" end-time="2026-09-29T08:05:06.5167440Z" duration="0.014310" asserts="31">
+              <output><![CDATA[physical bypass steps=10
+0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1054" name="RespectingPhysicalOwnersProducesAnEntireExecutableBypass" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-29T08:05:06.5167730Z" end-time="2026-09-29T08:05:06.5644000Z" duration="0.047627" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="99">
+            <test-case id="1051" name="RespectingPhysicalOwnersProducesAnEntireExecutableBypass(&quot;FallenBeam&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass(&quot;FallenBeam&quot;)" methodname="RespectingPhysicalOwnersProducesAnEntireExecutableBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="734553371" result="Passed" start-time="2026-09-29T08:05:06.5167860Z" end-time="2026-09-29T08:05:06.5356810Z" duration="0.018896" asserts="33">
+              <output><![CDATA[executed bypass=10
+]]></output>
+            </test-case>
+            <test-case id="1052" name="RespectingPhysicalOwnersProducesAnEntireExecutableBypass(&quot;HaulBarrel&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass(&quot;HaulBarrel&quot;)" methodname="RespectingPhysicalOwnersProducesAnEntireExecutableBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="112359954" result="Passed" start-time="2026-09-29T08:05:06.5356970Z" end-time="2026-09-29T08:05:06.5512660Z" duration="0.015569" asserts="33">
+              <output><![CDATA[executed bypass=10
+]]></output>
+            </test-case>
+            <test-case id="1053" name="RespectingPhysicalOwnersProducesAnEntireExecutableBypass(&quot;Hedge&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass(&quot;Hedge&quot;)" methodname="RespectingPhysicalOwnersProducesAnEntireExecutableBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="818798272" result="Passed" start-time="2026-09-29T08:05:06.5512840Z" end-time="2026-09-29T08:05:06.5643790Z" duration="0.013096" asserts="33">
+              <output><![CDATA[executed bypass=10
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1037" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-09-29T08:05:06.5644060Z" end-time="2026-09-29T08:05:06.6988520Z" duration="0.134446" total="8" passed="8" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="348">
+            <test-case id="1029" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;FallenBeam&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;FallenBeam&quot;,False)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1683791638" result="Passed" start-time="2026-09-29T08:05:06.5644150Z" end-time="2026-09-29T08:05:06.5844800Z" duration="0.020065" asserts="43">
+              <output><![CDATA[physical bypass steps=10
+waits=8 ticks=90 energy=0 0:(6, 9) 1:(6, 8) 2:(6, 7) 3:(6, 6) 4:(7, 5) 5:(8, 6) 6:(9, 7) 7:(10, 8) 8:(11, 9)
+]]></output>
+            </test-case>
+            <test-case id="1030" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;FallenBeam&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;FallenBeam&quot;,True)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="204601896" result="Passed" start-time="2026-09-29T08:05:06.5844990Z" end-time="2026-09-29T08:05:06.6021180Z" duration="0.017619" asserts="44">
+              <output><![CDATA[physical bypass steps=9
+waits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)
+]]></output>
+            </test-case>
+            <test-case id="1031" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;HaulBarrel&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;HaulBarrel&quot;,False)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="485821118" result="Passed" start-time="2026-09-29T08:05:06.6021440Z" end-time="2026-09-29T08:05:06.6186170Z" duration="0.016473" asserts="43">
+              <output><![CDATA[physical bypass steps=10
+waits=8 ticks=90 energy=0 0:(6, 9) 1:(6, 8) 2:(6, 7) 3:(6, 6) 4:(7, 5) 5:(8, 6) 6:(9, 7) 7:(10, 8) 8:(11, 9)
+]]></output>
+            </test-case>
+            <test-case id="1032" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;HaulBarrel&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;HaulBarrel&quot;,True)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="2040411880" result="Passed" start-time="2026-09-29T08:05:06.6186430Z" end-time="2026-09-29T08:05:06.6358560Z" duration="0.017214" asserts="44">
+              <output><![CDATA[physical bypass steps=9
+waits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)
+]]></output>
+            </test-case>
+            <test-case id="1033" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Hedge&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Hedge&quot;,False)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="2086689482" result="Passed" start-time="2026-09-29T08:05:06.6358820Z" end-time="2026-09-29T08:05:06.6504840Z" duration="0.014602" asserts="43">
+              <output><![CDATA[physical bypass steps=10
+waits=8 ticks=90 energy=0 0:(6, 9) 1:(6, 8) 2:(6, 7) 3:(6, 6) 4:(7, 5) 5:(8, 6) 6:(9, 7) 7:(10, 8) 8:(11, 9)
+]]></output>
+            </test-case>
+            <test-case id="1034" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Hedge&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Hedge&quot;,True)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="103697426" result="Passed" start-time="2026-09-29T08:05:06.6504980Z" end-time="2026-09-29T08:05:06.6667000Z" duration="0.016202" asserts="44">
+              <output><![CDATA[physical bypass steps=9
+waits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)
+]]></output>
+            </test-case>
+            <test-case id="1035" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Wall&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Wall&quot;,False)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1260493691" result="Passed" start-time="2026-09-29T08:05:06.6667150Z" end-time="2026-09-29T08:05:06.6815310Z" duration="0.014817" asserts="43">
+              <output><![CDATA[physical bypass steps=10
+waits=8 ticks=90 energy=0 0:(6, 9) 1:(6, 8) 2:(6, 7) 3:(6, 6) 4:(7, 5) 5:(8, 6) 6:(9, 7) 7:(10, 8) 8:(11, 9)
+]]></output>
+            </test-case>
+            <test-case id="1036" name="ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Wall&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(&quot;Wall&quot;,True)" methodname="ScheduledKillGoalMustReachPlayerAcrossOpenBypass" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="123029283" result="Passed" start-time="2026-09-29T08:05:06.6815510Z" end-time="2026-09-29T08:05:06.6988340Z" duration="0.017284" asserts="44">
+              <output><![CDATA[physical bypass steps=9
+waits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1047" name="SealedPhysicalBoundaryMustNotReturnAUsableRoute" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T08:05:06.6989080Z" end-time="2026-09-29T08:05:06.7317170Z" duration="0.032809" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="108">
+            <test-case id="1045" name="SealedPhysicalBoundaryMustNotReturnAUsableRoute(&quot;FallenBeam&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute(&quot;FallenBeam&quot;)" methodname="SealedPhysicalBoundaryMustNotReturnAUsableRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="394091611" result="Passed" start-time="2026-09-29T08:05:06.6989200Z" end-time="2026-09-29T08:05:06.7163050Z" duration="0.017386" asserts="54">
+              <output><![CDATA[0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False
+]]></output>
+            </test-case>
+            <test-case id="1046" name="SealedPhysicalBoundaryMustNotReturnAUsableRoute(&quot;Wall&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute(&quot;Wall&quot;)" methodname="SealedPhysicalBoundaryMustNotReturnAUsableRoute" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="885255107" result="Passed" start-time="2026-09-29T08:05:06.7163250Z" end-time="2026-09-29T08:05:06.7317000Z" duration="0.015375" asserts="54">
+              <output><![CDATA[0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1013" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-09-29T08:05:06.7317640Z" end-time="2026-09-29T08:05:06.8567980Z" duration="0.125035" total="8" passed="8" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="240">
+            <test-case id="1005" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;FallenBeam&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;FallenBeam&quot;,False)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="2054511268" result="Passed" start-time="2026-09-29T08:05:06.7317730Z" end-time="2026-09-29T08:05:06.7469330Z" duration="0.015160" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+            <test-case id="1006" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;FallenBeam&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;FallenBeam&quot;,True)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="235526221" result="Passed" start-time="2026-09-29T08:05:06.7469560Z" end-time="2026-09-29T08:05:06.7615540Z" duration="0.014599" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+            <test-case id="1007" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;HaulBarrel&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;HaulBarrel&quot;,False)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="251733414" result="Passed" start-time="2026-09-29T08:05:06.7615760Z" end-time="2026-09-29T08:05:06.7751190Z" duration="0.013543" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+            <test-case id="1008" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;HaulBarrel&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;HaulBarrel&quot;,True)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1094336349" result="Passed" start-time="2026-09-29T08:05:06.7751400Z" end-time="2026-09-29T08:05:06.7916110Z" duration="0.016471" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+            <test-case id="1009" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Hedge&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Hedge&quot;,False)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="421325595" result="Passed" start-time="2026-09-29T08:05:06.7916330Z" end-time="2026-09-29T08:05:06.8063730Z" duration="0.014740" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+            <test-case id="1010" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Hedge&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Hedge&quot;,True)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1210801103" result="Passed" start-time="2026-09-29T08:05:06.8063920Z" end-time="2026-09-29T08:05:06.8208780Z" duration="0.014486" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+            <test-case id="1011" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Wall&quot;,False)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Wall&quot;,False)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1245681151" result="Passed" start-time="2026-09-29T08:05:06.8208970Z" end-time="2026-09-29T08:05:06.8368300Z" duration="0.015934" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+            <test-case id="1012" name="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Wall&quot;,True)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(&quot;Wall&quot;,True)" methodname="SearchAvoidsStationaryBlockersWithEitherCreaturePolicy" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="983165829" result="Passed" start-time="2026-09-29T08:05:06.8368480Z" end-time="2026-09-29T08:05:06.8567780Z" duration="0.019930" asserts="30">
+              <output><![CDATA[6,9
+6,8
+6,7
+6,6
+7,5
+8,6
+9,7
+10,8
+11,9
+12,10
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1020" name="SingleOwnerStillHasAnExecutableFallbackAroundIt" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-09-29T08:05:06.8568090Z" end-time="2026-09-29T08:05:06.8793760Z" duration="0.022568" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <test-case id="1017" name="SingleOwnerStillHasAnExecutableFallbackAroundIt(&quot;FallenBeam&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt(&quot;FallenBeam&quot;)" methodname="SingleOwnerStillHasAnExecutableFallbackAroundIt" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="396801138" result="Passed" start-time="2026-09-29T08:05:06.8568210Z" end-time="2026-09-29T08:05:06.8670540Z" duration="0.010234" asserts="6">
+              <output><![CDATA[0:(7, 9):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True
+]]></output>
+            </test-case>
+            <test-case id="1018" name="SingleOwnerStillHasAnExecutableFallbackAroundIt(&quot;HaulBarrel&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt(&quot;HaulBarrel&quot;)" methodname="SingleOwnerStillHasAnExecutableFallbackAroundIt" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="331488836" result="Passed" start-time="2026-09-29T08:05:06.8670720Z" end-time="2026-09-29T08:05:06.8744080Z" duration="0.007336" asserts="6">
+              <output><![CDATA[0:(7, 9):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True
+]]></output>
+            </test-case>
+            <test-case id="1019" name="SingleOwnerStillHasAnExecutableFallbackAroundIt(&quot;Hedge&quot;)" fullname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt(&quot;Hedge&quot;)" methodname="SingleOwnerStillHasAnExecutableFallbackAroundIt" classname="CavesOfOoo.Tests.MovableObstaclePursuitAuditTests" runstate="Runnable" seed="1958735150" result="Passed" start-time="2026-09-29T08:05:06.8744220Z" end-time="2026-09-29T08:05:06.8793580Z" duration="0.004936" asserts="6">
+              <output><![CDATA[0:(7, 9):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,153 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using CavesOfOoo.Core;
+using CavesOfOoo.Diagnostics;
+using CavesOfOoo.Rendering;
+using UnityEngine.InputSystem;
+
+namespace CavesOfOoo.Scenarios.Custom
+{
+    public sealed partial class QuestFreeSpreadStateNativePlayer
+    {
+        const string PhysicalPursuitBoundary="Controlled isolated mechanics arena, not generated exploration content: real factory Grass, eight Hedges, one FallenBeam and one ordinary MarlbackScrabbler at disclosed positions. One unchanged original-player transfer replaces the active isolated zone graph; original graph is retained until teardown. Real C/direction/G, one paid east pull and native waits. No forced NPC goal/path/turn, HP/gear/strength/RNG change, NPC pause, fake LOS cover or new reward. At most30 waits plus1 pull/150seconds. Stop at contact; actual damage/interference is recorded. No save/load, natural discovery, universal cover, net tactical advantage or performance claim. Native launcher teardown discards the controlled world and restores user scene/save/input state.";
+        Zone _physicalArena;
+        Entity _physicalPursuer,_physicalLoad;
+        bool _physicalObserving,_physicalCrossedEnd,_physicalAcquired,_physicalCurrentPursuit;
+        string _physicalMoveError;
+        int _physicalMoves;
+
+        public void InitializePhysicalPursuit(ScenarioContext context)=>InitializeMode(context,"physical-pursuit");
+        void BeginPhysicalPursuitDiagnostics()
+        {
+            foreach(string channel in new[]{"ai","combat","turn-verbose"})
+            {_exchangeOldChannels[channel]=_exchangeChannelStore.TryGetValue(channel,out bool old)?(bool?)old:null;Diag.SetChannel(channel,true);}
+        }
+        IEnumerator PhysicalPursuit()
+        {
+            Require(State=="Normal"&&Manager!=null&&Zone!=null,"normal original isolated world");
+            var originalZone=Zone;var originalPlayer=Player;var originalManager=Manager;
+            var originalCell=At;string playerStats=CookingStats(Player),gear=CookingGear(Player),playerSignature=PlayerSignature();
+            int tick=Tick,energy=Energy,world=WorldClock.CurrentTick,ordinarySpeed=Player.GetStatValue("Speed"),originalDrams=TradeSystem.GetDrams(Player);
+            var arena=new Zone(originalZone.ZoneID){AmbientTint=originalZone.AmbientTint,AmbientLevel=originalZone.AmbientLevel};
+            _physicalArena=arena;
+            var floor=new List<Entity>();var hedges=new List<Entity>();
+            for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)floor.Add(PhysicalPlace(arena,"Grass",x,y));
+            for(int y=8;y<=16;y++)if(y!=12)hedges.Add(PhysicalPlace(arena,"Hedge",37,y));
+            _physicalLoad=PhysicalPlace(arena,"FallenBeam",36,12);
+            _physicalPursuer=PhysicalPlace(arena,"MarlbackScrabbler",33,12);
+            var load=_physicalLoad;var pursuer=_physicalPursuer;var brain=pursuer.GetPart<BrainPart>();
+            Require(brain!=null&&!pursuer.HasPart<SpatialFootprintPart>()&&!pursuer.HasPart<CombatTacticsPart>()
+                &&FactionManager.IsHostile(pursuer,Player)&&!brain.Passive,"actual ordinary single-cell hostile source");
+            Require(hedges.All(e=>e.GetPart<PhysicsPart>()?.Solid==true&&!e.HasTag("Solid"))
+                &&load.GetPart<PhysicsPart>()?.Solid==true&&!load.HasTag("Solid")&&DragRules.CanDrag(Player,load)==DragVerdict.Ok,"authored physics-only boundary and current haul authority");
+            string loadFacts=HaulFacts(load);var hedgeFacts=hedges.ToDictionary(e=>e,e=>HaulFacts(e));
+            var hedgePositions=hedges.ToDictionary(e=>e,e=>arena.GetEntityPosition(e));
+            _observations.Add(new{phase="controlled-arena-authorship",address=arena.ZoneID,originalAddress=originalZone.ZoneID,
+                originalPlayer=Player.ID,originalPlayerPosition=HaulXY(originalCell),lighting=PhysicalLightingSnapshot(arena),
+                floor=floor.Select(e=>new{e.ID,e.BlueprintName,position=arena.GetEntityPosition(e)}).ToArray(),
+                owners=hedges.Concat(new[]{load,pursuer}).Select(e=>new{e.ID,e.BlueprintName,position=arena.GetEntityPosition(e),facts=HaulFacts(e),gear=e.HasPart<InventoryPart>()?CookingGear(e):null}).ToArray(),
+                boundary="All listed terrain/actor owners are explicitly factory-staged in a disposable controlled graph. No generated-source, unchanged ecology or natural acquisition claim."});
+            // This controlled graph is deliberately distinct from ordinary Transfer(),
+            // whose receipt promises an actual generated source rather than staged owners.
+            Require(originalZone.TryTransferEntityTo(Player,arena,37,12),"one original-player controlled transfer");
+            typeof(InputHandler).GetMethod("HandleZoneTransition",Private).Invoke(_input,new object[]{new ZoneTransitionResult{Success=true,NewZone=arena,NewPlayerX=37,NewPlayerY=12}});
+            yield return Settled();
+            Check("controlled_transfer_preserves_original_player",ReferenceEquals(Player,originalPlayer)&&ReferenceEquals(Manager,originalManager)
+                &&Zone==arena&&At==arena.GetCell(37,12)&&CookingStats(Player)==playerStats&&CookingGear(Player)==gear&&PlayerSignature()==playerSignature
+                &&Tick==tick&&Energy==energy&&WorldClock.CurrentTick==world&&ReferenceEquals(Manager.CachedZones[arena.ZoneID],arena));
+            var additions=arena.GetReadOnlyEntities().Where(e=>e!=Player&&!floor.Contains(e)&&!hedges.Contains(e)&&e!=load&&e!=pursuer).ToArray();
+            _observations.Add(new{phase="controlled-native-entry",addedOwners=additions.Select(e=>new{e.ID,e.BlueprintName,position=arena.GetEntityPosition(e)}).ToArray(),
+                queue=_input.TurnManager.GetSavedEntries().Select(e=>new{id=e.Entity.ID,e.Entity.BlueprintName,e.Energy}).ToArray(),
+                boundary="Normal entry callbacks and registered actors remain active. Initial NPC energy is observed; it is never granted."});
+            Require(HuntGround(arena,pursuer)&&HuntGround(arena,load)&&brain.CurrentZone==arena,"current staged owners and native scheduler zone");
+            Require(AIHelpers.HasLineOfSight(arena,33,12,37,12)&&brain.SightRadius>=4,"real visible faction-acquisition geometry");
+            var style=HaulVisual(load,null,"controlled-initial-current-beam");
+            Require(Presenter.TryGetApprovedStyle(pursuer,out var actorStyle)&&Presenter.IsRenderedEntity(pursuer),"actual visible approved ordinary pursuer");
+            _observations.Add(new{phase="controlled-pursuer-style",pursuer=pursuer.ID,actorStyle.ModelId,actorStyle.PieceCount,actorStyle.Batched});
+            EntityVisualHooks.MovedCallback+=PhysicalPursuerMoved;_physicalObserving=true;
+            RecordPhysicalPursuit("controlled-initial",0);
+            yield return HaulCueCapture(load,HandlingPart.HaulCommand,"01-controlled-open-throat-before-grab");
+            yield return HaulMenu(load,false,"controlled-native-grab-beam");
+            int speed=Player.GetStatValue("Speed");Require(DragSystem.GetDragged(Player)==load,"exact actual grip");
+            yield return ExchangePaid(Tap(Key.D),"local","controlled-native-east-pull");
+            Check("actual_pull_plugs_same_throat",At==arena.GetCell(38,12)&&arena.GetEntityCell(load)==arena.GetCell(37,12)
+                &&DragSystem.GetDragged(Player)==load&&Player.GetStatValue("Speed")==speed&&HaulFacts(load)==loadFacts);
+            RecordPhysicalPursuit("controlled-after-pull",0);
+            HaulVisual(load,style,"controlled-held-current-beam");yield return HaulCueCapture(load,HandlingPart.ReleaseCommand,"02-native-held-plug");
+            yield return HaulMenu(load,true,"controlled-native-release-plug");
+            Check("released_plug_remains_physical_not_sight_cover",Player.GetPart<DragPart>()==null&&load.GetPart<DraggedPart>()==null
+                &&arena.GetCell(37,12).BlocksMovement(Player)&&!arena.GetCell(37,12).IsSolid()&&Player.GetStatValue("Speed")==ordinarySpeed
+                &&AIHelpers.HasLineOfSight(arena,33,12,38,12));
+            int bypass=PhysicalBypassLength(arena,pursuer,Player);
+            Require(bypass>SpatialQuery.Distance(arena,pursuer,Player)&&bypass<=30,"actual open physical eight-direction detour");
+            _observations.Add(new{phase="controlled-plugged-bypass",steps=bypass,boundary="Read-only physical BFS, never supplied to the NPC. Real NPC movement owns acceptance."});
+            HaulVisual(load,style,"controlled-released-current-beam");yield return HaulCueCapture(load,HandlingPart.HaulCommand,"03-native-released-obstruction");
+            int waits=0;bool capturedEnd=false;
+            while(waits<30&&SpatialQuery.Distance(arena,pursuer,Player)>1)
+            {
+                if(!HuntGround(arena,pursuer)||pursuer.GetStatValue("Hitpoints")<=0){Unverified("physical-pursuit","Current ordinary pursuer died/left during controlled attempt.");yield break;}
+                yield return ExchangePaid(Tap(Key.Space),"local","controlled-native-wait-"+(++waits));
+                RecordPhysicalPursuit("controlled-after-wait",waits);
+                if(_physicalAcquired&&!_physicalCurrentPursuit){Unverified("physical-pursuit","Ordinary current target/goal changed after acquisition; do not attribute intervening behavior to pathfinding.");yield break;}
+                Require(_physicalMoveError==null,_physicalMoveError??"current movement trace");
+                Require(HaulFacts(load)==loadFacts&&arena.GetEntityPosition(load)==(37,12)
+                    &&hedges.All(e=>HuntGround(arena,e)&&arena.GetEntityPosition(e)==hedgePositions[e]&&HaulFacts(e)==hedgeFacts[e]),"same unchanged physical obstacle owners");
+                if(_physicalCrossedEnd&&!capturedEnd){capturedEnd=true;yield return Capture("04-actual-scheduled-open-end-bypass");}
+            }
+            if(!_physicalAcquired){Unverified("physical-pursuit","Ordinary Brain never acquired the original player through a KillGoal; no goal was pushed.");yield break;}
+            Check("ordinary_pursuer_fairly_uses_bypass",_physicalCrossedEnd&&_physicalMoves>0&&_physicalCurrentPursuit&&SpatialQuery.Distance(arena,pursuer,Player)==1&&_physicalMoveError==null);
+            Check("original_player_and_obstacles_remain",ReferenceEquals(Player,originalPlayer)&&CookingGear(Player)==gear&&TradeSystem.GetDrams(Player)==originalDrams
+                &&Player.GetStatValue("Hitpoints")>10&&!DragSystem.IsDragging(Player)&&HaulFacts(load)==loadFacts);
+            HaulVisual(load,style,"controlled-final-current-beam");yield return Capture("05-actual-pursuer-contact-after-detour");
+            _observations.Add(new{phase="controlled-pursuit-coverage",waits,paidInputs=_paidInputs,npcMoves=_physicalMoves,usedOpenEnd=_physicalCrossedEnd,
+                actualContact=SpatialQuery.Distance(arena,pursuer,Player),playerHp=Player.GetStatValue("Hitpoints"),npcHp=pursuer.GetStatValue("Hitpoints"),
+                boundary="Real ordinary pursuit through the bypass, not a forced path, save test, natural site, LOS cover or measured net defensive advantage."});
+        }
+        static object PhysicalLightingSnapshot(Zone zone)
+        {
+            // Unity Color exposes recursive computed properties to Json.NET;
+            // report only detached observed channels, without altering lighting.
+            var tint=zone.AmbientTint;
+            return new{ambientLevel=zone.AmbientLevel,ambientTint=new{tint.r,tint.g,tint.b,tint.a}};
+        }
+        Entity PhysicalPlace(Zone zone,string blueprint,int x,int y)
+        {var e=_context.Factory.CreateEntity(blueprint);Require(e!=null&&zone.AddEntity(e,x,y),"factory controlled placement "+blueprint);return e;}
+        void PhysicalPursuerMoved(Entity entity,Zone zone,int ox,int oy,int nx,int ny,bool forced)
+        {
+            if(entity!=_physicalPursuer||zone!=_physicalArena)return;
+            _physicalMoves++;bool legal=!forced&&Math.Max(Math.Abs(nx-ox),Math.Abs(ny-oy))==1&&zone.GetEntityPosition(entity)==(nx,ny)
+                &&zone.GetCell(nx,ny)!=null&&!zone.GetCell(nx,ny).BlocksMovement(entity);
+            if(!legal)_physicalMoveError="Pursuer movement was forced, nonadjacent or entered a physical obstacle.";
+            if(nx==37&&(ny<8||ny>16))_physicalCrossedEnd=true;
+            _observations.Add(new{phase="actual-controlled-pursuer-move",owner=entity.ID,oldCell=new[]{ox,oy},newCell=new[]{nx,ny},forced,legal,tick=Tick});
+        }
+        void RecordPhysicalPursuit(string label,int waits)
+        {
+            var brain=_physicalPursuer.GetPart<BrainPart>();var goals=brain.GetGoalsSnapshot().ToArray();
+            _physicalCurrentPursuit=ReferenceEquals(brain.Target,Player)&&goals.OfType<KillGoal>().Any(g=>ReferenceEquals(g.Target,Player));
+            _physicalAcquired|=_physicalCurrentPursuit;
+            _observations.Add(new{phase=label,waits,tick=Tick,player=new{Player.ID,position=Zone.GetEntityPosition(Player),energy=Energy,hp=Player.GetStatValue("Hitpoints"),speed=Player.GetStatValue("Speed")},
+                pursuer=new{_physicalPursuer.ID,position=Zone.GetEntityPosition(_physicalPursuer),energy=_input.TurnManager.GetEnergy(_physicalPursuer),hp=_physicalPursuer.GetStatValue("Hitpoints"),target=brain.Target?.ID,
+                    goals=goals.Select(g=>new{type=g.GetType().Name,g.Age}).ToArray()},acquired=_physicalAcquired,currentPursuit=_physicalCurrentPursuit,usedOpenEnd=_physicalCrossedEnd});WriteReport();
+        }
+        static int PhysicalBypassLength(Zone zone,Entity actor,Entity target)
+        {
+            var start=zone.GetEntityCell(actor);var finish=zone.GetEntityCell(target);if(start==null||finish==null)return -1;
+            var pending=new Queue<(Cell cell,int steps)>();var seen=new HashSet<Cell>{start};pending.Enqueue((start,0));
+            while(pending.Count>0){var row=pending.Dequeue();if(row.cell==finish)return row.steps;
+                foreach(var d in HaulDirections){var c=zone.GetCell(row.cell.X+d.x,row.cell.Y+d.y);if(c==null||!seen.Add(c))continue;
+                    if(c.Occupants.Any(e=>e!=actor&&e!=target&&(e.HasTag("Solid")||e.GetPart<PhysicsPart>()?.Solid==true||e.GetPart<DoorPart>()?.IsClosed==true)))continue;
+                    pending.Enqueue((c,row.steps+1));}}
+            return -1;
+        }
+        void StopPhysicalPursuitObservation()
+        {
+            if(!_physicalObserving)return;_physicalObserving=false;EntityVisualHooks.MovedCallback-=PhysicalPursuerMoved;
+            if(_input!=null&&_physicalLoad!=null&&ReferenceEquals(DragSystem.GetDragged(Player),_physicalLoad))DragSystem.Release(Player);
+            // The arena belongs to this disposable isolated Play world. Teardown
+            // discards it; do not rewind live tick/energy or rebuild the old world.
+        }
+    }
+}

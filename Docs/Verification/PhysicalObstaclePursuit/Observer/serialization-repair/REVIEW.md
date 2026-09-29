@@ -1,0 +1,9 @@
+# Scalar lighting report correction
+
+The original frozen observer reached its first actual native Play attempt `2a3308b4cce04593a4638c3a69061280`, then failed at zero paid inputs because raw Unity Color in the authored lighting observation recursed through `.linear` during Newtonsoft report serialization. Root retained that recorder failure and stopped Play manually; its recovery receipt confirms inactive isolation/observer, restored save root/preferences, and clean Main scene. This result is not pursuit RED.
+
+The separate one-path candidate replaces only the raw lighting value with a detached `ambientLevel` and four `r/g/b/a` float channels. It does not change lighting, actor behavior, source placement, timing, the general serializer, cleanup framework, or mode selection. Exact source preimage is `689d88865a109a246a78fa8acb01de5ef920cb9b16626e12f9263755394cf85a`; original handoff remains immutable.
+
+The two tests invoke the actual loaded Newtonsoft serializer reflectively because the EditMode assembly has no direct Newtonsoft reference. The first reproduces the raw Color exception then demands exact scalar round-trip; the second pins immutable old observation values while a new observation follows changed current lighting, with no source mutation. Both baseline and candidate runtime/editor/full-test assemblies compile against actual Unity references with zero errors. Compilation is not test execution. Root owns the native pair RED/GREEN and corrected baseline Play.
+
+Independent mechanics peer reviewed the patch and both tests and found no concrete blocker: only detached floats are retained, no Zone/Color reference or computed property reaches JSON, and no scene state changes. The reflection tests retain the real serializer. No shared source or Unity operation was performed by the author/reviewer for this correction.

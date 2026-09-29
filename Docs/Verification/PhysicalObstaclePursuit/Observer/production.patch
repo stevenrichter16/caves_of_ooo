@@ -1,0 +1,209 @@
+--- a/Assets/Editor/Scenarios/QuestFreeSpreadStateNativeBatch.cs
++++ b/Assets/Editor/Scenarios/QuestFreeSpreadStateNativeBatch.cs
+@@ -26,6 +26,7 @@
+         public static void LaunchCollector()=>LaunchMode("collector");
+         public static void LaunchAffordances()=>LaunchMode("affordances");
+         public static void LaunchPassage()=>LaunchMode("passage");
++        public static void LaunchPhysicalPursuit()=>LaunchMode("physical-pursuit");
+         public static void LaunchHauling()=>LaunchMode("hauling");
+         public static void LaunchHunting()=>LaunchHuntingCandidate(0);
+         public static void LaunchHuntingCandidate(int canonicalIndex)
+@@ -87,7 +88,7 @@
+             var driver=new GameObject("Quest Free Spread State Native Audit").AddComponent<QuestFreeSpreadStateNativePlayer>();
+             var context=new ScenarioContext(zone,factory,player,turns);
+             string mode=SessionState.GetString(Prefix+"mode","states");
+-            if(mode=="hunting")driver.InitializeHunting(context,SessionState.GetInt(Prefix+"huntingIndex",0));else if(mode=="hauling")driver.InitializeHauling(context);else if(mode=="finite-cooking-controlled")driver.InitializeControlledFiniteCooking(context);else if(mode=="finite-cooking")driver.InitializeFiniteCooking(context);else if(mode=="cooking")driver.InitializeCooking(context);else if(mode=="passage")driver.InitializePassage(context);else if(mode=="exchange")driver.InitializeExchange(context);else if(mode=="collector")driver.InitializeCollector(context);else if(mode=="affordances")driver.InitializeAffordances(context);else driver.Initialize(context);
++            if(mode=="physical-pursuit")driver.InitializePhysicalPursuit(context);else if(mode=="hunting")driver.InitializeHunting(context,SessionState.GetInt(Prefix+"huntingIndex",0));else if(mode=="hauling")driver.InitializeHauling(context);else if(mode=="finite-cooking-controlled")driver.InitializeControlledFiniteCooking(context);else if(mode=="finite-cooking")driver.InitializeFiniteCooking(context);else if(mode=="cooking")driver.InitializeCooking(context);else if(mode=="passage")driver.InitializePassage(context);else if(mode=="exchange")driver.InitializeExchange(context);else if(mode=="collector")driver.InitializeCollector(context);else if(mode=="affordances")driver.InitializeAffordances(context);else driver.Initialize(context);
+         }
+         private static void Poll()
+         {
+--- a/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.PhysicalPursuit.cs
++++ b/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.PhysicalPursuit.cs
+@@ -0,0 +1,146 @@
++using System;
++using System.Collections;
++using System.Collections.Generic;
++using System.Linq;
++using CavesOfOoo.Core;
++using CavesOfOoo.Diagnostics;
++using CavesOfOoo.Rendering;
++using UnityEngine.InputSystem;
++
++namespace CavesOfOoo.Scenarios.Custom
++{
++    public sealed partial class QuestFreeSpreadStateNativePlayer
++    {
++        const string PhysicalPursuitBoundary="Controlled isolated mechanics arena, not generated exploration content: real factory Grass, eight Hedges, one FallenBeam and one ordinary MarlbackScrabbler at disclosed positions. One unchanged original-player transfer replaces the active isolated zone graph; original graph is retained until teardown. Real C/direction/G, one paid east pull and native waits. No forced NPC goal/path/turn, HP/gear/strength/RNG change, NPC pause, fake LOS cover or new reward. At most30 waits plus1 pull/150seconds. Stop at contact; actual damage/interference is recorded. No save/load, natural discovery, universal cover, net tactical advantage or performance claim. Native launcher teardown discards the controlled world and restores user scene/save/input state.";
++        Zone _physicalArena;
++        Entity _physicalPursuer,_physicalLoad;
++        bool _physicalObserving,_physicalCrossedEnd,_physicalAcquired,_physicalCurrentPursuit;
++        string _physicalMoveError;
++        int _physicalMoves;
++
++        public void InitializePhysicalPursuit(ScenarioContext context)=>InitializeMode(context,"physical-pursuit");
++        void BeginPhysicalPursuitDiagnostics()
++        {
++            foreach(string channel in new[]{"ai","combat","turn-verbose"})
++            {_exchangeOldChannels[channel]=_exchangeChannelStore.TryGetValue(channel,out bool old)?(bool?)old:null;Diag.SetChannel(channel,true);}
++        }
++        IEnumerator PhysicalPursuit()
++        {
++            Require(State=="Normal"&&Manager!=null&&Zone!=null,"normal original isolated world");
++            var originalZone=Zone;var originalPlayer=Player;var originalManager=Manager;
++            var originalCell=At;string playerStats=CookingStats(Player),gear=CookingGear(Player),playerSignature=PlayerSignature();
++            int tick=Tick,energy=Energy,world=WorldClock.CurrentTick,ordinarySpeed=Player.GetStatValue("Speed"),originalDrams=TradeSystem.GetDrams(Player);
++            var arena=new Zone(originalZone.ZoneID){AmbientTint=originalZone.AmbientTint,AmbientLevel=originalZone.AmbientLevel};
++            _physicalArena=arena;
++            var floor=new List<Entity>();var hedges=new List<Entity>();
++            for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)floor.Add(PhysicalPlace(arena,"Grass",x,y));
++            for(int y=8;y<=16;y++)if(y!=12)hedges.Add(PhysicalPlace(arena,"Hedge",37,y));
++            _physicalLoad=PhysicalPlace(arena,"FallenBeam",36,12);
++            _physicalPursuer=PhysicalPlace(arena,"MarlbackScrabbler",33,12);
++            var load=_physicalLoad;var pursuer=_physicalPursuer;var brain=pursuer.GetPart<BrainPart>();
++            Require(brain!=null&&!pursuer.HasPart<SpatialFootprintPart>()&&!pursuer.HasPart<CombatTacticsPart>()
++                &&FactionManager.IsHostile(pursuer,Player)&&!brain.Passive,"actual ordinary single-cell hostile source");
++            Require(hedges.All(e=>e.GetPart<PhysicsPart>()?.Solid==true&&!e.HasTag("Solid"))
++                &&load.GetPart<PhysicsPart>()?.Solid==true&&!load.HasTag("Solid")&&DragRules.CanDrag(Player,load)==DragVerdict.Ok,"authored physics-only boundary and current haul authority");
++            string loadFacts=HaulFacts(load);var hedgeFacts=hedges.ToDictionary(e=>e,e=>HaulFacts(e));
++            var hedgePositions=hedges.ToDictionary(e=>e,e=>arena.GetEntityPosition(e));
++            _observations.Add(new{phase="controlled-arena-authorship",address=arena.ZoneID,originalAddress=originalZone.ZoneID,
++                originalPlayer=Player.ID,originalPlayerPosition=HaulXY(originalCell),lighting=new{arena.AmbientLevel,arena.AmbientTint},
++                floor=floor.Select(e=>new{e.ID,e.BlueprintName,position=arena.GetEntityPosition(e)}).ToArray(),
++                owners=hedges.Concat(new[]{load,pursuer}).Select(e=>new{e.ID,e.BlueprintName,position=arena.GetEntityPosition(e),facts=HaulFacts(e),gear=e.HasPart<InventoryPart>()?CookingGear(e):null}).ToArray(),
++                boundary="All listed terrain/actor owners are explicitly factory-staged in a disposable controlled graph. No generated-source, unchanged ecology or natural acquisition claim."});
++            // This controlled graph is deliberately distinct from ordinary Transfer(),
++            // whose receipt promises an actual generated source rather than staged owners.
++            Require(originalZone.TryTransferEntityTo(Player,arena,37,12),"one original-player controlled transfer");
++            typeof(InputHandler).GetMethod("HandleZoneTransition",Private).Invoke(_input,new object[]{new ZoneTransitionResult{Success=true,NewZone=arena,NewPlayerX=37,NewPlayerY=12}});
++            yield return Settled();
++            Check("controlled_transfer_preserves_original_player",ReferenceEquals(Player,originalPlayer)&&ReferenceEquals(Manager,originalManager)
++                &&Zone==arena&&At==arena.GetCell(37,12)&&CookingStats(Player)==playerStats&&CookingGear(Player)==gear&&PlayerSignature()==playerSignature
++                &&Tick==tick&&Energy==energy&&WorldClock.CurrentTick==world&&ReferenceEquals(Manager.CachedZones[arena.ZoneID],arena));
++            var additions=arena.GetReadOnlyEntities().Where(e=>e!=Player&&!floor.Contains(e)&&!hedges.Contains(e)&&e!=load&&e!=pursuer).ToArray();
++            _observations.Add(new{phase="controlled-native-entry",addedOwners=additions.Select(e=>new{e.ID,e.BlueprintName,position=arena.GetEntityPosition(e)}).ToArray(),
++                queue=_input.TurnManager.GetSavedEntries().Select(e=>new{id=e.Entity.ID,e.Entity.BlueprintName,e.Energy}).ToArray(),
++                boundary="Normal entry callbacks and registered actors remain active. Initial NPC energy is observed; it is never granted."});
++            Require(HuntGround(arena,pursuer)&&HuntGround(arena,load)&&brain.CurrentZone==arena,"current staged owners and native scheduler zone");
++            Require(AIHelpers.HasLineOfSight(arena,33,12,37,12)&&brain.SightRadius>=4,"real visible faction-acquisition geometry");
++            var style=HaulVisual(load,null,"controlled-initial-current-beam");
++            Require(Presenter.TryGetApprovedStyle(pursuer,out var actorStyle)&&Presenter.IsRenderedEntity(pursuer),"actual visible approved ordinary pursuer");
++            _observations.Add(new{phase="controlled-pursuer-style",pursuer=pursuer.ID,actorStyle.ModelId,actorStyle.PieceCount,actorStyle.Batched});
++            EntityVisualHooks.MovedCallback+=PhysicalPursuerMoved;_physicalObserving=true;
++            RecordPhysicalPursuit("controlled-initial",0);
++            yield return HaulCueCapture(load,HandlingPart.HaulCommand,"01-controlled-open-throat-before-grab");
++            yield return HaulMenu(load,false,"controlled-native-grab-beam");
++            int speed=Player.GetStatValue("Speed");Require(DragSystem.GetDragged(Player)==load,"exact actual grip");
++            yield return ExchangePaid(Tap(Key.D),"local","controlled-native-east-pull");
++            Check("actual_pull_plugs_same_throat",At==arena.GetCell(38,12)&&arena.GetEntityCell(load)==arena.GetCell(37,12)
++                &&DragSystem.GetDragged(Player)==load&&Player.GetStatValue("Speed")==speed&&HaulFacts(load)==loadFacts);
++            RecordPhysicalPursuit("controlled-after-pull",0);
++            HaulVisual(load,style,"controlled-held-current-beam");yield return HaulCueCapture(load,HandlingPart.ReleaseCommand,"02-native-held-plug");
++            yield return HaulMenu(load,true,"controlled-native-release-plug");
++            Check("released_plug_remains_physical_not_sight_cover",Player.GetPart<DragPart>()==null&&load.GetPart<DraggedPart>()==null
++                &&arena.GetCell(37,12).BlocksMovement(Player)&&!arena.GetCell(37,12).IsSolid()&&Player.GetStatValue("Speed")==ordinarySpeed
++                &&AIHelpers.HasLineOfSight(arena,33,12,38,12));
++            int bypass=PhysicalBypassLength(arena,pursuer,Player);
++            Require(bypass>SpatialQuery.Distance(arena,pursuer,Player)&&bypass<=30,"actual open physical eight-direction detour");
++            _observations.Add(new{phase="controlled-plugged-bypass",steps=bypass,boundary="Read-only physical BFS, never supplied to the NPC. Real NPC movement owns acceptance."});
++            HaulVisual(load,style,"controlled-released-current-beam");yield return HaulCueCapture(load,HandlingPart.HaulCommand,"03-native-released-obstruction");
++            int waits=0;bool capturedEnd=false;
++            while(waits<30&&SpatialQuery.Distance(arena,pursuer,Player)>1)
++            {
++                if(!HuntGround(arena,pursuer)||pursuer.GetStatValue("Hitpoints")<=0){Unverified("physical-pursuit","Current ordinary pursuer died/left during controlled attempt.");yield break;}
++                yield return ExchangePaid(Tap(Key.Space),"local","controlled-native-wait-"+(++waits));
++                RecordPhysicalPursuit("controlled-after-wait",waits);
++                if(_physicalAcquired&&!_physicalCurrentPursuit){Unverified("physical-pursuit","Ordinary current target/goal changed after acquisition; do not attribute intervening behavior to pathfinding.");yield break;}
++                Require(_physicalMoveError==null,_physicalMoveError??"current movement trace");
++                Require(HaulFacts(load)==loadFacts&&arena.GetEntityPosition(load)==(37,12)
++                    &&hedges.All(e=>HuntGround(arena,e)&&arena.GetEntityPosition(e)==hedgePositions[e]&&HaulFacts(e)==hedgeFacts[e]),"same unchanged physical obstacle owners");
++                if(_physicalCrossedEnd&&!capturedEnd){capturedEnd=true;yield return Capture("04-actual-scheduled-open-end-bypass");}
++            }
++            if(!_physicalAcquired){Unverified("physical-pursuit","Ordinary Brain never acquired the original player through a KillGoal; no goal was pushed.");yield break;}
++            Check("ordinary_pursuer_fairly_uses_bypass",_physicalCrossedEnd&&_physicalMoves>0&&_physicalCurrentPursuit&&SpatialQuery.Distance(arena,pursuer,Player)==1&&_physicalMoveError==null);
++            Check("original_player_and_obstacles_remain",ReferenceEquals(Player,originalPlayer)&&CookingGear(Player)==gear&&TradeSystem.GetDrams(Player)==originalDrams
++                &&Player.GetStatValue("Hitpoints")>10&&!DragSystem.IsDragging(Player)&&HaulFacts(load)==loadFacts);
++            HaulVisual(load,style,"controlled-final-current-beam");yield return Capture("05-actual-pursuer-contact-after-detour");
++            _observations.Add(new{phase="controlled-pursuit-coverage",waits,paidInputs=_paidInputs,npcMoves=_physicalMoves,usedOpenEnd=_physicalCrossedEnd,
++                actualContact=SpatialQuery.Distance(arena,pursuer,Player),playerHp=Player.GetStatValue("Hitpoints"),npcHp=pursuer.GetStatValue("Hitpoints"),
++                boundary="Real ordinary pursuit through the bypass, not a forced path, save test, natural site, LOS cover or measured net defensive advantage."});
++        }
++        Entity PhysicalPlace(Zone zone,string blueprint,int x,int y)
++        {var e=_context.Factory.CreateEntity(blueprint);Require(e!=null&&zone.AddEntity(e,x,y),"factory controlled placement "+blueprint);return e;}
++        void PhysicalPursuerMoved(Entity entity,Zone zone,int ox,int oy,int nx,int ny,bool forced)
++        {
++            if(entity!=_physicalPursuer||zone!=_physicalArena)return;
++            _physicalMoves++;bool legal=!forced&&Math.Max(Math.Abs(nx-ox),Math.Abs(ny-oy))==1&&zone.GetEntityPosition(entity)==(nx,ny)
++                &&zone.GetCell(nx,ny)!=null&&!zone.GetCell(nx,ny).BlocksMovement(entity);
++            if(!legal)_physicalMoveError="Pursuer movement was forced, nonadjacent or entered a physical obstacle.";
++            if(nx==37&&(ny<8||ny>16))_physicalCrossedEnd=true;
++            _observations.Add(new{phase="actual-controlled-pursuer-move",owner=entity.ID,oldCell=new[]{ox,oy},newCell=new[]{nx,ny},forced,legal,tick=Tick});
++        }
++        void RecordPhysicalPursuit(string label,int waits)
++        {
++            var brain=_physicalPursuer.GetPart<BrainPart>();var goals=brain.GetGoalsSnapshot().ToArray();
++            _physicalCurrentPursuit=ReferenceEquals(brain.Target,Player)&&goals.OfType<KillGoal>().Any(g=>ReferenceEquals(g.Target,Player));
++            _physicalAcquired|=_physicalCurrentPursuit;
++            _observations.Add(new{phase=label,waits,tick=Tick,player=new{Player.ID,position=Zone.GetEntityPosition(Player),energy=Energy,hp=Player.GetStatValue("Hitpoints"),speed=Player.GetStatValue("Speed")},
++                pursuer=new{_physicalPursuer.ID,position=Zone.GetEntityPosition(_physicalPursuer),energy=_input.TurnManager.GetEnergy(_physicalPursuer),hp=_physicalPursuer.GetStatValue("Hitpoints"),target=brain.Target?.ID,
++                    goals=goals.Select(g=>new{type=g.GetType().Name,g.Age}).ToArray()},acquired=_physicalAcquired,currentPursuit=_physicalCurrentPursuit,usedOpenEnd=_physicalCrossedEnd});WriteReport();
++        }
++        static int PhysicalBypassLength(Zone zone,Entity actor,Entity target)
++        {
++            var start=zone.GetEntityCell(actor);var finish=zone.GetEntityCell(target);if(start==null||finish==null)return -1;
++            var pending=new Queue<(Cell cell,int steps)>();var seen=new HashSet<Cell>{start};pending.Enqueue((start,0));
++            while(pending.Count>0){var row=pending.Dequeue();if(row.cell==finish)return row.steps;
++                foreach(var d in HaulDirections){var c=zone.GetCell(row.cell.X+d.x,row.cell.Y+d.y);if(c==null||!seen.Add(c))continue;
++                    if(c.Occupants.Any(e=>e!=actor&&e!=target&&(e.HasTag("Solid")||e.GetPart<PhysicsPart>()?.Solid==true||e.GetPart<DoorPart>()?.IsClosed==true)))continue;
++                    pending.Enqueue((c,row.steps+1));}}
++            return -1;
++        }
++        void StopPhysicalPursuitObservation()
++        {
++            if(!_physicalObserving)return;_physicalObserving=false;EntityVisualHooks.MovedCallback-=PhysicalPursuerMoved;
++            if(_input!=null&&_physicalLoad!=null&&ReferenceEquals(DragSystem.GetDragged(Player),_physicalLoad))DragSystem.Release(Player);
++            // The arena belongs to this disposable isolated Play world. Teardown
++            // discards it; do not rewind live tick/energy or rebuild the old world.
++        }
++    }
++}
+--- a/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.cs
++++ b/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.cs
+@@ -27,8 +27,8 @@
+         System.Diagnostics.Stopwatch _clock;
+         string _mode="states";
+         int ExpectedSeed=>_mode=="exchange"?3:64;
+-        int PaidLimit=>_mode=="hunting"?43:_mode=="hauling"?30:(_mode=="finite-cooking"||ControlledFinite)?80:_mode=="cooking"?6:_mode=="passage"?10:_mode=="exchange"?31:_mode=="collector"?64:_mode=="affordances"?1:6;
+-        string DirectoryPath=>Path.GetFullPath(Path.Combine(Application.dataPath,_mode=="hunting"?"../Docs/Verification/QuestFreeExploration/F11/Native":_mode=="hauling"?"../Docs/Verification/QuestFreeExploration/E4/HeavySalvage/Native":ControlledFinite?"../Docs/Verification/QuestFreeExploration/E4/Cooking/FiniteControlledNative":_mode=="finite-cooking"?"../Docs/Verification/QuestFreeExploration/E4/Cooking/FiniteNative":_mode=="cooking"?"../Docs/Verification/QuestFreeExploration/E4/Cooking/Native":_mode=="passage"?"../Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native":_mode=="exchange"?"../Docs/Verification/QuestFreeExploration/E3/Exchange/Native":_mode=="collector"?"../Docs/Verification/QuestFreeExploration/E3/Collector/NativeStates":_mode=="affordances"?"../Docs/Verification/QuestFreeExploration/E3/Affordances/Native":"../Docs/Verification/QuestFreeExploration/E2/NativeStates",RunId));
++        int PaidLimit=>_mode=="physical-pursuit"?31:_mode=="hunting"?43:_mode=="hauling"?30:(_mode=="finite-cooking"||ControlledFinite)?80:_mode=="cooking"?6:_mode=="passage"?10:_mode=="exchange"?31:_mode=="collector"?64:_mode=="affordances"?1:6;
++        string DirectoryPath=>Path.GetFullPath(Path.Combine(Application.dataPath,_mode=="physical-pursuit"?"../Docs/Verification/PhysicalObstaclePursuit/Native":_mode=="hunting"?"../Docs/Verification/QuestFreeExploration/F11/Native":_mode=="hauling"?"../Docs/Verification/QuestFreeExploration/E4/HeavySalvage/Native":ControlledFinite?"../Docs/Verification/QuestFreeExploration/E4/Cooking/FiniteControlledNative":_mode=="finite-cooking"?"../Docs/Verification/QuestFreeExploration/E4/Cooking/FiniteNative":_mode=="cooking"?"../Docs/Verification/QuestFreeExploration/E4/Cooking/Native":_mode=="passage"?"../Docs/Verification/QuestFreeExploration/E4/FieldPassage/Native":_mode=="exchange"?"../Docs/Verification/QuestFreeExploration/E3/Exchange/Native":_mode=="collector"?"../Docs/Verification/QuestFreeExploration/E3/Collector/NativeStates":_mode=="affordances"?"../Docs/Verification/QuestFreeExploration/E3/Affordances/Native":"../Docs/Verification/QuestFreeExploration/E2/NativeStates",RunId));
+         Entity Player=>_input.PlayerEntity;Zone Zone=>_input.CurrentZone;OverworldZoneManager Manager=>_input.ZoneManager as OverworldZoneManager;
+         Cell At=>Zone.GetEntityCell(Player);string State=>Field(_input,"_inputState").ToString();int Tick=>_input.TurnManager.TickCount;int Energy=>_input.TurnManager.GetEnergy(Player);
+         SpawnRing3DPresenter Presenter=>_input.ZoneRenderer.SpawnRing3D;
+@@ -44,7 +44,7 @@
+         void InitializeMode(ScenarioContext context,string mode)
+         {
+             if(string.IsNullOrWhiteSpace(SaveGameService.SaveRootOverride))throw new InvalidOperationException("Isolated launcher required before bootstrap.");
+-            _mode=mode;if(_mode=="hunting"||_mode=="hauling"||_mode=="exchange"||_mode=="passage"||_mode=="cooking"||_mode=="finite-cooking"||ControlledFinite)BeginExchangeDiagnostics();if(_mode=="hunting")BeginHuntingDiagnostics();if(_mode=="hauling")BeginHaulingDiagnostics();if(_mode=="cooking"||_mode=="finite-cooking"||ControlledFinite)BeginCookingDiagnostics();if(ControlledFinite)BeginControlledDiagnostics();_context=context;_clock=System.Diagnostics.Stopwatch.StartNew();_oldSettings=InputSystem.settings;_background=Application.runInBackground;_ownsSettings=true;
++            _mode=mode;if(_mode=="physical-pursuit"||_mode=="hunting"||_mode=="hauling"||_mode=="exchange"||_mode=="passage"||_mode=="cooking"||_mode=="finite-cooking"||ControlledFinite)BeginExchangeDiagnostics();if(_mode=="hunting")BeginHuntingDiagnostics();if(_mode=="hauling"||_mode=="physical-pursuit")BeginHaulingDiagnostics();if(_mode=="physical-pursuit")BeginPhysicalPursuitDiagnostics();if(_mode=="cooking"||_mode=="finite-cooking"||ControlledFinite)BeginCookingDiagnostics();if(ControlledFinite)BeginControlledDiagnostics();_context=context;_clock=System.Diagnostics.Stopwatch.StartNew();_oldSettings=InputSystem.settings;_background=Application.runInBackground;_ownsSettings=true;
+             _settings=Instantiate(_oldSettings);_settings.backgroundBehavior=InputSettings.BackgroundBehavior.IgnoreFocus;
+ #if UNITY_EDITOR
+             _settings.editorInputBehaviorInPlayMode=InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+@@ -57,6 +57,7 @@
+             Require(((BootMenuController)Field(_input,"_bootMenuController"))?.IsActive==true,"ordinary N menu");yield return Tap(Key.N);yield return Settled();
+             Check("ordinary_fresh_opted_in_world",Manager?.WorldSeed==ExpectedSeed&&Manager.Exploration.Enabled&&!DevMode.Enabled&&Player.GetStatValue("Hitpoints")==40&&TradeSystem.GetDrams(Player)==50);
+             yield return Capture("00-ordinary-start");
++            if(_mode=="physical-pursuit"){yield return PhysicalPursuit();Check("bounded_controlled_pursuit_finish",State=="Normal"&&Player.GetStatValue("Hitpoints")>10&&!DevMode.Enabled&&!DebugInvincibility.IsEnabled(Player)&&_paidInputs<=PaidLimit);_complete=_unverifiedFamilies.Count==0;yield break;}
+             if(_mode=="hunting"){yield return Hunting();Check("bounded_hunting_finish",State=="Normal"&&Player.GetStatValue("Hitpoints")>10&&!DevMode.Enabled&&!DebugInvincibility.IsEnabled(Player)&&_paidInputs<=PaidLimit);_complete=_unverifiedFamilies.Count==0;yield break;}
+             if(ControlledFinite){yield return ControlledFiniteCooking();Check("bounded_controlled_finite_cooking_finish",State=="Normal"&&Player.GetStatValue("Hitpoints")>10&&!DevMode.Enabled&&!DebugInvincibility.IsEnabled(Player)&&_paidInputs<=PaidLimit);_complete=_unverifiedFamilies.Count==0;yield break;}
+             if(_mode=="finite-cooking"){yield return FiniteCooking();Check("bounded_finite_cooking_finish",State=="Normal"&&Player.GetStatValue("Hitpoints")>10&&!DevMode.Enabled&&!DebugInvincibility.IsEnabled(Player)&&_paidInputs<=PaidLimit);_complete=_unverifiedFamilies.Count==0;yield break;}
+@@ -275,8 +276,8 @@
+         public void Abort(string reason){if(Finished)return;_fatal=reason;StopAllCoroutines();Finish();}
+         public void SetUnexpectedErrors(int errors){_errors=errors;_errorsFinalized=true;WriteReport();}
+         void Finish(){Cleanup();Finished=true;WriteReport();}
+-        void Cleanup(){if(_cleaned)return;_cleaned=true;StopHuntingObservation();CleanupControlledSuspension();RestoreExchangeDiagnostics();StopCollectorObservation();StopObserving();if(_keyboard!=null){InputSystem.QueueStateEvent(_keyboard,new KeyboardState());InputSystem.RemoveDevice(_keyboard);}if(_oldKeyboard!=null&&_oldKeyboard.added)_oldKeyboard.MakeCurrent();if(_oldSettings!=null)InputSystem.settings=_oldSettings;if(_settings!=null)Destroy(_settings);if(_ownsSettings)Application.runInBackground=_background;}
+-        void WriteReport(){Directory.CreateDirectory(DirectoryPath);ReportPath=Path.Combine(DirectoryPath,"report.json");File.WriteAllText(ReportPath,JsonConvert.SerializeObject(new{runId=RunId,seed=(_input?.ZoneManager as OverworldZoneManager)?.WorldSeed,requestedSeed=ExpectedSeed,mode=_mode,finished=Finished,complete=Finished&&_errorsFinalized&&_complete&&Failures==0,failures=Failures,fatal=_fatal,seconds=_clock?.Elapsed.TotalSeconds??0,paidInputs=_paidInputs,checks=_checks,observations=_observations,screenshots=_images,unverifiedFamilies=_unverifiedFamilies,humanAwarenessMeasured=false,boundary=_mode=="hunting"?HuntingBoundary:_mode=="hauling"?HaulingBoundary:ControlledFinite?ControlledFiniteBoundary:_mode=="finite-cooking"?FiniteCookingBoundary:_mode=="cooking"?CookingBoundary:_mode=="passage"?PassageBoundary:_mode=="exchange"?ExchangeBoundary:ModeBoundary,settings=new{screenWidth=Screen.width,screenHeight=Screen.height,vSync=QualitySettings.vSyncCount,targetFrameRate=Application.targetFrameRate,lowDetail=Village3DSettings.LowDetail}},Formatting.Indented));}
++        void Cleanup(){if(_cleaned)return;_cleaned=true;StopPhysicalPursuitObservation();StopHuntingObservation();CleanupControlledSuspension();RestoreExchangeDiagnostics();StopCollectorObservation();StopObserving();if(_keyboard!=null){InputSystem.QueueStateEvent(_keyboard,new KeyboardState());InputSystem.RemoveDevice(_keyboard);}if(_oldKeyboard!=null&&_oldKeyboard.added)_oldKeyboard.MakeCurrent();if(_oldSettings!=null)InputSystem.settings=_oldSettings;if(_settings!=null)Destroy(_settings);if(_ownsSettings)Application.runInBackground=_background;}
++        void WriteReport(){Directory.CreateDirectory(DirectoryPath);ReportPath=Path.Combine(DirectoryPath,"report.json");File.WriteAllText(ReportPath,JsonConvert.SerializeObject(new{runId=RunId,seed=(_input?.ZoneManager as OverworldZoneManager)?.WorldSeed,requestedSeed=ExpectedSeed,mode=_mode,finished=Finished,complete=Finished&&_errorsFinalized&&_complete&&Failures==0,failures=Failures,fatal=_fatal,seconds=_clock?.Elapsed.TotalSeconds??0,paidInputs=_paidInputs,checks=_checks,observations=_observations,screenshots=_images,unverifiedFamilies=_unverifiedFamilies,humanAwarenessMeasured=false,boundary=_mode=="physical-pursuit"?PhysicalPursuitBoundary:_mode=="hunting"?HuntingBoundary:_mode=="hauling"?HaulingBoundary:ControlledFinite?ControlledFiniteBoundary:_mode=="finite-cooking"?FiniteCookingBoundary:_mode=="cooking"?CookingBoundary:_mode=="passage"?PassageBoundary:_mode=="exchange"?ExchangeBoundary:ModeBoundary,settings=new{screenWidth=Screen.width,screenHeight=Screen.height,vSync=QualitySettings.vSyncCount,targetFrameRate=Application.targetFrameRate,lowDetail=Village3DSettings.LowDetail}},Formatting.Indented));}
+         void OnDestroy(){if(!Finished&&_clock!=null){_fatal="Play interrupted";Finish();}Cleanup();}
+     }
+ }

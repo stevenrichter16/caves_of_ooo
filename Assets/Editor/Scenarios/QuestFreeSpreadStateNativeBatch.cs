@@ -26,6 +26,7 @@ namespace CavesOfOoo.Editor
         public static void LaunchCollector()=>LaunchMode("collector");
         public static void LaunchAffordances()=>LaunchMode("affordances");
         public static void LaunchPassage()=>LaunchMode("passage");
+        public static void LaunchPhysicalPursuit()=>LaunchMode("physical-pursuit");
         public static void LaunchHauling()=>LaunchMode("hauling");
         public static void LaunchHunting()=>LaunchHuntingCandidate(0);
         public static void LaunchHuntingCandidate(int canonicalIndex)
@@ -87,7 +88,7 @@ namespace CavesOfOoo.Editor
             var driver=new GameObject("Quest Free Spread State Native Audit").AddComponent<QuestFreeSpreadStateNativePlayer>();
             var context=new ScenarioContext(zone,factory,player,turns);
             string mode=SessionState.GetString(Prefix+"mode","states");
-            if(mode=="hunting")driver.InitializeHunting(context,SessionState.GetInt(Prefix+"huntingIndex",0));else if(mode=="hauling")driver.InitializeHauling(context);else if(mode=="finite-cooking-controlled")driver.InitializeControlledFiniteCooking(context);else if(mode=="finite-cooking")driver.InitializeFiniteCooking(context);else if(mode=="cooking")driver.InitializeCooking(context);else if(mode=="passage")driver.InitializePassage(context);else if(mode=="exchange")driver.InitializeExchange(context);else if(mode=="collector")driver.InitializeCollector(context);else if(mode=="affordances")driver.InitializeAffordances(context);else driver.Initialize(context);
+            if(mode=="physical-pursuit")driver.InitializePhysicalPursuit(context);else if(mode=="hunting")driver.InitializeHunting(context,SessionState.GetInt(Prefix+"huntingIndex",0));else if(mode=="hauling")driver.InitializeHauling(context);else if(mode=="finite-cooking-controlled")driver.InitializeControlledFiniteCooking(context);else if(mode=="finite-cooking")driver.InitializeFiniteCooking(context);else if(mode=="cooking")driver.InitializeCooking(context);else if(mode=="passage")driver.InitializePassage(context);else if(mode=="exchange")driver.InitializeExchange(context);else if(mode=="collector")driver.InitializeCollector(context);else if(mode=="affordances")driver.InitializeAffordances(context);else driver.Initialize(context);
         }
         private static void Poll()
         {

@@ -1,0 +1,418 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 45,
+    "passed": 31,
+    "failed": 14,
+    "skipped": 0,
+    "durationSeconds": 2.7974468,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(\"FallenBeam\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(\"FallenBeam\")",
+      "state": "Passed",
+      "durationSeconds": 0.0431216,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(\"HaulBarrel\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(\"HaulBarrel\")",
+      "state": "Passed",
+      "durationSeconds": 0.0162594,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(\"Hedge\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ActualBlueprintBlocksMovementWithoutBeingAVisibleWall(\"Hedge\")",
+      "state": "Passed",
+      "durationSeconds": 0.0156661,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ClosedDoorKeepsItsExplicitOperationContract(\"capable\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract(\"capable\")",
+      "state": "Passed",
+      "durationSeconds": 0.022936,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ClosedDoorKeepsItsExplicitOperationContract(\"incapable\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract(\"incapable\")",
+      "state": "Passed",
+      "durationSeconds": 0.0176276,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ClosedDoorKeepsItsExplicitOperationContract(\"locked\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ClosedDoorKeepsItsExplicitOperationContract(\"locked\")",
+      "state": "Passed",
+      "durationSeconds": 0.0181191,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0163069,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.IgnoreCreaturesChangesOnlyTheOccupyingActorRoute(True)",
+      "state": "Passed",
+      "durationSeconds": 0.0152283,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0169712,
+      "message": null,
+      "stackTrace": null,
+      "output": "physical bypass steps=6\n0:(7, 10):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True\n"
+    },
+    {
+      "name": "LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(True)",
+      "state": "Failed",
+      "durationSeconds": 0.0194855,
+      "message": "  load should alter route cost, not disable pursuit: 0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity (System.Boolean load) [0x0003a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:42\n",
+      "output": "physical bypass steps=10\n0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n"
+    },
+    {
+      "name": "OneCellExplicitFootprintPreservesPhysicalRoute(False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0273301,
+      "message": "  first planned step must execute; explicit footprint=False\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute (System.Boolean footprint) [0x00046] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:34\n",
+      "output": ""
+    },
+    {
+      "name": "OneCellExplicitFootprintPreservesPhysicalRoute(True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute(True)",
+      "state": "Passed",
+      "durationSeconds": 0.0186666,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"FallenBeam\",False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"FallenBeam\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.017709,
+      "message": "  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary (System.String bp, System.Boolean tag) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:29\n",
+      "output": "physical bypass steps=10\n0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n"
+    },
+    {
+      "name": "OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"FallenBeam\",True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"FallenBeam\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.0160684,
+      "message": null,
+      "stackTrace": null,
+      "output": "physical bypass steps=10\n0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True\n"
+    },
+    {
+      "name": "OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"HaulBarrel\",False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"HaulBarrel\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0175901,
+      "message": "  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary (System.String bp, System.Boolean tag) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:29\n",
+      "output": "physical bypass steps=10\n0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n"
+    },
+    {
+      "name": "OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"HaulBarrel\",True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"HaulBarrel\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.0154703,
+      "message": null,
+      "stackTrace": null,
+      "output": "physical bypass steps=10\n0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True\n"
+    },
+    {
+      "name": "OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"Hedge\",False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"Hedge\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0173597,
+      "message": "  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary (System.String bp, System.Boolean tag) [0x0000f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:29\n",
+      "output": "physical bypass steps=10\n0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n"
+    },
+    {
+      "name": "OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"Hedge\",True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"Hedge\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.0156319,
+      "message": null,
+      "stackTrace": null,
+      "output": "physical bypass steps=10\n0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True\n"
+    },
+    {
+      "name": "OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"Wall\",False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"Wall\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.0154874,
+      "message": null,
+      "stackTrace": null,
+      "output": "physical bypass steps=10\n0:(6, 9):True 1:(6, 8):True 2:(6, 7):True 3:(6, 6):True 4:(7, 5):True 5:(8, 6):True 6:(9, 7):True 7:(10, 8):True 8:(11, 9):True\n"
+    },
+    {
+      "name": "RespectingPhysicalOwnersProducesAnEntireExecutableBypass(\"FallenBeam\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass(\"FallenBeam\")",
+      "state": "Passed",
+      "durationSeconds": 0.016355,
+      "message": null,
+      "stackTrace": null,
+      "output": "executed bypass=10\n"
+    },
+    {
+      "name": "RespectingPhysicalOwnersProducesAnEntireExecutableBypass(\"HaulBarrel\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass(\"HaulBarrel\")",
+      "state": "Passed",
+      "durationSeconds": 0.0152705,
+      "message": null,
+      "stackTrace": null,
+      "output": "executed bypass=10\n"
+    },
+    {
+      "name": "RespectingPhysicalOwnersProducesAnEntireExecutableBypass(\"Hedge\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.RespectingPhysicalOwnersProducesAnEntireExecutableBypass(\"Hedge\")",
+      "state": "Passed",
+      "durationSeconds": 0.0153771,
+      "message": null,
+      "stackTrace": null,
+      "output": "executed bypass=10\n"
+    },
+    {
+      "name": "ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"FallenBeam\",False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"FallenBeam\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0220316,
+      "message": "  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n  Expected: 1\n  But was:  6\n",
+      "stackTrace": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass (System.String bp, System.Boolean wide) [0x001e7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:32\n",
+      "output": "physical bypass steps=10\nwaits=30 ticks=310 energy=0 0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n"
+    },
+    {
+      "name": "ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"FallenBeam\",True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"FallenBeam\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.0182492,
+      "message": null,
+      "stackTrace": null,
+      "output": "physical bypass steps=9\nwaits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)\n"
+    },
+    {
+      "name": "ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"HaulBarrel\",False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"HaulBarrel\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0178869,
+      "message": "  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n  Expected: 1\n  But was:  6\n",
+      "stackTrace": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass (System.String bp, System.Boolean wide) [0x001e7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:32\n",
+      "output": "physical bypass steps=10\nwaits=30 ticks=310 energy=0 0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n"
+    },
+    {
+      "name": "ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"HaulBarrel\",True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"HaulBarrel\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.0179355,
+      "message": null,
+      "stackTrace": null,
+      "output": "physical bypass steps=9\nwaits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)\n"
+    },
+    {
+      "name": "ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Hedge\",False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Hedge\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0175222,
+      "message": "  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n  Expected: 1\n  But was:  6\n",
+      "stackTrace": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass (System.String bp, System.Boolean wide) [0x001e7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:32\n",
+      "output": "physical bypass steps=10\nwaits=30 ticks=310 energy=0 0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n"
+    },
+    {
+      "name": "ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Hedge\",True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Hedge\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.017276,
+      "message": null,
+      "stackTrace": null,
+      "output": "physical bypass steps=9\nwaits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)\n"
+    },
+    {
+      "name": "ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Wall\",False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Wall\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.0154438,
+      "message": null,
+      "stackTrace": null,
+      "output": "physical bypass steps=10\nwaits=8 ticks=90 energy=0 0:(6, 9) 1:(6, 8) 2:(6, 7) 3:(6, 6) 4:(7, 5) 5:(8, 6) 6:(9, 7) 7:(10, 8) 8:(11, 9)\n"
+    },
+    {
+      "name": "ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Wall\",True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Wall\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.0177441,
+      "message": null,
+      "stackTrace": null,
+      "output": "physical bypass steps=9\nwaits=8 ticks=90 energy=0 0:(6, 11) 1:(6, 12) 2:(6, 13) 3:(6, 14) 4:(7, 15) 5:(8, 14) 6:(9, 13) 7:(10, 12) 8:(11, 11)\n"
+    },
+    {
+      "name": "SealedPhysicalBoundaryMustNotReturnAUsableRoute(\"FallenBeam\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute(\"FallenBeam\")",
+      "state": "Failed",
+      "durationSeconds": 0.015571,
+      "message": "  Expected: False\n  But was:  True\n",
+      "stackTrace": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute (System.String bp) [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:40\n",
+      "output": "0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False\n"
+    },
+    {
+      "name": "SealedPhysicalBoundaryMustNotReturnAUsableRoute(\"Wall\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute(\"Wall\")",
+      "state": "Passed",
+      "durationSeconds": 0.0182272,
+      "message": null,
+      "stackTrace": null,
+      "output": "0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False\n"
+    },
+    {
+      "name": "SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"FallenBeam\",False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"FallenBeam\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.0197578,
+      "message": null,
+      "stackTrace": null,
+      "output": "6,9\n6,8\n6,7\n6,6\n7,5\n8,6\n9,7\n10,8\n11,9\n12,10\n"
+    },
+    {
+      "name": "SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"FallenBeam\",True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"FallenBeam\",True)",
+      "state": "Failed",
+      "durationSeconds": 0.0156151,
+      "message": "  planned stationary FallenBeam at 7,10\n  Expected: False\n  But was:  True\n",
+      "stackTrace": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy (System.String bp, System.Boolean ignore) [0x00089] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:21\n",
+      "output": "7,10\n"
+    },
+    {
+      "name": "SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"HaulBarrel\",False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"HaulBarrel\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.0155676,
+      "message": null,
+      "stackTrace": null,
+      "output": "6,9\n6,8\n6,7\n6,6\n7,5\n8,6\n9,7\n10,8\n11,9\n12,10\n"
+    },
+    {
+      "name": "SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"HaulBarrel\",True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"HaulBarrel\",True)",
+      "state": "Failed",
+      "durationSeconds": 0.0262317,
+      "message": "  planned stationary HaulBarrel at 7,10\n  Expected: False\n  But was:  True\n",
+      "stackTrace": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy (System.String bp, System.Boolean ignore) [0x00089] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:21\n",
+      "output": "7,10\n"
+    },
+    {
+      "name": "SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Hedge\",False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Hedge\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.0280239,
+      "message": null,
+      "stackTrace": null,
+      "output": "6,9\n6,8\n6,7\n6,6\n7,5\n8,6\n9,7\n10,8\n11,9\n12,10\n"
+    },
+    {
+      "name": "SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Hedge\",True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Hedge\",True)",
+      "state": "Failed",
+      "durationSeconds": 0.0471659,
+      "message": "  planned stationary Hedge at 7,10\n  Expected: False\n  But was:  True\n",
+      "stackTrace": "at CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy (System.String bp, System.Boolean ignore) [0x00089] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs:21\n",
+      "output": "7,10\n"
+    },
+    {
+      "name": "SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Wall\",False)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Wall\",False)",
+      "state": "Passed",
+      "durationSeconds": 0.0980293,
+      "message": null,
+      "stackTrace": null,
+      "output": "6,9\n6,8\n6,7\n6,6\n7,5\n8,6\n9,7\n10,8\n11,9\n12,10\n"
+    },
+    {
+      "name": "SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Wall\",True)",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Wall\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.0160689,
+      "message": null,
+      "stackTrace": null,
+      "output": "6,9\n6,8\n6,7\n6,6\n7,5\n8,6\n9,7\n10,8\n11,9\n12,10\n"
+    },
+    {
+      "name": "SingleOwnerStillHasAnExecutableFallbackAroundIt(\"FallenBeam\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt(\"FallenBeam\")",
+      "state": "Passed",
+      "durationSeconds": 0.0159884,
+      "message": null,
+      "stackTrace": null,
+      "output": "0:(7, 11):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True\n"
+    },
+    {
+      "name": "SingleOwnerStillHasAnExecutableFallbackAroundIt(\"HaulBarrel\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt(\"HaulBarrel\")",
+      "state": "Passed",
+      "durationSeconds": 0.0154595,
+      "message": null,
+      "stackTrace": null,
+      "output": "0:(7, 11):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True\n"
+    },
+    {
+      "name": "SingleOwnerStillHasAnExecutableFallbackAroundIt(\"Hedge\")",
+      "fullName": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SingleOwnerStillHasAnExecutableFallbackAroundIt(\"Hedge\")",
+      "state": "Passed",
+      "durationSeconds": 0.0159637,
+      "message": null,
+      "stackTrace": null,
+      "output": "0:(7, 11):True 1:(8, 10):True 2:(9, 10):True 3:(10, 10):True 4:(11, 10):True\n"
+    },
+    {
+      "name": "ControlledPhysicalPursuitHasItsOwnNoArgumentLauncher",
+      "fullName": "CavesOfOoo.Tests.QuestFreePhysicalPursuitNativeModeTests.ControlledPhysicalPursuitHasItsOwnNoArgumentLauncher",
+      "state": "Failed",
+      "durationSeconds": 0.0010915,
+      "message": "  Missing controlled real-input pursuit mode\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreePhysicalPursuitNativeModeTests.ControlledPhysicalPursuitHasItsOwnNoArgumentLauncher () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreePhysicalPursuitNativeModeTests.cs:21\n",
+      "output": ""
+    },
+    {
+      "name": "ControlledPhysicalPursuitRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+      "fullName": "CavesOfOoo.Tests.QuestFreePhysicalPursuitNativeModeTests.ControlledPhysicalPursuitRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+      "state": "Failed",
+      "durationSeconds": 0.0008406,
+      "message": "  Missing explicit isolated physical-pursuit initializer\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreePhysicalPursuitNativeModeTests.ControlledPhysicalPursuitRefusesWithoutSaveIsolationBeforeChangingInputOrWorld () [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreePhysicalPursuitNativeModeTests.cs:32\n",
+      "output": ""
+    }
+  ]
+}

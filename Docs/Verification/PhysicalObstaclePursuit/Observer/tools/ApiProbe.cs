@@ -1,0 +1,5 @@
+using System;using System.IO;using System.Reflection.Metadata;using System.Reflection.PortableExecutable;
+class Probe {
+ static bool Has(string file,string type,string method){using var f=File.OpenRead(file);using var pe=new PEReader(f);var md=pe.GetMetadataReader();foreach(var h in md.TypeDefinitions){var t=md.GetTypeDefinition(h);if(md.GetString(t.Name)!=type)continue;foreach(var m in t.GetMethods())if(md.GetString(md.GetMethodDefinition(m).Name)==method)return true;}return false;}
+ static int Main(string[] a){int fails=0;foreach(var row in new[]{new[]{a[0],"QuestFreeSpreadStateNativeBatch","LaunchPhysicalPursuit","feature"},new[]{a[1],"QuestFreeSpreadStateNativePlayer","InitializePhysicalPursuit","feature"},new[]{a[0],"QuestFreeSpreadStateNativeBatch","LaunchHauling","control"},new[]{a[1],"QuestFreeSpreadStateNativePlayer","InitializeHauling","control"}}){bool ok=Has(row[0],row[1],row[2]);Console.WriteLine(row[3]+" "+row[2]+" "+(ok?"PASS":"FAIL missing API"));if(!ok)fails++;}Console.WriteLine("metadata API presence only; no Unity lifecycle execution");return fails;}
+}

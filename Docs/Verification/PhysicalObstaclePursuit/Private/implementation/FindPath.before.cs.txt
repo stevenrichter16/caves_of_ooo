@@ -49,10 +49,10 @@ namespace CavesOfOoo.Core
         /// <param name="goalX">Goal X coordinate.</param>
         /// <param name="goalY">Goal Y coordinate.</param>
         /// <param name="maxNodes">Maximum nodes to expand before giving up.</param>
-        /// <param name="ignoreCreatures">If true, the PhysicsPart.Solid check omits
-        /// Creature-tagged actors so combat approach can plan through temporary occupants.
-        /// Stationary physical props still block. If false (default), all physical owners
-        /// block. Solid-tag and door permission checks apply independently.</param>
+        /// <param name="ignoreCreatures">If true, cells with creatures (PhysicsPart.Solid)
+        /// are treated as passable. Use for combat approach (KillGoal) where the attacker
+        /// should path through allied creatures. If false (default), cells with
+        /// PhysicsPart.Solid entities are impassable (correct for furniture walks).</param>
         /// <param name="actor">When non-null, hazardous gas, liquid pools and
         /// slippery floors add a finite step cost across the prospective body
         /// (<see cref="TerrainNavigationWeight.ForStep"/>). The cost respects
@@ -151,9 +151,11 @@ namespace CavesOfOoo.Core
                         if (!neighborCell.IsPassable()
                             && !(doorCost > 0 && zone.CanPlaceFootprint(actor, nx, ny, ignoreCreatures, allowOperableDoors: true))) continue;
 
-                        // Physics-only props block even when temporary actors are
-                        // omitted. Cell.IsPassable() does not include those props.
-                        if (IsCellBlockedByPhysics(neighborCell, ignoreCreatures))
+                        // When not ignoring creatures, also check PhysicsPart.Solid.
+                        // Cell.IsPassable() only checks the "Solid" tag (walls), but
+                        // creatures have PhysicsPart.Solid=true without the tag.
+                        // This prevents furniture-walk A* from routing through NPCs.
+                        if (!ignoreCreatures && IsCellBlockedByCreature(neighborCell))
                             continue;
                     }
 
@@ -265,16 +267,15 @@ namespace CavesOfOoo.Core
         }
 
         /// <summary>
-        /// Check physical occupancy, optionally omitting actual creatures.
-        /// Noncreature props may be Physics.Solid without carrying a Solid tag.
+        /// Check if a cell has an entity with PhysicsPart.Solid = true.
+        /// This catches creatures (which have PhysicsPart.Solid but not the "Solid" tag)
+        /// that Cell.IsPassable() misses.
         /// </summary>
-        private static bool IsCellBlockedByPhysics(Cell cell, bool ignoreCreatures)
+        private static bool IsCellBlockedByCreature(Cell cell)
         {
             for (int i = 0; i < cell.Occupants.Count; i++)
             {
-                var owner = cell.Occupants[i];
-                if (ignoreCreatures && owner.HasTag("Creature")) continue;
-                var physics = owner.GetPart<PhysicsPart>();
+                var physics = cell.Occupants[i].GetPart<PhysicsPart>();
                 if (physics != null && physics.Solid)
                     return true;
             }

@@ -1,0 +1,87 @@
+{
+  "status": "success",
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "data": {
+      "job_id": "31ab043054de46d7968ad0697687c9ec",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1790670000296,
+      "finished_unix_ms": 1790670011159,
+      "last_update_unix_ms": 1790670011159,
+      "progress": {
+        "completed": 45,
+        "total": 45,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1790670010930,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.QuestFreePhysicalPursuitNativeModeTests.ControlledPhysicalPursuitRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+        "last_finished_unix_ms": 1790670010931,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.LoadInHedgeThroatRequiresRealDetourInsteadOfPermanentImmunity(True)",
+            "message": "  load should alter route cost, not disable pursuit: 0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OneCellExplicitFootprintPreservesPhysicalRoute(False)",
+            "message": "  first planned step must execute; explicit footprint=False\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"FallenBeam\",False)",
+            "message": "  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"HaulBarrel\",False)",
+            "message": "  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.OrdinaryApproachMustUseTheRealOpenEndOfABoundary(\"Hedge\",False)",
+            "message": "  0:(6, 10):False 1:(6, 10):False 2:(6, 10):False 3:(6, 10):False 4:(6, 10):False 5:(6, 10):False 6:(6, 10):False 7:(6, 10):False 8:(6, 10):False 9:(6, 10):False 10:(6, 10):False 11:(6, 10):False 12:(6, 10):False 13:(6, 10):False 14:(6, 10):False 15:(6, 10):False 16:(6, 10):False 17:(6, 10):False 18:(6, 10):False 19:(6, 10):False 20:(6, 10):False 21:(6, 10):False 22:(6, 10):False 23:(6, 10):False 24:(6, 10):False 25:(6, 10):False 26:(6, 10):False 27:(6, 10):False 28:(6, 10):False 29:(6, 10):False\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"FallenBeam\",False)",
+            "message": "  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n  Expected: 1\n  But was:  6\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"HaulBarrel\",False)",
+            "message": "  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n  Expected: 1\n  But was:  6\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.ScheduledKillGoalMustReachPlayerAcrossOpenBypass(\"Hedge\",False)",
+            "message": "  0:(6, 10) 1:(6, 10) 2:(6, 10) 3:(6, 10) 4:(6, 10) 5:(6, 10) 6:(6, 10) 7:(6, 10) 8:(6, 10) 9:(6, 10) 10:(6, 10) 11:(6, 10) 12:(6, 10) 13:(6, 10) 14:(6, 10) 15:(6, 10) 16:(6, 10) 17:(6, 10) 18:(6, 10) 19:(6, 10) 20:(6, 10) 21:(6, 10) 22:(6, 10) 23:(6, 10) 24:(6, 10) 25:(6, 10) 26:(6, 10) 27:(6, 10) 28:(6, 10) 29:(6, 10) 30:(6, 10)\n  Expected: 1\n  But was:  6\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SealedPhysicalBoundaryMustNotReturnAUsableRoute(\"FallenBeam\")",
+            "message": "  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"FallenBeam\",True)",
+            "message": "  planned stationary FallenBeam at 7,10\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"HaulBarrel\",True)",
+            "message": "  planned stationary HaulBarrel at 7,10\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MovableObstaclePursuitAuditTests.SearchAvoidsStationaryBlockersWithEitherCreaturePolicy(\"Hedge\",True)",
+            "message": "  planned stationary Hedge at 7,10\n  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.QuestFreePhysicalPursuitNativeModeTests.ControlledPhysicalPursuitHasItsOwnNoArgumentLauncher",
+            "message": "  Missing controlled real-input pursuit mode\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.QuestFreePhysicalPursuitNativeModeTests.ControlledPhysicalPursuitRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+            "message": "  Missing explicit isolated physical-pursuit initializer\n  Expected: not null\n  But was:  null\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    }
+  }
+}

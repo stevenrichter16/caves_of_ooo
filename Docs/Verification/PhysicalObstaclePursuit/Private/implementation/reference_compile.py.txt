@@ -1,0 +1,26 @@
+from pathlib import Path
+import subprocess,sys
+R=Path('/Users/steven/caves-of-ooo');D=Path(__file__).parent;variant=sys.argv[1]
+O=D/('reference-'+variant);O.mkdir(exist_ok=True)
+B=R/'Library/Bee/artifacts/200b0aE.dag';U=Path('/Applications/Unity/Hub/Editor/6000.3.4f1/Unity.app/Contents/Resources/Scripting')
+changes={'Assets/Tests/EditMode/Gameplay/AI/MovableObstaclePursuitAuditTests.cs':D/'MovableObstaclePursuitAuditTests.cs'}
+if variant=='candidate':changes['Assets/Scripts/Gameplay/AI/FindPath.cs']=D/'FindPath.cs'
+completed={}
+for a in ['CavesOfOoo','EditModeTests']:
+ lines=[];done=set()
+ for row in (B/(a+'.rsp')).read_text().splitlines():
+  if row.startswith('-out:'):row='-out:"'+str(O/(a+'.dll'))+'"'
+  elif row.startswith('-refout:'):continue
+  elif row.strip('"') in changes:
+   key=row.strip('"');row='"'+str(changes[key])+'"';done.add(key)
+  elif row.startswith('-r:'):
+   name=Path(row[3:].strip('"')).name.replace('.ref.dll','.dll')
+   if name in completed:row='-r:"'+str(completed[name])+'"'
+  lines.append(row)
+ for key,p in changes.items():
+  if ((a=='EditModeTests' and key.startswith('Assets/Tests')) or (a=='CavesOfOoo' and key.startswith('Assets/Scripts'))) and key not in done:lines.append('"'+str(p)+'"')
+ rsp=O/(a+'.rsp');rsp.write_text('\n'.join(lines)+'\n')
+ proc=subprocess.run([str(U/'NetCoreRuntime/dotnet'),str(U/'DotNetSdkRoslyn/csc.dll'),'@'+str(rsp)],cwd=R,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+ (O/(a+'-compile.log')).write_text(proc.stdout);print(a,variant,proc.returncode,flush=True)
+ if proc.returncode:print(proc.stdout);sys.exit(proc.returncode)
+ completed[a+'.dll']=O/(a+'.dll')

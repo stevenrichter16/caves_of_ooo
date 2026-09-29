@@ -1,0 +1,34 @@
+{
+  "source": "/Users/steven/.codex/scratch/caves-of-ooo/next-hauling-path-audit/integration/native-red-result.json",
+  "sourceSha256": "b7236a841032da1603042335eb2c84116487c3d14e90ca02b88f8166be8c8604",
+  "jobId": "31ab043054de46d7968ad0697687c9ec",
+  "combinedSummary": {
+    "total": 45,
+    "passed": 31,
+    "failed": 14,
+    "skipped": 0,
+    "durationSeconds": 2.7974468,
+    "resultState": "Failed(Child)"
+  },
+  "scope": "Actual Unity EditMode baseline: mechanics43 plus observer mode2. This subset proves missing APIs only; no native Play result implied.",
+  "observerResults": [
+    {
+      "name": "ControlledPhysicalPursuitHasItsOwnNoArgumentLauncher",
+      "fullName": "CavesOfOoo.Tests.QuestFreePhysicalPursuitNativeModeTests.ControlledPhysicalPursuitHasItsOwnNoArgumentLauncher",
+      "state": "Failed",
+      "durationSeconds": 0.0010915,
+      "message": "  Missing controlled real-input pursuit mode\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreePhysicalPursuitNativeModeTests.ControlledPhysicalPursuitHasItsOwnNoArgumentLauncher () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreePhysicalPursuitNativeModeTests.cs:21\n",
+      "output": ""
+    },
+    {
+      "name": "ControlledPhysicalPursuitRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+      "fullName": "CavesOfOoo.Tests.QuestFreePhysicalPursuitNativeModeTests.ControlledPhysicalPursuitRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+      "state": "Failed",
+      "durationSeconds": 0.0008406,
+      "message": "  Missing explicit isolated physical-pursuit initializer\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreePhysicalPursuitNativeModeTests.ControlledPhysicalPursuitRefusesWithoutSaveIsolationBeforeChangingInputOrWorld () [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreePhysicalPursuitNativeModeTests.cs:32\n",
+      "output": ""
+    }
+  ]
+}
