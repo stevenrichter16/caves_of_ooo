@@ -1,0 +1,13 @@
+# Finite workspot native observer handoff
+
+Private candidate is frozen and peer-reviewed. Root is sole publisher and native runner. New production4 manifest is production-manifest.json; existing tests2 were already published by root. Entry: `CavesOfOoo.Editor.QuestFreeSpreadStateNativeBatch.LaunchFiniteCooking`.
+
+Evidence order: compile-compatible mode2 fixture compiled against actual references; direct typed API probe produced exactly two missing-method compiler errors before candidate. Root subsequently executed actual native mode2 RED, with228 neighbors GREEN (job9243425550404f02a65d37af1a71b884). Candidate runtime, editor, full EditMode references all compile0; the same typed API probe is GREEN. Compiler results are not runtime/NUnit success. Root and combat independent source reads are clear; native journey remains pending.
+
+One new partial and two narrow existing mode branches preserve authored Cooking, Passage, Exchange, Collector and Affordances behavior. One new meta only; no runtime cooking, renderer, source/data, save system or generation changes in this observer package. Shared preimages were checked immediately before manifest creation.
+
+The fixed seed64 dynamic selection records actual generated refusal/commit, not private-address predictions. One disclosed player transfer targets the actual west border, then native cardinal walking, actual row Harvest/Cook, ordinary waits and inactive full-save/return. Cap80 paid inputs/150seconds, no retry. Physical temperature and readiness stay separate; prepared food is earned1:1. No manual material tick, thermal mutation, dirty notification, model refresh or focus in threshold window.
+
+Native unresolved gates: actual source availability and approach before cooling; uninterrupted useful player actions; normal stationary model update at150; visible/readable coals/food; exact F5/F6 aftermath. A stale view must fail before the menu can redraw it. No assumption that away/global ticks cool an inactive source. A pass is this one generated route, not whole-world survival/discovery or a universal no-dirty guarantee.
+
+Q1: same source/clock snapshots before/after free read; exact local action recurrence and separate return tick; compare saved inactive state before return. Q2: source proof, actual input receipts, ready text and physical model use their real current APIs; FoodCooked TargetId is raw and station is blueprint only. Q3: source absence/safety/route/thermal/view/save failures are retained honestly; no substitutions or repeated seeds. Q4: exact implementation matches approved plan and keeps compiler/native/private source-census boundaries explicit.

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/cooking/finite-presentation/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="6" result="Failed" start-time="2026-09-28T15:23:08.4447110Z" end-time="2026-09-28T15:23:08.6340820Z" duration="0.189356" total="6" passed="5" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="76" random-seed="1742172202">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/cooking/finite-presentation/runner/bin/Debug/net8.0/EditModeRunner.dll --test=CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState --result=/tmp/coo-questfree-implementation/cooking/finite-presentation/wording-red.xml]]></command-line>
+  <filter>
+    <test>CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState</test>
+  </filter>
+  <test-suite type="Assembly" id="1008" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/cooking/finite-presentation/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T15:23:08.4447110Z" end-time="2026-09-28T15:23:08.6340820Z" duration="0.189356" total="6" passed="5" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="76">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="LOAD" value="System.Collections.Generic.List`1[System.String]" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+      <setting name="NumberOfTestWorkers" value="10" />
+    </settings>
+    <properties>
+      <property name="_PID" value="99612" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1009" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T15:23:08.4462490Z" end-time="2026-09-28T15:23:08.6340760Z" duration="0.187826" total="6" passed="5" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="76">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1010" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T15:23:08.4463620Z" end-time="2026-09-28T15:23:08.6340440Z" duration="0.187681" total="6" passed="5" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="76">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="FiniteCookingPresentationTests" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T15:23:08.4466960Z" end-time="2026-09-28T15:23:08.6340380Z" duration="0.187340" total="6" passed="5" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="76">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1007" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T15:23:08.4477130Z" end-time="2026-09-28T15:23:08.6338570Z" duration="0.186142" total="6" passed="5" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="76">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(150.0f,200.0f,&quot;enough stored heat&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(150.0f,200.0f,&quot;enough stored heat&quot;)" methodname="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1526794203" result="Failed" start-time="2026-09-28T15:23:08.4478550Z" end-time="2026-09-28T15:23:08.5374790Z" duration="0.089650" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: String containing "carried raw food's Cook"
+  But was:  "You see a campfire.
+Cooking: enough stored heat remains. Use carried food's Cook action while beside this place.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 104
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "carried raw food's Cook"
+  But was:  "You see a campfire.
+Cooking: enough stored heat remains. Use carried food's Cook action while beside this place.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 104
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(149.99f,200.0f,&quot;no longer hot enough&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(149.99f,200.0f,&quot;no longer hot enough&quot;)" methodname="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="2038466750" result="Passed" start-time="2026-09-28T15:23:08.5381060Z" end-time="2026-09-28T15:23:08.5576610Z" duration="0.019556" asserts="14" />
+            <test-case id="1003" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,0.0f,&quot;still hot&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,0.0f,&quot;still hot&quot;)" methodname="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="542220556" result="Passed" start-time="2026-09-28T15:23:08.5576870Z" end-time="2026-09-28T15:23:08.5809900Z" duration="0.023304" asserts="14" />
+            <test-case id="1004" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.NaN,200.0f,&quot;unavailable&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.NaN,200.0f,&quot;unavailable&quot;)" methodname="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="2069412445" result="Passed" start-time="2026-09-28T15:23:08.5810220Z" end-time="2026-09-28T15:23:08.5991560Z" duration="0.018134" asserts="14" />
+            <test-case id="1005" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,float.NaN,&quot;unavailable&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,float.NaN,&quot;unavailable&quot;)" methodname="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1998950483" result="Passed" start-time="2026-09-28T15:23:08.5991850Z" end-time="2026-09-28T15:23:08.6146520Z" duration="0.015467" asserts="14" />
+            <test-case id="1006" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.PositiveInfinity,200.0f,&quot;unavailable&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.PositiveInfinity,200.0f,&quot;unavailable&quot;)" methodname="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1038678163" result="Passed" start-time="2026-09-28T15:23:08.6146800Z" end-time="2026-09-28T15:23:08.6334300Z" duration="0.018750" asserts="14" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,678 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/cooking/finite-presentation/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="35" result="Failed" start-time="2026-09-28T15:07:16.4004540Z" end-time="2026-09-28T15:07:17.0523990Z" duration="0.651922" total="35" passed="10" failed="25" inconclusive="0" skipped="0" warnings="0" asserts="153" random-seed="1212453208">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/cooking/finite-presentation/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --where "class == CavesOfOoo.Tests.FiniteCookingPresentationTests" --result=/tmp/coo-questfree-implementation/cooking/finite-presentation/initial-red.xml]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.FiniteCookingPresentationTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1045" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/cooking/finite-presentation/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-28T15:07:16.4004540Z" end-time="2026-09-28T15:07:17.0523990Z" duration="0.651922" total="35" passed="10" failed="25" warnings="0" inconclusive="0" skipped="0" asserts="153">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+    </settings>
+    <properties>
+      <property name="_PID" value="96212" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1046" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-28T15:07:16.4019770Z" end-time="2026-09-28T15:07:17.0523970Z" duration="0.650414" total="35" passed="10" failed="25" warnings="0" inconclusive="0" skipped="0" asserts="153">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1047" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-28T15:07:16.4020760Z" end-time="2026-09-28T15:07:17.0523950Z" duration="0.650313" total="35" passed="10" failed="25" warnings="0" inconclusive="0" skipped="0" asserts="153">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="FiniteCookingPresentationTests" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-09-28T15:07:16.4023980Z" end-time="2026-09-28T15:07:17.0523870Z" duration="0.649983" total="35" passed="10" failed="25" warnings="0" inconclusive="0" skipped="0" asserts="153">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1004" name="ActualOldPartWireWithoutRestFieldKeepsRest" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T15:07:16.4032820Z" end-time="2026-09-28T15:07:16.5086280Z" duration="0.105345" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1002" name="ActualOldPartWireWithoutRestFieldKeepsRest(False)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(False)" methodname="ActualOldPartWireWithoutRestFieldKeepsRest" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="751521285" result="Failed" start-time="2026-09-28T15:07:16.4033590Z" end-time="2026-09-28T15:07:16.4899270Z" duration="0.086592" asserts="3">
+              <failure>
+                <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(Boolean priorFiniteField) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 58
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(Boolean priorFiniteField) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 58
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="ActualOldPartWireWithoutRestFieldKeepsRest(True)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(True)" methodname="ActualOldPartWireWithoutRestFieldKeepsRest" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1623679971" result="Failed" start-time="2026-09-28T15:07:16.4904870Z" end-time="2026-09-28T15:07:16.5081470Z" duration="0.017660" asserts="3">
+              <failure>
+                <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(Boolean priorFiniteField) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 58
+   at InvokeStub_FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(Boolean priorFiniteField) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 58
+   at InvokeStub_FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1014" name="DirectRestCommandsRespectPolicyBeforeHealingOrClock" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T15:07:16.5088050Z" end-time="2026-09-28T15:07:16.6045270Z" duration="0.095721" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="22">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1010" name="DirectRestCommandsRespectPolicyBeforeHealingOrClock(&quot;RestAtCampfire&quot;,False)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(&quot;RestAtCampfire&quot;,False)" methodname="DirectRestCommandsRespectPolicyBeforeHealingOrClock" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1552567446" result="Failed" start-time="2026-09-28T15:07:16.5088230Z" end-time="2026-09-28T15:07:16.5331160Z" duration="0.024293" asserts="3">
+              <failure>
+                <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(String command, Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 73
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(String command, Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 73
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="DirectRestCommandsRespectPolicyBeforeHealingOrClock(&quot;RestUntilNextBand&quot;,False)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(&quot;RestUntilNextBand&quot;,False)" methodname="DirectRestCommandsRespectPolicyBeforeHealingOrClock" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1584085363" result="Failed" start-time="2026-09-28T15:07:16.5331340Z" end-time="2026-09-28T15:07:16.5511510Z" duration="0.018018" asserts="3">
+              <failure>
+                <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(String command, Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 73
+   at InvokeStub_FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(String command, Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 73
+   at InvokeStub_FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1012" name="DirectRestCommandsRespectPolicyBeforeHealingOrClock(&quot;RestAtCampfire&quot;,True)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(&quot;RestAtCampfire&quot;,True)" methodname="DirectRestCommandsRespectPolicyBeforeHealingOrClock" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1594925580" result="Passed" start-time="2026-09-28T15:07:16.5511750Z" end-time="2026-09-28T15:07:16.5836710Z" duration="0.032496" asserts="8" />
+            <test-case id="1013" name="DirectRestCommandsRespectPolicyBeforeHealingOrClock(&quot;RestUntilNextBand&quot;,True)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(&quot;RestUntilNextBand&quot;,True)" methodname="DirectRestCommandsRespectPolicyBeforeHealingOrClock" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="575095731" result="Passed" start-time="2026-09-28T15:07:16.5837080Z" end-time="2026-09-28T15:07:16.6044930Z" duration="0.020785" asserts="8" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1019" name="FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T15:07:16.6045440Z" end-time="2026-09-28T15:07:16.6744000Z" duration="0.069855" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="22">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1015" name="FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(False,25.0f)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(False,25.0f)" methodname="FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1738761236" result="Passed" start-time="2026-09-28T15:07:16.6045570Z" end-time="2026-09-28T15:07:16.6217200Z" duration="0.017163" asserts="8" />
+            <test-case id="1016" name="FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(False,500.0f)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(False,500.0f)" methodname="FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1025820057" result="Passed" start-time="2026-09-28T15:07:16.6217370Z" end-time="2026-09-28T15:07:16.6400330Z" duration="0.018297" asserts="8" />
+            <test-case id="1017" name="FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(True,25.0f)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(True,25.0f)" methodname="FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="296010212" result="Failed" start-time="2026-09-28T15:07:16.6400590Z" end-time="2026-09-28T15:07:16.6589950Z" duration="0.018937" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: equivalent to < "&c" >
+  But was:  < "&R", "&Y" >
+  Missing (1): < "&c" >
+  Extra (2): < "&R", "&Y" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(Boolean finite, Single temperature) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 85
+   at InvokeStub_FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: equivalent to < "&c" >
+  But was:  < "&R", "&Y" >
+  Missing (1): < "&c" >
+  Extra (2): < "&R", "&Y" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(Boolean finite, Single temperature) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 85
+   at InvokeStub_FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1018" name="FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(True,500.0f)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(True,500.0f)" methodname="FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="105958462" result="Failed" start-time="2026-09-28T15:07:16.6590190Z" end-time="2026-09-28T15:07:16.6743780Z" duration="0.015359" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: equivalent to < "&c" >
+  But was:  < "&R", "&Y" >
+  Missing (1): < "&c" >
+  Extra (2): < "&R", "&Y" >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(Boolean finite, Single temperature) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 85
+   at InvokeStub_FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: equivalent to < "&c" >
+  But was:  < "&R", "&Y" >
+  Missing (1): < "&c" >
+  Extra (2): < "&R", "&Y" >
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(Boolean finite, Single temperature) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 85
+   at InvokeStub_FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1024" name="FiniteProximityNeverClaimsLegacyCrackle" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T15:07:16.6744250Z" end-time="2026-09-28T15:07:16.7451510Z" duration="0.070726" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1020" name="FiniteProximityNeverClaimsLegacyCrackle(False,25.0f)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(False,25.0f)" methodname="FiniteProximityNeverClaimsLegacyCrackle" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1726913421" result="Passed" start-time="2026-09-28T15:07:16.6744360Z" end-time="2026-09-28T15:07:16.6932530Z" duration="0.018818" asserts="7" />
+            <test-case id="1021" name="FiniteProximityNeverClaimsLegacyCrackle(False,500.0f)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(False,500.0f)" methodname="FiniteProximityNeverClaimsLegacyCrackle" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1056368585" result="Passed" start-time="2026-09-28T15:07:16.6932910Z" end-time="2026-09-28T15:07:16.7092020Z" duration="0.015912" asserts="7" />
+            <test-case id="1022" name="FiniteProximityNeverClaimsLegacyCrackle(True,25.0f)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(True,25.0f)" methodname="FiniteProximityNeverClaimsLegacyCrackle" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="933607619" result="Failed" start-time="2026-09-28T15:07:16.7092240Z" end-time="2026-09-28T15:07:16.7264050Z" duration="0.017181" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(Boolean finite, Single temperature) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 93
+   at InvokeStub_FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(Boolean finite, Single temperature) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 93
+   at InvokeStub_FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1023" name="FiniteProximityNeverClaimsLegacyCrackle(True,500.0f)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(True,500.0f)" methodname="FiniteProximityNeverClaimsLegacyCrackle" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="2073898669" result="Failed" start-time="2026-09-28T15:07:16.7264200Z" end-time="2026-09-28T15:07:16.7451170Z" duration="0.018697" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(Boolean finite, Single temperature) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 93
+   at InvokeStub_FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 0
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(Boolean finite, Single temperature) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 93
+   at InvokeStub_FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1038" name="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T15:07:16.7451600Z" end-time="2026-09-28T15:07:16.8594140Z" duration="0.114253" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1032" name="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(&quot;hidden&quot;)" methodname="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="350804051" result="Failed" start-time="2026-09-28T15:07:16.7451690Z" end-time="2026-09-28T15:07:16.7707520Z" duration="0.025583" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 110
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 110
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1033" name="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(&quot;unseen-cell&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(&quot;unseen-cell&quot;)" methodname="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="2033529427" result="Failed" start-time="2026-09-28T15:07:16.7707770Z" end-time="2026-09-28T15:07:16.7905520Z" duration="0.019775" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 110
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 110
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1034" name="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(&quot;wrong-cell&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(&quot;wrong-cell&quot;)" methodname="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1377250007" result="Failed" start-time="2026-09-28T15:07:16.7905770Z" end-time="2026-09-28T15:07:16.8065950Z" duration="0.016018" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 110
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 110
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1035" name="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(&quot;foreign-zone&quot;)" methodname="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1721463131" result="Failed" start-time="2026-09-28T15:07:16.8066190Z" end-time="2026-09-28T15:07:16.8216700Z" duration="0.015051" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 110
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 110
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1036" name="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(&quot;removed&quot;)" methodname="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="68031491" result="Failed" start-time="2026-09-28T15:07:16.8216950Z" end-time="2026-09-28T15:07:16.8424710Z" duration="0.020775" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 110
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 110
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1037" name="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(&quot;foreign-part&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(&quot;foreign-part&quot;)" methodname="FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1829666911" result="Failed" start-time="2026-09-28T15:07:16.8424950Z" end-time="2026-09-28T15:07:16.8593900Z" duration="0.016895" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 110
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 110
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1031" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-09-28T15:07:16.8594250Z" end-time="2026-09-28T15:07:16.9597240Z" duration="0.100298" total="6" passed="0" failed="6" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1025" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(150.0f,200.0f,&quot;enough stored heat&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(150.0f,200.0f,&quot;enough stored heat&quot;)" methodname="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="818693468" result="Failed" start-time="2026-09-28T15:07:16.8594380Z" end-time="2026-09-28T15:07:16.8797430Z" duration="0.020306" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1026" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(149.99f,200.0f,&quot;no longer hot enough&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(149.99f,200.0f,&quot;no longer hot enough&quot;)" methodname="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="802264601" result="Failed" start-time="2026-09-28T15:07:16.8797630Z" end-time="2026-09-28T15:07:16.8962190Z" duration="0.016456" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1027" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,0.0f,&quot;still hot&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,0.0f,&quot;still hot&quot;)" methodname="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1048109430" result="Failed" start-time="2026-09-28T15:07:16.8962430Z" end-time="2026-09-28T15:07:16.9101230Z" duration="0.013880" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1028" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.NaN,200.0f,&quot;unavailable&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.NaN,200.0f,&quot;unavailable&quot;)" methodname="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1002100460" result="Failed" start-time="2026-09-28T15:07:16.9101400Z" end-time="2026-09-28T15:07:16.9285100Z" duration="0.018369" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1029" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,float.NaN,&quot;unavailable&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,float.NaN,&quot;unavailable&quot;)" methodname="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1063431019" result="Failed" start-time="2026-09-28T15:07:16.9285320Z" end-time="2026-09-28T15:07:16.9442500Z" duration="0.015718" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.PositiveInfinity,200.0f,&quot;unavailable&quot;)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.PositiveInfinity,200.0f,&quot;unavailable&quot;)" methodname="FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="2091910756" result="Failed" start-time="2026-09-28T15:07:16.9442730Z" end-time="2026-09-28T15:07:16.9597000Z" duration="0.015427" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1044" name="FullSaveKeepsRestChoiceHeatFuelAndExactReplacement" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T15:07:16.9597450Z" end-time="2026-09-28T15:07:16.9983030Z" duration="0.038557" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1042" name="FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(False)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(False)" methodname="FullSaveKeepsRestChoiceHeatFuelAndExactReplacement" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1304269612" result="Failed" start-time="2026-09-28T15:07:16.9597540Z" end-time="2026-09-28T15:07:16.9829250Z" duration="0.023172" asserts="3">
+              <failure>
+                <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 120
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 120
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1043" name="FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(True)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(True)" methodname="FullSaveKeepsRestChoiceHeatFuelAndExactReplacement" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="354981857" result="Failed" start-time="2026-09-28T15:07:16.9829440Z" end-time="2026-09-28T15:07:16.9982830Z" duration="0.015339" asserts="3">
+              <failure>
+                <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 120
+   at InvokeStub_FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 120
+   at InvokeStub_FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1041" name="LegacyFocusedDescriptionGetsNoFiniteClaim" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.LegacyFocusedDescriptionGetsNoFiniteClaim" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-28T15:07:16.9983120Z" end-time="2026-09-28T15:07:17.0153280Z" duration="0.017016" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="14">
+            <test-case id="1039" name="LegacyFocusedDescriptionGetsNoFiniteClaim(False)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.LegacyFocusedDescriptionGetsNoFiniteClaim(False)" methodname="LegacyFocusedDescriptionGetsNoFiniteClaim" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1476554140" result="Passed" start-time="2026-09-28T15:07:16.9983200Z" end-time="2026-09-28T15:07:17.0095130Z" duration="0.011193" asserts="7" />
+            <test-case id="1040" name="LegacyFocusedDescriptionGetsNoFiniteClaim(True)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.LegacyFocusedDescriptionGetsNoFiniteClaim(True)" methodname="LegacyFocusedDescriptionGetsNoFiniteClaim" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="105398775" result="Passed" start-time="2026-09-28T15:07:17.0095390Z" end-time="2026-09-28T15:07:17.0153020Z" duration="0.005763" asserts="7" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1009" name="MenuRestOptOutIsIndependentOfFiniteCooking" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T15:07:17.0153640Z" end-time="2026-09-28T15:07:17.0453350Z" duration="0.029970" total="4" passed="2" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="24">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1005" name="MenuRestOptOutIsIndependentOfFiniteCooking(False,False)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(False,False)" methodname="MenuRestOptOutIsIndependentOfFiniteCooking" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1862188678" result="Failed" start-time="2026-09-28T15:07:17.0153860Z" end-time="2026-09-28T15:07:17.0229300Z" duration="0.007544" asserts="3">
+              <failure>
+                <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(Boolean finite, Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 64
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(Boolean finite, Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 64
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="MenuRestOptOutIsIndependentOfFiniteCooking(False,True)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(False,True)" methodname="MenuRestOptOutIsIndependentOfFiniteCooking" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="269080861" result="Passed" start-time="2026-09-28T15:07:17.0229530Z" end-time="2026-09-28T15:07:17.0311870Z" duration="0.008234" asserts="9" />
+            <test-case id="1007" name="MenuRestOptOutIsIndependentOfFiniteCooking(True,False)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(True,False)" methodname="MenuRestOptOutIsIndependentOfFiniteCooking" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="657862261" result="Failed" start-time="2026-09-28T15:07:17.0312060Z" end-time="2026-09-28T15:07:17.0362650Z" duration="0.005059" asserts="3">
+              <failure>
+                <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(Boolean finite, Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 64
+   at InvokeStub_FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(Boolean finite, Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 64
+   at InvokeStub_FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="MenuRestOptOutIsIndependentOfFiniteCooking(True,True)" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(True,True)" methodname="MenuRestOptOutIsIndependentOfFiniteCooking" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1707066579" result="Passed" start-time="2026-09-28T15:07:17.0362760Z" end-time="2026-09-28T15:07:17.0453140Z" duration="0.009039" asserts="9" />
+          </test-suite>
+          <test-case id="1001" name="PlainAndAuthoredPartsDefaultToAllowingEstablishedRest" fullname="CavesOfOoo.Tests.FiniteCookingPresentationTests.PlainAndAuthoredPartsDefaultToAllowingEstablishedRest" methodname="PlainAndAuthoredPartsDefaultToAllowingEstablishedRest" classname="CavesOfOoo.Tests.FiniteCookingPresentationTests" runstate="Runnable" seed="1582380963" result="Failed" start-time="2026-09-28T15:07:17.0453460Z" end-time="2026-09-28T15:07:17.0523200Z" duration="0.006974" asserts="3">
+            <failure>
+              <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.PlainAndAuthoredPartsDefaultToAllowingEstablishedRest() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 50
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.PlainAndAuthoredPartsDefaultToAllowingEstablishedRest() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 50
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

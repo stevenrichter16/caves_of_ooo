@@ -1,0 +1,90 @@
+test_all_borrowed_toast_and_campfire_bytes_unchanged (__main__.CoalsSourceTests.test_all_borrowed_toast_and_campfire_bytes_unchanged) ... ok
+test_both_states_retain_exact_geometry_and_piece_identity (__main__.CoalsSourceTests.test_both_states_retain_exact_geometry_and_piece_identity) ... FAIL
+test_charcoal_is_low_elongated_and_edge_stones_are_incomplete (__main__.CoalsSourceTests.test_charcoal_is_low_elongated_and_edge_stones_are_incomplete) ... FAIL
+test_closed_finite_nonzero_geometry_small_budget (__main__.CoalsSourceTests.test_closed_finite_nonzero_geometry_small_budget) ... FAIL
+test_exact_original_static_pair_no_effect_or_service (__main__.CoalsSourceTests.test_exact_original_static_pair_no_effect_or_service) ... FAIL
+test_low_grounded_one_cell_station_envelope (__main__.CoalsSourceTests.test_low_grounded_one_cell_station_envelope) ... FAIL
+test_neither_source_copies_old_campfire_or_food (__main__.CoalsSourceTests.test_neither_source_copies_old_campfire_or_food) ... FAIL
+test_same_approved_palette_restrained_heat_only_faces (__main__.CoalsSourceTests.test_same_approved_palette_restrained_heat_only_faces) ... FAIL
+
+======================================================================
+FAIL: test_both_states_retain_exact_geometry_and_piece_identity (__main__.CoalsSourceTests.test_both_states_retain_exact_geometry_and_piece_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 14, in test_both_states_retain_exact_geometry_and_piece_identity
+    _,ms=self.models();self.assertEqual([p['part'] for p in ms[0]['pieces']],[p['part'] for p in ms[1]['pieces']])
+         ^^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 6, in models
+    self.assertTrue((P/'kit.json').is_file(),'Original residual-coal pair has not been authored.')
+AssertionError: False is not true : Original residual-coal pair has not been authored.
+
+======================================================================
+FAIL: test_charcoal_is_low_elongated_and_edge_stones_are_incomplete (__main__.CoalsSourceTests.test_charcoal_is_low_elongated_and_edge_stones_are_incomplete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 26, in test_charcoal_is_low_elongated_and_edge_stones_are_incomplete
+    _,ms=self.models()
+         ^^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 6, in models
+    self.assertTrue((P/'kit.json').is_file(),'Original residual-coal pair has not been authored.')
+AssertionError: False is not true : Original residual-coal pair has not been authored.
+
+======================================================================
+FAIL: test_closed_finite_nonzero_geometry_small_budget (__main__.CoalsSourceTests.test_closed_finite_nonzero_geometry_small_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 32, in test_closed_finite_nonzero_geometry_small_budget
+    _,ms=self.models()
+         ^^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 6, in models
+    self.assertTrue((P/'kit.json').is_file(),'Original residual-coal pair has not been authored.')
+AssertionError: False is not true : Original residual-coal pair has not been authored.
+
+======================================================================
+FAIL: test_exact_original_static_pair_no_effect_or_service (__main__.CoalsSourceTests.test_exact_original_static_pair_no_effect_or_service)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 9, in test_exact_original_static_pair_no_effect_or_service
+    _,ms=self.models();self.assertEqual([m['id'] for m in ms],['spread-cooking-coals-hot','spread-cooking-coals-cooled'])
+         ^^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 6, in models
+    self.assertTrue((P/'kit.json').is_file(),'Original residual-coal pair has not been authored.')
+AssertionError: False is not true : Original residual-coal pair has not been authored.
+
+======================================================================
+FAIL: test_low_grounded_one_cell_station_envelope (__main__.CoalsSourceTests.test_low_grounded_one_cell_station_envelope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 17, in test_low_grounded_one_cell_station_envelope
+    _,ms=self.models()
+         ^^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 6, in models
+    self.assertTrue((P/'kit.json').is_file(),'Original residual-coal pair has not been authored.')
+AssertionError: False is not true : Original residual-coal pair has not been authored.
+
+======================================================================
+FAIL: test_neither_source_copies_old_campfire_or_food (__main__.CoalsSourceTests.test_neither_source_copies_old_campfire_or_food)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 44, in test_neither_source_copies_old_campfire_or_food
+    _,ms=self.models()
+         ^^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 6, in models
+    self.assertTrue((P/'kit.json').is_file(),'Original residual-coal pair has not been authored.')
+AssertionError: False is not true : Original residual-coal pair has not been authored.
+
+======================================================================
+FAIL: test_same_approved_palette_restrained_heat_only_faces (__main__.CoalsSourceTests.test_same_approved_palette_restrained_heat_only_faces)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 22, in test_same_approved_palette_restrained_heat_only_faces
+    d,ms=self.models();self.assertEqual(d['palette'],json.loads((R/'ArtSource/ReferenceGlade3D/kit.json').read_text())['palette'])
+         ^^^^^^^^^^^^^
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 6, in models
+    self.assertTrue((P/'kit.json').is_file(),'Original residual-coal pair has not been authored.')
+AssertionError: False is not true : Original residual-coal pair has not been authored.
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.002s
+
+FAILED (failures=7)

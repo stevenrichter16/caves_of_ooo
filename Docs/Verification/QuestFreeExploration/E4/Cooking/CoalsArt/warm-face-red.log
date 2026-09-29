@@ -1,0 +1,23 @@
+test_all_borrowed_toast_and_campfire_bytes_unchanged (__main__.CoalsSourceTests.test_all_borrowed_toast_and_campfire_bytes_unchanged) ... ok
+test_both_states_retain_exact_geometry_and_piece_identity (__main__.CoalsSourceTests.test_both_states_retain_exact_geometry_and_piece_identity) ... ok
+test_charcoal_is_low_elongated_and_edge_stones_are_incomplete (__main__.CoalsSourceTests.test_charcoal_is_low_elongated_and_edge_stones_are_incomplete) ... ok
+test_closed_finite_nonzero_geometry_small_budget (__main__.CoalsSourceTests.test_closed_finite_nonzero_geometry_small_budget) ... ok
+test_exact_original_static_pair_no_effect_or_service (__main__.CoalsSourceTests.test_exact_original_static_pair_no_effect_or_service) ... ok
+test_hot_charcoal_is_mainly_dark_with_restrained_exposed_splits (__main__.CoalsSourceTests.test_hot_charcoal_is_mainly_dark_with_restrained_exposed_splits) ... FAIL
+test_low_grounded_one_cell_station_envelope (__main__.CoalsSourceTests.test_low_grounded_one_cell_station_envelope) ... ok
+test_neither_source_copies_old_campfire_or_food (__main__.CoalsSourceTests.test_neither_source_copies_old_campfire_or_food) ... ok
+test_same_approved_palette_restrained_heat_only_faces (__main__.CoalsSourceTests.test_same_approved_palette_restrained_heat_only_faces) ... ok
+
+======================================================================
+FAIL: test_hot_charcoal_is_mainly_dark_with_restrained_exposed_splits (__main__.CoalsSourceTests.test_hot_charcoal_is_mainly_dark_with_restrained_exposed_splits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/coo-questfree-implementation/e4/cooking-coals-art/test_source.py", line 55, in test_hot_charcoal_is_mainly_dark_with_restrained_exposed_splits
+    self.assertGreater(total,0);self.assertGreater(warm/total,.10);self.assertLess(warm/total,.36,p['part'])
+                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1.0 not less than 0.36 : charcoal-0
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.010s
+
+FAILED (failures=1)

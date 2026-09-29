@@ -1,0 +1,1 @@
+class FiniteCookingApiProbe { void Required(CavesOfOoo.Scenarios.Custom.QuestFreeSpreadStateNativePlayer player, CavesOfOoo.Scenarios.ScenarioContext context) { player.InitializeFiniteCooking(context); CavesOfOoo.Editor.QuestFreeSpreadStateNativeBatch.LaunchFiniteCooking(); } }

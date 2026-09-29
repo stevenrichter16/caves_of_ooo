@@ -1,0 +1,23 @@
+--- a/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.FiniteCooking.cs
++++ b/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.FiniteCooking.cs
+@@ -6,6 +6,7 @@
+ using System.Linq;
+ using System.Reflection;
+ using CavesOfOoo.Core;
++using CavesOfOoo.Rendering;
+ using UnityEngine;
+ using UnityEngine.InputSystem;
+ 
+@@ -141,7 +142,11 @@
+         {
+             Presenter.TryGetEntityView(_finiteSource,out var root,out var model);var mesh=root?.GetComponent<MeshFilter>()?.sharedMesh;
+             _observations.Add(new{phase,owner=_finiteSource.ID,temperature=_finiteSource.GetPart<ThermalPart>().Temperature,fuel=_finiteSource.GetPart<FuelPart>().FuelMass,expected,actual=model,mesh=mesh?.name,state=State,pass=_finitePasses});WriteReport();
+-            var actual=Visual(_finiteSource,expected,1);Require(Presenter.TryGetApprovedStyle(_finiteSource,out var proof)&&actual.GetComponent<MeshFilter>()?.sharedMesh==proof.ExpectedMesh&&actual.GetComponent<Renderer>()?.sharedMaterial==proof.ExpectedMaterial,"bound exact current approved coals mesh/palette");
++            var actual=Visual(_finiteSource,expected,1);var entry=SpreadCookingCoalsLibrary.Load()?.Find(expected);
++            Require(entry!=null&&Presenter.TryGetApprovedStyle(_finiteSource,out var proof)
++                &&proof.ExpectedMesh==entry.Mesh&&proof.ExpectedMaterial==entry.Material&&entry.Material==ReferenceGladeVoxelLibrary.Load().Material
++                &&actual.GetComponent<MeshFilter>()?.sharedMesh==proof.ExpectedMesh&&actual.GetComponent<Renderer>()?.sharedMaterial==proof.SubmittedMaterial,
++                "bound exact current approved coals source mesh and owned submitted palette");
+         }
+         IEnumerator FiniteRead(string label,string phrase,bool menu)
+         {

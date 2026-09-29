@@ -1,0 +1,24 @@
+# Exact coal source binding: test-first handoff
+
+Status: private tests only. Root approved the original pair's source direction after viewing top/oblique previews; that is not native art or lifecycle acceptance. No runtime library, recipe, emitter or material-scheduling fix has been authored for this phase.
+
+Actual `SpreadCookingCoals` and tested `CampfirePart.AllowRest` content must be published before interpreting any of the20 art cases. The helper requires the exact planned glyph*/color&K, non-solid/non-takeable, finite=true/no-Rest, real500 temperature/Fuel25 and absence of inherited lights/Burning. Missing source/setup is not missing-binding evidence. Six independent ember tests use actual legacy Campfire with explicitly staged finite flag, so can execute before new child data.
+
+## Expected RED and counters
+
+- `CavesOfOoo.Tests.SpreadCookingCoalsArtTests`:20 cases. Expected9 missing-library/mapping failures,11 source/foreign/ordinary controls, subject to actual Unity execution. Physical appearance at500/25 and150/25 is hot;149.99/25 is cooled;500/0 is still hot. Actual material pass150→147.5 crosses while500→490.5 does not, preserving exact owner/cell/player/quantity, then explicitly invokes existing presenter Refresh with an empty dirty set. Full replacement save keeps140/Fuel0/no-Rest; remembered-but-unseen owner submits no current thermal state. Unknown/custom/removed/foreign-part/map owners remain refused and existing Campfire keeps its prior model.
+- `CavesOfOoo.Tests.FiniteCookingEmberTests`:6 cases. Expected finite3 RED/legacy3 PASS, subject to execution. Exact direct registration, actual ZoneRenderer.SetZone registration and cached anchor SpawnEmber each pair finite with unchanged old campfire. The last tests emitted owned object count, not gameplay particle pixels; fixture releases those owned children immediately and restores previous tile-state binding/delegates and Unity RNG.
+
+The material test deliberately **does not** prove input dirty cadence: it is actual scheduler cooling plus explicit normal presenter re-evaluation. `ThermalPart.HandleEndTurn` does not currently invalidate this temperature boundary; `ZoneRenderer` only calls refresh on dirty branches, and real input may already dirty the frame. Root's later native normal-wait route must establish whether there is a real stale-mesh failure before any scoped thermal invalidation fix. No generic thermal/material notification or per-frame scan is proposed by these tests.
+
+## Narrow future implementation after meaningful RED
+
+Optional `SpreadCookingCoals3D/Library`, exactly `spread-cooking-coals-hot` and `spread-cooking-coals-cooled`, independent of the frozen one-food SpreadCooking3D library. Flatten all eleven original static pieces into one approved persistent mesh/material per state,260 triangles, exact same vertices/normals/topology/bounds but different thermal UV face selection. Validate original source catalog/FBX/palette and exact owned output names; write only its namespace, borrowing existing glade material. No prefab light/particle/rig/collider/script. Preserve a complete explicit owned-import receipt and all Toasted/ordinary campfire bytes.
+
+Current-owner refinement only for real SpreadCookingCoals in managed receiving Spread with owned current Render/Physics/Campfire/Thermal/Fuel, finite flag and no-Rest source identity, empty visual override, no footprint or carried/equipped/spatial conflict. Finite physical temperature selects around `CookingService.MinimumFiniteCookingTemperature`; finite zero fuel still uses the hot form at500. Source authority/material validation may refuse malformed input but must not coerce it into cold or usable. Transient true/batched false follows the existing finite draw point: current heat is not shown through fog memory. No quantity/fuel/temperature/save mutation or coordinate identity.
+
+After RED, emitter changes remain finite-only: skip source in ZoneRenderer's registration and the renderer's direct API; cached eligible anchor must recheck current finite status before new SpawnEmber. Preserve old campfire spawn/color/cadence. This is not a generic particle rewrite and does not claim arbitrary ambient or BurningEffect cleanup.
+
+## Native acceptance remains separate
+
+Root executes actual import/current20+6 and scoped portable/FieldGate/style/lookup neighbors. Native camera must show hot-enough/cooled states on real source footprint and factual reader including hot/fuel0. Normal paid wait across150 must update without movement, manual refresh, source heat writes or reheating; free reader does not cool. Verify finite source has no inherited legacy embers/lights while ordinary authored fire still works. Do not claim station discovery, source timing or ordinary acquisition from these fixtures; composer/native route belongs to its own tested phase.

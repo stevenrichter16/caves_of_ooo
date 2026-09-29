@@ -1,0 +1,379 @@
+--- a/Assets/Scripts/Gameplay/World/Generation/Builders/SpreadCompositionBuilder.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/Builders/SpreadCompositionBuilder.cs
+@@ -28,11 +28,21 @@
+             &&ReferenceEquals(Plan,passagePlan)&&receipt.Owners.Count==1
+             &&passageSources.TryGetValue(receipt.Owners[0],out var current)&&ReferenceEquals(current,receipt);
+         internal SpreadGenerationReceipt PassageSource(Entity hedge)=>hedge!=null&&passageSources.TryGetValue(hedge,out var receipt)&&OwnsPassageReceipt(receipt)?receipt:null;
++        /// <summary>Exact original finite rows, captured only for a selected cold
++        /// cooking patch. This does not authorize live source discovery or harvest.</summary>
++        public bool CaptureCookingSources;
++        readonly Dictionary<Entity,SpreadGenerationReceipt> cookingSources=new Dictionary<Entity,SpreadGenerationReceipt>();
++        internal IReadOnlyList<SpreadGenerationReceipt> CookingSources=>cookingSources.Values.ToArray();
++        internal bool OwnsCookingReceipt(SpreadGenerationReceipt receipt)=>CaptureCookingSources&&receipt!=null
++            &&SourceZone==receipt.Zone&&passageFactory==receipt.Factory&&passageRevision==receipt.Revision
++            &&ReferenceEquals(Plan,passagePlan)&&receipt.Owners.Count==1
++            &&cookingSources.TryGetValue(receipt.Owners[0],out var current)&&ReferenceEquals(current,receipt);
++        internal SpreadGenerationReceipt CookingSource(Entity row)=>row!=null&&cookingSources.TryGetValue(row,out var receipt)&&OwnsCookingReceipt(receipt)?receipt:null;
+         private readonly int seed;
+         public SpreadCompositionBuilder(int worldSeed){seed=worldSeed;}
+         public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
+         {
+-            Plan=null;SourceZone=null;passageSources.Clear();passageFactory=null;passagePlan=null;int revision=++passageRevision;
++            Plan=null;SourceZone=null;passageSources.Clear();cookingSources.Clear();passageFactory=null;passagePlan=null;int revision=++passageRevision;
+             if(zone==null||factory==null||zone.EntityCount!=0)
+             {
+                 Diag.Record("worldgen","SpreadCompositionRejected",payload:new{reason=zone==null?"missing-zone":factory==null?"missing-factory":"nonempty-zone"});
+@@ -54,6 +64,8 @@
+                 if(created==null)return Reject("missing-object");
+                 if(CapturePassageSources&&bp=="Hedge"&&created.BlueprintName==bp)
+                     passageSources.Add(created,new SpreadGenerationReceipt(this,zone,factory,revision,new[]{created},1));
++                if(CaptureCookingSources&&bp=="RipeCropRow"&&created.BlueprintName==bp)
++                    cookingSources.Add(created,new SpreadGenerationReceipt(this,zone,factory,revision,new[]{created},1));
+                 objects++;
+             }
+             SourceZone=zone;passageFactory=factory;passagePlan=Plan;
+--- a/Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationBuilder.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/Builders/SpreadExplorationBuilder.cs
+@@ -38,8 +38,25 @@
+     case SpreadExplorationFamily.WorkGang:return Encounter(zone,factory,entry,false);
+     case SpreadExplorationFamily.CollectorReturn:return Collector(zone,factory,entry);
+     case SpreadExplorationFamily.FieldPassage:return Passage(zone,factory,entry);
++    case SpreadExplorationFamily.CoolingWorkPatch:return Cooking(zone,factory,entry);
+     default:return Refuse(zone,entry,"unsupported-family");
+    }
++  }
++  bool Cooking(Zone z,EntityFactory f,SpreadExplorationEntry entry)
++  {
++   if(terrain.Plan.Formation!=Formation.FieldStrips||!terrain.CaptureCookingSources)return Refuse(z,entry,"cooking-source");
++   var candidates=terrain.CookingSources.Where(r=>r.IsCurrent&&r.Owners.Count==1&&SpreadExplorationCooking.Eligible(z,r.Owners[0]))
++    .OrderBy(r=>z.GetEntityPosition(r.Owners[0]).y).ThenBy(r=>z.GetEntityPosition(r.Owners[0]).x).Take(32).ToArray();
++   foreach(var receipt in candidates)
++   {
++    var original=SpreadGenerationReceipt.CaptureFinalState(z,z.GetReadOnlyEntities().Where(e=>!DoorPart.IsBareGround(e)));
++    bool preparing=true;
++    bool Authority()=>Current(z,f,entry)&&terrain.OwnsCookingReceipt(receipt)&&(!preparing||original());
++    if(SpreadExplorationCooking.TryPlace(z,f,terrain,receipt.Owners[0],Authority,out var source,out var final))
++     {preparing=false;return Commit(z,f,entry,new[]{source},()=>Authority()&&final());}
++    if(!Current(z,f,entry)||!original())return false;
++   }
++   return Refuse(z,entry,"no-useful-cooling-work-patch");
+   }
+   bool Passage(Zone z,EntityFactory f,SpreadExplorationEntry entry)
+   {
+--- a/Assets/Scripts/Gameplay/World/Generation/SpreadExplorationCooking.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/SpreadExplorationCooking.cs
+@@ -0,0 +1,128 @@
++using System;
++using System.Collections.Generic;
++using System.Linq;
++using CavesOfOoo.Data;
++namespace CavesOfOoo.Core
++{
++    /// <summary>One cooling utility beside an exact original finite grain row.
++    /// Cold generation only: the caller proves the current manifest attempt.
++    /// No ingredient, creature, stock, harvest or clock is manufactured here.</summary>
++    public static class SpreadExplorationCooking
++    {
++        const int MaxPositions=32,MaxTrials=256;
++        internal static bool Eligible(Zone z,Entity row)
++        {
++            var p=row?.GetPart<PhysicsPart>();var h=row?.GetPart<FieldHarvestPart>();
++            return z!=null&&row?.BlueprintName=="RipeCropRow"&&row.SpatialZone==z&&z.GetEntityCell(row)!=null
++                &&p?.ParentEntity==row&&!p.Takeable&&p.InInventory==null&&p.Equipped==null
++                &&h?.ParentEntity==row&&!h.Harvested&&h.YieldBlueprint=="Emberwheat"&&h.YieldCount==1
++                &&row.GetPart<RenderPart>()?.ParentEntity==row&&row.Parts.All(v=>v!=null&&v.ParentEntity==row)
++                &&!row.HasTag("Owned")&&!row.HasTag("QuestItem")&&!row.HasTag("Unique")&&!row.HasTag("Creature")
++                &&!row.HasPart<InventoryPart>()&&!row.HasPart<ContainerPart>()&&!row.HasPart<SpatialFootprintPart>()
++                &&!z.GenReservedCells.Contains(z.GetEntityPosition(row))&&!z.GetEntityCell(row).IsInterior;
++        }
++        // This is the ordinary player's current faction screen, not personal
++        // hostility, party/oath eligibility, future AI movement or a safety promise.
++        internal static bool ColdHostile(Zone z,Entity actor)=>actor?.SpatialZone==z&&z.GetEntityCell(actor)!=null
++            &&actor.GetPart<BrainPart>()?.ParentEntity==actor&&actor.GetStatValue("Hitpoints")>0
++            &&PlayerReputation.GetFeeling(FactionManager.GetFaction(actor))<=FactionManager.HOSTILE_THRESHOLD;
++        public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder producer,Entity row,
++            Func<bool> authority,out Entity source,out Func<bool> finalState)
++        {
++            source=null;finalState=null;var receipt=producer?.CookingSource(row);
++            bool Current()=>Eligible(zone,row)&&receipt!=null&&receipt.Zone==zone&&ReferenceEquals(receipt.Factory,factory)
++                &&ReferenceEquals(producer.CookingSource(row),receipt)&&receipt.IsCurrent;
++            if(factory==null||authority==null||!Current()||!authority()||!Current()||!factory.Blueprints.ContainsKey("SpreadCookingCoals"))return false;
++            var layout=new Layout(zone,producer.Plan,null);var rowAt=zone.GetEntityPosition(row);
++            if(!layout.Find(rowAt,out var at,out var harvestStand,out var cookStand))return false;
++            var original=SpreadGenerationReceipt.CaptureFinalState(zone,zone.GetReadOnlyEntities().Where(e=>!DoorPart.IsBareGround(e)));
++            var rows=zone.GetReadOnlyEntities().Where(e=>e.HasPart<FieldHarvestPart>()).ToArray();
++            var rowsProof=SpreadGenerationReceipt.CaptureFinalState(zone,rows);
++            bool Ready()=>Current()&&original()&&new Layout(zone,producer.Plan,null).Fits(rowAt,at,harvestStand,cookStand,layout.Geometry);
++            if(!authority()||!Ready())return false;
++            var made=factory.CreateEntity("SpreadCookingCoals");
++            if(!Valid(made,false)||!authority()||!Ready()||!Valid(made,false)||zone.GetReadOnlyEntities().Any(e=>e.ID==made.ID))return false;
++            if(!receipt.TryConsume())return false;
++            bool added=false,success=false;Func<bool> madeProof=null;
++            try
++            {
++                added=zone.AddEntity(made,at.x,at.y);if(!added)return false;
++                madeProof=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{made});
++                bool Final()=>authority()&&producer.OwnsCookingReceipt(receipt)&&rowsProof()&&Eligible(zone,row)
++                    &&zone.GetEntityPosition(row)==rowAt&&madeProof()&&Valid(made,true)&&zone.GetEntityPosition(made)==at
++                    &&new Layout(zone,producer.Plan,made).Fits(rowAt,at,harvestStand,cookStand,layout.Geometry);
++                if(!Final())return false;source=made;finalState=Final;success=true;return true;
++            }
++            finally
++            {
++                // An independent callback's moved/replaced/changed owner is not
++                // ours to roll back. The composer rejects that changed generation.
++                if(!success&&added&&madeProof?.Invoke()==true)zone.RemoveEntity(made);
++            }
++        }
++        static bool Valid(Entity e,bool placed)
++        {
++            if(e?.BlueprintName!="SpreadCookingCoals"||string.IsNullOrEmpty(e.ID)||e.Parts.Count!=6
++                ||e.Parts.Any(p=>p==null||p.ParentEntity!=e)||e.HasPart<StatusEffectsPart>()||e.Tags.Count!=0||e.Statistics.Count!=0
++                ||(placed?e.SpatialZone==null:e.SpatialZone!=null))return false;
++            var p=e.GetPart<PhysicsPart>();var r=e.GetPart<RenderPart>();var c=e.GetPart<CampfirePart>();var t=e.GetPart<ThermalPart>();var f=e.GetPart<FuelPart>();
++            return p!=null&&!p.Solid&&!p.Takeable&&p.InInventory==null&&p.Equipped==null
++                &&r!=null&&r.Visible&&r.RenderString=="*"&&r.ColorString=="&K"&&r.DisplayName=="cooking coals"&&r.RenderLayer==4
++                &&string.IsNullOrEmpty(r.VisualID)&&string.IsNullOrEmpty(r.VisualVariant)&&string.IsNullOrEmpty(r.GlyphVariants)
++                &&c!=null&&c.FiniteCooking&&!c.AllowRest&&e.GetPart<ExaminablePart>()!=null
++                &&t!=null&&t.Temperature==500&&t.AmbientTemperature==25&&t.FlameTemperature==300&&t.HeatCapacity==.8f&&t.AmbientDecayRate==.02f
++                &&f!=null&&f.FuelMass==25&&f.MaxFuel==25&&f.BurnRate==1&&f.HeatOutput==1&&string.IsNullOrEmpty(f.ExhaustProduct);
++        }
++        sealed class Layout
++        {
++            internal readonly SpreadWildernessSituationBuilder.Geometry Geometry;
++            readonly bool[,] walk=new bool[Zone.Width,Zone.Height];readonly (int x,int y)[] threats;
++            readonly int[][,] ports;readonly SpreadCompositionPlan plan;
++            internal Layout(Zone z,SpreadCompositionPlan plan,Entity ignore)
++            {
++                this.plan=plan;Geometry=new SpreadWildernessSituationBuilder.Geometry(z,ignore==null?new HashSet<Entity>():new HashSet<Entity>{ignore});
++                threats=z.GetReadOnlyEntities().Where(e=>ColdHostile(z,e)).Select(z.GetEntityPosition).ToArray();
++                for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)walk[x,y]=Geometry.Walk(x,y,null)&&!threats.Any(p=>Cheb(p,(x,y))<=3);
++                ports=plan==null?Array.Empty<int[,]>():new[]{Distances((0,plan.WestY)),Distances((Zone.Width-1,plan.EastY)),Distances((plan.NorthX,0)),Distances((plan.SouthX,Zone.Height-1))};
++            }
++            bool Walk((int x,int y) p)=>p.x>=0&&p.y>=0&&p.x<Zone.Width&&p.y<Zone.Height&&walk[p.x,p.y];
++            IEnumerable<(int x,int y)> Adj((int x,int y) p)=>new[]{(p.x-1,p.y),(p.x+1,p.y),(p.x,p.y-1),(p.x,p.y+1)}.Where(Walk);
++            bool Candidate((int x,int y) row,(int x,int y) at)=>Cheb(row,at)>=2&&Cheb(row,at)<=5&&Geometry.Place(at.x,at.y)
++                &&threats.All(p=>Cheb(p,at)>6)&&Adj(at).Count()>=2;
++            bool Budget((int x,int y) rowStand,int last)=>last>=0&&last<=8&&ports.Length==4&&ports.All(map=>map[rowStand.x,rowStand.y]>=0&&map[rowStand.x,rowStand.y]+last+3<=60);
++            internal bool Find((int x,int y) row,out (int x,int y) at,out (int x,int y) harvest,out (int x,int y) cook)
++            {
++                at=harvest=cook=default;var stands=Adj(row).ToArray();if(plan==null||stands.Length<2)return false;
++                var routes=stands.Select(Distances).ToArray();int positions=0,trials=0;
++                for(int y=Math.Max(2,row.y-5);y<=Math.Min(Zone.Height-3,row.y+5);y++)for(int x=Math.Max(2,row.x-5);x<=Math.Min(Zone.Width-3,row.x+5);x++)
++                {
++                    var candidate=(x,y);if(!Candidate(row,candidate))continue;
++                    // Finite heat budget is a cheap cached-distance admission
++                    // predicate, before either cap. Do not spend the bounded
++                    // critical-route proof budget on already impossible walks.
++                    var useful=new List<(int index,(int x,int y) end)>();
++                    foreach(var end in Adj(candidate))for(int i=0;i<stands.Length;i++)
++                        if(Budget(stands[i],routes[i][end.x,end.y]))useful.Add((i,end));
++                    if(useful.Count==0)continue;if(++positions>MaxPositions)return false;
++                    foreach(var pair in useful)
++                    {
++                        if(++trials>MaxTrials)return false;
++                        if(!Geometry.PreservesRoutes(new[]{candidate}))break;
++                        at=candidate;harvest=stands[pair.index];cook=pair.end;return true;
++                    }
++                }
++                return false;
++            }
++            internal bool Fits((int x,int y) row,(int x,int y) at,(int x,int y) harvest,(int x,int y) cook,SpreadWildernessSituationBuilder.Geometry original)
++                =>plan!=null&&Candidate(row,at)&&Adj(row).Count()>=2&&Adj(row).Contains(harvest)&&Adj(at).Contains(cook)
++                    &&Budget(harvest,Distances(harvest)[cook.x,cook.y])&&Geometry.PreservesAgainst(original,new[]{at});
++            int[,] Distances((int x,int y) start)
++            {
++                var result=new int[Zone.Width,Zone.Height];for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)result[x,y]=-1;
++                if(!Walk(start))return result;var q=new Queue<(int x,int y)>();result[start.x,start.y]=0;q.Enqueue(start);
++                while(q.Count>0){var p=q.Dequeue();foreach(var n in Adj(p)){if(result[n.x,n.y]>=0)continue;result[n.x,n.y]=result[p.x,p.y]+1;q.Enqueue(n);}}return result;
++            }
++        }
++        static int Cheb((int x,int y) a,(int x,int y) b)=>Math.Max(Math.Abs(a.x-b.x),Math.Abs(a.y-b.y));
++    }
++}
+--- a/Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/SpreadExplorationPlan.cs
+@@ -10,7 +10,7 @@
+ 
+ namespace CavesOfOoo.Core
+ {
+-    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin, SnakeForage, WorkGang, CollectorReturn, RoadsideExchange, FieldPassage }
++    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin, SnakeForage, WorkGang, CollectorReturn, RoadsideExchange, FieldPassage, CoolingWorkPatch }
+ 
+     /// <summary>Frozen assignment, not evidence that its optional content was placed.</summary>
+     public sealed class SpreadExplorationEntry
+@@ -36,7 +36,7 @@
+     public sealed class SpreadExplorationPlan
+     {
+         public const string PropertyKey="SpreadExploration.Manifest";
+-        public const int CurrentVersion=5;
++        public const int CurrentVersion=6;
+         private const int MaxRecords=WorldMap.Width*WorldMap.Height;
+         private const int MaxWireLength=65536;
+         private readonly OverworldZoneManager owner;
+@@ -100,7 +100,7 @@
+                     return version>=4&&Rank(seed,id,"family-variant")%2==0?SpreadExplorationFamily.CollectorReturn:SpreadExplorationFamily.OccupiedBank;
+                 case Formation.Fallow:return version==2?SpreadExplorationFamily.OccupiedBank:SpreadExplorationFamily.WorkGang;
+                 case Formation.FlowerMeadow:return version==2?SpreadExplorationFamily.None:SpreadExplorationFamily.SnakeForage;
+-                case Formation.FieldStrips:return SpreadExplorationFamily.LastGleanings;
++                case Formation.FieldStrips:return version>=6&&Rank(seed,id,"family-variant")%2==1?SpreadExplorationFamily.CoolingWorkPatch:SpreadExplorationFamily.LastGleanings;
+                 case Formation.RiverMeadow:return SpreadExplorationFamily.WateringMargin;
+                 default:return SpreadExplorationFamily.None;}
+         }
+@@ -281,14 +281,14 @@
+             var lines=wire.Split('\n');var header=lines[0].Split('|');
+             if(header.Length!=3)throw Invalid("header");
+             int version=Number(header[0]);
+-            if((version!=2&&version!=3&&version!=4&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
++            if((version!=2&&version!=3&&version!=4&&version!=5&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
+             int count=Number(header[2]);if(count<0||count>MaxRecords||lines.Length!=count+1)throw Invalid("record count");
+             var rows=new Dictionary<string,SpreadExplorationEntry>(StringComparer.Ordinal);var saved=new Dictionary<string,int>(StringComparer.Ordinal);
+             for(int i=1;i<lines.Length;i++)
+             {
+                 var f=lines[i].Split('|');if(f.Length!=5||!Supported(f[0])||rows.ContainsKey(f[0]))throw Invalid("address");
+                 int mask=Number(f[1]),family=Number(f[2]),topology=Number(f[3]),disposition=Number(f[4]);
+-                if((mask!=1&&mask!=3)||family<0||family>(version==2?4:version==3?6:version==4?8:9)||topology<0||topology>3||disposition<0||disposition>2
++                if((mask!=1&&mask!=3)||family<0||family>(version==2?4:version==3?6:version==4?8:version==5?9:10)||topology<0||topology>3||disposition<0||disposition>2
+                     ||(mask==1&&(family!=0||topology!=0))||(disposition==2&&(mask!=3||family==0)))throw Invalid("enum/mask/disposition");
+                 var selected=(SpreadExplorationFamily)family;
+                 if(selected!=SpreadExplorationFamily.None&&selected!=FamilyFor(FormationSelector.For(BiomeType.Spread,f[0]),version,manager.WorldSeed,f[0]))throw Invalid("family habitat");
+--- a/Assets/Scripts/Gameplay/World/Generation/SpreadWildernessSituationPlan.cs
++++ b/Assets/Scripts/Gameplay/World/Generation/SpreadWildernessSituationPlan.cs
+@@ -56,7 +56,7 @@
+         }
+         bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&(ReferenceEquals(p.SourceReceipt,this)||ReferenceEquals(p.LooseSourceReceipt,this)||ReferenceEquals(p.AmbientSourceReceipt,this)||ReferenceEquals(p.AmbientReplacementReceipt,this)||ReferenceEquals(p.ForageSourceReceipt,this))
+             : source is ContainerBuilder c ? c.CaptureSourceReceipts&&ReferenceEquals(c.SourceReceipt,this)
+-            : source is SpreadCompositionBuilder terrain&&terrain.OwnsPassageReceipt(this);
++            : source is SpreadCompositionBuilder terrain&&(terrain.OwnsPassageReceipt(this)||terrain.OwnsCookingReceipt(this));
+         public bool IsCurrent => !consumed&&complete&&SourceCurrent&&snapshots.All(s=>s.Matches(true));
+         /// <summary>Claim this exact source once after all transaction preflights.
+         /// Consumption is ephemeral and never changes its owners or saved graph.</summary>
+--- a/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
++++ b/Assets/Scripts/Gameplay/World/Map/OverworldZoneManager.cs
+@@ -72,7 +72,7 @@
+                 SpreadCompositionBuilder land=null;PopulationBuilder population=null;ContainerBuilder containers=null;
+                 foreach(var builder in pipeline.Builders)
+                 {
+-                    if(builder is SpreadCompositionBuilder composition){composition.Topology=assignment.Topology;composition.CapturePassageSources=captured.Version>=5&&assignment.Family==SpreadExplorationFamily.FieldPassage;land=composition;}
++                    if(builder is SpreadCompositionBuilder composition){composition.Topology=assignment.Topology;composition.CapturePassageSources=captured.Version>=5&&assignment.Family==SpreadExplorationFamily.FieldPassage;composition.CaptureCookingSources=captured.Version>=6&&assignment.Family==SpreadExplorationFamily.CoolingWorkPatch;land=composition;}
+                     if(builder is PopulationBuilder people)population=people;
+                     if(builder is ContainerBuilder stock)containers=stock;
+                 }
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationCatalogExpansionTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationCatalogExpansionTests.cs
+@@ -11,7 +11,7 @@
+   public void FreshCatalogAddsActualForageAndWorkGangAssignments(int seed)
+   {using(var s=new DensityLootTestScope()){
+    var m=OverworldZoneManager.CreateDetached(s.Factory,seed,true);
+-   Assert.AreEqual(5,m.Exploration.Version,"New distribution has an explicit version; existing v2/v3 worlds must retain theirs.");
++   Assert.AreEqual(6,m.Exploration.Version,"New distribution has an explicit version; existing v2/v3 worlds must retain theirs.");
+    foreach(string family in new[]{"SnakeForage","WorkGang"})Assert.True(m.Exploration.Entries.Any(e=>e.Family.ToString()==family),family);
+    foreach(var e in m.Exploration.Entries.Where(e=>e.Family.ToString()=="SnakeForage"))Assert.AreEqual(Formation.FlowerMeadow,FormationSelector.For(BiomeType.Spread,e.ZoneID));
+    foreach(var e in m.Exploration.Entries.Where(e=>e.Family.ToString()=="WorkGang"))Assert.AreEqual(Formation.Fallow,FormationSelector.For(BiomeType.Spread,e.ZoneID));
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEntryExpansionTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEntryExpansionTests.cs
+@@ -34,7 +34,7 @@
+ 
+         [TestCase(1)][TestCase(64)][TestCase(1729)] public void NewFamiliesAreFrozenColdAndHabitatSpecific(int seed)
+         {
+-            var a=Fresh(seed);var b=Fresh(seed);Assert.AreEqual(5,a.Exploration.Version);Assert.Zero(a.CachedZoneCount);
++            var a=Fresh(seed);var b=Fresh(seed);Assert.AreEqual(6,a.Exploration.Version);Assert.Zero(a.CachedZoneCount);
+             CollectionAssert.AreEqual(a.Exploration.Entries.Select(e=>e.ZoneID+e.Family),b.Exploration.Entries.Select(e=>e.ZoneID+e.Family));
+             foreach(string f in new[]{"CollectorReturn","RoadsideExchange"})
+             {
+@@ -128,7 +128,7 @@
+         {
+             var m=Fresh();var e=Exchange(m);var z=Activate(m,e);Assert.True(Mark(m,z,e,()=>true));
+             var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("entry-v4","fixture",m,null,null));
+-            Assert.AreEqual(5,loaded.ZoneManager.Exploration.Version);var now=loaded.ZoneManager.GetZone(e.ZoneID);Assert.AreNotSame(z,now);
++            Assert.AreEqual(6,loaded.ZoneManager.Exploration.Version);var now=loaded.ZoneManager.GetZone(e.ZoneID);Assert.AreNotSame(z,now);
+             Assert.AreEqual(2,loaded.ZoneManager.Exploration.DispositionFor(e.ZoneID));Assert.False(Accepted(loaded.ZoneManager,now,out _));
+             loaded.ZoneManager.UnloadZone(e.ZoneID);Assert.AreSame(now,loaded.ZoneManager.GetZone(e.ZoneID));
+         }
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestAdversarialTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestAdversarialTests.cs
+@@ -178,7 +178,7 @@
+             {
+                 System.Globalization.CultureInfo.CurrentCulture=culture;
+                 var m=OverworldZoneManager.CreateDetached(scope.Factory,-64,true);
+-                string wire=Wire(m);Assert.True(wire.StartsWith("5|-64|",StringComparison.Ordinal));
++                string wire=Wire(m);Assert.True(wire.StartsWith("6|-64|",StringComparison.Ordinal));
+                 var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("culture","fixture",m,null,null));
+                 Assert.True(loaded.ZoneManager.Exploration.Enabled);Assert.AreEqual(-64,loaded.ZoneManager.WorldSeed);
+             }
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestTests.cs
+@@ -60,7 +60,7 @@
+         public void FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(int seed)
+         {
+             var rng=new Random(714); LoadoutPart.Rng=rng;
+-            var m=Fresh(seed); var p=Plan(m); Assert.True((bool)Value(p,"Enabled")); Assert.AreEqual(5,Value(p,"Version"));
++            var m=Fresh(seed); var p=Plan(m); Assert.True((bool)Value(p,"Enabled")); Assert.AreEqual(6,Value(p,"Version"));
+             var rows=Entries(p).ToArray(); Assert.Greater(rows.Length,0); Assert.LessOrEqual(rows.Length,WorldMap.Width*WorldMap.Height);
+             Assert.AreEqual(rows.Length,rows.Select(ID).Distinct().Count()); Assert.AreEqual(0,m.CachedZoneCount);
+             Assert.AreEqual(new Random(714).Next(),rng.Next(),"Planner reads may not spend actor loadout draws.");
+@@ -80,7 +80,7 @@
+         [TestCase(1)][TestCase(64)][TestCase(1729)]
+         public void ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(int seed)
+         {
+-            var p=Plan(Fresh(seed)); var rows=Entries(p).ToArray(); var allowed=new[]{"None","RoadSpill","OccupiedBank","LastGleanings","WateringMargin","SnakeForage","WorkGang","CollectorReturn","RoadsideExchange","FieldPassage"};
++            var p=Plan(Fresh(seed)); var rows=Entries(p).ToArray(); var allowed=new[]{"None","RoadSpill","OccupiedBank","LastGleanings","WateringMargin","SnakeForage","WorkGang","CollectorReturn","RoadsideExchange","FieldPassage","CoolingWorkPatch"};
+             Assert.True(rows.Any(e=>Flag(e,"PlacementEligible")&&Family(e)=="None")); Assert.Greater(rows.Count(e=>Family(e)!="None"),0);
+             foreach(var e in rows) { CollectionAssert.Contains(allowed,Family(e)); if(Family(e)=="None")continue;
+                 foreach(string neighbor in Adjacent(ID(e))) { var other=Find(p,neighbor); if(other!=null)Assert.AreNotEqual(Family(e),Family(other),ID(e)+" / "+neighbor); }
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassageManifestTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassageManifestTests.cs
+@@ -33,10 +33,10 @@
+         static uint Variant(int seed,string id)
+         {unchecked{uint h=2166136261u^(uint)seed;foreach(char c in "SpreadExploration.v2|family-variant|"+id)h=(h^c)*16777619u;h^=h>>16;h*=0x7feb352du;h^=h>>15;h*=0x846ca68bu;return (h^(h>>16))%3;}}
+         [TestCase(1)][TestCase(64)][TestCase(1729)]
+-        public void FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(int seed)
++        public void FreshCurrentUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(int seed)
+         {
+             var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);var plan=m.Exploration;
+-            Assert.AreEqual(5,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
++            Assert.AreEqual(6,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
+             var rows=plan.Entries.Where(e=>e.Family.ToString()=="FieldPassage").ToArray();Assert.IsNotEmpty(rows,"Fixed corpus must provide real selected opportunities before any geometry claim.");
+             foreach(var e in plan.Entries.Where(e=>e.Family!=SpreadExplorationFamily.None&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.Hedgerow))
+                 Assert.AreEqual(new[]{"OccupiedBank","CollectorReturn","FieldPassage"}[Variant(seed,e.ZoneID)],e.Family.ToString());
+@@ -44,7 +44,7 @@
+             string wire=SpreadExplorationPlan.BindForSave(m,null).GetProperty(SpreadExplorationPlan.PropertyKey);Bind(m,Restore(m,wire));
+             Assert.AreEqual(wire,SpreadExplorationPlan.BindForSave(m,null).GetProperty(SpreadExplorationPlan.PropertyKey));Assert.Zero(m.CachedZoneCount);Assert.Zero(m.Exploration.RetainedGraphCount);
+         }
+-        [TestCase(2,2)][TestCase(3,2)][TestCase(4,7)]
++        [TestCase(2,2)][TestCase(3,2)][TestCase(4,7)][TestCase(5,7)]
+         public void LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(int version,int family)
+         {
+             var m=OverworldZoneManager.CreateDetached(scope.Factory,64,false);const string id="Overworld.13.11.0";
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassagePipelineTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassagePipelineTests.cs
+@@ -67,7 +67,7 @@
+         void Seed(int seed,string id)=>scope.Seed(unchecked(seed^FormationSelector.StableIndex(id,int.MaxValue)));
+         string[] Selected(int seed)
+         {
+-            var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);Assert.AreEqual(5,m.Exploration.Version,"F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.");
++            var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);Assert.AreEqual(6,m.Exploration.Version,"F12 pipeline tests exercise the current source policy; literal older assignments remain in manifest tests.");
+             var ids=m.Exploration.Entries.Where(e=>e.PlacementEligible&&e.Family.ToString()=="FieldPassage").Select(e=>e.ZoneID).ToArray();Assert.IsNotEmpty(ids);Assert.Zero(m.CachedZoneCount);return ids;
+         }
+         static (Cell a,Cell b,int closed) Approaches(Zone z,Entity gate)
+@@ -98,9 +98,9 @@
+         [Serializable]public sealed class CensusRow{public string zone,result;public int owners,rawPrecompositionHedges,closedSteps,nextRng;public double baselineMilliseconds,currentMilliseconds;public bool committed;}
+         [Serializable]public sealed class Census{public int seed,selected,committed,refused;public string boundary;public List<CensusRow> rows=new List<CensusRow>();}
+         [TestCase(1)][TestCase(64)][TestCase(1729)]
+-        public void RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(int seed)
++        public void RealCurrentPipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(int seed)
+         {
+-            var ids=Selected(seed);var report=new Census{seed=seed,selected=ids.Length,boundary="Fixed v5 selections, actual cold full pipeline paired with only composer removed. Per-zone global RNG reset; same source policy. Exact current owners/positions/parts and explicit stock/gear/stats/tags/property projection. Raw Hedge count is not eligible-source count; one paired elapsed sample per address is not a frame-time or significance claim. Not full graph serialization, native journey or v4 economy equivalence."};
++            var ids=Selected(seed);var report=new Census{seed=seed,selected=ids.Length,boundary="Fixed current v6 selections, actual cold full pipeline paired with only composer removed. Per-zone global RNG reset; same source policy. Exact current owners/positions/parts and explicit stock/gear/stats/tags/property projection. Raw Hedge count is not eligible-source count; one paired elapsed sample per address is not a frame-time or significance claim. Not full graph serialization, native journey or v4 economy equivalence."};
+             foreach(string id in ids)
+             {
+                 Seed(seed,id);var baseline=new ObservedManager(scope.Factory,seed,true);var watch=System.Diagnostics.Stopwatch.StartNew();var before=baseline.GetZone(id);watch.Stop();double baselineMs=watch.Elapsed.TotalMilliseconds;Assert.NotNull(before,id+" baseline");
+@@ -155,7 +155,7 @@
+             // real keyboard travel/save is a separate native acceptance gate.
+             var away=m.GetZone(ReferenceGladePlan.ZoneID);Assert.NotNull(away);Cell target=null;away.ForEachCell((c,x,y)=>{if(target==null&&away.CanPlaceFootprint(player,x,y))target=c;});Assert.NotNull(target);Assert.True(z.RemoveEntity(player));Assert.True(away.AddEntity(player,target.X,target.Y));m.SetActiveZone(away);m.UnloadZone(id);Assert.AreSame(z,m.GetZone(id));
+             var state=GameSessionState.Capture("field-passage","direct-core-away-save",m,null,player);GameSessionState loaded;using(var stream=new MemoryStream()){state.Save(new SaveWriter(stream));stream.Position=0;loaded=GameSessionState.Load(new SaveReader(stream,scope.Factory));}
+-            var restored=(OverworldZoneManager)loaded.ZoneManager;Assert.AreNotSame(m,restored);Assert.AreNotSame(player,loaded.Player);Assert.AreEqual(ReferenceGladePlan.ZoneID,restored.ActiveZone.ZoneID);Assert.AreEqual(5,restored.Exploration.Version);Assert.AreEqual(2,restored.Exploration.DispositionFor(id));var returned=restored.GetZone(id);Assert.NotNull(returned);Assert.AreNotSame(z,returned);Assert.AreEqual(expected.Count,returned.EntityCount);Assert.AreEqual(money,TradeSystem.GetDrams(loaded.Player));
++            var restored=(OverworldZoneManager)loaded.ZoneManager;Assert.AreNotSame(m,restored);Assert.AreNotSame(player,loaded.Player);Assert.AreEqual(ReferenceGladePlan.ZoneID,restored.ActiveZone.ZoneID);Assert.AreEqual(6,restored.Exploration.Version);Assert.AreEqual(2,restored.Exploration.DispositionFor(id));var returned=restored.GetZone(id);Assert.NotNull(returned);Assert.AreNotSame(z,returned);Assert.AreEqual(expected.Count,returned.EntityCount);Assert.AreEqual(money,TradeSystem.GetDrams(loaded.Player));
+             foreach(var owner in returned.GetReadOnlyEntities()){Assert.True(expected.ContainsKey(owner.ID));Assert.AreEqual(expected[owner.ID].pos,returned.GetEntityPosition(owner));Assert.AreEqual(expected[owner.ID].facts,Exact(owner));}
+             Assert.False(returned.GetReadOnlyEntities().Any(e=>e.ID==hedgeID));Assert.False(returned.GetCell(pos.x,pos.y).BlocksMovement());
+             if(broken)Assert.False(returned.GetReadOnlyEntities().Any(e=>e.ID==gateID));else{var saved=returned.GetReadOnlyEntities().Single(e=>e.ID==gateID);Assert.AreNotSame(gate,saved);Assert.True(saved.GetPart<DoorPart>().IsOpen);Assert.AreEqual(axis,saved.GetPart<DoorPart>().QuarterTurns);}

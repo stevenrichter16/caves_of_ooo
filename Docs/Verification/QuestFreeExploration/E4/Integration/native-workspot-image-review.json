@@ -1,0 +1,76 @@
+{
+  "scope": "Read-only exact native screenshot comparison; initial missing-scenery impression withdrawn. Tiny coals locally visible; distant recognition/human preference not measured. No image modifications.",
+  "run": "c8571a85f45b4f32920d94549bf51df4",
+  "scriptedChecks": 20,
+  "paidInputs": 70,
+  "controlledNpcScheduling": true,
+  "images": [
+    {
+      "name": "00-ordinary-start.png",
+      "sha256": "fd051812a0b5ba80309e9ac9644878bb1e612ca62eabae99f920250c06186e29"
+    },
+    {
+      "name": "01-generated-west-entry.png",
+      "sha256": "9e30c27b927e43e9c52a639259e47453e0db1eb1e6ee40931b84cb1a6cf9bfce"
+    },
+    {
+      "name": "02-hot-ready-examine-0.png",
+      "sha256": "0159447ae9f1518d8f874820b4a7a6bb7ebb5ebdbb3a8b0e8c8e94a32e33980a"
+    },
+    {
+      "name": "03-earned-food-cooked-while-ready.png",
+      "sha256": "000feda98dc4c3377ade5da5828cf0b94efd94944722a9a51f1da4bf15c14789"
+    },
+    {
+      "name": "04-normal-paid-cooling-threshold.png",
+      "sha256": "0bf20badaa1a26714003a57ef69f04de4a0d755148a8ecfe6ee49d434e8a685b"
+    },
+    {
+      "name": "05-cooled-unavailable-examine-0.png",
+      "sha256": "c5623b25a7374c9270338d2c5a17068955b31dd46e6ef59e6e02377acd71d964"
+    },
+    {
+      "name": "06-loaded-cooled-source-and-spent-row.png",
+      "sha256": "7049b75cd372b80c22ca63a88dc15ff751ccb393f5c3f2eb95ba964a97ea8d54"
+    },
+    {
+      "name": "07-loaded-cooled-readout-0.png",
+      "sha256": "eedf5365abc87edb2e958520c95e2a401b9bd92846b56b1c16aaeaad2270a0a0"
+    }
+  ],
+  "regions04versus06": [
+    {
+      "name": "upper crops",
+      "bounds": [
+        160,
+        215,
+        650,
+        295
+      ],
+      "changedPixels": 0,
+      "totalPixels": 39200
+    },
+    {
+      "name": "lower crops",
+      "bounds": [
+        560,
+        555,
+        1030,
+        660
+      ],
+      "changedPixels": 0,
+      "totalPixels": 49350
+    },
+    {
+      "name": "house",
+      "bounds": [
+        495,
+        295,
+        640,
+        445
+      ],
+      "changedPixels": 12,
+      "totalPixels": 21750
+    }
+  ]
+}

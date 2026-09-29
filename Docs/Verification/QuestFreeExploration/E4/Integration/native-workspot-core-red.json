@@ -1,0 +1,967 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 106,
+    "passed": 21,
+    "failed": 85,
+    "skipped": 0,
+    "durationSeconds": 17.2727918,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "ActualZoneRegistrationKeepsLegacyCampfireAndSkipsFiniteSource(False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingEmberTests.ActualZoneRegistrationKeepsLegacyCampfireAndSkipsFiniteSource(False)",
+      "state": "Passed",
+      "durationSeconds": 0.1837431,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualZoneRegistrationKeepsLegacyCampfireAndSkipsFiniteSource(True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingEmberTests.ActualZoneRegistrationKeepsLegacyCampfireAndSkipsFiniteSource(True)",
+      "state": "Failed",
+      "durationSeconds": 0.0733327,
+      "message": "  Expected: 0\n  But was:  1\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingEmberTests.ActualZoneRegistrationKeepsLegacyCampfireAndSkipsFiniteSource (System.Boolean finite) [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiniteCookingEmberTests.cs:26\n",
+      "output": ""
+    },
+    {
+      "name": "CachedLegacyAnchorCannotSpawnAfterSourceBecomesFinite(False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingEmberTests.CachedLegacyAnchorCannotSpawnAfterSourceBecomesFinite(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0504418,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "CachedLegacyAnchorCannotSpawnAfterSourceBecomesFinite(True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingEmberTests.CachedLegacyAnchorCannotSpawnAfterSourceBecomesFinite(True)",
+      "state": "Failed",
+      "durationSeconds": 0.5378503,
+      "message": "  No new free-floating Ember owner from an opted-in residual source, including an already cached anchor.\n  Expected: 0\n  But was:  1\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingEmberTests.CachedLegacyAnchorCannotSpawnAfterSourceBecomesFinite (System.Boolean becomeFinite) [0x00068] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiniteCookingEmberTests.cs:34\n",
+      "output": ""
+    },
+    {
+      "name": "DirectEmitterRegistrationExcludesOnlyOptedInResidualCoals(False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingEmberTests.DirectEmitterRegistrationExcludesOnlyOptedInResidualCoals(False)",
+      "state": "Passed",
+      "durationSeconds": 3.6638438,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "DirectEmitterRegistrationExcludesOnlyOptedInResidualCoals(True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingEmberTests.DirectEmitterRegistrationExcludesOnlyOptedInResidualCoals(True)",
+      "state": "Failed",
+      "durationSeconds": 0.0444043,
+      "message": "  Expected: 0\n  But was:  1\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingEmberTests.DirectEmitterRegistrationExcludesOnlyOptedInResidualCoals (System.Boolean finite) [0x0003d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiniteCookingEmberTests.cs:20\n",
+      "output": ""
+    },
+    {
+      "name": "ActualOldPartWireWithoutRestFieldKeepsRest(False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0669268,
+      "message": "  Cooking-only sources require an explicit default-true saved rest option.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:45\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest (System.Boolean priorFiniteField) [0x000a3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:58\n",
+      "output": ""
+    },
+    {
+      "name": "ActualOldPartWireWithoutRestFieldKeepsRest(True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(True)",
+      "state": "Failed",
+      "durationSeconds": 0.0746188,
+      "message": "  Cooking-only sources require an explicit default-true saved rest option.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:45\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest (System.Boolean priorFiniteField) [0x000a3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:58\n",
+      "output": ""
+    },
+    {
+      "name": "DirectRestCommandsRespectPolicyBeforeHealingOrClock(\"RestAtCampfire\",False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(\"RestAtCampfire\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0767854,
+      "message": "  Cooking-only sources require an explicit default-true saved rest option.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:45\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow (System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:46\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock (System.String command, System.Boolean allow) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:73\n",
+      "output": ""
+    },
+    {
+      "name": "DirectRestCommandsRespectPolicyBeforeHealingOrClock(\"RestUntilNextBand\",False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(\"RestUntilNextBand\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0484358,
+      "message": "  Cooking-only sources require an explicit default-true saved rest option.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:45\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow (System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:46\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock (System.String command, System.Boolean allow) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:73\n",
+      "output": ""
+    },
+    {
+      "name": "DirectRestCommandsRespectPolicyBeforeHealingOrClock(\"RestAtCampfire\",True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(\"RestAtCampfire\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.0650981,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "DirectRestCommandsRespectPolicyBeforeHealingOrClock(\"RestUntilNextBand\",True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(\"RestUntilNextBand\",True)",
+      "state": "Passed",
+      "durationSeconds": 0.0539364,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(False,25.0f)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(False,25.0f)",
+      "state": "Passed",
+      "durationSeconds": 0.0386903,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(False,500.0f)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(False,500.0f)",
+      "state": "Passed",
+      "durationSeconds": 0.0474095,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(True,25.0f)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(True,25.0f)",
+      "state": "Failed",
+      "durationSeconds": 0.0388573,
+      "message": "  Expected: equivalent to < \"&c\" >\n  But was:  < \"&R\", \"&Y\" >\n",
+      "stackTrace": "at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers (System.Boolean finite, System.Single temperature) [0x00092] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:85\n",
+      "output": ""
+    },
+    {
+      "name": "FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(True,500.0f)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(True,500.0f)",
+      "state": "Failed",
+      "durationSeconds": 0.0534875,
+      "message": "  Expected: equivalent to < \"&c\" >\n  But was:  < \"&R\", \"&Y\" >\n",
+      "stackTrace": "at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers (System.Boolean finite, System.Single temperature) [0x00092] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:85\n",
+      "output": ""
+    },
+    {
+      "name": "FiniteProximityNeverClaimsLegacyCrackle(False,25.0f)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(False,25.0f)",
+      "state": "Passed",
+      "durationSeconds": 0.0424243,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FiniteProximityNeverClaimsLegacyCrackle(False,500.0f)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(False,500.0f)",
+      "state": "Passed",
+      "durationSeconds": 0.0517093,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FiniteProximityNeverClaimsLegacyCrackle(True,25.0f)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(True,25.0f)",
+      "state": "Failed",
+      "durationSeconds": 0.0382711,
+      "message": "  Expected: 0\n  But was:  1\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle (System.Boolean finite, System.Single temperature) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:93\n",
+      "output": ""
+    },
+    {
+      "name": "FiniteProximityNeverClaimsLegacyCrackle(True,500.0f)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(True,500.0f)",
+      "state": "Failed",
+      "durationSeconds": 0.0361001,
+      "message": "  Expected: 0\n  But was:  1\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle (System.Boolean finite, System.Single temperature) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:93\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"hidden\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"hidden\")",
+      "state": "Failed",
+      "durationSeconds": 0.0455115,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"unseen-cell\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"unseen-cell\")",
+      "state": "Failed",
+      "durationSeconds": 0.0354111,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"wrong-cell\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"wrong-cell\")",
+      "state": "Failed",
+      "durationSeconds": 0.0504474,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"foreign-zone\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"foreign-zone\")",
+      "state": "Failed",
+      "durationSeconds": 0.0701238,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"removed\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"removed\")",
+      "state": "Failed",
+      "durationSeconds": 0.0388067,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"foreign-part\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"foreign-part\")",
+      "state": "Failed",
+      "durationSeconds": 0.0378422,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"inactive-zone\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"inactive-zone\")",
+      "state": "Failed",
+      "durationSeconds": 0.0559738,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"foreign-render\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"foreign-render\")",
+      "state": "Failed",
+      "durationSeconds": 0.0571612,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"foreign-physics\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"foreign-physics\")",
+      "state": "Failed",
+      "durationSeconds": 0.039966,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"carried\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"carried\")",
+      "state": "Failed",
+      "durationSeconds": 0.0500793,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"equipped\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"equipped\")",
+      "state": "Failed",
+      "durationSeconds": 0.0361439,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"moved\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(\"moved\")",
+      "state": "Failed",
+      "durationSeconds": 0.0491864,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:111\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(150.0f,200.0f,\"enough stored heat\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(150.0f,200.0f,\"enough stored heat\")",
+      "state": "Failed",
+      "durationSeconds": 0.0370772,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState (System.Single heat, System.Single fuel, System.String expected) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:103\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(149.99f,200.0f,\"no longer hot enough\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(149.99f,200.0f,\"no longer hot enough\")",
+      "state": "Failed",
+      "durationSeconds": 0.0485249,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState (System.Single heat, System.Single fuel, System.String expected) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:103\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,0.0f,\"still hot\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,0.0f,\"still hot\")",
+      "state": "Failed",
+      "durationSeconds": 0.0367194,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState (System.Single heat, System.Single fuel, System.String expected) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:103\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.NaN,200.0f,\"unavailable\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.NaN,200.0f,\"unavailable\")",
+      "state": "Failed",
+      "durationSeconds": 0.0493302,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState (System.Single heat, System.Single fuel, System.String expected) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:103\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,float.NaN,\"unavailable\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,float.NaN,\"unavailable\")",
+      "state": "Failed",
+      "durationSeconds": 0.0351833,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState (System.Single heat, System.Single fuel, System.String expected) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:103\n",
+      "output": ""
+    },
+    {
+      "name": "FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.PositiveInfinity,200.0f,\"unavailable\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.PositiveInfinity,200.0f,\"unavailable\")",
+      "state": "Failed",
+      "durationSeconds": 0.044413,
+      "message": "  Expected: String containing \"Cooking:\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState (System.Single heat, System.Single fuel, System.String expected) [0x00056] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:103\n",
+      "output": ""
+    },
+    {
+      "name": "FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0349166,
+      "message": "  Cooking-only sources require an explicit default-true saved rest option.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:45\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow (System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:46\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement (System.Boolean allow) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:141\n",
+      "output": ""
+    },
+    {
+      "name": "FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(True)",
+      "state": "Failed",
+      "durationSeconds": 0.040467,
+      "message": "  Cooking-only sources require an explicit default-true saved rest option.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:45\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow (System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:46\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement (System.Boolean allow) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:141\n",
+      "output": ""
+    },
+    {
+      "name": "LegacyFocusedDescriptionGetsNoFiniteClaim(False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.LegacyFocusedDescriptionGetsNoFiniteClaim(False)",
+      "state": "Passed",
+      "durationSeconds": 0.0479642,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LegacyFocusedDescriptionGetsNoFiniteClaim(True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.LegacyFocusedDescriptionGetsNoFiniteClaim(True)",
+      "state": "Passed",
+      "durationSeconds": 0.0355475,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(\"missing-fuel\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(\"missing-fuel\")",
+      "state": "Failed",
+      "durationSeconds": 0.0480084,
+      "message": "  Expected: String containing \"enough stored heat\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:124\n",
+      "output": ""
+    },
+    {
+      "name": "MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(\"missing-thermal\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(\"missing-thermal\")",
+      "state": "Failed",
+      "durationSeconds": 0.0340565,
+      "message": "  Expected: String containing \"enough stored heat\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:124\n",
+      "output": ""
+    },
+    {
+      "name": "MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(\"foreign-fuel\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(\"foreign-fuel\")",
+      "state": "Failed",
+      "durationSeconds": 0.0358133,
+      "message": "  Expected: String containing \"enough stored heat\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:124\n",
+      "output": ""
+    },
+    {
+      "name": "MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(\"foreign-thermal\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(\"foreign-thermal\")",
+      "state": "Failed",
+      "durationSeconds": 0.0484369,
+      "message": "  Expected: String containing \"enough stored heat\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking (System.String fault) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:124\n",
+      "output": ""
+    },
+    {
+      "name": "MenuRestOptOutIsIndependentOfFiniteCooking(False,False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(False,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0405715,
+      "message": "  Cooking-only sources require an explicit default-true saved rest option.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:45\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow (System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:46\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking (System.Boolean finite, System.Boolean allow) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:64\n",
+      "output": ""
+    },
+    {
+      "name": "MenuRestOptOutIsIndependentOfFiniteCooking(False,True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(False,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0520622,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "MenuRestOptOutIsIndependentOfFiniteCooking(True,False)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(True,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0544982,
+      "message": "  Cooking-only sources require an explicit default-true saved rest option.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:45\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow (System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:46\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking (System.Boolean finite, System.Boolean allow) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:64\n",
+      "output": ""
+    },
+    {
+      "name": "MenuRestOptOutIsIndependentOfFiniteCooking(True,True)",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(True,True)",
+      "state": "Passed",
+      "durationSeconds": 0.0539186,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "PlainAndAuthoredPartsDefaultToAllowingEstablishedRest",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.PlainAndAuthoredPartsDefaultToAllowingEstablishedRest",
+      "state": "Failed",
+      "durationSeconds": 0.0552229,
+      "message": "  Cooking-only sources require an explicit default-true saved rest option.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField () [0x00015] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:45\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.PlainAndAuthoredPartsDefaultToAllowingEstablishedRest () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:50\n",
+      "output": ""
+    },
+    {
+      "name": "SameOwnerReadoutTracksHotExhaustedThenCooledWithoutMutatingTheSource",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingPresentationTests.SameOwnerReadoutTracksHotExhaustedThenCooledWithoutMutatingTheSource",
+      "state": "Failed",
+      "durationSeconds": 0.1719827,
+      "message": "  Expected: String containing \"enough stored heat\"\n  But was:  \"You see a campfire.\n\nA small work spot.\"\n",
+      "stackTrace": "at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0\nat NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0\nat CavesOfOoo.Tests.FiniteCookingPresentationTests.SameOwnerReadoutTracksHotExhaustedThenCooledWithoutMutatingTheSource () [0x00029] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs:133\n",
+      "output": ""
+    },
+    {
+      "name": "ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(5,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(5,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0700533,
+      "message": "  F10 requires fresh v6, not a rewritten v5 source census.\n  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries (System.Int32 seed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:93\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:97\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:172\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain (System.Int32 passes, System.Boolean ready) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:191\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(67,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(67,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0662063,
+      "message": "  F10 requires fresh v6, not a rewritten v5 source census.\n  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries (System.Int32 seed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:93\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:97\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:172\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain (System.Int32 passes, System.Boolean ready) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:191\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "FinalCallbackRequiresExactSourceAndStillUsefulApproach(\"unchanged\",True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(\"unchanged\",True)",
+      "state": "Failed",
+      "durationSeconds": 0.0617122,
+      "message": "  F10 requires fresh v6, not a rewritten v5 source census.\n  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries (System.Int32 seed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:93\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:97\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:172\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach (System.String mutation, System.Boolean accepted) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:176\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "FinalCallbackRequiresExactSourceAndStillUsefulApproach(\"offroute\",True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(\"offroute\",True)",
+      "state": "Failed",
+      "durationSeconds": 0.0646926,
+      "message": "  F10 requires fresh v6, not a rewritten v5 source census.\n  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries (System.Int32 seed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:93\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:97\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:172\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach (System.String mutation, System.Boolean accepted) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:176\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "FinalCallbackRequiresExactSourceAndStillUsefulApproach(\"replace-source\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(\"replace-source\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0769568,
+      "message": "  F10 requires fresh v6, not a rewritten v5 source census.\n  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries (System.Int32 seed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:93\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:97\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:172\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach (System.String mutation, System.Boolean accepted) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:176\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "FinalCallbackRequiresExactSourceAndStillUsefulApproach(\"block-ports\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(\"block-ports\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0555082,
+      "message": "  F10 requires fresh v6, not a rewritten v5 source census.\n  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries (System.Int32 seed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:93\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:97\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:172\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach (System.String mutation, System.Boolean accepted) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:176\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(1)",
+      "fullName": "CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(1)",
+      "state": "Failed",
+      "durationSeconds": 0.0566124,
+      "message": "  F10 requires fresh v6, not a rewritten v5 source census.\n  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries (System.Int32 seed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:93\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:152\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(64)",
+      "fullName": "CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(64)",
+      "state": "Failed",
+      "durationSeconds": 0.0516877,
+      "message": "  F10 requires fresh v6, not a rewritten v5 source census.\n  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries (System.Int32 seed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:93\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:152\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(1729)",
+      "fullName": "CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(1729)",
+      "state": "Failed",
+      "durationSeconds": 0.0617707,
+      "message": "  F10 requires fresh v6, not a rewritten v5 source census.\n  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries (System.Int32 seed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:93\nat CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources (System.Int32 seed) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs:152\n",
+      "output": "[FactionLoader] Loaded 14 factions.\n"
+    },
+    {
+      "name": "FreshSixSelectsOneFieldPrincipalWithoutGeneratingGraphs(1)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingManifestTests.FreshSixSelectsOneFieldPrincipalWithoutGeneratingGraphs(1)",
+      "state": "Failed",
+      "durationSeconds": 0.0495434,
+      "message": "  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingManifestTests.FreshSixSelectsOneFieldPrincipalWithoutGeneratingGraphs (System.Int32 seed) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingManifestTests.cs:39\n",
+      "output": ""
+    },
+    {
+      "name": "FreshSixSelectsOneFieldPrincipalWithoutGeneratingGraphs(64)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingManifestTests.FreshSixSelectsOneFieldPrincipalWithoutGeneratingGraphs(64)",
+      "state": "Failed",
+      "durationSeconds": 0.0598242,
+      "message": "  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingManifestTests.FreshSixSelectsOneFieldPrincipalWithoutGeneratingGraphs (System.Int32 seed) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingManifestTests.cs:39\n",
+      "output": ""
+    },
+    {
+      "name": "FreshSixSelectsOneFieldPrincipalWithoutGeneratingGraphs(1729)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingManifestTests.FreshSixSelectsOneFieldPrincipalWithoutGeneratingGraphs(1729)",
+      "state": "Failed",
+      "durationSeconds": 0.0681248,
+      "message": "  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingManifestTests.FreshSixSelectsOneFieldPrincipalWithoutGeneratingGraphs (System.Int32 seed) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingManifestTests.cs:39\n",
+      "output": ""
+    },
+    {
+      "name": "LiteralOlderFieldAssignmentsRemainUnchanged(2)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingManifestTests.LiteralOlderFieldAssignmentsRemainUnchanged(2)",
+      "state": "Passed",
+      "durationSeconds": 0.0524647,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LiteralOlderFieldAssignmentsRemainUnchanged(3)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingManifestTests.LiteralOlderFieldAssignmentsRemainUnchanged(3)",
+      "state": "Passed",
+      "durationSeconds": 0.0478177,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LiteralOlderFieldAssignmentsRemainUnchanged(4)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingManifestTests.LiteralOlderFieldAssignmentsRemainUnchanged(4)",
+      "state": "Passed",
+      "durationSeconds": 0.0742886,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "LiteralOlderFieldAssignmentsRemainUnchanged(5)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingManifestTests.LiteralOlderFieldAssignmentsRemainUnchanged(5)",
+      "state": "Passed",
+      "durationSeconds": 0.0561374,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "OnlySelectedCurrentCookingFamilyOptsIntoTerrainRowReceipts",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingManifestTests.OnlySelectedCurrentCookingFamilyOptsIntoTerrainRowReceipts",
+      "state": "Failed",
+      "durationSeconds": 0.0904654,
+      "message": "  Expected: 6\n  But was:  5\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingManifestTests.OnlySelectedCurrentCookingFamilyOptsIntoTerrainRowReceipts () [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingManifestTests.cs:57\n",
+      "output": ""
+    },
+    {
+      "name": "UnsupportedWireRefusesWithoutInventingGraphs(999,\"FieldStrips\",0)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingManifestTests.UnsupportedWireRefusesWithoutInventingGraphs(999,\"FieldStrips\",0)",
+      "state": "Passed",
+      "durationSeconds": 0.0565408,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "UnsupportedWireRefusesWithoutInventingGraphs(5,\"FieldStrips\",10)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingManifestTests.UnsupportedWireRefusesWithoutInventingGraphs(5,\"FieldStrips\",10)",
+      "state": "Passed",
+      "durationSeconds": 0.0586027,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "UnsupportedWireRefusesWithoutInventingGraphs(6,\"Hedgerow\",10)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingManifestTests.UnsupportedWireRefusesWithoutInventingGraphs(6,\"Hedgerow\",10)",
+      "state": "Passed",
+      "durationSeconds": 0.0434339,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ABlockedActualEntryPortRefusesBeforeFactory(False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.ABlockedActualEntryPortRefusesBeforeFactory(False)",
+      "state": "Failed",
+      "durationSeconds": 0.0975351,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InstallProbe (System.Action`1[T] callback) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:105\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.ABlockedActualEntryPortRefusesBeforeFactory (System.Boolean blocked) [0x00046] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:101\n",
+      "output": ""
+    },
+    {
+      "name": "ABlockedActualEntryPortRefusesBeforeFactory(True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.ABlockedActualEntryPortRefusesBeforeFactory(True)",
+      "state": "Failed",
+      "durationSeconds": 0.0729747,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InstallProbe (System.Action`1[T] callback) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:105\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.ABlockedActualEntryPortRefusesBeforeFactory (System.Boolean blocked) [0x00046] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:101\n",
+      "output": ""
+    },
+    {
+      "name": "ActualCoalsContentIsFiniteBareUtilityWithoutRestLightOrFood",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.ActualCoalsContentIsFiniteBareUtilityWithoutRestLightOrFood",
+      "state": "Failed",
+      "durationSeconds": 0.094325,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.ActualCoalsContentIsFiniteBareUtilityWithoutRestLightOrFood () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:59\n",
+      "output": ""
+    },
+    {
+      "name": "ColdScreenMatchesRealFreshPlayerFactionFeeling(-200,True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.ColdScreenMatchesRealFreshPlayerFactionFeeling(-200,True)",
+      "state": "Failed",
+      "durationSeconds": 0.0764406,
+      "message": "  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.ColdScreenMatchesRealFreshPlayerFactionFeeling (System.Int32 reputation, System.Boolean hostile) [0x00095] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:47\n",
+      "output": ""
+    },
+    {
+      "name": "ColdScreenMatchesRealFreshPlayerFactionFeeling(0,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.ColdScreenMatchesRealFreshPlayerFactionFeeling(0,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0758846,
+      "message": "  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.ColdScreenMatchesRealFreshPlayerFactionFeeling (System.Int32 reputation, System.Boolean hostile) [0x00095] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:47\n",
+      "output": ""
+    },
+    {
+      "name": "ColdScreenMatchesRealFreshPlayerFactionFeeling(200,False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.ColdScreenMatchesRealFreshPlayerFactionFeeling(200,False)",
+      "state": "Failed",
+      "durationSeconds": 0.0663767,
+      "message": "  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.ColdScreenMatchesRealFreshPlayerFactionFeeling (System.Int32 reputation, System.Boolean hostile) [0x00095] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:47\n",
+      "output": ""
+    },
+    {
+      "name": "FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput(\"unchanged\",True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput(\"unchanged\",True)",
+      "state": "Failed",
+      "durationSeconds": 0.0754676,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InstallProbe (System.Action`1[T] callback) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:105\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput (System.String fault, System.Boolean expected) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:109\n",
+      "output": ""
+    },
+    {
+      "name": "FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput(\"row\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput(\"row\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0666752,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InstallProbe (System.Action`1[T] callback) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:105\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput (System.String fault, System.Boolean expected) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:109\n",
+      "output": ""
+    },
+    {
+      "name": "FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput(\"temperature\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput(\"temperature\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0482649,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InstallProbe (System.Action`1[T] callback) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:105\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput (System.String fault, System.Boolean expected) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:109\n",
+      "output": ""
+    },
+    {
+      "name": "FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput(\"id\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput(\"id\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0623494,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InstallProbe (System.Action`1[T] callback) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:105\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput (System.String fault, System.Boolean expected) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:109\n",
+      "output": ""
+    },
+    {
+      "name": "FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput(\"foreign\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput(\"foreign\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0481668,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InstallProbe (System.Action`1[T] callback) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:105\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.FactoryCallbacksCannotLaunderChangedOriginalOrForeignOutput (System.String fault, System.Boolean expected) [0x00022] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:109\n",
+      "output": ""
+    },
+    {
+      "name": "FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"unchanged\",True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"unchanged\",True)",
+      "state": "Failed",
+      "durationSeconds": 0.0610854,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState (System.String fault, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:126\n",
+      "output": ""
+    },
+    {
+      "name": "FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"offroute\",True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"offroute\",True)",
+      "state": "Failed",
+      "durationSeconds": 0.048852,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState (System.String fault, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:126\n",
+      "output": ""
+    },
+    {
+      "name": "FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"heat\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"heat\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0507327,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState (System.String fault, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:126\n",
+      "output": ""
+    },
+    {
+      "name": "FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"spent-row\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"spent-row\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.045873,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState (System.String fault, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:126\n",
+      "output": ""
+    },
+    {
+      "name": "FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"moved\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"moved\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0474031,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState (System.String fault, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:126\n",
+      "output": ""
+    },
+    {
+      "name": "FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"port\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"port\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0477748,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState (System.String fault, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:126\n",
+      "output": ""
+    },
+    {
+      "name": "FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"overlap\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState(\"overlap\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.0471788,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.FinalProofPinsFiniteSourceAndEveryPortButAllowsHarmlessUnrelatedState (System.String fault, System.Boolean expected) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:126\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"disabled\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"disabled\")",
+      "state": "Failed",
+      "durationSeconds": 0.7204783,
+      "message": "  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility (System.String fault) [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:90\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"late-capture\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"late-capture\")",
+      "state": "Failed",
+      "durationSeconds": 0.3412244,
+      "message": "  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility (System.String fault) [0x00089] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:91\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"rebuilt\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"rebuilt\")",
+      "state": "Failed",
+      "durationSeconds": 0.2874611,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility (System.String fault) [0x00233] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:96\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"denied\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"denied\")",
+      "state": "Failed",
+      "durationSeconds": 0.154413,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility (System.String fault) [0x00233] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:96\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"harvested\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"harvested\")",
+      "state": "Failed",
+      "durationSeconds": 0.1767893,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility (System.String fault) [0x00233] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:96\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"yield\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"yield\")",
+      "state": "Failed",
+      "durationSeconds": 0.4071407,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility (System.String fault) [0x00233] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:96\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"count\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"count\")",
+      "state": "Failed",
+      "durationSeconds": 0.2410214,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility (System.String fault) [0x00233] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:96\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"moved\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"moved\")",
+      "state": "Failed",
+      "durationSeconds": 0.232888,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility (System.String fault) [0x00233] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:96\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"same-id\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"same-id\")",
+      "state": "Failed",
+      "durationSeconds": 0.2636917,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility (System.String fault) [0x00233] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:96\n",
+      "output": ""
+    },
+    {
+      "name": "InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"owned\")",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility(\"owned\")",
+      "state": "Failed",
+      "durationSeconds": 0.2825354,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.InvalidOrUncapturedRowRefusesWithoutCreatingAUtility (System.String fault) [0x00233] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:96\n",
+      "output": ""
+    },
+    {
+      "name": "KnownDistantActualRowRefusesBeforeAnyNewSourceFactoryCall",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.KnownDistantActualRowRefusesBeforeAnyNewSourceFactoryCall",
+      "state": "Failed",
+      "durationSeconds": 0.3062067,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InstallProbe (System.Action`1[T] callback) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:105\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.KnownDistantActualRowRefusesBeforeAnyNewSourceFactoryCall () [0x00108] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:55\n",
+      "output": ""
+    },
+    {
+      "name": "NewOutputCannotHideOrBeginWithBurningDespiteUnchangedHeatAndFuel(\"unchanged\",True)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.NewOutputCannotHideOrBeginWithBurningDespiteUnchangedHeatAndFuel(\"unchanged\",True)",
+      "state": "Failed",
+      "durationSeconds": 0.2616735,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InstallProbe (System.Action`1[T] callback) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:105\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.NewOutputCannotHideOrBeginWithBurningDespiteUnchangedHeatAndFuel (System.String fault, System.Boolean expected) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:116\n",
+      "output": ""
+    },
+    {
+      "name": "NewOutputCannotHideOrBeginWithBurningDespiteUnchangedHeatAndFuel(\"hidden\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.NewOutputCannotHideOrBeginWithBurningDespiteUnchangedHeatAndFuel(\"hidden\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.207542,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InstallProbe (System.Action`1[T] callback) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:105\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.NewOutputCannotHideOrBeginWithBurningDespiteUnchangedHeatAndFuel (System.String fault, System.Boolean expected) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:116\n",
+      "output": ""
+    },
+    {
+      "name": "NewOutputCannotHideOrBeginWithBurningDespiteUnchangedHeatAndFuel(\"burning\",False)",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.NewOutputCannotHideOrBeginWithBurningDespiteUnchangedHeatAndFuel(\"burning\",False)",
+      "state": "Failed",
+      "durationSeconds": 0.2015549,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.InstallProbe (System.Action`1[T] callback) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:105\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.NewOutputCannotHideOrBeginWithBurningDespiteUnchangedHeatAndFuel (System.String fault, System.Boolean expected) [0x0001b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:116\n",
+      "output": ""
+    },
+    {
+      "name": "OriginalRipeRowRemainsOneFiniteRealIngredient",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.OriginalRipeRowRemainsOneFiniteRealIngredient",
+      "state": "Passed",
+      "durationSeconds": 0.2174031,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "RealProducedRowAdmitsOneUtilityPreservingEveryExistingOwnerAndFourPorts",
+      "fullName": "CavesOfOoo.Tests.SpreadCoolingPlacementTests.RealProducedRowAdmitsOneUtilityPreservingEveryExistingOwnerAndFourPorts",
+      "state": "Failed",
+      "durationSeconds": 0.1834425,
+      "message": "  Exact produced-row cooking helper must exist.\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpreadCoolingPlacementTests.Place (CavesOfOoo.Core.Entity& made, System.Func`1[System.Boolean]& final, System.Func`1[TResult] authority, CavesOfOoo.Core.Entity selected, CavesOfOoo.Core.SpreadCompositionBuilder producer) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:34\nat CavesOfOoo.Tests.SpreadCoolingPlacementTests.RealProducedRowAdmitsOneUtilityPreservingEveryExistingOwnerAndFourPorts () [0x00048] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs:69\n",
+      "output": ""
+    }
+  ]
+}

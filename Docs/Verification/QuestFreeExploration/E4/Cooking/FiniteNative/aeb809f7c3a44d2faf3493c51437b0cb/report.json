@@ -1,0 +1,1032 @@
+{
+  "runId": "aeb809f7c3a44d2faf3493c51437b0cb",
+  "seed": 64,
+  "requestedSeed": 64,
+  "mode": "finite-cooking",
+  "finished": true,
+  "complete": false,
+  "failures": 1,
+  "fatal": "System.InvalidOperationException: current route blocked west-to-original-grain\n  at CavesOfOoo.Scenarios.Custom.QuestFreeSpreadStateNativePlayer+<FiniteWalk>d__187.MoveNext () [0x00214] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.FiniteCooking.cs:127 \n  at CavesOfOoo.Scenarios.Custom.QuestFreeSpreadStateNativePlayer+<RunSafely>d__126.MoveNext () [0x0005f] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/QuestFreeSpreadStateNativePlayer.cs:268 ",
+  "seconds": 5.5235484999999995,
+  "paidInputs": 15,
+  "checks": [
+    {
+      "label": "ordinary_fresh_opted_in_world",
+      "pass": true
+    },
+    {
+      "label": "generated_finite_entry_and_original_owners",
+      "pass": true
+    }
+  ],
+  "observations": [
+    {
+      "phase": "finite-source-selection",
+      "zone": "Overworld.13.10.0",
+      "disposition": 1,
+      "sources": [],
+      "row": null,
+      "westPort": [
+        0,
+        7
+      ],
+      "predictedMaterialPasses": -1,
+      "admitted": false
+    },
+    {
+      "phase": "finite-source-selection",
+      "zone": "Overworld.14.11.0",
+      "disposition": 1,
+      "sources": [],
+      "row": null,
+      "westPort": [
+        0,
+        6
+      ],
+      "predictedMaterialPasses": -1,
+      "admitted": false
+    },
+    {
+      "phase": "finite-source-selection",
+      "zone": "Overworld.5.11.0",
+      "disposition": 2,
+      "sources": [
+        "9561"
+      ],
+      "row": "8732",
+      "westPort": [
+        0,
+        16
+      ],
+      "predictedMaterialPasses": 56,
+      "admitted": true
+    },
+    {
+      "phase": "disclosed-player-only-transfer",
+      "label": "actual finite cooking west-border entry",
+      "zone": "Overworld.5.11.0",
+      "x": 0,
+      "y": 16,
+      "player": "2696",
+      "tick": 10,
+      "nativeEntryAdditions": [],
+      "boundary": "Setup transfer to an actual generated source; not an ordinary journey. Original source owners are preserved. Normal native entry-hook additions such as travellers are recorded separately, never suppressed."
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 10,
+      "afterTick": 20,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "ba063f2d",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611202258,
+          "Turn": 10,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "301b8978",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611202266,
+          "Turn": 10,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "24bdcb47",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611202268,
+          "Turn": 20,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 1,
+      "before": 500.0,
+      "actual": 490.5,
+      "expected": 490.5,
+      "fuel": 25.0,
+      "position": [
+        1,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 20,
+      "afterTick": 30,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "9e23c067",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611202471,
+          "Turn": 20,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "30c2be2d",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611202475,
+          "Turn": 20,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "74a3409e",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611202477,
+          "Turn": 30,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 2,
+      "before": 490.5,
+      "actual": 481.19,
+      "expected": 481.19,
+      "fuel": 25.0,
+      "position": [
+        2,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 30,
+      "afterTick": 40,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "24a6c122",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611202652,
+          "Turn": 30,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "e6f84aaf",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611202656,
+          "Turn": 30,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "4b93b864",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611202658,
+          "Turn": 40,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 3,
+      "before": 481.19,
+      "actual": 472.0662,
+      "expected": 472.0662,
+      "fuel": 25.0,
+      "position": [
+        3,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 40,
+      "afterTick": 50,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "476fb2d2",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611202831,
+          "Turn": 40,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "3dba03f6",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611202834,
+          "Turn": 40,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "8ad6dc27",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611202836,
+          "Turn": 50,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 4,
+      "before": 472.0662,
+      "actual": 463.124878,
+      "expected": 463.124878,
+      "fuel": 25.0,
+      "position": [
+        4,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 50,
+      "afterTick": 60,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "52807226",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611203021,
+          "Turn": 50,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "ab9b95f6",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611203024,
+          "Turn": 50,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "2d4d89ab",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611203026,
+          "Turn": 60,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 5,
+      "before": 463.124878,
+      "actual": 454.362366,
+      "expected": 454.362366,
+      "fuel": 25.0,
+      "position": [
+        5,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 60,
+      "afterTick": 70,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "22526338",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611203201,
+          "Turn": 60,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "1a4eb472",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611203204,
+          "Turn": 60,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "f9310695",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611203206,
+          "Turn": 70,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 6,
+      "before": 454.362366,
+      "actual": 445.775116,
+      "expected": 445.775116,
+      "fuel": 25.0,
+      "position": [
+        6,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 70,
+      "afterTick": 80,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "fa0d4d3f",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611203380,
+          "Turn": 70,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "d84638e9",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611203384,
+          "Turn": 70,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d1c29449",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611203386,
+          "Turn": 80,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 7,
+      "before": 445.775116,
+      "actual": 437.359619,
+      "expected": 437.359619,
+      "fuel": 25.0,
+      "position": [
+        7,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 80,
+      "afterTick": 90,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "99f6586a",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611203560,
+          "Turn": 80,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "ce73acda",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611203563,
+          "Turn": 80,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "705fd602",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611203565,
+          "Turn": 90,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 8,
+      "before": 437.359619,
+      "actual": 429.112427,
+      "expected": 429.112427,
+      "fuel": 25.0,
+      "position": [
+        8,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 90,
+      "afterTick": 100,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "edcc9189",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611203739,
+          "Turn": 90,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "4b12d4bf",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611203742,
+          "Turn": 90,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "97fd93d2",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611203744,
+          "Turn": 100,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 9,
+      "before": 429.112427,
+      "actual": 421.030182,
+      "expected": 421.030182,
+      "fuel": 25.0,
+      "position": [
+        9,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 100,
+      "afterTick": 110,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "5f6d26af",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611203920,
+          "Turn": 100,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "54a67c40",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611203923,
+          "Turn": 100,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "37b6dd09",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611203925,
+          "Turn": 110,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 10,
+      "before": 421.030182,
+      "actual": 413.1096,
+      "expected": 413.1096,
+      "fuel": 25.0,
+      "position": [
+        10,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 110,
+      "afterTick": 120,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "491fa946",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611204099,
+          "Turn": 110,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "62ac14db",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611204102,
+          "Turn": 110,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "f48eb8f7",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611204104,
+          "Turn": 120,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 11,
+      "before": 413.1096,
+      "actual": 405.3474,
+      "expected": 405.3474,
+      "fuel": 25.0,
+      "position": [
+        11,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 120,
+      "afterTick": 130,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "446e71a5",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611204277,
+          "Turn": 120,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "d5fdbc48",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611204280,
+          "Turn": 120,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "4c6e18bb",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611204282,
+          "Turn": 130,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 12,
+      "before": 405.3474,
+      "actual": 397.740479,
+      "expected": 397.740479,
+      "fuel": 25.0,
+      "position": [
+        12,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 130,
+      "afterTick": 140,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "5b527ef5",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611204458,
+          "Turn": 130,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "ce3dbe46",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611204464,
+          "Turn": 130,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d33df91d",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611204466,
+          "Turn": 140,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 13,
+      "before": 397.740479,
+      "actual": 390.285675,
+      "expected": 390.285675,
+      "fuel": 25.0,
+      "position": [
+        13,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 140,
+      "afterTick": 150,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "05f85eba",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611204642,
+          "Turn": 140,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "f66e4ee9",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611204646,
+          "Turn": 140,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "209f2707",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611204647,
+          "Turn": 150,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 14,
+      "before": 390.285675,
+      "actual": 382.97995,
+      "expected": 382.97995,
+      "fuel": 25.0,
+      "position": [
+        14,
+        16
+      ]
+    },
+    {
+      "phase": "west-to-original-grain",
+      "kind": "local",
+      "beforeTick": 150,
+      "afterTick": 160,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "0e996777",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1790611204827,
+          "Turn": 150,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"aeb809f7c3a44d2faf3493c51437b0cb\",\"label\":\"west-to-original-grain\"}"
+        },
+        {
+          "TraceId": "a11542c3",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1790611204831,
+          "Turn": 150,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "7b4740d2",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1790611204833,
+          "Turn": 160,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "phase": "finite-material-pass",
+      "label": "west-to-original-grain",
+      "pass": 15,
+      "before": 382.97995,
+      "actual": 375.820343,
+      "expected": 375.820343,
+      "fuel": 25.0,
+      "position": [
+        14,
+        17
+      ]
+    },
+    {
+      "phase": "failed-current-state",
+      "zone": "Overworld.5.11.0",
+      "player": "2696",
+      "position": [
+        14,
+        17
+      ],
+      "hp": 40,
+      "state": "Normal"
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Cooking/FiniteNative/aeb809f7c3a44d2faf3493c51437b0cb/00-ordinary-start.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Cooking/FiniteNative/aeb809f7c3a44d2faf3493c51437b0cb/01-generated-west-entry.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/QuestFreeExploration/E4/Cooking/FiniteNative/aeb809f7c3a44d2faf3493c51437b0cb/99-failed-current-state.png"
+  ],
+  "unverifiedFamilies": [],
+  "humanAwarenessMeasured": false,
+  "boundary": "Seed64, up to eight canonical v6 CoolingWorkPatch assignments, one actual committed source. One disclosed original-player setup transfer to the actual west border; native cardinal approach/Harvest/Cook/Wait/map exit/F5/map step/F6/return. No ingredient, source, heat/fuel, actor, RNG, time or visibility edits. 80 paid inputs/150 seconds; no repeat seed or forced success. Local material passes are measured separately from scheduler ticks. Automatic cooled mesh is checked before menu/move/refresh. Inactive saved heat does not imply away cooling. Images require human review.",
+  "settings": {
+    "screenWidth": 2271,
+    "screenHeight": 1251,
+    "vSync": 0,
+    "targetFrameRate": -1,
+    "lowDetail": false
+  }
+}

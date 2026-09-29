@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/cooking-pipeline/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="9" result="Failed" start-time="2026-09-28T15:23:56.4654140Z" end-time="2026-09-28T15:23:56.7771670Z" duration="0.311741" total="9" passed="0" failed="9" inconclusive="0" skipped="0" warnings="0" asserts="81" random-seed="530890092">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/cooking-pipeline/runner/bin/Debug/net8.0/EditModeRunner.dll --test=CavesOfOoo.Tests.SpreadCookingPipelineTests --result=/tmp/coo-questfree-implementation/cooking-pipeline/initial-red.xml]]></command-line>
+  <filter>
+    <test>CavesOfOoo.Tests.SpreadCookingPipelineTests</test>
+  </filter>
+  <test-suite type="Assembly" id="1013" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/cooking-pipeline/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T15:23:56.4654140Z" end-time="2026-09-28T15:23:56.7771670Z" duration="0.311741" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="81">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="LOAD" value="System.Collections.Generic.List`1[System.String]" />
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+      <setting name="NumberOfTestWorkers" value="10" />
+    </settings>
+    <properties>
+      <property name="_PID" value="99990" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1014" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T15:23:56.4671060Z" end-time="2026-09-28T15:23:56.7771650Z" duration="0.310056" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="81">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1015" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T15:23:56.4672170Z" end-time="2026-09-28T15:23:56.7771630Z" duration="0.309943" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="81">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="SpreadCookingPipelineTests" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-09-28T15:23:56.4675750Z" end-time="2026-09-28T15:23:56.7771590Z" duration="0.309581" total="9" passed="0" failed="9" warnings="0" inconclusive="0" skipped="0" asserts="81">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1012" name="ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-09-28T15:23:56.4689080Z" end-time="2026-09-28T15:23:56.6099430Z" duration="0.141033" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1010" name="ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(5,True)" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(5,True)" methodname="ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" seed="1891005018" result="Failed" start-time="2026-09-28T15:23:56.4690080Z" end-time="2026-09-28T15:23:56.5845780Z" duration="0.115602" asserts="9">
+              <failure>
+                <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(Int32 passes, Boolean ready) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 183
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Log] [FactionLoader] Loaded 14 factions.
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(Int32 passes, Boolean ready) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 183
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(67,False)" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(67,False)" methodname="ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" seed="1243068480" result="Failed" start-time="2026-09-28T15:23:56.5854110Z" end-time="2026-09-28T15:23:56.6092550Z" duration="0.023843" asserts="9">
+              <failure>
+                <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(Int32 passes, Boolean ready) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 183
+   at InvokeStub_SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Log] [FactionLoader] Loaded 14 factions.
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(Int32 passes, Boolean ready) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 183
+   at InvokeStub_SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1009" name="FinalCallbackRequiresExactSourceAndStillUsefulApproach" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-09-28T15:23:56.6103050Z" end-time="2026-09-28T15:23:56.7046570Z" duration="0.094352" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="36">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1005" name="FinalCallbackRequiresExactSourceAndStillUsefulApproach(&quot;unchanged&quot;,True)" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(&quot;unchanged&quot;,True)" methodname="FinalCallbackRequiresExactSourceAndStillUsefulApproach" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" seed="1466540895" result="Failed" start-time="2026-09-28T15:23:56.6103430Z" end-time="2026-09-28T15:23:56.6348340Z" duration="0.024491" asserts="9">
+              <failure>
+                <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 168
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Log] [FactionLoader] Loaded 14 factions.
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 168
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="FinalCallbackRequiresExactSourceAndStillUsefulApproach(&quot;offroute&quot;,True)" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(&quot;offroute&quot;,True)" methodname="FinalCallbackRequiresExactSourceAndStillUsefulApproach" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" seed="665561787" result="Failed" start-time="2026-09-28T15:23:56.6348540Z" end-time="2026-09-28T15:23:56.6572040Z" duration="0.022350" asserts="9">
+              <failure>
+                <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 168
+   at InvokeStub_SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Log] [FactionLoader] Loaded 14 factions.
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 168
+   at InvokeStub_SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="FinalCallbackRequiresExactSourceAndStillUsefulApproach(&quot;replace-source&quot;,False)" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(&quot;replace-source&quot;,False)" methodname="FinalCallbackRequiresExactSourceAndStillUsefulApproach" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" seed="396751942" result="Failed" start-time="2026-09-28T15:23:56.6572340Z" end-time="2026-09-28T15:23:56.6814860Z" duration="0.024251" asserts="9">
+              <failure>
+                <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 168
+   at InvokeStub_SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Log] [FactionLoader] Loaded 14 factions.
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 168
+   at InvokeStub_SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="FinalCallbackRequiresExactSourceAndStillUsefulApproach(&quot;block-ports&quot;,False)" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(&quot;block-ports&quot;,False)" methodname="FinalCallbackRequiresExactSourceAndStillUsefulApproach" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" seed="1223862295" result="Failed" start-time="2026-09-28T15:23:56.6815160Z" end-time="2026-09-28T15:23:56.7046200Z" duration="0.023104" asserts="9">
+              <failure>
+                <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 168
+   at InvokeStub_SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Log] [FactionLoader] Loaded 14 factions.
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 168
+   at InvokeStub_SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1004" name="RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-28T15:23:56.7046680Z" end-time="2026-09-28T15:23:56.7770860Z" duration="0.072417" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="27">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(1)" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(1)" methodname="RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" seed="365250186" result="Failed" start-time="2026-09-28T15:23:56.7046790Z" end-time="2026-09-28T15:23:56.7299870Z" duration="0.025308" asserts="9">
+              <failure>
+                <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 144
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Log] [FactionLoader] Loaded 14 factions.
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 144
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1002" name="RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(64)" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(64)" methodname="RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" seed="2019255617" result="Failed" start-time="2026-09-28T15:23:56.7300510Z" end-time="2026-09-28T15:23:56.7521550Z" duration="0.022105" asserts="9">
+              <failure>
+                <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 144
+   at InvokeStub_SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Log] [FactionLoader] Loaded 14 factions.
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 144
+   at InvokeStub_SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(1729)" fullname="CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(1729)" methodname="RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources" classname="CavesOfOoo.Tests.SpreadCookingPipelineTests" runstate="Runnable" seed="588448168" result="Failed" start-time="2026-09-28T15:23:56.7521780Z" end-time="2026-09-28T15:23:56.7770670Z" duration="0.024889" asserts="9">
+              <failure>
+                <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 144
+   at InvokeStub_SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[Log] [FactionLoader] Loaded 14 factions.
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 144
+   at InvokeStub_SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

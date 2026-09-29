@@ -56,7 +56,7 @@ namespace CavesOfOoo.Core
         }
         bool SourceCurrent => source is PopulationBuilder p ? p.CaptureSourceReceipts&&(ReferenceEquals(p.SourceReceipt,this)||ReferenceEquals(p.LooseSourceReceipt,this)||ReferenceEquals(p.AmbientSourceReceipt,this)||ReferenceEquals(p.AmbientReplacementReceipt,this)||ReferenceEquals(p.ForageSourceReceipt,this))
             : source is ContainerBuilder c ? c.CaptureSourceReceipts&&ReferenceEquals(c.SourceReceipt,this)
-            : source is SpreadCompositionBuilder terrain&&terrain.OwnsPassageReceipt(this);
+            : source is SpreadCompositionBuilder terrain&&(terrain.OwnsPassageReceipt(this)||terrain.OwnsCookingReceipt(this));
         public bool IsCurrent => !consumed&&complete&&SourceCurrent&&snapshots.All(s=>s.Matches(true));
         /// <summary>Claim this exact source once after all transaction preflights.
         /// Consumption is ephemeral and never changes its owners or saved graph.</summary>

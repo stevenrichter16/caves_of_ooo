@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1300e78df848bf9af79678ebdf624f, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.SpreadCookingCoalsLibrary
+  SourceSha256: db0d575f932d26995e99efddc4718a95500425accc76c3764e190587a68fb950
+  Entries:
+  - Id: spread-cooking-coals-hot
+    Prefab: {fileID: 8625377530114638421, guid: 7e532e77f8b3b4cbcb25c87af8933610, type: 3}
+    Mesh: {fileID: 4300000, guid: 3b47f87d494ad48e195bb6d8e9094978, type: 2}
+    Material: {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
+    Spec:
+      id: spread-cooking-coals-hot
+      path: Assets/Resources/SpreadCookingCoals3D/spread-cooking-coals-hot.prefab
+      kind: entity
+      rigFamily: 
+      materialFamily: reference-glade-palette
+      sourceBlueprint: SpreadCookingCoals
+      rigged: 0
+      boundsCenter: {x: 0.0021596998, y: 0.053499978, z: 0.022614494}
+      boundsSize: {x: 0.86431944, y: 0.10700003, z: 0.7252289}
+      triangles: 260
+      clips: []
+      sockets: []
+  - Id: spread-cooking-coals-cooled
+    Prefab: {fileID: 8108610988778004420, guid: 1d96b7e9863ba4212ae2b9aaf07fd245, type: 3}
+    Mesh: {fileID: 4300000, guid: cd1478609de204f07aa593ec2c7029af, type: 2}
+    Material: {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
+    Spec:
+      id: spread-cooking-coals-cooled
+      path: Assets/Resources/SpreadCookingCoals3D/spread-cooking-coals-cooled.prefab
+      kind: entity
+      rigFamily: 
+      materialFamily: reference-glade-palette
+      sourceBlueprint: SpreadCookingCoals
+      rigged: 0
+      boundsCenter: {x: 0.0021596998, y: 0.053499978, z: 0.022614494}
+      boundsSize: {x: 0.86431944, y: 0.10700003, z: 0.7252289}
+      triangles: 260
+      clips: []
+      sockets: []

@@ -1,0 +1,128 @@
+namespace CavesOfOoo.Core
+{
+    /// <summary>
+    /// Part attached to campfire entities that provides:
+    /// - Color flicker between red and yellow (the campfire itself looks alive)
+    /// - Proximity ambient message (one-shot per zone visit)
+    /// Ember particles are handled by CampfireEmberRenderer (world-space, not grid-locked).
+    /// </summary>
+    public class CampfirePart : Part
+    {
+        public override string Name => "Campfire";
+
+        /// <summary>New finite cooking sources opt in explicitly. Existing authored
+        /// stations and older saves retain their established cooking/rest policy.</summary>
+        public bool FiniteCooking = false;
+
+        private int _renderFrameCounter;
+        private bool _proximityMessageShown;
+
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID == "Render")
+                return HandleRender(e);
+            if (e.ID == "EndTurn")
+                return HandleEndTurn(e);
+
+            // BIOME-OVERHAUL A4: campfires are the field reprieve —
+            // free rest, gated only on nearby hostiles (RestSystem).
+            if (e.ID == "GetInventoryActions")
+            {
+                var actions = e.GetParameter<InventoryActionList>("Actions");
+                actions?.AddAction("Rest", "rest", "RestAtCampfire", 'r', 20);
+                actions?.AddAction("RestNextBand", "rest until the next time of day", "RestUntilNextBand", 's', 19);
+                return true;
+            }
+            if (e.ID == "InventoryAction")
+            {
+                string command = e.GetStringParameter("Command");
+                if (command != "RestAtCampfire" && command != "RestUntilNextBand") return true;
+                var actor = e.GetParameter<Entity>("Actor");
+                if (actor == null) return true;
+
+                Zone zone = e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
+                if (command == "RestUntilNextBand")
+                {
+                    if (SpatialQuery.Distance(zone, actor, ParentEntity) > 1)
+                    {
+                        MessageLog.Add("Stand beside the fire to rest.");
+                        CavesOfOoo.Diagnostics.Diag.Record("furniture", "RestBlocked", actor: actor,
+                            payload: new { site = "campfire", reason = "out_of_reach" });
+                        return true;
+                    }
+                    if (!RestSystem.TryRestUntilNextBand(actor, zone, "campfire", out _)) return true;
+                }
+                else RestSystem.TryRest(actor, zone, "campfire", out _);
+                e.Handled = true;
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool HandleRender(GameEvent e)
+        {
+            _renderFrameCounter++;
+            e.SetParameter("ColorString", _renderFrameCounter % 6 == 0 ? "&Y" : "&R");
+            return true;
+        }
+
+        private bool HandleEndTurn(GameEvent e)
+        {
+            if (_proximityMessageShown || ParentEntity == null)
+                return true;
+
+            Zone zone = SettlementRuntime.ActiveZone;
+            if (zone == null)
+                return true;
+
+            Cell fireCell = zone.GetEntityCell(ParentEntity);
+            if (fireCell == null)
+                return true;
+
+            Entity player = FindPlayer(zone);
+            if (player == null)
+                return true;
+
+            Cell playerCell = zone.GetEntityCell(player);
+            if (playerCell == null)
+                return true;
+
+            if (IsAdjacent(fireCell.X, fireCell.Y, playerCell.X, playerCell.Y))
+            {
+                _proximityMessageShown = true;
+                MessageLog.Add("The campfire crackles warmly.");
+            }
+
+            return true;
+        }
+
+        public void ResetProximityMessage()
+        {
+            _proximityMessageShown = false;
+        }
+
+        private static Entity FindPlayer(Zone zone)
+        {
+            if (zone == null)
+                return null;
+
+            var entities = zone.GetAllEntities();
+            for (int i = 0; i < entities.Count; i++)
+            {
+                if (entities[i].HasTag("Player"))
+                    return entities[i];
+            }
+            return null;
+        }
+
+        private static bool IsAdjacent(int x1, int y1, int x2, int y2)
+        {
+            int dx = x1 - x2;
+            int dy = y1 - y2;
+            if (dx < 0) dx = -dx;
+            if (dy < 0) dy = -dy;
+            return dx <= 1 && dy <= 1 && (dx + dy > 0);
+        }
+    }
+}

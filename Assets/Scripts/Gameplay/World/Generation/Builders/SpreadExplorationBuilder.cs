@@ -38,8 +38,25 @@ namespace CavesOfOoo.Core
     case SpreadExplorationFamily.WorkGang:return Encounter(zone,factory,entry,false);
     case SpreadExplorationFamily.CollectorReturn:return Collector(zone,factory,entry);
     case SpreadExplorationFamily.FieldPassage:return Passage(zone,factory,entry);
+    case SpreadExplorationFamily.CoolingWorkPatch:return Cooking(zone,factory,entry);
     default:return Refuse(zone,entry,"unsupported-family");
    }
+  }
+  bool Cooking(Zone z,EntityFactory f,SpreadExplorationEntry entry)
+  {
+   if(terrain.Plan.Formation!=Formation.FieldStrips||!terrain.CaptureCookingSources)return Refuse(z,entry,"cooking-source");
+   var candidates=terrain.CookingSources.Where(r=>r.IsCurrent&&r.Owners.Count==1&&SpreadExplorationCooking.Eligible(z,r.Owners[0]))
+    .OrderBy(r=>z.GetEntityPosition(r.Owners[0]).y).ThenBy(r=>z.GetEntityPosition(r.Owners[0]).x).Take(32).ToArray();
+   foreach(var receipt in candidates)
+   {
+    var original=SpreadGenerationReceipt.CaptureFinalState(z,z.GetReadOnlyEntities().Where(e=>!DoorPart.IsBareGround(e)));
+    bool preparing=true;
+    bool Authority()=>Current(z,f,entry)&&terrain.OwnsCookingReceipt(receipt)&&(!preparing||original());
+    if(SpreadExplorationCooking.TryPlace(z,f,terrain,receipt.Owners[0],Authority,out var source,out var final))
+     {preparing=false;return Commit(z,f,entry,new[]{source},()=>Authority()&&final());}
+    if(!Current(z,f,entry)||!original())return false;
+   }
+   return Refuse(z,entry,"no-useful-cooling-work-patch");
   }
   bool Passage(Zone z,EntityFactory f,SpreadExplorationEntry entry)
   {

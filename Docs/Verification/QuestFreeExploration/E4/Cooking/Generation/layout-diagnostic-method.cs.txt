@@ -1,0 +1,9 @@
+  [Test,Explicit] public void Diagnostic()
+  {
+   var type=typeof(Zone).Assembly.GetType("CavesOfOoo.Core.SpreadExplorationCooking");
+   TestContext.WriteLine("row="+zone.GetEntityPosition(row)+" ports="+terrain.Plan.WestY+","+terrain.Plan.EastY+","+terrain.Plan.NorthX+","+terrain.Plan.SouthX);
+   TestContext.WriteLine("eligible="+type.GetMethod("Eligible",All).Invoke(null,new object[]{zone,row}));
+   var receipt=typeof(SpreadCompositionBuilder).GetMethod("CookingSource",All).Invoke(terrain,new object[]{row});TestContext.WriteLine("receipt="+receipt+" current="+receipt?.GetType().GetProperty("IsCurrent").GetValue(receipt));
+   var layoutType=type.GetNestedType("Layout",All);var layout=Activator.CreateInstance(layoutType,All,null,new object[]{zone,terrain.Plan,null},null);object[] args={zone.GetEntityPosition(row),null,null,null};TestContext.WriteLine("find="+layoutType.GetMethod("Find",All).Invoke(layout,args)+" values="+string.Join(";",args));
+   int useful=0;for(int y=2;y<Zone.Height-2;y++)for(int x=2;x<Zone.Width-2;x++){var pos=zone.GetEntityPosition(row);if(Math.Max(Math.Abs(pos.x-x),Math.Abs(pos.y-y))>5)continue;if(Useful((x,y)))useful++;}TestContext.WriteLine("independentUseful="+useful);
+  }

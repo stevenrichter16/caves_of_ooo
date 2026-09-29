@@ -1,0 +1,12 @@
+--- a/Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
++++ b/Assets/Scripts/Presentation/Rendering/ZoneRenderer.cs
+@@ -632,7 +632,8 @@
+                 {
+                     foreach (var entity in zone.GetAllEntities())
+                     {
+-                        if (entity.GetPart<CampfirePart>() != null)
++                        var campfire = entity.GetPart<CampfirePart>();
++                        if (campfire != null && !campfire.FiniteCooking)
+                         {
+                             var cell = zone.GetEntityCell(entity);
+                             if (cell != null)

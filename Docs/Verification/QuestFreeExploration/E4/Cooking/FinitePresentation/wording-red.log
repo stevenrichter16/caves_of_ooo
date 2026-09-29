@@ -1,0 +1,42 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /private/tmp/coo-questfree-implementation/cooking/finite-presentation/runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-28 15:23:08Z
+    End time: 2026-09-28 15:23:08Z
+    Duration: 0.021 seconds
+
+Test Filters
+    Test: CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState
+
+Errors, Failures and Warnings
+
+1) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(150.0f,200.0f,"enough stored heat")
+  Expected: String containing "carried raw food's Cook"
+  But was:  "You see a campfire.
+Cooking: enough stored heat remains. Use carried food's Cook action while beside this place.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 104
+
+Run Settings
+    Number of Test Workers: 10
+    Work Directory: /Users/steven/caves-of-ooo
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Failed
+  Test Count: 6, Passed: 5, Failed: 1, Warnings: 0, Inconclusive: 0, Skipped: 0
+    Failed Tests - Failures: 1, Errors: 0, Invalid: 0
+  Start time: 2026-09-28 15:23:08Z
+    End time: 2026-09-28 15:23:08Z
+    Duration: 0.189 seconds
+
+Results (nunit3) saved as /tmp/coo-questfree-implementation/cooking/finite-presentation/wording-red.xml

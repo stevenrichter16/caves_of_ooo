@@ -1,0 +1,57 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /private/tmp/coo-questfree-implementation/torch-reaction-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-29 00:47:51Z
+    End time: 2026-09-29 00:47:51Z
+    Duration: 0.051 seconds
+
+Test Filters
+    Where: class == CavesOfOoo.Tests.TorchReactionStateProbe
+
+=> CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry("empty",49.7f,1.0f)
+registry=empty, reactions=0, originalAssertion=PASS, fuel=49.7, intensity=1, hp=999
+=> CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry("organic",49.475f,1.5f)
+registry=organic, reactions=1, originalAssertion=FAIL, fuel=49.475002, intensity=1.5, hp=999
+=> CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry("all-shipped",49.475f,1.5f)
+registry=all-shipped, reactions=13, originalAssertion=FAIL, fuel=49.475002, intensity=1.5, hp=999
+
+Errors, Failures and Warnings
+
+1) Failed : CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry("organic",49.475f,1.5f)
+  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  49.475002288818359d
+  Off by:   0.22499847412109375d
+   at CavesOfOoo.Tests.DensityTorchAdversarialTests.DestructiveBurning_LooseTorch_ConsumesFuelOnceAndStillDamagesTool() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchAdversarialTests.cs:line 23
+   at CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(String registry, Single fuel, Single intensity) in /tmp/coo-questfree-implementation/torch-reaction-diagnosis/TorchReactionStateProbe.cs:line 24
+   at InvokeStub_TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(Object, Span`1)
+
+2) Failed : CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry("all-shipped",49.475f,1.5f)
+  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  49.475002288818359d
+  Off by:   0.22499847412109375d
+   at CavesOfOoo.Tests.DensityTorchAdversarialTests.DestructiveBurning_LooseTorch_ConsumesFuelOnceAndStillDamagesTool() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchAdversarialTests.cs:line 23
+   at CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(String registry, Single fuel, Single intensity) in /tmp/coo-questfree-implementation/torch-reaction-diagnosis/TorchReactionStateProbe.cs:line 24
+   at InvokeStub_TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(Object, Span`1)
+
+Run Settings
+    Number of Test Workers: 1
+    Work Directory: /private/tmp/coo-questfree-implementation/torch-reaction-diagnosis/runner
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Failed
+  Test Count: 3, Passed: 1, Failed: 2, Warnings: 0, Inconclusive: 0, Skipped: 0
+    Failed Tests - Failures: 2, Errors: 0, Invalid: 0
+  Start time: 2026-09-29 00:47:51Z
+    End time: 2026-09-29 00:47:52Z
+    Duration: 0.226 seconds
+
+Results (nunit3) saved as /tmp/coo-questfree-implementation/torch-reaction-diagnosis/current.xml

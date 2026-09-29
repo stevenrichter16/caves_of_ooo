@@ -28,11 +28,21 @@ namespace CavesOfOoo.Core
             &&ReferenceEquals(Plan,passagePlan)&&receipt.Owners.Count==1
             &&passageSources.TryGetValue(receipt.Owners[0],out var current)&&ReferenceEquals(current,receipt);
         internal SpreadGenerationReceipt PassageSource(Entity hedge)=>hedge!=null&&passageSources.TryGetValue(hedge,out var receipt)&&OwnsPassageReceipt(receipt)?receipt:null;
+        /// <summary>Exact original finite rows, captured only for a selected cold
+        /// cooking patch. This does not authorize live source discovery or harvest.</summary>
+        public bool CaptureCookingSources;
+        readonly Dictionary<Entity,SpreadGenerationReceipt> cookingSources=new Dictionary<Entity,SpreadGenerationReceipt>();
+        internal IReadOnlyList<SpreadGenerationReceipt> CookingSources=>cookingSources.Values.ToArray();
+        internal bool OwnsCookingReceipt(SpreadGenerationReceipt receipt)=>CaptureCookingSources&&receipt!=null
+            &&SourceZone==receipt.Zone&&passageFactory==receipt.Factory&&passageRevision==receipt.Revision
+            &&ReferenceEquals(Plan,passagePlan)&&receipt.Owners.Count==1
+            &&cookingSources.TryGetValue(receipt.Owners[0],out var current)&&ReferenceEquals(current,receipt);
+        internal SpreadGenerationReceipt CookingSource(Entity row)=>row!=null&&cookingSources.TryGetValue(row,out var receipt)&&OwnsCookingReceipt(receipt)?receipt:null;
         private readonly int seed;
         public SpreadCompositionBuilder(int worldSeed){seed=worldSeed;}
         public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
         {
-            Plan=null;SourceZone=null;passageSources.Clear();passageFactory=null;passagePlan=null;int revision=++passageRevision;
+            Plan=null;SourceZone=null;passageSources.Clear();cookingSources.Clear();passageFactory=null;passagePlan=null;int revision=++passageRevision;
             if(zone==null||factory==null||zone.EntityCount!=0)
             {
                 Diag.Record("worldgen","SpreadCompositionRejected",payload:new{reason=zone==null?"missing-zone":factory==null?"missing-factory":"nonempty-zone"});
@@ -54,6 +64,8 @@ namespace CavesOfOoo.Core
                 if(created==null)return Reject("missing-object");
                 if(CapturePassageSources&&bp=="Hedge"&&created.BlueprintName==bp)
                     passageSources.Add(created,new SpreadGenerationReceipt(this,zone,factory,revision,new[]{created},1));
+                if(CaptureCookingSources&&bp=="RipeCropRow"&&created.BlueprintName==bp)
+                    cookingSources.Add(created,new SpreadGenerationReceipt(this,zone,factory,revision,new[]{created},1));
                 objects++;
             }
             SourceZone=zone;passageFactory=factory;passagePlan=Plan;

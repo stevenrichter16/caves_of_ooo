@@ -1,0 +1,111 @@
+--- a/Assets/Scripts/Gameplay/Settlements/CampfirePart.cs
++++ b/Assets/Scripts/Gameplay/Settlements/CampfirePart.cs
+@@ -14,6 +14,10 @@
+         /// stations and older saves retain their established cooking/rest policy.</summary>
+         public bool FiniteCooking = false;
+ 
++        /// <summary>Authored rest service. Defaults true, including saves written
++        /// before this field existed; cooking-only workspots explicitly opt out.</summary>
++        public bool AllowRest = true;
++
+         private int _renderFrameCounter;
+         private bool _proximityMessageShown;
+ 
+@@ -28,6 +32,7 @@
+             // free rest, gated only on nearby hostiles (RestSystem).
+             if (e.ID == "GetInventoryActions")
+             {
++                if (!AllowRest) return true;
+                 var actions = e.GetParameter<InventoryActionList>("Actions");
+                 actions?.AddAction("Rest", "rest", "RestAtCampfire", 'r', 20);
+                 actions?.AddAction("RestNextBand", "rest until the next time of day", "RestUntilNextBand", 's', 19);
+@@ -39,6 +44,13 @@
+                 if (command != "RestAtCampfire" && command != "RestUntilNextBand") return true;
+                 var actor = e.GetParameter<Entity>("Actor");
+                 if (actor == null) return true;
++                if (!AllowRest)
++                {
++                    MessageLog.Add("This is not a resting place.");
++                    CavesOfOoo.Diagnostics.Diag.Record("furniture", "RestBlocked", actor: actor,
++                        target: ParentEntity, payload: new { site = "campfire", reason = "rest_not_offered" });
++                    return true;
++                }
+ 
+                 Zone zone = e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
+                 if (command == "RestUntilNextBand")
+@@ -62,6 +74,7 @@
+ 
+         private bool HandleRender(GameEvent e)
+         {
++            if (FiniteCooking) return true;
+             _renderFrameCounter++;
+             e.SetParameter("ColorString", _renderFrameCounter % 6 == 0 ? "&Y" : "&R");
+             return true;
+@@ -69,7 +82,7 @@
+ 
+         private bool HandleEndTurn(GameEvent e)
+         {
+-            if (_proximityMessageShown || ParentEntity == null)
++            if (FiniteCooking || _proximityMessageShown || ParentEntity == null)
+                 return true;
+ 
+             Zone zone = SettlementRuntime.ActiveZone;
+@@ -95,6 +108,34 @@
+             }
+ 
+             return true;
++        }
++
++        // Focused description only: no action gathering, callbacks, hidden/remote
++        // state, heat change or fuel use. Readiness does not claim active burning.
++        internal string DescribeFiniteCooking(Zone zone, Cell cell)
++        {
++            var owner = ParentEntity;
++            if (!FiniteCooking || owner == null || !ReferenceEquals(owner.GetPart<CampfirePart>(), this)
++                || zone == null || !ReferenceEquals(SettlementRuntime.ActiveZone, zone)
++                || cell == null || cell.ParentZone != zone || !cell.IsVisible
++                || owner.SpatialZone != zone || !ReferenceEquals(zone.GetEntityCell(owner), cell)
++                || !cell.Objects.Contains(owner)) return null;
++            var render = owner.GetPart<RenderPart>();
++            var physics = owner.GetPart<PhysicsPart>();
++            if (render == null || render.ParentEntity != owner || !render.Visible
++                || physics == null || physics.ParentEntity != owner
++                || physics.InInventory != null || physics.Equipped != null) return null;
++            var thermal = owner.GetPart<ThermalPart>();
++            var fuel = owner.GetPart<FuelPart>();
++            if (thermal == null || thermal.ParentEntity != owner || fuel == null || fuel.ParentEntity != owner
++                || float.IsNaN(thermal.Temperature) || float.IsInfinity(thermal.Temperature)
++                || float.IsNaN(fuel.FuelMass) || float.IsInfinity(fuel.FuelMass))
++                return "Cooking: unavailable; usable heat or fuel is missing.";
++            if (thermal.Temperature < CookingService.MinimumFiniteCookingTemperature)
++                return "Cooking: no longer hot enough to prepare food.";
++            if (fuel.FuelMass <= 0)
++                return "Cooking: still hot, but no usable cooking fuel remains.";
++            return "Cooking: enough stored heat remains. Use carried raw food's Cook action while beside this place.";
+         }
+ 
+         public void ResetProximityMessage()
+--- a/Assets/Scripts/Gameplay/Entities/ExaminablePart.cs
++++ b/Assets/Scripts/Gameplay/Entities/ExaminablePart.cs
+@@ -96,10 +96,11 @@
+         /// <summary>World reader snapshot: immediate effects and visible ground precede long flavor.</summary>
+         public string BuildWorldExamineLine(Zone zone, Cell cell)
+         {
+-            return BuildDescription(true, CellStatusReadout.GroundLine(zone, cell));
++            return BuildDescription(true, CellStatusReadout.GroundLine(zone, cell),
++                ParentEntity?.GetPart<CampfirePart>()?.DescribeFiniteCooking(zone, cell));
+         }
+ 
+-        private string BuildDescription(bool statusFirst, string ground)
++        private string BuildDescription(bool statusFirst, string ground, string cooking = null)
+         {
+             string name = ParentEntity?.GetDisplayName() ?? "something";
+             string article = GetArticle(name);
+@@ -108,6 +109,7 @@
+             {
+                 baseLine += DescribeAfflictions();
+                 if (!string.IsNullOrEmpty(ground)) baseLine += "\n" + ground;
++                if (!string.IsNullOrEmpty(cooking)) baseLine += "\n" + cooking;
+             }
+             if (!string.IsNullOrWhiteSpace(Text))
+                 baseLine += (statusFirst ? "\n\n" : " ") + Text.Trim();

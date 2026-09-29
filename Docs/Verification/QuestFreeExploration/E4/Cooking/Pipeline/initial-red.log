@@ -1,0 +1,134 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /private/tmp/coo-questfree-implementation/cooking-pipeline/runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-28 15:23:56Z
+    End time: 2026-09-28 15:23:56Z
+    Duration: 0.022 seconds
+
+Test Filters
+    Test: CavesOfOoo.Tests.SpreadCookingPipelineTests
+
+=> CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(5,True)
+[Log] [FactionLoader] Loaded 14 factions.
+=> CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(67,False)
+[Log] [FactionLoader] Loaded 14 factions.
+=> CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach("unchanged",True)
+[Log] [FactionLoader] Loaded 14 factions.
+=> CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach("offroute",True)
+[Log] [FactionLoader] Loaded 14 factions.
+=> CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach("replace-source",False)
+[Log] [FactionLoader] Loaded 14 factions.
+=> CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach("block-ports",False)
+[Log] [FactionLoader] Loaded 14 factions.
+=> CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(1)
+[Log] [FactionLoader] Loaded 14 factions.
+=> CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(64)
+[Log] [FactionLoader] Loaded 14 factions.
+=> CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(1729)
+[Log] [FactionLoader] Loaded 14 factions.
+
+Errors, Failures and Warnings
+
+1) Failed : CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(5,True)
+  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(Int32 passes, Boolean ready) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 183
+
+2) Failed : CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(67,False)
+  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(Int32 passes, Boolean ready) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 183
+   at InvokeStub_SpreadCookingPipelineTests.ActualHarvestAndCoolingSurviveInactiveSaveWithoutRestoringHeatOrGrain(Object, Span`1)
+
+3) Failed : CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach("unchanged",True)
+  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 168
+
+4) Failed : CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach("offroute",True)
+  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 168
+   at InvokeStub_SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(Object, Span`1)
+
+5) Failed : CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach("replace-source",False)
+  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 168
+   at InvokeStub_SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(Object, Span`1)
+
+6) Failed : CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach("block-ports",False)
+  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Selected(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 90
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FindCommitted(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 164
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(String mutation, Boolean accepted) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 168
+   at InvokeStub_SpreadCookingPipelineTests.FinalCallbackRequiresExactSourceAndStillUsefulApproach(Object, Span`1)
+
+7) Failed : CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(1)
+  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 144
+
+8) Failed : CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(64)
+  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 144
+   at InvokeStub_SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Object, Span`1)
+
+9) Failed : CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(1729)
+  F10 requires fresh v6, not a rewritten v5 source census.
+  Expected: 6
+  But was:  5
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.Entries(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 86
+   at CavesOfOoo.Tests.SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Int32 seed) in /tmp/coo-questfree-implementation/cooking-pipeline/SpreadCookingPipelineTests.cs:line 144
+   at InvokeStub_SpreadCookingPipelineTests.RealV6PipelineAddsAtMostOneUsefulCoalsOwnerAndKeepsAllOrdinarySources(Object, Span`1)
+
+Run Settings
+    Number of Test Workers: 10
+    Work Directory: /Users/steven/caves-of-ooo
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Failed
+  Test Count: 9, Passed: 0, Failed: 9, Warnings: 0, Inconclusive: 0, Skipped: 0
+    Failed Tests - Failures: 9, Errors: 0, Invalid: 0
+  Start time: 2026-09-28 15:23:56Z
+    End time: 2026-09-28 15:23:56Z
+    Duration: 0.312 seconds
+
+Results (nunit3) saved as /tmp/coo-questfree-implementation/cooking-pipeline/initial-red.xml

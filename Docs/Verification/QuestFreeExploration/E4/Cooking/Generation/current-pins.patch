@@ -1,0 +1,118 @@
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationCatalogExpansionTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationCatalogExpansionTests.cs
+@@ -11,7 +11,7 @@
+   public void FreshCatalogAddsActualForageAndWorkGangAssignments(int seed)
+   {using(var s=new DensityLootTestScope()){
+    var m=OverworldZoneManager.CreateDetached(s.Factory,seed,true);
+-   Assert.AreEqual(5,m.Exploration.Version,"New distribution has an explicit version; existing v2/v3 worlds must retain theirs.");
++   Assert.AreEqual(6,m.Exploration.Version,"New distribution has an explicit version; existing v2/v3 worlds must retain theirs.");
+    foreach(string family in new[]{"SnakeForage","WorkGang"})Assert.True(m.Exploration.Entries.Any(e=>e.Family.ToString()==family),family);
+    foreach(var e in m.Exploration.Entries.Where(e=>e.Family.ToString()=="SnakeForage"))Assert.AreEqual(Formation.FlowerMeadow,FormationSelector.For(BiomeType.Spread,e.ZoneID));
+    foreach(var e in m.Exploration.Entries.Where(e=>e.Family.ToString()=="WorkGang"))Assert.AreEqual(Formation.Fallow,FormationSelector.For(BiomeType.Spread,e.ZoneID));
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEntryExpansionTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEntryExpansionTests.cs
+@@ -34,7 +34,7 @@
+ 
+         [TestCase(1)][TestCase(64)][TestCase(1729)] public void NewFamiliesAreFrozenColdAndHabitatSpecific(int seed)
+         {
+-            var a=Fresh(seed);var b=Fresh(seed);Assert.AreEqual(5,a.Exploration.Version);Assert.Zero(a.CachedZoneCount);
++            var a=Fresh(seed);var b=Fresh(seed);Assert.AreEqual(6,a.Exploration.Version);Assert.Zero(a.CachedZoneCount);
+             CollectionAssert.AreEqual(a.Exploration.Entries.Select(e=>e.ZoneID+e.Family),b.Exploration.Entries.Select(e=>e.ZoneID+e.Family));
+             foreach(string f in new[]{"CollectorReturn","RoadsideExchange"})
+             {
+@@ -128,7 +128,7 @@
+         {
+             var m=Fresh();var e=Exchange(m);var z=Activate(m,e);Assert.True(Mark(m,z,e,()=>true));
+             var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("entry-v4","fixture",m,null,null));
+-            Assert.AreEqual(5,loaded.ZoneManager.Exploration.Version);var now=loaded.ZoneManager.GetZone(e.ZoneID);Assert.AreNotSame(z,now);
++            Assert.AreEqual(6,loaded.ZoneManager.Exploration.Version);var now=loaded.ZoneManager.GetZone(e.ZoneID);Assert.AreNotSame(z,now);
+             Assert.AreEqual(2,loaded.ZoneManager.Exploration.DispositionFor(e.ZoneID));Assert.False(Accepted(loaded.ZoneManager,now,out _));
+             loaded.ZoneManager.UnloadZone(e.ZoneID);Assert.AreSame(now,loaded.ZoneManager.GetZone(e.ZoneID));
+         }
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestAdversarialTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestAdversarialTests.cs
+@@ -178,7 +178,7 @@
+             {
+                 System.Globalization.CultureInfo.CurrentCulture=culture;
+                 var m=OverworldZoneManager.CreateDetached(scope.Factory,-64,true);
+-                string wire=Wire(m);Assert.True(wire.StartsWith("5|-64|",StringComparison.Ordinal));
++                string wire=Wire(m);Assert.True(wire.StartsWith("6|-64|",StringComparison.Ordinal));
+                 var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("culture","fixture",m,null,null));
+                 Assert.True(loaded.ZoneManager.Exploration.Enabled);Assert.AreEqual(-64,loaded.ZoneManager.WorldSeed);
+             }
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestTests.cs
+@@ -60,7 +60,7 @@
+         public void FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(int seed)
+         {
+             var rng=new Random(714); LoadoutPart.Rng=rng;
+-            var m=Fresh(seed); var p=Plan(m); Assert.True((bool)Value(p,"Enabled")); Assert.AreEqual(5,Value(p,"Version"));
++            var m=Fresh(seed); var p=Plan(m); Assert.True((bool)Value(p,"Enabled")); Assert.AreEqual(6,Value(p,"Version"));
+             var rows=Entries(p).ToArray(); Assert.Greater(rows.Length,0); Assert.LessOrEqual(rows.Length,WorldMap.Width*WorldMap.Height);
+             Assert.AreEqual(rows.Length,rows.Select(ID).Distinct().Count()); Assert.AreEqual(0,m.CachedZoneCount);
+             Assert.AreEqual(new Random(714).Next(),rng.Next(),"Planner reads may not spend actor loadout draws.");
+@@ -80,7 +80,7 @@
+         [TestCase(1)][TestCase(64)][TestCase(1729)]
+         public void ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(int seed)
+         {
+-            var p=Plan(Fresh(seed)); var rows=Entries(p).ToArray(); var allowed=new[]{"None","RoadSpill","OccupiedBank","LastGleanings","WateringMargin","SnakeForage","WorkGang","CollectorReturn","RoadsideExchange","FieldPassage"};
++            var p=Plan(Fresh(seed)); var rows=Entries(p).ToArray(); var allowed=new[]{"None","RoadSpill","OccupiedBank","LastGleanings","WateringMargin","SnakeForage","WorkGang","CollectorReturn","RoadsideExchange","FieldPassage","CoolingWorkPatch"};
+             Assert.True(rows.Any(e=>Flag(e,"PlacementEligible")&&Family(e)=="None")); Assert.Greater(rows.Count(e=>Family(e)!="None"),0);
+             foreach(var e in rows) { CollectionAssert.Contains(allowed,Family(e)); if(Family(e)=="None")continue;
+                 foreach(string neighbor in Adjacent(ID(e))) { var other=Find(p,neighbor); if(other!=null)Assert.AreNotEqual(Family(e),Family(other),ID(e)+" / "+neighbor); }
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassageManifestTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassageManifestTests.cs
+@@ -33,10 +33,10 @@
+         static uint Variant(int seed,string id)
+         {unchecked{uint h=2166136261u^(uint)seed;foreach(char c in "SpreadExploration.v2|family-variant|"+id)h=(h^c)*16777619u;h^=h>>16;h*=0x7feb352du;h^=h>>15;h*=0x846ca68bu;return (h^(h>>16))%3;}}
+         [TestCase(1)][TestCase(64)][TestCase(1729)]
+-        public void FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(int seed)
++        public void FreshCurrentUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(int seed)
+         {
+             var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);var plan=m.Exploration;
+-            Assert.AreEqual(5,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
++            Assert.AreEqual(6,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
+             var rows=plan.Entries.Where(e=>e.Family.ToString()=="FieldPassage").ToArray();Assert.IsNotEmpty(rows,"Fixed corpus must provide real selected opportunities before any geometry claim.");
+             foreach(var e in plan.Entries.Where(e=>e.Family!=SpreadExplorationFamily.None&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.Hedgerow))
+                 Assert.AreEqual(new[]{"OccupiedBank","CollectorReturn","FieldPassage"}[Variant(seed,e.ZoneID)],e.Family.ToString());
+@@ -44,7 +44,7 @@
+             string wire=SpreadExplorationPlan.BindForSave(m,null).GetProperty(SpreadExplorationPlan.PropertyKey);Bind(m,Restore(m,wire));
+             Assert.AreEqual(wire,SpreadExplorationPlan.BindForSave(m,null).GetProperty(SpreadExplorationPlan.PropertyKey));Assert.Zero(m.CachedZoneCount);Assert.Zero(m.Exploration.RetainedGraphCount);
+         }
+-        [TestCase(2,2)][TestCase(3,2)][TestCase(4,7)]
++        [TestCase(2,2)][TestCase(3,2)][TestCase(4,7)][TestCase(5,7)]
+         public void LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(int version,int family)
+         {
+             var m=OverworldZoneManager.CreateDetached(scope.Factory,64,false);const string id="Overworld.13.11.0";
+--- a/Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassagePipelineTests.cs
++++ b/Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassagePipelineTests.cs
+@@ -67,7 +67,7 @@
+         void Seed(int seed,string id)=>scope.Seed(unchecked(seed^FormationSelector.StableIndex(id,int.MaxValue)));
+         string[] Selected(int seed)
+         {
+-            var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);Assert.AreEqual(5,m.Exploration.Version,"F12 pipeline tests require the actual new-world v5 selection, not a rewritten v4 fixture.");
++            var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);Assert.AreEqual(6,m.Exploration.Version,"F12 pipeline tests exercise the current source policy; literal older assignments remain in manifest tests.");
+             var ids=m.Exploration.Entries.Where(e=>e.PlacementEligible&&e.Family.ToString()=="FieldPassage").Select(e=>e.ZoneID).ToArray();Assert.IsNotEmpty(ids);Assert.Zero(m.CachedZoneCount);return ids;
+         }
+         static (Cell a,Cell b,int closed) Approaches(Zone z,Entity gate)
+@@ -98,9 +98,9 @@
+         [Serializable]public sealed class CensusRow{public string zone,result;public int owners,rawPrecompositionHedges,closedSteps,nextRng;public double baselineMilliseconds,currentMilliseconds;public bool committed;}
+         [Serializable]public sealed class Census{public int seed,selected,committed,refused;public string boundary;public List<CensusRow> rows=new List<CensusRow>();}
+         [TestCase(1)][TestCase(64)][TestCase(1729)]
+-        public void RealV5PipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(int seed)
++        public void RealCurrentPipelineReplacesOneExactHedgeWithUsefulGateAndKeepsOrdinaryBudget(int seed)
+         {
+-            var ids=Selected(seed);var report=new Census{seed=seed,selected=ids.Length,boundary="Fixed v5 selections, actual cold full pipeline paired with only composer removed. Per-zone global RNG reset; same source policy. Exact current owners/positions/parts and explicit stock/gear/stats/tags/property projection. Raw Hedge count is not eligible-source count; one paired elapsed sample per address is not a frame-time or significance claim. Not full graph serialization, native journey or v4 economy equivalence."};
++            var ids=Selected(seed);var report=new Census{seed=seed,selected=ids.Length,boundary="Fixed current v6 selections, actual cold full pipeline paired with only composer removed. Per-zone global RNG reset; same source policy. Exact current owners/positions/parts and explicit stock/gear/stats/tags/property projection. Raw Hedge count is not eligible-source count; one paired elapsed sample per address is not a frame-time or significance claim. Not full graph serialization, native journey or v4 economy equivalence."};
+             foreach(string id in ids)
+             {
+                 Seed(seed,id);var baseline=new ObservedManager(scope.Factory,seed,true);var watch=System.Diagnostics.Stopwatch.StartNew();var before=baseline.GetZone(id);watch.Stop();double baselineMs=watch.Elapsed.TotalMilliseconds;Assert.NotNull(before,id+" baseline");
+@@ -155,7 +155,7 @@
+             // real keyboard travel/save is a separate native acceptance gate.
+             var away=m.GetZone(ReferenceGladePlan.ZoneID);Assert.NotNull(away);Cell target=null;away.ForEachCell((c,x,y)=>{if(target==null&&away.CanPlaceFootprint(player,x,y))target=c;});Assert.NotNull(target);Assert.True(z.RemoveEntity(player));Assert.True(away.AddEntity(player,target.X,target.Y));m.SetActiveZone(away);m.UnloadZone(id);Assert.AreSame(z,m.GetZone(id));
+             var state=GameSessionState.Capture("field-passage","direct-core-away-save",m,null,player);GameSessionState loaded;using(var stream=new MemoryStream()){state.Save(new SaveWriter(stream));stream.Position=0;loaded=GameSessionState.Load(new SaveReader(stream,scope.Factory));}
+-            var restored=(OverworldZoneManager)loaded.ZoneManager;Assert.AreNotSame(m,restored);Assert.AreNotSame(player,loaded.Player);Assert.AreEqual(ReferenceGladePlan.ZoneID,restored.ActiveZone.ZoneID);Assert.AreEqual(5,restored.Exploration.Version);Assert.AreEqual(2,restored.Exploration.DispositionFor(id));var returned=restored.GetZone(id);Assert.NotNull(returned);Assert.AreNotSame(z,returned);Assert.AreEqual(expected.Count,returned.EntityCount);Assert.AreEqual(money,TradeSystem.GetDrams(loaded.Player));
++            var restored=(OverworldZoneManager)loaded.ZoneManager;Assert.AreNotSame(m,restored);Assert.AreNotSame(player,loaded.Player);Assert.AreEqual(ReferenceGladePlan.ZoneID,restored.ActiveZone.ZoneID);Assert.AreEqual(6,restored.Exploration.Version);Assert.AreEqual(2,restored.Exploration.DispositionFor(id));var returned=restored.GetZone(id);Assert.NotNull(returned);Assert.AreNotSame(z,returned);Assert.AreEqual(expected.Count,returned.EntityCount);Assert.AreEqual(money,TradeSystem.GetDrams(loaded.Player));
+             foreach(var owner in returned.GetReadOnlyEntities()){Assert.True(expected.ContainsKey(owner.ID));Assert.AreEqual(expected[owner.ID].pos,returned.GetEntityPosition(owner));Assert.AreEqual(expected[owner.ID].facts,Exact(owner));}
+             Assert.False(returned.GetReadOnlyEntities().Any(e=>e.ID==hedgeID));Assert.False(returned.GetCell(pos.x,pos.y).BlocksMovement());
+             if(broken)Assert.False(returned.GetReadOnlyEntities().Any(e=>e.ID==gateID));else{var saved=returned.GetReadOnlyEntities().Single(e=>e.ID==gateID);Assert.AreNotSame(gate,saved);Assert.True(saved.GetPart<DoorPart>().IsOpen);Assert.AreEqual(axis,saved.GetPart<DoorPart>().QuarterTurns);}

@@ -33,10 +33,10 @@ namespace CavesOfOoo.Tests
         static uint Variant(int seed,string id)
         {unchecked{uint h=2166136261u^(uint)seed;foreach(char c in "SpreadExploration.v2|family-variant|"+id)h=(h^c)*16777619u;h^=h>>16;h*=0x7feb352du;h^=h>>15;h*=0x846ca68bu;return (h^(h>>16))%3;}}
         [TestCase(1)][TestCase(64)][TestCase(1729)]
-        public void FreshFiveUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(int seed)
+        public void FreshCurrentUsesFrozenHedgerowThreeWayAllocationWithoutGeneratingGraphs(int seed)
         {
             var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);var plan=m.Exploration;
-            Assert.AreEqual(5,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
+            Assert.AreEqual(6,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
             var rows=plan.Entries.Where(e=>e.Family.ToString()=="FieldPassage").ToArray();Assert.IsNotEmpty(rows,"Fixed corpus must provide real selected opportunities before any geometry claim.");
             foreach(var e in plan.Entries.Where(e=>e.Family!=SpreadExplorationFamily.None&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.Hedgerow))
                 Assert.AreEqual(new[]{"OccupiedBank","CollectorReturn","FieldPassage"}[Variant(seed,e.ZoneID)],e.Family.ToString());
@@ -44,7 +44,7 @@ namespace CavesOfOoo.Tests
             string wire=SpreadExplorationPlan.BindForSave(m,null).GetProperty(SpreadExplorationPlan.PropertyKey);Bind(m,Restore(m,wire));
             Assert.AreEqual(wire,SpreadExplorationPlan.BindForSave(m,null).GetProperty(SpreadExplorationPlan.PropertyKey));Assert.Zero(m.CachedZoneCount);Assert.Zero(m.Exploration.RetainedGraphCount);
         }
-        [TestCase(2,2)][TestCase(3,2)][TestCase(4,7)]
+        [TestCase(2,2)][TestCase(3,2)][TestCase(4,7)][TestCase(5,7)]
         public void LiteralEarlierHedgerowAssignmentsRemainByteExactWithoutBackfill(int version,int family)
         {
             var m=OverworldZoneManager.CreateDetached(scope.Factory,64,false);const string id="Overworld.13.11.0";

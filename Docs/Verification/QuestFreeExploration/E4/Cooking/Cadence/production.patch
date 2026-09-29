@@ -1,0 +1,75 @@
+--- /tmp/coo-questfree-implementation/cooking-cadence/ThermalPart.before.cs.txt	2026-08-21 00:36:10
++++ /tmp/coo-questfree-implementation/cooking-cadence/ThermalPart.cs	2026-09-28 11:16:03
+@@ -40,6 +40,12 @@
+             if (joules == 0f)
+                 return true;
+ 
++            // Only opted-in workspots have a temperature-selected finite model.
++            var cookingOwner = ParentEntity;
++            var cookingStation = cookingOwner?.GetPart<CampfirePart>();
++            var cookingZone = cookingStation?.FiniteCooking == true ? e.GetParameter<Zone>("Zone") : null;
++            var cookingCell = CurrentFiniteCookingCell(cookingOwner, cookingStation, cookingZone);
++
+             // Snapshot pre-change thresholds so we can detect crossings in both directions.
+             float previous = Temperature;
+             float effectiveFlame = GetEffectiveFlameTemperature();
+@@ -89,6 +95,7 @@
+             if (!frozeThisTick && System.Math.Abs(delta) > 200f)
+                 TryShatter(e, "ThermalShock");
+ 
++            InvalidateFiniteCookingBoundary(previous, cookingOwner, cookingStation, cookingZone, cookingCell);
+             return true;
+         }
+ 
+@@ -230,6 +237,13 @@
+ 
+         private bool HandleEndTurn(GameEvent e)
+         {
++            float previous = Temperature;
++            // Only opted-in workspots have a temperature-selected finite model.
++            var cookingOwner = ParentEntity;
++            var cookingStation = cookingOwner?.GetPart<CampfirePart>();
++            var cookingZone = cookingStation?.FiniteCooking == true ? e.GetParameter<Zone>("Zone") : null;
++            var cookingCell = CurrentFiniteCookingCell(cookingOwner, cookingStation, cookingZone);
++
+             // Decay toward ambient temperature
+             if (Temperature != AmbientTemperature)
+             {
+@@ -250,7 +264,37 @@
+                 ParentEntity.FireEvent("Extinguished");
+             }
+ 
++            InvalidateFiniteCookingBoundary(previous, cookingOwner, cookingStation, cookingZone, cookingCell);
+             return true;
++        }
++
++        private Cell CurrentFiniteCookingCell(Entity owner, CampfirePart station, Zone zone)
++        {
++            if (zone == null || owner == null || station == null || !station.FiniteCooking
++                || !ReferenceEquals(ParentEntity, owner) || !ReferenceEquals(owner.GetPart<ThermalPart>(), this)
++                || !ReferenceEquals(station.ParentEntity, owner) || !ReferenceEquals(owner.GetPart<CampfirePart>(), station)
++                || !ReferenceEquals(owner.SpatialZone, zone))
++                return null;
++            var physics = owner.GetPart<PhysicsPart>();
++            if (physics == null || !ReferenceEquals(physics.ParentEntity, owner)
++                || physics.InInventory != null || physics.Equipped != null)
++                return null;
++            var cell = zone.GetEntityCell(owner);
++            return cell != null && ReferenceEquals(cell.ParentZone, zone)
++                && ReferenceEquals(zone.GetCell(cell.X, cell.Y), cell) && cell.Objects.Contains(owner) ? cell : null;
+         }
++
++        private void InvalidateFiniteCookingBoundary(float previous, Entity owner, CampfirePart station, Zone zone, Cell cell)
++        {
++            // The current cell is redrawn once only when finite thermal appearance
++            // changes. Fuel availability is a separate cooking/readout contract.
++            if (cell == null || float.IsNaN(previous) || float.IsInfinity(previous)
++                || float.IsNaN(Temperature) || float.IsInfinity(Temperature)
++                || (previous >= CookingService.MinimumFiniteCookingTemperature)
++                    == (Temperature >= CookingService.MinimumFiniteCookingTemperature)
++                || !ReferenceEquals(cell, CurrentFiniteCookingCell(owner, station, zone)))
++                return;
++            ZoneRenderHooks.MarkCellDirty(cell, "FiniteCookingTemperature");
++        }
+     }
+ }

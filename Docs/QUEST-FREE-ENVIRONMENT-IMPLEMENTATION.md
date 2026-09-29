@@ -43,10 +43,13 @@ For each slice: executed RED, minimum repair, paired and adversarial controls, a
 | Timber gate art | Two original imported models; native 17/17 within the 88-test art/haul sweep; four axes and removal covered | Actual closed/open/focused/loaded field views accepted locally; no distant-discovery or hinge-animation claim |
 | Haulable identity | Fixed locally; native 71/71 includes four identity/save/control cases plus recipe/style/drag neighbors | Exact FallenBeam saved-ID hash; old saves may select a different cosmetic shape once. No new haul encounter or smooth-animation claim |
 | Harvested grain cooking | Native core136/136, art/neighbors126/126 and isolated-mode/restoration62/62 GREEN; actual input/save witness12/12 | Full native21,584/21,584, zero failures/skips; see the cooking ledger |
-| Hauling situations, finite workspot placement, predator/prey | Source assessment/private planning | Separate tested playable implementations |
+| Finite cooking workspots | Integrated v6 generation, native11 committed/10 refused sites, original hot/cooled art and208-case thermal/presentation GREEN | Controlled native interaction/save20/20 passes; full native regression passes 21,743/21,743 with zero failures/skips; see [workspot ledger](QUEST-FREE-COOKING-WORKSPOT.md) |
+| Hauling situations and predator/prey | Source assessment/private planning | Separate tested playable implementations |
 | Ordinary exploration quality | Open | Fixed ordinary-walk sample and human experience; local scripted proof does not substitute |
 
 Existing E3 limits remain: F5/F7 lived approaches and a complete generated collector journey are unverified; two collector observations met real threats. Do not keep repairing low-value observers or suppress the living world to manufacture a successful scene. Ownership, duplication, saving and essential-route failures remain significant and must be fixed.
+
+Separately labelled scheduling-isolated mechanics checks do not close ordinary travel or exploration acceptance.
 
 ## First playable environmental slice: F12 and the F9 prerequisite
 
@@ -85,7 +88,7 @@ No unresolved significant source, ownership, route or save defect was found in t
 
 The pre-implementation audit found that ordinary Spread crates/sacks provide prepared food, Magpie apples are not a usable trade source, and Emberwheat lacked a Cookable mapping. The integrated candidate now adds an original ToastedEmberwheat transformation: one sheaf to one prepared portion at the same weight, with a 2d4→3d4 healing improvement and commerce 10→12. Actual native core and existing neighbors pass 136/136. Row yield remains unchanged. The original prepared-food model passes its 126-case native art/neighbor gate; the actual harvest→Cook→drop/pickup→F5/F6 witness passes12/12. Full native regression passes21,584/21,584, zero failures/skips; [the cooking ledger](QUEST-FREE-COOKING-IMPLEMENTATION.md) records current acceptance.
 
-Finite cooking admission is an explicit new opt-in; established authored stations retain their semantics. Exact source and ingredient identity across output callbacks are covered by the current native core gate. No finite workspot is registered yet: truthful heat/fuel actions and art, useful approach timing, and an explicit single-station placement budget remain required. Residual heat is not automatically burning fuel; no invented refuel action or danger claim is allowed. The retained [activation plan](Verification/QuestFreeExploration/E4/Cooking/ActivationPlan/ACTIVATION-PLAN.md) separates those future gates from the implemented grain recipe.
+Finite cooking admission is an explicit new opt-in; established authored stations retain their semantics. Exact source and ingredient identity across output callbacks are covered by the current native core gate. The separate [workspot slice](QUEST-FREE-COOKING-WORKSPOT.md) now registers version6 CoolingWorkPatch with one bounded source near an original row, truthful heat/fuel readout, no resting service and original hot/cooled art. Focused native gates pass; controlled native interaction/save20/20 passes with disclosed NPC scheduling isolation, and full native regression passes 21,743/21,743 with zero failures/skips. Residual heat is not automatically burning fuel; no invented refuel action or danger claim is allowed. The retained [activation plan](Verification/QuestFreeExploration/E4/Cooking/ActivationPlan/ACTIVATION-PLAN.md) separates those future gates from the implemented grain recipe.
 
 
 ## Hauling feasibility correction before registration

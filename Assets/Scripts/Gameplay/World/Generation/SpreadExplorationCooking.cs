@@ -1,0 +1,128 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using CavesOfOoo.Data;
+namespace CavesOfOoo.Core
+{
+    /// <summary>One cooling utility beside an exact original finite grain row.
+    /// Cold generation only: the caller proves the current manifest attempt.
+    /// No ingredient, creature, stock, harvest or clock is manufactured here.</summary>
+    public static class SpreadExplorationCooking
+    {
+        const int MaxPositions=32,MaxTrials=256;
+        internal static bool Eligible(Zone z,Entity row)
+        {
+            var p=row?.GetPart<PhysicsPart>();var h=row?.GetPart<FieldHarvestPart>();
+            return z!=null&&row?.BlueprintName=="RipeCropRow"&&row.SpatialZone==z&&z.GetEntityCell(row)!=null
+                &&p?.ParentEntity==row&&!p.Takeable&&p.InInventory==null&&p.Equipped==null
+                &&h?.ParentEntity==row&&!h.Harvested&&h.YieldBlueprint=="Emberwheat"&&h.YieldCount==1
+                &&row.GetPart<RenderPart>()?.ParentEntity==row&&row.Parts.All(v=>v!=null&&v.ParentEntity==row)
+                &&!row.HasTag("Owned")&&!row.HasTag("QuestItem")&&!row.HasTag("Unique")&&!row.HasTag("Creature")
+                &&!row.HasPart<InventoryPart>()&&!row.HasPart<ContainerPart>()&&!row.HasPart<SpatialFootprintPart>()
+                &&!z.GenReservedCells.Contains(z.GetEntityPosition(row))&&!z.GetEntityCell(row).IsInterior;
+        }
+        // This is the ordinary player's current faction screen, not personal
+        // hostility, party/oath eligibility, future AI movement or a safety promise.
+        internal static bool ColdHostile(Zone z,Entity actor)=>actor?.SpatialZone==z&&z.GetEntityCell(actor)!=null
+            &&actor.GetPart<BrainPart>()?.ParentEntity==actor&&actor.GetStatValue("Hitpoints")>0
+            &&PlayerReputation.GetFeeling(FactionManager.GetFaction(actor))<=FactionManager.HOSTILE_THRESHOLD;
+        public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder producer,Entity row,
+            Func<bool> authority,out Entity source,out Func<bool> finalState)
+        {
+            source=null;finalState=null;var receipt=producer?.CookingSource(row);
+            bool Current()=>Eligible(zone,row)&&receipt!=null&&receipt.Zone==zone&&ReferenceEquals(receipt.Factory,factory)
+                &&ReferenceEquals(producer.CookingSource(row),receipt)&&receipt.IsCurrent;
+            if(factory==null||authority==null||!Current()||!authority()||!Current()||!factory.Blueprints.ContainsKey("SpreadCookingCoals"))return false;
+            var layout=new Layout(zone,producer.Plan,null);var rowAt=zone.GetEntityPosition(row);
+            if(!layout.Find(rowAt,out var at,out var harvestStand,out var cookStand))return false;
+            var original=SpreadGenerationReceipt.CaptureFinalState(zone,zone.GetReadOnlyEntities().Where(e=>!DoorPart.IsBareGround(e)));
+            var rows=zone.GetReadOnlyEntities().Where(e=>e.HasPart<FieldHarvestPart>()).ToArray();
+            var rowsProof=SpreadGenerationReceipt.CaptureFinalState(zone,rows);
+            bool Ready()=>Current()&&original()&&new Layout(zone,producer.Plan,null).Fits(rowAt,at,harvestStand,cookStand,layout.Geometry);
+            if(!authority()||!Ready())return false;
+            var made=factory.CreateEntity("SpreadCookingCoals");
+            if(!Valid(made,false)||!authority()||!Ready()||!Valid(made,false)||zone.GetReadOnlyEntities().Any(e=>e.ID==made.ID))return false;
+            if(!receipt.TryConsume())return false;
+            bool added=false,success=false;Func<bool> madeProof=null;
+            try
+            {
+                added=zone.AddEntity(made,at.x,at.y);if(!added)return false;
+                madeProof=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{made});
+                bool Final()=>authority()&&producer.OwnsCookingReceipt(receipt)&&rowsProof()&&Eligible(zone,row)
+                    &&zone.GetEntityPosition(row)==rowAt&&madeProof()&&Valid(made,true)&&zone.GetEntityPosition(made)==at
+                    &&new Layout(zone,producer.Plan,made).Fits(rowAt,at,harvestStand,cookStand,layout.Geometry);
+                if(!Final())return false;source=made;finalState=Final;success=true;return true;
+            }
+            finally
+            {
+                // An independent callback's moved/replaced/changed owner is not
+                // ours to roll back. The composer rejects that changed generation.
+                if(!success&&added&&madeProof?.Invoke()==true)zone.RemoveEntity(made);
+            }
+        }
+        static bool Valid(Entity e,bool placed)
+        {
+            if(e?.BlueprintName!="SpreadCookingCoals"||string.IsNullOrEmpty(e.ID)||e.Parts.Count!=6
+                ||e.Parts.Any(p=>p==null||p.ParentEntity!=e)||e.HasPart<StatusEffectsPart>()||e.Tags.Count!=0||e.Statistics.Count!=0
+                ||(placed?e.SpatialZone==null:e.SpatialZone!=null))return false;
+            var p=e.GetPart<PhysicsPart>();var r=e.GetPart<RenderPart>();var c=e.GetPart<CampfirePart>();var t=e.GetPart<ThermalPart>();var f=e.GetPart<FuelPart>();
+            return p!=null&&!p.Solid&&!p.Takeable&&p.InInventory==null&&p.Equipped==null
+                &&r!=null&&r.Visible&&r.RenderString=="*"&&r.ColorString=="&K"&&r.DisplayName=="cooking coals"&&r.RenderLayer==4
+                &&string.IsNullOrEmpty(r.VisualID)&&string.IsNullOrEmpty(r.VisualVariant)&&string.IsNullOrEmpty(r.GlyphVariants)
+                &&c!=null&&c.FiniteCooking&&!c.AllowRest&&e.GetPart<ExaminablePart>()!=null
+                &&t!=null&&t.Temperature==500&&t.AmbientTemperature==25&&t.FlameTemperature==300&&t.HeatCapacity==.8f&&t.AmbientDecayRate==.02f
+                &&f!=null&&f.FuelMass==25&&f.MaxFuel==25&&f.BurnRate==1&&f.HeatOutput==1&&string.IsNullOrEmpty(f.ExhaustProduct);
+        }
+        sealed class Layout
+        {
+            internal readonly SpreadWildernessSituationBuilder.Geometry Geometry;
+            readonly bool[,] walk=new bool[Zone.Width,Zone.Height];readonly (int x,int y)[] threats;
+            readonly int[][,] ports;readonly SpreadCompositionPlan plan;
+            internal Layout(Zone z,SpreadCompositionPlan plan,Entity ignore)
+            {
+                this.plan=plan;Geometry=new SpreadWildernessSituationBuilder.Geometry(z,ignore==null?new HashSet<Entity>():new HashSet<Entity>{ignore});
+                threats=z.GetReadOnlyEntities().Where(e=>ColdHostile(z,e)).Select(z.GetEntityPosition).ToArray();
+                for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)walk[x,y]=Geometry.Walk(x,y,null)&&!threats.Any(p=>Cheb(p,(x,y))<=3);
+                ports=plan==null?Array.Empty<int[,]>():new[]{Distances((0,plan.WestY)),Distances((Zone.Width-1,plan.EastY)),Distances((plan.NorthX,0)),Distances((plan.SouthX,Zone.Height-1))};
+            }
+            bool Walk((int x,int y) p)=>p.x>=0&&p.y>=0&&p.x<Zone.Width&&p.y<Zone.Height&&walk[p.x,p.y];
+            IEnumerable<(int x,int y)> Adj((int x,int y) p)=>new[]{(p.x-1,p.y),(p.x+1,p.y),(p.x,p.y-1),(p.x,p.y+1)}.Where(Walk);
+            bool Candidate((int x,int y) row,(int x,int y) at)=>Cheb(row,at)>=2&&Cheb(row,at)<=5&&Geometry.Place(at.x,at.y)
+                &&threats.All(p=>Cheb(p,at)>6)&&Adj(at).Count()>=2;
+            bool Budget((int x,int y) rowStand,int last)=>last>=0&&last<=8&&ports.Length==4&&ports.All(map=>map[rowStand.x,rowStand.y]>=0&&map[rowStand.x,rowStand.y]+last+3<=60);
+            internal bool Find((int x,int y) row,out (int x,int y) at,out (int x,int y) harvest,out (int x,int y) cook)
+            {
+                at=harvest=cook=default;var stands=Adj(row).ToArray();if(plan==null||stands.Length<2)return false;
+                var routes=stands.Select(Distances).ToArray();int positions=0,trials=0;
+                for(int y=Math.Max(2,row.y-5);y<=Math.Min(Zone.Height-3,row.y+5);y++)for(int x=Math.Max(2,row.x-5);x<=Math.Min(Zone.Width-3,row.x+5);x++)
+                {
+                    var candidate=(x,y);if(!Candidate(row,candidate))continue;
+                    // Finite heat budget is a cheap cached-distance admission
+                    // predicate, before either cap. Do not spend the bounded
+                    // critical-route proof budget on already impossible walks.
+                    var useful=new List<(int index,(int x,int y) end)>();
+                    foreach(var end in Adj(candidate))for(int i=0;i<stands.Length;i++)
+                        if(Budget(stands[i],routes[i][end.x,end.y]))useful.Add((i,end));
+                    if(useful.Count==0)continue;if(++positions>MaxPositions)return false;
+                    foreach(var pair in useful)
+                    {
+                        if(++trials>MaxTrials)return false;
+                        if(!Geometry.PreservesRoutes(new[]{candidate}))break;
+                        at=candidate;harvest=stands[pair.index];cook=pair.end;return true;
+                    }
+                }
+                return false;
+            }
+            internal bool Fits((int x,int y) row,(int x,int y) at,(int x,int y) harvest,(int x,int y) cook,SpreadWildernessSituationBuilder.Geometry original)
+                =>plan!=null&&Candidate(row,at)&&Adj(row).Count()>=2&&Adj(row).Contains(harvest)&&Adj(at).Contains(cook)
+                    &&Budget(harvest,Distances(harvest)[cook.x,cook.y])&&Geometry.PreservesAgainst(original,new[]{at});
+            int[,] Distances((int x,int y) start)
+            {
+                var result=new int[Zone.Width,Zone.Height];for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)result[x,y]=-1;
+                if(!Walk(start))return result;var q=new Queue<(int x,int y)>();result[start.x,start.y]=0;q.Enqueue(start);
+                while(q.Count>0){var p=q.Dequeue();foreach(var n in Adj(p)){if(result[n.x,n.y]>=0)continue;result[n.x,n.y]=result[p.x,p.y]+1;q.Enqueue(n);}}return result;
+            }
+        }
+        static int Cheb((int x,int y) a,(int x,int y) b)=>Math.Max(Math.Abs(a.x-b.x),Math.Abs(a.y-b.y));
+    }
+}

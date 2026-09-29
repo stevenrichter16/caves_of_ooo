@@ -56,7 +56,7 @@ Receipts and eight frames are under `Verification/QuestFreeExploration/E4/Cookin
 
 ## Later workspot activation, not shipped by this core slice
 
-Proposed exact identity: SpreadCookingCoals, explicitly authored residual heat without inherited permanent LightSource/Flicker. It provides cooking utility rather than a rest service. Existing torch lighting may use genuine thermal ignition conditions; do not redefine heat to suppress that supported interaction. Display cooking readiness separately from hot/cold appearance.
+The later [workspot ledger](QUEST-FREE-COOKING-WORKSPOT.md) tracks current v6 integration and remaining acceptance; the core publication described here did not include it. Exact identity: SpreadCookingCoals, explicitly authored residual heat without inherited permanent LightSource/Flicker. It provides cooking utility rather than a rest service. Existing torch lighting may use genuine thermal ignition conditions; do not redefine heat to suppress that supported interaction. Display cooking readiness separately from hot/cold appearance.
 
 A prospective source projection found actual FieldStrips grain and reachable bare station positions in the fixed seeds, with the current F3 principal composition disabled solely for that projection. This is not registered v6 generation or native availability evidence. Keep one explicit station allowance, protected arrivals and required paths, original grain yield, and literal saved versions2–5. Native arrival timing and cold-state persistence must precede activation.
 
@@ -71,11 +71,11 @@ Root and independent source reviews found no blocker in the private core's exact
 - Q1: admission and post-factory revalidation precede all inventory writes; existing rollback/after-commit order stays intact. Both legacy and finite sources share exact authority. Model catalog/prefab/style dispatches use the same single ID; pickup removes the ground form and drop/load restore it.
 - Q2: cooking does not heal the player or grant another container. It is one-for-one, with the ordinary food weight and stacking contract. Only explicit new finite sources use the temperature threshold; old stations and saved objects keep their established behavior. No rest or material-clock rewrite was folded into this slice.
 - Q3: actual unchanged callbacks are paired with moved/replaced station and ingredient parts; malformed/spent/nonfinite sources refuse; full saved replacement, no-station conservation, capacity and raw/other-food controls pass. Hidden/foreign/carried/custom-appearance objects cannot acquire the new ground form. Native real inputs separately prove payment and persistence.
-- Q4: the pre-core source audits and RED artifacts remain historical evidence. Current native results are recorded above. The living doc distinguishes an available grain recipe from unregistered workspot placement and distinguishes tested model identity from distant readability.
+- Q4: the pre-core source audits and RED artifacts remain historical evidence. Current native results are recorded above. The living doc distinguishes an available grain recipe from the separately tracked workspot placement and distinguishes tested model identity from distant readability.
 
 🟡 No unresolved significant core/source/quantity/save defect found by root and independent review. The full native regression passes 21,584/21,584 with zero failures/skips; all 34 frozen inputs remain unchanged. ⚪ Full-zone food readability is limited by its small scale; distant recognition is deferred. Existing save-stream grain is not retrofitted with a recipe. The importer retains explicit partial outputs if a later import step fails; no transactional asset rollback is claimed.
 
-Publication gates are complete: focused RED/GREEN, actual input/save witness, viewed frames, full native sweep, unchanged frozen inputs and exact owned-file ledger. Source registration, rest opt-out, truthful coals presentation, ordinary discovery, second variants and wider E4 remain separate unfinished work.
+Publication gates are complete: focused RED/GREEN, actual input/save witness, viewed frames, full native sweep, unchanged frozen inputs and exact owned-file ledger. Source registration, rest opt-out and truthful coals presentation belong to the separate current [workspot milestone](QUEST-FREE-COOKING-WORKSPOT.md), whose focused native checks pass and remaining gates are recorded there. Ordinary discovery, second variants and wider E4 remain unfinished.
 
 ## Files and implementation record
 

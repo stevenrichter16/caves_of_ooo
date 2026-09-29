@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/torch-reaction-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="30" result="Failed" start-time="2026-09-29T00:47:51.8792930Z" end-time="2026-09-29T00:47:52.1049280Z" duration="0.225601" total="3" passed="1" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="19" random-seed="1889522748">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/torch-reaction-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/torch-reaction-diagnosis/current.xml --where "class == CavesOfOoo.Tests.TorchReactionStateProbe"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.TorchReactionStateProbe</class>
+  </filter>
+  <test-suite type="Assembly" id="1037" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/torch-reaction-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-09-29T00:47:51.8792930Z" end-time="2026-09-29T00:47:52.1049280Z" duration="0.225601" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="19">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/torch-reaction-diagnosis/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/torch-reaction-diagnosis/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="65529" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1038" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-09-29T00:47:51.8828600Z" end-time="2026-09-29T00:47:52.1049260Z" duration="0.222062" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="19">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1039" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="30" result="Failed" site="Child" start-time="2026-09-29T00:47:51.8831310Z" end-time="2026-09-29T00:47:52.1049140Z" duration="0.221780" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="19">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="TorchReactionStateProbe" fullname="CavesOfOoo.Tests.TorchReactionStateProbe" classname="CavesOfOoo.Tests.TorchReactionStateProbe" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-29T00:47:51.8836860Z" end-time="2026-09-29T00:47:52.1048980Z" duration="0.221209" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="19">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1004" name="OriginalFixtureDependsOnReactionRegistry" fullname="CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry" classname="CavesOfOoo.Tests.TorchReactionStateProbe" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-29T00:47:51.8857720Z" end-time="2026-09-29T00:47:52.1046670Z" duration="0.218891" total="3" passed="1" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="19">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="OriginalFixtureDependsOnReactionRegistry(&quot;empty&quot;,49.7f,1.0f)" fullname="CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(&quot;empty&quot;,49.7f,1.0f)" methodname="OriginalFixtureDependsOnReactionRegistry" classname="CavesOfOoo.Tests.TorchReactionStateProbe" runstate="Runnable" seed="1151917435" result="Passed" start-time="2026-09-29T00:47:51.8859710Z" end-time="2026-09-29T00:47:52.0263270Z" duration="0.140378" asserts="7">
+              <output><![CDATA[registry=empty, reactions=0, originalAssertion=PASS, fuel=49.7, intensity=1, hp=999
+]]></output>
+            </test-case>
+            <test-case id="1002" name="OriginalFixtureDependsOnReactionRegistry(&quot;organic&quot;,49.475f,1.5f)" fullname="CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(&quot;organic&quot;,49.475f,1.5f)" methodname="OriginalFixtureDependsOnReactionRegistry" classname="CavesOfOoo.Tests.TorchReactionStateProbe" runstate="Runnable" seed="2013238713" result="Failed" start-time="2026-09-29T00:47:52.0270240Z" end-time="2026-09-29T00:47:52.0771680Z" duration="0.050144" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  49.475002288818359d
+  Off by:   0.22499847412109375d
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.DestructiveBurning_LooseTorch_ConsumesFuelOnceAndStillDamagesTool() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchAdversarialTests.cs:line 23
+   at CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(String registry, Single fuel, Single intensity) in /tmp/coo-questfree-implementation/torch-reaction-diagnosis/TorchReactionStateProbe.cs:line 24
+   at InvokeStub_TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[registry=organic, reactions=1, originalAssertion=FAIL, fuel=49.475002, intensity=1.5, hp=999
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  49.475002288818359d
+  Off by:   0.22499847412109375d
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.DestructiveBurning_LooseTorch_ConsumesFuelOnceAndStillDamagesTool() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchAdversarialTests.cs:line 23
+   at CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(String registry, Single fuel, Single intensity) in /tmp/coo-questfree-implementation/torch-reaction-diagnosis/TorchReactionStateProbe.cs:line 24
+   at InvokeStub_TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="OriginalFixtureDependsOnReactionRegistry(&quot;all-shipped&quot;,49.475f,1.5f)" fullname="CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(&quot;all-shipped&quot;,49.475f,1.5f)" methodname="OriginalFixtureDependsOnReactionRegistry" classname="CavesOfOoo.Tests.TorchReactionStateProbe" runstate="Runnable" seed="1848868785" result="Failed" start-time="2026-09-29T00:47:52.0773210Z" end-time="2026-09-29T00:47:52.1042230Z" duration="0.026902" asserts="6">
+              <failure>
+                <message><![CDATA[  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  49.475002288818359d
+  Off by:   0.22499847412109375d
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.DestructiveBurning_LooseTorch_ConsumesFuelOnceAndStillDamagesTool() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchAdversarialTests.cs:line 23
+   at CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(String registry, Single fuel, Single intensity) in /tmp/coo-questfree-implementation/torch-reaction-diagnosis/TorchReactionStateProbe.cs:line 24
+   at InvokeStub_TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[registry=all-shipped, reactions=13, originalAssertion=FAIL, fuel=49.475002, intensity=1.5, hp=999
+]]></output>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 49.700000762939453d +/- 9.9999997473787516E-05d
+  But was:  49.475002288818359d
+  Off by:   0.22499847412109375d
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.DensityTorchAdversarialTests.DestructiveBurning_LooseTorch_ConsumesFuelOnceAndStillDamagesTool() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/DensityTorchAdversarialTests.cs:line 23
+   at CavesOfOoo.Tests.TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(String registry, Single fuel, Single intensity) in /tmp/coo-questfree-implementation/torch-reaction-diagnosis/TorchReactionStateProbe.cs:line 24
+   at InvokeStub_TorchReactionStateProbe.OriginalFixtureDependsOnReactionRegistry(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

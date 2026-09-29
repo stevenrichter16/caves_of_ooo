@@ -632,7 +632,8 @@ namespace CavesOfOoo.Rendering
                 {
                     foreach (var entity in zone.GetAllEntities())
                     {
-                        if (entity.GetPart<CampfirePart>() != null)
+                        var campfire = entity.GetPart<CampfirePart>();
+                        if (campfire != null && !campfire.FiniteCooking)
                         {
                             var cell = zone.GetEntityCell(entity);
                             if (cell != null)

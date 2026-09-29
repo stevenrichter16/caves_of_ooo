@@ -1,0 +1,19 @@
+/tmp/coo-questfree-implementation/e4/cooking-coals-art/export_source.py:12: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  img=bpy.data.images.load(str(OUT/'textures/SpreadBiomePalette.png'));img.colorspace_settings.name='sRGB';mat=bpy.data.materials.new('ApprovedGladePalette');mat.use_nodes=True
+/tmp/coo-questfree-implementation/e4/cooking-coals-art/export_source.py:30: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  scene.world.use_nodes=True;scene.world.node_tree.nodes['Background'].inputs[0].default_value=(.30,.32,.29,1);scene.world.node_tree.nodes['Background'].inputs[1].default_value=.8
+/tmp/coo-questfree-implementation/e4/cooking-coals-art/export_source.py:31: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  floor=bpy.data.materials.new('ReviewOnlyGround');floor.use_nodes=True;floor.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value=(.014,.053,.042,1);floor.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value=1
+00:16.467  render           | Saved: '/private/tmp/coo-questfree-implementation/e4/cooking-coals-art/Export/renders/coals-pair-oblique.png'
+00:32.951  render           | Saved: '/private/tmp/coo-questfree-implementation/e4/cooking-coals-art/Export/renders/coals-pair-top.png'
+
+FBX export starting... '/private/tmp/coo-questfree-implementation/e4/cooking-coals-art/Export/models/spread-cooking-coals-hot.fbx'
+export finished in 0.0083 sec.
+
+FBX export starting... '/private/tmp/coo-questfree-implementation/e4/cooking-coals-art/Export/models/spread-cooking-coals-cooled.fbx'
+export finished in 0.0046 sec.
+Info: Saved as "coals-source-review.blend"
+COALS_SOURCE [{"id": "spread-cooking-coals-hot", "sourceBlueprint": "SpreadCookingCoals", "path": "models/spread-cooking-coals-hot.fbx", "kind": "entity", "rigged": false, "clips": [], "sockets": [], "triangles": 260, "sha256": "83897b796f6d7efb3ad4776f176f06f000b3d522056e0006eef953dd50815ee7", "status": "private original source; not native-adopted"}, {"id": "spread-cooking-coals-cooled", "sourceBlueprint": "SpreadCookingCoals", "path": "models/spread-cooking-coals-cooled.fbx", "kind": "entity", "rigged": false, "clips": [], "sockets": [], "triangles": 260, "sha256": "49063aa8c6b41487266442c396c7d6618c995f96d4fb2cd2f2fb225870e3e971", "status": "private original source; not native-adopted"}]
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

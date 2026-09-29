@@ -1,0 +1,315 @@
+NUnitLite 3.14.0 (.NET Standard 2.0)
+Copyright (c) 2023 Charlie Poole, Rob Prouse
+
+Runtime Environment
+   OS Version: macOS 26.0.0
+  CLR Version: 10.0.5
+
+Test Files
+    /private/tmp/coo-questfree-implementation/cooking/finite-presentation/baseline-runner/bin/Debug/net8.0/EditModeRunner.dll
+
+Test Discovery
+  Start time: 2026-09-28 15:11:52Z
+    End time: 2026-09-28 15:11:52Z
+    Duration: 0.028 seconds
+
+Test Filters
+    Where: class == CavesOfOoo.Tests.FiniteCookingPresentationTests
+
+Errors, Failures and Warnings
+
+1) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(False)
+  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(Boolean priorFiniteField) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 58
+
+2) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(True)
+  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(Boolean priorFiniteField) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 58
+   at InvokeStub_FiniteCookingPresentationTests.ActualOldPartWireWithoutRestFieldKeepsRest(Object, Span`1)
+
+3) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock("RestAtCampfire",False)
+  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(String command, Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 73
+
+4) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock("RestUntilNextBand",False)
+  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(String command, Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 73
+   at InvokeStub_FiniteCookingPresentationTests.DirectRestCommandsRespectPolicyBeforeHealingOrClock(Object, Span`1)
+
+5) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(True,25.0f)
+  Expected: equivalent to < "&c" >
+  But was:  < "&R", "&Y" >
+  Missing (1): < "&c" >
+  Extra (2): < "&R", "&Y" >
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(Boolean finite, Single temperature) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 85
+   at InvokeStub_FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(Object, Span`1)
+
+6) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(True,500.0f)
+  Expected: equivalent to < "&c" >
+  But was:  < "&R", "&Y" >
+  Missing (1): < "&c" >
+  Extra (2): < "&R", "&Y" >
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(Boolean finite, Single temperature) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 85
+   at InvokeStub_FiniteCookingPresentationTests.FiniteGlyphKeepsAuthoredColorWhileLegacyFlickers(Object, Span`1)
+
+7) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(True,25.0f)
+  Expected: 0
+  But was:  1
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(Boolean finite, Single temperature) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 93
+   at InvokeStub_FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(Object, Span`1)
+
+8) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(True,500.0f)
+  Expected: 0
+  But was:  1
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(Boolean finite, Single temperature) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 93
+   at InvokeStub_FiniteCookingPresentationTests.FiniteProximityNeverClaimsLegacyCrackle(Object, Span`1)
+
+9) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource("hidden")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 111
+
+10) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource("unseen-cell")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 111
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+
+11) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource("wrong-cell")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 111
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+
+12) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource("foreign-zone")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 111
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+
+13) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource("removed")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 111
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+
+14) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource("foreign-part")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 111
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+
+15) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource("inactive-zone")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 111
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+
+16) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource("foreign-render")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 111
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+
+17) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource("foreign-physics")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 111
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+
+18) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource("carried")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 111
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+
+19) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource("equipped")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 111
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+
+20) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource("moved")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 111
+   at InvokeStub_FiniteCookingPresentationTests.FocusedFiniteReadoutRequiresCurrentVisibleOwnedSource(Object, Span`1)
+
+21) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(150.0f,200.0f,"enough stored heat")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+
+22) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(149.99f,200.0f,"no longer hot enough")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+
+23) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,0.0f,"still hot")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+
+24) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.NaN,200.0f,"unavailable")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+
+25) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(500.0f,float.NaN,"unavailable")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+
+26) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(float.PositiveInfinity,200.0f,"unavailable")
+  Expected: String containing "Cooking:"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Single heat, Single fuel, String expected) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 103
+   at InvokeStub_FiniteCookingPresentationTests.FocusedReadoutDescribesReadinessWithoutInventingActionsOrChangingState(Object, Span`1)
+
+27) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(False)
+  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 141
+
+28) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(True)
+  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 141
+   at InvokeStub_FiniteCookingPresentationTests.FullSaveKeepsRestChoiceHeatFuelAndExactReplacement(Object, Span`1)
+
+29) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking("missing-fuel")
+  Expected: String containing "enough stored heat"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 124
+
+30) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking("missing-thermal")
+  Expected: String containing "enough stored heat"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 124
+   at InvokeStub_FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(Object, Span`1)
+
+31) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking("foreign-fuel")
+  Expected: String containing "enough stored heat"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 124
+   at InvokeStub_FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(Object, Span`1)
+
+32) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking("foreign-thermal")
+  Expected: String containing "enough stored heat"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(String fault) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 124
+   at InvokeStub_FiniteCookingPresentationTests.MalformedOwnedFiniteStateNeverAdvertisesUsableCooking(Object, Span`1)
+
+33) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(False,False)
+  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(Boolean finite, Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 64
+
+34) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(True,False)
+  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.Allow(Boolean value) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 46
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(Boolean finite, Boolean allow) in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 64
+   at InvokeStub_FiniteCookingPresentationTests.MenuRestOptOutIsIndependentOfFiniteCooking(Object, Span`1)
+
+35) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.PlainAndAuthoredPartsDefaultToAllowingEstablishedRest
+  Cooking-only sources require an explicit default-true saved rest option.
+  Expected: not null
+  But was:  null
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.RestField() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 45
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.PlainAndAuthoredPartsDefaultToAllowingEstablishedRest() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 50
+
+36) Failed : CavesOfOoo.Tests.FiniteCookingPresentationTests.SameOwnerReadoutTracksHotExhaustedThenCooledWithoutMutatingTheSource
+  Expected: String containing "enough stored heat"
+  But was:  "You see a campfire.
+
+A small work spot."
+   at CavesOfOoo.Tests.FiniteCookingPresentationTests.SameOwnerReadoutTracksHotExhaustedThenCooledWithoutMutatingTheSource() in /tmp/coo-questfree-implementation/cooking/finite-presentation/FiniteCookingPresentationTests.cs:line 133
+
+Run Settings
+    Number of Test Workers: 1
+    Work Directory: /Users/steven/caves-of-ooo
+    Internal Trace: Off
+
+Test Run Summary
+  Overall result: Failed
+  Test Count: 46, Passed: 10, Failed: 36, Warnings: 0, Inconclusive: 0, Skipped: 0
+    Failed Tests - Failures: 36, Errors: 0, Invalid: 0
+  Start time: 2026-09-28 15:11:52Z
+    End time: 2026-09-28 15:11:53Z
+    Duration: 0.873 seconds
+
+Results (nunit3) saved as /tmp/coo-questfree-implementation/cooking/finite-presentation/matched46-red.xml

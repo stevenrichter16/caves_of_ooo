@@ -1,6 +1,120 @@
 {
   "Objects": [
     {
+      "Name": "SpreadCookingCoals",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "cooking coals"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "*"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&K"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Solid",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Campfire",
+          "Params": [
+            {
+              "Key": "FiniteCooking",
+              "Value": "true"
+            },
+            {
+              "Key": "AllowRest",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "Temperature",
+              "Value": "500"
+            },
+            {
+              "Key": "AmbientTemperature",
+              "Value": "25"
+            },
+            {
+              "Key": "FlameTemperature",
+              "Value": "300"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "0.8"
+            },
+            {
+              "Key": "AmbientDecayRate",
+              "Value": "0.02"
+            }
+          ]
+        },
+        {
+          "Name": "Fuel",
+          "Params": [
+            {
+              "Key": "FuelMass",
+              "Value": "25"
+            },
+            {
+              "Key": "MaxFuel",
+              "Value": "25"
+            },
+            {
+              "Key": "BurnRate",
+              "Value": "1"
+            },
+            {
+              "Key": "HeatOutput",
+              "Value": "1"
+            },
+            {
+              "Key": "ExhaustProduct",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Text",
+              "Value": "A shallow bed of leftover cooking coals. Its remaining heat will fade."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "PhysicalObject",
       "Parts": [
         {

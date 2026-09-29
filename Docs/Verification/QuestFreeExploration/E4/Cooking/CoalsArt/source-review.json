@@ -1,0 +1,61 @@
+{
+  "status": "Private source-only candidate, root preview and native gates pending",
+  "sourceRed": {
+    "total": 8,
+    "failedMissingKit": 7,
+    "borrowedControlPass": 1
+  },
+  "firstSourceGreen": 8,
+  "visualCorrection": {
+    "reason": "Overly broad orange top faces",
+    "red": 1,
+    "controls": 8,
+    "oldTriangles": 204,
+    "newTriangles": 260,
+    "newBudget": 280
+  },
+  "finalSourceGreen": 9,
+  "models": [
+    {
+      "id": "spread-cooking-coals-hot",
+      "pieces": 11,
+      "triangles": 260,
+      "bounds": {
+        "min": [
+          -0.4343194,
+          0,
+          -0.385229
+        ],
+        "max": [
+          0.43,
+          0.107,
+          0.34
+        ]
+      }
+    },
+    {
+      "id": "spread-cooking-coals-cooled",
+      "pieces": 11,
+      "triangles": 260,
+      "bounds": {
+        "min": [
+          -0.4343194,
+          0,
+          -0.385229
+        ],
+        "max": [
+          0.43,
+          0.107,
+          0.34
+        ]
+      }
+    }
+  ],
+  "paletteGeometryBoundary": "Same piece geometry and topology in both states; only thermal exposed-face color changes. Not runtime state/owner proof.",
+  "pending": [
+    "Root source preview approval",
+    "Actual SpreadCookingCoals content/native missing-binding RED",
+    "Scoped library/import validation",
+    "Native same-camera hot/cooled/hot-fuelzero reader and no legacy ember/light proof"
+  ]
+}

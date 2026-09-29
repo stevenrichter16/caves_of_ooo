@@ -1,0 +1,118 @@
+# Finite Spread cooking workspot
+
+Status: generation, quiet presentation, original hot/cooled models and automatic cooling refresh pass focused checks and the full native Unity regression: 21,743/21,743, zero failures or skips. Controlled Play/save acceptance passes 20/20 with disclosed scheduling isolation. Ordinary discovery and threatened approach remain unverified. The separate harvested-grain recipe/model/input slice has passed its focused native gates; its full native regression passed21,584/21,584, zero failures/skips, and shipped as85cb57cf. Do not count those results as workspot acceptance.
+
+This checklist implements the retained [activation plan](Verification/QuestFreeExploration/E4/Cooking/ActivationPlan/ACTIVATION-PLAN.md), with the later approved exact fields below. The [cooking ledger](QUEST-FREE-COOKING-IMPLEMENTATION.md) owns the already-tested recipe and prepared food. Root publishes packages and executes Unity; no activation is inferred from this document.
+
+## Frozen source and player contract
+
+`SpreadCookingCoals` is one original, non-solid, non-takeable PhysicalObject child: neutral `*` / `&K`, display “cooking coals”, layer4, empty custom visual fields. Campfire has `FiniteCooking=true`, `AllowRest=false`; Thermal starts at500, ambient25, flame threshold300, heat capacity0.8, existing decay0.02; Fuel is25/25, burn rate1, heat output1, no exhaust product. No initial Burning, LightSource/Flicker, inventory, food, stock, rest service or destruction reward. Cold/exhausted owners persist. Existing genuine thermal torch-lighting remains allowed; no new refuel/ignition system is promised.
+
+Cooking uses carried raw food's existing inventory **Cook** command beside the exact current source. No “C: cook” world action or automatic ingredient grant. Readout must distinguish enough heat plus usable fuel, below the cooking threshold, still hot but fuel-exhausted, and unavailable current-source data. `CookingService.MinimumFiniteCookingTemperature` is150. Fuel0 at500 remains physically hot. The cooled model name means below this cooking threshold, not absolute cold.
+
+## Approved generation boundary
+
+Fresh version6 appends `CoolingWorkPatch=10`. FieldStrips uses the existing deterministic family-variant rank: remainder0 keeps LastGleanings; remainder1 selects coals. Quiet/excluded sites remain quiet; failed placement stays refused. Literal versions2–5 and accepted saved graphs keep their old assignments; no load/backfill/reheat callback. The new family deliberately omits F3's grazer substitution, so compare against the same v6 source policy with only composition disabled—not against v5 economy.
+
+Capture opt-in receipts only for actual successfully produced ripe rows from the exact terrain build/factory/plan/revision. Require an unchanged, unspent one-Emberwheat row. Add at most one utility owner, preserving every original row, actor, stock and caller RNG. Current candidate requires dry nonreserved geometry, two row/source approaches, source2–5 cells from the row, source more than6 from current hostiles, paths outside radius3, all four actual ports within60 modeled entry/walk/Harvest/walk/Cook material passes, and retained critical routes/bypass. Recheck exact source/output/attempt and routes after factory callbacks and late generation; rollback only the still-owned added source.
+
+Private fixed-seed candidate census (not native): eligible fields30/30/29, selected6/8/7, source-compatible entries6/8/7, committed3/3/6, refused3/5/1 for seeds1/64/1729. These are static current-hostile route checks, not survival, discovery or native timing guarantees. Keep all selected/refused rows in the denominator.
+
+## Implementation and acceptance checklist
+
+| Slice | Evidence now | Remaining gate |
+|---|---|---|
+| Recipe/prepared food | Shipped as85cb57cf; native full21,584/21,584 and disclosed staged real-input/save12/12. | No recipe regression gap; this does not prove a finite workspot journey. |
+| Generation/content | Native placement34, manifest11 and pipeline9 pass after actual source/version RED; native census11 committed/10 refused across21 selected sites. Parsed only SpreadCookingCoals added. Historical2–5 compatibility and exact-source callback guards retained. | Controlled actual source persistence passes; full native regression passes 21,743/21,743. |
+| No Rest, truthful reader, quiet glyph/proximity | Native46/46 after36RED/10controls. Actual old missing-field wire defaults and saved false flag tested. Legacy campfire/rest/receipt17/17. | Ready/cooled/loaded readout viewed; distant player recognition remains unmeasured. |
+| No legacy embers | Native6/6 after3RED/3controls, covering direct registration, zone registration and cached anchor spawning. | Full native regression passes 21,743/21,743; no new flame effect required. |
+| Original hot/cooled form | Original two260-triangle models imported as2 entries/16 files;1,992 borrowed assets unchanged. Native21/21 art controls and153/153 presentation/observer neighbors. | Hot/cooled/loaded frames viewed; distant recognition remains a playtest question. |
+| Automatic cooling refresh | Actual quiet paid-input150→147.5 stale-hot RED repaired; native208/208 material/fire/readout/art/recipe neighbors pass. | Controlled input sequence and full native regression pass. |
+
+## Native timing, cooling and persistence gates
+
+- Select an actual generated accepted source from the fixed corpus; report selection/refusal and setup honestly. Any player-only transfer must be labelled and cannot certify ordinary travel/discovery. No granted grain, forced warmth, fuel refill, RNG rescue or source relocation.
+- Record source temperature/fuel and player ticks/energy around the real arrival, Harvest and inventory Cook. Count actual input completions/material passes separately from clock ticks. Free inspection must remain free; successful Cook costs its actual action. The private model crosses below150 after67 material passes, not67 arbitrary world ticks. Retain ordinary threat/refusal outcomes.
+- At the actual unchanged visible source, reach the threshold through normal paid input/material simulation and inspect the naturally refreshed model. Art20's material tick plus explicit presenter refresh proves re-evaluation only. The native stale-model RED justified only the finite source boundary notification described below; no general Thermal notifications were added.
+- View hot, below-threshold and hot/fuel0 states with factual reader text. No-Rest, no false warmth/crackle/flicker/embers and legacy controls must agree. A late unavailable Cook must preserve raw quantity; do not reinterpret every unavailable state as cold.
+- Save real harvested/cooked/cooled aftermath, leave the graph inactive, load a replacement graph and return. Preserve exact IDs/anchors, stubble, earned food, temperature/fuel, false Rest flag and committed/refused disposition. Do not regenerate/reheat or claim elapsed-away cooling. Keep old-save defaults and no-backfill controls.
+
+Q1: exact source authority surrounds all writes and callbacks. Q2: cooking readiness, physical heat, Rest and legacy effects are separate contracts. Q3: hot/no-fuel, cooled/positive-fuel, current/stale/hidden/foreign, old/new wire and useful/refused routes have paired checks. Q4: private/source-preview results, native tests and player-facing acceptance remain separate. Placement alone does not prove player acceptance; the separately disclosed controlled witness below verifies mechanics and persistence, while ordinary discovery and threatened approach remain open.
+
+## Native integration record
+
+- Native baseline before shared production:106 total,21 controls passed,85 failed,0 skipped in17.2727918s (`E4/Integration/native-workspot-core-red.json`). Finite presentation36RED/10controls; ember exclusion3RED/3controls; generation37RED/8controls; full pipeline9RED. The actual source child and v6 were absent in this baseline.
+- Adopted exact reviewed source/content/readout candidate after that RED gate. Parsed Objects511→512: only SpreadCookingCoals added, no prior blueprint changed. All13 generation/pin postimages, four new generation test/meta postimages and the finite Campfire dependency match private frozen hashes. The following retained records close native coreGREEN and child-present artRED; this adoption step alone proved no workspot lifetime.
+
+- Native child-present integration:100/100 generation/readout/pipeline cases passed; art20 gave9 actual missing-binding/library RED with11 controls passing (combined120:111PASS9FAIL0skip,46.2002303s). The native cohort is2/6,3/8,6/7 accepted in seeds1/64/1729; the private runner used different string hashes. All21 selected sites remain in the denominator; no placement constraints were widened.
+- Native emitter6 and222 cooking/scene/version/passage neighbors passed228/228. The two new native-mode guards failed for absent launcher/initializer as intended (combined230:228PASS2FAIL0skip,36.1092777s). Raw receipts retain both stages rather than reporting mixed runs as all-green.
+
+- Existing campfire/rest/transaction receipt checks pass17/17, zero failures/skips in0.0999855s (`native-workspot-legacy-rest-green.json`). This explicitly runs CampfirePartTests4, BiomeRestTests11 and DensityCookingReceiptReviewTests2. No legacy rest or rollback change is required.
+
+- Original coals pair imported successfully:2 entries, exact16 output/meta files, all1,992 borrowed hashes unchanged, Main scene path and dirty state unchanged. Native art21 plus original lookup/style/portable/gate/voxel/food and observer/restoration gates pass153/153, zero failures/skips in46.7256133s. The added spatial-backlink counter was a post-review supplement, not separately executed RED; original Art20 remains9RED/11controls before binding.
+
+### Bounded native walk and severity decision
+
+Run `aeb809f7c3a44d2faf3493c51437b0cb` selected actual `Overworld.5.11.0`, transferred the original player to the west port, and stopped after15 genuine paid steps at(14,17), HP40. Initial entry/source checks passed; every material pass matched the .02 recurrence, leaving375.820343 temperature/Fuel25. It did not reach Harvest/Cook, the cooled model, or save acceptance. The full failure report and three frames are retained under `Cooking/FiniteNative/`.
+
+Root and independent review viewed the entry/failure frames: a green serpentine actor moved toward the approach. The JSON does not identify the obstructing owner. The observer rejects its current start cell if a threat enters radius3, so this conservative stop does not establish impassable terrain or a cooking defect. NPC diagnostics were not enabled on the separate turn-verbose channel; missing NPC rows cannot prove absent movement. No source constraint, player health, NPC behavior or material rate was changed to repair this walk. Main restored clean, Play stopped and SaveRootOverride cleared.
+
+Severity decision: do not build a general route/combat bot. Retain ordinary approach as an unmet live gate. Next, use two quiet native input-to-render counterchecks for the important automatic cooling seam and a separately labelled controlled mechanics witness, with NPC scheduling explicitly isolated and disclosed. This can verify actual use/cooling/save while making no ordinary journey, threat or difficulty claim.
+
+- The quiet native input-to-render pair reproduced a real automatic-presentation defect: source150→147.5 after exactly one normal paid completion retained the hot mesh through ordinary renderer frames;500→490.5 control stayed hot correctly. Combined with two absent controlled-mode guards, the native4 run had1PASS3FAIL0skip in5.3354723s (`native-workspot-cadence-controlled-mode-red.json`). This is actual Unity pipeline evidence, not a source-code inference, forced refresh or physical keyboard proof. A finite-source-only threshold invalidation is now justified; unrelated thermal behavior stays outside the fix.
+
+### Automatic heat-boundary presentation repair
+
+The actual quiet paid-input RED justified a narrow `ThermalPart` repair. ApplyHeat and passive EndTurn retain their existing arithmetic; opted-in finite stations mark only their exact original current cell dirty when crossing the150 cooking threshold. Legacy stations, stable-temperature sides, stale/moved/replaced owners and invalid temperatures do not notify. Initial blueprint/load field assignment is shown by a fresh bind; this is not a general raw-field observer or fire-system rewrite. Private new controls23 had5 RED/18 passing controls before the repair, then23/23 and94/94 with material/fire neighbors.
+
+Matched Unity checks passed208/208, zero failures/skips in28.942314s (`E4/Integration/native-workspot-thermal-cadence-green.json`), including the previously failing150→147.5 ordinary-input/render path and stable500→490.5 control. No forced redraw, source movement or manual heat mutation follows the paid input in that pair. These are native pipeline tests, not physical keyboard or ordinary wilderness travel evidence.
+
+### Retained package checkpoints and controlled visual assertion
+
+The private-package README/PLAN files under the verification directories preserve their handoff-time status. Their “private” or “native pending” wording is historical: use this living ledger and the subsequent raw native receipts for current acceptance. Preserve original RED results and package hashes.
+
+Controlled run `da7009c3ceb944a5b9df344aa3da0be3` reached the original grain and earned one unit after54 paid inputs, with four checks passing and source184.551758/Fuel25. The current hot model and approved style proof passed. A subsequent observer assertion incorrectly required its submitted renderer material to be the persistent source material. The rendering surface intentionally uses an owned runtime copy, already checked by the style proof for exact ownership, shader, atlas, colors and overrides. This is an observer contract correction, not a license to accept arbitrary materials. No Cook, cooled-state or F6 acceptance follows from this incomplete run. Failure cleanup restored every captured NPC entry/energy exactly, preserving the current player clock/energy; Main restored clean and the isolated save override cleared. Root viewed the actual failed-state frame.
+
+The observer repair retains the exact approved library mesh and persistent palette, and checks the renderer against `SubmittedMaterial` after the existing read-only style proof succeeds. A paired actual-presenter fixture verifies the approved owned copy and refusal/recovery of a foreign substituted palette. The native failed controlled observer remains the executed RED; these two supplemental contract cases are not claimed as a separate prior RED. No renderer or art asset changed.
+
+### Controlled mechanics pass and image review
+
+Run `c8571a85f45b4f32920d94549bf51df4` completed20/20 scripted checks with0 failures,70 paid inputs in27.5488711s. Setup transferred the original player once to the west arrival port of the actual seed64 generated `Overworld.5.11.0`. It proves native Harvest/Cook, the normal paid frame swapping to the cooled model at67 material passes, free ready/unavailable readout, unchanged inactive heat, saved replacement source/row/food/player graphs, restored NPC queue and a normal paid return after NPC scheduling restoration. The four NPC scheduling entries alone were temporarily suspended; their original owners/stock stayed in the zone. All entries/energies were restored before exit while preserving the current player clock. Root confirmed clean Main, Play stopped and cleared save override.
+
+**Corrected visual-review false alarm:** an initial multi-image inspection was misread as missing house/crop geometry in frame06. Independent reopening of the exact files, followed by root's single-image view, shows the complete house/crops already present in06, before Examine. The verified06 SHA256 is `7049b75cd372b80c22ca63a88dc15ff751ccb393f5c3f2eb95ba964a97ea8d54`;07 is `eedf5365abc87edb2e958520c95e2a401b9bd92846b56b1c16aaeaad2270a0a0`. No rendering-lifecycle defect was established, no runtime workaround was added, and the proposed extra observer diagnostics were stopped. Retain this correction so the narrower20-check mechanics result and actual viewed images are not confused with an invented production failure.
+
+## In-phase review before publication
+
+- 🟡 Repaired: quiet ordinary input could cool the source below150 while retaining its hot form. A finite-only exact-owner boundary notification now passes the native input/render pair and material/fire neighbors; no per-turn full redraw or cooling-rate change.
+- 🟡 Corrected observer premise: the approved surface owns material copies. The initial live assertion rejected that valid contract; the current assertion validates both persistent source assets and exact submitted material, with a foreign-palette countercheck. Native25/25 pass in20.3866468s.
+- 🔵 Preserved: old campfires remain rest-capable by saved default; new coals decline Rest and legacy automatic embers. Loaded versions2–5 retain their assigned content. Source generation leaves failed sites refused and preserves original rows/actors/stock under the same version6 policy.
+- 🧪 Open: moving-threat ordinary approach, distant recognition and player preference are not established. The first walk stopped honestly at a moving-threat safety boundary; controlled scheduling is disclosed, not normal world behavior. No hot/fuel0 Play frame was staged; native readout/art controls cover that distinction. Coals do not burn fuel merely by cooling, and inactive zones do not age this heat.
+- ⚪ Scope: residual coals have no refuel action or Rest service. There is no universal combustibility rewrite, broad regional rollout, forced F9 haulable source, or F11 hunting activation in this slice.
+
+Q1: producer capture, post-callback revalidation and final acceptance share exact source authority; heat addition and passive cooling both notify only the same original current finite source/cell when crossing150. Q2: cooking readiness, physical heat, Rest and renderer material ownership remain distinct contracts. Q3: absent/invalid/spent/foreign/moved/replaced source, warm/no-fuel, cooled/positive-fuel, saved false versus absent true Rest, and approved-owned versus foreign palette are paired with real passing controls. Q4: archived handoffs retain their historical states; this ledger separates private execution, native tests, the incomplete ordinary walk, controlled mechanics, viewed pixels and full regression. The false missing-scenery concern is explicitly withdrawn: exact04/06 crop rectangles have zero changed pixels, and the house rectangle differs in only12 of21,750 pixels.
+
+## Files and current publication boundary
+
+Gameplay changes are the v6 plan/manifest and source composer, one new cooking-coals blueprint, finite Rest/readout/ember exclusions and the narrow ThermalPart cell notification. Presentation changes are an optional original coals library/importer, the existing catalog/style/recipe dispatch hooks and two imported models. Tests cover generation/pipeline, compatibility, readout/Rest, embers, exact art ownership, automatic cooling and material authority. The isolated native audit retains ordinary and separately named controlled modes, original failed receipts and complete screenshots. The exact owned-file ledger excludes unrelated local work and Unity MCP logs.
+
+All 72 owned Assets inputs remained byte-identical through the first native full regression job `9dec80a3b038473cb5251614dcc5520e` and the clean-domain repeat `064eab613063487e9974fa3588916bcb`. The frozen hashes were checked again after the final export. Both results are recorded below; the earlier cooking 21,584 result does not substitute.
+
+### Full-sweep state sensitivity and matched repeat
+
+The first full native run completed21,743 cases:21,734 passed,9 failed,0 skipped in1,553.8702174s (`native-workspot-full-suite-first.json`). All72 frozen owned Assets inputs remained unchanged. Failures were one existing DensityTorchAdversarial case and eight existing acquisition/transfer bench cases. The affected four complete classes immediately passed63/63 on exactly the same source in1.3312255s (`native-workspot-legacy-repeat-green.json`), so the initial failures are retained rather than counted away.
+
+Source inspection identifies unisolated runtime settings: the torch fixture assumes an empty MaterialReactionResolver; the shipped organic reaction adds exactly0.225 bonus consumption after the ordinary0.3, matching49.475 versus49.7. The trading benches clear carried stock but assume no equipped merchant loadout; a retained LoadoutPart.Factory creates equipment contributing the observed extra8 weight. These pre-existing audit-fixture assumptions are separate from the finite source feature. The subsequent clean script-domain full repeat is recorded below; no assertion was weakened, skipped or silently repinned. Broad benchmark isolation repair is lower-priority follow-up under the user's scope rule.
+
+Matched private diagnosis now reproduces the exact torch failure with both current and pre-notification ThermalPart: empty reactions give49.7; organic-only or all13 shipped reactions give49.475002 with intensity1.5. A paired merchant probe shows actual ShortSword/LeatherBoots add8 weight only when LoadoutPart.Factory is installed, explaining the old naked-merchant capacity premise. Retained probes, source hashes and limits are under `Cooking/RegressionState/`. They demonstrate setup dependence without identifying the exact prior native writer, and do not replace the fresh-domain full run. No production or test expectations were changed.
+
+### Final native regression and publication acceptance
+
+After a script-domain reload, the complete native Unity EditMode suite passed **21,743/21,743**, with **0 failures and 0 skips**, in **1,751.9449193 seconds** (job `064eab613063487e9974fa3588916bcb`; `E4/Integration/native-workspot-full-suite-green.json`). This adds 159 cases to the published cooking baseline of 21,584. No source, asset or test expectation changed between the two full runs. All 72 frozen owned Assets hashes match; parsed Objects.json preserves all 511 prior blueprints and adds only SpreadCookingCoals. All 25 new Unity metadata GUIDs are unique, including metadata for all 16 new C# files.
+
+**Can verify:** actual Unity tests cover the exact generation sources, admission/refusal, saved compatibility, source ownership, cooling redraw and art contracts. The disclosed controlled Play witness passes 20/20 checks over 70 paid inputs and viewed frames, preserving earned food and the cooled source through replacement save/load graphs.
+
+**Cannot verify:** ordinary discovery or safe travel among moving enemies, distant recognition, player preference or broad exploration quality. The original ordinary walk remains an incomplete record; temporary NPC scheduling isolation only establishes the controlled mechanics and persistence result. The full test pass does not erase the initial nine state-sensitive failures or prove their fixtures are now isolated. Hauling situations, predator/prey activation and meaningful second variants remain separate work.
+
+The bounded workspot publication gates are complete. Release notes and the exact owned-file ledger exclude unrelated local files and MCP logs.
+
+Publication whitespace check: handwritten source, tests and documentation pass. Unity-generated empty YAML values and retained unified-diff context contain their original trailing spaces; those serialized inputs and evidence patches are preserved byte-for-byte.

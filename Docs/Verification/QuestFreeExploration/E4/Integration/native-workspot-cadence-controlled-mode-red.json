@@ -1,0 +1,49 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 4,
+    "passed": 1,
+    "failed": 3,
+    "skipped": 0,
+    "durationSeconds": 5.3354723,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "PaidInputUpdatesBoundThermalModelWithoutForcedRefresh(150.0f,\"spread-cooking-coals-cooled\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingInputRenderCadenceTests.PaidInputUpdatesBoundThermalModelWithoutForcedRefresh(150.0f,\"spread-cooking-coals-cooled\")",
+      "state": "Failed",
+      "durationSeconds": 4.8551908,
+      "message": "  Normal render frame retained a stale thermal model.\n  Expected string length 27 but was 24. Strings differ at index 21.\n  Expected: \"spread-cooking-coals-cooled\"\n  But was:  \"spread-cooking-coals-hot\"\n  --------------------------------^\n",
+      "stackTrace": "at CavesOfOoo.Tests.FiniteCookingInputRenderCadenceTests.Mesh (CavesOfOoo.Tests.FiniteCookingInputRenderCadenceTests+Fixture f, System.String expected) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiniteCookingInputRenderCadenceTests.cs:57\nat CavesOfOoo.Tests.FiniteCookingInputRenderCadenceTests.PaidInputUpdatesBoundThermalModelWithoutForcedRefresh (System.Single initial, System.String expected) [0x0035f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/FiniteCookingInputRenderCadenceTests.cs:48\n",
+      "output": "Before normal frame: start=150, temperature=147.5, fullDirty=False, dirtyCells=0\n"
+    },
+    {
+      "name": "PaidInputUpdatesBoundThermalModelWithoutForcedRefresh(500.0f,\"spread-cooking-coals-hot\")",
+      "fullName": "CavesOfOoo.Tests.FiniteCookingInputRenderCadenceTests.PaidInputUpdatesBoundThermalModelWithoutForcedRefresh(500.0f,\"spread-cooking-coals-hot\")",
+      "state": "Passed",
+      "durationSeconds": 0.3820135,
+      "message": null,
+      "stackTrace": null,
+      "output": "Before normal frame: start=500, temperature=490.5, fullDirty=False, dirtyCells=0\n"
+    },
+    {
+      "name": "ActualControlledFiniteCookingHasItsOwnNoArgumentLauncher",
+      "fullName": "CavesOfOoo.Tests.QuestFreeControlledFiniteCookingNativeModeTests.ActualControlledFiniteCookingHasItsOwnNoArgumentLauncher",
+      "state": "Failed",
+      "durationSeconds": 0.0018183,
+      "message": "  Missing explicit controlled finite-cooking mode\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeControlledFiniteCookingNativeModeTests.ActualControlledFiniteCookingHasItsOwnNoArgumentLauncher () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeControlledFiniteCookingNativeModeTests.cs:21\n",
+      "output": ""
+    },
+    {
+      "name": "ControlledFiniteCookingRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+      "fullName": "CavesOfOoo.Tests.QuestFreeControlledFiniteCookingNativeModeTests.ControlledFiniteCookingRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+      "state": "Failed",
+      "durationSeconds": 0.0012028,
+      "message": "  Missing isolated controlled finite-cooking initializer\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.QuestFreeControlledFiniteCookingNativeModeTests.ControlledFiniteCookingRefusesWithoutSaveIsolationBeforeChangingInputOrWorld () [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/QuestFreeControlledFiniteCookingNativeModeTests.cs:32\n",
+      "output": ""
+    }
+  ]
+}

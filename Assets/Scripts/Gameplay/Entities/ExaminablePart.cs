@@ -96,10 +96,11 @@ namespace CavesOfOoo.Core
         /// <summary>World reader snapshot: immediate effects and visible ground precede long flavor.</summary>
         public string BuildWorldExamineLine(Zone zone, Cell cell)
         {
-            return BuildDescription(true, CellStatusReadout.GroundLine(zone, cell));
+            return BuildDescription(true, CellStatusReadout.GroundLine(zone, cell),
+                ParentEntity?.GetPart<CampfirePart>()?.DescribeFiniteCooking(zone, cell));
         }
 
-        private string BuildDescription(bool statusFirst, string ground)
+        private string BuildDescription(bool statusFirst, string ground, string cooking = null)
         {
             string name = ParentEntity?.GetDisplayName() ?? "something";
             string article = GetArticle(name);
@@ -108,6 +109,7 @@ namespace CavesOfOoo.Core
             {
                 baseLine += DescribeAfflictions();
                 if (!string.IsNullOrEmpty(ground)) baseLine += "\n" + ground;
+                if (!string.IsNullOrEmpty(cooking)) baseLine += "\n" + cooking;
             }
             if (!string.IsNullOrWhiteSpace(Text))
                 baseLine += (statusFirst ? "\n\n" : " ") + Text.Trim();

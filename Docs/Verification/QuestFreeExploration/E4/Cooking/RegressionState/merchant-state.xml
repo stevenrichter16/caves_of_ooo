@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/torch-reaction-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="32" result="Passed" start-time="2026-09-29T00:49:24.2265590Z" end-time="2026-09-29T00:49:24.3281480Z" duration="0.101578" total="2" passed="2" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="6" random-seed="1632326004">
+  <command-line><![CDATA[/private/tmp/coo-questfree-implementation/torch-reaction-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/coo-questfree-implementation/torch-reaction-diagnosis/merchant-state.xml --where "class == CavesOfOoo.Tests.MerchantLoadoutStateProbe"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.MerchantLoadoutStateProbe</class>
+  </filter>
+  <test-suite type="Assembly" id="1041" name="EditModeRunner.dll" fullname="/private/tmp/coo-questfree-implementation/torch-reaction-diagnosis/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-09-29T00:49:24.2265590Z" end-time="2026-09-29T00:49:24.3281480Z" duration="0.101578" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/coo-questfree-implementation/torch-reaction-diagnosis/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/coo-questfree-implementation/torch-reaction-diagnosis/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="65932" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestSuite" id="1042" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-09-29T00:49:24.2280760Z" end-time="2026-09-29T00:49:24.3281450Z" duration="0.100068" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6">
+      <test-suite type="TestSuite" id="1043" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-09-29T00:49:24.2281720Z" end-time="2026-09-29T00:49:24.3281350Z" duration="0.099962" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6">
+        <test-suite type="TestFixture" id="1037" name="MerchantLoadoutStateProbe" fullname="CavesOfOoo.Tests.MerchantLoadoutStateProbe" classname="CavesOfOoo.Tests.MerchantLoadoutStateProbe" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T00:49:24.2285640Z" end-time="2026-09-29T00:49:24.3281050Z" duration="0.099540" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6">
+          <test-suite type="ParameterizedMethod" id="1040" name="RealMerchantCapacityDependsOnInheritedLoadoutFactory" fullname="CavesOfOoo.Tests.MerchantLoadoutStateProbe.RealMerchantCapacityDependsOnInheritedLoadoutFactory" classname="CavesOfOoo.Tests.MerchantLoadoutStateProbe" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-29T00:49:24.2295340Z" end-time="2026-09-29T00:49:24.3279530Z" duration="0.098418" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <test-case id="1038" name="RealMerchantCapacityDependsOnInheritedLoadoutFactory(False)" fullname="CavesOfOoo.Tests.MerchantLoadoutStateProbe.RealMerchantCapacityDependsOnInheritedLoadoutFactory(False)" methodname="RealMerchantCapacityDependsOnInheritedLoadoutFactory" classname="CavesOfOoo.Tests.MerchantLoadoutStateProbe" runstate="Runnable" seed="1672653581" result="Passed" start-time="2026-09-29T00:49:24.2296250Z" end-time="2026-09-29T00:49:24.2952020Z" duration="0.065600" asserts="3">
+              <output><![CDATA[LoadoutFactory=False, gear=, maxWeight=150, second51ApplesAccepted=True, finalWeight=150
+]]></output>
+            </test-case>
+            <test-case id="1039" name="RealMerchantCapacityDependsOnInheritedLoadoutFactory(True)" fullname="CavesOfOoo.Tests.MerchantLoadoutStateProbe.RealMerchantCapacityDependsOnInheritedLoadoutFactory(True)" methodname="RealMerchantCapacityDependsOnInheritedLoadoutFactory" classname="CavesOfOoo.Tests.MerchantLoadoutStateProbe" runstate="Runnable" seed="21077662" result="Passed" start-time="2026-09-29T00:49:24.2957560Z" end-time="2026-09-29T00:49:24.3276410Z" duration="0.031884" asserts="3">
+              <output><![CDATA[LoadoutFactory=True, gear=ShortSword,LeatherBoots, maxWeight=150, second51ApplesAccepted=False, finalWeight=107
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

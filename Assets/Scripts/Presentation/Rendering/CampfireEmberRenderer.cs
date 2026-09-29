@@ -63,6 +63,10 @@ namespace CavesOfOoo.Rendering
 
         public void RegisterCampfire(Entity entity, int cellX, int cellY)
         {
+            // Residual cooking heat does not imply a burning flame source.
+            if (entity?.GetPart<CampfirePart>()?.FiniteCooking == true)
+                return;
+
             // Convert game coords to world coords, centering on the cell
             float worldX = cellX + 0.5f;
             float worldY = Zone.Height - 1 - cellY + 0.5f;
@@ -152,6 +156,9 @@ namespace CavesOfOoo.Rendering
 
             // Pick a random campfire anchor
             EmberAnchor anchor = _anchors[Random.Range(0, _anchors.Count)];
+            // An already cached legacy source can change its authored policy.
+            if (anchor.Entity?.GetPart<CampfirePart>()?.FiniteCooking == true)
+                return;
 
             // Random offset near the fire center
             float offsetX = Random.Range(-0.3f, 0.3f);
