@@ -97,7 +97,7 @@ namespace CavesOfOoo.Tests
                 for(int x=0;x<Zone.Width;x++)for(int y=0;y<Zone.Height;y++){objects.Add(p.ObjectAt(x,y));if(p.IsWater(x,y))water++;}
                 Assert.AreEqual(form,p.Formation);
                 if(form==Formation.FieldStrips)Assert.IsTrue(objects.Contains("CropRow"));else Assert.IsFalse(objects.Contains("CropRow"));
-                if(form==Formation.FlowerMeadow)Assert.IsTrue(objects.Contains("FlowerField"));else Assert.IsFalse(objects.Contains("FlowerField"));
+                if(form==Formation.FlowerMeadow)Assert.IsTrue(objects.Contains("CharmFlowers"));else Assert.IsFalse(objects.Contains("CharmFlowers"));
                 if(form==Formation.RiverMeadow){Assert.Greater(water,0);Assert.IsTrue(objects.Contains("Reeds"));}else Assert.AreEqual(0,water);
             }
         }

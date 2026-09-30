@@ -264,7 +264,7 @@ namespace CavesOfOoo.Core
                 double band=Math.Min(Math.Abs(y-5-wave),Math.Min(Math.Abs(y-12-wave),Math.Abs(y-19-wave)));
                 if(Ellipse(x,y,12,10,3,2.3)<1||Ellipse(x,y,67,15,3,2.3)<1)
                     return Roll(x,y,727)<72?"Tree":"Bush";
-                if(x>5&&x<75&&band<1.65&&Roll(x,y,733)<70)return "FlowerField";
+                if(x>5&&x<75&&band<1.65&&Roll(x,y,733)<70)return "CharmFlowers";
             }
             else
             {
@@ -273,7 +273,7 @@ namespace CavesOfOoo.Core
                 if(Ellipse(x,y,FocalX+(mirrored?-4:4),FocalY,5.7,3.3)<1)
                     return Roll(x,y,739)<70?"Tree":"Bush";
                 if(ring>.44&&ring<1.18&&!(opening>0&&Math.Abs(y-FocalY)<2.4)&&Roll(x,y,743)<83)
-                    return "FlowerField";
+                    return "CharmFlowers";
             }
             // A few shrubs feather the outer edges instead of filling every
             // empty cell. Open ground remains a meaningful part of the layout.
@@ -288,7 +288,7 @@ namespace CavesOfOoo.Core
         /// actors or loot. Native object text and action menus remain intact.</summary>
         public string LandscapeContext(string blueprint)
         {
-            if(blueprint!="Tree"&&blueprint!="Hedge"&&blueprint!="FlowerField")return null;
+            if(blueprint!="Tree"&&blueprint!="Hedge"&&blueprint!="FlowerField"&&blueprint!="CharmFlowers")return null;
             switch(Landscape)
             {
                 case "overgrown crofts":return "The old crofts survive as broken hedge runs and crowded tree belts. Broad gaps lead around the surviving boundaries; trunks obstruct the shorter passages.";

@@ -1,0 +1,62 @@
+{
+    "runId": "2c01681072e642ee877ac5f55365c5e9",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Isolated ordinary seed64 player. Two actual generated ordinary worksites selected without modifying their owners; keyboard harvest, reagent selection, brewing, drinking Stoneskin, and quenching the original dagger; stock consumption and submitted models are observed. Native screenshots.",
+    "cannotVerify": "Two explicitly logged actor travel shortcuts reach real generated source approaches. Short local routes and all interactions use ordinary input with the scheduler active. Harvest spends time; existing still and forge commands consume ingredients without advancing turns. Up to two original healing tonics may be used by the shared walking helper. No source grants, reseeding, model substitutions or outcome forcing. This route does not prove natural discovery, hostile balance, live freeze-on-hit or full-world encounter frequency. Core tests separately cover hit effects and persistence. Screenshots still require visual inspection.",
+    "mode": "native-generated-specialist-worksites",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "specialist-source family=FieldAlembic version=9 zone=Overworld.11.9.0 disposition=2 station=AlchemyStill safeApproach=True",
+        "LABELLED TRAVEL 1 Overworld.11.10.0 -> Overworld.11.9.0@72,18 generated field alembic; native stock and hostile owners unchanged",
+        "drawn owner=4942 blueprint=AlchemyStill current=True drawn=True",
+        "drawn owner=4943 blueprint=StoneburrPatch current=True drawn=True",
+        "CHECK specialist_binding_brew oneIngredientConsumed=True;correctPreparation=True;existingStationClock=True; actualGear=carried:2696|carried:2697|carried:2698|carried:2699|carried:2700|carried:2701|carried:4948|carried:4950;body=;links=2696:Dagger:1:carried=2695:equipped=|2697:HealingTonic:2:carried=2695:equipped=|2698:DriedMeat:2:carried=2695:equipped=|2699:WateringGrimoire:1:carried=2695:equipped=|2700:CandyCarrotSeed:4:carried=2695:equipped=|2701:EmberwheatSeed:2:carried=2695:equipped=|4948:StoneburrSeed:1:carried=2695:equipped=|4950:BrewedTonic:1:carried=2695:equipped=",
+        "drawn owner=4944 blueprint=FrostLichenPatch current=True drawn=True",
+        "CHECK specialist_cold_brew oneIngredientConsumed=True;correctPreparation=True;existingStationClock=True; actualGear=carried:2696|carried:2697|carried:2698|carried:2699|carried:2700|carried:2701|carried:4948|carried:4953|carried:4955;body=;links=2696:Dagger:1:carried=2695:equipped=|2697:HealingTonic:1:carried=2695:equipped=|2698:DriedMeat:2:carried=2695:equipped=|2699:WateringGrimoire:1:carried=2695:equipped=|2700:CandyCarrotSeed:4:carried=2695:equipped=|2701:EmberwheatSeed:2:carried=2695:equipped=|4948:StoneburrSeed:1:carried=2695:equipped=|4953:FrostLichen:1:carried=2695:equipped=|4955:BrewedTonic:1:carried=2695:equipped=",
+        "specialist-source family=TemperingShelter version=9 zone=Overworld.10.9.0 disposition=2 station=TinkersForge safeApproach=True",
+        "LABELLED TRAVEL 2 Overworld.11.9.0 -> Overworld.10.9.0@43,4 generated tempering shelter; native encounter owners unchanged",
+        "drawn owner=7236 blueprint=TinkersForge current=True drawn=True",
+        "CHECK specialist_quench coatingConsumed=True;originalDagger=True;oneFrozenTemper=True;actorNotFrozen=True;existingStationClock=True; actualGear=carried:2696|carried:2697|carried:2698|carried:2699|carried:2700|carried:2701|carried:4948|carried:4953;body=;links=2696:Dagger:1:carried=2695:equipped=|2697:HealingTonic:1:carried=2695:equipped=|2698:DriedMeat:2:carried=2695:equipped=|2699:WateringGrimoire:1:carried=2695:equipped=|2700:CandyCarrotSeed:4:carried=2695:equipped=|2701:EmberwheatSeed:2:carried=2695:equipped=|4948:StoneburrSeed:1:carried=2695:equipped=|4953:FrostLichen:1:carried=2695:equipped="
+    ],
+    "biomeShortcuts": 2,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS specialist_generated_alembic",
+        "PASS specialist_binding_harvest",
+        "PASS specialist_binding_brew",
+        "PASS specialist_stoneskin",
+        "PASS specialist_cold_harvest",
+        "PASS specialist_cold_brew",
+        "PASS specialist_generated_forge",
+        "PASS specialist_quench",
+        "PASS specialist_ordinary_finish"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadSpecialistContent/Native/2c01681072e642ee877ac5f55365c5e9/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadSpecialistContent/Native/2c01681072e642ee877ac5f55365c5e9/specialist-01-generated-alembic.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadSpecialistContent/Native/2c01681072e642ee877ac5f55365c5e9/specialist-02-earned-stoneskin.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadSpecialistContent/Native/2c01681072e642ee877ac5f55365c5e9/specialist-03-generated-forge.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadSpecialistContent/Native/2c01681072e642ee877ac5f55365c5e9/specialist-04-earned-frost-weapon.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Native route healing",
+            "source": "2697",
+            "text": "Original starting tonic consumed via inventory; HP 26 -> 40",
+            "units": 1
+        }
+    ],
+    "cases": 10,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "errorsFinalized": true,
+    "seconds": 13.791649399999999,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

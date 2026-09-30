@@ -22,7 +22,7 @@ namespace CavesOfOoo.Editor
         {
             public string formation,character,image,zoneId,topology,landscape;
             public bool nativePipeline;
-            public int seed,trees,bushes,columns,compost,cache,meshes,missing;
+            public int seed,trees,bushes,columns,compost,cache,meshes,missing,worksiteOwners,gatheringSources,specialists;
             public double generationMilliseconds;
         }
         [Serializable] public sealed class Report { public Row[] rows; }
@@ -70,7 +70,7 @@ namespace CavesOfOoo.Editor
             finally { Village3DSettings.Enabled=old; }
         }
 
-        /// <summary>Six complete fresh-generation views, with fog revealed for visual
+        /// <summary>Fresh-generation landscape and worksite views, with fog revealed for visual
         /// inspection only. Uses the ordinary native pipeline, no player or save state.</summary>
         public static void CaptureLandscapes(string output)
         {
@@ -101,7 +101,7 @@ namespace CavesOfOoo.Editor
                     LoadoutPart.Rng=new System.Random(seed);TraderPart.Rng=new System.Random(seed^0x7135);
                     LootDropSystem.Rng=new System.Random(seed^0x2143);
                     var manager=OverworldZoneManager.CreateDetached(factory,seed,true);
-                    foreach(var site in new[]{("north",11,9),("east",12,10),("south",11,11)})
+                    foreach(var site in new[]{("north",11,9),("east",12,10),("south",11,11),("cindercaller",15,10),("soursprayer",10,1)})
                     {
                         string id=WorldMap.ToZoneID(site.Item2,site.Item3);
                         var watch=System.Diagnostics.Stopwatch.StartNew();
@@ -110,6 +110,8 @@ namespace CavesOfOoo.Editor
                         var plan=SpreadCompositionPlan.Create(id,seed,FormationSelector.For(BiomeType.Spread,id),
                             placed?entry.Topology:SpreadExplorationTopology.Legacy);
                         rows.Add(Capture(output,site.Item1+"-"+seed,zone,plan,true,watch.Elapsed.TotalMilliseconds));
+                        var focus=zone.GetReadOnlyEntities().FirstOrDefault(e=>e.GetProperty("SpreadWorksite.Role")=="still"||e.GetProperty("SpreadWorksite.Role")=="forge"||e.GetProperty("SpreadWorksite.Role")=="trap");
+                        if(focus!=null)rows.Add(Capture(output,site.Item1+"-"+seed+"-site",zone,plan,true,watch.Elapsed.TotalMilliseconds,focus));
                     }
                 }
                 File.WriteAllText(Path.Combine(output,"receipt.json"),JsonUtility.ToJson(new Report{rows=rows.ToArray()},true));
@@ -120,7 +122,7 @@ namespace CavesOfOoo.Editor
 
         // The same camera, model presenter and readback are shared by both previews.
         // A preview scene prevents temporary objects from dirtying the user's scene.
-        private static Row Capture(string output,string name,Zone zone,SpreadCompositionPlan plan,bool native,double milliseconds)
+        private static Row Capture(string output,string name,Zone zone,SpreadCompositionPlan plan,bool native,double milliseconds,Entity focus=null)
         {
             var scene=EditorSceneManager.NewPreviewScene();
             GameObject root=null,sourceObject=null;RenderTexture sourceTarget=null;Texture2D image=null;
@@ -134,6 +136,7 @@ namespace CavesOfOoo.Editor
                 source.targetTexture=sourceTarget;source.enabled=false;source.orthographic=true;
                 source.orthographicSize=15.5f;source.aspect=1440f/540;
                 source.transform.position=new Vector3(40,12.5f,-10);
+                if(focus!=null){var at=zone.GetEntityPosition(focus);source.orthographicSize=5.5f;float halfWidth=source.orthographicSize*source.aspect;source.transform.position=new Vector3(Mathf.Clamp(at.x+.5f,halfWidth,Zone.Width-halfWidth),Mathf.Clamp(Zone.Height-at.y-.5f,5.5f,Zone.Height-5.5f),-10);}
                 var presenter=root.AddComponent<SpawnRing3DPresenter>();presenter.FullReveal=true;
                 presenter.Bind(zone,source);
                 if(!presenter.IsReady||!presenter.VoxelPresentationActive)throw new Exception(presenter.Failure??"Voxel presenter inactive");
@@ -149,7 +152,10 @@ namespace CavesOfOoo.Editor
                 return new Row{formation=plan.Formation.ToString(),seed=plan.Seed,character=plan.Condition,
                     topology=plan.Topology.ToString(),landscape=plan.Landscape,image=name+".png",zoneId=zone.ZoneID,nativePipeline=native,
                     trees=Count(zone,"Tree"),bushes=Count(zone,"Bush"),columns=Count(zone,"Hedge"),
-                    compost=Count(zone,"CropRow"),cache=Count(zone,"FlowerField"),
+                    compost=Count(zone,"CropRow"),cache=Count(zone,"FlowerField")+Count(zone,"CharmFlowers"),
+                    worksiteOwners=zone.GetReadOnlyEntities().Count(e=>e.Properties.ContainsKey("SpreadWorksite.Role")),
+                    gatheringSources=Count(zone,"StoneburrPatch")+Count(zone,"FrostLichenPatch"),
+                    specialists=Count(zone,"MarlbackCindercaller")+Count(zone,"MarlbackSoursprayer"),
                     meshes=presenter.VoxelAppliedMeshCount,missing=presenter.VoxelMissingMeshCount,generationMilliseconds=milliseconds};
             }
             finally

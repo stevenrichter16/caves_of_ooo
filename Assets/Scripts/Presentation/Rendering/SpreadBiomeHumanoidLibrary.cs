@@ -18,11 +18,11 @@ namespace CavesOfOoo.Rendering
   private void OnValidate(){index=null;meshes=null;}
   public void Validate()
   {
-   if(Entries==null||Entries.Length!=52||Material==null||Material!=ReferenceGladeVoxelLibrary.Load()?.Material)throw new InvalidOperationException("Exact approved humanoid roster/palette required.");
+   if(Entries==null||(Entries.Length!=52&&Entries.Length!=54)||Material==null||Material!=ReferenceGladeVoxelLibrary.Load()?.Material)throw new InvalidOperationException("Exact approved humanoid roster/palette required.");
    var next=new Dictionary<string,Entry>(StringComparer.Ordinal);var owned=new HashSet<Mesh>();
    foreach(var e in Entries)
    {
-    if(e==null||e.Id==null||ModelId(e.Blueprint)!=e.Id||next.ContainsKey(e.Id)||e.Mesh==null||!e.Mesh.isReadable||e.Mesh.vertexCount<384||e.Mesh.subMeshCount!=1||e.Prefab==null||!ValidScale(e.Prefab.transform.localScale)||e.Spec==null||e.Spec.id!=e.Id||e.Spec.sourceBlueprint!=e.Blueprint||e.Spec.rigFamily!="humanoid"||!e.Spec.rigged||e.Spec.kind!="actor"||!owned.Add(e.Mesh))throw new InvalidOperationException("Invalid scoped humanoid body.");
+    if(e==null||e.Id==null||Entries.Length==52&&SpreadBiomeHumanoidSource.IsCaster(e.Blueprint)||ModelId(e.Blueprint)!=e.Id||next.ContainsKey(e.Id)||e.Mesh==null||!e.Mesh.isReadable||e.Mesh.vertexCount<384||e.Mesh.subMeshCount!=1||e.Prefab==null||!ValidScale(e.Prefab.transform.localScale)||e.Spec==null||e.Spec.id!=e.Id||e.Spec.sourceBlueprint!=e.Blueprint||e.Spec.rigFamily!="humanoid"||!e.Spec.rigged||e.Spec.kind!="actor"||!owned.Add(e.Mesh))throw new InvalidOperationException("Invalid scoped humanoid body.");
     var skins=e.Prefab.GetComponentsInChildren<SkinnedMeshRenderer>(true);var animators=e.Prefab.GetComponentsInChildren<Animator>(true);
     if(skins.Length!=1||skins[0].sharedMesh!=e.Mesh||skins[0].sharedMaterials.Length!=1||skins[0].sharedMaterial!=Material||animators.Length!=1||animators[0].avatar==null||!animators[0].avatar.isValid||animators[0].applyRootMotion||animators[0].runtimeAnimatorController==null||e.Prefab.GetComponentsInChildren<Collider>(true).Length!=0||e.Prefab.GetComponentsInChildren<Rigidbody>(true).Length!=0)throw new InvalidOperationException("Invalid scoped humanoid native rig.");
     var clips=animators[0].runtimeAnimatorController.animationClips;if(clips.Length!=5)throw new InvalidOperationException("Five native humanoid clips required.");
@@ -64,9 +64,23 @@ namespace CavesOfOoo.Rendering
     ||render.RenderString=="h"&&render.ColorString=="&K"&&conversation.ConversationID=="Hermit_Quest"&&beacon==null;
   }
 
+  // Exact new spellcaster identities use the unchanged real humanoid skeleton;
+  // no item, equipment or active spell state is manufactured by presentation.
+  internal static string ResolveCasterOwner(Zone zone,Entity owner)
+  {
+   if(!SpreadPresentationScope.IsActive(zone)||!SpreadBiomeHumanoidSource.IsCaster(owner?.BlueprintName))return null;
+   var render=owner.GetPart<RenderPart>();var physics=owner.GetPart<PhysicsPart>();var brain=owner.GetPart<BrainPart>();var body=owner.GetPart<Body>();var cell=zone.GetEntityCell(owner);
+   if(cell==null||!ReferenceEquals(owner.SpatialZone,zone)||!ReferenceEquals(cell.ParentZone,zone)||!cell.Objects.Contains(owner)
+      ||render==null||render.ParentEntity!=owner||!render.Visible||render.RenderString!="g"||render.ColorString!=(owner.BlueprintName=="MarlbackCindercaller"?"&R":"&G")
+      ||physics==null||physics.ParentEntity!=owner||physics.Takeable||physics.InInventory!=null||physics.Equipped!=null
+      ||brain==null||brain.ParentEntity!=owner||body==null||body.ParentEntity!=owner||!owner.HasTag("Creature")||owner.HasTag("Item")
+      ||owner.HasPart<SpatialFootprintPart>()||owner.HasPart<MultiCellPilotPropPart>()||!string.IsNullOrEmpty(render.VisualID)||!string.IsNullOrEmpty(render.VisualVariant)||!string.IsNullOrEmpty(render.GlyphVariants))return null;
+   return ModelId(owner.BlueprintName);
+  }
   internal static SpawnRing3DRecipe Refine(Zone zone,Entity owner,SpawnRing3DRecipe native)
   {
    if(!SpreadPresentationScope.IsActive(zone)||ModelId(owner?.BlueprintName)==null)return native;
+   if(SpreadBiomeHumanoidSource.IsCaster(owner.BlueprintName)&&ResolveCasterOwner(zone,owner)==null)return native;
    if(native.ModelId=="ring-player"||native.ModelId=="ring-sien"||native.ModelId=="ring-nam")return native;
    // Never rescue a refused regional quest, footprint, scene or disguise contract.
    if(native.Failure!=null&&native.Failure!="unmodeled-native-blueprint")return native;

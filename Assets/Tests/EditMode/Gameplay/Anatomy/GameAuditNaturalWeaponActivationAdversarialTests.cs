@@ -14,7 +14,7 @@ namespace CavesOfOoo.Tests
     public class GameAuditNaturalWeaponActivationAdversarialTests
     {
         // Literal actor/recipe baseline, including the two independent quest creatures.
-        // Original-enemy migration plus the two authored ditch-cutters and latchcoil viper (48 total).
+        // Original-enemy migration plus the two authored ditch-cutters and latchcoil viper (50 total).
         static readonly string[] Declared = {
             "MarlbackScrabbler|MarlbackRake", "MarlbackGleaner|MarlbackRake", "MarlbackTunnelguard|MarlbackGuardRake",
             "ChoirTendril|ChoirLash", "CaveBat|BatBite", "CaveSlime|SlimePseudopod", "CaveBear|CaveBearClaw",
@@ -29,7 +29,7 @@ namespace CavesOfOoo.Tests
             "RuneCultist|CultistKnife", "SunStriker|DefaultBite",
             "MawToad|DefaultBite", "Bandfrog|DefaultBite", "Shambler|DefaultTendril",
             "SootGremlin|ScavengerClaw", "DirtGnome|ScavengerClaw",
-            "SpreadHurdleCutter|MarlbackRake", "SpreadDitchMate|MarlbackRake", "SpreadLatchcoil|ViperBite"
+            "SpreadHurdleCutter|MarlbackRake", "SpreadDitchMate|MarlbackRake", "SpreadLatchcoil|ViperBite", "MarlbackCindercaller|MarlbackRake", "MarlbackSoursprayer|MarlbackRake"
         };
         // Literal recipe dice baseline prevents a nonnull premature DefaultFist from passing.
         static readonly Dictionary<string,string> RecipeDice = new Dictionary<string,string> {
@@ -71,7 +71,7 @@ namespace CavesOfOoo.Tests
             {
                 var resolved = f.Factory.Blueprints.Values.Where(b => b.Props.TryGetValue("NaturalWeapon", out var recipe) && !string.IsNullOrEmpty(recipe))
                     .Select(b => b.Name + "|" + b.Props["NaturalWeapon"]).ToArray();
-                Assert.AreEqual(48, resolved.Length); CollectionAssert.AreEquivalent(Declared, resolved);
+                Assert.AreEqual(50, resolved.Length); CollectionAssert.AreEquivalent(Declared, resolved);
                 foreach (string row in Declared)
                 {
                     var fields = row.Split('|'); var actor = f.Create(fields[0]); var hands = Hands(actor);

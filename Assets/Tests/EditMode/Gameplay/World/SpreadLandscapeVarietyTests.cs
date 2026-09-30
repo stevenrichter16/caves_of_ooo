@@ -25,7 +25,7 @@ namespace CavesOfOoo.Tests
             {
             var p=Plan(id,seed,topology);Assert.False(string.IsNullOrEmpty(Landscape(p)));
             Assert.That(Count(p,"Tree"),Is.InRange(4,85));
-            if(id==North)Assert.AreEqual(0,Count(p,"FlowerField"));else Assert.That(Count(p,"FlowerField"),Is.InRange(40,360));
+            if(id==North)Assert.AreEqual(0,Count(p,"CharmFlowers"));else Assert.That(Count(p,"CharmFlowers"),Is.InRange(40,360));
             Assert.AreEqual(0,Count(p,"CropRow"));
             var reached=new HashSet<(int,int)>();var pending=new Queue<(int,int)>();pending.Enqueue((0,p.WestY));
             while(pending.Count>0){var c=pending.Dequeue();if(c.Item1<0||c.Item2<0||c.Item1>=80||c.Item2>=25||reached.Contains(c))continue;
@@ -58,6 +58,24 @@ namespace CavesOfOoo.Tests
                 Assert.True(z.GetReadOnlyEntities().Any(e=>e.GetPart<ExaminablePart>()?.Text.Contains(cue)==true));
                 Assert.False(z.GetReadOnlyEntities().Any(e=>e.HasPart<HarvestablePart>()||e.HasPart<FieldHarvestPart>()||e.HasTag("Creature")),"Terrain does not mint food or actors; later existing builders own those budgets.");
                 var snapshot=z.GetReadOnlyEntities().ToArray();Assert.False(b.BuildZone(z,scope.Factory,new Random(99)));CollectionAssert.AreEqual(snapshot,z.GetReadOnlyEntities());
+            }
+        }
+        [TestCase(East,0f)][TestCase(East,1f)][TestCase(South,0f)][TestCase(South,1f)]
+        public void NaturalMeadowFlowersOutlastConjuredFlowers(string id,float bleed)
+        {
+            using(var scope=new DensityLootTestScope())
+            {
+                var z=new Zone(id){UrquBleedLevel=bleed};
+                var builder=new SpreadCompositionBuilder(64){Topology=SpreadExplorationTopology.OffsetLanes};
+                Assert.True(builder.BuildZone(z,scope.Factory,new Random(99)));
+                var flowers=z.GetReadOnlyEntities().Where(e=>e.BlueprintName=="CharmFlowers").ToArray();
+                Assert.Greater(flowers.Length,40,"Ordinary meadows must contain lasting vegetation.");
+                Assert.False(z.GetReadOnlyEntities().Any(e=>e.BlueprintName=="FlowerField"));
+                var control=scope.Factory.CreateEntity("FlowerField");z.AddEntity(control,40,12);
+                foreach(var e in flowers){Assert.False(e.HasPart<LifespanPart>());Assert.False(e.HasPart<FlowerCharmPart>());}
+                for(int turn=0;turn<210;turn++)foreach(var e in flowers.Concat(new[]{control}))
+                {var ev=GameEvent.New("EndTurn");ev.SetParameter("Zone",(object)z);e.FireEvent(ev);ev.Release();}
+                Assert.True(flowers.All(e=>z.GetEntityCell(e)!=null));Assert.Null(z.GetEntityCell(control));
             }
         }
         [Test] public void OtherEligibleMeadowsUseBothNewProfiles()

@@ -18,7 +18,8 @@ namespace CavesOfOoo.Editor
  {
   const string Folder="Assets/Resources/SpreadBiome3D/Humanoids",LibraryPath="Assets/Resources/SpreadBiome3D/HumanoidLibrary.asset";
   [Serializable]public sealed class Report{public string status,error,sourceHash;public int models;public string[] assets;}
-  public static Report Build(string sourcePath,string reportPath)
+  public static Report Build(string sourcePath,string reportPath)=>Build(sourcePath,reportPath,null);
+  public static Report Build(string sourcePath,string reportPath,string[] modelIds)
   {
    var report=new Report();var changed=new List<string>();GameObject primitive=null;
    try
@@ -26,7 +27,7 @@ namespace CavesOfOoo.Editor
     if(EditorApplication.isPlayingOrWillChangePlaymode||EditorApplication.isCompiling)throw new InvalidOperationException("Idle native editor required for scoped humanoid adoption.");
     var data=JsonUtility.FromJson<SpreadBiomeHumanoidSource>(File.ReadAllText(sourcePath));report.sourceHash=Hash(sourcePath);
     var ring=Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath);var glade=ReferenceGladeVoxelLibrary.Load();if(ring==null||glade==null)throw new InvalidOperationException("Approved body/rig/palette sources required.");ring.Validate();glade.Validate();
-    if(data?.schemaVersion!=1||data.sourceRig!="ring-nam"||data.roles?.Length!=52||data.palette?.Length!=24||data.preserveNativeModelIds==null||!data.preserveNativeModelIds.SequenceEqual(new[]{"ring-player","ring-sien","ring-nam"}))throw new InvalidOperationException("Exact humanoid source contract required.");
+    if(data?.schemaVersion!=1||data.sourceRig!="ring-nam"||data.roles?.Length!=54||data.palette?.Length!=24||data.preserveNativeModelIds==null||!data.preserveNativeModelIds.SequenceEqual(new[]{"ring-player","ring-sien","ring-nam"}))throw new InvalidOperationException("Exact humanoid source contract required.");
     var palette=glade.Material.GetTexture("_BaseMap")as Texture2D;if(palette==null||!palette.isReadable||palette.width!=24||palette.height!=1)throw new InvalidOperationException("Approved palette unavailable.");
     for(int i=0;i<24;i++)if(!ColorUtility.TryParseHtmlString(data.palette[i],out var c)||Vector4.Distance(c,palette.GetPixel(i,0))>.00001f)throw new InvalidOperationException("Humanoid source palette mismatch.");
     var ids=new HashSet<string>(StringComparer.Ordinal);
@@ -37,16 +38,29 @@ namespace CavesOfOoo.Editor
      Preflight<Mesh>(Folder+"/"+role.id+".asset");Preflight<GameObject>(Folder+"/"+role.id+".prefab");
     }
     Preflight<SpreadBiomeHumanoidLibrary>(LibraryPath);
+    var selected=modelIds==null?data.roles.Select(r=>r.id).ToArray():modelIds;
+    if(selected.Length==0||selected.Distinct(StringComparer.Ordinal).Count()!=selected.Length||selected.Any(id=>id==null||!ids.Contains(id)))throw new InvalidOperationException("Unknown or duplicate selected humanoid role.");
+    var selectedIds=new HashSet<string>(selected,StringComparer.Ordinal);var chosen=data.roles.Where(r=>selectedIds.Contains(r.id)).ToArray();
+    var existing=AssetDatabase.LoadAssetAtPath<SpreadBiomeHumanoidLibrary>(LibraryPath);
+    var retained=new List<SpreadBiomeHumanoidLibrary.Entry>();
+    if(chosen.Length!=data.roles.Length)
+    {
+     if(existing==null)throw new InvalidOperationException("Scoped append requires the complete existing approved library.");
+     existing.Validate();
+     foreach(var role in data.roles.Where(r=>!selectedIds.Contains(r.id)))
+     {var entry=existing.Find(role.id);if(entry==null||entry.Blueprint!=role.blueprint)throw new InvalidOperationException("Missing retained role: "+role.id);retained.Add(entry);}
+    }
+
     var source=ring.FindModel(data.sourceRig);if(source==null)throw new InvalidOperationException("Borrowed source body missing.");
     var sourceSkin=source.GetComponentInChildren<SkinnedMeshRenderer>();var sourceAnimator=source.GetComponentInChildren<Animator>();
     if(sourceSkin==null||sourceAnimator==null||sourceAnimator.runtimeAnimatorController==null||source.GetComponentsInChildren<Collider>(true).Length!=0)throw new InvalidOperationException("Expected unchanged humanoid source rig.");
     var cube=GameObject.CreatePrimitive(PrimitiveType.Cube);primitive=cube;cube.hideFlags=HideFlags.HideAndDontSave;var cubeMesh=cube.GetComponent<MeshFilter>().sharedMesh;
     // Build/validate every plan before modifying any persistent output.
-    var plans=data.roles.Select(role=>Prepare(role,source,sourceSkin,cubeMesh)).ToArray();
-    EnsureFolder(Folder);var entries=new List<SpreadBiomeHumanoidLibrary.Entry>();
-    for(int i=0;i<data.roles.Length;i++)
+    var plans=chosen.Select(role=>Prepare(role,source,sourceSkin,cubeMesh)).ToArray();
+    EnsureFolder(Folder);var entries=new List<SpreadBiomeHumanoidLibrary.Entry>(retained);
+    for(int i=0;i<chosen.Length;i++)
     {
-     var role=data.roles[i];string meshPath=Folder+"/"+role.id+".asset",prefabPath=Folder+"/"+role.id+".prefab";
+     var role=chosen[i];string meshPath=Folder+"/"+role.id+".asset",prefabPath=Folder+"/"+role.id+".prefab";
      var mesh=AssetDatabase.LoadAssetAtPath<Mesh>(meshPath);if(mesh==null){mesh=new Mesh{name=role.id};AssetDatabase.CreateAsset(mesh,meshPath);}plans[i].Fill(mesh);EditorUtility.SetDirty(mesh);AssetDatabase.SaveAssetIfDirty(mesh);changed.Add(meshPath);
      var scene=EditorSceneManager.NewPreviewScene();GameObject instance=null;
      try
@@ -68,7 +82,7 @@ namespace CavesOfOoo.Editor
      finally{if(instance!=null)Object.DestroyImmediate(instance);EditorSceneManager.ClosePreviewScene(scene);}
     }
     var library=AssetDatabase.LoadAssetAtPath<SpreadBiomeHumanoidLibrary>(LibraryPath);if(library==null){library=ScriptableObject.CreateInstance<SpreadBiomeHumanoidLibrary>();AssetDatabase.CreateAsset(library,LibraryPath);}
-    library.Entries=entries.ToArray();library.Material=glade.Material;library.Validate();EditorUtility.SetDirty(library);AssetDatabase.SaveAssetIfDirty(library);changed.Add(LibraryPath);report.models=entries.Count;report.status="passed";
+    library.Entries=entries.ToArray();library.Material=glade.Material;library.Validate();EditorUtility.SetDirty(library);AssetDatabase.SaveAssetIfDirty(library);changed.Add(LibraryPath);report.models=chosen.Length;report.status="passed";
    }
    catch(Exception e){report.status="failed";report.error=e.ToString();throw;}
    finally{if(primitive!=null)Object.DestroyImmediate(primitive);report.assets=changed.ToArray();string full=Path.GetFullPath(reportPath);Directory.CreateDirectory(Path.GetDirectoryName(full));File.WriteAllText(full,JsonUtility.ToJson(report,true));}

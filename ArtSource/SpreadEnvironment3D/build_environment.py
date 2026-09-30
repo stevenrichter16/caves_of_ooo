@@ -1,7 +1,7 @@
 """Original biome source cuboids, no Unity or borrowed-asset writes."""
 import argparse,json,random
 from pathlib import Path
-FAMILIES=['paving','road','tree','hedge','vine-wall','stubble','grain','flowers','dry-brush','rock']
+FAMILIES=['paving','road','tree','hedge','vine-wall','stubble','grain','flowers','dry-brush','rock','stoneburr','frost-lichen']
 PALETTE=['#082C28','#103E36','#1A4B40','#26594A','#A0A77C','#CBC697','#647353','#235D25','#40872C','#65AE3D','#435A53','#62786C','#819489','#16883B','#45CB4B','#A0E772','#207838','#D2D3B4','#B77B43','#403D28','#756C40','#A39456','#C4B877','#243E39']
 def make(f,v):
  rng=random.Random(262701+FAMILIES.index(f)*197+v*41);boxes=[]
@@ -70,6 +70,29 @@ def make(f,v):
   for i,(x,z) in enumerate([(-.23,-.16),(.14,-.22),(-.15,.18),(.22,.17),(0,0)]):
    h=.14+((i+v)%4)*.055;w=.24+((i+v)%2)*.04
    box(x,h/2,z,w,h,w*.9,10);box(x-.014,h+.024,z-.013,w-.043,.048,w*.9-.04,11);box(x-.03,h+.054,z-.028,w*.37,.012,w*.35,12)
+ elif f=='stoneburr':
+  # Five binding-seed heads: broad angular ochre burrs, not grain stalks.
+  for i,(x,z) in enumerate([(-.24,-.18),(.20,-.18),(-.20,.19),(.22,.20),(0,0)]):
+   x+=rng.uniform(-.018,.018);z+=rng.uniform(-.018,.018);h=.245+((i+v)%4)*.033
+   box(x,h*.5,z,.043,h,.045,6)
+   box(x-.044,h*.30,z,.145,.03,.055,7)
+   box(x+.037,h*.60,z,.123,.034,.057,8)
+   box(x,h+.052,z,.126,.115,.122,18)
+   box(x-.008,h+.109,z-.006,.096,.038,.09,22)
+   for dx,dz,w,d in [(-.086,0,.063,.041),(.085,0,.062,.042),(0,-.081,.041,.06),(0,.08,.042,.059)]:
+    box(x+dx,h+.06,z+dz,w,.042,d,21 if i%2 else 18)
+   box(x+.026,h+.133,z+.016,.034,.022,.036,19)
+ elif f=='frost-lichen':
+  # A low, lobed cold lichen. Pale tops sit on cool slate edges, not stems.
+  for i,(x,z) in enumerate([(-.24,-.20),(.04,-.26),(.25,-.13),(-.28,.07),(-.07,.06),(.23,.19),(-.10,.28)]):
+   x+=rng.uniform(-.014,.014);z+=rng.uniform(-.014,.014);h=.038+((i+v)%4)*.012
+   box(x,h*.5,z,.205,h,.17,10)
+   box(x-.012,h+.027,z-.008,.175,.054,.146,12)
+   box(x-.016,h+.062,z-.012,.14,.019,.112,17)
+   side=-1 if (i+v)%2 else 1
+   box(x+side*.093,h+.035,z+.015,.106,.043,.094,12)
+   box(x+side*.102,h+.065,z+.010,.086,.017,.077,17)
+   box(x-.020,h+.072,z-.065,.082,.015,.085,17)
  return {'id':'spread-environment-'+f+'-'+str(v),'family':f,'variant':v,'kind':'ground'if f in ('paving','road')else'entity','boxes':boxes}
 def build():return {'schemaVersion':1,'id':'spread-environment-original','palette':PALETTE,'models':[make(f,v)for f in FAMILIES for v in range(4)]}
 if __name__=='__main__':

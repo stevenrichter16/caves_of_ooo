@@ -938,3 +938,8 @@ functional/profile checks with zero errors (60.208s, mean6.117ms, p957.010ms).
 Its screenshots are closer but still show broad-topped reeds and undersized
 figures. A fourth bounded mesh/proportion pass remains separate and private
 after the verified foundation checkpoint. No visual-completion claim is made.
+
+
+### Spread specialist content follow-through
+
+The later ordinary-exploration batch is tracked in [SPREAD-CONTENT-EXPANSION.md](SPREAD-CONTENT-EXPANSION.md): lasting natural meadow flowers, two finite gathering sources, three functional wilderness worksites, two original mixed-role Marlback encounters and their 3D forms. It uses new-world exploration version nine while retaining saved versions two–eight and cached graphs. The linked living document records native tests, generated witnesses, actual-input limits and final publication evidence. BitLocker remains dev-only.

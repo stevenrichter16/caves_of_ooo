@@ -1,0 +1,34 @@
+{
+    "runId": "3afdb5e3882946efb8f05889bc86d34f",
+    "zone": "Overworld.11.10.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: actual generated ordinary field alembic with a safe native approach\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:424 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSpecialistAudit>d__132.MoveNext () [0x0015a] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:180 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__149.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:444 ",
+    "canVerify": "Isolated ordinary seed64 player. Two actual generated ordinary worksites selected without modifying their owners; keyboard harvest, reagent selection, brewing, drinking Stoneskin, and quenching the original dagger; stock consumption and submitted models are observed. Native screenshots.",
+    "cannotVerify": "Two explicitly logged actor travel shortcuts reach real generated source approaches. Short local routes and all interactions use ordinary input with the scheduler active. No source grants, reseeding, model substitutions or outcome forcing. This route does not prove natural discovery, hostile balance, live freeze-on-hit or full-world encounter frequency. Core tests separately cover hit effects and persistence. Screenshots still require visual inspection.",
+    "mode": "native-generated-specialist-worksites",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "specialist-source family=FieldAlembic version=9 zone=Overworld.11.9.0 disposition=2 station=AlchemyStill safeApproach=True",
+        "specialist-source family=FieldAlembic version=9 zone=Overworld.4.10.0 disposition=2 station=AlchemyStill safeApproach=False"
+    ],
+    "biomeShortcuts": 0,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadSpecialistContent/Native/3afdb5e3882946efb8f05889bc86d34f/01-gameplay-arrival.png"
+    ],
+    "descriptions": [],
+    "cases": 2,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "errorsFinalized": true,
+    "seconds": 2.5660095,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

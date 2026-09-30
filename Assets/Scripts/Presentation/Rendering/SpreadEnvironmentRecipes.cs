@@ -13,7 +13,7 @@ namespace CavesOfOoo.Rendering
    if(!SpreadPresentationScope.IsActive(zone)||owner==null||!ReferenceEquals(native.Owner,owner)
       ||native.Failure!=null||native.ModelId==null||!native.Batched||native.Transient||native.ComponentId!=null
       ||native.ModelId.StartsWith("reference-glade-",StringComparison.Ordinal)||native.ModelId.StartsWith("spread-scenery-",StringComparison.Ordinal))return native;
-   string family=Family(owner,native.ModelId);if(family==null)return native;
+   string family=Family(zone,owner,native.ModelId);if(family==null)return native;
    var cell=zone.GetEntityCell(owner);var render=owner.GetPart<RenderPart>();var physics=owner.GetPart<PhysicsPart>();
    if(cell==null||!cell.Objects.Contains(owner)||render==null||!render.Visible||!ReferenceEquals(render.ParentEntity,owner)
       ||physics==null||!ReferenceEquals(physics.ParentEntity,owner)||physics.Takeable||physics.InInventory!=null||physics.Equipped!=null
@@ -24,9 +24,24 @@ namespace CavesOfOoo.Rendering
    else{unchecked{uint hash=2166136261;foreach(char c in native.ModelId)hash=(hash^c)*16777619;if(owner.ID!=null)foreach(char c in owner.ID)hash=(hash^c)*16777619;variant=(int)(hash%4);}}
    return new SpawnRing3DRecipe(owner,SpreadEnvironmentSource.ModelId(family,variant),native.ComponentId,native.Position,native.Transient,native.Batched,quarterTurns:native.QuarterTurns);
   }
-  private static string Family(Entity owner,string nativeModel)
+  // Both initial admission and final refinement use this exact native source.
+  internal static string GatheringFamily(Zone zone,Entity owner)
+  {
+   string family=owner?.BlueprintName=="StoneburrPatch"?"stoneburr":owner?.BlueprintName=="FrostLichenPatch"?"frost-lichen":null;
+   if(family==null||!SpreadPresentationScope.IsActive(zone))return null;
+   var cell=zone.GetEntityCell(owner);var render=owner.GetPart<RenderPart>();var physics=owner.GetPart<PhysicsPart>();var harvest=owner.GetPart<HarvestablePart>();
+   if(cell==null||!ReferenceEquals(owner.SpatialZone,zone)||!ReferenceEquals(cell.ParentZone,zone)||!cell.Objects.Contains(owner)
+      ||render==null||!render.Visible||render.ParentEntity!=owner||render.RenderString!=(family=="stoneburr"?"%":"\"")||render.ColorString!=(family=="stoneburr"?"&Y":"&C")
+      ||physics==null||physics.ParentEntity!=owner||physics.Takeable||physics.InInventory!=null||physics.Equipped!=null
+      ||harvest==null||harvest.ParentEntity!=owner||harvest.Harvested||harvest.YieldBlueprint!=(family=="stoneburr"?"StoneburrSeed":"FrostLichen")
+      ||owner.HasTag("Creature")||owner.HasTag("Item")||owner.HasPart<SpatialFootprintPart>()||owner.HasPart<MultiCellPilotPropPart>()
+      ||!string.IsNullOrEmpty(render.VisualID)||!string.IsNullOrEmpty(render.VisualVariant)||!string.IsNullOrEmpty(render.GlyphVariants))return null;
+   return family;
+  }
+  private static string Family(Zone zone,Entity owner,string nativeModel)
   {
    switch(owner.BlueprintName){
+    case "StoneburrPatch":case "FrostLichenPatch":return In(nativeModel,"ring-bush")?GatheringFamily(zone,owner):null;
     case "Floor":return In(nativeModel,FloorFamilies)?"paving":null;
     case "StoneFloor":return In(nativeModel,"wellmeet-floor")?"paving":null;
     case "RoadStone":return In(nativeModel,RoadFamilies)?"road":null;

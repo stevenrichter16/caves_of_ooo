@@ -15,7 +15,7 @@ namespace CavesOfOoo.Rendering
         [Serializable] public sealed class Model { public string id,family,kind;public int variant; public Box[] boxes; }
         [Serializable] public sealed class Box { public Vector3 center, size; public int color; }
         public static IReadOnlyList<string> Families { get; } = Array.AsReadOnly(new[] {
-            "paving","road","tree","hedge","vine-wall","stubble","grain","flowers","dry-brush","rock"
+            "paving","road","tree","hedge","vine-wall","stubble","grain","flowers","dry-brush","rock","stoneburr","frost-lichen"
         });
         public static IReadOnlyList<string> ApprovedPalette { get; } = Array.AsReadOnly(new[] {
             "#082C28", "#103E36", "#1A4B40", "#26594A", "#A0A77C", "#CBC697",
@@ -26,7 +26,7 @@ namespace CavesOfOoo.Rendering
         public static IReadOnlyList<string> ModelIds { get; } = Array.AsReadOnly(CreateIds());
         private static readonly HashSet<string> KnownIds = new HashSet<string>(ModelIds, StringComparer.Ordinal);
         private static string[] CreateIds()
-        {var ids=new List<string>(40);foreach(string family in Families)for(int i=0;i<4;i++)ids.Add("spread-environment-"+family+"-"+i);return ids.ToArray();}
+        {var ids=new List<string>(48);foreach(string family in Families)for(int i=0;i<4;i++)ids.Add("spread-environment-"+family+"-"+i);return ids.ToArray();}
         public static bool IsModelId(string value)=>value!=null&&KnownIds.Contains(value);
         public static string ModelId(string family,int variant)
         {if(variant<0||variant>3)throw new ArgumentException("Unknown environment variant.");for(int i=0;i<Families.Count;i++)if(Families[i]==family)return ModelIds[i*4+variant];throw new ArgumentException("Unknown environment family.");}

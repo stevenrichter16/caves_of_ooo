@@ -10,7 +10,7 @@ using CavesOfOoo.Data;
 
 namespace CavesOfOoo.Core
 {
-    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin, SnakeForage, WorkGang, CollectorReturn, RoadsideExchange, FieldPassage, CoolingWorkPatch, HeavySalvage, HuntThroughCover }
+    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin, SnakeForage, WorkGang, CollectorReturn, RoadsideExchange, FieldPassage, CoolingWorkPatch, HeavySalvage, HuntThroughCover, FieldAlembic, TemperingShelter, TrappersStore }
 
     /// <summary>Frozen assignment, not evidence that its optional content was placed.</summary>
     public sealed class SpreadExplorationEntry
@@ -36,7 +36,7 @@ namespace CavesOfOoo.Core
     public sealed class SpreadExplorationPlan
     {
         public const string PropertyKey="SpreadExploration.Manifest";
-        public const int CurrentVersion=8;
+        public const int CurrentVersion=9;
         private const int MaxRecords=WorldMap.Width*WorldMap.Height;
         private const int MaxWireLength=65536;
         private readonly OverworldZoneManager owner;
@@ -77,14 +77,14 @@ namespace CavesOfOoo.Core
                 bool placement=PlacementNow(manager,id);rows.Add(id,new SpreadExplorationEntry(id,placement,SpreadExplorationFamily.None,SpreadExplorationTopology.Legacy,manager.WorldSeed));
                 if(placement)eligible.Add(id);
             }
-            eligible.Sort((a,b)=>{int order=Rank(manager.WorldSeed,a,"order").CompareTo(Rank(manager.WorldSeed,b,"order"));return order!=0?order:string.CompareOrdinal(a,b);});
+            eligible.Sort((a,b)=>{int priority=(NearWorksite(a)?0:1).CompareTo(NearWorksite(b)?0:1);if(priority!=0)return priority;int order=Rank(manager.WorldSeed,a,"order").CompareTo(Rank(manager.WorldSeed,b,"order"));return order!=0?order:string.CompareOrdinal(a,b);});
             int checks=0;
             foreach(string id in eligible)
             {
                 // Quiet rate and neighborhood diversity are tuning measurements. Exclusions and
                 // edge adjacency are hard constraints; a refusal leaves the address quiet.
                 var family=FamilyFor(FormationSelector.For(BiomeType.Spread,id),CurrentVersion,manager.WorldSeed,id);checks++;
-                if(Rank(manager.WorldSeed,id,"quiet")%100<35||family==SpreadExplorationFamily.None||Touches(rows,id,family))family=SpreadExplorationFamily.None;
+                if((!NearWorksite(id)&&(int)family<13&&Rank(manager.WorldSeed,id,"quiet")%100<35)||family==SpreadExplorationFamily.None||Touches(rows,id,family))family=SpreadExplorationFamily.None;
                 var topology=(SpreadExplorationTopology)(1+Rank(manager.WorldSeed,id,"topology")%3);
                 rows[id]=new SpreadExplorationEntry(id,true,family,topology,manager.WorldSeed);
             }
@@ -92,8 +92,25 @@ namespace CavesOfOoo.Core
         }
         internal static uint Rank(int seed,string id,string salt)
         {unchecked{uint h=2166136261u^(uint)seed;foreach(char c in "SpreadExploration.v2|"+salt+"|"+id)h=(h^c)*16777619u;h^=h>>16;h*=0x7feb352du;h^=h>>15;h*=0x846ca68bu;return h^(h>>16);}}
+        private static bool NearWorksite(string id)=>id=="Overworld.11.9.0"||id=="Overworld.12.10.0"||id=="Overworld.11.11.0";
         private static SpreadExplorationFamily FamilyFor(Formation formation,int version,int seed,string id)
         {
+            // Fresh worlds put the first examples on three different approaches from the glade.
+            // Protected addresses never reach assignment. Saved v2–v8 rows keep the old grammar.
+            if(version>=9)
+            {
+                if(id=="Overworld.11.9.0")return SpreadExplorationFamily.FieldAlembic;
+                if(id=="Overworld.12.10.0")return SpreadExplorationFamily.TemperingShelter;
+                if(id=="Overworld.11.11.0")return SpreadExplorationFamily.TrappersStore;
+                uint work=Rank(seed,id,"worksite")%3;
+                uint quiet=Rank(seed,id,"quiet")%100;
+                if(quiet>=22&&quiet<35&&(formation==Formation.Fallow||formation==Formation.FlowerMeadow))
+                {
+                    if(work==0)return SpreadExplorationFamily.FieldAlembic;
+                    if(work==1)return SpreadExplorationFamily.TemperingShelter;
+                    if(work==2)return SpreadExplorationFamily.TrappersStore;
+                }
+            }
             switch(formation){case Formation.OldRoad:return version>=4&&WorldTravellers.EntrySample(seed,id)%8==0?SpreadExplorationFamily.RoadsideExchange:SpreadExplorationFamily.RoadSpill;
                 case Formation.Hedgerow:
                     if(version>=7){uint variant=Rank(seed,id,"family-variant")%4;return variant==0?SpreadExplorationFamily.OccupiedBank:variant==1?SpreadExplorationFamily.CollectorReturn:variant==2?SpreadExplorationFamily.FieldPassage:SpreadExplorationFamily.HeavySalvage;}
@@ -282,14 +299,14 @@ namespace CavesOfOoo.Core
             var lines=wire.Split('\n');var header=lines[0].Split('|');
             if(header.Length!=3)throw Invalid("header");
             int version=Number(header[0]);
-            if((version!=2&&version!=3&&version!=4&&version!=5&&version!=6&&version!=7&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
+            if((version!=2&&version!=3&&version!=4&&version!=5&&version!=6&&version!=7&&version!=8&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
             int count=Number(header[2]);if(count<0||count>MaxRecords||lines.Length!=count+1)throw Invalid("record count");
             var rows=new Dictionary<string,SpreadExplorationEntry>(StringComparer.Ordinal);var saved=new Dictionary<string,int>(StringComparer.Ordinal);
             for(int i=1;i<lines.Length;i++)
             {
                 var f=lines[i].Split('|');if(f.Length!=5||!Supported(f[0])||rows.ContainsKey(f[0]))throw Invalid("address");
                 int mask=Number(f[1]),family=Number(f[2]),topology=Number(f[3]),disposition=Number(f[4]);
-                if((mask!=1&&mask!=3)||family<0||family>(version==2?4:version==3?6:version==4?8:version==5?9:version==6?10:version==7?11:12)||topology<0||topology>3||disposition<0||disposition>2
+                if((mask!=1&&mask!=3)||family<0||family>(version==2?4:version==3?6:version==4?8:version==5?9:version==6?10:version==7?11:version==8?12:15)||topology<0||topology>3||disposition<0||disposition>2
                     ||(mask==1&&(family!=0||topology!=0))||(disposition==2&&(mask!=3||family==0)))throw Invalid("enum/mask/disposition");
                 var selected=(SpreadExplorationFamily)family;
                 if(selected!=SpreadExplorationFamily.None&&selected!=FamilyFor(FormationSelector.For(BiomeType.Spread,f[0]),version,manager.WorldSeed,f[0]))throw Invalid("family habitat");

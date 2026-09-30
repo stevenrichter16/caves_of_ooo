@@ -31,6 +31,9 @@ namespace CavesOfOoo.Core
    if(!Current(zone,factory,entry))return Refuse(zone,entry,"authority");
    switch(entry.Family)
    {
+    case SpreadExplorationFamily.FieldAlembic:
+    case SpreadExplorationFamily.TemperingShelter:
+    case SpreadExplorationFamily.TrappersStore:return Worksite(zone,factory,entry);
     case SpreadExplorationFamily.RoadSpill:return Road(zone,factory,entry);
     case SpreadExplorationFamily.OccupiedBank:return Actor(zone,factory,entry,false);
     case SpreadExplorationFamily.LastGleanings:return Actor(zone,factory,entry,true);
@@ -44,6 +47,16 @@ namespace CavesOfOoo.Core
     case SpreadExplorationFamily.HuntThroughCover:return Hunt(zone,factory,entry);
     default:return Refuse(zone,entry,"unsupported-family");
    }
+  }
+  bool Worksite(Zone z,EntityFactory f,SpreadExplorationEntry entry)
+  {
+   if(Priority!=4300)return Refuse(z,entry,"worksite-source-boundary");
+   var owners=new HashSet<Entity>(z.GetReadOnlyEntities());
+   var original=SpreadGenerationReceipt.CaptureFinalState(z,owners);
+   if(SpreadExplorationWorksites.TryPlace(z,f,terrain,population,containers,entry.Family,()=>Current(z,f,entry),out var packet,out var final))
+    return Commit(z,f,entry,packet,final);
+   if(!Current(z,f,entry)||!original()||!owners.SetEquals(z.GetReadOnlyEntities()))return false;
+   return Refuse(z,entry,"no-safe-worksite-or-exact-source");
   }
   bool Hunt(Zone z,EntityFactory f,SpreadExplorationEntry entry)
   {

@@ -59,6 +59,12 @@ namespace CavesOfOoo.Rendering
                 return new SpawnRing3DRecipe(entity, id, null,
                     Village3DProjection.CellCentre(cell.X, cell.Y), false, false, quarterTurns: door.QuarterTurns);
             }
+            if (SpreadPresentationScope.IsActive(zone) && SpreadBiomeHumanoidSource.IsCaster(entity.BlueprintName))
+            {
+                string caster=SpreadBiomeHumanoidLibrary.ResolveCasterOwner(zone,entity);
+                return caster==null?Refused(entity,"unsupported-current-marlback-caster")
+                    :new SpawnRing3DRecipe(entity,caster,null,Village3DProjection.CellCentre(cell.X,cell.Y),true,false);
+            }
             if (ReferenceGladePlan.IsActive(zone))
             {
                 string humanoid = entity.BlueprintName == "Warden" ? "ring-sien" : entity.BlueprintName == "Villager" ? "ring-nam" : null;
@@ -462,6 +468,7 @@ namespace CavesOfOoo.Rendering
                 // Existing green harvestable uses the shipped green plant family;
                 // only its appearance is shared, never the Bush entity or mechanics.
                 if (binding == null && entity.BlueprintName == "MendleafPlant") binding = catalog.FindBlueprint("Bush");
+                if (binding == null && SpreadEnvironmentRecipes.GatheringFamily(zone,entity)!=null) binding = catalog.FindBlueprint("Bush");
                 // Supported native camps keep their real locked container owner;
                 // its existing chest body is only a visual alias.
                 if (binding == null && entity.BlueprintName == "LockedChest"

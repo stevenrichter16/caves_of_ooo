@@ -37289,6 +37289,366 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "StoneburrPatch",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "stoneburr seedheads"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&Y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Harvestable",
+          "Params": [
+            {
+              "Key": "YieldBlueprint",
+              "Value": "StoneburrSeed"
+            },
+            {
+              "Key": "YieldMin",
+              "Value": "1"
+            },
+            {
+              "Key": "YieldMax",
+              "Value": "2"
+            },
+            {
+              "Key": "YieldChance",
+              "Value": "100"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Ochre burrs hook together above dark, leathery leaves. Gather the hard seeds and brew them alone for a stoneskin tonic; drinking it briefly blunts incoming blows."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Vegetation",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "FrostLichenPatch",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "frost lichen crust"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "\""
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&C"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Harvestable",
+          "Params": [
+            {
+              "Key": "YieldBlueprint",
+              "Value": "FrostLichen"
+            },
+            {
+              "Key": "YieldMin",
+              "Value": "1"
+            },
+            {
+              "Key": "YieldMax",
+              "Value": "2"
+            },
+            {
+              "Key": "YieldChance",
+              "Value": "100"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Pale crusts collect in the cold shade of stones. Gather the lichen and brew it alone into a freezing coating. Quench a melee weapon with the coating beside a forge; drinking it freezes the drinker."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Vegetation",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "MarlbackCindercaller",
+      "Inherits": "MarlbackScrabbler",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "marlback cindercaller"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "g"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&R"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "SightRadius",
+              "Value": "6"
+            },
+            {
+              "Key": "FleeThreshold",
+              "Value": "0.2"
+            }
+          ]
+        },
+        {
+          "Name": "CombatTactics",
+          "Params": [
+            {
+              "Key": "SkillClasses",
+              "Value": "Pyromancy_EmberSpit"
+            },
+            {
+              "Key": "AbilityChance",
+              "Value": "35"
+            },
+            {
+              "Key": "AssistAllies",
+              "Value": "true"
+            },
+            {
+              "Key": "AssistRadius",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Loadout",
+          "Params": [
+            {
+              "Key": "Equip",
+              "Value": "Cudgel"
+            },
+            {
+              "Key": "Carry",
+              "Value": "FireMoss"
+            },
+            {
+              "Key": "Pick",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A narrow-capped marlback with scorched mantle edges and fire-moss tucked into a pouch. It spits a short gob of fire, then closes with its cudgel while its breath returns. Its partner answers nearby attacks; walls interrupt the spit."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 12,
+          "Min": 0,
+          "Max": 12
+        },
+        {
+          "Name": "Strength",
+          "Value": 12
+        },
+        {
+          "Name": "Agility",
+          "Value": 12
+        },
+        {
+          "Name": "XPValue",
+          "Value": 20
+        }
+      ]
+    },
+    {
+      "Name": "MarlbackSoursprayer",
+      "Inherits": "MarlbackScrabbler",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "marlback soursprayer"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "g"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&G"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "SightRadius",
+              "Value": "6"
+            },
+            {
+              "Key": "FleeThreshold",
+              "Value": "0.2"
+            }
+          ]
+        },
+        {
+          "Name": "CombatTactics",
+          "Params": [
+            {
+              "Key": "SkillClasses",
+              "Value": "Corrosion_AcidSpray"
+            },
+            {
+              "Key": "AbilityChance",
+              "Value": "35"
+            },
+            {
+              "Key": "AssistAllies",
+              "Value": "true"
+            },
+            {
+              "Key": "AssistRadius",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Loadout",
+          "Params": [
+            {
+              "Key": "Equip",
+              "Value": "Cudgel"
+            },
+            {
+              "Key": "Carry",
+              "Value": "GlimmerBrine"
+            },
+            {
+              "Key": "Pick",
+              "Value": ""
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A hooded marlback with a stained throat-wrap and a sealed pouch of glimmer brine. Its short acid spray leaves a pause before the next shot. A nearby partner answers attacks, but stone blocks the spray."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 12,
+          "Min": 0,
+          "Max": 12
+        },
+        {
+          "Name": "Strength",
+          "Value": 12
+        },
+        {
+          "Name": "Agility",
+          "Value": 12
+        },
+        {
+          "Name": "XPValue",
+          "Value": 20
+        }
+      ]
     }
   ]
 }

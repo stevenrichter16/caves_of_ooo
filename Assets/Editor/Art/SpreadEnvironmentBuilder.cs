@@ -15,7 +15,8 @@ namespace CavesOfOoo.Editor
     public static class SpreadEnvironmentBuilder
     {
         private const string Source = "ArtSource/SpreadEnvironment3D/kit.json";
-        public static void Run()
+        public static void Run()=>Build("Docs/Verification/DensityCompletion/SpreadBiome/Art/Environment/native-import.json");
+        public static void Build(string reportPath)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling)
                 throw new InvalidOperationException("Scenery import requires idle Edit mode.");
@@ -75,7 +76,6 @@ namespace CavesOfOoo.Editor
                 if (library == null) { library = ScriptableObject.CreateInstance<SpreadEnvironment3DLibrary>(); AssetDatabase.CreateAsset(library, path); }
                 library.Entries = entries.ToArray(); library.Material = glade.Material; library.SourceSha256 = hash;
                 library.Validate(); EditorUtility.SetDirty(library); AssetDatabase.SaveAssetIfDirty(library);
-                const string reportPath = "Docs/Verification/DensityCompletion/SpreadBiome/Art/Environment/native-import.json";
                 Directory.CreateDirectory(Path.GetDirectoryName(reportPath));
                 int boxes = 0; foreach (var model in source.models) boxes += model.boxes.Length;
                 File.WriteAllText(reportPath, JsonUtility.ToJson(new Receipt { sourceSha256 = hash, models = entries.Count,

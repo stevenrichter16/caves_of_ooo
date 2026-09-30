@@ -35,17 +35,17 @@ namespace CavesOfOoo.Scenarios.Custom
         private readonly List<Entity> _discoveryTonics=new List<Entity>();
         private string _ownedRoot, _fatal;
         private System.Diagnostics.Stopwatch _clock;
-        private bool _measurePerformance,_profiling;
+        private bool _measurePerformance,_profiling,_specialistsOnly;
         private readonly List<float> _frameTimes=new List<float>(12000);
         private double _profileSeconds;
         private string DirectoryPath => Path.GetFullPath(Path.Combine(Application.dataPath,
-            _biomeOnly ? "../Docs/Verification/DensityCompletion/SpreadBiome/NativeWalkthrough" : _combatOnly ? "../Docs/Verification/DensityCompletion/ReferenceGlade/NativeCombat" : "../Docs/Verification/DensityCompletion/ReferenceGlade/Native", RunId));
+            _specialistsOnly ? "../Docs/Verification/SpreadSpecialistContent/Native" : _biomeOnly ? "../Docs/Verification/DensityCompletion/SpreadBiome/NativeWalkthrough" : _combatOnly ? "../Docs/Verification/DensityCompletion/ReferenceGlade/NativeCombat" : "../Docs/Verification/DensityCompletion/ReferenceGlade/Native", RunId));
 
-        public void Initialize(ScenarioContext context,bool measurePerformance=false,bool combatOnly=false,bool biomeOnly=false)
+        public void Initialize(ScenarioContext context,bool measurePerformance=false,bool combatOnly=false,bool biomeOnly=false,bool specialistsOnly=false)
         {
             if (string.IsNullOrWhiteSpace(SaveGameService.SaveRootOverride))
                 throw new InvalidOperationException("Completion audit requires its isolated native launcher.");
-            _context = context; _ownedRoot = SaveGameService.SaveRootOverride;_measurePerformance=measurePerformance;_combatOnly=combatOnly;_biomeOnly=biomeOnly;
+            _context = context; _ownedRoot = SaveGameService.SaveRootOverride;_measurePerformance=measurePerformance;_combatOnly=combatOnly;_biomeOnly=biomeOnly;_specialistsOnly=specialistsOnly;
             if (_combatOnly)
             {
                 _oldDamage = Diag.IsChannelEnabled("damage");
@@ -82,6 +82,7 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return Capture("01-gameplay-arrival");
             var renderer=FindFirstObjectByType<GameBootstrap>().ZoneRenderer;
             Require(!renderer.RevealEntire3DZone&&!view.FullReveal,"ordinary scene visibility");
+            if (_specialistsOnly) { yield return RunSpecialistAudit(); yield break; }
             if (_combatOnly) { yield return RunCombatAudit(); yield break; }
             if (_biomeOnly) { yield return RunBiomeAudit(); yield break; }
             renderer.RevealEntire3DZone=true;view.FullReveal=true;view.Refresh(null);yield return Capture("02-composition-full-reveal");
@@ -162,6 +163,110 @@ namespace CavesOfOoo.Scenarios.Custom
         }
         private void Update(){if(_profiling&&_frameTimes.Count<60000)_frameTimes.Add(Time.unscaledDeltaTime*1000);}
         private Cell Cell()=>_input.CurrentZone.GetEntityCell(_input.PlayerEntity);
+
+        private static readonly string[] SpecialistRequired = {
+            "specialist_generated_alembic", "specialist_binding_harvest", "specialist_binding_brew", "specialist_stoneskin",
+            "specialist_cold_harvest", "specialist_cold_brew", "specialist_generated_forge", "specialist_quench", "specialist_ordinary_finish" };
+        private bool SpecialistComplete => _audit.Count == SpecialistRequired.Length + 1
+            && SpecialistRequired.All(n => _audit.Count(a => a == "PASS " + n) == 1) && _biomeShortcuts == 2 && _screenshots.Count >= 4;
+        private IEnumerator RunSpecialistAudit()
+        {
+            Require(BiomeManager != null && BiomeManager.WorldSeed == 64,"isolated original seed64");
+            var actor = _input.PlayerEntity; string actorID = actor.ID;
+            var inventory = actor.GetPart<InventoryPart>();
+            var dagger = inventory.Objects.Single(e => e.BlueprintName == "Dagger"); string daggerID = dagger.ID;
+            _discoveryTonics.AddRange(inventory.Objects.Where(e => e.BlueprintName == "HealingTonic"));
+            Entity still; Cell approach; var bank = SpecialistSite("FieldAlembic", "AlchemyStill", out still, out approach);
+            Require(bank != null && still != null,"actual generated ordinary field alembic with a safe native approach");
+            yield return BiomeTravel(bank, approach,"generated field alembic; native stock and hostile owners unchanged");
+            var seedPatch = bank.GetReadOnlyEntities().Single(e => e.BlueprintName == "StoneburrPatch");
+            var coldPatch = bank.GetReadOnlyEntities().Single(e => e.BlueprintName == "FrostLichenPatch");
+            Check("specialist_generated_alembic", BiomeDrawn(still) && seedPatch.HasPart<HarvestablePart>() && coldPatch.HasPart<HarvestablePart>());
+            yield return Capture("specialist-01-generated-alembic");
+            foreach(var row in new[]{(patch:seedPatch,product:"StoneburrSeed",prefix:"binding"),(patch:coldPatch,product:"FrostLichen",prefix:"cold")})
+            {
+                var near = SpecialistApproach(bank,row.patch); Require(near != null,"safe native harvest approach");
+                yield return WalkTo(near.X,near.Y); Require(BiomeDrawn(row.patch),"actual patch model submitted before harvest");
+                int before = inventory.Objects.Where(e => e.BlueprintName == row.product).Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1);
+                int tick = _input.TurnManager.TickCount, energy = _input.TurnManager.GetEnergy(actor);
+                yield return BiomeWorldAction(row.patch,"Harvest");
+                int earned = inventory.Objects.Where(e => e.BlueprintName == row.product).Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1);
+                Check("specialist_"+row.prefix+"_harvest",row.patch.GetPart<HarvestablePart>().Harvested && bank.GetEntityCell(row.patch)==null
+                    && earned-before>=1 && earned-before<=2 && BiomeOneAction(tick,energy));
+                near=SpecialistApproach(bank,still);Require(near!=null,"safe existing still approach");yield return WalkTo(near.X,near.Y);
+                foreach(var marked in inventory.Objects.Where(e => e.HasPart<ReagentPart>() && CraftingMarkPart.IsMarked(e)).ToArray())
+                    yield return BiomeWorldAction(still,CraftingMarkPart.ToggleCommandPrefix+marked.ID);
+                var reagent=inventory.Objects.First(e=>e.BlueprintName==row.product);
+                yield return BiomeWorldAction(still,CraftingMarkPart.ToggleCommandPrefix+reagent.ID);
+                tick=_input.TurnManager.TickCount;energy=_input.TurnManager.GetEnergy(actor);
+                yield return BiomeWorldAction(still,"BrewMix");
+                var brew=inventory.Objects.Single(e=>e.HasPart<BrewItemPart>());
+                BiomeCase("specialist_"+row.prefix+"_brew",
+                    ("oneIngredientConsumed",inventory.Objects.Where(e=>e.BlueprintName==row.product).Sum(e=>e.GetPart<StackerPart>()?.StackCount??1)==earned-1),
+                    ("correctPreparation",brew.GetPart<BrewItemPart>().Form==(row.prefix=="binding"?"Tonic":"Coating")),
+                    ("existingStationClock",_input.TurnManager.TickCount==tick&&_input.TurnManager.GetEnergy(actor)==energy));
+                if(row.prefix=="binding")
+                {
+                    yield return ItemAction(brew,"ApplyTonic");yield return BiomeCloseMenus();
+                    Check("specialist_stoneskin",!inventory.CanConsumeOne(brew)&&actor.GetEffect<StoneskinEffect>()?.Reduction==2&&!actor.HasEffect<FrozenEffect>());
+                    yield return Capture("specialist-02-earned-stoneskin");
+                }
+            }
+            var coating=inventory.Objects.Single(e=>e.GetPart<BrewItemPart>()?.Form=="Coating");
+            Entity forge;var shelter=SpecialistSite("TemperingShelter","TinkersForge",out forge,out approach);
+            Require(shelter!=null&&forge!=null,"actual generated ordinary forge with safe approach; no substituted station");
+            yield return BiomeTravel(shelter,approach,"generated tempering shelter; native encounter owners unchanged");
+            Check("specialist_generated_forge",BiomeDrawn(forge)&&inventory.Objects.Contains(dagger)&&dagger.ID==daggerID);
+            yield return Capture("specialist-03-generated-forge");
+            yield return BiomeWorldAction(forge,CraftingMarkPart.ToggleCommandPrefix+dagger.ID);
+            yield return BiomeWorldAction(forge,CraftingMarkPart.ToggleCommandPrefix+coating.ID);
+            int quenchTick=_input.TurnManager.TickCount,quenchEnergy=_input.TurnManager.GetEnergy(actor);
+            yield return BiomeWorldAction(forge,"CraftKit");
+            BiomeCase("specialist_quench",("coatingConsumed",!inventory.CanConsumeOne(coating)),
+                ("originalDagger",dagger.ID==daggerID&&inventory.Objects.Contains(dagger)),
+                ("oneFrozenTemper",dagger.GetPart<WeaponTemperPart>()?.TemperCount==1&&dagger.GetPart<MeleeWeaponPart>().OnHitEffectsRaw.Contains("Frozen,40,,0,2")),
+                ("actorNotFrozen",!actor.HasEffect<FrozenEffect>()),
+                ("existingStationClock",_input.TurnManager.TickCount==quenchTick&&_input.TurnManager.GetEnergy(actor)==quenchEnergy));
+            Check("specialist_ordinary_finish",State()=="Normal"&&actor.ID==actorID&&actor.GetStatValue("Hitpoints")>0
+                &&actor.GetStat("Hitpoints").Max==40&&!DevMode.Enabled&&!actor.HasPart<BitLockerPart>());
+            yield return Capture("specialist-04-earned-frost-weapon");
+        }
+        private Zone SpecialistSite(string family,string blueprint,out Entity owner,out Cell approach)
+        {
+            owner=null;approach=null;
+            foreach(var entry in BiomeManager.Exploration.Entries.Where(e=>e.PlacementEligible&&e.Family.ToString()==family)
+                .OrderBy(e=>e.ZoneID,StringComparer.Ordinal))
+            {
+                var z=BiomeManager.GetZone(entry.ZoneID);if(z==null)continue;
+                var station=z.GetReadOnlyEntities().SingleOrDefault(e=>e.BlueprintName==blueprint&&e.Properties.ContainsKey("SpreadWorksite.Role"));
+                if(station==null)continue;
+                var near=SpecialistApproach(z,station);
+                _biomeSteps.Add("specialist-source family="+family+" version="+BiomeManager.Exploration.Version+" zone="+z.ZoneID+" disposition="+BiomeManager.Exploration.DispositionFor(z.ZoneID)+" station="+station.BlueprintName+" safeApproach="+(near!=null));WriteReport();
+                if(near==null)continue;
+                // Selection preflights actual sources, never creates replacements or suppresses danger.
+                if(z.GetReadOnlyEntities().Where(e=>e.HasPart<HarvestablePart>()&&e.Properties.ContainsKey("SpreadWorksite.Role"))
+                    .Any(e=>SpecialistApproach(z,e)==null))continue;
+                owner=station;approach=near;return z;
+            }
+            return null;
+        }
+        private Cell SpecialistApproach(Zone zone,Entity owner)
+        {
+            var at=zone.GetEntityCell(owner);if(at==null)return null;
+            foreach(var d in new[]{(1,0),(-1,0),(0,1),(0,-1)})
+            {
+                var near=zone.GetCell(at.X+d.Item1,at.Y+d.Item2);
+                // A useful occupied site need not have a hostile-free ring. Initial
+                // travel still uses the existing clearance-two policy; local
+                // interaction approaches require real open, hazard-free cells.
+                int clearance=owner.HasPart<HarvestablePart>()||ReferenceEquals(zone,_input.CurrentZone)?0:2;
+                if(!BiomeSafe(zone,near,clearance))continue;
+                if(ReferenceEquals(zone,_input.CurrentZone)&&!FindPath.Search(zone,Cell().X,Cell().Y,near.X,near.Y,actor:_input.PlayerEntity).Usable&&Cell()!=near)continue;
+                return near;
+            }
+            return null;
+        }
+
         private IEnumerator WalkDiscoveries()
         {
             // Exercise the actual new-game owners with normal keys. The existing
@@ -376,7 +481,7 @@ namespace CavesOfOoo.Scenarios.Custom
             { runId = RunId, cases = _audit.Count, failures = Failures, complete = Complete, errorsFinalized = _errorsFinalized, screenshots = _screenshots.Count });
         }
         private bool Complete => Finished && _errorsFinalized && Failures == 0
-            && (_biomeOnly ? BiomeComplete : _combatOnly ? CombatComplete : _audit.Count == (_measurePerformance?18:17) && _screenshots.Count >= 10);
+            && (_specialistsOnly ? SpecialistComplete : _biomeOnly ? BiomeComplete : _combatOnly ? CombatComplete : _audit.Count == (_measurePerformance?18:17) && _screenshots.Count >= 10);
         private void WriteReport()
         {
             Directory.CreateDirectory(DirectoryPath); ReportPath = Path.Combine(DirectoryPath, "report.json");
@@ -384,13 +489,13 @@ namespace CavesOfOoo.Scenarios.Custom
             {
                 runId = RunId, cases = _audit.Count, failures = Failures, unexpectedErrors = _unexpectedErrors,
                 complete = Complete, errorsFinalized = _errorsFinalized, seconds = _clock?.Elapsed.TotalSeconds ?? 0,
-                mode=_biomeOnly?"native-spread-biome-route":_combatOnly?"native-keyboard-combat":_measurePerformance?"movement-profile":"visual-content-route",
+                mode=_specialistsOnly?"native-generated-specialist-worksites":_biomeOnly?"native-spread-biome-route":_combatOnly?"native-keyboard-combat":_measurePerformance?"movement-profile":"visual-content-route",
                 combatSteps=_combatSteps.ToArray(),combatState=CombatState(),biomeSteps=_biomeSteps.ToArray(),biomeShortcuts=_biomeShortcuts,biomeDefensiveCalmUses=_biomeDefensiveCalmUses,
                 profileSeconds=_profileSeconds,profileFrames=_frameTimes.Count,profileFrameMeanMs=_frameTimes.Count==0?0:_frameTimes.Average(),
                 profileFrameP95Ms=_frameTimes.Count==0?0:_frameTimes.OrderBy(x=>x).ElementAt((int)((_frameTimes.Count-1)*.95)),
                 zone = _stagedZone?.ZoneID, fatal = _fatal, audit = _audit.ToArray(), screenshots = _screenshots.ToArray(), descriptions = _descriptions.ToArray(),
-                canVerify = _biomeOnly ? "Real isolated seed64 starting graph; original dagger drop/pickup; native F5, movement, F6 replacement and unchanged saved bytes; real keyboard Spread border exit/return; actual finite harvest, one paid action and saved depletion; generated village door and committed lair stairs; current-owner submitted profile/body observation; foreign-biome negative profile; finite60-second editor keyboard movement sample." : _combatOnly ? "Actual authored northern encounter; ordinary starting actor and kit; real movement and attack keys; exact diagnostic actor/target/cause correlation, attempted retaliation, exact death attribution and corpse/original-owned-drop provenance, and native animation/frame observation. No direct attack, pose or damage calls." : "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz/grain harvest, vessel pickup and basin draw, cooking, beam hauling, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
-                cannotVerify = _biomeOnly ? "Four explicitly logged actor travel shortcuts cover actual generated POI, lair, foreign control and original return. Source selection is script-selected and first-floor generation is preflighted; no natural acquisition, discovery, combat balance or all-chunk visual coverage claim. At most eight actual original Calm casts may defend against a visible pursuing threat on an exact legal ray before native movement/harvest; exact owner, payment, cooldown and live pacification are recorded. No Rime, cooldown waits or scripted combat. Ordinary scheduler remains active; no grants, reseeding or forced models. Native screenshots require visual inspection. Frame times describe this editor run, not standalone build performance or allocations. Separate census and normal randomized N/Continue gates remain necessary." : _combatOnly ? "One fixed authored encounter and finite script-selected keyboard route. At most two original starting healing tonics may be used at or below two-thirds HP through native inventory keys. One ready Rime Grip may be used only after real retaliation. Their actual costs/effects are recorded. The prior dagger-only death remains a separate failed receipt. No combat-balance, natural discovery, animation quality or enjoyment claim. Native pose observation and saved frames still need visual assessment; unrelated NPC activity remains enabled." : "Routes are script-selected through real keyboard input. At most two original starting tonic units may be used at or below two-thirds HP through native inventory keys; actual consumption is recorded. Naturally earned advancement announcements are dismissed without changing gains. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim."
+                canVerify = _specialistsOnly ? "Isolated ordinary seed64 player. Two actual generated ordinary worksites selected without modifying their owners; keyboard harvest, reagent selection, brewing, drinking Stoneskin, and quenching the original dagger; stock consumption and submitted models are observed. Native screenshots." : _biomeOnly ? "Real isolated seed64 starting graph; original dagger drop/pickup; native F5, movement, F6 replacement and unchanged saved bytes; real keyboard Spread border exit/return; actual finite harvest, one paid action and saved depletion; generated village door and committed lair stairs; current-owner submitted profile/body observation; foreign-biome negative profile; finite60-second editor keyboard movement sample." : _combatOnly ? "Actual authored northern encounter; ordinary starting actor and kit; real movement and attack keys; exact diagnostic actor/target/cause correlation, attempted retaliation, exact death attribution and corpse/original-owned-drop provenance, and native animation/frame observation. No direct attack, pose or damage calls." : "Native glade new game; ordinary HP and starting kit; keyboard walking, gear, real chest loot, blocking, finite quartz/grain harvest, vessel pickup and basin draw, cooking, beam hauling, F5/F6 persistence and world exit/return. Actual rendered screenshots.",
+                cannotVerify = _specialistsOnly ? "Two explicitly logged actor travel shortcuts reach real generated source approaches. Short local routes and all interactions use ordinary input with the scheduler active. Harvest spends time; existing still and forge commands consume ingredients without advancing turns. Up to two original healing tonics may be used by the shared walking helper. No source grants, reseeding, model substitutions or outcome forcing. This route does not prove natural discovery, hostile balance, live freeze-on-hit or full-world encounter frequency. Core tests separately cover hit effects and persistence. Screenshots still require visual inspection." : _biomeOnly ? "Four explicitly logged actor travel shortcuts cover actual generated POI, lair, foreign control and original return. Source selection is script-selected and first-floor generation is preflighted; no natural acquisition, discovery, combat balance or all-chunk visual coverage claim. At most eight actual original Calm casts may defend against a visible pursuing threat on an exact legal ray before native movement/harvest; exact owner, payment, cooldown and live pacification are recorded. No Rime, cooldown waits or scripted combat. Ordinary scheduler remains active; no grants, reseeding or forced models. Native screenshots require visual inspection. Frame times describe this editor run, not standalone build performance or allocations. Separate census and normal randomized N/Continue gates remain necessary." : _combatOnly ? "One fixed authored encounter and finite script-selected keyboard route. At most two original starting healing tonics may be used at or below two-thirds HP through native inventory keys. One ready Rime Grip may be used only after real retaliation. Their actual costs/effects are recorded. The prior dagger-only death remains a separate failed receipt. No combat-balance, natural discovery, animation quality or enjoyment claim. Native pose observation and saved frames still need visual assessment; unrelated NPC activity remains enabled." : "Routes are script-selected through real keyboard input. At most two original starting tonic units may be used at or below two-thirds HP through native inventory keys; actual consumption is recorded. Naturally earned advancement announcements are dismissed without changing gains. Full-reveal composition frames are labelled and reveal is restored before play. No natural discovery, player-solo combat balance or enjoyment claim. Screenshots need visual inspection. Optional frame sampling measures this editor session during real keyboard movement; it is not a player-build benchmark or allocation claim."
             }, true));
             Debug.Log("[ReferenceGladeNative] report=" + ReportPath + " failures=" + Failures);
         }

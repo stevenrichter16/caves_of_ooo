@@ -8,9 +8,11 @@ class HumanSourceTests(unittest.TestCase):
  def test_all_nonplayer_humanoid_identities_are_explicit(self):
   anatomy=json.loads((PROJECT/'Docs/Verification/DensityCompletion/SpreadBiome/Art/actor-anatomy-map.json').read_text())
   expected={x['blueprint'] for x in anatomy if x['anatomy']=='humanoid' and x['blueprint']!='Player'}
+  expected.update(('MarlbackCindercaller','MarlbackSoursprayer'))
   self.assertEqual(expected,{r['blueprint'] for r in self.data['roles']})
  def test_canonical_glyphs_follow_current_blueprints(self):
   refs={r['blueprint']:r['glyph'] for r in json.loads((PROJECT/'Docs/Verification/DensityCompletion/SpreadBiome/Authority/all-creature-source-requirements.json').read_text())}
+  refs.update(MarlbackCindercaller='g',MarlbackSoursprayer='g')
   self.assertGreater(len(self.data['roles']),40)
   for r in self.data['roles']: self.assertEqual(refs[r['blueprint']],r['glyph'])
  def test_only_approved_palette_indices_and_safe_ids(self):

@@ -62,6 +62,8 @@ namespace CavesOfOoo.Rendering
    {"GantryRegistrar","spread-person-gantry-registrar"},
    {"SootGremlin","spread-person-soot-gremlin"},
    {"DirtGnome","spread-person-dirt-gnome"},
+   {"MarlbackCindercaller","spread-person-marlback-cindercaller"},
+   {"MarlbackSoursprayer","spread-person-marlback-soursprayer"},
   };
   private static readonly Dictionary<string,string> Glyphs=new Dictionary<string,string>(StringComparer.Ordinal)
   {
@@ -117,8 +119,11 @@ namespace CavesOfOoo.Rendering
    {"GantryRegistrar","@"},
    {"SootGremlin","s"},
    {"DirtGnome","g"},
+   {"MarlbackCindercaller","g"},
+   {"MarlbackSoursprayer","g"},
   };
 
+  public static bool IsCaster(string blueprint)=>blueprint=="MarlbackCindercaller"||blueprint=="MarlbackSoursprayer";
   public static string ModelId(string blueprint)=>blueprint!=null&&Ids.TryGetValue(blueprint,out var id)?id:null;
   public static string CanonicalGlyph(string blueprint)=>blueprint!=null&&Glyphs.TryGetValue(blueprint,out var glyph)?glyph:null;
   public static void ValidateRole(Role role)
