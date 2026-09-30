@@ -66,6 +66,7 @@ namespace CavesOfOoo.Rendering
    {"MarlbackSoursprayer","spread-person-marlback-soursprayer"},
    {"SpreadSeedKeeper","spread-person-seed-keeper"},
    {"SpreadWaysideCook","spread-person-wayside-cook"},
+   {"CurationIntakeFiler","spread-person-curation-intake-filer"},{"CurationJuniorIndexer","spread-person-curation-junior-indexer"},{"CurationHalfSet","spread-person-curation-half-set"},
   };
   private static readonly Dictionary<string,string> Glyphs=new Dictionary<string,string>(StringComparer.Ordinal)
   {
@@ -125,8 +126,10 @@ namespace CavesOfOoo.Rendering
    {"MarlbackSoursprayer","g"},
    {"SpreadSeedKeeper","@"},
    {"SpreadWaysideCook","@"},
+   {"CurationIntakeFiler","@"},{"CurationJuniorIndexer","@"},{"CurationHalfSet","h"},
   };
 
+  public static bool IsCuration(string blueprint)=>blueprint=="CurationIntakeFiler"||blueprint=="CurationJuniorIndexer"||blueprint=="CurationHalfSet";
   public static bool IsFieldResident(string blueprint)=>blueprint=="SpreadSeedKeeper"||blueprint=="SpreadWaysideCook";
   public static bool IsCaster(string blueprint)=>blueprint=="MarlbackCindercaller"||blueprint=="MarlbackSoursprayer";
   public static string ModelId(string blueprint)=>blueprint!=null&&Ids.TryGetValue(blueprint,out var id)?id:null;
@@ -137,7 +140,7 @@ namespace CavesOfOoo.Rendering
     ||float.IsNaN(role.stature)||float.IsInfinity(role.stature)||role.stature<.65f||role.stature>1
     ||role.body<0||role.body>=24||role.skin<0||role.skin>=24||role.accent<0||role.accent>=24||role.hair<0||role.hair>=24
     ||Array.IndexOf(new[]{"hair","cap","hood","tall-cap","long-hair","goggles","straw-hat","ears"},role.headwear)<0
-    ||Array.IndexOf(new[]{"belt","sash","apron","pouches","cloak","coat","book-pouch"},role.garment)<0)
+    ||Array.IndexOf(new[]{"belt","sash","apron","pouches","cloak","coat","book-pouch","curation-filer","curation-indexer","curation-half-set"},role.garment)<0)
     throw new ArgumentException("Invalid explicit humanoid source role.");
   }
  }

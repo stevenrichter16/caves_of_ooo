@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-curation-compile/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="117" result="Failed" start-time="2026-09-30T05:48:41.4115710Z" end-time="2026-09-30T05:48:48.0537810Z" duration="6.642070" total="25" passed="22" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="306" random-seed="1115668830">
+  <command-line><![CDATA[/private/tmp/coo-curation-compile/bin/Debug/net8.0/EditModeRunner.dll "--where=class == CavesOfOoo.Tests.CurationReceivingAdversarialTests" --result=/Users/steven/.codex/scratch/caves-of-ooo/curation/receiving/adversarial/reference-red.xml]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.CurationReceivingAdversarialTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1149" name="EditModeRunner.dll" fullname="/private/tmp/coo-curation-compile/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="117" result="Failed" site="Child" start-time="2026-09-30T05:48:41.4115710Z" end-time="2026-09-30T05:48:48.0537810Z" duration="6.642070" total="25" passed="22" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="306">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+      <setting name="NumberOfTestWorkers" value="10" />
+    </settings>
+    <properties>
+      <property name="_PID" value="85632" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1150" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="117" result="Failed" site="Child" start-time="2026-09-30T05:48:41.4131860Z" end-time="2026-09-30T05:48:48.0537790Z" duration="6.640474" total="25" passed="22" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="306">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1151" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="117" result="Failed" site="Child" start-time="2026-09-30T05:48:41.4132880Z" end-time="2026-09-30T05:48:48.0537730Z" duration="6.640367" total="25" passed="22" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="306">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1117" name="CurationReceivingAdversarialTests" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-09-30T05:48:41.4136200Z" end-time="2026-09-30T05:48:48.0537550Z" duration="6.640017" total="25" passed="22" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="306">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1148" name="AbsentActorOrZoneRefusesWithoutClaimingAnyItem" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.AbsentActorOrZoneRefusesWithoutClaimingAnyItem" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-30T05:48:41.4144640Z" end-time="2026-09-30T05:48:42.1618670Z" duration="0.747389" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="20">
+            <test-case id="1146" name="AbsentActorOrZoneRefusesWithoutClaimingAnyItem(True)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.AbsentActorOrZoneRefusesWithoutClaimingAnyItem(True)" methodname="AbsentActorOrZoneRefusesWithoutClaimingAnyItem" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="114533838" result="Passed" start-time="2026-09-30T05:48:41.4145710Z" end-time="2026-09-30T05:48:41.8669060Z" duration="0.452356" asserts="10" />
+            <test-case id="1147" name="AbsentActorOrZoneRefusesWithoutClaimingAnyItem(False)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.AbsentActorOrZoneRefusesWithoutClaimingAnyItem(False)" methodname="AbsentActorOrZoneRefusesWithoutClaimingAnyItem" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="158245589" result="Passed" start-time="2026-09-30T05:48:41.8675480Z" end-time="2026-09-30T05:48:42.1614850Z" duration="0.293932" asserts="10" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1139" name="AnAddressMatchDoesNotOverrideTheCurrentWorldGraph" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.AnAddressMatchDoesNotOverrideTheCurrentWorldGraph" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-30T05:48:42.1620470Z" end-time="2026-09-30T05:48:42.7073230Z" duration="0.545266" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="22">
+            <test-case id="1137" name="AnAddressMatchDoesNotOverrideTheCurrentWorldGraph(&quot;cached-clone&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.AnAddressMatchDoesNotOverrideTheCurrentWorldGraph(&quot;cached-clone&quot;)" methodname="AnAddressMatchDoesNotOverrideTheCurrentWorldGraph" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="696106634" result="Passed" start-time="2026-09-30T05:48:42.1620770Z" end-time="2026-09-30T05:48:42.4361430Z" duration="0.274061" asserts="11" />
+            <test-case id="1138" name="AnAddressMatchDoesNotOverrideTheCurrentWorldGraph(&quot;changed-site&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.AnAddressMatchDoesNotOverrideTheCurrentWorldGraph(&quot;changed-site&quot;)" methodname="AnAddressMatchDoesNotOverrideTheCurrentWorldGraph" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="33086877" result="Passed" start-time="2026-09-30T05:48:42.4361670Z" end-time="2026-09-30T05:48:42.7072830Z" duration="0.271112" asserts="11" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1126" name="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-09-30T05:48:42.7073480Z" end-time="2026-09-30T05:48:44.8040840Z" duration="2.096698" total="8" passed="7" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="91">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1118" name="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;FirstBody&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;FirstBody&quot;)" methodname="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="1748220545" result="Passed" start-time="2026-09-30T05:48:42.7073710Z" end-time="2026-09-30T05:48:42.9809680Z" duration="0.273593" asserts="12" />
+            <test-case id="1119" name="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;SecondBody&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;SecondBody&quot;)" methodname="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="234004304" result="Passed" start-time="2026-09-30T05:48:42.9809860Z" end-time="2026-09-30T05:48:43.2260000Z" duration="0.245010" asserts="12" />
+            <test-case id="1120" name="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;FirstBay&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;FirstBay&quot;)" methodname="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="224074302" result="Passed" start-time="2026-09-30T05:48:43.2260200Z" end-time="2026-09-30T05:48:43.4684020Z" duration="0.242377" asserts="12" />
+            <test-case id="1121" name="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;SecondBay&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;SecondBay&quot;)" methodname="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="1232149201" result="Passed" start-time="2026-09-30T05:48:43.4684260Z" end-time="2026-09-30T05:48:43.7397980Z" duration="0.271368" asserts="12" />
+            <test-case id="1122" name="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;Filer&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;Filer&quot;)" methodname="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="1535221876" result="Passed" start-time="2026-09-30T05:48:43.7398180Z" end-time="2026-09-30T05:48:44.0216890Z" duration="0.281867" asserts="12" />
+            <test-case id="1123" name="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;Indexer&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;Indexer&quot;)" methodname="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="1480290136" result="Passed" start-time="2026-09-30T05:48:44.0217070Z" end-time="2026-09-30T05:48:44.3061970Z" duration="0.284486" asserts="12" />
+            <test-case id="1124" name="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;Counterfoil&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;Counterfoil&quot;)" methodname="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="1878761857" result="Passed" start-time="2026-09-30T05:48:44.3062150Z" end-time="2026-09-30T05:48:44.5501460Z" duration="0.243927" asserts="12" />
+            <test-case id="1125" name="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;Index&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(&quot;Index&quot;)" methodname="ChangedPersistentIdentityCannotIssueTheOriginalAccessItem" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="1625286081" result="Failed" start-time="2026-09-30T05:48:44.5501720Z" end-time="2026-09-30T05:48:44.8040090Z" duration="0.253833" asserts="7">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CurationReceivingAdversarialTests.Fixture.Refused() in /Users/steven/.codex/scratch/caves-of-ooo/curation/receiving/adversarial/CurationReceivingAdversarialTests.cs:line 42
+   at CavesOfOoo.Tests.CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(String owner) in /Users/steven/.codex/scratch/caves-of-ooo/curation/receiving/adversarial/CurationReceivingAdversarialTests.cs:line 58
+   at InvokeStub_CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CurationReceivingAdversarialTests.Fixture.Refused() in /Users/steven/.codex/scratch/caves-of-ooo/curation/receiving/adversarial/CurationReceivingAdversarialTests.cs:line 42
+   at CavesOfOoo.Tests.CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(String owner) in /Users/steven/.codex/scratch/caves-of-ooo/curation/receiving/adversarial/CurationReceivingAdversarialTests.cs:line 58
+   at InvokeStub_CurationReceivingAdversarialTests.ChangedPersistentIdentityCannotIssueTheOriginalAccessItem(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1145" name="ContainedEnemyTurnsKeepPlayerDoorRefusalsOutOfThePublicLog" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.ContainedEnemyTurnsKeepPlayerDoorRefusalsOutOfThePublicLog" methodname="ContainedEnemyTurnsKeepPlayerDoorRefusalsOutOfThePublicLog" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="85630399" result="Failed" start-time="2026-09-30T05:48:44.8041100Z" end-time="2026-09-30T05:48:45.0526080Z" duration="0.248494" asserts="13">
+            <failure>
+              <message><![CDATA[  Blocked NPC pursuit must not impersonate the player's door action twelve times.
+  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CurationReceivingAdversarialTests.ContainedEnemyTurnsKeepPlayerDoorRefusalsOutOfThePublicLog() in /Users/steven/.codex/scratch/caves-of-ooo/curation/receiving/adversarial/CurationReceivingAdversarialTests.cs:line 192
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Blocked NPC pursuit must not impersonate the player's door action twelve times.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CurationReceivingAdversarialTests.ContainedEnemyTurnsKeepPlayerDoorRefusalsOutOfThePublicLog() in /Users/steven/.codex/scratch/caves-of-ooo/curation/receiving/adversarial/CurationReceivingAdversarialTests.cs:line 192
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1136" name="CorruptPhysicalCounterfoilCannotCompleteTheFile" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.CorruptPhysicalCounterfoilCannotCompleteTheFile" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-09-30T05:48:45.0526370Z" end-time="2026-09-30T05:48:45.7560370Z" duration="0.703387" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="29">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1133" name="CorruptPhysicalCounterfoilCannotCompleteTheFile(&quot;wrong-stamp&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.CorruptPhysicalCounterfoilCannotCompleteTheFile(&quot;wrong-stamp&quot;)" methodname="CorruptPhysicalCounterfoilCannotCompleteTheFile" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="2146427767" result="Passed" start-time="2026-09-30T05:48:45.0526600Z" end-time="2026-09-30T05:48:45.2828600Z" duration="0.230196" asserts="11" />
+            <test-case id="1134" name="CorruptPhysicalCounterfoilCannotCompleteTheFile(&quot;stack-two&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.CorruptPhysicalCounterfoilCannotCompleteTheFile(&quot;stack-two&quot;)" methodname="CorruptPhysicalCounterfoilCannotCompleteTheFile" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="1249861796" result="Passed" start-time="2026-09-30T05:48:45.2828860Z" end-time="2026-09-30T05:48:45.5148560Z" duration="0.231967" asserts="11" />
+            <test-case id="1135" name="CorruptPhysicalCounterfoilCannotCompleteTheFile(&quot;foreign-key-part&quot;)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.CorruptPhysicalCounterfoilCannotCompleteTheFile(&quot;foreign-key-part&quot;)" methodname="CorruptPhysicalCounterfoilCannotCompleteTheFile" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="2124444451" result="Failed" start-time="2026-09-30T05:48:45.5148770Z" end-time="2026-09-30T05:48:45.7560120Z" duration="0.241131" asserts="7">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CurationReceivingAdversarialTests.Fixture.Refused() in /Users/steven/.codex/scratch/caves-of-ooo/curation/receiving/adversarial/CurationReceivingAdversarialTests.cs:line 42
+   at CavesOfOoo.Tests.CurationReceivingAdversarialTests.CorruptPhysicalCounterfoilCannotCompleteTheFile(String corruption) in /Users/steven/.codex/scratch/caves-of-ooo/curation/receiving/adversarial/CurationReceivingAdversarialTests.cs:line 94
+   at InvokeStub_CurationReceivingAdversarialTests.CorruptPhysicalCounterfoilCannotCompleteTheFile(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CurationReceivingAdversarialTests.Fixture.Refused() in /Users/steven/.codex/scratch/caves-of-ooo/curation/receiving/adversarial/CurationReceivingAdversarialTests.cs:line 42
+   at CavesOfOoo.Tests.CurationReceivingAdversarialTests.CorruptPhysicalCounterfoilCannotCompleteTheFile(String corruption) in /Users/steven/.codex/scratch/caves-of-ooo/curation/receiving/adversarial/CurationReceivingAdversarialTests.cs:line 94
+   at InvokeStub_CurationReceivingAdversarialTests.CorruptPhysicalCounterfoilCannotCompleteTheFile(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1143" name="HistoricalCertificationSurvivesLaterCargoAndKeyTransferWithoutIssuingToASecondActor" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.HistoricalCertificationSurvivesLaterCargoAndKeyTransferWithoutIssuingToASecondActor" methodname="HistoricalCertificationSurvivesLaterCargoAndKeyTransferWithoutIssuingToASecondActor" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="1444892299" result="Passed" start-time="2026-09-30T05:48:45.7560630Z" end-time="2026-09-30T05:48:46.0137450Z" duration="0.257678" asserts="17" />
+          <test-suite type="ParameterizedMethod" id="1129" name="MovingALabelAndItsMatchingSubjectTogetherDoesNotMoveTheAssignedBay" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.MovingALabelAndItsMatchingSubjectTogetherDoesNotMoveTheAssignedBay" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-30T05:48:46.0137680Z" end-time="2026-09-30T05:48:46.5514070Z" duration="0.537630" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="32">
+            <test-case id="1127" name="MovingALabelAndItsMatchingSubjectTogetherDoesNotMoveTheAssignedBay(True)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.MovingALabelAndItsMatchingSubjectTogetherDoesNotMoveTheAssignedBay(True)" methodname="MovingALabelAndItsMatchingSubjectTogetherDoesNotMoveTheAssignedBay" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="690661578" result="Passed" start-time="2026-09-30T05:48:46.0137890Z" end-time="2026-09-30T05:48:46.2830570Z" duration="0.269264" asserts="16" />
+            <test-case id="1128" name="MovingALabelAndItsMatchingSubjectTogetherDoesNotMoveTheAssignedBay(False)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.MovingALabelAndItsMatchingSubjectTogetherDoesNotMoveTheAssignedBay(False)" methodname="MovingALabelAndItsMatchingSubjectTogetherDoesNotMoveTheAssignedBay" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="1834929444" result="Passed" start-time="2026-09-30T05:48:46.2830830Z" end-time="2026-09-30T05:48:46.5513760Z" duration="0.268289" asserts="16" />
+          </test-suite>
+          <test-case id="1141" name="ReentrantCertificationProducesExactlyOneSuccessfulIssue" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.ReentrantCertificationProducesExactlyOneSuccessfulIssue" methodname="ReentrantCertificationProducesExactlyOneSuccessfulIssue" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="1764745989" result="Passed" start-time="2026-09-30T05:48:46.5514320Z" end-time="2026-09-30T05:48:46.7887640Z" duration="0.237329" asserts="10" />
+          <test-suite type="ParameterizedMethod" id="1132" name="SameBlueprintAndIDReplacementCannotStandInForEitherNamedWorker" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.SameBlueprintAndIDReplacementCannotStandInForEitherNamedWorker" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-09-30T05:48:46.7887890Z" end-time="2026-09-30T05:48:47.2861730Z" duration="0.497374" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="32">
+            <test-case id="1130" name="SameBlueprintAndIDReplacementCannotStandInForEitherNamedWorker(True)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.SameBlueprintAndIDReplacementCannotStandInForEitherNamedWorker(True)" methodname="SameBlueprintAndIDReplacementCannotStandInForEitherNamedWorker" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="762267672" result="Passed" start-time="2026-09-30T05:48:46.7888140Z" end-time="2026-09-30T05:48:47.0503300Z" duration="0.261511" asserts="16" />
+            <test-case id="1131" name="SameBlueprintAndIDReplacementCannotStandInForEitherNamedWorker(False)" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.SameBlueprintAndIDReplacementCannotStandInForEitherNamedWorker(False)" methodname="SameBlueprintAndIDReplacementCannotStandInForEitherNamedWorker" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="1593801438" result="Passed" start-time="2026-09-30T05:48:47.0503600Z" end-time="2026-09-30T05:48:47.2861430Z" duration="0.235779" asserts="16" />
+          </test-suite>
+          <test-case id="1142" name="SavingAHalfFinishedArrangementPreservesWhichExactSubjectStillNeedsMoving" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.SavingAHalfFinishedArrangementPreservesWhichExactSubjectStillNeedsMoving" methodname="SavingAHalfFinishedArrangementPreservesWhichExactSubjectStillNeedsMoving" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="209508233" result="Passed" start-time="2026-09-30T05:48:47.2861970Z" end-time="2026-09-30T05:48:47.5815060Z" duration="0.295304" asserts="14" />
+          <test-case id="1144" name="UnlockingDoesNotGiveTheContainedCreatureDoorOperatingPermission" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.UnlockingDoesNotGiveTheContainedCreatureDoorOperatingPermission" methodname="UnlockingDoesNotGiveTheContainedCreatureDoorOperatingPermission" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="1076314855" result="Passed" start-time="2026-09-30T05:48:47.5815370Z" end-time="2026-09-30T05:48:47.8209780Z" duration="0.239437" asserts="15" />
+          <test-case id="1140" name="WorkerLostBetweenPreflightAndActionLeavesThePhysicalKeyInTheIndex" fullname="CavesOfOoo.Tests.CurationReceivingAdversarialTests.WorkerLostBetweenPreflightAndActionLeavesThePhysicalKeyInTheIndex" methodname="WorkerLostBetweenPreflightAndActionLeavesThePhysicalKeyInTheIndex" classname="CavesOfOoo.Tests.CurationReceivingAdversarialTests" runstate="Runnable" seed="976623711" result="Passed" start-time="2026-09-30T05:48:47.8210050Z" end-time="2026-09-30T05:48:48.0536930Z" duration="0.232684" asserts="11" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

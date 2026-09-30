@@ -20,6 +20,7 @@ namespace CavesOfOoo.Rendering
         private static readonly Dictionary<string, string> Slots = new Dictionary<string, string>(StringComparer.Ordinal)
         {
             { "Dagger", "Hand" },
+            { "CurationSaltRake", "Hand" },
             { "ForgedWeapon", "Hand" },
             { "LeatherArmor", "Body" },
             { "ChainMail", "Body" },

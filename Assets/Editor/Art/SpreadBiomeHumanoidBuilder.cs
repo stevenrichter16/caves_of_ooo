@@ -27,7 +27,7 @@ namespace CavesOfOoo.Editor
     if(EditorApplication.isPlayingOrWillChangePlaymode||EditorApplication.isCompiling)throw new InvalidOperationException("Idle native editor required for scoped humanoid adoption.");
     var data=JsonUtility.FromJson<SpreadBiomeHumanoidSource>(File.ReadAllText(sourcePath));report.sourceHash=Hash(sourcePath);
     var ring=Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath);var glade=ReferenceGladeVoxelLibrary.Load();if(ring==null||glade==null)throw new InvalidOperationException("Approved body/rig/palette sources required.");ring.Validate();glade.Validate();
-    if(data?.schemaVersion!=1||data.sourceRig!="ring-nam"||data.roles?.Length!=56||data.palette?.Length!=24||data.preserveNativeModelIds==null||!data.preserveNativeModelIds.SequenceEqual(new[]{"ring-player","ring-sien","ring-nam"}))throw new InvalidOperationException("Exact humanoid source contract required.");
+    if(data?.schemaVersion!=1||data.sourceRig!="ring-nam"||data.roles?.Length!=59||data.palette?.Length!=24||data.preserveNativeModelIds==null||!data.preserveNativeModelIds.SequenceEqual(new[]{"ring-player","ring-sien","ring-nam"}))throw new InvalidOperationException("Exact humanoid source contract required.");
     var palette=glade.Material.GetTexture("_BaseMap")as Texture2D;if(palette==null||!palette.isReadable||palette.width!=24||palette.height!=1)throw new InvalidOperationException("Approved palette unavailable.");
     for(int i=0;i<24;i++)if(!ColorUtility.TryParseHtmlString(data.palette[i],out var c)||Vector4.Distance(c,palette.GetPixel(i,0))>.00001f)throw new InvalidOperationException("Humanoid source palette mismatch.");
     var ids=new HashSet<string>(StringComparer.Ordinal);
@@ -138,6 +138,44 @@ namespace CavesOfOoo.Editor
     case "pouches":Box(new Vector3(-.21f,.75f,0),new Vector3(.12f,.17f,.17f),"Spine",role.accent);Box(new Vector3(.21f,.75f,0),new Vector3(.12f,.17f,.17f),"Spine",role.accent);break;
     case "book-pouch":Box(new Vector3(.23f,.76f,.025f),new Vector3(.15f,.26f,.20f),"Spine",role.accent);Box(new Vector3(.23f,.88f,.025f),new Vector3(.12f,.045f,.17f),"Spine",17);break;
     case "cloak":case "coat":Box(new Vector3(0,.91f,.19f),new Vector3(.43f,.66f,.08f),"Spine",role.accent);break;
+   }
+   // Original Curation silhouettes: clothing follows the real existing bones;
+   // no held tool or invented inventory object is attached to the worker.
+   if(role.garment=="curation-filer"||role.garment=="curation-indexer")
+   {
+    foreach(string side in new[]{"L","R"})
+    {
+     string bone="Hand."+side;var hand=skin.bones.Single(b=>b.name==bone);
+     var pos=prefab.transform.InverseTransformPoint(hand.position);
+     Box(pos+new Vector3(0,.025f,0),new Vector3(.13f,.26f,.14f),bone,17);
+    }
+    if(role.garment=="curation-filer")
+    {
+     Box(new Vector3(0,.93f,-.175f),new Vector3(.43f,.56f,.055f),"Spine",17);
+     Box(new Vector3(0,.64f,-.13f),new Vector3(.49f,.08f,.18f),"Spine",5);
+     Box(new Vector3(-.11f,1.02f,-.21f),new Vector3(.07f,.04f,.015f),"Spine",19);
+    }
+    else
+    {
+     Box(new Vector3(0,1.28f,.02f),new Vector3(.40f,.23f,.30f),"Spine",17);
+     Box(new Vector3(0,.95f,-.17f),new Vector3(.17f,.48f,.05f),"Spine",17);
+     for(int i=0;i<3;i++)Box(new Vector3(.10f,1.19f-i*.065f,-.15f),new Vector3(.11f,.022f,.02f),"Spine",19);
+    }
+   }
+   if(role.garment=="curation-half-set")
+   {
+    Box(new Vector3(-.10f,1.02f,-.18f),new Vector3(.25f,.46f,.075f),"Spine",17);
+    Box(new Vector3(-.22f,1.19f,0),new Vector3(.21f,.18f,.29f),"Spine",5);
+    Box(new Vector3(.22f,1.17f,.035f),new Vector3(.18f,.31f,.23f),"Spine",8);
+    Box(new Vector3(.24f,1.36f,.03f),new Vector3(.33f,.11f,.31f),"Spine",6);
+    Box(new Vector3(.28f,1.42f,.025f),new Vector3(.19f,.045f,.21f),"Spine",4);
+    Box(new Vector3(-.075f,head-.17f,-.16f),new Vector3(.17f,.27f,.045f),"Head",17);
+    foreach(var pair in new[]{("Hand.R",.14f),("Hand.L",-.08f)})
+    {
+     var hand=skin.bones.Single(b=>b.name==pair.Item1);var pos=prefab.transform.InverseTransformPoint(hand.position);
+     Box(pos+new Vector3(0,-.14f,-.08f),new Vector3(.075f,.36f,.09f),pair.Item1,8);
+     Box(pos+new Vector3(pair.Item2,-.30f,-.08f),new Vector3(Mathf.Abs(pair.Item2)*2+.07f,.075f,.075f),pair.Item1,6);
+    }
    }
    return scoped;
   }

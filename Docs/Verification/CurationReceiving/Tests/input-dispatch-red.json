@@ -1,0 +1,49 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 4,
+    "passed": 0,
+    "failed": 4,
+    "skipped": 0,
+    "durationSeconds": 8.7447144,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "NativeWorldMenuUsesOnePhysicalTransactionAndPaysOnlyForCommit(\"valid\")",
+      "fullName": "CavesOfOoo.Tests.CurationReceivingInputTests.NativeWorldMenuUsesOnePhysicalTransactionAndPaysOnlyForCommit(\"valid\")",
+      "state": "Failed",
+      "durationSeconds": 1.7633146,
+      "message": "  The actual selected menu command must enter the inventory transaction.\n  Expected: 1\n  But was:  0\n",
+      "stackTrace": "at CavesOfOoo.Tests.CurationReceivingInputTests.NativeWorldMenuUsesOnePhysicalTransactionAndPaysOnlyForCommit (System.String condition) [0x00209] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CurationReceivingInputTests.cs:87\n",
+      "output": "[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL\n"
+    },
+    {
+      "name": "NativeWorldMenuUsesOnePhysicalTransactionAndPaysOnlyForCommit(\"wrong-arrangement\")",
+      "fullName": "CavesOfOoo.Tests.CurationReceivingInputTests.NativeWorldMenuUsesOnePhysicalTransactionAndPaysOnlyForCommit(\"wrong-arrangement\")",
+      "state": "Failed",
+      "durationSeconds": 1.655615,
+      "message": "  The actual selected menu command must enter the inventory transaction.\n  Expected: 1\n  But was:  0\n",
+      "stackTrace": "at CavesOfOoo.Tests.CurationReceivingInputTests.NativeWorldMenuUsesOnePhysicalTransactionAndPaysOnlyForCommit (System.String condition) [0x00209] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CurationReceivingInputTests.cs:87\n",
+      "output": "[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL\n"
+    },
+    {
+      "name": "NativeWorldMenuUsesOnePhysicalTransactionAndPaysOnlyForCommit(\"capacity\")",
+      "fullName": "CavesOfOoo.Tests.CurationReceivingInputTests.NativeWorldMenuUsesOnePhysicalTransactionAndPaysOnlyForCommit(\"capacity\")",
+      "state": "Failed",
+      "durationSeconds": 2.280743,
+      "message": "  The actual selected menu command must enter the inventory transaction.\n  Expected: 1\n  But was:  0\n",
+      "stackTrace": "at CavesOfOoo.Tests.CurationReceivingInputTests.NativeWorldMenuUsesOnePhysicalTransactionAndPaysOnlyForCommit (System.String condition) [0x00209] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CurationReceivingInputTests.cs:87\n",
+      "output": "[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL\n"
+    },
+    {
+      "name": "NativeWorldMenuUsesOnePhysicalTransactionAndPaysOnlyForCommit(\"after-callback\")",
+      "fullName": "CavesOfOoo.Tests.CurationReceivingInputTests.NativeWorldMenuUsesOnePhysicalTransactionAndPaysOnlyForCommit(\"after-callback\")",
+      "state": "Failed",
+      "durationSeconds": 2.0445602,
+      "message": "  The actual selected menu command must enter the inventory transaction.\n  Expected: 1\n  But was:  0\n",
+      "stackTrace": "at CavesOfOoo.Tests.CurationReceivingInputTests.NativeWorldMenuUsesOnePhysicalTransactionAndPaysOnlyForCommit (System.String condition) [0x00209] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/CurationReceivingInputTests.cs:87\n",
+      "output": "[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL\n"
+    }
+  ]
+}

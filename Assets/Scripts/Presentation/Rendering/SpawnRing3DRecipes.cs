@@ -23,7 +23,7 @@ namespace CavesOfOoo.Rendering
     public static class SpawnRing3DRecipes
     {
         public static SpawnRing3DRecipe Resolve(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot = null)
-            => FurrowstalkerLibrary.Refine(zone, entity, SpreadCookingCoalsLibrary.Refine(zone, entity, SpreadCooking3DLibrary.Refine(zone, entity, SpreadFieldGate3DLibrary.Refine(zone, entity, SpreadCollectorArtLibrary.Refine(zone, entity, QuestFreeSpreadArtLibrary.Refine(zone, entity, SpreadLatchcoilLibrary.Refine(zone, entity, SpreadRareMarlbackLibrary.Refine(zone, entity, SpreadVisitorCreatureLibrary.Refine(zone, entity, SpreadEnvironmentRecipes.Refine(zone, entity, SpreadCommonTerrain.Refine(zone, entity, SpreadCreature3DLibrary.Refine(zone, entity, SpreadSceneryWorldRecipes.Refine(zone, entity, SpreadBiomeHumanoidLibrary.Refine(zone, entity, SpreadPortableWorldRecipes.Refine(zone, entity, ResolveNative(zone, entity, catalog, pilot))))))))))))))));
+            => CurationYard3DLibrary.Refine(zone,entity,FurrowstalkerLibrary.Refine(zone, entity, SpreadCookingCoalsLibrary.Refine(zone, entity, SpreadCooking3DLibrary.Refine(zone, entity, SpreadFieldGate3DLibrary.Refine(zone, entity, SpreadCollectorArtLibrary.Refine(zone, entity, QuestFreeSpreadArtLibrary.Refine(zone, entity, SpreadLatchcoilLibrary.Refine(zone, entity, SpreadRareMarlbackLibrary.Refine(zone, entity, SpreadVisitorCreatureLibrary.Refine(zone, entity, SpreadEnvironmentRecipes.Refine(zone, entity, SpreadCommonTerrain.Refine(zone, entity, SpreadCreature3DLibrary.Refine(zone, entity, SpreadSceneryWorldRecipes.Refine(zone, entity, SpreadBiomeHumanoidLibrary.Refine(zone, entity, SpreadPortableWorldRecipes.Refine(zone, entity, ResolveNative(zone, entity, catalog, pilot)))))))))))))))));
 
         private static SpawnRing3DRecipe ResolveNative(Zone zone, Entity entity, SpawnRing3DCatalog catalog, MultiCellPilot3DCatalog pilot)
         {
@@ -35,6 +35,11 @@ namespace CavesOfOoo.Rendering
             if (cell == null || !cell.Objects.Contains(entity)) return Refused(entity, "not-current-zone-member");
             var render = entity.GetPart<RenderPart>();
             if (render == null || !render.Visible) return Refused(entity, "native-render-hidden");
+            if (CurationYard3DLibrary.Handles(entity.BlueprintName) && entity.BlueprintName != "SaltCuredBody")
+            {
+                string model=CurationYard3DLibrary.ResolveModel(zone,entity);
+                return model==null?Refused(entity,"unsupported-current-curation-owner"):CurationYard3DLibrary.Recipe(zone,entity,model);
+            }
             if (entity.BlueprintName == "PouredLiquidPool")
             {
                 string poured = PouredLiquid3DLibrary.ResolveOwner(entity);

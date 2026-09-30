@@ -1,0 +1,34 @@
+{
+  "observed_utc": "2026-09-30T05:44:19.830189+00:00",
+  "status": "passed",
+  "scope": "Scratch-only read-only refresh. Current gate placement is a generation change, not an art asset change. The reviewed Play images predate the west-facing gate correction. No Unity calls or shared writes.",
+  "borrowed_count": 2150,
+  "borrowed_unchanged": 2149,
+  "borrowed_changes": [
+    {
+      "path": "Assets/Resources/SpreadBiome3D/HumanoidLibrary.asset",
+      "before": "b16e7e59e038f29d6c73635337f3f9bff3c72eb800ca7dedc16109d5e9e718c4",
+      "after": "c2f0186aab5dc027d24841f6975212014f9f0bb776871c48f8dd6b45cc575e87"
+    }
+  ],
+  "missing": [],
+  "generated_and_library_checked": 76,
+  "generated_drift_since_import": [],
+  "source_postimages_checked": 27,
+  "art_source_meta_drift": [],
+  "current_nonart_context": [
+    {
+      "path": "Assets/Scripts/Gameplay/World/Generation/Builders/CurationReceivingBuilder.cs",
+      "sha256": "884843e238fef7c6d3f385f15e1551fd45e436e906956eb88062c36d336e46a4"
+    },
+    {
+      "path": "Assets/Scripts/Gameplay/World/CurationIntakePart.cs",
+      "sha256": "6697372d488f61c2c2c829bc827b1f381f8d7e7ef2c7f30c373c796737b8d4cf"
+    },
+    {
+      "path": "Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeCuration.cs",
+      "sha256": "e295f276535479ca73736cf0c5fb59fae76663c6c16757aea4eb9a0fda27fce2"
+    }
+  ],
+  "original_proof_sha256": "03d938790c48bcee95a19966d63109e179e3c618495f2a4f3998e1e1e9ad9099"
+}

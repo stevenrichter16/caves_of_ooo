@@ -37787,6 +37787,1041 @@
           "Value": 35
         }
       ]
+    },
+    {
+      "Name": "CurationIntakeIndex",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "receiving index"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "¶"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Two final remarks occupy opposite pages. A tethered stamp rests beside an unissued cabinet counterfoil. Match each salt-cured subject to the bay bearing their last words, release the haul, then check the filing here. Names are cross-references. Last words are labels, not instructions."
+            }
+          ]
+        },
+        {
+          "Name": "Inventory",
+          "Params": [
+            {
+              "Key": "MaxWeight",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "CurationIntake",
+          "Params": []
+        }
+      ]
+    },
+    {
+      "Name": "CurationReceivingBay",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "labelled receiving bay"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "_"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A low chalk-white frame with a slot for a final remark. Haul its corresponding subject onto the marked tile; release the haul before certification."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "CurationToolCabinet",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "released-tools cabinet"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "]"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Four numbered compartments; one counterfoil-shaped lock. Its label reads: MATERIAL ISSUED FOR CORRECTION. Do not return used salt to the unused account."
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "Locked",
+              "Value": "false"
+            },
+            {
+              "Key": "MaxItems",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Lock",
+          "Params": [
+            {
+              "Key": "KeyId",
+              "Value": "marrowstye-intake-tools"
+            },
+            {
+              "Key": "IsLocked",
+              "Value": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "CurationCounterfoil",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "stamped receiving counterfoil"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "MaxStack",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A stiff card whose punched teeth fit Marrowstye's released-tools cabinet. CERTIFIED POSITION, it says. The wording carefully promises nothing else."
+            }
+          ]
+        },
+        {
+          "Name": "Key",
+          "Params": [
+            {
+              "Key": "KeyId",
+              "Value": "marrowstye-intake-tools"
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
+      "Name": "CurationInspectionKey",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "quarantine inspection key"
+            },
+            {
+              "Key": "RenderString",
+              "Value": ";"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "MaxStack",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A narrow key with a red cord. The tag warns: DISUSED WING. INCOMPLETE CURE. Unlocking does not make the enclosure safe. Opening releases its occupant."
+            }
+          ]
+        },
+        {
+          "Name": "Key",
+          "Params": [
+            {
+              "Key": "KeyId",
+              "Value": "marrowstye-quarantine"
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
+      "Name": "CurationSaltBench",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "salt-working bench"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A sieve stands above two shallow trays. Beneath the clean tray: UNUSED. Beneath the other: USED ONCE, STILL DRY. A blunt rake, measuring scoop and tethered stamp have white outlines showing where to return them. These are the staff's working instruments; the bench offers no preservation service."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "CurationSaltRake",
+      "Inherits": "Cudgel",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "blunt salt rake"
+            },
+            {
+              "Key": "RenderString",
+              "Value": ")"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "MaxStack",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A short ash handle ends in a broad comb of blunt iron teeth. It levels salt around awkward joints. Heavy enough to use as a cudgel; it cannot preserve a body by itself."
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "Cudgel",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "CurationQuarantineGate",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "incomplete-cure inspection gate"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "+"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Red cord crosses a barred gate. The plaque reads: INCOMPLETE CURE. MOVEMENT OBSERVED. BLOOM PRESENT. Keep closed. Inspection is optional; opening exposes the public yard. A smaller correction changes SUBJECT RESTLESS to MOTION NOT ATTRIBUTED TO SUBJECT."
+            }
+          ]
+        },
+        {
+          "Name": "Door",
+          "Params": [
+            {
+              "Key": "IsOpen",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Lock",
+          "Params": [
+            {
+              "Key": "KeyId",
+              "Value": "marrowstye-quarantine"
+            },
+            {
+              "Key": "IsLocked",
+              "Value": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "CurationQuarantineRail",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "quarantine rail"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "#"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Close-set iron rails, heavily salted at the base. The gap is too narrow for a person. A fresh pale cord holds yesterday's inspection card."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "CurationTransferDocket",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "Marrowstye carriage docket"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "MaxStack",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A folded receiving copy. Read the salt and carriage accounts; several figures have been carried forward longer than the paper has survived."
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "CurationTransferDocket"
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
+      "Name": "CurationDiscrepancyReport",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "misplaced-last-words report"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "?"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "MaxStack",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Two case numbers have exchanged columns. A careful hand has noted the error without once crossing out a word of the final remarks."
+            }
+          ]
+        },
+        {
+          "Name": "ReadableDocument",
+          "Params": [
+            {
+              "Key": "DocumentId",
+              "Value": "CurationDiscrepancyReport"
+            }
+          ]
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ]
+    },
+    {
+      "Name": "CurationIntakeFiler",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "Doreth, salt filer"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "@"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "Passive",
+              "Value": "true"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "false"
+            },
+            {
+              "Key": "WandersRandomly",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Conversation",
+          "Params": [
+            {
+              "Key": "ConversationID",
+              "Value": "CurationIntakeFiler_1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Salt has whitened Doreth's broad apron and settled into the seams of pale gloves. There is a clean patch over each knee. The subjects are handled carefully, whatever the forms call them."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 24,
+          "Min": 0,
+          "Max": 24
+        },
+        {
+          "Name": "Strength",
+          "Value": 12
+        },
+        {
+          "Name": "XPValue",
+          "Value": 0
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Faction",
+          "Value": "PaleCuration"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ],
+      "Props": [
+        {
+          "Key": "Anatomy",
+          "Value": "Humanoid"
+        }
+      ]
+    },
+    {
+      "Name": "CurationJuniorIndexer",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "Ivrin, junior indexer"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "@"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "Passive",
+              "Value": "true"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "false"
+            },
+            {
+              "Key": "WandersRandomly",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Conversation",
+          "Params": [
+            {
+              "Key": "ConversationID",
+              "Value": "CurationJuniorIndexer_1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A collar almost reaches Ivrin's ears. Pale gloves hold a ruled board against the chest; its corners have worn the same two places in the coat. The margin contains a very small drawing of a thimble."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 24,
+          "Min": 0,
+          "Max": 24
+        },
+        {
+          "Name": "Strength",
+          "Value": 12
+        },
+        {
+          "Name": "XPValue",
+          "Value": 0
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Faction",
+          "Value": "PaleCuration"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        }
+      ],
+      "Props": [
+        {
+          "Key": "Anatomy",
+          "Value": "Humanoid"
+        }
+      ]
+    },
+    {
+      "Name": "CurationHalfSet",
+      "Inherits": "Creature",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "half-set intake"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "h"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&g"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "SightRadius",
+              "Value": "8"
+            },
+            {
+              "Key": "Wanders",
+              "Value": "true"
+            },
+            {
+              "Key": "WandersRandomly",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "0"
+            },
+            {
+              "Key": "DV",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Corpse",
+          "Params": [
+            {
+              "Key": "CorpseChance",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "GivesRep",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Salt covers one shoulder and ends in a damp line across the ribs. Green growth works through the gap; its tendril pulls the human frame after it. An intake tag turns face-in against the chest. This cure was interrupted. The movement is not a response to speech."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 14,
+          "Min": 0,
+          "Max": 14
+        },
+        {
+          "Name": "Strength",
+          "Value": 11
+        },
+        {
+          "Name": "Agility",
+          "Value": 6
+        },
+        {
+          "Name": "Speed",
+          "Value": 70
+        },
+        {
+          "Name": "XPValue",
+          "Value": 20
+        }
+      ],
+      "Props": [
+        {
+          "Key": "Anatomy",
+          "Value": "Humanoid"
+        },
+        {
+          "Key": "NaturalWeapon",
+          "Value": "DefaultTendril"
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Faction",
+          "Value": "Beasts"
+        },
+        {
+          "Key": "Tier",
+          "Value": "1"
+        },
+        {
+          "Key": "BloodColor",
+          "Value": "&g"
+        }
+      ]
     }
   ]
 }

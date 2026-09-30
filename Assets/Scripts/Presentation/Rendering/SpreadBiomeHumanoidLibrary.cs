@@ -18,11 +18,11 @@ namespace CavesOfOoo.Rendering
   private void OnValidate(){index=null;meshes=null;}
   public void Validate()
   {
-   if(Entries==null||(Entries.Length!=52&&Entries.Length!=54&&Entries.Length!=56)||Material==null||Material!=ReferenceGladeVoxelLibrary.Load()?.Material)throw new InvalidOperationException("Exact approved humanoid roster/palette required.");
+   if(Entries==null||(Entries.Length!=52&&Entries.Length!=54&&Entries.Length!=56&&Entries.Length!=59)||Material==null||Material!=ReferenceGladeVoxelLibrary.Load()?.Material)throw new InvalidOperationException("Exact approved humanoid roster/palette required.");
    var next=new Dictionary<string,Entry>(StringComparer.Ordinal);var owned=new HashSet<Mesh>();
    foreach(var e in Entries)
    {
-    if(e==null||e.Id==null||Entries.Length==52&&SpreadBiomeHumanoidSource.IsCaster(e.Blueprint)||Entries.Length<56&&SpreadBiomeHumanoidSource.IsFieldResident(e.Blueprint)||ModelId(e.Blueprint)!=e.Id||next.ContainsKey(e.Id)||e.Mesh==null||!e.Mesh.isReadable||e.Mesh.vertexCount<384||e.Mesh.subMeshCount!=1||e.Prefab==null||!ValidScale(e.Prefab.transform.localScale)||e.Spec==null||e.Spec.id!=e.Id||e.Spec.sourceBlueprint!=e.Blueprint||e.Spec.rigFamily!="humanoid"||!e.Spec.rigged||e.Spec.kind!="actor"||!owned.Add(e.Mesh))throw new InvalidOperationException("Invalid scoped humanoid body.");
+    if(e==null||e.Id==null||Entries.Length==52&&SpreadBiomeHumanoidSource.IsCaster(e.Blueprint)||Entries.Length<56&&SpreadBiomeHumanoidSource.IsFieldResident(e.Blueprint)||Entries.Length<59&&SpreadBiomeHumanoidSource.IsCuration(e.Blueprint)||ModelId(e.Blueprint)!=e.Id||next.ContainsKey(e.Id)||e.Mesh==null||!e.Mesh.isReadable||e.Mesh.vertexCount<384||e.Mesh.subMeshCount!=1||e.Prefab==null||!ValidScale(e.Prefab.transform.localScale)||e.Spec==null||e.Spec.id!=e.Id||e.Spec.sourceBlueprint!=e.Blueprint||e.Spec.rigFamily!="humanoid"||!e.Spec.rigged||e.Spec.kind!="actor"||!owned.Add(e.Mesh))throw new InvalidOperationException("Invalid scoped humanoid body.");
     var skins=e.Prefab.GetComponentsInChildren<SkinnedMeshRenderer>(true);var animators=e.Prefab.GetComponentsInChildren<Animator>(true);
     if(skins.Length!=1||skins[0].sharedMesh!=e.Mesh||skins[0].sharedMaterials.Length!=1||skins[0].sharedMaterial!=Material||animators.Length!=1||animators[0].avatar==null||!animators[0].avatar.isValid||animators[0].applyRootMotion||animators[0].runtimeAnimatorController==null||e.Prefab.GetComponentsInChildren<Collider>(true).Length!=0||e.Prefab.GetComponentsInChildren<Rigidbody>(true).Length!=0)throw new InvalidOperationException("Invalid scoped humanoid native rig.");
     var clips=animators[0].runtimeAnimatorController.animationClips;if(clips.Length!=5)throw new InvalidOperationException("Five native humanoid clips required.");
@@ -82,6 +82,7 @@ namespace CavesOfOoo.Rendering
   internal static SpawnRing3DRecipe Refine(Zone zone,Entity owner,SpawnRing3DRecipe native)
   {
    if(!SpreadPresentationScope.IsActive(zone)||ModelId(owner?.BlueprintName)==null)return native;
+   if(SpreadBiomeHumanoidSource.IsCuration(owner.BlueprintName)&&CurationYard3DLibrary.ResolveModel(zone,owner)==null)return native;
    if(SpreadBiomeHumanoidSource.IsCaster(owner.BlueprintName)&&ResolveCasterOwner(zone,owner)==null)return native;
    if(SpreadBiomeHumanoidSource.IsFieldResident(owner.BlueprintName)&&ResolveFieldResidentOwner(zone,owner)==null)return native;
    if(native.ModelId=="ring-player"||native.ModelId=="ring-sien"||native.ModelId=="ring-nam")return native;

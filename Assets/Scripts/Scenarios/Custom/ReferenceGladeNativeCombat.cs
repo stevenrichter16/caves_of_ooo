@@ -448,7 +448,7 @@ namespace CavesOfOoo.Scenarios.Custom
         }
         private string CombatState()
         {
-            if (!_combatOnly) return null;
+            if (!_combatOnly && !_curationQuarantine) return null;
             if (_input == null) return _combatLastState ?? "input-not-ready";
             var actor = _input.PlayerEntity;
             if (actor == null) return _combatLastState ?? "player-not-ready";

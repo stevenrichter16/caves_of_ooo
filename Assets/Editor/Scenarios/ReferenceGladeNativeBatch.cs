@@ -32,14 +32,20 @@ namespace CavesOfOoo.Editor
         public static void LaunchSpecialists() => LaunchCore(false,false,false,false,true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Everyday Residents Audit")]
         public static void LaunchResidents() => LaunchCore(false,false,false,false,false,true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Curation Receiving Public Audit")]
+        public static void LaunchCuration() => LaunchCore(false,false,false,false,false,false,true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Curation Receiving Quarantine Audit")]
+        public static void LaunchCurationQuarantine() => LaunchCore(false,false,false,false,false,false,true,true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Native Audit")]
         public static void Launch() => LaunchCore(false);
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Native Audit", true)]
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Specialist Content Audit", true)]
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Everyday Residents Audit", true)]
+        [MenuItem("Caves Of Ooo/Scenarios/World/Curation Receiving Public Audit", true)]
+        [MenuItem("Caves Of Ooo/Scenarios/World/Curation Receiving Quarantine Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false)
+        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the completion audit.");
@@ -61,6 +67,8 @@ namespace CavesOfOoo.Editor
             SessionState.SetBool(Prefix+"biome",biome);
             SessionState.SetBool(Prefix+"specialists",specialists);
             SessionState.SetBool(Prefix+"residents",residents);
+            SessionState.SetBool(Prefix+"curation",curation);
+            SessionState.SetBool(Prefix+"curationQuarantine",curationQuarantine);
             SessionState.SetBool(Prefix + "active", true);
             SessionState.SetBool(Prefix + "restoreScenes", false);
             SessionState.SetBool(Prefix + "exitEditor", exitEditor);
@@ -88,7 +96,7 @@ namespace CavesOfOoo.Editor
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
             new GameObject("Reference Glade Native Audit").AddComponent<ReferenceGladeNativePlayer>()
-                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"profile",false),SessionState.GetBool(Prefix+"combat",false),SessionState.GetBool(Prefix+"biome",false),SessionState.GetBool(Prefix+"specialists",false),SessionState.GetBool(Prefix+"residents",false));
+                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"profile",false),SessionState.GetBool(Prefix+"combat",false),SessionState.GetBool(Prefix+"biome",false),SessionState.GetBool(Prefix+"specialists",false),SessionState.GetBool(Prefix+"residents",false),SessionState.GetBool(Prefix+"curation",false),SessionState.GetBool(Prefix+"curationQuarantine",false));
         }
         private static void Poll()
         {

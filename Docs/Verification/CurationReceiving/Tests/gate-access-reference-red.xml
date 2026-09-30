@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/coo-curation-compile/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="92" result="Failed" start-time="2026-09-30T05:38:43.3491720Z" end-time="2026-09-30T05:38:43.9640840Z" duration="0.614887" total="1" passed="0" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="5" random-seed="505821126">
+  <command-line><![CDATA[/private/tmp/coo-curation-compile/bin/Debug/net8.0/EditModeRunner.dll "--where=name == QuarantineGateHasAReachablePublicStandingPlaceAndOpensFromThatPlace" --result=/Users/steven/.codex/scratch/caves-of-ooo/curation/receiving/reference-gate-red.xml]]></command-line>
+  <filter>
+    <name>QuarantineGateHasAReachablePublicStandingPlaceAndOpensFromThatPlace</name>
+  </filter>
+  <test-suite type="Assembly" id="1117" name="EditModeRunner.dll" fullname="/private/tmp/coo-curation-compile/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="92" result="Failed" site="Child" start-time="2026-09-30T05:38:43.3491720Z" end-time="2026-09-30T05:38:43.9640840Z" duration="0.614887" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="5">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/caves-of-ooo" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="WorkDirectory" value="/Users/steven/caves-of-ooo" />
+      <setting name="NumberOfTestWorkers" value="10" />
+    </settings>
+    <properties>
+      <property name="_PID" value="83416" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1118" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="92" result="Failed" site="Child" start-time="2026-09-30T05:38:43.3511180Z" end-time="2026-09-30T05:38:43.9640800Z" duration="0.612951" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="5">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1119" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="92" result="Failed" site="Child" start-time="2026-09-30T05:38:43.3512470Z" end-time="2026-09-30T05:38:43.9640660Z" duration="0.612808" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="5">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="CurationReceivingTests" fullname="CavesOfOoo.Tests.CurationReceivingTests" classname="CavesOfOoo.Tests.CurationReceivingTests" runstate="Runnable" testcasecount="28" result="Failed" site="Child" start-time="2026-09-30T05:38:43.3516450Z" end-time="2026-09-30T05:38:43.9639450Z" duration="0.612289" total="1" passed="0" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="5">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1025" name="QuarantineGateHasAReachablePublicStandingPlaceAndOpensFromThatPlace" fullname="CavesOfOoo.Tests.CurationReceivingTests.QuarantineGateHasAReachablePublicStandingPlaceAndOpensFromThatPlace" methodname="QuarantineGateHasAReachablePublicStandingPlaceAndOpensFromThatPlace" classname="CavesOfOoo.Tests.CurationReceivingTests" runstate="Runnable" seed="1470775082" result="Failed" start-time="2026-09-30T05:38:43.3527490Z" end-time="2026-09-30T05:38:43.9627360Z" duration="0.610014" asserts="5">
+            <failure>
+              <message><![CDATA[  A real public approach must reach the west-facing gate without entering the cage.
+  Expected: True
+  But was:  False
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CurationReceivingTests.QuarantineGateHasAReachablePublicStandingPlaceAndOpensFromThatPlace() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/CurationReceivingTests.cs:line 188
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  A real public approach must reach the west-facing gate without entering the cage.
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CurationReceivingTests.QuarantineGateHasAReachablePublicStandingPlaceAndOpensFromThatPlace() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/CurationReceivingTests.cs:line 188
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

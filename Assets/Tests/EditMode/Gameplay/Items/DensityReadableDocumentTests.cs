@@ -56,16 +56,20 @@ namespace CavesOfOoo.Tests
             Assert.AreEqual(properties, actor.Properties.Count);
         }
 
-        [Test] public void Catalog_HasExactlyThirteenUniqueCompleteArtifacts()
+        [Test] public void Catalog_HasThirteenCanonicalCopiesAndTwoDistinctLocalRecords()
         {
-            Assert.AreEqual(13, ReadableDocumentCatalog.All.Count);
+            Assert.AreEqual(15, ReadableDocumentCatalog.All.Count);
             CollectionAssert.IsEmpty(ReadableDocumentCatalog.Validate());
-            Assert.AreEqual(13, ReadableDocumentCatalog.All.Select(x => x.Id).Distinct().Count());
-            Assert.AreEqual(13, ReadableDocumentCatalog.All.Select(x => x.Blueprint).Distinct().Count());
+            Assert.AreEqual(15, ReadableDocumentCatalog.All.Select(x => x.Id).Distinct().Count());
+            Assert.AreEqual(15, ReadableDocumentCatalog.All.Select(x => x.Blueprint).Distinct().Count());
+            var canonical = Enumerable.Range(1, 13).Select(i => "Codex" + i.ToString("00")).ToArray();
+            CollectionAssert.AreEquivalent(canonical.Concat(new[] { "CurationTransferDocket", "CurationDiscrepancyReport" }),
+                ReadableDocumentCatalog.All.Select(x => x.Blueprint));
             foreach (var entry in ReadableDocumentCatalog.All)
             {
-                StringAssert.StartsWith("Lore/Codex/", entry.Source);
+                if (canonical.Contains(entry.Blueprint)) StringAssert.StartsWith("Lore/Codex/", entry.Source);
                 Assert.IsFalse(string.IsNullOrWhiteSpace(entry.Title));
+                Assert.IsFalse(string.IsNullOrWhiteSpace(entry.Source));
                 Assert.Greater(entry.Text.Length, 100);
             }
         }

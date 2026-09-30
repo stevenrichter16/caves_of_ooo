@@ -50,14 +50,39 @@ namespace CavesOfOoo.Tests
         [TestCase(64)] [TestCase(1729)] [TestCase(729490642)]
         public void ActualManagerPreservesIntakeAndGenericServiceFrontagesAfterPopulation(int seed)
         {
-            var z=new OverworldZoneManager(GrovelandsCompositionTests.Factory(),seed).GetZone(Id);var p=MarrowstyeCompositionPlan.Create(Id,seed);
-            foreach(var bp in new[]{"FilerClerk","Merchant","Quartermaster","Elder"})Assert.AreEqual(1,z.GetAllEntities().Count(e=>e.BlueprintName==bp),bp);
+            var factory=GrovelandsCompositionTests.Factory();var z=new OverworldZoneManager(factory,seed).GetZone(Id);var p=MarrowstyeCompositionPlan.Create(Id,seed);
+            foreach(var bp in new[]{"FilerClerk","Merchant","Quartermaster","Elder"})
+            {
+                var owners=z.GetAllEntities().Where(e=>e.BlueprintName==bp).ToArray();
+                Assert.AreEqual(1,owners.Count(e=>!e.HasPart<HouseDramaPart>()),bp+" exact generic service");
+                var extra=owners.Where(e=>e.HasPart<HouseDramaPart>()).ToArray();
+                CollectionAssert.AllItemsAreUnique(extra.Select(e=>e.GetPart<HouseDramaPart>().DramaID+"/"+e.GetPart<HouseDramaPart>().NpcId));
+                foreach(var owner in extra)
+                {
+                    var mark=owner.GetPart<HouseDramaPart>();Assert.AreSame(owner,mark.ParentEntity);
+                    Assert.NotNull(HouseDramaRuntime.GetDrama(mark.DramaID),"Extra service must belong to a registered drama.");
+                    var drama=HouseDramaLoader.Get(mark.DramaID);Assert.NotNull(drama);
+                    var role=drama.NpcRoles.SingleOrDefault(r=>r.Id==mark.NpcId&&r.Role==mark.NpcRole&&r.Alive);
+                    Assert.NotNull(role,"Extra service must be the exact living authored role, not an arbitrary duplicate.");
+                    string expected=!string.IsNullOrEmpty(role.BlueprintOverride)&&factory.Blueprints.ContainsKey(role.BlueprintOverride)
+                        ?role.BlueprintOverride:role.Role=="NamedAntagonist"?"Merchant":role.Role=="DiminishedHead"?"Elder":null;
+                    Assert.AreEqual(bp,expected,"The authored drama role must resolve to this actual blueprint.");
+                }
+            }
             Assert.AreEqual(2,z.GetAllEntities().Count(e=>e.BlueprintName=="StoneCoffer"));Assert.AreEqual(2,z.GetAllEntities().Count(e=>e.BlueprintName=="SaltCuredBody"));
             Assert.IsFalse(z.GetAllEntities().Any(e=>e.HasPart<LiquidPoolPart>()));Assert.IsTrue(z.GetCell(40,12).Objects.Any(e=>e.BlueprintName=="Well"));
             var services=z.GetAllEntities().Where(e=>new[]{"FilerClerk","Merchant","Quartermaster","Well","Shrine","StoneCoffer","SaltCuredBody"}.Contains(e.BlueprintName)).Select(e=>z.GetEntityPosition(e)).ToArray();
             foreach(var e in z.GetAllEntities().Where(e=>e.HasPart<BrainPart>()||e.HasTag("Creature")).ToArray())z.RemoveEntity(e);
             var reach=FormationReachability.FloodFromWest(z);foreach(var room in p.Rooms)Assert.IsTrue(reach[room.DoorX,room.DoorY]);
-            Assert.IsTrue(FormationReachability.FullyReached(z,reach));
+            var enclosed=ClosedQuarantineInterior(z,p);
+            int unreachable=0;
+            for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
+            {
+                if(!FormationReachability.IsOpenGround(z,x,y))continue;
+                if(!reach[x,y]){unreachable++;Assert.IsTrue(enclosed.Contains((x,y)),"Public walkable cell disconnected: "+x+","+y);}
+                if(enclosed.Contains((x,y)))Assert.IsFalse(reach[x,y],"The closed quarantine must stay physically enclosed.");
+            }
+            Assert.AreEqual(6,unreachable,"Only six walkable cage cells are isolated; original rubble is passable terrain.");
             foreach(var c in services)Assert.IsTrue(new[]{(-1,0),(1,0),(0,-1),(0,1)}.Any(d=>z.InBounds(c.x+d.Item1,c.y+d.Item2)&&reach[c.x+d.Item1,c.y+d.Item2]),"Service frontage "+c);
         }
         [TestCase(64)] [TestCase(1729)] [TestCase(729490642)]
@@ -102,11 +127,36 @@ namespace CavesOfOoo.Tests
             Assert.That(trees,Is.InRange(4,6));Assert.That(bushes,Is.InRange(12,20));
         }
         [TestCase(64)] [TestCase(1729)] [TestCase(729490642)]
-        public void DisusedWingStartsQuietInsteadOfReceivingTheVillagePopulation(int seed)
+        public void DisusedWingContainsOnlyItsQuarantinedCaseInsteadOfVillagePopulation(int seed)
         {
             var z=new OverworldZoneManager(GrovelandsCompositionTests.Factory(),seed).GetZone(Id);var p=MarrowstyeCompositionPlan.Create(Id,seed);var r=p.Rooms.Single(a=>a.Role=="DisusedWing");
+            var enclosed=ClosedQuarantineInterior(z,p);var threat=z.GetAllEntities().Single(e=>e.BlueprintName=="CurationHalfSet");
+            Assert.AreEqual((r.X+15,r.Y+2),z.GetEntityPosition(threat));Assert.IsTrue(enclosed.Contains(z.GetEntityPosition(threat)));
+            Assert.IsNotNull(threat.GetPart<BrainPart>());Assert.IsFalse(threat.HasTag("CanOpenDoors"));
+            int actors=0;
             for(int y=r.Y+1;y<r.Y+r.Height-1;y++)for(int x=r.X+1;x<r.X+r.Width-1;x++)
-            {Assert.IsTrue(p.IsReserved(x,y),"Disused interior must be excluded from initial service/drama placement.");Assert.IsFalse(z.GetCell(x,y).Objects.Any(e=>e.HasPart<BrainPart>()),"Disused wing seeded a resident.");}
+            {
+                Assert.IsTrue(p.IsReserved(x,y),"Disused interior must be excluded from initial service/drama placement.");
+                foreach(var actor in z.GetCell(x,y).Objects.Where(e=>e.HasPart<BrainPart>()||e.HasTag("Creature")))
+                {actors++;Assert.AreSame(threat,actor,"Disused wing received an ordinary village resident.");}
+            }
+            Assert.AreEqual(1,actors,"The one deliberately contained case is the entire initial population of this wing.");
+        }
+        static System.Collections.Generic.HashSet<(int x,int y)> ClosedQuarantineInterior(Zone z,MarrowstyeCompositionPlan plan)
+        {
+            var room=plan.Rooms.Single(r=>r.Role=="DisusedWing");var gate=z.GetAllEntities().Single(e=>e.BlueprintName=="CurationQuarantineGate");
+            var at=z.GetEntityPosition(gate);Assert.AreEqual((room.X+13,room.Y+2),at);Assert.AreEqual(1,gate.GetPart<DoorPart>().QuarterTurns);
+            Assert.IsTrue(gate.GetPart<DoorPart>().IsClosed);Assert.IsTrue(gate.GetPart<LockPart>().IsLocked);
+            var interior=new System.Collections.Generic.HashSet<(int x,int y)>();int rails=0;
+            for(int y=at.y-1;y<=at.y+2;y++)for(int x=at.x;x<=at.x+4;x++)
+            {
+                if(x>at.x&&x<at.x+4&&y>at.y-1&&y<at.y+2){interior.Add((x,y));continue;}
+                var owners=z.GetCell(x,y).Objects.Where(e=>e.BlueprintName=="CurationQuarantineGate"||e.BlueprintName=="CurationQuarantineRail").ToArray();
+                Assert.AreEqual(1,owners.Length,"An excluded interior requires its actual closed boundary: "+x+","+y);
+                Assert.IsTrue(owners[0].GetPart<PhysicsPart>().Solid);Assert.IsTrue(z.GetCell(x,y).BlocksMovement());
+                if(owners[0]!=gate){rails++;Assert.AreEqual("CurationQuarantineRail",owners[0].BlueprintName);}
+            }
+            Assert.AreEqual(13,rails);Assert.AreEqual(6,interior.Count);return interior;
         }
     }
 }

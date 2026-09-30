@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/curation-baseline/decd297dd/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="6" result="Passed" start-time="2026-09-30T06:00:31.7769670Z" end-time="2026-09-30T06:00:32.1094360Z" duration="0.332449" total="6" passed="6" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="51" random-seed="601026899">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/curation-baseline/decd297dd/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/curation-baseline/baseline-merchants.xml --where "class = CurationMerchantBaselineProbe"]]></command-line>
+  <filter>
+    <class>CurationMerchantBaselineProbe</class>
+  </filter>
+  <test-suite type="Assembly" id="1008" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/curation-baseline/decd297dd/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-30T06:00:31.7769670Z" end-time="2026-09-30T06:00:32.1094360Z" duration="0.332449" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="51">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/curation-baseline/decd297dd/Tools/EditModeRunner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/curation-baseline/decd297dd/Tools/EditModeRunner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="88031" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestFixture" id="1000" name="CurationMerchantBaselineProbe" fullname="CurationMerchantBaselineProbe" classname="CurationMerchantBaselineProbe" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-30T06:00:31.7788150Z" end-time="2026-09-30T06:00:32.1094250Z" duration="0.330604" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="51">
+      <test-suite type="ParameterizedMethod" id="1007" name="MerchantsAreOneServicePlusOneLoadedHouseAntagonist" fullname="CurationMerchantBaselineProbe.MerchantsAreOneServicePlusOneLoadedHouseAntagonist" classname="CurationMerchantBaselineProbe" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-09-30T06:00:31.7795990Z" end-time="2026-09-30T06:00:32.1091820Z" duration="0.329578" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="51">
+        <test-case id="1001" name="MerchantsAreOneServicePlusOneLoadedHouseAntagonist(64,False)" fullname="CurationMerchantBaselineProbe.MerchantsAreOneServicePlusOneLoadedHouseAntagonist(64,False)" methodname="MerchantsAreOneServicePlusOneLoadedHouseAntagonist" classname="CurationMerchantBaselineProbe" runstate="Runnable" seed="709291944" result="Passed" start-time="2026-09-30T06:00:31.7796810Z" end-time="2026-09-30T06:00:31.9067540Z" duration="0.127095" asserts="8">
+          <output><![CDATA[seed=64;dramas=False;blueprint=FilerClerk;owners=2248:service:service
+seed=64;dramas=False;blueprint=Merchant;owners=2268:service:service
+seed=64;dramas=False;blueprint=Quartermaster;owners=2275:service:service
+seed=64;dramas=False;blueprint=Elder;owners=2267:service:service
+]]></output>
+        </test-case>
+        <test-case id="1002" name="MerchantsAreOneServicePlusOneLoadedHouseAntagonist(1729,False)" fullname="CurationMerchantBaselineProbe.MerchantsAreOneServicePlusOneLoadedHouseAntagonist(1729,False)" methodname="MerchantsAreOneServicePlusOneLoadedHouseAntagonist" classname="CurationMerchantBaselineProbe" runstate="Runnable" seed="758460491" result="Passed" start-time="2026-09-30T06:00:31.9074420Z" end-time="2026-09-30T06:00:31.9453910Z" duration="0.037948" asserts="8">
+          <output><![CDATA[seed=1729;dramas=False;blueprint=FilerClerk;owners=2246:service:service
+seed=1729;dramas=False;blueprint=Merchant;owners=2263:service:service
+seed=1729;dramas=False;blueprint=Quartermaster;owners=2270:service:service
+seed=1729;dramas=False;blueprint=Elder;owners=2262:service:service
+]]></output>
+        </test-case>
+        <test-case id="1003" name="MerchantsAreOneServicePlusOneLoadedHouseAntagonist(729490642,False)" fullname="CurationMerchantBaselineProbe.MerchantsAreOneServicePlusOneLoadedHouseAntagonist(729490642,False)" methodname="MerchantsAreOneServicePlusOneLoadedHouseAntagonist" classname="CurationMerchantBaselineProbe" runstate="Runnable" seed="1035376039" result="Passed" start-time="2026-09-30T06:00:31.9454150Z" end-time="2026-09-30T06:00:31.9808720Z" duration="0.035457" asserts="8">
+          <output><![CDATA[seed=729490642;dramas=False;blueprint=FilerClerk;owners=2245:service:service
+seed=729490642;dramas=False;blueprint=Merchant;owners=2262:service:service
+seed=729490642;dramas=False;blueprint=Quartermaster;owners=2269:service:service
+seed=729490642;dramas=False;blueprint=Elder;owners=2261:service:service
+]]></output>
+        </test-case>
+        <test-case id="1004" name="MerchantsAreOneServicePlusOneLoadedHouseAntagonist(64,True)" fullname="CurationMerchantBaselineProbe.MerchantsAreOneServicePlusOneLoadedHouseAntagonist(64,True)" methodname="MerchantsAreOneServicePlusOneLoadedHouseAntagonist" classname="CurationMerchantBaselineProbe" runstate="Runnable" seed="156163457" result="Passed" start-time="2026-09-30T06:00:31.9809300Z" end-time="2026-09-30T06:00:32.0357100Z" duration="0.054779" asserts="9">
+          <output><![CDATA[seed=64;dramas=True;blueprint=FilerClerk;owners=2248:service:service
+seed=64;dramas=True;blueprint=Merchant;owners=2268:service:service|2291:Thresker:NamedAntagonist
+seed=64;dramas=True;blueprint=Quartermaster;owners=2275:service:service
+seed=64;dramas=True;blueprint=Elder;owners=2267:service:service|2289:Thresker:DiminishedHead
+]]></output>
+        </test-case>
+        <test-case id="1005" name="MerchantsAreOneServicePlusOneLoadedHouseAntagonist(1729,True)" fullname="CurationMerchantBaselineProbe.MerchantsAreOneServicePlusOneLoadedHouseAntagonist(1729,True)" methodname="MerchantsAreOneServicePlusOneLoadedHouseAntagonist" classname="CurationMerchantBaselineProbe" runstate="Runnable" seed="1539871532" result="Passed" start-time="2026-09-30T06:00:32.0357250Z" end-time="2026-09-30T06:00:32.0723280Z" duration="0.036603" asserts="9">
+          <output><![CDATA[seed=1729;dramas=True;blueprint=FilerClerk;owners=2246:service:service
+seed=1729;dramas=True;blueprint=Merchant;owners=2263:service:service|2288:Vex:NamedAntagonist
+seed=1729;dramas=True;blueprint=Quartermaster;owners=2270:service:service
+seed=1729;dramas=True;blueprint=Elder;owners=2262:service:service|2286:Vex:DiminishedHead
+]]></output>
+        </test-case>
+        <test-case id="1006" name="MerchantsAreOneServicePlusOneLoadedHouseAntagonist(729490642,True)" fullname="CurationMerchantBaselineProbe.MerchantsAreOneServicePlusOneLoadedHouseAntagonist(729490642,True)" methodname="MerchantsAreOneServicePlusOneLoadedHouseAntagonist" classname="CurationMerchantBaselineProbe" runstate="Runnable" seed="129891302" result="Passed" start-time="2026-09-30T06:00:32.0723520Z" end-time="2026-09-30T06:00:32.1087120Z" duration="0.036360" asserts="9">
+          <output><![CDATA[seed=729490642;dramas=True;blueprint=FilerClerk;owners=2245:service:service
+seed=729490642;dramas=True;blueprint=Merchant;owners=2262:service:service|2286:Thresker:NamedAntagonist
+seed=729490642;dramas=True;blueprint=Quartermaster;owners=2269:service:service
+seed=729490642;dramas=True;blueprint=Elder;owners=2261:service:service|2284:Thresker:DiminishedHead
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

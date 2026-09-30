@@ -166,7 +166,8 @@ namespace CavesOfOoo.Rendering
         // loads without caching results or bypassing current asset validation.
         internal Model FindModel(string modelId,Func<string,Type,UnityEngine.Object> load)
         {if(string.IsNullOrEmpty(modelId))return null;if(modelIndex==null)Validate();return modelIndex.TryGetValue(modelId,out var value)?value:
-            (SpreadEnvironmentSource.IsModelId(modelId) ? LoadExtension<SpreadEnvironment3DLibrary>(load, SpreadEnvironment3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+            (CurationYardSource.IsModelId(modelId) ? LoadExtension<CurationYard3DLibrary>(load, CurationYard3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
+            ?? (SpreadEnvironmentSource.IsModelId(modelId) ? LoadExtension<SpreadEnvironment3DLibrary>(load, SpreadEnvironment3DLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
             ?? (SpreadRareMarlbackLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadRareMarlbackLibrary>(load, SpreadRareMarlbackLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
             ?? (SpreadLatchcoilLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadLatchcoilLibrary>(load, SpreadLatchcoilLibrary.ResourcePath)?.Find(modelId)?.Spec : null)
             ?? (SpreadCollectorArtLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadCollectorArtLibrary>(load, SpreadCollectorArtLibrary.ResourcePath)?.Find(modelId)?.Spec : null)

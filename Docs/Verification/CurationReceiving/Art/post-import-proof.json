@@ -1,0 +1,194 @@
+{
+  "status": "passed",
+  "observed_utc": "2026-09-30T05:34:03.476789+00:00",
+  "scope": "Read-only file/hash and serialized asset inspection after root-owned native imports; no Unity calls or shared writes. No pixel, animation, gameplay or current native test claim.",
+  "checks": {
+    "borrowed_count": true,
+    "borrowed_missing_empty": true,
+    "borrowed_changed_exact": true,
+    "all_75_expected_new_exist": true,
+    "new_paths_exact_in_covered_roots": true,
+    "source_and_meta_postimages_exact": true,
+    "static_library_15": true,
+    "humanoid_library_59": true,
+    "static_serialized_counts_match_source": true,
+    "static_import_source_hash_exact": true,
+    "humanoid_import_source_hash_exact": true
+  },
+  "borrowed": {
+    "total": 2150,
+    "unchanged": 2149,
+    "changed": [
+      {
+        "path": "Assets/Resources/SpreadBiome3D/HumanoidLibrary.asset",
+        "before": "b16e7e59e038f29d6c73635337f3f9bff3c72eb800ca7dedc16109d5e9e718c4",
+        "after": "c2f0186aab5dc027d24841f6975212014f9f0bb776871c48f8dd6b45cc575e87"
+      }
+    ],
+    "missing": [],
+    "unexpected_changed": []
+  },
+  "new": {
+    "expected": 75,
+    "actual": 75,
+    "missing": [],
+    "unexpected": []
+  },
+  "source_postimage_count": 27,
+  "source_mismatches": [],
+  "static_totals": {
+    "models": 15,
+    "boxes": 145,
+    "vertices": 3480,
+    "triangles": 1740
+  },
+  "static_shapes": [
+    {
+      "id": "curation-yard-salt-cured-body-1",
+      "boxes": 12,
+      "vertices": 288,
+      "indices": 432,
+      "triangles": 144,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-receiving-bay-1",
+      "boxes": 7,
+      "vertices": 168,
+      "indices": 252,
+      "triangles": 84,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-salt-cured-body-2",
+      "boxes": 14,
+      "vertices": 336,
+      "indices": 504,
+      "triangles": 168,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-receiving-bay-2",
+      "boxes": 8,
+      "vertices": 192,
+      "indices": 288,
+      "triangles": 96,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-intake-index",
+      "boxes": 16,
+      "vertices": 384,
+      "indices": 576,
+      "triangles": 192,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-tool-cabinet",
+      "boxes": 13,
+      "vertices": 312,
+      "indices": 468,
+      "triangles": 156,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-salt-bench",
+      "boxes": 14,
+      "vertices": 336,
+      "indices": 504,
+      "triangles": 168,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-quarantine-gate-closed",
+      "boxes": 12,
+      "vertices": 288,
+      "indices": 432,
+      "triangles": 144,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-quarantine-gate-open",
+      "boxes": 12,
+      "vertices": 288,
+      "indices": 432,
+      "triangles": 144,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-quarantine-rail",
+      "boxes": 8,
+      "vertices": 192,
+      "indices": 288,
+      "triangles": 96,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-salt-rake",
+      "boxes": 7,
+      "vertices": 168,
+      "indices": 252,
+      "triangles": 84,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-counterfoil",
+      "boxes": 5,
+      "vertices": 120,
+      "indices": 180,
+      "triangles": 60,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-inspection-key",
+      "boxes": 6,
+      "vertices": 144,
+      "indices": 216,
+      "triangles": 72,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-transfer-docket",
+      "boxes": 5,
+      "vertices": 120,
+      "indices": 180,
+      "triangles": 60,
+      "matches_source_counts": true
+    },
+    {
+      "id": "curation-yard-discrepancy-report",
+      "boxes": 6,
+      "vertices": 144,
+      "indices": 216,
+      "triangles": 72,
+      "matches_source_counts": true
+    }
+  ],
+  "imports": {
+    "static": {
+      "sourceSha256": "702fe2bc69e3e90c9c8a6e9ad75ed843df3eb28963f403425a17d61516ac6dd9",
+      "models": 15,
+      "boxes": 145,
+      "vertices": 3480,
+      "triangles": 1740,
+      "paletteCells": 24
+    },
+    "humanoid": {
+      "status": "passed",
+      "error": "",
+      "sourceHash": "2b294524469e1e72466a2b3d188cc577d5035d27ad8658ab3e3a837dd8248601",
+      "models": 3,
+      "assets": [
+        "Assets/Resources/SpreadBiome3D/Humanoids/spread-person-curation-intake-filer.asset",
+        "Assets/Resources/SpreadBiome3D/Humanoids/spread-person-curation-intake-filer.prefab",
+        "Assets/Resources/SpreadBiome3D/Humanoids/spread-person-curation-junior-indexer.asset",
+        "Assets/Resources/SpreadBiome3D/Humanoids/spread-person-curation-junior-indexer.prefab",
+        "Assets/Resources/SpreadBiome3D/Humanoids/spread-person-curation-half-set.asset",
+        "Assets/Resources/SpreadBiome3D/Humanoids/spread-person-curation-half-set.prefab",
+        "Assets/Resources/SpreadBiome3D/HumanoidLibrary.asset"
+      ]
+    }
+  },
+  "owned_paths_file": "post-import-owned-resources.json",
+  "source_postimages_file": "post-import-source-postimages.json"
+}

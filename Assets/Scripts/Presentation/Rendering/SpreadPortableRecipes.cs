@@ -309,11 +309,12 @@ namespace CavesOfOoo.Rendering
             || value == "&K" || value == "&R" || value == "&W" || value == "&Y" || value == "&c"
             || value == "&g" || value == "&m" || value == "&w" || value == "&y";
         public static bool HandlesBlueprint(string blueprint)
-            => blueprint != null && (Concrete.Contains(blueprint) || blueprint == "SeveredLimb"
+            => blueprint != null && (CurationYard3DLibrary.IsPortable(blueprint) || Concrete.Contains(blueprint) || blueprint == "SeveredLimb"
                 || blueprint == "DetectiveNotebook" || blueprint == "CrunchyLocket");
         public static bool TryRecipe(Entity owner, out string modelId)
         {
             modelId = null;
+            if(CurationYard3DLibrary.IsPortable(owner?.BlueprintName)){modelId=CurationYard3DLibrary.PortableModel(owner);return modelId!=null;}
             if (owner == null || !HandlesBlueprint(owner.BlueprintName)
                 || owner.HasTag("Natural") || owner.HasTag("Creature")) return false;
             var physics = owner.GetPart<PhysicsPart>();

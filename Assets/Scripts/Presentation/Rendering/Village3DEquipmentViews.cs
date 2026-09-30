@@ -58,6 +58,7 @@ namespace CavesOfOoo.Rendering
         private readonly Action<GameObject> prepareModel;
         private readonly bool spread;
         private readonly SpreadPortable3DLibrary portable;
+        private readonly CurationYard3DLibrary curation;
         private readonly SpreadEquipment3DLibrary worn;
         private readonly Dictionary<Entity, ActorView> actors = new Dictionary<Entity, ActorView>();
         private readonly HashSet<Entity> seenActors = new HashSet<Entity>();
@@ -75,9 +76,9 @@ namespace CavesOfOoo.Rendering
             this.spread = spread;
             if (spread)
             {
-                portable = SpreadPortable3DLibrary.Load(); worn = SpreadEquipment3DLibrary.Load();
+                portable = SpreadPortable3DLibrary.Load(); worn = SpreadEquipment3DLibrary.Load(); curation=CurationYard3DLibrary.Load();
                 if (portable == null || worn == null) throw new InvalidOperationException("Scoped equipment libraries missing.");
-                portable.Validate(); worn.Validate();
+                portable.Validate(); worn.Validate(); if(curation!=null)curation.Validate();
             }
         }
         public int FallbackCount => fallbacks.Count;
@@ -204,7 +205,9 @@ namespace CavesOfOoo.Rendering
             var view = state.Items[item];
             if (view.ModelId != recipe.ModelId || view.AttachmentKey != recipe.AttachmentKey || root == null || !root.transform.IsChildOf(state.Root.transform))
             { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"stale-equipped-form",false); return false; }
-            Mesh expected = recipe.Slot == "Hand" ? portable.Find(recipe.ModelId)?.Mesh : worn.Find(recipe.ModelId)?.Mesh;
+            var yard=curation?.Find(recipe.ModelId);
+            Material expectedMaterial=yard!=null?curation.Material:portable.Material;
+            Mesh expected = recipe.Slot == "Hand" ? (yard?.Mesh??portable.Find(recipe.ModelId)?.Mesh) : worn.Find(recipe.ModelId)?.Mesh;
             if (expected == null) { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"unmapped-equipped-form",false); return false; }
             int pieces = recipe.Pieces;
             if (recipe.Slot == "Handwear")
@@ -215,9 +218,9 @@ namespace CavesOfOoo.Rendering
             }
             var renderers = root.GetComponentsInChildren<Renderer>(true); Material representative = null;
             if (pieces == 0 || renderers.Length != pieces)
-            { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"equipped-piece-count",false,expected,portable.Material); return false; }
+            { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"equipped-piece-count",false,expected,expectedMaterial); return false; }
             if (view.Targets == null || view.Targets.Length != pieces)
-            { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"stale-equipped-targets",false,expected,portable.Material); return false; }
+            { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"stale-equipped-targets",false,expected,expectedMaterial); return false; }
             var seenBones = new HashSet<Transform>(); int pieceIndex = 0;
             foreach (var renderer in renderers)
             {
@@ -233,12 +236,12 @@ namespace CavesOfOoo.Rendering
                 }
                 else if (!state.Rig.Owns(root.transform.parent) || root.transform.parent != view.Targets[0]) failure = "equipped-grip-mismatch";
                 Material actual = null;
-                if (failure == null && !SpreadBiomeStyleCatalog.PaletteMatches(renderer,surface.MaterialFor(portable.Material),portable.Material,scratch,materials,out actual)) failure = "equipped-palette-mismatch";
+                if (failure == null && !SpreadBiomeStyleCatalog.PaletteMatches(renderer,surface.MaterialFor(expectedMaterial),expectedMaterial,scratch,materials,out actual)) failure = "equipped-palette-mismatch";
                 if (failure != null)
-                { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,failure,false,expected,portable.Material,submitted,actual); return false; }
+                { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,failure,false,expected,expectedMaterial,submitted,actual); return false; }
                 representative = actual; pieceIndex++;
             }
-            evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,null,false,expected,portable.Material,expected,representative); return true;
+            evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,null,false,expected,expectedMaterial,expected,representative); return true;
         }
         private void SyncSpread(ActorView state, Entity item, ItemView view, BodyPart occupied)
         {
@@ -269,10 +272,11 @@ namespace CavesOfOoo.Rendering
             DisposeView(view);
             if (recipe.Slot == "Hand")
             {
-                var entry = portable.Find(recipe.ModelId);
-                if (entry == null) { Fail(state,item,view,"missing-scoped-held-model"); return; }
-                view.Root = Object.Instantiate(entry.Prefab,targets[0],false);
-                var bounds = entry.Mesh.bounds;
+                var entry = portable.Find(recipe.ModelId);var yard=curation?.Find(recipe.ModelId);
+                var prefab=yard?.Prefab??entry?.Prefab;var mesh=yard?.Mesh??entry?.Mesh;
+                if (prefab == null || mesh == null) { Fail(state,item,view,"missing-scoped-held-model"); return; }
+                view.Root = Object.Instantiate(prefab,targets[0],false);
+                var bounds = mesh.bounds;
                 bool shield = item.BlueprintName == "Buckler" || item.BlueprintName == "IronBuckler";
                 bool pole = item.BlueprintName == "Spear" || item.BlueprintName == "LoanerSpear" || item.BlueprintName == "EmberSpear" || item.BlueprintName == "CryoLance" || item.BlueprintName == "FirstRootGlaive";
                 var rotation = Quaternion.Euler(shield ? 70f : -50f,0,0);

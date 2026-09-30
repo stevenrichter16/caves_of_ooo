@@ -2935,6 +2935,21 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            // The physical intake counterfoil joins the outer command receipt.
+            // Only a committed certification costs a turn; refusal or rollback is free.
+            if (action.Command == CurationIntakePart.CertifyCommand)
+            {
+                var certification = InventorySystem.ExecuteCommand(
+                    new PerformInventoryActionCommand(target, action.Command), PlayerEntity, CurrentZone);
+                if (certification.Success)
+                {
+                    EndTurnAndProcess();
+                    RequestZoneRedraw("Curation.Certified");
+                }
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
             // Regional deliveries must join the same native command transaction
             // as inventory actions, including AfterInventoryAction rollback.
             // Keep the existing zero-turn C-action policy; ordinary world verbs

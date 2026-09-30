@@ -988,7 +988,11 @@ namespace CavesOfOoo.Core
                     break;
                 // W3.6: Marrowstye — the body-courier's destination.
                 case "Intake":
-                    if(marrowstye)pipeline.AddBuilder(new MarrowstyeProfileBuilder(intake));
+                    if(marrowstye)
+                    {
+                        pipeline.AddBuilder(new MarrowstyeProfileBuilder(intake));
+                        pipeline.AddBuilder(new CurationReceivingBuilder(intake));
+                    }
                     else profileStamps.Add(StampCatalog.CurationIntake());
                     break;
                 case "Boatyard":
@@ -1166,7 +1170,8 @@ namespace CavesOfOoo.Core
             return SpreadExplorationPlan.FinalizeGenerated(this,zone,zoneID,lairAccepted);
         }
         protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID)
-            && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true;
+            && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true
+            && !CurationIntakePart.Retain(this,zoneID);
 
         protected override void OnZoneAttached(Zone zone)
         {

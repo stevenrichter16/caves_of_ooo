@@ -1637,4 +1637,91 @@ MonoBehaviour:
       - Equipment.Body
       - Equipment.Feet.L
       - Equipment.Feet.R
+  - Id: spread-person-curation-intake-filer
+    Blueprint: CurationIntakeFiler
+    Prefab: {fileID: 7022761832723204767, guid: 5ab1815357bec4d5d81575124a8ef4a9, type: 3}
+    Mesh: {fileID: 4300000, guid: 15fe7e7f70ebc47b09736c2cf479574d, type: 2}
+    Spec:
+      id: spread-person-curation-intake-filer
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-curation-intake-filer.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: CurationIntakeFiler
+      rigged: 1
+      boundsCenter: {x: 0.000000014424743, y: 0.7749997, z: -0.16499978}
+      boundsSize: {x: 1.2181984, y: 1.9899993, z: 1.6799996}
+      triangles: 300
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-curation-junior-indexer
+    Blueprint: CurationJuniorIndexer
+    Prefab: {fileID: 680016991975073159, guid: 09048595b6886483ea05d94fa16c430d, type: 3}
+    Mesh: {fileID: 4300000, guid: a5b333c53398a4bc2b939669fc0e176a, type: 2}
+    Spec:
+      id: spread-person-curation-junior-indexer
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-curation-junior-indexer.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: CurationJuniorIndexer
+      rigged: 1
+      boundsCenter: {x: 0.000000020308299, y: 0.7244996, z: -0.23229982}
+      boundsSize: {x: 1.1207426, y: 1.8077993, z: 1.7065997}
+      triangles: 336
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
+  - Id: spread-person-curation-half-set
+    Blueprint: CurationHalfSet
+    Prefab: {fileID: 8766551857055860920, guid: 4210b1025b48848f2a8e9fe99a1580cd, type: 3}
+    Mesh: {fileID: 4300000, guid: 0097acab49f764b398256258019eb8ef, type: 2}
+    Spec:
+      id: spread-person-curation-half-set
+      path: Assets/Resources/SpreadBiome3D/Humanoids/spread-person-curation-half-set.prefab
+      kind: actor
+      rigFamily: humanoid
+      materialFamily: reference-glade-palette
+      sourceBlueprint: CurationHalfSet
+      rigged: 1
+      boundsCenter: {x: 0.060000017, y: 0.7762495, z: -0.16499978}
+      boundsSize: {x: 1.4100002, y: 1.9874992, z: 1.6799996}
+      triangles: 360
+      clips:
+      - Idle
+      - Walk
+      - Interact
+      - Attack
+      - Hit
+      sockets:
+      - Equipment.Head
+      - Equipment.Hand.L
+      - Equipment.Hand.R
+      - Equipment.Back
+      - Equipment.Body
+      - Equipment.Feet.L
+      - Equipment.Feet.R
   Material: {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}

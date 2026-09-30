@@ -39,8 +39,8 @@ namespace CavesOfOoo.Tests
                 var groundBefore = Recipe(f, ground);
                 var styleBefore = Style(f, beam);
                 var groundStyleBefore = Style(f, ground);
-                StringAssert.StartsWith("ring-fallen-beam-", before.ModelId);
-                var sourceBefore = SpreadNativeStyle3DLibrary.Load().ForOwner(f.Zone, before);
+                StringAssert.StartsWith("reference-glade-fallen-beam-", before.ModelId);
+                var sourceBefore = ReferenceGladeVoxelLibrary.Load().Find(before.ModelId);
                 Assert.NotNull(sourceBefore);
                 Assert.AreSame(sourceBefore.Mesh, styleBefore.ExpectedMesh);
                 var rotationBefore = sourceBefore.Prefab.transform.localRotation;
@@ -83,7 +83,7 @@ namespace CavesOfOoo.Tests
 
                     var after = Recipe(f, beam);
                     var styleAfter = Style(f, beam);
-                    var sourceAfter = SpreadNativeStyle3DLibrary.Load().ForOwner(f.Zone, after);
+                    var sourceAfter = ReferenceGladeVoxelLibrary.Load().Find(after.ModelId);
                     Assert.NotNull(sourceAfter);
                     Assert.AreSame(sourceAfter.Mesh, styleAfter.ExpectedMesh);
                     Assert.AreSame(beam, after.Owner);

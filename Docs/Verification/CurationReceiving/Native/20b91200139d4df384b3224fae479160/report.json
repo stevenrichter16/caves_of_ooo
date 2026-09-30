@@ -1,0 +1,96 @@
+{
+    "runId": "20b91200139d4df384b3224fae479160",
+    "zone": "Overworld.11.10.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: actual open Curation frontage CurationQuarantineGate\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:434 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<CurationApproach>d__95.MoveNext () [0x00036] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeCuration.cs:45 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__170.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:454 ",
+    "canVerify": "Isolated seed64 ordinary player in real generated Marrowstye. Native local dialogue/reading, two exact bodies hauled to their bound bays, physical one-time certification, key/cabinet/finite supplies, earned rake equipment and F5/F6 graph replacement. Closed quarantine is observed during actual NPC turns. Optional mode separately opens the real gate and records exact player/target combat and animation.",
+    "cannotVerify": "One disclosed player travel shortcut; all local movement and actions use native keys with NPC scheduling active. No cargo placement, item grants, strength/HP/time/RNG changes or direct success calls. Public completion is reported separately from optional combat. Optional fight may use at most two original starter tonics and one ready original Rime Grip after actual retaliation. Scripted route does not prove natural discovery, universal balance or subjective readability; screenshots need inspection. Existing cached Marrowstye is not rebuilt.",
+    "mode": "native-curation-public-and-quarantine",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "LABELLED TRAVEL 1 Overworld.11.10.0 -> Overworld.12.12.0@40,3 real Marrowstye receiving yard; original staff, cargo, locks and stocks unchanged",
+        "drawn owner=4946 blueprint=CurationIntakeIndex current=True drawn=True",
+        "drawn owner=3297 blueprint=SaltCuredBody current=True drawn=True",
+        "drawn owner=3308 blueprint=SaltCuredBody current=True drawn=True"
+    ],
+    "biomeShortcuts": 1,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS curation_generated_receiving",
+        "PASS curation_public_conversation",
+        "PASS curation_swapped_refusal",
+        "PASS curation_first_haul",
+        "PASS curation_second_haul",
+        "PASS curation_certification",
+        "PASS curation_repeat_refusal",
+        "PASS curation_finite_supply",
+        "PASS curation_read_record",
+        "PASS curation_equipped_rake",
+        "PASS curation_native_checkpoint",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/CurationReceiving/Native/20b91200139d4df384b3224fae479160/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/CurationReceiving/Native/20b91200139d4df384b3224fae479160/curation-01-generated-receiving-hall.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/CurationReceiving/Native/20b91200139d4df384b3224fae479160/curation-02-filer-explains-intake.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/CurationReceiving/Native/20b91200139d4df384b3224fae479160/curation-03-first-subject-label.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/CurationReceiving/Native/20b91200139d4df384b3224fae479160/curation-04-second-subject-label.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/CurationReceiving/Native/20b91200139d4df384b3224fae479160/curation-05-first-receiving-bay.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/CurationReceiving/Native/20b91200139d4df384b3224fae479160/curation-06-second-receiving-bay.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/CurationReceiving/Native/20b91200139d4df384b3224fae479160/curation-07-both-subjects-filed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/CurationReceiving/Native/20b91200139d4df384b3224fae479160/curation-08-physical-counterfoil-issued-once.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/CurationReceiving/Native/20b91200139d4df384b3224fae479160/curation-09-open-supply-kit.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/CurationReceiving/Native/20b91200139d4df384b3224fae479160/curation-10-discrepancy-record-reader.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/CurationReceiving/Native/20b91200139d4df384b3224fae479160/curation-11-restored-filed-subjects.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Local filer conversation",
+            "source": "4951",
+            "text": "The names are retained as cross-references. The subjects are filed under their last words. Read each wrist label and the two low bay labels. Haul each body onto its matching bay, then let go and check the receiving index. The counterfoil releases the correction kit in the supply cabinet. Please move the subjects, not the labels.",
+            "units": 0
+        },
+        {
+            "subject": "Meret Pell, salt-cured",
+            "source": "3297",
+            "text": "You see Meret Pell, salt-cured.\n\nMeret Pell. Last words: 'No, the other one.' Eyes salt-sealed; a crooked thimble is tied to the cuff. Name retained as a cross-reference. Filed under final words. A heavy cured subject; haul it to the matching quoted bay and release your hold before certification.",
+            "units": 0
+        },
+        {
+            "subject": "Osren Vale, salt-cured",
+            "source": "3308",
+            "text": "You see Osren Vale, salt-cured.\n\nOsren Vale. Last words: 'Leave the door open.' Eyes salt-sealed; blue thread is knotted around the wrist. Name retained as a cross-reference. Filed under final words. The quotation is a record, not an instruction to open quarantine. Haul to the matching quoted bay and release your hold.",
+            "units": 0
+        },
+        {
+            "subject": "labelled receiving bay",
+            "source": "4947",
+            "text": "You see a labelled receiving bay.\n\nReceiving position: 'No, the other one.' Cross-reference: Meret Pell; crooked thimble. Match the subject, then release your hold.",
+            "units": 0
+        },
+        {
+            "subject": "labelled receiving bay",
+            "source": "4948",
+            "text": "You see a labelled receiving bay.\n\nReceiving position: 'Leave the door open.' Cross-reference: Osren Vale; blue wrist-thread. These are recorded last words, not an instruction to open quarantine. Match the subject, then release your hold.",
+            "units": 0
+        },
+        {
+            "subject": "Native receiving save replacement",
+            "source": "cce62a0650b042c6aa83fa2519d74eed",
+            "text": "F5, verified keyboard step, F6; unchanged saved bytes 0fb092159ae42520394caf5a293c078a4c660c42808b6e71e6677b101b8b10cc; same body, key, supply and equipment IDs; certification retained.",
+            "units": 0
+        }
+    ],
+    "cases": 13,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 62.321320799999998,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

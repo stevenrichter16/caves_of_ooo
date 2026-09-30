@@ -1670,6 +1670,7 @@
                 { "Key": "CompleteQuest", "Value": "BogBodyCourier" }
               ]
             },
+            { "Text": "What is this receiving hall?", "Target": "ReceivingHall" },
             { "Text": "Nothing on paper.", "Target": "NoPaper" },
             { "Text": "Farewell.", "Target": "End" }
           ]
@@ -1682,8 +1683,16 @@
           ]
         },
         {
+          "ID": "ReceivingHall",
+          "Text": "Marrowstye receives the Curation's regional intakes. Doreth tends the salt; Ivrin keeps the index. Their two subjects have exchanged positions. The low bay labels and wrist labels give the proper arrangement. You may help without a courier docket. The locked old wing holds a separate, incomplete cure. Keep that gate closed.",
+          "Choices": [
+            { "Text": "Back to the window.", "Target": "Start" },
+            { "Text": "I will look around.", "Target": "End" }
+          ]
+        },
+        {
           "ID": "NoPaper",
-          "Text": "Then the window is a wall. It is a very patient wall. Good day.",
+          "Text": "No delivery, then. The receiving hall is open. Doreth tends the subjects; Ivrin keeps their final remarks. There is a discrepancy in their positions, if you have the strength to help. The barred wing is a separate matter: incomplete cure, keep closed.",
           "Choices": [
             { "Text": "Good day.", "Target": "End" }
           ]
@@ -1781,5 +1790,198 @@
           ]
         }
       ]
-    }]
+    },
+    {
+      "ID": "CurationIntakeFiler_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Condition: sound. Position: incorrect. Meret and Osren arrived together; their receiving slips did not. The salt has held. We must now attend to the part that has moved.",
+          "Choices": [
+            {
+              "Text": "What has been put in the wrong place?",
+              "Target": "Filing"
+            },
+            {
+              "Text": "Why keep them like this?",
+              "Target": "Preservation"
+            },
+            {
+              "Text": "What is in the barred wing?",
+              "Target": "Quarantine"
+            },
+            {
+              "Text": "Who supplies this place?",
+              "Target": "Carriage"
+            },
+            {
+              "Text": "Good day.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Filing",
+          "Text": "The names are retained as cross-references. The subjects are filed under their last words. Read each wrist label and the two low bay labels. Haul each body onto its matching bay, then let go and check the receiving index. The counterfoil releases the correction kit in the supply cabinet. Please move the subjects, not the labels.",
+          "Choices": [
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will leave you to it.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Preservation",
+          "Text": "A body is a record that cannot make another copy of itself. We keep what remains. Salt in the eyes, salt in the joints, no damp admitted. Meret's thimble stays with Meret. It has no bearing on the index, but it came with the hand.",
+          "Choices": [
+            {
+              "Text": "Did they agree to this?",
+              "Target": "Consent"
+            },
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Good day.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Consent",
+          "Text": "These were received after their lives had ended. The Catchers preserve people who have not agreed to become entries. They were expelled. The old wing has not lost their fittings. We have changed its use.",
+          "Choices": [
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will leave you to it.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Quarantine",
+          "Text": "Condition: incomplete. Method: enclosure. The Bloom entered before the salt set. We have recorded movement; we have not recorded a return of the person. The inspection key is in the supply cabinet. You are not required to use it. Opening the gate brings the growth into the yard.",
+          "Choices": [
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will leave you to it.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Carriage",
+          "Text": "Tent-Right supplies salt. Concord carriers bring it and take onward consignments. Marrowstye receives, dries and indexes. The larger chambers receive the indexed. We keep a carriage copy so that a person cannot become a missing parcel between two correct accounts.",
+          "Choices": [
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will leave you to it.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "CurationJuniorIndexer_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Two names, two positions, two exact final remarks. All the totals reconcile. The arrangement does not. I have left room in the margin for the correction.",
+          "Choices": [
+            {
+              "Text": "Tell me about Meret and Osren.",
+              "Target": "Subjects"
+            },
+            {
+              "Text": "Could you change the bay labels?",
+              "Target": "Labels"
+            },
+            {
+              "Text": "What does \"continuing\" mean?",
+              "Target": "Continuing"
+            },
+            {
+              "Text": "Is the stamp yours?",
+              "Target": "Tools"
+            },
+            {
+              "Text": "Good day.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Subjects",
+          "Text": "Meret Pell: \"No, the other one.\" Osren Vale: \"Leave the door open.\" They are filed verbatim. We cannot ask which other one, or which door. A relative supplied the thimble. The blue thread was already there. Both details are retained.",
+          "Choices": [
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will leave you to it.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Labels",
+          "Text": "Then the bodies would agree with the labels and disagree with the index. Amending the index requires the original discrepancy; moving the discrepancy requires another form. Moving the subjects requires care. Doreth says care is available here.",
+          "Choices": [
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will leave you to it.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Continuing",
+          "Text": "That is the closing status. A completed treatment is not a completed record. The first file still has no last words under which to enter it. It is kept apart, under \"unrecorded.\" I was told not to improve this.",
+          "Choices": [
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will leave you to it.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Tools",
+          "Text": "The stamp belongs to the desk. I have custody of it. The rake belongs to the salt bench until issued; the issued one is in the cabinet. Its teeth are blunt, so a slip should disturb the salt before it disturbs the subject. That was a correction to the old design.",
+          "Choices": [
+            {
+              "Text": "Another question.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will leave you to it.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

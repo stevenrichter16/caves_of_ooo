@@ -73,7 +73,7 @@ namespace CavesOfOoo.Core
         void RefreshGlyph(){var render=ParentEntity?.GetPart<RenderPart>();if(render!=null)render.RenderString=IsClosed?"+":"/";}
         bool Reject(Entity actor,string reason)
         {
-            MessageLog.Add(reason=="doorway-occupied"?"The doorway is occupied.":"That door cannot be used right now.");
+            if(actor?.HasTag("Player")==true)MessageLog.Add(reason=="doorway-occupied"?"The doorway is occupied.":"That door cannot be used right now.");
             Diag.Record("furniture","DoorRejected",actor,ParentEntity,new{reason});return false;
         }
     }
