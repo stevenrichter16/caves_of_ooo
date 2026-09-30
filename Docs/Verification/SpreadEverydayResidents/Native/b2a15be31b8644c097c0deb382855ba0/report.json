@@ -1,0 +1,66 @@
+{
+    "runId": "b2a15be31b8644c097c0deb382855ba0",
+    "zone": "Overworld.11.10.0",
+    "fatal": "",
+    "canVerify": "Isolated ordinary seed64 player; actual generated seed keeper and cook. Native dialogue/trade purchases, ordinary starter-book reading, seed planting, Conjure Rain, paid waiting, visible crop stage, finite produce pickup, cooking, eating and a real unowned-bed action. Exact source stock and purses are observed; screenshots require visual inspection.",
+    "cannotVerify": "Two explicitly logged travel shortcuts reach real generated resident approaches. Subsequent movement and every action use ordinary keys with the scheduler active. No source grants, altered balances, reseeding, cooldown resets or forced outcomes. Bed sleep may truthfully refuse if the bed is already reserved/in use or a real hostile is near; correlated diagnostics record the actual outcome. This finite route does not prove natural discovery, long-term economics, all-site frequency or subjective visual quality. Core tests cover refusal, stock persistence and crop timing separately.",
+    "mode": "native-generated-everyday-residents",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "LABELLED TRAVEL 1 Overworld.11.10.0 -> Overworld.11.8.0@20,9 generated seed keeper; actual opening stock and crops unchanged",
+        "drawn owner=4896 blueprint=SpreadSeedKeeper current=True drawn=True",
+        "drawn owner=4907 blueprint=CandyCarrotCrop current=True drawn=True",
+        "LABELLED TRAVEL 2 Overworld.11.8.0 -> Overworld.12.11.0@19,8 generated wayside cook; actual food, oven and bed unchanged",
+        "drawn owner=7199 blueprint=SpreadWaysideCook current=True drawn=True"
+    ],
+    "biomeShortcuts": 2,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS resident_generated_plot",
+        "PASS resident_remembered_nearby",
+        "PASS resident_read_travel_note",
+        "PASS resident_seed_trade",
+        "PASS resident_learn_rain",
+        "PASS resident_planted_seed",
+        "PASS resident_watered_crop",
+        "PASS resident_grown_crop",
+        "PASS resident_picked_produce",
+        "PASS resident_generated_kitchen",
+        "PASS resident_food_trade",
+        "PASS resident_cooked_food",
+        "PASS resident_ate_food",
+        "PASS resident_bed_action",
+        "PASS resident_ordinary_finish"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadEverydayResidents/Native/b2a15be31b8644c097c0deb382855ba0/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadEverydayResidents/Native/b2a15be31b8644c097c0deb382855ba0/residents-01-seed-keeper-plot.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadEverydayResidents/Native/b2a15be31b8644c097c0deb382855ba0/residents-01b-remembered-field-directions.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadEverydayResidents/Native/b2a15be31b8644c097c0deb382855ba0/residents-02-dry-planted-seed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadEverydayResidents/Native/b2a15be31b8644c097c0deb382855ba0/residents-03-wet-seed-soil.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadEverydayResidents/Native/b2a15be31b8644c097c0deb382855ba0/residents-04-grown-gladroot.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadEverydayResidents/Native/b2a15be31b8644c097c0deb382855ba0/residents-05-earned-produce.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadEverydayResidents/Native/b2a15be31b8644c097c0deb382855ba0/residents-06-wayside-kitchen.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/SpreadEverydayResidents/Native/b2a15be31b8644c097c0deb382855ba0/residents-07-kitchen-after-actions.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Generated unowned bed",
+            "source": "7206",
+            "text": "Native sleep advanced 60 ticks.",
+            "units": 0
+        }
+    ],
+    "cases": 16,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "errorsFinalized": true,
+    "seconds": 26.3525197,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

@@ -12,8 +12,8 @@ namespace CavesOfOoo.Rendering
     internal sealed class ReferenceGladeGroundContact:IDisposable
     {
         internal const float MaximumAttenuation=.38f;
-        // 52 glade variants plus the 48 approved Spread environment variants.
-        private const int MaximumSources=100,MaximumContributors=4096;
+        // 52 glade variants plus the 56 approved Spread environment variants.
+        private const int MaximumSources=108,MaximumContributors=4096;
         private const ulong Offset=14695981039346656037UL,Prime=1099511628211UL;
         private static readonly int FieldId=Shader.PropertyToID("_GroundContact"),StrengthId=Shader.PropertyToID("_GroundContactStrength");
         private sealed class Source

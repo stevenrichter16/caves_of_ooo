@@ -22,7 +22,7 @@ namespace CavesOfOoo.Editor
         {
             public string formation,character,image,zoneId,topology,landscape;
             public bool nativePipeline;
-            public int seed,trees,bushes,columns,compost,cache,meshes,missing,worksiteOwners,gatheringSources,specialists;
+            public int seed,trees,bushes,columns,compost,cache,meshes,missing,worksiteOwners,gatheringSources,specialists,residents,growingCrops;
             public double generationMilliseconds;
         }
         [Serializable] public sealed class Report { public Row[] rows; }
@@ -72,7 +72,12 @@ namespace CavesOfOoo.Editor
 
         /// <summary>Fresh-generation landscape and worksite views, with fog revealed for visual
         /// inspection only. Uses the ordinary native pipeline, no player or save state.</summary>
-        public static void CaptureLandscapes(string output)
+        public static void CaptureLandscapes(string output) => CapturePlaces(output, false);
+
+        /// <summary>Actual fresh field residents, with revealed fog for visual review only.</summary>
+        public static void CaptureResidents(string output) => CapturePlaces(output, true);
+
+        private static void CapturePlaces(string output, bool residents)
         {
             if(EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Landscape capture requires Edit Mode.");
@@ -101,7 +106,9 @@ namespace CavesOfOoo.Editor
                     LoadoutPart.Rng=new System.Random(seed);TraderPart.Rng=new System.Random(seed^0x7135);
                     LootDropSystem.Rng=new System.Random(seed^0x2143);
                     var manager=OverworldZoneManager.CreateDetached(factory,seed,true);
-                    foreach(var site in new[]{("north",11,9),("east",12,10),("south",11,11),("cindercaller",15,10),("soursprayer",10,1)})
+                    var sites = residents ? new[]{("seed-keeper",11,8),("wayside-kitchen",12,11)}
+                        : new[]{("north",11,9),("east",12,10),("south",11,11),("cindercaller",15,10),("soursprayer",10,1)};
+                    foreach(var site in sites)
                     {
                         string id=WorldMap.ToZoneID(site.Item2,site.Item3);
                         var watch=System.Diagnostics.Stopwatch.StartNew();
@@ -110,7 +117,9 @@ namespace CavesOfOoo.Editor
                         var plan=SpreadCompositionPlan.Create(id,seed,FormationSelector.For(BiomeType.Spread,id),
                             placed?entry.Topology:SpreadExplorationTopology.Legacy);
                         rows.Add(Capture(output,site.Item1+"-"+seed,zone,plan,true,watch.Elapsed.TotalMilliseconds));
-                        var focus=zone.GetReadOnlyEntities().FirstOrDefault(e=>e.GetProperty("SpreadWorksite.Role")=="still"||e.GetProperty("SpreadWorksite.Role")=="forge"||e.GetProperty("SpreadWorksite.Role")=="trap");
+                        var focus=zone.GetReadOnlyEntities().FirstOrDefault(e=>residents
+                            ? e.BlueprintName=="SpreadSeedKeeper"||e.BlueprintName=="SpreadWaysideCook"
+                            : e.GetProperty("SpreadWorksite.Role")=="still"||e.GetProperty("SpreadWorksite.Role")=="forge"||e.GetProperty("SpreadWorksite.Role")=="trap");
                         if(focus!=null)rows.Add(Capture(output,site.Item1+"-"+seed+"-site",zone,plan,true,watch.Elapsed.TotalMilliseconds,focus));
                     }
                 }
@@ -156,6 +165,8 @@ namespace CavesOfOoo.Editor
                     worksiteOwners=zone.GetReadOnlyEntities().Count(e=>e.Properties.ContainsKey("SpreadWorksite.Role")),
                     gatheringSources=Count(zone,"StoneburrPatch")+Count(zone,"FrostLichenPatch"),
                     specialists=Count(zone,"MarlbackCindercaller")+Count(zone,"MarlbackSoursprayer"),
+                    residents=Count(zone,"SpreadSeedKeeper")+Count(zone,"SpreadWaysideCook"),
+                    growingCrops=Count(zone,"CandyCarrotCrop")+Count(zone,"EmberwheatCrop"),
                     meshes=presenter.VoxelAppliedMeshCount,missing=presenter.VoxelMissingMeshCount,generationMilliseconds=milliseconds};
             }
             finally

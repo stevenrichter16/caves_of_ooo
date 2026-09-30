@@ -31,6 +31,8 @@ namespace CavesOfOoo.Core
    if(!Current(zone,factory,entry))return Refuse(zone,entry,"authority");
    switch(entry.Family)
    {
+    case SpreadExplorationFamily.SeedKeepersPlot:
+    case SpreadExplorationFamily.WaysideKitchen:return Resident(zone,factory,entry);
     case SpreadExplorationFamily.FieldAlembic:
     case SpreadExplorationFamily.TemperingShelter:
     case SpreadExplorationFamily.TrappersStore:return Worksite(zone,factory,entry);
@@ -47,6 +49,16 @@ namespace CavesOfOoo.Core
     case SpreadExplorationFamily.HuntThroughCover:return Hunt(zone,factory,entry);
     default:return Refuse(zone,entry,"unsupported-family");
    }
+  }
+  bool Resident(Zone z,EntityFactory f,SpreadExplorationEntry entry)
+  {
+   if(Priority!=4300)return Refuse(z,entry,"resident-generation-boundary");
+   var owners=new HashSet<Entity>(z.GetReadOnlyEntities());
+   var original=SpreadGenerationReceipt.CaptureFinalState(z,owners);
+   if(SpreadExplorationResidents.TryPlace(z,f,terrain,entry.Family,()=>Current(z,f,entry),out var packet,out var final))
+    return Commit(z,f,entry,packet,final);
+   if(!Current(z,f,entry)||!original()||!owners.SetEquals(z.GetReadOnlyEntities()))return false;
+   return Refuse(z,entry,"no-safe-resident-site");
   }
   bool Worksite(Zone z,EntityFactory f,SpreadExplorationEntry entry)
   {

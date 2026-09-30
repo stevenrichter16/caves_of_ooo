@@ -36,10 +36,16 @@ namespace CavesOfOoo.Tests
         public void FreshCurrentUsesFrozenHedgerowFourWayAllocationWithoutGeneratingGraphs(int seed)
         {
             var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);var plan=m.Exploration;
-            Assert.AreEqual(9,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
+            Assert.AreEqual(10,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
             var rows=plan.Entries.Where(e=>e.Family.ToString()=="FieldPassage").ToArray();Assert.IsNotEmpty(rows,"Fixed corpus must provide real selected opportunities before any geometry claim.");
             foreach(var e in plan.Entries.Where(e=>e.Family!=SpreadExplorationFamily.None&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.Hedgerow))
-                Assert.AreEqual(new[]{"OccupiedBank","CollectorReturn","FieldPassage","HeavySalvage"}[Variant(seed,e.ZoneID)],e.Family.ToString());
+            {
+                // v10 fills previously quiet rows with domestic sites. Every
+                // other hedgerow still follows the exact shipped four-way rule;
+                // full native v9 preservation is frozen in SpreadResidentsManifestTests.
+                if(e.Family==SpreadExplorationFamily.SeedKeepersPlot||e.Family==SpreadExplorationFamily.WaysideKitchen)continue;
+                Assert.AreEqual(new[]{"OccupiedBank","CollectorReturn","FieldPassage","HeavySalvage"}[Variant(seed,e.ZoneID)],e.Family.ToString(),e.ZoneID);
+            }
             foreach(var e in rows){Assert.True(e.PlacementEligible);Assert.AreEqual(Formation.Hedgerow,FormationSelector.For(BiomeType.Spread,e.ZoneID));Assert.AreNotEqual(ReferenceGladePlan.ZoneID,e.ZoneID);Assert.AreNotEqual(m.RareEncounters?.PairZoneID,e.ZoneID);Assert.AreNotEqual(m.RareEncounters?.ViperZoneID,e.ZoneID);Assert.AreNotEqual(m.Wayhouse?.ZoneID,e.ZoneID);}
             string wire=SpreadExplorationPlan.BindForSave(m,null).GetProperty(SpreadExplorationPlan.PropertyKey);Bind(m,Restore(m,wire));
             Assert.AreEqual(wire,SpreadExplorationPlan.BindForSave(m,null).GetProperty(SpreadExplorationPlan.PropertyKey));Assert.Zero(m.CachedZoneCount);Assert.Zero(m.Exploration.RetainedGraphCount);

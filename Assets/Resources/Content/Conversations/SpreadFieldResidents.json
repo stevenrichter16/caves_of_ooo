@@ -1,0 +1,140 @@
+{
+  "Conversations": [
+    {
+      "ID": "SpreadSeedKeeper_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Mind the little rows. Gladroot in one, emberwheat in the other. You can tend what's here, or buy seed and start a patch of your own.",
+          "Choices": [
+            {
+              "Text": "How do I plant a patch?",
+              "Target": "Planting"
+            },
+            {
+              "Text": "Is there anywhere useful nearby?",
+              "Target": "Nearby"
+            },
+            {
+              "Text": "What do these rows need?",
+              "Target": "Watering"
+            },
+            {
+              "Text": "I'll leave you to it.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Planting",
+          "Text": "Stand on soft grass with a seed in your pack and Plant it. Leave each plant its own patch. Stone won't take it. I carry a watering grimoire too, if you've lost yours.",
+          "Choices": [
+            {
+              "Text": "How do I water it?",
+              "Target": "Watering"
+            },
+            {
+              "Text": "Let me look at your pouches.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Watering",
+          "Text": "Read a watering grimoire to learn Conjure Rain, then cast near the rows. Dark soil means it's wet. Dry plants wait; they don't die. Gladroot finishes sooner. Give emberwheat another rain after the first has soaked away.",
+          "Choices": [
+            {
+              "Text": "Can I leave them growing?",
+              "Target": "Waiting"
+            },
+            {
+              "Text": "All right.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Waiting",
+          "Text": "Stay in this area while they grow. When a plant is ready, the food falls where it stood; pick it up there. The grain can be toasted beside a cooking fire or a working oven.",
+          "Choices": [
+            {
+              "Text": "Thanks. I'll mind my feet.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Nearby",
+          "Text": "I've heard of a few places in these fields. Best take the directions as old news; people move, and things get carried off.",
+          "Choices": [
+            {
+              "Text": "Back to your work.",
+              "Target": "Start"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ID": "SpreadWaysideCook_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Food for the road? I've a few things ready, and a few still raw. You're welcome to use the oven. Don't put your blanket over the mouth.",
+          "Choices": [
+            {
+              "Text": "What can I cook here?",
+              "Target": "Kitchen"
+            },
+            {
+              "Text": "Is there anywhere useful nearby?",
+              "Target": "Nearby"
+            },
+            {
+              "Text": "May I use the cot?",
+              "Target": "Resting"
+            },
+            {
+              "Text": "Good travelling.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Kitchen",
+          "Text": "Stand beside the oven and Cook raw meat, mushrooms or emberwheat from your pack. A whole handful goes in together. Gladroot is fine as it is. Buy something ready if you're in a hurry.",
+          "Choices": [
+            {
+              "Text": "And the cot?",
+              "Target": "Resting"
+            },
+            {
+              "Text": "Let me see what you've got.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Resting",
+          "Text": "The cot isn't let to anyone. Rest there if it's empty and the field is quiet. You can sleep until the next part of the day, too. If there are teeth about, deal with those first.",
+          "Choices": [
+            {
+              "Text": "I'll take a look.",
+              "Target": "Start"
+            }
+          ]
+        },
+        {
+          "ID": "Nearby",
+          "Text": "I've heard of a few places in these fields. Best take the directions as old news; people move, and things get carried off.",
+          "Choices": [
+            {
+              "Text": "Back to your work.",
+              "Target": "Start"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

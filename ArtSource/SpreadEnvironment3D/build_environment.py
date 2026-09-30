@@ -1,7 +1,7 @@
 """Original biome source cuboids, no Unity or borrowed-asset writes."""
 import argparse,json,random
 from pathlib import Path
-FAMILIES=['paving','road','tree','hedge','vine-wall','stubble','grain','flowers','dry-brush','rock','stoneburr','frost-lichen']
+FAMILIES=['paving','road','tree','hedge','vine-wall','stubble','grain','flowers','dry-brush','rock','stoneburr','frost-lichen','candy-carrot-crop','emberwheat-crop']
 PALETTE=['#082C28','#103E36','#1A4B40','#26594A','#A0A77C','#CBC697','#647353','#235D25','#40872C','#65AE3D','#435A53','#62786C','#819489','#16883B','#45CB4B','#A0E772','#207838','#D2D3B4','#B77B43','#403D28','#756C40','#A39456','#C4B877','#243E39']
 def make(f,v):
  rng=random.Random(262701+FAMILIES.index(f)*197+v*41);boxes=[]
@@ -93,6 +93,25 @@ def make(f,v):
    box(x+side*.093,h+.035,z+.015,.106,.043,.094,12)
    box(x+side*.102,h+.065,z+.010,.086,.017,.077,17)
    box(x-.020,h+.072,z-.065,.082,.015,.085,17)
+ elif f in ('candy-carrot-crop','emberwheat-crop'):
+  # Moisture changes only soil color. Each actual seed/sprout pair has identical
+  # geometry; dry growth pauses, and no standing ripe stage is invented.
+  stage=v//2;wet=v%2;soil=19 if wet else 20
+  box(0,.0175,0,.76,.035,.65,soil)
+  for z in (-.23,0,.23):box(0,.040,z,.68,.025,.055,soil)
+  for i,(x,z) in enumerate([(-.23,-.20),(.19,-.20),(-.20,.18),(.23,.18)]):
+   if stage==0:
+    if f=='candy-carrot-crop':
+     box(x,.068,z,.07,.035,.068,17);box(x+.038,.061,z+.016,.04,.023,.035,18)
+    else:
+     box(x,.064,z,.035,.03,.12,22);box(x+.024,.063,z-.015,.025,.023,.09,17)
+   elif f=='candy-carrot-crop':
+    box(x,.094,z,.067,.125,.065,7)
+    box(x-.064,.123,z,.15,.043,.065,8);box(x+.062,.168,z,.145,.041,.061,9)
+    box(x,.207,z-.034,.06,.043,.14,8);box(x-.013,.238,z-.055,.045,.025,.09,9)
+   else:
+    box(x-.034,.152,z,.035,.25,.052,7);box(x+.026,.19,z+.018,.03,.326,.039,8)
+    box(x+.072,.223,z,.116,.034,.044,9);box(x-.07,.13,z-.015,.112,.031,.048,8)
  return {'id':'spread-environment-'+f+'-'+str(v),'family':f,'variant':v,'kind':'ground'if f in ('paving','road')else'entity','boxes':boxes}
 def build():return {'schemaVersion':1,'id':'spread-environment-original','palette':PALETTE,'models':[make(f,v)for f in FAMILIES for v in range(4)]}
 if __name__=='__main__':

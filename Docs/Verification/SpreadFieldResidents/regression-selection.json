@@ -1,0 +1,352 @@
+{
+  "basedOn": "/Users/steven/.codex/scratch/caves-of-ooo/content-expansion/final-tests-request.json",
+  "request": "/Users/steven/.codex/scratch/caves-of-ooo/everyday-residents/affected-regression-request.json",
+  "fixtures": 100,
+  "removedUnrelated": [
+    "GameAuditNaturalWeaponActivationAdversarialTests",
+    "DensityCombatTacticsTests",
+    "SpreadSpecialistCombatTests",
+    "FlowerFieldTests",
+    "MarlbackCasterArtTests"
+  ],
+  "removedAbsentSelector": [
+    "ReferenceGladeGroundContactTests"
+  ],
+  "newFixtures": [
+    "SpreadEverydayResidentTests",
+    "SpreadResidentsManifestTests",
+    "SpreadExplorationResidentsTests",
+    "SpreadCropReadoutTests",
+    "SpreadResidentReportsTests",
+    "SpreadFieldResidentArtTests",
+    "PlantedCropArtTests"
+  ],
+  "addedRelevantRegression": [
+    "CropWateringTests",
+    "CropRoundTripTests",
+    "CropPlantingTests",
+    "CropsWateringAdversarialTests",
+    "FarmPlotSeederTests",
+    "CropGrowthTests",
+    "FarmingAuditFixTests",
+    "TickEndActorGateTests",
+    "TraderStockTests",
+    "TraderStateTests",
+    "TraderStockContentTests",
+    "TradeTests",
+    "CanBeTradedEventTests",
+    "DensityCookingReceiptReviewTests",
+    "FiniteCookingSourceTests",
+    "CampfirePartTests",
+    "FiniteCookingPresentationTests",
+    "DensityPlayerBedTests",
+    "SpreadDiscoveryAdversarialTests",
+    "SpreadDiscoveryTextTests",
+    "SpreadDiscoveryWayhouseTests",
+    "SpreadDiscoveryReportsTests"
+  ],
+  "sourcePaths": {
+    "CavesOfOoo.Tests.SpreadWildernessSituationTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadWildernessPersistenceTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadWildernessPersistenceTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationWorksitesTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationWorksitesTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationActivationTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationActivationTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationManifestAdversarialTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestAdversarialTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadCompositionAdversarialTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadCompositionAdversarialTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadGrazerPipelineStockingTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadGrazerPipelineStockingTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHuntSourceTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHuntSourceTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationManifestTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationManifestTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationPipelineTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationPipelineTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadPopulationTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadPopulationTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadWayhouseTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationReceiptTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationReceiptTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadCompositionTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadCompositionTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHuntPipelineTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHuntPipelineTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHuntManifestTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHuntManifestTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHaulingManifestTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHaulingManifestTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHaulingPipelineTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHaulingPipelineTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHaulingLayoutTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHaulingLayoutTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadRoadsideExchangeTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadRoadsideExchangeTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationFinalizationTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationFinalizationTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationCatalogExpansionTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationCatalogExpansionTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHuntDetachedReceiptTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHuntDetachedReceiptTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHuntSaveTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHuntSaveTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadFieldPassageManifestTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassageManifestTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadCollectorSourcePolicyTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadCollectorSourcePolicyTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadGenerationReceiptTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadFieldPassagePipelineTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassagePipelineTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadGleaningLaneMeasurementTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadGleaningLaneMeasurementTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationGeometryTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationGeometryTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadGenerationReceiptValidationTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadGenerationReceiptValidationTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadFormationTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadFormationTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationEncounterPipelineTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEncounterPipelineTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationEntryExpansionTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationEntryExpansionTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadCollectorPipelineTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadCollectorPipelineTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadLatchcoilSourceTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadLatchcoilSourceTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadCookingPipelineTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadCookingPipelineTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationForageReceiptTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationForageReceiptTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadRareEncounterTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadRareEncounterTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationSourcePolicyTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationSourcePolicyTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationFinalGeometryTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationFinalGeometryTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadLandscapeVarietyTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadLandscapeVarietyTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadFieldPassageTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadFieldPassageTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadWildernessPipelineCensusTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadWildernessPipelineCensusTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationMissingReplacementTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationMissingReplacementTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadRarePairClueTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadRarePairClueTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHaulingAdversarialTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHaulingAdversarialTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationReadoutTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationReadoutTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHaulingSourceTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHaulingSourceTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadCollectorContentTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadCollectorContentTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadRareEncounterLifecycleTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadRareEncounterLifecycleTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadDiscoveryCensusTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadDiscoveryCensusTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadGrazerReplacementReceiptTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadGrazerReplacementReceiptTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadWayhouseAdversarialTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseAdversarialTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadWayhouseEconomyCensusTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadWayhouseEconomyCensusTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHuntLayoutTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHuntLayoutTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadCoolingPlacementTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadCoolingPlacementTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadRareEncounterAdversarialTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadRareEncounterAdversarialTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHuntAdversarialTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHuntAdversarialTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadWildernessPipelineTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadWildernessPipelineTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadCoolingManifestTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadCoolingManifestTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationContentTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationContentTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadWildernessSituationAdversarialTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadWildernessSituationAdversarialTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadHuntArrivalTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadHuntArrivalTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadCollectorReplacementReceiptTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadCollectorReplacementReceiptTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadWorksiteManifestTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadWorksiteManifestTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadSpecialistGatheringTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadSpecialistGatheringTests.cs"
+    ],
+    "CavesOfOoo.Tests.GatheringPlantArtTests": [
+      "Assets/Tests/EditMode/Presentation/Rendering/GatheringPlantArtTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadEnvironmentArtTests": [
+      "Assets/Tests/EditMode/Presentation/Rendering/SpreadEnvironmentArtTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadBiomeHumanoidArtTests": [
+      "Assets/Tests/EditMode/Presentation/Rendering/SpreadBiomeHumanoidArtTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadBiomeHumanoidPreflightTests": [
+      "Assets/Tests/EditMode/Presentation/Rendering/SpreadBiomeHumanoidPreflightTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadEverydayResidentTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadEverydayResidentTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadResidentsManifestTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadResidentsManifestTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadExplorationResidentsTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadExplorationResidentsTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadCropReadoutTests": [
+      "Assets/Tests/EditMode/Gameplay/World/SpreadCropReadoutTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadResidentReportsTests": [
+      "Assets/Tests/EditMode/Gameplay/Conversations/SpreadResidentReportsTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadFieldResidentArtTests": [
+      "Assets/Tests/EditMode/Presentation/Rendering/SpreadFieldResidentArtTests.cs"
+    ],
+    "CavesOfOoo.Tests.PlantedCropArtTests": [
+      "Assets/Tests/EditMode/Presentation/Rendering/PlantedCropArtTests.cs"
+    ],
+    "CavesOfOoo.Tests.CropWateringTests": [
+      "Assets/Tests/EditMode/Gameplay/Farming/CropWateringTests.cs"
+    ],
+    "CavesOfOoo.Tests.CropRoundTripTests": [
+      "Assets/Tests/EditMode/Gameplay/Farming/CropRoundTripTests.cs"
+    ],
+    "CavesOfOoo.Tests.CropPlantingTests": [
+      "Assets/Tests/EditMode/Gameplay/Farming/CropPlantingTests.cs"
+    ],
+    "CavesOfOoo.Tests.CropsWateringAdversarialTests": [
+      "Assets/Tests/EditMode/Gameplay/Farming/CropsWateringAdversarialTests.cs"
+    ],
+    "CavesOfOoo.Tests.FarmPlotSeederTests": [
+      "Assets/Tests/EditMode/Gameplay/Farming/FarmPlotSeederTests.cs"
+    ],
+    "CavesOfOoo.Tests.CropGrowthTests": [
+      "Assets/Tests/EditMode/Gameplay/Farming/CropGrowthTests.cs"
+    ],
+    "CavesOfOoo.Tests.FarmingAuditFixTests": [
+      "Assets/Tests/EditMode/Gameplay/Farming/FarmingAuditFixTests.cs"
+    ],
+    "CavesOfOoo.Tests.TickEndActorGateTests": [
+      "Assets/Tests/EditMode/Gameplay/Turns/TickEndActorGateTests.cs"
+    ],
+    "CavesOfOoo.Tests.TraderStockTests": [
+      "Assets/Tests/EditMode/Gameplay/Economy/TraderStockTests.cs"
+    ],
+    "CavesOfOoo.Tests.TraderStateTests": [
+      "Assets/Tests/EditMode/Gameplay/Economy/TraderStateTests.cs"
+    ],
+    "CavesOfOoo.Tests.TraderStockContentTests": [
+      "Assets/Tests/EditMode/Gameplay/Economy/TraderStockContentTests.cs"
+    ],
+    "CavesOfOoo.Tests.TradeTests": [
+      "Assets/Tests/EditMode/Gameplay/Economy/TradeTests.cs"
+    ],
+    "CavesOfOoo.Tests.CanBeTradedEventTests": [
+      "Assets/Tests/EditMode/Gameplay/Economy/CanBeTradedEventTests.cs"
+    ],
+    "CavesOfOoo.Tests.DensityCookingReceiptReviewTests": [
+      "Assets/Tests/EditMode/Gameplay/Items/DensityCookingReceiptReviewTests.cs"
+    ],
+    "CavesOfOoo.Tests.FiniteCookingSourceTests": [
+      "Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.Grain.cs",
+      "Assets/Tests/EditMode/Gameplay/Items/FiniteCookingSourceTests.cs"
+    ],
+    "CavesOfOoo.Tests.CampfirePartTests": [
+      "Assets/Tests/EditMode/Gameplay/Settlements/CampfirePartTests.cs"
+    ],
+    "CavesOfOoo.Tests.FiniteCookingPresentationTests": [
+      "Assets/Tests/EditMode/Gameplay/Settlements/FiniteCookingPresentationTests.cs"
+    ],
+    "CavesOfOoo.Tests.DensityPlayerBedTests": [
+      "Assets/Tests/EditMode/Gameplay/AI/DensityPlayerBedTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadDiscoveryAdversarialTests": [
+      "Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryAdversarialTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadDiscoveryTextTests": [
+      "Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryTextTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadDiscoveryWayhouseTests": [
+      "Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryWayhouseTests.cs"
+    ],
+    "CavesOfOoo.Tests.SpreadDiscoveryReportsTests": [
+      "Assets/Tests/EditMode/Gameplay/Conversations/SpreadDiscoveryReportsTests.cs"
+    ]
+  },
+  "honesty": "Validated selector names against current C# source; exact expanded test count and runtime results require Unity. No Unity run requested by this script."
+}

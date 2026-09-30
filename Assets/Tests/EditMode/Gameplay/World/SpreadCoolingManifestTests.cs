@@ -36,10 +36,18 @@ namespace CavesOfOoo.Tests
         public void FreshCurrentSelectsOneFieldPrincipalWithoutGeneratingGraphs(int seed)
         {
             var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);var p=m.Exploration;
-            Assert.AreEqual(9,p.Version);Assert.AreEqual(10,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"CoolingWorkPatch")));
+            Assert.AreEqual(10,p.Version);Assert.AreEqual(10,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"CoolingWorkPatch")));
             var fields=p.Entries.Where(e=>e.Family!=SpreadExplorationFamily.None&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.FieldStrips).ToArray();
-            Assert.IsNotEmpty(fields);Assert.True(fields.Any(e=>e.Family.ToString()=="CoolingWorkPatch"));
-            foreach(var e in fields)Assert.AreEqual(Variant(seed,e.ZoneID)==0?"LastGleanings":"CoolingWorkPatch",e.Family.ToString());
+            Assert.IsNotEmpty(fields);Assert.True(fields.Any(e=>e.Family==SpreadExplorationFamily.CoolingWorkPatch));
+            Assert.True(fields.Any(e=>e.Family==SpreadExplorationFamily.LastGleanings));
+            // v10 adds residents to previously quiet rows in any formation. Keep
+            // checking the exact v6 field variant for every nonresident row;
+            // SpreadResidentsManifestTests freezes the complete native v9 map.
+            foreach(var e in fields)
+            {
+                if(e.Family==SpreadExplorationFamily.SeedKeepersPlot||e.Family==SpreadExplorationFamily.WaysideKitchen)continue;
+                Assert.AreEqual(Variant(seed,e.ZoneID)==0?"LastGleanings":"CoolingWorkPatch",e.Family.ToString(),e.ZoneID);
+            }
             string wire=SpreadExplorationPlan.BindForSave(m,null).GetProperty(SpreadExplorationPlan.PropertyKey);Bind(m,Restore(m,wire));
             Assert.AreEqual(wire,SpreadExplorationPlan.BindForSave(m,null).GetProperty(SpreadExplorationPlan.PropertyKey));Assert.Zero(m.CachedZoneCount);
         }
@@ -54,7 +62,7 @@ namespace CavesOfOoo.Tests
         {public ObservedManager(EntityFactory f,int seed):base(f,seed){}public SpreadCompositionBuilder Terrain(string id)=>base.GetPipelineForZone(id).Builders.OfType<SpreadCompositionBuilder>().Single();}
         [Test] public void OnlySelectedCurrentCookingFamilyOptsIntoTerrainRowReceipts()
         {
-            var m=new ObservedManager(scope.Factory,64);Assert.AreEqual(9,m.Exploration.Version);
+            var m=new ObservedManager(scope.Factory,64);Assert.AreEqual(10,m.Exploration.Version);
             var fields=m.Exploration.Entries.Where(e=>e.PlacementEligible&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.FieldStrips).ToArray();
             Assert.True(fields.Any(e=>e.Family.ToString()=="CoolingWorkPatch"));Assert.True(fields.Any(e=>e.Family.ToString()=="LastGleanings"));Assert.True(fields.Any(e=>e.Family==SpreadExplorationFamily.None));
             var flag=typeof(SpreadCompositionBuilder).GetField("CaptureCookingSources",All);Assert.NotNull(flag);

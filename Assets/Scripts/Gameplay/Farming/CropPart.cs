@@ -48,9 +48,8 @@ namespace CavesOfOoo.Core
         public int TicksInStage = 0;
 
         /// <summary>Ticks required to complete each stage. Blueprint
-        /// param. NOTE: TickEnd fires once per ACTOR-turn (N×/round in a
-        /// busy zone) — values are tick-denominated, same convention as
-        /// the gas system.</summary>
+        /// param. CropSystemPart accepts player-stamped TickEnd once per
+        /// active player round; un-stamped test events remain supported.</summary>
         public int TicksPerStage = 20;
 
         /// <summary>Remaining moisture. Growth advances and moisture
@@ -135,6 +134,30 @@ namespace CavesOfOoo.Core
             string[] parts = csv.Split(',');
             if (index >= parts.Length) return null;
             return parts[index].Trim();
+        }
+
+        /// <summary>Read-only visible-world description. A detached, hidden or
+        /// foreign crop cannot advertise live growth through a stale reader.</summary>
+        internal string DescribeGrowth(Zone zone, Cell cell)
+        {
+            var owner = ParentEntity;
+            if (owner == null || !ReferenceEquals(owner.GetPart<CropPart>(), this)
+                || zone == null || !ReferenceEquals(SettlementRuntime.ActiveZone, zone)
+                || cell == null || cell.ParentZone != zone || !cell.IsVisible
+                || owner.SpatialZone != zone || !ReferenceEquals(zone.GetEntityCell(owner), cell)
+                || !cell.Objects.Contains(owner) || GrowthStage < 0 || GrowthStage > 1
+                || MoistureTicks < 0 || TicksPerStage <= 0 || TicksInStage < 0)
+                return null;
+            var render = owner.GetPart<RenderPart>();
+            var physics = owner.GetPart<PhysicsPart>();
+            if (render == null || render.ParentEntity != owner || !render.Visible
+                || physics == null || physics.ParentEntity != owner
+                || physics.InInventory != null || physics.Equipped != null)
+                return null;
+            return "Growth: " + (GrowthStage == 0 ? "seed" : "sprout") + ". Soil is "
+                + (MoistureTicks > 0 ? "moist; growth continues." : "dry; growth is paused.")
+                + " Conjure Rain nearby to water this crop. At maturity, produce falls here to pick up."
+                + " Crops grow only while you are in this area.";
         }
 
         private void MarkOwnCellDirty(string source)

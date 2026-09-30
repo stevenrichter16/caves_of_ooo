@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CavesOfOoo.Data;
 using CavesOfOoo.Storylets;
 
@@ -20,6 +21,7 @@ namespace CavesOfOoo.Core
             internal WorldMap Map;
             internal SpreadRareEncounterPlan Plan;
             internal SpreadWayhousePlan Wayhouse;
+            internal SpreadExplorationPlan Exploration;
             internal Entity Speaker, Player;
             internal PhysicsPart SpeakerPhysics, PlayerPhysics;
             internal RenderPart SpeakerRender, PlayerRender;
@@ -56,7 +58,8 @@ namespace CavesOfOoo.Core
                     Text = record.Family == SpreadDiscoveryNotes.Pair
                         ? "Remember ditch-cutters (unconfirmed)"
                         : record.Family == SpreadDiscoveryNotes.Viper ? "Remember chalk-ring vipers (unconfirmed)"
-                        : "Remember Turnbank wayhouse (unconfirmed)",
+                        : record.Family == SpreadDiscoveryNotes.Wayhouse ? "Remember Turnbank wayhouse (unconfirmed)"
+                        : "Remember " + SpreadDiscoveryNotes.FieldPlaceName(record.Family) + " (unconfirmed)",
                     Target = "",
                     Actions = new List<ConversationParam> { new ConversationParam { Key = ActionName, Value = token } }
                 });
@@ -101,8 +104,9 @@ namespace CavesOfOoo.Core
             var conversation = ConversationManager.CurrentConversation;
             var node = ConversationManager.CurrentNode;
             string conversationID = conversation?.ID;
+            bool resident = ResidentNode(speaker, conversationID, node?.ID);
             if (!((conversationID == "Scribe_1" && node?.ID == "RegionOverview")
-                || (conversationID == "Innkeeper_1" && node?.ID == "Rumors"))) return false;
+                || (conversationID == "Innkeeper_1" && node?.ID == "Rumors") || resident)) return false;
             var zone = speaker?.SpatialZone;
             var manager = WorldLocationContext.For(zone);
             if (zone == null || manager?.WorldMap == null || !SpreadDiscoveryNotes.CanonicalSurface(zone.ZoneID)
@@ -120,6 +124,7 @@ namespace CavesOfOoo.Core
             context = new Context
             {
                 Zone = zone, Manager = manager, Map = manager.WorldMap, Plan = manager.RareEncounters, Wayhouse = manager.Wayhouse,
+                Exploration = manager.Exploration,
                 Speaker = speaker, Player = player, SpeakerID = speaker.ID, PlayerID = player.ID,
                 SpeakerPhysics = speaker.GetPart<PhysicsPart>(), PlayerPhysics = player.GetPart<PhysicsPart>(),
                 SpeakerRender = render, PlayerRender = player.GetPart<RenderPart>(), ConversationPart = part,
@@ -128,6 +133,10 @@ namespace CavesOfOoo.Core
             };
             return true;
         }
+
+        private static bool ResidentNode(Entity speaker, string conversation, string node)
+            => node == "Nearby" && ((speaker?.BlueprintName == "SpreadSeedKeeper" && conversation == "SpreadSeedKeeper_1")
+                || (speaker?.BlueprintName == "SpreadWaysideCook" && conversation == "SpreadWaysideCook_1"));
 
         private static bool Live(Entity actor, Zone zone)
         {
@@ -145,6 +154,7 @@ namespace CavesOfOoo.Core
             return ReferenceEquals(a.Zone, b.Zone) && ReferenceEquals(a.Manager, b.Manager)
                 && ReferenceEquals(a.Map, b.Map) && ReferenceEquals(a.Plan, b.Plan)
                 && ReferenceEquals(a.Wayhouse, b.Wayhouse)
+                && ReferenceEquals(a.Exploration, b.Exploration)
                 && ReferenceEquals(a.Speaker, b.Speaker) && ReferenceEquals(a.Player, b.Player)
                 && ReferenceEquals(a.SpeakerPhysics, b.SpeakerPhysics) && ReferenceEquals(a.PlayerPhysics, b.PlayerPhysics)
                 && ReferenceEquals(a.SpeakerRender, b.SpeakerRender) && ReferenceEquals(a.PlayerRender, b.PlayerRender)
@@ -158,6 +168,23 @@ namespace CavesOfOoo.Core
         private static List<SpreadDiscoveryNotes.Record> Build(Context context)
         {
             var result = new List<SpreadDiscoveryNotes.Record>(3);
+            if (ResidentNode(context.Speaker, context.ConversationID, context.NodeID))
+            {
+                if (context.Exploration?.Enabled != true) return result;
+                var origin = WorldMap.FromZoneID(context.Zone.ZoneID);
+                var seen = new HashSet<string>(StringComparer.Ordinal);
+                foreach (var row in context.Exploration.Entries
+                    .Where(e => e.ZoneID != context.Zone.ZoneID && SpreadDiscoveryNotes.FieldPlaceName(SpreadDiscoveryNotes.FieldFamily(e.Family)) != null)
+                    .Select(e => new { Entry = e, Distance = Distance(origin, WorldMap.FromZoneID(e.ZoneID)) })
+                    .Where(e => e.Distance <= 4).OrderBy(e => e.Distance).ThenBy(e => e.Entry.ZoneID, StringComparer.Ordinal))
+                {
+                    string family = SpreadDiscoveryNotes.FieldFamily(row.Entry.Family);
+                    if (!Selected(context, family, row.Entry.ZoneID) || !seen.Add(family)) continue;
+                    AddIfSelected(context, family, row.Entry.ZoneID, result);
+                    if (result.Count == 2) break;
+                }
+                return result;
+            }
             if (context.Plan?.Initialized == true)
             {
                 AddIfSelected(context, SpreadDiscoveryNotes.Pair, context.Plan.PairZoneID, result);
@@ -166,6 +193,9 @@ namespace CavesOfOoo.Core
             AddIfSelected(context, SpreadDiscoveryNotes.Wayhouse, context.Wayhouse?.ZoneID, result);
             return result;
         }
+
+        private static int Distance((int x, int y, int z) a, (int x, int y, int z) b)
+            => Math.Abs(a.x - b.x) + Math.Abs(a.y - b.y);
 
         private static void AddIfSelected(Context context, string family, string id, List<SpreadDiscoveryNotes.Record> result)
         {
@@ -187,6 +217,13 @@ namespace CavesOfOoo.Core
         private static bool Selected(Context context, string family, string id)
         {
             if (!SpreadDiscoveryNotes.CanonicalSurface(id)) return false;
+            if (SpreadDiscoveryNotes.FieldPlaceName(family) != null)
+            {
+                return ResidentNode(context.Speaker, context.ConversationID, context.NodeID)
+                    && context.Exploration != null && context.Exploration.TryGetPlacement(context.Manager, id, out var entry)
+                    && SpreadDiscoveryNotes.FieldFamily(entry.Family) == family && id != context.Zone.ZoneID
+                    && Distance(WorldMap.FromZoneID(context.Zone.ZoneID), WorldMap.FromZoneID(id)) <= 4;
+            }
             if (family == SpreadDiscoveryNotes.Wayhouse) return context.Wayhouse?.Selects(context.Manager, id) == true;
             if (context.Plan?.Initialized != true) return false;
             if (family == SpreadDiscoveryNotes.Viper) return context.Plan.SelectsViper(context.Manager, id);

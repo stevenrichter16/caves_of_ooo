@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CavesOfOoo.Core
 {
-    /// <summary>Three bounded historical records in ordinary saved player properties.
+    /// <summary>Eight bounded historical records in ordinary saved player properties.
     /// Reading never consults the current world, informant, or destination graph.</summary>
     public static class SpreadDiscoveryNotes
     {
@@ -12,6 +12,33 @@ namespace CavesOfOoo.Core
         internal const string Pair = "ditch-cutters";
         internal const string Viper = "chalk-ring-viper";
         internal const string Wayhouse = "turnbank-wayhouse";
+
+        // Same v1 record schema; five explicit original field-place families extend
+        // the catalog without rewriting the earlier three historical records.
+        internal static string FieldFamily(SpreadExplorationFamily family)
+        {
+            switch (family)
+            {
+                case SpreadExplorationFamily.FieldAlembic: return "field-alembic";
+                case SpreadExplorationFamily.TemperingShelter: return "tempering-shelter";
+                case SpreadExplorationFamily.TrappersStore: return "trappers-store";
+                case SpreadExplorationFamily.SeedKeepersPlot: return "seed-keepers-plot";
+                case SpreadExplorationFamily.WaysideKitchen: return "wayside-kitchen";
+                default: return null;
+            }
+        }
+        internal static string FieldPlaceName(string family)
+        {
+            switch (family)
+            {
+                case "field-alembic": return "a field alembic";
+                case "tempering-shelter": return "a tempering shelter";
+                case "trappers-store": return "a trapper's store";
+                case "seed-keepers-plot": return "a seed keeper's plot";
+                case "wayside-kitchen": return "a wayside kitchen";
+                default: return null;
+            }
+        }
 
         [Serializable]
         internal sealed class Record
@@ -32,11 +59,13 @@ namespace CavesOfOoo.Core
 
         public static IReadOnlyList<string> Read(Entity player)
         {
-            var result = new List<string>(3);
+            var result = new List<string>(8);
             if (player == null) return result;
             ReadFamily(player, Pair, result);
             ReadFamily(player, Viper, result);
             ReadFamily(player, Wayhouse, result);
+            foreach (var family in new[] { "field-alembic", "tempering-shelter", "trappers-store", "seed-keepers-plot", "wayside-kitchen" })
+                ReadFamily(player, family, result);
             return result;
         }
 
@@ -70,12 +99,14 @@ namespace CavesOfOoo.Core
         private static bool Valid(Record record, string family)
         {
             return record != null && record.Version == 1 && record.Family == family
-                && (family == Pair || family == Viper || family == Wayhouse)
+                && (family == Pair || family == Viper || family == Wayhouse || FieldPlaceName(family) != null)
                 && CanonicalSurface(record.OriginZoneID) && CanonicalSurface(record.DestinationZoneID)
                 && BoundedText(record.InformantID, 128) && BoundedText(record.InformantName, 160)
                 && (family == Pair ? record.Formation == "Hedgerow" || record.Formation == "OldRoad"
                     : family == Viper ? record.Formation == "Hedgerow"
-                    : record.Formation == "OldRoad" || record.Formation == "Fallow");
+                    : family == Wayhouse ? record.Formation == "OldRoad" || record.Formation == "Fallow"
+                    : record.Formation == "OldRoad" || record.Formation == "Fallow" || record.Formation == "Hedgerow"
+                        || record.Formation == "FieldStrips" || record.Formation == "RiverMeadow" || record.Formation == "FlowerMeadow");
         }
 
         internal static string Describe(Record record)
@@ -90,7 +121,8 @@ namespace CavesOfOoo.Core
             string report = record.Family == Pair
                 ? "A carrier reported ditch-cutters " + (record.Formation == "OldRoad" ? "by an old road" : "in the hedgerows") + "."
                 : record.Family == Viper ? "Old warnings mention chalk-ring vipers in the hedgerows. Their bites are poisonous."
-                : "Old reports place Turnbank wayhouse " + (record.Formation == "OldRoad" ? "by an old road." : "among fallow fields.");
+                : record.Family == Wayhouse ? "Old reports place Turnbank wayhouse " + (record.Formation == "OldRoad" ? "by an old road." : "among fallow fields.")
+                : "Old reports mention " + FieldPlaceName(record.Family) + ".";
             return report + " Destination (" + to.x + "," + to.y + "), " + route
                 + " from (" + from.x + "," + from.y + "). Reported by " + record.InformantName
                 + " at (" + from.x + "," + from.y + "); unconfirmed when heard. This report does not say what remains there now.";

@@ -10,7 +10,7 @@ namespace CavesOfOoo.Tests
  {
   const BindingFlags All=BindingFlags.Instance|BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic;
   [Test]public void NewCatalogAppendsHaulingWithoutRenumberingExistingFamilies()
-  {Assert.AreEqual(9,SpreadExplorationPlan.CurrentVersion);Assert.AreEqual(11,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"HeavySalvage")));Assert.AreEqual(10,(int)SpreadExplorationFamily.CoolingWorkPatch);Assert.AreEqual(9,(int)SpreadExplorationFamily.FieldPassage);}
+  {Assert.AreEqual(10,SpreadExplorationPlan.CurrentVersion);Assert.AreEqual(11,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"HeavySalvage")));Assert.AreEqual(10,(int)SpreadExplorationFamily.CoolingWorkPatch);Assert.AreEqual(9,(int)SpreadExplorationFamily.FieldPassage);}
   [TestCase(2,4)][TestCase(3,4)][TestCase(4,4)][TestCase(5,4)][TestCase(6,4)]
   public void LiteralOldFamilyMappingIsUnchangedAndDoesNotAdoptHauling(int version,int unused)
   {

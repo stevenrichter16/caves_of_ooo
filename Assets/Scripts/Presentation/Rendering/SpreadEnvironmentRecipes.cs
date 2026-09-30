@@ -38,6 +38,22 @@ namespace CavesOfOoo.Rendering
       ||!string.IsNullOrEmpty(render.VisualID)||!string.IsNullOrEmpty(render.VisualVariant)||!string.IsNullOrEmpty(render.GlyphVariants))return null;
    return family;
   }
+  // These are planted native CropPart owners, separate from harvestable field
+  // rows. Maturity removes them; stage and moisture are never inferred from age.
+  internal static string PlantedModel(Zone zone,Entity owner)
+  {
+   bool carrot=owner?.BlueprintName=="CandyCarrotCrop";
+   if(!carrot&&owner?.BlueprintName!="EmberwheatCrop"||!SpreadPresentationScope.IsActive(zone))return null;
+   var cell=zone.GetEntityCell(owner);var crop=owner.GetPart<CropPart>();var render=owner.GetPart<RenderPart>();var physics=owner.GetPart<PhysicsPart>();
+   if(cell==null||!ReferenceEquals(owner.SpatialZone,zone)||!ReferenceEquals(cell.ParentZone,zone)||!cell.Objects.Contains(owner)
+      ||crop==null||crop.ParentEntity!=owner||crop.GrowthStage<0||crop.GrowthStage>1
+      ||render==null||render.ParentEntity!=owner||!render.Visible
+      ||render.RenderString!=(crop.GrowthStage==0?".":carrot?"t":"i")||render.ColorString!=(crop.GrowthStage==0?"&w":carrot?"&g":"&y")
+      ||physics==null||physics.ParentEntity!=owner||physics.Takeable||physics.Solid||physics.InInventory!=null||physics.Equipped!=null
+      ||!owner.HasTag("Crop")||owner.HasTag("Creature")||owner.HasTag("Item")||owner.HasPart<SpatialFootprintPart>()||owner.HasPart<MultiCellPilotPropPart>()
+      ||!string.IsNullOrEmpty(render.VisualID)||!string.IsNullOrEmpty(render.VisualVariant)||!string.IsNullOrEmpty(render.GlyphVariants))return null;
+   return SpreadEnvironmentSource.ModelId(carrot?"candy-carrot-crop":"emberwheat-crop",crop.GrowthStage*2+(crop.MoistureTicks>0?1:0));
+  }
   private static string Family(Zone zone,Entity owner,string nativeModel)
   {
    switch(owner.BlueprintName){

@@ -27,7 +27,7 @@ namespace CavesOfOoo.Editor
     if(EditorApplication.isPlayingOrWillChangePlaymode||EditorApplication.isCompiling)throw new InvalidOperationException("Idle native editor required for scoped humanoid adoption.");
     var data=JsonUtility.FromJson<SpreadBiomeHumanoidSource>(File.ReadAllText(sourcePath));report.sourceHash=Hash(sourcePath);
     var ring=Resources.Load<SpawnRing3DLibrary>(SpawnRing3DLibrary.ResourcePath);var glade=ReferenceGladeVoxelLibrary.Load();if(ring==null||glade==null)throw new InvalidOperationException("Approved body/rig/palette sources required.");ring.Validate();glade.Validate();
-    if(data?.schemaVersion!=1||data.sourceRig!="ring-nam"||data.roles?.Length!=54||data.palette?.Length!=24||data.preserveNativeModelIds==null||!data.preserveNativeModelIds.SequenceEqual(new[]{"ring-player","ring-sien","ring-nam"}))throw new InvalidOperationException("Exact humanoid source contract required.");
+    if(data?.schemaVersion!=1||data.sourceRig!="ring-nam"||data.roles?.Length!=56||data.palette?.Length!=24||data.preserveNativeModelIds==null||!data.preserveNativeModelIds.SequenceEqual(new[]{"ring-player","ring-sien","ring-nam"}))throw new InvalidOperationException("Exact humanoid source contract required.");
     var palette=glade.Material.GetTexture("_BaseMap")as Texture2D;if(palette==null||!palette.isReadable||palette.width!=24||palette.height!=1)throw new InvalidOperationException("Approved palette unavailable.");
     for(int i=0;i<24;i++)if(!ColorUtility.TryParseHtmlString(data.palette[i],out var c)||Vector4.Distance(c,palette.GetPixel(i,0))>.00001f)throw new InvalidOperationException("Humanoid source palette mismatch.");
     var ids=new HashSet<string>(StringComparer.Ordinal);

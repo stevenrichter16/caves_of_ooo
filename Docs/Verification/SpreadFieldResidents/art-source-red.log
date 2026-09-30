@@ -1,0 +1,23 @@
+FF
+======================================================================
+FAIL: test_eight_current_crop_states (__main__.NewSources.test_eight_current_crop_states)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/.codex/scratch/caves-of-ooo/field-resident-art/test_new_sources.py", line 6, in test_eight_current_crop_states
+    data=json.loads((S/'production/ArtSource/SpreadEnvironment3D/kit.json').read_text()); old=json.loads((S/'before/ArtSource/SpreadEnvironment3D/kit.json').read_text());self.assertEqual(old['palette'],data['palette']);self.assertEqual(old['models'],data['models'][:48]);self.assertEqual(56,len(data['models']))
+                                                                                                                                                                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 56 != 48
+
+======================================================================
+FAIL: test_two_distinct_residents_and_unchanged_old_roles (__main__.NewSources.test_two_distinct_residents_and_unchanged_old_roles)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/steven/.codex/scratch/caves-of-ooo/field-resident-art/test_new_sources.py", line 12, in test_two_distinct_residents_and_unchanged_old_roles
+    data=json.loads((S/'production/ArtSource/SpreadBiome3D/humanoids.json').read_text());old=json.loads((S/'before/ArtSource/SpreadBiome3D/humanoids.json').read_text());self.assertEqual(old['palette'],data['palette']);self.assertEqual(old['roles'],data['roles'][:54]);self.assertEqual(56,len(data['roles']));roles={r['blueprint']:r for r in data['roles']}
+                                                                                                                                                                                                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 56 != 54
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.004s
+
+FAILED (failures=2)

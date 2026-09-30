@@ -1,13 +1,13 @@
 import json,math,unittest
 from pathlib import Path
 ROOT=Path(__file__).parent
-FAMILIES=['paving','road','tree','hedge','vine-wall','stubble','grain','flowers','dry-brush','rock','stoneburr','frost-lichen']
+FAMILIES=['paving','road','tree','hedge','vine-wall','stubble','grain','flowers','dry-brush','rock','stoneburr','frost-lichen','candy-carrot-crop','emberwheat-crop']
 def load():return json.loads((ROOT/'kit.json').read_text())
 def models(f):return [m for m in load()['models']if m['family']==f]
 def extents(m,axis):return (min(b['center'][axis]-b['size'][axis]/2 for b in m['boxes']),max(b['center'][axis]+b['size'][axis]/2 for b in m['boxes']))
 class EnvironmentSource(unittest.TestCase):
- def test_exact_forty_eight_forms_and_four_variants(self):
-  d=load();self.assertEqual(48,len(d['models']));self.assertEqual(set(FAMILIES),{m['family']for m in d['models']});self.assertEqual(48,len({m['id']for m in d['models']}))
+ def test_exact_fifty_six_forms_and_four_variants(self):
+  d=load();self.assertEqual(56,len(d['models']));self.assertEqual(set(FAMILIES),{m['family']for m in d['models']});self.assertEqual(56,len({m['id']for m in d['models']}))
   for f in FAMILIES:self.assertEqual({0,1,2,3},{m['variant']for m in models(f)})
  def test_approved_palette_and_finite_bounded_geometry(self):
   d=load();self.assertEqual(24,len(d['palette']));self.assertEqual('#082C28',d['palette'][0]);self.assertEqual('#D2D3B4',d['palette'][17])

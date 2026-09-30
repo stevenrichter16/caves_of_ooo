@@ -64,6 +64,8 @@ namespace CavesOfOoo.Rendering
    {"DirtGnome","spread-person-dirt-gnome"},
    {"MarlbackCindercaller","spread-person-marlback-cindercaller"},
    {"MarlbackSoursprayer","spread-person-marlback-soursprayer"},
+   {"SpreadSeedKeeper","spread-person-seed-keeper"},
+   {"SpreadWaysideCook","spread-person-wayside-cook"},
   };
   private static readonly Dictionary<string,string> Glyphs=new Dictionary<string,string>(StringComparer.Ordinal)
   {
@@ -121,8 +123,11 @@ namespace CavesOfOoo.Rendering
    {"DirtGnome","g"},
    {"MarlbackCindercaller","g"},
    {"MarlbackSoursprayer","g"},
+   {"SpreadSeedKeeper","@"},
+   {"SpreadWaysideCook","@"},
   };
 
+  public static bool IsFieldResident(string blueprint)=>blueprint=="SpreadSeedKeeper"||blueprint=="SpreadWaysideCook";
   public static bool IsCaster(string blueprint)=>blueprint=="MarlbackCindercaller"||blueprint=="MarlbackSoursprayer";
   public static string ModelId(string blueprint)=>blueprint!=null&&Ids.TryGetValue(blueprint,out var id)?id:null;
   public static string CanonicalGlyph(string blueprint)=>blueprint!=null&&Glyphs.TryGetValue(blueprint,out var glyph)?glyph:null;

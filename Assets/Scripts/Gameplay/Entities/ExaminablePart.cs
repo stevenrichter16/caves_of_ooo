@@ -97,10 +97,11 @@ namespace CavesOfOoo.Core
         public string BuildWorldExamineLine(Zone zone, Cell cell)
         {
             return BuildDescription(true, CellStatusReadout.GroundLine(zone, cell),
-                ParentEntity?.GetPart<CampfirePart>()?.DescribeFiniteCooking(zone, cell));
+                ParentEntity?.GetPart<CampfirePart>()?.DescribeFiniteCooking(zone, cell),
+                ParentEntity?.GetPart<CropPart>()?.DescribeGrowth(zone, cell));
         }
 
-        private string BuildDescription(bool statusFirst, string ground, string cooking = null)
+        private string BuildDescription(bool statusFirst, string ground, string cooking = null, string growth = null)
         {
             string name = ParentEntity?.GetDisplayName() ?? "something";
             string article = GetArticle(name);
@@ -110,6 +111,7 @@ namespace CavesOfOoo.Core
                 baseLine += DescribeAfflictions();
                 if (!string.IsNullOrEmpty(ground)) baseLine += "\n" + ground;
                 if (!string.IsNullOrEmpty(cooking)) baseLine += "\n" + cooking;
+                if (!string.IsNullOrEmpty(growth)) baseLine += "\n" + growth;
             }
             if (!string.IsNullOrWhiteSpace(Text))
                 baseLine += (statusFirst ? "\n\n" : " ") + Text.Trim();

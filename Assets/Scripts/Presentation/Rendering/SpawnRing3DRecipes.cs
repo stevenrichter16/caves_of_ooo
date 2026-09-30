@@ -59,6 +59,18 @@ namespace CavesOfOoo.Rendering
                 return new SpawnRing3DRecipe(entity, id, null,
                     Village3DProjection.CellCentre(cell.X, cell.Y), false, false, quarterTurns: door.QuarterTurns);
             }
+            if (SpreadPresentationScope.IsActive(zone) && (entity.BlueprintName=="CandyCarrotCrop"||entity.BlueprintName=="EmberwheatCrop"))
+            {
+                string crop=SpreadEnvironmentRecipes.PlantedModel(zone,entity);
+                return crop==null?Refused(entity,"unsupported-current-planted-crop")
+                    :new SpawnRing3DRecipe(entity,crop,null,Village3DProjection.CellCentre(cell.X,cell.Y),false,true);
+            }
+            if (SpreadPresentationScope.IsActive(zone) && SpreadBiomeHumanoidSource.IsFieldResident(entity.BlueprintName))
+            {
+                string resident=SpreadBiomeHumanoidLibrary.ResolveFieldResidentOwner(zone,entity);
+                return resident==null?Refused(entity,"unsupported-current-field-resident")
+                    :new SpawnRing3DRecipe(entity,resident,null,Village3DProjection.CellCentre(cell.X,cell.Y),true,false);
+            }
             if (SpreadPresentationScope.IsActive(zone) && SpreadBiomeHumanoidSource.IsCaster(entity.BlueprintName))
             {
                 string caster=SpreadBiomeHumanoidLibrary.ResolveCasterOwner(zone,entity);

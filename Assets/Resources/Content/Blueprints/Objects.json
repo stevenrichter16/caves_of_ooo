@@ -37649,6 +37649,144 @@
           "Value": 20
         }
       ]
+    },
+    {
+      "Name": "SpreadSeedKeeper",
+      "Inherits": "Villager",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "seed keeper"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "@"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "Passive",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Conversation",
+          "Params": [
+            {
+              "Key": "ConversationID",
+              "Value": "SpreadSeedKeeper_1"
+            }
+          ]
+        },
+        {
+          "Name": "Trader",
+          "Params": [
+            {
+              "Key": "StockTable",
+              "Value": "SeedKeeperStock"
+            },
+            {
+              "Key": "Drams",
+              "Value": "40"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A broad hat shades a row of seed pouches. Ask about planting or trade for seeds and a watering grimoire."
+            }
+          ]
+        }
+      ],
+      "IntProps": [
+        {
+          "Key": "Drams",
+          "Value": 40
+        }
+      ]
+    },
+    {
+      "Name": "SpreadWaysideCook",
+      "Inherits": "Villager",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "wayside cook"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "@"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            }
+          ]
+        },
+        {
+          "Name": "Brain",
+          "Params": [
+            {
+              "Key": "Passive",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Conversation",
+          "Params": [
+            {
+              "Key": "ConversationID",
+              "Value": "SpreadWaysideCook_1"
+            }
+          ]
+        },
+        {
+          "Name": "Trader",
+          "Params": [
+            {
+              "Key": "StockTable",
+              "Value": "WaysideCookStock"
+            },
+            {
+              "Key": "Drams",
+              "Value": "35"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A flour-pale cap and a patched apron. Ask about the kitchen, buy a meal, or bring raw food to cook yourself."
+            }
+          ]
+        }
+      ],
+      "IntProps": [
+        {
+          "Key": "Drams",
+          "Value": 35
+        }
+      ]
     }
   ]
 }
