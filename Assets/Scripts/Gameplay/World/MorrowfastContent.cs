@@ -76,8 +76,8 @@ namespace CavesOfOoo.Core
                 factory.Blueprints[blueprintName] = bp;
             }
             var actor = factory.CreateEntity(blueprintName);
-            if (index == 4) Stock(actor, factory, new[] { "Torch", "Dagger", "Spear", "LeatherArmor", "Tepuibone", "FireClay" }, new[] { 4, 2, 1, 1, 3, 4 });
-            if (index == 5) Stock(actor, factory, new[] { "Mushroom", "DriedMeat", "HealingTonic", "BurnSalve", "WaterTonic", "Waterskin", "LiquidFlask" }, new[] { 8, 4, 2, 2, 3, 1, 1 });
+            if (index == 4) Stock(actor, factory, new[] { "Torch", "Dagger", "Spear", "LeatherArmor", "Tepuibone", "FireClay", "SalvagedTimber", "KnotflaxCord" }, new[] { 4, 2, 1, 1, 3, 4, 4, 3 });
+            if (index == 5) Stock(actor, factory, new[] { "Mushroom", "DriedMeat", "HealingTonic", "BurnSalve", "WaterTonic", "Waterskin", "LiquidFlask", "KnotflaxSeed", "HearthbulbSeed", "SeamleafSeed" }, new[] { 8, 4, 2, 2, 3, 1, 1, 2, 2, 2 });
             return actor;
         }
         private static void Stock(Entity actor, EntityFactory factory, string[] items, int[] counts)

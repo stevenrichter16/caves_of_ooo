@@ -118,7 +118,7 @@ namespace CavesOfOoo.Tests
                 ? new[] { "CandyCarrotSeed", "EmberwheatSeed", "WateringGrimoire" }
                 : new[] { "RawMeat", "Mushroom", "Emberwheat", "DriedMeat", "ToastedEmberwheat" };
             foreach (string id in expected) Assert.Greater(Units(resident, id), 0, id);
-            Assert.AreEqual(5, resident.GetPart<InventoryPart>().Objects.Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
+            Assert.AreEqual(blueprint == "SpreadSeedKeeper" ? 8 : 5, resident.GetPart<InventoryPart>().Objects.Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
             Assert.False(resident.GetPart<InventoryPart>().Objects.Any(e => e.HasPart<MeleeWeaponPart>() || e.HasPart<ArmorPart>()), "The shelf is role stock, not inherited merchant equipment.");
         }
 

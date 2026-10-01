@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/repair/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="210" result="Passed" start-time="2026-10-01T04:01:58.1378100Z" end-time="2026-10-01T04:01:58.2593870Z" duration="0.121567" total="3" passed="3" failed="0" inconclusive="0" skipped="0" warnings="0" asserts="33" random-seed="1757914617">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/repair/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/repair/examine-green.xml --where "method == AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair"]]></command-line>
+  <filter>
+    <method>AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair</method>
+  </filter>
+  <test-suite type="Assembly" id="1258" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/repair/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="210" result="Passed" start-time="2026-10-01T04:01:58.1378100Z" end-time="2026-10-01T04:01:58.2593870Z" duration="0.121567" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="33">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/repair/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/repair/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="50680" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <test-suite type="TestSuite" id="1259" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="210" result="Passed" start-time="2026-10-01T04:01:58.1394880Z" end-time="2026-10-01T04:01:58.2593860Z" duration="0.119897" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="33">
+      <test-suite type="TestSuite" id="1260" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="210" result="Passed" start-time="2026-10-01T04:01:58.1395890Z" end-time="2026-10-01T04:01:58.2593840Z" duration="0.119795" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="33">
+        <test-suite type="TestFixture" id="1000" name="MaterialRepairTests" fullname="CavesOfOoo.Tests.MaterialRepairTests" classname="CavesOfOoo.Tests.MaterialRepairTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-01T04:01:58.1399320Z" end-time="2026-10-01T04:01:58.2593780Z" duration="0.119445" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="33">
+          <test-suite type="ParameterizedMethod" id="1016" name="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair" fullname="CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair" classname="CavesOfOoo.Tests.MaterialRepairTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-01T04:01:58.1408730Z" end-time="2026-10-01T04:01:58.2591550Z" duration="0.118281" total="3" passed="3" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="33">
+            <test-case id="1013" name="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(&quot;RepairLinedWell&quot;,&quot;FireClay&quot;,2,&quot;water escapes before a vessel can be filled&quot;)" fullname="CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(&quot;RepairLinedWell&quot;,&quot;FireClay&quot;,2,&quot;water escapes before a vessel can be filled&quot;)" methodname="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair" classname="CavesOfOoo.Tests.MaterialRepairTests" runstate="Runnable" seed="1031370624" result="Passed" start-time="2026-10-01T04:01:58.1409610Z" end-time="2026-10-01T04:01:58.2195650Z" duration="0.078627" asserts="11" />
+            <test-case id="1014" name="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(&quot;RepairRopeWell&quot;,&quot;KnotflaxCord&quot;,1,&quot;a frayed stump of rope hangs&quot;)" fullname="CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(&quot;RepairRopeWell&quot;,&quot;KnotflaxCord&quot;,1,&quot;a frayed stump of rope hangs&quot;)" methodname="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair" classname="CavesOfOoo.Tests.MaterialRepairTests" runstate="Runnable" seed="958365303" result="Passed" start-time="2026-10-01T04:01:58.2201140Z" end-time="2026-10-01T04:01:58.2395210Z" duration="0.019407" asserts="11" />
+            <test-case id="1015" name="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(&quot;RepairWoodenGate&quot;,&quot;SalvagedTimber&quot;,2,&quot;has wedged this short gate open&quot;)" fullname="CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(&quot;RepairWoodenGate&quot;,&quot;SalvagedTimber&quot;,2,&quot;has wedged this short gate open&quot;)" methodname="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair" classname="CavesOfOoo.Tests.MaterialRepairTests" runstate="Runnable" seed="1370419443" result="Passed" start-time="2026-10-01T04:01:58.2395460Z" end-time="2026-10-01T04:01:58.2585430Z" duration="0.018998" asserts="11" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

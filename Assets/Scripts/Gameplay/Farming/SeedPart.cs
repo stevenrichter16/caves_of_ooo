@@ -1,3 +1,5 @@
+using System;
+using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
 
@@ -27,6 +29,10 @@ namespace CavesOfOoo.Core
 
         /// <summary>Crop blueprint spawned on planting. Blueprint param.</summary>
         public string CropBlueprint = "";
+
+        /// <summary>Opt-in seeds require an existing saved CultivatedSoil
+        /// marker. Legacy seeds retain the ordinary Plantable-ground rule.</summary>
+        public bool RequireCultivatedSoil;
 
         public override bool HandleEvent(GameEvent e)
         {
@@ -115,6 +121,12 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
+            if (RequireCultivatedSoil && !CultivatedSoilPart.IsCultivated(zone, cell))
+            {
+                Reject(actor, "not_cultivated", "This seed needs a prepared bed of tilled soil.");
+                return false;
+            }
+
             // Gate: one crop per cell.
             if (cell.HasObjectWithPart<CropPart>())
             {
@@ -122,37 +134,83 @@ namespace CavesOfOoo.Core
                 return false;
             }
 
-            // Gate: factory + blueprint resolve.
+            // Factory initialization can invoke gameplay. Capture both the seed
+            // and its intended bed before creating anything, and recheck them.
             if (Factory == null)
             {
                 Reject(actor, "no_factory", "The seed refuses to take root.");
                 return false;
             }
-            Entity crop = Factory.CreateEntity(CropBlueprint);
-            if (crop == null)
+            var seed = ParentEntity;
+            var seedPhysics = seed?.GetPart<PhysicsPart>();
+            var stack = seed?.GetPart<StackerPart>();
+            string seedId = seed?.ID, blueprint = CropBlueprint;
+            bool requireSoil = RequireCultivatedSoil;
+            int count = stack?.StackCount ?? 1;
+            bool Current()
             {
-                Reject(actor, "unknown_blueprint", "The seed refuses to take root.");
+                if (seed == null || seed.ID != seedId || seed.GetPart<SeedPart>() != this || ParentEntity != seed
+                    || CropBlueprint != blueprint || RequireCultivatedSoil != requireSoil
+                    || actor.GetPart<InventoryPart>() != carrierInv || carrierInv.ParentEntity != actor
+                    || !carrierInv.CanConsumeOne(seed) || seed.GetPart<StackerPart>() != stack
+                    || (stack?.StackCount ?? 1) != count || seed.GetPart<PhysicsPart>() != seedPhysics
+                    || seedPhysics == null || seedPhysics.ParentEntity != seed || seedPhysics.InInventory != actor
+                    || seedPhysics.Equipped != null || seed.SpatialZone != null
+                    || actor.SpatialZone != zone || zone.GetEntityCell(actor) != cell
+                    || !cell.Objects.Contains(actor) || CombatSystem.IsDeathHandled(actor)
+                    || (actor.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)
+                    || cell.HasObjectWithPart<CropPart>() || BarrenGroundRules.IsBarren(cell)) return false;
+                if (requireSoil && (!ReferenceEquals(SettlementRuntime.ActiveZone, zone) || !CultivatedSoilPart.IsCultivated(zone, cell))) return false;
+                foreach (var ground in cell.Objects)
+                    if (ground.HasTag("Terrain") && ground.HasTag("Plantable")) return true;
                 return false;
             }
-
-            if (!zone.AddEntity(crop, pos.x, pos.y))
+            if (!Current()) { Reject(actor, "source_changed", "The seed or planting place is no longer available."); return false; }
+            var transaction = e.GetParameter<InventoryTransaction>("InventoryTransaction");
+            bool own = transaction == null;
+            transaction ??= new InventoryTransaction();
+            try
             {
-                Reject(actor, "placement_refused", "The seed cannot take root here.");
-                return false;
+                if (!transaction.TryClaim(seed, actor, "PlantSeed") || !transaction.TryClaim(actor, actor, "PlantSeed"))
+                { Reject(actor, "in_progress", "That seed is already being planted."); return false; }
+                Entity crop = string.IsNullOrEmpty(blueprint) ? null : Factory.CreateEntity(blueprint);
+                if (crop == null) { Reject(actor, "unknown_blueprint", "The seed refuses to take root."); return false; }
+                var planted = crop?.GetPart<CropPart>();
+                var cropPhysics = crop?.GetPart<PhysicsPart>();
+                if (!Current() || crop == null || crop.BlueprintName != blueprint || string.IsNullOrEmpty(crop.ID)
+                    || crop.SpatialZone != null || !crop.HasTag("Crop") || crop.HasTag("Item") || crop.HasTag("Creature")
+                    || crop.HasTag("Solid") || planted == null || planted.ParentEntity != crop
+                    || planted.GrowthStage != 0 || planted.TicksInStage != 0 || planted.MoistureTicks != 0
+                    || cropPhysics == null || cropPhysics.ParentEntity != crop || cropPhysics.Solid || cropPhysics.Takeable
+                    || cropPhysics.InInventory != null || cropPhysics.Equipped != null)
+                { Reject(actor, "invalid_crop_or_source_changed", "The seed refuses to take root."); return false; }
+                var receipt = InventoryTransferSnapshot.Capture(carrierInv);
+                bool placed = false, restored = false;
+                Action restore = () =>
+                {
+                    if (restored) return;
+                    restored = true;
+                    receipt.Restore();
+                    if (placed && crop.SpatialZone == zone) zone.RemoveEntity(crop);
+                    ZoneRenderHooks.MarkCellDirty(pos.x, pos.y, "PlantRollback");
+                };
+                transaction.Do(null, restore);
+                if (!zone.AddEntity(crop, pos.x, pos.y))
+                { restore(); Reject(actor, "placement_refused", "The seed cannot take root here."); return false; }
+                placed = true;
+                if (!receipt.Apply(() => carrierInv.TryConsumeOne(seed)) || !receipt.ClaimChanges(transaction, actor, "PlantSeed"))
+                { restore(); Reject(actor, "payment_refused", "The seed is no longer available to plant."); return false; }
+                ZoneRenderHooks.MarkCellDirty(pos.x, pos.y, "CropPlanted");
+                transaction.AfterCommit(() =>
+                {
+                    MessageLog.Add($"{actor.GetDisplayName()} plants {InventoryPart.GetUnitDisplayName(seed)}.");
+                    if (Diag.IsChannelEnabled("crop")) Diag.Record("crop", "CropPlanted", actor: actor, target: crop,
+                        payload: new { cropBlueprint = blueprint, x = pos.x, y = pos.y });
+                });
+                if (own) transaction.Commit();
+                return true;
             }
-            if (!carrierInv.TryConsumeOne(ParentEntity))
-            {
-                zone.RemoveEntity(crop);
-                Reject(actor, "payment_refused", "The seed is no longer available to plant.");
-                return false;
-            }
-            ZoneRenderHooks.MarkCellDirty(pos.x, pos.y, "CropPlanted");
-
-            MessageLog.Add($"{actor.GetDisplayName()} plants {InventoryPart.GetUnitDisplayName(ParentEntity)}.");
-            if (Diag.IsChannelEnabled("crop"))
-                Diag.Record("crop", "CropPlanted", actor: actor, target: crop,
-                    payload: new { cropBlueprint = CropBlueprint, x = pos.x, y = pos.y });
-            return true;
+            finally { if (own) transaction.Rollback(); }
         }
 
         private void Reject(Entity actor, string reason, string message)

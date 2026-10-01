@@ -1,0 +1,355 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 38,
+    "passed": 33,
+    "failed": 5,
+    "skipped": 0,
+    "durationSeconds": 21.5642918,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "StartingVillageShowsActualPlantedStagesAndRemovesOnlyHarvestedOwner(\"KnotflaxCrop\")",
+      "fullName": "CavesOfOoo.Tests.CultivationVillageArtTests.StartingVillageShowsActualPlantedStagesAndRemovesOnlyHarvestedOwner(\"KnotflaxCrop\")",
+      "state": "Failed",
+      "durationSeconds": 0.3092477,
+      "message": "  KnotflaxCrop stage 0\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.CultivationVillageArtTests.StartingVillageShowsActualPlantedStagesAndRemovesOnlyHarvestedOwner (System.String blueprint) [0x000ea] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CultivationVillageArtTests.cs:24\n",
+      "output": "[Conversation] Loaded 78 conversations from 30 files.\n[StoryletRegistry] Loaded 23 storylet(s).\n"
+    },
+    {
+      "name": "StartingVillageShowsActualPlantedStagesAndRemovesOnlyHarvestedOwner(\"HearthbulbCrop\")",
+      "fullName": "CavesOfOoo.Tests.CultivationVillageArtTests.StartingVillageShowsActualPlantedStagesAndRemovesOnlyHarvestedOwner(\"HearthbulbCrop\")",
+      "state": "Failed",
+      "durationSeconds": 0.0511099,
+      "message": "  HearthbulbCrop stage 0\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.CultivationVillageArtTests.StartingVillageShowsActualPlantedStagesAndRemovesOnlyHarvestedOwner (System.String blueprint) [0x000ea] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CultivationVillageArtTests.cs:24\n",
+      "output": ""
+    },
+    {
+      "name": "StartingVillageShowsActualPlantedStagesAndRemovesOnlyHarvestedOwner(\"SeamleafCrop\")",
+      "fullName": "CavesOfOoo.Tests.CultivationVillageArtTests.StartingVillageShowsActualPlantedStagesAndRemovesOnlyHarvestedOwner(\"SeamleafCrop\")",
+      "state": "Failed",
+      "durationSeconds": 0.0886265,
+      "message": "  SeamleafCrop stage 0\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.CultivationVillageArtTests.StartingVillageShowsActualPlantedStagesAndRemovesOnlyHarvestedOwner (System.String blueprint) [0x000ea] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CultivationVillageArtTests.cs:24\n",
+      "output": ""
+    },
+    {
+      "name": "VillageFurrowsUseExactTerrainWithoutReplacingAuthoredTownModels",
+      "fullName": "CavesOfOoo.Tests.CultivationVillageArtTests.VillageFurrowsUseExactTerrainWithoutReplacingAuthoredTownModels",
+      "state": "Failed",
+      "durationSeconds": 0.0836336,
+      "message": "  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.CultivationVillageArtTests.VillageFurrowsUseExactTerrainWithoutReplacingAuthoredTownModels () [0x000a4] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CultivationVillageArtTests.cs:33\n",
+      "output": ""
+    },
+    {
+      "name": "ActualRepairStateChangesShapeAndRepairedGateStillFollowsDoor(\"RepairLinedWell\",\"clay-well-lining\",\"lined-well\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ActualRepairStateChangesShapeAndRepairedGateStillFollowsDoor(\"RepairLinedWell\",\"clay-well-lining\",\"lined-well\")",
+      "state": "Passed",
+      "durationSeconds": 0.6973449,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualRepairStateChangesShapeAndRepairedGateStillFollowsDoor(\"RepairRopeWell\",\"rope-well-line\",\"rope-well\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ActualRepairStateChangesShapeAndRepairedGateStillFollowsDoor(\"RepairRopeWell\",\"rope-well-line\",\"rope-well\")",
+      "state": "Passed",
+      "durationSeconds": 0.7237545,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualRepairStateChangesShapeAndRepairedGateStillFollowsDoor(\"RepairWoodenGate\",\"timber-gate-frame\",\"wooden-gate\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ActualRepairStateChangesShapeAndRepairedGateStillFollowsDoor(\"RepairWoodenGate\",\"timber-gate-frame\",\"wooden-gate\")",
+      "state": "Passed",
+      "durationSeconds": 0.750726,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "CultivatedOverlayRetainsExactUnderlyingGroundAndClearsOnMarkerRemoval",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.CultivatedOverlayRetainsExactUnderlyingGroundAndClearsOnMarkerRemoval",
+      "state": "Failed",
+      "durationSeconds": 0.7094644,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.RepairCultivationArtTests.CultivatedOverlayRetainsExactUnderlyingGroundAndClearsOnMarkerRemoval () [0x000ea] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/RepairCultivationArtTests.cs:68\n",
+      "output": ""
+    },
+    {
+      "name": "ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"KnotflaxSeed\",\"knotflax-seed\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"KnotflaxSeed\",\"knotflax-seed\")",
+      "state": "Passed",
+      "durationSeconds": 0.6681353,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"HearthbulbSeed\",\"hearthbulb-seed\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"HearthbulbSeed\",\"hearthbulb-seed\")",
+      "state": "Passed",
+      "durationSeconds": 0.7347809,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"SeamleafSeed\",\"seamleaf-seed\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"SeamleafSeed\",\"seamleaf-seed\")",
+      "state": "Passed",
+      "durationSeconds": 0.7346845,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"KnotflaxCord\",\"knotflax-cord\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"KnotflaxCord\",\"knotflax-cord\")",
+      "state": "Passed",
+      "durationSeconds": 0.6825347,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"Hearthbulb\",\"hearthbulb\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"Hearthbulb\",\"hearthbulb\")",
+      "state": "Passed",
+      "durationSeconds": 0.7410248,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"SeamleafSprig\",\"seamleaf-sprig\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"SeamleafSprig\",\"seamleaf-sprig\")",
+      "state": "Passed",
+      "durationSeconds": 0.7192157,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"RoastedHearthbulb\",\"roasted-hearthbulb\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"RoastedHearthbulb\",\"roasted-hearthbulb\")",
+      "state": "Passed",
+      "durationSeconds": 0.667742,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"SalvagedTimber\",\"salvaged-timber\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ExactPortableFormsDisappearOnPickupAndReturnOnDrop(\"SalvagedTimber\",\"salvaged-timber\")",
+      "state": "Passed",
+      "durationSeconds": 0.725721,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FiniteSupplyNodeHasAnExactFormThenRemovesWithItsOwner(\"RepairClayBank\",\"clay-bank\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.FiniteSupplyNodeHasAnExactFormThenRemovesWithItsOwner(\"RepairClayBank\",\"clay-bank\")",
+      "state": "Passed",
+      "durationSeconds": 0.718069,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FiniteSupplyNodeHasAnExactFormThenRemovesWithItsOwner(\"RepairTimberPile\",\"timber-pile\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.FiniteSupplyNodeHasAnExactFormThenRemovesWithItsOwner(\"RepairTimberPile\",\"timber-pile\")",
+      "state": "Passed",
+      "durationSeconds": 0.6592132,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "FiniteSupplyNodeHasAnExactFormThenRemovesWithItsOwner(\"RepairCordBundle\",\"cord-bundle\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.FiniteSupplyNodeHasAnExactFormThenRemovesWithItsOwner(\"RepairCordBundle\",\"cord-bundle\")",
+      "state": "Passed",
+      "durationSeconds": 0.7206755,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "InvalidCurrentCropCannotBorrowAuthoredMaturity(\"hidden\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.InvalidCurrentCropCannotBorrowAuthoredMaturity(\"hidden\")",
+      "state": "Passed",
+      "durationSeconds": 0.7290571,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "InvalidCurrentCropCannotBorrowAuthoredMaturity(\"foreign-crop\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.InvalidCurrentCropCannotBorrowAuthoredMaturity(\"foreign-crop\")",
+      "state": "Passed",
+      "durationSeconds": 0.6332657,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "InvalidCurrentCropCannotBorrowAuthoredMaturity(\"foreign-cell\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.InvalidCurrentCropCannotBorrowAuthoredMaturity(\"foreign-cell\")",
+      "state": "Passed",
+      "durationSeconds": 0.6929416,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "InvalidCurrentCropCannotBorrowAuthoredMaturity(\"foreign-spatial\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.InvalidCurrentCropCannotBorrowAuthoredMaturity(\"foreign-spatial\")",
+      "state": "Passed",
+      "durationSeconds": 1.0519892,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "InvalidCurrentCropCannotBorrowAuthoredMaturity(\"stage\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.InvalidCurrentCropCannotBorrowAuthoredMaturity(\"stage\")",
+      "state": "Passed",
+      "durationSeconds": 0.9359821,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "InvalidCurrentCropCannotBorrowAuthoredMaturity(\"glyph\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.InvalidCurrentCropCannotBorrowAuthoredMaturity(\"glyph\")",
+      "state": "Passed",
+      "durationSeconds": 0.8554656,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "InvalidCurrentCropCannotBorrowAuthoredMaturity(\"custom\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.InvalidCurrentCropCannotBorrowAuthoredMaturity(\"custom\")",
+      "state": "Passed",
+      "durationSeconds": 0.7303912,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "InvalidCurrentCropCannotBorrowAuthoredMaturity(\"legacy-mode\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.InvalidCurrentCropCannotBorrowAuthoredMaturity(\"legacy-mode\")",
+      "state": "Passed",
+      "durationSeconds": 0.7985708,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ThreeNativeStagesAndWetSoilHaveDistinctRealGeometryInGrovelands(\"Knotflax\",\"knotflax\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ThreeNativeStagesAndWetSoilHaveDistinctRealGeometryInGrovelands(\"Knotflax\",\"knotflax\")",
+      "state": "Passed",
+      "durationSeconds": 1.1016779,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ThreeNativeStagesAndWetSoilHaveDistinctRealGeometryInGrovelands(\"Hearthbulb\",\"hearthbulb\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ThreeNativeStagesAndWetSoilHaveDistinctRealGeometryInGrovelands(\"Hearthbulb\",\"hearthbulb\")",
+      "state": "Passed",
+      "durationSeconds": 1.1523231,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ThreeNativeStagesAndWetSoilHaveDistinctRealGeometryInGrovelands(\"Seamleaf\",\"seamleaf\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationArtTests.ThreeNativeStagesAndWetSoilHaveDistinctRealGeometryInGrovelands(\"Seamleaf\",\"seamleaf\")",
+      "state": "Passed",
+      "durationSeconds": 1.244071,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"repair\",\"valid\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationInputTests.ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"repair\",\"valid\")",
+      "state": "Passed",
+      "durationSeconds": 0.0504318,
+      "message": null,
+      "stackTrace": null,
+      "output": "[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL\n"
+    },
+    {
+      "name": "ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"repair\",\"refusal\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationInputTests.ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"repair\",\"refusal\")",
+      "state": "Passed",
+      "durationSeconds": 0.0492129,
+      "message": null,
+      "stackTrace": null,
+      "output": "[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL\n"
+    },
+    {
+      "name": "ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"repair\",\"before-callback\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationInputTests.ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"repair\",\"before-callback\")",
+      "state": "Passed",
+      "durationSeconds": 0.1013164,
+      "message": null,
+      "stackTrace": null,
+      "output": "[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL\n"
+    },
+    {
+      "name": "ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"repair\",\"after-callback\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationInputTests.ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"repair\",\"after-callback\")",
+      "state": "Passed",
+      "durationSeconds": 0.0379937,
+      "message": null,
+      "stackTrace": null,
+      "output": "[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL\n"
+    },
+    {
+      "name": "ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"crop\",\"valid\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationInputTests.ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"crop\",\"valid\")",
+      "state": "Passed",
+      "durationSeconds": 0.0385244,
+      "message": null,
+      "stackTrace": null,
+      "output": "[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL\n"
+    },
+    {
+      "name": "ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"crop\",\"refusal\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationInputTests.ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"crop\",\"refusal\")",
+      "state": "Passed",
+      "durationSeconds": 0.0388415,
+      "message": null,
+      "stackTrace": null,
+      "output": "[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL\n"
+    },
+    {
+      "name": "ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"crop\",\"before-callback\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationInputTests.ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"crop\",\"before-callback\")",
+      "state": "Passed",
+      "durationSeconds": 0.0357379,
+      "message": null,
+      "stackTrace": null,
+      "output": "[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL\n"
+    },
+    {
+      "name": "ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"crop\",\"after-callback\")",
+      "fullName": "CavesOfOoo.Tests.RepairCultivationInputTests.ActualWorldMenuCommitsOneActionOrRollsBackWithoutTime(\"crop\",\"after-callback\")",
+      "state": "Passed",
+      "durationSeconds": 0.0373521,
+      "message": null,
+      "stackTrace": null,
+      "output": "[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL\n"
+    }
+  ]
+}

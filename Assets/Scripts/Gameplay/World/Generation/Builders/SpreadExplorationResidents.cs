@@ -127,7 +127,7 @@ namespace CavesOfOoo.Core
                 || brain == null || !brain.Passive || brain.Target != null || brain.PartyLeader != null || brain.PartyMembers.Count != 0 || brain.HasGoalOtherThan("BoredGoal")
                 || e.GetPart<ConversationPart>() == null || trader?.StockTable != (plot ? "SeedKeeperStock" : "WaysideCookStock")
                 || inventory == null || inventory.EquippedItems.Count != 0 || TradeSystem.GetDrams(e) != (plot ? 40 : 35)) return false;
-            var expected = plot ? new[] { "CandyCarrotSeed", "CandyCarrotSeed", "EmberwheatSeed", "EmberwheatSeed", "WateringGrimoire" }
+            var expected = plot ? new[] { "CandyCarrotSeed", "CandyCarrotSeed", "EmberwheatSeed", "EmberwheatSeed", "WateringGrimoire", "KnotflaxSeed", "HearthbulbSeed", "SeamleafSeed" }
                 : new[] { "RawMeat", "Mushroom", "Emberwheat", "DriedMeat", "ToastedEmberwheat" };
             var actual = new List<string>();
             foreach (var item in inventory.Objects)

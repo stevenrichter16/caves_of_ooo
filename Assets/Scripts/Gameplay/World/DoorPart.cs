@@ -31,7 +31,7 @@ namespace CavesOfOoo.Core
         }
         /// <summary>Read-only path permission. No key use, movement, action,
         /// diagnostic, or state mutation. Reach is checked only at execution.</summary>
-        public bool CanOperate(Entity actor,Zone zone)=>HasAuthority(actor,zone)&&ParentEntity.GetPart<LockPart>()?.IsLocked!=true;
+        public bool CanOperate(Entity actor,Zone zone)=>HasAuthority(actor,zone)&&!RepairablePart.BlocksFunction(ParentEntity)&&ParentEntity.GetPart<LockPart>()?.IsLocked!=true;
         internal bool CanUnlock(Entity actor,Zone zone)=>HasAuthority(actor,zone)&&SpatialQuery.Distance(zone,actor,ParentEntity)<=1;
         internal void RefreshAfterLockChange(){RefreshGlyph();ParentEntity?.SpatialZone?.MarkDoorOcclusionChanged();ZoneRenderHooks.MarkFullDirty("Door.LockState");}
         internal void RejectUnlock(Entity actor)=>Reject(actor,"invalid-lock-request");

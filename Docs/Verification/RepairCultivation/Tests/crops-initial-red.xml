@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="13" result="Failed" start-time="2026-10-01T03:31:50.2181480Z" end-time="2026-10-01T03:31:50.5410570Z" duration="0.322892" total="13" passed="3" failed="10" inconclusive="0" skipped="0" warnings="0" asserts="49" random-seed="1833113032">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/initial-red.xml --where "class =~ /CultivatedCropTests/"]]></command-line>
+  <filter>
+    <class re="1">CultivatedCropTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1015" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-01T03:31:50.2181480Z" end-time="2026-10-01T03:31:50.5410570Z" duration="0.322892" total="13" passed="3" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="49">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="43193" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1016" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-01T03:31:50.2198250Z" end-time="2026-10-01T03:31:50.5410560Z" duration="0.321228" total="13" passed="3" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="49">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1017" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-01T03:31:50.2199630Z" end-time="2026-10-01T03:31:50.5410530Z" duration="0.321088" total="13" passed="3" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="49">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="CultivatedCropTests" fullname="CavesOfOoo.Tests.CultivatedCropTests" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-01T03:31:50.2203770Z" end-time="2026-10-01T03:31:50.5410380Z" duration="0.320658" total="13" passed="3" failed="10" warnings="0" inconclusive="0" skipped="0" asserts="49">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1005" name="CommandAfterActionExceptionRestoresExactCropAndCell_NoOutputs" fullname="CavesOfOoo.Tests.CultivatedCropTests.CommandAfterActionExceptionRestoresExactCropAndCell_NoOutputs" methodname="CommandAfterActionExceptionRestoresExactCropAndCell_NoOutputs" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="1933847854" result="Failed" start-time="2026-10-01T03:31:50.2213610Z" end-time="2026-10-01T03:31:50.2960100Z" duration="0.074684" asserts="3">
+            <failure>
+              <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.CommandAfterActionExceptionRestoresExactCropAndCell_NoOutputs() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 78
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.CommandAfterActionExceptionRestoresExactCropAndCell_NoOutputs() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 78
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1006" name="ExplicitTransactionRollbackRestoresOwnerAndOutputs" fullname="CavesOfOoo.Tests.CultivatedCropTests.ExplicitTransactionRollbackRestoresOwnerAndOutputs" methodname="ExplicitTransactionRollbackRestoresOwnerAndOutputs" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="624494007" result="Failed" start-time="2026-10-01T03:31:50.2966530Z" end-time="2026-10-01T03:31:50.3166090Z" duration="0.019956" asserts="3">
+            <failure>
+              <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.ExplicitTransactionRollbackRestoresOwnerAndOutputs() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 80
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.ExplicitTransactionRollbackRestoresOwnerAndOutputs() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 80
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1004" name="FullInventoryDoesNotDestroyHarvest_AllOutputsStayOnRow" fullname="CavesOfOoo.Tests.CultivatedCropTests.FullInventoryDoesNotDestroyHarvest_AllOutputsStayOnRow" methodname="FullInventoryDoesNotDestroyHarvest_AllOutputsStayOnRow" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="521145884" result="Failed" start-time="2026-10-01T03:31:50.3166570Z" end-time="2026-10-01T03:31:50.3342920Z" duration="0.017634" asserts="3">
+            <failure>
+              <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.FullInventoryDoesNotDestroyHarvest_AllOutputsStayOnRow() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 76
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.FullInventoryDoesNotDestroyHarvest_AllOutputsStayOnRow() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 76
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1010" name="GrowthStageAndCultivationRoundTrip" fullname="CavesOfOoo.Tests.CultivatedCropTests.GrowthStageAndCultivationRoundTrip" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-01T03:31:50.3343240Z" end-time="2026-10-01T03:31:50.3870180Z" duration="0.052693" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="9">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1007" name="GrowthStageAndCultivationRoundTrip(0)" fullname="CavesOfOoo.Tests.CultivatedCropTests.GrowthStageAndCultivationRoundTrip(0)" methodname="GrowthStageAndCultivationRoundTrip" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="1545924690" result="Failed" start-time="2026-10-01T03:31:50.3344590Z" end-time="2026-10-01T03:31:50.3509710Z" duration="0.016512" asserts="3">
+              <failure>
+                <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.GrowthStageAndCultivationRoundTrip(Int32 stage) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 82
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.GrowthStageAndCultivationRoundTrip(Int32 stage) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 82
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="GrowthStageAndCultivationRoundTrip(1)" fullname="CavesOfOoo.Tests.CultivatedCropTests.GrowthStageAndCultivationRoundTrip(1)" methodname="GrowthStageAndCultivationRoundTrip" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="1332493518" result="Failed" start-time="2026-10-01T03:31:50.3509940Z" end-time="2026-10-01T03:31:50.3695600Z" duration="0.018565" asserts="3">
+              <failure>
+                <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.GrowthStageAndCultivationRoundTrip(Int32 stage) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 82
+   at InvokeStub_CultivatedCropTests.GrowthStageAndCultivationRoundTrip(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.GrowthStageAndCultivationRoundTrip(Int32 stage) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 82
+   at InvokeStub_CultivatedCropTests.GrowthStageAndCultivationRoundTrip(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="GrowthStageAndCultivationRoundTrip(2)" fullname="CavesOfOoo.Tests.CultivatedCropTests.GrowthStageAndCultivationRoundTrip(2)" methodname="GrowthStageAndCultivationRoundTrip" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="1130355800" result="Failed" start-time="2026-10-01T03:31:50.3695790Z" end-time="2026-10-01T03:31:50.3865480Z" duration="0.016969" asserts="3">
+              <failure>
+                <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.GrowthStageAndCultivationRoundTrip(Int32 stage) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 82
+   at InvokeStub_CultivatedCropTests.GrowthStageAndCultivationRoundTrip(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.GrowthStageAndCultivationRoundTrip(Int32 stage) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 82
+   at InvokeStub_CultivatedCropTests.GrowthStageAndCultivationRoundTrip(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1013" name="LegacyFailedYieldPlacementHoldsCropAndRollsBackPartialProduce" fullname="CavesOfOoo.Tests.CultivatedCropTests.LegacyFailedYieldPlacementHoldsCropAndRollsBackPartialProduce" methodname="LegacyFailedYieldPlacementHoldsCropAndRollsBackPartialProduce" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="1107461762" result="Failed" start-time="2026-10-01T03:31:50.3871880Z" end-time="2026-10-01T03:31:50.4206900Z" duration="0.033502" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: same as <Zone(cultivation-test) [3 entities]>
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTests.LegacyFailedYieldPlacementHoldsCropAndRollsBackPartialProduce() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 88
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: same as <Zone(cultivation-test) [3 entities]>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTests.LegacyFailedYieldPlacementHoldsCropAndRollsBackPartialProduce() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 88
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1011" name="LegacyMaturityStillDropsAndRemovesCrop" fullname="CavesOfOoo.Tests.CultivatedCropTests.LegacyMaturityStillDropsAndRemovesCrop" methodname="LegacyMaturityStillDropsAndRemovesCrop" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="1505899772" result="Passed" start-time="2026-10-01T03:31:50.4207090Z" end-time="2026-10-01T03:31:50.4447910Z" duration="0.024081" asserts="6" />
+          <test-case id="1002" name="LegacySeedStillPlantsWithoutCultivation" fullname="CavesOfOoo.Tests.CultivatedCropTests.LegacySeedStillPlantsWithoutCultivation" methodname="LegacySeedStillPlantsWithoutCultivation" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="946421976" result="Passed" start-time="2026-10-01T03:31:50.4448070Z" end-time="2026-10-01T03:31:50.4673520Z" duration="0.022545" asserts="5" />
+          <test-case id="1012" name="MalformedSeedTargetDoesNotConsumeOrSpawnUnrelatedOwner" fullname="CavesOfOoo.Tests.CultivatedCropTests.MalformedSeedTargetDoesNotConsumeOrSpawnUnrelatedOwner" methodname="MalformedSeedTargetDoesNotConsumeOrSpawnUnrelatedOwner" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="387672143" result="Failed" start-time="2026-10-01T03:31:50.4673710Z" end-time="2026-10-01T03:31:50.4831970Z" duration="0.015826" asserts="4">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTests.MalformedSeedTargetDoesNotConsumeOrSpawnUnrelatedOwner() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 86
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTests.MalformedSeedTargetDoesNotConsumeOrSpawnUnrelatedOwner() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 86
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1001" name="NewSeedRequiresCultivatedSoil_GrassAloneRefusesWithoutConsumption" fullname="CavesOfOoo.Tests.CultivatedCropTests.NewSeedRequiresCultivatedSoil_GrassAloneRefusesWithoutConsumption" methodname="NewSeedRequiresCultivatedSoil_GrassAloneRefusesWithoutConsumption" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="380137791" result="Failed" start-time="2026-10-01T03:31:50.4832130Z" end-time="2026-10-01T03:31:50.5002560Z" duration="0.017043" asserts="3">
+            <failure>
+              <message><![CDATA[  Missing crop API: RequireCultivatedSoil
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Set(Object target, String field, Object value) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 23
+   at CavesOfOoo.Tests.CultivatedCropTestBase.Seed(Boolean cultivated) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 50
+   at CavesOfOoo.Tests.CultivatedCropTests.NewSeedRequiresCultivatedSoil_GrassAloneRefusesWithoutConsumption() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 70
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Missing crop API: RequireCultivatedSoil
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Set(Object target, String field, Object value) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 23
+   at CavesOfOoo.Tests.CultivatedCropTestBase.Seed(Boolean cultivated) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 50
+   at CavesOfOoo.Tests.CultivatedCropTests.NewSeedRequiresCultivatedSoil_GrassAloneRefusesWithoutConsumption() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 70
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1014" name="PlayerRoundGateDoesNotCountOtherActorTurnsOrForeignArea" fullname="CavesOfOoo.Tests.CultivatedCropTests.PlayerRoundGateDoesNotCountOtherActorTurnsOrForeignArea" methodname="PlayerRoundGateDoesNotCountOtherActorTurnsOrForeignArea" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="50294059" result="Passed" start-time="2026-10-01T03:31:50.5002710Z" end-time="2026-10-01T03:31:50.5186760Z" duration="0.018405" asserts="6" />
+          <test-case id="1003" name="StandingCropWaitsForHarvest_ThenYieldsProduceAndSeedOnReusableBed" fullname="CavesOfOoo.Tests.CultivatedCropTests.StandingCropWaitsForHarvest_ThenYieldsProduceAndSeedOnReusableBed" methodname="StandingCropWaitsForHarvest_ThenYieldsProduceAndSeedOnReusableBed" classname="CavesOfOoo.Tests.CultivatedCropTests" runstate="Runnable" seed="1266864086" result="Failed" start-time="2026-10-01T03:31:50.5186950Z" end-time="2026-10-01T03:31:50.5409680Z" duration="0.022273" asserts="3">
+            <failure>
+              <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.StandingCropWaitsForHarvest_ThenYieldsProduceAndSeedOnReusableBed() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 74
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Cultivated soil marker missing
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropTestBase.Cultivate() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 39
+   at CavesOfOoo.Tests.CultivatedCropTests.StandingCropWaitsForHarvest_ThenYieldsProduceAndSeedOnReusableBed() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropTests.cs:line 74
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

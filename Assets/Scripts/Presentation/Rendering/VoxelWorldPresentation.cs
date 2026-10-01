@@ -24,6 +24,8 @@ namespace CavesOfOoo.Rendering
         {
             this.catalog = catalog; ZoneId = zoneId; catalog.Validate();
             foreach (var binding in catalog.Bindings) generated.Add(binding.Voxel);
+            var cultivation=RepairCultivation3DLibrary.Load();
+            if(cultivation!=null){cultivation.Validate();foreach(var e in cultivation.Entries)generated.Add(e.Mesh);}
             if(referenceGlade)
             {
                 var glade=ReferenceGladeVoxelLibrary.Load();if(glade==null)throw new InvalidOperationException("Reference glade voxel kit missing.");

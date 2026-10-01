@@ -108,7 +108,8 @@ namespace CavesOfOoo.Core
                 var pool = source.GetPart<LiquidPoolPart>();
                 if (pool != null)
                 { if (pool.LiquidId == "water" && pool.Volume > 0 && LiquidSourceSafety.IsUnmixedPool(zone, source)) return source; continue; }
-                if (source.HasPart<WellPart>()) return source;
+                if (source.GetPart<WellPart>() is WellPart well)
+                { if (well.IsUsable) return source; continue; }
                 var spring = source.GetPart<TileStateSourcePart>();
                 if (spring?.Coating == "water" && spring.CoatingTurns > 0
                     && LiquidSourceSafety.IsUnmixedSource(zone, source, "water")) return source;

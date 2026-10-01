@@ -2922,7 +2922,8 @@ namespace CavesOfOoo.Rendering
 
             // Harvesting commits finite world output through the same command
             // transaction as carried harvest. Refusal consumes no time.
-            if (action.Command == "Harvest")
+            if (action.Command == "Harvest" || action.Command == "HarvestCultivatedCrop"
+                || action.Command == RepairablePart.RepairCommand)
             {
                 var harvest = InventorySystem.ExecuteCommand(
                     new PerformInventoryActionCommand(target, action.Command), PlayerEntity, CurrentZone);

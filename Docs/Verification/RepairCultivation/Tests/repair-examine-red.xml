@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/repair/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="210" result="Failed" start-time="2026-10-01T04:01:23.9188660Z" end-time="2026-10-01T04:01:24.0521530Z" duration="0.133257" total="3" passed="0" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="30" random-seed="82976616">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/repair/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/repair/examine-red.xml --where "method == AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair"]]></command-line>
+  <filter>
+    <method>AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair</method>
+  </filter>
+  <test-suite type="Assembly" id="1258" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/repair/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="210" result="Failed" site="Child" start-time="2026-10-01T04:01:23.9188660Z" end-time="2026-10-01T04:01:24.0521530Z" duration="0.133257" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="30">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/repair/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/repair/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="50520" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1259" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="210" result="Failed" site="Child" start-time="2026-10-01T04:01:23.9205000Z" end-time="2026-10-01T04:01:24.0521420Z" duration="0.131640" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="30">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1260" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="210" result="Failed" site="Child" start-time="2026-10-01T04:01:23.9206150Z" end-time="2026-10-01T04:01:24.0521370Z" duration="0.131521" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="30">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="MaterialRepairTests" fullname="CavesOfOoo.Tests.MaterialRepairTests" classname="CavesOfOoo.Tests.MaterialRepairTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-10-01T04:01:23.9209550Z" end-time="2026-10-01T04:01:24.0521210Z" duration="0.131165" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="30">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1016" name="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair" fullname="CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair" classname="CavesOfOoo.Tests.MaterialRepairTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-01T04:01:23.9218680Z" end-time="2026-10-01T04:01:24.0519620Z" duration="0.130093" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="30">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1013" name="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(&quot;RepairLinedWell&quot;,&quot;FireClay&quot;,2,&quot;water escapes before a vessel can be filled&quot;)" fullname="CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(&quot;RepairLinedWell&quot;,&quot;FireClay&quot;,2,&quot;water escapes before a vessel can be filled&quot;)" methodname="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair" classname="CavesOfOoo.Tests.MaterialRepairTests" runstate="Runnable" seed="1934536081" result="Failed" start-time="2026-10-01T04:01:23.9219440Z" end-time="2026-10-01T04:01:24.0125970Z" duration="0.090677" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: not String containing "water escapes before a vessel can be filled"
+  But was:  "you see a clay-lined catch well.
+the lining is repaired. a fresh clay seam holds the drawn water. a shallow catch well beside the growing beds. a visible split runs through its clay lining; water escapes before a vessel can be filled."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(String blueprint, String supply, Int32 count, String staleDamage) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Repairs/MaterialRepairTests.cs:line 116
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not String containing "water escapes before a vessel can be filled"
+  But was:  "you see a clay-lined catch well.
+the lining is repaired. a fresh clay seam holds the drawn water. a shallow catch well beside the growing beds. a visible split runs through its clay lining; water escapes before a vessel can be filled."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(String blueprint, String supply, Int32 count, String staleDamage) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Repairs/MaterialRepairTests.cs:line 116
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1014" name="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(&quot;RepairRopeWell&quot;,&quot;KnotflaxCord&quot;,1,&quot;a frayed stump of rope hangs&quot;)" fullname="CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(&quot;RepairRopeWell&quot;,&quot;KnotflaxCord&quot;,1,&quot;a frayed stump of rope hangs&quot;)" methodname="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair" classname="CavesOfOoo.Tests.MaterialRepairTests" runstate="Runnable" seed="453405954" result="Failed" start-time="2026-10-01T04:01:24.0131300Z" end-time="2026-10-01T04:01:24.0325800Z" duration="0.019449" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: not String containing "a frayed stump of rope hangs"
+  But was:  "you see a hoist well.
+the well line is repaired. new knotflax cord carries the bucket. the masonry is sound. a frayed stump of rope hangs from the lifting frame, beyond reach of the water below."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(String blueprint, String supply, Int32 count, String staleDamage) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Repairs/MaterialRepairTests.cs:line 116
+   at InvokeStub_MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not String containing "a frayed stump of rope hangs"
+  But was:  "you see a hoist well.
+the well line is repaired. new knotflax cord carries the bucket. the masonry is sound. a frayed stump of rope hangs from the lifting frame, beyond reach of the water below."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(String blueprint, String supply, Int32 count, String staleDamage) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Repairs/MaterialRepairTests.cs:line 116
+   at InvokeStub_MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1015" name="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(&quot;RepairWoodenGate&quot;,&quot;SalvagedTimber&quot;,2,&quot;has wedged this short gate open&quot;)" fullname="CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(&quot;RepairWoodenGate&quot;,&quot;SalvagedTimber&quot;,2,&quot;has wedged this short gate open&quot;)" methodname="AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair" classname="CavesOfOoo.Tests.MaterialRepairTests" runstate="Runnable" seed="1641183208" result="Failed" start-time="2026-10-01T04:01:24.0326230Z" end-time="2026-10-01T04:01:24.0516330Z" duration="0.019009" asserts="10">
+              <failure>
+                <message><![CDATA[  Expected: not String containing "has wedged this short gate open"
+  But was:  "you see a jammed allotment gate.
+the frame is repaired. new timber braces let the gate swing and latch. a sagging frame has wedged this short gate open. sound timber could brace the frame so the gate can open and close again."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(String blueprint, String supply, Int32 count, String staleDamage) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Repairs/MaterialRepairTests.cs:line 116
+   at InvokeStub_MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: not String containing "has wedged this short gate open"
+  But was:  "you see a jammed allotment gate.
+the frame is repaired. new timber braces let the gate swing and latch. a sagging frame has wedged this short gate open. sound timber could brace the frame so the gate can open and close again."
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(String blueprint, String supply, Int32 count, String staleDamage) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Repairs/MaterialRepairTests.cs:line 116
+   at InvokeStub_MaterialRepairTests.AuthoredExamineDescribesCurrentFaultWithoutStaleDamageAfterRepair(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

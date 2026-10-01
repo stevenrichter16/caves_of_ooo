@@ -11,9 +11,8 @@ namespace CavesOfOoo.Core
     /// via the <c>Crop</c> tag before mutating zone contents.
     /// See <c>Docs/CROPS-WATERING-GRIMOIRE.md §2.3</c>.
     ///
-    /// <para><b>Cadence:</b> <c>TickEnd</c> fires once per ACTOR-turn
-    /// (N×/round in a zone with N actors) — the same convention the gas
-    /// system uses. All thresholds are tick-denominated.</para>
+    /// <para><b>Cadence:</b> CropSystemPart accepts the player's TickEnd
+    /// once per player round in the active area. NPC turns do not advance growth.</para>
     ///
     /// <para><b>Single decrement path:</b> moisture and growth advance
     /// ONLY here. <see cref="CropPart"/> holds state and the two visual
@@ -45,16 +44,19 @@ namespace CavesOfOoo.Core
             {
                 var entity = crops[i];
                 var crop = entity.GetPart<CropPart>();
-                if (crop == null) continue;
+                if (crop == null || crop.ParentEntity != entity || entity.SpatialZone != zone
+                    || zone.GetEntityCell(entity) == null) continue;
+                if (crop.GrowthStage < 0 || crop.GrowthStage > (crop.HarvestAtMaturity ? 2 : 1)) continue;
                 if (crop.MoistureTicks <= 0) continue; // dry = paused
 
                 crop.MoistureTicks--;
-                crop.TicksInStage++;
+                bool ripe = crop.HarvestAtMaturity && crop.GrowthStage == 2;
+                if (!ripe && crop.TicksInStage < int.MaxValue) crop.TicksInStage++;
 
                 if (crop.MoistureTicks == 0)
                     crop.OnDriedOut();
 
-                if (crop.TicksInStage >= crop.TicksPerStage)
+                if (!ripe && crop.TicksInStage >= crop.TicksPerStage)
                     AdvanceStage(zone, entity, crop);
             }
         }
@@ -66,13 +68,30 @@ namespace CavesOfOoo.Core
             // advances to sprout.
             if (crop.GrowthStage >= 1)
             {
-                TryMature(zone, entity, crop);
+                if (crop.HarvestAtMaturity)
+                {
+                    crop.GrowthStage = 2;
+                    crop.TicksInStage = 0;
+                    PaintStage(zone, entity, crop);
+                    if (Diag.IsChannelEnabled("crop")) Diag.Record("crop", "CropReady", target: entity,
+                        payload: new { cropBlueprint = entity.BlueprintName, stage = 2 });
+                }
+                else TryMature(zone, entity, crop);
                 return;
             }
 
             crop.GrowthStage++;
             crop.TicksInStage = 0;
 
+            PaintStage(zone, entity, crop);
+
+            if (Diag.IsChannelEnabled("crop"))
+                Diag.Record("crop", "StageAdvanced", target: entity,
+                    payload: new { stage = crop.GrowthStage, cropBlueprint = entity.BlueprintName });
+        }
+
+        private static void PaintStage(Zone zone, Entity entity, CropPart crop)
+        {
             var render = entity.GetPart<RenderPart>();
             if (render != null)
             {
@@ -85,9 +104,6 @@ namespace CavesOfOoo.Core
             }
             MarkCellDirty(zone, entity, "CropStageAdvanced");
 
-            if (Diag.IsChannelEnabled("crop"))
-                Diag.Record("crop", "StageAdvanced", target: entity,
-                    payload: new { stage = crop.GrowthStage, cropBlueprint = entity.BlueprintName });
         }
 
         private static void TryMature(Zone zone, Entity entity, CropPart crop)
@@ -117,38 +133,7 @@ namespace CavesOfOoo.Core
                 return;
             }
 
-            var pos = zone.GetEntityPosition(entity);
-            if (pos.x < 0) return;
-
-            int spawned = 0;
-            for (int i = 0; i < crop.YieldCount; i++)
-            {
-                var produce = Factory.CreateEntity(crop.YieldBlueprint);
-                if (produce == null) break; // unknown blueprint: hold, retry next tick
-                zone.AddEntity(produce, pos.x, pos.y);
-                spawned++;
-            }
-            if (spawned == 0)
-            {
-                if (Diag.IsChannelEnabled("crop"))
-                    Diag.Record("crop", "MatureBlocked", target: entity,
-                        payload: new { reason = "unknown_yield_blueprint" });
-                return;
-            }
-
-            zone.RemoveEntity(entity);
-            ZoneRenderHooks.MarkCellDirty(pos.x, pos.y, "CropMatured");
-            MessageLog.Add($"The {entity.GetDisplayName()} is ready — its harvest lies on the ground.");
-
-            if (Diag.IsChannelEnabled("crop"))
-                Diag.Record("crop", "CropMatured", target: entity,
-                    payload: new
-                    {
-                        yieldBlueprint = crop.YieldBlueprint,
-                        yieldCount = spawned,
-                        x = pos.x,
-                        y = pos.y
-                    });
+            CropYieldService.TryRelease(crop, zone);
         }
 
         private static void MarkCellDirty(Zone zone, Entity entity, string source)

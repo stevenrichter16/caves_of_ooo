@@ -14,11 +14,14 @@ namespace CavesOfOoo.Core
     public class WellPart : Part
     {
         public override string Name => "Well";
+        /// <summary>Ordinary wells work; an authored structural fault disables both drinking and filling.</summary>
+        public bool IsUsable => !RepairablePart.BlocksFunction(ParentEntity);
 
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID == "GetInventoryActions")
             {
+                if (!IsUsable) return true;
                 var actions = e.GetParameter<InventoryActionList>("Actions");
                 actions?.AddAction("Draw water", "draw water", "DrawWaterAtWell", 'w', 20);
                 return true;
@@ -28,6 +31,12 @@ namespace CavesOfOoo.Core
                 if (e.GetStringParameter("Command") != "DrawWaterAtWell") return true;
                 var actor = e.GetParameter<Entity>("Actor");
                 if (actor == null) return true;
+                if (!IsUsable)
+                {
+                    if (actor.HasTag("Player")) MessageLog.Add("The damaged well cannot draw water. Examine it to see what needs repair.");
+                    CavesOfOoo.Diagnostics.Diag.Record("furniture", "WaterDrawRejected", actor, ParentEntity, new { reason = "structural-fault" });
+                    return true;
+                }
 
                 bool wasParched = actor.HasEffect<ParchedEffect>();
                 if (wasParched)

@@ -1171,7 +1171,7 @@ namespace CavesOfOoo.Core
         }
         protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID)
             && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true
-            && !CurationIntakePart.Retain(this,zoneID);
+            && !CurationIntakePart.Retain(this,zoneID) && !RepairCultivationSite.Retain(this,zoneID);
 
         protected override void OnZoneAttached(Zone zone)
         {
@@ -1236,7 +1236,10 @@ namespace CavesOfOoo.Core
 
             if (zoneID == MorrowfastExpedition.FieldZoneId && WorldMap.GetPOI(wx, wy) == null
                 && WorldMap.GetBiome(wx, wy) == BiomeType.Grovelands)
+            {
                 MorrowfastExpedition.TryInstall(zone, Factory);
+                RepairCultivationSite.TryInstall(zone, Factory);
+            }
 
             // Stillleaf Archive SA.2: the Recension Searcher works in
             // Quillhold's stacks; installed once, on fresh generation.

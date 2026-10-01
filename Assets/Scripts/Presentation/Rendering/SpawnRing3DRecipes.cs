@@ -35,6 +35,11 @@ namespace CavesOfOoo.Rendering
             if (cell == null || !cell.Objects.Contains(entity)) return Refused(entity, "not-current-zone-member");
             var render = entity.GetPart<RenderPart>();
             if (render == null || !render.Visible) return Refused(entity, "native-render-hidden");
+            if (RepairCultivationRecipes.Handles(entity.BlueprintName))
+            {
+                string model=RepairCultivationRecipes.ResolveModel(zone,entity);
+                return model==null?Refused(entity,"unsupported-current-repair-cultivation"):RepairCultivationRecipes.Recipe(zone,entity,model);
+            }
             if (CurationYard3DLibrary.Handles(entity.BlueprintName) && entity.BlueprintName != "SaltCuredBody")
             {
                 string model=CurationYard3DLibrary.ResolveModel(zone,entity);

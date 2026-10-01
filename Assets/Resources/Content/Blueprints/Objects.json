@@ -38822,6 +38822,1283 @@
           "Value": "&g"
         }
       ]
+    },
+    {
+      "Name": "SalvagedTimber",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "salvaged timber"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "StackCount",
+              "Value": "1"
+            },
+            {
+              "Key": "MaxStack",
+              "Value": "20"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Sound lengths sorted out of a fallen frame. Two lengths can brace a jammed wooden gate."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "KnotflaxCord",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "knotflax cord"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "~"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "StackCount",
+              "Value": "1"
+            },
+            {
+              "Key": "MaxStack",
+              "Value": "20"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Tough knotflax stems stripped and twisted into cord as they are gathered. One coil can replace a snapped well line."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "Hearthbulb",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "hearthbulb"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&Y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "1d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            }
+          ]
+        },
+        {
+          "Name": "Cookable",
+          "Params": [
+            {
+              "Key": "Into",
+              "Value": "RoastedHearthbulb"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "An ochre bulb under a papery, ribbed skin. Edible raw; roasting beside a cooking fire makes a more nourishing meal."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "RoastedHearthbulb",
+      "Inherits": "FoodItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "roasted hearthbulb"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "%"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&o"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Food",
+          "Params": [
+            {
+              "Key": "Healing",
+              "Value": "2d4"
+            },
+            {
+              "Key": "Cooking",
+              "Value": "Meal"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "7"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "The split skin holds a soft, sweet center. A small meal that keeps well in its own wrapper."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SeamleafSprig",
+      "Inherits": "ReagentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "seamleaf sprig"
+            },
+            {
+              "Key": "RenderString",
+              "Value": ";"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&G"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Reagent",
+          "Params": [
+            {
+              "Key": "PropertiesRaw",
+              "Value": "vital:2"
+            },
+            {
+              "Key": "FlavorText",
+              "Value": "The pale seam leaks a green sap. Brewers prize its vital character for restorative mixtures."
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Paired thick leaves joined by a pale seam. Their vital sap is a brewing ingredient; the raw leaves are not a healing potion."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "KnotflaxSeed",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "knotflax seed"
+            },
+            {
+              "Key": "RenderString",
+              "Value": ","
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Seed",
+          "Params": [
+            {
+              "Key": "CropBlueprint",
+              "Value": "KnotflaxCrop"
+            },
+            {
+              "Key": "RequireCultivatedSoil",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Plant in an empty tilled bed. Conjure Rain waters the crop; dry soil pauses growth. Harvest the ripe plant for two useful units and one seed. Growth happens while you act in this area."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "KnotflaxCrop",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "knotflax crop"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "."
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Crop",
+          "Params": [
+            {
+              "Key": "TicksPerStage",
+              "Value": "16"
+            },
+            {
+              "Key": "StageGlyphsRaw",
+              "Value": ".,;,#"
+            },
+            {
+              "Key": "StageColorsRaw",
+              "Value": "&w,&g,&C"
+            },
+            {
+              "Key": "YieldBlueprint",
+              "Value": "KnotflaxCord"
+            },
+            {
+              "Key": "YieldCount",
+              "Value": "2"
+            },
+            {
+              "Key": "HarvestAtMaturity",
+              "Value": "true"
+            },
+            {
+              "Key": "SeedYieldBlueprint",
+              "Value": "KnotflaxSeed"
+            },
+            {
+              "Key": "SeedYieldCount",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Blue-green stalks swell at regular knots. Strip and twist the ripe stems while harvesting to make useful cord."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Vegetation",
+          "Value": ""
+        },
+        {
+          "Key": "Crop",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "HearthbulbSeed",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "hearthbulb seed"
+            },
+            {
+              "Key": "RenderString",
+              "Value": ","
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Seed",
+          "Params": [
+            {
+              "Key": "CropBlueprint",
+              "Value": "HearthbulbCrop"
+            },
+            {
+              "Key": "RequireCultivatedSoil",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Plant in an empty tilled bed. Conjure Rain waters the crop; dry soil pauses growth. Harvest the ripe plant for two useful units and one seed. Growth happens while you act in this area."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "HearthbulbCrop",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "hearthbulb crop"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "."
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Crop",
+          "Params": [
+            {
+              "Key": "TicksPerStage",
+              "Value": "20"
+            },
+            {
+              "Key": "StageGlyphsRaw",
+              "Value": ".,;,%"
+            },
+            {
+              "Key": "StageColorsRaw",
+              "Value": "&w,&g,&Y"
+            },
+            {
+              "Key": "YieldBlueprint",
+              "Value": "Hearthbulb"
+            },
+            {
+              "Key": "YieldCount",
+              "Value": "2"
+            },
+            {
+              "Key": "HarvestAtMaturity",
+              "Value": "true"
+            },
+            {
+              "Key": "SeedYieldBlueprint",
+              "Value": "HearthbulbSeed"
+            },
+            {
+              "Key": "SeedYieldCount",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Bent leaves shelter ochre bulbs which rise just above the furrow. A food crop for eating or roasting."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Vegetation",
+          "Value": ""
+        },
+        {
+          "Key": "Crop",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "SeamleafSeed",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "seamleaf seed"
+            },
+            {
+              "Key": "RenderString",
+              "Value": ","
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Seed",
+          "Params": [
+            {
+              "Key": "CropBlueprint",
+              "Value": "SeamleafCrop"
+            },
+            {
+              "Key": "RequireCultivatedSoil",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Plant in an empty tilled bed. Conjure Rain waters the crop; dry soil pauses growth. Harvest the ripe plant for two useful units and one seed. Growth happens while you act in this area."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SeamleafCrop",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "seamleaf crop"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "."
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Crop",
+          "Params": [
+            {
+              "Key": "TicksPerStage",
+              "Value": "24"
+            },
+            {
+              "Key": "StageGlyphsRaw",
+              "Value": ".,;,\""
+            },
+            {
+              "Key": "StageColorsRaw",
+              "Value": "&w,&g,&G"
+            },
+            {
+              "Key": "YieldBlueprint",
+              "Value": "SeamleafSprig"
+            },
+            {
+              "Key": "YieldCount",
+              "Value": "2"
+            },
+            {
+              "Key": "HarvestAtMaturity",
+              "Value": "true"
+            },
+            {
+              "Key": "SeedYieldBlueprint",
+              "Value": "SeamleafSeed"
+            },
+            {
+              "Key": "SeedYieldCount",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Thick paired leaves grow along a pale central seam. White flowers mark the time to gather brewing sprigs."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Vegetation",
+          "Value": ""
+        },
+        {
+          "Key": "Crop",
+          "Value": ""
+        }
+      ]
+    },
+    {
+      "Name": "RepairLinedWell",
+      "Inherits": "Well",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "clay-lined catch well"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "O"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Masonry"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "clay-well-lining"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A shallow catch well beside the growing beds. Its fired-clay lining forms a basin beneath a broad stone rim."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "RepairRopeWell",
+      "Inherits": "Well",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "hoist well"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "O"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&c"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Masonry,Wood,Fiber"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "rope-well-line"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A lifting frame spans this masonry well. A spindle carries the line and bucket above the water below."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "RepairWoodenGate",
+      "Inherits": "VillageDoor",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "allotment gate"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "/"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "timber-gate-frame"
+            }
+          ]
+        },
+        {
+          "Name": "Door",
+          "Params": [
+            {
+              "Key": "IsOpen",
+              "Value": "true"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A short timber gate marks the allotment boundary. Cross-braces support its wooden frame around the hinges and latch."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "RepairClayBank",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "exposed fire-clay seam"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "~"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&R"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Harvestable",
+          "Params": [
+            {
+              "Key": "YieldBlueprint",
+              "Value": "FireClay"
+            },
+            {
+              "Key": "YieldMin",
+              "Value": "4"
+            },
+            {
+              "Key": "YieldMax",
+              "Value": "4"
+            },
+            {
+              "Key": "YieldChance",
+              "Value": "100"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Red clay shows where water has undercut the bank. Gather four measures for repairs; the exposed pocket is finite."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "RepairTimberPile",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "fallen frame salvage"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Harvestable",
+          "Params": [
+            {
+              "Key": "YieldBlueprint",
+              "Value": "SalvagedTimber"
+            },
+            {
+              "Key": "YieldMin",
+              "Value": "4"
+            },
+            {
+              "Key": "YieldMax",
+              "Value": "4"
+            },
+            {
+              "Key": "YieldChance",
+              "Value": "100"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Four sound lengths can be pried from this collapsed frame. Gather them for wooden repairs."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "RepairCordBundle",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "dry knotflax bundle"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "~"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Harvestable",
+          "Params": [
+            {
+              "Key": "YieldBlueprint",
+              "Value": "KnotflaxCord"
+            },
+            {
+              "Key": "YieldMin",
+              "Value": "2"
+            },
+            {
+              "Key": "YieldMax",
+              "Value": "2"
+            },
+            {
+              "Key": "YieldChance",
+              "Value": "100"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Someone left a dry bundle of knotflax on a stone. Strip and twist it into two coils; growing knotflax can supply more."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

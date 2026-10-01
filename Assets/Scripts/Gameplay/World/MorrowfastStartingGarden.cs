@@ -72,6 +72,7 @@ namespace CavesOfOoo.Core
             {
                 if (!entity.HasTag("Plantable")) { entity.SetTag("Plantable"); ++changed; }
                 zone.NotifyEntityTagAdded(entity, "Plantable");
+                if (!entity.HasPart<CultivatedSoilPart>()) entity.AddPart(new CultivatedSoilPart());
             }
             if (Diag.IsChannelEnabled("crop"))
                 Diag.Record("crop", "MorrowfastGardenPrepared", payload: new { zoneId = zone.ZoneID, cells = Cells.Length, changed });

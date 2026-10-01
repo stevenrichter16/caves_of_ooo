@@ -43,6 +43,7 @@ namespace CavesOfOoo.Rendering
             public Mesh WorldMesh, WaterMesh, PilotGroundMesh, GladeMesh;
             public MeshRenderer WorldRenderer,WaterRenderer,PilotGroundRenderer,GladeRenderer;
             public Dictionary<Entity,SpawnRing3DRecipe> Contributions;
+            public HashSet<Entity> CultivatedOwners;
             public ulong Fingerprint;
             public int Revision;
             public bool Built;
@@ -115,6 +116,8 @@ namespace CavesOfOoo.Rendering
             evidence=new SpreadBiomeStyleEvidence(recipe.ModelId,null,true,expected.Mesh,expected.Material,firstMesh,firstMaterial,pieces);return true;
         }
 
+        internal bool HasCultivatedSoil(Entity owner)
+        {var cell=currentZone?.GetEntityCell(owner);return !disposed&&cell!=null&&patches[Index(cell.X,cell.Y)]?.CultivatedOwners?.Contains(owner)==true;}
         public GameObject RootFor(int x, int y) => !disposed && InBounds(x,y) ? patches[Index(x,y)]?.Root : null;
         public int Revision(int x, int y) => !disposed && InBounds(x,y) ? patches[Index(x,y)]?.Revision ?? 0 : 0;
         /// <summary>Only successful committed patch geometry is reported here.
@@ -177,6 +180,7 @@ namespace CavesOfOoo.Rendering
                     Mix(ref hash, (uint)recipe.QuarterTurns);
                     Mix(ref hash, IsPilotGround(owner) ? 1u : 0u);
                     Mix(ref hash,nativeStyles?.ForOwner(zone,recipe)!=null?1u:0u);
+                    Mix(ref hash,RepairCultivationRecipes.HasCultivatedSoil(zone,owner)?1u:0u);
                 }
                 Mix(ref hash, (uint)contributions);
                 if (!ground && fallback != null) { Mix(ref hash, fallback); Mix(ref hash, Village3DProjection.CellCentre(x,y)); }
@@ -191,7 +195,7 @@ namespace CavesOfOoo.Rendering
             Patch patch = patches[index]; worldPieces.Clear(); waterPieces.Clear(); gladePieces.Clear(); pilotVertices.Clear(); pilotUvs.Clear(); pilotTriangles.Clear();
             BoundsFor(index, out int startX, out int startY);
             Matrix4x4 toLocal = patch.Root.transform.worldToLocalMatrix;
-            var contributions=new Dictionary<Entity,SpawnRing3DRecipe>();
+            var contributions=new Dictionary<Entity,SpawnRing3DRecipe>();var cultivated=new HashSet<Entity>();
             // Stage all fragments before touching the currently published patch.
             for (int y = startY; y < startY + PatchHeight; y++) for (int x = startX; x < startX + PatchWidth; x++)
             {
@@ -203,6 +207,10 @@ namespace CavesOfOoo.Rendering
                     ValidateRecipe(owner, recipe); Model model = GetModel(recipe.ModelId,recipe); ground |= model.Ground;
                     contributions.Add(owner,recipe);
                     if (IsPilotGround(owner)) AppendPilotGround(x, y, toLocal); else Append(model, recipe.Position, x, y, toLocal,recipe.QuarterTurns);
+                    // Add sparse furrows above the same underlying ground mesh.
+                    // No native owner or terrain model is replaced or fabricated.
+                    if(RepairCultivationRecipes.HasCultivatedSoil(zone,owner))
+                    {Append(GetModel(RepairCultivationRecipes.SoilModel),recipe.Position,x,y,toLocal);cultivated.Add(owner);}
                 }
                 if (!ground && fallback != null) Append(GetModel(fallback), Village3DProjection.CellCentre(x,y), x, y, toLocal);
                 if (SpawnRing3DRecipes.HasPermanentWater(zone,x,y))
@@ -226,7 +234,7 @@ namespace CavesOfOoo.Rendering
                 if (patch.Geometry != null) patch.Geometry.SetActive(false);
                 DestroyOwned(patch.Geometry); DestroyOwned(patch.WorldMesh); DestroyOwned(patch.WaterMesh); DestroyOwned(patch.PilotGroundMesh); DestroyOwned(patch.GladeMesh);
                 patch.Geometry = geometry; patch.WorldMesh = newWorld; patch.WaterMesh = newWater; patch.PilotGroundMesh = newPilotGround; patch.GladeMesh = newGlade;
-                patch.WorldRenderer=newWorldRenderer;patch.WaterRenderer=newWaterRenderer;patch.PilotGroundRenderer=newPilotRenderer;patch.GladeRenderer=newGladeRenderer;patch.Contributions=contributions;
+                patch.WorldRenderer=newWorldRenderer;patch.WaterRenderer=newWaterRenderer;patch.PilotGroundRenderer=newPilotRenderer;patch.GladeRenderer=newGladeRenderer;patch.Contributions=contributions;patch.CultivatedOwners=cultivated;
                 geometry = null; newWorld = newWater = newPilotGround = newGlade = null;
                 patch.Geometry.SetActive(true); patch.Fingerprint = fingerprint; patch.Built = true; patch.Revision++; GroundBuildCount++;
                 for (int y = startY; y < startY + PatchHeight; y++) for (int x = startX; x < startX + PatchWidth; x++)

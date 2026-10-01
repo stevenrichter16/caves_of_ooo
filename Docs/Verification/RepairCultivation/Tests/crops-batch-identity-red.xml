@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="150" result="Failed" start-time="2026-10-01T03:38:28.2186510Z" end-time="2026-10-01T03:38:28.4168950Z" duration="0.198227" total="7" passed="6" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="74" random-seed="1764886258">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/batch-identity-red.xml --where "test =~ /FactoryCallbacksCannotRedirectHarvest/"]]></command-line>
+  <filter>
+    <test re="1">FactoryCallbacksCannotRedirectHarvest</test>
+  </filter>
+  <test-suite type="Assembly" id="1164" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="150" result="Failed" site="Child" start-time="2026-10-01T03:38:28.2186510Z" end-time="2026-10-01T03:38:28.4168950Z" duration="0.198227" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="74">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="45587" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1165" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="150" result="Failed" site="Child" start-time="2026-10-01T03:38:28.2202500Z" end-time="2026-10-01T03:38:28.4168890Z" duration="0.196637" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="74">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1166" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="150" result="Failed" site="Child" start-time="2026-10-01T03:38:28.2203560Z" end-time="2026-10-01T03:38:28.4168580Z" duration="0.196500" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="74">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1120" name="CultivatedCropAdversarialTests" fullname="CavesOfOoo.Tests.CultivatedCropAdversarialTests" classname="CavesOfOoo.Tests.CultivatedCropAdversarialTests" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-10-01T03:38:28.2208220Z" end-time="2026-10-01T03:38:28.4168520Z" duration="0.196028" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="74">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1153" name="FactoryCallbacksCannotRedirectHarvest" fullname="CavesOfOoo.Tests.CultivatedCropAdversarialTests.FactoryCallbacksCannotRedirectHarvest" classname="CavesOfOoo.Tests.CultivatedCropAdversarialTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-01T03:38:28.2217560Z" end-time="2026-10-01T03:38:28.4166940Z" duration="0.194937" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="74">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1146" name="FactoryCallbacksCannotRedirectHarvest(&quot;source-moved&quot;)" fullname="CavesOfOoo.Tests.CultivatedCropAdversarialTests.FactoryCallbacksCannotRedirectHarvest(&quot;source-moved&quot;)" methodname="FactoryCallbacksCannotRedirectHarvest" classname="CavesOfOoo.Tests.CultivatedCropAdversarialTests" runstate="Runnable" seed="1131417018" result="Passed" start-time="2026-10-01T03:38:28.2218420Z" end-time="2026-10-01T03:38:28.2927460Z" duration="0.070929" asserts="11" />
+            <test-case id="1147" name="FactoryCallbacksCannotRedirectHarvest(&quot;part-replaced&quot;)" fullname="CavesOfOoo.Tests.CultivatedCropAdversarialTests.FactoryCallbacksCannotRedirectHarvest(&quot;part-replaced&quot;)" methodname="FactoryCallbacksCannotRedirectHarvest" classname="CavesOfOoo.Tests.CultivatedCropAdversarialTests" runstate="Runnable" seed="622319886" result="Passed" start-time="2026-10-01T03:38:28.2933480Z" end-time="2026-10-01T03:38:28.3116380Z" duration="0.018290" asserts="11" />
+            <test-case id="1148" name="FactoryCallbacksCannotRedirectHarvest(&quot;recipe-changed&quot;)" fullname="CavesOfOoo.Tests.CultivatedCropAdversarialTests.FactoryCallbacksCannotRedirectHarvest(&quot;recipe-changed&quot;)" methodname="FactoryCallbacksCannotRedirectHarvest" classname="CavesOfOoo.Tests.CultivatedCropAdversarialTests" runstate="Runnable" seed="1064029059" result="Passed" start-time="2026-10-01T03:38:28.3116640Z" end-time="2026-10-01T03:38:28.3289510Z" duration="0.017287" asserts="11" />
+            <test-case id="1149" name="FactoryCallbacksCannotRedirectHarvest(&quot;id-changed&quot;)" fullname="CavesOfOoo.Tests.CultivatedCropAdversarialTests.FactoryCallbacksCannotRedirectHarvest(&quot;id-changed&quot;)" methodname="FactoryCallbacksCannotRedirectHarvest" classname="CavesOfOoo.Tests.CultivatedCropAdversarialTests" runstate="Runnable" seed="1416002807" result="Passed" start-time="2026-10-01T03:38:28.3289650Z" end-time="2026-10-01T03:38:28.3504950Z" duration="0.021530" asserts="11" />
+            <test-case id="1150" name="FactoryCallbacksCannotRedirectHarvest(&quot;actor-moved&quot;)" fullname="CavesOfOoo.Tests.CultivatedCropAdversarialTests.FactoryCallbacksCannotRedirectHarvest(&quot;actor-moved&quot;)" methodname="FactoryCallbacksCannotRedirectHarvest" classname="CavesOfOoo.Tests.CultivatedCropAdversarialTests" runstate="Runnable" seed="1768127600" result="Passed" start-time="2026-10-01T03:38:28.3505160Z" end-time="2026-10-01T03:38:28.3655950Z" duration="0.015079" asserts="11" />
+            <test-case id="1151" name="FactoryCallbacksCannotRedirectHarvest(&quot;output-carried-later&quot;)" fullname="CavesOfOoo.Tests.CultivatedCropAdversarialTests.FactoryCallbacksCannotRedirectHarvest(&quot;output-carried-later&quot;)" methodname="FactoryCallbacksCannotRedirectHarvest" classname="CavesOfOoo.Tests.CultivatedCropAdversarialTests" runstate="Runnable" seed="364960166" result="Passed" start-time="2026-10-01T03:38:28.3656120Z" end-time="2026-10-01T03:38:28.3818030Z" duration="0.016191" asserts="11" />
+            <test-case id="1152" name="FactoryCallbacksCannotRedirectHarvest(&quot;duplicate-later-id&quot;)" fullname="CavesOfOoo.Tests.CultivatedCropAdversarialTests.FactoryCallbacksCannotRedirectHarvest(&quot;duplicate-later-id&quot;)" methodname="FactoryCallbacksCannotRedirectHarvest" classname="CavesOfOoo.Tests.CultivatedCropAdversarialTests" runstate="Runnable" seed="2085438861" result="Failed" start-time="2026-10-01T03:38:28.3818220Z" end-time="2026-10-01T03:38:28.4163620Z" duration="0.034540" asserts="8">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropAdversarialTests.FactoryCallbacksCannotRedirectHarvest(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropAdversarialTests.cs:line 53
+   at InvokeStub_CultivatedCropAdversarialTests.FactoryCallbacksCannotRedirectHarvest(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.CultivatedCropAdversarialTests.FactoryCallbacksCannotRedirectHarvest(String change) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/CultivatedCropAdversarialTests.cs:line 53
+   at InvokeStub_CultivatedCropAdversarialTests.FactoryCallbacksCannotRedirectHarvest(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

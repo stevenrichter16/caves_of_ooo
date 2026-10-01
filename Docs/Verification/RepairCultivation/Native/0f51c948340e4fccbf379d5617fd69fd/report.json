@@ -1,0 +1,69 @@
+{
+    "runId": "0f51c948340e4fccbf379d5617fd69fd",
+    "zone": "Overworld.2.6.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: safe actual crop growth wait; no skipped danger\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:435 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RepairCultivationRoute>d__223.MoveNext () [0x00f73] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeRepairCultivation.cs:132 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__170.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:455 ",
+    "canVerify": "Isolated ordinary seed64 player in the real generated west-of-Morrowfast field. Actual keyboard gathering, three material repairs, restored well drinking and gate operation; actual ripe knotflax harvest, physical produce/seed pickup, planting its returned seed on the preserved cultivated bed, original watering-book learning, Conjure Rain and paid player waits through sprout and ripe stages, a second harvest/pickup, and native F5/F6 graph replacement preserving repairs, remaining crop states and spent sources. Exact source/owner IDs and quantities are observed; native screenshots require visual inspection.",
+    "cannotVerify": "One explicitly logged player travel shortcut reaches the generated field from the isolated glade launch. All local movement and actions use ordinary keys and live NPC scheduling. No inventory, HP, stat, material, moisture, crop-stage, clock or RNG grants/edits, forced harvests or direct repair calls. A dangerous field stops the route honestly; no enemies are removed or suppressed. No natural discovery, all-seed terrain success, offscreen farming, economic balance or subjective model-quality claim. Wells supply drinking water; this route does not claim they water crops. Crops grow only while their area is active. The visual review is separate from these state checks.",
+    "mode": "native-repair-and-cultivation",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "LABELLED TRAVEL 1 Overworld.11.10.0 -> Overworld.2.6.0@60,9 real west-of-Morrowfast repair and cultivated field; all faults, materials and plants left as generated",
+        "drawn owner=5238 blueprint=RepairLinedWell current=True drawn=True",
+        "drawn owner=5238 blueprint=RepairLinedWell current=True drawn=True",
+        "drawn owner=5240 blueprint=RepairWoodenGate current=True drawn=True",
+        "drawn owner=5239 blueprint=RepairRopeWell current=True drawn=True",
+        "drawn owner=5240 blueprint=RepairWoodenGate current=True drawn=True"
+    ],
+    "biomeShortcuts": 1,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS repair_generated_field",
+        "PASS repair_gather_clay",
+        "PASS repair_gather_timber",
+        "PASS repair_gather_cord",
+        "PASS repair_lining",
+        "PASS repair_frame",
+        "PASS repair_line",
+        "PASS repair_draw_restored_water",
+        "PASS repair_operate_restored_gate",
+        "PASS crop_harvest_original",
+        "PASS crop_pickup_original",
+        "PASS crop_plant_returned_seed",
+        "PASS crop_learn_rain",
+        "PASS crop_water_planted",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/0f51c948340e4fccbf379d5617fd69fd/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/0f51c948340e4fccbf379d5617fd69fd/repair-01-generated-field.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/0f51c948340e4fccbf379d5617fd69fd/repair-02-cracked-lining-and-material.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/0f51c948340e4fccbf379d5617fd69fd/repair-03-gathered-world-supplies.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/0f51c948340e4fccbf379d5617fd69fd/repair-04-restored-gate-closed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/0f51c948340e4fccbf379d5617fd69fd/repair-05-restored-gate-open.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/0f51c948340e4fccbf379d5617fd69fd/crop-01-harvest-on-preserved-bed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/0f51c948340e4fccbf379d5617fd69fd/crop-02-actual-planted-seed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/0f51c948340e4fccbf379d5617fd69fd/crop-03a-native-conjured-rain.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/0f51c948340e4fccbf379d5617fd69fd/crop-03-rain-watered-soil.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "clay-lined catch well",
+            "source": "5238",
+            "text": "You see a clay-lined catch well.\nA split in the fired lining lets the drawn water drain through the rim. Pack the gap with fire clay.\nRepair: 2 fire clay. Composition: Masonry.\n\nA shallow catch well beside the growing beds. Its fired-clay lining forms a basin beneath a broad stone rim.",
+            "units": 0
+        }
+    ],
+    "cases": 16,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 21.4364421,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

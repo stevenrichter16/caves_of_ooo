@@ -1,3 +1,4 @@
+using CavesOfOoo.Core.Inventory;
 using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
@@ -8,15 +9,12 @@ namespace CavesOfOoo.Core
     /// and SaveSystem's Tier-3 <c>WritePublicFields</c> round-trips them
     /// automatically). See <c>Docs/CROPS-WATERING-GRIMOIRE.md</c>.
     ///
-    /// <para><b>Growth model:</b> two visible stages — 0 (seed) and
-    /// 1 (sprout). Growth advances ONLY while <see cref="MoistureTicks"/>
-    /// &gt; 0; a dry crop pauses, it never dies (RPG framing — see
-    /// PROJECT-IDENTITY). Completing the sprout stage replaces the crop
-    /// with <see cref="YieldCount"/> × <see cref="YieldBlueprint"/>
-    /// produce items lying in the cell (the ground-pickup flow closes
-    /// the loop; no separate harvest UX in v1). All ticking happens in
-    /// <see cref="CropSystem.OnTickEnd"/> — this Part holds state only,
-    /// so there is exactly one decrement path (no double-tick risk).</para>
+    /// <para><b>Growth model:</b> 0 (seed) and 1 (sprout) advance only
+    /// while moist. Legacy crops then drop produce automatically. Opt-in
+    /// <see cref="HarvestAtMaturity"/> crops remain at 2 (ripe) until the
+    /// player harvests them. Moisture still dries after ripening, but the
+    /// harvest does not spoil. CropSystem owns all growth/moisture ticks;
+    /// this Part owns the explicit harvest event and saved definition.</para>
     ///
     /// <para><b>Wet-soil visual:</b> while moist, the crop's own
     /// <see cref="RenderPart.BackgroundColor"/> is set to
@@ -40,7 +38,8 @@ namespace CavesOfOoo.Core
         public const string WET_SOIL_BG = "^w";
 
         /// <summary>0 = seed, 1 = sprout. Completing stage 1 converts
-        /// the crop into its produce (handled by CropSystem).</summary>
+        /// the crop into produce, or enters standing ripe stage 2 when
+        /// HarvestAtMaturity is enabled (handled by CropSystem).</summary>
         public int GrowthStage = 0;
 
         /// <summary>Ticks of growth accumulated inside the current stage.
@@ -64,11 +63,37 @@ namespace CavesOfOoo.Core
         public string StageColorsRaw = "";
 
         /// <summary>Produce blueprint spawned when the sprout stage
-        /// completes.</summary>
+        /// completes (legacy) or is harvested (cultivated).</summary>
         public string YieldBlueprint = "";
 
         /// <summary>How many produce items drop at maturity.</summary>
         public int YieldCount = 1;
+
+        /// <summary>Opt-in cultivated crops remain at stage 2 until harvested.
+        /// False preserves the original seed/sprout/automatic-drop lifecycle.</summary>
+        public bool HarvestAtMaturity;
+        /// <summary>Optional real seed blueprint and units returned alongside
+        /// produce. Only the opt-in cultivated harvest uses these saved fields.</summary>
+        public string SeedYieldBlueprint = "";
+        public int SeedYieldCount;
+
+        public override bool HandleEvent(GameEvent e)
+        {
+            if (e.ID == "GetInventoryActions")
+            {
+                if (HarvestAtMaturity && GrowthStage == 2)
+                    e.GetParameter<InventoryActionList>("Actions")?.AddAction("Harvest", "harvest", "HarvestCultivatedCrop", 'h', 20);
+                return true;
+            }
+            if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != "HarvestCultivatedCrop") return true;
+            var actor = e.GetParameter<Entity>("Actor");
+            if (actor == null) return true;
+            if (!CropYieldService.TryRelease(this, e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone,
+                actor, e.GetParameter<InventoryTransaction>("InventoryTransaction"))) return true;
+            e.Handled = true;
+            return false;
+        }
+
 
         /// <summary>
         /// Water this crop: top-up semantics — moisture becomes
@@ -145,7 +170,7 @@ namespace CavesOfOoo.Core
                 || zone == null || !ReferenceEquals(SettlementRuntime.ActiveZone, zone)
                 || cell == null || cell.ParentZone != zone || !cell.IsVisible
                 || owner.SpatialZone != zone || !ReferenceEquals(zone.GetEntityCell(owner), cell)
-                || !cell.Objects.Contains(owner) || GrowthStage < 0 || GrowthStage > 1
+                || !cell.Objects.Contains(owner) || GrowthStage < 0 || GrowthStage > (HarvestAtMaturity ? 2 : 1)
                 || MoistureTicks < 0 || TicksPerStage <= 0 || TicksInStage < 0)
                 return null;
             var render = owner.GetPart<RenderPart>();
@@ -154,9 +179,13 @@ namespace CavesOfOoo.Core
                 || physics == null || physics.ParentEntity != owner
                 || physics.InInventory != null || physics.Equipped != null)
                 return null;
+            if (HarvestAtMaturity && GrowthStage == 2)
+                return "Growth: ripe. Harvest this crop by hand; its produce and saved seed remain here to pick up. The prepared bed can be planted again.";
             return "Growth: " + (GrowthStage == 0 ? "seed" : "sprout") + ". Soil is "
                 + (MoistureTicks > 0 ? "moist; growth continues." : "dry; growth is paused.")
-                + " Conjure Rain nearby to water this crop. At maturity, produce falls here to pick up."
+                + " Conjure Rain nearby to water this crop. "
+                + (HarvestAtMaturity ? "At maturity, Harvest by hand; produce and saved seed remain here to pick up."
+                    : "At maturity, produce falls here to pick up.")
                 + " Crops grow only while you are in this area.";
         }
 

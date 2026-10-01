@@ -118,6 +118,11 @@ namespace CavesOfOoo.Rendering
                     if (portable == null) throw new InvalidOperationException("Spread portable library is unavailable.");
                     portable.Validate(); collectorPortables=portable; materials.Add(portable.Material);
                 }
+                // New portable crops and structural repairs retain their palette
+                // in other supported biomes without changing regional lighting.
+                var cultivation=RepairCultivation3DLibrary.Load();
+                ReferenceGladeVoxelLibrary cultivationPalette=null;
+                if(cultivation!=null){cultivation.Validate();cultivationPalette=ReferenceGladeVoxelLibrary.Load();materials.Add(cultivation.Material);}
                 ReferenceGladeVoxelLibrary glade=null;
                 if(referenceGlade || spreadStyle)
                 {
@@ -151,7 +156,7 @@ namespace CavesOfOoo.Rendering
                     surface.MaterialFor(glade.Material).SetFloat("_GroundMottleStrength", .24f);
                 }
                 questCues = new NativeQuestCueViews(surface, library.WorldMaterial, 16);
-                ground = new SpawnRing3DGroundPatches(surface, library, pilotLibrary, voxel, glade,nativeStyleLibrary);
+                ground = new SpawnRing3DGroundPatches(surface, library, pilotLibrary, voxel, glade??cultivationPalette,nativeStyleLibrary);
                 if (glade != null && (referenceGlade || spreadStyle)) groundContact = new ReferenceGladeGroundContact(glade,surface.MaterialFor(glade.Material),spreadStyle?SpreadEnvironment3DLibrary.Load():null);
                 if(spreadStyle)transientVolumes=new SpreadTransientVolumes(surface,library.WorldMaterial,(x,y)=>ground.HasWater(x,y));
                 equipment = new Village3DEquipmentViews(library.EquipmentLibrary, go => PrepareModel(go, true), spreadStyle);
@@ -505,6 +510,8 @@ namespace CavesOfOoo.Rendering
         {root=null;sample=default;return PresentationVisible&&transientVolumes!=null&&transientVolumes.TryGetGas(entity,out root,out sample);}
         public bool TryGetElementVolume(int x,int y,out GameObject root,out SpreadTransientSample sample)
         {root=null;sample=default;return PresentationVisible&&transientVolumes!=null&&transientVolumes.TryGetElement(x,y,out root,out sample);}
+        public bool HasRepresentedCultivatedSoil(Entity entity)
+            => PresentationVisible&&IsRenderedEntity(entity)&&RepairCultivationRecipes.HasCultivatedSoil(CurrentZone,entity)&&ground.HasCultivatedSoil(entity);
         public bool IsAuthoredEntity(Entity entity) => PresentationVisible && entity != null && CurrentZone.GetEntityCell(entity) != null && (recipes.ContainsKey(entity)||TryGetGasVolume(entity,out _,out _));
         public bool IsRenderedEntity(Entity entity)
         {

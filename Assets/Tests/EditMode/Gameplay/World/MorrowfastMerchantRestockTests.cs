@@ -16,10 +16,10 @@ namespace CavesOfOoo.Tests
     {
         private EntityFactory factory, previousTraderFactory, previousRestockFactory;
         private System.Random previousRng;
-        private static readonly string[] MenderItems = { "Torch", "Dagger", "Spear", "LeatherArmor", "Tepuibone", "FireClay" };
-        private static readonly int[] MenderCounts = { 4, 2, 1, 1, 3, 4 };
-        private static readonly string[] FoodItems = { "Mushroom", "DriedMeat", "HealingTonic", "BurnSalve", "WaterTonic", "Waterskin", "LiquidFlask" };
-        private static readonly int[] FoodCounts = { 8, 4, 2, 2, 3, 1, 1 };
+        private static readonly string[] MenderItems = { "Torch", "Dagger", "Spear", "LeatherArmor", "Tepuibone", "FireClay", "SalvagedTimber", "KnotflaxCord" };
+        private static readonly int[] MenderCounts = { 4, 2, 1, 1, 3, 4, 4, 3 };
+        private static readonly string[] FoodItems = { "Mushroom", "DriedMeat", "HealingTonic", "BurnSalve", "WaterTonic", "Waterskin", "LiquidFlask", "KnotflaxSeed", "HearthbulbSeed", "SeamleafSeed" };
+        private static readonly int[] FoodCounts = { 8, 4, 2, 2, 3, 1, 1, 2, 2, 2 };
 
         [SetUp] public void SetUp()
         {

@@ -41,6 +41,8 @@ namespace CavesOfOoo.Rendering
         private Village3DLibrary library;
         private VoxelWorldPresentation voxel;
         private MultiCellPilot3DLibrary pilotLibrary;
+        private RepairCultivation3DLibrary cultivationLibrary;
+        private readonly Dictionary<Entity,GameObject> cultivatedSoil = new Dictionary<Entity,GameObject>();
         private readonly Dictionary<Entity, View> portableViews = new Dictionary<Entity, View>();
         private readonly HashSet<Entity> portableSeen = new HashSet<Entity>();
         private readonly List<Entity> portableRemoved = new List<Entity>();
@@ -90,6 +92,8 @@ namespace CavesOfOoo.Rendering
                 pilotLibrary = Resources.Load<MultiCellPilot3DLibrary>(MultiCellPilot3DLibrary.ResourcePath);
                 pilotLibrary?.Validate();
                 var materials = new List<Material> { library.WorldMaterial, library.WaterMaterial };
+                cultivationLibrary=RepairCultivation3DLibrary.Load();
+                if(cultivationLibrary!=null){cultivationLibrary.Validate();materials.Add(cultivationLibrary.Material);}
                 if (pilotLibrary != null) { materials.Add(pilotLibrary.WorldMaterial); materials.Add(pilotLibrary.TarMaterial); }
                 surface = new NativeZone3DRenderSurface(transform, library.Renderer, library.RendererIndex,
                     library.CompositeMaterial, materials.ToArray(), GameplayExposure);
@@ -132,14 +136,14 @@ namespace CavesOfOoo.Rendering
         private View AddView(string id, Village3DManifest.Owner spec, string modelId, Entity portableOwner = null)
         {
             bool transient = portableOwner != null
-                ? portableOwner.GetPart<MultiCellPilotPropPart>().Role == "actor" || portableOwner.GetPart<PhysicsPart>()?.Takeable == true
+                ? portableOwner.GetPart<MultiCellPilotPropPart>()?.Role == "actor" || portableOwner.GetPart<PhysicsPart>()?.Takeable == true
                 : spec == null || spec.kind == "npc" || spec.kind == "creature";
             var placement = spec ?? new Village3DManifest.Owner { modelId = modelId, scale = Vector3.one };
             GameObject root;
             if (portableOwner == null) root = MakeModel(placement, content.transform);
             else
             {
-                var prefab = pilotLibrary.FindModel(modelId);
+                var prefab = RepairCultivationSource.IsModelId(modelId)?cultivationLibrary?.Find(modelId)?.Prefab:pilotLibrary.FindModel(modelId);
                 if (prefab == null) throw new InvalidOperationException("Missing portable model " + modelId);
                 root = Instantiate(prefab, content.transform, false);
             }
@@ -170,8 +174,19 @@ namespace CavesOfOoo.Rendering
             portableSeen.Clear(); portableRemoved.Clear();
             foreach (var entity in CurrentZone.GetReadOnlyEntities())
             {
-                if (!entity.HasPart<MultiCellPilotPropPart>()) continue;
-                var recipe = SpawnRing3DRecipes.ResolvePilot(CurrentZone, entity, pilotLibrary?.Definition);
+                SpawnRing3DRecipe recipe;
+                if(cultivationLibrary!=null&&RepairCultivationRecipes.Handles(entity.BlueprintName))
+                {
+                    string model=RepairCultivationRecipes.ResolveModel(CurrentZone,entity);
+                    if(model==null||string.IsNullOrEmpty(entity.ID))continue;
+                    var cell=CurrentZone.GetEntityCell(entity);
+                    recipe=new SpawnRing3DRecipe(entity,model,"cultivation:"+entity.ID,Village3DProjection.CellCentre(cell.X,cell.Y),entity.GetPart<PhysicsPart>().Takeable,false);
+                }
+                else
+                {
+                    if (!entity.HasPart<MultiCellPilotPropPart>()) continue;
+                    recipe = SpawnRing3DRecipes.ResolvePilot(CurrentZone, entity, pilotLibrary?.Definition);
+                }
                 if (recipe.ModelId == null || string.IsNullOrEmpty(recipe.ComponentId)) continue;
                 if (portableViews.TryGetValue(entity, out var view)
                     && (view.PilotModelId != recipe.ModelId || view.Id != recipe.ComponentId))
@@ -180,11 +195,33 @@ namespace CavesOfOoo.Rendering
                 if (view == null && byId.ContainsKey(recipe.ComponentId)) continue;
                 if (view == null)
                 { view = AddView(recipe.ComponentId, null, recipe.ModelId, entity); portableViews.Add(entity, view); }
+                if(RepairCultivationSource.IsModelId(recipe.ModelId))view.Root.transform.rotation=Quaternion.Euler(0,(entity.GetPart<DoorPart>()?.QuarterTurns??0)*90,0);
                 portableSeen.Add(entity);
             }
             foreach (var pair in portableViews) if (!portableSeen.Contains(pair.Key)) portableRemoved.Add(pair.Key);
             foreach (var entity in portableRemoved) RemovePortableView(entity, portableViews[entity]);
         }
+        private void SyncCultivatedSoil()
+        {
+            // These overlays retain the town's authored underlay, owner and
+            // selection route. Only the saved current terrain marker admits them.
+            portableSeen.Clear();portableRemoved.Clear();
+            if(cultivationLibrary!=null)foreach(var owner in CurrentZone.GetReadOnlyEntities())
+            {
+                if(!RepairCultivationRecipes.HasCultivatedSoil(CurrentZone,owner))continue;
+                portableSeen.Add(owner);var cell=CurrentZone.GetEntityCell(owner);
+                if(!cultivatedSoil.TryGetValue(owner,out var root))
+                {
+                    root=Instantiate(cultivationLibrary.Find(RepairCultivationRecipes.SoilModel).Prefab,content.transform,false);
+                    root.name="Cultivated ground "+owner.ID;PrepareModel(root,false);cultivatedSoil.Add(owner,root);
+                }
+                root.transform.position=Village3DProjection.CellCentre(cell.X,cell.Y);root.SetActive(FullReveal||cell.Explored);
+            }
+            foreach(var pair in cultivatedSoil)if(!portableSeen.Contains(pair.Key))portableRemoved.Add(pair.Key);
+            foreach(var owner in portableRemoved){var root=cultivatedSoil[owner];cultivatedSoil.Remove(owner);root.SetActive(false);if(Application.isPlaying)Destroy(root);else DestroyImmediate(root);}
+        }
+        public bool HasRepresentedCultivatedSoil(Entity owner)
+            =>PresentationVisible&&RepairCultivationRecipes.HasCultivatedSoil(CurrentZone,owner)&&cultivatedSoil.TryGetValue(owner,out var root)&&root!=null&&root.activeInHierarchy;
         private void RemovePortableView(Entity owner, View view)
         {
             portableViews.Remove(owner); byId.Remove(view.Id); byEntity.Remove(owner);
@@ -207,7 +244,7 @@ namespace CavesOfOoo.Rendering
         {
             if (!IsReady || CurrentZone == null) return;
             lightMap = currentLight; player = null; byEntity.Clear(); rooms.Clear();
-            SyncPortableOwners();
+            SyncPortableOwners();SyncCultivatedSoil();
             foreach (var entity in CurrentZone.GetReadOnlyEntities())
                 if (entity.HasTag("Player")) { player = entity; break; }
             string roomId = null;
@@ -451,7 +488,7 @@ namespace CavesOfOoo.Rendering
             equipmentViews?.Dispose(); equipmentViews = null;
             surface?.Dispose(); surface = null;
             WorldCamera = null; content = null; source = null;
-            library = null; pilotLibrary = null; definition = null; player = null; lightMap = null; CurrentZone = null;
+            library = null; pilotLibrary = null; cultivationLibrary=null;cultivatedSoil.Clear();definition = null; player = null; lightMap = null; CurrentZone = null;
             portableViews.Clear(); portableSeen.Clear(); portableRemoved.Clear();
             views.Clear(); actors.Clear(); decorations.Clear(); byId.Clear(); byEntity.Clear(); byCollider.Clear(); rooms.Clear();
         }

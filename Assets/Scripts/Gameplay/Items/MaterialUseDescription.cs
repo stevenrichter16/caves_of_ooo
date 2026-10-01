@@ -13,6 +13,14 @@ namespace CavesOfOoo.Core
             text = null;
             var inventory = actor?.GetPart<InventoryPart>();
             if (item == null || inventory == null || !inventory.CanConsumeOne(item)) return false;
+            if (item.BlueprintName == "SalvagedTimber" || item.BlueprintName == "KnotflaxCord")
+            {
+                text = item.GetDisplayName() + "\n\n" + (item.BlueprintName == "SalvagedTimber"
+                    ? "Two lengths brace a jammed wooden gate. Gather fallen frame salvage, or ask a mender for timber."
+                    : "One coil replaces a snapped well line. Gather a dry knotflax bundle or harvest ripe knotflax from a tilled bed.")
+                    + " Stand beside the damaged object, examine it, then choose its repair action. Only a successful repair spends supplies.";
+                return true;
+            }
             string guide, fallback, use, resident;
             switch (item.BlueprintName)
             {
@@ -45,6 +53,8 @@ namespace CavesOfOoo.Core
             if (item.BlueprintName == SettlementRepairDefinitions.FireClayBlueprint)
                 text += "\n\nAnother use: Morrowfast's bell. Ask Nemm about it and inspect the reserve cord first."
                     +" After diagnosis, one fire clay makes a quiet clapper; the bare, loud setting costs no material.";
+            if (item.BlueprintName == SettlementRepairDefinitions.FireClayBlueprint)
+                text += "\n\nStructural repair: two measures seal a split clay-lined catch well. Stand beside it and choose Repair; this repair needs no guide. Exposed fire-clay seams provide finite supplies.";
             return true;
         }
     }

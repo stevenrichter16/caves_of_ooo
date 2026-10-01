@@ -106,6 +106,10 @@ namespace CavesOfOoo.Core
             string name = ParentEntity?.GetDisplayName() ?? "something";
             string article = GetArticle(name);
             string baseLine = $"You see {article}{name}.";
+            var repair = ParentEntity?.GetPart<RepairablePart>()?.Describe();
+            if (!string.IsNullOrEmpty(repair)) baseLine += "\n" + repair;
+            if (ParentEntity?.HasPart<CultivatedSoilPart>() == true)
+                baseLine += "\nTilled growing bed. Plant a carried seed here when the bed is empty. Conjure Rain waters planted crops; growth pauses while the soil is dry or you are elsewhere.";
             if (statusFirst)
             {
                 baseLine += DescribeAfflictions();

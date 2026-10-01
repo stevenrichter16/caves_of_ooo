@@ -1,0 +1,92 @@
+{
+    "runId": "8dbf58bdfa5e4cbda018a6f97c825cd0",
+    "zone": "Overworld.2.6.0",
+    "fatal": "",
+    "canVerify": "Isolated ordinary seed64 player in the real generated west-of-Morrowfast field. Actual keyboard gathering, three material repairs, restored well drinking and gate operation; actual ripe knotflax harvest, physical produce/seed pickup, planting its returned seed on the preserved cultivated bed, original watering-book learning, Conjure Rain and paid player waits through sprout and ripe stages, a second harvest/pickup, and native F5/F6 graph replacement preserving repairs, remaining crop states and spent sources. Exact source/owner IDs and quantities are observed; native screenshots require visual inspection.",
+    "cannotVerify": "One explicitly logged player travel shortcut reaches the generated field from the isolated glade launch. All local movement and actions use ordinary keys and live NPC scheduling. No inventory, HP, stat, material, moisture, crop-stage, clock or RNG grants/edits, forced harvests or direct repair calls. A dangerous field stops the route honestly; no enemies are removed or suppressed. No natural discovery, all-seed terrain success, offscreen farming, economic balance or subjective model-quality claim. Wells supply drinking water; this route does not claim they water crops. Crops grow only while their area is active. The visual review is separate from these state checks.",
+    "mode": "native-repair-and-cultivation",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "LABELLED TRAVEL 1 Overworld.11.10.0 -> Overworld.2.6.0@60,9 real west-of-Morrowfast repair and cultivated field; all faults, materials and plants left as generated",
+        "drawn owner=5230 blueprint=RepairLinedWell current=True drawn=True",
+        "drawn owner=5230 blueprint=RepairLinedWell current=True drawn=True",
+        "drawn owner=5232 blueprint=RepairWoodenGate current=True drawn=True",
+        "drawn owner=5231 blueprint=RepairRopeWell current=True drawn=True",
+        "drawn owner=5232 blueprint=RepairWoodenGate current=True drawn=True",
+        "drawn owner=5283 blueprint=KnotflaxCrop current=True drawn=True",
+        "drawn owner=5283 blueprint=KnotflaxCrop current=True drawn=True"
+    ],
+    "biomeShortcuts": 1,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS repair_generated_field",
+        "PASS repair_gather_clay",
+        "PASS repair_gather_timber",
+        "PASS repair_gather_cord",
+        "PASS repair_lining",
+        "PASS repair_frame",
+        "PASS repair_line",
+        "PASS repair_draw_restored_water",
+        "PASS repair_operate_restored_gate",
+        "PASS crop_harvest_original",
+        "PASS crop_pickup_original",
+        "PASS crop_plant_returned_seed",
+        "PASS crop_learn_rain",
+        "PASS crop_water_planted",
+        "PASS crop_grow_sprout",
+        "PASS crop_grow_ripe",
+        "PASS crop_harvest_grown",
+        "PASS crop_pickup_grown",
+        "PASS repair_crop_native_checkpoint",
+        "PASS repair_crop_ordinary_finish"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/repair-01-generated-field.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/repair-02-cracked-lining-and-material.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/repair-03-gathered-world-supplies.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/repair-04-restored-gate-closed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/repair-05-restored-gate-open.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/crop-01-harvest-on-preserved-bed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/crop-02-actual-planted-seed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/crop-03a-native-conjured-rain.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/crop-03-rain-watered-soil.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/crop-04-grown-sprout.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/crop-05-standing-ripe-plant.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/crop-06-earned-repeat-crop-yield.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/RepairCultivation/Native/8dbf58bdfa5e4cbda018a6f97c825cd0/repair-06-restored-and-saved-field.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "clay-lined catch well",
+            "source": "5230",
+            "text": "You see a clay-lined catch well.\nA split in the fired lining lets the drawn water drain through the rim. Pack the gap with fire clay.\nRepair: 2 fire clay. Composition: Masonry.\n\nA shallow catch well beside the growing beds. A visible split runs through its clay lining; water escapes before a vessel can be filled.",
+            "units": 0
+        },
+        {
+            "subject": "Actual cultivated growth",
+            "source": "5283",
+            "text": "Ordinary waits: 31; real rain casts: 1; ticks per stage: 16. No offscreen progress or manual growth changes.",
+            "units": 0
+        },
+        {
+            "subject": "Native repair and cultivated checkpoint",
+            "source": "eee570f3ecf042aab5d8820433b84f84",
+            "text": "F5, real step, F6; unchanged saved bytes 332724de4ffe60cb3136c1325d18a8cc679beb40e0b47d65d0496d630683f68c; exact repaired flags, remaining crop clocks, prepared terrain IDs and carried quantities restored; all three harvested sources remain absent.",
+            "units": 0
+        }
+    ],
+    "cases": 21,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 29.1093087,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}
