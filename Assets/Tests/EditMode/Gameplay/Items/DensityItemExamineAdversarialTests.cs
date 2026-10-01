@@ -123,7 +123,11 @@ namespace CavesOfOoo.Tests
         public void DurationIsNotInventedForPhysicalStateEffects()
         {
             string text = Examine(BareWeapon(effects: "Frozen,30,,777,3;Acidic,40,,888,1.5"));
-            StringAssert.Contains("100% iced until it thaws", text);
+            // Freeze now thaws by magnitude (Docs/FREEZE-THAW.md): the text states the
+            // thaw time derived from Cold (1.0 / 0.10 per turn = ~10 turns), which is a
+            // property of the freeze itself. The spec's duration argument (777) is still
+            // never shown, which is what this test guards.
+            StringAssert.Contains("100% iced; thaws in about 10 turns", text);
             StringAssert.Contains("5 damage a turn", text);
             StringAssert.DoesNotContain("777", text);
             StringAssert.DoesNotContain("888", text);

@@ -68,6 +68,13 @@ namespace CavesOfOoo.Core
 
             Temperature += delta;
 
+            // Fire thaws (Docs/FREEZE-THAW.md): a heat dose melts ice in
+            // proportion to the temperature it raises. Runs before the
+            // crossing checks so a dose that thaws and then ignites reads
+            // in that order. Cold doses (delta <= 0) never thaw.
+            if (delta > 0f && ParentEntity != null)
+                ParentEntity.GetEffect<FrozenEffect>()?.Thaw(delta * FrozenEffect.THAW_PER_DEGREE_OF_HEAT, "heat");
+
             // Check for ignition threshold crossing (volatility lowers the bar).
             if (wasBelowFlame && Temperature >= effectiveFlame)
                 TryIgnite(e);
@@ -183,7 +190,12 @@ namespace CavesOfOoo.Core
                 // calls WrongMaterial, the freeze-side twin of the ignite
                 // side's Combustibility veto (study §4 violator #3).
                 // Refusals emit effect/ObjectEffectRefused.
-                ObjectStatusMatrix.TryApply(new FrozenEffect(cold: 1.0f),
+                //
+                // Magnitude follows how far the dose drove the body below
+                // freezing (FrozenEffect.ColdForDepth), not a flat 1.0: a
+                // Quench-sized chill is a short freeze, a deep chill a long one.
+                ObjectStatusMatrix.TryApply(
+                    new FrozenEffect(cold: FrozenEffect.ColdForDepth(FreezeTemperature - Temperature)),
                     ParentEntity, source, zone);
             }
         }

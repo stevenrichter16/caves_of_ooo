@@ -1,9 +1,20 @@
+using CavesOfOoo.Diagnostics;
+
 namespace CavesOfOoo.Core
 {
     /// <summary>
-    /// Frozen: cold-based counterpart to BurningEffect. Blocks action when deeply frozen,
-    /// extinguishes any active burning on apply, and shatters brittle materials under
-    /// freeze shock. Thaws over time based on the owner's ThermalPart.Temperature.
+    /// Frozen: cold-based counterpart to BurningEffect. Blocks action while any
+    /// <see cref="Cold"/> remains, extinguishes any active burning on apply, and
+    /// shatters brittle materials under freeze shock.
+    ///
+    /// <para><b>Thaw follows magnitude</b> (Docs/FREEZE-THAW.md). Cold is the
+    /// magnitude of the freeze and it drains at <see cref="THAW_PER_TURN"/> a
+    /// turn, so a freeze of 0.5 lasts ~5 turns and 1.0 lasts ~10. The old rule
+    /// only thawed while the owner's body was ABOVE freezing, which a cold
+    /// dose made false for ~65 turns, turning any cheap chill into a lock.
+    /// Warmth still helps and <b>fire thaws</b>: heat doses, ignition and fire
+    /// damage each remove Cold (see the <c>THAW_PER_*</c> constants). Applies
+    /// to creatures and objects alike.</para>
     /// </summary>
     public class FrozenEffect : Effect
     {
@@ -25,6 +36,83 @@ namespace CavesOfOoo.Core
         {
             Cold = cold > 1.0f ? 1.0f : (cold < 0f ? 0f : cold);
             Duration = DURATION_INDEFINITE;
+        }
+
+        // ── Thaw model (all in Cold units, 0..1) ──────────────────────────
+
+        /// <summary>Cold lost every turn regardless of temperature. 0.10 means
+        /// a magnitude-1.0 freeze lasts 10 turns.</summary>
+        public const float THAW_PER_TURN = 0.10f;
+
+        /// <summary>Extra Cold lost per turn per degree the owner is ABOVE
+        /// freezing (the pre-existing coefficient, now additive).</summary>
+        public const float WARMTH_THAW_PER_DEGREE = 0.0002f;
+
+        /// <summary>Cold removed per degree of temperature a heat dose raises
+        /// (joules / heat capacity). A 300 J attack on a 1.6-capacity body is
+        /// ~187 degrees: ~0.75 of thaw.</summary>
+        public const float THAW_PER_DEGREE_OF_HEAT = 0.004f;
+
+        /// <summary>Cold removed per point of Fire/Heat damage taken.</summary>
+        public const float THAW_PER_FIRE_DAMAGE = 0.06f;
+
+        /// <summary>Cold removed when a flame takes hold, per point of
+        /// BurningEffect intensity. The flame still ignites (see BurningEffect.Apply).</summary>
+        public const float THAW_PER_BURN_INTENSITY = 0.5f;
+
+        /// <summary>Smallest freeze a cold dose produces (crossing the freezing
+        /// point at all).</summary>
+        public const float FREEZE_FLOOR = 0.10f;
+
+        /// <summary>Extra Cold per degree a dose drives the body BELOW
+        /// freezing: 1/600, so a -150 J Quench on flesh (~69 degrees under)
+        /// is a ~0.21 freeze and a 540-degree plunge saturates at 1.0.</summary>
+        public const float FREEZE_PER_DEGREE_BELOW = 1f / 600f;
+
+        /// <summary>Freeze magnitude for a body driven <paramref name="degreesBelowFreezing"/>
+        /// past its freezing point. Floored at <see cref="FREEZE_FLOOR"/>, capped at 1.</summary>
+        public static float ColdForDepth(float degreesBelowFreezing)
+        {
+            float depth = degreesBelowFreezing > 0f ? degreesBelowFreezing : 0f;
+            float cold = FREEZE_FLOOR + depth * FREEZE_PER_DEGREE_BELOW;
+            return cold > 1.0f ? 1.0f : cold;
+        }
+
+        /// <summary>Turns until the ice is gone at the base rate (warmth and
+        /// fire only shorten it). For the player-facing description.</summary>
+        public int TurnsToThaw => Cold <= 0f ? 0 : (int)System.Math.Ceiling(Cold / THAW_PER_TURN - 1e-4f);
+
+        /// <summary>
+        /// Remove <paramref name="amount"/> of Cold. At zero the effect is removed
+        /// immediately ("X thaws."). Returns the Cold that remains. <paramref name="cause"/>
+        /// is "time" for the per-turn drain (not recorded) or what thawed it
+        /// ("heat", "fire", "ignition"), which emits an <c>effect/Thawed</c> record.
+        /// </summary>
+        public float Thaw(float amount, string cause)
+        {
+            if (amount <= 0f || Cold <= 0f) return Cold;
+
+            float before = Cold;
+            Cold -= amount;
+            if (Cold < 0.0001f) Cold = 0f;
+
+            if (cause != "time" && Diag.IsChannelEnabled("effect"))
+            {
+                Diag.Record(
+                    category: "effect",
+                    kind: "Thawed",
+                    target: Owner,
+                    payload: new { cause = cause, amount = amount, coldBefore = before, coldAfter = Cold });
+            }
+
+            if (Cold <= 0f)
+            {
+                Duration = 0;
+                // Immediate when attached; a time-tick leaves removal to the
+                // EndTurn sweep, which also catches Duration == 0.
+                if (cause != "time") Owner?.GetPart<StatusEffectsPart>()?.RemoveEffect(this);
+            }
+            return Cold;
         }
 
         /// <summary>Moisture above which water deepens the freeze.
@@ -87,17 +175,23 @@ namespace CavesOfOoo.Core
 
         public override void OnTurnEnd(Entity target)
         {
-            // Thaw based on ambient warmth. Above freezing the ice retreats;
-            // below freezing it holds.
+            // Thaw by magnitude: a fixed drain every turn, whatever the body
+            // temperature, plus a little more when the body is above freezing.
+            float rate = THAW_PER_TURN;
             var thermal = target.GetPart<ThermalPart>();
             if (thermal != null && thermal.Temperature > thermal.FreezeTemperature)
-            {
-                float thawRate = (thermal.Temperature - thermal.FreezeTemperature) * 0.0002f + 0.02f;
-                Cold = System.Math.Max(Cold - thawRate, 0f);
-            }
+                rate += (thermal.Temperature - thermal.FreezeTemperature) * WARMTH_THAW_PER_DEGREE;
 
-            if (Cold <= 0f)
-                Duration = 0;
+            Thaw(rate, "time");
+        }
+
+        /// <summary>Fire and heat damage melt ice in proportion to the damage.
+        /// Other damage (a blade, a cold blast) does not.</summary>
+        public override void OnTakeDamage(Entity target, GameEvent e)
+        {
+            var damage = e?.GetParameter<Damage>("Damage");
+            if (damage == null || damage.Amount <= 0 || !damage.IsHeatDamage()) return;
+            Thaw(damage.Amount * THAW_PER_FIRE_DAMAGE, "fire");
         }
 
         // Block ALL action while the effect is present (Cold > 0). The

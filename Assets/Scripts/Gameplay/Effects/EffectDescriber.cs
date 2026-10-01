@@ -38,7 +38,8 @@ namespace CavesOfOoo.Core
                         + "% drenched (douses flame, conducts shock).";
                 case FrozenEffect fz:
                     return "Frozen over - " + (fz.Cold * 100f).ToString("0")
-                        + "% iced until it thaws.";
+                        + "% iced; thaws in about " + fz.TurnsToThaw
+                        + (fz.TurnsToThaw == 1 ? " turn" : " turns") + " (fire thaws it faster).";
                 case StoneskinEffect s:
                     return "Stoneskin - incoming damage reduced by " + s.Reduction
                         + " for " + s.Duration + " turns.";

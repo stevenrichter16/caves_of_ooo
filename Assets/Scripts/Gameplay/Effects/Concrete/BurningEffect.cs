@@ -39,6 +39,21 @@ namespace CavesOfOoo.Core
             Duration = DURATION_INDEFINITE;
         }
 
+        /// <summary>
+        /// Fire thaws (Docs/FREEZE-THAW.md), the mirror of "cold defeats fire"
+        /// in <see cref="FrozenEffect.OnApply"/>. A flame meeting ice melts
+        /// <see cref="FrozenEffect.THAW_PER_BURN_INTENSITY"/> of Cold per point of
+        /// intensity, then takes hold as normal. It is deliberately NOT absorbed by
+        /// remaining ice: Wet + Frozen + Burning on one target is the three-mark
+        /// priming state the consuming rites (Hollow Coin, Sundering Word) are
+        /// built on, so a flame thins a freeze but never refuses to light.
+        /// </summary>
+        public override bool Apply(Entity target)
+        {
+            target?.GetEffect<FrozenEffect>()?.Thaw(Intensity * FrozenEffect.THAW_PER_BURN_INTENSITY, "ignition");
+            return base.Apply(target);
+        }
+
         public override void OnApply(Entity target)
         {
             // If no FuelPart, use fallback duration based on intensity
