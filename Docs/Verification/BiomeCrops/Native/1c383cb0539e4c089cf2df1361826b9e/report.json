@@ -1,0 +1,55 @@
+{
+    "runId": "1c383cb0539e4c089cf2df1361826b9e",
+    "zone": "Overworld.12.4.5",
+    "fatal": "",
+    "canVerify": "Isolated ordinary seed64 player; actual connected ordinary cave Lampvein patch, native current-owner cave/crop rendering, keyboard harvest and physical seed/produce pickup. The harvest is stowed through the real equipment UI if automatically equipped, then dropped with keys to demonstrate actual carried-versus-ground lighting. Source and physical stair/path evidence are observed. Screenshots need visual review.",
+    "cannotVerify": "One explicitly labelled travel shortcut selects an unchanged generated cave patch with actual incoming physical stairs and a usable arrival path. Local actions use real keys and live NPC scheduling. No grants, player boosts, stage edits, source replacement or forced light. This cave-only receipt does not establish the incomplete surface growth route, natural cave discovery, all35 utilities or subjective visual quality.",
+    "mode": "native-biome-cave-crops",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "BOTANICAL SOURCE Overworld.12.4.5@66,18 approach=67,18 minimumHostileDistance=14 requiredClearance=2; unchanged ordinary threats",
+        "LABELLED TRAVEL 1 Overworld.11.10.0 -> Overworld.12.4.5@67,18 real connected ordinary cave Lampvein patch; source generation and exact coordinates recorded, no synthetic cave",
+        "drawn owner=21654 blueprint=LampveinCrop current=True drawn=True",
+        "drawn owner=21656 blueprint=LampveinFan current=True drawn=True"
+    ],
+    "biomeShortcuts": 1,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS botany_cave_source",
+        "PASS botany_cave_harvest",
+        "PASS botany_cave_light",
+        "PASS botany_finish"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/BiomeCrops/Native/1c383cb0539e4c089cf2df1361826b9e/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/BiomeCrops/Native/1c383cb0539e4c089cf2df1361826b9e/botany-09-cave-lampvein.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/BiomeCrops/Native/1c383cb0539e4c089cf2df1361826b9e/botany-10-harvested-light-in-cave.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Actual cave crop source",
+            "source": "21654",
+            "text": "Overworld.12.4.5@66,18; real StairsUp=True",
+            "units": 0
+        },
+        {
+            "subject": "lampvein",
+            "source": "21654",
+            "text": "You see a lampvein.\nGrowth: ripe. Harvest this crop by hand; its produce and saved seed remain here to pick up. The prepared bed can be planted again.\n\nPale veins spread across the fan, carrying a glow broad enough to work by in a low chamber. The planted crop takes 64 moist rounds in this area to become ripe. Harvest by hand, then pick up its lampvein fan and one saved seed. Hold the fan or set it down to cast light farther into the dark. It is covered while stowed.",
+            "units": 0
+        }
+    ],
+    "cases": 5,
+    "failures": 0,
+    "unexpectedErrors": 0,
+    "complete": true,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 7.083729,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

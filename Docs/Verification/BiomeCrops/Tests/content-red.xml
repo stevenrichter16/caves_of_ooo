@@ -1,0 +1,829 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="50" result="Failed" start-time="2026-10-01T05:07:14.8250680Z" end-time="2026-10-01T05:07:15.3400210Z" duration="0.514934" total="36" passed="0" failed="36" inconclusive="0" skipped="0" warnings="0" asserts="108" random-seed="504374734">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/content-red.xml --where "class =~ /BiomeCropContentTests/"]]></command-line>
+  <filter>
+    <class re="1">BiomeCropContentTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1054" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-10-01T05:07:14.8250680Z" end-time="2026-10-01T05:07:15.3400210Z" duration="0.514934" total="36" passed="0" failed="36" warnings="0" inconclusive="0" skipped="0" asserts="108">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="59895" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1055" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-10-01T05:07:14.8267920Z" end-time="2026-10-01T05:07:15.3400200Z" duration="0.513228" total="36" passed="0" failed="36" warnings="0" inconclusive="0" skipped="0" asserts="108">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1056" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="50" result="Failed" site="Child" start-time="2026-10-01T05:07:14.8270170Z" end-time="2026-10-01T05:07:15.3400160Z" duration="0.512999" total="36" passed="0" failed="36" warnings="0" inconclusive="0" skipped="0" asserts="108">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1000" name="BiomeCropContentTests" fullname="CavesOfOoo.Tests.BiomeCropContentTests" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" testcasecount="36" result="Failed" site="Child" start-time="2026-10-01T05:07:14.8275850Z" end-time="2026-10-01T05:07:15.3400020Z" duration="0.512418" total="36" passed="0" failed="36" warnings="0" inconclusive="0" skipped="0" asserts="108">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1001" name="CatalogueHasExactlyFiveSpeciesInSevenLiveEcologies" fullname="CavesOfOoo.Tests.BiomeCropContentTests.CatalogueHasExactlyFiveSpeciesInSevenLiveEcologies" methodname="CatalogueHasExactlyFiveSpeciesInSevenLiveEcologies" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1539658771" result="Failed" start-time="2026-10-01T05:07:14.8286470Z" end-time="2026-10-01T05:07:14.9072750Z" duration="0.078656" asserts="3">
+            <failure>
+              <message><![CDATA[  A single validated catalogue must own the 35 original species.
+  Expected: not null
+  But was:  null
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.CatalogueHasExactlyFiveSpeciesInSevenLiveEcologies() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 18
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  A single validated catalogue must own the 35 original species.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.CatalogueHasExactlyFiveSpeciesInSevenLiveEcologies() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 18
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1037" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-10-01T05:07:14.9078280Z" end-time="2026-10-01T05:07:15.3397670Z" duration="0.431940" total="35" passed="0" failed="35" warnings="0" inconclusive="0" skipped="0" asserts="105">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1002" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Claspbean&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Claspbean&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1716276615" result="Failed" start-time="2026-10-01T05:07:14.9078920Z" end-time="2026-10-01T05:07:14.9286510Z" duration="0.020760" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Claspbean
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Claspbean
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1003" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Pitchpod&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Pitchpod&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="884665561" result="Failed" start-time="2026-10-01T05:07:14.9286830Z" end-time="2026-10-01T05:07:14.9469940Z" duration="0.018312" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Pitchpod
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Pitchpod
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1004" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Drawgourd&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Drawgourd&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="473473831" result="Failed" start-time="2026-10-01T05:07:14.9470130Z" end-time="2026-10-01T05:07:14.9668920Z" duration="0.019879" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Drawgourd
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Drawgourd
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1005" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Wickrush&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Wickrush&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="2098378100" result="Failed" start-time="2026-10-01T05:07:14.9669080Z" end-time="2026-10-01T05:07:14.9849480Z" duration="0.018040" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Wickrush
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Wickrush
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1006" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Marlroot&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Marlroot&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="489499989" result="Failed" start-time="2026-10-01T05:07:14.9850030Z" end-time="2026-10-01T05:07:15.0015010Z" duration="0.016498" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Marlroot
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Marlroot
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1007" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Sumpsieve&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Sumpsieve&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1575376522" result="Failed" start-time="2026-10-01T05:07:15.0015180Z" end-time="2026-10-01T05:07:15.0189090Z" duration="0.017391" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Sumpsieve
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Sumpsieve
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1008" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Drowsebell&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Drowsebell&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="2051106657" result="Failed" start-time="2026-10-01T05:07:15.0189270Z" end-time="2026-10-01T05:07:15.0359290Z" duration="0.017003" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Drowsebell
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Drowsebell
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1009" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Chillcress&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Chillcress&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1410834729" result="Failed" start-time="2026-10-01T05:07:15.0359580Z" end-time="2026-10-01T05:07:15.0579270Z" duration="0.021968" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Chillcress
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Chillcress
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1010" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Slipsedge&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Slipsedge&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1525849279" result="Failed" start-time="2026-10-01T05:07:15.0579510Z" end-time="2026-10-01T05:07:15.0760870Z" duration="0.018136" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Slipsedge
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Slipsedge
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1011" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Peatlantern&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Peatlantern&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="702230102" result="Failed" start-time="2026-10-01T05:07:15.0761060Z" end-time="2026-10-01T05:07:15.0920470Z" duration="0.015941" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Peatlantern
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Peatlantern
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1012" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Sunbladder&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Sunbladder&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1420414669" result="Failed" start-time="2026-10-01T05:07:15.0920740Z" end-time="2026-10-01T05:07:15.1087920Z" duration="0.016718" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Sunbladder
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Sunbladder
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1013" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Shalebean&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Shalebean&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1818059883" result="Failed" start-time="2026-10-01T05:07:15.1088290Z" end-time="2026-10-01T05:07:15.1270110Z" duration="0.018183" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Shalebean
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Shalebean
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1014" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Shadefan&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Shadefan&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1553425416" result="Failed" start-time="2026-10-01T05:07:15.1270310Z" end-time="2026-10-01T05:07:15.1474950Z" duration="0.020464" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Shadefan
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Shadefan
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1015" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Cinderpea&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Cinderpea&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1056548393" result="Failed" start-time="2026-10-01T05:07:15.1475150Z" end-time="2026-10-01T05:07:15.1645030Z" duration="0.016988" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Cinderpea
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Cinderpea
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1016" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Spurgrass&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Spurgrass&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1425517723" result="Failed" start-time="2026-10-01T05:07:15.1645180Z" end-time="2026-10-01T05:07:15.1837910Z" duration="0.019274" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Spurgrass
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Spurgrass
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1017" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Choirwick&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Choirwick&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1957681470" result="Failed" start-time="2026-10-01T05:07:15.1838060Z" end-time="2026-10-01T05:07:15.2059750Z" duration="0.022169" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Choirwick
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Choirwick
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1018" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Knitmoss&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Knitmoss&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1089117061" result="Failed" start-time="2026-10-01T05:07:15.2060210Z" end-time="2026-10-01T05:07:15.2217040Z" duration="0.015684" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Knitmoss
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Knitmoss
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1019" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Sourmantle&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Sourmantle&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1235438548" result="Failed" start-time="2026-10-01T05:07:15.2217240Z" end-time="2026-10-01T05:07:15.2313860Z" duration="0.009663" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Sourmantle
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Sourmantle
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1020" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Murmurpod&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Murmurpod&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="535829318" result="Failed" start-time="2026-10-01T05:07:15.2314300Z" end-time="2026-10-01T05:07:15.2384370Z" duration="0.007007" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Murmurpod
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Murmurpod
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1021" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Sealbark&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Sealbark&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1302313630" result="Failed" start-time="2026-10-01T05:07:15.2384590Z" end-time="2026-10-01T05:07:15.2486250Z" duration="0.010166" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Sealbark
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Sealbark
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1022" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Absentmint&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Absentmint&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1324316244" result="Failed" start-time="2026-10-01T05:07:15.2486400Z" end-time="2026-10-01T05:07:15.2552320Z" duration="0.006593" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Absentmint
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Absentmint
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1023" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Margincress&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Margincress&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="229528757" result="Failed" start-time="2026-10-01T05:07:15.2552600Z" end-time="2026-10-01T05:07:15.2597800Z" duration="0.004521" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Margincress
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Margincress
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1024" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Binderroot&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Binderroot&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="160328063" result="Failed" start-time="2026-10-01T05:07:15.2598000Z" end-time="2026-10-01T05:07:15.2652870Z" duration="0.005487" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Binderroot
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Binderroot
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1025" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Greybladder&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Greybladder&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1510420325" result="Failed" start-time="2026-10-01T05:07:15.2653170Z" end-time="2026-10-01T05:07:15.2724060Z" duration="0.007089" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Greybladder
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Greybladder
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1026" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Hollowchime&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Hollowchime&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1998686439" result="Failed" start-time="2026-10-01T05:07:15.2724430Z" end-time="2026-10-01T05:07:15.2813520Z" duration="0.008909" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Hollowchime
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Hollowchime
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1027" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Raingourd&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Raingourd&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="83713053" result="Failed" start-time="2026-10-01T05:07:15.2813680Z" end-time="2026-10-01T05:07:15.2869540Z" duration="0.005586" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Raingourd
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Raingourd
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1028" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Prismreed&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Prismreed&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="2063971382" result="Failed" start-time="2026-10-01T05:07:15.2869670Z" end-time="2026-10-01T05:07:15.2919610Z" duration="0.004994" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Prismreed
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Prismreed
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1029" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;ScarletSundew&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;ScarletSundew&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="604957297" result="Failed" start-time="2026-10-01T05:07:15.2919830Z" end-time="2026-10-01T05:07:15.2991090Z" duration="0.007126" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: ScarletSundew
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: ScarletSundew
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Cloudwick&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Cloudwick&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1577311288" result="Failed" start-time="2026-10-01T05:07:15.2991220Z" end-time="2026-10-01T05:07:15.3035620Z" duration="0.004440" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Cloudwick
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Cloudwick
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1031" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Gripfrond&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Gripfrond&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="271587486" result="Failed" start-time="2026-10-01T05:07:15.3035730Z" end-time="2026-10-01T05:07:15.3088180Z" duration="0.005245" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Gripfrond
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Gripfrond
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1032" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Lampvein&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Lampvein&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="978282419" result="Failed" start-time="2026-10-01T05:07:15.3088330Z" end-time="2026-10-01T05:07:15.3148420Z" duration="0.006008" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Lampvein
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Lampvein
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1033" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Knucklecap&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Knucklecap&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="2084981558" result="Failed" start-time="2026-10-01T05:07:15.3148950Z" end-time="2026-10-01T05:07:15.3201690Z" duration="0.005274" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Knucklecap
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Knucklecap
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1034" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Sootroot&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Sootroot&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="174075568" result="Failed" start-time="2026-10-01T05:07:15.3201940Z" end-time="2026-10-01T05:07:15.3277990Z" duration="0.007605" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Sootroot
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Sootroot
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1035" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Veilpuff&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Veilpuff&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="1068870998" result="Failed" start-time="2026-10-01T05:07:15.3278300Z" end-time="2026-10-01T05:07:15.3346540Z" duration="0.006824" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Veilpuff
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Veilpuff
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1036" name="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Brinebutton&quot;)" fullname="CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(&quot;Brinebutton&quot;)" methodname="RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed" classname="CavesOfOoo.Tests.BiomeCropContentTests" runstate="Runnable" seed="710294018" result="Failed" start-time="2026-10-01T05:07:15.3346900Z" end-time="2026-10-01T05:07:15.3392820Z" duration="0.004592" asserts="3">
+              <failure>
+                <message><![CDATA[  Actual seed must be obtainable content: Brinebutton
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Actual seed must be obtainable content: Brinebutton
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropContentTests.cs:line 27
+   at InvokeStub_BiomeCropContentTests.RealSeedGrowsAndHarvestsItsOwnUsefulProductAndOneReturnedSeed(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

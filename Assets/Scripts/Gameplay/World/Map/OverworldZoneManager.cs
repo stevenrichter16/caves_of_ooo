@@ -82,6 +82,8 @@ namespace CavesOfOoo.Core
                 if(assignment.Family!=SpreadExplorationFamily.None&&land!=null&&population!=null&&containers!=null)
                     pipeline.AddBuilder(new SpreadExplorationBuilder(this,land,population,containers,haul,captured.Version>=8&&assignment.Family==SpreadExplorationFamily.HuntThroughCover));
             }
+            var cropSite=BiomeCropPlan.ForZone(this,zoneID);
+            if(cropSite!=null)pipeline.AddBuilder(new BiomeCropPlacement(this,cropSite));
             if(guard!=null)pipeline.AddBuilder(guard);
             return pipeline;
         }
@@ -1171,7 +1173,8 @@ namespace CavesOfOoo.Core
         }
         protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID)
             && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true
-            && !CurationIntakePart.Retain(this,zoneID) && !RepairCultivationSite.Retain(this,zoneID);
+            && !CurationIntakePart.Retain(this,zoneID) && !RepairCultivationSite.Retain(this,zoneID)
+            && !BiomeCropPlacement.Retain(this,zoneID);
 
         protected override void OnZoneAttached(Zone zone)
         {

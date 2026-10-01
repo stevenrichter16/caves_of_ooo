@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/payment-baseline/38252-source/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="88" result="Failed" start-time="2026-10-01T05:43:48.7482800Z" end-time="2026-10-01T05:43:49.1438430Z" duration="0.395550" total="11" passed="9" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="164" random-seed="1823821842">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/payment-baseline/38252-source/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/payment-baseline/baseline-38252.xml --where "test =~ /PlantMenuUsesActualCarriage|RefusedPlantingReportsFailure/"]]></command-line>
+  <filter>
+    <test re="1">PlantMenuUsesActualCarriage|RefusedPlantingReportsFailure</test>
+  </filter>
+  <test-suite type="Assembly" id="1121" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/payment-baseline/38252-source/Tools/EditModeRunner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="88" result="Failed" site="Child" start-time="2026-10-01T05:43:48.7482800Z" end-time="2026-10-01T05:43:49.1438430Z" duration="0.395550" total="11" passed="9" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="164">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/payment-baseline/38252-source/Tools/EditModeRunner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/payment-baseline/38252-source/Tools/EditModeRunner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="67859" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1122" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="88" result="Failed" site="Child" start-time="2026-10-01T05:43:48.7500670Z" end-time="2026-10-01T05:43:49.1438370Z" duration="0.393766" total="11" passed="9" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="164">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1123" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="88" result="Failed" site="Child" start-time="2026-10-01T05:43:48.7501810Z" end-time="2026-10-01T05:43:49.1438350Z" duration="0.393651" total="11" passed="9" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="164">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1041" name="GameAuditPositivePaymentAdversarialTests" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests" classname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-10-01T05:43:48.7505080Z" end-time="2026-10-01T05:43:49.0564160Z" duration="0.305906" total="8" passed="7" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="104">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1053" name="PlantMenuUsesActualCarriageOfTheApplicableActor" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor" classname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-01T05:43:48.8020640Z" end-time="2026-10-01T05:43:49.0560300Z" duration="0.253964" total="8" passed="7" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="104">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1045" name="PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;owner&quot;,True)" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;owner&quot;,True)" methodname="PlantMenuUsesActualCarriageOfTheApplicableActor" classname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests" runstate="Runnable" seed="1413893927" result="Passed" start-time="2026-10-01T05:43:48.8022030Z" end-time="2026-10-01T05:43:48.8881020Z" duration="0.085924" asserts="11" />
+            <test-case id="1046" name="PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;missing_backref&quot;,True)" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;missing_backref&quot;,True)" methodname="PlantMenuUsesActualCarriageOfTheApplicableActor" classname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests" runstate="Runnable" seed="1424651584" result="Failed" start-time="2026-10-01T05:43:48.8887390Z" end-time="2026-10-01T05:43:48.9246490Z" duration="0.035909" asserts="14">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor(String state, Boolean offered) in /Users/steven/.codex/scratch/caves-of-ooo/biome-crops/payment-baseline/38252-source/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditPositivePaymentAdversarialTests.cs:line 40
+   at InvokeStub_GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor(String state, Boolean offered) in /Users/steven/.codex/scratch/caves-of-ooo/biome-crops/payment-baseline/38252-source/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditPositivePaymentAdversarialTests.cs:line 40
+   at InvokeStub_GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1047" name="PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;actorless&quot;,True)" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;actorless&quot;,True)" methodname="PlantMenuUsesActualCarriageOfTheApplicableActor" classname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests" runstate="Runnable" seed="1141323190" result="Passed" start-time="2026-10-01T05:43:48.9247070Z" end-time="2026-10-01T05:43:48.9583640Z" duration="0.033656" asserts="11" />
+            <test-case id="1048" name="PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;wrong_actor&quot;,False)" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;wrong_actor&quot;,False)" methodname="PlantMenuUsesActualCarriageOfTheApplicableActor" classname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests" runstate="Runnable" seed="1314763789" result="Passed" start-time="2026-10-01T05:43:48.9583790Z" end-time="2026-10-01T05:43:48.9773340Z" duration="0.018955" asserts="13" />
+            <test-case id="1049" name="PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;actor_without_inventory&quot;,False)" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;actor_without_inventory&quot;,False)" methodname="PlantMenuUsesActualCarriageOfTheApplicableActor" classname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests" runstate="Runnable" seed="110819788" result="Passed" start-time="2026-10-01T05:43:48.9773510Z" end-time="2026-10-01T05:43:49.0012880Z" duration="0.023936" asserts="13" />
+            <test-case id="1050" name="PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;stale_carrier&quot;,False)" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;stale_carrier&quot;,False)" methodname="PlantMenuUsesActualCarriageOfTheApplicableActor" classname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests" runstate="Runnable" seed="711266821" result="Passed" start-time="2026-10-01T05:43:49.0013060Z" end-time="2026-10-01T05:43:49.0185260Z" duration="0.017220" asserts="12" />
+            <test-case id="1051" name="PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;ground&quot;,False)" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;ground&quot;,False)" methodname="PlantMenuUsesActualCarriageOfTheApplicableActor" classname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests" runstate="Runnable" seed="1635589223" result="Passed" start-time="2026-10-01T05:43:49.0185450Z" end-time="2026-10-01T05:43:49.0359960Z" duration="0.017451" asserts="18" />
+            <test-case id="1052" name="PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;equipped&quot;,False)" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests.PlantMenuUsesActualCarriageOfTheApplicableActor(&quot;equipped&quot;,False)" methodname="PlantMenuUsesActualCarriageOfTheApplicableActor" classname="CavesOfOoo.Tests.GameAuditPositivePaymentAdversarialTests" runstate="Runnable" seed="2013774279" result="Passed" start-time="2026-10-01T05:43:49.0360110Z" end-time="2026-10-01T05:43:49.0555510Z" duration="0.019539" asserts="12" />
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1000" name="GameAuditPositivePaymentTests" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentTests" classname="CavesOfOoo.Tests.GameAuditPositivePaymentTests" runstate="Runnable" testcasecount="29" result="Failed" site="Child" start-time="2026-10-01T05:43:49.0567680Z" end-time="2026-10-01T05:43:49.1438330Z" duration="0.087065" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="60">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1004" name="RefusedPlantingReportsFailureAndNeverFiresAfterAction" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentTests.RefusedPlantingReportsFailureAndNeverFiresAfterAction" classname="CavesOfOoo.Tests.GameAuditPositivePaymentTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-01T05:43:49.0721320Z" end-time="2026-10-01T05:43:49.1438200Z" duration="0.071688" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="60">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1001" name="RefusedPlantingReportsFailureAndNeverFiresAfterAction(&quot;floor&quot;,&quot;not_plantable&quot;)" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentTests.RefusedPlantingReportsFailureAndNeverFiresAfterAction(&quot;floor&quot;,&quot;not_plantable&quot;)" methodname="RefusedPlantingReportsFailureAndNeverFiresAfterAction" classname="CavesOfOoo.Tests.GameAuditPositivePaymentTests" runstate="Runnable" seed="136229115" result="Passed" start-time="2026-10-01T05:43:49.0721870Z" end-time="2026-10-01T05:43:49.0964400Z" duration="0.024253" asserts="18" />
+            <test-case id="1002" name="RefusedPlantingReportsFailureAndNeverFiresAfterAction(&quot;occupied&quot;,&quot;already_planted&quot;)" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentTests.RefusedPlantingReportsFailureAndNeverFiresAfterAction(&quot;occupied&quot;,&quot;already_planted&quot;)" methodname="RefusedPlantingReportsFailureAndNeverFiresAfterAction" classname="CavesOfOoo.Tests.GameAuditPositivePaymentTests" runstate="Runnable" seed="1687699439" result="Passed" start-time="2026-10-01T05:43:49.0964590Z" end-time="2026-10-01T05:43:49.1217950Z" duration="0.025337" asserts="24" />
+            <test-case id="1003" name="RefusedPlantingReportsFailureAndNeverFiresAfterAction(&quot;barren&quot;,&quot;placement_refused&quot;)" fullname="CavesOfOoo.Tests.GameAuditPositivePaymentTests.RefusedPlantingReportsFailureAndNeverFiresAfterAction(&quot;barren&quot;,&quot;placement_refused&quot;)" methodname="RefusedPlantingReportsFailureAndNeverFiresAfterAction" classname="CavesOfOoo.Tests.GameAuditPositivePaymentTests" runstate="Runnable" seed="1880421515" result="Failed" start-time="2026-10-01T05:43:49.1218160Z" end-time="2026-10-01T05:43:49.1437990Z" duration="0.021982" asserts="18">
+              <failure>
+                <message><![CDATA[  Expected: String containing "placement_refused"
+  But was:  "{"reason":"source_changed","cropBlueprint":"CandyCarrotCrop"}"
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.GameAuditPositivePaymentTests.RefusedPlantingReportsFailureAndNeverFiresAfterAction(String condition, String reason) in /Users/steven/.codex/scratch/caves-of-ooo/biome-crops/payment-baseline/38252-source/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditPositivePaymentTests.cs:line 98
+   at InvokeStub_GameAuditPositivePaymentTests.RefusedPlantingReportsFailureAndNeverFiresAfterAction(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: String containing "placement_refused"
+  But was:  "{"reason":"source_changed","cropBlueprint":"CandyCarrotCrop"}"
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.GameAuditPositivePaymentTests.RefusedPlantingReportsFailureAndNeverFiresAfterAction(String condition, String reason) in /Users/steven/.codex/scratch/caves-of-ooo/biome-crops/payment-baseline/38252-source/Assets/Tests/EditMode/Gameplay/Inventory/GameAuditPositivePaymentTests.cs:line 98
+   at InvokeStub_GameAuditPositivePaymentTests.RefusedPlantingReportsFailureAndNeverFiresAfterAction(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

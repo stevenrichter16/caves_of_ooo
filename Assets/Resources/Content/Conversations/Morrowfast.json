@@ -465,6 +465,12 @@
               "Actions": []
             },
             {
+              "Text": "Where can I put these repair supplies to use?",
+              "Target": "GrowingBeds",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
               "Text": "Leave.",
               "Target": "End",
               "Predicates": [],
@@ -474,7 +480,7 @@
         },
         {
           "ID": "Stock",
-          "Text": "'Torches, a few sound blades, a spear, leather armor, bone, and fire clay. What is on the shelf is what I have. We trade in the same water drams as everyone else. The clay is useful for the watch bell's quiet sleeve.'",
+          "Text": "'Torches, a few sound blades, a spear, leather armor, bone, fire clay, salvaged timber and knotflax cord. What is on the shelf is what I have. We trade in the same water drams as everyone else. The clay is useful for the watch bell's quiet sleeve, too.'",
           "AllowEscape": true,
           "Choices": [
             {
@@ -494,6 +500,25 @@
         {
           "ID": "Cord",
           "Text": "'Inside this southwest shop. Check the reserve coil; no need to take it or cut anything from it. Sound cord is a reason to leave cord alone. At the arch, a clay sleeve quiets the clapper. Bare metal rings farther. Neither setting locks the path.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "GrowingBeds",
+          "Text": "'The allotment in the next field west has two wells and a gate that have all chosen different ways to stop working. Two fire clay for the split lining; one knotflax cord for the sound well's hoist; two salvaged timber for the gate. Read the notice before you empty your pack. Marlroot carries a useful clay clod, and sealbark can be prepared into a brace. Pick those up and Prepare them first. A plant's name is not enough to make it the right material.'",
           "AllowEscape": true,
           "Choices": [
             {
@@ -533,6 +558,12 @@
               "Actions": []
             },
             {
+              "Text": "Where can I find growing beds?",
+              "Target": "GrowingBeds",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
               "Text": "Leave.",
               "Target": "End",
               "Predicates": [],
@@ -542,7 +573,7 @@
         },
         {
           "ID": "Stock",
-          "Text": "'Mushrooms and dried meat, a few healing tonics, burn salve, and water tonic. Real supplies; when a shelf is empty, it is empty. Look at the trade list for today's prices.'",
+          "Text": "'Mushrooms and dried meat, a few healing tonics, burn salve, water tonic, and seeds for knotflax, hearthbulb and seamleaf. What is in the trade list is what is on the shelf today. Ask me about the growing beds if you want to start with a plant instead.'",
           "AllowEscape": true,
           "Choices": [
             {
@@ -562,6 +593,25 @@
         {
           "ID": "Bowl",
           "Text": "'A seat is an offer. It does not summon anyone, and it does not prove they are coming. Farra is making room at the guesthouse supper table. She can tell you what would help.'",
+          "AllowEscape": true,
+          "Choices": [
+            {
+              "Text": "Back.",
+              "Target": "Start",
+              "Predicates": [],
+              "Actions": []
+            },
+            {
+              "Text": "Leave.",
+              "Target": "End",
+              "Predicates": [],
+              "Actions": []
+            }
+          ]
+        },
+        {
+          "ID": "GrowingBeds",
+          "Text": "'Leave town to the west. In the next stretch of field, look for the allotment notice near the townward path. Knotflax gives cord, hearthbulbs roast well, and seamleaf goes into vital brews. Harvest a ripe plant, then pick up its produce and seed from the ground. Plant the seed in an empty furrow and bring rain with Conjure Rain. Dry roots wait; they grow while you spend time in that place. There are six prepared beds at the south end of town, too.'",
           "AllowEscape": true,
           "Choices": [
             {

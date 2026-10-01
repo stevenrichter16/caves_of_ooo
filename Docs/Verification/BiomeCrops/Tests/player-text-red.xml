@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="111" result="Failed" start-time="2026-10-01T05:27:22.0602590Z" end-time="2026-10-01T05:27:22.1636670Z" duration="0.103393" total="2" passed="1" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="19" random-seed="622752740">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/player-text-red.xml --where "class =~ /BiomeCropPlayerTextTests/"]]></command-line>
+  <filter>
+    <class re="1">BiomeCropPlayerTextTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1121" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="111" result="Failed" site="Child" start-time="2026-10-01T05:27:22.0602590Z" end-time="2026-10-01T05:27:22.1636670Z" duration="0.103393" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="19">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="65123" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1122" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="111" result="Failed" site="Child" start-time="2026-10-01T05:27:22.0616730Z" end-time="2026-10-01T05:27:22.1636400Z" duration="0.101966" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="19">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1123" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="111" result="Failed" site="Child" start-time="2026-10-01T05:27:22.0617870Z" end-time="2026-10-01T05:27:22.1636350Z" duration="0.101846" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="19">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1118" name="BiomeCropPlayerTextTests" fullname="CavesOfOoo.Tests.BiomeCropPlayerTextTests" classname="CavesOfOoo.Tests.BiomeCropPlayerTextTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-01T05:27:22.0621220Z" end-time="2026-10-01T05:27:22.1635330Z" duration="0.101410" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="19">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1119" name="ActualSpeciesExamineTextIsInWorldAndWarnsOfHarmfulSelfApplication" fullname="CavesOfOoo.Tests.BiomeCropPlayerTextTests.ActualSpeciesExamineTextIsInWorldAndWarnsOfHarmfulSelfApplication" methodname="ActualSpeciesExamineTextIsInWorldAndWarnsOfHarmfulSelfApplication" classname="CavesOfOoo.Tests.BiomeCropPlayerTextTests" runstate="Runnable" seed="328146731" result="Failed" start-time="2026-10-01T05:27:22.0627780Z" end-time="2026-10-01T05:27:22.1402030Z" duration="0.077449" asserts="3">
+            <failure>
+              <message><![CDATA[  PitchpodCrop: editorial text: existing refueling mechanic
+PitchpodResin: editorial text: existing refueling mechanic
+WickrushCrop: editorial text: not permanent bio-light
+WickrushCandle: editorial text: not permanent bio-light
+ChillcressCrop: editorial text: no promise of
+ChillcressTip: editorial text: no promise of
+PeatlanternCrop: editorial text: not a manufactured
+PeatlanternCup: editorial text: not a manufactured
+SunbladderCrop: editorial text: never an infinite
+SunbladderShell: editorial text: never an infinite
+CinderpeaSeed: applying harmful sap to yourself is not disclosed
+CinderpeaCrop: applying harmful sap to yourself is not disclosed
+CinderpeaOil: applying harmful sap to yourself is not disclosed
+Cinderpea: catalogue omits self-application hazard
+KnitmossCrop: editorial text: warning remains true
+KnitmossPad: editorial text: warning remains true
+MurmurpodCrop: editorial text: no new mind-control
+MurmurpodBladder: editorial text: no new mind-control
+SealbarkCrop: editorial text: not a Choir sawmill
+SealbarkSlat: editorial text: not a Choir sawmill
+BinderrootCrop: editorial text: player-facing
+BinderrootKnot: editorial text: player-facing
+ScarletSundewSeed: applying harmful sap to yourself is not disclosed
+ScarletSundewCrop: editorial text: deliberately original
+ScarletSundewCrop: applying harmful sap to yourself is not disclosed
+ScarletSundewDew: editorial text: deliberately original
+ScarletSundewDew: applying harmful sap to yourself is not disclosed
+ScarletSundew: catalogue omits self-application hazard
+LampveinCrop: editorial text: no new theology
+LampveinFan: editorial text: no new theology
+KnucklecapCrop: editorial text: not a petrified god fragment
+KnucklecapWax: editorial text: not a petrified god fragment
+  Expected: <empty>
+  But was:  < "PitchpodCrop: editorial text: existing refueling mechanic", "PitchpodResin: editorial text: existing refueling mechanic", "WickrushCrop: editorial text: not permanent bio-light", "WickrushCandle: editorial text: not permanent bio-light", "ChillcressCrop: editorial text: no promise of", "ChillcressTip: editorial text: no promise of", "PeatlanternCrop: editorial text: not a manufactured", "PeatlanternCup: editorial text: not a manufactured", "SunbladderCrop: editorial text: never an infinite", "SunbladderShell: editorial text: never an infinite"... >
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropPlayerTextTests.ActualSpeciesExamineTextIsInWorldAndWarnsOfHarmfulSelfApplication() in /Users/steven/.codex/scratch/caves-of-ooo/biome-crops/BiomeCropPlayerTextTests.cs:line 33
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  PitchpodCrop: editorial text: existing refueling mechanic
+PitchpodResin: editorial text: existing refueling mechanic
+WickrushCrop: editorial text: not permanent bio-light
+WickrushCandle: editorial text: not permanent bio-light
+ChillcressCrop: editorial text: no promise of
+ChillcressTip: editorial text: no promise of
+PeatlanternCrop: editorial text: not a manufactured
+PeatlanternCup: editorial text: not a manufactured
+SunbladderCrop: editorial text: never an infinite
+SunbladderShell: editorial text: never an infinite
+CinderpeaSeed: applying harmful sap to yourself is not disclosed
+CinderpeaCrop: applying harmful sap to yourself is not disclosed
+CinderpeaOil: applying harmful sap to yourself is not disclosed
+Cinderpea: catalogue omits self-application hazard
+KnitmossCrop: editorial text: warning remains true
+KnitmossPad: editorial text: warning remains true
+MurmurpodCrop: editorial text: no new mind-control
+MurmurpodBladder: editorial text: no new mind-control
+SealbarkCrop: editorial text: not a Choir sawmill
+SealbarkSlat: editorial text: not a Choir sawmill
+BinderrootCrop: editorial text: player-facing
+BinderrootKnot: editorial text: player-facing
+ScarletSundewSeed: applying harmful sap to yourself is not disclosed
+ScarletSundewCrop: editorial text: deliberately original
+ScarletSundewCrop: applying harmful sap to yourself is not disclosed
+ScarletSundewDew: editorial text: deliberately original
+ScarletSundewDew: applying harmful sap to yourself is not disclosed
+ScarletSundew: catalogue omits self-application hazard
+LampveinCrop: editorial text: no new theology
+LampveinFan: editorial text: no new theology
+KnucklecapCrop: editorial text: not a petrified god fragment
+KnucklecapWax: editorial text: not a petrified god fragment
+  Expected: <empty>
+  But was:  < "PitchpodCrop: editorial text: existing refueling mechanic", "PitchpodResin: editorial text: existing refueling mechanic", "WickrushCrop: editorial text: not permanent bio-light", "WickrushCandle: editorial text: not permanent bio-light", "ChillcressCrop: editorial text: no promise of", "ChillcressTip: editorial text: no promise of", "PeatlanternCrop: editorial text: not a manufactured", "PeatlanternCup: editorial text: not a manufactured", "SunbladderCrop: editorial text: never an infinite", "SunbladderShell: editorial text: never an infinite"... >
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropPlayerTextTests.ActualSpeciesExamineTextIsInWorldAndWarnsOfHarmfulSelfApplication() in /Users/steven/.codex/scratch/caves-of-ooo/biome-crops/BiomeCropPlayerTextTests.cs:line 33
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-case id="1120" name="EditorialCounterCheckRejectsDesignNotesButKeepsUsefulInstructions" fullname="CavesOfOoo.Tests.BiomeCropPlayerTextTests.EditorialCounterCheckRejectsDesignNotesButKeepsUsefulInstructions" methodname="EditorialCounterCheckRejectsDesignNotesButKeepsUsefulInstructions" classname="CavesOfOoo.Tests.BiomeCropPlayerTextTests" runstate="Runnable" seed="1937257687" result="Passed" start-time="2026-10-01T05:27:22.1408070Z" end-time="2026-10-01T05:27:22.1631940Z" duration="0.022386" asserts="16" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

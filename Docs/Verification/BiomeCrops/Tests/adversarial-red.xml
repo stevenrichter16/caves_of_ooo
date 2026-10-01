@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/placement/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="62" result="Failed" start-time="2026-10-01T05:15:41.2020850Z" end-time="2026-10-01T05:15:49.8611770Z" duration="8.658906" total="14" passed="10" failed="4" inconclusive="0" skipped="0" warnings="0" asserts="48" random-seed="631668665">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/placement/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/placement/adversarial-red.xml --where "class =~ /BiomeCropPlacementAdversarialTests/"]]></command-line>
+  <filter>
+    <class re="1">BiomeCropPlacementAdversarialTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1079" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/placement/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="62" result="Failed" site="Child" start-time="2026-10-01T05:15:41.2020850Z" end-time="2026-10-01T05:15:49.8611770Z" duration="8.658906" total="14" passed="10" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="48">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/placement/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/placement/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="61798" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1080" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="62" result="Failed" site="Child" start-time="2026-10-01T05:15:41.2057700Z" end-time="2026-10-01T05:15:49.8611740Z" duration="8.655326" total="14" passed="10" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="48">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1081" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="62" result="Failed" site="Child" start-time="2026-10-01T05:15:41.2117860Z" end-time="2026-10-01T05:15:49.8611680Z" duration="8.649305" total="14" passed="10" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="48">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1061" name="BiomeCropPlacementAdversarialTests" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-10-01T05:15:41.2124880Z" end-time="2026-10-01T05:15:49.8611360Z" duration="8.648571" total="14" passed="10" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="48">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1075" name="ForeignSourceMutationRejectsTheWholeColdGenerationAttempt" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.ForeignSourceMutationRejectsTheWholeColdGenerationAttempt" methodname="ForeignSourceMutationRejectsTheWholeColdGenerationAttempt" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="528810260" result="Passed" start-time="2026-10-01T05:15:41.2158550Z" end-time="2026-10-01T05:15:41.7260540Z" duration="0.510224" asserts="3" />
+          <test-suite type="ParameterizedMethod" id="1070" name="InvalidProducedPlantCannotPretendToBeAWorkingCrop" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-01T05:15:41.7269710Z" end-time="2026-10-01T05:15:42.0726450Z" duration="0.345671" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1067" name="InvalidProducedPlantCannotPretendToBeAWorkingCrop(&quot;untagged&quot;)" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(&quot;untagged&quot;)" methodname="InvalidProducedPlantCannotPretendToBeAWorkingCrop" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="907436763" result="Failed" start-time="2026-10-01T05:15:41.7270890Z" end-time="2026-10-01T05:15:41.8532680Z" duration="0.126178" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BiomeCropPlacementAdversarialTests.cs:line 46
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BiomeCropPlacementAdversarialTests.cs:line 46
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1068" name="InvalidProducedPlantCannotPretendToBeAWorkingCrop(&quot;bad-yield&quot;)" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(&quot;bad-yield&quot;)" methodname="InvalidProducedPlantCannotPretendToBeAWorkingCrop" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="1186272916" result="Failed" start-time="2026-10-01T05:15:41.8533390Z" end-time="2026-10-01T05:15:41.9611400Z" duration="0.107800" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BiomeCropPlacementAdversarialTests.cs:line 46
+   at InvokeStub_BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BiomeCropPlacementAdversarialTests.cs:line 46
+   at InvokeStub_BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1069" name="InvalidProducedPlantCannotPretendToBeAWorkingCrop(&quot;zero-seed&quot;)" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(&quot;zero-seed&quot;)" methodname="InvalidProducedPlantCannotPretendToBeAWorkingCrop" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="483223398" result="Failed" start-time="2026-10-01T05:15:41.9612320Z" end-time="2026-10-01T05:15:42.0720860Z" duration="0.110853" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BiomeCropPlacementAdversarialTests.cs:line 46
+   at InvokeStub_BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BiomeCropPlacementAdversarialTests.cs:line 46
+   at InvokeStub_BiomeCropPlacementAdversarialTests.InvalidProducedPlantCannotPretendToBeAWorkingCrop(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1077" name="NativeSaveKeepsDepletedReceiptWithoutRefillingOrChangingCachedGround" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.NativeSaveKeepsDepletedReceiptWithoutRefillingOrChangingCachedGround" methodname="NativeSaveKeepsDepletedReceiptWithoutRefillingOrChangingCachedGround" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="1098297513" result="Passed" start-time="2026-10-01T05:15:42.0728980Z" end-time="2026-10-01T05:15:42.2661510Z" duration="0.193252" asserts="8" />
+          <test-case id="1078" name="PatchNeverAdvancesOrdinaryPopulationOrLootRandomStream" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.PatchNeverAdvancesOrdinaryPopulationOrLootRandomStream" methodname="PatchNeverAdvancesOrdinaryPopulationOrLootRandomStream" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="211298392" result="Passed" start-time="2026-10-01T05:15:42.2662290Z" end-time="2026-10-01T05:15:42.4149850Z" duration="0.148755" asserts="2" />
+          <test-case id="1076" name="ReceiptSurvivesRemovalOfEveryCropAndCultivatedTerrainOwner" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.ReceiptSurvivesRemovalOfEveryCropAndCultivatedTerrainOwner" methodname="ReceiptSurvivesRemovalOfEveryCropAndCultivatedTerrainOwner" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="1425832646" result="Passed" start-time="2026-10-01T05:15:42.4150090Z" end-time="2026-10-01T05:15:42.5176100Z" duration="0.102600" asserts="9" />
+          <test-suite type="ParameterizedMethod" id="1066" name="UnsafeCurrentGroundNeverBecomesAPatch" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.UnsafeCurrentGroundNeverBecomesAPatch" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-01T05:15:42.5176450Z" end-time="2026-10-01T05:15:49.6546990Z" duration="7.136990" total="4" passed="4" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="16">
+            <test-case id="1062" name="UnsafeCurrentGroundNeverBecomesAPatch(&quot;interior&quot;)" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.UnsafeCurrentGroundNeverBecomesAPatch(&quot;interior&quot;)" methodname="UnsafeCurrentGroundNeverBecomesAPatch" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="855206548" result="Passed" start-time="2026-10-01T05:15:42.5176930Z" end-time="2026-10-01T05:15:43.2989660Z" duration="0.781267" asserts="4" />
+            <test-case id="1063" name="UnsafeCurrentGroundNeverBecomesAPatch(&quot;liquid&quot;)" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.UnsafeCurrentGroundNeverBecomesAPatch(&quot;liquid&quot;)" methodname="UnsafeCurrentGroundNeverBecomesAPatch" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="1838347222" result="Passed" start-time="2026-10-01T05:15:43.2990140Z" end-time="2026-10-01T05:15:46.0279210Z" duration="2.728883" asserts="4" />
+            <test-case id="1064" name="UnsafeCurrentGroundNeverBecomesAPatch(&quot;item&quot;)" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.UnsafeCurrentGroundNeverBecomesAPatch(&quot;item&quot;)" methodname="UnsafeCurrentGroundNeverBecomesAPatch" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="573354945" result="Passed" start-time="2026-10-01T05:15:46.0279430Z" end-time="2026-10-01T05:15:48.9116690Z" duration="2.883701" asserts="4" />
+            <test-case id="1065" name="UnsafeCurrentGroundNeverBecomesAPatch(&quot;barren&quot;)" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.UnsafeCurrentGroundNeverBecomesAPatch(&quot;barren&quot;)" methodname="UnsafeCurrentGroundNeverBecomesAPatch" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="226546335" result="Passed" start-time="2026-10-01T05:15:48.9117280Z" end-time="2026-10-01T05:15:49.6545730Z" duration="0.742839" asserts="4" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1074" name="WholeStagedPacketIsValidatedAfterEveryFactoryCallback" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.WholeStagedPacketIsValidatedAfterEveryFactoryCallback" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-01T05:15:49.6547520Z" end-time="2026-10-01T05:15:49.8610490Z" duration="0.206296" total="3" passed="2" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="7">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1071" name="WholeStagedPacketIsValidatedAfterEveryFactoryCallback(&quot;duplicate-id&quot;)" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.WholeStagedPacketIsValidatedAfterEveryFactoryCallback(&quot;duplicate-id&quot;)" methodname="WholeStagedPacketIsValidatedAfterEveryFactoryCallback" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="882606220" result="Passed" start-time="2026-10-01T05:15:49.6547920Z" end-time="2026-10-01T05:15:49.7133220Z" duration="0.058530" asserts="3" />
+            <test-case id="1072" name="WholeStagedPacketIsValidatedAfterEveryFactoryCallback(&quot;later-mutation&quot;)" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.WholeStagedPacketIsValidatedAfterEveryFactoryCallback(&quot;later-mutation&quot;)" methodname="WholeStagedPacketIsValidatedAfterEveryFactoryCallback" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="1396991370" result="Failed" start-time="2026-10-01T05:15:49.7133450Z" end-time="2026-10-01T05:15:49.7947860Z" duration="0.081440" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.WholeStagedPacketIsValidatedAfterEveryFactoryCallback(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BiomeCropPlacementAdversarialTests.cs:line 53
+   at InvokeStub_BiomeCropPlacementAdversarialTests.WholeStagedPacketIsValidatedAfterEveryFactoryCallback(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.WholeStagedPacketIsValidatedAfterEveryFactoryCallback(String fault) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BiomeCropPlacementAdversarialTests.cs:line 53
+   at InvokeStub_BiomeCropPlacementAdversarialTests.WholeStagedPacketIsValidatedAfterEveryFactoryCallback(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1073" name="WholeStagedPacketIsValidatedAfterEveryFactoryCallback(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.WholeStagedPacketIsValidatedAfterEveryFactoryCallback(&quot;foreign-physics&quot;)" methodname="WholeStagedPacketIsValidatedAfterEveryFactoryCallback" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="1483660540" result="Passed" start-time="2026-10-01T05:15:49.7948420Z" end-time="2026-10-01T05:15:49.8610050Z" duration="0.066163" asserts="3" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

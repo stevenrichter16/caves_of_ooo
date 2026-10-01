@@ -67,7 +67,8 @@ namespace CavesOfOoo.Rendering
         // loads without caching results or bypassing current asset validation.
         internal GameObject FindModel(string modelId,Func<string,Type,UnityEngine.Object> load)
         {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:
-            (RepairCultivationSource.IsModelId(modelId) ? LoadExtension<RepairCultivation3DLibrary>(load, RepairCultivation3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            (BiomeCropSource.IsModelId(modelId) ? LoadExtension<BiomeCrop3DLibrary>(load, BiomeCrop3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (RepairCultivationSource.IsModelId(modelId) ? LoadExtension<RepairCultivation3DLibrary>(load, RepairCultivation3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (CurationYardSource.IsModelId(modelId) ? LoadExtension<CurationYard3DLibrary>(load, CurationYard3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadEnvironmentSource.IsModelId(modelId) ? LoadExtension<SpreadEnvironment3DLibrary>(load, SpreadEnvironment3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadRareMarlbackLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadRareMarlbackLibrary>(load, SpreadRareMarlbackLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)

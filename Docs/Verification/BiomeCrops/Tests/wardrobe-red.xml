@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="109" result="Failed" start-time="2026-10-01T05:22:02.8433470Z" end-time="2026-10-01T05:22:03.8505590Z" duration="1.007192" total="35" passed="32" failed="3" inconclusive="0" skipped="0" warnings="0" asserts="493" random-seed="1570946351">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/wardrobe-red.xml --where "class =~ /BiomeCropUtilityTests/"]]></command-line>
+  <filter>
+    <class re="1">BiomeCropUtilityTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1118" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="109" result="Failed" site="Child" start-time="2026-10-01T05:22:02.8433470Z" end-time="2026-10-01T05:22:03.8505590Z" duration="1.007192" total="35" passed="32" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="493">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/repair-crops/crops/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="63865" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1119" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="109" result="Failed" site="Child" start-time="2026-10-01T05:22:02.8447980Z" end-time="2026-10-01T05:22:03.8505520Z" duration="1.005745" total="35" passed="32" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="493">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1120" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="109" result="Failed" site="Child" start-time="2026-10-01T05:22:02.8449240Z" end-time="2026-10-01T05:22:03.8505350Z" duration="1.005602" total="35" passed="32" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="493">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1038" name="BiomeCropUtilityTests" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-10-01T05:22:02.8452930Z" end-time="2026-10-01T05:22:03.8505140Z" duration="1.005212" total="35" passed="32" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="493">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1074" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-10-01T05:22:02.8460260Z" end-time="2026-10-01T05:22:03.8502910Z" duration="1.004256" total="35" passed="32" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="493">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1039" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Claspbean&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Claspbean&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="163727360" result="Passed" start-time="2026-10-01T05:22:02.8461070Z" end-time="2026-10-01T05:22:02.9482840Z" duration="0.102203" asserts="14" />
+            <test-case id="1040" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Pitchpod&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Pitchpod&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1314797633" result="Passed" start-time="2026-10-01T05:22:02.9488910Z" end-time="2026-10-01T05:22:02.9829360Z" duration="0.034045" asserts="15" />
+            <test-case id="1041" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Drawgourd&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Drawgourd&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="425412988" result="Passed" start-time="2026-10-01T05:22:02.9829610Z" end-time="2026-10-01T05:22:03.0099800Z" duration="0.027019" asserts="17" />
+            <test-case id="1042" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Wickrush&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Wickrush&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="2027814234" result="Passed" start-time="2026-10-01T05:22:03.0100060Z" end-time="2026-10-01T05:22:03.0442560Z" duration="0.034250" asserts="18" />
+            <test-case id="1043" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Marlroot&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Marlroot&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1583599424" result="Passed" start-time="2026-10-01T05:22:03.0442750Z" end-time="2026-10-01T05:22:03.0688560Z" duration="0.024582" asserts="12" />
+            <test-case id="1044" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Sumpsieve&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Sumpsieve&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="559095610" result="Passed" start-time="2026-10-01T05:22:03.0688850Z" end-time="2026-10-01T05:22:03.0963210Z" duration="0.027436" asserts="14" />
+            <test-case id="1045" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Drowsebell&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Drowsebell&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="2034582316" result="Passed" start-time="2026-10-01T05:22:03.0963440Z" end-time="2026-10-01T05:22:03.1252280Z" duration="0.028884" asserts="14" />
+            <test-case id="1046" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Chillcress&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Chillcress&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1698687069" result="Passed" start-time="2026-10-01T05:22:03.1252530Z" end-time="2026-10-01T05:22:03.1549990Z" duration="0.029746" asserts="15" />
+            <test-case id="1047" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Slipsedge&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Slipsedge&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="321423431" result="Passed" start-time="2026-10-01T05:22:03.1550230Z" end-time="2026-10-01T05:22:03.1767370Z" duration="0.021714" asserts="15" />
+            <test-case id="1048" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Peatlantern&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Peatlantern&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="639208550" result="Passed" start-time="2026-10-01T05:22:03.1767570Z" end-time="2026-10-01T05:22:03.2065180Z" duration="0.029761" asserts="14" />
+            <test-case id="1049" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Sunbladder&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Sunbladder&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1152520862" result="Passed" start-time="2026-10-01T05:22:03.2065350Z" end-time="2026-10-01T05:22:03.2287880Z" duration="0.022253" asserts="17" />
+            <test-case id="1050" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Shalebean&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Shalebean&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="799180926" result="Passed" start-time="2026-10-01T05:22:03.2288110Z" end-time="2026-10-01T05:22:03.2505460Z" duration="0.021736" asserts="13" />
+            <test-case id="1051" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Shadefan&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Shadefan&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1361829862" result="Failed" start-time="2026-10-01T05:22:03.2505620Z" end-time="2026-10-01T05:22:03.2900710Z" duration="0.039510" asserts="13">
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropUtilityTests.cs:line 109
+   at InvokeStub_BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropUtilityTests.cs:line 109
+   at InvokeStub_BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1052" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Cinderpea&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Cinderpea&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1346278171" result="Passed" start-time="2026-10-01T05:22:03.2901410Z" end-time="2026-10-01T05:22:03.3114780Z" duration="0.021337" asserts="11" />
+            <test-case id="1053" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Spurgrass&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Spurgrass&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1361514020" result="Passed" start-time="2026-10-01T05:22:03.3114960Z" end-time="2026-10-01T05:22:03.3320250Z" duration="0.020529" asserts="12" />
+            <test-case id="1054" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Choirwick&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Choirwick&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1885138773" result="Passed" start-time="2026-10-01T05:22:03.3320500Z" end-time="2026-10-01T05:22:03.3529140Z" duration="0.020865" asserts="14" />
+            <test-case id="1055" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Knitmoss&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Knitmoss&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="2034088157" result="Passed" start-time="2026-10-01T05:22:03.3529340Z" end-time="2026-10-01T05:22:03.3793530Z" duration="0.026419" asserts="11" />
+            <test-case id="1056" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Sourmantle&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Sourmantle&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="793091621" result="Passed" start-time="2026-10-01T05:22:03.3793700Z" end-time="2026-10-01T05:22:03.3997630Z" duration="0.020393" asserts="15" />
+            <test-case id="1057" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Murmurpod&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Murmurpod&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="973596667" result="Passed" start-time="2026-10-01T05:22:03.3997860Z" end-time="2026-10-01T05:22:03.4216880Z" duration="0.021902" asserts="14" />
+            <test-case id="1058" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Sealbark&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Sealbark&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="841192602" result="Passed" start-time="2026-10-01T05:22:03.4217190Z" end-time="2026-10-01T05:22:03.4521170Z" duration="0.030398" asserts="12" />
+            <test-case id="1059" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Absentmint&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Absentmint&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="467978827" result="Passed" start-time="2026-10-01T05:22:03.4521460Z" end-time="2026-10-01T05:22:03.4740650Z" duration="0.021918" asserts="14" />
+            <test-case id="1060" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Margincress&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Margincress&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1280493207" result="Passed" start-time="2026-10-01T05:22:03.4740880Z" end-time="2026-10-01T05:22:03.5026470Z" duration="0.028559" asserts="14" />
+            <test-case id="1061" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Binderroot&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Binderroot&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1669600477" result="Passed" start-time="2026-10-01T05:22:03.5026690Z" end-time="2026-10-01T05:22:03.5323980Z" duration="0.029729" asserts="15" />
+            <test-case id="1062" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Greybladder&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Greybladder&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="2034652909" result="Failed" start-time="2026-10-01T05:22:03.5324270Z" end-time="2026-10-01T05:22:03.5724590Z" duration="0.040031" asserts="17">
+              <failure>
+                <message><![CDATA[  Poured pool must hold six: test-water:6
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropUtilityTests.cs:line 99
+   at InvokeStub_BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Poured pool must hold six: test-water:6
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropUtilityTests.cs:line 99
+   at InvokeStub_BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1063" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Hollowchime&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Hollowchime&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="310502937" result="Passed" start-time="2026-10-01T05:22:03.5724770Z" end-time="2026-10-01T05:22:03.6092800Z" duration="0.036803" asserts="14" />
+            <test-case id="1064" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Raingourd&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Raingourd&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1769342871" result="Passed" start-time="2026-10-01T05:22:03.6093040Z" end-time="2026-10-01T05:22:03.6402400Z" duration="0.030935" asserts="17" />
+            <test-case id="1065" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Prismreed&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Prismreed&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1613168696" result="Passed" start-time="2026-10-01T05:22:03.6402580Z" end-time="2026-10-01T05:22:03.6771100Z" duration="0.036851" asserts="15" />
+            <test-case id="1066" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;ScarletSundew&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;ScarletSundew&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1804157431" result="Passed" start-time="2026-10-01T05:22:03.6771310Z" end-time="2026-10-01T05:22:03.7065280Z" duration="0.029396" asserts="11" />
+            <test-case id="1067" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Cloudwick&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Cloudwick&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="620203375" result="Passed" start-time="2026-10-01T05:22:03.7065430Z" end-time="2026-10-01T05:22:03.7410820Z" duration="0.034538" asserts="14" />
+            <test-case id="1068" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Gripfrond&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Gripfrond&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1253270855" result="Failed" start-time="2026-10-01T05:22:03.7411070Z" end-time="2026-10-01T05:22:03.7702370Z" duration="0.029130" asserts="13">
+              <failure>
+                <message><![CDATA[  Expected: same as <Entity(gripfrond wrap)>
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropUtilityTests.cs:line 112
+   at InvokeStub_BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: same as <Entity(gripfrond wrap)>
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(String stem) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Farming/BiomeCropUtilityTests.cs:line 112
+   at InvokeStub_BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1069" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Lampvein&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Lampvein&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="2039362815" result="Passed" start-time="2026-10-01T05:22:03.7702530Z" end-time="2026-10-01T05:22:03.8006850Z" duration="0.030432" asserts="14" />
+            <test-case id="1070" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Knucklecap&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Knucklecap&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1078917351" result="Passed" start-time="2026-10-01T05:22:03.8007320Z" end-time="2026-10-01T05:22:03.8168530Z" duration="0.016122" asserts="13" />
+            <test-case id="1071" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Sootroot&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Sootroot&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="1738285558" result="Passed" start-time="2026-10-01T05:22:03.8168880Z" end-time="2026-10-01T05:22:03.8308260Z" duration="0.013939" asserts="14" />
+            <test-case id="1072" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Veilpuff&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Veilpuff&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="20325886" result="Passed" start-time="2026-10-01T05:22:03.8308570Z" end-time="2026-10-01T05:22:03.8410310Z" duration="0.010174" asserts="14" />
+            <test-case id="1073" name="ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Brinebutton&quot;)" fullname="CavesOfOoo.Tests.BiomeCropUtilityTests.ActualHarvestCanPerformItsAdvertisedNonCookingUse(&quot;Brinebutton&quot;)" methodname="ActualHarvestCanPerformItsAdvertisedNonCookingUse" classname="CavesOfOoo.Tests.BiomeCropUtilityTests" runstate="Runnable" seed="8737587" result="Passed" start-time="2026-10-01T05:22:03.8410500Z" end-time="2026-10-01T05:22:03.8499020Z" duration="0.008852" asserts="14" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

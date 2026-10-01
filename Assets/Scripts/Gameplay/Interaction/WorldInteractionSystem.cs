@@ -26,6 +26,11 @@ namespace CavesOfOoo.Core
     /// </summary>
     public static class WorldInteractionSystem
     {
+        /// <summary>Opt-in tag for saved bookkeeping owners which occupy an
+        /// anchor solely for persistence, never a player-facing world object.
+        /// Unrendered ordinary owners retain their existing query behavior.</summary>
+        public const string WorldMetadataTag = "WorldMetadata";
+        private static bool IsQueryable(Entity entity) => entity != null && !entity.HasTag(WorldMetadataTag);
         // =========================================================
         // Target resolution
         // =========================================================
@@ -52,7 +57,7 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < cell.Occupants.Count; i++)
             {
                 var e = cell.Occupants[i];
-                if (e == null) continue;
+                if (!IsQueryable(e)) continue;
                 if (IsTerrain(e))
                 {
                     if (topTerrain == null || RenderLayer(e) >= RenderLayer(topTerrain)) topTerrain = e;
@@ -90,7 +95,7 @@ namespace CavesOfOoo.Core
         /// </summary>
         public static List<InventoryAction> GatherActions(Entity target, Entity actor)
         {
-            if (target == null) return new List<InventoryAction>(0);
+            if (!IsQueryable(target)) return new List<InventoryAction>(0);
 
             var list = new InventoryActionList();
             var e = GameEvent.New("GetInventoryActions");
@@ -155,7 +160,7 @@ namespace CavesOfOoo.Core
             Entity topTerrain = null;
             foreach (var e in cell.Occupants)
             {
-                if (e == null) continue;
+                if (!IsQueryable(e)) continue;
                 // B.1 (Docs/BREADTH-PASS.md): the player is the one looking, never the thing
                 // described — a title on your own cell names what is underfoot, not "you".
                 if (e.HasTag("Player")) continue;
@@ -206,7 +211,7 @@ namespace CavesOfOoo.Core
             int count = 0;
             foreach (var e in cell.Occupants)
             {
-                if (e == null) continue;
+                if (!IsQueryable(e)) continue;
                 if (!IsTerrain(e)) count++;
             }
             return count >= 2;
@@ -280,7 +285,7 @@ namespace CavesOfOoo.Core
         {
             if (rows == null || cell == null || actor == null || !cell.Occupants.Contains(actor)) return;
             foreach (var e in cell.Occupants)
-                if (e != target && (e.HasTag("UnderfootInteractable") || e.HasPart<BedPart>()) && !string.IsNullOrEmpty(e.ID))
+                if (IsQueryable(e) && e != target && (e.HasTag("UnderfootInteractable") || e.HasPart<BedPart>()) && !string.IsNullOrEmpty(e.ID))
                     rows.Add(new InventoryAction("Underfoot", e.GetDisplayName() + " underfoot",
                         PickTargetCommandPrefix + e.ID, '\0', 0));
         }
@@ -292,7 +297,7 @@ namespace CavesOfOoo.Core
 
             var ordered = new List<Entity>();
             foreach (var entity in cell.Occupants)
-                if (entity != null) InsertByRenderLayer(ordered, entity);
+                if (IsQueryable(entity)) InsertByRenderLayer(ordered, entity);
 
             for (int pass = 0; pass < 2; pass++)
             {
@@ -319,7 +324,7 @@ namespace CavesOfOoo.Core
             for (int i = 0; i < cell.Occupants.Count; i++)
             {
                 Entity e = cell.Occupants[i];
-                if (e != null && e.ID == id)
+                if (IsQueryable(e) && e.ID == id)
                     return e;
             }
             return null;

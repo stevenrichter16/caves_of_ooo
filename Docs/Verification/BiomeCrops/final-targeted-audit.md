@@ -1,0 +1,13 @@
+# Final targeted crop audit
+
+Read-only source/docs/art/content review; no source edits and no green tests rerun.
+
+- `Docs/BIOME-CROPS.md:116` correctly limits the policy to **up to50** patches. `BiomeCropPlan.SurfaceSites` caps per ecology with `Math.Min(eligibleCount, 10/5)` and filters protected/current quiet sites; it does not guarantee50 successfully installed patches. A read-only plan enumeration through the already-built reference assembly returned50 for seeds64/1729/729490642 (10/10/10/10/5/5) and16 cave columns each. Receipt: `count-readout/output.txt`. This is reference policy enumeration, not native generation evidence; reference string hashing differs.
+- The recorded native1930-case result confirms all three native world census cases passed with35 actual ripe species reachable from ordinary surface arrival and stair travel. Their output records species, not actual per-biome patch counts. Existing docs are appropriately bounded to sampled seeds and possible safe refusals.
+- Existing-crop guidance is accurate: ungated Sella/Orrit dialogue directs west from Morrowfast to the old allotment (`Overworld.2.6.0`), with ripe and young knotflax/hearthbulb/seamleaf, finite actual seed stock, and six southern prepared town beds. New-game starter kit contains WateringGrimoire, gladroot and emberwheat seeds. Rain uses the same crop gate in caves; no outside-only weather restriction found.
+- New catalogue/planted/yield links and exact model stems remain consistent. Art correctly uses six crop states plus seed and harvested forms and retains old37. It does not promise new equipped rigs, skeletal clips, offscreen growth or global old-save migration.
+- Actual Examine descriptions now contain in-world botany and the same practical uses as the catalogue. Cinderpea/ScarletSundew self-Apply dangers remain explicit. Prepare outputs exact accepted repair materials.
+
+One **minor doc mismatch** to fix at final documentation pass: Shadefan and Gripfrond roster tables label `UsesSlots` as a `Handling` field. The current JSON and real type correctly put it on **Equippable**; the table should read `Equippable: Slot=Head, UsesSlots=Head` (and Handwear). No production change is needed.
+
+No new significant mechanics/discoverability defect found in this targeted pass. Keep final reports honest: cached areas receive no new planting retrofit, no merchant stocks the35 new species, selected cave columns do not force entrances, plans/counts are not proof of natural player discovery, and unsuccessful native route reports must not be presented as completed lifecycle/save/light demonstrations. Root is completing native/live acceptance independently.

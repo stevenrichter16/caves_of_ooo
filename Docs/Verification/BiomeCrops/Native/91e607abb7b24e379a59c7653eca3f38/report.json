@@ -1,0 +1,62 @@
+{
+    "runId": "91e607abb7b24e379a59c7653eca3f38",
+    "zone": "Overworld.8.11.0",
+    "fatal": "System.InvalidOperationException: Density completion precondition: safe ordinary growth wait\n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer.Require (System.Boolean condition, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:436 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<BiomeCropsRoute>d__54.MoveNext () [0x00b79] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativeBiomeCrops.cs:118 \n  at CavesOfOoo.Scenarios.Custom.ReferenceGladeNativePlayer+<RunSafely>d__184.MoveNext () [0x00049] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/ReferenceGladeNativePlayer.cs:456 ",
+    "canVerify": "Isolated ordinary seed64 player; real generated Marlroot patch harvested through native C actions, physical yield/seed picked up, carried clod processed into actual FireClay, returned seed replanted and watered using the original learned Conjure Rain; paid waits reach visible sprout and standing ripe, repeat harvest, F5/F6 saves exact source depletion and inventory. A real connected ordinary cave patch supplies Lampvein, harvested and dropped through keys to demonstrate an actual portable light. Current owners/models and source coordinates are recorded; screenshots need visual review.",
+    "cannotVerify": "Two explicitly labelled travel shortcuts select real generated surface and connected cave patches. Cold source selection pre-generates a bounded set of actual plan sites and cave depths; it grants no crop, seed, material, stage, moisture, equipment, health, turns or RNG. All local movement/actions use keys with live NPC scheduling. No natural discovery, all35 utilities, all-seed placement, offscreen growth, equipment art, economic balance or subjective model-quality claim. Unsafe approaches or danger stop the route honestly. The prepared clay is verified as real output; this route does not claim a subsequent well repair.",
+    "mode": "native-biome-crops",
+    "combatState": "",
+    "combatSteps": [],
+    "biomeSteps": [
+        "BOTANICAL SOURCE Overworld.8.11.0@34,12 approach=35,12 minimumHostileDistance=9 requiredClearance=2; unchanged ordinary threats",
+        "BOTANICAL SOURCE Overworld.6.11.0@52,20 approach=51,20 minimumHostileDistance=8 requiredClearance=2; unchanged ordinary threats",
+        "LABELLED TRAVEL 1 Overworld.11.10.0 -> Overworld.8.11.0@35,12 actual generated Marlroot source; untouched plants, soil, contents and NPCs",
+        "drawn owner=5137 blueprint=MarlrootCrop current=True drawn=True"
+    ],
+    "biomeShortcuts": 1,
+    "biomeDefensiveCalmUses": 0,
+    "audit": [
+        "PASS ordinary_player_and_native_zone",
+        "PASS botany_generated_marlroot",
+        "PASS botany_harvest_original",
+        "PASS botany_pickup_original",
+        "PASS botany_process_clay",
+        "PASS botany_plant_seed",
+        "PASS botany_learn_rain",
+        "PASS botany_water",
+        "FAIL native_precondition_failed"
+    ],
+    "screenshots": [
+        "/Users/steven/caves-of-ooo/Docs/Verification/BiomeCrops/Native/91e607abb7b24e379a59c7653eca3f38/01-gameplay-arrival.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/BiomeCrops/Native/91e607abb7b24e379a59c7653eca3f38/botany-01-ripe-source-and-use.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/BiomeCrops/Native/91e607abb7b24e379a59c7653eca3f38/botany-02-physical-harvest.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/BiomeCrops/Native/91e607abb7b24e379a59c7653eca3f38/botany-03-useful-prepared-clay.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/BiomeCrops/Native/91e607abb7b24e379a59c7653eca3f38/botany-04-planted-returned-seed.png",
+        "/Users/steven/caves-of-ooo/Docs/Verification/BiomeCrops/Native/91e607abb7b24e379a59c7653eca3f38/botany-05-real-rain-and-damp-soil.png"
+    ],
+    "descriptions": [
+        {
+            "subject": "Actual Marlroot patch",
+            "source": "5137",
+            "text": "Overworld.8.11.0@34,12; catalogue species Marlroot; actual ripe source; no stage changes.",
+            "units": 0
+        },
+        {
+            "subject": "marlroot",
+            "source": "5137",
+            "text": "You see a marlroot.\nGrowth: ripe. Harvest this crop by hand; its produce and saved seed remain here to pick up. The prepared bed can be planted again.\n\nKnuckled roots grip a clod of fine red clay tightly enough to bring it up when pulled. The planted crop takes 52 moist rounds in this area to become ripe. Harvest by hand, then pick up its marlroot clod and one saved seed. Choose Prepare in inventory to separate one clod into fire clay for repairing clay-lined masonry.",
+            "units": 0
+        }
+    ],
+    "cases": 9,
+    "failures": 2,
+    "unexpectedErrors": 1,
+    "complete": false,
+    "publicRouteComplete": false,
+    "errorsFinalized": true,
+    "seconds": 11.9126208,
+    "profileSeconds": 0.0,
+    "profileFrames": 0,
+    "profileFrameMeanMs": 0.0,
+    "profileFrameP95Ms": 0.0
+}

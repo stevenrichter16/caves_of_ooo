@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/placement/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="64" result="Failed" start-time="2026-10-01T05:21:01.6594630Z" end-time="2026-10-01T05:21:01.8575680Z" duration="0.198089" total="2" passed="1" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="6" random-seed="1322250275">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/placement/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/placement/lair-guard-red.xml --where "test =~ /RemovingMapPoi/"]]></command-line>
+  <filter>
+    <test re="1">RemovingMapPoi</test>
+  </filter>
+  <test-suite type="Assembly" id="1082" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/placement/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="64" result="Failed" site="Child" start-time="2026-10-01T05:21:01.6594630Z" end-time="2026-10-01T05:21:01.8575680Z" duration="0.198089" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="6">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/placement/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/biome-crops/placement/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="63514" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1083" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="64" result="Failed" site="Child" start-time="2026-10-01T05:21:01.6617300Z" end-time="2026-10-01T05:21:01.8575630Z" duration="0.195830" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="6">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1084" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="64" result="Failed" site="Child" start-time="2026-10-01T05:21:01.6619070Z" end-time="2026-10-01T05:21:01.8575160Z" duration="0.195607" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="6">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1061" name="BiomeCropPlacementAdversarialTests" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-01T05:21:01.6624070Z" end-time="2026-10-01T05:21:01.8575090Z" duration="0.195100" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="6">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1078" name="RemovingMapPoiCannotReclassifyAnAlreadyClaimedLairAsOrdinary" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.RemovingMapPoiCannotReclassifyAnAlreadyClaimedLairAsOrdinary" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-01T05:21:01.6632880Z" end-time="2026-10-01T05:21:01.8572940Z" duration="0.194004" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="6">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1076" name="RemovingMapPoiCannotReclassifyAnAlreadyClaimedLairAsOrdinary(False)" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.RemovingMapPoiCannotReclassifyAnAlreadyClaimedLairAsOrdinary(False)" methodname="RemovingMapPoiCannotReclassifyAnAlreadyClaimedLairAsOrdinary" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="511938453" result="Passed" start-time="2026-10-01T05:21:01.6633630Z" end-time="2026-10-01T05:21:01.7653600Z" duration="0.102022" asserts="3" />
+            <test-case id="1077" name="RemovingMapPoiCannotReclassifyAnAlreadyClaimedLairAsOrdinary(True)" fullname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.RemovingMapPoiCannotReclassifyAnAlreadyClaimedLairAsOrdinary(True)" methodname="RemovingMapPoiCannotReclassifyAnAlreadyClaimedLairAsOrdinary" classname="CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests" runstate="Runnable" seed="1151541235" result="Failed" start-time="2026-10-01T05:21:01.7660130Z" end-time="2026-10-01T05:21:01.8569270Z" duration="0.090913" asserts="3">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.RemovingMapPoiCannotReclassifyAnAlreadyClaimedLairAsOrdinary(Boolean claimed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BiomeCropPlacementAdversarialTests.cs:line 72
+   at InvokeStub_BiomeCropPlacementAdversarialTests.RemovingMapPoiCannotReclassifyAnAlreadyClaimedLairAsOrdinary(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.BiomeCropPlacementAdversarialTests.RemovingMapPoiCannotReclassifyAnAlreadyClaimedLairAsOrdinary(Boolean claimed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/BiomeCropPlacementAdversarialTests.cs:line 72
+   at InvokeStub_BiomeCropPlacementAdversarialTests.RemovingMapPoiCannotReclassifyAnAlreadyClaimedLairAsOrdinary(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

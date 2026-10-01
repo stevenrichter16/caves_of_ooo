@@ -1,0 +1,40 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 3,
+    "passed": 0,
+    "failed": 3,
+    "skipped": 0,
+    "durationSeconds": 0.6803208,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "ActualOrdinaryCavePresenterShowsAllFiveNativePlantSpecies",
+      "fullName": "CavesOfOoo.Tests.BiomeCropCaveArtTests.ActualOrdinaryCavePresenterShowsAllFiveNativePlantSpecies",
+      "state": "Failed",
+      "durationSeconds": 0.3373192,
+      "message": "  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60\nat CavesOfOoo.Tests.BiomeCropCaveArtTests.ActualOrdinaryCavePresenterShowsAllFiveNativePlantSpecies () [0x00028] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeCropCaveArtTests.cs:40\n",
+      "output": ""
+    },
+    {
+      "name": "CurrentDepthTerrainResolvesRealFloorAndWallOwnersWithoutGraphReplacement",
+      "fullName": "CavesOfOoo.Tests.BiomeCropCaveArtTests.CurrentDepthTerrainResolvesRealFloorAndWallOwnersWithoutGraphReplacement",
+      "state": "Failed",
+      "durationSeconds": 0.2088257,
+      "message": "  SandstoneWall\n  Expected: not null\n  But was:  null\n",
+      "stackTrace": "at CavesOfOoo.Tests.BiomeCropCaveArtTests.CurrentDepthTerrainResolvesRealFloorAndWallOwnersWithoutGraphReplacement () [0x000ce] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeCropCaveArtTests.cs:33\n",
+      "output": ""
+    },
+    {
+      "name": "CurrentOrdinaryCaveIsAdmittedButDetachedSameIdAndUnmanagedAddressAreNot",
+      "fullName": "CavesOfOoo.Tests.BiomeCropCaveArtTests.CurrentOrdinaryCaveIsAdmittedButDetachedSameIdAndUnmanagedAddressAreNot",
+      "state": "Failed",
+      "durationSeconds": 0.1267209,
+      "message": "  Actual receiving-manager ordinary cave must admit botanical geometry.\n  Expected: True\n  But was:  False\n",
+      "stackTrace": "at CavesOfOoo.Tests.BiomeCropCaveArtTests.CurrentOrdinaryCaveIsAdmittedButDetachedSameIdAndUnmanagedAddressAreNot () [0x00046] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/BiomeCropCaveArtTests.cs:20\n",
+      "output": ""
+    }
+  ]
+}
