@@ -36,6 +36,12 @@ namespace CavesOfOoo
         /// </summary>
         public static event System.Action<Zone, EntityFactory, Entity, TurnManager> OnAfterBootstrap;
 
+        /// <summary>
+        /// True for an ordinary interactive new game: the default kit and spells are
+        /// withheld at step 6 and the build picker supplies them instead.
+        /// </summary>
+        private bool _awaitingBuildChoice;
+
         private EntityFactory _factory;
         private OverworldZoneManager _zoneManager;
         private Zone _zone;
@@ -271,6 +277,25 @@ namespace CavesOfOoo
                     }
                 }
 
+                // New-game builds (Docs/STARTING-BUILDS-IMPL.md): load after blueprints
+                // so every referenced blueprint and skill class can be checked, and
+                // decide NOW whether this boot asks the player to choose. A scenario's
+                // pending type is cleared inside OnAfterBootstrap, so it must be read
+                // before step 6.
+                Debug.Log("[Bootstrap] Step 4c/9: Loading starting builds...");
+                {
+                    StartingBuildRegistry.LoadFromResources();
+                    foreach (var problem in StartingBuildRegistry.Validate(_factory))
+                        Debug.LogError($"[Bootstrap] Starting build problem: {problem}");
+                    _awaitingBuildChoice = StartingBuildSelection.ShouldPrompt(
+                        DevMode.Enabled,
+                        CavesOfOoo.Scenarios.ScenarioRunner.PendingScenario != null,
+                        !string.IsNullOrEmpty(SaveGameService.SaveRootOverride),
+                        Application.isBatchMode);
+                    Debug.Log($"[Bootstrap] Loaded {StartingBuildRegistry.All.Count} starting build(s); "
+                        + $"new-game picker {(_awaitingBuildChoice ? "ON" : "off")}.");
+                }
+
                 Debug.Log("[Bootstrap] Step 5/9: Generating starting zone...");
                 bool zoneGenerated = PerformanceDiagnostics.MeasureStartupPhase("GenerateZone", PerformanceMarkers.Bootstrap.GenerateZone, GenerateStartingZone);
                 if (!zoneGenerated)
@@ -321,13 +346,17 @@ namespace CavesOfOoo
                         GivePlayerStartingTonics();
                         GivePlayerCraftingStarterKit();
                     }
-                    else
+                    else if (!_awaitingBuildChoice)
                     {
                         int granted = NewGameLoadout.Grant(_player, _factory);
                         Debug.Log($"[Bootstrap] New-game loadout granted ({granted} entries).");
                     }
+                    // else: the build picker supplies the kit and spells after the
+                    // player chooses (StartingBuildService; Classic reproduces this
+                    // exact kit). If it cannot open, the post-boot flow applies Classic.
                     GivePlayerFarmingStarterKit();
-                    GivePlayerStartingSpells();
+                    if (!_awaitingBuildChoice)
+                        GivePlayerStartingSpells();
                     if (!PlacePlayerInOpenCell())
                     {
                         Debug.LogError("[Bootstrap] FAILED: No safe connected fresh-game start is available");
@@ -643,6 +672,20 @@ namespace CavesOfOoo
                     }
                     abilityManagerUI.PopupCamera = popupOverlayCamera;
                     inputHandler.AbilityManagerUI = abilityManagerUI;
+
+                    // New-game build picker. Same centered-popup wiring as the pause
+                    // menu; the controller is owned by InputHandler.
+                    var startingBuildMenuUI = GetComponent<StartingBuildMenuUI>();
+                    if (startingBuildMenuUI == null)
+                        startingBuildMenuUI = gameObject.AddComponent<StartingBuildMenuUI>();
+                    if (ZoneRenderer != null)
+                    {
+                        startingBuildMenuUI.Tilemap = ZoneRenderer.CenteredPopupFgTilemap;
+                        startingBuildMenuUI.BgTilemap = ZoneRenderer.CenteredPopupBgTilemap;
+                    }
+                    startingBuildMenuUI.PopupCamera = popupOverlayCamera;
+                    startingBuildMenuUI.Factory = _factory;
+                    inputHandler.StartingBuildMenuUI = startingBuildMenuUI;
                 });
 
                 _turnManager.ProcessUntilPlayerTurn();
@@ -675,17 +718,34 @@ namespace CavesOfOoo
                 SaveGameService.ResolveActiveGameIDOnBoot();
 
                 var inputHandlerForBoot = GetComponent<InputHandler>();
+                bool hasQuickSave = SaveGameService.HasQuickSave();
+                bool buildPickerOpen = false;
                 if (inputHandlerForBoot != null)
                 {
-                    inputHandlerForBoot.TryActivateBootMenu(SaveGameService.HasQuickSave());
+                    if (_awaitingBuildChoice)
+                    {
+                        // With a save, the boot menu runs first and its "New game"
+                        // opens the picker; without one, ask immediately. Either way
+                        // the character is checkpointed only AFTER a build is chosen.
+                        inputHandlerForBoot.EnableStartingBuildChoice();
+                        if (!hasQuickSave)
+                            buildPickerOpen = inputHandlerForBoot.BeginStartingBuildSelection();
+                    }
+                    inputHandlerForBoot.TryActivateBootMenu(hasQuickSave);
+                }
+                else if (_awaitingBuildChoice)
+                {
+                    // No input handler means nobody can answer a prompt.
+                    StartingBuildService.ApplyClassicFallback(_player, _factory);
                 }
 
                 // BETA AUDIT #10 — no autosave existed until the first
                 // zone transition: a first-session death in the starting
                 // town lost EVERYTHING. Seed one immediately for fresh
                 // games (when a save exists, the boot menu handles it —
-                // and Continue loads over this harmlessly).
-                if (!SaveGameService.HasQuickSave())
+                // and Continue loads over this harmlessly). When the build
+                // picker is open the checkpoint is taken when it closes.
+                if (!hasQuickSave && !buildPickerOpen)
                 {
                     if (!SaveGameService.BeginNewGame())
                         MessageLog.Add("New game started, but the initial save failed. Press [F5] to retry.");

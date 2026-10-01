@@ -505,6 +505,17 @@ namespace CavesOfOoo.Skills
 
         // ── Helpers ──────────────────────────────────────────────────────
 
+        /// <summary>True if <paramref name="className"/> resolves to a concrete
+        /// <see cref="BaseSkillPart"/> that <see cref="AddSkill(string,string)"/> can
+        /// instantiate. Lets content validators tell "unknown class" apart from
+        /// "already owned" (both return false from AddSkill).</summary>
+        public static bool IsKnownSkillClass(string className)
+        {
+            if (string.IsNullOrWhiteSpace(className)) return false;
+            Type type = ResolveSkillType(className);
+            return type != null && !type.IsAbstract && typeof(BaseSkillPart).IsAssignableFrom(type);
+        }
+
         private static BaseSkillPart CreateSkillByClassName(string className)
         {
             Type type = ResolveSkillType(className);

@@ -30,6 +30,16 @@ namespace CavesOfOoo.Rendering
         public bool IsActive { get; private set; }
 
         /// <summary>
+        /// Optional hand-off for "New game". When set and it returns true, the
+        /// gate has taken over (the new-game build picker is now open): this menu
+        /// deactivates WITHOUT checkpointing, because the fresh character has no
+        /// kit until a build is chosen and a save now would capture that empty
+        /// character. The owner checkpoints after the choice. Unset, or returning
+        /// false, keeps the original behavior.
+        /// </summary>
+        public Func<bool> NewGameGate;
+
+        /// <summary>
         /// Try to show the boot menu. Returns true if activated, false
         /// otherwise. No-op when no save exists (skip menu, go to play).
         /// Idempotent: calling on an already-active controller does
@@ -81,6 +91,12 @@ namespace CavesOfOoo.Rendering
 
             if (newGamePressed)
             {
+                if (NewGameGate != null && NewGameGate())
+                {
+                    IsActive = false;
+                    return;
+                }
+
                 bool saved = service.BeginNewGame();
                 IsActive = false;
                 log?.Invoke(saved ? "Starting a new game. Initial checkpoint saved."

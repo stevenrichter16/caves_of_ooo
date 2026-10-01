@@ -277,6 +277,75 @@ namespace CavesOfOoo.Rendering
         private readonly PauseMenuController _pauseMenuController = new PauseMenuController();
 
         /// <summary>
+        /// New-game build picker (Docs/STARTING-BUILDS-IMPL.md). Wired by
+        /// <c>GameBootstrap</c>; the controller is owned here and the popup borrows it.
+        /// </summary>
+        public StartingBuildMenuUI StartingBuildMenuUI
+        {
+            get => _startingBuildMenuUI;
+            set
+            {
+                _startingBuildMenuUI = value;
+                if (_startingBuildMenuUI != null) _startingBuildMenuUI.Controller = _buildMenuController;
+            }
+        }
+        private StartingBuildMenuUI _startingBuildMenuUI;
+        private readonly StartingBuildMenuController _buildMenuController = new StartingBuildMenuController();
+
+        /// <summary>
+        /// Route the boot menu's "New game" to the build picker. Called by
+        /// <c>GameBootstrap</c> when the fresh character has no kit yet.
+        /// </summary>
+        public void EnableStartingBuildChoice() => _bootMenuController.NewGameGate = OpenStartingBuildPicker;
+
+        /// <summary>Open the picker now (fresh game, no save to continue). Returns true if it opened.</summary>
+        public bool BeginStartingBuildSelection() => OpenStartingBuildPicker();
+
+        private bool OpenStartingBuildPicker()
+        {
+            if (_startingBuildMenuUI == null || PlayerEntity == null || EntityFactory == null
+                || StartingBuildRegistry.All.Count == 0)
+            {
+                // Cannot ask. A bare character must not be checkpointed, so give the
+                // Classic start and let the caller carry on to the checkpoint.
+                if (PlayerEntity != null && EntityFactory != null)
+                    StartingBuildService.ApplyClassicFallback(PlayerEntity, EntityFactory);
+                return false;
+            }
+
+            _startingBuildMenuUI.Factory = EntityFactory;
+            if (!_buildMenuController.Open(StartingBuildRegistry.All, OnStartingBuildChosen))
+            {
+                StartingBuildService.ApplyClassicFallback(PlayerEntity, EntityFactory);
+                return false;
+            }
+            EnterCenteredPopupOverlayView();
+            MessageLog.Add("Choose how you begin.");
+            return true;
+        }
+
+        private void OnStartingBuildChosen(StartingBuildDef build)
+        {
+            var result = StartingBuildService.Apply(PlayerEntity, EntityFactory, build);
+            if (!result.Success)
+            {
+                foreach (var error in result.Errors)
+                    Debug.LogError("[StartingBuild] " + build?.Id + ": " + error);
+                MessageLog.Add("That start could not be fully applied; see the console.");
+                // Validation rejects before touching anything, so the player is still
+                // bare: fall back rather than checkpoint an empty character.
+                if (string.IsNullOrEmpty(PlayerEntity.GetProperty(StartingBuildService.PropertyName)))
+                    StartingBuildService.ApplyClassicFallback(PlayerEntity, EntityFactory);
+            }
+
+            ExitCenteredPopupOverlayViewToGameplay();
+            MessageLog.Add("You begin as " + (build?.Name ?? "a wanderer") + ".");
+            bool saved = _saveLoadService.BeginNewGame();
+            MessageLog.Add(saved ? "Initial checkpoint saved."
+                : "New game started, but the initial save failed. Press [F5] to retry.");
+        }
+
+        /// <summary>
         /// ST.7b — skills screen UI (KeyCode.X → centered skill-tree popup).
         /// Wired by <c>GameBootstrap</c>. The state-builder + snapshot are
         /// pure-data and unit-tested in EditMode; this MonoBehaviour does
@@ -306,7 +375,7 @@ namespace CavesOfOoo.Rendering
         {
             if (!isActiveAndEnabled || actor != PlayerEntity || zone != CurrentZone || WorldActionMenuUI == null
                 || TurnManager == null || !TurnManager.WaitingForInput || TurnManager.CurrentActor != actor
-                || _bootMenuController.IsActive || _deathScreenController.IsActive || SpellFxSettingsPanel.IsOpen
+                || _bootMenuController.IsActive || _buildMenuController.IsOpen || _deathScreenController.IsActive || SpellFxSettingsPanel.IsOpen
                 || (ZoneRenderer != null && ZoneRenderer.Paused)) return null;
             if (_inputState == InputState.Normal) return WorldAffordanceQuery.Find(actor, zone, false, 0, 0);
             if (_inputState == InputState.LookMode && _worldCursorState.Active && _worldCursorState.Zone == zone)
@@ -327,6 +396,15 @@ namespace CavesOfOoo.Rendering
             {
                 if (PlayerEntity == null || CurrentZone == null || TurnManager == null)
                     return;
+
+                // New-game build picker — before every other modal and the player-turn
+                // gates: it runs before the character can act, and nothing else may
+                // take a key while it is up (it has no cancel).
+                if (_buildMenuController.IsOpen)
+                {
+                    _startingBuildMenuUI?.HandleInput(_saveLoadInputProbe);
+                    return;
+                }
 
                 // Boot-menu modal (Phase 4c) — checked BEFORE the player-turn
                 // gates so it can run before the player can act. Only active

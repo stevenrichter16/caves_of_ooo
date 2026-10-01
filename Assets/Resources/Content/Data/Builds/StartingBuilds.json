@@ -1,0 +1,109 @@
+{
+  "Builds": [
+    {
+      "Id": "duelist",
+      "Name": "The Duelist",
+      "Kind": "build",
+      "Tagline": "Let them swing. Punish the miss.",
+      "Weakness": "Low damage; a pack closing in on you at once.",
+      "FirstBuy": "A spear (Piercing, so every blade skill works).",
+      "Attributes": { "Strength": 16, "Agility": 22, "Toughness": 14, "Ego": 18 },
+      "Items": [
+        { "Blueprint": "Dagger", "Count": 1, "Equip": true },
+        { "Blueprint": "Buckler", "Count": 1, "Equip": true },
+        { "Blueprint": "Cloak", "Count": 1, "Equip": true },
+        { "Blueprint": "HealingTonic", "Count": 2, "Equip": false },
+        { "Blueprint": "DriedMeat", "Count": 2, "Equip": false }
+      ],
+      "Skills": [
+        "ShortBladesSkill",
+        "ShortBlades_Puncture",
+        "ShortBlades_Bloodletter",
+        "ShortBlades_Rejoinder",
+        "ShortBlades_Shank",
+        "ShortBlades_Flurry"
+      ]
+    },
+    {
+      "Id": "breaker",
+      "Name": "The Breaker",
+      "Kind": "build",
+      "Tagline": "Hit once, stun, shove.",
+      "Weakness": "Nothing at range; you cannot choose who gets stunned.",
+      "FirstBuy": "A mace, then the Bludgeon skill.",
+      "Attributes": { "Strength": 20, "Agility": 16, "Toughness": 16, "Ego": 18 },
+      "Items": [
+        { "Blueprint": "Cudgel", "Count": 1, "Equip": true },
+        { "Blueprint": "Buckler", "Count": 1, "Equip": true },
+        { "Blueprint": "HealingTonic", "Count": 2, "Equip": false },
+        { "Blueprint": "DriedMeat", "Count": 2, "Equip": false }
+      ],
+      "Skills": [
+        "CudgelSkill",
+        "Cudgel_Expertise",
+        "Cudgel_Conk",
+        "Cudgel_Slam",
+        "Cudgel_GroundPound",
+        "Cudgel_ShatteringBlows"
+      ]
+    },
+    {
+      "Id": "stormcaller",
+      "Name": "The Stormcaller",
+      "Kind": "build",
+      "Tagline": "Read the target. Wet means shock, dry means burn.",
+      "Weakness": "Fragile in melee; ambushes.",
+      "FirstBuy": "A grimoire from the Arcanist.",
+      "Attributes": { "Strength": 16, "Agility": 20, "Toughness": 16, "Ego": 18 },
+      "Items": [
+        { "Blueprint": "Dagger", "Count": 1, "Equip": true },
+        { "Blueprint": "Cloak", "Count": 1, "Equip": true },
+        { "Blueprint": "HealingTonic", "Count": 2, "Equip": false },
+        { "Blueprint": "DriedMeat", "Count": 2, "Equip": false }
+      ],
+      "Skills": [
+        "Pyromancy_Kindle",
+        "Galvanism_ArcBolt",
+        "Hydromancy_JetBlast",
+        "Galvanism_GroundSurge",
+        "Spellcraft_Calm",
+        "SpellcraftSkill"
+      ]
+    },
+    {
+      "Id": "bombardier",
+      "Name": "The Bombardier",
+      "Kind": "build",
+      "Tagline": "Win before the fight starts.",
+      "Weakness": "Runs out; ambushes; gas reaches you too.",
+      "FirstBuy": "More grenades (31 drams each at Ego 22).",
+      "Attributes": { "Strength": 16, "Agility": 18, "Toughness": 14, "Ego": 22 },
+      "Items": [
+        { "Blueprint": "Dagger", "Count": 1, "Equip": true },
+        { "Blueprint": "LeatherCap", "Count": 1, "Equip": true },
+        { "Blueprint": "Cloak", "Count": 1, "Equip": true },
+        { "Blueprint": "PoisonGasGrenade", "Count": 1, "Equip": false },
+        { "Blueprint": "LightningTonic", "Count": 1, "Equip": false },
+        { "Blueprint": "FrostTonic", "Count": 1, "Equip": false },
+        { "Blueprint": "HealingTonic", "Count": 2, "Equip": false },
+        { "Blueprint": "DriedMeat", "Count": 2, "Equip": false }
+      ],
+      "Skills": [
+        "Hydromancy_DrenchLob",
+        "Cryomancy_ColdSnap",
+        "Spellcraft_Calm"
+      ]
+    },
+    {
+      "Id": "classic",
+      "Name": "Classic",
+      "Kind": "classic",
+      "Tagline": "The original start: a dagger, two tonics, six spells.",
+      "Weakness": "No particular strength; no particular plan.",
+      "FirstBuy": "Whatever the world offers.",
+      "Attributes": { "Strength": 18, "Agility": 18, "Toughness": 18, "Ego": 16 },
+      "Items": [],
+      "Skills": []
+    }
+  ]
+}
