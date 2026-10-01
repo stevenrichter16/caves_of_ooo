@@ -35,6 +35,11 @@ namespace CavesOfOoo.Rendering
             if (cell == null || !cell.Objects.Contains(entity)) return Refused(entity, "not-current-zone-member");
             var render = entity.GetPart<RenderPart>();
             if (render == null || !render.Visible) return Refused(entity, "native-render-hidden");
+            if (BiomeCropRecipes.Handles(entity.BlueprintName))
+            {
+                string model=BiomeCropRecipes.ResolveModel(zone,entity);
+                return model==null?Refused(entity,"unsupported-current-biome-crop"):BiomeCropRecipes.Recipe(zone,entity,model);
+            }
             if (RepairCultivationRecipes.Handles(entity.BlueprintName))
             {
                 string model=RepairCultivationRecipes.ResolveModel(zone,entity);
@@ -483,6 +488,20 @@ namespace CavesOfOoo.Rendering
                     }
                 }
                 var binding = catalog.FindBlueprint(entity.HasTag("Player") ? "Player" : entity.BlueprintName);
+                // Ordinary native caves already own depth-specific stone. Share
+                // the shipped stone geometry without replacing their entity,
+                // material properties, collision or depth generation.
+                if(binding==null&&BiomeCropRecipes.IsOrdinaryCave(zone)
+                    &&render.ParentEntity==entity&&string.IsNullOrEmpty(render.VisualID)&&string.IsNullOrEmpty(render.VisualVariant))
+                {
+                    var material=SolidEarthBuilder.GetMaterialsForDepth(WorldMap.FromZoneID(zone.ZoneID).z);
+                    var physics=entity.GetPart<PhysicsPart>();
+                    if(physics?.ParentEntity==entity&&!physics.Takeable&&physics.InInventory==null&&physics.Equipped==null)
+                    {
+                        if(entity.BlueprintName==material.wallBP&&physics.Solid)binding=catalog.FindBlueprint("Wall");
+                        else if(entity.BlueprintName==material.floorBP&&!physics.Solid)binding=catalog.FindBlueprint("Floor");
+                    }
+                }
                 // Oil keeps the shipped dark seep body; no liquid/gameplay
                 // alias is introduced and the original native owner stays intact.
                 if (binding == null && (entity.BlueprintName == "OilSlick" || entity.BlueprintName == "OilSeep"))

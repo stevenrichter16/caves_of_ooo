@@ -42,6 +42,7 @@ namespace CavesOfOoo.Rendering
         private VoxelWorldPresentation voxel;
         private MultiCellPilot3DLibrary pilotLibrary;
         private RepairCultivation3DLibrary cultivationLibrary;
+        private BiomeCrop3DLibrary botanyLibrary;
         private readonly Dictionary<Entity,GameObject> cultivatedSoil = new Dictionary<Entity,GameObject>();
         private readonly Dictionary<Entity, View> portableViews = new Dictionary<Entity, View>();
         private readonly HashSet<Entity> portableSeen = new HashSet<Entity>();
@@ -92,6 +93,8 @@ namespace CavesOfOoo.Rendering
                 pilotLibrary = Resources.Load<MultiCellPilot3DLibrary>(MultiCellPilot3DLibrary.ResourcePath);
                 pilotLibrary?.Validate();
                 var materials = new List<Material> { library.WorldMaterial, library.WaterMaterial };
+                botanyLibrary=BiomeCrop3DLibrary.Load();
+                if(botanyLibrary!=null){botanyLibrary.Validate();materials.Add(botanyLibrary.Material);}
                 cultivationLibrary=RepairCultivation3DLibrary.Load();
                 if(cultivationLibrary!=null){cultivationLibrary.Validate();materials.Add(cultivationLibrary.Material);}
                 if (pilotLibrary != null) { materials.Add(pilotLibrary.WorldMaterial); materials.Add(pilotLibrary.TarMaterial); }
@@ -143,7 +146,7 @@ namespace CavesOfOoo.Rendering
             if (portableOwner == null) root = MakeModel(placement, content.transform);
             else
             {
-                var prefab = RepairCultivationSource.IsModelId(modelId)?cultivationLibrary?.Find(modelId)?.Prefab:pilotLibrary.FindModel(modelId);
+                var prefab = BiomeCropSource.IsModelId(modelId)?botanyLibrary?.Find(modelId)?.Prefab:RepairCultivationSource.IsModelId(modelId)?cultivationLibrary?.Find(modelId)?.Prefab:pilotLibrary.FindModel(modelId);
                 if (prefab == null) throw new InvalidOperationException("Missing portable model " + modelId);
                 root = Instantiate(prefab, content.transform, false);
             }
@@ -175,7 +178,14 @@ namespace CavesOfOoo.Rendering
             foreach (var entity in CurrentZone.GetReadOnlyEntities())
             {
                 SpawnRing3DRecipe recipe;
-                if(cultivationLibrary!=null&&RepairCultivationRecipes.Handles(entity.BlueprintName))
+                if(botanyLibrary!=null&&BiomeCropRecipes.Handles(entity.BlueprintName))
+                {
+                    string model=BiomeCropRecipes.ResolveModel(CurrentZone,entity);
+                    if(model==null||string.IsNullOrEmpty(entity.ID))continue;
+                    var cell=CurrentZone.GetEntityCell(entity);
+                    recipe=new SpawnRing3DRecipe(entity,model,"biome-crop:"+entity.ID,Village3DProjection.CellCentre(cell.X,cell.Y),entity.GetPart<PhysicsPart>().Takeable,false);
+                }
+                else if(cultivationLibrary!=null&&RepairCultivationRecipes.Handles(entity.BlueprintName))
                 {
                     string model=RepairCultivationRecipes.ResolveModel(CurrentZone,entity);
                     if(model==null||string.IsNullOrEmpty(entity.ID))continue;
@@ -488,7 +498,7 @@ namespace CavesOfOoo.Rendering
             equipmentViews?.Dispose(); equipmentViews = null;
             surface?.Dispose(); surface = null;
             WorldCamera = null; content = null; source = null;
-            library = null; pilotLibrary = null; cultivationLibrary=null;cultivatedSoil.Clear();definition = null; player = null; lightMap = null; CurrentZone = null;
+            library = null; pilotLibrary = null; cultivationLibrary=null;botanyLibrary=null;cultivatedSoil.Clear();definition = null; player = null; lightMap = null; CurrentZone = null;
             portableViews.Clear(); portableSeen.Clear(); portableRemoved.Clear();
             views.Clear(); actors.Clear(); decorations.Clear(); byId.Clear(); byEntity.Clear(); byCollider.Clear(); rooms.Clear();
         }

@@ -38,6 +38,10 @@ namespace CavesOfOoo.Editor
         public static void LaunchCurationQuarantine() => LaunchCore(false,false,false,false,false,false,true,true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Repair and Cultivation Audit")]
         public static void LaunchRepairCultivation() => LaunchCore(false,repairCultivation:true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Biome Crops Audit")]
+        public static void LaunchBiomeCrops() => LaunchCore(false,biomeCrops:true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Biome Cave Crops Audit")]
+        public static void LaunchBiomeCaveCrops() => LaunchCore(false,biomeCrops:true,biomeCaveCrops:true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Native Audit")]
         public static void Launch() => LaunchCore(false);
         [MenuItem("Caves Of Ooo/Scenarios/World/Reference Glade Native Audit", true)]
@@ -47,7 +51,7 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/Curation Receiving Quarantine Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false)
+        private static void LaunchCore(bool exitEditor,bool profile=false,bool combat=false,bool biome=false,bool specialists=false,bool residents=false,bool curation=false,bool curationQuarantine=false,bool repairCultivation=false,bool biomeCrops=false,bool biomeCaveCrops=false)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the completion audit.");
@@ -72,6 +76,8 @@ namespace CavesOfOoo.Editor
             SessionState.SetBool(Prefix+"curation",curation);
             SessionState.SetBool(Prefix+"curationQuarantine",curationQuarantine);
             SessionState.SetBool(Prefix+"repairCultivation",repairCultivation);
+            SessionState.SetBool(Prefix+"biomeCrops",biomeCrops);
+            SessionState.SetBool(Prefix+"biomeCaveCrops",biomeCaveCrops);
             SessionState.SetBool(Prefix + "active", true);
             SessionState.SetBool(Prefix + "restoreScenes", false);
             SessionState.SetBool(Prefix + "exitEditor", exitEditor);
@@ -98,8 +104,9 @@ namespace CavesOfOoo.Editor
         private static void Apply(Zone zone, EntityFactory factory, Entity player, TurnManager turns)
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
-            new GameObject("Reference Glade Native Audit").AddComponent<ReferenceGladeNativePlayer>()
-                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"profile",false),SessionState.GetBool(Prefix+"combat",false),SessionState.GetBool(Prefix+"biome",false),SessionState.GetBool(Prefix+"specialists",false),SessionState.GetBool(Prefix+"residents",false),SessionState.GetBool(Prefix+"curation",false),SessionState.GetBool(Prefix+"curationQuarantine",false),SessionState.GetBool(Prefix+"repairCultivation",false));
+            var runner = new GameObject("Reference Glade Native Audit").AddComponent<ReferenceGladeNativePlayer>();
+            if (SessionState.GetBool(Prefix+"biomeCaveCrops",false)) runner.ConfigureBotanicalCaveOnly();
+            runner.Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"profile",false),SessionState.GetBool(Prefix+"combat",false),SessionState.GetBool(Prefix+"biome",false),SessionState.GetBool(Prefix+"specialists",false),SessionState.GetBool(Prefix+"residents",false),SessionState.GetBool(Prefix+"curation",false),SessionState.GetBool(Prefix+"curationQuarantine",false),SessionState.GetBool(Prefix+"repairCultivation",false),SessionState.GetBool(Prefix+"biomeCrops",false));
         }
         private static void Poll()
         {

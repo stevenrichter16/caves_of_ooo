@@ -1428,6 +1428,7 @@ namespace CavesOfOoo.Rendering
                 || action.Command == "DrinkWaterskin" || action.Command == "Cook"
                 || action.Command == "LightTorch" || action.Command == "ExtinguishTorch"
                 || action.Command == "Harvest"
+                || action.Command == BotanicalProcessingPart.Command
                 || LiquidVesselService.IsLiquidCommand(action.Command)))
             {
                 _pendingEverydayTurn = true;

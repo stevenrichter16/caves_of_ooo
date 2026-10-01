@@ -61,7 +61,7 @@ namespace CavesOfOoo.Rendering
         private SpreadTransientVolumes transientVolumes;
         private Camera source;
         private bool requestedVisible = true, hooks;
-        private bool boundReferenceGlade, boundSpreadStyle;
+        private bool boundReferenceGlade, boundSpreadStyle, boundOrdinaryCave;
         public Zone CurrentZone { get; private set; }
         public Camera WorldCamera => surface?.WorldCamera;
         public bool IsReady { get; private set; }
@@ -74,7 +74,8 @@ namespace CavesOfOoo.Rendering
         // managed map change must rebuild that owned presentation as one unit.
         private bool GladeAuthorityMatches => CurrentZone == null
             || (boundReferenceGlade == ReferenceGladePlan.IsActive(CurrentZone)
-                && boundSpreadStyle == SpreadPresentationScope.IsActive(CurrentZone));
+                && boundSpreadStyle == SpreadPresentationScope.IsActive(CurrentZone)
+                && boundOrdinaryCave == BiomeCropRecipes.IsOrdinaryCave(CurrentZone));
         private bool PresentationRequested => GladeAuthorityMatches && IsReady && requestedVisible && Village3DSettings.Enabled && source != null && isActiveAndEnabled && AreaCompositionScope.Allows(CurrentZone);
         public bool PresentationVisible => PresentationRequested && surface != null && surface.IsVisible;
         public NativeZone3DRenderSurface ActiveSurface => PresentationVisible ? surface : null;
@@ -87,12 +88,13 @@ namespace CavesOfOoo.Rendering
         {
             bool referenceGlade = ReferenceGladePlan.IsActive(zone);
             bool spreadStyle = SpreadPresentationScope.IsActive(zone);
+            bool ordinaryCave = BiomeCropRecipes.IsOrdinaryCave(zone);
             if(zone!=null&&!AreaCompositionScope.Allows(zone))
-            {Release();CurrentZone=zone;source=sourceCamera;boundReferenceGlade=referenceGlade;boundSpreadStyle=spreadStyle;return;}
-            if (ReferenceEquals(CurrentZone, zone) && boundReferenceGlade == referenceGlade && boundSpreadStyle == spreadStyle && (IsReady || Failure != null))
+            {Release();CurrentZone=zone;source=sourceCamera;boundReferenceGlade=referenceGlade;boundSpreadStyle=spreadStyle;boundOrdinaryCave=ordinaryCave;return;}
+            if (ReferenceEquals(CurrentZone, zone) && boundReferenceGlade == referenceGlade && boundSpreadStyle == spreadStyle && boundOrdinaryCave == ordinaryCave && (IsReady || Failure != null))
             { source = sourceCamera; SyncCamera(); return; }
-            Release(); CurrentZone = zone; source = sourceCamera; boundReferenceGlade = referenceGlade; boundSpreadStyle = spreadStyle;
-            if (!Village3DSettings.Enabled || zone == null || source == null || !(spreadStyle || SupportsZone(zone.ZoneID))) return;
+            Release(); CurrentZone = zone; source = sourceCamera; boundReferenceGlade = referenceGlade; boundSpreadStyle = spreadStyle; boundOrdinaryCave = ordinaryCave;
+            if (!Village3DSettings.Enabled || zone == null || source == null || !(spreadStyle || ordinaryCave || SupportsZone(zone.ZoneID))) return;
             if (zone.ZoneID == FellingSiteBuilder.ZoneID && !FellingSceneRuntime.IsActive(zone)) return;
             try
             {
@@ -120,6 +122,8 @@ namespace CavesOfOoo.Rendering
                 }
                 // New portable crops and structural repairs retain their palette
                 // in other supported biomes without changing regional lighting.
+                var botany=BiomeCrop3DLibrary.Load();
+                if(botany!=null){botany.Validate();materials.Add(botany.Material);}
                 var cultivation=RepairCultivation3DLibrary.Load();
                 ReferenceGladeVoxelLibrary cultivationPalette=null;
                 if(cultivation!=null){cultivation.Validate();cultivationPalette=ReferenceGladeVoxelLibrary.Load();materials.Add(cultivation.Material);}

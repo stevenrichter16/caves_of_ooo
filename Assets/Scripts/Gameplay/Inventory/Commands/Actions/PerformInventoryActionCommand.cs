@@ -38,6 +38,18 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "Action command is empty.");
             }
 
+            // A carried/equipped alias is not a valid action source. Reject it
+            // before snapshot rollback can try to unequip it into its own stack.
+            var inventory = context.Inventory;
+            if (inventory?.Objects.Contains(_item) == true
+                && (_item.GetPart<PhysicsPart>()?.Equipped != null
+                    || inventory.EquippedItems.ContainsValue(_item)
+                    || inventory.FindEquippedBodyPart(_item) != null))
+            {
+                return InventoryValidationResult.Invalid(InventoryValidationErrorCode.InvalidItem,
+                    "The item's carried and equipped locations disagree.");
+            }
+
             return InventoryValidationResult.Valid();
         }
 

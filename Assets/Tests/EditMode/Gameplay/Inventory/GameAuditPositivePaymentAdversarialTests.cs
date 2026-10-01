@@ -37,7 +37,14 @@ namespace CavesOfOoo.Tests
             if (state == "ground") { Assert.IsTrue(Inventory.RemoveObject(seed)); Assert.IsTrue(Zone.AddEntity(seed, 10, 10)); }
             if (state == "equipped") { Assert.IsTrue(Inventory.RemoveObject(seed)); physics.Equipped = Player; }
             Assert.AreEqual(offered, PlantRow(seed, actor)); Assert.AreEqual(2, Quantity(seed)); Assert.IsEmpty(Crops());
-            if (state == "missing_backref") { Assert.IsTrue(Plant(seed)); Assert.AreEqual(1, Quantity(seed)); Assert.AreEqual(1, Crops().Length); }
+            if (state == "missing_backref")
+            {
+                // Menu discovery reads the carried list. Since the Tier-1 crop
+                // transaction, execution additionally requires current owner links.
+                Assert.IsFalse(Plant(seed)); Assert.AreEqual(2, Quantity(seed)); Assert.IsEmpty(Crops()); Assert.AreEqual(0, After.Count);
+                physics.InInventory = Player;
+                Assert.IsTrue(Plant(seed)); Assert.AreEqual(1, Quantity(seed)); Assert.AreEqual(1, Crops().Length); Assert.AreEqual(1, After.Count);
+            }
             if (state == "ground") { Assert.IsFalse(Plant(seed)); Assert.AreEqual(2, Quantity(seed)); Assert.IsTrue(Zone.GetAllEntities().Contains(seed)); }
         }
         [TestCase(false)] [TestCase(true)] public void AuthoredItemWithoutStackerRemainsOneConsumableUnit(bool mineral)

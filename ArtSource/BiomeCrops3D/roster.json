@@ -1,0 +1,899 @@
+{
+  "Status": "design proposal; no production content yet",
+  "Count": 35,
+  "ExistingSpeciesPreserved": [
+    "CandyCarrot",
+    "Emberwheat",
+    "Knotflax",
+    "Hearthbulb",
+    "Seamleaf"
+  ],
+  "Species": [
+    {
+      "Biome": "Spread",
+      "Stem": "Claspbean",
+      "CropBlueprint": "ClaspbeanCrop",
+      "SeedBlueprint": "ClaspbeanSeed",
+      "HarvestBlueprint": "ClaspbeanPulp",
+      "HarvestName": "claspbean pulp",
+      "Form": "low paired kidney pods held by clamping pale tendrils",
+      "Color": "&g",
+      "TicksPerStage": 20,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Cure",
+      "HarvestParts": {
+        "Tonic": {
+          "Drink": "false"
+        },
+        "CureTonic": {
+          "CureEffect": "BleedingEffect"
+        }
+      },
+      "Use": "Apply once to stop one BleedingEffect; other ailments remain.",
+      "Lore": "A hedge-row dressing that rural hands squeeze onto cuts.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Spread",
+      "Stem": "Pitchpod",
+      "CropBlueprint": "PitchpodCrop",
+      "SeedBlueprint": "PitchpodSeed",
+      "HarvestBlueprint": "PitchpodResin",
+      "HarvestName": "pitchpod resin",
+      "Form": "three resin-heavy orange lantern pods on a forked stalk",
+      "Color": "&o",
+      "TicksPerStage": 24,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Reagent",
+      "HarvestParts": {
+        "Reagent": {
+          "PropertiesRaw": "heat:1,combustible:1"
+        }
+      },
+      "Use": "Brew a burning coating through the shipped heat+combustible rule; throw/apply uses actual tonic effects.",
+      "Lore": "Mundane lamp and fire-working resin, never named as an existing refueling mechanic.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Spread",
+      "Stem": "Drawgourd",
+      "CropBlueprint": "DrawgourdCrop",
+      "SeedBlueprint": "DrawgourdSeed",
+      "HarvestBlueprint": "DrawgourdShell",
+      "HarvestName": "drawgourd shell",
+      "Form": "low looped vine with one tall narrow-necked buff gourd",
+      "Color": "&y",
+      "TicksPerStage": 28,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "WaterVessel",
+      "HarvestParts": {
+        "Waterskin": {
+          "Capacity": "3",
+          "Charges": "0"
+        }
+      },
+      "Use": "Fill near real clean water, then drink three stored doses; empty harvest has no free water.",
+      "Lore": "The familiar river-country reusable drinking vessel.",
+      "NonStackable": true
+    },
+    {
+      "Biome": "Spread",
+      "Stem": "Wickrush",
+      "CropBlueprint": "WickrushCrop",
+      "SeedBlueprint": "WickrushSeed",
+      "HarvestBlueprint": "WickrushCandle",
+      "HarvestName": "wickrush candle",
+      "Form": "upright rush tuft ending in cream waxy clubs",
+      "Color": "&Y",
+      "TicksPerStage": 22,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Torch",
+      "HarvestParts": {
+        "TorchLight": {
+          "LightTemperature": "450"
+        },
+        "Equippable": {
+          "Slot": "Hand"
+        },
+        "LightSource": {
+          "Radius": "3",
+          "LightColor": "&Y",
+          "Intensity": "0.45",
+          "Enabled": "false"
+        },
+        "Thermal": {
+          "Temperature": "25",
+          "AmbientTemperature": "25",
+          "FlameTemperature": "300",
+          "HeatCapacity": "0.5"
+        },
+        "Fuel": {
+          "FuelMass": "24",
+          "MaxFuel": "24",
+          "BurnRate": "0.5",
+          "HeatOutput": "0.5"
+        }
+      },
+      "Use": "Equip or drop, light beside an actual fire, then extinguish; finite fuel uses TorchLight.",
+      "Lore": "A rush dipped by its own wax; a cheap field light, not permanent bio-light.",
+      "NonStackable": true
+    },
+    {
+      "Biome": "Spread",
+      "Stem": "Marlroot",
+      "CropBlueprint": "MarlrootCrop",
+      "SeedBlueprint": "MarlrootSeed",
+      "HarvestBlueprint": "MarlrootClod",
+      "HarvestName": "marlroot clod",
+      "Form": "five red-brown root knuckles showing through a blue-green rosette",
+      "Color": "&r",
+      "TicksPerStage": 26,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Process",
+      "HarvestParts": {
+        "BotanicalProcessing": {
+          "OutputBlueprint": "FireClay",
+          "OutputCount": "1",
+          "ActionText": "prepare"
+        }
+      },
+      "Use": "Process one harvested clay-coated clod into one existing FireClay; use the real well-lining recipe.",
+      "Lore": "Roots bind fine local clay; the useful yield includes their attached mineral clod.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Sodden",
+      "Stem": "Sumpsieve",
+      "CropBlueprint": "SumpsieveCrop",
+      "SeedBlueprint": "SumpsieveSeed",
+      "HarvestBlueprint": "SumpsievePad",
+      "HarvestName": "sumpsieve pad",
+      "Form": "flat perforated leaf disks held above a dark bulb",
+      "Color": "&g",
+      "TicksPerStage": 24,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Cure",
+      "HarvestParts": {
+        "Tonic": {
+          "Drink": "false"
+        },
+        "CureTonic": {
+          "CureEffect": "PoisonedEffect"
+        }
+      },
+      "Use": "Apply to remove PoisonedEffect; gas-poison and fungal infection are separate ailments.",
+      "Lore": "Peat-cutters keep the bitter filtering leaves on dry shelves.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Sodden",
+      "Stem": "Drowsebell",
+      "CropBlueprint": "DrowsebellCrop",
+      "SeedBlueprint": "DrowsebellSeed",
+      "HarvestBlueprint": "DrowsebellBladder",
+      "HarvestName": "drowsebell bladder",
+      "Form": "drooping blue inflated bells on bent stems",
+      "Color": "&B",
+      "TicksPerStage": 30,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Gas",
+      "HarvestParts": {
+        "GasGrenade": {
+          "GasId": "sleep-vapor",
+          "Density": "20",
+          "Level": "1"
+        }
+      },
+      "Use": "Throw to create actual sleep vapor; breathing targets may sleep and damage wakes them; allies are affected too.",
+      "Lore": "A bog bell that exhales when its ripe skin splits.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Sodden",
+      "Stem": "Chillcress",
+      "CropBlueprint": "ChillcressCrop",
+      "SeedBlueprint": "ChillcressSeed",
+      "HarvestBlueprint": "ChillcressTip",
+      "HarvestName": "chillcress tip",
+      "Form": "low silver fern with hooked cyan new fronds",
+      "Color": "&C",
+      "TicksPerStage": 22,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Reagent",
+      "HarvestParts": {
+        "Reagent": {
+          "PropertiesRaw": "cold:1"
+        }
+      },
+      "Use": "Brew the frost rule; its resulting coating can be thrown to apply Frozen.",
+      "Lore": "Cold peat-fed sap; no promise of refrigeration or heat immunity.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Sodden",
+      "Stem": "Slipsedge",
+      "CropBlueprint": "SlipsedgeCrop",
+      "SeedBlueprint": "SlipsedgeSeed",
+      "HarvestBlueprint": "SlipsedgeGel",
+      "HarvestName": "slipsedge gel",
+      "Form": "ribbon sedge with translucent droplets on flattened tips",
+      "Color": "&c",
+      "TicksPerStage": 24,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Reagent",
+      "HarvestParts": {
+        "Reagent": {
+          "PropertiesRaw": "viscous:1"
+        }
+      },
+      "Use": "Brew the slick rule for a Wet coating; this is actual Wet status, not an unimplemented trip trap.",
+      "Lore": "Glossy gel from leaves adapted to waterlogged soil.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Sodden",
+      "Stem": "Peatlantern",
+      "CropBlueprint": "PeatlanternCrop",
+      "SeedBlueprint": "PeatlanternSeed",
+      "HarvestBlueprint": "PeatlanternCup",
+      "HarvestName": "peatlantern cup",
+      "Form": "cupped amber fungal shields held on short black stems",
+      "Color": "&O",
+      "TicksPerStage": 32,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Light",
+      "HarvestParts": {
+        "Equippable": {
+          "Slot": "Hand"
+        },
+        "LightSource": {
+          "Radius": "3",
+          "LightColor": "&Y",
+          "Intensity": "0.45",
+          "Enabled": "true"
+        }
+      },
+      "Use": "Equip in Hand or drop to cast amber light; stowed light is occluded.",
+      "Lore": "A modest cultivated bog fungus, not a manufactured lantern.",
+      "NonStackable": true
+    },
+    {
+      "Biome": "Beating",
+      "Stem": "Sunbladder",
+      "CropBlueprint": "SunbladderCrop",
+      "SeedBlueprint": "SunbladderSeed",
+      "HarvestBlueprint": "SunbladderShell",
+      "HarvestName": "sunbladder shell",
+      "Form": "low ribbed succulent with one swollen pale aqua fruit",
+      "Color": "&c",
+      "TicksPerStage": 32,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "WaterVessel",
+      "HarvestParts": {
+        "Waterskin": {
+          "Capacity": "2",
+          "Charges": "1"
+        }
+      },
+      "Use": "One saved drink in the ripe fruit; fill its surviving shell with two drinks at clean water.",
+      "Lore": "A modest water reservoir at sheltered well margins, never an infinite water source.",
+      "NonStackable": true
+    },
+    {
+      "Biome": "Beating",
+      "Stem": "Shalebean",
+      "CropBlueprint": "ShalebeanCrop",
+      "SeedBlueprint": "ShalebeanSeed",
+      "HarvestBlueprint": "ShalebeanWax",
+      "HarvestName": "shalebean wax",
+      "Form": "low grey angular leaves with stacked ochre wax beans",
+      "Color": "&y",
+      "TicksPerStage": 30,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Status",
+      "HarvestParts": {
+        "Tonic": {
+          "Drink": "false"
+        },
+        "StatusTonic": {
+          "EffectName": "Stoneskin",
+          "EffectMagnitude": "1",
+          "EffectDuration": "6"
+        }
+      },
+      "Use": "Apply temporary one-point Stoneskin reduction for six turns. Existing stacking is bounded by duration, not permanent stats.",
+      "Lore": "A mineral-rich wax grown in narrow irrigated shade beds.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Beating",
+      "Stem": "Shadefan",
+      "CropBlueprint": "ShadefanCrop",
+      "SeedBlueprint": "ShadefanSeed",
+      "HarvestBlueprint": "ShadefanHood",
+      "HarvestName": "shadefan hood",
+      "Form": "broad accordion leaf on a stubby bent central rib",
+      "Color": "&Y",
+      "TicksPerStage": 28,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "HeadCover",
+      "HarvestParts": {
+        "Equippable": {
+          "Slot": "Head"
+        },
+        "Armor": {
+          "AV": "0",
+          "DV": "0"
+        }
+      },
+      "Use": "Equip on Head to satisfy the actual Beating sun-cover gate; zero armor advertised.",
+      "Lore": "The dry leaf opens into a head-sized sun hood.",
+      "NonStackable": true
+    },
+    {
+      "Biome": "Beating",
+      "Stem": "Cinderpea",
+      "CropBlueprint": "CinderpeaCrop",
+      "SeedBlueprint": "CinderpeaSeed",
+      "HarvestBlueprint": "CinderpeaOil",
+      "HarvestName": "cinderpea oil",
+      "Form": "blackened-looking crescent pods with red seams",
+      "Color": "&R",
+      "TicksPerStage": 32,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "ThrownStatus",
+      "HarvestParts": {
+        "Tonic": {
+          "Drink": "false"
+        },
+        "StatusTonic": {
+          "EffectName": "Burning",
+          "EffectMagnitude": "0.35",
+          "EffectDuration": "0"
+        }
+      },
+      "Use": "Throw the oil pod as the existing tonic splash to apply Burning; self-Apply also burns and must be plainly warned.",
+      "Lore": "Heat-concentrating oil from an exposed wasteland legume.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Beating",
+      "Stem": "Spurgrass",
+      "CropBlueprint": "SpurgrassCrop",
+      "SeedBlueprint": "SpurgrassSeed",
+      "HarvestBlueprint": "SpurgrassSpine",
+      "HarvestName": "spurgrass spine",
+      "Form": "compact radial grass with long ivory spear-shaped awns",
+      "Color": "&W",
+      "TicksPerStage": 26,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "ThrownWeapon",
+      "HarvestParts": {
+        "MeleeWeapon": {
+          "BaseDamage": "1d3",
+          "PenBonus": "1",
+          "MaxStrengthBonus": "2",
+          "Attributes": "Piercing"
+        },
+        "Handling": {
+          "GripType": "OneHand",
+          "BulkClass": "Light"
+        }
+      },
+      "Use": "Throw via real penetration/AV damage; recover the spine where it lands. No invented poison property.",
+      "Lore": "Caravan children gather the rigid awns from protected rows.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Grovelands",
+      "Stem": "Choirwick",
+      "CropBlueprint": "ChoirwickCrop",
+      "SeedBlueprint": "ChoirwickSeed",
+      "HarvestBlueprint": "ChoirwickBranch",
+      "HarvestName": "choirwick branch",
+      "Form": "pale forked fruiting horns threaded with violet luminous tips",
+      "Color": "&M",
+      "TicksPerStage": 30,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Light",
+      "HarvestParts": {
+        "Equippable": {
+          "Slot": "Hand"
+        },
+        "LightSource": {
+          "Radius": "3",
+          "LightColor": "&M",
+          "Intensity": "0.45",
+          "Enabled": "true"
+        }
+      },
+      "Use": "Equip or drop as a quiet violet light; no song/confidence effect is invented.",
+      "Lore": "Grown, never manufactured; a small cultivated extension of the living substrate.",
+      "NonStackable": true
+    },
+    {
+      "Biome": "Grovelands",
+      "Stem": "Knitmoss",
+      "CropBlueprint": "KnitmossCrop",
+      "SeedBlueprint": "KnitmossSeed",
+      "HarvestBlueprint": "KnitmossPad",
+      "HarvestName": "knitmoss pad",
+      "Form": "pale braided cushions with green seams and no red fruit",
+      "Color": "&G",
+      "TicksPerStage": 24,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Healing",
+      "HarvestParts": {
+        "Tonic": {
+          "Drink": "false",
+          "Healing": "2d4"
+        }
+      },
+      "Use": "Apply a moss pad to heal 2d4 once.",
+      "Lore": "An explicitly non-red wound dressing so the existing grove red-food warning remains true.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Grovelands",
+      "Stem": "Sourmantle",
+      "CropBlueprint": "SourmantleCrop",
+      "SeedBlueprint": "SourmantleSeed",
+      "HarvestBlueprint": "SourmantleFold",
+      "HarvestName": "sourmantle fold",
+      "Form": "tiered lime frills around a narrow pale stalk",
+      "Color": "&g",
+      "TicksPerStage": 28,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Reagent",
+      "HarvestParts": {
+        "Reagent": {
+          "PropertiesRaw": "corrosive:1"
+        }
+      },
+      "Use": "Brew an acid tonic for the actual Acidic splash path; drinking is harmful.",
+      "Lore": "A frilled substrate fruit whose sap loosens what the grove wants to take apart.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Grovelands",
+      "Stem": "Murmurpod",
+      "CropBlueprint": "MurmurpodCrop",
+      "SeedBlueprint": "MurmurpodSeed",
+      "HarvestBlueprint": "MurmurpodBladder",
+      "HarvestName": "murmurpod bladder",
+      "Form": "three violet balloon pods joined by a pale grown cage",
+      "Color": "&m",
+      "TicksPerStage": 34,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Gas",
+      "HarvestParts": {
+        "GasGrenade": {
+          "GasId": "confusion-vapor",
+          "Density": "20",
+          "Level": "1"
+        }
+      },
+      "Use": "Throw for a real confusion cloud: DV/Agility penalties and confused movement, with friendly fire.",
+      "Lore": "The ripe bladder exhales a disorienting vapor; no new mind-control or lore truth.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Grovelands",
+      "Stem": "Sealbark",
+      "CropBlueprint": "SealbarkCrop",
+      "SeedBlueprint": "SealbarkSeed",
+      "HarvestBlueprint": "SealbarkSlat",
+      "HarvestName": "sealbark slat",
+      "Form": "rectangular curling plates grown around a thick short stalk",
+      "Color": "&y",
+      "TicksPerStage": 34,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Process",
+      "HarvestParts": {
+        "BotanicalProcessing": {
+          "OutputBlueprint": "SalvagedTimber",
+          "OutputCount": "1",
+          "ActionText": "prepare"
+        }
+      },
+      "Use": "Process one shed bark slat into one existing SalvagedTimber for the native gate-brace repair.",
+      "Lore": "Naturally grown structural plates; preparation makes a usable brace, not a Choir sawmill.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Overwrit",
+      "Stem": "Absentmint",
+      "CropBlueprint": "AbsentmintCrop",
+      "SeedBlueprint": "AbsentmintSeed",
+      "HarvestBlueprint": "AbsentmintLeaf",
+      "HarvestName": "absentmint leaf",
+      "Form": "sparse paired grey leaves with one conspicuous missing pair",
+      "Color": "&w",
+      "TicksPerStage": 30,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Cure",
+      "HarvestParts": {
+        "Tonic": {
+          "Drink": "false"
+        },
+        "CureTonic": {
+          "CureEffect": "ConfusedEffect"
+        }
+      },
+      "Use": "Apply to remove ordinary ConfusedEffect; never removes Thinning, Urqu or narrative memory loss.",
+      "Lore": "New sparse margin growth; its ordinary sharp scent is an aid to concentration.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Overwrit",
+      "Stem": "Margincress",
+      "CropBlueprint": "MargincressCrop",
+      "SeedBlueprint": "MargincressSeed",
+      "HarvestBlueprint": "MargincressRibbon",
+      "HarvestName": "margincress ribbon",
+      "Form": "very low pale rosette with thin magenta-edged curled leaves",
+      "Color": "&m",
+      "TicksPerStage": 26,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Cure",
+      "HarvestParts": {
+        "Tonic": {
+          "Drink": "false"
+        },
+        "CureTonic": {
+          "CureEffect": "BleedingEffect"
+        }
+      },
+      "Use": "Apply to stop one ordinary bleeding instance.",
+      "Lore": "Pioneer leaves that cling to the edge of intact soil, not recovered undertext.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Overwrit",
+      "Stem": "Binderroot",
+      "CropBlueprint": "BinderrootCrop",
+      "SeedBlueprint": "BinderrootSeed",
+      "HarvestBlueprint": "BinderrootKnot",
+      "HarvestName": "binderroot knot",
+      "Form": "one white looped root above ground under sparse teal shoots",
+      "Color": "&c",
+      "TicksPerStage": 34,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Reagent",
+      "HarvestParts": {
+        "Reagent": {
+          "PropertiesRaw": "binding:1"
+        }
+      },
+      "Use": "Brew through the shipped ward rule for Stoneskin. This is ordinary damage reduction, not a cosmic name-anchor.",
+      "Lore": "A stubborn new root; player-facing prose avoids claiming to heal the scraped region.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Overwrit",
+      "Stem": "Greybladder",
+      "CropBlueprint": "GreybladderCrop",
+      "SeedBlueprint": "GreybladderSeed",
+      "HarvestBlueprint": "GreybladderCup",
+      "HarvestName": "greybladder cup",
+      "Form": "thin grey bulb with a folded spout and two nearly colorless leaves",
+      "Color": "&w",
+      "TicksPerStage": 34,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "LiquidVessel",
+      "HarvestParts": {
+        "LiquidVessel": {
+          "Capacity": "6",
+          "Volume": "0",
+          "LiquidId": ""
+        }
+      },
+      "Use": "Fill from a finite liquid pool and pour through actual conserved volume commands; this vessel does not drink or purify.",
+      "Lore": "A naturally hollow pioneer growth; remains a mundane shell after harvest.",
+      "NonStackable": true
+    },
+    {
+      "Biome": "Overwrit",
+      "Stem": "Hollowchime",
+      "CropBlueprint": "HollowchimeCrop",
+      "SeedBlueprint": "HollowchimeSeed",
+      "HarvestBlueprint": "HollowchimePod",
+      "HarvestName": "hollowchime pod",
+      "Form": "three open hanging grey capsules with yellow inner membranes",
+      "Color": "&Y",
+      "TicksPerStage": 38,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Gas",
+      "HarvestParts": {
+        "GasGrenade": {
+          "GasId": "stun-vapor",
+          "Density": "15",
+          "Level": "1"
+        }
+      },
+      "Use": "Throw to release real stun vapor. No sound attraction or enemy luring system is claimed.",
+      "Lore": "Air-filled surface capsules; never a singular bleed curio or erased historical object.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Stump",
+      "Stem": "Raingourd",
+      "CropBlueprint": "RaingourdCrop",
+      "SeedBlueprint": "RaingourdSeed",
+      "HarvestBlueprint": "RaingourdCup",
+      "HarvestName": "raingourd cup",
+      "Form": "small five-leaf rosette holding an open stone-pink cup",
+      "Color": "&M",
+      "TicksPerStage": 30,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "WaterVessel",
+      "HarvestParts": {
+        "Waterskin": {
+          "Capacity": "4",
+          "Charges": "0"
+        }
+      },
+      "Use": "Harvest an empty four-drink cup, fill at true fresh water, then drink stored doses.",
+      "Lore": "A foothill rain-cup relative in actual soil pockets, not on the sacred bare circle.",
+      "NonStackable": true
+    },
+    {
+      "Biome": "Stump",
+      "Stem": "Prismreed",
+      "CropBlueprint": "PrismreedCrop",
+      "SeedBlueprint": "PrismreedSeed",
+      "HarvestBlueprint": "PrismreedPith",
+      "HarvestName": "prismreed pith",
+      "Form": "tall jointed reeds with square cyan crystalline-looking tips",
+      "Color": "&C",
+      "TicksPerStage": 34,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Reagent",
+      "HarvestParts": {
+        "Reagent": {
+          "PropertiesRaw": "conductive:1"
+        }
+      },
+      "Use": "Brew the shock rule; the resulting tonic applies Electrified through native splash/use.",
+      "Lore": "Conductive sap, not a new mined mineral or industrial wire.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Stump",
+      "Stem": "ScarletSundew",
+      "CropBlueprint": "ScarletSundewCrop",
+      "SeedBlueprint": "ScarletSundewSeed",
+      "HarvestBlueprint": "ScarletSundewDew",
+      "HarvestName": "scarlet sundew dew",
+      "Form": "radial red spoon leaves bearing pale adhesive beads",
+      "Color": "&R",
+      "TicksPerStage": 32,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "ThrownStatus",
+      "HarvestParts": {
+        "Tonic": {
+          "Drink": "false"
+        },
+        "StatusTonic": {
+          "EffectName": "Acidic",
+          "EffectMagnitude": "0.35",
+          "EffectDuration": "0"
+        }
+      },
+      "Use": "Throw as a corrosive tonic splash; self-Apply is harmful and examination must say so.",
+      "Lore": "A deliberately original cultivated sundew form rooted in the canon slope ecology.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Stump",
+      "Stem": "Cloudwick",
+      "CropBlueprint": "CloudwickCrop",
+      "SeedBlueprint": "CloudwickSeed",
+      "HarvestBlueprint": "CloudwickTuft",
+      "HarvestName": "cloudwick tuft",
+      "Form": "three white club flowers rising from deep-blue narrow leaves",
+      "Color": "&W",
+      "TicksPerStage": 34,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Light",
+      "HarvestParts": {
+        "Equippable": {
+          "Slot": "Hand"
+        },
+        "LightSource": {
+          "Radius": "3",
+          "LightColor": "&C",
+          "Intensity": "0.45",
+          "Enabled": "true"
+        }
+      },
+      "Use": "Equip or drop to give cool light; no light in a closed pack.",
+      "Lore": "Cultivated luminous associations in moist fissure soil.",
+      "NonStackable": true
+    },
+    {
+      "Biome": "Stump",
+      "Stem": "Gripfrond",
+      "CropBlueprint": "GripfrondCrop",
+      "SeedBlueprint": "GripfrondSeed",
+      "HarvestBlueprint": "GripfrondWrap",
+      "HarvestName": "gripfrond wrap",
+      "Form": "paired hooked rose-grey fronds over a dense basal curl",
+      "Color": "&y",
+      "TicksPerStage": 36,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Handwear",
+      "HarvestParts": {
+        "Equippable": {
+          "Slot": "Handwear"
+        },
+        "Armor": {
+          "AV": "1",
+          "DV": "0"
+        }
+      },
+      "Use": "Equip as handwear for actual one AV; no climb speed, traction or new climbing mechanic is claimed.",
+      "Lore": "Tough folded fronds protect the hands used on sharp stone.",
+      "NonStackable": true
+    },
+    {
+      "Biome": "Cave",
+      "Stem": "Lampvein",
+      "CropBlueprint": "LampveinCrop",
+      "SeedBlueprint": "LampveinSeed",
+      "HarvestBlueprint": "LampveinFan",
+      "HarvestName": "lampvein fan",
+      "Form": "low blue fan-gills crossed by two bright white veins",
+      "Color": "&C",
+      "TicksPerStage": 32,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Light",
+      "HarvestParts": {
+        "Equippable": {
+          "Slot": "Hand"
+        },
+        "LightSource": {
+          "Radius": "4",
+          "LightColor": "&B",
+          "Intensity": "0.45",
+          "Enabled": "true"
+        }
+      },
+      "Use": "Equip or drop as a four-cell blue lamp.",
+      "Lore": "Catacomb cultivation serves the established bio-light economy; no new theology assertion.",
+      "NonStackable": true
+    },
+    {
+      "Biome": "Cave",
+      "Stem": "Knucklecap",
+      "CropBlueprint": "KnucklecapCrop",
+      "SeedBlueprint": "KnucklecapSeed",
+      "HarvestBlueprint": "KnucklecapWax",
+      "HarvestName": "knucklecap wax",
+      "Form": "five squat tan caps with knuckle-like raised plates",
+      "Color": "&y",
+      "TicksPerStage": 38,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Status",
+      "HarvestParts": {
+        "Tonic": {
+          "Drink": "false"
+        },
+        "StatusTonic": {
+          "EffectName": "Stoneskin",
+          "EffectMagnitude": "2",
+          "EffectDuration": "4"
+        }
+      },
+      "Use": "Apply two-point Stoneskin reduction for four turns; no permanent AV gain.",
+      "Lore": "The stiff wax is harvested from a cultivated mat, not a petrified god fragment.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Cave",
+      "Stem": "Sootroot",
+      "CropBlueprint": "SootrootCrop",
+      "SeedBlueprint": "SootrootSeed",
+      "HarvestBlueprint": "SootrootPulp",
+      "HarvestName": "sootroot pulp",
+      "Form": "charcoal root bulb crowned by short pale hooked stems",
+      "Color": "&K",
+      "TicksPerStage": 28,
+      "YieldCount": 2,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Cure",
+      "HarvestParts": {
+        "Tonic": {
+          "Drink": "false"
+        },
+        "CureTonic": {
+          "CureEffect": "BurningEffect"
+        }
+      },
+      "Use": "Apply to remove BurningEffect; the environment can ignite the user again.",
+      "Lore": "A cool root dressing used near cramped underground hearths.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Cave",
+      "Stem": "Veilpuff",
+      "CropBlueprint": "VeilpuffCrop",
+      "SeedBlueprint": "VeilpuffSeed",
+      "HarvestBlueprint": "VeilpuffBladder",
+      "HarvestName": "veilpuff bladder",
+      "Form": "single pale puffball partly wrapped by blue slit leaves",
+      "Color": "&C",
+      "TicksPerStage": 40,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Gas",
+      "HarvestParts": {
+        "GasGrenade": {
+          "GasId": "cryo-mist",
+          "Density": "10",
+          "Level": "1"
+        }
+      },
+      "Use": "Throw for actual cryo gas, cold damage and Frozen; affects damageable matter and friends, not a harmless smoke screen.",
+      "Lore": "Cold moisture condensed into a cultivated underground puffball.",
+      "NonStackable": false
+    },
+    {
+      "Biome": "Cave",
+      "Stem": "Brinebutton",
+      "CropBlueprint": "BrinebuttonCrop",
+      "SeedBlueprint": "BrinebuttonSeed",
+      "HarvestBlueprint": "BrinebuttonPaste",
+      "HarvestName": "brinebutton paste",
+      "Form": "tiny white buttons with black central pores on a low pink mat",
+      "Color": "&W",
+      "TicksPerStage": 40,
+      "YieldCount": 1,
+      "SeedYieldCount": 1,
+      "UtilityKind": "Cure",
+      "HarvestParts": {
+        "Tonic": {
+          "Drink": "false"
+        },
+        "CureTonic": {
+          "CureEffect": "FungalInfectionEffect"
+        }
+      },
+      "Use": "Apply to cure actual fungal infection and restore its stat shift; no blanket disease cure or lasting immunity.",
+      "Lore": "Salt-rich cultivated buttons prized by keepers of clean catacomb beds.",
+      "NonStackable": false
+    }
+  ]
+}

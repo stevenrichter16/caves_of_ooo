@@ -24,6 +24,8 @@ namespace CavesOfOoo.Rendering
         {
             this.catalog = catalog; ZoneId = zoneId; catalog.Validate();
             foreach (var binding in catalog.Bindings) generated.Add(binding.Voxel);
+            var botany=BiomeCrop3DLibrary.Load();
+            if(botany!=null){botany.Validate();foreach(var e in botany.Entries)generated.Add(e.Mesh);}
             var cultivation=RepairCultivation3DLibrary.Load();
             if(cultivation!=null){cultivation.Validate();foreach(var e in cultivation.Entries)generated.Add(e.Mesh);}
             if(referenceGlade)
@@ -247,7 +249,7 @@ namespace CavesOfOoo.Rendering
             }
         }
         public static bool IsEnabledFor(Zone zone)
-            => Village3DSettings.Enabled && zone != null && (SpreadPresentationScope.IsActive(zone) || IsSupported(zone.ZoneID)) && AreaCompositionScope.Allows(zone);
+            => Village3DSettings.Enabled && zone != null && (SpreadPresentationScope.IsActive(zone) || BiomeCropRecipes.IsOrdinaryCave(zone) || IsSupported(zone.ZoneID)) && AreaCompositionScope.Allows(zone);
 
         /// <summary>Unsupported zones do not load resources. Invalid required
         /// resources throw into the presenter's existing cleanup/fallback path.</summary>

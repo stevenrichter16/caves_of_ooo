@@ -39,10 +39,10 @@ namespace CavesOfOoo.Tests
             int index=-1; for(int i=0;i<actions.Count;i++)if((string)Get(actions[i],"Command")==command)index=i;
             Assert.That(index,Is.GreaterThanOrEqualTo(0)); Call(ui,"ExecuteItemAction",index); return item;
         }
-        [TestCase("FillWaterskin")][TestCase("DrinkWaterskin")][TestCase("Cook")][TestCase("LightTorch")][TestCase("ExtinguishTorch")]
+        [TestCase("FillWaterskin")][TestCase("DrinkWaterskin")][TestCase("Cook")][TestCase("LightTorch")][TestCase("ExtinguishTorch")][TestCase("ProcessBotanical")]
         public void SuccessfulEverydayAction_ClosesInventoryAndQueuesExactlyOneTurn(string command)
         { Select(command,true); Assert.False(ui.IsOpen); Assert.True((bool)Call(ui,"ConsumePendingEverydayTurn")); Assert.False((bool)Call(ui,"ConsumePendingEverydayTurn")); }
-        [TestCase("FillWaterskin")][TestCase("DrinkWaterskin")][TestCase("Cook")][TestCase("LightTorch")][TestCase("ExtinguishTorch")]
+        [TestCase("FillWaterskin")][TestCase("DrinkWaterskin")][TestCase("Cook")][TestCase("LightTorch")][TestCase("ExtinguishTorch")][TestCase("ProcessBotanical")]
         public void Refusal_RetainsMenuAndQueuesNoTurn(string command)
         { Select(command,false); Assert.True(ui.IsOpen); Assert.NotNull(Get(ui,"_itemActionPopup")); Assert.That((string)Get(ui,"_actionStatus"),Is.Not.Empty); Assert.False((bool)Call(ui,"ConsumePendingEverydayTurn")); }
         [Test] public void ExistingUnrelatedAction_KeepsItsTiming()

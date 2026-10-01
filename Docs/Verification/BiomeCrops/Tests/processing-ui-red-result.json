@@ -1,0 +1,31 @@
+{
+  "mode": "EditMode",
+  "summary": {
+    "total": 2,
+    "passed": 1,
+    "failed": 1,
+    "skipped": 0,
+    "durationSeconds": 0.1476485,
+    "resultState": "Failed(Child)"
+  },
+  "results": [
+    {
+      "name": "Refusal_RetainsMenuAndQueuesNoTurn(\"ProcessBotanical\")",
+      "fullName": "CavesOfOoo.Tests.DensityEverydayUiTests.Refusal_RetainsMenuAndQueuesNoTurn(\"ProcessBotanical\")",
+      "state": "Passed",
+      "durationSeconds": 0.0722695,
+      "message": null,
+      "stackTrace": null,
+      "output": "[Inventory/Refactor] PerformAction[ProcessBotanical] command failed. Code=ExecutionFailed, Validation=None, Message=Inventory action 'ProcessBotanical' failed.\n"
+    },
+    {
+      "name": "SuccessfulEverydayAction_ClosesInventoryAndQueuesExactlyOneTurn(\"ProcessBotanical\")",
+      "fullName": "CavesOfOoo.Tests.DensityEverydayUiTests.SuccessfulEverydayAction_ClosesInventoryAndQueuesExactlyOneTurn(\"ProcessBotanical\")",
+      "state": "Failed",
+      "durationSeconds": 0.0211375,
+      "message": "  Expected: False\n  But was:  True\n",
+      "stackTrace": "at CavesOfOoo.Tests.DensityEverydayUiTests.SuccessfulEverydayAction_ClosesInventoryAndQueuesExactlyOneTurn (System.String command) [0x00009] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/UI/DensityEverydayUiTests.cs:44\n",
+      "output": ""
+    }
+  ]
+}

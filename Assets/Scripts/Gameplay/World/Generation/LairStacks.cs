@@ -197,6 +197,12 @@ namespace CavesOfOoo.Core
                 return null;
             return Ledger(manager).Records.TryGetValue(surface, out var r) ? r.Copy() : null;
         }
+        /// <summary>Read-only exclusion for generic ecology and presentation.
+        /// A saved lair claim outlives mutable map labels; queries never adopt or
+        /// initialize a ledger merely to classify an ordinary column.</summary>
+        internal static bool HasSavedColumn(OverworldZoneManager manager, string surface)
+            => manager != null && surface != null && Ledgers.TryGetValue(manager, out var ledger)
+                && ledger.Records.ContainsKey(surface);
         internal static bool TryPlan(OverworldZoneManager manager, string zoneID, out LairStackRecord plan)
         {
             plan = null;

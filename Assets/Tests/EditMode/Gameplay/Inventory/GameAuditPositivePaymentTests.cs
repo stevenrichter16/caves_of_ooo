@@ -85,7 +85,7 @@ namespace CavesOfOoo.Tests
     }
     public class GameAuditPositivePaymentTests : PositivePaymentFixture
     {
-        [TestCase("floor", "not_plantable")] [TestCase("occupied", "already_planted")] [TestCase("barren", "placement_refused")]
+        [TestCase("floor", "not_plantable")] [TestCase("occupied", "already_planted")] [TestCase("barren", "source_changed")]
         public void RefusedPlantingReportsFailureAndNeverFiresAfterAction(string condition, string reason)
         {
             if (condition == "floor") Place("Floor");
