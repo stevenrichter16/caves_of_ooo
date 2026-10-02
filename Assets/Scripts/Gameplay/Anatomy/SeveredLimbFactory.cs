@@ -7,7 +7,7 @@ namespace CavesOfOoo.Core.Anatomy
     public static class SeveredLimbFactory
     {
         /// <summary>
-        /// Create a severed limb entity from a dismembered body part.
+        /// Create a severed limb entity with a stable identity before it is published in the world.
         /// </summary>
         public static Entity Create(BodyPart part)
         {
@@ -16,7 +16,7 @@ namespace CavesOfOoo.Core.Anatomy
             string color = GetColor(part.Category);
             int weight = GetWeight(part);
 
-            var entity = new Entity();
+            var entity = new Entity { ID = System.Guid.NewGuid().ToString("N") };
             entity.BlueprintName = "SeveredLimb";
             entity.SetTag("Item");
             entity.SetTag("SeveredLimb");
