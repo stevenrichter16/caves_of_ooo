@@ -202,6 +202,7 @@ namespace CavesOfOoo.Skills
                             continue;
                         }
                         power.ParentSkillName = skill.Name;
+                        power.ParentSkillClass = skill.Class;
                         _powersByClass[power.Class] = power;
                         _entriesByClass[power.Class] = power;
                     }

@@ -12,7 +12,7 @@ namespace CavesOfOoo.Skills
     /// <para>PowerData carries the same field set as SkillData (Name /
     /// Class / Attribute / Snippet / Cost / Flags / Tile / Foreground /
     /// Detail / Description) plus three power-specific gating fields
-    /// (Minimum, Requires, Exclusion) and one back-reference (ParentSkillName).
+    /// (Minimum, Requires, Exclusion) and parent display/class references.
     /// The duplication is deliberate — JsonUtility doesn't deserialize
     /// inherited fields reliably, so each POCO is self-contained.</para>
     /// </summary>
@@ -79,5 +79,10 @@ namespace CavesOfOoo.Skills
         /// a runtime object pointer (POCOs avoid runtime references).</summary>
         [NonSerialized]
         public string ParentSkillName = "";
+
+        /// <summary>Stable parent class set by the registry after loading. Purchase eligibility
+        /// uses this identity rather than the non-unique display name. Not authored or saved.</summary>
+        [NonSerialized]
+        public string ParentSkillClass = "";
     }
 }

@@ -216,9 +216,9 @@ namespace CavesOfOoo.Rendering
                 case BuySkillAction.FailureReason.StatMinNotMet:
                     return $"You don't have the {r.Detail} for {display}.";
                 case BuySkillAction.FailureReason.MissingPrereq:
-                    return $"You must learn {r.Detail} first.";
+                    return $"You must learn {RequirementName(r.Detail)} first.";
                 case BuySkillAction.FailureReason.Exclusion:
-                    return $"{display} conflicts with {r.Detail}.";
+                    return $"{display} conflicts with {RequirementName(r.Detail)}.";
                 case BuySkillAction.FailureReason.UnknownSkillClass:
                     return $"Unknown skill: {display}.";
                 case BuySkillAction.FailureReason.ActorMissingSkillsPart:
@@ -227,6 +227,13 @@ namespace CavesOfOoo.Rendering
                 default:
                     return $"You can't learn {display}.";
             }
+        }
+
+        private static string RequirementName(string className)
+        {
+            if (SkillRegistry.TryGetSkillByClass(className, out var tree) && !string.IsNullOrWhiteSpace(tree.Name)) return tree.Name;
+            if (SkillRegistry.TryGetPowerByClass(className, out var power) && !string.IsNullOrWhiteSpace(power.Name)) return power.Name;
+            return string.IsNullOrWhiteSpace(className) ? "the parent skill tree" : className;
         }
 
         private void ScrollIntoView()

@@ -1,0 +1,92 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "1477f2ae41c145fa9ae8200be2c64703",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1790913856897,
+      "finished_unix_ms": 1790913870152,
+      "last_update_unix_ms": 1790913870152,
+      "progress": {
+        "completed": 17,
+        "total": 17,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1790913869836,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.TwoActualLevelAwardsBuyRootThenOnePower(\"PersuasionSkill\",\"Persuasion_Dismiss\")",
+        "last_finished_unix_ms": 1790913869837,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionAdversarialTests.DisplayNameCollisionCannotSubstituteAnotherTree",
+            "message": "  Expected: MissingPrereq\n  But was:  None\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionAdversarialTests.MissingPointStatCannotProduceBuyableZeroCostRow",
+            "message": "  Expected: RequirementsNotMet\n  But was:  Buyable\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionAdversarialTests.NegativeCostIsNeverShownAsBuyableOrAllowedToMintPoints",
+            "message": "  Expected: RequirementsNotMet\n  But was:  Buyable\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.AffordablePowersRetainTheirStatRequirement(\"AcrobaticsSkill\",\"Acrobatics_Vault\",\"Agility\",15)",
+            "message": "  Expected: StatMinNotMet\n  But was:  InsufficientSP\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.AffordablePowersRetainTheirStatRequirement(\"PersuasionSkill\",\"Persuasion_Recruit\",\"Ego\",16)",
+            "message": "  Expected: StatMinNotMet\n  But was:  InsufficientSP\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.PurchaseAndScreenRequireExactParent(\"ShortBladesSkill\",\"ShortBlades_Disengage\")",
+            "message": "  Expected: RequirementsNotMet\n  But was:  Buyable\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.PurchaseAndScreenRequireExactParent(\"AcrobaticsSkill\",\"Acrobatics_Vault\")",
+            "message": "  Expected: RequirementsNotMet\n  But was:  Buyable\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.PurchaseAndScreenRequireExactParent(\"PersuasionSkill\",\"Persuasion_Recruit\")",
+            "message": "  Expected: RequirementsNotMet\n  But was:  Buyable\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.PurchaseAndScreenRequireExactParent(\"SpellcraftSkill\",\"Spellcraft_WardGleam\")",
+            "message": "  Expected: RequirementsNotMet\n  But was:  Buyable\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.TwoActualLevelAwardsBuyRootThenOnePower(\"AcrobaticsSkill\",\"AcrobaticsDodgePower\")",
+            "message": "  One actual level buys the tree.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.TwoActualLevelAwardsBuyRootThenOnePower(\"AcrobaticsSkill\",\"Acrobatics_Tumble\")",
+            "message": "  One actual level buys the tree.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.TwoActualLevelAwardsBuyRootThenOnePower(\"AcrobaticsSkill\",\"Acrobatics_EvasiveRoll\")",
+            "message": "  One actual level buys the tree.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.TwoActualLevelAwardsBuyRootThenOnePower(\"AcrobaticsSkill\",\"Acrobatics_Vault\")",
+            "message": "  One actual level buys the tree.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.TwoActualLevelAwardsBuyRootThenOnePower(\"PersuasionSkill\",\"Persuasion_Recruit\")",
+            "message": "  One actual level buys the tree.\n  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ExplorationDepthProgressionTests.TwoActualLevelAwardsBuyRootThenOnePower(\"PersuasionSkill\",\"Persuasion_Dismiss\")",
+            "message": "  One actual level buys the tree.\n  Expected: True\n  But was:  False\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

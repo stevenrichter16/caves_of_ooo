@@ -1,15 +1,14 @@
-using System.Collections.Generic;
 using CavesOfOoo.Core;
 using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Skills
 {
     /// <summary>
-    /// Skill purchase action. Validates Cost / Minimum / Requires /
+    /// Skill purchase action. Validates parent tree / Cost / Minimum / Requires /
     /// Exclusion gating against the actor's state, spends SP, and calls
     /// <see cref="SkillsPart.AddSkill(string, string)"/> on success.
     /// Mirrors Qud's purchase flow (SkillFactory + Skills.AddSkill +
-    /// PowerEntry.MeetsRequirements) — same gating model, same Cost-then-
+    /// PowerEntry.MeetsRequirements), with CoO parent-tree purchase gates. Cost-then-
     /// effect ordering, same fail-fast on first invalid check.
     ///
     /// <para><b>Diag emit:</b> every call (success OR failure) emits a
@@ -82,117 +81,13 @@ namespace CavesOfOoo.Skills
         /// </summary>
         public static Result Execute(Entity actor, string skillClassName)
         {
-            var result = new Result();
+            var result = SkillPurchaseEligibility.Evaluate(actor, skillClassName);
+            if (!result.Succeeded)
+                return EmitAndReturn(actor, result, skillClassName, result.Reason, result.Detail);
 
-            // 1. Resolve the entry (skill OR power) from the registry.
-            //    Cost / Minimum / Requires / Exclusion all live on the entry.
-            //    Skills have Cost + Initiatory; powers have Cost + Minimum +
-            //    Requires + Exclusion. We look up both and read the relevant
-            //    fields from whichever was found.
-            int cost = 0;
-            string attribute = "";
-            string minimum = "";
-            string requires = "";
-            string exclusion = "";
-            if (SkillRegistry.TryGetSkillByClass(skillClassName, out var skill))
-            {
-                cost = skill.Cost;
-                attribute = skill.Attribute;
-                minimum  = "";   // Skills don't carry Minimum in Qud
-                requires = "";   // ditto
-                exclusion = "";
-            }
-            else if (SkillRegistry.TryGetPowerByClass(skillClassName, out var power))
-            {
-                cost = power.Cost;
-                attribute = power.Attribute;
-                minimum  = power.Minimum;
-                requires = power.Requires;
-                exclusion = power.Exclusion;
-            }
-            else
-            {
-                return EmitAndReturn(actor, result, skillClassName,
-                    FailureReason.UnknownSkillClass, "");
-            }
-            result.Cost = cost;
-
-            // 1b. M0 S6 — a negative cost is NEVER purchasable. The gate
-            // below is `SpBefore < cost` and the commit is
-            // `BaseValue -= cost`, so a negative cost would pass the gate
-            // unconditionally and then GRANT the player SP — and
-            // SkillData.Cost DEFAULTS to -999, meaning a JSON row that
-            // merely omits Cost would hand out +999 SP per purchase.
-            // Rows authored with a negative cost are treated as
-            // not-for-sale (grimoire-taught, quest-granted, etc.).
-            if (cost < 0)
-            {
-                return EmitAndReturn(actor, result, skillClassName,
-                    FailureReason.NotPurchasable, "");
-            }
-
-            // 2. Actor must have a SkillsPart (the manager).
-            var skillsPart = actor?.GetPart<SkillsPart>();
-            if (skillsPart == null)
-            {
-                return EmitAndReturn(actor, result, skillClassName,
-                    FailureReason.ActorMissingSkillsPart, "");
-            }
-
-            // 3. Actor must have an SP stat.
+            var skillsPart = actor.GetPart<SkillsPart>();
             var spStat = actor.GetStat("SP");
-            if (spStat == null)
-            {
-                return EmitAndReturn(actor, result, skillClassName,
-                    FailureReason.ActorMissingSPStat, "");
-            }
-            result.SpBefore = spStat.BaseValue;
-
-            // 4. Already-owned check. Mirrors Qud's
-            //    Skills.AddSkill no-op-on-duplicate at Skills.cs:96-99.
-            if (skillsPart.HasSkill(skillClassName))
-            {
-                result.SpAfter = result.SpBefore;
-                return EmitAndReturn(actor, result, skillClassName,
-                    FailureReason.AlreadyOwned, "");
-            }
-
-            // 5. Cost check.
-            if (result.SpBefore < cost)
-            {
-                result.SpAfter = result.SpBefore;
-                return EmitAndReturn(actor, result, skillClassName,
-                    FailureReason.InsufficientSP, "");
-            }
-
-            // 6. Stat minimum check. Pipe/comma format per
-            //    PowerEntry.cs:46-61, 124-139:
-            //      '|' = OR groups; passing any group passes overall
-            //      ',' = AND-conjuncts within group; all must pass
-            //    Mirrors Qud's parser without porting the whole
-            //    PowerEntryRequirement object — direct string parse.
-            if (!MeetsAttributeMinimum(actor, attribute, minimum, out string failedAttr))
-            {
-                result.SpAfter = result.SpBefore;
-                return EmitAndReturn(actor, result, skillClassName,
-                    FailureReason.StatMinNotMet, failedAttr);
-            }
-
-            // 7. Requires check. All comma-separated classes must be owned.
-            if (!MeetsRequires(skillsPart, requires, out string missingReq))
-            {
-                result.SpAfter = result.SpBefore;
-                return EmitAndReturn(actor, result, skillClassName,
-                    FailureReason.MissingPrereq, missingReq);
-            }
-
-            // 8. Exclusion check. Owning ANY blocks purchase.
-            if (HasAnyExclusion(skillsPart, exclusion, out string blockingExcl))
-            {
-                result.SpAfter = result.SpBefore;
-                return EmitAndReturn(actor, result, skillClassName,
-                    FailureReason.Exclusion, blockingExcl);
-            }
+            int cost = result.Cost;
 
             // ── All checks passed; commit. ──
             spStat.BaseValue -= cost;
@@ -219,90 +114,6 @@ namespace CavesOfOoo.Skills
             result.Succeeded = true;
             EmitDiag(actor, skillClassName, result);
             return result;
-        }
-
-        // ────────────────────────────────────────────────────────────────────
-        // Gating helpers
-        // ────────────────────────────────────────────────────────────────────
-
-        /// <summary>
-        /// Parse Qud's pipe/comma stat-minimum format and check against
-        /// the actor's stats. Returns true if the actor passes ANY OR-group
-        /// (each group = comma-separated AND list of attribute,minimum pairs).
-        /// Empty Attribute / Minimum = no requirement = true.
-        /// </summary>
-        private static bool MeetsAttributeMinimum(
-            Entity actor, string attribute, string minimum, out string failedAttribute)
-        {
-            failedAttribute = "";
-            if (string.IsNullOrWhiteSpace(attribute) || string.IsNullOrWhiteSpace(minimum))
-                return true;
-
-            string[] orGroupsAttr = attribute.Split('|');
-            string[] orGroupsMin  = minimum.Split('|');
-
-            // OR across groups: passing any one group passes overall.
-            int n = orGroupsAttr.Length < orGroupsMin.Length ? orGroupsAttr.Length : orGroupsMin.Length;
-            string lastFailedAttr = "";
-            for (int g = 0; g < n; g++)
-            {
-                string[] attrs = orGroupsAttr[g].Split(',');
-                string[] mins  = orGroupsMin[g].Split(',');
-                int gn = attrs.Length < mins.Length ? attrs.Length : mins.Length;
-
-                bool groupPasses = true;
-                for (int i = 0; i < gn; i++)
-                {
-                    string attrName = attrs[i].Trim();
-                    if (!int.TryParse(mins[i].Trim(), out int minValue)) continue;
-                    int actorValue = actor.GetStatValue(attrName, 0);
-                    if (actorValue < minValue)
-                    {
-                        groupPasses = false;
-                        lastFailedAttr = attrName;
-                        break;
-                    }
-                }
-                if (groupPasses) return true;
-            }
-            failedAttribute = lastFailedAttr;
-            return false;
-        }
-
-        /// <summary>
-        /// All comma-separated classes in <paramref name="requires"/> must
-        /// be owned by the actor. Empty = no requirement = true. Returns
-        /// the FIRST missing class (for diag detail).
-        /// </summary>
-        private static bool MeetsRequires(SkillsPart skills, string requires, out string missing)
-        {
-            missing = "";
-            if (string.IsNullOrWhiteSpace(requires)) return true;
-            foreach (var raw in requires.Split(','))
-            {
-                string cls = raw.Trim();
-                if (cls.Length == 0) continue;
-                if (!skills.HasSkill(cls)) { missing = cls; return false; }
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// True if any class in <paramref name="exclusion"/> is owned by
-        /// the actor. Empty = no exclusion = false. Returns the FIRST
-        /// blocking class (for diag detail).
-        /// </summary>
-        private static bool HasAnyExclusion(SkillsPart skills, string exclusion, out string blocking)
-        {
-            blocking = "";
-            if (string.IsNullOrWhiteSpace(exclusion)) return false;
-            foreach (var raw in exclusion.Split(','))
-            {
-                string cls = raw.Trim();
-                if (cls.Length == 0) continue;
-                if (skills.HasSkill(cls)) { blocking = cls; return true; }
-            }
-            return false;
         }
 
         // ────────────────────────────────────────────────────────────────────

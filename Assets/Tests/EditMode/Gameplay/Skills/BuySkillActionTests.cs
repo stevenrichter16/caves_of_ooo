@@ -198,6 +198,7 @@ namespace CavesOfOoo.Tests
         {
             SkillRegistry.InitializeFromJson(ACROBATICS_JSON);
             var actor = MakeActor(sp: 100, agility: 15);
+            actor.GetPart<SkillsPart>().AddSkill(new AcrobaticsSkill());
 
             var result = BuySkillAction.Execute(actor, "AcrobaticsDodgePower");
 
@@ -215,7 +216,7 @@ namespace CavesOfOoo.Tests
             // Power requires Agility>=20 OR Strength>=15. Actor has
             // Agility=10 (fails first), Strength=18 (passes second).
             string json = @"{""Skills"":[{
-                ""Name"":""SoftCore"",""Class"":""SoftCoreSkill"",""Cost"":10,
+                ""Name"":""SoftCore"",""Class"":""AcrobaticsSkill"",""Cost"":10,
                 ""Powers"":[
                     {""Name"":""SoftPow"",""Class"":""SoftCorePower"",
                      ""Cost"":10,""Attribute"":""Agility|Strength"",""Minimum"":""20|15""}
@@ -223,6 +224,7 @@ namespace CavesOfOoo.Tests
             }]}";
             SkillRegistry.InitializeFromJson(json);
             var actor = MakeActor(sp: 50, agility: 10, strength: 18);
+            actor.GetPart<SkillsPart>().AddSkill(new AcrobaticsSkill());
 
             var result = BuySkillAction.Execute(actor, "SoftCorePower");
 

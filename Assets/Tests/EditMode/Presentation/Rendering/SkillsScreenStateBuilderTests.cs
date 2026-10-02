@@ -233,6 +233,7 @@ namespace CavesOfOoo.Tests
             }]}";
             SkillRegistry.InitializeFromJson(json);
             var actor = MakeActor(sp: 100, agility: 14);  // below threshold
+            actor.GetPart<SkillsPart>().AddSkill(new AcrobaticsSkill());
 
             var snapshot = SkillsScreenStateBuilder.Build(actor);
 
@@ -269,6 +270,7 @@ namespace CavesOfOoo.Tests
             // Case 1: requirements not met (Agility 14 < 18). DisplayName
             // hides the secret-move name behind ???.
             var actorBelow = MakeActor(sp: 100, agility: 14);
+            actorBelow.GetPart<SkillsPart>().AddSkill(new AcrobaticsSkill());
             var snapshotBelow = SkillsScreenStateBuilder.Build(actorBelow);
             Assert.AreEqual("???", snapshotBelow.Rows[1].DisplayName,
                 "FLAG_OBFUSCATED + unmet requirements → DisplayName == '???'");
@@ -280,6 +282,7 @@ namespace CavesOfOoo.Tests
             // so an explicit ResetForTests() here would be redundant.)
             SkillRegistry.InitializeFromJson(json);
             var actorAtThreshold = MakeActor(sp: 100, agility: 18);
+            actorAtThreshold.GetPart<SkillsPart>().AddSkill(new AcrobaticsSkill());
             var snapshotAt = SkillsScreenStateBuilder.Build(actorAtThreshold);
             Assert.AreEqual("SecretMove", snapshotAt.Rows[1].DisplayName,
                 "Once requirements are met, real name shows even with FLAG_OBFUSCATED set.");
@@ -300,12 +303,12 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Build_PrereqMissing_RowStateRequirementsNotMet()
         {
-            // Acrobatics (Cost=50) + a power that requires "AcrobaticsSkill".
+            // Acrobatics (Cost=50) + a power that requires "CudgelSkill".
             string json = @"{""Skills"":[{
                 ""Name"":""Acrobatics"",""Class"":""AcrobaticsSkill"",""Cost"":50,
                 ""Powers"":[
                     {""Name"":""GatedDodge"",""Class"":""AcrobaticsDodgePower"",
-                     ""Cost"":30,""Requires"":""AcrobaticsSkill""}
+                     ""Cost"":30,""Requires"":""CudgelSkill""}
                 ]
             }]}";
             SkillRegistry.InitializeFromJson(json);
@@ -313,19 +316,21 @@ namespace CavesOfOoo.Tests
             // Case 1: prereq NOT owned. SP plenty, no stat min, no exclusion —
             // the only possible blocker is the Requires gate.
             var actorMissing = MakeActor(sp: 100);
+            actorMissing.GetPart<SkillsPart>().AddSkill(new AcrobaticsSkill());
             var snapshotMissing = SkillsScreenStateBuilder.Build(actorMissing);
             Assert.AreEqual(SkillsScreenRowState.RequirementsNotMet,
                 snapshotMissing.Rows[1].State,
-                "Power requires AcrobaticsSkill, actor doesn't own it → RequirementsNotMet.");
+                "Power requires CudgelSkill, actor doesn't own it → RequirementsNotMet.");
 
             // Case 2 (counter-check): prereq owned. Same actor + same registry,
             // skill manually added → Requires gate now passes → Buyable.
             var actorOwning = MakeActor(sp: 100);
             actorOwning.GetPart<SkillsPart>().AddSkill(new AcrobaticsSkill());
+            actorOwning.GetPart<SkillsPart>().AddSkill(new CudgelSkill());
             var snapshotOwning = SkillsScreenStateBuilder.Build(actorOwning);
             Assert.AreEqual(SkillsScreenRowState.Buyable,
                 snapshotOwning.Rows[1].State,
-                "Same setup with the required AcrobaticsSkill owned → Buyable. " +
+                "Same setup with the required CudgelSkill owned → Buyable. " +
                 "Counter-check pins that the gate is the Requires field, not " +
                 "an unrelated state.");
         }
@@ -338,15 +343,15 @@ namespace CavesOfOoo.Tests
         [Test]
         public void Build_ExclusionOwned_RowStateRequirementsNotMet()
         {
-            // Power has Exclusion="AcrobaticsSkill". Actor owning Acrobatics
+            // Power has Exclusion="CudgelSkill". Actor owning Cudgel
             // makes the exclusion fire. (Pretend "GatedDodge" is mutually
-            // exclusive with the Acrobatics tree — semantically odd but
+            // exclusive with the Cudgel tree —
             // exercises the field correctly.)
             string json = @"{""Skills"":[{
                 ""Name"":""Acrobatics"",""Class"":""AcrobaticsSkill"",""Cost"":50,
                 ""Powers"":[
                     {""Name"":""GatedDodge"",""Class"":""AcrobaticsDodgePower"",
-                     ""Cost"":30,""Exclusion"":""AcrobaticsSkill""}
+                     ""Cost"":30,""Exclusion"":""CudgelSkill""}
                 ]
             }]}";
 
@@ -354,6 +359,7 @@ namespace CavesOfOoo.Tests
             SkillRegistry.InitializeFromJson(json);
             var actorOwningBlocker = MakeActor(sp: 100);
             actorOwningBlocker.GetPart<SkillsPart>().AddSkill(new AcrobaticsSkill());
+            actorOwningBlocker.GetPart<SkillsPart>().AddSkill(new CudgelSkill());
             var snapshotBlocked = SkillsScreenStateBuilder.Build(actorOwningBlocker);
             Assert.AreEqual(SkillsScreenRowState.RequirementsNotMet,
                 snapshotBlocked.Rows[1].State,
@@ -365,6 +371,7 @@ namespace CavesOfOoo.Tests
             // Case 2 (counter-check): exclusion-skill NOT owned → unblocked.
             SkillRegistry.InitializeFromJson(json);
             var actorClean = MakeActor(sp: 100);
+            actorClean.GetPart<SkillsPart>().AddSkill(new AcrobaticsSkill());
             var snapshotUnblocked = SkillsScreenStateBuilder.Build(actorClean);
             Assert.AreEqual(SkillsScreenRowState.Buyable,
                 snapshotUnblocked.Rows[1].State,
