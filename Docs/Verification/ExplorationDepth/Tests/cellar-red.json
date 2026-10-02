@@ -1,0 +1,132 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "23dc2b3cb52f4b02bafa3301e8d334b9",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1790914151856,
+      "finished_unix_ms": 1790914166616,
+      "last_update_unix_ms": 1790914166616,
+      "progress": {
+        "completed": 51,
+        "total": 51,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1790914166399,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.SidePassageReachesTheSameCacheAndReturnWithoutMovingBeamOrEnteringGuardCorridor(int.MaxValue)",
+        "last_finished_unix_ms": 1790914166425,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.ExistingOrDepletedOwnersAreNeverRecreated",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.ForeignOrAliasAddressesAreNotPatched(\"Overworld.11.10.0\")",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.ForeignOrAliasAddressesAreNotPatched(\"Overworld.11.10.2\")",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.ForeignOrAliasAddressesAreNotPatched(\"Overworld.12.10.1\")",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.ForeignOrAliasAddressesAreNotPatched(\"Overworld.011.10.1\")",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.FreshCellarHasSafeReturnAndFiniteRealRepairAndCapabilitySupplies(64)",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.FreshCellarHasSafeReturnAndFiniteRealRepairAndCapabilitySupplies(1729)",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.FreshCellarHasSafeReturnAndFiniteRealRepairAndCapabilitySupplies(729490642)",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MalformedPhysicalOrCallbackContentIsRejectedAtomically(\"crate-full\")",
+            "message": "  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.get_BuilderType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:18 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.Build (CavesOfOoo.Core.Zone z, System.Int32 seed, System.Random rng) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:20 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests+<>c__DisplayClass20_0.<MalformedPhysicalOrCallbackContentIsRejectedAtomically>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:98 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MalformedPhysicalOrCallbackContentIsRejectedAtomically(\"clay-not-portable\")",
+            "message": "  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.get_BuilderType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:18 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.Build (CavesOfOoo.Core.Zone z, System.Int32 seed, System.Random rng) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:20 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests+<>c__DisplayClass20_0.<MalformedPhysicalOrCallbackContentIsRejectedAtomically>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:98 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MalformedPhysicalOrCallbackContentIsRejectedAtomically(\"wall-passable\")",
+            "message": "  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.get_BuilderType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:18 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.Build (CavesOfOoo.Core.Zone z, System.Int32 seed, System.Random rng) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:20 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests+<>c__DisplayClass20_0.<MalformedPhysicalOrCallbackContentIsRejectedAtomically>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:98 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MalformedPhysicalOrCallbackContentIsRejectedAtomically(\"beam-not-solid\")",
+            "message": "  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.get_BuilderType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:18 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.Build (CavesOfOoo.Core.Zone z, System.Int32 seed, System.Random rng) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:20 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests+<>c__DisplayClass20_0.<MalformedPhysicalOrCallbackContentIsRejectedAtomically>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:98 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MalformedPhysicalOrCallbackContentIsRejectedAtomically(\"bad-stairs\")",
+            "message": "  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.get_BuilderType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:18 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.Build (CavesOfOoo.Core.Zone z, System.Int32 seed, System.Random rng) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:20 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests+<>c__DisplayClass20_0.<MalformedPhysicalOrCallbackContentIsRejectedAtomically>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:98 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MalformedPhysicalOrCallbackContentIsRejectedAtomically(\"multi-cell\")",
+            "message": "  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.get_BuilderType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:18 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.Build (CavesOfOoo.Core.Zone z, System.Int32 seed, System.Random rng) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:20 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests+<>c__DisplayClass20_0.<MalformedPhysicalOrCallbackContentIsRejectedAtomically>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:98 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MalformedPhysicalOrCallbackContentIsRejectedAtomically(\"duplicate-id\")",
+            "message": "  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.get_BuilderType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:18 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.Build (CavesOfOoo.Core.Zone z, System.Int32 seed, System.Random rng) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:20 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests+<>c__DisplayClass20_0.<MalformedPhysicalOrCallbackContentIsRejectedAtomically>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:98 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MalformedPhysicalOrCallbackContentIsRejectedAtomically(\"foreign-parent\")",
+            "message": "  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.get_BuilderType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:18 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.Build (CavesOfOoo.Core.Zone z, System.Int32 seed, System.Random rng) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:20 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests+<>c__DisplayClass20_0.<MalformedPhysicalOrCallbackContentIsRejectedAtomically>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:98 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MalformedPhysicalOrCallbackContentIsRejectedAtomically(\"creation-throws\")",
+            "message": "  Expected: No Exception to be thrown\n  But was:  <NUnit.Framework.AssertionException:   The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n\n  at NUnit.Framework.Assert.That[TActual] (TActual actual, NUnit.Framework.Constraints.IResolveConstraint expression, System.String message, System.Object[] args) [0x00039] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Assert.NotNull (System.Object anObject, System.String message, System.Object[] args) [0x0000b] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.get_BuilderType () [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:18 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests.Build (CavesOfOoo.Core.Zone z, System.Int32 seed, System.Random rng) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:20 \n  at CavesOfOoo.Tests.GleanersCellarBuilderTests+<>c__DisplayClass20_0.<MalformedPhysicalOrCallbackContentIsRejectedAtomically>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Generation/GleanersCellarBuilderTests.cs:98 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MissingContentRefusesBeforePublishingOwnersOrReservations(\"Floor\")",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MissingContentRefusesBeforePublishingOwnersOrReservations(\"StoneWall\")",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MissingContentRefusesBeforePublishingOwnersOrReservations(\"StairsUp\")",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MissingContentRefusesBeforePublishingOwnersOrReservations(\"Crate\")",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MissingContentRefusesBeforePublishingOwnersOrReservations(\"FireClay\")",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MissingContentRefusesBeforePublishingOwnersOrReservations(\"FallenBeam\")",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MissingContentRefusesBeforePublishingOwnersOrReservations(\"MarlbackScrabbler\")",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MissingContentRefusesBeforePublishingOwnersOrReservations(\"ShatteredRimeGrimoire\")",
+            "message": "  The default glade needs its optional native supply cellar.\n  Expected: not null\n  But was:  null\n"
+          }
+        ],
+        "failures_capped": true
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

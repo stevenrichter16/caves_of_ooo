@@ -1,0 +1,48 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "7b7261dc1f52438b8a6add865b2b7a93",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1790915149442,
+      "finished_unix_ms": 1790915162392,
+      "last_update_unix_ms": 1790915162392,
+      "progress": {
+        "completed": 26,
+        "total": 26,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1790915162121,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.GleanersDistrictAdversarialTests.SameAddressInAnotherBiomeCannotGainDistrict(Grovelands)",
+        "last_finished_unix_ms": 1790915162170,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersDistrictAdversarialTests.MalformedInitialOwnerCannotPublishAnUnusableDistrict(\"solid-stairs\")",
+            "message": "  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersDistrictAdversarialTests.MalformedInitialOwnerCannotPublishAnUnusableDistrict(\"invisible-well\")",
+            "message": "  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersDistrictAdversarialTests.MalformedInitialOwnerCannotPublishAnUnusableDistrict(\"missing-composition\")",
+            "message": "  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersDistrictAdversarialTests.MalformedInitialOwnerCannotPublishAnUnusableDistrict(\"wrong-composition\")",
+            "message": "  Expected: False\n  But was:  True\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

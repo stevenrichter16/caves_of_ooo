@@ -44,6 +44,11 @@ namespace CavesOfOoo.Core
                 return false;
             if (address.Depth == 0)
                 return true;
+            // The glade's shallow store shares its inhabitants and material art.
+            // This is visual scope only: a legacy saved cave keeps its owners,
+            // and destroyed stairs never cause the remaining scene to turn 2D.
+            if (zone.ZoneID == GleanersCellarBuilder.ZoneID && map.GetPOI(address.X, address.Y) == null)
+                return true;
             return map.GetPOI(address.X, address.Y)?.Type == POIType.Lair
                 && LairStacks.IsCommittedFloor(manager, zone, BiomeType.Spread);
         }

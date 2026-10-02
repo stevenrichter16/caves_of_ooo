@@ -26,7 +26,7 @@ namespace CavesOfOoo.Scenarios.Custom
         static readonly (int x,int y)[] Steps={(1,0),(-1,0),(0,1),(0,-1),(1,1),(1,-1),(-1,1),(-1,-1)};
         static readonly string[] MainChecks={"ordinary_start","ordinary_native_sill_entry","real_informant_report","explicit_notes_acquired","native_field_notes","generated_field_lane_transfer","native_finite_gleaning","generated_wayhouse_transfer","native_notice","native_key_acquired","native_front_unlock","native_front_open","native_reward_once","native_reward_equipped","depleted_checkpoint_saved","real_unsaved_step","restored_exact_notes_and_depleted_site","cached_depleted_site_not_refilled","bounded_finish"};
         static readonly string[] OrdinaryChecks={"ordinary_start","ordinary_native_sill_entry","real_informant_report","explicit_notes_acquired","native_field_notes","ordinary_native_field_entry","ordinary_finite_grain_acquired","ordinary_grain_used_once","ordinary_native_return_to_sill","ordinary_notes_retained_on_return","ordinary_used_checkpoint_saved","ordinary_unsaved_step","ordinary_restored_used_grain_and_notes","ordinary_finish"};
-        bool _ordinary;string[] RequiredChecks=>_cards?CardChecks:_ordinary?OrdinaryChecks:MainChecks;
+        bool _ordinary;string[] RequiredChecks=>_district?DistrictChecks:_cards?CardChecks:_ordinary?OrdinaryChecks:MainChecks;
         public string RunId{get;}=Guid.NewGuid().ToString("N");
         public bool Finished{get;private set;}public int Failures=>_failures+_unexpectedErrors;public string ReportPath{get;private set;}
         InputHandler _input;Keyboard _keyboard,_oldKeyboard;InputSettings _settings,_oldSettings;
@@ -42,9 +42,9 @@ namespace CavesOfOoo.Scenarios.Custom
         Cell At=>Zone.GetEntityCell(Player);int Tick=>_input.TurnManager.TickCount;int Energy=>_input.TurnManager.GetEnergy(Player);
         string State=>Field(_input,"_inputState").ToString();
         Entity Owner(string id)=>Zone.GetReadOnlyEntities().SingleOrDefault(e=>e.ID==id);
-        public void Initialize(ScenarioContext context,bool ordinary=false,bool cards=false)
+        public void Initialize(ScenarioContext context,bool ordinary=false,bool cards=false,bool district=false,bool districtCombat=false,bool districtPrepared=false)
         {
-            _ordinary=ordinary;_cards=cards;Require(!string.IsNullOrWhiteSpace(SaveGameService.SaveRootOverride),"isolated launcher owns saves");_ownedRoot=SaveGameService.SaveRootOverride;_clock=System.Diagnostics.Stopwatch.StartNew();
+            _ordinary=ordinary;_cards=cards;_district=district;_districtCombat=districtCombat;_districtPrepared=districtPrepared;Require(!string.IsNullOrWhiteSpace(SaveGameService.SaveRootOverride),"isolated launcher owns saves");_ownedRoot=SaveGameService.SaveRootOverride;_clock=System.Diagnostics.Stopwatch.StartNew();
             foreach(var channel in new[]{"scenario","event","trade","worldmap","furniture","damage","turn","turn-verbose","skill"}.Concat(cards?new[]{"worldgen"}:Array.Empty<string>())){_oldChannels[channel]=Diag.IsChannelEnabled(channel);Diag.SetChannel(channel,true);}
             _oldSettings=InputSystem.settings;_settings=Instantiate(_oldSettings);_settings.backgroundBehavior=InputSettings.BackgroundBehavior.IgnoreFocus;
 #if UNITY_EDITOR
@@ -84,8 +84,8 @@ namespace CavesOfOoo.Scenarios.Custom
         {
             yield return new WaitForSecondsRealtime(.8f);_input=FindFirstObjectByType<InputHandler>();Require(_input!=null,"actual ordinary bootstrap");
             var boot=(BootMenuController)Field(_input,"_bootMenuController");Require(boot?.IsActive==true,"ordinary N menu");yield return Tap(Key.N);yield return Settled();_started=true;
-            Check("ordinary_start",Manager.WorldSeed==64&&ReferenceGladePlan.IsActive(Zone)&&Player.GetStatValue("Hitpoints")==40&&Player.GetStat("Hitpoints").Max==40&&Player.GetStatValue("Level")==1&&TradeSystem.GetDrams(Player)==50&&Player.GetStatValue("Strength")==18&&Player.GetStatValue("Agility")==18&&Player.GetPart<InventoryPart>().Objects.Count(e=>e.BlueprintName=="Dagger")==1&&Player.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName=="HealingTonic").Sum(Units)==2&&!DevMode.Enabled&&!Player.HasPart<BitLockerPart>());
-            yield return Capture("01-ordinary-start");if(_cards){yield return RunCards();yield break;}yield return TravelSurface(WorldMap.StartingZoneID);Check("ordinary_native_sill_entry",Zone.ZoneID==WorldMap.StartingZoneID&&_mapSteps>0);
+            Check("ordinary_start",(Manager.WorldSeed==64||_district&&Manager.WorldSeed==1729)&&ReferenceGladePlan.IsActive(Zone)&&Player.GetStatValue("Hitpoints")==40&&Player.GetStat("Hitpoints").Max==40&&Player.GetStatValue("Level")==1&&TradeSystem.GetDrams(Player)==50&&Player.GetStatValue("Strength")==18&&Player.GetStatValue("Agility")==18&&Player.GetPart<InventoryPart>().Objects.Count(e=>e.BlueprintName=="Dagger")==1&&Player.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName=="HealingTonic").Sum(Units)==2&&!DevMode.Enabled&&!Player.HasPart<BitLockerPart>());
+            yield return Capture("01-ordinary-start");if(_district){yield return DistrictJourney();yield break;}if(_cards){yield return RunCards();yield break;}yield return TravelSurface(WorldMap.StartingZoneID);Check("ordinary_native_sill_entry",Zone.ZoneID==WorldMap.StartingZoneID&&_mapSteps>0);
             yield return ApproachInformant();var speaker=_informant;Require(speaker!=null,"actual adjacent current informant");string node=speaker.GetPart<ConversationPart>().ConversationID=="Scribe_1"?"RegionOverview":"Rumors";
             int tick=Tick,energy=Energy,hp=Player.GetStatValue("Hitpoints");var caches=Manager.CachedZones.Keys.OrderBy(x=>x).ToArray();var families=new List<string>();
             yield return Chat(speaker);yield return Choice(c=>c.Target==node);
@@ -330,16 +330,22 @@ namespace CavesOfOoo.Scenarios.Custom
             Require(kind=="map"?_mapSteps<20:kind=="rest"?_rests<2:_localInputs<360,"finite approved action budget");
             var actor=Player;int before=Energy,tick=Tick,speed=Player.GetStatValue("Speed",100);string marker=Mark(label),combat=null;if(_guard!=null&&_fighting){Diag.Record("scenario",ReferenceGladeCombatEvidence.MarkerKind,Player,_guard);combat=Diag.Snapshot(1).Single().TraceId;}
             yield return action;yield return CloseNormal();var rows=Window(marker);
-            Require(ReferenceEquals(actor,Player)&&Player.GetStatValue("Speed",100)==speed&&DensityCampaignNativeEvidence.TryClock(rows,marker,Player.ID,kind,before,Energy,Tick-tick,speed,out _lastClock),"exact native action clock/energy "+label);
+            bool validClock=ReferenceEquals(actor,Player)&&Player.GetStatValue("Speed",100)==speed&&DensityCampaignNativeEvidence.TryClock(rows,marker,Player.ID,kind,before,Energy,Tick-tick,speed,out _lastClock);
+            if(!validClock)_observations.Add(new{phase="rejected-native-action-clock",label,kind,marker,beforeEnergy=before,afterEnergy=Energy,beforeTick=tick,afterTick=Tick,speed,rows});
+            Require(validClock,"exact native action clock/energy "+label);
             if(combat!=null){var proof=ReferenceGladeCombatEvidence.Inspect(rows,combat,Player.ID,_guardId);Require(proof.WindowValid,"canonical exact guard combat window");_guardAttempt|=proof.PlayerAttempt;_guardDamage|=proof.PlayerDamage;_guardLethal|=proof.PlayerLethal;}
             if(kind=="map")_mapSteps++;else if(kind=="rest")_rests++;else _localInputs++;_completedTurns+=_lastClock.CompletedTurns;_pureClock+=_lastClock.PureClock;
             _windows.Add(new{label,kind,marker,beforeEnergy=before,afterEnergy=Energy,beforeTick=tick,afterTick=Tick,receipt=_lastClock,rows});Observe(label);
         }
         IEnumerator ItemAction(Entity item,string command)
         {
-            Require(State=="Normal"&&Owns(Player,item),"native owned inventory action");yield return Tap(Key.I);yield return Tap(Key.Tab);
+            Require(State=="Normal"&&Owns(Player,item),"native owned inventory action");yield return Tap(Key.I);
+            // Opening the full-screen view can move the pointer's grid position
+            // and focus the inventory already. Tab only until the actual pane is reached.
+            for(int n=0;(int)Field(_input.InventoryUI,"_panel")!=1;n++)
+            {Require(n<6,"bounded native inventory pane");yield return Tap(Key.Tab);}
             var rows=(IList)Field(_input.InventoryUI,"_rows");int row=-1;for(int i=0;i<rows.Count;i++)if(ReferenceEquals(((InventoryScreenData.ItemDisplay)Field(rows[i],"Item"))?.Item,item))row=i;
-            Require(row>=0,"actual current inventory row");for(int n=0;(int)Field(_input.InventoryUI,"_cursorIndex")!=row;n++){Require(n<80,"bounded inventory cursor");yield return Tap((int)Field(_input.InventoryUI,"_cursorIndex")<row?Key.DownArrow:Key.UpArrow);}
+            Require(row>=0,"actual current inventory row");for(int n=0;(int)Field(_input.InventoryUI,"_cursorIndex")!=row;n++){Require(n<80,"bounded inventory cursor: pane="+Field(_input.InventoryUI,"_panel")+" current="+Field(_input.InventoryUI,"_cursorIndex")+" target="+row);yield return Tap((int)Field(_input.InventoryUI,"_cursorIndex")<row?Key.DownArrow:Key.UpArrow);}
             yield return Tap(Key.Enter);var popup=Field(_input.InventoryUI,"_itemActionPopup");Require(popup!=null,"native item action popup");var actions=((IList)Field(popup,"Actions")).Cast<object>().ToArray();int index=Array.FindIndex(actions,a=>(string)Field(a,"Command")==command);Require(index>=0,"actual offered item action "+command);
             for(int n=0;(int)Field(popup,"CursorIndex")!=index;n++){Require(n<50,"bounded item action cursor");yield return Tap((int)Field(popup,"CursorIndex")<index?Key.DownArrow:Key.UpArrow);}yield return Tap(Key.Enter);
         }
@@ -501,7 +507,9 @@ namespace CavesOfOoo.Scenarios.Custom
                 if(c==null||c.Occupants.Any(e=>e!=Player&&(e.HasTag("Creature")||(e.HasPart<TriggerOnStepPart>()&&!ReferenceEquals(e,_allowedMarker))||e.HasPart<LiquidPoolPart>()||e.HasPart<GasPoolPart>()
                     ||e.HasEffect<BurningEffect>()||e.GetPart<ThermalPart>()?.IsAflame==true)))return false;
                 var state=zone.TileState.Get(c.X,c.Y);if(state!=null&&(state.Heat>0||state.Cold>0||state.Charge>0||!string.IsNullOrEmpty(state.Cloud)||state.Coatings.Count>0))return false;
-                if(threats.Any(e=>!(_fighting&&ReferenceEquals(e,_guard))&&SpatialQuery.DistanceToCell(zone,e,c.X,c.Y)<=clearance))return false;
+                if(threats.Any(e=>!(_fighting&&ReferenceEquals(e,_guard))
+                    &&!(_district&&ReferenceGladeRouteControl.HasLiveCalm(zone,e))
+                    &&SpatialQuery.DistanceToCell(zone,e,c.X,c.Y)<=clearance))return false;
                 if(_avoidGuard&&_guard?.SpatialZone==zone&&zone.GetEntityCell(_guard) is Cell g&&SpatialQuery.DistanceToCell(zone,_guard,c.X,c.Y)<=_guard.GetPart<BrainPart>().SightRadius&&AIHelpers.HasLineOfSight(zone,g.X,g.Y,c.X,c.Y))return false;
             }
             return true;
@@ -516,15 +524,15 @@ namespace CavesOfOoo.Scenarios.Custom
             _observations.Add(new{phase,player=Player.ID,zone=Zone.ZoneID,x=At?.X,y=At?.Y,hp=Player.GetStatValue("Hitpoints"),stats=Stats(Player),tick=Tick,energy=Energy,drams=TradeSystem.GetDrams(Player),gear=Gear(Player),notes=NoteSignature(),site=_siteId,guard=_guardId,key=_keyId,reward=_rewardId,message=MessageLog.GetLast()});WriteReport();
         }
         void Finish(){try{EndTiming();}finally{Cleanup();Finished=true;WriteReport();}}
-        bool Complete=>Finished&&_errorsFinalized&&Failures==0&&_audit.Count==RequiredChecks.Length&&RequiredChecks.All(n=>_audit.Contains("PASS "+n))&&_screenshots.Count>=(_cards?6:_ordinary?10:12);
+        bool Complete=>Finished&&_errorsFinalized&&Failures==0&&_audit.Count==RequiredChecks.Length&&RequiredChecks.All(n=>_audit.Contains("PASS "+n))&&_screenshots.Count>=(_district?7:_cards?6:_ordinary?10:12);
         void WriteReport()
         {
             Directory.CreateDirectory(DirectoryPath);ReportPath=Path.Combine(DirectoryPath,"report.json");
-            string json=JsonConvert.SerializeObject(new{runId=RunId,mode=_cards?"generated-source-cards":_ordinary?"ordinary-grain-round-trip":"staged-generated-sites",complete=Complete,failures=Failures,unexpectedErrors=_unexpectedErrors,seconds=_clock?.Elapsed.TotalSeconds??0,fatal=_fatal,audit=_audit,requiredChecks=RequiredChecks,keys=_keys,observations=_observations,windows=_windows,timings=_timings,notes=_notes,screenshots=_screenshots,localInputs=_localInputs,mapSteps=_mapSteps,completedPlayerTurns=_completedTurns,pureClock=_pureClock,checkpointHash=_checkpointHash,threatClearance=ThreatClearance,
+            string json=JsonConvert.SerializeObject(new{runId=RunId,mode=_district?"ordinary-gleaners-district":_cards?"generated-source-cards":_ordinary?"ordinary-grain-round-trip":"staged-generated-sites",complete=Complete,failures=Failures,unexpectedErrors=_unexpectedErrors,seconds=_clock?.Elapsed.TotalSeconds??0,fatal=_fatal,audit=_audit,requiredChecks=RequiredChecks,keys=_keys,observations=_observations,windows=_windows,timings=_timings,notes=_notes,screenshots=_screenshots,localInputs=_localInputs,mapSteps=_mapSteps,completedPlayerTurns=_completedTurns,pureClock=_pureClock,checkpointHash=_checkpointHash,threatClearance=ThreatClearance,
                 passedChecks=RequiredChecks.Where(n=>_audit.Contains("PASS "+n)).ToArray(),unmetChecks=RequiredChecks.Where(n=>!_audit.Contains("PASS "+n)).ToArray(),
                 canVerify="Only the named passedChecks were observed in this run; intendedCapability is the planned route, not a completion claim. Partial failures and unmetChecks remain explicit.",
-                intendedCapability=_cards?CardsIntent:_ordinary?"Ordinary seed64 N, native Sill reports/notes, native map and ground route to generated FieldStrips, exact harvested grain eaten once, native return to Sill and F5/unsaved-step/F6 restores consumed grain absence/spent row/notes. No setup transfers or source grants.":"Ordinary seed64 N bootstrap and native map travel to actual Sill informant, explicit report notes/Q-Tab. Disclosed original-player transfers to unchanged generated field and selected wayhouse. Actual harvest, live-guard rear path with baseline reload, front key/door/reward, F5/unsaved-step/F6 notes and depleted-graph identity.",
-                cannotVerify=_cards?CardsLimits:_ordinary?"One seed and one actual row only; not a balance/permanent safety/all-seed proof. Earned food use is consumption; no healing benefit at full HP. No shop-sale claim. Timing is short and includes audit IO. Screenshots require independent viewing.":"Not an ordinary continuous expedition journey: field/wayhouse transfers and a saved rear/front branch replay are explicit fixture setup. No generated source edits or HP/AI/gear/loot grants. No all-seed/balance/permanent-safety claim. Only passedChecks are observed; source generation/route refusal is retained. Screenshots require independent viewing."},Formatting.Indented);
+                intendedCapability=_district?DistrictIntent:_cards?CardsIntent:_ordinary?"Ordinary seed64 N, native Sill reports/notes, native map and ground route to generated FieldStrips, exact harvested grain eaten once, native return to Sill and F5/unsaved-step/F6 restores consumed grain absence/spent row/notes. No setup transfers or source grants.":"Ordinary seed64 N bootstrap and native map travel to actual Sill informant, explicit report notes/Q-Tab. Disclosed original-player transfers to unchanged generated field and selected wayhouse. Actual harvest, live-guard rear path with baseline reload, front key/door/reward, F5/unsaved-step/F6 notes and depleted-graph identity.",
+                cannotVerify=_district?DistrictLimits:_cards?CardsLimits:_ordinary?"One seed and one actual row only; not a balance/permanent safety/all-seed proof. Earned food use is consumption; no healing benefit at full HP. No shop-sale claim. Timing is short and includes audit IO. Screenshots require independent viewing.":"Not an ordinary continuous expedition journey: field/wayhouse transfers and a saved rear/front branch replay are explicit fixture setup. No generated source edits or HP/AI/gear/loot grants. No all-seed/balance/permanent-safety claim. Only passedChecks are observed; source generation/route refusal is retained. Screenshots require independent viewing."},Formatting.Indented);
             var parsed=JObject.Parse(json);Require(parsed["windows"] is JArray w&&w.Count==_windows.Count&&parsed["observations"] is JArray o&&o.Count==_observations.Count,"complete nested report evidence");File.WriteAllText(ReportPath,json);
         }
         void Cleanup(){if(_cleaned)return;_cleaned=true;if(_keyboard!=null){InputSystem.QueueStateEvent(_keyboard,new KeyboardState());InputSystem.RemoveDevice(_keyboard);}if(_oldKeyboard!=null&&_oldKeyboard.added)_oldKeyboard.MakeCurrent();if(_oldSettings!=null)InputSystem.settings=_oldSettings;if(_settings!=null)Destroy(_settings);Application.runInBackground=_oldBackground;}

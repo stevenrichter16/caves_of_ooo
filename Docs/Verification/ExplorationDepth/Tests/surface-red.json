@@ -1,0 +1,48 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "cf4290224a2e4d18b0aaf76f6b1e0281",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1790913826763,
+      "finished_unix_ms": 1790913840005,
+      "last_update_unix_ms": 1790913840005,
+      "progress": {
+        "completed": 5,
+        "total": 5,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1790913839800,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.GleanersDistrictTests.OrdinaryGladeHasBrokenWellAndNativePairedCellar(729490642)",
+        "last_finished_unix_ms": 1790913839853,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersDistrictTests.DestroyedAndEmptiedDistrictDoesNotRegenerateOnUnload",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersDistrictTests.OrdinaryGladeHasBrokenWellAndNativePairedCellar(64)",
+            "message": "  The ordinary starting district needs a useful material repair.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersDistrictTests.OrdinaryGladeHasBrokenWellAndNativePairedCellar(1729)",
+            "message": "  The ordinary starting district needs a useful material repair.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersDistrictTests.OrdinaryGladeHasBrokenWellAndNativePairedCellar(729490642)",
+            "message": "  The ordinary starting district needs a useful material repair.\n  Expected: not null\n  But was:  null\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

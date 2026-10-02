@@ -25,12 +25,20 @@ namespace CavesOfOoo.Editor
         public static void Run() => LaunchCore(true);
         public static void LaunchCards() => LaunchCore(false,false,true);
         public static void LaunchOrdinary() => LaunchCore(false,true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Gleaners District Ordinary Audit")]
+        public static void LaunchDistrict() => LaunchCore(false,district:true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Gleaners District Mirrored Audit")]
+        public static void LaunchDistrictMirrored() => LaunchCore(false,district:true,seed:1729);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Gleaners District Confrontation Audit")]
+        public static void LaunchDistrictCombat() => LaunchCore(false,district:true,districtCombat:true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Gleaners District Preparation Audit")]
+        public static void LaunchDistrictPrepared() => LaunchCore(false,district:true,districtPrepared:true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Discovery Native Audit")]
         public static void Launch() => LaunchCore(false);
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Discovery Native Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false)
+        private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false,bool district=false,int seed=64,bool districtCombat=false,bool districtPrepared=false)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the Spread discovery audit.");
@@ -46,9 +54,12 @@ namespace CavesOfOoo.Editor
             SessionState.SetString(Prefix + "scenes", JsonUtility.ToJson(new SceneRows { rows = snapshot }));
             SessionState.SetString(Prefix + "oldStartScene", AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene) ?? "");
             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
-            SessionState.SetInt(Prefix + "seed", 64);
+            SessionState.SetInt(Prefix + "seed", seed);
             SessionState.SetBool(Prefix + "ordinary", ordinary);
             SessionState.SetBool(Prefix + "cards", cards);
+            SessionState.SetBool(Prefix + "district", district);
+            SessionState.SetBool(Prefix + "districtCombat", districtCombat);
+            SessionState.SetBool(Prefix + "districtPrepared", districtPrepared);
             SessionState.SetBool(Prefix + "active", true);
             SessionState.SetBool(Prefix + "restoreScenes", false);
             SessionState.SetBool(Prefix + "exitEditor", exitEditor);
@@ -75,7 +86,7 @@ namespace CavesOfOoo.Editor
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
             new GameObject("Spread Discovery Native Audit").AddComponent<SpreadDiscoveryNativePlayer>()
-                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"ordinary",false),SessionState.GetBool(Prefix+"cards",false));
+                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"ordinary",false),SessionState.GetBool(Prefix+"cards",false),SessionState.GetBool(Prefix+"district",false),SessionState.GetBool(Prefix+"districtCombat",false),SessionState.GetBool(Prefix+"districtPrepared",false));
         }
         private static void Poll()
         {

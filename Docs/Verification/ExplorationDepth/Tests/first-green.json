@@ -1,0 +1,36 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "093ed12e7a3c4502af8d921db4068142",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1790914399401,
+      "finished_unix_ms": 1790914419908,
+      "last_update_unix_ms": 1790914419908,
+      "progress": {
+        "completed": 128,
+        "total": 128,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1790914419584,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.SkillSubstrateTests.S6_ANegativeCostRowCannotBeBought",
+        "last_finished_unix_ms": 1790914419585,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.GleanersCellarBuilderTests.MalformedPhysicalOrCallbackContentIsRejectedAtomically(\"wall-passable\")",
+            "message": "  Expected: False\n  But was:  True\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

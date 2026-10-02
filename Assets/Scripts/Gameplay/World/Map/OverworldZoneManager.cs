@@ -147,6 +147,15 @@ namespace CavesOfOoo.Core
             if (poi != null && poi.Type == POIType.Root && wz <= 1)
                 return CreateRootPipeline(biome, wx, wy, wz);
 
+            // A current, physical glade stair owns this one shallow store.
+            // Old cached surface/cave graphs keep their literal contents.
+            if (zoneID == GleanersCellarBuilder.ZoneID && GleanersDistrict.CanBuildCellar(this))
+            {
+                var cellar = new ZoneGenerationPipeline();
+                cellar.AddBuilder(new GleanersCellarBuilder(WorldSeed));
+                return cellar;
+            }
+
             // Underground zones use a dedicated pipeline
             if (wz > 0)
                 return CreateUndergroundPipeline(wz,
@@ -1172,6 +1181,7 @@ namespace CavesOfOoo.Core
             return SpreadExplorationPlan.FinalizeGenerated(this,zone,zoneID,lairAccepted);
         }
         protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID)
+            && !GleanersDistrict.Retain(zoneID)
             && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true
             && !CurationIntakePart.Retain(this,zoneID) && !RepairCultivationSite.Retain(this,zoneID)
             && !BiomeCropPlacement.Retain(this,zoneID);
@@ -1236,6 +1246,9 @@ namespace CavesOfOoo.Core
                 return;
 
             RegionalSituations.OnZoneGenerated(zone, this);
+
+            if (zoneID == GleanersDistrict.SurfaceID)
+                GleanersDistrict.TryInstall(zone, this);
 
             if (zoneID == MorrowfastExpedition.FieldZoneId && WorldMap.GetPOI(wx, wy) == null
                 && WorldMap.GetBiome(wx, wy) == BiomeType.Grovelands)
@@ -1353,6 +1366,11 @@ namespace CavesOfOoo.Core
         protected override void PrepareZoneForAccess(string zoneID)
         {
             Exploration?.ValidateAccess(this,zoneID);
+            // Lateral first entry still establishes the real surface endpoint.
+            // A cached old cellar is returned verbatim without creating a parent.
+            if (zoneID == GleanersCellarBuilder.ZoneID && !CachedZones.ContainsKey(zoneID)
+                && GleanersDistrict.SupportsColumn(this))
+                GetZone(GleanersDistrict.SurfaceID);
             if (zoneID == MultiCellPilotRuntime.ZoneID)
             {
                 WorldMap.RehydrateMultiCellPilot();
