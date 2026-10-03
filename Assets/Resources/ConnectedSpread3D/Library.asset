@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9cc0a6d0a874abb91bbdcc628a0ad61, type: 3}
   m_Name: Library
   m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.ConnectedSpread3DLibrary
-  SourceSha256: 26c3c780a92d45047065bb6fdbc5e80e24a46aec9bed53d1188ec2af78a2f0a1
+  SourceSha256: f02bf7a9c5a8d3f38a20a4379a8edb88b5e801ae384219c007ede49ab98f4069
   Material: {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
   Entries:
   - Id: connected-spread-pan-cracked
@@ -237,5 +237,69 @@ MonoBehaviour:
       boundsCenter: {x: 0, y: 0.16, z: 0}
       boundsSize: {x: 0.93, y: 0.32, z: 0.93}
       triangles: 168
+      clips: []
+      sockets: []
+  - Id: connected-spread-wicket-closed
+    Prefab: {fileID: 9061628176617780881, guid: 7d1213be09efc4f83a99987731010e7e, type: 3}
+    Mesh: {fileID: 4300000, guid: 6bd7500c110104572a56df400ce826cf, type: 2}
+    Spec:
+      id: connected-spread-wicket-closed
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-wicket-closed.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.48, z: 0}
+      boundsSize: {x: 1, y: 0.96, z: 0.2}
+      triangles: 156
+      clips: []
+      sockets: []
+  - Id: connected-spread-wicket-buckled
+    Prefab: {fileID: 7016704052561942285, guid: 298fe38dbac0a41fea2c05cbb7d8b1be, type: 3}
+    Mesh: {fileID: 4300000, guid: 4604330b8b7224d299ef97cc4416f631, type: 2}
+    Spec:
+      id: connected-spread-wicket-buckled
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-wicket-buckled.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.48, z: -0.012499999}
+      boundsSize: {x: 1, y: 0.96, z: 0.225}
+      triangles: 144
+      clips: []
+      sockets: []
+  - Id: connected-spread-wicket-open
+    Prefab: {fileID: 1252027922700921702, guid: 1f8c1ece0611940ce97cf22da3cfedc6, type: 3}
+    Mesh: {fileID: 4300000, guid: 97ec19390f6584776ad4106cddd30044, type: 2}
+    Spec:
+      id: connected-spread-wicket-open
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-wicket-open.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.48, z: -0.025000006}
+      boundsSize: {x: 1, y: 0.96, z: 0.84000003}
+      triangles: 156
+      clips: []
+      sockets: []
+  - Id: connected-spread-timber-pallet
+    Prefab: {fileID: 5240776929064515564, guid: 0dc900666312c45659d366ae72d731ec, type: 3}
+    Mesh: {fileID: 4300000, guid: 8d2ae0f2a37b54b6f88aa5b54e96df98, type: 2}
+    Spec:
+      id: connected-spread-timber-pallet
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-timber-pallet.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.268, z: 0}
+      boundsSize: {x: 0.92, y: 0.536, z: 0.88}
+      triangles: 180
       clips: []
       sockets: []

@@ -17,11 +17,13 @@ namespace CavesOfOoo.Core
         public int Priority=>2000;
         readonly int seed;
         readonly bool connected;
+        readonly bool fieldwork;
         readonly string worldKey;
         static readonly string[] Required={"Floor","StoneWall","StairsUp","Crate","FireClay","FallenBeam","Signpost",
             "MarlbackScrabbler","ShatteredRimeGrimoire","Buckler","Dagger","Hatchet","Cudgel","LeatherCap","LeatherGloves"};
         public GleanersCellarBuilder(int seed):this(seed,false){}
-        public GleanersCellarBuilder(int seed, bool connected, string worldKey=null){this.seed=seed;this.connected=connected;this.worldKey=worldKey;}
+        public GleanersCellarBuilder(int seed, bool connected, string worldKey=null,bool fieldwork=false)
+        {this.seed=seed;this.connected=connected;this.worldKey=worldKey;this.fieldwork=fieldwork;}
 
         /// <summary>Read-only content admission; malformed runtime owners still fail staging.
         /// Both finite reward packages are required so content availability never rerolls a seed.</summary>
@@ -44,6 +46,7 @@ namespace CavesOfOoo.Core
         {
             if(zone==null||zone.ZoneID!=ZoneID||zone.EntityCount!=0||!SupportsContent(factory))return Reject(zone,"invalid-empty-zone-or-content");
             if(connected&&!factory.Blueprints.ContainsKey("SootrootCrop"))return Reject(zone,"missing-sootroot");
+            if(fieldwork&&(!connected||!factory.Blueprints.ContainsKey("GleanersTimberPallet")||!factory.Blueprints.ContainsKey("SalvagedTimber")))return Reject(zone,"missing-fieldwork-content");
             var reservationBefore=new HashSet<(int x,int y)>(zone.GenReservedCells);
             var staged=new List<(Entity owner,int x,int y)>();var createdIds=new HashSet<string>(StringComparer.Ordinal);
             var createdOwners=new Dictionary<Entity,(string blueprint,string id)>();
@@ -145,6 +148,12 @@ namespace CavesOfOoo.Core
                     }
                     Describe(notice,"gleaners' cellar tally",notice.GetPart<ExaminablePart>().Text+" Two sootroot beds survive behind the store: one ripe, one dry. Water the dry seedling; it will keep growing while you travel. Harvested pulp can smother a burn, or take two pulp and pitchpod resin to Ivrin's public ink desk at Marrowstye, southeast of the glade.");
                 }
+                Entity pallet=null;
+                if(fieldwork)
+                {
+                    pallet=Place("GleanersTimberPallet","timber-pallet",storeX+1,MirrorY(8));
+                    Describe(notice,"gleaners' cellar tally",notice.GetPart<ExaminablePart>().Text+" A loose timber pallet stands beside the stores. Haul it as a solid load, or dismantle it for two sound lengths to brace the buckled garden wicket above. Dismantling consumes the pallet; the stone service passage remains open either way.");
+                }
                 // Creation hooks may modify an earlier staged owner. Verify the final
                 // collision, useful supplies and fixed identities after the LAST hook,
                 // rather than trusting the checks made when that owner was first created.
@@ -161,7 +170,7 @@ namespace CavesOfOoo.Core
                 }
                 bool RoleMatches(Entity e,string role,string blueprint)=>e.GetProperty(RoleKey)==role&&Fresh(e,blueprint);
                 var finalHandling=beam.GetPart<HandlingPart>();var finalBrain=guard.GetPart<BrainPart>();
-                if(roots.Where((e,i)=>!Fresh(e,"SootrootCrop")||e.GetPart<CropPart>()?.GrowthStage!=(i==0?2:0)||e.GetPart<CropPart>()?.MoistureTicks!=0).Any()
+                if((fieldwork&&!ValidPallet(pallet))||roots.Where((e,i)=>!Fresh(e,"SootrootCrop")||e.GetPart<CropPart>()?.GrowthStage!=(i==0?2:0)||e.GetPart<CropPart>()?.MoistureTicks!=0).Any()
                     ||!TerrainMatches()||createdOwners.Any(pair=>pair.Key.ID!=pair.Value.id||pair.Key.BlueprintName!=pair.Value.blueprint)
                     ||!RoleMatches(stairs,"stairs","StairsUp")||!stairs.HasPart<StairsUpPart>()||stairs.GetPart<PhysicsPart>().Solid||stairs.HasTag("Solid")
                     ||!RoleMatches(notice,"notice","Signpost")||!notice.GetPart<PhysicsPart>().Solid||notice.GetPart<PhysicsPart>().Takeable
@@ -194,6 +203,15 @@ namespace CavesOfOoo.Core
                 if(!complete)
                     foreach(var e in published.AsEnumerable().Reverse())if(e.SpatialZone==zone)zone.RemoveEntity(e);
             }
+        }
+        static bool ValidPallet(Entity e)
+        {
+            var p=e?.GetPart<PhysicsPart>();var h=e?.GetPart<HandlingPart>();var harvest=e?.GetPart<HarvestablePart>();
+            return Fresh(e,"GleanersTimberPallet")&&e.GetProperty(RoleKey)=="timber-pallet"&&p.Solid&&!p.Takeable&&p.Weight==90
+                &&h?.ParentEntity==e&&h.Weight==90&&!h.Carryable&&!h.Throwable&&h.MinLiftStrength==0
+                &&harvest?.ParentEntity==e&&!harvest.Harvested&&harvest.YieldBlueprint=="SalvagedTimber"
+                &&harvest.YieldMin==2&&harvest.YieldMax==2&&harvest.YieldChance==100
+                &&!e.HasPart<ContainerPart>()&&!e.HasPart<InventoryPart>()&&!e.HasTag("Creature")&&!e.HasPart<DestructiblePart>();
         }
         static bool Fresh(Entity e,string blueprint)=>e!=null&&e.BlueprintName==blueprint&&!string.IsNullOrEmpty(e.ID)&&e.SpatialZone==null
             &&e.GetPart<PhysicsPart>() is PhysicsPart p&&p.ParentEntity==e&&p.InInventory==null&&p.Equipped==null

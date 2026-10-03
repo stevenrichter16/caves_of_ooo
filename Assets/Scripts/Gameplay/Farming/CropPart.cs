@@ -91,6 +91,10 @@ namespace CavesOfOoo.Core
         {
             if (e.ID == "GetInventoryActions")
             {
+                var queryingActor = e.GetParameter<Entity>("Actor");
+                CropWateringService.AddActions(queryingActor, ParentEntity,
+                    e.GetParameter<Zone>("Zone") ?? queryingActor?.SpatialZone ?? SettlementRuntime.ActiveZone,
+                    e.GetParameter<InventoryActionList>("Actions"));
                 if (HarvestAtMaturity && GrowthStage == 2)
                 {
                     bool claimed = LocalGatheringClaims.WarningFor(e.GetParameter<Entity>("Actor"), ParentEntity,
@@ -98,6 +102,14 @@ namespace CavesOfOoo.Core
                     e.GetParameter<InventoryActionList>("Actions")?.AddAction("Harvest", claimed ? "harvest (Nella's tied reserve)" : "harvest", "HarvestCultivatedCrop", 'h', 20);
                 }
                 return true;
+            }
+            if (e.ID == "InventoryAction" && CropWateringService.IsCommand(e.GetStringParameter("Command")))
+            {
+                if (!CropWateringService.TryWater(e.GetParameter<Entity>("Actor"), ParentEntity,
+                    e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone,
+                    e.GetStringParameter("Command"), e.GetParameter<InventoryTransaction>("InventoryTransaction"))) return true;
+                e.Handled = true;
+                return false;
             }
             if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != "HarvestCultivatedCrop") return true;
             var actor = e.GetParameter<Entity>("Actor");
@@ -207,7 +219,7 @@ namespace CavesOfOoo.Core
                 return "Growth: ripe. Harvest this crop by hand; its produce and saved seed remain here to pick up. The prepared bed can be planted again.";
             return "Growth: " + (GrowthStage == 0 ? "seed" : "sprout") + ". Soil is "
                 + (MoistureTicks > 0 ? "moist; growth continues." : "dry; growth is paused.")
-                + " Conjure Rain nearby to water this crop. "
+                + " Conjure Rain nearby to water this crop, or use a carried vessel of clean water on a prepared bed. "
                 + (HarvestAtMaturity ? "At maturity, Harvest by hand; produce and saved seed remain here to pick up."
                     : "At maturity, produce falls here to pick up.")
                 + " Growth follows passing world time while the soil is moist.";

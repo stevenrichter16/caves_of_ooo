@@ -23,12 +23,16 @@ namespace CavesOfOoo.Core
         }
         public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder producer,Entity hedge,
             Func<bool> authority,out Entity gate,out Func<bool> finalState)
+            =>TryPlace(zone,factory,producer,hedge,authority,false,out gate,out finalState);
+        public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder producer,Entity hedge,
+            Func<bool> authority,bool buckled,out Entity gate,out Func<bool> finalState)
         {
             gate=null;finalState=null;
+            string blueprint=buckled?"GleanersBuckledWicket":"SpreadFieldGate";
             var receipt=producer?.PassageSource(hedge);
             bool Source()=>Eligible(zone,hedge)&&receipt!=null&&receipt.Zone==zone&&ReferenceEquals(receipt.Factory,factory)
                 &&ReferenceEquals(producer.PassageSource(hedge),receipt)&&receipt.IsCurrent;
-            if(factory==null||authority==null||!Source()||!authority()||!Source()||!factory.Blueprints.ContainsKey("SpreadFieldGate"))return false;
+            if(factory==null||authority==null||!Source()||!authority()||!Source()||!factory.Blueprints.ContainsKey(blueprint))return false;
             var at=zone.GetEntityPosition(hedge);
             var original=new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>());
             var opened=new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>{hedge});
@@ -46,8 +50,8 @@ namespace CavesOfOoo.Core
             var sideProof=SpreadGenerationReceipt.CaptureFinalState(zone,sides);
             bool Ready()=>Source()&&sideProof()&&Layout(zone,hedge,at,horizontal,original);
             if(!authority()||!Ready())return false;
-            var made=factory.CreateEntity("SpreadFieldGate");
-            if(!ValidGate(made,false)||!authority()||!Ready()||!ValidGate(made,false)
+            var made=factory.CreateEntity(blueprint);
+            if(!ValidGate(made,false,buckled)||!authority()||!Ready()||!ValidGate(made,false,buckled)
                 ||zone.GetReadOnlyEntities().Any(e=>e.ID==made.ID))return false;
             made.GetPart<DoorPart>().QuarterTurns=horizontal?1:0;
             if(!receipt.TryConsume())return false;
@@ -61,7 +65,7 @@ namespace CavesOfOoo.Core
                 gateProof=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{made});
                 bool Final()=>authority()&&producer.OwnsPassageReceipt(receipt)&&sideProof()&&detached()
                     &&!zone.GetReadOnlyEntities().Any(e=>e.ID==hedge.ID)
-                    &&gateProof()&&ValidGate(made,true)&&zone.GetEntityPosition(made)==at
+                    &&gateProof()&&ValidGate(made,true,buckled)&&zone.GetEntityPosition(made)==at
                     &&Layout(zone,made,at,horizontal,original);
                 if(!Final())return false;
                 gate=made;finalState=Final;success=true;return true;
@@ -79,10 +83,16 @@ namespace CavesOfOoo.Core
                 }
             }
         }
-        static bool ValidGate(Entity e,bool placed)
+        internal static bool ValidGate(Entity e,bool placed,bool buckled=false)
         {
             var p=e?.GetPart<PhysicsPart>();var d=e?.GetPart<DoorPart>();var h=e?.GetPart<DestructiblePart>();var r=e?.GetPart<RenderPart>();
-            return e?.BlueprintName=="SpreadFieldGate"&&!string.IsNullOrEmpty(e.ID)&&e.Parts.All(part=>part!=null&&part.ParentEntity==e)
+            var repair=e?.GetPart<RepairablePart>();var composition=e?.GetPart<CompositionPart>();
+            bool fault=buckled
+                ? repair?.ParentEntity==e&&repair.RecipeId=="timber-wicket-hinge"&&!repair.Repaired&&repair.RepairedBy==null
+                    &&string.IsNullOrEmpty(repair.RepairCauseID)&&composition?.ParentEntity==e&&composition.Contains("Wood")
+                    &&e.Parts.Count(part=>part is RepairablePart)==1&&e.Parts.Count(part=>part is CompositionPart)==1
+                :repair==null&&composition==null;
+            return fault&&e?.BlueprintName==(buckled?"GleanersBuckledWicket":"SpreadFieldGate")&&!string.IsNullOrEmpty(e.ID)&&e.Parts.All(part=>part!=null&&part.ParentEntity==e)
                 &&p?.ParentEntity==e&&!p.Solid&&!p.Takeable&&p.InInventory==null&&p.Equipped==null
                 &&d?.ParentEntity==e&&d.IsClosed&&string.IsNullOrEmpty(d.OwnerId)&&d.QuarterTurns>=0&&d.QuarterTurns<=3
                 &&h?.ParentEntity==e&&h.HP==10&&h.MaxHP==10&&!h.Gone&&!h.Indestructible&&h.Hardness==0&&string.IsNullOrEmpty(h.WreckageBlueprint)

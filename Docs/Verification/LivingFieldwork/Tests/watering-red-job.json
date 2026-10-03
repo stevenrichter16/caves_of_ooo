@@ -1,0 +1,132 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "9c82b6eeff7d44ff90483770d9c161cc",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1790995844882,
+      "finished_unix_ms": 1790995860343,
+      "last_update_unix_ms": 1790995860343,
+      "progress": {
+        "completed": 39,
+        "total": 39,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1790995860057,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.WetTopUpPreservesFractionAndUsesMaximumRatherThanAddition",
+        "last_finished_unix_ms": 1790995860077,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringInputSaveTests.ActualWorldSelectionPaysOneActionOnlyAfterCommittedIrrigation(\"skin\",\"valid\")",
+            "message": "  The native crop menu must expose exact carried-water selection.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringInputSaveTests.ActualWorldSelectionPaysOneActionOnlyAfterCommittedIrrigation(\"flask\",\"valid\")",
+            "message": "  The native crop menu must expose exact carried-water selection.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringInputSaveTests.ActualWorldSelectionPaysOneActionOnlyAfterCommittedIrrigation(\"skin\",\"empty\")",
+            "message": "  The native crop menu must expose exact carried-water selection.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringInputSaveTests.ActualWorldSelectionPaysOneActionOnlyAfterCommittedIrrigation(\"flask\",\"empty\")",
+            "message": "  The native crop menu must expose exact carried-water selection.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringInputSaveTests.ActualWorldSelectionPaysOneActionOnlyAfterCommittedIrrigation(\"skin\",\"before\")",
+            "message": "  The native crop menu must expose exact carried-water selection.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringInputSaveTests.ActualWorldSelectionPaysOneActionOnlyAfterCommittedIrrigation(\"flask\",\"before\")",
+            "message": "  The native crop menu must expose exact carried-water selection.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringInputSaveTests.ActualWorldSelectionPaysOneActionOnlyAfterCommittedIrrigation(\"skin\",\"after\")",
+            "message": "  The native crop menu must expose exact carried-water selection.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringInputSaveTests.ActualWorldSelectionPaysOneActionOnlyAfterCommittedIrrigation(\"flask\",\"after\")",
+            "message": "  The native crop menu must expose exact carried-water selection.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringInputSaveTests.CancellingTheRealMenuDoesNotWaterOrChargeTime",
+            "message": "  The native crop menu must expose exact carried-water selection.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringInputSaveTests.FullSaveGraphPreservesOnlyPaidWaterAndContinuesItsWetFraction(\"skin\",True)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringInputSaveTests.FullSaveGraphPreservesOnlyPaidWaterAndContinuesItsWetFraction(\"flask\",True)",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.ChangedPhysicalContextRefusesThePreviouslyOfferedWater(\"far\")",
+            "message": "  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.ChangedPhysicalContextRefusesThePreviouslyOfferedWater(\"removed\")",
+            "message": "  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.ChangedPhysicalContextRefusesThePreviouslyOfferedWater(\"flooded\")",
+            "message": "  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.ChangedPhysicalContextRefusesThePreviouslyOfferedWater(\"dead\")",
+            "message": "  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.CompatibilityBoundaryRequiresPreparedSoilEvenForLegacyCrops(True)",
+            "message": "  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.DueMaturityIsSettledBeforeRefusingWaterAndNeverDebits(False)",
+            "message": "  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.DueMaturityIsSettledBeforeRefusingWaterAndNeverDebits(True)",
+            "message": "  stage\n  Expected: 2\n  But was:  1\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.ExactCarriedWaterUnitTopsOnePreparedCropWithoutMakingAPool(\"skin\")",
+            "message": "  A real planted crop must offer the exact carried vessel in the world menu.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.ExactCarriedWaterUnitTopsOnePreparedCropWithoutMakingAPool(\"gourd\")",
+            "message": "  A real planted crop must offer the exact carried vessel in the world menu.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.ExactCarriedWaterUnitTopsOnePreparedCropWithoutMakingAPool(\"flask\")",
+            "message": "  A real planted crop must offer the exact carried vessel in the world menu.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.LastUnitLeavesTheSameReusableEmptyVessel(\"skin\")",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.LastUnitLeavesTheSameReusableEmptyVessel(\"flask\")",
+            "message": "  Expected: True\n  But was:  False\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.MenuReadsDoNotReconcileElapsedGrowthOrSpendResources",
+            "message": "  Expected: 1\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.OldDryIntervalCannotBorrowTheNewWater",
+            "message": "  Expected: True\n  But was:  False\n"
+          }
+        ],
+        "failures_capped": true
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

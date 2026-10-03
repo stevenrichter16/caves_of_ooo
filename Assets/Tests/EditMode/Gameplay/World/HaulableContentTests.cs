@@ -35,7 +35,9 @@ namespace CavesOfOoo.Tests
             ("FallenBeam", 60, 8),
             ("HaulBarrel", 75, 10),
             ("SaltCuredBody", 90, 12),
+            ("GleanersTimberPallet", 90, 12),
             ("StoneCoffer", 110, 14),
+            ("ConnectedHeavyFrame", 136, 17),
             ("SmithAnvil", 120, 18),   // grip-gated: MinLiftStrength 18 > weight's 15
             ("MillStone", 150, 19),
         };

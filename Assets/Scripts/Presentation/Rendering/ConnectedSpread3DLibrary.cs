@@ -12,7 +12,7 @@ namespace CavesOfOoo.Rendering
     {
         public const string ResourcePath = "ConnectedSpread3D/Library";
         public const string Folder = "Assets/Resources/ConnectedSpread3D";
-        public const string ReviewedSourceSha256 = "26c3c780a92d45047065bb6fdbc5e80e24a46aec9bed53d1188ec2af78a2f0a1";
+        public const string ReviewedSourceSha256 = "f02bf7a9c5a8d3f38a20a4379a8edb88b5e801ae384219c007ede49ab98f4069";
         public string SourceSha256;
         public Material Material;
         [Serializable] public sealed class Entry
@@ -94,6 +94,7 @@ namespace CavesOfOoo.Rendering
         public static bool IsPortable(string blueprint) => blueprint == "FieldMeal" || blueprint == "DitchkeepersFootwork";
         public static bool Handles(string blueprint) => IsPortable(blueprint) || blueprint == "ConnectedBatchPan"
             || blueprint == "ConnectedKitchenEscrow" || blueprint == "ConnectedKitchenPickup"
+            || blueprint == "GleanersBuckledWicket" || blueprint == "GleanersTimberPallet"
             || blueprint == "ConnectedReserveTray" || blueprint == "BotanicalInkDesk" || blueprint == "ConnectedHeavyFrame";
         public static string PortableModel(Entity owner)
         {
@@ -132,6 +133,21 @@ namespace CavesOfOoo.Rendering
             if (physics.Takeable || owner.HasTag("Item")) return null;
             switch (owner.BlueprintName)
             {
+                case "GleanersBuckledWicket":
+                    var door = owner.GetPart<DoorPart>(); var wicketRepair = owner.GetPart<RepairablePart>();
+                    if (physics.Solid || door?.ParentEntity != owner || wicketRepair?.ParentEntity != owner
+                        || wicketRepair.RecipeId != "timber-wicket-hinge" || owner.HasPart<LockPart>()
+                        || door.QuarterTurns < 0 || door.QuarterTurns > 3
+                        || render.RenderString != (door.IsClosed ? "+" : "/")) return null;
+                    return !wicketRepair.Repaired ? "connected-spread-wicket-buckled"
+                        : door.IsClosed ? "connected-spread-wicket-closed" : "connected-spread-wicket-open";
+                case "GleanersTimberPallet":
+                    var pallet = owner.GetPart<HarvestablePart>(); var palletHandling = owner.GetPart<HandlingPart>();
+                    return physics.Solid && pallet?.ParentEntity == owner && !pallet.Harvested
+                        && pallet.YieldBlueprint == "SalvagedTimber" && pallet.YieldMin == 2 && pallet.YieldMax == 2 && pallet.YieldChance == 100
+                        && palletHandling?.ParentEntity == owner && !palletHandling.Carryable && !palletHandling.Throwable
+                        && palletHandling.Weight == 90 && palletHandling.BulkClass == "Heavy"
+                        ? "connected-spread-timber-pallet" : null;
                 case "ConnectedBatchPan":
                     var repair = owner.GetPart<RepairablePart>(); var batch = owner.GetPart<KitchenBatchPart>();
                     if (repair?.ParentEntity != owner || batch?.ParentEntity != owner) return null;
@@ -169,7 +185,8 @@ namespace CavesOfOoo.Rendering
         internal static SpawnRing3DRecipe Recipe(Zone zone, Entity owner, string model)
         {
             var cell = zone.GetEntityCell(owner); bool portable = IsPortable(owner.BlueprintName);
-            return new SpawnRing3DRecipe(owner, model, null, Village3DProjection.CellCentre(cell.X, cell.Y), portable, !portable);
+            return new SpawnRing3DRecipe(owner, model, null, Village3DProjection.CellCentre(cell.X, cell.Y), portable, !portable && owner.BlueprintName != "GleanersTimberPallet" && owner.BlueprintName != "GleanersBuckledWicket",
+                quarterTurns: owner.BlueprintName == "GleanersBuckledWicket" ? owner.GetPart<DoorPart>().QuarterTurns : 0);
         }
     }
 }

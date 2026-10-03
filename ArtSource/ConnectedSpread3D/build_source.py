@@ -30,4 +30,17 @@ model('reserve-bed',[
  box('front-cord',(0,.215,-.44),(.9,.018,.018),17),box('back-cord',(0,.215,.44),(.9,.018,.018),17),
  box('left-cord',(-.44,.215,0),(.018,.018,.9),17),box('right-cord',(.44,.215,0),(.018,.018,.9),17),
  box('cloth-knot',(-.39,.21,-.44),(.085,.08,.036),17)])
+# Garden wicket: the aperture changes with the actual hinge state.
+posts=[box('hinge-post',(-.43,.45,0),(.14,.90,.18),20),box('latch-post',(.43,.43,0),(.14,.86,.18),18),box('post-cap',(-.43,.93,0),(.14,.06,.20),5)]
+closed=[box('upper-rail',(0,.64,0),(.72,.11,.09),18),box('lower-rail',(0,.25,0),(.72,.11,.09),18),*[box('picket-'+str(i),(-.26+i*.13,.46,0),(.065,.69,.10),5) for i in range(5)],box('upper-hinge',(-.36,.64,-.067),(.17,.065,.035),11),box('lower-hinge',(-.36,.25,-.067),(.17,.065,.035),11),box('latch',(.31,.57,-.069),(.17,.045,.04),11)]
+model('wicket-closed',deepcopy(posts)+deepcopy(closed))
+buckled=deepcopy(posts)+[box('jammed-bottom-rail',(.06,.17,-.075),(.73,.12,.10),20),box('fallen-upper-rail',(-.025,.49,-.055),(.72,.11,.11),18),box('torn-hinge',(-.34,.66,-.05),(.12,.12,.06),11),box('split-brace',(-.33,.29,-.085),(.075,.42,.07),5)]
+for i in range(5):buckled.append(box('sagged-picket-'+str(i),(-.26+i*.13,.37-abs(i-1)*.023,-.07),(.065,.58,.10),5))
+model('wicket-buckled',buckled)
+# Fold the rails along the inside of the left post; leave the cell centre clear.
+opened=[]
+for piece in closed:
+ b=deepcopy(piece);x=b['center']['x'];b['center']['x']=-.36+b['center']['z'];b['center']['z']=x;b['size']['x'],b['size']['z']=b['size']['z'],b['size']['x'];opened.append(b)
+model('wicket-open',deepcopy(posts)+opened)
+model('timber-pallet',[box('left-runner',(-.30,.12,0),(.15,.24,.88),20),box('right-runner',(.30,.12,0),(.15,.24,.88),20),*[box('bottom-plank-'+str(i),(0,.28,-.34+i*.17),(.92,.09,.135),18) for i in range(5)],*[box('salvage-plank-'+str(i),(-.32+i*.16,.39,0),(.125,.12,.84),5 if i%2 else 18) for i in range(5)],box('cross-brace',(0,.485,.21),(.87,.07,.085),20),box('iron-nail-left',(-.30,.527,.21),(.04,.018,.04),11),box('iron-nail-right',(.30,.527,.21),(.04,.018,.04),11)])
 (ROOT/'kit.json').write_text(json.dumps(dict(schemaVersion=1,id='connected-spread-original',palette=PALETTE,models=models),indent=2)+'\n')

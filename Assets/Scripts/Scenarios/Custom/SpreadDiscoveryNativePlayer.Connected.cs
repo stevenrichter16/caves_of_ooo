@@ -106,6 +106,7 @@ namespace CavesOfOoo.Scenarios.Custom
         IEnumerator ConnectedDuelistDefense()
         {
             if(!Connected||_connectedBuild!="duelist"||_fighting)yield break;
+            if(_fieldwork){yield return FieldworkDuelistDefense();yield break;}
             var target=Threats(Zone).Where(e=>SpatialQuery.Distance(Zone,Player,e)<=1
                 &&!ReferenceGladeRouteControl.HasLiveCalm(Zone,e))
                 .OrderBy(e=>SpatialQuery.Distance(Zone,Player,e)).ThenBy(e=>e.ID,StringComparer.Ordinal).FirstOrDefault();

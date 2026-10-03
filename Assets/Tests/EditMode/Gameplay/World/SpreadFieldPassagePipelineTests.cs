@@ -67,7 +67,7 @@ namespace CavesOfOoo.Tests
         void Seed(int seed,string id)=>scope.Seed(unchecked(seed^FormationSelector.StableIndex(id,int.MaxValue)));
         string[] Selected(int seed)
         {
-            var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);Assert.AreEqual(11,m.Exploration.Version,"F12 pipeline tests exercise the current source policy; literal older assignments remain in manifest tests.");
+            var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);Assert.AreEqual(12,m.Exploration.Version,"F12 pipeline tests exercise the current source policy; literal older assignments remain in manifest tests.");
             var ids=m.Exploration.Entries.Where(e=>e.PlacementEligible&&e.Family.ToString()=="FieldPassage").Select(e=>e.ZoneID).ToArray();Assert.IsNotEmpty(ids);Assert.Zero(m.CachedZoneCount);return ids;
         }
         static (Cell a,Cell b,int closed) Approaches(Zone z,Entity gate)
@@ -86,12 +86,14 @@ namespace CavesOfOoo.Tests
             }
             Assert.Fail("Actual gate needs a physical diagonal-aware bypass longer than Open plus two moves.");return(null,null,0);
         }
-        static Entity Gate(Zone z)=>z.GetReadOnlyEntities().Single(e=>e.BlueprintName=="SpreadFieldGate");
+        static Entity Gate(Zone z)=>z.GetReadOnlyEntities().Single(e=>e.BlueprintName=="SpreadFieldGate"||e.BlueprintName=="GleanersBuckledWicket");
+        static string ExpectedGate(ObservedManager m,string id)
+            =>(uint)typeof(SpreadExplorationPlan).GetMethod("Rank",All).Invoke(null,new object[]{m.WorldSeed,id,"fieldwork-wicket"})%3==0?"GleanersBuckledWicket":"SpreadFieldGate";
         static void AssertConserved(ObservedManager m,Zone z,bool committed)
         {
             var owners=m.After;var removed=m.Before.Except(owners).ToArray();var added=owners.Except(m.Before).ToArray();Assert.AreEqual(m.Before.Length,owners.Length);
             CollectionAssert.AreEquivalent(owners,z.GetReadOnlyEntities(),"Normal post-generation naming may not replace or add unrelated owners.");
-            if(committed){Assert.AreEqual(1,removed.Length);Assert.AreEqual("Hedge",removed[0].BlueprintName);Assert.AreEqual(1,added.Length);Assert.AreEqual("SpreadFieldGate",added[0].BlueprintName);Assert.AreEqual(m.Positions[Array.IndexOf(m.Before,removed[0])],z.GetEntityPosition(added[0]));Assert.Null(z.GetEntityCell(removed[0]));}
+            if(committed){Assert.AreEqual(1,removed.Length);Assert.AreEqual("Hedge",removed[0].BlueprintName);Assert.AreEqual(1,added.Length);Assert.AreEqual(ExpectedGate(m,z.ZoneID),added[0].BlueprintName);Assert.AreEqual(m.Positions[Array.IndexOf(m.Before,removed[0])],z.GetEntityPosition(added[0]));Assert.Null(z.GetEntityCell(removed[0]));}
             else{Assert.IsEmpty(removed);Assert.IsEmpty(added);}
             for(int i=0;i<m.Before.Length;i++){var owner=m.Before[i];if(removed.Contains(owner))continue;int j=Array.IndexOf(m.After,owner);Assert.AreEqual(m.Positions[i],m.AfterPositions[j],owner.BlueprintName+" synchronous position");Assert.AreEqual(m.Facts[i],m.AfterFacts[j],owner.BlueprintName+" exact stock/gear/state through composition");CollectionAssert.AreEqual(m.Parts[i],m.AfterParts[j],owner.BlueprintName+" original parts through composition");}
         }
@@ -118,7 +120,7 @@ namespace CavesOfOoo.Tests
                     CollectionAssert.AreEqual(current.AfterParts[Array.IndexOf(current.After,owner)],owner.Parts,id+" no late unrelated part replacement");
                 }
                 if(done){report.committed++;Assert.AreEqual("FieldPassage",current.Composer.LastResult);Assert.AreEqual(1,current.Callbacks);var gate=Gate(z);Assert.True(gate.GetPart<DoorPart>().IsClosed);Assert.IsEmpty(gate.GetPart<DoorPart>().OwnerId);Assert.False(gate.HasPart<LockPart>());Assert.False(gate.HasPart<InventoryPart>());Assert.False(gate.HasPart<ContainerPart>());Assert.AreEqual(10,gate.GetPart<DestructiblePart>().HP);closed=Approaches(z,gate).closed;}
-                else{report.refused++;Assert.False(z.GetReadOnlyEntities().Any(e=>e.BlueprintName=="SpreadFieldGate"));}
+                else{report.refused++;Assert.False(z.GetReadOnlyEntities().Any(e=>e.BlueprintName=="SpreadFieldGate"||e.BlueprintName=="GleanersBuckledWicket"));}
                 var facts=z.GetReadOnlyEntities().Select(Exact).ToArray();current.UnloadZone(id);Assert.AreSame(z,current.GetZone(id),"Accepted graph cannot regenerate/reward-refill on explicit unload.");CollectionAssert.AreEqual(facts,z.GetReadOnlyEntities().Select(Exact));
                 report.rows.Add(new CensusRow{zone=id,result=current.Composer.LastResult,owners=z.EntityCount,rawPrecompositionHedges=current.Before.Count(e=>e.BlueprintName=="Hedge"),baselineMilliseconds=baselineMs,currentMilliseconds=currentMs,closedSteps=closed,nextRng=current.NextRng,committed=done});
             }
@@ -134,7 +136,7 @@ namespace CavesOfOoo.Tests
             var m=new ObservedManager(scope.Factory,seed,after:(self,z)=>
             {
                 var gate=Gate(z);var a=Approaches(z,gate).a;
-                if(mutation=="replace-gate"){changed=z.GetEntityCell(gate);Assert.True(z.RemoveEntity(gate));foreign=scope.Factory.CreateEntity("SpreadFieldGate");foreign.ID=gate.ID;Assert.True(z.AddEntity(foreign,changed.X,changed.Y));}
+                if(mutation=="replace-gate"){changed=z.GetEntityCell(gate);Assert.True(z.RemoveEntity(gate));foreign=scope.Factory.CreateEntity(gate.BlueprintName);foreign.ID=gate.ID;Assert.True(z.AddEntity(foreign,changed.X,changed.Y));}
                 if(mutation=="block-approach"){changed=a;foreign=scope.Factory.CreateEntity("StoneWall");Assert.True(z.AddEntity(foreign,a.X,a.Y));}
                 if(mutation=="offroute"){foreign=scope.Factory.CreateEntity("Cudgel");Assert.True(z.AddEntity(foreign,0,0));}
             });
@@ -147,6 +149,12 @@ namespace CavesOfOoo.Tests
         {
             const int seed=64;string id=FindCommitted(seed);Seed(seed,id);var m=new ObservedManager(scope.Factory,seed);var z=m.GetZone(id);Assert.NotNull(z);var gate=Gate(z);var pos=z.GetEntityPosition(gate);var approach=Approaches(z,gate);string gateID=gate.ID;int axis=gate.GetPart<DoorPart>().QuarterTurns;
             var oldHedge=m.Before.Except(z.GetReadOnlyEntities()).Single();string hedgeID=oldHedge.ID;var player=scope.Factory.CreateEntity("Player");Assert.True(z.AddEntity(player,approach.a.X,approach.a.Y));m.SetActiveZone(z);
+            if(gate.GetPart<RepairablePart>() is RepairablePart fault)
+            {
+                Assert.False(gate.GetPart<DoorPart>().TrySetOpen(player,z,true),"A buckled gate must refuse ordinary opening before investment.");
+                for(int i=0;i<2;i++)Assert.True(player.GetPart<InventoryPart>().AddObject(scope.Factory.CreateEntity("SalvagedTimber")));
+                Assert.True(fault.TryRepair(player,z));
+            }
             var open=GameEvent.New("InventoryAction");try{open.SetParameter("Actor",player);open.SetParameter("Zone",z);open.SetParameter("Command",DoorPart.OpenCommand);gate.FireEvent(open);Assert.True(open.Handled);}finally{open.Release();}
             Assert.True(gate.GetPart<DoorPart>().IsOpen);Assert.AreEqual((approach.a.X,approach.a.Y),z.GetEntityPosition(player),"Opening is a separate stationary core action.");Assert.True(MovementSystem.TryMoveTo(player,z,pos.x,pos.y));Assert.True(MovementSystem.TryMoveTo(player,z,approach.b.X,approach.b.Y));
             if(broken){Assert.AreEqual(DestroyVerdict.Destroyed,DestructionSystem.Damage(gate,10,player,z));Assert.Null(z.GetEntityCell(gate));}
@@ -155,7 +163,7 @@ namespace CavesOfOoo.Tests
             // real keyboard travel/save is a separate native acceptance gate.
             var away=m.GetZone(ReferenceGladePlan.ZoneID);Assert.NotNull(away);Cell target=null;away.ForEachCell((c,x,y)=>{if(target==null&&away.CanPlaceFootprint(player,x,y))target=c;});Assert.NotNull(target);Assert.True(z.RemoveEntity(player));Assert.True(away.AddEntity(player,target.X,target.Y));m.SetActiveZone(away);m.UnloadZone(id);Assert.AreSame(z,m.GetZone(id));
             var state=GameSessionState.Capture("field-passage","direct-core-away-save",m,null,player);GameSessionState loaded;using(var stream=new MemoryStream()){state.Save(new SaveWriter(stream));stream.Position=0;loaded=GameSessionState.Load(new SaveReader(stream,scope.Factory));}
-            var restored=(OverworldZoneManager)loaded.ZoneManager;Assert.AreNotSame(m,restored);Assert.AreNotSame(player,loaded.Player);Assert.AreEqual(ReferenceGladePlan.ZoneID,restored.ActiveZone.ZoneID);Assert.AreEqual(11,restored.Exploration.Version);Assert.AreEqual(2,restored.Exploration.DispositionFor(id));var returned=restored.GetZone(id);Assert.NotNull(returned);Assert.AreNotSame(z,returned);Assert.AreEqual(expected.Count,returned.EntityCount);Assert.AreEqual(money,TradeSystem.GetDrams(loaded.Player));
+            var restored=(OverworldZoneManager)loaded.ZoneManager;Assert.AreNotSame(m,restored);Assert.AreNotSame(player,loaded.Player);Assert.AreEqual(ReferenceGladePlan.ZoneID,restored.ActiveZone.ZoneID);Assert.AreEqual(12,restored.Exploration.Version);Assert.AreEqual(2,restored.Exploration.DispositionFor(id));var returned=restored.GetZone(id);Assert.NotNull(returned);Assert.AreNotSame(z,returned);Assert.AreEqual(expected.Count,returned.EntityCount);Assert.AreEqual(money,TradeSystem.GetDrams(loaded.Player));
             foreach(var owner in returned.GetReadOnlyEntities()){Assert.True(expected.ContainsKey(owner.ID));Assert.AreEqual(expected[owner.ID].pos,returned.GetEntityPosition(owner));Assert.AreEqual(expected[owner.ID].facts,Exact(owner));}
             Assert.False(returned.GetReadOnlyEntities().Any(e=>e.ID==hedgeID));Assert.False(returned.GetCell(pos.x,pos.y).BlocksMovement());
             if(broken)Assert.False(returned.GetReadOnlyEntities().Any(e=>e.ID==gateID));else{var saved=returned.GetReadOnlyEntities().Single(e=>e.ID==gateID);Assert.AreNotSame(gate,saved);Assert.True(saved.GetPart<DoorPart>().IsOpen);Assert.AreEqual(axis,saved.GetPart<DoorPart>().QuarterTurns);}

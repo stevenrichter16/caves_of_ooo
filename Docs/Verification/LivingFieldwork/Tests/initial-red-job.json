@@ -1,0 +1,130 @@
+{
+  "success": true,
+  "message": "Test job status retrieved.",
+  "error": null,
+  "data": {
+    "job_id": "3b189c5553b54c8ca6a39163e5462de2",
+    "status": "failed",
+    "mode": "EditMode",
+    "started_unix_ms": 1790995789820,
+    "finished_unix_ms": 1790995812006,
+    "last_update_unix_ms": 1790995812006,
+    "progress": {
+      "completed": 73,
+      "total": 73,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1790995811714,
+      "last_finished_test_full_name": "CavesOfOoo.Tests.MundaneCropWateringTests.WetTopUpPreservesFractionAndUsesMaximumRatherThanAddition",
+      "last_finished_unix_ms": 1790995811735,
+      "stuck_suspected": false,
+      "editor_is_focused": false,
+      "blocked_reason": null,
+      "failures_so_far": [
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedHarvestActionTextTests.ConfiguredDisplayUsesTheExistingHarvestCommandAndSurvivesSave(True)",
+          "message": "  Expected string length 24 but was 7. Strings differ at index 0.\n  Expected: \"dismantle for timber (2)\"\n  But was:  \"harvest\"\n  -----------^\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedHarvestHaulRollbackTests.OuterRollbackRestoresSourceYieldAndHaulingState(True,False)",
+          "message": "  Rollback must restore the exact pre-command grip.\n  Expected: same as <CavesOfOoo.Core.DragPart>\n  But was:  null\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedHarvestHaulRollbackTests.OuterRollbackRestoresSourceYieldAndHaulingState(True,True)",
+          "message": "  Rollback must restore the exact pre-command grip.\n  Expected: same as <CavesOfOoo.Core.DragPart>\n  But was:  null\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedTimberPalletArtTests.FinitePalletUsesAMutableViewAndDismantlingRemovesOnlyItsActualOwner(False)",
+          "message": "  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedTimberPalletArtTests.FinitePalletUsesAMutableViewAndDismantlingRemovesOnlyItsActualOwner(True)",
+          "message": "  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedTimberPalletTests.ConsumedSourceAndExactGroundTimberStayConsumedAcrossASessionReplacement",
+          "message": "  Required authored finite source: GleanersTimberPallet\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedTimberPalletTests.DismantlingHeldPalletReleasesGripAndNeverPullsConsumedOwnerBack(False)",
+          "message": "  Required authored finite source: GleanersTimberPallet\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedTimberPalletTests.DismantlingHeldPalletReleasesGripAndNeverPullsConsumedOwnerBack(True)",
+          "message": "  Required authored finite source: GleanersTimberPallet\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedTimberPalletTests.EveryTimberUnitIsPackedOrLeftAtTheConsumedPalletCell(0)",
+          "message": "  Required authored finite source: GleanersTimberPallet\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedTimberPalletTests.EveryTimberUnitIsPackedOrLeftAtTheConsumedPalletCell(1)",
+          "message": "  Required authored finite source: GleanersTimberPallet\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedTimberPalletTests.EveryTimberUnitIsPackedOrLeftAtTheConsumedPalletCell(2)",
+          "message": "  Required authored finite source: GleanersTimberPallet\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedTimberPalletTests.HaulingHasAnHonestStrengthBoundaryButDismantlingDoesNot(11,False)",
+          "message": "  Required authored finite source: GleanersTimberPallet\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedTimberPalletTests.HaulingHasAnHonestStrengthBoundaryButDismantlingDoesNot(12,True)",
+          "message": "  Required authored finite source: GleanersTimberPallet\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.ConnectedTimberPalletTests.RealPalletOffersOneExplicitDismantleAlongsideHaulingAndExistingHarvestStaysNamed",
+          "message": "  Required authored finite source: GleanersTimberPallet\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.GleanersFieldworkArtTests.ActualWicketStateAndOrientationChooseDistinctModels(0)",
+          "message": "  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.GleanersFieldworkArtTests.ActualWicketStateAndOrientationChooseDistinctModels(1)",
+          "message": "  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.GleanersFieldworkArtTests.WorkingYardFormsAreImportedOriginalInertModels(\"wicket-buckled\")",
+          "message": "  Expected: collection containing \"connected-spread-wicket-buckled\"\n  But was:  < \"connected-spread-pan-cracked\", \"connected-spread-pan-empty\", \"connected-spread-pan-covered\", \"connected-spread-pan-ready\", \"connected-spread-pantry-empty\", \"connected-spread-pantry-full\", \"connected-spread-pickup-empty\", \"connected-spread-pickup-full\", \"connected-spread-reserve-tray\", \"connected-spread-field-meal\", \"connected-spread-ink-desk\", \"connected-spread-footwork-manual\", \"connected-spread-heavy-frame\", \"connected-spread-reserve-bed\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.GleanersFieldworkArtTests.WorkingYardFormsAreImportedOriginalInertModels(\"wicket-closed\")",
+          "message": "  Expected: collection containing \"connected-spread-wicket-closed\"\n  But was:  < \"connected-spread-pan-cracked\", \"connected-spread-pan-empty\", \"connected-spread-pan-covered\", \"connected-spread-pan-ready\", \"connected-spread-pantry-empty\", \"connected-spread-pantry-full\", \"connected-spread-pickup-empty\", \"connected-spread-pickup-full\", \"connected-spread-reserve-tray\", \"connected-spread-field-meal\", \"connected-spread-ink-desk\", \"connected-spread-footwork-manual\", \"connected-spread-heavy-frame\", \"connected-spread-reserve-bed\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.GleanersFieldworkArtTests.WorkingYardFormsAreImportedOriginalInertModels(\"wicket-open\")",
+          "message": "  Expected: collection containing \"connected-spread-wicket-open\"\n  But was:  < \"connected-spread-pan-cracked\", \"connected-spread-pan-empty\", \"connected-spread-pan-covered\", \"connected-spread-pan-ready\", \"connected-spread-pantry-empty\", \"connected-spread-pantry-full\", \"connected-spread-pickup-empty\", \"connected-spread-pickup-full\", \"connected-spread-reserve-tray\", \"connected-spread-field-meal\", \"connected-spread-ink-desk\", \"connected-spread-footwork-manual\", \"connected-spread-heavy-frame\", \"connected-spread-reserve-bed\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.GleanersFieldworkArtTests.WorkingYardFormsAreImportedOriginalInertModels(\"timber-pallet\")",
+          "message": "  Expected: collection containing \"connected-spread-timber-pallet\"\n  But was:  < \"connected-spread-pan-cracked\", \"connected-spread-pan-empty\", \"connected-spread-pan-covered\", \"connected-spread-pan-ready\", \"connected-spread-pantry-empty\", \"connected-spread-pantry-full\", \"connected-spread-pickup-empty\", \"connected-spread-pickup-full\", \"connected-spread-reserve-tray\", \"connected-spread-field-meal\", \"connected-spread-ink-desk\", \"connected-spread-footwork-manual\", \"connected-spread-heavy-frame\", \"connected-spread-reserve-bed\" >\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.GleanersFieldworkPlacementTests.ActualCellarPalletIsFiniteAndDoesNotReplaceOriginalGuardBeamOrSupplies",
+          "message": "  Expected: 1\n  But was:  0\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.GleanersFieldworkPlacementTests.FieldworkHasActualFunctionalBlueprints(\"GleanersBuckledWicket\")",
+          "message": "  Missing authored fieldwork content: GleanersBuckledWicket\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.GleanersFieldworkPlacementTests.FieldworkHasActualFunctionalBlueprints(\"GleanersTimberPallet\")",
+          "message": "  Missing authored fieldwork content: GleanersTimberPallet\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.GleanersFieldworkPlacementTests.FreshGladeHasOneClosedWicketAndAnInitiallyRipeUsefulGarden(64)",
+          "message": "  Every supported new glade needs its working-yard route, not another rare selection.\n  Expected: not null\n  But was:  null\n"
+        },
+        {
+          "full_name": "CavesOfOoo.Tests.GleanersFieldworkPlacementTests.FreshGladeHasOneClosedWicketAndAnInitiallyRipeUsefulGarden(1729)",
+          "message": "  Every supported new glade needs its working-yard route, not another rare selection.\n  Expected: not null\n  But was:  null\n"
+        }
+      ],
+      "failures_capped": true
+    },
+    "error": null,
+    "result": null
+  },
+  "hint": null
+}

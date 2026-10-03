@@ -9,7 +9,7 @@ namespace CavesOfOoo.Rendering
   public int schemaVersion;public string id;public string[] palette;public Model[] models;
   [Serializable]public sealed class Model{public string id;public Box[] boxes;}
   [Serializable]public sealed class Box{public string name;public Vector3 center,size;public int color;}
-  public static readonly string[] ModelIds={"connected-spread-pan-cracked","connected-spread-pan-empty","connected-spread-pan-covered","connected-spread-pan-ready","connected-spread-pantry-empty","connected-spread-pantry-full","connected-spread-pickup-empty","connected-spread-pickup-full","connected-spread-reserve-tray","connected-spread-field-meal","connected-spread-ink-desk","connected-spread-footwork-manual","connected-spread-heavy-frame","connected-spread-reserve-bed"};
+  public static readonly string[] ModelIds={"connected-spread-pan-cracked","connected-spread-pan-empty","connected-spread-pan-covered","connected-spread-pan-ready","connected-spread-pantry-empty","connected-spread-pantry-full","connected-spread-pickup-empty","connected-spread-pickup-full","connected-spread-reserve-tray","connected-spread-field-meal","connected-spread-ink-desk","connected-spread-footwork-manual","connected-spread-heavy-frame","connected-spread-reserve-bed","connected-spread-wicket-buckled","connected-spread-wicket-closed","connected-spread-wicket-open","connected-spread-timber-pallet"};
   static readonly HashSet<string> Known=new HashSet<string>(ModelIds,StringComparer.Ordinal);
   public static bool IsModelId(string id)=>id!=null&&Known.Contains(id);
   public void Validate()

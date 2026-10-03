@@ -152,7 +152,7 @@ namespace CavesOfOoo.Core
             if (zoneID == GleanersCellarBuilder.ZoneID && GleanersDistrict.CanBuildCellar(this))
             {
                 var cellar = new ZoneGenerationPipeline();
-                cellar.AddBuilder(new GleanersCellarBuilder(WorldSeed, Exploration?.Enabled==true && Exploration.Version>=11, Exploration?.WorldKey));
+                cellar.AddBuilder(new GleanersCellarBuilder(WorldSeed, Exploration?.Enabled==true && Exploration.Version>=11, Exploration?.WorldKey, Exploration?.Enabled==true && Exploration.Version>=12));
                 return cellar;
             }
 
@@ -187,7 +187,7 @@ namespace CavesOfOoo.Core
 
             if(zoneID==ReferenceGladePlan.ZoneID&&biome==BiomeType.Spread&&poi==null
                 &&ReferenceGladeBuilder.SupportsContent(Factory))
-            {var glade=new ZoneGenerationPipeline();glade.AddBuilder(new ReferenceGladeBuilder(WorldSeed));return glade;}
+            {var glade=new ZoneGenerationPipeline();glade.AddBuilder(new ReferenceGladeBuilder(WorldSeed, Exploration?.Enabled==true && Exploration.Version>=12));return glade;}
 
             // Determine tier from distance to center
             int tier = GetTierForCoords(wx, wy);

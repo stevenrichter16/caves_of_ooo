@@ -25,6 +25,8 @@ namespace CavesOfOoo.Editor
         public static void Run() => LaunchCore(true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Connected Spread Duelist Audit")]
         public static void LaunchConnectedDuelist() => LaunchCore(false,connectedBuild:"duelist");
+        [MenuItem("Caves Of Ooo/Scenarios/World/Living Fieldwork Ordinary Audit")]
+        public static void LaunchFieldwork() => LaunchCore(false,connectedBuild:"duelist",fieldwork:true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Connected Spread Stormcaller Audit")]
         public static void LaunchConnectedStormcaller() => LaunchCore(false,connectedBuild:"stormcaller");
         [MenuItem("Caves Of Ooo/Scenarios/World/Connected Spread Breaker Targeted Audit")]
@@ -46,7 +48,7 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Discovery Native Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false,bool district=false,int seed=64,bool districtCombat=false,bool districtPrepared=false,string connectedBuild=null)
+        private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false,bool district=false,int seed=64,bool districtCombat=false,bool districtPrepared=false,string connectedBuild=null,bool fieldwork=false)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the Spread discovery audit.");
@@ -64,6 +66,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
             SessionState.SetBool(Prefix + "oldBuildChoice", NativeAuditBootstrapSettings.AllowStartingBuildChoice);
             SessionState.SetString(Prefix + "connectedBuild", connectedBuild??"");
+            SessionState.SetBool(Prefix + "fieldwork", fieldwork);
             SessionState.SetInt(Prefix + "seed", seed);
             SessionState.SetBool(Prefix + "ordinary", ordinary);
             SessionState.SetBool(Prefix + "cards", cards);
@@ -97,7 +100,7 @@ namespace CavesOfOoo.Editor
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
             new GameObject("Spread Discovery Native Audit").AddComponent<SpreadDiscoveryNativePlayer>()
-                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"ordinary",false),SessionState.GetBool(Prefix+"cards",false),SessionState.GetBool(Prefix+"district",false),SessionState.GetBool(Prefix+"districtCombat",false),SessionState.GetBool(Prefix+"districtPrepared",false),SessionState.GetString(Prefix+"connectedBuild",""));
+                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"ordinary",false),SessionState.GetBool(Prefix+"cards",false),SessionState.GetBool(Prefix+"district",false),SessionState.GetBool(Prefix+"districtCombat",false),SessionState.GetBool(Prefix+"districtPrepared",false),SessionState.GetString(Prefix+"connectedBuild",""),SessionState.GetBool(Prefix+"fieldwork",false));
         }
         private static void Poll()
         {

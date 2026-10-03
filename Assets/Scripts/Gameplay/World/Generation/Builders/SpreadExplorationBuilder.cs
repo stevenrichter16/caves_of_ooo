@@ -140,7 +140,8 @@ namespace CavesOfOoo.Core
     // OnZoneGenerated work (including resident naming) is independently owned;
     // final passage authority covers the gate, supports and useful geometry.
     bool Authority()=>Current(z,f,entry)&&terrain.OwnsPassageReceipt(receipt)&&(!preparing||others());
-    if(SpreadExplorationPassage.TryPlace(z,f,terrain,hedge,Authority,out var gate,out var final))
+    bool buckled=plan.Enabled&&plan.Version>=12&&SpreadExplorationPlan.Rank(manager.WorldSeed,z.ZoneID,"fieldwork-wicket")%3==0;
+    if(SpreadExplorationPassage.TryPlace(z,f,terrain,hedge,Authority,buckled,out var gate,out var final))
      {preparing=false;return Commit(z,f,entry,new[]{gate},()=>Authority()&&final());}
     if(!Current(z,f,entry)||!original())return false;
    }

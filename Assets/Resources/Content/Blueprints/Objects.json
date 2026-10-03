@@ -50416,6 +50416,172 @@
       ],
       "Stats": [],
       "Tags": []
+    },
+    {
+      "Name": "GleanersBuckledWicket",
+      "Inherits": "SpreadFieldGate",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "timber wicket"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "timber-wicket-hinge"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Timber rails span a hinged gap. Sound hinges let the wicket open and close; damaged ones can be braced with two salvaged timber. The longer path around remains open. Breaking the rails leaves a permanent opening."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "GleanersTimberPallet",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "reclaimable timber pallet"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "90"
+            }
+          ]
+        },
+        {
+          "Name": "Handling",
+          "Params": [
+            {
+              "Key": "Weight",
+              "Value": "90"
+            },
+            {
+              "Key": "MinLiftStrength",
+              "Value": "0"
+            },
+            {
+              "Key": "Carryable",
+              "Value": "false"
+            },
+            {
+              "Key": "Throwable",
+              "Value": "false"
+            },
+            {
+              "Key": "BulkClass",
+              "Value": "Heavy"
+            }
+          ]
+        },
+        {
+          "Name": "Harvestable",
+          "Params": [
+            {
+              "Key": "YieldBlueprint",
+              "Value": "SalvagedTimber"
+            },
+            {
+              "Key": "YieldMin",
+              "Value": "2"
+            },
+            {
+              "Key": "YieldMax",
+              "Value": "2"
+            },
+            {
+              "Key": "YieldChance",
+              "Value": "100"
+            },
+            {
+              "Key": "ActionText",
+              "Value": "dismantle for timber (2)"
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Thick boards are stacked on two runners, still braced as one heavy pallet. A strong traveler can haul the whole solid load as a movable obstacle. Dismantling it yields exactly two salvaged timber and removes the pallet; the boards cannot be reclaimed twice. Sound timber can restore the buckled garden wicket above."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
     }
   ]
 }

@@ -33,10 +33,12 @@ namespace CavesOfOoo.Core
         public IReadOnlyList<Placement> Placements {get;private set;}
         private readonly bool[,] occupied=new bool[Zone.Width,Zone.Height];
         private readonly int seed;
-        public static ReferenceGladePlan Create(int seed)=>new ReferenceGladePlan(seed);
-        private ReferenceGladePlan(int seed)
+        private readonly bool fieldwork;
+        public static ReferenceGladePlan Create(int seed)=>new ReferenceGladePlan(seed,false);
+        public static ReferenceGladePlan Create(int seed,bool fieldwork)=>new ReferenceGladePlan(seed,fieldwork);
+        private ReferenceGladePlan(int seed,bool fieldwork)
         {
-            this.seed=seed;
+            this.seed=seed;this.fieldwork=fieldwork;
             for(int y=0;y<Zone.Height;y++)for(int x=0;x<Zone.Width;x++)
                 placements.Add(new Placement("Grass",x,y,"ground"));
             for(int y=0;y<=9;y++)Add("Wall",53,y,"low-wall");
@@ -83,7 +85,12 @@ namespace CavesOfOoo.Core
             Add("SpreadDrawPoint",36,9);
             Add("Waterskin",37,10);
 
-            for(int x=43;x<=49;x++)Add("Wall",x,6,"low-wall");
+            // Choose the new owner before staging, never replace a saved/live wall.
+            for(int x=43;x<=49;x++)
+                if(fieldwork&&x==46)Add("GleanersBuckledWicket",x,6);
+                else Add("Wall",x,6,"low-wall");
+            // This cell would otherwise receive seed-varied gravel dressing.
+            if(fieldwork)Add("DrawgourdCrop",46,4);
             Add("Wall",50,6,"low-wall");Add("Wall",50,7,"low-wall");
             Add("Campfire",42,8);
             for(int x=41;x<=51;x++)Add("RoadStone",x,9);

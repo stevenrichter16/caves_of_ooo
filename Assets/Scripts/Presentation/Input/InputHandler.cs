@@ -3015,12 +3015,13 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
-            // Harvesting commits finite world output through the same command
-            // transaction as carried harvest. Refusal consumes no time.
+            // World resource actions join the same inventory transaction.
+            // Only committed harvesting, repair, work or watering costs a turn.
             if (action.Command == "Harvest" || action.Command == "HarvestCultivatedCrop"
                 || action.Command == RepairablePart.RepairCommand
                 || action.Command == BotanicalInkDeskPart.PrepareCommand
-                || action.Command == KitchenBatchPart.StartCommand)
+                || action.Command == KitchenBatchPart.StartCommand
+                || CropWateringService.IsCommand(action.Command))
             {
                 var harvest = InventorySystem.ExecuteCommand(
                     new PerformInventoryActionCommand(target, action.Command), PlayerEntity, CurrentZone);

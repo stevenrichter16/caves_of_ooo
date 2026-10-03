@@ -165,9 +165,9 @@ namespace CavesOfOoo.Scenarios.Custom
                 &&skin.Charges<skin.Capacity&&Owns(Player,e));
             if(vessel!=null)
             {
-                int before=vessel.GetPart<WaterskinPart>().Charges;tick=Tick;energy=Energy;
-                yield return ItemAction(vessel,"FillWaterskin");yield return CloseNormal();
-                Require(vessel.GetPart<WaterskinPart>().Charges>before&&Tick==tick&&Energy==energy,"actual carried vessel filled by native inventory action");
+                int before=vessel.GetPart<WaterskinPart>().Charges;
+                yield return Paid(ItemAction(vessel,"FillWaterskin"),"local","district-native-vessel-fill");
+                Require(vessel.GetPart<WaterskinPart>().Charges>before,"actual carried vessel filled by paid native inventory action");
                 _observations.Add(new{phase="district-optional-native-fill",vessel=vessel.ID,before,after=vessel.GetPart<WaterskinPart>().Charges});
             }
             else _notes.Add("DISTRICT FILL NOT EXERCISED: no naturally carried non-full waterskin; no vessel granted.");
@@ -226,6 +226,11 @@ namespace CavesOfOoo.Scenarios.Custom
                         _observations.Add(new{phase="district-native-obstruction-vantage",blocker=blocker.ID,
                             blockerX=at.X,blockerY=at.Y,vantageX=destination.x,vantageY=destination.y,remainingSteps=vantage.Count});break;
                     }
+                }
+                if(_fieldwork&&(path==null||path.Count==0))
+                {
+                    yield return FieldworkConfrontObstruction(goal);
+                    path=PathTo(goal);
                 }
                 if(path==null||path.Count==0)RouteDiagnostic("district native waypoint",goal);
                 Require(path!=null&&path.Count>0,"current safe district route remains available");

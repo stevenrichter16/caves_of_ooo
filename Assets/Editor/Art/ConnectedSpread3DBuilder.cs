@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 namespace CavesOfOoo.Editor
 {
-    /// <summary>Exact14-form original connected Spread adoption. Completes source and all output
+    /// <summary>Original connected Spread model adoption. Completes source and all output
     /// preflights before writes, borrows the glade material and edits no scene.</summary>
     public static class ConnectedSpread3DBuilder
     {

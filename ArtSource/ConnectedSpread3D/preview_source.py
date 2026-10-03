@@ -22,11 +22,11 @@ for model in kit['models']:
  mesh=bpy.data.meshes.new(model['id']);mesh.from_pydata(verts,[],faces);mesh.update()
  for material in materials:mesh.materials.append(material)
  for face,index in zip(mesh.polygons,matids):face.material_index=index
- ob=bpy.data.objects.new(model['id'],mesh);bpy.context.scene.collection.objects.link(ob);ob.location=((model_index%4-1.5)*1.25,(1.5-model_index//4)*1.40,0);model_index+=1
+ ob=bpy.data.objects.new(model['id'],mesh);bpy.context.scene.collection.objects.link(ob);ob.location=((model_index%4-1.5)*1.25,(2-model_index//4)*1.40,0);model_index+=1
 scene=bpy.context.scene;scene.render.engine='CYCLES';scene.cycles.samples=12;scene.render.threads_mode='FIXED';scene.render.threads=2
 scene.world.use_nodes=True;scene.world.node_tree.nodes['Background'].inputs[0].default_value=(.45,.5,.47,1);scene.world.node_tree.nodes['Background'].inputs[1].default_value=.8
 lamp=bpy.data.objects.new('Soft short-shadow light',bpy.data.lights.new('Soft short-shadow light','AREA'));scene.collection.objects.link(lamp);lamp.location=(-5,-6,12);lamp.data.energy=2400;lamp.data.size=4
-camera=bpy.data.objects.new('Review camera',bpy.data.cameras.new('Review camera'));scene.collection.objects.link(camera);camera.location=(0,-9,14);camera.rotation_euler=(Vector((0,0,0))-camera.location).to_track_quat('-Z','Y').to_euler();camera.data.type='ORTHO';camera.data.ortho_scale=7.2;scene.camera=camera
+camera=bpy.data.objects.new('Review camera',bpy.data.cameras.new('Review camera'));scene.collection.objects.link(camera);camera.location=(0,-9,14);camera.rotation_euler=(Vector((0,0,0))-camera.location).to_track_quat('-Z','Y').to_euler();camera.data.type='ORTHO';camera.data.ortho_scale=8.8;scene.camera=camera
 scene.render.resolution_x=1200;scene.render.resolution_y=1100;scene.render.resolution_percentage=100;scene.view_settings.view_transform='Standard';scene.view_settings.look='Medium High Contrast';scene.view_settings.exposure=0
 scene.render.film_transparent=True;scene.render.image_settings.file_format='PNG';scene.render.filepath=str(out/'connected-spread-oblique.png');bpy.ops.wm.save_as_mainfile(filepath=str(out/'connected-spread-review.blend'),compress=True);bpy.ops.render.render(write_still=True)
 

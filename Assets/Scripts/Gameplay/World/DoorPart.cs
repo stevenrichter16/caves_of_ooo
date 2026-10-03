@@ -19,7 +19,10 @@ namespace CavesOfOoo.Core
         public override bool HandleEvent(GameEvent e)
         {
             if(e.ID=="GetInventoryActions")
-                e.GetParameter<InventoryActionList>("Actions")?.AddAction("Door",IsClosed?"open door":"close door",IsClosed?OpenCommand:CloseCommand,'o',30);
+            {
+                if(!RepairablePart.BlocksFunction(ParentEntity))
+                    e.GetParameter<InventoryActionList>("Actions")?.AddAction("Door",IsClosed?"open door":"close door",IsClosed?OpenCommand:CloseCommand,'o',30);
+            }
             else if(e.ID=="InventoryAction")
             {
                 string command=e.GetStringParameter("Command");

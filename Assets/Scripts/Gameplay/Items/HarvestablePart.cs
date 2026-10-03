@@ -16,6 +16,9 @@ namespace CavesOfOoo.Core
         public override string Name => "Harvestable";
         public static EntityFactory Factory;
         public string YieldBlueprint = "";
+        /// <summary>Saved world/inventory menu label; the action still uses the
+        /// existing Harvest command and defaults to the ordinary harvest verb.</summary>
+        public string ActionText = "harvest";
         public int YieldMin = 1;
         public int YieldMax = 1;
         public int YieldChance = 100;
@@ -28,7 +31,7 @@ namespace CavesOfOoo.Core
         {
             if (e.ID == "GetInventoryActions")
             {
-                if (!Harvested) e.GetParameter<InventoryActionList>("Actions")?.AddAction("Harvest", "harvest", "Harvest", 'h', 20);
+                if (!Harvested) e.GetParameter<InventoryActionList>("Actions")?.AddAction("Harvest", ActionText, "Harvest", 'h', 20);
                 return true;
             }
             if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != "Harvest") return true;
@@ -83,6 +86,10 @@ namespace CavesOfOoo.Core
             InventoryTransferSnapshot receipt = null;
             var droppedItems = new List<Entity>();
             bool removedFromZone = false, restored = false;
+            Entity hauler = null;
+            DragPart grip = null;
+            DraggedPart held = null;
+            int appliedHaulPenalty = 0;
             Action restore = () =>
             {
                 if (restored) return;
@@ -90,6 +97,22 @@ namespace CavesOfOoo.Core
                 foreach (var item in droppedItems) zone?.RemoveEntity(item);
                 receipt?.Restore();
                 if (removedFromZone && ParentEntity.SpatialZone == null) zone.AddEntity(ParentEntity, sourceCell.X, sourceCell.Y);
+                // Zone removal releases hauling immediately. If this transfer
+                // rolls back, restore its exact grip and only the penalty that
+                // removal refunded; never take over a later replacement grip.
+                if (removedFromZone && grip != null && held != null
+                    && zone.GetEntityCell(ParentEntity) == sourceCell && zone.GetEntityCell(hauler) != null
+                    && SpatialQuery.Distance(zone, hauler, ParentEntity) <= DragSystem.GrabReach
+                    && !CombatSystem.IsDeathHandled(hauler)
+                    && !(hauler.GetStat("Hitpoints") is Stat hp && hp.Value <= 0)
+                    && ParentEntity.GetPart<DestructiblePart>()?.Gone != true
+                    && hauler.GetPart<DragPart>() == null && ParentEntity.GetPart<DraggedPart>() == null
+                    && grip.ParentEntity == null && held.ParentEntity == null)
+                {
+                    hauler.AddPart(grip); ParentEntity.AddPart(held);
+                    grip.AppliedPenalty = appliedHaulPenalty;
+                    if (hauler.GetStat("Speed") is Stat speed) speed.Penalty += appliedHaulPenalty;
+                }
                 Harvested = false;
             };
             bool Fail(string failure) { restore(); return Reject(actor, failure); }
@@ -127,7 +150,19 @@ namespace CavesOfOoo.Core
                     if (carried)
                     { if (!inventory.RemoveObject(ParentEntity)) return false; }
                     else
-                    { if (!zone.RemoveEntity(ParentEntity)) return false; removedFromZone = true; }
+                    {
+                        var currentHeld = ParentEntity.GetPart<DraggedPart>();
+                        var currentHauler = currentHeld?.Dragger;
+                        var currentGrip = currentHauler?.GetPart<DragPart>();
+                        if (currentHeld?.ParentEntity == ParentEntity && currentGrip?.Dragged == ParentEntity
+                            && currentGrip.ParentEntity == currentHauler)
+                        {
+                            held = currentHeld; hauler = currentHauler; grip = currentGrip;
+                            appliedHaulPenalty = grip.AppliedPenalty;
+                        }
+                        if (!zone.RemoveEntity(ParentEntity)) return false;
+                        removedFromZone = true;
+                    }
                     foreach (var item in products)
                     {
                         bool accepted = false;

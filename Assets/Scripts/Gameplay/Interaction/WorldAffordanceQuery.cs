@@ -122,7 +122,7 @@ namespace CavesOfOoo.Core
             var door=owner.GetPart<DoorPart>();
             if(door!=null&&door.ParentEntity==owner&&!owner.HasTag("Creature")&&!owner.HasPart<MorrowfastDoorPart>()
                 &&!owner.HasPart<SealedLibraryBarrierPart>()&&!owner.GetPart<PhysicsPart>().Takeable
-                &&owner.GetPart<LockPart>()?.IsLocked!=true&&(string.IsNullOrEmpty(door.OwnerId)||door.OwnerId==actor.ID))
+                &&!RepairablePart.BlocksFunction(owner)&&owner.GetPart<LockPart>()?.IsLocked!=true&&(string.IsNullOrEmpty(door.OwnerId)||door.OwnerId==actor.ID))
             {
                 if(!door.IsOpen)return 2;
                 // No closure when another physical owner occupies the aperture.

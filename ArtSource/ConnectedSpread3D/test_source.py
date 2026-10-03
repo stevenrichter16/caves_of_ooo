@@ -3,7 +3,7 @@ import json
 import unittest
 from pathlib import Path
 ROOT = Path(__file__).parent
-FORMS = ['pan-cracked','pan-empty','pan-covered','pan-ready','pantry-empty','pantry-full','pickup-empty','pickup-full','reserve-tray','field-meal','ink-desk','footwork-manual','heavy-frame','reserve-bed']
+FORMS = ['pan-cracked','pan-empty','pan-covered','pan-ready','pantry-empty','pantry-full','pickup-empty','pickup-full','reserve-tray','field-meal','ink-desk','footwork-manual','heavy-frame','reserve-bed','wicket-buckled','wicket-closed','wicket-open','timber-pallet']
 class ConnectedSourceTests(unittest.TestCase):
     def setUp(self):
         self.pack = json.loads((ROOT/'kit.json').read_text()) if (ROOT/'kit.json').exists() else {'models': [], 'palette': []}
@@ -43,4 +43,10 @@ class ConnectedSourceTests(unittest.TestCase):
         self.assertGreaterEqual(len([n for n in names if 'cord' in n]),4)
         self.assertTrue(any('furrow' in n for n in names))
         self.assertFalse(any('crop' in n or 'grain' in n for n in names))
+    def test_fieldwork_states_show_broken_hinges_open_aperture_and_reclaimable_boards(self):
+        for name in ['wicket-buckled','wicket-closed','wicket-open','timber-pallet']:
+            self.assertIn(name,self.models)
+        self.assertNotEqual(self.models['wicket-buckled'],self.models['wicket-closed'])
+        self.assertNotEqual(self.models['wicket-closed'],self.models['wicket-open'])
+        self.assertTrue(any('plank' in b['name'] for b in self.models['timber-pallet']))
 if __name__=='__main__': unittest.main()

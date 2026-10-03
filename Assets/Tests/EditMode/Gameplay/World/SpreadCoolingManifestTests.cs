@@ -26,7 +26,7 @@ namespace CavesOfOoo.Tests
         static SpreadExplorationPlan Restore(OverworldZoneManager manager,string wire)
         {
             var world=new Entity();world.Properties[SpreadExplorationPlan.PropertyKey]=wire;
-            if(wire.StartsWith("11|",StringComparison.Ordinal))world.Properties[SpreadExplorationPlan.WorldKeyProperty]=manager.Exploration.WorldKey;
+            if(wire.StartsWith("11|",StringComparison.Ordinal)||wire.StartsWith("12|",StringComparison.Ordinal))world.Properties[SpreadExplorationPlan.WorldKeyProperty]=manager.Exploration.WorldKey;
             try{return (SpreadExplorationPlan)typeof(SpreadExplorationPlan).GetMethod("Restore",All).Invoke(null,new object[]{manager,world});}
             catch(TargetInvocationException e)when(e.InnerException!=null){throw e.InnerException;}
         }
@@ -37,7 +37,7 @@ namespace CavesOfOoo.Tests
         public void FreshCurrentSelectsOneFieldPrincipalWithoutGeneratingGraphs(int seed)
         {
             var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);var p=m.Exploration;
-            Assert.AreEqual(11,p.Version);Assert.AreEqual(10,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"CoolingWorkPatch")));
+            Assert.AreEqual(12,p.Version);Assert.AreEqual(10,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"CoolingWorkPatch")));
             var fields=p.Entries.Where(e=>e.Family!=SpreadExplorationFamily.None&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.FieldStrips).ToArray();
             Assert.IsNotEmpty(fields);Assert.True(fields.Any(e=>e.Family==SpreadExplorationFamily.CoolingWorkPatch));
             Assert.True(fields.Any(e=>e.Family==SpreadExplorationFamily.LastGleanings));
@@ -63,7 +63,7 @@ namespace CavesOfOoo.Tests
         {public ObservedManager(EntityFactory f,int seed):base(f,seed){}public SpreadCompositionBuilder Terrain(string id)=>base.GetPipelineForZone(id).Builders.OfType<SpreadCompositionBuilder>().Single();}
         [Test] public void OnlySelectedCurrentCookingFamilyOptsIntoTerrainRowReceipts()
         {
-            var m=new ObservedManager(scope.Factory,64);Assert.AreEqual(11,m.Exploration.Version);
+            var m=new ObservedManager(scope.Factory,64);Assert.AreEqual(12,m.Exploration.Version);
             var fields=m.Exploration.Entries.Where(e=>e.PlacementEligible&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.FieldStrips).ToArray();
             Assert.True(fields.Any(e=>e.Family.ToString()=="CoolingWorkPatch"));Assert.True(fields.Any(e=>e.Family.ToString()=="LastGleanings"));Assert.True(fields.Any(e=>e.Family==SpreadExplorationFamily.None));
             var flag=typeof(SpreadCompositionBuilder).GetField("CaptureCookingSources",All);Assert.NotNull(flag);
