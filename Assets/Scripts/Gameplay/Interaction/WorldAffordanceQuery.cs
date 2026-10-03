@@ -20,12 +20,12 @@ namespace CavesOfOoo.Core
     /// remains authoritative. No GetInventoryActions, lazy loading or callbacks.</summary>
     public static class WorldAffordanceQuery
     {
-        internal static readonly string[] Commands={"Harvest","OpenContainer",DoorPart.OpenCommand,DoorPart.CloseCommand,"Examine",HandlingPart.HaulCommand,HandlingPart.ReleaseCommand};
+        internal static readonly string[] Commands={"Harvest","OpenContainer",DoorPart.OpenCommand,DoorPart.CloseCommand,"Examine",HandlingPart.HaulCommand,HandlingPart.ReleaseCommand,TrapJammingPart.JamCommand};
         internal static readonly string[] Hints=BuildHints();
         private static string[] BuildHints()
         {
             var keys=new[]{"Y","W","U","A",".","D","B","S","N","Enter"};
-            var verbs=new[]{"harvest","open","open door","close door","read","haul","let go"};
+            var verbs=new[]{"harvest","open","open door","close door","read","haul","let go","jam trap"};
             var rows=new string[verbs.Length*10];
             for(int v=0;v<verbs.Length;v++)for(int d=0;d<10;d++)rows[v*10+d]=(d==9?"Enter": "C, "+keys[d])+": menu / "+verbs[v];
             return rows;
@@ -111,6 +111,8 @@ namespace CavesOfOoo.Core
         }
         private static int Verb(Entity actor,Zone zone,Entity owner)
         {
+            var trap=owner.GetPart<TrapJammingPart>();
+            if(trap!=null&&trap.CanOfferJam(actor,zone))return 7;
             var field=owner.GetPart<FieldHarvestPart>();
             if(field!=null&&field.ParentEntity==owner&&!field.Harvested&&field.YieldCount>0&&KnownYield(field.YieldBlueprint,false))return 0;
             var harvest=owner.GetPart<HarvestablePart>();

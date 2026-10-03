@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="122" result="Failed(Child)" total="122" passed="121" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-03 15:58:48Z" end-time="2026-10-03 15:58:57Z" duration="8.8326213">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="23855" result="Failed" site="Child" start-time="2026-10-03 15:58:48Z" end-time="2026-10-03 15:58:57Z" duration="8.832621" total="122" passed="121" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="29347" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="23855" result="Failed" site="Child" start-time="2026-10-03 15:58:48Z" end-time="2026-10-03 15:58:57Z" duration="8.816005" total="122" passed="121" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="45162" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="29348" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="23855" result="Failed" site="Child" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:57Z" duration="8.811259" total="122" passed="121" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="29349" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="23855" result="Failed" site="Child" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:57Z" duration="8.807347" total="122" passed="121" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="6623" name="TrapJammingAdversarialTests" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" testcasecount="53" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.080742" total="53" passed="53" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="6660" name="AfterExceptionRestoresSingletonOrStackAndMechanism" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.AfterExceptionRestoresSingletonOrStackAndMechanism" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.029536" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6658" name="AfterExceptionRestoresSingletonOrStackAndMechanism(1)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.AfterExceptionRestoresSingletonOrStackAndMechanism(1)" methodname="AfterExceptionRestoresSingletonOrStackAndMechanism" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="867441021" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.026549" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6659" name="AfterExceptionRestoresSingletonOrStackAndMechanism(3)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.AfterExceptionRestoresSingletonOrStackAndMechanism(3)" methodname="AfterExceptionRestoresSingletonOrStackAndMechanism" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="850835728" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000746" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="6663" name="BareEventCannotBypassReceipt" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.BareEventCannotBypassReceipt" methodname="BareEventCannotBypassReceipt" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="411610510" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.001260" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6657" name="BeforeVetoLeavesTimberAndMechanismUntouched" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.BeforeVetoLeavesTimberAndMechanismUntouched" methodname="BeforeVetoLeavesTimberAndMechanismUntouched" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="140990989" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000574" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6671" name="DisablingDoesNotHealDestructibleStructure" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.DisablingDoesNotHealDestructibleStructure" methodname="DisablingDoesNotHealDestructibleStructure" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1229913852" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.001683" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6667" name="DuplicateMechanismsAreNotSilentlyPaidAsOne" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.DuplicateMechanismsAreNotSilentlyPaidAsOne" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.001766" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6665" name="DuplicateMechanismsAreNotSilentlyPaidAsOne(False)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.DuplicateMechanismsAreNotSilentlyPaidAsOne(False)" methodname="DuplicateMechanismsAreNotSilentlyPaidAsOne" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1948305754" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000882" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6666" name="DuplicateMechanismsAreNotSilentlyPaidAsOne(True)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.DuplicateMechanismsAreNotSilentlyPaidAsOne(True)" methodname="DuplicateMechanismsAreNotSilentlyPaidAsOne" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1568680693" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000466" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6677" name="HypothesisAmbiguousSavedIdentitiesCannotPay" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.HypothesisAmbiguousSavedIdentitiesCannotPay" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.002798" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6672" name="HypothesisAmbiguousSavedIdentitiesCannotPay(&quot;duplicate-material&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.HypothesisAmbiguousSavedIdentitiesCannotPay(&quot;duplicate-material&quot;)" methodname="HypothesisAmbiguousSavedIdentitiesCannotPay" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="2136806398" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000602" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6673" name="HypothesisAmbiguousSavedIdentitiesCannotPay(&quot;missing-material-id&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.HypothesisAmbiguousSavedIdentitiesCannotPay(&quot;missing-material-id&quot;)" methodname="HypothesisAmbiguousSavedIdentitiesCannotPay" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="650215899" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000449" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6674" name="HypothesisAmbiguousSavedIdentitiesCannotPay(&quot;duplicate-target&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.HypothesisAmbiguousSavedIdentitiesCannotPay(&quot;duplicate-target&quot;)" methodname="HypothesisAmbiguousSavedIdentitiesCannotPay" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1640117127" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000460" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6675" name="HypothesisAmbiguousSavedIdentitiesCannotPay(&quot;missing-target-id&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.HypothesisAmbiguousSavedIdentitiesCannotPay(&quot;missing-target-id&quot;)" methodname="HypothesisAmbiguousSavedIdentitiesCannotPay" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="293542579" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000428" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6676" name="HypothesisAmbiguousSavedIdentitiesCannotPay(&quot;target-actor-id&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.HypothesisAmbiguousSavedIdentitiesCannotPay(&quot;target-actor-id&quot;)" methodname="HypothesisAmbiguousSavedIdentitiesCannotPay" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="571003244" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000441" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6682" name="HypothesisPostActionOwnerChangesCannotAnimateStaleMechanism" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.HypothesisPostActionOwnerChangesCannotAnimateStaleMechanism" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.002431" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6679" name="HypothesisPostActionOwnerChangesCannotAnimateStaleMechanism(&quot;moved&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.HypothesisPostActionOwnerChangesCannotAnimateStaleMechanism(&quot;moved&quot;)" methodname="HypothesisPostActionOwnerChangesCannotAnimateStaleMechanism" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1876665054" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.001028" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6680" name="HypothesisPostActionOwnerChangesCannotAnimateStaleMechanism(&quot;removed-part&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.HypothesisPostActionOwnerChangesCannotAnimateStaleMechanism(&quot;removed-part&quot;)" methodname="HypothesisPostActionOwnerChangesCannotAnimateStaleMechanism" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1665036168" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000590" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6681" name="HypothesisPostActionOwnerChangesCannotAnimateStaleMechanism(&quot;replacement-part&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.HypothesisPostActionOwnerChangesCannotAnimateStaleMechanism(&quot;replacement-part&quot;)" methodname="HypothesisPostActionOwnerChangesCannotAnimateStaleMechanism" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="667033581" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000515" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="6678" name="HypothesisTwoLiveTrapsOnOneCellOnlyDisableThePaidOwner" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.HypothesisTwoLiveTrapsOnOneCellOnlyDisableThePaidOwner" methodname="HypothesisTwoLiveTrapsOnOneCellOnlyDisableThePaidOwner" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1621730560" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.009521" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6642" name="InvalidCurrentContextCannotSpendOrDisable" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.012334" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6624" name="InvalidCurrentContextCannotSpendOrDisable(&quot;distant&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;distant&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="238918888" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.001696" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6625" name="InvalidCurrentContextCannotSpendOrDisable(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;dead&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="394578866" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000468" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6626" name="InvalidCurrentContextCannotSpendOrDisable(&quot;npc&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;npc&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="2072857259" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000478" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6627" name="InvalidCurrentContextCannotSpendOrDisable(&quot;stunned&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;stunned&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1330999874" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.001811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6628" name="InvalidCurrentContextCannotSpendOrDisable(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;hidden&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1924223550" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6629" name="InvalidCurrentContextCannotSpendOrDisable(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;unexplored&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="967059904" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000481" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6630" name="InvalidCurrentContextCannotSpendOrDisable(&quot;invisible&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;invisible&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1518538382" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000451" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6631" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-creature&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-creature&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1733915033" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6632" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-carried&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-carried&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1026430398" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000445" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6633" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-equipped&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-equipped&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="32821080" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000453" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6634" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-takeable&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-takeable&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="665178277" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000462" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6635" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-gone&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-gone&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1592171810" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000500" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6636" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-zero-hp&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-zero-hp&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1958038135" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000471" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6637" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-detached&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-detached&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1701300037" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000462" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6638" name="InvalidCurrentContextCannotSpendOrDisable(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;foreign-zone&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="765217152" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000778" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6639" name="InvalidCurrentContextCannotSpendOrDisable(&quot;wrong-render-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;wrong-render-owner&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1643213499" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000460" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6640" name="InvalidCurrentContextCannotSpendOrDisable(&quot;wrong-physics-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;wrong-physics-owner&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="537759327" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000446" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6641" name="InvalidCurrentContextCannotSpendOrDisable(&quot;wrong-inventory-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;wrong-inventory-owner&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1348859717" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000419" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6656" name="InvalidMaterialCannotBecomePayment" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.006888" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6643" name="InvalidMaterialCannotBecomePayment(&quot;zero&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;zero&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="971891706" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000626" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6644" name="InvalidMaterialCannotBecomePayment(&quot;negative&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;negative&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="455495226" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000445" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6645" name="InvalidMaterialCannotBecomePayment(&quot;foreign-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;foreign-owner&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1501223085" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000450" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6646" name="InvalidMaterialCannotBecomePayment(&quot;missing-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;missing-owner&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="5868658" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000470" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6647" name="InvalidMaterialCannotBecomePayment(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;equipped&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="2063772112" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000464" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6648" name="InvalidMaterialCannotBecomePayment(&quot;equipped-alias&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;equipped-alias&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="587968059" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000501" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6649" name="InvalidMaterialCannotBecomePayment(&quot;duplicate-reference&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;duplicate-reference&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="991206962" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000431" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6650" name="InvalidMaterialCannotBecomePayment(&quot;not-portable&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;not-portable&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1795748821" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000426" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6651" name="InvalidMaterialCannotBecomePayment(&quot;wrong-blueprint&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;wrong-blueprint&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="444235951" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000420" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6652" name="InvalidMaterialCannotBecomePayment(&quot;wrong-physics-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;wrong-physics-owner&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1645040119" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000431" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6653" name="InvalidMaterialCannotBecomePayment(&quot;wrong-stack-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;wrong-stack-owner&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1292289754" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000444" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6654" name="InvalidMaterialCannotBecomePayment(&quot;ground&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;ground&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1057363121" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000450" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6655" name="InvalidMaterialCannotBecomePayment(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;creature&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1286311303" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000405" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="6668" name="PureRepeatedMenuQueriesDoNotPayLogOrDisable" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.PureRepeatedMenuQueriesDoNotPayLogOrDisable" methodname="PureRepeatedMenuQueriesDoNotPayLogOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="345128487" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000641" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6662" name="ReentrantSameTrapCannotDoublePay" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.ReentrantSameTrapCannotDoublePay" methodname="ReentrantSameTrapCannotDoublePay" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1182341432" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000958" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6670" name="SeparateOwnerKeepsItsArmedState" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.SeparateOwnerKeepsItsArmedState" methodname="SeparateOwnerKeepsItsArmedState" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1229159045" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000477" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6664" name="StaleFacadeCannotDispatchReplacementPart" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.StaleFacadeCannotDispatchReplacementPart" methodname="StaleFacadeCannotDispatchReplacementPart" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1180870681" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000514" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6661" name="UnrelatedTransfersSurviveRollback" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.UnrelatedTransfersSurviveRollback" methodname="UnrelatedTransfersSurviveRollback" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="2047890818" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000639" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6669" name="WrongMaterialDoesNotHideLaterValidTimber" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.WrongMaterialDoesNotHideLaterValidTimber" methodname="WrongMaterialDoesNotHideLaterValidTimber" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1293736190" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.000475" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="9723" name="TrapJammingContentTests" fullname="CavesOfOoo.Tests.TrapJammingContentTests" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" testcasecount="14" result="Failed" site="Child" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:52Z" duration="3.202164" total="14" passed="13" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="9728" name="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.141808" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9724" name="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;SpikeTrap&quot;)" methodname="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1875579978" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.052267" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9725" name="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;BearTrap&quot;)" methodname="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="856267587" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.029405" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9726" name="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;PressurePlate&quot;)" methodname="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1857902354" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.030115" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9727" name="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;FireTrap&quot;)" methodname="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="109617854" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:49Z" duration="0.029509" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9739" name="ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:51Z" duration="2.020527" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9737" name="ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber(64)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber(64)" methodname="ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1501328868" result="Passed" start-time="2026-10-03 15:58:49Z" end-time="2026-10-03 15:58:50Z" duration="1.155187" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9738" name="ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber(1729)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber(1729)" methodname="ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1263545065" result="Passed" start-time="2026-10-03 15:58:50Z" end-time="2026-10-03 15:58:51Z" duration="0.863135" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="9734" name="CarriedTimberNamesBothCompetingUsesAndActualTrapExamples" fullname="CavesOfOoo.Tests.TrapJammingContentTests.CarriedTimberNamesBothCompetingUsesAndActualTrapExamples" methodname="CarriedTimberNamesBothCompetingUsesAndActualTrapExamples" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1524268050" result="Passed" start-time="2026-10-03 15:58:51Z" end-time="2026-10-03 15:58:51Z" duration="0.031087" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="9735" name="CordGuidanceDoesNotPromiseTimberJamming" fullname="CavesOfOoo.Tests.TrapJammingContentTests.CordGuidanceDoesNotPromiseTimberJamming" methodname="CordGuidanceDoesNotPromiseTimberJamming" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1556049804" result="Passed" start-time="2026-10-03 15:58:51Z" end-time="2026-10-03 15:58:51Z" duration="0.030897" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="9740" name="JammedGeneratedStoreReadoutKeepsBypassWithoutClaimingItStillFires" fullname="CavesOfOoo.Tests.TrapJammingContentTests.JammedGeneratedStoreReadoutKeepsBypassWithoutClaimingItStillFires" methodname="JammedGeneratedStoreReadoutKeepsBypassWithoutClaimingItStillFires" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1624514527" result="Failed" start-time="2026-10-03 15:58:51Z" end-time="2026-10-03 15:58:52Z" duration="0.724114" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: String containing "While armed, anything stepping"
+  But was:  "You see a spike trap.
+The exposed mechanism can be wedged from an adjacent tile: jam it with 1 carried salvaged timber. This takes one action and permanently disables this trap; the timber cannot be recovered. Exposed spike teeth cross the straight approach to the store. An open gap leads around them. Anything stepping on the teeth springs this trap once."
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.TrapJammingContentTests.JammedGeneratedStoreReadoutKeepsBypassWithoutClaimingItStillFires () [0x0007a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/TrapJammingContentTests.cs:99
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9736" name="MissingOptInOnAnOldTrapDoesNotAcquireJamAction" fullname="CavesOfOoo.Tests.TrapJammingContentTests.MissingOptInOnAnOldTrapDoesNotAcquireJamAction" methodname="MissingOptInOnAnOldTrapDoesNotAcquireJamAction" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="138630165" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.129537" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="9733" name="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract" fullname="CavesOfOoo.Tests.TrapJammingContentTests.UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.122874" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9729" name="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;RuneOfFlame&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;RuneOfFlame&quot;)" methodname="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="294481954" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.030331" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9730" name="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;RuneOfFrost&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;RuneOfFrost&quot;)" methodname="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1341028363" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.030440" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9731" name="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;RuneOfPoison&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;RuneOfPoison&quot;)" methodname="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1556054883" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.030296" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9732" name="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;Greatdew&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;Greatdew&quot;)" methodname="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1989985365" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.029005" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="21603" name="TrapJammingInputTests" fullname="CavesOfOoo.Tests.TrapJammingInputTests" classname="CavesOfOoo.Tests.TrapJammingInputTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.276416" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="21610" name="ActualSelectedMenuPaysOneActionOnlyForCommittedJam" fullname="CavesOfOoo.Tests.TrapJammingInputTests.ActualSelectedMenuPaysOneActionOnlyForCommittedJam" classname="CavesOfOoo.Tests.TrapJammingInputTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.274545" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="21604" name="ActualSelectedMenuPaysOneActionOnlyForCommittedJam(&quot;success&quot;)" fullname="CavesOfOoo.Tests.TrapJammingInputTests.ActualSelectedMenuPaysOneActionOnlyForCommittedJam(&quot;success&quot;)" methodname="ActualSelectedMenuPaysOneActionOnlyForCommittedJam" classname="CavesOfOoo.Tests.TrapJammingInputTests" runstate="Runnable" seed="177491557" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.050304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="21605" name="ActualSelectedMenuPaysOneActionOnlyForCommittedJam(&quot;missing&quot;)" fullname="CavesOfOoo.Tests.TrapJammingInputTests.ActualSelectedMenuPaysOneActionOnlyForCommittedJam(&quot;missing&quot;)" methodname="ActualSelectedMenuPaysOneActionOnlyForCommittedJam" classname="CavesOfOoo.Tests.TrapJammingInputTests" runstate="Runnable" seed="1090361922" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.043795" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="21606" name="ActualSelectedMenuPaysOneActionOnlyForCommittedJam(&quot;veto&quot;)" fullname="CavesOfOoo.Tests.TrapJammingInputTests.ActualSelectedMenuPaysOneActionOnlyForCommittedJam(&quot;veto&quot;)" methodname="ActualSelectedMenuPaysOneActionOnlyForCommittedJam" classname="CavesOfOoo.Tests.TrapJammingInputTests" runstate="Runnable" seed="894093555" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.043259" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="21607" name="ActualSelectedMenuPaysOneActionOnlyForCommittedJam(&quot;rollback&quot;)" fullname="CavesOfOoo.Tests.TrapJammingInputTests.ActualSelectedMenuPaysOneActionOnlyForCommittedJam(&quot;rollback&quot;)" methodname="ActualSelectedMenuPaysOneActionOnlyForCommittedJam" classname="CavesOfOoo.Tests.TrapJammingInputTests" runstate="Runnable" seed="859094275" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.043860" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="21608" name="ActualSelectedMenuPaysOneActionOnlyForCommittedJam(&quot;stale&quot;)" fullname="CavesOfOoo.Tests.TrapJammingInputTests.ActualSelectedMenuPaysOneActionOnlyForCommittedJam(&quot;stale&quot;)" methodname="ActualSelectedMenuPaysOneActionOnlyForCommittedJam" classname="CavesOfOoo.Tests.TrapJammingInputTests" runstate="Runnable" seed="727851608" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.049822" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="21609" name="ActualSelectedMenuPaysOneActionOnlyForCommittedJam(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.TrapJammingInputTests.ActualSelectedMenuPaysOneActionOnlyForCommittedJam(&quot;hidden&quot;)" methodname="ActualSelectedMenuPaysOneActionOnlyForCommittedJam" classname="CavesOfOoo.Tests.TrapJammingInputTests" runstate="Runnable" seed="1467405133" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.042583" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=2 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="27638" name="TrapJammingNativeModeTests" fullname="CavesOfOoo.Tests.TrapJammingNativeModeTests" classname="CavesOfOoo.Tests.TrapJammingNativeModeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.009673" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="27639" name="OrdinaryTrapJourneyHasItsOwnNoArgumentIsolatedLauncher" fullname="CavesOfOoo.Tests.TrapJammingNativeModeTests.OrdinaryTrapJourneyHasItsOwnNoArgumentIsolatedLauncher" methodname="OrdinaryTrapJourneyHasItsOwnNoArgumentIsolatedLauncher" classname="CavesOfOoo.Tests.TrapJammingNativeModeTests" runstate="Runnable" seed="202457823" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.000616" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="27640" name="TrapJourneyRequiresIsolationBeforeChangingInputOrWorld" fullname="CavesOfOoo.Tests.TrapJammingNativeModeTests.TrapJourneyRequiresIsolationBeforeChangingInputOrWorld" methodname="TrapJourneyRequiresIsolationBeforeChangingInputOrWorld" classname="CavesOfOoo.Tests.TrapJammingNativeModeTests" runstate="Runnable" seed="1547544401" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.005856" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="27641" name="TrapJammingPresentationTests" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:57Z" duration="5.119819" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="27656" name="AuthoredPackHasEightDistinctWoodenJamStatesAndRetainsArmedGeometry" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.AuthoredPackHasEightDistinctWoodenJamStatesAndRetainsArmedGeometry" methodname="AuthoredPackHasEightDistinctWoodenJamStatesAndRetainsArmedGeometry" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1736857612" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.038593" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27655" name="ExamineReportsActualCurrentStateAndPhysicalMaterialUse" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.117520" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27651" name="ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;SpikeTrap&quot;)" methodname="ExamineReportsActualCurrentStateAndPhysicalMaterialUse" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="135135234" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.029228" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27652" name="ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;BearTrap&quot;)" methodname="ExamineReportsActualCurrentStateAndPhysicalMaterialUse" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="2145255865" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.028417" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27653" name="ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;FireTrap&quot;)" methodname="ExamineReportsActualCurrentStateAndPhysicalMaterialUse" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1512672447" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.029340" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27654" name="ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;PressurePlate&quot;)" methodname="ExamineReportsActualCurrentStateAndPhysicalMaterialUse" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="422266361" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.029295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27666" name="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.119000" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27662" name="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;hidden&quot;)" methodname="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1887890185" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.029958" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27663" name="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;foreign-part&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;foreign-part&quot;)" methodname="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="2050033472" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.028811" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27664" name="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;foreign-physics&quot;)" methodname="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="440459431" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.029558" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27665" name="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;custom-visual&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;custom-visual&quot;)" methodname="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="336911212" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:52Z" duration="0.028454" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27661" name="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:57Z" duration="4.338014" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27657" name="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;SpikeTrap&quot;)" methodname="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="700033822" result="Passed" start-time="2026-10-03 15:58:52Z" end-time="2026-10-03 15:58:54Z" duration="1.667798" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27658" name="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;BearTrap&quot;)" methodname="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="2046487998" result="Passed" start-time="2026-10-03 15:58:54Z" end-time="2026-10-03 15:58:55Z" duration="0.933475" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27659" name="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;FireTrap&quot;)" methodname="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="108462760" result="Passed" start-time="2026-10-03 15:58:55Z" end-time="2026-10-03 15:58:56Z" duration="0.857779" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27660" name="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;PressurePlate&quot;)" methodname="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1565238006" result="Passed" start-time="2026-10-03 15:58:56Z" end-time="2026-10-03 15:58:57Z" duration="0.875665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27671" name="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.162620" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27667" name="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;SpikeTrap&quot;)" methodname="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="759085446" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.036740" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27668" name="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;BearTrap&quot;)" methodname="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="290796380" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.034068" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27669" name="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;FireTrap&quot;)" methodname="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="781598910" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.033338" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27670" name="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;PressurePlate&quot;)" methodname="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="891227990" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.033185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27650" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.341775" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="27642" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;SpikeTrap&quot;,0)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;SpikeTrap&quot;,0)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1170202991" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.038749" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27643" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;SpikeTrap&quot;,1)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;SpikeTrap&quot;,1)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1742966090" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.033707" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27644" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;BearTrap&quot;,0)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;BearTrap&quot;,0)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="814651822" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.030035" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27645" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;BearTrap&quot;,1)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;BearTrap&quot;,1)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="170200534" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.028892" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27646" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;FireTrap&quot;,0)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;FireTrap&quot;,0)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1055875607" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.029103" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27647" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;FireTrap&quot;,1)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;FireTrap&quot;,1)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="755478773" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.029525" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27648" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;PressurePlate&quot;,0)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;PressurePlate&quot;,0)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1637475433" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.028698" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="27649" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;PressurePlate&quot;,1)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;PressurePlate&quot;,1)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1835949369" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.028488" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="6683" name="TrapJammingTests" fullname="CavesOfOoo.Tests.TrapJammingTests" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.098784" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="6707" name="AuthoredBlueprintsOptIn" fullname="CavesOfOoo.Tests.TrapJammingTests.AuthoredBlueprintsOptIn" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.081624" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6703" name="AuthoredBlueprintsOptIn(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.AuthoredBlueprintsOptIn(&quot;SpikeTrap&quot;)" methodname="AuthoredBlueprintsOptIn" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="872540211" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.020712" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6704" name="AuthoredBlueprintsOptIn(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.AuthoredBlueprintsOptIn(&quot;FireTrap&quot;)" methodname="AuthoredBlueprintsOptIn" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1462491919" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.020278" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6705" name="AuthoredBlueprintsOptIn(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.AuthoredBlueprintsOptIn(&quot;BearTrap&quot;)" methodname="AuthoredBlueprintsOptIn" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="217983997" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.019890" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6706" name="AuthoredBlueprintsOptIn(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.AuthoredBlueprintsOptIn(&quot;PressurePlate&quot;)" methodname="AuthoredBlueprintsOptIn" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="833021898" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.019857" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="6699" name="JammedPlateStaysSafeAfterLeavingAndReentering" fullname="CavesOfOoo.Tests.TrapJammingTests.JammedPlateStaysSafeAfterLeavingAndReentering" methodname="JammedPlateStaysSafeAfterLeavingAndReentering" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1206670996" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000678" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6711" name="LegacyTrapWithoutOptInKeepsPriorBehaviorThroughSave" fullname="CavesOfOoo.Tests.TrapJammingTests.LegacyTrapWithoutOptInKeepsPriorBehaviorThroughSave" methodname="LegacyTrapWithoutOptInKeepsPriorBehaviorThroughSave" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1117236937" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000755" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6698" name="MissingMaterialCanBeFoundAndRetriedOnTheSameTrap" fullname="CavesOfOoo.Tests.TrapJammingTests.MissingMaterialCanBeFoundAndRetriedOnTheSameTrap" methodname="MissingMaterialCanBeFoundAndRetriedOnTheSameTrap" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="242269624" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000630" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6710" name="NativeSaveRestoresExactOwnerAndSavedJam" fullname="CavesOfOoo.Tests.TrapJammingTests.NativeSaveRestoresExactOwnerAndSavedJam" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.001746" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6708" name="NativeSaveRestoresExactOwnerAndSavedJam(False)" fullname="CavesOfOoo.Tests.TrapJammingTests.NativeSaveRestoresExactOwnerAndSavedJam(False)" methodname="NativeSaveRestoresExactOwnerAndSavedJam" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1294402070" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000670" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6709" name="NativeSaveRestoresExactOwnerAndSavedJam(True)" fullname="CavesOfOoo.Tests.TrapJammingTests.NativeSaveRestoresExactOwnerAndSavedJam(True)" methodname="NativeSaveRestoresExactOwnerAndSavedJam" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="648215227" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000516" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6688" name="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt" fullname="CavesOfOoo.Tests.TrapJammingTests.OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.002535" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6684" name="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;SpikeTrap&quot;)" methodname="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1643548226" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000695" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6685" name="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;FireTrap&quot;)" methodname="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="215439661" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000487" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6686" name="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;BearTrap&quot;)" methodname="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="744299430" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000486" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6687" name="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;PressurePlate&quot;)" methodname="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="124409206" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000470" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="6697" name="RequirementIsDiscoverableWithoutMaterialButAttemptIsFree" fullname="CavesOfOoo.Tests.TrapJammingTests.RequirementIsDiscoverableWithoutMaterialButAttemptIsFree" methodname="RequirementIsDiscoverableWithoutMaterialButAttemptIsFree" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="413557799" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000496" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6693" name="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption" fullname="CavesOfOoo.Tests.TrapJammingTests.SameUnjammedTrapRetainsItsOriginalDamageAndConsumption" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.002356" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6689" name="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;SpikeTrap&quot;)" methodname="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1527493081" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000515" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6690" name="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;FireTrap&quot;)" methodname="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="973588387" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6691" name="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;BearTrap&quot;)" methodname="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1936893107" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000451" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6692" name="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;PressurePlate&quot;)" methodname="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="528978441" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000456" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6696" name="SingletonOrStackPaysExactlyOneWithCorrectBacklinks" fullname="CavesOfOoo.Tests.TrapJammingTests.SingletonOrStackPaysExactlyOneWithCorrectBacklinks" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.001277" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6694" name="SingletonOrStackPaysExactlyOneWithCorrectBacklinks(1)" fullname="CavesOfOoo.Tests.TrapJammingTests.SingletonOrStackPaysExactlyOneWithCorrectBacklinks(1)" methodname="SingletonOrStackPaysExactlyOneWithCorrectBacklinks" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1803474458" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000561" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6695" name="SingletonOrStackPaysExactlyOneWithCorrectBacklinks(3)" fullname="CavesOfOoo.Tests.TrapJammingTests.SingletonOrStackPaysExactlyOneWithCorrectBacklinks(3)" methodname="SingletonOrStackPaysExactlyOneWithCorrectBacklinks" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1144403697" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6702" name="UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart" fullname="CavesOfOoo.Tests.TrapJammingTests.UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.001535" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6700" name="UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart(&quot;TripWire&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart(&quot;TripWire&quot;)" methodname="UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="589497073" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000748" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6701" name="UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart(&quot;RuneOfFlame&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart(&quot;RuneOfFlame&quot;)" methodname="UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="668771615" result="Passed" start-time="2026-10-03 15:58:57Z" end-time="2026-10-03 15:58:57Z" duration="0.000544" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

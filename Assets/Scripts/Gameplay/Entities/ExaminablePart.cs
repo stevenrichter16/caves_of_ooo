@@ -112,6 +112,8 @@ namespace CavesOfOoo.Core
             if (!string.IsNullOrEmpty(batch)) baseLine += "\n" + batch;
             var repair = ParentEntity?.GetPart<RepairablePart>()?.Describe();
             if (!string.IsNullOrEmpty(repair)) baseLine += "\n" + repair;
+            var trap = ParentEntity?.GetPart<TrapJammingPart>()?.DescribeJamming();
+            if (!string.IsNullOrEmpty(trap)) baseLine += "\n" + trap;
             if (ParentEntity?.HasPart<CultivatedSoilPart>() == true)
                 baseLine += "\nTilled growing bed. Plant a carried seed here when the bed is empty. Conjure Rain waters planted crops; watered crops keep growing while you travel and rest, but dry soil stops growth.";
             if (statusFirst)

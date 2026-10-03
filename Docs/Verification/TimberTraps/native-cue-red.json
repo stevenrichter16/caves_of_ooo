@@ -1,0 +1,45 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"b0ddc2a5d0aa430283361a31d0022aff\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1791043126444,\"finished_unix_ms\":1791043137841,\"last_update_unix_ms\":1791043137841,\"progress\":{\"completed\":122,\"total\":122,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1791043137814,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.TrapJammingTests.UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart(\\\"RuneOfFlame\\\")\",\"last_finished_unix_ms\":1791043137815,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.TrapJammingContentTests.JammedGeneratedStoreReadoutKeepsBypassWithoutClaimingItStillFires\",\"message\":\"  Expected: String containing \\\"While armed, anything stepping\\\"\\n  But was:  \\\"You see a spike trap.\\nThe exposed mechanism can be wedged from an adjacent tile: jam it with 1 carried salvaged timber. This takes one action and permanently disables this trap; the timber cannot be recovered. Exposed spike teeth cross the straight approach to the store. An open gap leads around them. Anything stepping on the teeth springs this trap once.\\\"\\n\"}],\"failures_capped\":false},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "b0ddc2a5d0aa430283361a31d0022aff",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1791043126444,
+        "finished_unix_ms": 1791043137841,
+        "last_update_unix_ms": 1791043137841,
+        "progress": {
+          "completed": 122,
+          "total": 122,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1791043137814,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.TrapJammingTests.UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart(\"RuneOfFlame\")",
+          "last_finished_unix_ms": 1791043137815,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.TrapJammingContentTests.JammedGeneratedStoreReadoutKeepsBypassWithoutClaimingItStillFires",
+              "message": "  Expected: String containing \"While armed, anything stepping\"\n  But was:  \"You see a spike trap.\nThe exposed mechanism can be wedged from an adjacent tile: jam it with 1 carried salvaged timber. This takes one action and permanently disables this trap; the timber cannot be recovered. Exposed spike teeth cross the straight approach to the store. An open gap leads around them. Anything stepping on the teeth springs this trap once.\"\n"
+            }
+          ],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

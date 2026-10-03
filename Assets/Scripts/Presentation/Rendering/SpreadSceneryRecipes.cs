@@ -14,11 +14,14 @@ namespace CavesOfOoo.Rendering
    internal readonly bool Solid;
    internal readonly Func<Entity, Part> RequiredPart;
    internal readonly string[] Models;
+   internal readonly string[] JammedModels;
    internal Definition(string name, string glyph, bool solid, string variants, Func<Entity, Part> requiredPart)
    {
     Glyph = glyph; Solid = solid; Variants = variants; RequiredPart = requiredPart;
     string prefix = "spread-scenery-" + name.ToLowerInvariant();
     Models = new[] { prefix + "-0", prefix + "-1", prefix + "-unlit-0", prefix + "-unlit-1" };
+    if(name=="SpikeTrap"||name=="BearTrap"||name=="FireTrap"||name=="PressurePlate")
+     JammedModels = new[] { prefix + "-jammed-0", prefix + "-jammed-1" };
    }
   }
   private static readonly Dictionary<string,Definition> Definitions=new Dictionary<string,Definition>(StringComparer.Ordinal)
@@ -64,6 +67,13 @@ namespace CavesOfOoo.Rendering
    if(definition.RequiredPart != null)
    {var part=definition.RequiredPart(owner);if(part==null||!ReferenceEquals(part.ParentEntity,owner))return false;}
    if(owner.GetPart<HarvestablePart>()?.Harvested==true)return false;
+   if(definition.JammedModels!=null&&owner.GetPart<TrapJammingPart>() is TrapJammingPart jam)
+   {
+    // Old saved traps without this opt-in retain their armed art. A malformed
+    // state must never borrow the visibly safe model of another mechanism.
+    if(!TrapJammingPart.IsSupported(owner))return false;
+    if(jam.Jammed){modelId=definition.JammedModels[variant];return true;}
+   }
    if(owner.BlueprintName=="OldStump")
    {var quest=owner.GetPart<QuestMarkerTriggerPart>();if(quest==null||!ReferenceEquals(quest.ParentEntity,owner)||quest.Fact!="bmo_stump_reached"||quest.Value!=1)return false;}
    int stateOffset = 0;

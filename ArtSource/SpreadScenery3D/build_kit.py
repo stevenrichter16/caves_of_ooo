@@ -5,7 +5,7 @@ from pathlib import Path
 import json, math
 PALETTE=['#082C28','#103E36','#1A4B40','#26594A','#A0A77C','#CBC697','#647353','#235D25','#40872C','#65AE3D','#435A53','#62786C','#819489','#16883B','#45CB4B','#A0E772','#207838','#D2D3B4','#B77B43','#403D28','#756C40','#A39456','#C4B877','#243E39']
 BLUEPRINTS=['BerryBush','Signpost','HollowStump','Beehive','RiverShrine','FlowerField','StoneFloor','StoneWall','Chair','Bed','Well','Oven','WatchLantern','CampfireGroundMarker','WellGroundMarker','OvenGroundMarker','LanternGroundMarker','Shrine','AlchemyShelf','AlchemyStill','TinkersForge','OldStump','PressurePlate','BearTrap','FireTrap','SpikeTrap','WeaponRack']
-def model(bp,v,unlit=False):
+def model(bp,v,unlit=False,jammed=False):
     boxes=[]
     def b(x,y,z,sx,sy,sz,c):
         boxes.append(dict(center=[round(x,5),round(y,5),round(z,5)],size=[round(sx,5),round(sy,5),round(sz,5)],color=c))
@@ -134,14 +134,44 @@ def model(bp,v,unlit=False):
         for x in [-.22,0,.22]:b(x,.79,.025,.055,.06,.14,21)
         for x in [-.30,.30]:b(x,.06,0,.13,.12,.56,19)
     else:raise ValueError(bp)
+    if jammed:
+        # The same physical mechanism, visibly arrested by a spent length of
+        # timber. Broad tan boards stay legible at the ordinary camera scale.
+        if bp=='SpikeTrap':
+            for box in boxes[1:]:
+                box['center'][1]=round(box['center'][1]*.45,5)
+                box['size'][1]=round(box['size'][1]*.45,5)
+            b(0,.12,.005,.79,.085,.21,21)
+            b(0,.169,-.057,.76,.013,.025,22)
+            b(.365,.12,.005,.033,.088,.215,18)
+        elif bp=='BearTrap':
+            b(0,.17,-.045,.77,.10,.19,21)
+            b(-.065,.228,-.10,.58,.018,.025,22)
+            b(-.37,.17,-.045,.035,.105,.195,18)
+            b(.075,.23,.037,.065,.035,.09,19)
+        elif bp=='FireTrap':
+            # Block the pressure actuator outside the three vents. This is
+            # not a wooden plug placed in an emitted flame.
+            b(0,.145,.20,.77,.085,.16,21)
+            b(.01,.195,.164,.69,.015,.028,22)
+            b(.37,.145,.20,.03,.09,.165,18)
+            b(-.22,.109,.105,.065,.10,.15,11)
+        elif bp=='PressurePlate':
+            boxes[1]['center'][1]=.118
+            b(0,.077,-.24,.79,.09,.18,21)
+            b(-.02,.129,-.28,.73,.016,.04,22)
+            b(.025,.06,-.125,.71,.065,.065,20)
+            b(-.375,.077,-.24,.032,.095,.185,18)
+        else:raise ValueError('No jammed state for '+bp)
     # Distinct tiny surface trim per variant without simulation random draws.
     if v:
         for box in boxes:
             box['center'][0]=-box['center'][0]
         q=boxes[0]; q['center'][1]=round(q['center'][1]+.002,5)
-    return {'id':'spread-scenery-'+bp.lower()+('-unlit' if unlit else '')+'-'+str(v),'boxes':boxes}
+    return {'id':'spread-scenery-'+bp.lower()+('-jammed' if jammed else '-unlit' if unlit else '')+'-'+str(v),'boxes':boxes}
 models=[model(bp,v) for bp in BLUEPRINTS for v in range(2)]
 models += [model('WatchLantern',v,True) for v in range(2)]
+models += [model(bp,v,jammed=True) for bp in ['SpikeTrap','BearTrap','FireTrap','PressurePlate'] for v in range(2)]
 out={'schemaVersion':1,'palette':PALETTE,'models':models}
 Path(__file__).with_name('kit.json').write_text(json.dumps(out,indent=2)+'\n')
 print(f'{len(models)} models, {sum(len(m["boxes"]) for m in models)} boxes')

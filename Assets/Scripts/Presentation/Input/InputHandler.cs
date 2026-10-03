@@ -3019,6 +3019,7 @@ namespace CavesOfOoo.Rendering
             // Only committed harvesting, repair, work or watering costs a turn.
             if (action.Command == "Harvest" || action.Command == "HarvestCultivatedCrop"
                 || action.Command == RepairablePart.RepairCommand
+                || action.Command == TrapJammingPart.JamCommand
                 || action.Command == BotanicalInkDeskPart.PrepareCommand
                 || action.Command == KitchenBatchPart.StartCommand
                 || CropWateringService.IsCommand(action.Command))

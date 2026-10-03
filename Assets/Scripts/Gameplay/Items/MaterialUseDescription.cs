@@ -16,9 +16,9 @@ namespace CavesOfOoo.Core
             if (item.BlueprintName == "SalvagedTimber" || item.BlueprintName == "KnotflaxCord")
             {
                 text = item.GetDisplayName() + "\n\n" + (item.BlueprintName == "SalvagedTimber"
-                    ? "Two lengths brace a jammed wooden gate. Gather fallen frame salvage, or ask a mender for timber."
+                    ? "Two lengths brace a damaged wooden gate. One length makes a permanent wooden jam in a visible spike trap, bear trap, fire trap or pressure plate that offers the action. Stand beside that trap and choose Jam mechanism; a successful jam spends one length and cannot be removed or reclaimed. Recover timber from finite pallets or fallen frame salvage, or ask a mender."
                     : "One coil replaces a snapped well line. Gather a dry knotflax bundle or harvest ripe knotflax from a tilled bed.")
-                    + " Stand beside the damaged object, examine it, then choose its repair action. Only a successful repair spends supplies.";
+                    + " For repairs, stand beside the damaged object, examine it, then choose its repair action. Only successful work spends supplies.";
                 return true;
             }
             string guide, fallback, use, resident;

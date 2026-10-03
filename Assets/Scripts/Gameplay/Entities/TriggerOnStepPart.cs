@@ -54,6 +54,11 @@ namespace CavesOfOoo.Core
             if (e.ID != "EntityEnteredCell")
                 return true;
 
+            // Only an explicitly supported current mechanical owner can be
+            // jammed. Preserve its trigger and consumption policy for saves.
+            if (TrapJammingPart.IsJammed(ParentEntity))
+                return true;
+
             var actor = e.GetParameter<Entity>("Actor");
             if (actor == null || actor == ParentEntity)
                 return true;

@@ -29,11 +29,14 @@ namespace CavesOfOoo.Rendering
         private static readonly HashSet<string> KnownIds = new HashSet<string>(ModelIds, StringComparer.Ordinal);
         private static string[] CreateIds()
         {
-            var ids = new List<string>(56);
+            var ids = new List<string>(64);
             foreach (string blueprint in Blueprints)
                 for (int variant = 0; variant < 2; variant++)
                     ids.Add("spread-scenery-" + blueprint.ToLowerInvariant() + "-" + variant);
             for (int variant = 0; variant < 2; variant++) ids.Add("spread-scenery-watchlantern-unlit-" + variant);
+            foreach (string blueprint in new[] { "SpikeTrap", "BearTrap", "FireTrap", "PressurePlate" })
+                for (int variant = 0; variant < 2; variant++)
+                    ids.Add("spread-scenery-" + blueprint.ToLowerInvariant() + "-jammed-" + variant);
             return ids.ToArray();
         }
         public static bool IsModelId(string id) => id != null && KnownIds.Contains(id);

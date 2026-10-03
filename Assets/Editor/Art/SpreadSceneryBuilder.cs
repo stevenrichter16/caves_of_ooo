@@ -15,7 +15,10 @@ namespace CavesOfOoo.Editor
     public static class SpreadSceneryBuilder
     {
         private const string Source = "ArtSource/SpreadScenery3D/kit.json";
-        public static void Run()
+        public static void Run() => Run("Docs/Verification/DensityCompletion/SpreadBiome/Scenery/native-import.json");
+        [MenuItem("Caves Of Ooo/Art/Import Timber Trap States")]
+        public static void RunTimberTrapStates() => Run("Docs/Verification/TimberTraps/native-art-import.json");
+        public static void Run(string reportPath)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling)
                 throw new InvalidOperationException("Scenery import requires idle Edit mode.");
@@ -75,7 +78,6 @@ namespace CavesOfOoo.Editor
                 if (library == null) { library = ScriptableObject.CreateInstance<SpreadScenery3DLibrary>(); AssetDatabase.CreateAsset(library, path); }
                 library.Entries = entries.ToArray(); library.Material = glade.Material; library.SourceSha256 = hash;
                 library.Validate(); EditorUtility.SetDirty(library); AssetDatabase.SaveAssetIfDirty(library);
-                const string reportPath = "Docs/Verification/DensityCompletion/SpreadBiome/Scenery/native-import.json";
                 Directory.CreateDirectory(Path.GetDirectoryName(reportPath));
                 int boxes = 0; foreach (var model in source.models) boxes += model.boxes.Length;
                 File.WriteAllText(reportPath, JsonUtility.ToJson(new Receipt { sourceSha256 = hash, models = entries.Count,

@@ -1,0 +1,1692 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="106" result="Failed(Child)" total="106" passed="6" failed="100" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:34Z" duration="7.4422704">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="23839" result="Failed" site="Child" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:34Z" duration="7.442270" total="106" passed="6" failed="100" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="29327" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="23839" result="Failed" site="Child" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:34Z" duration="7.425503" total="106" passed="6" failed="100" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="45162" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="29328" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="23839" result="Failed" site="Child" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:34Z" duration="7.419818" total="106" passed="6" failed="100" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="29329" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="23839" result="Failed" site="Child" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:34Z" duration="7.415791" total="106" passed="6" failed="100" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="6623" name="TrapJammingAdversarialTests" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" testcasecount="44" result="Failed" site="Child" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.047198" total="44" passed="0" failed="44" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="6660" name="AfterExceptionRestoresSingletonOrStackAndMechanism" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.AfterExceptionRestoresSingletonOrStackAndMechanism" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.014016" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6658" name="AfterExceptionRestoresSingletonOrStackAndMechanism(1)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.AfterExceptionRestoresSingletonOrStackAndMechanism(1)" methodname="AfterExceptionRestoresSingletonOrStackAndMechanism" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1315812586" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.010711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6659" name="AfterExceptionRestoresSingletonOrStackAndMechanism(3)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.AfterExceptionRestoresSingletonOrStackAndMechanism(3)" methodname="AfterExceptionRestoresSingletonOrStackAndMechanism" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1262033030" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000908" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="6663" name="BareEventCannotBypassReceipt" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.BareEventCannotBypassReceipt" methodname="BareEventCannotBypassReceipt" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="87562127" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000628" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6657" name="BeforeVetoLeavesTimberAndMechanismUntouched" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.BeforeVetoLeavesTimberAndMechanismUntouched" methodname="BeforeVetoLeavesTimberAndMechanismUntouched" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1022053300" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000602" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6671" name="DisablingDoesNotHealDestructibleStructure" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.DisablingDoesNotHealDestructibleStructure" methodname="DisablingDoesNotHealDestructibleStructure" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="2108211705" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000572" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6667" name="DuplicateMechanismsAreNotSilentlyPaidAsOne" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.DuplicateMechanismsAreNotSilentlyPaidAsOne" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.001633" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6665" name="DuplicateMechanismsAreNotSilentlyPaidAsOne(False)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.DuplicateMechanismsAreNotSilentlyPaidAsOne(False)" methodname="DuplicateMechanismsAreNotSilentlyPaidAsOne" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="353805235" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000622" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6666" name="DuplicateMechanismsAreNotSilentlyPaidAsOne(True)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.DuplicateMechanismsAreNotSilentlyPaidAsOne(True)" methodname="DuplicateMechanismsAreNotSilentlyPaidAsOne" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1111697608" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000536" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6642" name="InvalidCurrentContextCannotSpendOrDisable" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" testcasecount="18" result="Failed" site="Child" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.010702" total="18" passed="0" failed="18" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6624" name="InvalidCurrentContextCannotSpendOrDisable(&quot;distant&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;distant&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="815182757" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000575" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6625" name="InvalidCurrentContextCannotSpendOrDisable(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;dead&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="706136823" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000550" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6626" name="InvalidCurrentContextCannotSpendOrDisable(&quot;npc&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;npc&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1639413156" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000530" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6627" name="InvalidCurrentContextCannotSpendOrDisable(&quot;stunned&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;stunned&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="38749268" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000522" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6628" name="InvalidCurrentContextCannotSpendOrDisable(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;hidden&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1247759879" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000571" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6629" name="InvalidCurrentContextCannotSpendOrDisable(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;unexplored&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="582148299" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000554" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6630" name="InvalidCurrentContextCannotSpendOrDisable(&quot;invisible&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;invisible&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="862582000" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000525" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6631" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-creature&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-creature&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="814567792" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000532" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6632" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-carried&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-carried&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1950254635" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000535" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6633" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-equipped&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-equipped&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="200132106" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000585" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6634" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-takeable&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-takeable&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1259067397" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000629" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6635" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-gone&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-gone&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1508098178" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000525" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6636" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-zero-hp&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-zero-hp&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1625015394" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000517" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6637" name="InvalidCurrentContextCannotSpendOrDisable(&quot;target-detached&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;target-detached&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="194602019" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6638" name="InvalidCurrentContextCannotSpendOrDisable(&quot;foreign-zone&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;foreign-zone&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1096684417" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000516" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6639" name="InvalidCurrentContextCannotSpendOrDisable(&quot;wrong-render-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;wrong-render-owner&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="410893909" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000495" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6640" name="InvalidCurrentContextCannotSpendOrDisable(&quot;wrong-physics-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;wrong-physics-owner&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1864428745" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000515" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6641" name="InvalidCurrentContextCannotSpendOrDisable(&quot;wrong-inventory-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidCurrentContextCannotSpendOrDisable(&quot;wrong-inventory-owner&quot;)" methodname="InvalidCurrentContextCannotSpendOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="369723902" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000494" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6656" name="InvalidMaterialCannotBecomePayment" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.007878" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6643" name="InvalidMaterialCannotBecomePayment(&quot;zero&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;zero&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1577742184" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000583" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6644" name="InvalidMaterialCannotBecomePayment(&quot;negative&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;negative&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="87557218" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000530" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6645" name="InvalidMaterialCannotBecomePayment(&quot;foreign-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;foreign-owner&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="828796311" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000543" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6646" name="InvalidMaterialCannotBecomePayment(&quot;missing-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;missing-owner&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1911927134" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000524" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6647" name="InvalidMaterialCannotBecomePayment(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;equipped&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="2087311094" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000526" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6648" name="InvalidMaterialCannotBecomePayment(&quot;equipped-alias&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;equipped-alias&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="2136689790" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000529" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6649" name="InvalidMaterialCannotBecomePayment(&quot;duplicate-reference&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;duplicate-reference&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1235565284" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000532" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6650" name="InvalidMaterialCannotBecomePayment(&quot;not-portable&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;not-portable&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1540434785" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000532" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6651" name="InvalidMaterialCannotBecomePayment(&quot;wrong-blueprint&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;wrong-blueprint&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="2069788680" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000508" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6652" name="InvalidMaterialCannotBecomePayment(&quot;wrong-physics-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;wrong-physics-owner&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1420746469" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000528" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6653" name="InvalidMaterialCannotBecomePayment(&quot;wrong-stack-owner&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;wrong-stack-owner&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1612663073" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000517" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6654" name="InvalidMaterialCannotBecomePayment(&quot;ground&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;ground&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1166195886" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000511" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6655" name="InvalidMaterialCannotBecomePayment(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.InvalidMaterialCannotBecomePayment(&quot;creature&quot;)" methodname="InvalidMaterialCannotBecomePayment" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1147823684" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000520" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="6668" name="PureRepeatedMenuQueriesDoNotPayLogOrDisable" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.PureRepeatedMenuQueriesDoNotPayLogOrDisable" methodname="PureRepeatedMenuQueriesDoNotPayLogOrDisable" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1571790141" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000520" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6662" name="ReentrantSameTrapCannotDoublePay" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.ReentrantSameTrapCannotDoublePay" methodname="ReentrantSameTrapCannotDoublePay" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="107545663" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000523" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6670" name="SeparateOwnerKeepsItsArmedState" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.SeparateOwnerKeepsItsArmedState" methodname="SeparateOwnerKeepsItsArmedState" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="15073993" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000610" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6664" name="StaleFacadeCannotDispatchReplacementPart" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.StaleFacadeCannotDispatchReplacementPart" methodname="StaleFacadeCannotDispatchReplacementPart" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1253631729" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000567" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6661" name="UnrelatedTransfersSurviveRollback" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.UnrelatedTransfersSurviveRollback" methodname="UnrelatedTransfersSurviveRollback" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1095662496" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000567" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6669" name="WrongMaterialDoesNotHideLaterValidTimber" fullname="CavesOfOoo.Tests.TrapJammingAdversarialTests.WrongMaterialDoesNotHideLaterValidTimber" methodname="WrongMaterialDoesNotHideLaterValidTimber" classname="CavesOfOoo.Tests.TrapJammingAdversarialTests" runstate="Runnable" seed="1897187108" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.000540" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="9712" name="TrapJammingContentTests" fullname="CavesOfOoo.Tests.TrapJammingContentTests" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:29Z" duration="1.713016" total="13" passed="6" failed="7" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="9717" name="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.155452" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9713" name="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;SpikeTrap&quot;)" methodname="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="2042220119" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.064207" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real factory blueprint must admit the player action.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention (System.String blueprint) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/TrapJammingContentTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9714" name="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;BearTrap&quot;)" methodname="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1182089482" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.030711" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real factory blueprint must admit the player action.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention (System.String blueprint) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/TrapJammingContentTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9715" name="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;PressurePlate&quot;)" methodname="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1491466078" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.030316" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real factory blueprint must admit the player action.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention (System.String blueprint) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/TrapJammingContentTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9716" name="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention(&quot;FireTrap&quot;)" methodname="ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="369639123" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:27Z" duration="0.029659" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The real factory blueprint must admit the player action.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingContentTests.ActualMechanicalBlueprintOptsIntoOnePersistentTimberIntervention (System.String blueprint) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/TrapJammingContentTests.cs:20
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="9728" name="ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:29Z" duration="1.342113" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="9726" name="ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber(64)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber(64)" methodname="ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="650924091" result="Failed" start-time="2026-10-03 15:42:27Z" end-time="2026-10-03 15:42:28Z" duration="0.852089" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingContentTests.ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber (System.Int32 seed) [0x00076] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/TrapJammingContentTests.cs:82
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="9727" name="ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber(1729)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber(1729)" methodname="ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1065042089" result="Failed" start-time="2026-10-03 15:42:28Z" end-time="2026-10-03 15:42:29Z" duration="0.486889" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingContentTests.ActualOneSouthStoreCarriesOptInAndGladeCellarOffersOnlyTwoTimber (System.Int32 seed) [0x00076] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/TrapJammingContentTests.cs:82
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="9723" name="CarriedTimberNamesBothCompetingUsesAndActualTrapExamples" fullname="CavesOfOoo.Tests.TrapJammingContentTests.CarriedTimberNamesBothCompetingUsesAndActualTrapExamples" methodname="CarriedTimberNamesBothCompetingUsesAndActualTrapExamples" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="744956478" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.030153" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: String containing "one length"
+  But was:  "salvaged timber
+
+two lengths brace a jammed wooden gate. gather fallen frame salvage, or ask a mender for timber. stand beside the damaged object, examine it, then choose its repair action. only a successful repair spends supplies."
+]]></message>
+                <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.TrapJammingContentTests.CarriedTimberNamesBothCompetingUsesAndActualTrapExamples () [0x00067] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Items/TrapJammingContentTests.cs:46
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="9724" name="CordGuidanceDoesNotPromiseTimberJamming" fullname="CavesOfOoo.Tests.TrapJammingContentTests.CordGuidanceDoesNotPromiseTimberJamming" methodname="CordGuidanceDoesNotPromiseTimberJamming" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="905253376" result="Passed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.031244" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="9725" name="MissingOptInOnAnOldTrapDoesNotAcquireJamAction" fullname="CavesOfOoo.Tests.TrapJammingContentTests.MissingOptInOnAnOldTrapDoesNotAcquireJamAction" methodname="MissingOptInOnAnOldTrapDoesNotAcquireJamAction" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1389151233" result="Passed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.033943" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="9722" name="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract" fullname="CavesOfOoo.Tests.TrapJammingContentTests.UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.119076" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="9718" name="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;RuneOfFlame&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;RuneOfFlame&quot;)" methodname="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1857838977" result="Passed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.029408" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9719" name="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;RuneOfFrost&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;RuneOfFrost&quot;)" methodname="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1058141622" result="Passed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.029118" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9720" name="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;RuneOfPoison&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;RuneOfPoison&quot;)" methodname="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="1694840866" result="Passed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.028618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="9721" name="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;Greatdew&quot;)" fullname="CavesOfOoo.Tests.TrapJammingContentTests.UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract(&quot;Greatdew&quot;)" methodname="UnrelatedTriggerBlueprintsRemainOutsideTheTimberContract" classname="CavesOfOoo.Tests.TrapJammingContentTests" runstate="Runnable" seed="694580666" result="Passed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.029195" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="27618" name="TrapJammingNativeModeTests" fullname="CavesOfOoo.Tests.TrapJammingNativeModeTests" classname="CavesOfOoo.Tests.TrapJammingNativeModeTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.004662" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="27619" name="OrdinaryTrapJourneyHasItsOwnNoArgumentIsolatedLauncher" fullname="CavesOfOoo.Tests.TrapJammingNativeModeTests.OrdinaryTrapJourneyHasItsOwnNoArgumentIsolatedLauncher" methodname="OrdinaryTrapJourneyHasItsOwnNoArgumentIsolatedLauncher" classname="CavesOfOoo.Tests.TrapJammingNativeModeTests" runstate="Runnable" seed="879133843" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.000796" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingNativeModeTests.OrdinaryTrapJourneyHasItsOwnNoArgumentIsolatedLauncher () [0x00066] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingNativeModeTests.cs:19
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="27620" name="TrapJourneyRequiresIsolationBeforeChangingInputOrWorld" fullname="CavesOfOoo.Tests.TrapJammingNativeModeTests.TrapJourneyRequiresIsolationBeforeChangingInputOrWorld" methodname="TrapJourneyRequiresIsolationBeforeChangingInputOrWorld" classname="CavesOfOoo.Tests.TrapJammingNativeModeTests" runstate="Runnable" seed="311545320" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.001771" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingNativeModeTests.TrapJourneyRequiresIsolationBeforeChangingInputOrWorld () [0x00071] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingNativeModeTests.cs:29
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="27621" name="TrapJammingPresentationTests" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" testcasecount="25" result="Failed" site="Child" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:34Z" duration="5.535864" total="25" passed="0" failed="25" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="27636" name="AuthoredPackHasEightDistinctWoodenJamStatesAndRetainsArmedGeometry" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.AuthoredPackHasEightDistinctWoodenJamStatesAndRetainsArmedGeometry" methodname="AuthoredPackHasEightDistinctWoodenJamStatesAndRetainsArmedGeometry" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="333707453" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.003666" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 8
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.AuthoredPackHasEightDistinctWoodenJamStatesAndRetainsArmedGeometry () [0x00050] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:62
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="27635" name="ExamineReportsActualCurrentStateAndPhysicalMaterialUse" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.272013" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27631" name="ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;SpikeTrap&quot;)" methodname="ExamineReportsActualCurrentStateAndPhysicalMaterialUse" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1057687902" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.030126" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "timber"
+  But was:  "you see a spike trap."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse (System.String blueprint) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27632" name="ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;BearTrap&quot;)" methodname="ExamineReportsActualCurrentStateAndPhysicalMaterialUse" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1487144404" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.081378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "timber"
+  But was:  "you see a bear trap."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse (System.String blueprint) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27633" name="ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;FireTrap&quot;)" methodname="ExamineReportsActualCurrentStateAndPhysicalMaterialUse" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="883324668" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.076212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "timber"
+  But was:  "you see a fire trap."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse (System.String blueprint) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27634" name="ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse(&quot;PressurePlate&quot;)" methodname="ExamineReportsActualCurrentStateAndPhysicalMaterialUse" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1835172726" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.083161" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String containing "timber"
+  But was:  "you see a pressure plate."
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.Contains (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.TrapJammingPresentationTests.ExamineReportsActualCurrentStateAndPhysicalMaterialUse (System.String blueprint) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:52
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27646" name="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.277387" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27642" name="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;hidden&quot;)" methodname="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="113606001" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.094901" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual trap blueprint requires the finite jamming opt-in.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.Jam (CavesOfOoo.Core.Entity owner) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:19
+at CavesOfOoo.Tests.TrapJammingPresentationTests.SetJammed (CavesOfOoo.Core.Entity owner, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:22
+at CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel (System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:122
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27643" name="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;foreign-part&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;foreign-part&quot;)" methodname="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="453760166" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.119574" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual trap blueprint requires the finite jamming opt-in.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.Jam (CavesOfOoo.Core.Entity owner) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:19
+at CavesOfOoo.Tests.TrapJammingPresentationTests.SetJammed (CavesOfOoo.Core.Entity owner, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:22
+at CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel (System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:122
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27644" name="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;foreign-physics&quot;)" methodname="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="521093130" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.029929" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual trap blueprint requires the finite jamming opt-in.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.Jam (CavesOfOoo.Core.Entity owner) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:19
+at CavesOfOoo.Tests.TrapJammingPresentationTests.SetJammed (CavesOfOoo.Core.Entity owner, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:22
+at CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel (System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:122
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27645" name="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;custom-visual&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel(&quot;custom-visual&quot;)" methodname="InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="918066967" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:29Z" duration="0.029577" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual trap blueprint requires the finite jamming opt-in.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.Jam (CavesOfOoo.Core.Entity owner) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:19
+at CavesOfOoo.Tests.TrapJammingPresentationTests.SetJammed (CavesOfOoo.Core.Entity owner, System.Boolean value) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:22
+at CavesOfOoo.Tests.TrapJammingPresentationTests.InvalidJammedAppearanceNeverBorrowsApprovedSafetyModel (System.String change) [0x00017] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:122
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27641" name="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:34Z" duration="4.455707" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27637" name="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;SpikeTrap&quot;)" methodname="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="702810321" result="Failed" start-time="2026-10-03 15:42:29Z" end-time="2026-10-03 15:42:32Z" duration="2.363416" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks (System.String blueprint) [0x00189] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:89
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27638" name="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;BearTrap&quot;)" methodname="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1080043454" result="Failed" start-time="2026-10-03 15:42:32Z" end-time="2026-10-03 15:42:32Z" duration="0.642951" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks (System.String blueprint) [0x00189] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:89
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27639" name="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;FireTrap&quot;)" methodname="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="371913281" result="Failed" start-time="2026-10-03 15:42:32Z" end-time="2026-10-03 15:42:33Z" duration="0.726689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks (System.String blueprint) [0x00189] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:89
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27640" name="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks(&quot;PressurePlate&quot;)" methodname="NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="136476680" result="Failed" start-time="2026-10-03 15:42:33Z" end-time="2026-10-03 15:42:34Z" duration="0.719915" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.NativeTransactionChangesExactRenderedOwnerAndSavedStateWhileLegacyActivationStillWorks (System.String blueprint) [0x00189] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:89
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27651" name="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.158668" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27647" name="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;SpikeTrap&quot;)" methodname="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1350050271" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.035665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming (System.String blueprint) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27648" name="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;BearTrap&quot;)" methodname="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="239428987" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.033227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming (System.String blueprint) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27649" name="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;FireTrap&quot;)" methodname="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="291912851" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.032064" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming (System.String blueprint) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27650" name="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming(&quot;PressurePlate&quot;)" methodname="NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="686179420" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.031362" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.NearbyHintIsPureVisibleCurrentAndGoesAwayAfterJamming (System.String blueprint) [0x000a5] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="27630" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.365572" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="27622" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;SpikeTrap&quot;,0)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;SpikeTrap&quot;,0)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1252448346" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.030356" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual trap blueprint requires the finite jamming opt-in.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.Jam (CavesOfOoo.Core.Entity owner) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:19
+at CavesOfOoo.Tests.TrapJammingPresentationTests.Jammed (CavesOfOoo.Core.Entity owner) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:21
+at CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay (System.String blueprint, System.Int32 variant) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27623" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;SpikeTrap&quot;,1)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;SpikeTrap&quot;,1)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="941902957" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.028379" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual trap blueprint requires the finite jamming opt-in.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.Jam (CavesOfOoo.Core.Entity owner) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:19
+at CavesOfOoo.Tests.TrapJammingPresentationTests.Jammed (CavesOfOoo.Core.Entity owner) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:21
+at CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay (System.String blueprint, System.Int32 variant) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27624" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;BearTrap&quot;,0)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;BearTrap&quot;,0)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1192459258" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.029485" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual trap blueprint requires the finite jamming opt-in.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.Jam (CavesOfOoo.Core.Entity owner) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:19
+at CavesOfOoo.Tests.TrapJammingPresentationTests.Jammed (CavesOfOoo.Core.Entity owner) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:21
+at CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay (System.String blueprint, System.Int32 variant) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27625" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;BearTrap&quot;,1)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;BearTrap&quot;,1)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="471705085" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.028679" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual trap blueprint requires the finite jamming opt-in.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.Jam (CavesOfOoo.Core.Entity owner) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:19
+at CavesOfOoo.Tests.TrapJammingPresentationTests.Jammed (CavesOfOoo.Core.Entity owner) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:21
+at CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay (System.String blueprint, System.Int32 variant) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27626" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;FireTrap&quot;,0)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;FireTrap&quot;,0)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="71371830" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.028942" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual trap blueprint requires the finite jamming opt-in.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.Jam (CavesOfOoo.Core.Entity owner) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:19
+at CavesOfOoo.Tests.TrapJammingPresentationTests.Jammed (CavesOfOoo.Core.Entity owner) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:21
+at CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay (System.String blueprint, System.Int32 variant) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27627" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;FireTrap&quot;,1)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;FireTrap&quot;,1)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="843031059" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.028612" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual trap blueprint requires the finite jamming opt-in.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.Jam (CavesOfOoo.Core.Entity owner) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:19
+at CavesOfOoo.Tests.TrapJammingPresentationTests.Jammed (CavesOfOoo.Core.Entity owner) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:21
+at CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay (System.String blueprint, System.Int32 variant) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27628" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;PressurePlate&quot;,0)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;PressurePlate&quot;,0)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1315408575" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.028607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual trap blueprint requires the finite jamming opt-in.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.Jam (CavesOfOoo.Core.Entity owner) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:19
+at CavesOfOoo.Tests.TrapJammingPresentationTests.Jammed (CavesOfOoo.Core.Entity owner) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:21
+at CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay (System.String blueprint, System.Int32 variant) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="27629" name="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;PressurePlate&quot;,1)" fullname="CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay(&quot;PressurePlate&quot;,1)" methodname="SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay" classname="CavesOfOoo.Tests.TrapJammingPresentationTests" runstate="Runnable" seed="1691473851" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.058116" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Actual trap blueprint requires the finite jamming opt-in.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingPresentationTests.Jam (CavesOfOoo.Core.Entity owner) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:19
+at CavesOfOoo.Tests.TrapJammingPresentationTests.Jammed (CavesOfOoo.Core.Entity owner) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:21
+at CavesOfOoo.Tests.TrapJammingPresentationTests.SameOwnerUsesDistinctArmedAndJammedModelsWithoutChangingGameplay (System.String blueprint, System.Int32 variant) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/TrapJammingPresentationTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="6672" name="TrapJammingTests" fullname="CavesOfOoo.Tests.TrapJammingTests" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.096184" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="6696" name="AuthoredBlueprintsOptIn" fullname="CavesOfOoo.Tests.TrapJammingTests.AuthoredBlueprintsOptIn" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.015144" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6692" name="AuthoredBlueprintsOptIn(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.AuthoredBlueprintsOptIn(&quot;SpikeTrap&quot;)" methodname="AuthoredBlueprintsOptIn" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1742730361" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.002360" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6693" name="AuthoredBlueprintsOptIn(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.AuthoredBlueprintsOptIn(&quot;FireTrap&quot;)" methodname="AuthoredBlueprintsOptIn" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="2052696556" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.002342" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6694" name="AuthoredBlueprintsOptIn(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.AuthoredBlueprintsOptIn(&quot;BearTrap&quot;)" methodname="AuthoredBlueprintsOptIn" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1243558978" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.005337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6695" name="AuthoredBlueprintsOptIn(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.AuthoredBlueprintsOptIn(&quot;PressurePlate&quot;)" methodname="AuthoredBlueprintsOptIn" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1454903878" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.003507" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="6688" name="JammedPlateStaysSafeAfterLeavingAndReentering" fullname="CavesOfOoo.Tests.TrapJammingTests.JammedPlateStaysSafeAfterLeavingAndReentering" methodname="JammedPlateStaysSafeAfterLeavingAndReentering" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="581172767" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.003593" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6700" name="LegacyTrapWithoutOptInKeepsPriorBehaviorThroughSave" fullname="CavesOfOoo.Tests.TrapJammingTests.LegacyTrapWithoutOptInKeepsPriorBehaviorThroughSave" methodname="LegacyTrapWithoutOptInKeepsPriorBehaviorThroughSave" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1869293684" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.003050" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="6687" name="MissingMaterialCanBeFoundAndRetriedOnTheSameTrap" fullname="CavesOfOoo.Tests.TrapJammingTests.MissingMaterialCanBeFoundAndRetriedOnTheSameTrap" methodname="MissingMaterialCanBeFoundAndRetriedOnTheSameTrap" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1266269461" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.003266" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6699" name="NativeSaveRestoresExactOwnerAndSavedJam" fullname="CavesOfOoo.Tests.TrapJammingTests.NativeSaveRestoresExactOwnerAndSavedJam" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.054799" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6697" name="NativeSaveRestoresExactOwnerAndSavedJam(False)" fullname="CavesOfOoo.Tests.TrapJammingTests.NativeSaveRestoresExactOwnerAndSavedJam(False)" methodname="NativeSaveRestoresExactOwnerAndSavedJam" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="890291047" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.003561" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6698" name="NativeSaveRestoresExactOwnerAndSavedJam(True)" fullname="CavesOfOoo.Tests.TrapJammingTests.NativeSaveRestoresExactOwnerAndSavedJam(True)" methodname="NativeSaveRestoresExactOwnerAndSavedJam" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="479273210" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.050220" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6677" name="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt" fullname="CavesOfOoo.Tests.TrapJammingTests.OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.003137" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6673" name="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;SpikeTrap&quot;)" methodname="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1672158674" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000671" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6674" name="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;FireTrap&quot;)" methodname="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="2090173312" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000626" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6675" name="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;BearTrap&quot;)" methodname="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="44107097" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000588" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6676" name="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt(&quot;PressurePlate&quot;)" methodname="OneRealTimberMakesCurrentTrapSafeWithoutRemovingIt" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1391877330" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000583" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="6686" name="RequirementIsDiscoverableWithoutMaterialButAttemptIsFree" fullname="CavesOfOoo.Tests.TrapJammingTests.RequirementIsDiscoverableWithoutMaterialButAttemptIsFree" methodname="RequirementIsDiscoverableWithoutMaterialButAttemptIsFree" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1989812508" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000576" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6682" name="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption" fullname="CavesOfOoo.Tests.TrapJammingTests.SameUnjammedTrapRetainsItsOriginalDamageAndConsumption" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.002748" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6678" name="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;SpikeTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;SpikeTrap&quot;)" methodname="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1261546105" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000589" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6679" name="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;FireTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;FireTrap&quot;)" methodname="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1389502591" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6680" name="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;BearTrap&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;BearTrap&quot;)" methodname="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1394338452" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6681" name="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;PressurePlate&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.SameUnjammedTrapRetainsItsOriginalDamageAndConsumption(&quot;PressurePlate&quot;)" methodname="SameUnjammedTrapRetainsItsOriginalDamageAndConsumption" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="788438497" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000570" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6685" name="SingletonOrStackPaysExactlyOneWithCorrectBacklinks" fullname="CavesOfOoo.Tests.TrapJammingTests.SingletonOrStackPaysExactlyOneWithCorrectBacklinks" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.001588" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6683" name="SingletonOrStackPaysExactlyOneWithCorrectBacklinks(1)" fullname="CavesOfOoo.Tests.TrapJammingTests.SingletonOrStackPaysExactlyOneWithCorrectBacklinks(1)" methodname="SingletonOrStackPaysExactlyOneWithCorrectBacklinks" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="15713035" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000617" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6684" name="SingletonOrStackPaysExactlyOneWithCorrectBacklinks(3)" fullname="CavesOfOoo.Tests.TrapJammingTests.SingletonOrStackPaysExactlyOneWithCorrectBacklinks(3)" methodname="SingletonOrStackPaysExactlyOneWithCorrectBacklinks" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="1453787501" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000569" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6691" name="UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart" fullname="CavesOfOoo.Tests.TrapJammingTests.UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.001508" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6689" name="UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart(&quot;TripWire&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart(&quot;TripWire&quot;)" methodname="UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="759114089" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000600" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6690" name="UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart(&quot;RuneOfFlame&quot;)" fullname="CavesOfOoo.Tests.TrapJammingTests.UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart(&quot;RuneOfFlame&quot;)" methodname="UnsupportedTriggersDoNotBecomeMechanicalByAddingThePart" classname="CavesOfOoo.Tests.TrapJammingTests" runstate="Runnable" seed="930652631" result="Failed" start-time="2026-10-03 15:42:34Z" end-time="2026-10-03 15:42:34Z" duration="0.000603" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[SetUp :   The native trap-jamming Part must exist.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrapJammingFixture.SetTarget (System.String blueprint, System.Boolean optIn) [0x0009e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:43
+at CavesOfOoo.Tests.TrapJammingFixture.Setup () [0x000c3] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Entities/TrapJammingTests.cs:26
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
