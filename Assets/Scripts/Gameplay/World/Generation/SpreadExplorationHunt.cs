@@ -43,9 +43,11 @@ namespace CavesOfOoo.Core
         }
         /// <summary>Atomic cold replacement at priority4001, before Magpie stock.
         /// The final proof permits later unrelated stock but pins both new actors,
-        /// the exact removed source graphs, actual cover and useful geometry.</summary>
+        /// the exact removed source graphs, actual cover and useful geometry.
+        /// Meat diversion is an explicit fresh-manifest opt-in; existing callers
+        /// retain the old hunt.</summary>
         public static bool TryPlace(Zone zone,EntityFactory factory,SpreadCompositionBuilder terrain,
-            PopulationBuilder population,bool covered,Func<bool> authority,out Entity hunter,out Entity grazer,out Func<bool> finalState)
+            PopulationBuilder population,bool covered,Func<bool> authority,out Entity hunter,out Entity grazer,out Func<bool> finalState,bool enableMeatDiversion=false)
         {
             hunter=null;grazer=null;finalState=null;
             var hostile=population?.SourceReceipt;var ambient=population?.AmbientSourceReceipt;
@@ -101,7 +103,7 @@ namespace CavesOfOoo.Core
                     newProof[i]=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{newOwners[i]});
                     if(!authority()||!Owned()||!Others()||!NewState())return false;
                 }
-                if(!predator.GetPart<SpreadPredatorPart>().Configure(zone,prey))return false;
+                if(!predator.GetPart<SpreadPredatorPart>().Configure(zone,prey,enableMeatDiversion))return false;
                 for(int i=0;i<newOwners.Length;i++)newProof[i]=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{newOwners[i]});
                 var packet=SpreadGenerationReceipt.CaptureFinalState(zone,newOwners.Concat(design.Tree==null?Array.Empty<Entity>():new[]{design.Tree}));
                 bool Final()=>authority()&&Provenance()&&packet()&&detached.All(p=>p())

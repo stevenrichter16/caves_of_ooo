@@ -1,0 +1,141 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"3e76270c95a24382b04b13ed63371e67\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1791036136431,\"finished_unix_ms\":1791036157675,\"last_update_unix_ms\":1791036157675,\"progress\":{\"completed\":59,\"total\":59,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1791036157326,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.PredatorMeatDiversionTests.VisibleMeatApproachUsesOneRealMovementAndKeepsQuarryMemory\",\"last_finished_unix_ms\":1791036157347,\"stuck_suspected\":false,\"editor_is_focused\":false,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionContentTests.ActualMeatSupportsOrdinaryThrowAndRetainsItsFoodCost(\\\"RawMeat\\\",\\\"1d4\\\",\\\"Raw\\\",3)\",\"message\":\"  The ordinary throw picker must accept the real food.\\n  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionContentTests.ActualMeatSupportsOrdinaryThrowAndRetainsItsFoodCost(\\\"DriedMeat\\\",\\\"3d4\\\",\\\"Meal\\\",7)\",\"message\":\"  The ordinary throw picker must accept the real food.\\n  Expected: True\\n  But was:  False\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionContentTests.MeatExamineExplainsPhysicalPlacementAndRisk(\\\"RawMeat\\\")\",\"message\":\"  Expected: String containing \\\"furrowstalker\\\"\\n  But was:  \\\"you see a raw meat.\\\"\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionContentTests.MeatExamineExplainsPhysicalPlacementAndRisk(\\\"DriedMeat\\\")\",\"message\":\"  Expected: String containing \\\"furrowstalker\\\"\\n  But was:  \\\"you see a dried meat.\\\"\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionGenerationTests.AccessingAnExistingDefaultConfiguredPairCannotUpgradeItsCapability\",\"message\":\"  Fresh admitted hunts need a saved opt-in; legacy Parts must default to false.\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionGenerationTests.ActualGeneratedAndReloadedPairsUseTheirLiteralManifestAdmission(13,True)\",\"message\":\"  Fresh admitted hunts need a saved opt-in; legacy Parts must default to false.\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionGenerationTests.ActualGeneratedAndReloadedPairsUseTheirLiteralManifestAdmission(12,False)\",\"message\":\"  Fresh admitted hunts need a saved opt-in; legacy Parts must default to false.\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionGenerationTests.ActualGeneratedAndReloadedPairsUseTheirLiteralManifestAdmission(11,False)\",\"message\":\"  Fresh admitted hunts need a saved opt-in; legacy Parts must default to false.\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionGenerationTests.NewVersionThirteenKeepsLiteralTwelveAndElevenAssignmentsWithoutGenerating(1)\",\"message\":\"  Only a fresh explicit manifest opts into meat diversion.\\n  Expected: 13\\n  But was:  12\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionGenerationTests.NewVersionThirteenKeepsLiteralTwelveAndElevenAssignmentsWithoutGenerating(64)\",\"message\":\"  Only a fresh explicit manifest opts into meat diversion.\\n  Expected: 13\\n  But was:  12\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionGenerationTests.NewVersionThirteenKeepsLiteralTwelveAndElevenAssignmentsWithoutGenerating(1729)\",\"message\":\"  Only a fresh explicit manifest opts into meat diversion.\\n  Expected: 13\\n  But was:  12\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionGenerationTests.OptInChangesNeitherTheActualSourceLayoutNorTheGenerationRandomTail\",\"message\":\"  Fresh admitted hunts need a saved opt-in; legacy Parts must default to false.\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionNativeModeTests.ActualDiversionHasItsOwnIsolatedNoArgumentLauncher\",\"message\":\"  Missing ordinary provision-to-generated-hunt native mode\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionNativeModeTests.DiversionRefusesWithoutSaveIsolationBeforeChangingInputOrWorld\",\"message\":\"  Missing explicit isolated native diversion initializer\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionPresentationTests.ActualRoleFeedingKeepsCurrentMeatViewUntilOneUnitCommitsAndLegacyCounterKeepsFood(\\\"RawMeat\\\",1,True)\",\"message\":\"  Expected: 2\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorDiversionPresentationTests.ActualRoleFeedingKeepsCurrentMeatViewUntilOneUnitCommitsAndLegacyCounterKeepsFood(\\\"DriedMeat\\\",2,True)\",\"message\":\"  Expected: 2\\n  But was:  0\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorMeatDiversionTests.CurrentLookNamesTheActualMeatActivityWithoutSpendingATurn\",\"message\":\"  Expected: String containing \\\"meat\\\"\\n  But was:  \\\"it runs low to the ground after its quarry.\\\"\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorMeatDiversionTests.FeedingPresentationRemovalCannotConsumeAMatchingReplacement\",\"message\":\"  actual current-owner feed gesture occurred\\n  Expected: not null\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorMeatDiversionTests.InvalidatedExactBaitEndsOneAttemptWithoutTakingAReplacement(\\\"moved\\\")\",\"message\":\"  Expected: same as <Entity(raw meat)>\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorMeatDiversionTests.InvalidatedExactBaitEndsOneAttemptWithoutTakingAReplacement(\\\"picked-up\\\")\",\"message\":\"  Expected: same as <Entity(raw meat)>\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorMeatDiversionTests.InvalidatedExactBaitEndsOneAttemptWithoutTakingAReplacement(\\\"replaced\\\")\",\"message\":\"  Expected: same as <Entity(raw meat)>\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorMeatDiversionTests.InvalidatedExactBaitEndsOneAttemptWithoutTakingAReplacement(\\\"burning\\\")\",\"message\":\"  Expected: same as <Entity(raw meat)>\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorMeatDiversionTests.InvalidatedExactBaitEndsOneAttemptWithoutTakingAReplacement(\\\"owned\\\")\",\"message\":\"  Expected: same as <Entity(raw meat)>\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorMeatDiversionTests.InvalidatedExactBaitEndsOneAttemptWithoutTakingAReplacement(\\\"empty\\\")\",\"message\":\"  Expected: same as <Entity(raw meat)>\\n  But was:  null\\n\"},{\"full_name\":\"CavesOfOoo.Tests.PredatorMeatDiversionTests.ReplacementSaveKeepsExactFoodProgressAndSpentAllowance(0)\",\"message\":\"  Expected: True\\n  But was:  False\\n\"}],\"failures_capped\":true},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "3e76270c95a24382b04b13ed63371e67",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1791036136431,
+        "finished_unix_ms": 1791036157675,
+        "last_update_unix_ms": 1791036157675,
+        "progress": {
+          "completed": 59,
+          "total": 59,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1791036157326,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.VisibleMeatApproachUsesOneRealMovementAndKeepsQuarryMemory",
+          "last_finished_unix_ms": 1791036157347,
+          "stuck_suspected": false,
+          "editor_is_focused": false,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionContentTests.ActualMeatSupportsOrdinaryThrowAndRetainsItsFoodCost(\"RawMeat\",\"1d4\",\"Raw\",3)",
+              "message": "  The ordinary throw picker must accept the real food.\n  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionContentTests.ActualMeatSupportsOrdinaryThrowAndRetainsItsFoodCost(\"DriedMeat\",\"3d4\",\"Meal\",7)",
+              "message": "  The ordinary throw picker must accept the real food.\n  Expected: True\n  But was:  False\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionContentTests.MeatExamineExplainsPhysicalPlacementAndRisk(\"RawMeat\")",
+              "message": "  Expected: String containing \"furrowstalker\"\n  But was:  \"you see a raw meat.\"\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionContentTests.MeatExamineExplainsPhysicalPlacementAndRisk(\"DriedMeat\")",
+              "message": "  Expected: String containing \"furrowstalker\"\n  But was:  \"you see a dried meat.\"\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionGenerationTests.AccessingAnExistingDefaultConfiguredPairCannotUpgradeItsCapability",
+              "message": "  Fresh admitted hunts need a saved opt-in; legacy Parts must default to false.\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionGenerationTests.ActualGeneratedAndReloadedPairsUseTheirLiteralManifestAdmission(13,True)",
+              "message": "  Fresh admitted hunts need a saved opt-in; legacy Parts must default to false.\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionGenerationTests.ActualGeneratedAndReloadedPairsUseTheirLiteralManifestAdmission(12,False)",
+              "message": "  Fresh admitted hunts need a saved opt-in; legacy Parts must default to false.\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionGenerationTests.ActualGeneratedAndReloadedPairsUseTheirLiteralManifestAdmission(11,False)",
+              "message": "  Fresh admitted hunts need a saved opt-in; legacy Parts must default to false.\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionGenerationTests.NewVersionThirteenKeepsLiteralTwelveAndElevenAssignmentsWithoutGenerating(1)",
+              "message": "  Only a fresh explicit manifest opts into meat diversion.\n  Expected: 13\n  But was:  12\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionGenerationTests.NewVersionThirteenKeepsLiteralTwelveAndElevenAssignmentsWithoutGenerating(64)",
+              "message": "  Only a fresh explicit manifest opts into meat diversion.\n  Expected: 13\n  But was:  12\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionGenerationTests.NewVersionThirteenKeepsLiteralTwelveAndElevenAssignmentsWithoutGenerating(1729)",
+              "message": "  Only a fresh explicit manifest opts into meat diversion.\n  Expected: 13\n  But was:  12\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionGenerationTests.OptInChangesNeitherTheActualSourceLayoutNorTheGenerationRandomTail",
+              "message": "  Fresh admitted hunts need a saved opt-in; legacy Parts must default to false.\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionNativeModeTests.ActualDiversionHasItsOwnIsolatedNoArgumentLauncher",
+              "message": "  Missing ordinary provision-to-generated-hunt native mode\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionNativeModeTests.DiversionRefusesWithoutSaveIsolationBeforeChangingInputOrWorld",
+              "message": "  Missing explicit isolated native diversion initializer\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionPresentationTests.ActualRoleFeedingKeepsCurrentMeatViewUntilOneUnitCommitsAndLegacyCounterKeepsFood(\"RawMeat\",1,True)",
+              "message": "  Expected: 2\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorDiversionPresentationTests.ActualRoleFeedingKeepsCurrentMeatViewUntilOneUnitCommitsAndLegacyCounterKeepsFood(\"DriedMeat\",2,True)",
+              "message": "  Expected: 2\n  But was:  0\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.CurrentLookNamesTheActualMeatActivityWithoutSpendingATurn",
+              "message": "  Expected: String containing \"meat\"\n  But was:  \"it runs low to the ground after its quarry.\"\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.FeedingPresentationRemovalCannotConsumeAMatchingReplacement",
+              "message": "  actual current-owner feed gesture occurred\n  Expected: not null\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.InvalidatedExactBaitEndsOneAttemptWithoutTakingAReplacement(\"moved\")",
+              "message": "  Expected: same as <Entity(raw meat)>\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.InvalidatedExactBaitEndsOneAttemptWithoutTakingAReplacement(\"picked-up\")",
+              "message": "  Expected: same as <Entity(raw meat)>\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.InvalidatedExactBaitEndsOneAttemptWithoutTakingAReplacement(\"replaced\")",
+              "message": "  Expected: same as <Entity(raw meat)>\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.InvalidatedExactBaitEndsOneAttemptWithoutTakingAReplacement(\"burning\")",
+              "message": "  Expected: same as <Entity(raw meat)>\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.InvalidatedExactBaitEndsOneAttemptWithoutTakingAReplacement(\"owned\")",
+              "message": "  Expected: same as <Entity(raw meat)>\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.InvalidatedExactBaitEndsOneAttemptWithoutTakingAReplacement(\"empty\")",
+              "message": "  Expected: same as <Entity(raw meat)>\n  But was:  null\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.PredatorMeatDiversionTests.ReplacementSaveKeepsExactFoodProgressAndSpentAllowance(0)",
+              "message": "  Expected: True\n  But was:  False\n"
+            }
+          ],
+          "failures_capped": true
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

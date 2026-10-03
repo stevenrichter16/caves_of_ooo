@@ -34,7 +34,7 @@ namespace CavesOfOoo.Tests
 
         [TestCase(1)][TestCase(64)][TestCase(1729)] public void NewFamiliesAreFrozenColdAndHabitatSpecific(int seed)
         {
-            var a=Fresh(seed);var b=Fresh(seed);Assert.AreEqual(12,a.Exploration.Version);Assert.Zero(a.CachedZoneCount);
+            var a=Fresh(seed);var b=Fresh(seed);Assert.AreEqual(13,a.Exploration.Version);Assert.Zero(a.CachedZoneCount);
             CollectionAssert.AreEqual(a.Exploration.Entries.Select(e=>e.ZoneID+e.Family),b.Exploration.Entries.Select(e=>e.ZoneID+e.Family));
             foreach(string f in new[]{"CollectorReturn","RoadsideExchange"})
             {
@@ -151,7 +151,7 @@ namespace CavesOfOoo.Tests
         {
             var m=Fresh();var e=Exchange(m);var z=Activate(m,e);Assert.True(Mark(m,z,e,()=>true));
             var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("entry-v4","fixture",m,null,null));
-            Assert.AreEqual(12,loaded.ZoneManager.Exploration.Version);var now=loaded.ZoneManager.GetZone(e.ZoneID);Assert.AreNotSame(z,now);
+            Assert.AreEqual(13,loaded.ZoneManager.Exploration.Version);var now=loaded.ZoneManager.GetZone(e.ZoneID);Assert.AreNotSame(z,now);
             Assert.AreEqual(2,loaded.ZoneManager.Exploration.DispositionFor(e.ZoneID));Assert.False(Accepted(loaded.ZoneManager,now,out _));
             loaded.ZoneManager.UnloadZone(e.ZoneID);Assert.AreSame(now,loaded.ZoneManager.GetZone(e.ZoneID));
         }

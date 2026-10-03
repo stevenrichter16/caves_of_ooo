@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/connected-exploration/ink/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="330" result="Failed" start-time="2026-10-03T14:27:20.4251310Z" end-time="2026-10-03T14:27:20.6675410Z" duration="0.242394" total="7" passed="6" failed="1" inconclusive="0" skipped="0" warnings="0" asserts="24" random-seed="860157198">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/connected-exploration/ink/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/predator-diversion/crop-readout-pin/reference-baseline.xml --where "class == CavesOfOoo.Tests.SpreadCropReadoutTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadCropReadoutTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1424" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/connected-exploration/ink/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="330" result="Failed" site="Child" start-time="2026-10-03T14:27:20.4251310Z" end-time="2026-10-03T14:27:20.6675410Z" duration="0.242394" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="24">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/connected-exploration/ink/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/connected-exploration/ink/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="17646" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1425" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="330" result="Failed" site="Child" start-time="2026-10-03T14:27:20.4266890Z" end-time="2026-10-03T14:27:20.6675390Z" duration="0.240846" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="24">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1426" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="330" result="Failed" site="Child" start-time="2026-10-03T14:27:20.4268170Z" end-time="2026-10-03T14:27:20.6675370Z" duration="0.240716" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="24">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1415" name="SpreadCropReadoutTests" fullname="CavesOfOoo.Tests.SpreadCropReadoutTests" classname="CavesOfOoo.Tests.SpreadCropReadoutTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-03T14:27:20.4271580Z" end-time="2026-10-03T14:27:20.6675230Z" duration="0.240361" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="24">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1416" name="DrySeedAndWetSproutDescribeDifferentCurrentActionsWithoutAdvancingGrowth" fullname="CavesOfOoo.Tests.SpreadCropReadoutTests.DrySeedAndWetSproutDescribeDifferentCurrentActionsWithoutAdvancingGrowth" methodname="DrySeedAndWetSproutDescribeDifferentCurrentActionsWithoutAdvancingGrowth" classname="CavesOfOoo.Tests.SpreadCropReadoutTests" runstate="Runnable" seed="397277709" result="Failed" start-time="2026-10-03T14:27:20.4279940Z" end-time="2026-10-03T14:27:20.5130430Z" duration="0.085076" asserts="6">
+            <failure>
+              <message><![CDATA[  Expected: String containing "this area"
+  But was:  "You see a gladroot crop.
+Growth: seed. Soil is dry; growth is paused. Conjure Rain nearby to water this crop, or use a carried vessel of clean water on a prepared bed. At maturity, produce falls here to pick up. Growth follows passing world time while the soil is moist."
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCropReadoutTests.DrySeedAndWetSproutDescribeDifferentCurrentActionsWithoutAdvancingGrowth() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCropReadoutTests.cs:line 38
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: String containing "this area"
+  But was:  "You see a gladroot crop.
+Growth: seed. Soil is dry; growth is paused. Conjure Rain nearby to water this crop, or use a carried vessel of clean water on a prepared bed. At maturity, produce falls here to pick up. Growth follows passing world time while the soil is moist."
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadCropReadoutTests.DrySeedAndWetSproutDescribeDifferentCurrentActionsWithoutAdvancingGrowth() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadCropReadoutTests.cs:line 38
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1423" name="UnavailableCropDoesNotAdvertiseCurrentGrowth" fullname="CavesOfOoo.Tests.SpreadCropReadoutTests.UnavailableCropDoesNotAdvertiseCurrentGrowth" classname="CavesOfOoo.Tests.SpreadCropReadoutTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-03T14:27:20.5137590Z" end-time="2026-10-03T14:27:20.6673130Z" duration="0.153551" total="6" passed="6" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="18">
+            <test-case id="1417" name="UnavailableCropDoesNotAdvertiseCurrentGrowth(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.SpreadCropReadoutTests.UnavailableCropDoesNotAdvertiseCurrentGrowth(&quot;hidden&quot;)" methodname="UnavailableCropDoesNotAdvertiseCurrentGrowth" classname="CavesOfOoo.Tests.SpreadCropReadoutTests" runstate="Runnable" seed="777576832" result="Passed" start-time="2026-10-03T14:27:20.5138440Z" end-time="2026-10-03T14:27:20.5391480Z" duration="0.025304" asserts="3" />
+            <test-case id="1418" name="UnavailableCropDoesNotAdvertiseCurrentGrowth(&quot;inactive&quot;)" fullname="CavesOfOoo.Tests.SpreadCropReadoutTests.UnavailableCropDoesNotAdvertiseCurrentGrowth(&quot;inactive&quot;)" methodname="UnavailableCropDoesNotAdvertiseCurrentGrowth" classname="CavesOfOoo.Tests.SpreadCropReadoutTests" runstate="Runnable" seed="739912034" result="Passed" start-time="2026-10-03T14:27:20.5391700Z" end-time="2026-10-03T14:27:20.5659100Z" duration="0.026739" asserts="3" />
+            <test-case id="1419" name="UnavailableCropDoesNotAdvertiseCurrentGrowth(&quot;wrong-cell&quot;)" fullname="CavesOfOoo.Tests.SpreadCropReadoutTests.UnavailableCropDoesNotAdvertiseCurrentGrowth(&quot;wrong-cell&quot;)" methodname="UnavailableCropDoesNotAdvertiseCurrentGrowth" classname="CavesOfOoo.Tests.SpreadCropReadoutTests" runstate="Runnable" seed="1227204236" result="Passed" start-time="2026-10-03T14:27:20.5659450Z" end-time="2026-10-03T14:27:20.5937410Z" duration="0.027796" asserts="3" />
+            <test-case id="1420" name="UnavailableCropDoesNotAdvertiseCurrentGrowth(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.SpreadCropReadoutTests.UnavailableCropDoesNotAdvertiseCurrentGrowth(&quot;removed&quot;)" methodname="UnavailableCropDoesNotAdvertiseCurrentGrowth" classname="CavesOfOoo.Tests.SpreadCropReadoutTests" runstate="Runnable" seed="187100161" result="Passed" start-time="2026-10-03T14:27:20.5937650Z" end-time="2026-10-03T14:27:20.6202530Z" duration="0.026488" asserts="3" />
+            <test-case id="1421" name="UnavailableCropDoesNotAdvertiseCurrentGrowth(&quot;foreign-part&quot;)" fullname="CavesOfOoo.Tests.SpreadCropReadoutTests.UnavailableCropDoesNotAdvertiseCurrentGrowth(&quot;foreign-part&quot;)" methodname="UnavailableCropDoesNotAdvertiseCurrentGrowth" classname="CavesOfOoo.Tests.SpreadCropReadoutTests" runstate="Runnable" seed="608580868" result="Passed" start-time="2026-10-03T14:27:20.6202810Z" end-time="2026-10-03T14:27:20.6459050Z" duration="0.025624" asserts="3" />
+            <test-case id="1422" name="UnavailableCropDoesNotAdvertiseCurrentGrowth(&quot;invalid-stage&quot;)" fullname="CavesOfOoo.Tests.SpreadCropReadoutTests.UnavailableCropDoesNotAdvertiseCurrentGrowth(&quot;invalid-stage&quot;)" methodname="UnavailableCropDoesNotAdvertiseCurrentGrowth" classname="CavesOfOoo.Tests.SpreadCropReadoutTests" runstate="Runnable" seed="2100065400" result="Passed" start-time="2026-10-03T14:27:20.6459270Z" end-time="2026-10-03T14:27:20.6668500Z" duration="0.020923" asserts="3" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

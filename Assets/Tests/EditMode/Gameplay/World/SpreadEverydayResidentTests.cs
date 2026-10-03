@@ -12,7 +12,7 @@ using UnityEngine;
 namespace CavesOfOoo.Tests
 {
     /// <summary>Real content through conversation, trade and inventory commands.
-    /// Crop time is advanced through the world's actor-gated event; native input
+    /// Crop time advances on the isolated world clock, then reconciles at its player event; native input
     /// and renderer evidence are separate from this core content fixture.</summary>
     public sealed class SpreadEverydayResidentTests
     {
@@ -21,10 +21,12 @@ namespace CavesOfOoo.Tests
         Zone zone;
         Entity player;
         Entity cropWorld;
+        TurnManager clock, previousClock;
         Dictionary<string, ConversationData> savedConversations;
         bool conversationsLoaded;
         object borrowedOffers, borrowedRevision;
         static readonly BindingFlags Static = BindingFlags.Static | BindingFlags.NonPublic;
+        static readonly FieldInfo ActiveClock = typeof(TurnManager).GetField("<Active>k__BackingField", Static);
         static readonly FieldInfo OfferState = typeof(SpreadDiscoveryReports).GetField("offers", Static);
         static readonly FieldInfo OfferRevision = typeof(SpreadDiscoveryReports).GetField("revision", Static);
         InventoryPart Inventory => player.GetPart<InventoryPart>();
@@ -33,7 +35,10 @@ namespace CavesOfOoo.Tests
         {
             // Capture before the fixture scope can replace borrowed conversation state.
             borrowedOffers = OfferState.GetValue(null); borrowedRevision = OfferRevision.GetValue(null);
+            previousClock = TurnManager.Active;
             scope = new DensityLootTestScope(); scope.Seed(64);
+            // The native content scope installs a borrowed save clock; our test owns the replacement.
+            clock = new TurnManager();
             PlayerReputation.Reset(); // Native fixture scope restores the borrowed reputation after each case.
             SeedPart.Factory = CropSystem.Factory = MaterialReactionResolver.Factory = Factory;
             savedConversations = new Dictionary<string, ConversationData>((Dictionary<string, ConversationData>)
@@ -56,6 +61,7 @@ namespace CavesOfOoo.Tests
             try { scope?.Dispose(); }
             finally
             {
+                ActiveClock.SetValue(null, previousClock);
                 OfferState.SetValue(null, borrowedOffers);
                 OfferRevision.SetValue(null, borrowedRevision);
             }
@@ -73,6 +79,8 @@ namespace CavesOfOoo.Tests
         {
             for (int i = 0; i < count; i++)
             {
+                // A player boundary reconciles elapsed time; emitting an event alone creates none.
+                if (actor == player) clock.AdvanceClock(CropTime.WorldTicksPerUnit);
                 var tick = GameEvent.New("TickEnd"); tick.SetParameter("Actor", actor); cropWorld.FireEventAndRelease(tick);
                 if (actor == player) player.FireEventAndRelease(GameEvent.New("EndTurn"));
             }
@@ -141,7 +149,7 @@ namespace CavesOfOoo.Tests
 
         [TestCase("CandyCarrotSeed", "CandyCarrotCrop", "CandyCarrot")]
         [TestCase("EmberwheatSeed", "EmberwheatCrop", "Emberwheat")]
-        public void PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(string seedId, string cropId, string foodId)
+        public void PurchasedSeedPlantsWatersAndProducesFiniteFoodFromElapsedWorldTime(string seedId, string cropId, string foodId)
         {
             var keeper = Place("SpreadSeedKeeper"); OpenTrade(keeper); var seed = Buy(keeper, seedId);
             int seeds = Units(player, seedId);

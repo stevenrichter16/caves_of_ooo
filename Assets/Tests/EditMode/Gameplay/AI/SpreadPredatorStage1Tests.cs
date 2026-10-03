@@ -18,7 +18,7 @@ namespace CavesOfOoo.Tests
   [TearDown]public void Teardown()=>scope?.Dispose();
   Entity Actor(int x,int y){var e=factory.CreateEntity("ReedbackGrazer");Assert.True(z.AddEntity(e,x,y));e.GetPart<BrainPart>().CurrentZone=z;e.GetPart<BrainPart>().Rng=new Random(1);return e;}
   void AddRole(){var t=typeof(BrainPart).Assembly.GetType("CavesOfOoo.Core.SpreadPredatorPart");Assert.NotNull(t,"Missing scoped exact-pair predator role");role=(Part)Activator.CreateInstance(t);h.AddPart(role);}
-  bool Configure(){if(role==null)AddRole();return (bool)role.GetType().GetMethod("Configure").Invoke(role,new object[]{z,p});}
+  bool Configure(){if(role==null)AddRole();return (bool)role.GetType().GetMethod("Configure").Invoke(role,new object[]{z,p,false});}
   object Get(string name)=>role.GetType().GetField(name).GetValue(role);
   static void Turn(Entity e)=>e.FireEventAndRelease(GameEvent.New("TakeTurn"));
   string Phase=>Get("Phase").ToString();

@@ -178,7 +178,7 @@ namespace CavesOfOoo.Tests
             {
                 System.Globalization.CultureInfo.CurrentCulture=culture;
                 var m=OverworldZoneManager.CreateDetached(scope.Factory,-64,true);
-                string wire=Wire(m);Assert.True(wire.StartsWith("12|-64|",StringComparison.Ordinal));
+                string wire=Wire(m);Assert.True(wire.StartsWith("13|-64|",StringComparison.Ordinal));
                 var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("culture","fixture",m,null,null));
                 Assert.True(loaded.ZoneManager.Exploration.Enabled);Assert.AreEqual(-64,loaded.ZoneManager.WorldSeed);
             }

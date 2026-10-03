@@ -1,0 +1,53 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"1bb8ed75f6e940f195fa5ef9efc1d43e\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1791037010617,\"finished_unix_ms\":1791038122386,\"last_update_unix_ms\":1791038122386,\"progress\":{\"completed\":4240,\"total\":4240,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1791038121932,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.ThrownMutationCombatAdversarialTests.TonicThrow_NeverEmitsThrowHitRollOrThrowPenetration\",\"last_finished_unix_ms\":1791038121932,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.SpreadCropReadoutTests.DrySeedAndWetSproutDescribeDifferentCurrentActionsWithoutAdvancingGrowth\",\"message\":\"  Expected: String containing \\\"this area\\\"\\n  But was:  \\\"You see a gladroot crop.\\nGrowth: seed. Soil is dry; growth is paused. Conjure Rain nearby to water this crop, or use a carried vessel of clean water on a prepared bed. At maturity, produce falls here to pick up. Growth follows passing world time while the soil is moist.\\\"\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(\\\"CandyCarrotSeed\\\",\\\"CandyCarrotCrop\\\",\\\"CandyCarrot\\\")\",\"message\":\"  Expected: null\\n  But was:  <Cell(10,10) [3 objects]>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(\\\"EmberwheatSeed\\\",\\\"EmberwheatCrop\\\",\\\"Emberwheat\\\")\",\"message\":\"  Expected: 1\\n  But was:  0\\n\"}],\"failures_capped\":false},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "1bb8ed75f6e940f195fa5ef9efc1d43e",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1791037010617,
+        "finished_unix_ms": 1791038122386,
+        "last_update_unix_ms": 1791038122386,
+        "progress": {
+          "completed": 4240,
+          "total": 4240,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1791038121932,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.ThrownMutationCombatAdversarialTests.TonicThrow_NeverEmitsThrowHitRollOrThrowPenetration",
+          "last_finished_unix_ms": 1791038121932,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.SpreadCropReadoutTests.DrySeedAndWetSproutDescribeDifferentCurrentActionsWithoutAdvancingGrowth",
+              "message": "  Expected: String containing \"this area\"\n  But was:  \"You see a gladroot crop.\nGrowth: seed. Soil is dry; growth is paused. Conjure Rain nearby to water this crop, or use a carried vessel of clean water on a prepared bed. At maturity, produce falls here to pick up. Growth follows passing world time while the soil is moist.\"\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(\"CandyCarrotSeed\",\"CandyCarrotCrop\",\"CandyCarrot\")",
+              "message": "  Expected: null\n  But was:  <Cell(10,10) [3 objects]>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(\"EmberwheatSeed\",\"EmberwheatCrop\",\"Emberwheat\")",
+              "message": "  Expected: 1\n  But was:  0\n"
+            }
+          ],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

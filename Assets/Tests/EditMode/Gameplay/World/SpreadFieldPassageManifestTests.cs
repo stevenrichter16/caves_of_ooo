@@ -26,7 +26,7 @@ namespace CavesOfOoo.Tests
         static SpreadExplorationPlan Restore(OverworldZoneManager manager,string wire)
         {
             var world=new Entity();world.Properties[SpreadExplorationPlan.PropertyKey]=wire;
-            if(wire.StartsWith("11|",StringComparison.Ordinal)||wire.StartsWith("12|",StringComparison.Ordinal))world.Properties[SpreadExplorationPlan.WorldKeyProperty]=manager.Exploration.WorldKey;
+            if(wire.StartsWith("11|",StringComparison.Ordinal)||wire.StartsWith("12|",StringComparison.Ordinal)||wire.StartsWith("13|",StringComparison.Ordinal))world.Properties[SpreadExplorationPlan.WorldKeyProperty]=manager.Exploration.WorldKey;
             try{return (SpreadExplorationPlan)typeof(SpreadExplorationPlan).GetMethod("Restore",All).Invoke(null,new object[]{manager,world});}
             catch(TargetInvocationException e)when(e.InnerException!=null){throw e.InnerException;}
         }
@@ -37,7 +37,7 @@ namespace CavesOfOoo.Tests
         public void FreshCurrentUsesFrozenHedgerowFourWayAllocationWithoutGeneratingGraphs(int seed)
         {
             var m=OverworldZoneManager.CreateDetached(scope.Factory,seed,true);var plan=m.Exploration;
-            Assert.AreEqual(12,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
+            Assert.AreEqual(13,plan.Version);Assert.AreEqual(9,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"FieldPassage")),"Roadmap F12 appends after persisted enum8; no reserved holes.");
             var rows=plan.Entries.Where(e=>e.Family.ToString()=="FieldPassage").ToArray();Assert.IsNotEmpty(rows,"Fixed corpus must provide real selected opportunities before any geometry claim.");
             foreach(var e in plan.Entries.Where(e=>e.Family!=SpreadExplorationFamily.None&&FormationSelector.For(BiomeType.Spread,e.ZoneID)==Formation.Hedgerow))
             {

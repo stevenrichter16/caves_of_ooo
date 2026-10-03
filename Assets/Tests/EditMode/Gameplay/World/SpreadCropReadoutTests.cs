@@ -35,7 +35,7 @@ namespace CavesOfOoo.Tests
             Assert.That(dry, Does.Contain("dry; growth is paused"));
             Assert.That(dry, Does.Contain("Conjure Rain"));
             Assert.That(dry, Does.Contain("pick up"));
-            Assert.That(dry, Does.Contain("this area"));
+            Assert.That(dry, Does.Contain("At maturity, produce falls here to pick up."));
             Assert.AreEqual(0, part.MoistureTicks);
             Assert.AreEqual(0, part.TicksInStage);
             part.GrowthStage = 1;

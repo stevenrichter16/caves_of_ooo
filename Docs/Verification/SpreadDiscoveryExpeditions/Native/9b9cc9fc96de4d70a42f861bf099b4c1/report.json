@@ -1,0 +1,2164 @@
+{
+  "runId": "9b9cc9fc96de4d70a42f861bf099b4c1",
+  "mode": "ordinary-predator-diversion",
+  "complete": false,
+  "failures": 2,
+  "unexpectedErrors": 1,
+  "seconds": 9.3710236,
+  "fatal": "System.InvalidOperationException: Spread discovery precondition: actual diversion aborted; no source reset\n  at CavesOfOoo.Scenarios.Custom.SpreadDiscoveryNativePlayer.Require (System.Boolean value, System.String reason) [0x00014] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/SpreadDiscoveryNativePlayer.cs:499 \n  at CavesOfOoo.Scenarios.Custom.SpreadDiscoveryNativePlayer+<PredatorDiversionJourney>d__363.MoveNext () [0x00b70] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/SpreadDiscoveryNativePlayer.PredatorDiversion.cs:191 \n  at CavesOfOoo.Scenarios.Custom.SpreadDiscoveryNativePlayer+<RunSafely>d__260.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/SpreadDiscoveryNativePlayer.cs:511 ",
+  "audit": [
+    "PASS ordinary_start",
+    "PASS diversion_original_provisions",
+    "PASS diversion_generated_hunt",
+    "PASS diversion_native_single_throw",
+    "FAIL native_precondition_failed"
+  ],
+  "requiredChecks": [
+    "ordinary_start",
+    "diversion_original_provisions",
+    "diversion_generated_hunt",
+    "diversion_native_single_throw",
+    "diversion_native_approach",
+    "diversion_two_current_feed_hooks",
+    "diversion_actual_interact_pose",
+    "diversion_one_unit_consumed",
+    "diversion_original_hunt_continues",
+    "diversion_saved_checkpoint",
+    "diversion_spent_repeat_refused",
+    "diversion_exact_replacement",
+    "diversion_finish"
+  ],
+  "keys": [
+    {
+      "sequence": 0,
+      "keys": "N",
+      "state": "Normal",
+      "tick": 10
+    },
+    {
+      "sequence": 1,
+      "keys": "Digit1",
+      "state": "Normal",
+      "tick": 10
+    },
+    {
+      "sequence": 2,
+      "keys": "Enter",
+      "state": "Normal",
+      "tick": 10
+    },
+    {
+      "sequence": 3,
+      "keys": "LeftShift,Comma",
+      "state": "Normal",
+      "tick": 10
+    },
+    {
+      "sequence": 4,
+      "keys": "Numpad9",
+      "state": "Normal",
+      "tick": 20
+    },
+    {
+      "sequence": 5,
+      "keys": "W",
+      "state": "Normal",
+      "tick": 40
+    },
+    {
+      "sequence": 6,
+      "keys": "W",
+      "state": "Normal",
+      "tick": 60
+    },
+    {
+      "sequence": 7,
+      "keys": "W",
+      "state": "Normal",
+      "tick": 80
+    },
+    {
+      "sequence": 8,
+      "keys": "LeftShift,Period",
+      "state": "Normal",
+      "tick": 100
+    },
+    {
+      "sequence": 9,
+      "keys": "Numpad1",
+      "state": "Normal",
+      "tick": 110
+    },
+    {
+      "sequence": 10,
+      "keys": "I",
+      "state": "Normal",
+      "tick": 120
+    },
+    {
+      "sequence": 11,
+      "keys": "Tab",
+      "state": "InventoryOpen",
+      "tick": 120
+    },
+    {
+      "sequence": 12,
+      "keys": "DownArrow",
+      "state": "InventoryOpen",
+      "tick": 120
+    },
+    {
+      "sequence": 13,
+      "keys": "DownArrow",
+      "state": "InventoryOpen",
+      "tick": 120
+    },
+    {
+      "sequence": 14,
+      "keys": "DownArrow",
+      "state": "InventoryOpen",
+      "tick": 120
+    },
+    {
+      "sequence": 15,
+      "keys": "DownArrow",
+      "state": "InventoryOpen",
+      "tick": 120
+    },
+    {
+      "sequence": 16,
+      "keys": "Enter",
+      "state": "InventoryOpen",
+      "tick": 120
+    },
+    {
+      "sequence": 17,
+      "keys": "DownArrow",
+      "state": "InventoryOpen",
+      "tick": 120
+    },
+    {
+      "sequence": 18,
+      "keys": "DownArrow",
+      "state": "InventoryOpen",
+      "tick": 120
+    },
+    {
+      "sequence": 19,
+      "keys": "Enter",
+      "state": "InventoryOpen",
+      "tick": 120
+    },
+    {
+      "sequence": 20,
+      "keys": "Numpad9",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 21,
+      "keys": "Numpad9",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 22,
+      "keys": "Numpad9",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 23,
+      "keys": "Numpad9",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 24,
+      "keys": "Numpad9",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 25,
+      "keys": "Numpad9",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 26,
+      "keys": "Numpad9",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 27,
+      "keys": "Numpad9",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 28,
+      "keys": "Numpad9",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 29,
+      "keys": "D",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 30,
+      "keys": "D",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 31,
+      "keys": "D",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 32,
+      "keys": "Enter",
+      "state": "ThrowTargeting",
+      "tick": 120
+    },
+    {
+      "sequence": 33,
+      "keys": "Period",
+      "state": "Normal",
+      "tick": 130
+    },
+    {
+      "sequence": 34,
+      "keys": "Period",
+      "state": "Normal",
+      "tick": 140
+    }
+  ],
+  "observations": [
+    {
+      "phase": "ordinary_start",
+      "player": "2696",
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 10,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:2:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:2:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "Initial checkpoint saved."
+    },
+    {
+      "phase": "diversion_original_provisions",
+      "player": "2696",
+      "zone": "Overworld.11.10.0",
+      "x": 40,
+      "y": 12,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 10,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:2:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:2:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "Initial checkpoint saved."
+    },
+    {
+      "phase": "native-map-ascend",
+      "player": "2696",
+      "zone": "WorldMap",
+      "x": 41,
+      "y": 13,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 20,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:2:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:2:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "native-worldmap-step",
+      "player": "2696",
+      "zone": "WorldMap",
+      "x": 42,
+      "y": 12,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 40,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:2:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:2:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "native-worldmap-step",
+      "player": "2696",
+      "zone": "WorldMap",
+      "x": 42,
+      "y": 11,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 60,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:2:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:2:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "native-worldmap-step",
+      "player": "2696",
+      "zone": "WorldMap",
+      "x": 42,
+      "y": 10,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 80,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:2:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:2:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "native-worldmap-step",
+      "player": "2696",
+      "zone": "WorldMap",
+      "x": 42,
+      "y": 9,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 100,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:2:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:2:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "native-map-descend",
+      "player": "2696",
+      "zone": "Overworld.12.6.0",
+      "x": 40,
+      "y": 12,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 110,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:2:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:2:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "diversion_generated_hunt",
+      "player": "2696",
+      "zone": "Overworld.12.6.0",
+      "x": 40,
+      "y": 12,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 110,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:2:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:2:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "diversion-actual-arrival",
+      "hunter": "6946",
+      "hunterAt": {
+        "Item1": 48,
+        "Item2": 4
+      },
+      "prey": "6947",
+      "preyAt": {
+        "Item1": 45,
+        "Item2": 4
+      },
+      "arrival": [
+        40,
+        12
+      ],
+      "HomeX": 49,
+      "HomeY": 4,
+      "huntPhase": "Pursuing",
+      "PursuitRemaining": 23,
+      "SearchRemaining": 6,
+      "HasLastSeen": true,
+      "LastSeenX": 45,
+      "LastSeenY": 4,
+      "SightRadius": 8,
+      "target": null,
+      "personallyHostile": false,
+      "goals": [
+        {
+          "type": "BoredGoal",
+          "Age": 1
+        }
+      ],
+      "distance": 8,
+      "actualLos": true,
+      "boundary": "Actual v13 source after the paid arrival turn; old F11 geometry was used only to predeclare this address."
+    },
+    {
+      "phase": "diversion-ordinary-withdrawal",
+      "index": 1,
+      "totalApproachStep": 1,
+      "from": [
+        40,
+        12
+      ],
+      "to": [
+        39,
+        13
+      ],
+      "hunterAt": {
+        "Item1": 48,
+        "Item2": 4
+      },
+      "huntPhase": "Pursuing",
+      "target": null,
+      "boundary": "One actual paid movement key, not combat suppression or a position grant."
+    },
+    {
+      "phase": "ground-step",
+      "player": "2696",
+      "zone": "Overworld.12.6.0",
+      "x": 39,
+      "y": 13,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 120,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:2:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:2:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "diversion-first-original-ration",
+      "player": "2696",
+      "zone": "Overworld.12.6.0",
+      "x": 39,
+      "y": 13,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 130,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:1:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:1:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "diversion_native_single_throw",
+      "player": "2696",
+      "zone": "Overworld.12.6.0",
+      "x": 39,
+      "y": 13,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 130,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:1:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:1:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "diversion-current-ground-meat",
+      "visual": {
+        "id": "d04db963ffce4863928503e281f4b42e",
+        "blueprint": "DriedMeat",
+        "model": "spread-portable-driedmeat",
+        "visible": true,
+        "batched": false,
+        "expectedMesh": "spread-portable-driedmeat",
+        "submittedMesh": "spread-portable-driedmeat",
+        "pieces": 1,
+        "minX": 0.7213799,
+        "minY": 0.731350541,
+        "maxX": 0.727432,
+        "maxY": 0.747249246,
+        "depth": 25.9615116,
+        "guardTarget": null,
+        "bound": "Exact current style/fragment proof and geometry bounds; no pixel occlusion guarantee."
+      },
+      "hunterVisual": {
+        "id": "6946",
+        "blueprint": "Furrowstalker",
+        "model": "spread-furrowstalker",
+        "visible": true,
+        "batched": false,
+        "expectedMesh": "spread-furrowstalker",
+        "submittedMesh": "spread-furrowstalker",
+        "pieces": 1,
+        "minX": 0.6542881,
+        "minY": 0.7301848,
+        "maxX": 0.684793532,
+        "maxY": 0.754842162,
+        "depth": 25.6437,
+        "guardTarget": null,
+        "bound": "Exact current style/fragment proof and geometry bounds; no pixel occlusion guarantee."
+      },
+      "meatAt": {
+        "Item1": 51,
+        "Item2": 4
+      },
+      "hunterAt": {
+        "Item1": 48,
+        "Item2": 4
+      },
+      "current": {
+        "hunter": "6946",
+        "position": {
+          "Item1": 48,
+          "Item2": 4
+        },
+        "hunt": "Pursuing|6947|True|44|4|22|6",
+        "enabled": true,
+        "attempted": true,
+        "phase": "Approaching",
+        "target": "d04db963ffce4863928503e281f4b42e",
+        "targetID": "d04db963ffce4863928503e281f4b42e",
+        "x": 51,
+        "y": 4,
+        "approach": 5,
+        "progress": 0,
+        "retained": 1,
+        "consumed": 1,
+        "prey": "6947"
+      },
+      "target": null,
+      "meatTags": {
+        "Item": "",
+        "Food": "",
+        "Tier": "1"
+      },
+      "meatProperties": {}
+    },
+    {
+      "phase": "diversion-paid-wait-0",
+      "player": "2696",
+      "zone": "Overworld.12.6.0",
+      "x": 39,
+      "y": 13,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 140,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:1:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:1:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "diversion-current-progress",
+      "waits": 0,
+      "value": {
+        "hunter": "6946",
+        "position": {
+          "Item1": 49,
+          "Item2": 4
+        },
+        "hunt": "Pursuing|6947|True|44|4|22|6",
+        "enabled": true,
+        "attempted": true,
+        "phase": "Approaching",
+        "target": "d04db963ffce4863928503e281f4b42e",
+        "targetID": "d04db963ffce4863928503e281f4b42e",
+        "x": 51,
+        "y": 4,
+        "approach": 4,
+        "progress": 0,
+        "retained": 1,
+        "consumed": 1,
+        "prey": "6947"
+      },
+      "originalHunt": "Pursuing|6947|True|44|4|22|6",
+      "brainTarget": null,
+      "targetBlueprint": null,
+      "goals": [
+        "BoredGoal"
+      ],
+      "receipts": [
+        {
+          "TraceId": "0206be02",
+          "Category": "ai",
+          "Kind": "SpreadMeatDiversionAdmission",
+          "TimestampUnixMs": 1791039252421,
+          "Turn": 128,
+          "ActorId": "6946",
+          "TargetId": "d04db963ffce4863928503e281f4b42e",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"visible-public-meat\",\"phase\":\"Approaching\",\"remainingApproach\":6,\"feedProgress\":0,\"attempted\":true}"
+        }
+      ]
+    },
+    {
+      "phase": "diversion-paid-wait-1",
+      "player": "2696",
+      "zone": "Overworld.12.6.0",
+      "x": 39,
+      "y": 13,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 150,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:1:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:1:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    },
+    {
+      "phase": "diversion-current-progress",
+      "waits": 1,
+      "value": {
+        "hunter": "6946",
+        "position": {
+          "Item1": 50,
+          "Item2": 5
+        },
+        "hunt": "Pursuing|6947|True|44|4|22|6",
+        "enabled": true,
+        "attempted": true,
+        "phase": "Aborted",
+        "target": null,
+        "targetID": "d04db963ffce4863928503e281f4b42e",
+        "x": 51,
+        "y": 4,
+        "approach": 4,
+        "progress": 0,
+        "retained": 1,
+        "consumed": 1,
+        "prey": "6947"
+      },
+      "originalHunt": "Pursuing|6947|True|44|4|22|6",
+      "brainTarget": "6942",
+      "targetBlueprint": "PetDog",
+      "goals": [
+        "BoredGoal",
+        "KillGoal"
+      ],
+      "receipts": [
+        {
+          "TraceId": "0206be02",
+          "Category": "ai",
+          "Kind": "SpreadMeatDiversionAdmission",
+          "TimestampUnixMs": 1791039252421,
+          "Turn": 128,
+          "ActorId": "6946",
+          "TargetId": "d04db963ffce4863928503e281f4b42e",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"visible-public-meat\",\"phase\":\"Approaching\",\"remainingApproach\":6,\"feedProgress\":0,\"attempted\":true}"
+        },
+        {
+          "TraceId": "d5bd3b0e",
+          "Category": "ai",
+          "Kind": "SpreadMeatDiversionOutcome",
+          "TimestampUnixMs": 1791039253034,
+          "Turn": 146,
+          "ActorId": "6946",
+          "TargetId": "d04db963ffce4863928503e281f4b42e",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"threat-priority\",\"phase\":\"Aborted\",\"remainingApproach\":4,\"feedProgress\":0,\"attempted\":true}"
+        }
+      ]
+    },
+    {
+      "phase": "native_precondition_failed",
+      "player": "2696",
+      "zone": "Overworld.12.6.0",
+      "x": 39,
+      "y": 13,
+      "hp": 40,
+      "stats": "Agility:22:22:0:0:0:999|DV:0:0:0:0:-50:200|Ego:18:18:0:0:0:999|Experience:0:0:0:0:0:999999|Hitpoints:40:40:0:0:0:40|Intelligence:10:10:0:0:1:50|Level:1:1:0:0:1:50|SP:0:0:0:0:0:999|Speed:100:100:0:0:25:200|Strength:16:16:0:0:0:999|Toughness:14:14:0:0:0:999|Willpower:10:10:0:0:1:50|XPValue:10:10:0:0:0:9999;effects=",
+      "tick": 150,
+      "energy": 1000,
+      "drams": 50,
+      "gear": "2697:WateringGrimoire:1:owner=2696|2698:CandyCarrotSeed:4:owner=2696|2699:EmberwheatSeed:2:owner=2696|2703:HealingTonic:2:owner=2696|2704:DriedMeat:1:owner=2696;slots=10:2702|12:2700|14:2701;body=10:2702|12:2700|14:2701;owners=2697:WateringGrimoire:1:carried=2696:equipped=|2698:CandyCarrotSeed:4:carried=2696:equipped=|2699:EmberwheatSeed:2:carried=2696:equipped=|2700:Dagger:1:carried=:equipped=2696|2701:Buckler:1:carried=:equipped=2696|2702:Cloak:1:carried=:equipped=2696|2703:HealingTonic:2:carried=2696:equipped=|2704:DriedMeat:1:carried=2696:equipped=",
+      "notes": "",
+      "site": null,
+      "guard": null,
+      "key": null,
+      "reward": null,
+      "message": "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+    }
+  ],
+  "windows": [
+    {
+      "label": "native-map-ascend",
+      "kind": "local",
+      "marker": "2f97e5b8",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 10,
+      "afterTick": 20,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "2f97e5b8",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1791039245694,
+          "Turn": 10,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"9b9cc9fc96de4d70a42f861bf099b4c1\",\"label\":\"native-map-ascend\"}"
+        },
+        {
+          "TraceId": "ab6ee1ab",
+          "Category": "worldmap",
+          "Kind": "Ascended",
+          "TimestampUnixMs": 1791039245829,
+          "Turn": 10,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromZoneID\":\"Overworld.11.10.0\",\"fromZoneX\":40,\"fromZoneY\":12,\"toWorldX\":11,\"toWorldY\":10,\"toZoneCellX\":41,\"toZoneCellY\":13}"
+        },
+        {
+          "TraceId": "eb32ab8f",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039246115,
+          "Turn": 10,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "6a296962",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039246116,
+          "Turn": 20,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "label": "native-worldmap-step",
+      "kind": "map",
+      "marker": "bf6283c6",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 20,
+      "afterTick": 40,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 10,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "bf6283c6",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1791039246315,
+          "Turn": 20,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"9b9cc9fc96de4d70a42f861bf099b4c1\",\"label\":\"native-worldmap-step\"}"
+        },
+        {
+          "TraceId": "cf5491f2",
+          "Category": "worldmap",
+          "Kind": "Stepped",
+          "TimestampUnixMs": 1791039246323,
+          "Turn": 30,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"toZoneX\":42,\"toZoneY\":12,\"toWorldX\":12,\"toWorldY\":9,\"turnsCost\":10}"
+        },
+        {
+          "TraceId": "73bd7c26",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039246326,
+          "Turn": 30,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "55859aaa",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039246326,
+          "Turn": 40,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "label": "native-worldmap-step",
+      "kind": "map",
+      "marker": "f53036f1",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 40,
+      "afterTick": 60,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 10,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "f53036f1",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1791039246499,
+          "Turn": 40,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"9b9cc9fc96de4d70a42f861bf099b4c1\",\"label\":\"native-worldmap-step\"}"
+        },
+        {
+          "TraceId": "fb10c02d",
+          "Category": "worldmap",
+          "Kind": "Stepped",
+          "TimestampUnixMs": 1791039246507,
+          "Turn": 50,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"toZoneX\":42,\"toZoneY\":11,\"toWorldX\":12,\"toWorldY\":8,\"turnsCost\":10}"
+        },
+        {
+          "TraceId": "26f7e742",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039246507,
+          "Turn": 50,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "ec7fed79",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039246507,
+          "Turn": 60,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "label": "native-worldmap-step",
+      "kind": "map",
+      "marker": "3832fe2a",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 60,
+      "afterTick": 80,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 10,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "3832fe2a",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1791039246684,
+          "Turn": 60,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"9b9cc9fc96de4d70a42f861bf099b4c1\",\"label\":\"native-worldmap-step\"}"
+        },
+        {
+          "TraceId": "a609df54",
+          "Category": "worldmap",
+          "Kind": "Stepped",
+          "TimestampUnixMs": 1791039246691,
+          "Turn": 70,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"toZoneX\":42,\"toZoneY\":10,\"toWorldX\":12,\"toWorldY\":7,\"turnsCost\":10}"
+        },
+        {
+          "TraceId": "716678fd",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039246691,
+          "Turn": 70,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "7011502f",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039246691,
+          "Turn": 80,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "label": "native-worldmap-step",
+      "kind": "map",
+      "marker": "13a0bb93",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 80,
+      "afterTick": 100,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 10,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "13a0bb93",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1791039246866,
+          "Turn": 80,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"9b9cc9fc96de4d70a42f861bf099b4c1\",\"label\":\"native-worldmap-step\"}"
+        },
+        {
+          "TraceId": "0277d2ed",
+          "Category": "worldmap",
+          "Kind": "Stepped",
+          "TimestampUnixMs": 1791039246873,
+          "Turn": 90,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"toZoneX\":42,\"toZoneY\":9,\"toWorldX\":12,\"toWorldY\":6,\"turnsCost\":10}"
+        },
+        {
+          "TraceId": "002c462b",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039246873,
+          "Turn": 90,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "15f437f1",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039246873,
+          "Turn": 100,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ]
+    },
+    {
+      "label": "native-map-descend",
+      "kind": "local",
+      "marker": "3cfad2c3",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 100,
+      "afterTick": 110,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "3cfad2c3",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1791039247050,
+          "Turn": 100,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"9b9cc9fc96de4d70a42f861bf099b4c1\",\"label\":\"native-map-descend\"}"
+        },
+        {
+          "TraceId": "1d860e97",
+          "Category": "worldgen",
+          "Kind": "SpreadCompositionPlanned",
+          "TimestampUnixMs": 1791039247093,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.12.6.0\",\"seed\":64,\"formation\":\"Fallow\",\"condition\":\"after harvest\",\"landscape\":\"overgrown crofts\",\"objects\":230,\"water\":0}"
+        },
+        {
+          "TraceId": "ead6f603",
+          "Category": "worldgen",
+          "Kind": "ConnectivityConnected",
+          "TimestampUnixMs": 1791039247102,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneID\":\"Overworld.12.6.0\"}"
+        },
+        {
+          "TraceId": "073231ff",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1791039247108,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.12.6.0\",\"blueprint\":\"Magpie\",\"group\":null,\"count\":1,\"roll\":0.72133491454708154,\"rollKind\":\"chance\",\"threshold\":0.23809523809523808,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "a09e9f94",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1791039247110,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.12.6.0\",\"blueprint\":\"PetDog\",\"group\":null,\"count\":1,\"roll\":0.039915889054497652,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "e046d0dd",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1791039247110,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.12.6.0\",\"blueprint\":\"Viper\",\"group\":\"SpreadTier1Encounter\",\"count\":2,\"roll\":0.1925015520269524,\"rollKind\":\"weighted_choice\",\"threshold\":null,\"selectionStart\":0.0,\"selectionEnd\":0.5,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "488a9d98",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1791039247110,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.12.6.0\",\"blueprint\":\"MarlbackScrabbler\",\"group\":\"SpreadTier1Encounter\",\"count\":0,\"roll\":0.1925015520269524,\"rollKind\":\"weighted_choice\",\"threshold\":null,\"selectionStart\":0.5,\"selectionEnd\":1.0,\"reason\":\"not_selected\"}"
+        },
+        {
+          "TraceId": "44ca5259",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1791039247110,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.12.6.0\",\"blueprint\":\"BerryBush\",\"group\":null,\"count\":1,\"roll\":0.787072092661202,\"rollKind\":\"chance\",\"threshold\":0.19047619047619047,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"selected\"}"
+        },
+        {
+          "TraceId": "f03e78bd",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1791039247110,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.12.6.0\",\"blueprint\":\"Beehive\",\"group\":null,\"count\":0,\"roll\":0.20100432969676532,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "40c5fd2c",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1791039247110,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.12.6.0\",\"blueprint\":\"HollowStump\",\"group\":null,\"count\":0,\"roll\":0.9078008327203807,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "f01f2601",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1791039247110,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.12.6.0\",\"blueprint\":\"Signpost\",\"group\":null,\"count\":0,\"roll\":0.82725331272336344,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "d94d90a7",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1791039247110,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.12.6.0\",\"blueprint\":\"Hatchet\",\"group\":null,\"count\":0,\"roll\":0.64039831731486985,\"rollKind\":\"chance\",\"threshold\":0.095238095238095233,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "ebb40ca7",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1791039247110,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.12.6.0\",\"blueprint\":\"Cudgel\",\"group\":null,\"count\":0,\"roll\":0.17282607088462731,\"rollKind\":\"chance\",\"threshold\":0.047619047619047616,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "d1781742",
+          "Category": "worldgen",
+          "Kind": "PopulationRolled",
+          "TimestampUnixMs": 1791039247110,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"SpreadTier1\",\"zone\":\"Overworld.12.6.0\",\"blueprint\":\"LeatherBoots\",\"group\":null,\"count\":0,\"roll\":0.048903356794688553,\"rollKind\":\"chance\",\"threshold\":0.047619047619047616,\"selectionStart\":null,\"selectionEnd\":null,\"reason\":\"roll_missed\"}"
+        },
+        {
+          "TraceId": "f083fa8f",
+          "Category": "ai",
+          "Kind": "SpreadHuntAdmission",
+          "TimestampUnixMs": 1791039247241,
+          "Turn": 100,
+          "ActorId": "6946",
+          "TargetId": "6947",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"pair-admitted\",\"phase\":\"Watching\",\"pursuitRemaining\":24,\"searchRemaining\":6,\"feedProgress\":0}"
+        },
+        {
+          "TraceId": "ee0a762c",
+          "Category": "worldgen",
+          "Kind": "SpreadExplorationCommitted",
+          "TimestampUnixMs": 1791039247263,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.12.6.0\",\"family\":\"HuntThroughCover\",\"owners\":[\"6946\",\"6947\"]}"
+        },
+        {
+          "TraceId": "f51f33ce",
+          "Category": "loot",
+          "Kind": "TableRolled",
+          "TimestampUnixMs": 1791039247270,
+          "Turn": 100,
+          "ActorId": "6948",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"table\":\"StrongBoxT1\",\"rolledCount\":8,\"added\":8}"
+        },
+        {
+          "TraceId": "3c115276",
+          "Category": "worldgen",
+          "Kind": "ContainersPlaced",
+          "TimestampUnixMs": 1791039247271,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.12.6.0\",\"biome\":\"Spread\",\"zoneKind\":\"Wilderness\",\"tier\":1,\"budget\":1,\"placed\":1}"
+        },
+        {
+          "TraceId": "c760318c",
+          "Category": "worldmap",
+          "Kind": "Descended",
+          "TimestampUnixMs": 1791039247282,
+          "Turn": 100,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"fromWorldX\":12,\"fromWorldY\":6,\"toZoneID\":\"Overworld.12.6.0\",\"toZoneX\":40,\"toZoneY\":12,\"usedSavedLocation\":false}"
+        },
+        {
+          "TraceId": "1fc294c2",
+          "Category": "worldgen",
+          "Kind": "TravellerEntryRoll",
+          "TimestampUnixMs": 1791039247283,
+          "Turn": 100,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zone\":\"Overworld.12.6.0\",\"reason\":\"miss\",\"entityId\":null}"
+        },
+        {
+          "TraceId": "0d49ee2a",
+          "Category": "worldgen",
+          "Kind": "VoxelPresentationBound",
+          "TimestampUnixMs": 1791039247325,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"Overworld.12.6.0\",\"bindings\":410}"
+        },
+        {
+          "TraceId": "2ba76813",
+          "Category": "effect",
+          "Kind": "NativeSpellPrepared",
+          "TimestampUnixMs": 1791039247559,
+          "Turn": 100,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"zoneId\":\"WorldMap\",\"backend\":\"native\",\"LoadSeconds\":2E-07,\"ValidationSeconds\":0.0,\"PoolSeconds\":0.0024121,\"ViewCount\":384,\"UsedCachedLibrary\":true}"
+        },
+        {
+          "TraceId": "1501af39",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039247884,
+          "Turn": 100,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "ba88bc54",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039247884,
+          "Turn": 110,
+          "ActorId": "6946",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+        },
+        {
+          "TraceId": "0148df19",
+          "Category": "ai",
+          "Kind": "SpreadHuntTransition",
+          "TimestampUnixMs": 1791039247885,
+          "Turn": 110,
+          "ActorId": "6946",
+          "TargetId": "6947",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"quarry-seen\",\"phase\":\"Pursuing\",\"pursuitRemaining\":23,\"searchRemaining\":6,\"feedProgress\":0}"
+        },
+        {
+          "TraceId": "73d43d60",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039247885,
+          "Turn": 110,
+          "ActorId": "6946",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+        },
+        {
+          "TraceId": "1b1af143",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039247885,
+          "Turn": 110,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "3e895fa7",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039247891,
+          "Turn": 110,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":49,\"y\":14,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "007e0eb9",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039247892,
+          "Turn": 110,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":69,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "a33563e3",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039247892,
+          "Turn": 110,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":68,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "c2b71a9d",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039247892,
+          "Turn": 110,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":67,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "label": "ground-step",
+      "kind": "local",
+      "marker": "435490ed",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 110,
+      "afterTick": 120,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "435490ed",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1791039248357,
+          "Turn": 110,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"9b9cc9fc96de4d70a42f861bf099b4c1\",\"label\":\"ground-step\"}"
+        },
+        {
+          "TraceId": "2f5023de",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039248366,
+          "Turn": 110,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "181ea27b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039248366,
+          "Turn": 110,
+          "ActorId": "6942",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"PetDog\",\"hp\":15}"
+        },
+        {
+          "TraceId": "b071eee2",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039248367,
+          "Turn": 110,
+          "ActorId": "6942",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"PetDog\",\"hp\":15}"
+        },
+        {
+          "TraceId": "02a33818",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039248367,
+          "Turn": 110,
+          "ActorId": "6947",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+        },
+        {
+          "TraceId": "cc738480",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039248368,
+          "Turn": 110,
+          "ActorId": "6947",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+        },
+        {
+          "TraceId": "1e813e0c",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039248368,
+          "Turn": 119,
+          "ActorId": "6946",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+        },
+        {
+          "TraceId": "d550caf5",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039248368,
+          "Turn": 119,
+          "ActorId": "6946",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+        },
+        {
+          "TraceId": "1fc52c1f",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039248368,
+          "Turn": 120,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "82521a9d",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039248371,
+          "Turn": 120,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":49,\"y\":14,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "c11a1562",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039248371,
+          "Turn": 120,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":69,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "2aa07545",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039248371,
+          "Turn": 120,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":68,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "62c84a75",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039248371,
+          "Turn": 120,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":67,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "label": "diversion-first-original-ration",
+      "kind": "local",
+      "marker": "a353cc22",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 120,
+      "afterTick": 130,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "a353cc22",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1791039251747,
+          "Turn": 120,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"9b9cc9fc96de4d70a42f861bf099b4c1\",\"label\":\"diversion-first-original-ration\"}"
+        },
+        {
+          "TraceId": "3f36a77a",
+          "Category": "ai",
+          "Kind": "FetchAdmission",
+          "TimestampUnixMs": 1791039251761,
+          "Turn": 120,
+          "ActorId": "6942",
+          "TargetId": "d04db963ffce4863928503e281f4b42e",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"outcome\":\"accepted\",\"reason\":null,\"thrower\":\"2696\",\"quantity\":1}"
+        },
+        {
+          "TraceId": "df3cb713",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039252417,
+          "Turn": 120,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "e58bae1a",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039252417,
+          "Turn": 120,
+          "ActorId": "6942",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"PetDog\",\"hp\":15}"
+        },
+        {
+          "TraceId": "368d55c3",
+          "Category": "ai",
+          "Kind": "FetchProgress",
+          "TimestampUnixMs": 1791039252419,
+          "Turn": 120,
+          "ActorId": "6942",
+          "TargetId": "d04db963ffce4863928503e281f4b42e",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"approach_action\",\"thrower\":\"2696\",\"phase\":\"WalkToItem\",\"quantity\":1,\"approachActions\":1,\"returnActions\":0,\"dropAttempts\":0,\"fallbackReason\":null}"
+        },
+        {
+          "TraceId": "d7605d93",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039252420,
+          "Turn": 120,
+          "ActorId": "6942",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"PetDog\",\"hp\":15}"
+        },
+        {
+          "TraceId": "b4c8657b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039252420,
+          "Turn": 120,
+          "ActorId": "6947",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+        },
+        {
+          "TraceId": "079b56b6",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039252420,
+          "Turn": 120,
+          "ActorId": "6947",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+        },
+        {
+          "TraceId": "ed0aa892",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039252421,
+          "Turn": 128,
+          "ActorId": "6946",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+        },
+        {
+          "TraceId": "0206be02",
+          "Category": "ai",
+          "Kind": "SpreadMeatDiversionAdmission",
+          "TimestampUnixMs": 1791039252421,
+          "Turn": 128,
+          "ActorId": "6946",
+          "TargetId": "d04db963ffce4863928503e281f4b42e",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"visible-public-meat\",\"phase\":\"Approaching\",\"remainingApproach\":6,\"feedProgress\":0,\"attempted\":true}"
+        },
+        {
+          "TraceId": "cf114e3f",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039252422,
+          "Turn": 128,
+          "ActorId": "6946",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+        },
+        {
+          "TraceId": "4f3ebd10",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039252422,
+          "Turn": 130,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "60a1a8fb",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039252426,
+          "Turn": 130,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":49,\"y\":14,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "2da6cf20",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039252426,
+          "Turn": 130,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":69,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "3abc6928",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039252426,
+          "Turn": 130,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":68,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "71d5f1f1",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039252426,
+          "Turn": 130,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":67,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "label": "diversion-paid-wait-0",
+      "kind": "local",
+      "marker": "65fdfe7c",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 130,
+      "afterTick": 140,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "65fdfe7c",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1791039252821,
+          "Turn": 130,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"9b9cc9fc96de4d70a42f861bf099b4c1\",\"label\":\"diversion-paid-wait-0\"}"
+        },
+        {
+          "TraceId": "c07b3764",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039252830,
+          "Turn": 130,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "d867bd55",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039252830,
+          "Turn": 130,
+          "ActorId": "6942",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"PetDog\",\"hp\":15}"
+        },
+        {
+          "TraceId": "3a059294",
+          "Category": "ai",
+          "Kind": "FetchProgress",
+          "TimestampUnixMs": 1791039252831,
+          "Turn": 130,
+          "ActorId": "6942",
+          "TargetId": "d04db963ffce4863928503e281f4b42e",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"approach_action\",\"thrower\":\"2696\",\"phase\":\"WalkToItem\",\"quantity\":1,\"approachActions\":2,\"returnActions\":0,\"dropAttempts\":0,\"fallbackReason\":null}"
+        },
+        {
+          "TraceId": "5aa291f7",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039252831,
+          "Turn": 130,
+          "ActorId": "6942",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"PetDog\",\"hp\":15}"
+        },
+        {
+          "TraceId": "2f3f927b",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039252831,
+          "Turn": 130,
+          "ActorId": "6947",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+        },
+        {
+          "TraceId": "ee08b534",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039252831,
+          "Turn": 130,
+          "ActorId": "6947",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+        },
+        {
+          "TraceId": "62c9e1bc",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039252831,
+          "Turn": 137,
+          "ActorId": "6946",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+        },
+        {
+          "TraceId": "596710eb",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039252831,
+          "Turn": 137,
+          "ActorId": "6946",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+        },
+        {
+          "TraceId": "a447686d",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039252831,
+          "Turn": 140,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "816440f6",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039252835,
+          "Turn": 140,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":49,\"y\":14,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "8840d29c",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039252835,
+          "Turn": 140,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":69,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "e9ed4db5",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039252835,
+          "Turn": 140,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":68,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "27f2c9c9",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039252835,
+          "Turn": 140,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":67,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    },
+    {
+      "label": "diversion-paid-wait-1",
+      "kind": "local",
+      "marker": "0f5a724a",
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "beforeTick": 140,
+      "afterTick": 150,
+      "receipt": {
+        "CompletedTurns": 1,
+        "PureClock": 0,
+        "Healed": 0,
+        "Site": null
+      },
+      "rows": [
+        {
+          "TraceId": "0f5a724a",
+          "Category": "scenario",
+          "Kind": "DensityCampaignActionStart",
+          "TimestampUnixMs": 1791039253023,
+          "Turn": 140,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"runId\":\"9b9cc9fc96de4d70a42f861bf099b4c1\",\"label\":\"diversion-paid-wait-1\"}"
+        },
+        {
+          "TraceId": "6fc90fae",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039253033,
+          "Turn": 140,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "3e10edd5",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039253033,
+          "Turn": 140,
+          "ActorId": "6942",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"PetDog\",\"hp\":15}"
+        },
+        {
+          "TraceId": "181da5fb",
+          "Category": "ai",
+          "Kind": "FetchProgress",
+          "TimestampUnixMs": 1791039253033,
+          "Turn": 140,
+          "ActorId": "6942",
+          "TargetId": "d04db963ffce4863928503e281f4b42e",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"approach_action\",\"thrower\":\"2696\",\"phase\":\"WalkToItem\",\"quantity\":1,\"approachActions\":3,\"returnActions\":0,\"dropAttempts\":0,\"fallbackReason\":null}"
+        },
+        {
+          "TraceId": "8738849c",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039253033,
+          "Turn": 140,
+          "ActorId": "6942",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"PetDog\",\"hp\":15}"
+        },
+        {
+          "TraceId": "13549cc4",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039253033,
+          "Turn": 140,
+          "ActorId": "6947",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+        },
+        {
+          "TraceId": "6897278f",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039253034,
+          "Turn": 140,
+          "ActorId": "6947",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"ReedbackGrazer\",\"hp\":10}"
+        },
+        {
+          "TraceId": "3bb28a0e",
+          "Category": "turn-verbose",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039253034,
+          "Turn": 146,
+          "ActorId": "6946",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+        },
+        {
+          "TraceId": "d5bd3b0e",
+          "Category": "ai",
+          "Kind": "SpreadMeatDiversionOutcome",
+          "TimestampUnixMs": 1791039253034,
+          "Turn": 146,
+          "ActorId": "6946",
+          "TargetId": "d04db963ffce4863928503e281f4b42e",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reason\":\"threat-priority\",\"phase\":\"Aborted\",\"remainingApproach\":4,\"feedProgress\":0,\"attempted\":true}"
+        },
+        {
+          "TraceId": "32cb382c",
+          "Category": "turn-verbose",
+          "Kind": "End",
+          "TimestampUnixMs": 1791039253034,
+          "Turn": 146,
+          "ActorId": "6946",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Furrowstalker\",\"hp\":12}"
+        },
+        {
+          "TraceId": "982aca5d",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791039253034,
+          "Turn": 150,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "bc2af7f2",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039253037,
+          "Turn": 150,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":49,\"y\":14,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "671b3c47",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039253037,
+          "Turn": 150,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":69,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "a6fdb61c",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039253037,
+          "Turn": 150,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":68,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        },
+        {
+          "TraceId": "51fadc9a",
+          "Category": "tile",
+          "Kind": "ReactionFired",
+          "TimestampUnixMs": 1791039253037,
+          "Turn": 150,
+          "ActorId": null,
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"reaction\":\"steam\",\"x\":67,\"y\":3,\"consumedCoating\":\"water\",\"consumedEnergy\":1,\"outputCoating\":\"\",\"outputCloud\":\"steam\",\"occupantsHit\":0}"
+        }
+      ]
+    }
+  ],
+  "timings": [],
+  "notes": [
+    "ACTUAL CHOSEN BUILD: duelist. Starting equipped dagger remains real; no legacy-kit replacement."
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/SpreadDiscoveryExpeditions/Native/9b9cc9fc96de4d70a42f861bf099b4c1/connected-00-build-picker.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/SpreadDiscoveryExpeditions/Native/9b9cc9fc96de4d70a42f861bf099b4c1/diversion-01-original-duelist-provisions.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/SpreadDiscoveryExpeditions/Native/9b9cc9fc96de4d70a42f861bf099b4c1/diversion-arrival-before-any-local-action.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/SpreadDiscoveryExpeditions/Native/9b9cc9fc96de4d70a42f861bf099b4c1/diversion-02-real-ground-ration-and-hunter.png"
+  ],
+  "localInputs": 6,
+  "mapSteps": 4,
+  "completedPlayerTurns": 10,
+  "pureClock": 40,
+  "checkpointHash": null,
+  "threatClearance": 1,
+  "passedChecks": [
+    "ordinary_start",
+    "diversion_original_provisions",
+    "diversion_generated_hunt",
+    "diversion_native_single_throw"
+  ],
+  "unmetChecks": [
+    "diversion_native_approach",
+    "diversion_two_current_feed_hooks",
+    "diversion_actual_interact_pose",
+    "diversion_one_unit_consumed",
+    "diversion_original_hunt_continues",
+    "diversion_saved_checkpoint",
+    "diversion_spent_repeat_refused",
+    "diversion_exact_replacement",
+    "diversion_finish"
+  ],
+  "canVerify": "Only the named passedChecks were observed in this run; intendedCapability is the planned route, not a completion claim. Partial failures and unmetChecks remain explicit.",
+  "intendedCapability": "Actual Duelist selection and two original DriedMeat; ordinary world-map travel to the predeclared seed64 hunt, clear-ground one-unit throw from outside hunter sight, native paid NPC approach and two current-owner feeding gestures, exact one-unit consumption, original hunt continuation, native F5/unsaved action/F6 replacement-state conservation. A second actual ration is thrown only after saving to test the spent allowance; F6 restores the retained checkpoint ration.",
+  "cannotVerify": "One targeted candidate selected from F11 native evidence, not blind or unaided discovery. At most8 safe approach steps in total, including at most2 ordinary withdrawals from a still-active noncombat hunt;16 paid observation waits and2 repeat-probe waits. No transfers, grants, clock changes, AI edits, source retries or forced animation. Old F11 coordinates are a source-selection clue, not an assertion about this freshly generated v13 graph. If live geometry, threats or timing prevent the throw or observation, the run fails visibly. Current model submissions and actual animation frames need independent pixel review. No claim that food pacifies a hostile or saves every quarry."
+}

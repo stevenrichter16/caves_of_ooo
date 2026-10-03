@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/connected-exploration/ink/runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="340" result="Failed" start-time="2026-10-03T14:29:45.8922420Z" end-time="2026-10-03T14:29:47.2643280Z" duration="1.372049" total="10" passed="8" failed="2" inconclusive="0" skipped="0" warnings="0" asserts="222" random-seed="987294338">
+  <command-line><![CDATA[/Users/steven/.codex/scratch/caves-of-ooo/connected-exploration/ink/runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/Users/steven/.codex/scratch/caves-of-ooo/predator-diversion/crop-readout-pin/resident-reference-baseline.xml --where "class == CavesOfOoo.Tests.SpreadEverydayResidentTests"]]></command-line>
+  <filter>
+    <class>CavesOfOoo.Tests.SpreadEverydayResidentTests</class>
+  </filter>
+  <test-suite type="Assembly" id="1439" name="EditModeRunner.dll" fullname="/Users/steven/.codex/scratch/caves-of-ooo/connected-exploration/ink/runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="340" result="Failed" site="Child" start-time="2026-10-03T14:29:45.8922420Z" end-time="2026-10-03T14:29:47.2643280Z" duration="1.372049" total="10" passed="8" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="222">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/Users/steven/.codex/scratch/caves-of-ooo/connected-exploration/ink/runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/Users/steven/.codex/scratch/caves-of-ooo/connected-exploration/ink/runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="18007" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1440" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="340" result="Failed" site="Child" start-time="2026-10-03T14:29:45.8939530Z" end-time="2026-10-03T14:29:47.2643270Z" duration="1.370354" total="10" passed="8" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="222">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1441" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="340" result="Failed" site="Child" start-time="2026-10-03T14:29:45.8940650Z" end-time="2026-10-03T14:29:47.2643210Z" duration="1.370236" total="10" passed="8" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="222">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1424" name="SpreadEverydayResidentTests" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-03T14:29:45.8944330Z" end-time="2026-10-03T14:29:47.2643080Z" duration="1.369854" total="10" passed="8" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="222">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1438" name="CachedExistingNorthPlotAddressDoesNotAcquireResidentsOrNewCropsOnAccess" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.CachedExistingNorthPlotAddressDoesNotAcquireResidentsOrNewCropsOnAccess" methodname="CachedExistingNorthPlotAddressDoesNotAcquireResidentsOrNewCropsOnAccess" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" seed="173891537" result="Passed" start-time="2026-10-03T14:29:45.8953230Z" end-time="2026-10-03T14:29:45.9968410Z" duration="0.101544" asserts="3" />
+          <test-suite type="ParameterizedMethod" id="1430" name="ConversationTradeUsesActualAffordableStockAndCannotRepeatBoughtOrUnfundedItem" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.ConversationTradeUsesActualAffordableStockAndCannotRepeatBoughtOrUnfundedItem" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03T14:29:45.9974450Z" end-time="2026-10-03T14:29:46.0795870Z" duration="0.082141" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="44">
+            <test-case id="1428" name="ConversationTradeUsesActualAffordableStockAndCannotRepeatBoughtOrUnfundedItem(&quot;SpreadSeedKeeper&quot;,&quot;CandyCarrotSeed&quot;)" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.ConversationTradeUsesActualAffordableStockAndCannotRepeatBoughtOrUnfundedItem(&quot;SpreadSeedKeeper&quot;,&quot;CandyCarrotSeed&quot;)" methodname="ConversationTradeUsesActualAffordableStockAndCannotRepeatBoughtOrUnfundedItem" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" seed="1770676252" result="Passed" start-time="2026-10-03T14:29:45.9975410Z" end-time="2026-10-03T14:29:46.0469130Z" duration="0.049372" asserts="22" />
+            <test-case id="1429" name="ConversationTradeUsesActualAffordableStockAndCannotRepeatBoughtOrUnfundedItem(&quot;SpreadWaysideCook&quot;,&quot;Emberwheat&quot;)" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.ConversationTradeUsesActualAffordableStockAndCannotRepeatBoughtOrUnfundedItem(&quot;SpreadWaysideCook&quot;,&quot;Emberwheat&quot;)" methodname="ConversationTradeUsesActualAffordableStockAndCannotRepeatBoughtOrUnfundedItem" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" seed="1393979316" result="Passed" start-time="2026-10-03T14:29:46.0469550Z" end-time="2026-10-03T14:29:46.0791940Z" duration="0.032239" asserts="22" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1437" name="GeneratedResidentsAndBoughtStockRoundTripWithoutAccessRefills" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.GeneratedResidentsAndBoughtStockRoundTripWithoutAccessRefills" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03T14:29:46.0797670Z" end-time="2026-10-03T14:29:46.8651790Z" duration="0.785400" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="44">
+            <test-case id="1435" name="GeneratedResidentsAndBoughtStockRoundTripWithoutAccessRefills(&quot;Overworld.11.8.0&quot;,&quot;SpreadSeedKeeper&quot;,&quot;CandyCarrotSeed&quot;)" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.GeneratedResidentsAndBoughtStockRoundTripWithoutAccessRefills(&quot;Overworld.11.8.0&quot;,&quot;SpreadSeedKeeper&quot;,&quot;CandyCarrotSeed&quot;)" methodname="GeneratedResidentsAndBoughtStockRoundTripWithoutAccessRefills" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" seed="1587026273" result="Passed" start-time="2026-10-03T14:29:46.0797890Z" end-time="2026-10-03T14:29:46.4778560Z" duration="0.398062" asserts="22" />
+            <test-case id="1436" name="GeneratedResidentsAndBoughtStockRoundTripWithoutAccessRefills(&quot;Overworld.12.11.0&quot;,&quot;SpreadWaysideCook&quot;,&quot;Emberwheat&quot;)" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.GeneratedResidentsAndBoughtStockRoundTripWithoutAccessRefills(&quot;Overworld.12.11.0&quot;,&quot;SpreadWaysideCook&quot;,&quot;Emberwheat&quot;)" methodname="GeneratedResidentsAndBoughtStockRoundTripWithoutAccessRefills" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" seed="948773914" result="Passed" start-time="2026-10-03T14:29:46.4779100Z" end-time="2026-10-03T14:29:46.8651380Z" duration="0.387222" asserts="22" />
+          </test-suite>
+          <test-case id="1434" name="GeneratedWaysideOvenCooksBoughtFoodWhileRemoteAttemptPreservesIt" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.GeneratedWaysideOvenCooksBoughtFoodWhileRemoteAttemptPreservesIt" methodname="GeneratedWaysideOvenCooksBoughtFoodWhileRemoteAttemptPreservesIt" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" seed="1432162981" result="Passed" start-time="2026-10-03T14:29:46.8652050Z" end-time="2026-10-03T14:29:47.1080380Z" duration="0.242830" asserts="30" />
+          <test-suite type="ParameterizedMethod" id="1427" name="OriginalFieldResidentsHaveActualRoleStockAndSmallPurses" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.OriginalFieldResidentsHaveActualRoleStockAndSmallPurses" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03T14:29:47.1080860Z" end-time="2026-10-03T14:29:47.1695170Z" duration="0.061430" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="38">
+            <test-case id="1425" name="OriginalFieldResidentsHaveActualRoleStockAndSmallPurses(&quot;SpreadSeedKeeper&quot;,&quot;SpreadSeedKeeper_1&quot;,40)" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.OriginalFieldResidentsHaveActualRoleStockAndSmallPurses(&quot;SpreadSeedKeeper&quot;,&quot;SpreadSeedKeeper_1&quot;,40)" methodname="OriginalFieldResidentsHaveActualRoleStockAndSmallPurses" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" seed="1009680158" result="Passed" start-time="2026-10-03T14:29:47.1081110Z" end-time="2026-10-03T14:29:47.1412320Z" duration="0.033121" asserts="18" />
+            <test-case id="1426" name="OriginalFieldResidentsHaveActualRoleStockAndSmallPurses(&quot;SpreadWaysideCook&quot;,&quot;SpreadWaysideCook_1&quot;,35)" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.OriginalFieldResidentsHaveActualRoleStockAndSmallPurses(&quot;SpreadWaysideCook&quot;,&quot;SpreadWaysideCook_1&quot;,35)" methodname="OriginalFieldResidentsHaveActualRoleStockAndSmallPurses" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" seed="105388695" result="Passed" start-time="2026-10-03T14:29:47.1412650Z" end-time="2026-10-03T14:29:47.1694920Z" duration="0.028227" asserts="20" />
+          </test-suite>
+          <test-suite type="ParameterizedMethod" id="1433" name="PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03T14:29:47.1695290Z" end-time="2026-10-03T14:29:47.2642690Z" duration="0.094739" total="2" passed="0" failed="2" warnings="0" inconclusive="0" skipped="0" asserts="63">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1431" name="PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(&quot;CandyCarrotSeed&quot;,&quot;CandyCarrotCrop&quot;,&quot;CandyCarrot&quot;)" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(&quot;CandyCarrotSeed&quot;,&quot;CandyCarrotCrop&quot;,&quot;CandyCarrot&quot;)" methodname="PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" seed="1097170355" result="Failed" start-time="2026-10-03T14:29:47.1695480Z" end-time="2026-10-03T14:29:47.2332490Z" duration="0.063700" asserts="31">
+              <failure>
+                <message><![CDATA[  Expected: null
+  But was:  <Cell(10,10) [3 objects]>
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(String seedId, String cropId, String foodId) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadEverydayResidentTests.cs:line 166
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: null
+  But was:  <Cell(10,10) [3 objects]>
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(String seedId, String cropId, String foodId) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadEverydayResidentTests.cs:line 166
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1432" name="PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(&quot;EmberwheatSeed&quot;,&quot;EmberwheatCrop&quot;,&quot;Emberwheat&quot;)" fullname="CavesOfOoo.Tests.SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(&quot;EmberwheatSeed&quot;,&quot;EmberwheatCrop&quot;,&quot;Emberwheat&quot;)" methodname="PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds" classname="CavesOfOoo.Tests.SpreadEverydayResidentTests" runstate="Runnable" seed="767936181" result="Failed" start-time="2026-10-03T14:29:47.2333320Z" end-time="2026-10-03T14:29:47.2642370Z" duration="0.030905" asserts="32">
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(String seedId, String cropId, String foodId) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadEverydayResidentTests.cs:line 162
+   at InvokeStub_SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(String seedId, String cropId, String foodId) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SpreadEverydayResidentTests.cs:line 162
+   at InvokeStub_SpreadEverydayResidentTests.PurchasedSeedPlantsWatersAndProducesFiniteFoodOnlyDuringPlayerRounds(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

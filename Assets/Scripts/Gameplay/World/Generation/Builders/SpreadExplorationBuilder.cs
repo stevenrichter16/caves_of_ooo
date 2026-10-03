@@ -91,7 +91,7 @@ namespace CavesOfOoo.Core
    var owners=new HashSet<Entity>(z.GetReadOnlyEntities());
    var original=SpreadGenerationReceipt.CaptureFinalState(z,owners.Where(e=>!DoorPart.IsBareGround(e)));
    bool covered=SpreadExplorationPlan.Rank(manager.WorldSeed,z.ZoneID,"hunt-variant")%2==0;
-   if(SpreadExplorationHunt.TryPlace(z,f,terrain,population,covered,()=>Current(z,f,entry),out var hunter,out var grazer,out var final))
+   if(SpreadExplorationHunt.TryPlace(z,f,terrain,population,covered,()=>Current(z,f,entry),out var hunter,out var grazer,out var final,plan.Enabled&&plan.Version>=13))
     return Commit(z,f,entry,new[]{hunter,grazer},final);
    if(!Current(z,f,entry)||!original()||!owners.SetEquals(z.GetReadOnlyEntities()))return false;
    return Refuse(z,entry,"no-original-pair-or-useful-hunt-layout");

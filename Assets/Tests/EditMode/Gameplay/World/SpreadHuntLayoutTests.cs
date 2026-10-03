@@ -25,7 +25,7 @@ namespace CavesOfOoo.Tests
   internal Entity Bird=>Population.AmbientSourceReceipt.Owners.First(e=>e.BlueprintName=="Magpie");
   internal Entity[] Sources=>Population.SourceReceipt.Owners.Concat(new[]{Bird}).ToArray();
   internal bool Place(bool covered=true,Func<bool> authority=null,EntityFactory factory=null)
-  {var type=typeof(Zone).Assembly.GetType("CavesOfOoo.Core.SpreadExplorationHunt");Assert.NotNull(type,"Implement the early exact-source pair transaction and meaningful cover layout.");var method=type.GetMethod("TryPlace",All);Assert.NotNull(method);object[] args={Zone,factory??Factory,Terrain,Population,covered,authority??(()=>true),null,null,null};bool ok=(bool)method.Invoke(null,args);Hunter=(Entity)args[6];Grazer=(Entity)args[7];Final=(Func<bool>)args[8];return ok;}
+  {var type=typeof(Zone).Assembly.GetType("CavesOfOoo.Core.SpreadExplorationHunt");Assert.NotNull(type,"Implement the early exact-source pair transaction and meaningful cover layout.");var method=type.GetMethod("TryPlace",All);Assert.NotNull(method);object[] args={Zone,factory??Factory,Terrain,Population,covered,authority??(()=>true),null,null,null,false};bool ok=(bool)method.Invoke(null,args);Hunter=(Entity)args[6];Grazer=(Entity)args[7];Final=(Func<bool>)args[8];return ok;}
   internal Func<bool> Proof(IEnumerable<Entity> owners)=>(Func<bool>)typeof(SpreadGenerationReceipt).GetMethod("CaptureFinalState",All).Invoke(null,new object[]{Zone,owners});
   // Unity compiles tests separately from gameplay; read the exact internal
   // members without widening production visibility or replacing ownership checks.
