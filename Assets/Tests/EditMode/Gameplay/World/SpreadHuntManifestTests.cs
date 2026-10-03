@@ -10,7 +10,7 @@ namespace CavesOfOoo.Tests
  {
   const BindingFlags All=BindingFlags.Instance|BindingFlags.Static|BindingFlags.Public|BindingFlags.NonPublic;
   [Test]public void FreshCatalogRetainsHuntAtTwelveWithCurrentVersion()
-  {Assert.AreEqual(10,SpreadExplorationPlan.CurrentVersion);Assert.AreEqual(12,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"HuntThroughCover")));Assert.AreEqual(11,(int)SpreadExplorationFamily.HeavySalvage);}
+  {Assert.AreEqual(11,SpreadExplorationPlan.CurrentVersion);Assert.AreEqual(12,Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily),"HuntThroughCover")));Assert.AreEqual(11,(int)SpreadExplorationFamily.HeavySalvage);}
   [TestCase(2)][TestCase(3)][TestCase(4)][TestCase(5)][TestCase(6)][TestCase(7)]
   public void LiteralOlderFallowKeepsItsOrdinaryFamily(int version)
   {var method=typeof(SpreadExplorationPlan).GetMethod("FamilyFor",All);foreach(int seed in new[]{1,64,1729})for(int y=0;y<WorldMap.Height;y++)for(int x=0;x<WorldMap.Width;x++){var family=(SpreadExplorationFamily)method.Invoke(null,new object[]{Formation.Fallow,version,seed,WorldMap.ToZoneID(x,y)});Assert.AreEqual(version==2?SpreadExplorationFamily.OccupiedBank:SpreadExplorationFamily.WorkGang,family);}}

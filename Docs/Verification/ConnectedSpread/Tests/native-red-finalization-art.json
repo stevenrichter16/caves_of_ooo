@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"success\":true,\"message\":\"Test job status retrieved.\",\"error\":null,\"data\":{\"job_id\":\"d14b88fc333647a08c287f6d9c57c556\",\"status\":\"failed\",\"mode\":\"EditMode\",\"started_unix_ms\":1790985986584,\"finished_unix_ms\":1790985995760,\"last_update_unix_ms\":1790985995760,\"progress\":{\"completed\":23,\"total\":23,\"current_test_full_name\":null,\"current_test_started_unix_ms\":1790985995699,\"last_finished_test_full_name\":\"CavesOfOoo.Tests.ConnectedSpreadArtTests.UnrelatedOrBrokenOwnershipCannotBorrowKitchenStateArt(\\\"no-repair\\\")\",\"last_finished_unix_ms\":1790985995736,\"stuck_suspected\":false,\"editor_is_focused\":true,\"blocked_reason\":null,\"failures_so_far\":[{\"full_name\":\"CavesOfOoo.Tests.ConnectedReserveFinalizationTests.FinalAdmissionPinsEmptyPermissionMembersRatherThanOnlyListIdentity(True)\",\"message\":\"  A late callback must not mint initial access through a mutable saved collection.\\n  Expected: null\\n  But was:  <Zone(Overworld.11.8.0) [2196 entities]>\\n\"},{\"full_name\":\"CavesOfOoo.Tests.ConnectedReservePersistenceTests.AutomaticMaturityAssignsNoCulpritButBoundBedProduceKeepsLocalOwnership(False)\",\"message\":\"System.ArgumentNullException : Value cannot be null.\\nParameter name: key\"},{\"full_name\":\"CavesOfOoo.Tests.ConnectedReservePersistenceTests.AutomaticMaturityAssignsNoCulpritButBoundBedProduceKeepsLocalOwnership(True)\",\"message\":\"System.ArgumentNullException : Value cannot be null.\\nParameter name: key\"},{\"full_name\":\"CavesOfOoo.Tests.ConnectedSpreadArtTests.IncompleteReadyGraphRendersEmptyInsteadOfCrashing\",\"message\":\"System.Reflection.TargetInvocationException : Exception has been thrown by the target of an invocation.\\n  ----> System.NullReferenceException : Object reference not set to an instance of an object\"}],\"failures_capped\":false},\"error\":null,\"result\":null},\"hint\":null}"
+    }
+  ],
+  "structuredContent": {
+    "result": {
+      "success": true,
+      "message": "Test job status retrieved.",
+      "error": null,
+      "data": {
+        "job_id": "d14b88fc333647a08c287f6d9c57c556",
+        "status": "failed",
+        "mode": "EditMode",
+        "started_unix_ms": 1790985986584,
+        "finished_unix_ms": 1790985995760,
+        "last_update_unix_ms": 1790985995760,
+        "progress": {
+          "completed": 23,
+          "total": 23,
+          "current_test_full_name": null,
+          "current_test_started_unix_ms": 1790985995699,
+          "last_finished_test_full_name": "CavesOfOoo.Tests.ConnectedSpreadArtTests.UnrelatedOrBrokenOwnershipCannotBorrowKitchenStateArt(\"no-repair\")",
+          "last_finished_unix_ms": 1790985995736,
+          "stuck_suspected": false,
+          "editor_is_focused": true,
+          "blocked_reason": null,
+          "failures_so_far": [
+            {
+              "full_name": "CavesOfOoo.Tests.ConnectedReserveFinalizationTests.FinalAdmissionPinsEmptyPermissionMembersRatherThanOnlyListIdentity(True)",
+              "message": "  A late callback must not mint initial access through a mutable saved collection.\n  Expected: null\n  But was:  <Zone(Overworld.11.8.0) [2196 entities]>\n"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.ConnectedReservePersistenceTests.AutomaticMaturityAssignsNoCulpritButBoundBedProduceKeepsLocalOwnership(False)",
+              "message": "System.ArgumentNullException : Value cannot be null.\nParameter name: key"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.ConnectedReservePersistenceTests.AutomaticMaturityAssignsNoCulpritButBoundBedProduceKeepsLocalOwnership(True)",
+              "message": "System.ArgumentNullException : Value cannot be null.\nParameter name: key"
+            },
+            {
+              "full_name": "CavesOfOoo.Tests.ConnectedSpreadArtTests.IncompleteReadyGraphRendersEmptyInsteadOfCrashing",
+              "message": "System.Reflection.TargetInvocationException : Exception has been thrown by the target of an invocation.\n  ----> System.NullReferenceException : Object reference not set to an instance of an object"
+            }
+          ],
+          "failures_capped": false
+        },
+        "error": null,
+        "result": null
+      },
+      "hint": null
+    }
+  },
+  "isError": false
+}

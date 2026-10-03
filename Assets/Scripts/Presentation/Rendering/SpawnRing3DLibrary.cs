@@ -70,6 +70,7 @@ namespace CavesOfOoo.Rendering
             (BiomeCropSource.IsModelId(modelId) ? LoadExtension<BiomeCrop3DLibrary>(load, BiomeCrop3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (RepairCultivationSource.IsModelId(modelId) ? LoadExtension<RepairCultivation3DLibrary>(load, RepairCultivation3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (CurationYardSource.IsModelId(modelId) ? LoadExtension<CurationYard3DLibrary>(load, CurationYard3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (ConnectedSpreadSource.IsModelId(modelId) ? LoadExtension<ConnectedSpread3DLibrary>(load, ConnectedSpread3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadEnvironmentSource.IsModelId(modelId) ? LoadExtension<SpreadEnvironment3DLibrary>(load, SpreadEnvironment3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadRareMarlbackLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadRareMarlbackLibrary>(load, SpreadRareMarlbackLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SpreadLatchcoilLibrary.Blueprint(modelId)!=null ? LoadExtension<SpreadLatchcoilLibrary>(load, SpreadLatchcoilLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)

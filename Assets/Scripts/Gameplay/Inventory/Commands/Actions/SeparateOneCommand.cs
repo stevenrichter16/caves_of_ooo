@@ -61,6 +61,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
             bool applied = receipt.Apply(() =>
             {
                 stacker.StackCount--;
+                ConnectedClayProvenance.Split(_source, unit, 1);
                 // Intentional no-merge append: ordinary AddObject would erase the separation.
                 inventory.Objects.Add(unit);
                 var physics = unit.GetPart<PhysicsPart>();

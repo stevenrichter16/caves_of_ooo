@@ -1,0 +1,241 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9cc0a6d0a874abb91bbdcc628a0ad61, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: CavesOfOoo::CavesOfOoo.Rendering.ConnectedSpread3DLibrary
+  SourceSha256: 26c3c780a92d45047065bb6fdbc5e80e24a46aec9bed53d1188ec2af78a2f0a1
+  Material: {fileID: 2100000, guid: 937a7cb9b980e41e2bf0f15f1d493c6a, type: 2}
+  Entries:
+  - Id: connected-spread-pan-cracked
+    Prefab: {fileID: 6283042200363058262, guid: 34b7c9ec7c49540c18ba4d9cb1304061, type: 3}
+    Mesh: {fileID: 4300000, guid: 1cd8e9ac416544b5baf8c2f3c36699ed, type: 2}
+    Spec:
+      id: connected-spread-pan-cracked
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-pan-cracked.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2085, z: -0.060000017}
+      boundsSize: {x: 0.8, y: 0.417, z: 0.82000005}
+      triangles: 132
+      clips: []
+      sockets: []
+  - Id: connected-spread-pan-empty
+    Prefab: {fileID: 8310593705847641774, guid: 5d7273b1f2daa44f39ad1e473188a7d7, type: 3}
+    Mesh: {fileID: 4300000, guid: 442570b0765e7409b91cde912d579b87, type: 2}
+    Spec:
+      id: connected-spread-pan-empty
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-pan-empty.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2075, z: 0}
+      boundsSize: {x: 0.8, y: 0.415, z: 0.7}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: connected-spread-pan-covered
+    Prefab: {fileID: 6775207539282920321, guid: 3391a4bde66de4acebb15fe6091cf5b8, type: 3}
+    Mesh: {fileID: 4300000, guid: 51cb68d488bd74215ad44124f4d115a2, type: 2}
+    Spec:
+      id: connected-spread-pan-covered
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-pan-covered.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.29050002, z: -0.0025000125}
+      boundsSize: {x: 0.8, y: 0.58100003, z: 0.70500004}
+      triangles: 144
+      clips: []
+      sockets: []
+  - Id: connected-spread-pan-ready
+    Prefab: {fileID: 4362202465050211763, guid: ab2106c9158a74ddfb871c4eaeb0459a, type: 3}
+    Mesh: {fileID: 4300000, guid: 9255a4265293c481792258bc9ea9c7e6, type: 2}
+    Spec:
+      id: connected-spread-pan-ready
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-pan-ready.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2875, z: 0}
+      boundsSize: {x: 0.8, y: 0.575, z: 0.7}
+      triangles: 144
+      clips: []
+      sockets: []
+  - Id: connected-spread-pantry-empty
+    Prefab: {fileID: 7168128293189930848, guid: 2d7ddc709ad3445da9c29180ae1bb263, type: 3}
+    Mesh: {fileID: 4300000, guid: 8f74f4112731d47188a98fac3ee9b1b0, type: 2}
+    Spec:
+      id: connected-spread-pantry-empty
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-pantry-empty.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.3975, z: 0}
+      boundsSize: {x: 0.79, y: 0.795, z: 0.69}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: connected-spread-pantry-full
+    Prefab: {fileID: 3379205186653106719, guid: 3ff37bf9e9799423fa5a566ac60a8964, type: 3}
+    Mesh: {fileID: 4300000, guid: 2f037071aff744647a6b03eee72d7a30, type: 2}
+    Spec:
+      id: connected-spread-pantry-full
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-pantry-full.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.3975, z: 0}
+      boundsSize: {x: 0.79, y: 0.795, z: 0.69}
+      triangles: 144
+      clips: []
+      sockets: []
+  - Id: connected-spread-pickup-empty
+    Prefab: {fileID: 1799546554123554468, guid: 1b2298035f87e4ebca4a053ba8a85119, type: 3}
+    Mesh: {fileID: 4300000, guid: 2ecfcf6fd2cdc497cb9e7a83dcc573f5, type: 2}
+    Spec:
+      id: connected-spread-pickup-empty
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-pickup-empty.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.2575, z: 0}
+      boundsSize: {x: 0.78, y: 0.515, z: 0.58}
+      triangles: 84
+      clips: []
+      sockets: []
+  - Id: connected-spread-pickup-full
+    Prefab: {fileID: 7458158178672330049, guid: b43598cb67a2d4b9d9d75330b6480fc0, type: 3}
+    Mesh: {fileID: 4300000, guid: b27d2027b479244cb879a747e65eada5, type: 2}
+    Spec:
+      id: connected-spread-pickup-full
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-pickup-full.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.343, z: 0}
+      boundsSize: {x: 0.78, y: 0.686, z: 0.58}
+      triangles: 156
+      clips: []
+      sockets: []
+  - Id: connected-spread-reserve-tray
+    Prefab: {fileID: 1938672959092282612, guid: 17bca7b1a842147879fcb6397f43443d, type: 3}
+    Mesh: {fileID: 4300000, guid: 89c2b1a1213864070a14a638f017db3f, type: 2}
+    Spec:
+      id: connected-spread-reserve-tray
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-reserve-tray.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.4325, z: 0}
+      boundsSize: {x: 0.81, y: 0.865, z: 0.65}
+      triangles: 132
+      clips: []
+      sockets: []
+  - Id: connected-spread-field-meal
+    Prefab: {fileID: 5243701616109382427, guid: 26a10989d63c14ae2a00f0440ccb55a0, type: 3}
+    Mesh: {fileID: 4300000, guid: e61e873a20b34408984ac820ad98a9e8, type: 2}
+    Spec:
+      id: connected-spread-field-meal
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-field-meal.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.1305, z: 0}
+      boundsSize: {x: 0.49, y: 0.261, z: 0.36}
+      triangles: 72
+      clips: []
+      sockets: []
+  - Id: connected-spread-ink-desk
+    Prefab: {fileID: 2883008910594068335, guid: 86ecc2ae9f0564ee68eb901576b7e1c3, type: 3}
+    Mesh: {fileID: 4300000, guid: 0fb466c0ae8d14da6a0164de9dc80e68, type: 2}
+    Spec:
+      id: connected-spread-ink-desk
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-ink-desk.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.5135, z: 0}
+      boundsSize: {x: 0.88, y: 1.027, z: 0.71}
+      triangles: 168
+      clips: []
+      sockets: []
+  - Id: connected-spread-footwork-manual
+    Prefab: {fileID: 2132125990091293888, guid: 93aa373a7c47944df88ae874b8cead87, type: 3}
+    Mesh: {fileID: 4300000, guid: 38f73567bc8d8475b8048778c2e4219e, type: 2}
+    Spec:
+      id: connected-spread-footwork-manual
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-footwork-manual.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: -0.0012499988, y: 0.0565, z: 0}
+      boundsSize: {x: 0.4325, y: 0.113, z: 0.6}
+      triangles: 96
+      clips: []
+      sockets: []
+  - Id: connected-spread-heavy-frame
+    Prefab: {fileID: 4179163861862007166, guid: b9fca4b57f2b646b1b34d961258cbf2c, type: 3}
+    Mesh: {fileID: 4300000, guid: 6ba1db0e91d3d4ad69a32bd098dfb0e8, type: 2}
+    Spec:
+      id: connected-spread-heavy-frame
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-heavy-frame.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.75, z: 0}
+      boundsSize: {x: 0.92, y: 1.5, z: 0.96}
+      triangles: 180
+      clips: []
+      sockets: []
+  - Id: connected-spread-reserve-bed
+    Prefab: {fileID: 1059344023874937121, guid: ae11f1afc636c45efa18190464d3193e, type: 3}
+    Mesh: {fileID: 4300000, guid: 54ddf52b237114eb19758727f469cc93, type: 2}
+    Spec:
+      id: connected-spread-reserve-bed
+      path: Assets/Resources/ConnectedSpread3D/connected-spread-reserve-bed.prefab
+      kind: entity
+      rigFamily: none
+      materialFamily: reference-glade-palette
+      sourceBlueprint:
+      rigged: 0
+      boundsCenter: {x: 0, y: 0.16, z: 0}
+      boundsSize: {x: 0.93, y: 0.32, z: 0.93}
+      triangles: 168
+      clips: []
+      sockets: []

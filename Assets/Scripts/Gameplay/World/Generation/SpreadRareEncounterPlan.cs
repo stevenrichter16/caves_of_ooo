@@ -26,7 +26,7 @@ namespace CavesOfOoo.Core
                 for (int x = 0; x < WorldMap.Width; x++)
                 {
                     string id = WorldMap.ToZoneID(x, y, 0);
-                    if (!IsEligible(manager, id)) continue;
+                    if (RequiredConnectedService(id) || !IsEligible(manager, id)) continue;
                     var formation = FormationSelector.For(BiomeType.Spread, id);
                     if (formation != Formation.Hedgerow && formation != Formation.OldRoad) continue;
                     uint rank = Rank(manager.WorldSeed, id);
@@ -40,7 +40,7 @@ namespace CavesOfOoo.Core
                 for (int x = 0; x < WorldMap.Width; x++)
                 {
                     string id = WorldMap.ToZoneID(x, y, 0);
-                    if (!result.ViperEligible(manager, id)) continue;
+                    if (RequiredConnectedService(id) || !result.ViperEligible(manager, id)) continue;
                     uint rank = ViperRank(manager.WorldSeed, id);
                     if (rank >= viperBest) continue;
                     viperBest = rank; result.ViperZoneID = id;
@@ -51,6 +51,12 @@ namespace CavesOfOoo.Core
                 payload: new { version = 1, zone = result.ViperZoneID, family = "chalk-ring-viper" });
             return result;
         }
+
+        // New worlds reserve the two linked public-service locations before
+        // selecting optional rare encounters. Restore/Selects retain old saved
+        // addresses literally; this must not become an eligibility retrofit.
+        private static bool RequiredConnectedService(string id)
+            => id == LocalGatheringClaimPart.ReserveZoneID || id == KitchenBatchPart.KitchenZoneID;
 
         public static bool IsEligible(OverworldZoneManager manager, string id)
         {

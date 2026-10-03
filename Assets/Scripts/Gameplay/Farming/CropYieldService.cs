@@ -16,6 +16,7 @@ namespace CavesOfOoo.Core
         {
             var source = new Source(crop, zone, actor);
             if (!source.Current() || !source.ValidRecipe()) return Reject(crop, actor, "invalid-source-or-yield");
+            var gathering = LocalGatheringClaims.CaptureHarvest(actor, source.Owner, zone);
             var factory = CropSystem.Factory;
             if (factory == null) return Reject(crop, actor, "no_factory");
             bool own = transaction == null;
@@ -81,6 +82,8 @@ namespace CavesOfOoo.Core
                 if (!source.Current() || !zone.RemoveEntity(source.Owner))
                 { restore(); return Reject(crop, actor, "source-changed"); }
                 removed = true;
+                LocalGatheringClaims.RecordHarvest(gathering, products, transaction);
+                ConnectedSpreadProgress.RecordHarvest(actor, source.Owner, zone, transaction);
                 ZoneRenderHooks.MarkCellDirty(source.Cell.X, source.Cell.Y, actor == null ? "CropMatured" : "CropHarvested");
                 transaction.AfterCommit(() =>
                 {

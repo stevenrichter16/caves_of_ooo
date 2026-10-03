@@ -1,0 +1,40 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "ee37d8990c5a4efbbc9a08baeb12f2f5",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1790986752673,
+      "finished_unix_ms": 1790986756330,
+      "last_update_unix_ms": 1790986756330,
+      "progress": {
+        "completed": 10,
+        "total": 10,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1790986756270,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.ConnectedServiceQueryTests.SavedKitchenWithMissingPickupCanBeReadButCannotOfferWork(True)",
+        "last_finished_unix_ms": 1790986756306,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedRequiredServiceTests.FreshSeedSixtyActuallyGeneratesTheBoundCookAndRepairablePan",
+            "message": "  A frozen address alone is not a playable connected kitchen.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedRequiredServiceTests.FreshSeedSixtyKeepsTheRequiredKitchenAddressForItsConnectedService",
+            "message": "  Seed 60's rare pair must not silently erase the required kitchen chain.\n  Expected: WaysideKitchen\n  But was:  None\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

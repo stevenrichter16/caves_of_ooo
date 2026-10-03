@@ -196,6 +196,10 @@ namespace CavesOfOoo.Scenarios.Custom
         {
             for(int i=0;i<budget;i++)
             {
+                // This is the actual melee build responding to a live adjacent
+                // threat, not a pathfinding exemption or a pacified fixture.
+                if(Connected)yield return ConnectedDuelistDefense();
+                if(ConnectedVariant)yield return ConnectedVariantDefense();
                 if(goal(At))yield break;
                 yield return DistrictDefensiveCalm();
                 var path=PathTo(goal);

@@ -31,6 +31,8 @@ namespace CavesOfOoo.Core
    if(!Current(zone,factory,entry))return Refuse(zone,entry,"authority");
    switch(entry.Family)
    {
+    case SpreadExplorationFamily.WetCrossing:
+    case SpreadExplorationFamily.HeavyFrame:return Satellite(zone,factory,entry);
     case SpreadExplorationFamily.SeedKeepersPlot:
     case SpreadExplorationFamily.WaysideKitchen:return Resident(zone,factory,entry);
     case SpreadExplorationFamily.FieldAlembic:
@@ -50,12 +52,25 @@ namespace CavesOfOoo.Core
     default:return Refuse(zone,entry,"unsupported-family");
    }
   }
+  bool Satellite(Zone z,EntityFactory f,SpreadExplorationEntry entry)
+  {
+   if(Priority!=4300)return Refuse(z,entry,"satellite-generation-boundary");
+   var owners=new HashSet<Entity>(z.GetReadOnlyEntities());
+   var original=SpreadGenerationReceipt.CaptureFinalState(z,owners);
+   if(ConnectedSpreadSatellite.TryPlace(z,f,terrain,population,containers,entry.Family,()=>Current(z,f,entry),out var packet,out var final))
+    return Commit(z,f,entry,packet,final);
+   if(!Current(z,f,entry)||!original()||!owners.SetEquals(z.GetReadOnlyEntities()))return false;
+   return Refuse(z,entry,"no-safe-satellite-or-original-sources");
+  }
   bool Resident(Zone z,EntityFactory f,SpreadExplorationEntry entry)
   {
    if(Priority!=4300)return Refuse(z,entry,"resident-generation-boundary");
+   // Complete ordinary names on pre-existing farmhouse residents before freezing
+   // the connected packet. OnZoneGenerated repeats this idempotently later.
+   if(plan.Version>=11&&(z.ZoneID=="Overworld.11.8.0"||z.ZoneID=="Overworld.12.11.0"))LocalPeople.Apply(z,manager);
    var owners=new HashSet<Entity>(z.GetReadOnlyEntities());
    var original=SpreadGenerationReceipt.CaptureFinalState(z,owners);
-   if(SpreadExplorationResidents.TryPlace(z,f,terrain,entry.Family,()=>Current(z,f,entry),out var packet,out var final))
+   if(SpreadExplorationResidents.TryPlaceConnected(z,f,terrain,entry.Family,()=>Current(z,f,entry),out var packet,out var final,plan.Version>=11,plan.WorldKey))
     return Commit(z,f,entry,packet,final);
    if(!Current(z,f,entry)||!original()||!owners.SetEquals(z.GetReadOnlyEntities()))return false;
    return Refuse(z,entry,"no-safe-resident-site");

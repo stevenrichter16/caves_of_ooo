@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CavesOfOoo.Data;
+using CavesOfOoo.Diagnostics;
 
 namespace CavesOfOoo.Core
 {
@@ -10,6 +11,7 @@ namespace CavesOfOoo.Core
     public static class SpreadExplorationResidents
     {
         public const string RoleKey = "SpreadResident.Role";
+        public const string ReserveBedKey = "ConnectedSpread.ReserveBed";
         const int MaxTrials = 256;
         static readonly (int x, int y) Arrival = (40, 12);
 
@@ -17,16 +19,25 @@ namespace CavesOfOoo.Core
         /// terrain/attempt authority. The returned proof is transient; it never replays on load.</summary>
         public static bool TryPlace(Zone zone, EntityFactory factory, SpreadCompositionBuilder terrain,
             SpreadExplorationFamily family, Func<bool> authority, out Entity[] owners, out Func<bool> final)
+            => TryPlaceConnected(zone,factory,terrain,family,authority,out owners,out final,false);
+
+        public static bool TryPlaceConnected(Zone zone, EntityFactory factory, SpreadCompositionBuilder terrain,
+            SpreadExplorationFamily family, Func<bool> authority, out Entity[] owners, out Func<bool> final, bool connected, string worldKey = null)
         {
             owners = null; final = null;
+            string stage="authority";
+            bool Refuse(string reason){Diag.Record("worldgen","SpreadResidentRefused",payload:new{zoneId=zone?.ZoneID,reason,stage});return false;}
+            connected = connected && (zone?.ZoneID == "Overworld.11.8.0" || zone?.ZoneID == "Overworld.12.11.0");
             bool plot = family == SpreadExplorationFamily.SeedKeepersPlot;
-            if ((!plot && family != SpreadExplorationFamily.WaysideKitchen) || zone == null || factory == null || authority == null) return false;
+            if ((!plot && family != SpreadExplorationFamily.WaysideKitchen) || zone == null || factory == null || authority == null) return Refuse("admission");
+            if (connected && !Guid.TryParseExact(worldKey, "N", out _)) return Refuse("world-key");
             var plan = terrain?.Plan;
             bool Identity() => terrain?.SourceZone == zone && terrain.Plan == plan && plan?.ZoneID == zone.ZoneID;
-            if (!Identity() || !authority() || !Identity() || zone.GetReadOnlyEntities().Any(e => e.Properties.ContainsKey(RoleKey))) return false;
-            // A rolled farmhouse already supplies a domestic resident. Keep that landmark's
-            // ordinary naming/stock lifecycle, rather than stacking a second household here.
-            if (zone.GetReadOnlyEntities().Any(e => e.HasTag("Creature") && e.HasPart<ConversationPart>())) return false;
+            if (!Identity() || !authority() || !Identity() || zone.GetReadOnlyEntities().Any(e => e.Properties.ContainsKey(RoleKey))) return Refuse("admission");
+            // Preserve the legacy domestic-site guard. The two connected addresses
+            // can coexist with an existing farmhouse only when Fits proves a separate
+            // footprint and preserves its approaches and all original owners.
+            if (!connected && zone.GetReadOnlyEntities().Any(e => e.HasTag("Creature") && e.HasPart<ConversationPart>())) return Refuse("admission");
             var original = new HashSet<Entity>(zone.GetReadOnlyEntities());
             var source = SpreadGenerationReceipt.CaptureFinalState(zone, original);
             var added = new HashSet<Entity>();
@@ -37,7 +48,14 @@ namespace CavesOfOoo.Core
                     ("EmberwheatCrop", "crop", -2, 1), ("EmberwheatCrop", "crop", -1, 1), ("Signpost", "sign", 2, 0) }
                 : new[] { ("SpreadWaysideCook", "resident", 0, 0), ("Oven", "oven", -2, 0), ("Bed", "cot", 2, 0),
                     ("Chair", "chair", 2, 1), ("StoneWall", "shelter", -2, -2), ("StoneWall", "shelter", -1, -2) };
-            if (specs.Any(s => !factory.Blueprints.ContainsKey(s.bp)) || !Current()) return false;
+            if (connected && !plot) specs[3] = ("Chair", "chair", 2, -1);
+            if (connected)
+                specs = specs.Concat(plot
+                    ? new[] { ("MarlrootCrop", "reserve-crop", -2, -3), ("PitchpodCrop", "reserve-crop", -1, -3),
+                        ("ConnectedReserveTray", "reserve-tray", 2, -2), ("Signpost", "reserve-sign", 1, -3) }
+                    : new[] { ("ConnectedBatchPan", "pan", 0, -2), ("ConnectedKitchenEscrow", "escrow", 1, -2),
+                        ("ConnectedKitchenPickup", "pickup", 2, -2), ("ClaspbeanCrop", "kitchen-crop", -2, 2) }).ToArray();
+            if (specs.Any(s => !factory.Blueprints.ContainsKey(s.bp)) || !Current()) return Refuse("admission");
             var before = new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>());
             var anchor = (x: SpreadExplorationPlan.Rank(plan.Seed, zone.ZoneID, "resident-anchor") % 2 == 0 ? 22 : 58, y: 12);
             (int x, int y)[] positions = null; (int x, int y) origin = default; int rotation = 0, trials = 0;
@@ -48,13 +66,16 @@ namespace CavesOfOoo.Core
                 {
                     var candidate = specs.Select(s => At(at, (s.x, s.y), turn)).ToArray();
                     if (candidate.Any(p => Distance(p, Arrival) <= 6 || !before.Place(p.x, p.y))) continue;
-                    if (++trials > MaxTrials) return false;
+                    if (connected && specs.Select((spec, i) => (spec, i)).Where(s => s.spec.role == "reserve-crop" || s.spec.role == "kitchen-crop")
+                        .Any(s => PreparedGround(zone, candidate[s.i], plan) == null)) continue;
+                    if (++trials > MaxTrials) return Refuse("admission");
                     if (!Fits(zone, before, before, candidate, plot, at, turn, plan)) continue;
                     positions = candidate; origin = at; rotation = turn; break;
                 }
                 if (positions != null) break;
             }
-            if (positions == null || !Current()) return false;
+            if (positions == null || !Current()) return Refuse("no-safe-footprint");
+            var soils = new List<(Entity terrain, CultivatedSoilPart part, bool plantable)>();
             var staged = new List<Entity>(); var placed = new Dictionary<Entity, Func<bool>>(); bool success = false;
             // Stock and inherited loadout handlers execute synchronously during creation. They
             // share one private stream for this site and cannot advance the ordinary population RNG.
@@ -66,54 +87,132 @@ namespace CavesOfOoo.Core
                 LoadoutPart.Rng = TraderPart.Rng = new Random(unchecked((int)SpreadExplorationPlan.Rank(plan.Seed, zone.ZoneID, "resident-stock")));
                 foreach (var spec in specs)
                 {
-                    if (!Current()) return false;
+                    if (!Current()) return Refuse("admission");
+                    stage="create:"+spec.bp;
                     var entity = factory.CreateEntity(spec.bp);
-                    if (!Fresh(entity, spec.bp) || !Current()) return false;
+                    if (!Fresh(entity, spec.bp) || !Current()) return Refuse("admission");
                     if (spec.role == "resident")
                     {
-                        if (!Resident(entity, plot)) return false;
+                        if (!Resident(entity, plot)) return Refuse("resident-payload");
                         entity.SetIntProperty(TraderRestockSystem.LastRestockProp, WorldClock.CurrentTick);
+                        if (connected) entity.GetPart<RenderPart>().DisplayName = plot ? "Nella Tern, seedkeeper" : "Orven Kett, wayside cook";
                     }
-                    if (spec.role == "crop" && !(entity.GetPart<CropPart>() is CropPart crop && crop.GrowthStage == 0 && crop.TicksInStage == 0 && crop.MoistureTicks == 0)) return false;
-                    if (spec.role == "cot" && !(entity.GetPart<BedPart>() is BedPart bed && string.IsNullOrEmpty(bed.Owner) && !bed.Occupied)) return false;
-                    if (spec.role == "chair" && !entity.HasPart<ChairPart>()) return false;
-                    if (spec.role == "shelter" && entity.GetPart<PhysicsPart>()?.Solid != true) return false;
+                    if (spec.role == "crop" && !(entity.GetPart<CropPart>() is CropPart crop && crop.GrowthStage == 0 && crop.TicksInStage == 0 && crop.MoistureTicks == 0)) return Refuse("admission");
+                    if (spec.role == "reserve-crop" || spec.role == "kitchen-crop")
+                    {
+                        var plant = entity.GetPart<CropPart>();
+                        if (plant == null || !plant.HarvestAtMaturity || plant.YieldCount != 2 || plant.SeedYieldCount != 1) return Refuse("admission");
+                        bool clayReady = SpreadExplorationPlan.Rank(plan.Seed, zone.ZoneID, "reserve-priority") % 2 == 0;
+                        plant.GrowthStage = spec.role == "kitchen-crop" || (entity.BlueprintName == "MarlrootCrop") == clayReady ? 2 : 0;
+                        plant.TicksInStage = 0; plant.MoistureTicks = 0;
+                        entity.GetPart<RenderPart>().RenderString = plant.GlyphForStage(plant.GrowthStage).ToString();
+                        entity.GetPart<RenderPart>().ColorString = plant.ColorForStage(plant.GrowthStage);
+                    }
+                    if (spec.role == "reserve-sign") Describe(entity, "Nella's tied row: marlroot for clay, pitchpod for resin. Ask Nella for gathering rights before harvesting these two cord-marked beds or taking from the matching tray. The four open beds remain public. Orven's kitchen lies southeast; he can introduce a dependable repairer. Dry seedlings need water before they can grow while you travel.");
+                    if (spec.role == "cot" && !(entity.GetPart<BedPart>() is BedPart bed && string.IsNullOrEmpty(bed.Owner) && !bed.Occupied)) return Refuse("admission");
+                    if (spec.role == "chair" && !entity.HasPart<ChairPart>()) return Refuse("admission");
+                    if (spec.role == "shelter" && entity.GetPart<PhysicsPart>()?.Solid != true) return Refuse("admission");
                     if (spec.role == "oven")
                     {
                         // Ordinary Oven blueprints are scenery. Only this exact new site owner
                         // becomes an existing cooking station; resting is supplied by its cot.
-                        if (entity.HasPart<CampfirePart>()) return false;
+                        if (entity.HasPart<CampfirePart>()) return Refuse("admission");
                         entity.AddPart(new CampfirePart { AllowRest = false, FiniteCooking = false });
                         Describe(entity, "A shared field oven. Stand beside it and Cook carried raw meat, mushrooms or emberwheat. The cot is for resting when no enemies are nearby.");
                     }
-                    if (spec.role == "sign") Describe(entity, "Seeds wait in two open rows; the gaps are yours to plant. Carry a gladroot or emberwheat seed onto empty plantable ground and use Plant. Use a watering grimoire's Conjure Rain to moisten crops. Dry crops pause. Gladroot takes 40 moist rounds here; emberwheat takes 70 and needs another watering. Ripe produce falls ready to pick up. Crops grow while you act in this area, not while you travel elsewhere.");
+                    if (spec.role == "sign") Describe(entity, "Seeds wait in two open rows; the gaps are yours to plant. Carry a gladroot or emberwheat seed onto empty plantable ground and use Plant. Use a watering grimoire's Conjure Rain to moisten crops. Dry crops pause. Gladroot takes 40 moist rounds here; emberwheat takes 70 and needs another watering. Ripe produce falls ready to pick up. Watered crops keep growing while you travel and rest; dry time gives no growth.");
                     if (spec.role == "cot") Describe(entity, "An unclaimed field cot. Stand on it to sleep when no hostile is nearby. Rest heals and advances time; it does not water the growing rows.");
-                    entity.Properties[RoleKey] = spec.role; staged.Add(entity);
+                    entity.Properties[RoleKey] = spec.role;
+                    if (connected) entity.Properties["ConnectedSpread.Role"] = spec.role;
+                    staged.Add(entity);
                 }
-                if (!UniqueGraph(zone, staged) || !Current()) return false;
+                if (!UniqueGraph(zone, staged) || !Current()) return Refuse("staged-graph");
+                stage="publication";
                 for (int i = 0; i < staged.Count; i++)
                 {
                     var entity = staged[i]; var at = positions[i];
-                    if (!Current() || !placed.Values.All(proof => proof()) || !new SpreadWildernessSituationBuilder.Geometry(zone, added).Place(at.x, at.y)) return false;
-                    if (!zone.AddEntity(entity, at.x, at.y)) return false;
+                    if (!Current() || !placed.Values.All(proof => proof()) || !new SpreadWildernessSituationBuilder.Geometry(zone, added).Place(at.x, at.y)) return Refuse("admission");
+                    if (!zone.AddEntity(entity, at.x, at.y)) return Refuse("admission");
                     added.Add(entity); placed.Add(entity, SpreadGenerationReceipt.CaptureFinalState(zone, new[] { entity }));
-                    if (!Current() || !placed.Values.All(proof => proof())) return false;
+                    if (!Current() || !placed.Values.All(proof => proof())) return Refuse("admission");
+                }
+                stage="soil-and-binding";
+                if (connected)
+                {
+                    if (!Current() || !placed.Values.All(proof => proof())) return Refuse("admission");
+                    foreach (var plant in staged.Where(e => e.GetProperty(RoleKey) == "reserve-crop" || e.GetProperty(RoleKey) == "kitchen-crop"))
+                    {
+                        var cell = zone.GetEntityCell(plant);
+                        var ground = PreparedGround(zone, (cell.X, cell.Y), plan);
+                        if (ground == null || ground.HasPart<CultivatedSoilPart>() || BarrenGroundRules.IsBarren(cell)) return Refuse("admission");
+                        var soil = new CultivatedSoilPart(); bool had = ground.HasTag("Plantable");
+                        ground.SetTag("Plantable"); zone.NotifyEntityTagAdded(ground,"Plantable"); ground.AddPart(soil); soils.Add((ground,soil,had));
+                        if (plot) ground.Properties[ReserveBedKey] = staged[0].ID;
+                    }
+                    // The only changes to original owners are our prepared-bed Parts/tags.
+                    // Capture those synchronous writes only after the original proof held.
+                    source = SpreadGenerationReceipt.CaptureFinalState(zone, original);
+                    // These mutations call only sealed, owned binders, with no
+                    // content factories or virtual behavior. Refresh exactly the
+                    // changed owner's proof so a later refusal can reclaim it.
+                    bool Bind(Entity owner, Func<bool> action)
+                    {
+                        if (!Current() || !placed.Values.All(proof => proof())) return false;
+                        bool result;
+                        try { result = action(); }
+                        finally { placed[owner] = SpreadGenerationReceipt.CaptureFinalState(zone, new[] { owner }); }
+                        return result && Current() && placed.Values.All(proof => proof());
+                    }
+                    if (plot)
+                    {
+                        if (soils.Count != 2 || !Bind(staged[0], () =>
+                        {
+                            var claim = new LocalGatheringClaimPart(); staged[0].AddPart(claim);
+                            return claim.BindWorldKey(worldKey) && claim.Configure(zone, soils[0].terrain, soils[1].terrain,
+                                staged.Single(e => e.GetProperty(RoleKey) == "reserve-tray"), plan.Seed);
+                        })) return Refuse("reserve-binding");
+                    }
+                    else
+                    {
+                        var pan = staged.Single(e => e.GetProperty(RoleKey) == "pan");
+                        if (!Bind(pan, () => pan.GetPart<KitchenBatchPart>().Configure(zone, staged[0],
+                            staged.Single(e => e.GetProperty(RoleKey) == "escrow"), staged.Single(e => e.GetProperty(RoleKey) == "pickup"))
+                            && ConnectedSpreadProgress.BindRepair(pan, worldKey) && ConnectedSpreadProgress.BindKitchen(pan, worldKey))) return Refuse("kitchen-binding");
+                        if (!Bind(staged[0], () =>
+                        {
+                            var introduction = new CookIntroductionPart(); staged[0].AddPart(introduction);
+                            return introduction.BindWorldKey(worldKey) && introduction.Configure(zone, pan, plan.Seed);
+                        })) return Refuse("introduction-binding");
+                    }
+                    foreach (var e in staged) placed[e] = SpreadGenerationReceipt.CaptureFinalState(zone,new[]{e});
                 }
                 var packet = staged.ToArray(); var packetProof = SpreadGenerationReceipt.CaptureFinalState(zone, packet);
-                bool Final() => Current() && packetProof() && Fits(zone,
+                // The generic field snapshot pins the collection identity;
+                // this cold semantic contract also pins its initial members.
+                bool Final() => Current() && packetProof()
+                    && (!connected || !plot || staged[0].GetPart<LocalGatheringClaimPart>()?.Permissions?.Count == 0) && Fits(zone,
                     new SpreadWildernessSituationBuilder.Geometry(zone, new HashSet<Entity>(packet)), before, positions, plot, origin, rotation, plan);
-                if (!Final()) return false;
+                if (!Final()) return Refuse("final-proof");
                 owners = packet; final = Final; success = true; return true;
             }
-            catch (Exception) { return false; }
+            catch (Exception error) { return Refuse(error.GetType().Name+":"+error.Message); }
             finally
             {
                 LoadoutPart.Factory = oldLoadoutFactory; TraderPart.Factory = oldTraderFactory;
                 LoadoutPart.Rng = oldLoadoutRng; TraderPart.Rng = oldTraderRng;
                 // Callback-owned changes cannot be silently reclaimed. The caller rejects a
                 // changed cold graph; only still-exact new owners are ours to roll back here.
-                if (!success) foreach (var entity in staged.AsEnumerable().Reverse())
-                    if (placed.TryGetValue(entity, out var proof) && proof()) zone.RemoveEntity(entity);
+                if (!success)
+                {
+                    foreach (var soil in soils)
+                    {
+                        soil.terrain.RemovePart(soil.part);
+                        if (plot && soil.terrain.GetProperty(ReserveBedKey) == staged[0].ID) soil.terrain.Properties.Remove(ReserveBedKey);
+                        if (!soil.plantable) { soil.terrain.Tags.Remove("Plantable"); zone.NotifyEntityTagRemoved(soil.terrain,"Plantable"); }
+                    }
+                    foreach (var entity in staged.AsEnumerable().Reverse())
+                        if (placed.TryGetValue(entity, out var proof) && proof()) zone.RemoveEntity(entity);
+                }
             }
         }
 
@@ -165,6 +264,19 @@ namespace CavesOfOoo.Core
             .Concat(e.GetPart<Body>()?.GetParts().Where(p => p.Equipped != null).Select(p => p.Equipped) ?? Enumerable.Empty<Entity>());
         static int Distance((int x, int y) a, (int x, int y) b) => Math.Max(Math.Abs(a.x - b.x), Math.Abs(a.y - b.y));
         static (int x, int y) At((int x, int y) origin, (int x, int y) offset, int turn) => turn == 0 ? (origin.x + offset.x, origin.y + offset.y) : (origin.x - offset.y, origin.y + offset.x);
+        // Bare-ground classification also accepts harmless decorative Terrain
+        // overlays. Cultivation belongs to the one actual planned ground owner,
+        // never an overlay or the crop itself; ambiguous ground is not admitted.
+        static Entity PreparedGround(Zone zone, (int x, int y) at, SpreadCompositionPlan plan)
+        {
+            var cell = zone.GetCell(at.x, at.y);
+            if (cell == null || BarrenGroundRules.IsBarren(cell)) return null;
+            var candidates = cell.Objects.Where(e => e.BlueprintName == plan.GroundAt(at.x, at.y)
+                && e.HasTag("Plantable") && !e.HasTag("Crop") && !e.HasPart<CultivatedSoilPart>()
+                && !e.Properties.ContainsKey(ReserveBedKey)
+                && DoorPart.IsBareGround(e) && LocalGatheringClaims.Ground(e, zone)).Take(2).ToArray();
+            return candidates.Length == 1 ? candidates[0] : null;
+        }
         static bool Plantable(Zone zone, (int x, int y) p) => zone.GetCell(p.x, p.y) is Cell cell && !BarrenGroundRules.IsBarren(cell) && cell.Objects.Any(e => e.HasTag("Terrain") && e.HasTag("Plantable"));
         static bool Fits(Zone zone, SpreadWildernessSituationBuilder.Geometry geometry, SpreadWildernessSituationBuilder.Geometry before,
             (int x, int y)[] positions, bool plot, (int x, int y) origin, int rotation, SpreadCompositionPlan plan)

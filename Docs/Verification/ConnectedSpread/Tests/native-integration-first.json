@@ -1,0 +1,80 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "32e170a991394111ad903b8d8bc14767",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1790982522293,
+      "finished_unix_ms": 1790982542144,
+      "last_update_unix_ms": 1790982542144,
+      "progress": {
+        "completed": 107,
+        "total": 107,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1790982542022,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.ConnectedSpreadContentTests.SeedkeeperHasTwoMarkedReserveBedsAndKeepsFourPublicCrops(729490642)",
+        "last_finished_unix_ms": 1790982542115,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedInkAdversarialTests.OutputInitializerCannotSubstituteAnAlreadyQuotedIngredient(\"blueprint\")",
+            "message": "  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedInkAdversarialTests.OutputInitializerCannotSubstituteAnAlreadyQuotedIngredient(\"stack-replacement\")",
+            "message": "  Expected: False\n  But was:  True\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedKitchenAdversarialTests.RepeatedUnfinishedInvalidationDoesNotDuplicateSalvage",
+            "message": "System.InvalidOperationException : Collection was modified; enumeration operation may not execute."
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedKitchenAdversarialTests.ZoneReconciliationMayPublishSalvageWithoutInvalidatingItsOwnIteration",
+            "message": "  Expected: No Exception to be thrown\n  But was:  <System.InvalidOperationException: Collection was modified; enumeration operation may not execute.\n  at System.Collections.Generic.Dictionary`2+KeyCollection+Enumerator[TKey,TValue].MoveNext () [0x00013] in <032c206a1674455bacfc3546f1de5ef3>:0 \n  at CavesOfOoo.Core.KitchenBatchPart.ReconcileZone (CavesOfOoo.Core.Zone zone) [0x0002a] in /Users/steven/caves-of-ooo/Assets/Scripts/Gameplay/World/KitchenBatchPart.cs:230 \n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\n  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 \n--- End of stack trace from previous location where exception was thrown ---\n\n  at CavesOfOoo.Tests.ConnectedKitchenFixture.Invoke (System.Reflection.MethodInfo method, System.Object value, System.Object[] args) [0x00011] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/ConnectedKitchenTests.cs:89 \n  at CavesOfOoo.Tests.ConnectedKitchenFixture.CallStatic (System.String name, System.Object[] args) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/ConnectedKitchenTests.cs:83 \n  at CavesOfOoo.Tests.ConnectedKitchenAdversarialTests+<>c__DisplayClass12_0.<ZoneReconciliationMayPublishSalvageWithoutInvalidatingItsOwnIteration>b__0 () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/ConnectedKitchenAdversarialTests.cs:137 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00041] in <f577cd9686154d6ab10efd7e65e64366>:0 >\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedKitchenTests.PreInvalidationBoundaryFinishesOnlyWorkAlreadyDue(119,False)",
+            "message": "System.InvalidOperationException : Collection was modified; enumeration operation may not execute."
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedSpreadContentTests.CurationHasPublicInkServiceAndExactlyOnePurchasableBook(64)",
+            "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedSpreadContentTests.CurationHasPublicInkServiceAndExactlyOnePurchasableBook(1729)",
+            "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedSpreadContentTests.CurationHasPublicInkServiceAndExactlyOnePurchasableBook(729490642)",
+            "message": "System.NullReferenceException : Object reference not set to an instance of an object"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedSpreadContentTests.KitchenAddsAnInvestmentAndCropWithoutRemovingFreeOvenOrCot(729490642)",
+            "message": "  Ordinary near-spawn kitchen must host the new service.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedSpreadContentTests.SeedkeeperHasTwoMarkedReserveBedsAndKeepsFourPublicCrops(64)",
+            "message": "  Expected: 2\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedSpreadContentTests.SeedkeeperHasTwoMarkedReserveBedsAndKeepsFourPublicCrops(1729)",
+            "message": "  Expected: 2\n  But was:  0\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedSpreadContentTests.SeedkeeperHasTwoMarkedReserveBedsAndKeepsFourPublicCrops(729490642)",
+            "message": "  Expected: 2\n  But was:  0\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

@@ -47,13 +47,23 @@ namespace CavesOfOoo.Core
         public int TicksInStage = 0;
 
         /// <summary>Ticks required to complete each stage. Blueprint
-        /// param. CropSystemPart accepts player-stamped TickEnd once per
-        /// active player round; un-stamped test events remain supported.</summary>
+        /// param. Each authored unit now takes ten elapsed world ticks;
+        /// direct OnTickEnd fixture drivers still advance one unit.</summary>
         public int TicksPerStage = 20;
 
         /// <summary>Remaining moisture. Growth advances and moisture
         /// decrements only while &gt; 0 (both in CropSystem's tick).</summary>
         public int MoistureTicks = 0;
+
+        /// <summary>Zero identifies an unstamped legacy/new owner. Versioned
+        /// public fields survive the existing reflection save stream.</summary>
+        public int GrowthTimingVersion;
+        /// <summary>Last reconciled saved world tick. Legacy crops begin at the
+        /// restored current tick, never at a guessed historical planting time.</summary>
+        public int LastGrowthWorldTick = -1;
+        /// <summary>Elapsed wet world ticks toward the next authored unit,
+        /// 0..9. Preserved by wet top-ups; discarded when moisture expires.</summary>
+        public int GrowthWetTickRemainder;
 
         /// <summary>CSV of one glyph per stage, e.g. ".,τ". Parsed
         /// leniently: whitespace-trimmed, first char of each entry.</summary>
@@ -82,13 +92,19 @@ namespace CavesOfOoo.Core
             if (e.ID == "GetInventoryActions")
             {
                 if (HarvestAtMaturity && GrowthStage == 2)
-                    e.GetParameter<InventoryActionList>("Actions")?.AddAction("Harvest", "harvest", "HarvestCultivatedCrop", 'h', 20);
+                {
+                    bool claimed = LocalGatheringClaims.WarningFor(e.GetParameter<Entity>("Actor"), ParentEntity,
+                        e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone) != null;
+                    e.GetParameter<InventoryActionList>("Actions")?.AddAction("Harvest", claimed ? "harvest (Nella's tied reserve)" : "harvest", "HarvestCultivatedCrop", 'h', 20);
+                }
                 return true;
             }
             if (e.ID != "InventoryAction" || e.GetStringParameter("Command") != "HarvestCultivatedCrop") return true;
             var actor = e.GetParameter<Entity>("Actor");
             if (actor == null) return true;
-            if (!CropYieldService.TryRelease(this, e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone,
+            var zone = e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone;
+            if (TurnManager.Active != null && !CropTime.Reconcile(this, zone, WorldClock.CurrentTick)) return true;
+            if (!CropYieldService.TryRelease(this, zone,
                 actor, e.GetParameter<InventoryTransaction>("InventoryTransaction"))) return true;
             e.Handled = true;
             return false;
@@ -104,6 +120,14 @@ namespace CavesOfOoo.Core
         public void Water(int ticks)
         {
             if (ticks <= 0) return;
+            // Settle old water before adding any new supply. Detached blueprint
+            // setup and direct fixtures have no elapsed physical interval.
+            var zone = ParentEntity?.SpatialZone;
+            if (zone != null && TurnManager.Active != null)
+            {
+                if (!CropTime.Reconcile(this, zone, WorldClock.CurrentTick)
+                    || !CropTime.IsCurrentOwner(this, zone)) return;
+            }
             if (ticks > MoistureTicks)
                 MoistureTicks = ticks;
 
@@ -186,7 +210,7 @@ namespace CavesOfOoo.Core
                 + " Conjure Rain nearby to water this crop. "
                 + (HarvestAtMaturity ? "At maturity, Harvest by hand; produce and saved seed remain here to pick up."
                     : "At maturity, produce falls here to pick up.")
-                + " Crops grow only while you are in this area.";
+                + " Growth follows passing world time while the soil is moist.";
         }
 
         private void MarkOwnCellDirty(string source)

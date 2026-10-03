@@ -55,6 +55,7 @@ namespace CavesOfOoo.Core
             if (otherStacker == null) return false;
             if (string.IsNullOrEmpty(ParentEntity.BlueprintName)) return false;
             if (ParentEntity.BlueprintName != other.BlueprintName) return false;
+            if (!ConnectedClayProvenance.CanMerge(ParentEntity, other)) return false;
 
             // Per-item consumable state cannot survive a merge.
             if (ParentEntity.GetPart<GrimoireChargePart>() != null
@@ -83,6 +84,7 @@ namespace CavesOfOoo.Core
             int canAccept = MaxStack - StackCount;
             int toMerge = Math.Min(canAccept, otherStacker.StackCount);
             if (toMerge <= 0) return 0;
+            if (!ConnectedClayProvenance.Merge(ParentEntity, other, toMerge)) return 0;
 
             StackCount += toMerge;
             otherStacker.StackCount -= toMerge;
@@ -104,6 +106,7 @@ namespace CavesOfOoo.Core
             RefreshCarriedOwners(ParentEntity);
             var clone = ParentEntity.CloneForStack();
             clone.GetPart<StackerPart>().StackCount = count;
+            ConnectedClayProvenance.Split(ParentEntity, clone, count);
             return clone;
         }
 
@@ -122,6 +125,7 @@ namespace CavesOfOoo.Core
             RefreshCarriedOwners(ParentEntity);
             var clone = ParentEntity.CloneForStack();
             clone.GetPart<StackerPart>().StackCount = 1;
+            ConnectedClayProvenance.Split(ParentEntity, clone, 1);
             return clone;
         }
 

@@ -94,11 +94,13 @@ namespace CavesOfOoo.Core
         public string BuildExamineLine() => BuildDescription(false, null);
 
         /// <summary>World reader snapshot: immediate effects and visible ground precede long flavor.</summary>
-        public string BuildWorldExamineLine(Zone zone, Cell cell)
+        public string BuildWorldExamineLine(Zone zone, Cell cell, Entity viewer = null)
         {
-            return BuildDescription(true, CellStatusReadout.GroundLine(zone, cell),
+            string description = BuildDescription(true, CellStatusReadout.GroundLine(zone, cell),
                 ParentEntity?.GetPart<CampfirePart>()?.DescribeFiniteCooking(zone, cell),
                 ParentEntity?.GetPart<CropPart>()?.DescribeGrowth(zone, cell));
+            string warning = LocalGatheringClaims.WarningFor(viewer, ParentEntity, zone);
+            return string.IsNullOrEmpty(warning) ? description : warning + "\n\n" + description;
         }
 
         private string BuildDescription(bool statusFirst, string ground, string cooking = null, string growth = null)
@@ -106,10 +108,12 @@ namespace CavesOfOoo.Core
             string name = ParentEntity?.GetDisplayName() ?? "something";
             string article = GetArticle(name);
             string baseLine = $"You see {article}{name}.";
+            var batch = ParentEntity?.GetPart<KitchenBatchPart>()?.Describe();
+            if (!string.IsNullOrEmpty(batch)) baseLine += "\n" + batch;
             var repair = ParentEntity?.GetPart<RepairablePart>()?.Describe();
             if (!string.IsNullOrEmpty(repair)) baseLine += "\n" + repair;
             if (ParentEntity?.HasPart<CultivatedSoilPart>() == true)
-                baseLine += "\nTilled growing bed. Plant a carried seed here when the bed is empty. Conjure Rain waters planted crops; growth pauses while the soil is dry or you are elsewhere.";
+                baseLine += "\nTilled growing bed. Plant a carried seed here when the bed is empty. Conjure Rain waters planted crops; watered crops keep growing while you travel and rest, but dry soil stops growth.";
             if (statusFirst)
             {
                 baseLine += DescribeAfflictions();

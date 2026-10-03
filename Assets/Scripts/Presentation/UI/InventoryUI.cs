@@ -1428,6 +1428,8 @@ namespace CavesOfOoo.Rendering
                 || action.Command == "DrinkWaterskin" || action.Command == "Cook"
                 || action.Command == "LightTorch" || action.Command == "ExtinguishTorch"
                 || action.Command == "Harvest"
+                || (action.Command == "Eat" && item.HasPart<FieldMealPart>())
+                || action.Command == GrimoireChargePart.ReinkCommand
                 || action.Command == BotanicalProcessingPart.Command
                 || LiquidVesselService.IsLiquidCommand(action.Command)))
             {

@@ -181,6 +181,7 @@ namespace CavesOfOoo.Rendering
                     Mix(ref hash, IsPilotGround(owner) ? 1u : 0u);
                     Mix(ref hash,nativeStyles?.ForOwner(zone,recipe)!=null?1u:0u);
                     Mix(ref hash,RepairCultivationRecipes.HasCultivatedSoil(zone,owner)?1u:0u);
+                    Mix(ref hash,ConnectedSpread3DLibrary.ResolveReserveBed(zone,owner)??"");
                 }
                 Mix(ref hash, (uint)contributions);
                 if (!ground && fallback != null) { Mix(ref hash, fallback); Mix(ref hash, Village3DProjection.CellCentre(x,y)); }
@@ -210,7 +211,7 @@ namespace CavesOfOoo.Rendering
                     // Add sparse furrows above the same underlying ground mesh.
                     // No native owner or terrain model is replaced or fabricated.
                     if(RepairCultivationRecipes.HasCultivatedSoil(zone,owner))
-                    {Append(GetModel(RepairCultivationRecipes.SoilModel),recipe.Position,x,y,toLocal);cultivated.Add(owner);}
+                    {Append(GetModel(ConnectedSpread3DLibrary.ResolveReserveBed(zone,owner)??RepairCultivationRecipes.SoilModel),recipe.Position,x,y,toLocal);cultivated.Add(owner);}
                 }
                 if (!ground && fallback != null) Append(GetModel(fallback), Village3DProjection.CellCentre(x,y), x, y, toLocal);
                 if (SpawnRing3DRecipes.HasPermanentWater(zone,x,y))

@@ -26,7 +26,7 @@ namespace CavesOfOoo.Scenarios.Custom
         static readonly (int x,int y)[] Steps={(1,0),(-1,0),(0,1),(0,-1),(1,1),(1,-1),(-1,1),(-1,-1)};
         static readonly string[] MainChecks={"ordinary_start","ordinary_native_sill_entry","real_informant_report","explicit_notes_acquired","native_field_notes","generated_field_lane_transfer","native_finite_gleaning","generated_wayhouse_transfer","native_notice","native_key_acquired","native_front_unlock","native_front_open","native_reward_once","native_reward_equipped","depleted_checkpoint_saved","real_unsaved_step","restored_exact_notes_and_depleted_site","cached_depleted_site_not_refilled","bounded_finish"};
         static readonly string[] OrdinaryChecks={"ordinary_start","ordinary_native_sill_entry","real_informant_report","explicit_notes_acquired","native_field_notes","ordinary_native_field_entry","ordinary_finite_grain_acquired","ordinary_grain_used_once","ordinary_native_return_to_sill","ordinary_notes_retained_on_return","ordinary_used_checkpoint_saved","ordinary_unsaved_step","ordinary_restored_used_grain_and_notes","ordinary_finish"};
-        bool _ordinary;string[] RequiredChecks=>_district?DistrictChecks:_cards?CardChecks:_ordinary?OrdinaryChecks:MainChecks;
+        bool _ordinary;string[] RequiredChecks=>ConnectedVariant?VariantChecks:Connected?ConnectedChecks:_district?DistrictChecks:_cards?CardChecks:_ordinary?OrdinaryChecks:MainChecks;
         public string RunId{get;}=Guid.NewGuid().ToString("N");
         public bool Finished{get;private set;}public int Failures=>_failures+_unexpectedErrors;public string ReportPath{get;private set;}
         InputHandler _input;Keyboard _keyboard,_oldKeyboard;InputSettings _settings,_oldSettings;
@@ -42,10 +42,10 @@ namespace CavesOfOoo.Scenarios.Custom
         Cell At=>Zone.GetEntityCell(Player);int Tick=>_input.TurnManager.TickCount;int Energy=>_input.TurnManager.GetEnergy(Player);
         string State=>Field(_input,"_inputState").ToString();
         Entity Owner(string id)=>Zone.GetReadOnlyEntities().SingleOrDefault(e=>e.ID==id);
-        public void Initialize(ScenarioContext context,bool ordinary=false,bool cards=false,bool district=false,bool districtCombat=false,bool districtPrepared=false)
+        public void Initialize(ScenarioContext context,bool ordinary=false,bool cards=false,bool district=false,bool districtCombat=false,bool districtPrepared=false,string connectedBuild=null)
         {
-            _ordinary=ordinary;_cards=cards;_district=district;_districtCombat=districtCombat;_districtPrepared=districtPrepared;Require(!string.IsNullOrWhiteSpace(SaveGameService.SaveRootOverride),"isolated launcher owns saves");_ownedRoot=SaveGameService.SaveRootOverride;_clock=System.Diagnostics.Stopwatch.StartNew();
-            foreach(var channel in new[]{"scenario","event","trade","worldmap","furniture","damage","turn","turn-verbose","skill"}.Concat(cards?new[]{"worldgen"}:Array.Empty<string>())){_oldChannels[channel]=Diag.IsChannelEnabled(channel);Diag.SetChannel(channel,true);}
+            _connectedBuild=connectedBuild;_ordinary=ordinary;_cards=cards;_district=district;_districtCombat=districtCombat;_districtPrepared=districtPrepared;Require(!string.IsNullOrWhiteSpace(SaveGameService.SaveRootOverride),"isolated launcher owns saves");_ownedRoot=SaveGameService.SaveRootOverride;_clock=System.Diagnostics.Stopwatch.StartNew();
+            foreach(var channel in new[]{"scenario","event","trade","worldmap","furniture","damage","turn","turn-verbose","skill","spell","crop"}.Concat(cards?new[]{"worldgen"}:Array.Empty<string>())){_oldChannels[channel]=Diag.IsChannelEnabled(channel);Diag.SetChannel(channel,true);}
             _oldSettings=InputSystem.settings;_settings=Instantiate(_oldSettings);_settings.backgroundBehavior=InputSettings.BackgroundBehavior.IgnoreFocus;
 #if UNITY_EDITOR
             _settings.editorInputBehaviorInPlayMode=InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
@@ -59,11 +59,11 @@ namespace CavesOfOoo.Scenarios.Custom
         object _timingSettings;
         void BeginTiming(string phase)
         {Require(_timingPhase==null,"nonoverlapping finite timing window");_timingFrames.Clear();_timingOverflow=false;_timingSettings=TimingSettings();_timingPhase=phase;_timingStart=Time.realtimeSinceStartupAsDouble;_timingFirstFrame=Time.frameCount;}
-        void Update(){if(_timingPhase==null)return;if(_timingFrames.Count<20000)_timingFrames.Add(Time.unscaledDeltaTime*1000d);else _timingOverflow=true;}
+        void Update(){if(_timingPhase==null)return;if(_timingFrames.Count<20000)_timingFrames.Add(Time.unscaledDeltaTime*1000d);else _timingOverflow=true;if(_variantTiming&&Time.realtimeSinceStartupAsDouble-_timingStart>=60){_variantTiming=false;EndTiming();}}
         void EndTiming()
         {
             if(_timingPhase==null)return;var samples=_timingFrames.Skip(2).ToArray();var sorted=samples.OrderBy(x=>x).ToArray();
-            _timings.Add(new{phase=_timingPhase,seconds=Time.realtimeSinceStartupAsDouble-_timingStart,firstUnityFrame=_timingFirstFrame,lastUnityFrame=Time.frameCount,discardedSetupFrames=Math.Min(2,_timingFrames.Count),frames=samples.Length,meanMs=samples.Length==0?0:samples.Average(),p95Ms=sorted.Length==0?0:sorted[(int)((sorted.Length-1)*.95)],overflow=_timingOverflow,settingsBefore=_timingSettings,settingsAfter=TimingSettings(),samplesMs=samples,bound="Existing frame-delta sampling pattern; observational only. Native traversal includes paced keys, turn/AI and audit report IO. Short windows are not a steady 60s benchmark, allocation measurement or causal comparison."});_timingPhase=null;
+            _timings.Add(new{phase=_timingPhase,seconds=Time.realtimeSinceStartupAsDouble-_timingStart,firstUnityFrame=_timingFirstFrame,lastUnityFrame=Time.frameCount,discardedSetupFrames=Math.Min(2,_timingFrames.Count),frames=samples.Length,meanMs=samples.Length==0?0:samples.Average(),p95Ms=sorted.Length==0?0:sorted[(int)((sorted.Length-1)*.95)],p99Ms=sorted.Length==0?0:sorted[(int)Math.Ceiling((sorted.Length-1)*.99)],maxMs=sorted.Length==0?0:sorted[sorted.Length-1],overflow=_timingOverflow,settingsBefore=_timingSettings,settingsAfter=TimingSettings(),samplesMs=samples,bound="Existing frame-delta sampling pattern; observational only. Native traversal includes paced keys, turn/AI and audit report IO. Short windows are not a steady 60s benchmark, allocation measurement or causal comparison."});_timingPhase=null;
         }
         IEnumerator IdleTiming(string phase){yield return Settled();yield return null;yield return null;BeginTiming(phase);try{double end=Time.realtimeSinceStartupAsDouble+3;while(Time.realtimeSinceStartupAsDouble<end)yield return null;}finally{EndTiming();}}
         IEnumerator MeasureReport()
@@ -83,7 +83,14 @@ namespace CavesOfOoo.Scenarios.Custom
         IEnumerator RunAudit()
         {
             yield return new WaitForSecondsRealtime(.8f);_input=FindFirstObjectByType<InputHandler>();Require(_input!=null,"actual ordinary bootstrap");
-            var boot=(BootMenuController)Field(_input,"_bootMenuController");Require(boot?.IsActive==true,"ordinary N menu");yield return Tap(Key.N);yield return Settled();_started=true;
+            var boot=(BootMenuController)Field(_input,"_bootMenuController");
+            if(Connected)
+            {
+                if(boot?.IsActive==true)yield return Tap(Key.N);
+                if(ConnectedVariant)yield return ConnectedVariantChooseBuild();else yield return ConnectedChooseBuild();_started=true;
+                if(ConnectedVariant)yield return ConnectedVariantJourney();else yield return ConnectedJourney();yield break;
+            }
+            Require(boot?.IsActive==true,"ordinary N menu");yield return Tap(Key.N);yield return Settled();_started=true;
             Check("ordinary_start",(Manager.WorldSeed==64||_district&&Manager.WorldSeed==1729)&&ReferenceGladePlan.IsActive(Zone)&&Player.GetStatValue("Hitpoints")==40&&Player.GetStat("Hitpoints").Max==40&&Player.GetStatValue("Level")==1&&TradeSystem.GetDrams(Player)==50&&Player.GetStatValue("Strength")==18&&Player.GetStatValue("Agility")==18&&Player.GetPart<InventoryPart>().Objects.Count(e=>e.BlueprintName=="Dagger")==1&&Player.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName=="HealingTonic").Sum(Units)==2&&!DevMode.Enabled&&!Player.HasPart<BitLockerPart>());
             yield return Capture("01-ordinary-start");if(_district){yield return DistrictJourney();yield break;}if(_cards){yield return RunCards();yield break;}yield return TravelSurface(WorldMap.StartingZoneID);Check("ordinary_native_sill_entry",Zone.ZoneID==WorldMap.StartingZoneID&&_mapSteps>0);
             yield return ApproachInformant();var speaker=_informant;Require(speaker!=null,"actual adjacent current informant");string node=speaker.GetPart<ConversationPart>().ConversationID=="Scribe_1"?"RegionOverview":"Rumors";
@@ -257,13 +264,13 @@ namespace CavesOfOoo.Scenarios.Custom
             }
             yield return Reload(original);Require(!ReferenceEquals(Zone,originalZone)&&Player.ID==id&&At.X==x&&At.Y==y&&Stats(Player)==stats&&Gear(Player)==gear&&NoteSignature()==notes&&SiteSignature()==site&&Tick==tick&&Energy==energy&&WorldClock.CurrentTick==world&&TradeSystem.GetDrams(Player)==drams&&HashFile(file)==hash,"exact real rear/front branch baseline reload");
         }
-        IEnumerator FightGuard()
+        IEnumerator FightGuard(bool requireDirectLethal=true)
         {
             _fighting=true;for(int i=0;i<45;i++)
             {
-                if(CombatSystem.IsDeathHandled(_guard)){Require(_guardAttempt&&_guardDamage&&_guardLethal,"canonical exact original-player guard defeat");_fighting=false;yield break;}
+                if(CombatSystem.IsDeathHandled(_guard)){Require(_guardAttempt&&_guardDamage&&(!requireDirectLethal||_guardLethal),requireDirectLethal?"canonical exact original-player guard defeat":"observed real hostile defense resolved; direct lethal attribution remains separate");_fighting=false;yield break;}
                 if(Player.GetStatValue("Hitpoints")<=24){var tonic=Player.GetPart<InventoryPart>().Objects.FirstOrDefault(e=>e.BlueprintName=="HealingTonic");if(tonic!=null){int units=Player.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName=="HealingTonic").Sum(Units),tick=Tick,energy=Energy;yield return ItemAction(tonic,"ApplyTonic");yield return CloseNormal();Require(Player.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName=="HealingTonic").Sum(Units)==units-1&&Tick==tick&&Energy==energy,"actual finite original tonic");}}
-                if(SpatialQuery.Distance(Zone,Player,_guard)<=1){var target=SpatialQuery.ClosestCell(Zone,_guard,At.X,At.Y);yield return Paid(Tap(Direction(target.X-At.X,target.Y-At.Y)),"local","native-front-dagger-attack");}
+                if(SpatialQuery.Distance(Zone,Player,_guard)<=1){var target=SpatialQuery.ClosestCell(Zone,_guard,At.X,At.Y);yield return Paid(Tap(Direction(target.X-At.X,target.Y-At.Y)),"local",ConnectedVariant&&VariantBreaker?"native-breaker-cudgel-defense":"native-front-dagger-attack");}
                 else{var path=PathTo(c=>SpatialQuery.DistanceToCell(Zone,_guard,c.X,c.Y)==1);Require(path!=null&&path.Count>0,"actual front guard approach");yield return StepTo(path[0].x,path[0].y);}
             }
             throw new InvalidOperationException("Bounded front combat exhausted; no grant or reroll.");
@@ -298,6 +305,7 @@ namespace CavesOfOoo.Scenarios.Custom
         IEnumerator TravelSurface(string target)
         {
             Require(State=="Normal"&&WorldMap.FromZoneID(Zone.ZoneID).z==0,"native map travel begins on surface");
+            if(Connected)_connectedVisitedSurfaces.Add(Zone.ZoneID);
             if(Zone.ZoneID==target)yield break;
             yield return Paid(Tap(Key.LeftShift,Key.Comma),"local","native-map-ascend");Require(WorldMap.IsWorldMapZoneID(Zone.ZoneID),"actual native map ascent");
             var (wx,wy,_)=WorldMap.FromZoneID(target);var (zx,zy)=WorldMap.WorldCellToZoneCell(wx,wy);
@@ -307,9 +315,11 @@ namespace CavesOfOoo.Scenarios.Custom
                 yield return Paid(Tap(Direction(dx,dy)),"map","native-worldmap-step");Require(At.X==x&&At.Y==y,"actual requested worldmap cell");
             }
             yield return Paid(Tap(Key.LeftShift,Key.Period),"local","native-map-descend");Require(Zone.ZoneID==target,"actual requested surface entered");
+            if(Connected)_connectedVisitedSurfaces.Add(Zone.ZoneID);
         }
         IEnumerator StepTo(int x,int y)
         {
+            if(Connected)yield return ConnectedCloseAndStabilize();
             var zone=Zone;Require(Safe(zone,zone.GetCell(x,y),ThreatClearance),"fresh native movement footprint");
             var doors=zone.GetOccupiedCells(Player,x,y).SelectMany(c=>c.Occupants).Distinct().Where(e=>e.GetPart<DoorPart>()?.IsClosed==true).ToArray();
             if(doors.Length>0)
@@ -327,7 +337,10 @@ namespace CavesOfOoo.Scenarios.Custom
         {var rows=Diag.Snapshot(Diag.BufferCapacity).SkipWhile(e=>e.TraceId!=marker).ToArray();Require(rows.Length>0,"retained current action marker");return rows;}
         IEnumerator Paid(IEnumerator action,string kind,string label)
         {
-            Require(kind=="map"?_mapSteps<20:kind=="rest"?_rests<2:_localInputs<360,"finite approved action budget");
+            // A selected spell direction is an intentional open prompt. Only
+            // ordinary command boundaries drain late announcements here.
+            if(Connected&&(State=="Normal"||State=="AnnouncementOpen"))yield return ConnectedCloseAndStabilize();
+            Require(kind=="map"?_mapSteps<(ConnectedVariant?16:Connected?30:20):kind=="rest"?_rests<2:_localInputs<(ConnectedVariant?420:Connected?1000:360),"finite approved action budget");
             var actor=Player;int before=Energy,tick=Tick,speed=Player.GetStatValue("Speed",100);string marker=Mark(label),combat=null;if(_guard!=null&&_fighting){Diag.Record("scenario",ReferenceGladeCombatEvidence.MarkerKind,Player,_guard);combat=Diag.Snapshot(1).Single().TraceId;}
             yield return action;yield return CloseNormal();var rows=Window(marker);
             bool validClock=ReferenceEquals(actor,Player)&&Player.GetStatValue("Speed",100)==speed&&DensityCampaignNativeEvidence.TryClock(rows,marker,Player.ID,kind,before,Energy,Tick-tick,speed,out _lastClock);
@@ -349,7 +362,11 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return Tap(Key.Enter);var popup=Field(_input.InventoryUI,"_itemActionPopup");Require(popup!=null,"native item action popup");var actions=((IList)Field(popup,"Actions")).Cast<object>().ToArray();int index=Array.FindIndex(actions,a=>(string)Field(a,"Command")==command);Require(index>=0,"actual offered item action "+command);
             for(int n=0;(int)Field(popup,"CursorIndex")!=index;n++){Require(n<50,"bounded item action cursor");yield return Tap((int)Field(popup,"CursorIndex")<index?Key.DownArrow:Key.UpArrow);}yield return Tap(Key.Enter);
         }
-        IEnumerator CloseNormal(){for(int n=0;State!="Normal";n++){Require(n<8,"bounded ordinary modal closure "+State);yield return Tap(Key.Escape);}yield return Settled();}
+        IEnumerator CloseNormal()
+        {
+            if(Connected){yield return ConnectedCloseAndStabilize();yield break;}
+            for(int n=0;State!="Normal";n++){Require(n<8,"bounded ordinary modal closure "+State);yield return Tap(Key.Escape);}yield return Settled();
+        }
         private IEnumerator WorldAction(Entity target,string command)
         {
             Require(Zone.GetEntityCell(target)!=null&&SpatialQuery.Distance(Zone,Player,target)<=1,"actual adjacent current world owner");
@@ -466,7 +483,7 @@ namespace CavesOfOoo.Scenarios.Custom
 
         private IEnumerator Tap(params Key[] keys)
         {
-            Require(_clock.Elapsed.TotalSeconds<600,"finite native acceptance deadline");double began=Time.realtimeSinceStartupAsDouble;
+            Require(_clock.Elapsed.TotalSeconds<(Connected?1200:600),"finite native acceptance deadline");double began=Time.realtimeSinceStartupAsDouble;
             while(_input!=null&&Time.time-(float)Field(_input,"_lastMoveTime")<_input.MoveRepeatDelay){Require(Time.realtimeSinceStartupAsDouble-began<3,"input rate gate");yield return null;}
             if(_started)Require(Player.GetStatValue("Hitpoints")>10&&!CombatSystem.IsDeathHandled(Player),"ordinary HP safety stop");
             _keys.Add(new{sequence=_keys.Count,keys=string.Join(",",keys.Select(k=>k.ToString())),state=_input==null?"bootstrap":State,tick=_input?.TurnManager?.TickCount??0});WriteReport();
@@ -508,7 +525,7 @@ namespace CavesOfOoo.Scenarios.Custom
                     ||e.HasEffect<BurningEffect>()||e.GetPart<ThermalPart>()?.IsAflame==true)))return false;
                 var state=zone.TileState.Get(c.X,c.Y);if(state!=null&&(state.Heat>0||state.Cold>0||state.Charge>0||!string.IsNullOrEmpty(state.Cloud)||state.Coatings.Count>0))return false;
                 if(threats.Any(e=>!(_fighting&&ReferenceEquals(e,_guard))
-                    &&!(_district&&ReferenceGladeRouteControl.HasLiveCalm(zone,e))
+                    &&!((_district||Connected)&&ReferenceGladeRouteControl.HasLiveCalm(zone,e))
                     &&SpatialQuery.DistanceToCell(zone,e,c.X,c.Y)<=clearance))return false;
                 if(_avoidGuard&&_guard?.SpatialZone==zone&&zone.GetEntityCell(_guard) is Cell g&&SpatialQuery.DistanceToCell(zone,_guard,c.X,c.Y)<=_guard.GetPart<BrainPart>().SightRadius&&AIHelpers.HasLineOfSight(zone,g.X,g.Y,c.X,c.Y))return false;
             }
@@ -524,15 +541,15 @@ namespace CavesOfOoo.Scenarios.Custom
             _observations.Add(new{phase,player=Player.ID,zone=Zone.ZoneID,x=At?.X,y=At?.Y,hp=Player.GetStatValue("Hitpoints"),stats=Stats(Player),tick=Tick,energy=Energy,drams=TradeSystem.GetDrams(Player),gear=Gear(Player),notes=NoteSignature(),site=_siteId,guard=_guardId,key=_keyId,reward=_rewardId,message=MessageLog.GetLast()});WriteReport();
         }
         void Finish(){try{EndTiming();}finally{Cleanup();Finished=true;WriteReport();}}
-        bool Complete=>Finished&&_errorsFinalized&&Failures==0&&_audit.Count==RequiredChecks.Length&&RequiredChecks.All(n=>_audit.Contains("PASS "+n))&&_screenshots.Count>=(_district?7:_cards?6:_ordinary?10:12);
+        bool Complete=>Finished&&_errorsFinalized&&Failures==0&&_audit.Count==RequiredChecks.Length&&RequiredChecks.All(n=>_audit.Contains("PASS "+n))&&_screenshots.Count>=(ConnectedVariant?6:Connected?10:_district?7:_cards?6:_ordinary?10:12);
         void WriteReport()
         {
             Directory.CreateDirectory(DirectoryPath);ReportPath=Path.Combine(DirectoryPath,"report.json");
-            string json=JsonConvert.SerializeObject(new{runId=RunId,mode=_district?"ordinary-gleaners-district":_cards?"generated-source-cards":_ordinary?"ordinary-grain-round-trip":"staged-generated-sites",complete=Complete,failures=Failures,unexpectedErrors=_unexpectedErrors,seconds=_clock?.Elapsed.TotalSeconds??0,fatal=_fatal,audit=_audit,requiredChecks=RequiredChecks,keys=_keys,observations=_observations,windows=_windows,timings=_timings,notes=_notes,screenshots=_screenshots,localInputs=_localInputs,mapSteps=_mapSteps,completedPlayerTurns=_completedTurns,pureClock=_pureClock,checkpointHash=_checkpointHash,threatClearance=ThreatClearance,
+            string json=JsonConvert.SerializeObject(new{runId=RunId,mode=ConnectedVariant?"connected-targeted-"+_connectedBuild:Connected?"connected-selected-"+_connectedBuild:_district?"ordinary-gleaners-district":_cards?"generated-source-cards":_ordinary?"ordinary-grain-round-trip":"staged-generated-sites",complete=Complete,failures=Failures,unexpectedErrors=_unexpectedErrors,seconds=_clock?.Elapsed.TotalSeconds??0,fatal=_fatal,audit=_audit,requiredChecks=RequiredChecks,keys=_keys,observations=_observations,windows=_windows,timings=_timings,notes=_notes,screenshots=_screenshots,localInputs=_localInputs,mapSteps=_mapSteps,completedPlayerTurns=_completedTurns,pureClock=_pureClock,checkpointHash=_checkpointHash,threatClearance=ThreatClearance,
                 passedChecks=RequiredChecks.Where(n=>_audit.Contains("PASS "+n)).ToArray(),unmetChecks=RequiredChecks.Where(n=>!_audit.Contains("PASS "+n)).ToArray(),
                 canVerify="Only the named passedChecks were observed in this run; intendedCapability is the planned route, not a completion claim. Partial failures and unmetChecks remain explicit.",
-                intendedCapability=_district?DistrictIntent:_cards?CardsIntent:_ordinary?"Ordinary seed64 N, native Sill reports/notes, native map and ground route to generated FieldStrips, exact harvested grain eaten once, native return to Sill and F5/unsaved-step/F6 restores consumed grain absence/spent row/notes. No setup transfers or source grants.":"Ordinary seed64 N bootstrap and native map travel to actual Sill informant, explicit report notes/Q-Tab. Disclosed original-player transfers to unchanged generated field and selected wayhouse. Actual harvest, live-guard rear path with baseline reload, front key/door/reward, F5/unsaved-step/F6 notes and depleted-graph identity.",
-                cannotVerify=_district?DistrictLimits:_cards?CardsLimits:_ordinary?"One seed and one actual row only; not a balance/permanent safety/all-seed proof. Earned food use is consumption; no healing benefit at full HP. No shop-sale claim. Timing is short and includes audit IO. Screenshots require independent viewing.":"Not an ordinary continuous expedition journey: field/wayhouse transfers and a saved rear/front branch replay are explicit fixture setup. No generated source edits or HP/AI/gear/loot grants. No all-seed/balance/permanent-safety claim. Only passedChecks are observed; source generation/route refusal is retained. Screenshots require independent viewing."},Formatting.Indented);
+                intendedCapability=ConnectedVariant?VariantIntent:Connected?ConnectedIntent:_district?DistrictIntent:_cards?CardsIntent:_ordinary?"Ordinary seed64 N, native Sill reports/notes, native map and ground route to generated FieldStrips, exact harvested grain eaten once, native return to Sill and F5/unsaved-step/F6 restores consumed grain absence/spent row/notes. No setup transfers or source grants.":"Ordinary seed64 N bootstrap and native map travel to actual Sill informant, explicit report notes/Q-Tab. Disclosed original-player transfers to unchanged generated field and selected wayhouse. Actual harvest, live-guard rear path with baseline reload, front key/door/reward, F5/unsaved-step/F6 notes and depleted-graph identity.",
+                cannotVerify=ConnectedVariant?VariantLimits:Connected?ConnectedLimits:_district?DistrictLimits:_cards?CardsLimits:_ordinary?"One seed and one actual row only; not a balance/permanent safety/all-seed proof. Earned food use is consumption; no healing benefit at full HP. No shop-sale claim. Timing is short and includes audit IO. Screenshots require independent viewing.":"Not an ordinary continuous expedition journey: field/wayhouse transfers and a saved rear/front branch replay are explicit fixture setup. No generated source edits or HP/AI/gear/loot grants. No all-seed/balance/permanent-safety claim. Only passedChecks are observed; source generation/route refusal is retained. Screenshots require independent viewing."},Formatting.Indented);
             var parsed=JObject.Parse(json);Require(parsed["windows"] is JArray w&&w.Count==_windows.Count&&parsed["observations"] is JArray o&&o.Count==_observations.Count,"complete nested report evidence");File.WriteAllText(ReportPath,json);
         }
         void Cleanup(){if(_cleaned)return;_cleaned=true;if(_keyboard!=null){InputSystem.QueueStateEvent(_keyboard,new KeyboardState());InputSystem.RemoveDevice(_keyboard);}if(_oldKeyboard!=null&&_oldKeyboard.added)_oldKeyboard.MakeCurrent();if(_oldSettings!=null)InputSystem.settings=_oldSettings;if(_settings!=null)Destroy(_settings);Application.runInBackground=_oldBackground;}

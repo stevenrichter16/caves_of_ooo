@@ -1310,6 +1310,8 @@ namespace CavesOfOoo.Core
             if (hp != null)
                 hp.BaseValue = Math.Min(hp.BaseValue, 0);
 
+            KitchenBatchPart.BeforeOwnerInvalidated(target, zone);
+
             string targetName = target.GetDisplayName();
             string killerName = killer?.GetDisplayName() ?? "something";
             MessageLog.Add($"{targetName} is killed by {killerName}!");

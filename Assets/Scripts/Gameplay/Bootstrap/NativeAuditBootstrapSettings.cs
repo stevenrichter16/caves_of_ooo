@@ -11,7 +11,17 @@ namespace CavesOfOoo.Core
     {
 #if UNITY_EDITOR
         public static int RequestedSeed { get; set; }
+        public static bool AllowStartingBuildChoice { get; set; }
 #endif
+        public static bool SuppressBuildChoiceForAudit()
+        {
+            if(string.IsNullOrEmpty(SaveGameService.SaveRootOverride))return false;
+#if UNITY_EDITOR
+            return !AllowStartingBuildChoice || ResolveSeed()==0;
+#else
+            return true;
+#endif
+        }
         public static int ResolveSeed()
         {
 #if UNITY_EDITOR

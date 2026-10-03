@@ -5,14 +5,13 @@ using CavesOfOoo.Diagnostics;
 namespace CavesOfOoo.Core
 {
     /// <summary>
-    /// Per-turn crop growth pass. Mirrors <see cref="GasSystem"/>'s
-    /// shape exactly: a static system driven from the world entity's
-    /// <c>TickEnd</c> event by <see cref="CropSystemPart"/>, snapshotting
-    /// via the <c>Crop</c> tag before mutating zone contents.
-    /// See <c>Docs/CROPS-WATERING-GRIMOIRE.md §2.3</c>.
+    /// Crop transitions and yield publication. Runtime cultivation uses
+    /// CropTime's saved elapsed-world-time policy. OnTickEnd remains an
+    /// explicit one-authored-unit driver for legacy fixtures and actorless
+    /// benchmark events; stamped gameplay TickEnd does not invoke it.
     ///
-    /// <para><b>Cadence:</b> CropSystemPart accepts the player's TickEnd
-    /// once per player round in the active area. NPC turns do not advance growth.</para>
+    /// <para><b>Cadence:</b> Ten elapsed world ticks consume one moisture
+    /// unit. NPC counts and repeated observation cannot accelerate growth.</para>
     ///
     /// <para><b>Single decrement path:</b> moisture and growth advance
     /// ONLY here. <see cref="CropPart"/> holds state and the two visual
@@ -59,6 +58,47 @@ namespace CavesOfOoo.Core
                 if (!ripe && crop.TicksInStage >= crop.TicksPerStage)
                     AdvanceStage(zone, entity, crop);
             }
+        }
+
+        /// <summary>Advance a validated owner's bounded wet interval. Work is
+        /// bounded by the two growth transitions, never elapsed duration. A
+        /// blocked legacy yield is attempted once per reconciliation; remaining
+        /// wet time still dries the held crop, as with ordinary local retries.</summary>
+        internal static void AdvanceWetUnits(Zone zone, Entity owner, CropPart crop, int units)
+        {
+            int remaining = units;
+            while (remaining > 0 && CropTime.IsCurrentOwner(crop, zone))
+            {
+                bool ripe = crop.HarvestAtMaturity && crop.GrowthStage == 2;
+                int toBoundary = ripe ? remaining : (int)System.Math.Max(1L, (long)crop.TicksPerStage - crop.TicksInStage);
+                int step = System.Math.Min(remaining, toBoundary);
+                ConsumeWetUnits(crop, step, !ripe);
+                remaining -= step;
+                if (ripe || crop.TicksInStage < crop.TicksPerStage) continue;
+
+                // Stage painting is local; legacy yield can invoke factories.
+                // Remember the expected held state before that callback, so
+                // a replaced/moved/mutated crop is never advanced further.
+                bool legacyMaturity = !crop.HarvestAtMaturity && crop.GrowthStage >= 1;
+                int heldProgress = crop.TicksInStage, heldMoisture = crop.MoistureTicks;
+                string yieldBlueprint = crop.YieldBlueprint;
+                int yieldCount = crop.YieldCount, stageLength = crop.TicksPerStage;
+                AdvanceStage(zone, owner, crop);
+                if (!legacyMaturity) continue;
+                if (!CropTime.IsCurrentOwner(crop, zone) || crop.GrowthStage != 1
+                    || crop.TicksInStage != heldProgress || crop.MoistureTicks != heldMoisture
+                    || crop.HarvestAtMaturity || crop.YieldBlueprint != yieldBlueprint
+                    || crop.YieldCount != yieldCount || crop.TicksPerStage != stageLength) return;
+                if (remaining > 0) ConsumeWetUnits(crop, remaining, true);
+                return;
+            }
+        }
+
+        private static void ConsumeWetUnits(CropPart crop, int units, bool grow)
+        {
+            crop.MoistureTicks -= units;
+            if (grow) crop.TicksInStage = (int)System.Math.Min(int.MaxValue, (long)crop.TicksInStage + units);
+            if (crop.MoistureTicks == 0) crop.OnDriedOut();
         }
 
         private static void AdvanceStage(Zone zone, Entity entity, CropPart crop)

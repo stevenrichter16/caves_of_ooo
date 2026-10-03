@@ -2,11 +2,10 @@ namespace CavesOfOoo.Core
 {
     /// <summary>
     /// Singleton Part on the world entity that listens to <c>TickEnd</c>
-    /// and drives the per-turn crop growth pass via
-    /// <see cref="CropSystem.OnTickEnd"/>. Byte-for-byte mirror of
-    /// <see cref="GasSystemPart"/> (GasSystemPart.cs:18-32) — bootstrap
-    /// creates the world entity, attaches this Part, TurnManager fires
-    /// TickEnd, this Part forwards to the static system.
+    /// and reconciles elapsed world time for a player boundary. The
+    /// presentation loop also reconciles after the scheduler advances;
+    /// repeating a clock value cannot create growth. Bare, actorless events
+    /// retain the explicit authored-unit fixture contract.
     ///
     /// <para><b>Zone resolution.</b> Uses
     /// <see cref="SettlementRuntime.ActiveZone"/>; null in EditMode
@@ -23,14 +22,13 @@ namespace CavesOfOoo.Core
         public override bool HandleEvent(GameEvent e)
         {
             if (e.ID != "TickEnd") return true;
-            // Wx opt review §0 — same gate as GasSystemPart: TickEnd is
-            // per ACTOR, growth is per ROUND. Ungated, crops matured and
-            // dried out faster in populated zones. Unstamped events
-            // (benches/tests) keep the old contract. Pinned by
-            // TickEndActorGateTests.
+            // NPC turns do not create a second reconciliation boundary.
+            // Runtime EndTurn always stamps Actor; only legacy direct
+            // drivers use an actorless event as one authored growth unit.
             var actor = e.GetParameter<Entity>("Actor");
             if (actor != null && !actor.HasTag("Player")) return true;
-            CropSystem.OnTickEnd(SettlementRuntime.ActiveZone);
+            if (actor == null) CropSystem.OnTickEnd(SettlementRuntime.ActiveZone);
+            else CropTime.ReconcileZone(SettlementRuntime.ActiveZone, WorldClock.CurrentTick);
             return true;
         }
     }

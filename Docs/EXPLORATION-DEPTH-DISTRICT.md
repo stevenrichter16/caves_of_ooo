@@ -118,6 +118,8 @@ Implement this document in order. Start each production batch with a meaningful 
 
 ## 8. Next expansion gate
 
+The next connected-region milestone is designed in [SPREAD-CONNECTED-EXPLORATION-DESIGN.md](SPREAD-CONNECTED-EXPLORATION-DESIGN.md), with its own implementation directive and evidence ledger. It extends this delivered district; it does not retroactively expand the acceptance claims below.
+
 After the district is working, prefer expansions that change a choice: a biome-specific resource with two practical uses, an existing repair that opens a meaningful return service, or a faction permission that changes access. Require current-source audit, actual discoverability, finite ownership, saved consequences, readable art and an ordinary route. Do not automatically reproduce the same cellar or five-object worksite in every biome. Campaign history and broader faction pressure need their own design and play evidence; they are not silently declared finished by this slice.
 
 ### Current-main integration

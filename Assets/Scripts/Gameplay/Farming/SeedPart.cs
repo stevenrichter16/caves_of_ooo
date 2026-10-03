@@ -198,6 +198,8 @@ namespace CavesOfOoo.Core
                 if (!zone.AddEntity(crop, pos.x, pos.y))
                 { restore(); Reject(actor, "placement_refused", "The seed cannot take root here."); return false; }
                 placed = true;
+                if (!CropTime.Reconcile(planted, zone, WorldClock.CurrentTick))
+                { restore(); Reject(actor, "invalid_crop_clock", "The seed cannot take root here."); return false; }
                 if (!receipt.Apply(() => carrierInv.TryConsumeOne(seed)) || !receipt.ClaimChanges(transaction, actor, "PlantSeed"))
                 { restore(); Reject(actor, "payment_refused", "The seed is no longer available to plant."); return false; }
                 ZoneRenderHooks.MarkCellDirty(pos.x, pos.y, "CropPlanted");

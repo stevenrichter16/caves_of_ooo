@@ -11,11 +11,11 @@ namespace CavesOfOoo.Tests
     {
         const BindingFlags All = BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
         [TestCase(64)][TestCase(1729)]
-        public void FreshVersionTenAppendsTwoResidentFamiliesAndKeepsAllThreeNearbyWorksites(int seed)
+        public void FreshCurrentRetainsTwoResidentFamiliesAndAllThreeNearbyWorksites(int seed)
         {
             using (var scope = new HaulingContentScope())
             {
-                var manager = OverworldZoneManager.CreateDetached(scope.Factory, seed, true); Assert.AreEqual(10, manager.Exploration.Version);
+                var manager = OverworldZoneManager.CreateDetached(scope.Factory, seed, true); Assert.AreEqual(11, manager.Exploration.Version);
                 Assert.AreEqual(16, Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily), "SeedKeepersPlot")));
                 Assert.AreEqual(17, Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily), "WaysideKitchen")));
                 Assert.AreEqual("FieldAlembic", manager.Exploration.Find("Overworld.11.9.0").Family.ToString());
@@ -56,7 +56,7 @@ namespace CavesOfOoo.Tests
                 var protectedIds = new[] { ReferenceGladePlan.ZoneID, manager.Wayhouse?.ZoneID, manager.RareEncounters?.PairZoneID, manager.RareEncounters?.ViperZoneID }
                     .Concat(RegionalSituations.Definitions.SelectMany(d => new[] { d.SourceZoneId, d.RecipientZoneId }));
                 foreach (string id in protectedIds.Where(id => id != null)) Assert.False(rows.Any(e => e.ZoneID == id && e.PlacementEligible), id);
-                var residents = rows.Where(e => (int)e.Family >= 16).ToArray(); Assert.IsNotEmpty(residents);
+                var residents = rows.Where(e => e.Family == SpreadExplorationFamily.SeedKeepersPlot || e.Family == SpreadExplorationFamily.WaysideKitchen).ToArray(); Assert.IsNotEmpty(residents);
                 foreach (var a in residents) foreach (var b in residents.Where(e => e.ZoneID != a.ZoneID && e.Family == a.Family))
                 {
                     var x = WorldMap.FromZoneID(a.ZoneID); var y = WorldMap.FromZoneID(b.ZoneID);
@@ -64,7 +64,7 @@ namespace CavesOfOoo.Tests
                 }
             }
         }
-        [TestCase(64)][TestCase(1729)] public void ResidentsOnlyFillPreviouslyQuietAddressesWithoutDisplacingAnyVersionNineFamily(int seed)
+        [TestCase(64)][TestCase(1729)] public void OnlyTwoRequiredResidentAddressesMayReplaceAVersionNineFamily(int seed)
         {
             using (var scope = new HaulingContentScope())
             {
@@ -76,8 +76,14 @@ namespace CavesOfOoo.Tests
                     var entry = current.Find(row[0]); Assert.NotNull(entry, row[0]);
                     Assert.AreEqual(row[1] == "3", entry.PlacementEligible, row[0]); Assert.AreEqual(int.Parse(row[3]), (int)entry.Topology, row[0]);
                     int previous = int.Parse(row[2]);
+                    if (row[0] == LocalGatheringClaimPart.ReserveZoneID || row[0] == KitchenBatchPart.KitchenZoneID)
+                    {
+                        Assert.AreEqual(row[0] == LocalGatheringClaimPart.ReserveZoneID
+                            ? SpreadExplorationFamily.SeedKeepersPlot : SpreadExplorationFamily.WaysideKitchen, entry.Family);
+                        continue;
+                    }
                     if (previous != 0) Assert.AreEqual(previous, (int)entry.Family, "Previously shipped situation displaced: " + row[0]);
-                    if ((int)entry.Family >= 16) Assert.Zero(previous, "Resident must be additive only: " + row[0]);
+                    if ((int)entry.Family >= 16) Assert.Zero(previous, "Other residents and the optional satellite must fill an ordinary quiet row: " + row[0]);
                 }
                 Assert.AreEqual("SeedKeepersPlot", current.Find("Overworld.11.8.0").Family.ToString());
                 Assert.AreEqual("WaysideKitchen", current.Find("Overworld.12.11.0").Family.ToString());

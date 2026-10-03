@@ -34,7 +34,7 @@ namespace CavesOfOoo.Tests
 
         [TestCase(1)][TestCase(64)][TestCase(1729)] public void NewFamiliesAreFrozenColdAndHabitatSpecific(int seed)
         {
-            var a=Fresh(seed);var b=Fresh(seed);Assert.AreEqual(10,a.Exploration.Version);Assert.Zero(a.CachedZoneCount);
+            var a=Fresh(seed);var b=Fresh(seed);Assert.AreEqual(11,a.Exploration.Version);Assert.Zero(a.CachedZoneCount);
             CollectionAssert.AreEqual(a.Exploration.Entries.Select(e=>e.ZoneID+e.Family),b.Exploration.Entries.Select(e=>e.ZoneID+e.Family));
             foreach(string f in new[]{"CollectorReturn","RoadsideExchange"})
             {
@@ -72,6 +72,19 @@ namespace CavesOfOoo.Tests
                     // Domestic additions occupy only prior quiet entries; they
                     // are not traveller reservations or ordinary spill rows.
                     if(e.Family==SpreadExplorationFamily.SeedKeepersPlot||e.Family==SpreadExplorationFamily.WaysideKitchen)continue;
+                    if(e.Family==SpreadExplorationFamily.WetCrossing||e.Family==SpreadExplorationFamily.HeavyFrame)
+                    {
+                        // The bounded cohort has one additional road use. Its
+                        // ordinary v9 road roll was quiet; v10 put a seedkeeper
+                        // there, while the required v11 keeper next door now
+                        // suppresses that duplicate before satellite allocation.
+                        Assert.AreEqual(7,seed);Assert.AreEqual("Overworld.12.8.0",e.ZoneID);
+                        Assert.AreEqual(SpreadExplorationFamily.HeavyFrame,e.Family);
+                        Assert.AreEqual(19,QuietRank(seed,e.ZoneID)%100,"The old ordinary road layer must be quiet, not a displaced spill/exchange.");
+                        Assert.AreEqual(SpreadExplorationFamily.SeedKeepersPlot,m.Exploration.Find("Overworld.11.8.0").Family);
+                        Assert.AreEqual(1,m.Exploration.Entries.Count(row=>row.Family==SpreadExplorationFamily.WetCrossing||row.Family==SpreadExplorationFamily.HeavyFrame));
+                        continue;
+                    }
                     bool winner=LegacyTravellerSample(seed,e.ZoneID)%8==0;
                     Assert.AreEqual(winner?"RoadsideExchange":"RoadSpill",e.Family.ToString(),seed+":"+e.ZoneID);
                     if(winner)positive++;else negative++;
@@ -83,6 +96,10 @@ namespace CavesOfOoo.Tests
         static uint LegacyTravellerSample(int seed,string id)
         {
             unchecked{uint h=2166136261;foreach(char c in seed.ToString(System.Globalization.CultureInfo.InvariantCulture)+":traveller:"+id)h=(h^c)*16777619;return h;}
+        }
+        static uint QuietRank(int seed,string id)
+        {
+            unchecked{uint h=2166136261u^(uint)seed;foreach(char c in "SpreadExploration.v2|quiet|"+id)h=(h^c)*16777619u;h^=h>>16;h*=0x7feb352du;h^=h>>15;h*=0x846ca68bu;return h^(h>>16);}
         }
         [Test] public void OnlyExactActiveAcceptedGraphCanCommitOnce()
         {
@@ -134,7 +151,7 @@ namespace CavesOfOoo.Tests
         {
             var m=Fresh();var e=Exchange(m);var z=Activate(m,e);Assert.True(Mark(m,z,e,()=>true));
             var loaded=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("entry-v4","fixture",m,null,null));
-            Assert.AreEqual(10,loaded.ZoneManager.Exploration.Version);var now=loaded.ZoneManager.GetZone(e.ZoneID);Assert.AreNotSame(z,now);
+            Assert.AreEqual(11,loaded.ZoneManager.Exploration.Version);var now=loaded.ZoneManager.GetZone(e.ZoneID);Assert.AreNotSame(z,now);
             Assert.AreEqual(2,loaded.ZoneManager.Exploration.DispositionFor(e.ZoneID));Assert.False(Accepted(loaded.ZoneManager,now,out _));
             loaded.ZoneManager.UnloadZone(e.ZoneID);Assert.AreSame(now,loaded.ZoneManager.GetZone(e.ZoneID));
         }

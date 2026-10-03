@@ -111,6 +111,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 return Refuse(context, "invalid_container_source", "There is no positive unit in that container.");
             string itemName = _item.GetDisplayName();
             int quantity = _item.GetPart<StackerPart>()?.StackCount ?? 1;
+            var gathering = LocalGatheringClaims.CaptureTake(context.Actor, _item, context.Zone, _container);
+            var progress = ConnectedSpreadProgress.CaptureTransfer(context.Actor, _item, context.Zone, _container);
             var source = InventoryTransferSnapshot.Capture(containerPart);
             transaction.Do(apply: null, undo: source.Restore);
             if (!source.Apply(() => containerPart.RemoveItem(_item)))
@@ -135,6 +137,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             MessageLog.Add($"You take {itemName} from the {_container.GetDisplayName()}.");
             AcquisitionDiagnostics.Record(context, _item, Name, _container.ID, quantity);
+            LocalGatheringClaims.RecordTake(gathering, transaction);
+            ConnectedSpreadProgress.RecordTransfer(progress, transaction);
             return InventoryCommandResult.Ok();
         }
         private InventoryCommandResult Refuse(InventoryContext context, string reason, string message) =>

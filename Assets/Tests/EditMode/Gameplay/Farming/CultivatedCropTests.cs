@@ -86,7 +86,7 @@ namespace CavesOfOoo.Tests
         {var seed=Seed(false);seed.GetPart<SeedPart>().CropBlueprint="CandyCarrot";Assert.False(Plant(seed).Success);Assert.True(Actor.GetPart<InventoryPart>().Objects.Contains(seed));Assert.AreEqual(0,Count("CandyCarrot"));}
         [Test] public void LegacyFailedYieldPlacementHoldsCropAndRollsBackPartialProduce()
         {var e=Crop(false);e.GetPart<CropPart>().Water(4);int created=0;HookOutput(output=>{if(++created==2)typeof(Entity).GetField("SpatialZone",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(output,new Zone("foreign"));});Tick(4);Assert.NotNull(Zone.GetEntityCell(e));Assert.AreEqual(0,Count("CandyCarrot"));}
-        [Test] public void RealSchedulerPlayerEndTurnAdvancesCropOnce_NpcDoesNot()
+        [Test] public void RealSchedulerPlayerBoundaryUsesElapsedClock_NpcDoesNot()
         {
             var e=Crop();var crop=e.GetPart<CropPart>();crop.Water(6);
             var oldWorld=TurnManager.World;var activeField=typeof(TurnManager).GetField("<Active>k__BackingField",BindingFlags.Static|BindingFlags.NonPublic);var oldActive=TurnManager.Active;
@@ -94,14 +94,32 @@ namespace CavesOfOoo.Tests
             {
                 var manager=new TurnManager();manager.AddEntity(Actor);var npc=new Entity{ID="crop-clock-npc"};manager.AddEntity(npc);
                 var world=new Entity();world.AddPart(new CropSystemPart());TurnManager.World=world;
+                // The prior assertion (+1 for EndTurn alone) pinned the old
+                // action-based policy. Runtime now advances only elapsed ticks.
+                crop.GrowthTimingVersion=0;crop.LastGrowthWorldTick=-1;crop.GrowthWetTickRemainder=0;
+                CropTime.ReconcileZone(Zone,manager.TickCount);
                 manager.EndTurn(npc,Zone);Assert.AreEqual(0,crop.TicksInStage);Assert.AreEqual(6,crop.MoistureTicks);
+                manager.EndTurn(Actor,Zone);Assert.AreEqual(0,crop.TicksInStage);Assert.AreEqual(6,crop.MoistureTicks);
+                manager.AdvanceClock(10);
                 manager.EndTurn(Actor,Zone);Assert.AreEqual(1,crop.TicksInStage);Assert.AreEqual(5,crop.MoistureTicks);
+                manager.AdvanceClock(10);
                 manager.EndTurn(Actor,Zone);Assert.AreEqual(1,crop.GrowthStage);Assert.AreEqual(0,crop.TicksInStage);
                 manager.EndTurn(npc,Zone);Assert.AreEqual(4,crop.MoistureTicks);
             }
             finally {TurnManager.World=oldWorld;activeField.SetValue(null,oldActive);}
         }
         [Test] public void PlayerRoundGateDoesNotCountOtherActorTurnsOrForeignArea()
-        {var e=Crop(false);e.GetPart<CropPart>().Water(20);var world=new Entity();world.AddPart(new CropSystemPart());var npc=new Entity();var tick=GameEvent.New("TickEnd");tick.SetParameter("Actor",npc);world.FireEvent(tick);Assert.AreEqual(0,e.GetPart<CropPart>().TicksInStage);tick.SetParameter("Actor",Actor);world.FireEvent(tick);Assert.AreEqual(1,e.GetPart<CropPart>().TicksInStage);SettlementRuntime.ActiveZone=new Zone("away");world.FireEvent(tick);Assert.AreEqual(1,e.GetPart<CropPart>().TicksInStage);tick.Release();}
+        {
+            var old=TurnManager.Active;var activeField=typeof(TurnManager).GetField("<Active>k__BackingField",BindingFlags.Static|BindingFlags.NonPublic);
+            var clock=new TurnManager();var tick=GameEvent.New("TickEnd");
+            try
+            {
+                var e=Crop(false);e.GetPart<CropPart>().Water(20);var world=new Entity();world.AddPart(new CropSystemPart());
+                clock.AdvanceClock(10);tick.SetParameter("Actor",new Entity());world.FireEvent(tick);Assert.AreEqual(0,e.GetPart<CropPart>().TicksInStage);
+                tick.SetParameter("Actor",Actor);world.FireEvent(tick);Assert.AreEqual(1,e.GetPart<CropPart>().TicksInStage);
+                SettlementRuntime.ActiveZone=new Zone("away");clock.AdvanceClock(10);world.FireEvent(tick);Assert.AreEqual(1,e.GetPart<CropPart>().TicksInStage);
+            }
+            finally{tick.Release();activeField.SetValue(null,old);}
+        }
     }
 }

@@ -208,6 +208,7 @@ namespace CavesOfOoo.Core
             }
             var stacker = item.GetPart<StackerPart>();
             int before = stacker?.StackCount ?? 1;
+            ConnectedClayProvenance.ConsumeOne(item);
             if (before > 1)
             {
                 stacker.StackCount--;

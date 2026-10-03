@@ -290,7 +290,7 @@ namespace CavesOfOoo
                     _awaitingBuildChoice = StartingBuildSelection.ShouldPrompt(
                         DevMode.Enabled,
                         CavesOfOoo.Scenarios.ScenarioRunner.PendingScenario != null,
-                        !string.IsNullOrEmpty(SaveGameService.SaveRootOverride),
+                        NativeAuditBootstrapSettings.SuppressBuildChoiceForAudit(),
                         Application.isBatchMode);
                     Debug.Log($"[Bootstrap] Loaded {StartingBuildRegistry.All.Count} starting build(s); "
                         + $"new-game picker {(_awaitingBuildChoice ? "ON" : "off")}.");
@@ -689,6 +689,8 @@ namespace CavesOfOoo
                 });
 
                 _turnManager.ProcessUntilPlayerTurn();
+                CropTime.ReconcileZone(_zone, _turnManager.TickCount);
+                KitchenBatchPart.ReconcileZone(_zone);
 
                 if (_zoneManager.SettlementManager != null)
                     _zoneManager.SettlementManager.RefreshActiveZonePresentation(_zone);
@@ -980,6 +982,11 @@ namespace CavesOfOoo
                 _zoneManager.SetTurnProvider(() => _turnManager != null ? _turnManager.TickCount : 0);
             MessageLog.TickProvider = () => _turnManager != null ? _turnManager.TickCount : 0;
 
+            // All saved graphs and the clock are now hydrated. Legacy plants start
+            // here; inactive stamped crops wait for actual arrival, never a query.
+            if (_zoneManager != null && _turnManager != null)
+                foreach (var savedZone in _zoneManager.CachedZones.Values)
+                    CropTime.InitializeLegacyZone(savedZone, _turnManager.TickCount);
             RewireLoadedBrains();
             WirePresentationForLoadedGame();
             GetComponent<InputHandler>()?.RestoreHotbarSelection(state.SelectedHotbarSlot);
@@ -987,6 +994,8 @@ namespace CavesOfOoo
             if (_turnManager != null && !_turnManager.WaitingForInput)
                 _turnManager.ProcessUntilPlayerTurn();
 
+            if (_turnManager != null) CropTime.ReconcileZone(_zone, _turnManager.TickCount);
+            KitchenBatchPart.ReconcileZone(_zone);
             if (_zoneManager?.SettlementManager != null)
                 _zoneManager.SettlementManager.RefreshActiveZonePresentation(_zone);
 

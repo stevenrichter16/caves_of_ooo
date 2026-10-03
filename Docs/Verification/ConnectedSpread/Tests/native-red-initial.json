@@ -1,0 +1,132 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "5fe7a195ad1e4b2885231c9758aeb45b",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1790981739539,
+      "finished_unix_ms": 1790981751476,
+      "last_update_unix_ms": 1790981751476,
+      "progress": {
+        "completed": 86,
+        "total": 86,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1790981751078,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.ConnectedKitchenTests.TemporaryCompletionCapacityFailurePreservesEscrowAndCanRecover",
+        "last_finished_unix_ms": 1790981751085,
+        "stuck_suspected": false,
+        "editor_is_focused": false,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.FutureStampRefusesWithoutWaterOrProgressRepair",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.InvalidFractionRefusesRatherThanGrantingGrowth(-1)",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.InvalidFractionRefusesRatherThanGrantingGrowth(10)",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.InvalidFractionRefusesRatherThanGrantingGrowth(int.MaxValue)",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.InvalidStageDoesNotConsumeMoisture(-1)",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.InvalidStageDoesNotConsumeMoisture(3)",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.LargeElapsedTimeIsBoundedByMoistureAndStages",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.MissingYieldFactoryConsumesOnlyElapsedWetUnits_ThenRecoversAfterWater",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.MutatingYieldCallbackCannotPublishFromAReplacedCrop",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.NegativeClockRefusesWithoutInitializingLegacyCrop",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.NpcTickEndDoesNotAdvanceEvenWithElapsedTimeWaiting",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.ReentrantYieldFactoryCannotReplayElapsedTimeOrDuplicateProduce",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.RemovedOrForeignOwnerCannotAdvance",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeAdversarialTests.ReplacedPartCannotAdvanceOrDrainCurrentOwner",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeTests.AbsenceMatchesLocalElapsedStepsThroughStagesAndDryOut(0,5)",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeTests.AbsenceMatchesLocalElapsedStepsThroughStagesAndDryOut(0,40)",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeTests.AbsenceMatchesLocalElapsedStepsThroughStagesAndDryOut(1,40)",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeTests.HarvestActionSettlesDueGrowthBeforeCheckingRipeState",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeTests.LegacyCropBaselinesAtRestoredTickWithoutRetroactiveGrowth",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeTests.LegacyCropProducesOnceOnFinalWetUnit_WithoutReplay",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeTests.PendingFractionAndTimestampSurviveActualPartSaveGraph",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeTests.PlantStartsAtCurrentTick_AndCannotInheritEarlierWorldTime",
+            "message": "  Saved crop timing field is missing: LastGrowthWorldTick\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeTests.PlayerTickEndCannotManufactureTimeBeforeSchedulerAdvances",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeTests.StandingCropRipensOnLastWetUnit_AndRemainsUntilHarvest",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedCropTimeTests.TenWetWorldTicksAdvanceOneUnit_RepeatedObservationIsIdempotent",
+            "message": "  CropTime is required for actual elapsed world-time cultivation.\n  Expected: not null\n  But was:  null\n"
+          }
+        ],
+        "failures_capped": true
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

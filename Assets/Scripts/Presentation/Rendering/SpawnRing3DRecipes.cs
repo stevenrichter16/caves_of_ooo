@@ -35,6 +35,11 @@ namespace CavesOfOoo.Rendering
             if (cell == null || !cell.Objects.Contains(entity)) return Refused(entity, "not-current-zone-member");
             var render = entity.GetPart<RenderPart>();
             if (render == null || !render.Visible) return Refused(entity, "native-render-hidden");
+            if (ConnectedSpread3DLibrary.Handles(entity.BlueprintName))
+            {
+                string model = ConnectedSpread3DLibrary.ResolveModel(zone, entity);
+                return model == null ? Refused(entity, "unsupported-current-connected-owner") : ConnectedSpread3DLibrary.Recipe(zone, entity, model);
+            }
             if (BiomeCropRecipes.Handles(entity.BlueprintName))
             {
                 string model=BiomeCropRecipes.ResolveModel(zone,entity);

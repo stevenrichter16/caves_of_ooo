@@ -142,10 +142,11 @@ namespace CavesOfOoo.Core
                 return DestroyVerdict.Vetoed;
             }
 
-            // Past the veto, so it is going to happen. Flag it BEFORE firing
-            // Destroyed, so a listener that re-enters finds the guard set
-            // rather than recursing.
+            // Past the veto, so it is going to happen. Guard every callback,
+            // including a due kitchen meal's creation before contents spill.
             if (part != null) part.Gone = true;
+
+            KitchenBatchPart.BeforeOwnerInvalidated(target, zone);
 
             // Position must be read BEFORE removal — it is where the
             // contents land and which cell needs repainting.

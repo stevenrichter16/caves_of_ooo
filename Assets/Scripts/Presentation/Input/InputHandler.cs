@@ -991,6 +991,8 @@ namespace CavesOfOoo.Rendering
             // Switch to new zone
             CurrentZone = result.NewZone;
             ZoneManager.SetActiveZone(result.NewZone);
+            CropTime.ReconcileZone(result.NewZone, TurnManager.TickCount);
+            KitchenBatchPart.ReconcileZone(result.NewZone);
 
             // Entry encounters must exist before scheduler/render registration
             // and before autosave captures their persistent stock and roll receipt.
@@ -1077,6 +1079,8 @@ namespace CavesOfOoo.Rendering
                 MessageLog.Add("Something went wrong this turn — it was skipped.");
                 TurnManager.ForceYieldToPlayer();
             }
+            CropTime.ReconcileZone(CurrentZone, TurnManager.TickCount);
+            KitchenBatchPart.ReconcileZone(CurrentZone);
             MaterialSimSystem.TickMaterialEntities(CurrentZone);
             // PALIMPSEST P2 — decay tile state once per PLAYER turn.
             // Deliberately here and not on TickEnd, which fires once per
@@ -2998,10 +3002,25 @@ namespace CavesOfOoo.Rendering
                 return;
             }
 
+            if (LocalGatheringClaimPart.IsCommand(action.Command) || CookIntroductionPart.IsCommand(action.Command))
+            {
+                var social = InventorySystem.ExecuteCommand(
+                    new PerformInventoryActionCommand(target, action.Command), PlayerEntity, CurrentZone);
+                if (social.Success && !LocalGatheringClaimPart.IsReadOnlyCommand(action.Command))
+                {
+                    EndTurnAndProcess();
+                    RequestZoneRedraw("World.LocalPermission");
+                }
+                _inputState = _worldActionMenuReturnState;
+                return;
+            }
+
             // Harvesting commits finite world output through the same command
             // transaction as carried harvest. Refusal consumes no time.
             if (action.Command == "Harvest" || action.Command == "HarvestCultivatedCrop"
-                || action.Command == RepairablePart.RepairCommand)
+                || action.Command == RepairablePart.RepairCommand
+                || action.Command == BotanicalInkDeskPart.PrepareCommand
+                || action.Command == KitchenBatchPart.StartCommand)
             {
                 var harvest = InventorySystem.ExecuteCommand(
                     new PerformInventoryActionCommand(target, action.Command), PlayerEntity, CurrentZone);
@@ -4236,7 +4255,7 @@ namespace CavesOfOoo.Rendering
             var part = described.GetPart<ExaminablePart>();
             string text = "Selected action (reading only):\n" + (fresh.Display ?? fresh.Name ?? "") + "\n\n"
                 + (part != null && ReferenceEquals(part.ParentEntity, described)
-                    ? part.BuildWorldExamineLine(CurrentZone, context.Cell) : described.GetDisplayName());
+                    ? part.BuildWorldExamineLine(CurrentZone, context.Cell, PlayerEntity) : described.GetDisplayName());
             if (!IsCurrentExamineOwner(context.Owner, context.Cell) || !IsCurrentExamineOwner(described, context.Cell)
                 || !ReferenceEquals(described.GetPart<ExaminablePart>(), part))
             { MessageLog.Add("That selection is no longer available to inspect."); RestoreWorldActionReader(context); return; }
@@ -4308,7 +4327,7 @@ namespace CavesOfOoo.Rendering
                 string ground = CellStatusReadout.GroundLine(CurrentZone, cell);
                 if (!string.IsNullOrEmpty(ground)) text += "\n" + ground;
             }
-            else text = examinable.BuildWorldExamineLine(CurrentZone, cell);
+            else text = examinable.BuildWorldExamineLine(CurrentZone, cell, PlayerEntity);
 
             // Describers may consult parts. Recheck the same selected instance before publication.
             if (!IsCurrentExamineOwner(target, cell) || (!pile &&

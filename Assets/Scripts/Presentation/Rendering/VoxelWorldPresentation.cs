@@ -50,6 +50,8 @@ namespace CavesOfOoo.Rendering
                 if (latchcoil != null) { latchcoil.Validate(); foreach (var entry in latchcoil.Entries) generated.Add(entry.Mesh); }
                 var collectors=SpreadCollectorArtLibrary.Load();
                 if(collectors!=null){collectors.Validate();foreach(var e in collectors.Entries)generated.Add(e.Mesh);}
+                var connected=ConnectedSpread3DLibrary.Load();
+                if(connected!=null){connected.Validate();foreach(var e in connected.Entries)generated.Add(e.Mesh);}
                 var curation=CurationYard3DLibrary.Load();
                 if(curation!=null){curation.Validate();foreach(var e in curation.Entries)generated.Add(e.Mesh);}
                 var fieldGates=SpreadFieldGate3DLibrary.Load();

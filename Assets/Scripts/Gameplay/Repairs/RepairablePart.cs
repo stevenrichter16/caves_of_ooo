@@ -15,6 +15,10 @@ namespace CavesOfOoo.Core
         public const string RepairCommand="RepairObject";
         public string RecipeId="";
         public bool Repaired;
+        /// <summary>Committed physical repair cause for local acknowledgment.
+        /// Existing repaired saves have no retroactively invented author.</summary>
+        public Entity RepairedBy;
+        public string RepairCauseID, RepairedZoneID, RepairWorldKey;
         /// <summary>Shared functional gate. Unknown or malformed faults remain
         /// broken; owners without this opt-in Part retain their ordinary behavior.</summary>
         public static bool BlocksFunction(Entity owner)
@@ -125,6 +129,13 @@ namespace CavesOfOoo.Core
             if(!applied || !receipt.ClaimChanges(tx,actor,RepairCommand) || Context(actor,zone,recipe)!=null
                 || actor.GetPart<InventoryPart>()!=inventory)return Reject(actor,"state-changed");
             tx.Do(()=>Repaired=true,()=>Repaired=false);
+            var priorAuthor=RepairedBy;string priorCause=RepairCauseID,priorZone=RepairedZoneID,priorWorld=RepairWorldKey;
+            tx.Do(()=>
+            {
+                RepairedBy=actor;RepairCauseID=Guid.NewGuid().ToString("N");RepairedZoneID=zone.ZoneID;
+                RepairWorldKey=WorldLocationContext.For(zone)?.Exploration?.WorldKey;
+            },()=>{RepairedBy=priorAuthor;RepairCauseID=priorCause;RepairedZoneID=priorZone;RepairWorldKey=priorWorld;});
+            ConnectedSpreadProgress.RecordRepair(actor,ParentEntity,zone,tx);
             tx.AfterCommit(()=>
             {
                 MessageLog.Add(recipe.RepairedText);

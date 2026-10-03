@@ -92,6 +92,7 @@ namespace CavesOfOoo.Tests
             var e = new Entity { ID = "crop", BlueprintName = "TestCrop" };
             e.Tags["Crop"] = "";
             e.AddPart(new RenderPart { DisplayName = "crop" });
+            e.AddPart(new PhysicsPart { Takeable = false, Solid = false });
             e.AddPart(new CropPart { MoistureTicks = 5, TicksInStage = 0, TicksPerStage = 20 });
             zone.AddEntity(e, x, y);
             return e;
@@ -173,7 +174,7 @@ namespace CavesOfOoo.Tests
         }
 
         [Test]
-        public void PlayerTickEnd_AdvancesCrops()
+        public void PlayerTickEnd_ReconcilesElapsedWorldTimeWithoutInventingAnActionUnit()
         {
             // Counter-check for the crop gate.
             var zone = new Zone("CropGate2");
@@ -181,9 +182,13 @@ namespace CavesOfOoo.Tests
             SettlementRuntime.ActiveZone = zone;
 
             _turnManager.EndTurn(_player);
+            Assert.AreEqual(0, crop.GetPart<CropPart>().TicksInStage,
+                "EndTurn before scheduler time elapses cannot advance a crop");
+            _turnManager.AdvanceClock(10);
+            _turnManager.EndTurn(_player);
 
             Assert.AreEqual(1, crop.GetPart<CropPart>().TicksInStage,
-                "one round, one growth tick");
+                "ten world ticks consume one authored growth unit");
             Assert.AreEqual(4, crop.GetPart<CropPart>().MoistureTicks);
         }
 

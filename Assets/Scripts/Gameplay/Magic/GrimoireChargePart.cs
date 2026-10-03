@@ -5,8 +5,8 @@ namespace CavesOfOoo.Core
     /// — ink charges on a grimoire.
     ///
     /// <para><b>The third "oomph" pillar.</b> Skill spells cost only a
-    /// cooldown. A rite additionally spends a charge of ink from the book
-    /// it was learned from, which is what stops rites from simply being
+    /// cooldown. A rite additionally spends a charge from any carried inked
+    /// grimoire, which is what stops rites from simply being
     /// better skills.</para>
     ///
     /// <para><b>Why the book still matters after you read it.</b>
@@ -24,6 +24,7 @@ namespace CavesOfOoo.Core
     public class GrimoireChargePart : Part
     {
         public override string Name => "GrimoireCharge";
+        public const string ReinkCommand = "ReinkGrimoire";
 
         /// <summary>Ink remaining. Public field so the reflection-based
         /// save path round-trips it without special handling.</summary>
@@ -51,11 +52,28 @@ namespace CavesOfOoo.Core
         /// be wasted on a nearly-full book.</summary>
         public int Refill(int amount)
         {
-            if (amount <= 0 || Charges >= MaxCharges) return 0;
+            if (amount <= 0 || Charges < 0 || MaxCharges <= 0 || Charges >= MaxCharges) return 0;
             int before = Charges;
-            Charges += amount;
-            if (Charges > MaxCharges) Charges = MaxCharges;
+            Charges = (int)System.Math.Min((long)MaxCharges, (long)Charges + amount);
             return Charges - before;
+        }
+
+        public override bool HandleEvent(GameEvent e)
+        {
+            var actor=e.GetParameter<Entity>("Actor");
+            if(e.ID=="GetInventoryActions")
+            {
+                int gain=GrimoireInkService.PreviewGain(actor,this);
+                if(gain>0)e.GetParameter<InventoryActionList>("Actions")?.AddAction("Reink",
+                    "re-ink (+"+gain+" charge"+(gain==1?"":"s")+"; 1 ink vial)",ReinkCommand,'i',19);
+                return true;
+            }
+            if(e.ID!="InventoryAction"||e.GetStringParameter("Command")!=ReinkCommand)return true;
+            if(e.GetParameter<bool>("GrimoireReinkAttempted"))return true;
+            e.SetParameter("GrimoireReinkAttempted",true);
+            if(!GrimoireInkService.TryReink(actor,this,e.GetParameter<Zone>("Zone"),
+                e.GetParameter<CavesOfOoo.Core.Inventory.InventoryTransaction>("InventoryTransaction")))return true;
+            e.Handled=true;return false;
         }
     }
 }

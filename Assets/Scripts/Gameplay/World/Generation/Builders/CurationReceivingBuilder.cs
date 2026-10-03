@@ -13,7 +13,9 @@ namespace CavesOfOoo.Core
         public string Name=>"CurationReceiving";
         public int Priority=>3865;
         readonly MarrowstyeCompositionBuilder terrain;
-        public CurationReceivingBuilder(MarrowstyeCompositionBuilder terrain){this.terrain=terrain;}
+        readonly bool connected;
+        public CurationReceivingBuilder(MarrowstyeCompositionBuilder terrain):this(terrain,false){}
+        public CurationReceivingBuilder(MarrowstyeCompositionBuilder terrain, bool connected){this.terrain=terrain;this.connected=connected;}
         public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
         {
             var plan=terrain?.Plan;
@@ -39,7 +41,9 @@ namespace CavesOfOoo.Core
                 if(x==disused.X+13||x==disused.X+17||y==disused.Y+1||y==disused.Y+4)
                     specs.Add((x==disused.X+13&&y==disused.Y+2?"CurationQuarantineGate":"CurationQuarantineRail",x,y));
             specs.Add(("CurationHalfSet",disused.X+15,disused.Y+2));
+            if(connected)specs.Add(("BotanicalInkDesk",hall.X+hall.Width-8,hall.Y+4));
             var goods=new[]{"CurationCounterfoil","CurationSaltRake","CurationInspectionKey","CurationTransferDocket","CurationDiscrepancyReport"};
+            if(connected)goods=goods.Concat(new[]{"ShatteredRimeGrimoire"}).ToArray();
             if(specs.Select(s=>s.bp).Concat(goods).Any(bp=>!factory.Blueprints.ContainsKey(bp)) || specs.Select(s=>(s.x,s.y)).Distinct().Count()!=specs.Count
                 || specs.Any(s=>!Bare(zone,s.x,s.y)))return Reject(zone,"required-content-or-slot");
             var originalProof=SpreadGenerationReceipt.CaptureFinalState(zone,original);
@@ -67,13 +71,21 @@ namespace CavesOfOoo.Core
                 {
                     if(!Source())return Reject(zone,"changed-original-stock-source");
                     var item=factory.CreateEntity(bp);
-                    if(!Fresh(item,bp) || item.GetPart<PhysicsPart>().Takeable!=true || item.HasTag("Creature") || !CurationIntakePart.SinglePhysicalItem(item) || !Source())return Reject(zone,"malformed-goods:"+bp);
+                    if(!Fresh(item,bp) || item.GetPart<PhysicsPart>().Takeable!=true || item.HasTag("Creature") || !(bp=="ShatteredRimeGrimoire" ? (item.GetPart<StackerPart>()?.StackCount??1)==1 : CurationIntakePart.SinglePhysicalItem(item)) || !Source())return Reject(zone,"malformed-goods:"+bp);
                     stock.Add(item);
                 }
-                var index=staged[0]; var cabinet=staged[3]; var filer=staged[5];var indexer=staged[6];var enemy=staged[staged.Count-1];
+                var index=staged[0]; var cabinet=staged[3]; var filer=staged[5];var indexer=staged[6];var enemy=staged.Single(e=>e.BlueprintName=="CurationHalfSet");
                 if(stock[0].GetPart<KeyPart>()?.KeyId!="marrowstye-intake-tools" || stock[2].GetPart<KeyPart>()?.KeyId!="marrowstye-quarantine")return Reject(zone,"wrong-keys");
                 if(!index.GetPart<InventoryPart>().AddObject(stock[0]))return Reject(zone,"index-stock");
-                foreach(var item in stock.Skip(1))if(!cabinet.GetPart<ContainerPart>().AddItem(item))return Reject(zone,"cabinet-stock");
+                foreach(var item in stock.Skip(1).Take(4))if(!cabinet.GetPart<ContainerPart>().AddItem(item))return Reject(zone,"cabinet-stock");
+                if(connected)
+                {
+                    var book=stock[5];
+                    if(book.GetPart<GrimoireChargePart>()?.Charges!=10||book.GetPart<GrimoirePart>()?.SkillClassName!="Rites_ShatteredRime")return Reject(zone,"invalid-public-book");
+                    indexer.AddPart(new TraderPart{StockTable="",Drams=0});
+                    TradeSystem.SetDrams(indexer,0);
+                    if(!indexer.GetPart<InventoryPart>().AddObject(book))return Reject(zone,"public-book-stock");
+                }
                 foreach(var staff in new[]{clerks[0],filer,indexer})enemy.GetPart<BrainPart>().SetPersonallyHostile(staff,false);
                 enemy.GetPart<BrainPart>().Target=null; // Hostility is saved; perception still chooses a target in play.
                 if(!Source())return Reject(zone,"invalid-new-source");
@@ -89,6 +101,13 @@ namespace CavesOfOoo.Core
                     var e=staged[i];if(!zone.AddEntity(e,specs[i].x,specs[i].y))return Reject(zone,"placement-refused");
                     added.Add(e);placed[e]=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{e});
                     if(!Source())return Reject(zone,"changed-during-publication");
+                }
+                if(connected)
+                {
+                    var desk=staged.Single(e=>e.BlueprintName=="BotanicalInkDesk");
+                    desk.GetPart<BotanicalInkDeskPart>().Configure(zone,indexer);
+                    if(!desk.GetPart<BotanicalInkDeskPart>().Configured)return Reject(zone,"ink-desk-binding");
+                    placed[desk]=SpreadGenerationReceipt.CaptureFinalState(zone,new[]{desk});
                 }
                 var intake=index.GetPart<CurationIntakePart>();
                 intake.Configure(zone,bodies[0],bodies[1],staged[1],staged[2],stock[0],filer,indexer);
@@ -157,7 +176,7 @@ namespace CavesOfOoo.Core
             if(bp=="CurationQuarantineGate")return e.GetPart<DoorPart>() is DoorPart door && !door.IsOpen && string.IsNullOrEmpty(door.OwnerId)
                 && e.GetPart<LockPart>() is LockPart gateLock && gateLock.IsLocked && gateLock.KeyId=="marrowstye-quarantine" && !e.HasPart<DestructiblePart>();
             if(bp=="CurationQuarantineRail")return !e.HasPart<DoorPart>() && !e.HasPart<DestructiblePart>() && !e.HasPart<HandlingPart>();
-            return bp=="CurationSaltBench";
+            return bp=="CurationSaltBench" || (bp=="BotanicalInkDesk" && e.HasPart<BotanicalInkDeskPart>());
         }
         static IEnumerable<Entity> Children(Entity e)=>(e.GetPart<InventoryPart>()?.Objects??Enumerable.Empty<Entity>())
             .Concat(e.GetPart<ContainerPart>()?.Contents??Enumerable.Empty<Entity>())

@@ -138,6 +138,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             string itemName = _item.GetDisplayName();
             var originalCell = zone.GetEntityCell(_item);
             int originalX = originalCell.X, originalY = originalCell.Y;
+            var gathering = LocalGatheringClaims.CaptureTake(actor, _item, zone);
+            var progress = ConnectedSpreadProgress.CaptureTransfer(actor, _item, zone);
             if (!zone.RemoveEntity(_item))
                 return Refuse(context, "removal_refused", "The item could not be removed from the ground.");
             transaction.Do(apply: null, undo: () => zone.AddEntity(_item, originalX, originalY));
@@ -188,6 +190,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             actor.FireEventAndRelease(afterPickup);
 
             AcquisitionDiagnostics.Record(context, _item, Name, zone.ZoneID, quantity);
+            LocalGatheringClaims.RecordTake(gathering, transaction);
+            ConnectedSpreadProgress.RecordTransfer(progress, transaction);
             return InventoryCommandResult.Ok();
         }
 

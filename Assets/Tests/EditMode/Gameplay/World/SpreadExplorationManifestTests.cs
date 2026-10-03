@@ -60,7 +60,7 @@ namespace CavesOfOoo.Tests
         public void FreshExplicitManifestIsFiniteColdAndDoesNotConsumeSourceRng(int seed)
         {
             var rng=new Random(714); LoadoutPart.Rng=rng;
-            var m=Fresh(seed); var p=Plan(m); Assert.True((bool)Value(p,"Enabled")); Assert.AreEqual(10,Value(p,"Version"));
+            var m=Fresh(seed); var p=Plan(m); Assert.True((bool)Value(p,"Enabled")); Assert.AreEqual(11,Value(p,"Version"));
             var rows=Entries(p).ToArray(); Assert.Greater(rows.Length,0); Assert.LessOrEqual(rows.Length,WorldMap.Width*WorldMap.Height);
             Assert.AreEqual(rows.Length,rows.Select(ID).Distinct().Count()); Assert.AreEqual(0,m.CachedZoneCount);
             Assert.AreEqual(new Random(714).Next(),rng.Next(),"Planner reads may not spend actor loadout draws.");
@@ -80,7 +80,7 @@ namespace CavesOfOoo.Tests
         [TestCase(1)][TestCase(64)][TestCase(1729)]
         public void ActiveCatalogIsClosedAndSameNonquietFamilyNeverTouchesAnEdge(int seed)
         {
-            var p=Plan(Fresh(seed)); var rows=Entries(p).ToArray(); var allowed=new[]{"None","RoadSpill","OccupiedBank","LastGleanings","WateringMargin","SnakeForage","WorkGang","CollectorReturn","RoadsideExchange","FieldPassage","CoolingWorkPatch","HeavySalvage","HuntThroughCover","FieldAlembic","TemperingShelter","TrappersStore","SeedKeepersPlot","WaysideKitchen"};
+            var p=Plan(Fresh(seed)); var rows=Entries(p).ToArray(); var allowed=new[]{"None","RoadSpill","OccupiedBank","LastGleanings","WateringMargin","SnakeForage","WorkGang","CollectorReturn","RoadsideExchange","FieldPassage","CoolingWorkPatch","HeavySalvage","HuntThroughCover","FieldAlembic","TemperingShelter","TrappersStore","SeedKeepersPlot","WaysideKitchen","WetCrossing","HeavyFrame"};
             Assert.True(rows.Any(e=>Flag(e,"PlacementEligible")&&Family(e)=="None")); Assert.Greater(rows.Count(e=>Family(e)!="None"),0);
             foreach(var e in rows) { CollectionAssert.Contains(allowed,Family(e)); if(Family(e)=="None")continue;
                 foreach(string neighbor in Adjacent(ID(e))) { var other=Find(p,neighbor); if(other!=null)Assert.AreNotEqual(Family(e),Family(other),ID(e)+" / "+neighbor); }

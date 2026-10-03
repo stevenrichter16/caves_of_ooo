@@ -23,6 +23,14 @@ namespace CavesOfOoo.Editor
             if (SessionState.GetBool(Prefix + "restoreScenes", false)) AwaitSceneRestore();
         }
         public static void Run() => LaunchCore(true);
+        [MenuItem("Caves Of Ooo/Scenarios/World/Connected Spread Duelist Audit")]
+        public static void LaunchConnectedDuelist() => LaunchCore(false,connectedBuild:"duelist");
+        [MenuItem("Caves Of Ooo/Scenarios/World/Connected Spread Stormcaller Audit")]
+        public static void LaunchConnectedStormcaller() => LaunchCore(false,connectedBuild:"stormcaller");
+        [MenuItem("Caves Of Ooo/Scenarios/World/Connected Spread Breaker Targeted Audit")]
+        public static void LaunchConnectedBreaker() => LaunchCore(false,seed:1729,connectedBuild:"breaker");
+        [MenuItem("Caves Of Ooo/Scenarios/World/Connected Spread Bombardier Targeted Audit")]
+        public static void LaunchConnectedBombardier() => LaunchCore(false,seed:29,connectedBuild:"bombardier");
         public static void LaunchCards() => LaunchCore(false,false,true);
         public static void LaunchOrdinary() => LaunchCore(false,true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Gleaners District Ordinary Audit")]
@@ -38,7 +46,7 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Discovery Native Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false,bool district=false,int seed=64,bool districtCombat=false,bool districtPrepared=false)
+        private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false,bool district=false,int seed=64,bool districtCombat=false,bool districtPrepared=false,string connectedBuild=null)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the Spread discovery audit.");
@@ -54,6 +62,8 @@ namespace CavesOfOoo.Editor
             SessionState.SetString(Prefix + "scenes", JsonUtility.ToJson(new SceneRows { rows = snapshot }));
             SessionState.SetString(Prefix + "oldStartScene", AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene) ?? "");
             SessionState.SetInt(Prefix + "oldSeed", NativeAuditBootstrapSettings.RequestedSeed);
+            SessionState.SetBool(Prefix + "oldBuildChoice", NativeAuditBootstrapSettings.AllowStartingBuildChoice);
+            SessionState.SetString(Prefix + "connectedBuild", connectedBuild??"");
             SessionState.SetInt(Prefix + "seed", seed);
             SessionState.SetBool(Prefix + "ordinary", ordinary);
             SessionState.SetBool(Prefix + "cards", cards);
@@ -64,7 +74,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetBool(Prefix + "restoreScenes", false);
             SessionState.SetBool(Prefix + "exitEditor", exitEditor);
             SessionState.SetInt(Prefix + "errors", 0);
-            SessionState.SetFloat(Prefix + "deadline", (float)EditorApplication.timeSinceStartup + 660);
+            SessionState.SetFloat(Prefix + "deadline", (float)EditorApplication.timeSinceStartup + (string.IsNullOrEmpty(connectedBuild)?660:1260));
             try
             {
                 Subscribe();
@@ -78,6 +88,7 @@ namespace CavesOfOoo.Editor
         {
             NativeSaveIsolation.Restore(Prefix, SessionState.GetString(Prefix + "token", ""), Finish);
             NativeAuditBootstrapSettings.RequestedSeed = SessionState.GetInt(Prefix + "seed", 0);
+            NativeAuditBootstrapSettings.AllowStartingBuildChoice = !string.IsNullOrEmpty(SessionState.GetString(Prefix + "connectedBuild", ""));
             GameBootstrap.OnAfterBootstrap -= Apply; GameBootstrap.OnAfterBootstrap += Apply;
             EditorApplication.update -= Poll; EditorApplication.update += Poll;
             Application.logMessageReceived -= OnLog; Application.logMessageReceived += OnLog;
@@ -86,7 +97,7 @@ namespace CavesOfOoo.Editor
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
             new GameObject("Spread Discovery Native Audit").AddComponent<SpreadDiscoveryNativePlayer>()
-                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"ordinary",false),SessionState.GetBool(Prefix+"cards",false),SessionState.GetBool(Prefix+"district",false),SessionState.GetBool(Prefix+"districtCombat",false),SessionState.GetBool(Prefix+"districtPrepared",false));
+                .Initialize(new ScenarioContext(zone, factory, player, turns),SessionState.GetBool(Prefix+"ordinary",false),SessionState.GetBool(Prefix+"cards",false),SessionState.GetBool(Prefix+"district",false),SessionState.GetBool(Prefix+"districtCombat",false),SessionState.GetBool(Prefix+"districtPrepared",false),SessionState.GetString(Prefix+"connectedBuild",""));
         }
         private static void Poll()
         {
@@ -99,7 +110,7 @@ namespace CavesOfOoo.Editor
             }
             if (EditorApplication.timeSinceStartup > SessionState.GetFloat(Prefix + "deadline", 0))
             {
-                if (driver != null) driver.Abort("Editor watchdog exceeded eleven minutes.");
+                if (driver != null) driver.Abort("Editor watchdog exceeded the finite native audit deadline.");
                 else { Debug.LogError("[SpreadDiscoveryNative] Bootstrap did not create the native driver."); Finish(2); }
             }
         }
@@ -113,6 +124,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetBool(Prefix + "active", false);
             GameBootstrap.OnAfterBootstrap -= Apply; EditorApplication.update -= Poll; Application.logMessageReceived -= OnLog;
             NativeAuditBootstrapSettings.RequestedSeed = SessionState.GetInt(Prefix + "oldSeed", 0);
+            NativeAuditBootstrapSettings.AllowStartingBuildChoice = SessionState.GetBool(Prefix + "oldBuildChoice", false);
             SaveGameService.RegisterRuntime(null, null);
             string oldStart=SessionState.GetString(Prefix+"oldStartScene","");
             EditorSceneManager.playModeStartScene=string.IsNullOrEmpty(oldStart)?null:AssetDatabase.LoadAssetAtPath<SceneAsset>(oldStart);

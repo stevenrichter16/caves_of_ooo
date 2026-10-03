@@ -10,7 +10,7 @@ using CavesOfOoo.Data;
 
 namespace CavesOfOoo.Core
 {
-    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin, SnakeForage, WorkGang, CollectorReturn, RoadsideExchange, FieldPassage, CoolingWorkPatch, HeavySalvage, HuntThroughCover, FieldAlembic, TemperingShelter, TrappersStore, SeedKeepersPlot, WaysideKitchen }
+    public enum SpreadExplorationFamily { None, RoadSpill, OccupiedBank, LastGleanings, WateringMargin, SnakeForage, WorkGang, CollectorReturn, RoadsideExchange, FieldPassage, CoolingWorkPatch, HeavySalvage, HuntThroughCover, FieldAlembic, TemperingShelter, TrappersStore, SeedKeepersPlot, WaysideKitchen, WetCrossing, HeavyFrame }
 
     /// <summary>Frozen assignment, not evidence that its optional content was placed.</summary>
     public sealed class SpreadExplorationEntry
@@ -36,7 +36,9 @@ namespace CavesOfOoo.Core
     public sealed class SpreadExplorationPlan
     {
         public const string PropertyKey="SpreadExploration.Manifest";
-        public const int CurrentVersion=10;
+        public const int CurrentVersion=11;
+        public const string WorldKeyProperty="SpreadExploration.WorldKey";
+        public string WorldKey { get; private set; } = "";
         private const int MaxRecords=WorldMap.Width*WorldMap.Height;
         private const int MaxWireLength=65536;
         private readonly OverworldZoneManager owner;
@@ -88,8 +90,12 @@ namespace CavesOfOoo.Core
                 var topology=(SpreadExplorationTopology)(1+Rank(manager.WorldSeed,id,"topology")%3);
                 rows[id]=new SpreadExplorationEntry(id,true,family,topology,manager.WorldSeed);
             }
-            // Freeze the entire v9 allocation first. New domestic sites fill only quiet rows;
-            // their ordering cannot displace an older encounter through adjacency suppression.
+            // The two connected services need stable ordinary addresses in every new world.
+            // Only these two v11 addresses replace a prior optional family; all other v9
+            // allocations and every saved v10 manifest remain literal.
+            foreach(string id in eligible.Where(NearResident))
+                rows[id]=new SpreadExplorationEntry(id,true,ResidentFamilyFor(manager.WorldSeed,id),rows[id].Topology,manager.WorldSeed);
+            // Other domestic sites fill quiet rows without displacing older encounters.
             foreach(string id in eligible.OrderBy(id=>NearResident(id)?0:1)
                 .ThenBy(id=>Rank(manager.WorldSeed,id,"resident-order")).ThenBy(id=>id,StringComparer.Ordinal))
             {
@@ -98,12 +104,23 @@ namespace CavesOfOoo.Core
                 if(resident==SpreadExplorationFamily.None||Touches(rows,id,resident))continue;
                 rows[id]=new SpreadExplorationEntry(id,true,resident,rows[id].Topology,manager.WorldSeed);
             }
-            return new SpreadExplorationPlan(manager,true,true,rows.Values){AllocationChecks=checks};
+            // One optional bounded satellite occupies a quiet ordinary address.
+            // Its variant/address is frozen before any graph or source roll exists.
+            string satellite=SatelliteAddress(rows,manager.WorldSeed);
+            if(satellite!=null)rows[satellite]=new SpreadExplorationEntry(satellite,true,SatelliteFamily(manager.WorldSeed),rows[satellite].Topology,manager.WorldSeed);
+            return new SpreadExplorationPlan(manager,true,true,rows.Values){AllocationChecks=checks,WorldKey=Guid.NewGuid().ToString("N")};
         }
         internal static uint Rank(int seed,string id,string salt)
         {unchecked{uint h=2166136261u^(uint)seed;foreach(char c in "SpreadExploration.v2|"+salt+"|"+id)h=(h^c)*16777619u;h^=h>>16;h*=0x7feb352du;h^=h>>15;h*=0x846ca68bu;return h^(h>>16);}}
         private static bool NearWorksite(string id)=>id=="Overworld.11.9.0"||id=="Overworld.12.10.0"||id=="Overworld.11.11.0";
         private static bool NearResident(string id)=>id=="Overworld.11.8.0"||id=="Overworld.12.11.0";
+        private static SpreadExplorationFamily SatelliteFamily(int seed)
+            =>Rank(seed,ReferenceGladePlan.ZoneID,"satellite-family")%2==0?SpreadExplorationFamily.WetCrossing:SpreadExplorationFamily.HeavyFrame;
+        private static string SatelliteAddress(Dictionary<string,SpreadExplorationEntry> rows,int seed)
+            =>rows.Values.Where(e=>e.PlacementEligible&&(e.Family==SpreadExplorationFamily.None||(int)e.Family>=18))
+                .Where(e=>{var p=WorldMap.FromZoneID(e.ZoneID);return Math.Abs(p.x-11)+Math.Abs(p.y-10)<=4;})
+                .OrderBy(e=>{var f=FormationSelector.For(BiomeType.Spread,e.ZoneID);return f==Formation.Fallow?0:f==Formation.FlowerMeadow?1:f==Formation.OldRoad?2:3;})
+                .ThenBy(e=>Rank(seed,e.ZoneID,"satellite-address")).ThenBy(e=>e.ZoneID,StringComparer.Ordinal).Select(e=>e.ZoneID).FirstOrDefault();
         private static SpreadExplorationFamily ResidentFamilyFor(int seed,string id)
         {
             if(id=="Overworld.11.8.0")return SpreadExplorationFamily.SeedKeepersPlot;
@@ -309,7 +326,9 @@ namespace CavesOfOoo.Core
             foreach(var e in plan.Entries)wire.Append('\n').Append(e.ZoneID).Append('|').Append(e.PlacementEligible?3:1).Append('|').Append((int)e.Family)
                 .Append('|').Append((int)e.Topology).Append('|').Append(plan.DispositionFor(e.ZoneID));
             if(world==null){world=new Entity{BlueprintName="World",ID=Guid.NewGuid().ToString("N")};world.SetTag("WorldEntity");}
-            world.Properties[PropertyKey]=wire.ToString();return world;
+            world.Properties[PropertyKey]=wire.ToString();
+            if(plan.Version>=11)world.Properties[WorldKeyProperty]=plan.WorldKey;
+            return world;
         }
         internal static SpreadExplorationPlan Restore(OverworldZoneManager manager,Entity world)
         {
@@ -318,17 +337,19 @@ namespace CavesOfOoo.Core
             var lines=wire.Split('\n');var header=lines[0].Split('|');
             if(header.Length!=3)throw Invalid("header");
             int version=Number(header[0]);
-            if((version!=2&&version!=3&&version!=4&&version!=5&&version!=6&&version!=7&&version!=8&&version!=9&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
+            if((version!=2&&version!=3&&version!=4&&version!=5&&version!=6&&version!=7&&version!=8&&version!=9&&version!=10&&version!=CurrentVersion)||Number(header[1])!=manager.WorldSeed)throw Invalid("version/seed");
+            string worldKey="";
+            if(version>=11 && (!world.Properties.TryGetValue(WorldKeyProperty,out worldKey) || !Guid.TryParseExact(worldKey,"N",out _)))throw Invalid("world identity");
             int count=Number(header[2]);if(count<0||count>MaxRecords||lines.Length!=count+1)throw Invalid("record count");
             var rows=new Dictionary<string,SpreadExplorationEntry>(StringComparer.Ordinal);var saved=new Dictionary<string,int>(StringComparer.Ordinal);
             for(int i=1;i<lines.Length;i++)
             {
                 var f=lines[i].Split('|');if(f.Length!=5||!Supported(f[0])||rows.ContainsKey(f[0]))throw Invalid("address");
                 int mask=Number(f[1]),family=Number(f[2]),topology=Number(f[3]),disposition=Number(f[4]);
-                if((mask!=1&&mask!=3)||family<0||family>(version==2?4:version==3?6:version==4?8:version==5?9:version==6?10:version==7?11:version==8?12:version==9?15:17)||topology<0||topology>3||disposition<0||disposition>2
+                if((mask!=1&&mask!=3)||family<0||family>(version==2?4:version==3?6:version==4?8:version==5?9:version==6?10:version==7?11:version==8?12:version==9?15:version==10?17:19)||topology<0||topology>3||disposition<0||disposition>2
                     ||(mask==1&&(family!=0||topology!=0))||(disposition==2&&(mask!=3||family==0)))throw Invalid("enum/mask/disposition");
                 var selected=(SpreadExplorationFamily)family;
-                var expected=version>=10&&family>=16?ResidentFamilyFor(manager.WorldSeed,f[0])
+                var expected=version>=11&&family>=18?SatelliteFamily(manager.WorldSeed):version>=10&&family>=16?ResidentFamilyFor(manager.WorldSeed,f[0])
                     :FamilyFor(FormationSelector.For(BiomeType.Spread,f[0]),version,manager.WorldSeed,f[0]);
                 if(selected!=SpreadExplorationFamily.None&&selected!=expected)throw Invalid("family habitat");
                 if(mask==3&&(f[0]==ReferenceGladePlan.ZoneID||f[0]==manager.RareEncounters?.PairZoneID||f[0]==manager.RareEncounters?.ViperZoneID||f[0]==manager.Wayhouse?.ZoneID
@@ -336,8 +357,14 @@ namespace CavesOfOoo.Core
                 rows.Add(f[0],new SpreadExplorationEntry(f[0],mask==3,selected,(SpreadExplorationTopology)topology,manager.WorldSeed));
                 if(disposition>0)saved.Add(f[0],disposition);
             }
+            if(version>=11)
+            {
+                var satellites=rows.Values.Where(e=>(int)e.Family>=18).ToArray();
+                string expectedAddress=SatelliteAddress(rows,manager.WorldSeed);
+                if(satellites.Length!=(expectedAddress==null?0:1)||(satellites.Length==1&&satellites[0].ZoneID!=expectedAddress))throw Invalid("satellite selection");
+            }
             foreach(var e in rows.Values)if(e.Family!=SpreadExplorationFamily.None&&Touches(rows,e.ZoneID,e.Family))throw Invalid("adjacency");
-            var result=new SpreadExplorationPlan(manager,true,true,rows.Values,version);
+            var result=new SpreadExplorationPlan(manager,true,true,rows.Values,version){WorldKey=worldKey};
             foreach(var record in saved)
             {
                 string id=record.Key;

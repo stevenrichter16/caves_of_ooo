@@ -61,18 +61,21 @@ namespace CavesOfOoo.Core.Inventory
             private readonly int _count;
             private readonly PhysicsPart _physics;
             private readonly Entity _carriedBy, _equippedBy;
+            private readonly ConnectedClayProvenance.Snapshot _clay;
             internal ItemState(Entity item, int index)
             {
                 Item = item; Index = index; _stacker = item?.GetPart<StackerPart>(); _count = _stacker?.StackCount ?? 1;
                 _physics = item?.GetPart<PhysicsPart>(); _carriedBy = _physics?.InInventory; _equippedBy = _physics?.Equipped;
+                _clay = new ConnectedClayProvenance.Snapshot(item);
             }
             internal bool HasChanged(List<Entity> list) => Item != null &&
                 ((Index >= 0) != list.Contains(Item) || (_stacker?.StackCount ?? 1) != _count
-                || _physics?.InInventory != _carriedBy || _physics?.Equipped != _equippedBy);
+                || _physics?.InInventory != _carriedBy || _physics?.Equipped != _equippedBy || _clay.Changed(Item));
             internal void Restore()
             {
                 if (_stacker != null) _stacker.StackCount = _count;
                 if (_physics != null) { _physics.InInventory = _carriedBy; _physics.Equipped = _equippedBy; }
+                _clay.Restore(Item);
             }
         }
     }

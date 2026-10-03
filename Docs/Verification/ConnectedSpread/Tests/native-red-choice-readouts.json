@@ -1,0 +1,44 @@
+{
+  "result": {
+    "success": true,
+    "message": "Test job status retrieved.",
+    "error": null,
+    "data": {
+      "job_id": "a736736613ff474cadcccda4de86bbaa",
+      "status": "failed",
+      "mode": "EditMode",
+      "started_unix_ms": 1790989426820,
+      "finished_unix_ms": 1790989429877,
+      "last_update_unix_ms": 1790989429877,
+      "progress": {
+        "completed": 4,
+        "total": 4,
+        "current_test_full_name": null,
+        "current_test_started_unix_ms": 1790989429616,
+        "last_finished_test_full_name": "CavesOfOoo.Tests.ConnectedChoiceReadoutTests.NewGladeNoticeExplainsTheCompetingPanBeforeFirstClayExpenditure",
+        "last_finished_unix_ms": 1790989429855,
+        "stuck_suspected": false,
+        "editor_is_focused": true,
+        "blocked_reason": null,
+        "failures_so_far": [
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedChoiceReadoutTests.IdlePanExamineExplainsMealBenefitAndTradeoffBeforePayment(False)",
+            "message": "  Expected: String containing \"3d4\"\n  But was:  \"you see connectedbatchpan.\nprepare a wrapped field meal: two emberwheat, one claspbean pulp and two drams. it takes 120 world ticks. interrupted work returns remaining ingredients, but not the fee. the public oven remains free.\nthe damage cannot be repaired with a known method.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedChoiceReadoutTests.IdlePanExamineExplainsMealBenefitAndTradeoffBeforePayment(True)",
+            "message": "  Expected: String containing \"3d4\"\n  But was:  \"you see connectedbatchpan.\nprepare a wrapped field meal: two emberwheat, one claspbean pulp and two drams. it takes 120 world ticks. interrupted work returns remaining ingredients, but not the fee. the public oven remains free.\nthe damage cannot be repaired with a known method.\"\n"
+          },
+          {
+            "full_name": "CavesOfOoo.Tests.ConnectedChoiceReadoutTests.NewGladeNoticeExplainsTheCompetingPanBeforeFirstClayExpenditure",
+            "message": "  The competing cost must be visible at spawn, before the well consumes the first two clay.\n  Expected: String matching \"pan[^.]*two measures of fire clay\"\n  But was:  \"you see a gleaners' working notice.\n\nwell lining split. two measures of fire clay needed. stores below the western ruin; leave the landing clear. a second hand adds: the field alembic is one stretch north, the forge one east. frost lichen can be brewed into a freezing coating and used to quench a melee weapon at a forge, at a cost to its durability. put the weapon in your pack first. sill is west; the wayside kitchen is southeast. marrowstye's receiving hall lies one stretch farther south from the kitchen.\ncarved directions:\n  - sill (10,10): from (11,10), 1 west world-map cells.\n  - marrowstye (12,12): from (11,10), 1 east, 2 south world-map cells.\n  - quillhold (14,9): from (11,10), 3 east, 1 north world-map cells.\n  - tine (13,7): from (11,10), 2 east, 3 north world-map cells.\"\n"
+          }
+        ],
+        "failures_capped": false
+      },
+      "error": null,
+      "result": null
+    },
+    "hint": null
+  }
+}

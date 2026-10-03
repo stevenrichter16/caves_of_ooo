@@ -80,6 +80,7 @@ namespace CavesOfOoo.Core
                             ||recipe==null||e.Parts.Count(part=>part is RepairablePart)!=1||e.Parts.Count(part=>part is CompositionPart)!=1
                             ||e.GetPart<CompositionPart>()?.Contains(recipe.Composition)!=true)
                             return Reject(zone,"invalid-well");
+                        if(manager.Exploration?.Version>=11 && !ConnectedSpreadProgress.BindRepair(e,manager.Exploration.WorldKey))return Reject(zone,"invalid-well-origin");
                         e.GetPart<RenderPart>().DisplayName="gleaners' lined well";
                         Describe(e,"Fire clay seals this well's fired lining. A sound lining allows drinking and vessel filling; repairing a split takes two measures of fire clay. The old supply cellar in the western ruin stored repair clay. The reed basin nearby holds only a few drinks; it cannot refill this well.");
                     }
@@ -92,7 +93,10 @@ namespace CavesOfOoo.Core
                     else
                     {
                         e.GetPart<RenderPart>().DisplayName="gleaners' working notice";
-                        Describe(e,"WELL LINING SPLIT. Two measures of fire clay needed. Stores below the western ruin; leave the landing clear. A second hand adds: the field alembic is one stretch north, the forge one east. Frost lichen can be brewed into a freezing coating and used to quench a melee weapon at a forge, at a cost to its durability. Put the weapon in your pack first. Sill is west; the wayside kitchen is southeast. Marrowstye's receiving hall lies one stretch farther south from the kitchen.");
+                        string text="WELL LINING SPLIT. Two measures of fire clay needed. Stores below the western ruin; leave the landing clear. A second hand adds: the field alembic is one stretch north, the forge one east. Frost lichen can be brewed into a freezing coating and used to quench a melee weapon at a forge, at a cost to its durability. Put the weapon in your pack first. Sill is west; the wayside kitchen is southeast. Marrowstye's receiving hall lies one stretch farther south from the kitchen.";
+                        if(manager.Exploration?.Version>=11)
+                            text+=" Another hand notes: the kitchen's batch pan also needs two measures of fire clay, for wrapped field meals. Its public oven and cot need no repair. Clay spent there cannot line this well until more is found.";
+                        Describe(e,text);
                     }
                     staged.Add(e);
                     detachedProofs.Add(SpreadGenerationReceipt.CaptureDetachedState(e));

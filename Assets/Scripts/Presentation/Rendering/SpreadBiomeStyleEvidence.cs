@@ -60,6 +60,8 @@ namespace CavesOfOoo.Rendering
    if(botany!=null){botany.Validate();foreach(var e in botany.Entries)Add(e.Id,e.Mesh,botany.Material);}
    var cultivation=RepairCultivation3DLibrary.Load();
    if(cultivation!=null){cultivation.Validate();foreach(var e in cultivation.Entries)Add(e.Id,e.Mesh,cultivation.Material);}
+   var connected=ConnectedSpread3DLibrary.Load();
+   if(connected!=null){connected.Validate();foreach(var e in connected.Entries)Add(e.Id,e.Mesh,connected.Material);}
    var curation=CurationYard3DLibrary.Load();
    if(curation!=null){curation.Validate();foreach(var e in curation.Entries)Add(e.Id,e.Mesh,curation.Material);}
    var fieldGates=SpreadFieldGate3DLibrary.Load();

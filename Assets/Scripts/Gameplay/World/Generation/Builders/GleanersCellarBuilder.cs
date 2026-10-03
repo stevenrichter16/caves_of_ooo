@@ -16,9 +16,12 @@ namespace CavesOfOoo.Core
         public string Name=>"GleanersCellar";
         public int Priority=>2000;
         readonly int seed;
+        readonly bool connected;
+        readonly string worldKey;
         static readonly string[] Required={"Floor","StoneWall","StairsUp","Crate","FireClay","FallenBeam","Signpost",
             "MarlbackScrabbler","ShatteredRimeGrimoire","Buckler","Dagger","Hatchet","Cudgel","LeatherCap","LeatherGloves"};
-        public GleanersCellarBuilder(int seed){this.seed=seed;}
+        public GleanersCellarBuilder(int seed):this(seed,false){}
+        public GleanersCellarBuilder(int seed, bool connected, string worldKey=null){this.seed=seed;this.connected=connected;this.worldKey=worldKey;}
 
         /// <summary>Read-only content admission; malformed runtime owners still fail staging.
         /// Both finite reward packages are required so content availability never rerolls a seed.</summary>
@@ -40,6 +43,7 @@ namespace CavesOfOoo.Core
         public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
         {
             if(zone==null||zone.ZoneID!=ZoneID||zone.EntityCount!=0||!SupportsContent(factory))return Reject(zone,"invalid-empty-zone-or-content");
+            if(connected&&!factory.Blueprints.ContainsKey("SootrootCrop"))return Reject(zone,"missing-sootroot");
             var reservationBefore=new HashSet<(int x,int y)>(zone.GenReservedCells);
             var staged=new List<(Entity owner,int x,int y)>();var createdIds=new HashSet<string>(StringComparer.Ordinal);
             var createdOwners=new Dictionary<Entity,(string blueprint,string id)>();
@@ -116,7 +120,31 @@ namespace CavesOfOoo.Core
                 }
                 else if(goods[2].GetPart<EquippablePart>()==null||goods[2].GetPart<ArmorPart>()?.AV!=1)
                     throw new InvalidOperationException("invalid-shield-discovery");
+                if(connected && !string.IsNullOrEmpty(worldKey)
+                    && (!ConnectedSpreadProgress.BindClay(goods[0],worldKey,0)||!ConnectedSpreadProgress.BindClay(goods[1],worldKey,1)))
+                    throw new InvalidOperationException("invalid-clay-origin");
                 foreach(var item in goods)if(!container.AddItem(item))throw new InvalidOperationException("supply-container-refused");
+                var roots=new List<Entity>();
+                if(connected)
+                {
+                    for(int i=0;i<2;i++)
+                    {
+                        int x=storeX+1,y=MirrorY(9+i);
+                        var root=Place("SootrootCrop",i==0?"sootroot-ripe":"sootroot-dry",x,y);
+                        var crop=root.GetPart<CropPart>();
+                        if(crop==null||!crop.HarvestAtMaturity||crop.YieldBlueprint!="SootrootPulp"||crop.YieldCount!=2||crop.SeedYieldBlueprint!="SootrootSeed"||crop.SeedYieldCount!=1)
+                            throw new InvalidOperationException("invalid-sootroot");
+                        crop.GrowthStage=i==0?2:0;crop.TicksInStage=0;crop.MoistureTicks=0;
+                        root.GetPart<RenderPart>().RenderString=crop.GlyphForStage(crop.GrowthStage).ToString();
+                        root.GetPart<RenderPart>().ColorString=crop.ColorForStage(crop.GrowthStage);
+                        var ground=staged[y*Zone.Width+x].owner;
+                        if(ground.BlueprintName!="Floor"||!ground.HasTag("Terrain"))throw new InvalidOperationException("invalid-growing-bed");
+                        ground.SetTag("Plantable");ground.AddPart(new CultivatedSoilPart());
+                        if(i==1 && !string.IsNullOrEmpty(worldKey) && !ConnectedSpreadProgress.BindDryCrop(root,worldKey))throw new InvalidOperationException("invalid-dry-crop-origin");
+                        roots.Add(root);
+                    }
+                    Describe(notice,"gleaners' cellar tally",notice.GetPart<ExaminablePart>().Text+" Two sootroot beds survive behind the store: one ripe, one dry. Water the dry seedling; it will keep growing while you travel. Harvested pulp can smother a burn, or take two pulp and pitchpod resin to Ivrin's public ink desk at Marrowstye, southeast of the glade.");
+                }
                 // Creation hooks may modify an earlier staged owner. Verify the final
                 // collision, useful supplies and fixed identities after the LAST hook,
                 // rather than trusting the checks made when that owner was first created.
@@ -133,7 +161,8 @@ namespace CavesOfOoo.Core
                 }
                 bool RoleMatches(Entity e,string role,string blueprint)=>e.GetProperty(RoleKey)==role&&Fresh(e,blueprint);
                 var finalHandling=beam.GetPart<HandlingPart>();var finalBrain=guard.GetPart<BrainPart>();
-                if(!TerrainMatches()||createdOwners.Any(pair=>pair.Key.ID!=pair.Value.id||pair.Key.BlueprintName!=pair.Value.blueprint)
+                if(roots.Where((e,i)=>!Fresh(e,"SootrootCrop")||e.GetPart<CropPart>()?.GrowthStage!=(i==0?2:0)||e.GetPart<CropPart>()?.MoistureTicks!=0).Any()
+                    ||!TerrainMatches()||createdOwners.Any(pair=>pair.Key.ID!=pair.Value.id||pair.Key.BlueprintName!=pair.Value.blueprint)
                     ||!RoleMatches(stairs,"stairs","StairsUp")||!stairs.HasPart<StairsUpPart>()||stairs.GetPart<PhysicsPart>().Solid||stairs.HasTag("Solid")
                     ||!RoleMatches(notice,"notice","Signpost")||!notice.GetPart<PhysicsPart>().Solid||notice.GetPart<PhysicsPart>().Takeable
                     ||!RoleMatches(beam,"beam","FallenBeam")||!beam.GetPart<PhysicsPart>().Solid||beam.GetPart<PhysicsPart>().Takeable
