@@ -6,11 +6,11 @@ namespace CavesOfOoo.Core
     /// §7.1 Layer 1). Blueprint-authorable like ReagentPart: part name
     /// "WeaponComponent" resolves via EntityFactory's name+"Part" convention.
     ///
-    /// Slot vocabulary: "Blade" (drives damage dice + damage-class
-    /// attribute), "Haft" (drives strength cap + handling), "Binding"
+    /// Slot vocabulary: "Blade" (a blade or head; drives damage dice,
+    /// damage class and weapon family), "Haft" (drives strength cap + handling), "Binding"
     /// (drives pen/hit bonuses + quirk). One component of each slot forges
     /// one weapon; contributions are combined by
-    /// WeaponForgingService.ComputeStats.
+    /// WeaponForgingService.PreviewForge.
     /// </summary>
     public class WeaponComponentPart : Part
     {
@@ -51,5 +51,10 @@ namespace CavesOfOoo.Core
         /// (e.g. "long-hafted" + "serrated" + "steel blade").
         /// </summary>
         public string NameFragment = "";
+
+        public override void OnAfterLoad(SaveReader reader)
+        {
+            SteelBladeFamilyCompatibility.RestoreComponent(this);
+        }
     }
 }

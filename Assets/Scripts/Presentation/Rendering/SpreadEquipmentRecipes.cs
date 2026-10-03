@@ -19,6 +19,8 @@ namespace CavesOfOoo.Rendering
     {
         private static readonly Dictionary<string, string> Slots = new Dictionary<string, string>(StringComparer.Ordinal)
         {
+            { "GroundwireScreen", "Hand" },
+            { "KilnfeltApron", "Body" },
             { "Dagger", "Hand" },
             { "CurationSaltRake", "Hand" },
             { "ForgedWeapon", "Hand" },
@@ -115,7 +117,7 @@ namespace CavesOfOoo.Rendering
                     if (part.Type == "Hand") { int side = part.GetLaterality(); left |= (side & Laterality.LEFT) != 0; right |= (side & Laterality.RIGHT) != 0; }
                 key += ":" + (left ? "L" : "") + (right ? "R" : "");
             }
-            recipe = new SpreadEquipmentRecipe(slot == "Hand" ? portable : "spread-worn-" + item.BlueprintName.ToLowerInvariant(), slot, key);
+            recipe = new SpreadEquipmentRecipe(slot == "Hand" ? portable : EquipmentDiscoveryRecipes.WornModel(item.BlueprintName) ?? "spread-worn-" + item.BlueprintName.ToLowerInvariant(), slot, key);
             return true;
         }
     }

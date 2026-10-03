@@ -28,6 +28,8 @@ namespace CavesOfOoo.Rendering
             if(botany!=null){botany.Validate();foreach(var e in botany.Entries)generated.Add(e.Mesh);}
             var cultivation=RepairCultivation3DLibrary.Load();
             if(cultivation!=null){cultivation.Validate();foreach(var e in cultivation.Entries)generated.Add(e.Mesh);}
+            var equipmentDiscoveries = EquipmentDiscoveryArtLibrary.Load();
+            if (equipmentDiscoveries != null) { equipmentDiscoveries.Validate(); foreach (var entry in equipmentDiscoveries.Entries) generated.Add(entry.Mesh); }
             // The portable field dressing may travel beyond its home district.
             var soddenDistrict = SoddenDistrictArtLibrary.Load();
             if (soddenDistrict != null) { soddenDistrict.Validate(); foreach (var entry in soddenDistrict.Entries) generated.Add(entry.Mesh); }

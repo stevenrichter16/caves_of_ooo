@@ -1,5 +1,7 @@
 # Crafting from the pack — forge and brew without a station
 
+**2026-10-03 equipment discoveries:** the live picker now calls the striking slot **Heads / blades** and previews weapon family, signed penetration/hit modifiers and strength cap. Steel heads support learned LongBlades skills; geographically sourced mallet, hook-axe and counterweight blade heads offer distinct costs. The internal `Blade` slot and pack/station rules remain compatible. See [Equipment discoveries](EQUIPMENT-DISCOVERIES-DESIGN.md) for exact contracts, sources, saved-steel repair and verification. The historical panel sketches below describe the earlier layout.
+
 > **Request (2026-08-10):** *"allow the player to forge weapons and create
 > alchemical brews from their menu. instead of needing dedicated in world
 > objects the player can craft from their inventory. plan out and design

@@ -44,7 +44,7 @@ namespace CavesOfOoo.Core
                         // section per part kind, each listing the carried
                         // items with pick-marks, and ONE Craft button at the
                         // bottom. Headers are inert (CraftNoop).
-                        AddSection(actions, actor, "Blades", 200,
+                        AddSection(actions, actor, "Heads / blades", 200,
                             item => item.GetPart<WeaponComponentPart>()?.Slot == "Blade");
                         AddSection(actions, actor, "Hafts", 170,
                             item => item.GetPart<WeaponComponentPart>()?.Slot == "Haft");

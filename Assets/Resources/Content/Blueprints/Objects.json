@@ -2543,6 +2543,526 @@
       ]
     },
     {
+      "Name": "PeatMalletHeadComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "peat-packing mallet head"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "/"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            }
+          ]
+        },
+        {
+          "Name": "WeaponComponent",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Blade"
+            },
+            {
+              "Key": "BaseDamage",
+              "Value": "1d4"
+            },
+            {
+              "Key": "PenBonus",
+              "Value": "-1"
+            },
+            {
+              "Key": "HitBonus",
+              "Value": "0"
+            },
+            {
+              "Key": "Attributes",
+              "Value": "Bludgeoning Cudgel"
+            },
+            {
+              "Key": "NameFragment",
+              "Value": "peat-packing mallet"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "24"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Iron"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Metal"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Cutters around Sumphold pack peat with this broad iron-faced head. Forged as a cudgel, its bludgeoning blows can stun and it supports learned cudgel skills. It trades damage and armor penetration for control: head damage 1d4, penetration -1. Add a haft and binding in the Crafting tab. The abandoned works east of the cutbank kept these with their pump screens."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "2"
+        }
+      ]
+    },
+    {
+      "Name": "CinderhookAxeHeadComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "cinderhook axe head"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "/"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&R"
+            }
+          ]
+        },
+        {
+          "Name": "WeaponComponent",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Blade"
+            },
+            {
+              "Key": "BaseDamage",
+              "Value": "1d8"
+            },
+            {
+              "Key": "PenBonus",
+              "Value": "0"
+            },
+            {
+              "Key": "HitBonus",
+              "Value": "-2"
+            },
+            {
+              "Key": "Attributes",
+              "Value": "Cutting Axe"
+            },
+            {
+              "Key": "NameFragment",
+              "Value": "cinderhook axe"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "42"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Iron"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Metal"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A heavy hooked edge from Cinderhold extraction crews, sold by the workshop smith. Assemble it with a haft and binding to use learned axe skills. The hook bites hard but pulls a swing wide: head damage 1d8, hit -2. A steadier haft or binding can offset that cost; the crafting preview shows the final weapon."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "3"
+        }
+      ]
+    },
+    {
+      "Name": "CounterweightLongBladeComponent",
+      "Inherits": "WeaponComponentItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "counterweight long blade"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "/"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&C"
+            }
+          ]
+        },
+        {
+          "Name": "WeaponComponent",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Blade"
+            },
+            {
+              "Key": "BaseDamage",
+              "Value": "1d6"
+            },
+            {
+              "Key": "PenBonus",
+              "Value": "-1"
+            },
+            {
+              "Key": "HitBonus",
+              "Value": "1"
+            },
+            {
+              "Key": "Attributes",
+              "Value": "Cutting LongBlades"
+            },
+            {
+              "Key": "NameFragment",
+              "Value": "counterweight long blade"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "42"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Iron"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Metal"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Last Counter keeps these slender frontier blades in its supply-post chest. A brass counterweight steadies the point; the thin edge struggles against armor. Head damage 1d6, hit +1, penetration -1. A haft and binding make a long blade for learned stances and Lunge. The weapon does not teach those skills."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "3"
+        }
+      ]
+    },
+    {
+      "Name": "KilnfeltApron",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "kilnfelt apron"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "["
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&r"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "12"
+            }
+          ]
+        },
+        {
+          "Name": "Equippable",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Body"
+            },
+            {
+              "Key": "EquipBonuses",
+              "Value": "HeatResistance:50"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "1"
+            },
+            {
+              "Key": "DV",
+              "Value": "0"
+            },
+            {
+              "Key": "SpeedPenalty",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "45"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Cloth"
+            },
+            {
+              "Key": "Porosity",
+              "Value": "0.3"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Cloth"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Cinderhold kiln workers stitch mineral felt beneath overlapping red patches. Worn on the body, it gives 50 heat resistance but only 1 armor and slows you by 5. It sacrifices physical protection for fire and steam work; it does not protect against poison gas, acid, cold or electricity. The workshop smith sells the apron beside the cinderhook heads."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 15,
+          "Min": 0,
+          "Max": 15
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "2"
+        }
+      ]
+    },
+    {
+      "Name": "GroundwireScreen",
+      "Inherits": "ArmorItem",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "groundwire screen"
+            },
+            {
+              "Key": "RenderString",
+              "Value": ")"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Weight",
+              "Value": "8"
+            }
+          ]
+        },
+        {
+          "Name": "Equippable",
+          "Params": [
+            {
+              "Key": "Slot",
+              "Value": "Hand"
+            },
+            {
+              "Key": "UsesSlots",
+              "Value": "Hand"
+            },
+            {
+              "Key": "EquipBonuses",
+              "Value": "ElectricResistance:50"
+            }
+          ]
+        },
+        {
+          "Name": "Armor",
+          "Params": [
+            {
+              "Key": "AV",
+              "Value": "0"
+            },
+            {
+              "Key": "DV",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "35"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Copper"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Metal"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A handgrip and insulated backing have been fitted to the copper mesh once used to earth peatworks pumps. It gives 50 electrical resistance while held, occupying a hand that could carry a shield or weapon. The open mesh gives no armor or dodge bonus and does not protect against mire acid or poison. Spare screens remain in the abandoned works locker east of the cutbank."
+            }
+          ]
+        }
+      ],
+      "Stats": [
+        {
+          "Name": "Hitpoints",
+          "Value": 12,
+          "Min": 0,
+          "Max": 12
+        }
+      ],
+      "Tags": [
+        {
+          "Key": "Tier",
+          "Value": "2"
+        }
+      ]
+    },
+    {
       "Name": "SteelBladeComponent",
       "Inherits": "WeaponComponentItem",
       "Parts": [
@@ -2572,7 +3092,7 @@
             },
             {
               "Key": "Attributes",
-              "Value": "Cutting"
+              "Value": "Cutting LongBlades"
             },
             {
               "Key": "NameFragment",

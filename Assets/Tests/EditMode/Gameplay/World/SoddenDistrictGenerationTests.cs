@@ -100,7 +100,7 @@ namespace CavesOfOoo.Tests
                 if(id==SoddenDistrictPlan.WorksZoneID)
                 {
                     var stock=zone.GetAllEntities().Single(e=>e.BlueprintName=="SoddenWorksLocker").GetPart<ContainerPart>();
-                    CollectionAssert.AreEquivalent(new[]{"LeatherBoots","Buckler","KnotflaxCord","KnotflaxCord"},stock.Contents.SelectMany(e=>Enumerable.Repeat(e.BlueprintName,e.GetPart<StackerPart>()?.StackCount??1)));
+                    CollectionAssert.AreEquivalent(new[]{"LeatherBoots","Buckler","KnotflaxCord","KnotflaxCord","PeatMalletHeadComponent","GroundwireScreen","OakHaftComponent","LeatherBindingComponent"},stock.Contents.SelectMany(e=>Enumerable.Repeat(e.BlueprintName,e.GetPart<StackerPart>()?.StackCount??1)));
                     Assert.AreEqual(1,zone.GetAllEntities().Count(e=>e.BlueprintName=="SoddenWorksSalvage"));
                     Assert.IsTrue(stock.Contents.All(e=>e.GetPart<PhysicsPart>().InInventory!=null));
                 }

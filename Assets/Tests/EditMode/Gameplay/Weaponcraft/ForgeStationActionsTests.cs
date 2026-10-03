@@ -238,7 +238,7 @@ namespace CavesOfOoo.Tests.Gameplay.Weaponcraft
 
             var actions = WorldInteractionSystem.GatherActions(forge, smith);
 
-            int iBlades = actions.FindIndex(a => a.Display.Contains("Blades"));
+            int iBlades = actions.FindIndex(a => a.Display.Contains("Heads / blades"));
             int iHafts = actions.FindIndex(a => a.Display.Contains("Hafts"));
             int iBindings = actions.FindIndex(a => a.Display.Contains("Bindings"));
             int iQuench = actions.FindIndex(a => a.Display.Contains("Quenches"));

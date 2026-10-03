@@ -35,6 +35,16 @@ namespace CavesOfOoo.Rendering
             if (cell == null || !cell.Objects.Contains(entity)) return Refused(entity, "not-current-zone-member");
             var render = entity.GetPart<RenderPart>();
             if (render == null || !render.Visible) return Refused(entity, "native-render-hidden");
+            if (EquipmentDiscoveryRecipes.Handles(entity))
+            {
+                var physics = entity.GetPart<PhysicsPart>();
+                if (physics == null || physics.ParentEntity != entity || physics.InInventory != null || physics.Equipped != null
+                    || entity.SpatialZone != zone || cell.ParentZone != zone || entity.HasPart<SpatialFootprintPart>()
+                    || entity.HasPart<MultiCellPilotPropPart>() || entity.HasPart<FellingScenePropPart>()
+                    || !EquipmentDiscoveryRecipes.TryRecipe(entity, out string equipmentModel))
+                    return Refused(entity, "unsupported-current-equipment-discovery");
+                return new SpawnRing3DRecipe(entity, equipmentModel, null, Village3DProjection.CellCentre(cell.X, cell.Y), true, false);
+            }
             if (SoddenDistrictRecipes.Handles(entity.BlueprintName))
             {
                 string districtModel = SoddenDistrictRecipes.ResolveModel(zone, entity);

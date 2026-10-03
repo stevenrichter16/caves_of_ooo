@@ -27,6 +27,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
                         continue;
 
                     var stat = actor.GetStat(statName);
+                    // Elemental damage treats an absent resistance as zero. Equipment
+                    // must therefore be able to contribute to that implicit zero,
+                    // without inventing arbitrary statistics for misspelled bonuses.
+                    if (stat == null && apply && IsElementalResistance(statName))
+                    {
+                        stat = new Stat { Owner = actor, Name = statName, BaseValue = 0,
+                            Min = -100, Max = 100 };
+                        actor.Statistics[statName] = stat;
+                    }
                     if (stat == null)
                         continue;
 
@@ -53,5 +62,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
             else
                 speed.Penalty -= armor.SpeedPenalty;
         }
+
+        private static bool IsElementalResistance(string name) => name == "HeatResistance"
+            || name == "ColdResistance" || name == "ElectricResistance" || name == "AcidResistance";
     }
 }

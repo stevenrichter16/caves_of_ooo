@@ -166,13 +166,22 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 apply: null,
                 undo: () =>
                 {
-                    UnequipCommand.TryForceUnequip(context, itemToEquip, equippedState);
+                    // Forced injury/death may already have completed removal.
+                    // Its independently settled ownership must survive rollback.
+                    if (InventorySystem.IsEquipped(actor, itemToEquip))
+                        UnequipCommand.TryForceUnequip(context, itemToEquip, equippedState);
                 });
 
             EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true);
             transaction.Do(
                 apply: null,
-                undo: () => EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: false));
+                undo: () =>
+                {
+                    // This undo precedes the ownership undo above. If AfterEquip
+                    // already forced the item off, Body also removed its bonuses.
+                    if (InventorySystem.IsEquipped(actor, itemToEquip))
+                        EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: false);
+                });
 
             if (emitSuccessMessage)
                 MessageLog.Add($"{actor.GetDisplayName()} equips {itemToEquip.GetDisplayName()}.");
@@ -292,6 +301,16 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             var splitStacker = splitItem.GetPart<StackerPart>();
             if (splitStacker == null || splitStacker.StackCount <= 0)
+                return;
+
+            // A forced injury/death can move this unit out of the transaction's
+            // inventory while AfterEquip runs. Preserve that independent result:
+            // merging it back would duplicate the carried unit and zero its body
+            // on the ground (or steal it from a different native owner).
+            var physics = splitItem.GetPart<PhysicsPart>();
+            if (splitItem.SpatialZone != null
+                || (physics?.InInventory != null && physics.InInventory != context?.Actor)
+                || (physics?.Equipped != null && physics.Equipped != context?.Actor))
                 return;
 
             if (context?.Inventory != null)

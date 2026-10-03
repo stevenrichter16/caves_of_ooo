@@ -32,6 +32,9 @@ namespace CavesOfOoo.Core
         public int HitBonus;
         public int MaxStrengthBonus;
         public string Attributes;
+        /// <summary>Readable skill family derived from Attributes; "Mixed" for
+        /// multiple explicit families and "Unclassified" when none applies.</summary>
+        public string FamilyDisplayName;
         public string OnHitEffectsRaw;
     }
 }

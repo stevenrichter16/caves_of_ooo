@@ -95,7 +95,7 @@ namespace CavesOfOoo.Rendering
 
             if (_craftingMode == CraftingMode.Forge)
             {
-                AddCraftSection("Blades", inv, item => SlotOf(item) == "Blade");
+                AddCraftSection("Heads / blades", inv, item => SlotOf(item) == "Blade");
                 AddCraftSection("Hafts", inv, item => SlotOf(item) == "Haft");
                 AddCraftSection("Bindings", inv, item => SlotOf(item) == "Binding");
                 AddCraftSection("Quench one weapon (optional)", inv, IsQuench);
@@ -511,7 +511,7 @@ namespace CavesOfOoo.Rendering
 
         private int RenderForgeSelection(int x, int y)
         {
-            DrawLabelled(x + 1, y, "Blade", x + 10, NameOrDash(_pickedBlade), SlotColor(_pickedBlade));
+            DrawLabelled(x + 1, y, "Head", x + 10, NameOrDash(_pickedBlade), SlotColor(_pickedBlade));
             DrawLabelled(x + 1, y + 1, "Haft", x + 10, NameOrDash(_pickedHaft), SlotColor(_pickedHaft));
             DrawLabelled(x + 1, y + 2, "Binding", x + 10, NameOrDash(_pickedBinding), SlotColor(_pickedBinding));
             DrawLabelled(x + 1, y + 3, "Quench", x + 10, NameOrDash(_pickedQuench), SlotColor(_pickedQuench));
@@ -549,11 +549,14 @@ namespace CavesOfOoo.Rendering
 
             DrawText(ix, iy, Truncate(_forgePreview.DisplayName, CRAFT_RESULT_W - 4),
                 QudColorParser.White);
+            DrawLabelled(ix, iy + 1, "Family", ix + 10, _forgePreview.FamilyDisplayName, QudColorParser.BrightCyan);
             DrawLabelled(ix, iy + 2, "Damage", ix + 10, _forgePreview.BaseDamage, QudColorParser.White);
-            DrawLabelled(ix, iy + 3, "Pen", ix + 10, _forgePreview.PenBonus.ToString(),
-                _forgePreview.PenBonus > 0 ? QudColorParser.BrightGreen : QudColorParser.White);
-            DrawLabelled(ix, iy + 4, "Hit", ix + 10, _forgePreview.HitBonus.ToString(),
-                _forgePreview.HitBonus > 0 ? QudColorParser.BrightGreen : QudColorParser.White);
+            DrawLabelled(ix, iy + 3, "Pen", ix + 10, _forgePreview.PenBonus.ToString("+0;-0;0"),
+                _forgePreview.PenBonus > 0 ? QudColorParser.BrightGreen : _forgePreview.PenBonus < 0 ? QudColorParser.BrightRed : QudColorParser.White);
+            DrawLabelled(ix, iy + 4, "Hit", ix + 10, _forgePreview.HitBonus.ToString("+0;-0;0"),
+                _forgePreview.HitBonus > 0 ? QudColorParser.BrightGreen : _forgePreview.HitBonus < 0 ? QudColorParser.BrightRed : QudColorParser.White);
+            DrawLabelled(ix, iy + 5, "Str cap", ix + 10,
+                _forgePreview.MaxStrengthBonus < 0 ? "none" : _forgePreview.MaxStrengthBonus.ToString(), QudColorParser.White);
 
             if (!string.IsNullOrEmpty(_forgePreview.OnHitEffectsRaw))
                 DrawText(ix, iy + 6, Truncate(_forgePreview.OnHitEffectsRaw, CRAFT_RESULT_W - 4),

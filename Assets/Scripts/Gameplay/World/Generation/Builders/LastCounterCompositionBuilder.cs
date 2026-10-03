@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
 
@@ -82,8 +83,35 @@ namespace CavesOfOoo.Core
                 case "Rubble":return ",";case "DryBrush":return "\"";
                 case "SaccharineEnvoy":return "@";case "LastCounterSign":return "I";case "Campfire":return "*";default:return null;}
         }
+        internal static readonly string[] RegionalItems={"CounterweightLongBladeComponent","OakHaftComponent","LeatherBindingComponent"};
+        internal static bool RegionalPortable(Entity e,string blueprint)
+        {
+            var physics=e?.GetPart<PhysicsPart>();
+            if(e==null||e.BlueprintName!=blueprint||string.IsNullOrEmpty(e.ID)||physics?.Takeable!=true||e.GetPart<RenderPart>()?.Visible!=true
+                ||e.HasTag("Creature")||(e.GetPart<StackerPart>()?.StackCount??1)<1||e.Parts.Any(part=>part==null||part.ParentEntity!=e))return false;
+            var component=e.GetPart<WeaponComponentPart>();
+            if(blueprint=="CounterweightLongBladeComponent")return component?.Slot=="Blade"&&(" "+component.Attributes+" ").Contains(" LongBlades ");
+            return blueprint=="OakHaftComponent"?component?.Slot=="Haft":blueprint=="LeatherBindingComponent"&&component?.Slot=="Binding";
+        }
+        internal static bool RegionalStockValid(Entity owner)
+        {
+            var box=owner?.GetPart<ContainerPart>();if(box==null)return false;
+            foreach(string id in RegionalItems)
+            {
+                var items=box.Contents.Where(e=>e.BlueprintName==id).ToArray();
+                if(items.Length==0||items.Any(e=>!RegionalPortable(e,id)||e.SpatialZone!=null||e.GetPart<PhysicsPart>().InInventory!=owner||e.GetPart<PhysicsPart>().Equipped!=null))return false;
+                if(id=="CounterweightLongBladeComponent"&&items.Sum(e=>e.GetPart<StackerPart>()?.StackCount??1)!=1)return false;
+            }
+            return box.Contents.Select(e=>e.ID).Distinct().Count()==box.Contents.Count;
+        }
         internal static bool StockDependenciesValid(EntityFactory factory)
         {
+            foreach(string blueprint in RegionalItems)
+            {
+                var item=Create(factory,blueprint);
+                if(!RegionalPortable(item,blueprint)||item.SpatialZone!=null||item.GetPart<PhysicsPart>().InInventory!=null
+                    ||item.GetPart<PhysicsPart>().Equipped!=null||(item.GetPart<StackerPart>()?.StackCount??1)!=1)return false;
+            }
             if(!LootTableRegistry.IsInitialized)return true;
             foreach(var name in new[]{"CampGoodsT1","EnvoyStock"})if(!ValidateTable(name,factory,new HashSet<string>()))return false;
             return true;
@@ -132,8 +160,21 @@ namespace CavesOfOoo.Core
                         foreach(var bp in LootTableRegistry.Roll("EnvoyStock",rng))
                         {var item=LastCounterCompositionBuilder.Create(factory,bp);if(item==null||!e.GetPart<InventoryPart>().AddObject(item))return Reject(zone,"envoy-stock-refused");}
                 }
+                if(p.Blueprint=="Chest")
+                {
+                    foreach(string id in LastCounterCompositionBuilder.RegionalItems)
+                    {
+                        var item=LastCounterCompositionBuilder.Create(factory,id);
+                        if(!LastCounterCompositionBuilder.RegionalPortable(item,id)||item.SpatialZone!=null
+                            ||item.GetPart<PhysicsPart>().InInventory!=null||item.GetPart<PhysicsPart>().Equipped!=null
+                            ||(item.GetPart<StackerPart>()?.StackCount??1)!=1||!e.GetPart<ContainerPart>().AddItem(item))return Reject(zone,"regional-stock-refused");
+                    }
+                }
+                if(p.Blueprint=="LastCounterSign")
+                    e.GetPart<ExaminablePart>().Text+="\nThe supply chest holds a counterweight long blade, an oak haft and a leather binding. Its balanced point favors accurate long-blade work but sacrifices armor penetration. Assemble one weapon from the pack, or bring the kit to a forge. One consignment only; the chest is not a promise of further delivery.";
                 staged.Add((e,p.X,p.Y));
             }
+            if(!staged.Where(s=>s.e.BlueprintName=="Chest").All(s=>LastCounterCompositionBuilder.RegionalStockValid(s.e)))return Reject(zone,"changed-regional-stock");
             var added=new List<Entity>();foreach(var p in staged)
             {if(!zone.AddEntity(p.e,p.x,p.y)){foreach(var e in added)zone.RemoveEntity(e);return Reject(zone,"profile-placement-refused");}added.Add(p.e);}
             terrain.ProfileRealized=true;Diag.Record("worldgen","LastCounterProfilePlaced",payload:new{zoneId=zone.ZoneID,owners=added.Count});return true;

@@ -25,7 +25,10 @@ namespace CavesOfOoo.Core
         HashSet<(int x,int y)> finalReservations;
         static readonly string[] required={"Grass","StoneFloor","StoneWall","Duckboard","PeatBank","MirePool","Reeds","DeadTree","Bed","Chair",
             "SoddenRouteNotice","SoddenDressingBench","SoddenWorksSalvage","SoddenWorksLocker","PeatCutter","MawToad","Bandfrog",
-            "SumpsieveCrop","SumpsievePad","SumpsieveSeed","SoddenFieldDressing","SalvagedTimber","LeatherBoots","Buckler","KnotflaxCord"};
+            "SumpsieveCrop","SumpsievePad","SumpsieveSeed","SoddenFieldDressing","SalvagedTimber","LeatherBoots","Buckler","KnotflaxCord",
+            "PeatMalletHeadComponent","GroundwireScreen","OakHaftComponent","LeatherBindingComponent"};
+        static readonly string[] worksStock={"LeatherBoots","Buckler","KnotflaxCord","KnotflaxCord",
+            "PeatMalletHeadComponent","GroundwireScreen","OakHaftComponent","LeatherBindingComponent"};
         public SoddenDistrictBuilder(int seed){this.seed=seed;}
 
         /// <summary>Require the complete finite circuit content before selecting
@@ -34,7 +37,9 @@ namespace CavesOfOoo.Core
             =>factory?.Blueprints!=null&&required.All(id=>factory.Blueprints.TryGetValue(id,out var bp)&&bp!=null
                 &&bp.Parts.ContainsKey("Physics")&&bp.Parts.ContainsKey("Render"))
                 &&factory.Blueprints["SoddenDressingBench"].Parts.ContainsKey("SoddenPreparation")
-                &&factory.Blueprints["Bed"].Parts.ContainsKey("Bed")&&factory.Blueprints["Chair"].Parts.ContainsKey("Chair");
+                &&factory.Blueprints["Bed"].Parts.ContainsKey("Bed")&&factory.Blueprints["Chair"].Parts.ContainsKey("Chair")
+                &&new[]{"PeatMalletHeadComponent","OakHaftComponent","LeatherBindingComponent"}.All(id=>factory.Blueprints[id].Parts.ContainsKey("WeaponComponent"))
+                &&factory.Blueprints["GroundwireScreen"].Parts.ContainsKey("Armor")&&factory.Blueprints["GroundwireScreen"].Parts.ContainsKey("Equippable");
 
         public bool BuildZone(Zone zone,EntityFactory factory,Random rng)
         {
@@ -91,7 +96,7 @@ namespace CavesOfOoo.Core
                 if(locker!=null)
                 {
                     var container=locker.GetPart<ContainerPart>();
-                    foreach(string bp in new[]{"LeatherBoots","Buckler","KnotflaxCord","KnotflaxCord"})
+                    foreach(string bp in worksStock)
                     {
                         var item=Make(bp);
                         if(!Portable(item,bp)||!container.AddItem(item))throw new InvalidOperationException("invalid-stock:"+bp);
@@ -180,17 +185,27 @@ namespace CavesOfOoo.Core
                 &&e.GetPart<RepairablePart>().Repaired==false&&e.GetPart<CompositionPart>()?.Contains("Wood")==true;
             return true;
         }
-        static bool Portable(Entity e,string bp)=>e?.BlueprintName==bp&&e.GetPart<PhysicsPart>()?.Takeable==true
-            &&e.GetPart<RenderPart>()?.Visible==true&&!e.HasTag("Creature")&&(e.GetPart<StackerPart>()?.StackCount??1)==1
-            &&(bp=="KnotflaxCord"||e.GetPart<ArmorPart>()?.AV==1&&e.GetPart<EquippablePart>()!=null);
+        static bool Portable(Entity e,string bp)
+        {
+            if(e?.BlueprintName!=bp||e.GetPart<PhysicsPart>()?.Takeable!=true||e.GetPart<RenderPart>()?.Visible!=true
+                ||e.HasTag("Creature")||(e.GetPart<StackerPart>()?.StackCount??1)<1
+                ||e.Parts.Any(part=>part==null||part.ParentEntity!=e))return false;
+            var component=e.GetPart<WeaponComponentPart>();
+            if(bp=="PeatMalletHeadComponent")return component?.Slot=="Blade"&&(" "+component.Attributes+" ").Contains(" Cudgel ");
+            if(bp=="OakHaftComponent")return component?.Slot=="Haft";
+            if(bp=="LeatherBindingComponent")return component?.Slot=="Binding";
+            if(bp=="GroundwireScreen")return e.GetPart<ArmorPart>()?.AV==0&&e.GetPart<EquippablePart>()?.GetEffectiveSlots()=="Hand"
+                &&e.GetPart<EquippablePart>().EquipBonuses=="ElectricResistance:50";
+            return bp=="KnotflaxCord"||e.GetPart<ArmorPart>()?.AV==1&&e.GetPart<EquippablePart>()!=null;
+        }
         static bool StockValid(Entity locker)
         {
             if(locker==null)return true;var box=locker.GetPart<ContainerPart>();
             if(box==null||box.IsLocked)return false;
             var names=box.Contents.SelectMany(e=>Enumerable.Repeat(e.BlueprintName,e.GetPart<StackerPart>()?.StackCount??1)).OrderBy(n=>n).ToArray();
-            return names.SequenceEqual(new[]{"Buckler","KnotflaxCord","KnotflaxCord","LeatherBoots"})
+            return names.SequenceEqual(worksStock.OrderBy(n=>n))
                 &&box.Contents.All(e=>e.GetPart<PhysicsPart>()?.InInventory==locker&&e.SpatialZone==null&&e.GetPart<PhysicsPart>().Equipped==null
-                    &&e.GetPart<PhysicsPart>().Takeable&&(e.BlueprintName=="KnotflaxCord"||e.HasPart<ArmorPart>()&&e.HasPart<EquippablePart>()));
+                    &&Portable(e,e.BlueprintName));
         }
         static bool GraphValid(IEnumerable<Entity> roots)
         {
@@ -222,7 +237,7 @@ namespace CavesOfOoo.Core
                 ?"Sumphold lies one stretch north. The cutbank crossing is east, with the abandoned peat works one stretch farther east. Two sound lengths of timber from the works will brace this shelter's dressing bench. The keeper can then bind one sumpsieve pad and one knotflax cord for two drams. The ripe bed has pads; the dry bed can be watered. Dressings treat bleeding and ordinary poison, not marsh gas."
                 :id==SoddenDistrictPlan.CrossingZoneID
                 ?"The dressing shelter is west; the abandoned works are east. A scarlet-banded frog rests beside the direct mire crossing; striking its caustic skin can poison you. Raised boards turn north around the cut; the southern bank also stays dry. Both detours are longer. Heating mire can release poisonous marsh gas. Leather boots are armor, not protection from the mire."
-                :"The works are abandoned. The broken frame still holds four sound lengths of timber; take it apart once. Two lengths will brace the dressing bench two stretches west, beyond the cutbank crossing. Boots, a buckler and two knotflax cords remain in the equipment locker. The dry work lane stays clear of the far copse, where a maw-toad waits.";
+                :"The works are abandoned. The broken frame still holds four sound lengths of timber; take it apart once. Two lengths will brace the dressing bench two stretches west, beyond the cutbank crossing. Boots, a buckler and two knotflax cords remain in the equipment locker. Its peat mallet head can stun a foe but deals little damage and struggles against armor. An oak haft and leather binding complete an assembly kit. A groundwire screen offers 50 electric resistance while held in one hand; it provides no physical armor and cannot protect you from mire or marsh gas. The dry work lane stays clear of the far copse, where a maw-toad waits.";
         }
         static bool Reject(Zone zone,string reason)
         {Diag.Record("worldgen","SoddenDistrictRejected",payload:new{zoneId=zone?.ZoneID,reason});return false;}

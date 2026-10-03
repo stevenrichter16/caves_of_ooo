@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Failed(Child)" total="12" passed="10" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-03 20:47:29Z" end-time="2026-10-03 20:47:30Z" duration="1.1375605">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24258" result="Failed" site="Child" start-time="2026-10-03 20:47:29Z" end-time="2026-10-03 20:47:30Z" duration="1.137561" total="12" passed="10" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="29852" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24258" result="Failed" site="Child" start-time="2026-10-03 20:47:29Z" end-time="2026-10-03 20:47:30Z" duration="1.037586" total="12" passed="10" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70907" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="29853" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24258" result="Failed" site="Child" start-time="2026-10-03 20:47:29Z" end-time="2026-10-03 20:47:30Z" duration="0.842750" total="12" passed="10" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="29854" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24258" result="Failed" site="Child" start-time="2026-10-03 20:47:29Z" end-time="2026-10-03 20:47:30Z" duration="0.742940" total="12" passed="10" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="3555" name="EquipmentDiscoveryDefenseAdversarialTests" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" testcasecount="12" result="Failed" site="Child" start-time="2026-10-03 20:47:29Z" end-time="2026-10-03 20:47:30Z" duration="0.542153" total="12" passed="10" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="3564" name="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.272012" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3556" name="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(False,False,False)" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(False,False,False)" methodname="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" seed="340592652" result="Passed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.097525" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3557" name="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(False,False,True)" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(False,False,True)" methodname="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" seed="2110578914" result="Passed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.010658" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3558" name="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(False,True,False)" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(False,True,False)" methodname="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" seed="1270909198" result="Passed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.012647" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3559" name="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(False,True,True)" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(False,True,True)" methodname="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" seed="1506198546" result="Passed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.010470" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3560" name="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(True,False,False)" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(True,False,False)" methodname="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" seed="1874122851" result="Passed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.010120" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3561" name="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(True,False,True)" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(True,False,True)" methodname="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" seed="745342519" result="Passed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.009318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3562" name="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(True,True,False)" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(True,True,False)" methodname="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" seed="794517550" result="Passed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.009555" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3563" name="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(True,True,True)" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty(True,True,True)" methodname="ForcedAfterEquipInjuryAndRollbackDoNotCreateAStatPenalty" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" seed="2143990799" result="Passed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.009324" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="3569" name="SplitScreenDroppedByIndependentInjurySurvivesOuterRollback" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.SplitScreenDroppedByIndependentInjurySurvivesOuterRollback" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.068955" total="4" passed="2" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3565" name="SplitScreenDroppedByIndependentInjurySurvivesOuterRollback(False,False)" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.SplitScreenDroppedByIndependentInjurySurvivesOuterRollback(False,False)" methodname="SplitScreenDroppedByIndependentInjurySurvivesOuterRollback" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" seed="1484131700" result="Passed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.011451" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3566" name="SplitScreenDroppedByIndependentInjurySurvivesOuterRollback(False,True)" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.SplitScreenDroppedByIndependentInjurySurvivesOuterRollback(False,True)" methodname="SplitScreenDroppedByIndependentInjurySurvivesOuterRollback" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" seed="275260588" result="Passed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.009389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3567" name="SplitScreenDroppedByIndependentInjurySurvivesOuterRollback(True,False)" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.SplitScreenDroppedByIndependentInjurySurvivesOuterRollback(True,False)" methodname="SplitScreenDroppedByIndependentInjurySurvivesOuterRollback" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" seed="1598959588" result="Failed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.012243" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  One screen remains in the original carried stack.
+  Expected: 1
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.SplitScreenDroppedByIndependentInjurySurvivesOuterRollback (System.Boolean injury, System.Boolean throwAfterEvent) [0x00276] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/EquipmentDiscoveryDefenseAdversarialTests.cs:113
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3568" name="SplitScreenDroppedByIndependentInjurySurvivesOuterRollback(True,True)" fullname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.SplitScreenDroppedByIndependentInjurySurvivesOuterRollback(True,True)" methodname="SplitScreenDroppedByIndependentInjurySurvivesOuterRollback" classname="CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests" runstate="Runnable" seed="619980760" result="Failed" start-time="2026-10-03 20:47:30Z" end-time="2026-10-03 20:47:30Z" duration="0.009789" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  One screen remains in the original carried stack.
+  Expected: 1
+  But was:  2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.EquipmentDiscoveryDefenseAdversarialTests.SplitScreenDroppedByIndependentInjurySurvivesOuterRollback (System.Boolean injury, System.Boolean throwAfterEvent) [0x00276] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/EquipmentDiscoveryDefenseAdversarialTests.cs:113
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

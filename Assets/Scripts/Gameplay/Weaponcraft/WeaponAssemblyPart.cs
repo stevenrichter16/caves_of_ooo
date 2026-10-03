@@ -18,6 +18,11 @@ namespace CavesOfOoo.Core
         public string HaftBlueprint = "";
         public string BindingBlueprint = "";
 
+        public override void OnAfterLoad(SaveReader reader)
+        {
+            SteelBladeFamilyCompatibility.RestoreAssembly(this);
+        }
+
         public string GetBlueprintForSlot(string slot)
         {
             if (WeaponForgingService.IsBladeSlot(slot)) return BladeBlueprint;

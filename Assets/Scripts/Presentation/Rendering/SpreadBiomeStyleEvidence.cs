@@ -56,6 +56,8 @@ namespace CavesOfOoo.Rendering
    if (latchcoil != null) { latchcoil.Validate(); foreach (var e in latchcoil.Entries) Add(e.Id,e.Mesh,latchcoil.Material); }
    var collectors=SpreadCollectorArtLibrary.Load();
    if(collectors!=null){collectors.Validate();foreach(var e in collectors.Entries)Add(e.Id,e.Mesh,e.Materials[0],e.Materials);}
+   var equipmentDiscoveries=EquipmentDiscoveryArtLibrary.Load();
+   if(equipmentDiscoveries!=null){equipmentDiscoveries.Validate();foreach(var e in equipmentDiscoveries.Entries)Add(e.Id,e.Mesh,equipmentDiscoveries.Material);}
    var botany=BiomeCrop3DLibrary.Load();
    if(botany!=null){botany.Validate();foreach(var e in botany.Entries)Add(e.Id,e.Mesh,botany.Material);}
    var cultivation=RepairCultivation3DLibrary.Load();

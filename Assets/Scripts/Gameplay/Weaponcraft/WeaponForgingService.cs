@@ -338,6 +338,7 @@ namespace CavesOfOoo.Core
             var preview = new ForgePreview
             {
                 Attributes = string.Empty,
+                FamilyDisplayName = string.Empty,
                 OnHitEffectsRaw = string.Empty,
                 DisplayName = string.Empty,
                 BaseDamage = string.Empty,
@@ -410,6 +411,7 @@ namespace CavesOfOoo.Core
             preview.HitBonus = hit;
             preview.MaxStrengthBonus = maxStr;
             preview.Attributes = string.Join(" ", attributes);
+            preview.FamilyDisplayName = FamilyDisplayName(attributes);
             preview.OnHitEffectsRaw = quirks.ToString();
 
             var nameParts = new List<string>(3);
@@ -419,6 +421,26 @@ namespace CavesOfOoo.Core
             preview.DisplayName = nameParts.Count > 0 ? string.Join(" ", nameParts) : string.Empty;
 
             return preview;
+        }
+
+        // These are the same family tokens consumed by the skill gates. The
+        // short-blade tree currently gates on Piercing, not a ShortBlades tag.
+        // Computed with the preview, never by per-frame presentation code.
+        private static string FamilyDisplayName(List<string> attributes)
+        {
+            string family = null;
+            bool piercing = false;
+            foreach (string token in attributes)
+            {
+                string candidate = token.Equals("LongBlades", StringComparison.OrdinalIgnoreCase) ? "Long blades"
+                    : token.Equals("Cudgel", StringComparison.OrdinalIgnoreCase) ? "Cudgel"
+                    : token.Equals("Axe", StringComparison.OrdinalIgnoreCase) ? "Axe" : null;
+                if (token.Equals("Piercing", StringComparison.OrdinalIgnoreCase)) piercing = true;
+                if (candidate == null) continue;
+                if (family != null && family != candidate) return "Mixed";
+                family = candidate;
+            }
+            return family ?? (piercing ? "Short blades" : "Unclassified");
         }
 
         /// <summary>"a haft" / "a haft and a binding" / "a blade, a haft and a binding".</summary>

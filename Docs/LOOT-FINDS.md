@@ -87,3 +87,5 @@ Existing rows are kept; the new rows are added beside them.
 Content-only apart from the census; rolling happens at generation and death, unchanged. The census emits one `loot/Census` record per (source, tier) cell with counts per category; existing `loot/DeathDrop` records are unchanged.
 
 ## Implementation log
+
+2026-10-03: [Equipment discoveries](EQUIPMENT-DISCOVERIES-DESIGN.md) adds finite geographic stock to the Sodden works locker (mallet head and electrical screen), Cinderhold Weaponsmith (hook-axe head and kilnfelt apron, purchased), and Last Counter supply chest (counterweight long blade). Each also supplies an oak haft and leather binding. These are authored owner supplements, not generic loot-table additions. Natural Grovelands containers, generic component pools and merchant restock tables retain their existing rules. Saved source inventories are literal and do not refill.

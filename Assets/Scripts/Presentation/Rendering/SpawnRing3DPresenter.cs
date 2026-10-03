@@ -102,6 +102,7 @@ namespace CavesOfOoo.Rendering
                 if (library == null) throw new InvalidOperationException("Spawn-ring 3D library is unavailable.");
                 library.Validate(); definition = library.Definition;
                 voxel = VoxelWorldPresentation.ForZone(zone);
+                styleProperties = new MaterialPropertyBlock();
                 // Optional in ordinary ring chunks, required at the authored site.
                 // Loading once at bind also covers owners arriving after this bind.
                 pilotLibrary = Resources.Load<MultiCellPilot3DLibrary>(MultiCellPilot3DLibrary.ResourcePath);
@@ -145,7 +146,6 @@ namespace CavesOfOoo.Rendering
                     visitorCreatureLibrary=SpreadVisitorCreatureLibrary.Load();
                     if(visitorCreatureLibrary==null)throw new InvalidOperationException("Original visitor library missing.");
                     visitorCreatureLibrary.Validate();materials.Add(visitorCreatureLibrary.Material);
-                    styleProperties=new MaterialPropertyBlock();
                     approvedStyle=new SpreadBiomeStyleCatalog(glade,SpreadBiomeActorLibrary.Load(),humanoidLibrary,SpreadPortable3DLibrary.Load(),poured,SpreadScenery3DLibrary.Load(),SpreadCreature3DLibrary.Load(),SpreadEnvironment3DLibrary.Load(),visitorPaintLibrary,nativeStyleLibrary,visitorCreatureLibrary);
                 }
                 else if (SoddenDistrictPlan.IsSupportedZone(zone.ZoneID))
@@ -463,7 +463,7 @@ namespace CavesOfOoo.Rendering
         public bool TryGetApprovedEquipmentStyle(Entity actor, Entity item, out SpreadBiomeStyleEvidence evidence)
         {
             evidence = new SpreadBiomeStyleEvidence(null,"outside-current-equipment-scope",false);
-            if (!IsReady || !boundSpreadStyle || !SpreadPresentationScope.IsActive(CurrentZone)
+            if (!IsReady || ((!boundSpreadStyle || !SpreadPresentationScope.IsActive(CurrentZone)) && !EquipmentDiscoveryRecipes.Handles(item))
                 || !GladeAuthorityMatches || equipment == null || actor == null || !IsRenderedEntity(actor)) return false;
             var current = SpawnRing3DRecipes.Resolve(CurrentZone,actor,definition,pilotLibrary?.Definition);
             if (current.ModelId == null || !ReferenceEquals(current.Owner,actor) || !recipes.TryGetValue(actor,out var committed)

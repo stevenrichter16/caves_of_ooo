@@ -68,6 +68,7 @@ namespace CavesOfOoo.Rendering
         internal GameObject FindModel(string modelId,Func<string,Type,UnityEngine.Object> load)
         {if(string.IsNullOrEmpty(modelId))return null;if(models==null)Validate();return models.TryGetValue(modelId,out var value)?value:
             (BiomeCropSource.IsModelId(modelId) ? LoadExtension<BiomeCrop3DLibrary>(load, BiomeCrop3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
+            ?? (EquipmentDiscoveryArtLibrary.IsModelId(modelId) ? LoadExtension<EquipmentDiscoveryArtLibrary>(load, EquipmentDiscoveryArtLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (SoddenDistrictArtLibrary.IsModelId(modelId) ? LoadExtension<SoddenDistrictArtLibrary>(load, SoddenDistrictArtLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (RepairCultivationSource.IsModelId(modelId) ? LoadExtension<RepairCultivation3DLibrary>(load, RepairCultivation3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)
             ?? (CurationYardSource.IsModelId(modelId) ? LoadExtension<CurationYard3DLibrary>(load, CurationYard3DLibrary.ResourcePath)?.Find(modelId)?.Prefab : null)

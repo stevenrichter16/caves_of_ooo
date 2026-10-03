@@ -2,6 +2,8 @@
 
 Status: complete. 899/899 selected native Unity EditMode tests pass; the corrected ordinary PlayMode journey passes 11/11 with zero unexpected errors.
 
+**Equipment follow-up (2026-10-03):** newly generated works lockers additionally contain a peat-packing mallet head, oak haft, leather binding and groundwire screen. Local notices describe their uses and costs; previously saved lockers remain literal. The extended ordinary audit now also retrieves these exact items, crafts from the pack, equips the result/screen and reloads their saved state. Follow-up evidence is recorded in [Equipment discoveries](EQUIPMENT-DISCOVERIES-DESIGN.md); the 11/11 record above is the original expedition baseline.
+
 ## Intent and readiness
 
 Give the Sodden a connected ordinary exploration outing with preparation, a route choice, recoverable supplies and a changed place to return to. This is original Caves of Ooo content inspired by the user's desire for consequential exploration, not a claim of source parity with Qud.
@@ -167,3 +169,5 @@ The first failed run's report and dry-crossing capture remain under `5676870a51e
 ### Reproduce in normal play
 
 Start a new world. At Sumphold, read the work slip on the toll rolls. Go one chunk south to Sella's shelter, then east through the cutbank crossing and east once more to the abandoned works. Harvest the collapsed drying frame, take the locker supplies, return with two timber to repair the bench, then use the staffed preparation action with a sumpsieve pad, knotflax cord and two drams. Resting furniture is usable; the second crop requires ordinary watering/growth. Neither loot nor repair state resets when revisiting.
+
+Equipment follow-up verification (2026-10-03): extended ordinary journey passed **14/14**, zero unexpected errors, including real works components forged/equipped through keyboard UI, exact new model submissions and saved electrical protection. See `EQUIPMENT-DISCOVERIES-DESIGN.md` and `Verification/SpreadDiscoveryExpeditions/Native/c23ecfadb4074ca682959c13af8aa0b8/report.json`. The earlier 11-check evidence below remains the original district baseline.

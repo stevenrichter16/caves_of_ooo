@@ -61,6 +61,11 @@ namespace CavesOfOoo.Core.Inventory.Commands
             }
 
             var equippable = _item.GetPart<EquippablePart>();
+            // The ownership undo runs before the bonus undos. A failed
+            // restoration (lost limb or independently occupied slot) must not
+            // restore protection or enhancements to an item still in the pack.
+            // Early failures before detachment still undo their stat removal.
+            bool restoreBonuses = true;
 
             // Fire BeforeUnequip on actor (can veto).
             var beforeUnequip = GameEvent.New("BeforeUnequip");
@@ -79,7 +84,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: false);
                 transaction.Do(
                     apply: null,
-                    undo: () => EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true));
+                    undo: () =>
+                    {
+                        if (restoreBonuses) EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true);
+                    });
             }
 
             if (!TryForceUnequip(context, _item, rollbackState))
@@ -107,13 +115,16 @@ namespace CavesOfOoo.Core.Inventory.Commands
             ItemEnhancementDispatch.DispatchOnUnequip(actor, _item);
             transaction.Do(
                 apply: null,
-                undo: () => ItemEnhancementDispatch.DispatchOnEquip(actor, _item));
+                undo: () =>
+                {
+                    if (restoreBonuses) ItemEnhancementDispatch.DispatchOnEquip(actor, _item);
+                });
 
             transaction.Do(
                 apply: null,
                 undo: () =>
                 {
-                    TryForceRestore(context, _item, rollbackState);
+                    restoreBonuses = TryForceRestore(context, _item, rollbackState);
                 });
 
             return InventoryCommandResult.Ok();
@@ -143,6 +154,8 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 return false;
 
             var equippable = item.GetPart<EquippablePart>();
+            // Same undo order and restoration gate as ordinary unequip.
+            bool restoreBonuses = true;
 
             // Fire BeforeUnequip on actor (can veto, e.g. cursed items).
             var beforeUnequip = GameEvent.New("BeforeUnequip");
@@ -157,7 +170,10 @@ namespace CavesOfOoo.Core.Inventory.Commands
                 EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: false);
                 transaction.Do(
                     apply: null,
-                    undo: () => EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true));
+                    undo: () =>
+                    {
+                        if (restoreBonuses) EquipBonusUtility.ApplyEquipBonuses(actor, equippable, apply: true);
+                    });
             }
 
             if (!TryForceUnequip(context, item, rollbackState))
@@ -176,11 +192,14 @@ namespace CavesOfOoo.Core.Inventory.Commands
             ItemEnhancementDispatch.DispatchOnUnequip(actor, item);
             transaction.Do(
                 apply: null,
-                undo: () => ItemEnhancementDispatch.DispatchOnEquip(actor, item));
+                undo: () =>
+                {
+                    if (restoreBonuses) ItemEnhancementDispatch.DispatchOnEquip(actor, item);
+                });
 
             transaction.Do(
                 apply: null,
-                undo: () => TryForceRestore(context, item, rollbackState));
+                undo: () => restoreBonuses = TryForceRestore(context, item, rollbackState));
 
             // Item is now in inventory (deposited by TryForceUnequip). Remove it so
             // the caller can do what it likes with the entity (e.g. throw it).
@@ -240,10 +259,15 @@ namespace CavesOfOoo.Core.Inventory.Commands
 
             if (snapshot.BodyParts.Count > 0)
             {
+                // Snapshot references survive dismemberment and body replacement.
+                // They are valid destinations only while still in the live Body.
+                // Validate every part before writing any equipment/cache entry.
+                var liveParts = context.Body?.GetParts();
+                if (liveParts == null) return false;
                 for (int i = 0; i < snapshot.BodyParts.Count; i++)
                 {
                     var part = snapshot.BodyParts[i];
-                    if (part == null)
+                    if (part == null || !liveParts.Contains(part))
                         return false;
 
                     var existing = part._Equipped;

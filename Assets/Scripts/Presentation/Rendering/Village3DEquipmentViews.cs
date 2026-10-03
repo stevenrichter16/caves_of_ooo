@@ -60,6 +60,7 @@ namespace CavesOfOoo.Rendering
         private readonly SpreadPortable3DLibrary portable;
         private readonly CurationYard3DLibrary curation;
         private readonly SpreadEquipment3DLibrary worn;
+        private readonly EquipmentDiscoveryArtLibrary discoveries;
         private readonly Dictionary<Entity, ActorView> actors = new Dictionary<Entity, ActorView>();
         private readonly HashSet<Entity> seenActors = new HashSet<Entity>();
         private readonly List<Entity> removedActors = new List<Entity>(16);
@@ -74,6 +75,7 @@ namespace CavesOfOoo.Rendering
             this.prepareModel = prepareModel ?? throw new ArgumentNullException(nameof(prepareModel));
             readOnlyFallbacks = fallbacks.AsReadOnly();
             this.spread = spread;
+            discoveries = EquipmentDiscoveryArtLibrary.Load(); discoveries?.Validate();
             if (spread)
             {
                 portable = SpreadPortable3DLibrary.Load(); worn = SpreadEquipment3DLibrary.Load(); curation=CurationYard3DLibrary.Load();
@@ -101,7 +103,7 @@ namespace CavesOfOoo.Rendering
             }
             if (state.Root != actorRoot)
             {
-                ClearItems(state); state.Rig?.Dispose(); state.Rig = spread ? new SpreadEquipmentRig(actor, actorRoot) : null; state.Sockets.Clear(); state.Root = actorRoot; state.HasSnapshot = false;
+                ClearItems(state); state.Rig?.Dispose(); state.Rig = spread || discoveries != null ? new SpreadEquipmentRig(actor, actorRoot) : null; state.Sockets.Clear(); state.Root = actorRoot; state.HasSnapshot = false;
                 foreach (var transform in actorRoot.GetComponentsInChildren<Transform>(true))
                     if ((transform.name == HandLeft || transform.name == HandRight || transform.name == Head || transform.name == Back)
                         && !state.Sockets.ContainsKey(transform.name)) state.Sockets.Add(transform.name, transform);
@@ -134,7 +136,7 @@ namespace CavesOfOoo.Rendering
                         }
                         if (occupied == null) { Fail(state, item, view, "missing-native-body-slot"); continue; }
                     }
-                    if (spread) { SyncSpread(state, item, view, occupied); continue; }
+                    if (spread || EquipmentDiscoveryRecipes.Handles(item)) { SyncSpread(state, item, view, occupied); continue; }
                     var equip = item.GetPart<EquippablePart>();
                     string slot = occupied?.Type ?? equip?.Slot;
                     if (equip == null || !TryModel(item, slot, out string modelId))
@@ -199,15 +201,15 @@ namespace CavesOfOoo.Rendering
             MaterialPropertyBlock scratch, List<Material> materials, out SpreadBiomeStyleEvidence evidence)
         {
             evidence = new SpreadBiomeStyleEvidence(null,"no-current-scoped-equipment",false);
-            if (!spread || surface == null || !TryGet(actor,item,out var root)
+            if ((!spread && !EquipmentDiscoveryRecipes.Handles(item)) || surface == null || !TryGet(actor,item,out var root)
                 || !actors.TryGetValue(actor,out var state) || state.Rig?.Supported != true
                 || !SpreadEquipmentRecipes.TryRecipe(actor,item,out var recipe)) return false;
             var view = state.Items[item];
             if (view.ModelId != recipe.ModelId || view.AttachmentKey != recipe.AttachmentKey || root == null || !root.transform.IsChildOf(state.Root.transform))
             { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"stale-equipped-form",false); return false; }
-            var yard=curation?.Find(recipe.ModelId);
-            Material expectedMaterial=yard!=null?curation.Material:portable.Material;
-            Mesh expected = recipe.Slot == "Hand" ? (yard?.Mesh??portable.Find(recipe.ModelId)?.Mesh) : worn.Find(recipe.ModelId)?.Mesh;
+            var yard=curation?.Find(recipe.ModelId); var discovery=discoveries?.Find(recipe.ModelId);
+            Material expectedMaterial=discovery!=null?discoveries.Material:yard!=null?curation.Material:portable?.Material;
+            Mesh expected = discovery?.Mesh ?? (recipe.Slot == "Hand" ? (yard?.Mesh??portable?.Find(recipe.ModelId)?.Mesh) : worn?.Find(recipe.ModelId)?.Mesh);
             if (expected == null) { evidence = new SpreadBiomeStyleEvidence(recipe.ModelId,"unmapped-equipped-form",false); return false; }
             int pieces = recipe.Pieces;
             if (recipe.Slot == "Handwear")
@@ -272,12 +274,12 @@ namespace CavesOfOoo.Rendering
             DisposeView(view);
             if (recipe.Slot == "Hand")
             {
-                var entry = portable.Find(recipe.ModelId);var yard=curation?.Find(recipe.ModelId);
-                var prefab=yard?.Prefab??entry?.Prefab;var mesh=yard?.Mesh??entry?.Mesh;
+                var entry = portable?.Find(recipe.ModelId);var yard=curation?.Find(recipe.ModelId);var discovery=discoveries?.Find(recipe.ModelId);
+                var prefab=discovery?.Prefab??yard?.Prefab??entry?.Prefab;var mesh=discovery?.Mesh??yard?.Mesh??entry?.Mesh;
                 if (prefab == null || mesh == null) { Fail(state,item,view,"missing-scoped-held-model"); return; }
                 view.Root = Object.Instantiate(prefab,targets[0],false);
                 var bounds = mesh.bounds;
-                bool shield = item.BlueprintName == "Buckler" || item.BlueprintName == "IronBuckler";
+                bool shield = item.BlueprintName == "Buckler" || item.BlueprintName == "IronBuckler" || item.BlueprintName == "GroundwireScreen";
                 bool pole = item.BlueprintName == "Spear" || item.BlueprintName == "LoanerSpear" || item.BlueprintName == "EmberSpear" || item.BlueprintName == "CryoLance" || item.BlueprintName == "FirstRootGlaive";
                 var rotation = Quaternion.Euler(shield ? 70f : -50f,0,0);
                 var grip = shield ? bounds.center : new Vector3(0,bounds.center.y,bounds.min.z + bounds.size.z * (pole ? .40f : .15f));
@@ -286,14 +288,16 @@ namespace CavesOfOoo.Rendering
             }
             else
             {
-                var entry = worn.Find(recipe.ModelId);
-                if (entry == null || entry.Slot != recipe.Slot) { Fail(state,item,view,"missing-fitted-equipment-model"); return; }
+                var entry = worn?.Find(recipe.ModelId); var discovery = discoveries?.Find(recipe.ModelId);
+                var mesh = discovery?.Mesh ?? entry?.Mesh; string slot = discovery?.Slot ?? entry?.Slot;
+                var material = discovery != null ? discoveries.Material : worn?.Material;
+                if (mesh == null || material == null || slot != recipe.Slot) { Fail(state,item,view,"missing-fitted-equipment-model"); return; }
                 view.Root = new GameObject(recipe.ModelId); view.Root.transform.SetParent(state.Root.transform,false);
                 foreach (var target in targets)
                 {
                     var piece = new GameObject(target.name); piece.transform.SetParent(view.Root.transform,false);
-                    var renderer = piece.AddComponent<SkinnedMeshRenderer>(); renderer.sharedMesh = entry.Mesh;
-                    renderer.sharedMaterial = worn.Material; renderer.bones = new[] { target }; renderer.rootBone = target;
+                    var renderer = piece.AddComponent<SkinnedMeshRenderer>(); renderer.sharedMesh = mesh;
+                    renderer.sharedMaterial = material; renderer.bones = new[] { target }; renderer.rootBone = target;
                     renderer.updateWhenOffscreen = true; renderer.localBounds = new Bounds(Vector3.zero,Vector3.one*4);
                     renderer.quality = SkinQuality.Bone1;
                 }

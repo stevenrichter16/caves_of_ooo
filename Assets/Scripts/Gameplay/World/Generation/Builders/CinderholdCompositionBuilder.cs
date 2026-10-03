@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CavesOfOoo.Data;
 using CavesOfOoo.Diagnostics;
 
@@ -94,8 +95,41 @@ namespace CavesOfOoo.Core
         }
         private static bool Breakable(Entity e)
         {var d=e.GetPart<DestructiblePart>();return d!=null&&d.HP>0&&d.MaxHP>0&&!d.Gone&&!d.Indestructible;}
+        // A finite regional opening shelf, separate from the ordinary renewable
+        // WeaponsmithStock table. These actual owners are bought and saved normally.
+        internal static readonly string[] RegionalItems={"CinderhookAxeHeadComponent","KilnfeltApron","OakHaftComponent","LeatherBindingComponent"};
+        internal static bool RegionalPortable(Entity e,string blueprint)
+        {
+            var physics=e?.GetPart<PhysicsPart>();
+            if(e==null||e.BlueprintName!=blueprint||string.IsNullOrEmpty(e.ID)||physics?.Takeable!=true
+                ||e.GetPart<RenderPart>()?.Visible!=true||e.HasTag("Creature")
+                ||(e.GetPart<StackerPart>()?.StackCount??1)<1||e.Parts.Any(part=>part==null||part.ParentEntity!=e))return false;
+            var component=e.GetPart<WeaponComponentPart>();
+            if(blueprint=="CinderhookAxeHeadComponent")return component?.Slot=="Blade"&&(" "+component.Attributes+" ").Contains(" Axe ");
+            if(blueprint=="OakHaftComponent")return component?.Slot=="Haft";
+            if(blueprint=="LeatherBindingComponent")return component?.Slot=="Binding";
+            return blueprint=="KilnfeltApron"&&e.GetPart<ArmorPart>()?.AV==1&&e.GetPart<ArmorPart>().SpeedPenalty==5
+                &&e.GetPart<EquippablePart>()?.GetEffectiveSlots()=="Body"&&e.GetPart<EquippablePart>().EquipBonuses=="HeatResistance:50";
+        }
+        internal static bool RegionalShelfValid(Entity owner)
+        {
+            var inventory=owner?.GetPart<InventoryPart>();if(inventory==null)return false;
+            foreach(string id in RegionalItems)
+            {
+                var items=inventory.Objects.Where(e=>e.BlueprintName==id).ToArray();
+                if(items.Length==0||items.Any(e=>!RegionalPortable(e,id)||e.SpatialZone!=null||e.GetPart<PhysicsPart>().InInventory!=owner||e.GetPart<PhysicsPart>().Equipped!=null))return false;
+                if((id=="CinderhookAxeHeadComponent"||id=="KilnfeltApron")&&items.Sum(e=>e.GetPart<StackerPart>()?.StackCount??1)!=1)return false;
+            }
+            return inventory.Objects.Select(e=>e.ID).Distinct().Count()==inventory.Objects.Count;
+        }
         internal static bool StockDependenciesValid(EntityFactory factory)
         {
+            foreach(string blueprint in RegionalItems)
+            {
+                var item=Create(factory,blueprint);
+                if(!RegionalPortable(item,blueprint)||item.SpatialZone!=null||item.GetPart<PhysicsPart>().InInventory!=null
+                    ||item.GetPart<PhysicsPart>().Equipped!=null||(item.GetPart<StackerPart>()?.StackCount??1)!=1)return false;
+            }
             // Native headless callers may intentionally omit the registry, as
             // with existing LandmarkBuilder. Do not mutate the global registry.
             if(!LootTableRegistry.IsInitialized)return true;
@@ -156,8 +190,21 @@ namespace CavesOfOoo.Core
                         {var item=CinderholdCompositionBuilder.Create(factory,bp);if(item==null||!inv.AddObject(item))return Reject(zone,"shop-stock-refused");}
                     }
                 }
+                if(p.Blueprint=="Weaponsmith")
+                {
+                    foreach(string id in CinderholdCompositionBuilder.RegionalItems)
+                    {
+                        var item=CinderholdCompositionBuilder.Create(factory,id);
+                        if(!CinderholdCompositionBuilder.RegionalPortable(item,id)||item.SpatialZone!=null
+                            ||item.GetPart<PhysicsPart>().InInventory!=null||item.GetPart<PhysicsPart>().Equipped!=null
+                            ||(item.GetPart<StackerPart>()?.StackCount??1)!=1||!owner.GetPart<InventoryPart>().AddObject(item))return Reject(zone,"regional-stock-refused");
+                    }
+                }
+                if(p.Blueprint=="CinderholdNoticeBoard")
+                    owner.GetPart<ExaminablePart>().Text+="\nThe workshop's opening shelf includes a cinderhook axe head, an oak haft and a leather binding. The broad head strikes hard but is inaccurate. Its kilnfelt apron offers 50 heat resistance while worn, at the cost of little physical armor and slower movement. Both are for sale. The smith lists them as the last pieces from a shuttered extraction crew.";
                 staged.Add((owner,p.X,p.Y));
             }
+            if(!staged.Where(s=>s.e.BlueprintName=="Weaponsmith").All(s=>CinderholdCompositionBuilder.RegionalShelfValid(s.e)))return Reject(zone,"changed-regional-stock");
             var added=new List<Entity>();
             foreach(var s in staged)
             {if(!zone.AddEntity(s.e,s.x,s.y)){foreach(var owner in added)zone.RemoveEntity(owner);return Reject(zone,"profile-placement-refused");}added.Add(s.e);}

@@ -309,11 +309,12 @@ namespace CavesOfOoo.Rendering
             || value == "&K" || value == "&R" || value == "&W" || value == "&Y" || value == "&c"
             || value == "&g" || value == "&m" || value == "&w" || value == "&y";
         public static bool HandlesBlueprint(string blueprint)
-            => blueprint != null && (ConnectedSpread3DLibrary.IsPortable(blueprint) || CurationYard3DLibrary.IsPortable(blueprint) || Concrete.Contains(blueprint) || blueprint == "SeveredLimb"
+            => blueprint != null && (EquipmentDiscoveryRecipes.HandlesBlueprint(blueprint) || ConnectedSpread3DLibrary.IsPortable(blueprint) || CurationYard3DLibrary.IsPortable(blueprint) || Concrete.Contains(blueprint) || blueprint == "SeveredLimb"
                 || blueprint == "DetectiveNotebook" || blueprint == "CrunchyLocket");
         public static bool TryRecipe(Entity owner, out string modelId)
         {
             modelId = null;
+            if (EquipmentDiscoveryRecipes.Handles(owner)) return EquipmentDiscoveryRecipes.TryRecipe(owner, out modelId);
             if(ConnectedSpread3DLibrary.IsPortable(owner?.BlueprintName)){modelId=ConnectedSpread3DLibrary.PortableModel(owner);return modelId!=null;}
             if(CurationYard3DLibrary.IsPortable(owner?.BlueprintName)){modelId=CurationYard3DLibrary.PortableModel(owner);return modelId!=null;}
             if (owner == null || !HandlesBlueprint(owner.BlueprintName)

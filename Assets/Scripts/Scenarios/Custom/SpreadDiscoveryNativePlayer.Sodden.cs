@@ -9,9 +9,9 @@ namespace CavesOfOoo.Scenarios.Custom
     public sealed partial class SpreadDiscoveryNativePlayer
     {
         bool _soddenDistrict;
-        const string SoddenIntent="Ordinary seed64 Duelist start, native map travel to Sumphold and its southern shelter; real harvested pads, ground travel across the dry bow to finite abandoned works stock, return, two-timber repair, two-dram preparation, and F5/unsaved-step/F6 literal replacement. No transfers, item grants, edited clocks or AI suppression.";
-        const string SoddenLimits="One predeclared seed and build, known destinations and bounded routes; not blind discovery, all-seed balance or immunity. The safe route is traversed; native poison/fire/gas and dressing application are checked separately in EditMode, not inflicted on the player by the harness. Screenshots and submitted owners require independent visual review.";
-        static readonly string[] SoddenChecks={"ordinary_start","sodden_town_lead","sodden_broken_service","sodden_real_crop","sodden_dry_crossing","sodden_finite_works","sodden_repaired_return","sodden_paid_preparation","sodden_saved","sodden_loaded","sodden_finish"};
+        const string SoddenIntent="Ordinary seed64 Duelist start, native map travel to Sumphold and its southern shelter; real harvested pads, ground travel across the dry bow to finite abandoned works stock, keyboard pack forging and equipping of the earned mallet/screen with exact submitted models, return, two-timber repair, two-dram preparation, and F5/unsaved-step/F6 literal replacement including gear. No transfers, item grants, edited clocks or AI suppression.";
+        const string SoddenLimits="One predeclared seed and build, known destinations and bounded routes; not blind discovery, all-seed balance or immunity. The safe route is traversed; poison/fire/gas, typed electrical protection, learned combat skills and dressing application are checked separately in EditMode, not inflicted or granted by the harness. Screenshots require independent visual review. This journey does not visit the other two equipment sources.";
+        static readonly string[] SoddenChecks={"ordinary_start","sodden_town_lead","sodden_broken_service","sodden_real_crop","sodden_dry_crossing","sodden_finite_works","sodden_equipment_preview","sodden_equipment_forged","sodden_equipment_equipped","sodden_repaired_return","sodden_paid_preparation","sodden_saved","sodden_loaded","sodden_finish"};
         string _soddenBench,_soddenSalvage,_soddenLocker,_soddenWorker;
         public void InitializeSoddenDistrict(ScenarioContext context)
         {
@@ -68,6 +68,7 @@ namespace CavesOfOoo.Scenarios.Custom
             Check("sodden_finite_works",Packed("SalvagedTimber")==4&&Packed("KnotflaxCord")==2&&Packed("LeatherBoots")>=1&&Packed("Buckler")>=1
                 &&locker.GetPart<ContainerPart>().Contents.Count==0&&CountGraphId(_soddenSalvage)==0);
             yield return Capture("sodden-05-looted-works");
+            yield return EquipmentDiscoveryMallet();
             yield return SoddenEdge(false,SoddenDistrictPlan.CrossingZoneID);yield return SoddenDryBow(false);
             yield return SoddenEdge(false,SoddenDistrictPlan.StopZoneID);
             bench=Owner(_soddenBench);yield return DistrictApproach(bench,200);
@@ -88,6 +89,8 @@ namespace CavesOfOoo.Scenarios.Custom
             Check("sodden_loaded",Player!=player&&Zone!=zone&&saved!=bench&&saved.GetPart<RepairablePart>().Repaired
                 &&saved.GetPart<SoddenPreparationPart>().Worker==Owner(_soddenWorker)&&Tick==tick&&Energy==energy&&At.X==x&&At.Y==y
                 &&Packed("SoddenFieldDressing")==1&&Packed("SalvagedTimber")==2&&CountGraphId(_soddenSalvage)==0
+                &&Player.GetStatValue("ElectricResistance")==50
+                &&Player.GetPart<InventoryPart>().EquippedItems.Values.Any(e=>e.GetPart<WeaponAssemblyPart>()?.BladeBlueprint=="PeatMalletHeadComponent")
                 &&works.GetReadOnlyEntities().Single(e=>e.ID==_soddenLocker).GetPart<ContainerPart>().Contents.Count==0);
             yield return Capture("sodden-08-saved-return");
             Check("sodden_finish",State=="Normal"&&Zone.ZoneID==SoddenDistrictPlan.StopZoneID&&!DevMode.Enabled&&!Player.HasPart<BitLockerPart>());
