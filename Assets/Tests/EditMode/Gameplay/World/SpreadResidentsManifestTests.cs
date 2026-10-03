@@ -15,7 +15,7 @@ namespace CavesOfOoo.Tests
         {
             using (var scope = new HaulingContentScope())
             {
-                var manager = OverworldZoneManager.CreateDetached(scope.Factory, seed, true); Assert.AreEqual(13,manager.Exploration.Version);
+                var manager = OverworldZoneManager.CreateDetached(scope.Factory, seed, true); Assert.AreEqual(SpreadExplorationPlan.CurrentVersion,manager.Exploration.Version);
                 Assert.AreEqual(16, Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily), "SeedKeepersPlot")));
                 Assert.AreEqual(17, Convert.ToInt32(Enum.Parse(typeof(SpreadExplorationFamily), "WaysideKitchen")));
                 Assert.AreEqual("FieldAlembic", manager.Exploration.Find("Overworld.11.9.0").Family.ToString());

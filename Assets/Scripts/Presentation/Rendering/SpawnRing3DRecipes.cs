@@ -35,6 +35,56 @@ namespace CavesOfOoo.Rendering
             if (cell == null || !cell.Objects.Contains(entity)) return Refused(entity, "not-current-zone-member");
             var render = entity.GetPart<RenderPart>();
             if (render == null || !render.Visible) return Refused(entity, "native-render-hidden");
+            if (SoddenDistrictRecipes.Handles(entity.BlueprintName))
+            {
+                string districtModel = SoddenDistrictRecipes.ResolveModel(zone, entity);
+                return districtModel == null ? Refused(entity, "unsupported-current-sodden-district-owner")
+                    : SoddenDistrictRecipes.Recipe(zone, entity, districtModel);
+            }
+            if (SoddenDistrictPlan.IsSupportedZone(zone.ZoneID) && entity.BlueprintName == "PeatCutter")
+            {
+                if (!entity.HasTag("Creature") || !MatchesNativeActorGlyph(entity.BlueprintName, render.RenderString))
+                    return Refused(entity, "reskinned-native-actor");
+                return new SpawnRing3DRecipe(entity, SumpholdVoxelKitLibrary.ModelId("cutter", Variant(null, entity.BlueprintName, entity.ID, 0, 0, 4)),
+                    null, Village3DProjection.CellCentre(cell.X, cell.Y), true, false);
+            }
+            if (SoddenDistrictPlan.IsSupportedZone(zone.ZoneID) && (entity.BlueprintName == "Bed" || entity.BlueprintName == "Chair"))
+            {
+                bool bed = entity.BlueprintName == "Bed"; var physics = entity.GetPart<PhysicsPart>();
+                Part furniture = bed ? (Part)entity.GetPart<BedPart>() : entity.GetPart<ChairPart>();
+                int furnitureCount = 0, renderCount = 0, physicsCount = 0;
+                foreach (var part in entity.Parts)
+                {
+                    if (part.Name == entity.BlueprintName) furnitureCount++;
+                    if (part is RenderPart) renderCount++;
+                    if (part is PhysicsPart) physicsCount++;
+                }
+                var damage = entity.GetPart<DestructiblePart>();
+                if (furniture?.ParentEntity != entity || furnitureCount != 1 || renderCount != 1 || physicsCount != 1
+                    || render.ParentEntity != entity || physics?.ParentEntity != entity || physics.Solid || physics.Takeable
+                    || physics.InInventory != null || physics.Equipped != null || entity.SpatialZone != zone || cell.ParentZone != zone
+                    || entity.HasTag("Creature") || entity.HasTag("Item") || !entity.HasTag("Furniture")
+                    || entity.HasPart<SpatialFootprintPart>() || entity.HasPart<MultiCellPilotPropPart>()
+                    || render.RenderString != (bed ? "=" : "h") || render.ColorString != (bed ? "&W" : "&w") || render.RenderLayer != 5
+                    || !string.IsNullOrEmpty(render.VisualID) || !string.IsNullOrEmpty(render.VisualVariant) || !string.IsNullOrEmpty(render.GlyphVariants)
+                    || damage != null && (damage.ParentEntity != entity || damage.Gone || damage.HP <= 0))
+                    return Refused(entity, "unsupported-current-sodden-furniture");
+                string model = WellmeetVoxelLibrary.ModelId(bed ? "bed" : "chair",
+                    Variant(zone.ZoneID, entity.BlueprintName, entity.ID, cell.X, cell.Y, 4));
+                return new SpawnRing3DRecipe(entity, model, null, Village3DProjection.CellCentre(cell.X, cell.Y), false, true);
+            }
+            if (SoddenDistrictPlan.IsSupportedZone(zone.ZoneID) && (entity.BlueprintName == "StoneWall" || entity.BlueprintName == "StoneFloor"))
+            {
+                var physics = entity.GetPart<PhysicsPart>(); bool wall = entity.BlueprintName == "StoneWall";
+                if (render.ParentEntity != entity || physics?.ParentEntity != entity || physics.Takeable || physics.Solid != wall
+                    || physics.InInventory != null || physics.Equipped != null || entity.SpatialZone != zone || cell.ParentZone != zone
+                    || entity.HasTag("Creature") || entity.HasTag("Item") || entity.HasPart<SpatialFootprintPart>()
+                    || !string.IsNullOrEmpty(render.VisualID) || !string.IsNullOrEmpty(render.VisualVariant))
+                    return Refused(entity, "unsupported-current-sodden-masonry");
+                int variant = Variant(zone.ZoneID, entity.BlueprintName, entity.ID, cell.X, cell.Y, 4);
+                string model = wall ? SumpholdVoxelKitLibrary.ModelId("wall", variant) : WellmeetVoxelLibrary.ModelId("floor", variant);
+                return new SpawnRing3DRecipe(entity, model, null, Village3DProjection.CellCentre(cell.X, cell.Y), false, true);
+            }
             if (ConnectedSpread3DLibrary.Handles(entity.BlueprintName))
             {
                 string model = ConnectedSpread3DLibrary.ResolveModel(zone, entity);

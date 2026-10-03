@@ -28,6 +28,27 @@ namespace CavesOfOoo.Rendering
             if(botany!=null){botany.Validate();foreach(var e in botany.Entries)generated.Add(e.Mesh);}
             var cultivation=RepairCultivation3DLibrary.Load();
             if(cultivation!=null){cultivation.Validate();foreach(var e in cultivation.Entries)generated.Add(e.Mesh);}
+            // The portable field dressing may travel beyond its home district.
+            var soddenDistrict = SoddenDistrictArtLibrary.Load();
+            if (soddenDistrict != null) { soddenDistrict.Validate(); foreach (var entry in soddenDistrict.Entries) generated.Add(entry.Mesh); }
+            if (SoddenDistrictPlan.IsSupportedZone(zoneId))
+            {
+                var cutters = SumpholdVoxelKitLibrary.Load();
+                if (cutters == null) throw new InvalidOperationException("Required native Sodden keeper art missing.");
+                cutters.Validate(); foreach (var entry in cutters.Entries) generated.Add(entry.Mesh);
+                var floors = WellmeetVoxelLibrary.Load();
+                if (floors == null) throw new InvalidOperationException("Required native Sodden stone floor art missing.");
+                floors.Validate();
+                for (int variant = 0; variant < 4; variant++)
+                {
+                    generated.Add(floors.Find(WellmeetVoxelLibrary.ModelId("floor", variant)).Mesh);
+                    generated.Add(floors.Find(WellmeetVoxelLibrary.ModelId("bed", variant)).Mesh);
+                    generated.Add(floors.Find(WellmeetVoxelLibrary.ModelId("chair", variant)).Mesh);
+                }
+                var bandfrog = SpreadVisitorCreatureLibrary.Load();
+                if (bandfrog == null) throw new InvalidOperationException("Required native Bandfrog art missing.");
+                bandfrog.Validate(); generated.Add(bandfrog.Find("spread-visitor-bandfrog").Mesh);
+            }
             if(referenceGlade)
             {
                 var glade=ReferenceGladeVoxelLibrary.Load();if(glade==null)throw new InvalidOperationException("Reference glade voxel kit missing.");

@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="26" result="Failed(Child)" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-03 18:49:03Z" end-time="2026-10-03 18:49:12Z" duration="8.5789227">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="23986" result="Failed" site="Child" start-time="2026-10-03 18:49:03Z" end-time="2026-10-03 18:49:12Z" duration="8.578923" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="29506" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="23986" result="Failed" site="Child" start-time="2026-10-03 18:49:03Z" end-time="2026-10-03 18:49:12Z" duration="8.475100" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="45162" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="29507" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="23986" result="Failed" site="Child" start-time="2026-10-03 18:49:03Z" end-time="2026-10-03 18:49:12Z" duration="8.284664" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="29508" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="23986" result="Failed" site="Child" start-time="2026-10-03 18:49:04Z" end-time="2026-10-03 18:49:12Z" duration="8.084737" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24812" name="SoddenDistrictArtTests" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-10-03 18:49:04Z" end-time="2026-10-03 18:49:12Z" duration="7.984445" total="26" passed="1" failed="25" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24838" name="AllImportedDistrictMeshesRemainBorrowedWithoutSecondVoxelization" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.AllImportedDistrictMeshesRemainBorrowedWithoutSecondVoxelization" methodname="AllImportedDistrictMeshesRemainBorrowedWithoutSecondVoxelization" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1699177469" result="Failed" start-time="2026-10-03 18:49:04Z" end-time="2026-10-03 18:49:05Z" duration="0.547181" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  bench-broken
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenDistrictArtTests.AllImportedDistrictMeshesRemainBorrowedWithoutSecondVoxelization () [0x0006e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:203
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="24815" name="BenchRepairChangesSubmittedShapeAndRoundTripsWithoutRevivingOldOwner" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.BenchRepairChangesSubmittedShapeAndRoundTripsWithoutRevivingOldOwner" methodname="BenchRepairChangesSubmittedShapeAndRoundTripsWithoutRevivingOldOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="769087815" result="Failed" start-time="2026-10-03 18:49:05Z" end-time="2026-10-03 18:49:05Z" duration="0.555656" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.BenchRepairChangesSubmittedShapeAndRoundTripsWithoutRevivingOldOwner () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:89
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+            </test-case>
+            <test-case id="24813" name="DistrictRecipeClaimsOnlyItsFiveExactNativeOwners" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.DistrictRecipeClaimsOnlyItsFiveExactNativeOwners" methodname="DistrictRecipeClaimsOnlyItsFiveExactNativeOwners" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1658440521" result="Passed" start-time="2026-10-03 18:49:05Z" end-time="2026-10-03 18:49:05Z" duration="0.001092" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24823" name="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 18:49:05Z" end-time="2026-10-03 18:49:07Z" duration="1.526640" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24821" name="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin(&quot;Overworld.2.6.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin(&quot;Overworld.2.6.0&quot;)" methodname="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="739432710" result="Failed" start-time="2026-10-03 18:49:05Z" end-time="2026-10-03 18:49:06Z" duration="1.146904" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  field-dressing
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenDistrictArtTests.Exact (CavesOfOoo.Tests.SpawnRing3DIntegrationFixture f, CavesOfOoo.Core.Entity owner, System.String suffix) [0x0004d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:36
+at CavesOfOoo.Tests.SoddenDistrictArtTests.DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin (System.String zoneId) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:148
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Missing ring model sodden-district-field-dressing
+]]></output>
+              </test-case>
+              <test-case id="24822" name="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin(&quot;Overworld.15.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin(&quot;Overworld.15.7.0&quot;)" methodname="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="57826778" result="Failed" start-time="2026-10-03 18:49:06Z" end-time="2026-10-03 18:49:07Z" duration="0.219258" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin (System.String zoneId) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:146
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24842" name="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-03 18:49:07Z" end-time="2026-10-03 18:49:08Z" duration="1.029058" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24839" name="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.15.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.15.7.0&quot;)" methodname="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="2130812620" result="Failed" start-time="2026-10-03 18:49:07Z" end-time="2026-10-03 18:49:07Z" duration="0.219881" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner (System.String zoneId) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:215
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24840" name="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.16.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.16.7.0&quot;)" methodname="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1218273316" result="Failed" start-time="2026-10-03 18:49:07Z" end-time="2026-10-03 18:49:07Z" duration="0.207224" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-route-notice
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner (System.String zoneId) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:215
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-route-notice
+]]></output>
+              </test-case>
+              <test-case id="24841" name="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.17.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.17.7.0&quot;)" methodname="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="928056549" result="Failed" start-time="2026-10-03 18:49:07Z" end-time="2026-10-03 18:49:08Z" duration="0.539692" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-works-locker
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner (System.String zoneId) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:215
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-works-locker
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24837" name="InvalidBenchCannotBorrowAWorkingServiceAppearance" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="13" result="Failed" site="Child" start-time="2026-10-03 18:49:08Z" end-time="2026-10-03 18:49:11Z" duration="3.270553" total="13" passed="0" failed="13" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24824" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;hidden&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1060210396" result="Failed" start-time="2026-10-03 18:49:08Z" end-time="2026-10-03 18:49:08Z" duration="0.227764" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24825" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;glyph&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="659859773" result="Failed" start-time="2026-10-03 18:49:08Z" end-time="2026-10-03 18:49:08Z" duration="0.219562" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24826" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;color&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;color&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="844791641" result="Failed" start-time="2026-10-03 18:49:08Z" end-time="2026-10-03 18:49:08Z" duration="0.220305" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24827" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;custom-visual&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;custom-visual&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="816721963" result="Failed" start-time="2026-10-03 18:49:08Z" end-time="2026-10-03 18:49:09Z" duration="0.244384" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24828" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-render&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1354715213" result="Failed" start-time="2026-10-03 18:49:09Z" end-time="2026-10-03 18:49:09Z" duration="0.316601" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24829" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-physics&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="815425198" result="Failed" start-time="2026-10-03 18:49:09Z" end-time="2026-10-03 18:49:09Z" duration="0.222433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24830" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-repair&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-repair&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="518737631" result="Failed" start-time="2026-10-03 18:49:09Z" end-time="2026-10-03 18:49:09Z" duration="0.217105" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24831" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-cell&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-cell&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1624151148" result="Failed" start-time="2026-10-03 18:49:09Z" end-time="2026-10-03 18:49:10Z" duration="0.212729" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24832" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-spatial&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-spatial&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="700586319" result="Failed" start-time="2026-10-03 18:49:10Z" end-time="2026-10-03 18:49:10Z" duration="0.351822" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24833" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;carried&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="385043105" result="Failed" start-time="2026-10-03 18:49:10Z" end-time="2026-10-03 18:49:10Z" duration="0.221536" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24834" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;takeable&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="977893326" result="Failed" start-time="2026-10-03 18:49:10Z" end-time="2026-10-03 18:49:10Z" duration="0.219994" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24835" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;creature&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1726795636" result="Failed" start-time="2026-10-03 18:49:10Z" end-time="2026-10-03 18:49:11Z" duration="0.218712" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+              <test-case id="24836" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;wrong-recipe&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;wrong-recipe&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1251215537" result="Failed" start-time="2026-10-03 18:49:11Z" end-time="2026-10-03 18:49:11Z" duration="0.343056" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-bench-broken
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance (System.String fault) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:162
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-bench-broken
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="24820" name="RetainedHarvestedSalvageCannotStillAdvertiseTimber" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.RetainedHarvestedSalvageCannotStillAdvertiseTimber" methodname="RetainedHarvestedSalvageCannotStillAdvertiseTimber" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="629654032" result="Failed" start-time="2026-10-03 18:49:11Z" end-time="2026-10-03 18:49:11Z" duration="0.198936" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Unsupported batched ring model: sodden-district-works-locker
+  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.RetainedHarvestedSalvageCannotStillAdvertiseTimber () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:133
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-works-locker
+]]></output>
+            </test-case>
+            <test-case id="24814" name="SixOriginalFormsUseBuildVisibleInertSingleCellGeometry" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.SixOriginalFormsUseBuildVisibleInertSingleCellGeometry" methodname="SixOriginalFormsUseBuildVisibleInertSingleCellGeometry" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="2143197122" result="Failed" start-time="2026-10-03 18:49:11Z" end-time="2026-10-03 18:49:11Z" duration="0.000746" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Record RED before building the six original Sodden district meshes.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenDistrictArtTests.SixOriginalFormsUseBuildVisibleInertSingleCellGeometry () [0x0000b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:52
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24819" name="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-03 18:49:11Z" end-time="2026-10-03 18:49:12Z" duration="0.647496" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24816" name="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenWorksSalvage&quot;,&quot;works-salvage&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenWorksSalvage&quot;,&quot;works-salvage&quot;)" methodname="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1924253457" result="Failed" start-time="2026-10-03 18:49:11Z" end-time="2026-10-03 18:49:11Z" duration="0.195391" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-works-locker
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan (System.String blueprint, System.String model) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:117
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-works-locker
+]]></output>
+              </test-case>
+              <test-case id="24817" name="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenWorksLocker&quot;,&quot;works-locker&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenWorksLocker&quot;,&quot;works-locker&quot;)" methodname="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="578874367" result="Failed" start-time="2026-10-03 18:49:11Z" end-time="2026-10-03 18:49:12Z" duration="0.194820" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-works-locker
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan (System.String blueprint, System.String model) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:117
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-works-locker
+]]></output>
+              </test-case>
+              <test-case id="24818" name="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenRouteNotice&quot;,&quot;route-notice&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenRouteNotice&quot;,&quot;route-notice&quot;)" methodname="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1585761054" result="Failed" start-time="2026-10-03 18:49:12Z" end-time="2026-10-03 18:49:12Z" duration="0.191041" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unsupported batched ring model: sodden-district-works-locker
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SpawnRing3DIntegrationFixture..ctor (System.String zoneId, System.Boolean legacyFen) [0x0032a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SpawnRing3DIntegrationTests.cs:60
+at CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan (System.String blueprint, System.String model) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:117
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[[SpawnRing3D] Native presentation retained: Unsupported batched ring model: sodden-district-works-locker
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -148,6 +148,14 @@ namespace CavesOfOoo.Rendering
                     styleProperties=new MaterialPropertyBlock();
                     approvedStyle=new SpreadBiomeStyleCatalog(glade,SpreadBiomeActorLibrary.Load(),humanoidLibrary,SpreadPortable3DLibrary.Load(),poured,SpreadScenery3DLibrary.Load(),SpreadCreature3DLibrary.Load(),SpreadEnvironment3DLibrary.Load(),visitorPaintLibrary,nativeStyleLibrary,visitorCreatureLibrary);
                 }
+                else if (SoddenDistrictPlan.IsSupportedZone(zone.ZoneID))
+                {
+                    // The existing scarlet/black Bandfrog keeps its own palette,
+                    // rig and picking bounds when encountered in its home mire.
+                    visitorCreatureLibrary = SpreadVisitorCreatureLibrary.Load();
+                    if (visitorCreatureLibrary == null) throw new InvalidOperationException("Native Sodden Bandfrog art missing.");
+                    visitorCreatureLibrary.Validate(); materials.Add(visitorCreatureLibrary.Material);
+                }
                 surface = new NativeZone3DRenderSurface(transform, library.Renderer, library.RendererIndex,
                     library.CompositeMaterial, materials.ToArray(), 2.2f);
                 if (glade != null)

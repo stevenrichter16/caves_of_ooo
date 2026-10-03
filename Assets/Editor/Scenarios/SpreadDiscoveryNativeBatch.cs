@@ -37,6 +37,8 @@ namespace CavesOfOoo.Editor
         public static void LaunchConnectedBreaker() => LaunchCore(false,seed:1729,connectedBuild:"breaker");
         [MenuItem("Caves Of Ooo/Scenarios/World/Connected Spread Bombardier Targeted Audit")]
         public static void LaunchConnectedBombardier() => LaunchCore(false,seed:29,connectedBuild:"bombardier");
+        [MenuItem("Caves Of Ooo/Scenarios/World/Sodden Expedition Ordinary Audit")]
+        public static void LaunchSoddenDistrict() => LaunchCore(false,connectedBuild:"duelist",soddenDistrict:true);
         public static void LaunchCards() => LaunchCore(false,false,true);
         public static void LaunchOrdinary() => LaunchCore(false,true);
         [MenuItem("Caves Of Ooo/Scenarios/World/Gleaners District Ordinary Audit")]
@@ -52,7 +54,7 @@ namespace CavesOfOoo.Editor
         [MenuItem("Caves Of Ooo/Scenarios/World/Spread Discovery Native Audit", true)]
         private static bool CanLaunch() => !EditorApplication.isPlayingOrWillChangePlaymode;
 
-        private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false,bool district=false,int seed=64,bool districtCombat=false,bool districtPrepared=false,string connectedBuild=null,bool fieldwork=false,bool predatorDiversion=false,bool trapJamming=false)
+        private static void LaunchCore(bool exitEditor,bool ordinary=false,bool cards=false,bool district=false,int seed=64,bool districtCombat=false,bool districtPrepared=false,string connectedBuild=null,bool fieldwork=false,bool predatorDiversion=false,bool trapJamming=false,bool soddenDistrict=false)
         {
             if (EditorApplication.isPlayingOrWillChangePlaymode)
                 throw new InvalidOperationException("Exit Play before launching the Spread discovery audit.");
@@ -73,6 +75,7 @@ namespace CavesOfOoo.Editor
             SessionState.SetBool(Prefix + "fieldwork", fieldwork);
             SessionState.SetBool(Prefix + "predatorDiversion", predatorDiversion);
             SessionState.SetBool(Prefix + "trapJamming", trapJamming);
+            SessionState.SetBool(Prefix + "soddenDistrict", soddenDistrict);
             SessionState.SetInt(Prefix + "seed", seed);
             SessionState.SetBool(Prefix + "ordinary", ordinary);
             SessionState.SetBool(Prefix + "cards", cards);
@@ -106,7 +109,9 @@ namespace CavesOfOoo.Editor
         {
             GameBootstrap.OnAfterBootstrap -= Apply;
             var driver = new GameObject("Spread Discovery Native Audit").AddComponent<SpreadDiscoveryNativePlayer>();
-            if (SessionState.GetBool(Prefix + "trapJamming", false))
+            if (SessionState.GetBool(Prefix + "soddenDistrict", false))
+                driver.InitializeSoddenDistrict(new ScenarioContext(zone, factory, player, turns));
+            else if (SessionState.GetBool(Prefix + "trapJamming", false))
                 driver.InitializeTrapJamming(new ScenarioContext(zone, factory, player, turns));
             else if (SessionState.GetBool(Prefix + "predatorDiversion", false))
                 driver.InitializePredatorDiversion(new ScenarioContext(zone, factory, player, turns));

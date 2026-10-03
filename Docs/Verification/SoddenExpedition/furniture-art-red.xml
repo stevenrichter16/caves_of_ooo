@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="38" result="Failed(Child)" total="38" passed="29" failed="9" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-03 19:26:07Z" end-time="2026-10-03 19:26:20Z" duration="13.2350517">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24054" result="Failed" site="Child" start-time="2026-10-03 19:26:07Z" end-time="2026-10-03 19:26:20Z" duration="13.235052" total="38" passed="29" failed="9" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="29592" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24054" result="Failed" site="Child" start-time="2026-10-03 19:26:07Z" end-time="2026-10-03 19:26:20Z" duration="13.120699" total="38" passed="29" failed="9" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="45162" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="29593" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24054" result="Failed" site="Child" start-time="2026-10-03 19:26:07Z" end-time="2026-10-03 19:26:20Z" duration="12.939384" total="38" passed="29" failed="9" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="29594" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24054" result="Failed" site="Child" start-time="2026-10-03 19:26:07Z" end-time="2026-10-03 19:26:20Z" duration="12.740408" total="38" passed="29" failed="9" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24884" name="SoddenDistrictArtTests" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="38" result="Failed" site="Child" start-time="2026-10-03 19:26:07Z" end-time="2026-10-03 19:26:20Z" duration="12.635809" total="38" passed="29" failed="9" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24910" name="AllImportedDistrictMeshesRemainBorrowedWithoutSecondVoxelization" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.AllImportedDistrictMeshesRemainBorrowedWithoutSecondVoxelization" methodname="AllImportedDistrictMeshesRemainBorrowedWithoutSecondVoxelization" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="495605241" result="Passed" start-time="2026-10-03 19:26:08Z" end-time="2026-10-03 19:26:08Z" duration="0.291001" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24887" name="BenchRepairChangesSubmittedShapeAndRoundTripsWithoutRevivingOldOwner" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.BenchRepairChangesSubmittedShapeAndRoundTripsWithoutRevivingOldOwner" methodname="BenchRepairChangesSubmittedShapeAndRoundTripsWithoutRevivingOldOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1130387639" result="Passed" start-time="2026-10-03 19:26:08Z" end-time="2026-10-03 19:26:09Z" duration="0.876180" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24885" name="DistrictRecipeClaimsOnlyItsFiveExactNativeOwners" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.DistrictRecipeClaimsOnlyItsFiveExactNativeOwners" methodname="DistrictRecipeClaimsOnlyItsFiveExactNativeOwners" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="17552387" result="Passed" start-time="2026-10-03 19:26:09Z" end-time="2026-10-03 19:26:09Z" duration="0.000105" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24895" name="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03 19:26:09Z" end-time="2026-10-03 19:26:10Z" duration="1.550829" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24893" name="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin(&quot;Overworld.2.6.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin(&quot;Overworld.2.6.0&quot;)" methodname="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="2108883136" result="Passed" start-time="2026-10-03 19:26:09Z" end-time="2026-10-03 19:26:10Z" duration="0.976755" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24894" name="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin(&quot;Overworld.15.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin(&quot;Overworld.15.7.0&quot;)" methodname="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="2054553174" result="Passed" start-time="2026-10-03 19:26:10Z" end-time="2026-10-03 19:26:10Z" duration="0.474872" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24921" name="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-03 19:26:10Z" end-time="2026-10-03 19:26:12Z" duration="1.884564" total="6" passed="4" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24915" name="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(&quot;StoneFloor&quot;,&quot;wellmeet-floor-&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(&quot;StoneFloor&quot;,&quot;wellmeet-floor-&quot;)" methodname="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1922557322" result="Passed" start-time="2026-10-03 19:26:10Z" end-time="2026-10-03 19:26:11Z" duration="0.305482" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24916" name="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(&quot;StoneWall&quot;,&quot;sumphold-wall-&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(&quot;StoneWall&quot;,&quot;sumphold-wall-&quot;)" methodname="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1814870730" result="Passed" start-time="2026-10-03 19:26:11Z" end-time="2026-10-03 19:26:11Z" duration="0.296883" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24917" name="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(&quot;PeatCutter&quot;,&quot;sumphold-cutter-&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(&quot;PeatCutter&quot;,&quot;sumphold-cutter-&quot;)" methodname="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1629640392" result="Passed" start-time="2026-10-03 19:26:11Z" end-time="2026-10-03 19:26:11Z" duration="0.295891" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24918" name="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(&quot;Bandfrog&quot;,&quot;spread-visitor-bandfrog&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(&quot;Bandfrog&quot;,&quot;spread-visitor-bandfrog&quot;)" methodname="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="538911696" result="Passed" start-time="2026-10-03 19:26:11Z" end-time="2026-10-03 19:26:12Z" duration="0.417982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24919" name="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(&quot;Bed&quot;,&quot;wellmeet-bed-&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(&quot;Bed&quot;,&quot;wellmeet-bed-&quot;)" methodname="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1769680436" result="Failed" start-time="2026-10-03 19:26:12Z" end-time="2026-10-03 19:26:12Z" duration="0.247005" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String starting with "wellmeet-bed-"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.StartsWith (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.StartsWith (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict (System.String blueprint, System.String prefix) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:239
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24920" name="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(&quot;Chair&quot;,&quot;wellmeet-chair-&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict(&quot;Chair&quot;,&quot;wellmeet-chair-&quot;)" methodname="ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="549870387" result="Failed" start-time="2026-10-03 19:26:12Z" end-time="2026-10-03 19:26:12Z" duration="0.241769" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: String starting with "wellmeet-chair-"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.StartsWith (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.StringAssert.StartsWith (System.String expected, System.String actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.SoddenDistrictArtTests.ExistingNativeFormsKeepTheirExactOwnersWhenReusedInTheDistrict (System.String blueprint, System.String prefix) [0x0003b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:239
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24914" name="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-03 19:26:12Z" end-time="2026-10-03 19:26:13Z" duration="1.041315" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24911" name="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.15.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.15.7.0&quot;)" methodname="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="817072272" result="Failed" start-time="2026-10-03 19:26:12Z" end-time="2026-10-03 19:26:13Z" duration="0.278031" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Bed: unmodeled-native-blueprint
+Chair: unmodeled-native-blueprint
+  Expected: <empty>
+  But was:  < "Bed: unmodeled-native-blueprint", "Chair: unmodeled-native-blueprint" >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner (System.String zoneId) [0x000d9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:226
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24912" name="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.16.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.16.7.0&quot;)" methodname="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="673762955" result="Passed" start-time="2026-10-03 19:26:13Z" end-time="2026-10-03 19:26:13Z" duration="0.316020" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24913" name="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.17.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.17.7.0&quot;)" methodname="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1095699237" result="Passed" start-time="2026-10-03 19:26:13Z" end-time="2026-10-03 19:26:13Z" duration="0.352926" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24909" name="InvalidBenchCannotBorrowAWorkingServiceAppearance" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-03 19:26:13Z" end-time="2026-10-03 19:26:17Z" duration="3.710360" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24896" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;hidden&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1692535055" result="Passed" start-time="2026-10-03 19:26:13Z" end-time="2026-10-03 19:26:13Z" duration="0.254737" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24897" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;glyph&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="437190294" result="Passed" start-time="2026-10-03 19:26:13Z" end-time="2026-10-03 19:26:14Z" duration="0.250563" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24898" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;color&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;color&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1537557143" result="Passed" start-time="2026-10-03 19:26:14Z" end-time="2026-10-03 19:26:14Z" duration="0.249570" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24899" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;custom-visual&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;custom-visual&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="80665771" result="Passed" start-time="2026-10-03 19:26:14Z" end-time="2026-10-03 19:26:14Z" duration="0.376645" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24900" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-render&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="958322151" result="Passed" start-time="2026-10-03 19:26:14Z" end-time="2026-10-03 19:26:15Z" duration="0.253402" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24901" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-physics&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="550159682" result="Passed" start-time="2026-10-03 19:26:15Z" end-time="2026-10-03 19:26:15Z" duration="0.249699" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24902" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-repair&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-repair&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1081951099" result="Passed" start-time="2026-10-03 19:26:15Z" end-time="2026-10-03 19:26:15Z" duration="0.247625" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24903" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-cell&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-cell&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="103738189" result="Passed" start-time="2026-10-03 19:26:15Z" end-time="2026-10-03 19:26:15Z" duration="0.311993" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24904" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-spatial&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-spatial&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="278449864" result="Passed" start-time="2026-10-03 19:26:15Z" end-time="2026-10-03 19:26:16Z" duration="0.328334" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24905" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;carried&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1756296984" result="Passed" start-time="2026-10-03 19:26:16Z" end-time="2026-10-03 19:26:16Z" duration="0.260333" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24906" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;takeable&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1027912449" result="Passed" start-time="2026-10-03 19:26:16Z" end-time="2026-10-03 19:26:16Z" duration="0.247703" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24907" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;creature&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="683375044" result="Passed" start-time="2026-10-03 19:26:16Z" end-time="2026-10-03 19:26:17Z" duration="0.246824" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24908" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;wrong-recipe&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;wrong-recipe&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="738201878" result="Passed" start-time="2026-10-03 19:26:17Z" end-time="2026-10-03 19:26:17Z" duration="0.377546" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24928" name="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-03 19:26:17Z" end-time="2026-10-03 19:26:19Z" duration="1.819526" total="6" passed="0" failed="6" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24922" name="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm(&quot;Bed&quot;,&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm(&quot;Bed&quot;,&quot;glyph&quot;)" methodname="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1199999784" result="Failed" start-time="2026-10-03 19:26:17Z" end-time="2026-10-03 19:26:17Z" duration="0.242861" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real positive owner required before the countercheck.
+  Expected: String starting with "wellmeet-bed-"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.StartsWith (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm (System.String blueprint, System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:257
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24923" name="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm(&quot;Chair&quot;,&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm(&quot;Chair&quot;,&quot;glyph&quot;)" methodname="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="974033163" result="Failed" start-time="2026-10-03 19:26:17Z" end-time="2026-10-03 19:26:17Z" duration="0.243086" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real positive owner required before the countercheck.
+  Expected: String starting with "wellmeet-chair-"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.StartsWith (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm (System.String blueprint, System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:257
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24924" name="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm(&quot;Bed&quot;,&quot;foreign-furniture&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm(&quot;Bed&quot;,&quot;foreign-furniture&quot;)" methodname="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="196068742" result="Failed" start-time="2026-10-03 19:26:17Z" end-time="2026-10-03 19:26:18Z" duration="0.236206" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real positive owner required before the countercheck.
+  Expected: String starting with "wellmeet-bed-"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.StartsWith (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm (System.String blueprint, System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:257
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24925" name="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm(&quot;Chair&quot;,&quot;foreign-furniture&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm(&quot;Chair&quot;,&quot;foreign-furniture&quot;)" methodname="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1670078406" result="Failed" start-time="2026-10-03 19:26:18Z" end-time="2026-10-03 19:26:18Z" duration="0.315910" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real positive owner required before the countercheck.
+  Expected: String starting with "wellmeet-chair-"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.StartsWith (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm (System.String blueprint, System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:257
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24926" name="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm(&quot;Bed&quot;,&quot;solid&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm(&quot;Bed&quot;,&quot;solid&quot;)" methodname="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1287355205" result="Failed" start-time="2026-10-03 19:26:18Z" end-time="2026-10-03 19:26:18Z" duration="0.497878" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real positive owner required before the countercheck.
+  Expected: String starting with "wellmeet-bed-"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.StartsWith (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm (System.String blueprint, System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:257
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24927" name="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm(&quot;Chair&quot;,&quot;solid&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm(&quot;Chair&quot;,&quot;solid&quot;)" methodname="MalformedShelterFurnitureCannotBorrowTheNativeUsableForm" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1229393831" result="Failed" start-time="2026-10-03 19:26:18Z" end-time="2026-10-03 19:26:19Z" duration="0.241287" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Real positive owner required before the countercheck.
+  Expected: String starting with "wellmeet-chair-"
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.StringAssert.StartsWith (System.String expected, System.String actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.SoddenDistrictArtTests.MalformedShelterFurnitureCannotBorrowTheNativeUsableForm (System.String blueprint, System.String fault) [0x00016] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:257
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="24892" name="RetainedHarvestedSalvageCannotStillAdvertiseTimber" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.RetainedHarvestedSalvageCannotStillAdvertiseTimber" methodname="RetainedHarvestedSalvageCannotStillAdvertiseTimber" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1785147427" result="Passed" start-time="2026-10-03 19:26:19Z" end-time="2026-10-03 19:26:19Z" duration="0.250727" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24886" name="SixOriginalFormsUseBuildVisibleInertSingleCellGeometry" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.SixOriginalFormsUseBuildVisibleInertSingleCellGeometry" methodname="SixOriginalFormsUseBuildVisibleInertSingleCellGeometry" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="743378496" result="Passed" start-time="2026-10-03 19:26:19Z" end-time="2026-10-03 19:26:19Z" duration="0.002774" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24891" name="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-03 19:26:19Z" end-time="2026-10-03 19:26:20Z" duration="1.008550" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24888" name="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenWorksSalvage&quot;,&quot;works-salvage&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenWorksSalvage&quot;,&quot;works-salvage&quot;)" methodname="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="795337196" result="Passed" start-time="2026-10-03 19:26:19Z" end-time="2026-10-03 19:26:19Z" duration="0.269918" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24889" name="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenWorksLocker&quot;,&quot;works-locker&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenWorksLocker&quot;,&quot;works-locker&quot;)" methodname="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1683931387" result="Passed" start-time="2026-10-03 19:26:19Z" end-time="2026-10-03 19:26:20Z" duration="0.391952" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24890" name="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenRouteNotice&quot;,&quot;route-notice&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenRouteNotice&quot;,&quot;route-notice&quot;)" methodname="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1538423991" result="Passed" start-time="2026-10-03 19:26:20Z" end-time="2026-10-03 19:26:20Z" duration="0.277520" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

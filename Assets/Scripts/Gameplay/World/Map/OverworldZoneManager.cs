@@ -26,6 +26,7 @@ namespace CavesOfOoo.Core
         // Final validation belongs to the generation attempt even if a callback
         // replaces the selected plan before acceptance.
         internal SpreadWayhousePlan StagedWayhouse;
+        private readonly Dictionary<string,SoddenDistrict.Attempt> stagedSodden=new Dictionary<string,SoddenDistrict.Attempt>();
         private System.Func<int> _turnProvider;
 
         public OverworldZoneManager(EntityFactory factory, int worldSeed = 0)
@@ -83,7 +84,7 @@ namespace CavesOfOoo.Core
                     pipeline.AddBuilder(new SpreadExplorationBuilder(this,land,population,containers,haul,captured.Version>=8&&assignment.Family==SpreadExplorationFamily.HuntThroughCover));
             }
             var cropSite=BiomeCropPlan.ForZone(this,zoneID);
-            if(cropSite!=null)pipeline.AddBuilder(new BiomeCropPlacement(this,cropSite));
+            if(cropSite!=null&&!stagedSodden.ContainsKey(zoneID))pipeline.AddBuilder(new BiomeCropPlacement(this,cropSite));
             if(guard!=null)pipeline.AddBuilder(guard);
             return pipeline;
         }
@@ -119,6 +120,13 @@ namespace CavesOfOoo.Core
 
             BiomeType biome = WorldMap.GetBiome(wx, wy);
             var poi = WorldMap.GetPOI(wx, wy);
+
+            if(SoddenDistrict.Eligible(this,zoneID))
+            {
+                var attempt=new SoddenDistrict.Attempt(this,zoneID);stagedSodden[zoneID]=attempt;
+                var district=new ZoneGenerationPipeline();district.AddBuilder(attempt.Builder);return district;
+            }
+            stagedSodden.Remove(zoneID);
 
             // W5.1 (Docs/FELLING-W5-PLAN.md sweep row 1) — a sinkhole is
             // the ONE POI type that means something below z=0, so it is
@@ -1172,6 +1180,11 @@ namespace CavesOfOoo.Core
         {
             LegendaryLairEncounters.TryApplyGeneratedFinal(zone, this);
             bool lairAccepted=LairStacks.CommitGenerated(zone,this);
+            if(stagedSodden.TryGetValue(zoneID,out var sodden))
+            {
+                stagedSodden.Remove(zoneID);
+                lairAccepted=sodden.Commit(zone)&&lairAccepted;
+            }
             var staged=StagedWayhouse;
             if(staged?.PendingZone==zone)
             {
@@ -1182,6 +1195,7 @@ namespace CavesOfOoo.Core
         }
         protected override bool CanUnloadZone(string zoneID) => !LairStacks.RetainOnUnload(this, zoneID)
             && !GleanersDistrict.Retain(zoneID)
+            && !SoddenDistrict.Retain(zoneID)
             && Wayhouse?.Retain(this,zoneID)!=true && Exploration?.Retain(this,zoneID)!=true
             && !CurationIntakePart.Retain(this,zoneID) && !RepairCultivationSite.Retain(this,zoneID)
             && !BiomeCropPlacement.Retain(this,zoneID);
@@ -1197,6 +1211,7 @@ namespace CavesOfOoo.Core
         protected override void OnZoneGenerated(Zone zone, string zoneID)
         {
             LocalPeople.Apply(zone, this);
+            SoddenDistrict.DescribeTownRoute(zone,this);
             if (!WorldMap.IsOverworldZoneID(zoneID))
                 return;
 

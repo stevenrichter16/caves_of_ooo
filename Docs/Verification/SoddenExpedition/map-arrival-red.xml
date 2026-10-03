@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Failed(Child)" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-03 19:19:16Z" end-time="2026-10-03 19:19:22Z" duration="6.542959">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24029" result="Failed" site="Child" start-time="2026-10-03 19:19:16Z" end-time="2026-10-03 19:19:22Z" duration="6.542959" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="29563" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24029" result="Failed" site="Child" start-time="2026-10-03 19:19:16Z" end-time="2026-10-03 19:19:22Z" duration="6.410587" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="45162" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="29564" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24029" result="Failed" site="Child" start-time="2026-10-03 19:19:16Z" end-time="2026-10-03 19:19:22Z" duration="6.252392" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="29565" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24029" result="Failed" site="Child" start-time="2026-10-03 19:19:16Z" end-time="2026-10-03 19:19:22Z" duration="6.152459" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="17229" name="SoddenDistrictArrivalTests" fullname="CavesOfOoo.Tests.SoddenDistrictArrivalTests" classname="CavesOfOoo.Tests.SoddenDistrictArrivalTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 19:19:16Z" end-time="2026-10-03 19:19:22Z" duration="6.049445" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="17234" name="NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns" fullname="CavesOfOoo.Tests.SoddenDistrictArrivalTests.NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns" classname="CavesOfOoo.Tests.SoddenDistrictArrivalTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 19:19:17Z" end-time="2026-10-03 19:19:22Z" duration="5.848217" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="17230" name="NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns(&quot;first&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArrivalTests.NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns(&quot;first&quot;)" methodname="NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns" classname="CavesOfOoo.Tests.SoddenDistrictArrivalTests" runstate="Runnable" seed="934458039" result="Failed" start-time="2026-10-03 19:19:17Z" end-time="2026-10-03 19:19:18Z" duration="1.500227" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: (20, 12)
+  But was:  (40, 12)
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenDistrictArrivalTests.NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns (System.String mode) [0x0013e] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/Map/SoddenDistrictArrivalTests.cs:23
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="17231" name="NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns(&quot;saved&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArrivalTests.NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns(&quot;saved&quot;)" methodname="NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns" classname="CavesOfOoo.Tests.SoddenDistrictArrivalTests" runstate="Runnable" seed="2000201037" result="Passed" start-time="2026-10-03 19:19:18Z" end-time="2026-10-03 19:19:19Z" duration="1.103477" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17232" name="NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns(&quot;removed-notice&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArrivalTests.NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns(&quot;removed-notice&quot;)" methodname="NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns" classname="CavesOfOoo.Tests.SoddenDistrictArrivalTests" runstate="Runnable" seed="684600087" result="Passed" start-time="2026-10-03 19:19:19Z" end-time="2026-10-03 19:19:21Z" duration="1.160128" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="17233" name="NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns(&quot;legacy&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArrivalTests.NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns(&quot;legacy&quot;)" methodname="NativeMapArrivalStartsAtTheCrossingShoreWithoutMovingSavedReturns" classname="CavesOfOoo.Tests.SoddenDistrictArrivalTests" runstate="Runnable" seed="1639348281" result="Passed" start-time="2026-10-03 19:19:21Z" end-time="2026-10-03 19:19:22Z" duration="1.870607" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

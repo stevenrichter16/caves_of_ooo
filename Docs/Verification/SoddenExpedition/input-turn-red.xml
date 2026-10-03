@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="8" result="Failed(Child)" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-03 18:56:53Z" end-time="2026-10-03 18:56:57Z" duration="3.3936109">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24016" result="Failed" site="Child" start-time="2026-10-03 18:56:53Z" end-time="2026-10-03 18:56:57Z" duration="3.393611" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="29546" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24016" result="Failed" site="Child" start-time="2026-10-03 18:56:53Z" end-time="2026-10-03 18:56:57Z" duration="3.264524" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="45162" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="29547" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24016" result="Failed" site="Child" start-time="2026-10-03 18:56:54Z" end-time="2026-10-03 18:56:57Z" duration="3.199142" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="29548" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24016" result="Failed" site="Child" start-time="2026-10-03 18:56:54Z" end-time="2026-10-03 18:56:57Z" duration="2.998907" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="21718" name="SoddenPreparationInputTests" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-03 18:56:54Z" end-time="2026-10-03 18:56:57Z" duration="2.897409" total="8" passed="7" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="21728" name="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 18:56:54Z" end-time="2026-10-03 18:56:56Z" duration="1.619221" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="21724" name="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;valid&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;valid&quot;)" methodname="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="1283212971" result="Failed" start-time="2026-10-03 18:56:54Z" end-time="2026-10-03 18:56:55Z" duration="0.753154" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  A committed dressing use closes the popup and reaches native turn payment.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit (System.String condition) [0x00302] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/SoddenPreparationInputTests.cs:105
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21725" name="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;before&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;before&quot;)" methodname="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="2033852303" result="Passed" start-time="2026-10-03 18:56:55Z" end-time="2026-10-03 18:56:55Z" duration="0.282122" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Inventory/Refactor] PerformAction[Apply] command failed. Code=ExecutionFailed, Validation=None, Message=Inventory action 'Apply' was cancelled.
+]]></output>
+              </test-case>
+              <test-case id="21726" name="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;after&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;after&quot;)" methodname="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="1059760147" result="Passed" start-time="2026-10-03 18:56:55Z" end-time="2026-10-03 18:56:55Z" duration="0.257500" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Inventory/Refactor] PerformAction[Apply] command failed. Code=Exception, Validation=None, Message=sodden-native-input-rollback
+]]></output>
+              </test-case>
+              <test-case id="21727" name="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;stale&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;stale&quot;)" methodname="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="1239114531" result="Passed" start-time="2026-10-03 18:56:55Z" end-time="2026-10-03 18:56:56Z" duration="0.216967" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[Inventory/Refactor] PerformAction[Apply] command failed. Code=ExecutionFailed, Validation=None, Message=Inventory action 'Apply' failed.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="21723" name="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-03 18:56:56Z" end-time="2026-10-03 18:56:57Z" duration="1.075701" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="21719" name="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;valid&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;valid&quot;)" methodname="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="1610365666" result="Passed" start-time="2026-10-03 18:56:56Z" end-time="2026-10-03 18:56:56Z" duration="0.270003" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="21720" name="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;before&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;before&quot;)" methodname="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="1574586620" result="Passed" start-time="2026-10-03 18:56:56Z" end-time="2026-10-03 18:56:56Z" duration="0.254535" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="21721" name="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;after&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;after&quot;)" methodname="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="1766306977" result="Passed" start-time="2026-10-03 18:56:56Z" end-time="2026-10-03 18:56:56Z" duration="0.227216" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="21722" name="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;stale&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;stale&quot;)" methodname="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="1153014591" result="Passed" start-time="2026-10-03 18:56:56Z" end-time="2026-10-03 18:56:57Z" duration="0.245695" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

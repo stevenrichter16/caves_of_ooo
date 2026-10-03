@@ -3021,6 +3021,7 @@ namespace CavesOfOoo.Rendering
                 || action.Command == RepairablePart.RepairCommand
                 || action.Command == TrapJammingPart.JamCommand
                 || action.Command == BotanicalInkDeskPart.PrepareCommand
+                || action.Command == SoddenPreparationPart.PrepareCommand
                 || action.Command == KitchenBatchPart.StartCommand
                 || CropWateringService.IsCommand(action.Command))
             {

@@ -80,9 +80,11 @@ namespace CavesOfOoo.Tests
                 {
                     if (WorldMapAuthoring.BiomeAt(x, y) != BiomeType.Sodden) continue;
                     string id = WorldMap.ToZoneID(x, y);
-                    bool expected = SoddenCompositionPlan.IsWildernessZone(id) && manager.WorldMap.GetPOI(x, y) == null;
+                    bool district = SoddenDistrict.Eligible(manager,id);
+                    bool expected = SoddenCompositionPlan.IsWildernessZone(id) && manager.WorldMap.GetPOI(x, y) == null && !district;
                     var pipeline = (ZoneGenerationPipeline)get.Invoke(manager, new object[] { id });
                     Assert.AreEqual(expected, pipeline.Builders.Any(b => b is SoddenCompositionBuilder), id);
+                    Assert.AreEqual(district,pipeline.Builders.Any(b=>b is SoddenDistrictBuilder),id+" dedicated district countercheck");
                     if (!expected) continue;
                     composed++;
                     Assert.IsFalse(pipeline.Builders.Any(b => b is SoddenFormationBuilder), "Do not stamp a second bog over the composed one: " + id);

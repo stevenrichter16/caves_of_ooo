@@ -14,7 +14,7 @@ namespace CavesOfOoo.Tests
   [TestCase(64)][TestCase(1729)]
   public void FreshManifestRetainsThreeDifferentNearbyWorksitesAndTheirFamilyIds(int seed)
   {
-   using(var s=new HaulingContentScope()){var m=OverworldZoneManager.CreateDetached(s.Factory,seed,true);Assert.AreEqual(13,m.Exploration.Version);
+   using(var s=new HaulingContentScope()){var m=OverworldZoneManager.CreateDetached(s.Factory,seed,true);Assert.AreEqual(SpreadExplorationPlan.CurrentVersion,m.Exploration.Version);
     for(int i=0;i<Nearby.Length;i++){var e=m.Exploration.Entries.Single(x=>x.ZoneID==Nearby[i]);Assert.True(e.PlacementEligible);Assert.AreEqual(Families[i],e.Family.ToString());Assert.AreEqual(13+i,Convert.ToInt32(e.Family));}
     Assert.Zero(m.CachedZoneCount,"Assignment must not generate graphs.");
    }

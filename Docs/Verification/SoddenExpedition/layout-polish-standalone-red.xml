@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" name="EditModeRunner.dll" fullname="/private/tmp/sodden-world-runner/bin/Debug/net8.0/EditModeRunner.dll" testcasecount="121" result="Failed" start-time="2026-10-03T19:18:37.3788550Z" end-time="2026-10-03T19:18:38.0658850Z" duration="0.686271" total="12" passed="0" failed="12" inconclusive="0" skipped="0" warnings="0" asserts="167" random-seed="2110493310">
+  <command-line><![CDATA[/private/tmp/sodden-world-runner/bin/Debug/net8.0/EditModeRunner.dll --workers=1 --result=/tmp/sodden-polish-red.xml --where "method == CrossingBandfrogRestsOnItsDryIslandWithoutChangingOrdinaryFrogs or method == ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater or method == ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies or method == ShelterSecondRoomProvidesActualFreeSleepAndSeatActions or method == UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop"]]></command-line>
+  <filter>
+    <or>
+      <method>CrossingBandfrogRestsOnItsDryIslandWithoutChangingOrdinaryFrogs</method>
+      <method>ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater</method>
+      <method>ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies</method>
+      <method>ShelterSecondRoomProvidesActualFreeSleepAndSeatActions</method>
+      <method>UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop</method>
+    </or>
+  </filter>
+  <test-suite type="Assembly" id="1151" name="EditModeRunner.dll" fullname="/private/tmp/sodden-world-runner/bin/Debug/net8.0/EditModeRunner.dll" runstate="Runnable" testcasecount="121" result="Failed" site="Child" start-time="2026-10-03T19:18:37.3788550Z" end-time="2026-10-03T19:18:38.0658850Z" duration="0.686271" total="12" passed="0" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="167">
+    <environment framework-version="3.14.0.0" clr-version="10.0.5" os-version="macOS 26.0.0" platform="Unix" cwd="/private/tmp/sodden-world-runner" machine-name="Mac" user="steven" user-domain="Mac" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="NumberOfTestWorkers" value="1" />
+      <setting name="WorkDirectory" value="/private/tmp/sodden-world-runner" />
+    </settings>
+    <properties>
+      <property name="_PID" value="56245" />
+      <property name="_APPDOMAIN" value="EditModeRunner" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1152" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="121" result="Failed" site="Child" start-time="2026-10-03T19:18:37.3805320Z" end-time="2026-10-03T19:18:38.0658830Z" duration="0.684628" total="12" passed="0" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="167">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1153" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="121" result="Failed" site="Child" start-time="2026-10-03T19:18:37.3806400Z" end-time="2026-10-03T19:18:38.0658820Z" duration="0.684518" total="12" passed="0" failed="12" warnings="0" inconclusive="0" skipped="0" asserts="167">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestFixture" id="1044" name="SoddenDistrictGenerationAdversarialTests" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests" classname="CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-10-03T19:18:37.3809790Z" end-time="2026-10-03T19:18:37.7081600Z" duration="0.326832" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="ParameterizedMethod" id="1075" name="UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop" classname="CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03T19:18:37.3818360Z" end-time="2026-10-03T19:18:37.7079420Z" duration="0.325758" total="4" passed="0" failed="4" warnings="0" inconclusive="0" skipped="0" asserts="4">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1071" name="UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(&quot;Bed&quot;,False)" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(&quot;Bed&quot;,False)" methodname="UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop" classname="CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests" runstate="Runnable" seed="1605255922" result="Failed" start-time="2026-10-03T19:18:37.3819140Z" end-time="2026-10-03T19:18:37.5230880Z" duration="0.141047" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(String blueprint, Boolean occupied) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationAdversarialTests.cs:line 53
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(String blueprint, Boolean occupied) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationAdversarialTests.cs:line 53
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1072" name="UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(&quot;Chair&quot;,False)" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(&quot;Chair&quot;,False)" methodname="UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop" classname="CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests" runstate="Runnable" seed="585533140" result="Failed" start-time="2026-10-03T19:18:37.5236550Z" end-time="2026-10-03T19:18:37.5841000Z" duration="0.060380" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(String blueprint, Boolean occupied) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationAdversarialTests.cs:line 53
+   at InvokeStub_SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(String blueprint, Boolean occupied) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationAdversarialTests.cs:line 53
+   at InvokeStub_SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1073" name="UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(&quot;Bed&quot;,True)" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(&quot;Bed&quot;,True)" methodname="UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop" classname="CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests" runstate="Runnable" seed="1600142767" result="Failed" start-time="2026-10-03T19:18:37.5841340Z" end-time="2026-10-03T19:18:37.6506420Z" duration="0.066437" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(String blueprint, Boolean occupied) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationAdversarialTests.cs:line 53
+   at InvokeStub_SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(String blueprint, Boolean occupied) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationAdversarialTests.cs:line 53
+   at InvokeStub_SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1074" name="UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(&quot;Chair&quot;,True)" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(&quot;Chair&quot;,True)" methodname="UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop" classname="CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests" runstate="Runnable" seed="54229438" result="Failed" start-time="2026-10-03T19:18:37.6506730Z" end-time="2026-10-03T19:18:37.7074960Z" duration="0.056762" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(String blueprint, Boolean occupied) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationAdversarialTests.cs:line 53
+   at InvokeStub_SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(String blueprint, Boolean occupied) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationAdversarialTests.cs:line 53
+   at InvokeStub_SoddenDistrictGenerationAdversarialTests.UnusableShelterFurnitureCannotMasqueradeAsAFreeRestStop(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+        <test-suite type="TestFixture" id="1000" name="SoddenDistrictGenerationTests" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationTests" classname="CavesOfOoo.Tests.SoddenDistrictGenerationTests" runstate="Runnable" testcasecount="35" result="Failed" site="Child" start-time="2026-10-03T19:18:37.7084180Z" end-time="2026-10-03T19:18:38.0658720Z" duration="0.357082" total="8" passed="0" failed="8" warnings="0" inconclusive="0" skipped="0" asserts="163">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1028" name="CrossingBandfrogRestsOnItsDryIslandWithoutChangingOrdinaryFrogs" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationTests.CrossingBandfrogRestsOnItsDryIslandWithoutChangingOrdinaryFrogs" methodname="CrossingBandfrogRestsOnItsDryIslandWithoutChangingOrdinaryFrogs" classname="CavesOfOoo.Tests.SoddenDistrictGenerationTests" runstate="Runnable" seed="512911586" result="Failed" start-time="2026-10-03T19:18:37.7084660Z" end-time="2026-10-03T19:18:37.7767060Z" duration="0.068167" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.CrossingBandfrogRestsOnItsDryIslandWithoutChangingOrdinaryFrogs() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 134
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.CrossingBandfrogRestsOnItsDryIslandWithoutChangingOrdinaryFrogs() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 134
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1036" name="ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies" classname="CavesOfOoo.Tests.SoddenDistrictGenerationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-03T19:18:37.7767360Z" end-time="2026-10-03T19:18:37.7772950Z" duration="0.000558" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="3">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1033" name="ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(1)" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(1)" methodname="ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies" classname="CavesOfOoo.Tests.SoddenDistrictGenerationTests" runstate="Runnable" seed="1242532396" result="Failed" start-time="2026-10-03T19:18:37.7767510Z" end-time="2026-10-03T19:18:37.7769600Z" duration="0.000210" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 173
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 173
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1034" name="ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(64)" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(64)" methodname="ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies" classname="CavesOfOoo.Tests.SoddenDistrictGenerationTests" runstate="Runnable" seed="1651384503" result="Failed" start-time="2026-10-03T19:18:37.7769730Z" end-time="2026-10-03T19:18:37.7771530Z" duration="0.000180" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 173
+   at InvokeStub_SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 173
+   at InvokeStub_SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1035" name="ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(1729)" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(1729)" methodname="ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies" classname="CavesOfOoo.Tests.SoddenDistrictGenerationTests" runstate="Runnable" seed="334208169" result="Failed" start-time="2026-10-03T19:18:37.7771670Z" end-time="2026-10-03T19:18:37.7772810Z" duration="0.000114" asserts="1">
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 173
+   at InvokeStub_SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 173
+   at InvokeStub_SoddenDistrictGenerationTests.ShelterPoolsHaveSteppedDryCornersButKeepTheirWetBodies(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+          <test-case id="1037" name="ShelterSecondRoomProvidesActualFreeSleepAndSeatActions" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterSecondRoomProvidesActualFreeSleepAndSeatActions" methodname="ShelterSecondRoomProvidesActualFreeSleepAndSeatActions" classname="CavesOfOoo.Tests.SoddenDistrictGenerationTests" runstate="Runnable" seed="533303975" result="Failed" start-time="2026-10-03T19:18:37.7773000Z" end-time="2026-10-03T19:18:37.8612070Z" duration="0.083817" asserts="2">
+            <failure>
+              <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+              <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterSecondRoomProvidesActualFreeSleepAndSeatActions() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 185
+]]></stack-trace>
+            </failure>
+            <assertions>
+              <assertion result="Failed">
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShelterSecondRoomProvidesActualFreeSleepAndSeatActions() in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 185
+]]></stack-trace>
+              </assertion>
+            </assertions>
+          </test-case>
+          <test-suite type="ParameterizedMethod" id="1032" name="ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater" classname="CavesOfOoo.Tests.SoddenDistrictGenerationTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-03T19:18:37.8612390Z" end-time="2026-10-03T19:18:38.0658570Z" duration="0.204408" total="3" passed="0" failed="3" warnings="0" inconclusive="0" skipped="0" asserts="156">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1029" name="ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(1)" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(1)" methodname="ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater" classname="CavesOfOoo.Tests.SoddenDistrictGenerationTests" runstate="Runnable" seed="393175998" result="Failed" start-time="2026-10-03T19:18:37.8612630Z" end-time="2026-10-03T19:18:37.9317030Z" duration="0.070365" asserts="52">
+              <failure>
+                <message><![CDATA[  Overworld.15.7.0 native colony size
+  Expected: in range (3,6)
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 163
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.15.7.0 native colony size
+  Expected: in range (3,6)
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 163
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1030" name="ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(64)" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(64)" methodname="ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater" classname="CavesOfOoo.Tests.SoddenDistrictGenerationTests" runstate="Runnable" seed="469466475" result="Failed" start-time="2026-10-03T19:18:37.9317380Z" end-time="2026-10-03T19:18:37.9999060Z" duration="0.068101" asserts="52">
+              <failure>
+                <message><![CDATA[  Overworld.15.7.0 native colony size
+  Expected: in range (3,6)
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 163
+   at InvokeStub_SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.15.7.0 native colony size
+  Expected: in range (3,6)
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 163
+   at InvokeStub_SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+            <test-case id="1031" name="ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(1729)" fullname="CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(1729)" methodname="ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater" classname="CavesOfOoo.Tests.SoddenDistrictGenerationTests" runstate="Runnable" seed="710119910" result="Failed" start-time="2026-10-03T19:18:37.9999280Z" end-time="2026-10-03T19:18:38.0658290Z" duration="0.065836" asserts="52">
+              <failure>
+                <message><![CDATA[  Overworld.15.7.0 native colony size
+  Expected: in range (3,6)
+  But was:  1
+]]></message>
+                <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 163
+   at InvokeStub_SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(Object, Span`1)
+]]></stack-trace>
+              </failure>
+              <assertions>
+                <assertion result="Failed">
+                  <message><![CDATA[  Overworld.15.7.0 native colony size
+  Expected: in range (3,6)
+  But was:  1
+]]></message>
+                  <stack-trace><![CDATA[   at CavesOfOoo.Tests.SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(Int32 seed) in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/SoddenDistrictGenerationTests.cs:line 163
+   at InvokeStub_SoddenDistrictGenerationTests.ShoreReedsFormSmallNativeColoniesWithoutOccupyingRoutesOrWater(Object, Span`1)
+]]></stack-trace>
+                </assertion>
+              </assertions>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

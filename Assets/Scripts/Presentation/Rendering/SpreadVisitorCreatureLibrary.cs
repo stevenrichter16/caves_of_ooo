@@ -84,7 +84,10 @@ namespace CavesOfOoo.Rendering
         }
         internal static SpawnRing3DRecipe Refine(Zone zone,Entity owner,SpawnRing3DRecipe native)
         {
-            if(!SpreadPresentationScope.IsActive(zone)||owner==null||!ReferenceEquals(native.Owner,owner)
+            // The southern crossing retains the same original native Bandfrog
+            // body. This narrow reuse admits no other visitor or new population.
+            bool districtBandfrog=zone!=null&&SoddenDistrictPlan.IsSupportedZone(zone.ZoneID)&&owner?.BlueprintName=="Bandfrog";
+            if((!SpreadPresentationScope.IsActive(zone)&&!districtBandfrog)||owner==null||!ReferenceEquals(native.Owner,owner)
                 ||native.Failure!=null&&native.Failure!="unmodeled-native-blueprint")return native;
             var spec=SpreadVisitorCreatureSource.ForBlueprint(owner.BlueprintName);
             if(spec==null)return native;
@@ -94,6 +97,8 @@ namespace CavesOfOoo.Rendering
                 ||brain==null||!ReferenceEquals(brain.ParentEntity,owner)||!owner.HasTag("Creature")||owner.HasTag("Item")
                 ||owner.HasPart<SpatialFootprintPart>()||owner.HasPart<MultiCellPilotPropPart>()
                 ||!string.IsNullOrEmpty(render.VisualID)||!string.IsNullOrEmpty(render.VisualVariant)||!string.IsNullOrEmpty(render.GlyphVariants))return native;
+            if(districtBandfrog&&(owner.SpatialZone!=zone||cell.ParentZone!=zone||!physics.Solid||render.ColorString!="&R"
+                ||owner.GetPart<CausticSkinPart>()?.ParentEntity!=owner))return native;
             // The source appearance is retained through native effects, dormancy
             // and faction changes. This read does not advance or replace goals.
             return new SpawnRing3DRecipe(owner,spec.Id,native.ComponentId,Village3DProjection.CellCentre(cell.X,cell.Y),true,false,quarterTurns:native.QuarterTurns);

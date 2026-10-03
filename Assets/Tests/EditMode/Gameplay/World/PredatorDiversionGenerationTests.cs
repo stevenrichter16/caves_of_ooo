@@ -64,7 +64,7 @@ namespace CavesOfOoo.Tests
         public void NewVersionThirteenKeepsLiteralTwelveAndElevenAssignmentsWithoutGenerating(int seed)
         {
             var manager = OverworldZoneManager.CreateDetached(scope.Factory, seed, true);
-            Assert.AreEqual(13, manager.Exploration.Version, "Only a fresh explicit manifest opts into meat diversion.");
+            Assert.AreEqual(SpreadExplorationPlan.CurrentVersion, manager.Exploration.Version, "Only a fresh explicit manifest opts into current exploration.");
             var rows = Rows(manager.Exploration);
             string worldKey = manager.Exploration.WorldKey;
             foreach (int version in new[] { 12, 11 })
@@ -102,7 +102,7 @@ namespace CavesOfOoo.Tests
         {
             AdmissionField();
             var manager = OverworldZoneManager.CreateDetached(scope.Factory, 64, true);
-            if (version != 13) RestoreVersion(manager, version);
+            if (version != SpreadExplorationPlan.CurrentVersion) RestoreVersion(manager, version);
             var zone = FirstActualHunt(manager);
             var hunter = zone.GetReadOnlyEntities().Single(e => e.HasPart<SpreadPredatorPart>());
             var role = hunter.GetPart<SpreadPredatorPart>();

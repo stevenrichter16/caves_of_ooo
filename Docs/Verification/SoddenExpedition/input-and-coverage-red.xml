@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="34" result="Failed(Child)" total="34" passed="27" failed="7" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-03 18:53:15Z" end-time="2026-10-03 18:53:30Z" duration="15.2372997">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24010" result="Failed" site="Child" start-time="2026-10-03 18:53:15Z" end-time="2026-10-03 18:53:30Z" duration="15.237300" total="34" passed="27" failed="7" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="29538" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24010" result="Failed" site="Child" start-time="2026-10-03 18:53:15Z" end-time="2026-10-03 18:53:30Z" duration="15.127619" total="34" passed="27" failed="7" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="45162" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="29539" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24010" result="Failed" site="Child" start-time="2026-10-03 18:53:15Z" end-time="2026-10-03 18:53:30Z" duration="14.943364" total="34" passed="27" failed="7" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="29540" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24010" result="Failed" site="Child" start-time="2026-10-03 18:53:15Z" end-time="2026-10-03 18:53:30Z" duration="14.842682" total="34" passed="27" failed="7" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="24844" name="SoddenDistrictArtTests" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-10-03 18:53:16Z" end-time="2026-10-03 18:53:28Z" duration="12.421701" total="26" passed="23" failed="3" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="24870" name="AllImportedDistrictMeshesRemainBorrowedWithoutSecondVoxelization" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.AllImportedDistrictMeshesRemainBorrowedWithoutSecondVoxelization" methodname="AllImportedDistrictMeshesRemainBorrowedWithoutSecondVoxelization" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="288559351" result="Passed" start-time="2026-10-03 18:53:16Z" end-time="2026-10-03 18:53:16Z" duration="0.266386" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24847" name="BenchRepairChangesSubmittedShapeAndRoundTripsWithoutRevivingOldOwner" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.BenchRepairChangesSubmittedShapeAndRoundTripsWithoutRevivingOldOwner" methodname="BenchRepairChangesSubmittedShapeAndRoundTripsWithoutRevivingOldOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="90564187" result="Passed" start-time="2026-10-03 18:53:16Z" end-time="2026-10-03 18:53:17Z" duration="0.769203" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24845" name="DistrictRecipeClaimsOnlyItsFiveExactNativeOwners" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.DistrictRecipeClaimsOnlyItsFiveExactNativeOwners" methodname="DistrictRecipeClaimsOnlyItsFiveExactNativeOwners" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1619775756" result="Passed" start-time="2026-10-03 18:53:17Z" end-time="2026-10-03 18:53:17Z" duration="0.000156" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24855" name="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03 18:53:17Z" end-time="2026-10-03 18:53:18Z" duration="1.273381" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24853" name="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin(&quot;Overworld.2.6.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin(&quot;Overworld.2.6.0&quot;)" methodname="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1254741077" result="Passed" start-time="2026-10-03 18:53:17Z" end-time="2026-10-03 18:53:18Z" duration="0.924435" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24854" name="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin(&quot;Overworld.15.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin(&quot;Overworld.15.7.0&quot;)" methodname="DressingKeepsItsPortableShapeAfterPickupAndDropOutsideItsOrigin" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="79330614" result="Passed" start-time="2026-10-03 18:53:18Z" end-time="2026-10-03 18:53:18Z" duration="0.289767" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24874" name="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-03 18:53:18Z" end-time="2026-10-03 18:53:19Z" duration="1.050126" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="24871" name="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.15.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.15.7.0&quot;)" methodname="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1785900283" result="Failed" start-time="2026-10-03 18:53:18Z" end-time="2026-10-03 18:53:18Z" duration="0.288661" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  StoneFloor: unmodeled-native-blueprint
+StoneWall: unmodeled-native-blueprint
+  Expected: <empty>
+  But was:  < "StoneFloor: unmodeled-native-blueprint", "StoneWall: unmodeled-native-blueprint" >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner (System.String zoneId) [0x000d9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:226
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24872" name="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.16.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.16.7.0&quot;)" methodname="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1134964611" result="Failed" start-time="2026-10-03 18:53:18Z" end-time="2026-10-03 18:53:19Z" duration="0.350595" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Bandfrog: unmodeled-native-blueprint
+  Expected: <empty>
+  But was:  < "Bandfrog: unmodeled-native-blueprint" >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner (System.String zoneId) [0x000d9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:226
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="24873" name="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.17.7.0&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner(&quot;Overworld.17.7.0&quot;)" methodname="GeneratedDistrictRetainsAModelForEveryActualVisibleOwner" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="622294897" result="Failed" start-time="2026-10-03 18:53:19Z" end-time="2026-10-03 18:53:19Z" duration="0.325251" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  StoneFloor: unmodeled-native-blueprint
+StoneWall: unmodeled-native-blueprint
+  Expected: <empty>
+  But was:  < "StoneFloor: unmodeled-native-blueprint", "StoneWall: unmodeled-native-blueprint" >
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SoddenDistrictArtTests.GeneratedDistrictRetainsAModelForEveryActualVisibleOwner (System.String zoneId) [0x000d9] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/SoddenDistrictArtTests.cs:226
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="24869" name="InvalidBenchCannotBorrowAWorkingServiceAppearance" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-03 18:53:19Z" end-time="2026-10-03 18:53:23Z" duration="3.824351" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24856" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;hidden&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;hidden&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1509958637" result="Passed" start-time="2026-10-03 18:53:19Z" end-time="2026-10-03 18:53:19Z" duration="0.260558" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24857" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;glyph&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;glyph&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1210644104" result="Passed" start-time="2026-10-03 18:53:19Z" end-time="2026-10-03 18:53:20Z" duration="0.257245" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24858" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;color&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;color&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1345255829" result="Passed" start-time="2026-10-03 18:53:20Z" end-time="2026-10-03 18:53:20Z" duration="0.279376" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24859" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;custom-visual&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;custom-visual&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="436068589" result="Passed" start-time="2026-10-03 18:53:20Z" end-time="2026-10-03 18:53:20Z" duration="0.376744" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24860" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-render&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1390435924" result="Passed" start-time="2026-10-03 18:53:20Z" end-time="2026-10-03 18:53:21Z" duration="0.262650" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24861" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-physics&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="890610319" result="Passed" start-time="2026-10-03 18:53:21Z" end-time="2026-10-03 18:53:21Z" duration="0.255529" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24862" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-repair&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-repair&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="334522639" result="Passed" start-time="2026-10-03 18:53:21Z" end-time="2026-10-03 18:53:21Z" duration="0.255895" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24863" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-cell&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-cell&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1510012572" result="Passed" start-time="2026-10-03 18:53:21Z" end-time="2026-10-03 18:53:21Z" duration="0.404158" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24864" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-spatial&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;foreign-spatial&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1921116056" result="Passed" start-time="2026-10-03 18:53:21Z" end-time="2026-10-03 18:53:22Z" duration="0.259646" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24865" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;carried&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1877283309" result="Passed" start-time="2026-10-03 18:53:22Z" end-time="2026-10-03 18:53:22Z" duration="0.254469" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24866" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;takeable&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;takeable&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="881032954" result="Passed" start-time="2026-10-03 18:53:22Z" end-time="2026-10-03 18:53:22Z" duration="0.250771" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24867" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;creature&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;creature&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1310064028" result="Passed" start-time="2026-10-03 18:53:22Z" end-time="2026-10-03 18:53:23Z" duration="0.406999" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24868" name="InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;wrong-recipe&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.InvalidBenchCannotBorrowAWorkingServiceAppearance(&quot;wrong-recipe&quot;)" methodname="InvalidBenchCannotBorrowAWorkingServiceAppearance" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="311194257" result="Passed" start-time="2026-10-03 18:53:23Z" end-time="2026-10-03 18:53:23Z" duration="0.264060" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="24852" name="RetainedHarvestedSalvageCannotStillAdvertiseTimber" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.RetainedHarvestedSalvageCannotStillAdvertiseTimber" methodname="RetainedHarvestedSalvageCannotStillAdvertiseTimber" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="883231709" result="Passed" start-time="2026-10-03 18:53:23Z" end-time="2026-10-03 18:53:23Z" duration="0.257654" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="24846" name="SixOriginalFormsUseBuildVisibleInertSingleCellGeometry" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.SixOriginalFormsUseBuildVisibleInertSingleCellGeometry" methodname="SixOriginalFormsUseBuildVisibleInertSingleCellGeometry" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="136535184" result="Passed" start-time="2026-10-03 18:53:23Z" end-time="2026-10-03 18:53:23Z" duration="0.002884" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="24851" name="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-03 18:53:23Z" end-time="2026-10-03 18:53:28Z" duration="4.773172" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="24848" name="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenWorksSalvage&quot;,&quot;works-salvage&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenWorksSalvage&quot;,&quot;works-salvage&quot;)" methodname="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1653141954" result="Passed" start-time="2026-10-03 18:53:23Z" end-time="2026-10-03 18:53:24Z" duration="1.200061" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24849" name="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenWorksLocker&quot;,&quot;works-locker&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenWorksLocker&quot;,&quot;works-locker&quot;)" methodname="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1091161619" result="Passed" start-time="2026-10-03 18:53:24Z" end-time="2026-10-03 18:53:26Z" duration="1.617708" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="24850" name="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenRouteNotice&quot;,&quot;route-notice&quot;)" fullname="CavesOfOoo.Tests.SoddenDistrictArtTests.StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan(&quot;SoddenRouteNotice&quot;,&quot;route-notice&quot;)" methodname="StaticOwnersDisappearOnRemovalWithoutRestoringFromThePlan" classname="CavesOfOoo.Tests.SoddenDistrictArtTests" runstate="Runnable" seed="1653194047" result="Passed" start-time="2026-10-03 18:53:26Z" end-time="2026-10-03 18:53:28Z" duration="1.900002" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="21710" name="SoddenPreparationInputTests" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-03 18:53:28Z" end-time="2026-10-03 18:53:30Z" duration="2.219002" total="8" passed="4" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="21720" name="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2026-10-03 18:53:28Z" end-time="2026-10-03 18:53:29Z" duration="1.172769" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="21716" name="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;valid&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;valid&quot;)" methodname="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="448605798" result="Failed" label="Error" start-time="2026-10-03 18:53:28Z" end-time="2026-10-03 18:53:29Z" duration="0.318368" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[  at CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit (System.String condition) [0x00086] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/SoddenPreparationInputTests.cs:86 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21717" name="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;before&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;before&quot;)" methodname="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="364244481" result="Failed" label="Error" start-time="2026-10-03 18:53:29Z" end-time="2026-10-03 18:53:29Z" duration="0.199290" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[  at CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit (System.String condition) [0x00086] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/SoddenPreparationInputTests.cs:86 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21718" name="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;after&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;after&quot;)" methodname="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="638300225" result="Failed" label="Error" start-time="2026-10-03 18:53:29Z" end-time="2026-10-03 18:53:29Z" duration="0.227671" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[  at CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit (System.String condition) [0x00086] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/SoddenPreparationInputTests.cs:86 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21719" name="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;stale&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit(&quot;stale&quot;)" methodname="RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="664535174" result="Failed" label="Error" start-time="2026-10-03 18:53:29Z" end-time="2026-10-03 18:53:29Z" duration="0.248289" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[  at CavesOfOoo.Tests.SoddenPreparationInputTests.RealInventoryApplyTreatsOnceAndPaysOneActionOnlyAfterCommit (System.String condition) [0x00086] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Input/SoddenPreparationInputTests.cs:86 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <032c206a1674455bacfc3546f1de5ef3>:0 ]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="21715" name="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-03 18:53:29Z" end-time="2026-10-03 18:53:30Z" duration="0.946370" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="21711" name="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;valid&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;valid&quot;)" methodname="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="67359364" result="Passed" start-time="2026-10-03 18:53:29Z" end-time="2026-10-03 18:53:29Z" duration="0.249485" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="21712" name="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;before&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;before&quot;)" methodname="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="1585162789" result="Passed" start-time="2026-10-03 18:53:29Z" end-time="2026-10-03 18:53:30Z" duration="0.202176" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="21713" name="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;after&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;after&quot;)" methodname="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="1706680495" result="Passed" start-time="2026-10-03 18:53:30Z" end-time="2026-10-03 18:53:30Z" duration="0.235670" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+]]></output>
+              </test-case>
+              <test-case id="21714" name="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;stale&quot;)" fullname="CavesOfOoo.Tests.SoddenPreparationInputTests.RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime(&quot;stale&quot;)" methodname="RealWorldMenuPreparesOnceOrRestoresInputsFeesAndTime" classname="CavesOfOoo.Tests.SoddenPreparationInputTests" runstate="Runnable" seed="333138221" result="Passed" start-time="2026-10-03 18:53:30Z" end-time="2026-10-03 18:53:30Z" duration="0.254643" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[[ActionMenu:ui-open] actions=3 Tilemap=NULL BgTilemap=NULL
+<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

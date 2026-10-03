@@ -1,6 +1,359 @@
 {
   "Objects": [
     {
+      "Name": "SoddenDressingBench",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "dressing bench"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "4"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "60"
+            }
+          ]
+        },
+        {
+          "Name": "Composition",
+          "Params": [
+            {
+              "Key": "MaterialsRaw",
+              "Value": "Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Repairable",
+          "Params": [
+            {
+              "Key": "RecipeId",
+              "Value": "timber-dressing-bench"
+            },
+            {
+              "Key": "Repaired",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "SoddenPreparation",
+          "Params": []
+        },
+        {
+          "Name": "Destructible",
+          "Params": [
+            {
+              "Key": "HP",
+              "Value": "18"
+            },
+            {
+              "Key": "MaxHP",
+              "Value": "18"
+            },
+            {
+              "Key": "Hardness",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Material",
+          "Params": [
+            {
+              "Key": "MaterialID",
+              "Value": "Wood"
+            },
+            {
+              "Key": "Combustibility",
+              "Value": "0.4"
+            },
+            {
+              "Key": "MaterialTagsRaw",
+              "Value": "Organic,Wood"
+            }
+          ]
+        },
+        {
+          "Name": "Thermal",
+          "Params": [
+            {
+              "Key": "FlameTemperature",
+              "Value": "400"
+            },
+            {
+              "Key": "HeatCapacity",
+              "Value": "1.5"
+            },
+            {
+              "Key": "AmbientDecayRate",
+              "Value": "0.04"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "A split-legged dressing bench with a cloth clamp and a bitter-leaf press. Sella needs two sound timber lengths to brace it. The abandoned cutting works lie two stretches east, beyond the cutbank crossing. Once repaired, the keeper wraps one sumpsieve pad and one knotflax cord into a field dressing for two drams. Dressings treat existing ordinary poison and bleeding; they do not protect against marsh gas."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SoddenWorksSalvage",
+      "Inherits": "RepairTimberPile",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "collapsed drying frame"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "2"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Four sound timber lengths remain in this abandoned drying frame. Harvest them once. Two will brace the dressing bench at the shelter two stretches west; sound timber also serves other wooden repairs and mechanical trap jamming."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SoddenWorksLocker",
+      "Inherits": "Chest",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "cutters' surviving locker"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "="
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&w"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "An iron-banded locker survives above the old wet line. Its remaining equipment and cord can be taken; nobody replenishes these abandoned stores. Leather boots and a buckler offer their usual armor, not immunity to mire or marsh gas."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SoddenRouteNotice",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "cutters' route notice"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "I"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&y"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Cutters have left a route notice above the wet line. The shelter, crossing and abandoned works form a short southern circuit below Sumphold."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
+      "Name": "SoddenFieldDressing",
+      "Inherits": "Item",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "sumpsieve field dressing"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "!"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&g"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Takeable",
+              "Value": "true"
+            },
+            {
+              "Key": "Solid",
+              "Value": "false"
+            },
+            {
+              "Key": "Weight",
+              "Value": "1"
+            }
+          ]
+        },
+        {
+          "Name": "SoddenDressing",
+          "Params": []
+        },
+        {
+          "Name": "Stacker",
+          "Params": [
+            {
+              "Key": "StackCount",
+              "Value": "1"
+            },
+            {
+              "Key": "MaxStack",
+              "Value": "10"
+            }
+          ]
+        },
+        {
+          "Name": "Commerce",
+          "Params": [
+            {
+              "Key": "Value",
+              "Value": "5"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Sumpsieve folded into a tight knotflax wrap. Apply it to remove existing ordinary poison and bleeding together. A dressing is used only when one of those conditions is present. It does not restore health, cure gas poisoning or fungal infection, or protect against future exposure."
+            }
+          ]
+        }
+      ],
+      "Stats": [],
+      "Tags": []
+    },
+    {
       "Name": "SpreadCookingCoals",
       "Inherits": "PhysicalObject",
       "Parts": [

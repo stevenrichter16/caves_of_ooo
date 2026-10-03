@@ -172,6 +172,10 @@ namespace CavesOfOoo.Core
                 arriveX = part.LastZoneX;
                 arriveY = part.LastZoneY;
             }
+            else if(SoddenDistrict.TryFirstArrival(targetZone,zoneManager,out int shoreX,out int shoreY))
+            {
+                arriveX=shoreX;arriveY=shoreY;
+            }
             else
             {
                 arriveX = Zone.Width / 2;

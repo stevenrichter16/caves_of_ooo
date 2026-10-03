@@ -1,0 +1,73 @@
+{
+  "Conversations": [
+    {
+      "ID": "SoddenSella_1",
+      "Nodes": [
+        {
+          "ID": "Start",
+          "Text": "Sella checks the cloth clamp with her thumb. 'I used to lose half a morning walking wounded cutters back to Sumphold. Now they stop here first. Sit if you need to. If you need a dressing, the bench is beside me.'",
+          "Choices": [
+            {
+              "Text": "What do you need to prepare a dressing?",
+              "Target": "Supplies"
+            },
+            {
+              "Text": "Which way through the cutbanks?",
+              "Target": "Route"
+            },
+            {
+              "Text": "Do the cutters still find bodies?",
+              "Target": "Bodies"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Supplies",
+          "Text": "'If the legs are still split, brace the bench with two salvaged timber. After that, each dressing takes one sumpsieve pad, one knotflax cord and two drams. Bring them to the bench while I am beside it. The wrap draws ordinary poison and stops bleeding together. It will not mend lost flesh, cure poison gas or treat fungal infection. A healthy traveller can carry it for later.'",
+          "Choices": [
+            {
+              "Text": "Something else.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will look at the bench.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Route",
+          "Text": "'Sumphold is one stretch north. The cutbank crossing is one stretch east; the abandoned cutting works are another stretch east beyond it. Sound timber remains in the drying frame there. The raised bank keeps you out of the mire, but it takes longer. The wet cut is shorter. Watch the animals and the gas. Flame changes the danger; a dressing does not make it safe.'",
+          "Choices": [
+            {
+              "Text": "Something else.",
+              "Target": "Start"
+            },
+            {
+              "Text": "I will choose my footing.",
+              "Target": "End"
+            }
+          ]
+        },
+        {
+          "ID": "Bodies",
+          "Text": "'We still stop a cut when peat gives up a person. Mark the place, send word north. Then Sumphold argues about the Concord's money. Some cutters will not take a coin from selling the Bog-Taken. Others have hungry people at home. I dress the same hands either way. That does not settle what those hands have done.'",
+          "Choices": [
+            {
+              "Text": "Something else.",
+              "Target": "Start"
+            },
+            {
+              "Text": "Farewell.",
+              "Target": "End"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

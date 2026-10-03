@@ -110,6 +110,8 @@ namespace CavesOfOoo.Core
             string baseLine = $"You see {article}{name}.";
             var batch = ParentEntity?.GetPart<KitchenBatchPart>()?.Describe();
             if (!string.IsNullOrEmpty(batch)) baseLine += "\n" + batch;
+            var dressing = ParentEntity?.GetPart<SoddenPreparationPart>()?.Describe();
+            if (!string.IsNullOrEmpty(dressing)) baseLine += "\n" + dressing;
             var repair = ParentEntity?.GetPart<RepairablePart>()?.Describe();
             if (!string.IsNullOrEmpty(repair)) baseLine += "\n" + repair;
             var trap = ParentEntity?.GetPart<TrapJammingPart>()?.DescribeJamming();
