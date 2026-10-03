@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="56" result="Failed(Child)" total="56" passed="33" failed="23" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-03 19:52:00Z" end-time="2026-10-03 19:52:04Z" duration="4.1960785">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24102" result="Failed" site="Child" start-time="2026-10-03 19:52:00Z" end-time="2026-10-03 19:52:04Z" duration="4.196079" total="56" passed="33" failed="23" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="29651" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24102" result="Failed" site="Child" start-time="2026-10-03 19:52:00Z" end-time="2026-10-03 19:52:04Z" duration="4.078147" total="56" passed="33" failed="23" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="45162" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="29652" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24102" result="Failed" site="Child" start-time="2026-10-03 19:52:00Z" end-time="2026-10-03 19:52:04Z" duration="3.900249" total="56" passed="33" failed="23" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="29653" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24102" result="Failed" site="Child" start-time="2026-10-03 19:52:00Z" end-time="2026-10-03 19:52:04Z" duration="3.700365" total="56" passed="33" failed="23" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="3621" name="GameAuditNaturalWeaponActivationAdversarialTests" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" testcasecount="26" result="Failed" site="Child" start-time="2026-10-03 19:52:00Z" end-time="2026-10-03 19:52:01Z" duration="0.609767" total="7" passed="5" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="3632" name="FreshActualEffectRecipesReachNaturalPayloadAndParser" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" testcasecount="6" result="Failed" site="Child" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:01Z" duration="0.466874" total="6" passed="5" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3626" name="FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;Viper&quot;,&quot;Poisoned,75,1d2,4,0&quot;,&quot;Poisoned&quot;,75,&quot;1d2&quot;,4,1)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;Viper&quot;,&quot;Poisoned,75,1d2,4,0&quot;,&quot;Poisoned&quot;,75,&quot;1d2&quot;,4,1)" methodname="FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="1167561865" result="Failed" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:01Z" duration="0.114033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  String lengths are both 19. Strings differ at index 14.
+  Expected: "Poisoned,75,1d2,4,0"
+  But was:  "Poisoned,75,1d6,8,0"
+  -------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser (System.String blueprint, System.String raw, System.String effect, System.Int32 chance, System.String dice, System.Int32 duration, System.Int32 count) [0x00057] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/GameAuditNaturalWeaponActivationAdversarialTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3627" name="FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;Scorpion&quot;,&quot;Poisoned,50,1d4,6,0&quot;,&quot;Poisoned&quot;,50,&quot;1d4&quot;,6,1)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;Scorpion&quot;,&quot;Poisoned,50,1d4,6,0&quot;,&quot;Poisoned&quot;,50,&quot;1d4&quot;,6,1)" methodname="FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="651540349" result="Passed" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:01Z" duration="0.032162" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3628" name="FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;GiantSpider&quot;,&quot;Poisoned,35,1d4,6,0;Paralyzed,20,0,2,0&quot;,&quot;Poisoned&quot;,35,&quot;1d4&quot;,6,2)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;GiantSpider&quot;,&quot;Poisoned,35,1d4,6,0;Paralyzed,20,0,2,0&quot;,&quot;Poisoned&quot;,35,&quot;1d4&quot;,6,2)" methodname="FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="202641787" result="Passed" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:01Z" duration="0.030170" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3629" name="FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;BrassHusk&quot;,&quot;Electrified,20,,3,1.0&quot;,&quot;Electrified&quot;,20,&quot;&quot;,3,1)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;BrassHusk&quot;,&quot;Electrified,20,,3,1.0&quot;,&quot;Electrified&quot;,20,&quot;&quot;,3,1)" methodname="FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="1428696498" result="Passed" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:01Z" duration="0.030033" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3630" name="FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;BrittleHound&quot;,&quot;Bleeding,25,1d2,10,0&quot;,&quot;Bleeding&quot;,25,&quot;1d2&quot;,10,1)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;BrittleHound&quot;,&quot;Bleeding,25,1d2,10,0&quot;,&quot;Bleeding&quot;,25,&quot;1d2&quot;,10,1)" methodname="FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="1461280373" result="Passed" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:01Z" duration="0.030444" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3631" name="FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;Rotling&quot;,&quot;Poisoned,10,1d2,4,0&quot;,&quot;Poisoned&quot;,10,&quot;1d2&quot;,4,1)" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.FreshActualEffectRecipesReachNaturalPayloadAndParser(&quot;Rotling&quot;,&quot;Poisoned,10,1d2,4,0&quot;,&quot;Poisoned&quot;,10,&quot;1d2&quot;,4,1)" methodname="FreshActualEffectRecipesReachNaturalPayloadAndParser" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="2051212349" result="Passed" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:01Z" duration="0.030307" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="3636" name="NestedLoadoutItemCreationSeesAlreadyCompleteParentNaturalState" fullname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.NestedLoadoutItemCreationSeesAlreadyCompleteParentNaturalState" methodname="NestedLoadoutItemCreationSeesAlreadyCompleteParentNaturalState" classname="CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests" runstate="Runnable" seed="650111720" result="Failed" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:01Z" duration="0.039913" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 1
+  But was:  0
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.GameAuditNaturalWeaponActivationAdversarialTests.NestedLoadoutItemCreationSeesAlreadyCompleteParentNaturalState () [0x000c7] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/GameAuditNaturalWeaponActivationAdversarialTests.cs:207
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="6013" name="PoisonBalanceRegressionTests" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" testcasecount="29" result="Failed" site="Child" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:03Z" duration="1.757035" total="29" passed="14" failed="15" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="6016" name="ActualSnakeBiteDealsAtMostEightPoisonDamageAcrossExactlyFourOwnerActions" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ActualSnakeBiteDealsAtMostEightPoisonDamageAcrossExactlyFourOwnerActions" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:01Z" duration="0.194857" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6014" name="ActualSnakeBiteDealsAtMostEightPoisonDamageAcrossExactlyFourOwnerActions(&quot;Viper&quot;)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ActualSnakeBiteDealsAtMostEightPoisonDamageAcrossExactlyFourOwnerActions(&quot;Viper&quot;)" methodname="ActualSnakeBiteDealsAtMostEightPoisonDamageAcrossExactlyFourOwnerActions" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="1253062350" result="Failed" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:01Z" duration="0.053382" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  String lengths are both 3. Strings differ at index 2.
+  Expected: "1d2"
+  But was:  "1d6"
+  -------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.ActualSnakeBiteDealsAtMostEightPoisonDamageAcrossExactlyFourOwnerActions (System.String blueprint) [0x000b0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6015" name="ActualSnakeBiteDealsAtMostEightPoisonDamageAcrossExactlyFourOwnerActions(&quot;SpreadLatchcoil&quot;)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ActualSnakeBiteDealsAtMostEightPoisonDamageAcrossExactlyFourOwnerActions(&quot;SpreadLatchcoil&quot;)" methodname="ActualSnakeBiteDealsAtMostEightPoisonDamageAcrossExactlyFourOwnerActions" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="121879851" result="Failed" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:01Z" duration="0.041357" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  String lengths are both 3. Strings differ at index 2.
+  Expected: "1d2"
+  But was:  "1d6"
+  -------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.ActualSnakeBiteDealsAtMostEightPoisonDamageAcrossExactlyFourOwnerActions (System.String blueprint) [0x000b0] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:90
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6047" name="ActualTreatmentConsumesOneCuresOrdinaryPoisonAndLeavesGasPoison" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ActualTreatmentConsumesOneCuresOrdinaryPoisonAndLeavesGasPoison" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:02Z" duration="0.295499" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6045" name="ActualTreatmentConsumesOneCuresOrdinaryPoisonAndLeavesGasPoison(&quot;Antidote&quot;,&quot;ApplyTonic&quot;,False)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ActualTreatmentConsumesOneCuresOrdinaryPoisonAndLeavesGasPoison(&quot;Antidote&quot;,&quot;ApplyTonic&quot;,False)" methodname="ActualTreatmentConsumesOneCuresOrdinaryPoisonAndLeavesGasPoison" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="582916772" result="Passed" start-time="2026-10-03 19:52:01Z" end-time="2026-10-03 19:52:02Z" duration="0.090271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6046" name="ActualTreatmentConsumesOneCuresOrdinaryPoisonAndLeavesGasPoison(&quot;SoddenFieldDressing&quot;,&quot;Apply&quot;,True)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ActualTreatmentConsumesOneCuresOrdinaryPoisonAndLeavesGasPoison(&quot;SoddenFieldDressing&quot;,&quot;Apply&quot;,True)" methodname="ActualTreatmentConsumesOneCuresOrdinaryPoisonAndLeavesGasPoison" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="926170246" result="Passed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.094119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="6048" name="DressingCannotTreatGasPoisonAloneOrConsumeAUnitForIt" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.DressingCannotTreatGasPoisonAloneOrConsumeAUnitForIt" methodname="DressingCannotTreatGasPoisonAloneOrConsumeAUnitForIt" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="608050053" result="Passed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.033304" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6044" name="LegacyTakeTurnFallbackStillTicksOneDose" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.LegacyTakeTurnFallbackStillTicksOneDose" methodname="LegacyTakeTurnFallbackStillTicksOneDose" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="622013770" result="Passed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.031244" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6041" name="MixedStrengthDosesRetainFirstInstancePotencyAndRngInBothOrders" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.MixedStrengthDosesRetainFirstInstancePotencyAndRngInBothOrders" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.107978" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6039" name="MixedStrengthDosesRetainFirstInstancePotencyAndRngInBothOrders(True)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.MixedStrengthDosesRetainFirstInstancePotencyAndRngInBothOrders(True)" methodname="MixedStrengthDosesRetainFirstInstancePotencyAndRngInBothOrders" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="465804130" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.032471" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 8
+  But was:  12
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.MixedStrengthDosesRetainFirstInstancePotencyAndRngInBothOrders (System.Boolean strongFirst) [0x0006c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:188
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6040" name="MixedStrengthDosesRetainFirstInstancePotencyAndRngInBothOrders(False)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.MixedStrengthDosesRetainFirstInstancePotencyAndRngInBothOrders(False)" methodname="MixedStrengthDosesRetainFirstInstancePotencyAndRngInBothOrders" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="520779663" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.030694" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 8
+  But was:  12
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.MixedStrengthDosesRetainFirstInstancePotencyAndRngInBothOrders (System.Boolean strongFirst) [0x0006c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:188
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="6043" name="NativeNpcBeginAndTakeTurnDispatchTickPoisonOnlyOnce" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.NativeNpcBeginAndTakeTurnDispatchTickPoisonOnlyOnce" methodname="NativeNpcBeginAndTakeTurnDispatchTickPoisonOnlyOnce" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="879698533" result="Passed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.031704" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="6026" name="NonVenomousNaturalWeaponDoesNotAcquirePoison" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.NonVenomousNaturalWeaponDoesNotAcquirePoison" methodname="NonVenomousNaturalWeaponDoesNotAcquirePoison" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="522190489" result="Passed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.030167" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6029" name="OnHitFactoryUsesInjectedRngForPoisonDamage" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.OnHitFactoryUsesInjectedRngForPoisonDamage" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.135389" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6027" name="OnHitFactoryUsesInjectedRngForPoisonDamage(&quot;Poisoned&quot;)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.OnHitFactoryUsesInjectedRngForPoisonDamage(&quot;Poisoned&quot;)" methodname="OnHitFactoryUsesInjectedRngForPoisonDamage" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="677307900" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.030971" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Combat's deterministic RNG must reach the damage ticks.
+  Expected: same as <CavesOfOoo.Tests.PoisonBalanceRegressionTests+BiteRng>
+  But was:  <System.Random>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.OnHitFactoryUsesInjectedRngForPoisonDamage (System.String alias) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6028" name="OnHitFactoryUsesInjectedRngForPoisonDamage(&quot;poison&quot;)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.OnHitFactoryUsesInjectedRngForPoisonDamage(&quot;poison&quot;)" methodname="OnHitFactoryUsesInjectedRngForPoisonDamage" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="251314912" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.029689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Combat's deterministic RNG must reach the damage ticks.
+  Expected: same as <CavesOfOoo.Tests.PoisonBalanceRegressionTests+BiteRng>
+  But was:  <System.Random>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.OnHitFactoryUsesInjectedRngForPoisonDamage (System.String alias) [0x00032] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:149
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="6038" name="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.383743" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="6030" name="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(4,4,4)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(4,4,4)" methodname="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="363453705" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.031265" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 4
+  But was:  8
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose (System.Int32 existing, System.Int32 incoming, System.Int32 expected) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6031" name="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(1,4,4)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(1,4,4)" methodname="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="1703442561" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.030829" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 4
+  But was:  5
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose (System.Int32 existing, System.Int32 incoming, System.Int32 expected) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6032" name="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(8,4,8)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(8,4,8)" methodname="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="462449401" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.030552" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 8
+  But was:  12
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose (System.Int32 existing, System.Int32 incoming, System.Int32 expected) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6033" name="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(4,8,8)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(4,8,8)" methodname="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="705901986" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.030621" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 8
+  But was:  12
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose (System.Int32 existing, System.Int32 incoming, System.Int32 expected) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6034" name="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(int.MaxValue,4,int.MaxValue)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(int.MaxValue,4,int.MaxValue)" methodname="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="1917293446" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.030317" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: 2147483647
+  But was:  -2147483645
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose (System.Int32 existing, System.Int32 incoming, System.Int32 expected) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6035" name="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(-1,4,-1)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(-1,4,-1)" methodname="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="75912147" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.030367" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: -1
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose (System.Int32 existing, System.Int32 incoming, System.Int32 expected) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6036" name="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(4,-1,-1)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(4,-1,-1)" methodname="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="207375644" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.029950" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: -1
+  But was:  3
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose (System.Int32 existing, System.Int32 incoming, System.Int32 expected) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="6037" name="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(-1,-1,-1)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose(-1,-1,-1)" methodname="ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="89830657" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.030036" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: -1
+  But was:  -2
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.ReapplicationKeepsLongerDurationAndPreservesEitherIndefiniteDose (System.Int32 existing, System.Int32 incoming, System.Int32 expected) [0x0006a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:173
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="6042" name="RepeatedDosesCannotBankMoreThanFourActionsAfterLastExposure" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.RepeatedDosesCannotBankMoreThanFourActionsAfterLastExposure" methodname="RepeatedDosesCannotBankMoreThanFourActionsAfterLastExposure" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="321172778" result="Failed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:02Z" duration="0.030575" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 4
+  But was:  52
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.PoisonBalanceRegressionTests.RepeatedDosesCannotBankMoreThanFourActionsAfterLastExposure () [0x00055] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/PoisonBalanceRegressionTests.cs:205
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="6025" name="StockFangsRequireActualDamageAndRollBelowSeventyFive" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.StockFangsRequireActualDamageAndRollBelowSeventyFive" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:03Z" duration="0.393238" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="6017" name="StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;Viper&quot;,1,74,True)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;Viper&quot;,1,74,True)" methodname="StockFangsRequireActualDamageAndRollBelowSeventyFive" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="1745677784" result="Passed" start-time="2026-10-03 19:52:02Z" end-time="2026-10-03 19:52:03Z" duration="0.039145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6018" name="StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;Viper&quot;,1,75,False)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;Viper&quot;,1,75,False)" methodname="StockFangsRequireActualDamageAndRollBelowSeventyFive" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="1718329547" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.030050" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6019" name="StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;Viper&quot;,0,74,False)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;Viper&quot;,0,74,False)" methodname="StockFangsRequireActualDamageAndRollBelowSeventyFive" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="259731546" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.030585" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6020" name="StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;Viper&quot;,-1,74,False)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;Viper&quot;,-1,74,False)" methodname="StockFangsRequireActualDamageAndRollBelowSeventyFive" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="309165787" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.037322" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6021" name="StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;SpreadLatchcoil&quot;,1,74,True)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;SpreadLatchcoil&quot;,1,74,True)" methodname="StockFangsRequireActualDamageAndRollBelowSeventyFive" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="1964829625" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.063063" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6022" name="StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;SpreadLatchcoil&quot;,1,75,False)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;SpreadLatchcoil&quot;,1,75,False)" methodname="StockFangsRequireActualDamageAndRollBelowSeventyFive" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="122291826" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.103320" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6023" name="StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;SpreadLatchcoil&quot;,0,74,False)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;SpreadLatchcoil&quot;,0,74,False)" methodname="StockFangsRequireActualDamageAndRollBelowSeventyFive" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="111866358" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.030953" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="6024" name="StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;SpreadLatchcoil&quot;,-1,74,False)" fullname="CavesOfOoo.Tests.PoisonBalanceRegressionTests.StockFangsRequireActualDamageAndRollBelowSeventyFive(&quot;SpreadLatchcoil&quot;,-1,74,False)" methodname="StockFangsRequireActualDamageAndRollBelowSeventyFive" classname="CavesOfOoo.Tests.PoisonBalanceRegressionTests" runstate="Runnable" seed="1190297906" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.030370" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="3684" name="SnakeVenomSaveTests" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:04Z" duration="0.990658" total="19" passed="14" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="3690" name="ActualOldPayloadRoundTripUsesTheBodyLoadHook" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.ActualOldPayloadRoundTripUsesTheBodyLoadHook" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.269594" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3688" name="ActualOldPayloadRoundTripUsesTheBodyLoadHook(&quot;Viper&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.ActualOldPayloadRoundTripUsesTheBodyLoadHook(&quot;Viper&quot;)" methodname="ActualOldPayloadRoundTripUsesTheBodyLoadHook" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="736240613" result="Failed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.038325" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  String lengths are both 19. Strings differ at index 14.
+  Expected: "Poisoned,75,1d2,4,0"
+  But was:  "Poisoned,75,1d6,8,0"
+  -------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SnakeVenomSaveTests.ActualOldPayloadRoundTripUsesTheBodyLoadHook (System.String blueprint) [0x00046] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/SnakeVenomSaveTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3689" name="ActualOldPayloadRoundTripUsesTheBodyLoadHook(&quot;SpreadLatchcoil&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.ActualOldPayloadRoundTripUsesTheBodyLoadHook(&quot;SpreadLatchcoil&quot;)" methodname="ActualOldPayloadRoundTripUsesTheBodyLoadHook" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1052251935" result="Failed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.031079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  String lengths are both 19. Strings differ at index 14.
+  Expected: "Poisoned,75,1d2,4,0"
+  But was:  "Poisoned,75,1d6,8,0"
+  -------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SnakeVenomSaveTests.ActualOldPayloadRoundTripUsesTheBodyLoadHook (System.String blueprint) [0x00046] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/SnakeVenomSaveTests.cs:55
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="3705" name="CustomizedOrUnrelatedFangsRemainLiteral" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:04Z" duration="0.552880" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3691" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;raw&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;raw&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1018276871" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.031347" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3692" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;base&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;base&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1966534913" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.030544" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3693" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;penetration&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;penetration&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1229927966" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.030347" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3694" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;hit&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;hit&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1467540336" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.029837" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3695" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;strength&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;strength&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1023264670" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.030725" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3696" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;stat&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;stat&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="223077942" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.030751" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3697" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;attributes&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;attributes&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1680917427" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:03Z" duration="0.029848" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3698" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;gas&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;gas&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1713760609" result="Passed" start-time="2026-10-03 19:52:03Z" end-time="2026-10-03 19:52:04Z" duration="0.030678" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3699" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;name&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;name&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1340207301" result="Passed" start-time="2026-10-03 19:52:04Z" end-time="2026-10-03 19:52:04Z" duration="0.030292" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3700" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;color&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;color&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="133292295" result="Passed" start-time="2026-10-03 19:52:04Z" end-time="2026-10-03 19:52:04Z" duration="0.029661" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3701" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;tag&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;tag&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1527172336" result="Passed" start-time="2026-10-03 19:52:04Z" end-time="2026-10-03 19:52:04Z" duration="0.029718" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3702" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;recipe&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;recipe&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="2048205210" result="Passed" start-time="2026-10-03 19:52:04Z" end-time="2026-10-03 19:52:04Z" duration="0.029654" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3703" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;actor&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;actor&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1580115923" result="Passed" start-time="2026-10-03 19:52:04Z" end-time="2026-10-03 19:52:04Z" duration="0.029884" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3704" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;extra-part&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;extra-part&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1130438134" result="Passed" start-time="2026-10-03 19:52:04Z" end-time="2026-10-03 19:52:04Z" duration="0.030047" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="3706" name="PreexistingActivePoisonAndOtherSpeciesStayLiteral" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.PreexistingActivePoisonAndOtherSpeciesStayLiteral" methodname="PreexistingActivePoisonAndOtherSpeciesStayLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="55780194" result="Failed" start-time="2026-10-03 19:52:04Z" end-time="2026-10-03 19:52:04Z" duration="0.030573" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  String lengths are both 19. Strings differ at index 14.
+  Expected: "Poisoned,75,1d2,4,0"
+  But was:  "Poisoned,75,1d6,8,0"
+  -------------------------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SnakeVenomSaveTests.PreexistingActivePoisonAndOtherSpeciesStayLiteral () [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/SnakeVenomSaveTests.cs:103
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="3687" name="StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 19:52:04Z" end-time="2026-10-03 19:52:04Z" duration="0.105834" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3685" name="StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad(&quot;Viper&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad(&quot;Viper&quot;)" methodname="StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1876365535" result="Failed" start-time="2026-10-03 19:52:04Z" end-time="2026-10-03 19:52:04Z" duration="0.029973" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  String lengths are both 19. Strings differ at index 14.
+  Expected: "Poisoned,75,1d2,4,0"
+  But was:  "Poisoned,75,1d6,8,0"
+  -------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SnakeVenomSaveTests.StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad (System.String blueprint) [0x00059] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/SnakeVenomSaveTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3686" name="StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad(&quot;SpreadLatchcoil&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad(&quot;SpreadLatchcoil&quot;)" methodname="StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="341471078" result="Failed" start-time="2026-10-03 19:52:04Z" end-time="2026-10-03 19:52:04Z" duration="0.029206" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  String lengths are both 19. Strings differ at index 14.
+  Expected: "Poisoned,75,1d2,4,0"
+  But was:  "Poisoned,75,1d6,8,0"
+  -------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SnakeVenomSaveTests.StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad (System.String blueprint) [0x00059] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/SnakeVenomSaveTests.cs:35
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="6237" name="StatusEffectTests" fullname="CavesOfOoo.Tests.StatusEffectTests" classname="CavesOfOoo.Tests.StatusEffectTests" runstate="Runnable" testcasecount="63" result="Failed" site="Child" start-time="2026-10-03 19:52:04Z" end-time="2026-10-03 19:52:04Z" duration="0.141418" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="6287" name="Poison_StackKeepsLongerRemainingDuration" fullname="CavesOfOoo.Tests.StatusEffectTests.Poison_StackKeepsLongerRemainingDuration" methodname="Poison_StackKeepsLongerRemainingDuration" classname="CavesOfOoo.Tests.StatusEffectTests" runstate="Runnable" seed="726805229" result="Failed" start-time="2026-10-03 19:52:04Z" end-time="2026-10-03 19:52:04Z" duration="0.000731" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  A shorter poison dose must not add a damaging tail
+  Expected: 5
+  But was:  8
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.StatusEffectTests.Poison_StackKeepsLongerRemainingDuration () [0x00045] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Effects/StatusEffectTests.cs:1042
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

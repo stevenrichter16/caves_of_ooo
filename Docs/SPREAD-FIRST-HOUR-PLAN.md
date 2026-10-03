@@ -191,8 +191,10 @@ Use the actual LongBlades Lunge eligibility, targeting and cooldown contract.
   existing ambush goal only after its wake/save lifecycle is verified. Do not
   increase poison potency or add a new disease, tracking or stealth framework.
   Proposed sight radius 3 also limits its waking Brain sight; do not silently
-  promise longer pursuit. The existing bite can apply 1d6 poison for eight turns
-  at 75% chance. An 8 HP creature is not necessarily a gentle starter encounter.
+  promise longer pursuit. After the [snake venom correction](POISON-BALANCE-FIX.md),
+  the bite can apply 1d2 poison for four owner actions at 75% chance; repeated
+  ordinary poison refreshes the longer remaining duration instead of adding it.
+  Direct bite damage remains separate; an injured player still faces a threat.
 - **Decision:** notice the warning, bypass, wake from a chosen position, retreat
   or fight with existing controls. The warning must not reveal hidden actors
   through fog or pretend that an unseen creature is currently alive.

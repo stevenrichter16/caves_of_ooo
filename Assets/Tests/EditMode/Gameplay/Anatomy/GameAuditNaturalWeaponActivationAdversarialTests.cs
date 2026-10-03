@@ -125,7 +125,7 @@ namespace CavesOfOoo.Tests
             }
         }
 
-        [TestCase("Viper", "Poisoned,75,1d6,8,0", "Poisoned", 75, "1d6", 8, 1)]
+        [TestCase("Viper", "Poisoned,75,1d2,4,0", "Poisoned", 75, "1d2", 4, 1)]
         [TestCase("Scorpion", "Poisoned,50,1d4,6,0", "Poisoned", 50, "1d4", 6, 1)]
         [TestCase("GiantSpider", "Poisoned,35,1d4,6,0;Paralyzed,20,0,2,0", "Poisoned", 35, "1d4", 6, 2)]
         [TestCase("BrassHusk", "Electrified,20,,3,1.0", "Electrified", 20, "", 3, 1)]
@@ -201,7 +201,7 @@ namespace CavesOfOoo.Tests
                     if (e.ID != "ObjectCreated") return true;
                     if (probe.ParentEntity.BlueprintName == f.ActorBlueprint.Name) { parent = probe.ParentEntity; defaults = Hands(parent).Select(h => h._DefaultBehavior).ToArray(); }
                     else if (probe.ParentEntity.BlueprintName == "Dagger")
-                    { nested++; Assert.NotNull(parent); Assert.IsTrue(defaults.All(x => x != null && x.GetPart<MeleeWeaponPart>().OnHitEffectsRaw == "Poisoned,75,1d6,8,0")); CollectionAssert.AreEqual(defaults, Hands(parent).Select(h => h._DefaultBehavior).ToArray()); }
+                    { nested++; Assert.NotNull(parent); Assert.IsTrue(defaults.All(x => x != null && x.GetPart<MeleeWeaponPart>().OnHitEffectsRaw == "Poisoned,75,1d2,4,0")); CollectionAssert.AreEqual(defaults, Hands(parent).Select(h => h._DefaultBehavior).ToArray()); }
                     return true;
                 };
                 var actor = f.Create(); Assert.AreEqual(1, nested); Assert.AreSame(parent, actor); Assert.AreEqual(1, actor.GetPart<InventoryPart>().GetAllEquipped().Count);

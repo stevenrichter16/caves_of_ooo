@@ -63,7 +63,8 @@ namespace CavesOfOoo.Core
                 case "poison":
                     return new PoisonedEffect(
                         duration: spec.DurationTurns > 0 ? spec.DurationTurns : 5,
-                        damageDice: string.IsNullOrWhiteSpace(spec.DamageDice) ? "1d3" : spec.DamageDice);
+                        damageDice: string.IsNullOrWhiteSpace(spec.DamageDice) ? "1d3" : spec.DamageDice,
+                        rng: rng);
 
                 case "paralyzed":
                 case "paralyze":

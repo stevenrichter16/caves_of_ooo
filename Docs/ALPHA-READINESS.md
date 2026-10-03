@@ -323,10 +323,12 @@ commit. Appended in-commit per CLAUDE.md living-doc rules.)
   harmless dead data). End-to-end pins walk the real Body →
   RegenerateDefaultEquipment → `_DefaultBehavior` path; counter-check:
   Villager still resolves the 1d2 default fist.
-- **SM4 venom:** ViperBite `Poisoned,75,1d6,8,0`, ScorpionSting
+- **SM4 venom (historical implementation):** ViperBite `Poisoned,75,1d6,8,0`, ScorpionSting
   `…50,1d4,6,0`, SpiderBite `…35,1d4,6,0` via the shipped
   OnHitEffectsRaw spec format (factory gained an onHit param);
-  counter-check: CaveBearClaw carries no spec.
+  counter-check: CaveBearClaw carries no spec. The later
+  [snake venom correction](POISON-BALANCE-FIX.md) retunes ViperBite to
+  `Poisoned,75,1d2,4,0` and changes ordinary poison stacking to duration refresh.
 - **SM5 lethality sweep:** NOT live-verified (Play mode resets the
   user's scene) — honesty bound: tuning is arithmetic-verified
   (CaveBear 2d4+Str vs 40 HP + 4d4 tonics is a real fight; base

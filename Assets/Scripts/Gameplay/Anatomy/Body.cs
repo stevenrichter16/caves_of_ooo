@@ -83,7 +83,9 @@ namespace CavesOfOoo.Core
         // Older saves contain the recipe but no natural object. Restore only
         // missing defaults after graph loading; retain saved/custom objects even
         // when they have no recipe. Detached branches must also work when healed.
-        private static void RestoreMissingDefaultEquipment(BodyPart root)
+        // The exact old stock viper venom is the sole in-place balance migration;
+        // customized natural payloads and already active effects remain literal.
+        private void RestoreMissingDefaultEquipment(BodyPart root)
         {
             var parts = root.GetParts();
             for (int i = 0; i < parts.Count; i++)
@@ -97,6 +99,9 @@ namespace CavesOfOoo.Core
                     if (part._DefaultBehavior != null)
                         part.FirstSlotForDefaultBehavior = true;
                 }
+                if (part.DefaultBehaviorBlueprint == "ViperBite"
+                    && (ParentEntity?.BlueprintName == "Viper" || ParentEntity?.BlueprintName == "SpreadLatchcoil"))
+                    NaturalWeaponFactory.UpgradeLegacyViperVenom(part._DefaultBehavior);
             }
         }
 

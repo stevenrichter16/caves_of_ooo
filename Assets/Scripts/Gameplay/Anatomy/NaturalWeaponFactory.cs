@@ -7,6 +7,7 @@ namespace CavesOfOoo.Core.Anatomy
     /// </summary>
     public static class NaturalWeaponFactory
     {
+        internal const string ViperVenom = "Poisoned,75,1d2,4,0";
         public static Entity Create(string blueprintName) => Create(blueprintName, allowFallback: true);
 
         // Save repair must not manufacture a generic weapon for an unknown
@@ -51,7 +52,7 @@ namespace CavesOfOoo.Core.Anatomy
                     // has an inflictor (spiders paralyze prey).
                     return CreateWeapon("fangs", "1d4", 0, "&g", "Piercing Animal", "Poisoned,35,1d4,6,0;Paralyzed,20,0,2,0");
                 case "ViperBite":
-                    return CreateWeapon("fangs", "1d3", 1, "&G", "Piercing Animal", "Poisoned,75,1d6,8,0");
+                    return CreateWeapon("fangs", "1d3", 1, "&G", "Piercing Animal", ViperVenom);
                 case "ApeFist":
                     return CreateWeapon("fist", "1d6+1", 0, "&w", "Bludgeoning Animal");
                 case "ScavengerClaw":
@@ -123,6 +124,27 @@ namespace CavesOfOoo.Core.Anatomy
                 default:
                     return allowFallback ? CreateWeapon(blueprintName, "1d2", 0, "&y", "") : null;
             }
+        }
+
+        /// <summary>Correct the old stock venom in place after body load. The
+        /// caller owns creature/slot admission. Preserve customized objects and
+        /// every other saved field; changing the raw spec invalidates its cache.</summary>
+        internal static void UpgradeLegacyViperVenom(Entity entity)
+        {
+            if (entity == null || entity.BlueprintName != "NaturalWeapon_fangs"
+                || entity.Parts.Count != 2 || entity.Tags.Count != 1 || !entity.HasTag("Natural")
+                || entity.Properties.Count != 0 || entity.Statistics.Count != 0) return;
+            var weapon = entity.GetPart<MeleeWeaponPart>(); var render = entity.GetPart<RenderPart>();
+            if (weapon?.ParentEntity != entity || render?.ParentEntity != entity
+                || weapon.OnHitEffectsRaw != "Poisoned,75,1d6,8,0" || weapon.BaseDamage != "1d3"
+                || weapon.PenBonus != 1 || weapon.HitBonus != 0 || weapon.MaxStrengthBonus != -1
+                || weapon.Stat != "Strength" || weapon.Attributes != "Piercing Animal" || weapon.EmitGasOnHitRaw != ""
+                || render.DisplayName != "fangs" || render.RenderString != ")" || render.ColorString != "&G"
+                || render.RenderLayer != 0 || !render.Visible || render.BackgroundColor != ""
+                || render.GlyphVariants != "" || render.DetailColor != "" || render.TileColor != ""
+                || !string.IsNullOrEmpty(render.Tile) || render.VisualID != "" || render.VisualVariant != ""
+                || render.VisualFacing != EntityVisualFacing.South) return;
+            weapon.OnHitEffectsRaw = ViperVenom;
         }
 
         private static Entity CreateWeapon(string name, string damage, int penBonus, string color, string attributes, string onHitEffectsRaw = "", string emitGasOnHitRaw = "")

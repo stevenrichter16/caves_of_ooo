@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="19" result="Failed(Child)" total="19" passed="14" failed="5" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-03 19:48:19Z" end-time="2026-10-03 19:48:23Z" duration="4.4939431">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24073" result="Failed" site="Child" start-time="2026-10-03 19:48:19Z" end-time="2026-10-03 19:48:23Z" duration="4.493943" total="19" passed="14" failed="5" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="29615" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24073" result="Failed" site="Child" start-time="2026-10-03 19:48:19Z" end-time="2026-10-03 19:48:23Z" duration="4.341017" total="19" passed="14" failed="5" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="45162" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="29616" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24073" result="Failed" site="Child" start-time="2026-10-03 19:48:19Z" end-time="2026-10-03 19:48:23Z" duration="4.296638" total="19" passed="14" failed="5" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="29617" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24073" result="Failed" site="Child" start-time="2026-10-03 19:48:19Z" end-time="2026-10-03 19:48:23Z" duration="4.096393" total="19" passed="14" failed="5" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="3684" name="SnakeVenomSaveTests" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-10-03 19:48:19Z" end-time="2026-10-03 19:48:23Z" duration="3.896860" total="19" passed="14" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="3690" name="ActualOldPayloadRoundTripUsesTheBodyLoadHook" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.ActualOldPayloadRoundTripUsesTheBodyLoadHook" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 19:48:19Z" end-time="2026-10-03 19:48:20Z" duration="0.733672" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3688" name="ActualOldPayloadRoundTripUsesTheBodyLoadHook(&quot;Viper&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.ActualOldPayloadRoundTripUsesTheBodyLoadHook(&quot;Viper&quot;)" methodname="ActualOldPayloadRoundTripUsesTheBodyLoadHook" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="177855101" result="Failed" start-time="2026-10-03 19:48:19Z" end-time="2026-10-03 19:48:20Z" duration="0.465660" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  "c57149389f534122834ae6e4bb23807d"
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SnakeVenomSaveTests.ActualOldPayloadRoundTripUsesTheBodyLoadHook (System.String blueprint) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/SnakeVenomSaveTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3689" name="ActualOldPayloadRoundTripUsesTheBodyLoadHook(&quot;SpreadLatchcoil&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.ActualOldPayloadRoundTripUsesTheBodyLoadHook(&quot;SpreadLatchcoil&quot;)" methodname="ActualOldPayloadRoundTripUsesTheBodyLoadHook" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="721115121" result="Failed" start-time="2026-10-03 19:48:20Z" end-time="2026-10-03 19:48:20Z" duration="0.158144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: null
+  But was:  "e8cd3b7e0d8f4ed495b6cc1fc6a51839"
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SnakeVenomSaveTests.ActualOldPayloadRoundTripUsesTheBodyLoadHook (System.String blueprint) [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/SnakeVenomSaveTests.cs:50
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="3705" name="CustomizedOrUnrelatedFangsRemainLiteral" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-10-03 19:48:20Z" end-time="2026-10-03 19:48:23Z" duration="2.529971" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="3691" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;raw&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;raw&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="571347906" result="Passed" start-time="2026-10-03 19:48:20Z" end-time="2026-10-03 19:48:20Z" duration="0.171474" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3692" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;base&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;base&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1396871143" result="Passed" start-time="2026-10-03 19:48:20Z" end-time="2026-10-03 19:48:20Z" duration="0.180208" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3693" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;penetration&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;penetration&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1859025479" result="Passed" start-time="2026-10-03 19:48:20Z" end-time="2026-10-03 19:48:21Z" duration="0.257351" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3694" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;hit&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;hit&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="387871187" result="Passed" start-time="2026-10-03 19:48:21Z" end-time="2026-10-03 19:48:21Z" duration="0.364926" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3695" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;strength&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;strength&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1942597331" result="Passed" start-time="2026-10-03 19:48:21Z" end-time="2026-10-03 19:48:21Z" duration="0.157957" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3696" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;stat&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;stat&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1204526702" result="Passed" start-time="2026-10-03 19:48:21Z" end-time="2026-10-03 19:48:21Z" duration="0.160318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3697" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;attributes&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;attributes&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1413767033" result="Passed" start-time="2026-10-03 19:48:21Z" end-time="2026-10-03 19:48:22Z" duration="0.144185" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3698" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;gas&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;gas&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1937194948" result="Passed" start-time="2026-10-03 19:48:22Z" end-time="2026-10-03 19:48:22Z" duration="0.125301" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3699" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;name&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;name&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1814528060" result="Passed" start-time="2026-10-03 19:48:22Z" end-time="2026-10-03 19:48:22Z" duration="0.137318" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3700" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;color&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;color&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1090351686" result="Passed" start-time="2026-10-03 19:48:22Z" end-time="2026-10-03 19:48:22Z" duration="0.162272" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3701" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;tag&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;tag&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="848560418" result="Passed" start-time="2026-10-03 19:48:22Z" end-time="2026-10-03 19:48:22Z" duration="0.152846" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3702" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;recipe&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;recipe&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1461381727" result="Passed" start-time="2026-10-03 19:48:22Z" end-time="2026-10-03 19:48:22Z" duration="0.154916" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3703" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;actor&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;actor&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1688360957" result="Passed" start-time="2026-10-03 19:48:22Z" end-time="2026-10-03 19:48:22Z" duration="0.155705" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="3704" name="CustomizedOrUnrelatedFangsRemainLiteral(&quot;extra-part&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.CustomizedOrUnrelatedFangsRemainLiteral(&quot;extra-part&quot;)" methodname="CustomizedOrUnrelatedFangsRemainLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1000909526" result="Passed" start-time="2026-10-03 19:48:22Z" end-time="2026-10-03 19:48:23Z" duration="0.135804" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="3706" name="PreexistingActivePoisonAndOtherSpeciesStayLiteral" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.PreexistingActivePoisonAndOtherSpeciesStayLiteral" methodname="PreexistingActivePoisonAndOtherSpeciesStayLiteral" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1986653818" result="Failed" start-time="2026-10-03 19:48:23Z" end-time="2026-10-03 19:48:23Z" duration="0.136963" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  String lengths are both 19. Strings differ at index 14.
+  Expected: "Poisoned,75,1d2,4,0"
+  But was:  "Poisoned,75,1d6,8,0"
+  -------------------------^
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.SnakeVenomSaveTests.PreexistingActivePoisonAndOtherSpeciesStayLiteral () [0x00039] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/SnakeVenomSaveTests.cs:100
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="3687" name="StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-03 19:48:23Z" end-time="2026-10-03 19:48:23Z" duration="0.392860" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="3685" name="StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad(&quot;Viper&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad(&quot;Viper&quot;)" methodname="StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="569478409" result="Failed" start-time="2026-10-03 19:48:23Z" end-time="2026-10-03 19:48:23Z" duration="0.156035" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  String lengths are both 19. Strings differ at index 14.
+  Expected: "Poisoned,75,1d2,4,0"
+  But was:  "Poisoned,75,1d6,8,0"
+  -------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SnakeVenomSaveTests.StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad (System.String blueprint) [0x00059] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/SnakeVenomSaveTests.cs:32
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="3686" name="StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad(&quot;SpreadLatchcoil&quot;)" fullname="CavesOfOoo.Tests.SnakeVenomSaveTests.StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad(&quot;SpreadLatchcoil&quot;)" methodname="StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad" classname="CavesOfOoo.Tests.SnakeVenomSaveTests" runstate="Runnable" seed="1809940174" result="Failed" start-time="2026-10-03 19:48:23Z" end-time="2026-10-03 19:48:23Z" duration="0.139372" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  String lengths are both 19. Strings differ at index 14.
+  Expected: "Poisoned,75,1d2,4,0"
+  But was:  "Poisoned,75,1d6,8,0"
+  -------------------------^
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.SnakeVenomSaveTests.StockSavedFangsUpgradeInPlaceAndStayFixedAfterAnotherLoad (System.String blueprint) [0x00059] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Anatomy/SnakeVenomSaveTests.cs:32
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

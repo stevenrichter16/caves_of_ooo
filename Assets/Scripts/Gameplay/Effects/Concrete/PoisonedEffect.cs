@@ -1,7 +1,8 @@
 namespace CavesOfOoo.Core
 {
     /// <summary>
-    /// Poison: deals damage each turn. Stacking extends duration.
+    /// Poison: deals damage each owner turn. Reapplication keeps the longer
+    /// remaining duration, preserving an indefinite dose and the first dose's potency.
     /// </summary>
     public class PoisonedEffect : Effect, IAuraProvider
     {
@@ -45,7 +46,10 @@ namespace CavesOfOoo.Core
         {
             if (incoming is PoisonedEffect poison)
             {
-                Duration += poison.Duration;
+                // A new dose refreshes exposure without banking an additive tail.
+                // Keep existing dice/RNG: reapplication changes duration, not potency.
+                Duration = Duration == DURATION_INDEFINITE || poison.Duration == DURATION_INDEFINITE
+                    ? DURATION_INDEFINITE : System.Math.Max(Duration, poison.Duration);
                 return true;
             }
             return false;

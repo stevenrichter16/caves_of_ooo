@@ -1027,11 +1027,11 @@ namespace CavesOfOoo.Tests
         }
 
         // ========================
-        // Stacking — Poison / Stun Extend Duration
+        // Stacking — Poison Refreshes / Stun Extends Duration
         // ========================
 
         [Test]
-        public void Poison_StackExtendsDuration()
+        public void Poison_StackKeepsLongerRemainingDuration()
         {
             var e = CreateCreature();
             var poison = new PoisonedEffect(5, "1d3", new Random(42));
@@ -1039,7 +1039,7 @@ namespace CavesOfOoo.Tests
 
             e.ApplyEffect(new PoisonedEffect(3, "1d3", new Random(42)));
 
-            Assert.AreEqual(8, poison.Duration, "Stacking poison should extend duration");
+            Assert.AreEqual(5, poison.Duration, "A shorter poison dose must not add a damaging tail");
 
             // Should still only have one poison effect
             var sep = e.GetPart<StatusEffectsPart>();
