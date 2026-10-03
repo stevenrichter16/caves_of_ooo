@@ -31,7 +31,9 @@ namespace CavesOfOoo.Core
                 {
                     // Priority 15 — above Examine (0), Chat (10), below Open (30).
                     // Hotkey 't' doesn't collide with Open/o, Chat/c, Examine/x.
-                    actions?.AddAction("Throw", "throw", "Throw", 't', 15);
+                    bool claimed = LocalGatheringClaims.WarningFor(e.GetParameter<Entity>("Actor"), ParentEntity,
+                        e.GetParameter<Zone>("Zone") ?? SettlementRuntime.ActiveZone) != null;
+                    actions?.AddAction("Throw", claimed ? "throw (Nella's tied reserve)" : "throw", "Throw", 't', 15);
                 }
                 AddHaulAction(actions, e.GetParameter<Entity>("Actor"));
                 return true;

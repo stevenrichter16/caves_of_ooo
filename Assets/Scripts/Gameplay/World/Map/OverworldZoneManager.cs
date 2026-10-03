@@ -152,7 +152,7 @@ namespace CavesOfOoo.Core
             if (zoneID == GleanersCellarBuilder.ZoneID && GleanersDistrict.CanBuildCellar(this))
             {
                 var cellar = new ZoneGenerationPipeline();
-                cellar.AddBuilder(new GleanersCellarBuilder(WorldSeed, Exploration?.Version>=11, Exploration?.WorldKey));
+                cellar.AddBuilder(new GleanersCellarBuilder(WorldSeed, Exploration?.Enabled==true && Exploration.Version>=11, Exploration?.WorldKey));
                 return cellar;
             }
 
@@ -1002,7 +1002,7 @@ namespace CavesOfOoo.Core
                     if(marrowstye)
                     {
                         pipeline.AddBuilder(new MarrowstyeProfileBuilder(intake));
-                        pipeline.AddBuilder(new CurationReceivingBuilder(intake, Exploration?.Version>=11));
+                        pipeline.AddBuilder(new CurationReceivingBuilder(intake, Exploration?.Enabled==true && Exploration.Version>=11));
                     }
                     else profileStamps.Add(StampCatalog.CurationIntake());
                     break;

@@ -24,6 +24,7 @@ namespace CavesOfOoo.Core
         public List<string> InputIDs = new List<string>();
         public List<int> InputCounts = new List<int>();
         [NonSerialized] private bool reconciling;
+        [NonSerialized] private bool invalidatedDuringReconcile;
 
         /// <summary>Called once by generation after the four real owners are placed.
         /// It binds a broken pan too; only starting work requires its repair.</summary>
@@ -260,8 +261,17 @@ namespace CavesOfOoo.Core
         }
         void ReconcileCore(Zone zone, Entity invalidating)
         {
-            if (reconciling || !Bound(zone)) return;
-            reconciling = true; var tx = new InventoryTransaction();
+            if (reconciling)
+            {
+                // Keep the recursion guard, but remember an irreversible owner
+                // lifecycle during meal creation. Once that callback returns,
+                // Bound may never hold again; this transaction must settle the
+                // surviving escrow instead of leaving it behind a removed owner.
+                if (invalidating != null) invalidatedDuringReconcile = true;
+                return;
+            }
+            if (!Bound(zone)) return;
+            reconciling = true; invalidatedDuringReconcile = false; var tx = new InventoryTransaction();
             try
             {
                 if (!ClaimOwners(tx, Commissioner)) return;
@@ -276,10 +286,10 @@ namespace CavesOfOoo.Core
                 bool viable = LiveStructure(invalidating) && (Worker == invalidating || Alive(Worker));
                 if (WorldClock.CurrentTick >= DueTick && viable && StaffAvailable(zone, Commissioner, invalidating)
                     && Complete(tx, zone, invalidating)) { tx.Commit(); return; }
-                if (invalidating != null || !viable) { Cancel(tx, zone, "work-interrupted"); tx.Commit(); }
+                if (invalidating != null || invalidatedDuringReconcile || !viable) { Cancel(tx, zone, "work-interrupted"); tx.Commit(); }
             }
             catch (Exception error) { Diag.Record("furniture", "KitchenBatchRejected", target: ParentEntity, payload: new { reason = "reconcile-exception", error = error.GetType().Name }); }
-            finally { tx.Rollback(); reconciling = false; }
+            finally { tx.Rollback(); invalidatedDuringReconcile = false; reconciling = false; }
         }
         bool Complete(InventoryTransaction tx, Zone zone, Entity invalidating)
         {

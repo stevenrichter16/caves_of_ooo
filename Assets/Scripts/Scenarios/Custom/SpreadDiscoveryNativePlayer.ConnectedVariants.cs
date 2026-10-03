@@ -30,7 +30,7 @@ namespace CavesOfOoo.Scenarios.Custom
             "variant_finite_cache", "variant_manual_learned", "variant_final_save_restore", "variant_finish" };
         string[] VariantChecks => VariantCommonChecks.Concat(VariantBreaker
             ? new[] { "variant_frame_pulled", "variant_cleared_crossing", "variant_clay_well" }
-            : new[] { "variant_witnessed_breach", "variant_breach_save_restore", "variant_local_return", "variant_restitution" }).ToArray();
+            : new[] { "variant_witnessed_breach", "variant_ground_throw", "variant_breach_save_restore", "variant_local_return", "variant_restitution" }).ToArray();
         const string VariantIntent = "Actual selected Breaker/seed1729 or Bombardier/seed29; ordinary native map/ground trip to one census-observed accepted satellite. Breaker uses its own strength to pull a real heavy frame, crosses the cleared aperture, retrieves finite clay/manual and repairs the original glade well. Bombardier spends one original tonic only with a useful lawful target or preserves it and uses a live alternate approach, retrieves finite grain/manual, commits an actually witnessed local reserve breach, saves/reloads it, leaves/returns and pays restitution using earned grain. Native reading, depletion and final replacement-graph save checks. Up to60seconds of observational frame sampling during useful travel, never clock-padding.";
         const string VariantLimits = "Targeted source-guided seeds selected after census; not blind five-seed coverage, unaided discovery, encounter balance or all-seed proof. No grants, player transfers, target setup, population edits, source replenishment or time changes. Breaker uses actual starting Cudgel/finite tonics if an adjacent hostile forces defense. Bombardier may preserve a throwable when no lawful useful ray exists; expenditure and bypass are separately reported. Witness failure is a retained acceptance failure, never fabricated permission. Native timing includes paced keys, turn/AI, screenshots and audit IO; no prior-build comparison, pure renderer cost, steady-state benchmark or GC-allocation claim. Shorter-than60second routes are reported honestly. Screenshots still need independent visual review.";
 
@@ -252,6 +252,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 &&VariantReputation()==reputation&&TradeSystem.GetDrams(Player)==purse&&!FactionManager.IsHostile(keeper,Player)
                 &&Window(marker).Any(e=>e.Kind=="ReserveBreachWitnessed"&&e.ActorId==Player.ID&&e.TargetId==keeper.ID));
             yield return Capture("variant-05-real-local-consequence");
+            yield return ConnectedVariantGroundThrow(source);
             yield return ConnectedVariantCheckpoint("variant_breach_save_restore");
             yield return TravelSurface(GleanersDistrict.SurfaceID);yield return Capture("variant-06-left-suspended-reserve");
             yield return TravelSurface(LocalGatheringClaimPart.ReserveZoneID);keeper=VariantKeeper;claim=keeper.GetPart<LocalGatheringClaimPart>();
@@ -264,6 +265,41 @@ namespace CavesOfOoo.Scenarios.Custom
                 &&keeper.GetPart<InventoryPart>().Objects.Where(e=>e.BlueprintName=="Emberwheat").Sum(Units)==stock+2
                 &&claim.Permissions.Single(p=>p.Player==Player).BreachOrdinal==1&&VariantReputation()==reputation&&TradeSystem.GetDrams(Player)==purse);
             yield return Capture("variant-07-earned-restitution");
+        }
+
+        // Exercise the actual second throw popup, cancellation and targeting.
+        // This route already witnessed the harvest; first-witness throw and
+        // partial-stack ownership are covered by paired native EditMode cases.
+        IEnumerator ConnectedVariantGroundThrow(Cell source)
+        {
+            var item=source.Objects.FirstOrDefault(e=>e.GetPart<ReserveYieldPart>()?.AlreadyWitnessedPlayer==Player
+                &&Units(e)==1&&HandlingService.CanThrow(Player,e,out _));
+            Require(item!=null,"actual throwable reserve harvest unit");
+            var approach=Steps.Where(d=>Math.Abs(d.x)+Math.Abs(d.y)==1)
+                .Select(d=>Zone.GetCell(source.X+d.x,source.Y+d.y))
+                .Where(c=>c!=null&&Safe(Zone,c,ThreatClearance)&&Zone.CanPlaceFootprint(Player,c.X,c.Y))
+                .OrderBy(c=>AIHelpers.ChebyshevDistance(At.X,At.Y,c.X,c.Y)).FirstOrDefault();
+            Require(approach!=null,"actual safe cardinal throw approach");yield return DistrictWalk(approach,40);
+            var target=Steps.Select(d=>Zone.GetCell(At.X+d.x,At.Y+d.y)).FirstOrDefault(c=>c!=null&&c!=source
+                &&Safe(Zone,c,ThreatClearance)&&!c.Objects.Any(e=>e.HasPart<CultivatedSoilPart>())
+                &&LineTargeting.TraceFirstImpactToTarget(Zone,Player,At.X,At.Y,c.X,c.Y,HandlingService.GetThrowRange(Player,item)).ImpactCell==c
+                &&LineTargeting.TraceFirstImpactToTarget(Zone,Player,At.X,At.Y,c.X,c.Y,HandlingService.GetThrowRange(Player,item)).HitEntity==null);
+            Require(target!=null,"empty public landing cell with a real clear throw ray");
+            var provenance=item.GetPart<ReserveYieldPart>();int tick=Tick,energy=Energy;
+            yield return WorldAction(item,"Throw");Require(State=="ThrowPopupOpen","native ground throw confirmation");
+            var popup=Field(_input,"_throwPopup");var option=((IList)Field(popup,"Options"))[0];
+            Require(((string)Field(option,"Label")).Contains("Nella's tied reserve"),"reserve warning in the actual second throw popup");
+            yield return Capture("variant-ground-throw-warning");yield return Tap(Key.Escape);yield return CloseNormal();
+            Require(Tick==tick&&Energy==energy&&Zone.GetEntityCell(item)==source&&ReferenceEquals(item.GetPart<ReserveYieldPart>(),provenance)
+                &&!provenance.Released,"cancelled ground throw is free and preserves exact claim owner");
+            yield return WorldAction(item,"Throw");yield return Tap(Key.Enter);Require(State=="ThrowTargeting","actual ground throw cursor");
+            var cursor=(WorldCursorState)Field(_input,"_worldCursorState");
+            for(int n=0;cursor.X!=target.X||cursor.Y!=target.Y;n++)
+            {Require(n<8,"bounded ground produce aiming");yield return Tap(Direction(target.X-cursor.X,target.Y-cursor.Y));}
+            yield return Paid(Tap(Key.Enter),"local","variant-ground-reserve-throw");
+            var claim=VariantKeeper.GetPart<LocalGatheringClaimPart>();
+            Check("variant_ground_throw",Zone.GetEntityCell(item)==target&&item.GetPart<ReserveYieldPart>()==null
+                &&claim.GetState(Player)==ReserveAccessState.Suspended&&claim.Permissions.Single(p=>p.Player==Player).BreachOrdinal==1);
         }
 
         string ConnectedVariantDigest()

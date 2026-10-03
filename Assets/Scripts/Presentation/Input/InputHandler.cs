@@ -3214,7 +3214,8 @@ namespace CavesOfOoo.Rendering
             _throwPopup.Options.Add(new ThrowPopupOption
             {
                 Item = item,
-                Label = "throw"
+                Label = LocalGatheringClaims.WarningFor(PlayerEntity, item, CurrentZone) != null
+                    ? "throw (Nella's tied reserve)" : "throw"
             });
 
             OpenThrowPopup();

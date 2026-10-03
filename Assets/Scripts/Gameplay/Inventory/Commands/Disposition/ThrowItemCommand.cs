@@ -140,6 +140,11 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     "You do not have access to that item to throw it.");
             }
 
+            // Lifting claimed produce straight from the ground is a taking,
+            // even when it never passes through the player inventory. Keep the
+            // original source for witnessing and release only the thrown unit.
+            var gathering = source == ThrowSourceKind.World
+                ? LocalGatheringClaims.CaptureTake(actor, _item, zone) : null;
             Entity itemToThrow = ExtractItemForThrow(context, transaction, source, sourceCell);
             if (itemToThrow == null)
             {
@@ -360,6 +365,7 @@ namespace CavesOfOoo.Core.Inventory.Commands
                     undo: () => zone.RemoveEntity(itemToThrow));
             }
 
+            LocalGatheringClaims.RecordTake(gathering, transaction, itemToThrow);
             return InventoryCommandResult.Ok();
         }
 

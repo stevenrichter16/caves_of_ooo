@@ -6,7 +6,7 @@ using CavesOfOoo.Core.Inventory;
 namespace CavesOfOoo.Core
 {
     /// <summary>Provenance for still-uncollected produce from an exact marked
-    /// bed. First committed pickup releases it; this is not a stolen-goods law.</summary>
+    /// bed. First committed physical taking releases it; this is not a stolen-goods law.</summary>
     public sealed class ReserveYieldPart : Part
     {
         public override string Name => "ReserveYield";
@@ -129,17 +129,22 @@ namespace CavesOfOoo.Core
             return new Receipt { Claim = claim, Actor = actor, Item = item, Zone = zone, Marker = marker,
                 Source = zone.GetEntityCell(container ?? item), Allowed = claim.GetState(actor) == ReserveAccessState.Granted };
         }
-        internal static void RecordTake(Receipt receipt, InventoryTransaction tx)
+        /// <summary>Commit a physical taking from the recorded source. Ground
+        /// throws may extract one new owner from a stack: only that owner loses
+        /// its claim, while the still-grounded remainder stays claimed.</summary>
+        internal static void RecordTake(Receipt receipt, InventoryTransaction tx, Entity takenItem = null)
         {
             if (receipt == null || tx == null) return;
+            takenItem ??= receipt.Item;
+            var takenMarker = takenItem == receipt.Item ? receipt.Marker : takenItem?.GetPart<ReserveYieldPart>();
             tx.AfterCommit(() =>
             {
                 if (!receipt.Allowed && receipt.Marker?.AlreadyWitnessedPlayer != receipt.Actor)
                     receipt.Claim.RecordBreach(receipt.Actor, receipt.Zone, receipt.Source, "take");
                 // Ownership ends at acquisition, including an unseen take. A
                 // later drop or sale must not create a global stolen-goods tag.
-                if (receipt.Marker != null)
-                { receipt.Marker.Released = true; receipt.Item.RemovePart(receipt.Marker); }
+                if (takenMarker != null)
+                { takenMarker.Released = true; takenItem.RemovePart(takenMarker); }
             });
         }
     }
