@@ -2,6 +2,8 @@
 
 Status: complete and verified, ready for publication. Baseline main `fb4d5bcd7`, 2026-10-03. Original Caves of Ooo content connection; no Qud source-parity claim. [Executed prompts](TIMBER-TRAP-PROMPTS.md).
 
+Later content iteration: newly generated stores use the [Trappers' dispatch yard](TRAPPERS-DISPATCH-YARD.md). Its service entrance requires moving a fallen beam; the free bypass described in this milestone's historical evidence belongs to the old layout. The one-timber jamming rule is unchanged, and ordinary breakable walls retain their own physical alternative.
+
 ## 1. Player choice and scope
 
 Spend **one carried SalvagedTimber and one ordinary action** to permanently jam one visible, adjacent mechanical trap. Its exact owner stays on the ground, visibly wedged, passable and harmless. No XP, recovered timber, loot, skill roll, rearm or reset. Other traps, including another on the same tile, remain live until separately dealt with.

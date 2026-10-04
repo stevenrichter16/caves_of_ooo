@@ -87,7 +87,7 @@ namespace CavesOfOoo.Tests
             Assert.AreSame(store, manager.GetZone(store.ZoneID)); Assert.AreSame(cellar, manager.GetZone(cellar.ZoneID));
         }
 
-        [Test] public void JammedGeneratedStoreReadoutKeepsBypassWithoutClaimingItStillFires()
+        [Test] public void JammedGeneratedStoreReadoutKeepsServiceOpeningClueWithoutClaimingItStillFires()
         {
             const string id = "Overworld.11.11.0";
             scope.Seed(unchecked(64 ^ FormationSelector.StableIndex(id, int.MaxValue)));
@@ -95,12 +95,14 @@ namespace CavesOfOoo.Tests
             var zone = manager.GetZone(id);
             var trap = zone.GetReadOnlyEntities().Single(e => e.GetProperty(SpreadExplorationWorksites.RoleKey) == "trap");
             string armed = trap.GetPart<ExaminablePart>().BuildExamineLine();
-            StringAssert.Contains("An open gap leads around", armed);
+            StringAssert.Contains("A fallen beam blocks the service opening", armed);
+            StringAssert.DoesNotContain("An open gap leads around", armed);
             StringAssert.Contains("While armed, anything stepping", armed);
             trap.GetPart<TrapJammingPart>().Jammed = true; // Controlled readout state; ordinary payment has separate coverage.
             string jammed = trap.GetPart<ExaminablePart>().BuildExamineLine();
             StringAssert.Contains("jammed permanently", jammed);
-            StringAssert.Contains("An open gap leads around", jammed);
+            StringAssert.Contains("A fallen beam blocks the service opening", jammed);
+            StringAssert.DoesNotContain("An open gap leads around", jammed);
             StringAssert.Contains("While armed, anything stepping", jammed);
             StringAssert.DoesNotContain("Anything stepping on the teeth", jammed);
         }

@@ -11,13 +11,24 @@ namespace CavesOfOoo.Scenarios.Custom
     {
         bool _trapJamming;
         const string TrapJammingZone = "Overworld.11.11.0";
-        const string TrapJammingIntent = "Actual seed64 Duelist picker, ordinary cellar descent and covered passage, finite native pallet dismantled into two timber, ordinary return and one-south map journey to the original trapper store, real Examine and C-menu jam spending one timber, actual safe crossing of the same trap, F5/unsaved-step/F6 graph replacement, repeat crossing of the saved jam. The two-timber garden wicket remains unrepaired as the competing material use.";
-        const string TrapJammingLimits = "One predeclared seed, build and store; not blind discovery, every trap family, every world or campaign balance. No player transfers, owner grants, AI suppression, source retries, fake triggers or edited clocks. Existing bounded native Duelist defense uses only the original dagger and finite starter tonics, and can fail against real threats. All local routes have explicit movement bounds. Only this verified jammed owner's trigger is admitted for the crossing; other hazards remain excluded. Model submissions and screenshots still require independent pixel review. Legacy cached traps lacking the new opt-in remain unchanged.";
-        static readonly string[] TrapJammingChecks = {
+        const string TrapJammingIntent = "Actual seed64 Duelist picker, ordinary cellar descent and covered passage, finite native pallet dismantled into two timber, ordinary return and one-south map journey to the original trapper dispatch yard. Harvest outside lichen, use the actual Haul menu and two paid slowed steps to clear the beam entrance without spending timber, enter that opening and recover the original finite cache. If its original trap survives, Examine and jam it for one timber; if an NPC has sprung it, require the original trap's actual damage/death evidence and preserve both timber. Cross the observed gate, leave and revisit by world map, then F5/unsaved-step/F6 that same aftermath. The two-timber garden wicket remains unrepaired.";
+        const string TrapJammingLimits = "One predeclared seed, build and store; not blind discovery, every world or campaign balance. Required checks distinguish a player-jammed original trap from a trap already consumed by an NPC. The latter proves native trap damage and persistent absence, not player jamming or necessity of hauling as the only access. A null owner never counts as armed. Independent route sufficiency and jamming are covered separately by EditMode and the earlier native jamming baseline. No player transfers, owner grants, AI suppression, timing retries, fake triggers or edited clocks. Bounded native Duelist defense uses the original dagger and finite starter tonics and can fail against real threats. Only a verified jammed original trigger receives an observer crossing exception; every other hazard remains excluded. Cache stock may lawfully merge, so exact source rows and conserved units are reported. Models and screenshots require independent pixel review.";
+        string[] TrapJammingChecks => _trapConsumedByOther ? TrapConsumedChecks : TrapJammedChecks;
+        static readonly string[] TrapJammedChecks = {
             "ordinary_start", "trap_original_timber_choice", "trap_finite_pallet_acquired",
-            "trap_actual_southern_store", "trap_native_readout", "trap_one_timber_jam",
-            "trap_original_owner_crossed", "trap_checkpoint_saved", "trap_saved_replacement",
+            "trap_actual_southern_store", "trap_dispatch_original_yard", "trap_shallow_forage",
+            "trap_beam_native_readout", "trap_beam_gripped", "trap_beam_two_paid_moves", "trap_beam_released",
+            "trap_haul_gate_crossed", "trap_original_cache_recovered", "trap_depleted_cache_not_refilled",
+            "trap_native_readout", "trap_one_timber_jam", "trap_original_owner_crossed", "trap_actual_revisit",
+            "trap_checkpoint_saved", "trap_saved_replacement",
             "trap_restored_owner_crossed", "trap_finish" };
+        static readonly string[] TrapConsumedChecks = {
+            "ordinary_start", "trap_original_timber_choice", "trap_finite_pallet_acquired",
+            "trap_actual_southern_store", "trap_dispatch_original_yard", "trap_consumed_by_native_actor", "trap_shallow_forage",
+            "trap_beam_native_readout", "trap_beam_gripped", "trap_beam_two_paid_moves", "trap_beam_released",
+            "trap_haul_gate_crossed", "trap_original_cache_recovered", "trap_depleted_cache_not_refilled",
+            "trap_spent_gate_crossed", "trap_actual_revisit", "trap_checkpoint_saved", "trap_spent_saved_replacement",
+            "trap_restored_spent_gate_crossed", "trap_finish" };
         string _trapPalletId, _trapTimberId, _trapWicketId, _trapOwnerId;
 
         public void InitializeTrapJamming(ScenarioContext context)
@@ -67,27 +78,38 @@ namespace CavesOfOoo.Scenarios.Custom
             Check("trap_actual_southern_store", Zone.ZoneID == TrapJammingZone && _mapSteps == 1
                 && Manager.Exploration.DispositionFor(Zone.ZoneID) == 2 && Packed("SalvagedTimber") == 2
                 && ReferenceEquals(Manager.CachedZones[Zone.ZoneID], Zone));
-            yield return DistrictApproach(trap, 180);
-            Require(ReferenceEquals(TrapOwner, trap) && Zone.GetEntityCell(trap) == originalCell && !TrapJammingPart.IsJammed(trap),
-                "live approach retains the original untriggered trap; never replace one sprung by an NPC");
-            int tick = Tick, energy = Energy;
-            yield return WorldAction(trap, "Examine"); yield return ReadPages("trap-03-armed-mechanism-reader"); yield return CloseNormal();
-            Check("trap_native_readout", NormalizeText(_readerText).IndexOf("salvaged timber", StringComparison.OrdinalIgnoreCase) >= 0
-                && WorldInteractionSystem.GatherActions(trap, Player).Any(a => a.Command == TrapJammingPart.JamCommand)
-                && Tick == tick && Energy == energy && Packed("SalvagedTimber") == 2);
-            _observations.Add(new { phase = "trap-armed-original-model", owner = trap.ID, cell = Zone.GetEntityPosition(trap), visual = CardVisual(trap) });
-            yield return Paid(FieldworkAction(trap, TrapJammingPart.JamCommand, "jam mechanism (1 salvaged timber)", "trap-04-real-jamming-menu"),
-                "local", "trap-native-timber-jam");
-            Check("trap_one_timber_jam", TrapJammingPart.IsJammed(trap) && ReferenceEquals(TrapOwner, trap)
-                && Zone.GetEntityCell(trap) == originalCell && Packed("SalvagedTimber") == 1 && Units(TrapTimber) == 1
-                && CountGraphId(_trapTimberId) == 1 && !TrapWicket.GetPart<RepairablePart>().Repaired
-                && !WorldInteractionSystem.GatherActions(trap, Player).Any(a => a.Command == TrapJammingPart.JamCommand));
-            _observations.Add(new { phase = "trap-jammed-original-model", owner = trap.ID, cell = Zone.GetEntityPosition(trap), visual = CardVisual(trap) });
-            yield return Capture("trap-05-jammed-same-owner");
-            yield return TrapCross("trap_original_owner_crossed");
+            yield return TrapDispatchYard();
+            Require(TrapGateBeforeJam(), "original trap is either physically armed or proved consumed by native NPC damage");
+            if (_trapConsumedByOther)
+            {
+                yield return TrapSpentCross("trap_spent_gate_crossed");
+            }
+            else
+            {
+                yield return DistrictApproach(trap, 180);
+                Require(ReferenceEquals(TrapOwner, trap) && Zone.GetEntityCell(trap) == originalCell && !TrapJammingPart.IsJammed(trap),
+                    "live approach retains the original untriggered trap; never replace one sprung by an NPC");
+                int tick = Tick, energy = Energy;
+                yield return WorldAction(trap, "Examine"); yield return ReadPages("trap-03-armed-mechanism-reader"); yield return CloseNormal();
+                Check("trap_native_readout", NormalizeText(_readerText).IndexOf("salvaged timber", StringComparison.OrdinalIgnoreCase) >= 0
+                    && WorldInteractionSystem.GatherActions(trap, Player).Any(a => a.Command == TrapJammingPart.JamCommand)
+                    && Tick == tick && Energy == energy && Packed("SalvagedTimber") == 2);
+                _observations.Add(new { phase = "trap-armed-original-model", owner = trap.ID, cell = Zone.GetEntityPosition(trap), visual = CardVisual(trap) });
+                yield return Paid(FieldworkAction(trap, TrapJammingPart.JamCommand, "jam mechanism (1 salvaged timber)", "trap-04-real-jamming-menu"),
+                    "local", "trap-native-timber-jam");
+                Check("trap_one_timber_jam", TrapJammingPart.IsJammed(trap) && ReferenceEquals(TrapOwner, trap)
+                    && Zone.GetEntityCell(trap) == originalCell && Packed("SalvagedTimber") == 1 && Units(TrapTimber) == 1
+                    && CountGraphId(_trapTimberId) == 1 && !TrapWicket.GetPart<RepairablePart>().Repaired
+                    && !WorldInteractionSystem.GatherActions(trap, Player).Any(a => a.Command == TrapJammingPart.JamCommand));
+                _observations.Add(new { phase = "trap-jammed-original-model", owner = trap.ID, cell = Zone.GetEntityPosition(trap), visual = CardVisual(trap) });
+                yield return Capture("trap-05-jammed-same-owner");
+                yield return TrapCross("trap_original_owner_crossed");
+            }
+            yield return TrapDispatchRevisit();
+            yield return DistrictWalk(TrapYardCell(4, 0), 180);
             yield return TrapCheckpoint();
-            Check("trap_finish", State == "Normal" && Player.GetStatValue("Hitpoints") > 10 && Packed("SalvagedTimber") == 1
-                && CountGraphId(_trapPalletId) == 0 && !TrapWicket.GetPart<RepairablePart>().Repaired
+            Check("trap_finish", State == "Normal" && Player.GetStatValue("Hitpoints") > 10 && Packed("SalvagedTimber") == TrapExpectedTimber
+                && TrapYardAftermath() && _mapSteps == 3 && !TrapWicket.GetPart<RepairablePart>().Repaired
                 && !DevMode.Enabled && !Player.HasPart<BitLockerPart>() && !DebugInvincibility.IsEnabled(Player));
             yield return Capture("trap-09-finished-persistent-crossing");
         }
@@ -117,6 +139,7 @@ namespace CavesOfOoo.Scenarios.Custom
         IEnumerator TrapCheckpoint()
         {
             var player = Player; var zone = Zone; var trap = TrapOwner; var timber = TrapTimber; var wicket = TrapWicket;
+            var beam = TrapYardBeam; var cache = TrapYardCache; string yard = TrapYardDigest();
             string id = Player.ID, stats = Stats(Player), gear = Gear(Player), file = SaveFile(), old = HashFile(file), notes = NoteSignature();
             int tick = Tick, energy = Energy, world = WorldClock.CurrentTick, x = At.X, y = At.Y;
             yield return Tap(Key.F5); yield return Settled(); _checkpointHash = HashFile(file);
@@ -124,22 +147,23 @@ namespace CavesOfOoo.Scenarios.Custom
                 && SaveGameService.GetSaveInfo("Quick").ActiveZoneID == TrapJammingZone);
             var next = Steps.Select(d => Zone.GetCell(x + d.x, y + d.y))
                 .FirstOrDefault(c => Safe(Zone, c, ThreatClearance) && Zone.CanPlaceFootprint(Player, c.X, c.Y));
-            Require(next != null, "genuine safe unsaved departure from the jammed trap");
+            Require(next != null, "genuine safe unsaved action beside the observed gate");
             yield return StepTo(next.X, next.Y);
             Require(Tick > tick && HashFile(file) == _checkpointHash, "actual unsaved action after native quicksave");
             yield return Reload(player);
-            Check("trap_saved_replacement", !ReferenceEquals(Player, player) && !ReferenceEquals(Zone, zone)
-                && !ReferenceEquals(TrapOwner, trap) && !ReferenceEquals(TrapTimber, timber) && !ReferenceEquals(TrapWicket, wicket)
+            Check(_trapConsumedByOther ? "trap_spent_saved_replacement" : "trap_saved_replacement",
+                !ReferenceEquals(Player, player) && !ReferenceEquals(Zone, zone)
+                && (_trapConsumedByOther ? trap == null && TrapOwner == null : !ReferenceEquals(TrapOwner, trap))
+                && !ReferenceEquals(TrapTimber, timber) && !ReferenceEquals(TrapWicket, wicket)
+                && !ReferenceEquals(TrapYardBeam, beam) && !ReferenceEquals(TrapYardCache, cache)
                 && Player.ID == id && At.X == x && At.Y == y && Tick == tick && Energy == energy && WorldClock.CurrentTick == world
                 && Stats(Player) == stats && Gear(Player) == gear && NoteSignature() == notes && HashFile(file) == _checkpointHash
-                && TrapJammingPart.IsJammed(TrapOwner) && CountGraphId(_trapOwnerId) == 1 && CountGraphId(_trapPalletId) == 0
-                && Packed("SalvagedTimber") == 1 && Units(TrapTimber) == 1 && !TrapWicket.GetPart<RepairablePart>().Repaired);
-            yield return Capture("trap-07-real-restored-jam");
-            next = Steps.Select(d => Zone.GetCell(At.X + d.x, At.Y + d.y))
-                .FirstOrDefault(c => Safe(Zone, c, ThreatClearance) && Zone.CanPlaceFootprint(Player, c.X, c.Y));
-            Require(next != null, "safe ordinary step before crossing the replacement trap again");
-            yield return StepTo(next.X, next.Y);
-            yield return TrapCross("trap_restored_owner_crossed");
+                && CountGraphId(_trapPalletId) == 0 && Packed("SalvagedTimber") == TrapExpectedTimber
+                && Units(TrapTimber) == TrapExpectedTimber && !TrapWicket.GetPart<RepairablePart>().Repaired
+                && TrapYardAftermath() && TrapYardDigest() == yard);
+            yield return Capture(_trapConsumedByOther ? "trap-07-real-restored-consumed-gate" : "trap-07-real-restored-jam");
+            if (_trapConsumedByOther) yield return TrapSpentCross("trap_restored_spent_gate_crossed");
+            else yield return TrapCross("trap_restored_owner_crossed");
         }
     }
 }

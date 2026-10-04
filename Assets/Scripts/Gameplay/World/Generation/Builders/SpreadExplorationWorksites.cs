@@ -34,9 +34,14 @@ namespace CavesOfOoo.Core
    var specs=new List<(string bp,string role,int x,int y)>();
    if(alembic){specs.Add(("AlchemyStill","still",0,0));specs.Add(("StoneburrPatch","binding-forage",-2,1));specs.Add(("FrostLichenPatch","cold-forage",2,1));}
    else if(forge){specs.Add(("TinkersForge","forge",0,0));specs.Add(("StoneburrPatch","binding-forage",2,1));}
-   else{specs.Add(("FrostLichenPatch","cold-forage",-2,1));specs.Add(("SpikeTrap","trap",0,2));}
-   foreach(var p in new[]{(-2,-2),(-1,-2),(2,-2)})specs.Add(("StoneWall","broken-wall",p.Item1,p.Item2));
-   if(pair){specs.Add((caster,"ranged",2,-1));specs.Add(("MarlbackScrabbler","melee",-1,1));}
+   else
+   {
+    specs.Add(("FrostLichenPatch","cold-forage",-4,2));specs.Add(("SpikeTrap","trap",3,0));specs.Add(("FallenBeam","haul-bypass",-3,0));
+    for(int y=-2;y<=2;y++)for(int x=-3;x<=3;x++)
+     if((Math.Abs(x)==3||Math.Abs(y)==2)&&!(y==0&&Math.Abs(x)==3))specs.Add(("StoneWall","broken-wall",x,y));
+   }
+   if(!store)foreach(var p in new[]{(-2,-2),(-1,-2),(2,-2)})specs.Add(("StoneWall","broken-wall",p.Item1,p.Item2));
+   if(pair){specs.Add((caster,"ranged",store?1:2,-1));specs.Add(("MarlbackScrabbler","melee",-1,1));}
    if(specs.Any(s=>!factory.Blueprints.ContainsKey(s.bp))||(pair&&LoadoutPart.Factory!=factory))return false;
    var all=new HashSet<Entity>(zone.GetReadOnlyEntities());var initial=SpreadGenerationReceipt.CaptureFinalState(zone,all);
    var unchanged=SpreadGenerationReceipt.CaptureFinalState(zone,all.Where(e=>!selected.Contains(e)));
@@ -58,6 +63,7 @@ namespace CavesOfOoo.Core
    }
    if(positions.Length==0||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
    var staged=new List<Entity>();var added=new HashSet<Entity>();var removed=new HashSet<Entity>();
+   bool StoreShape()=>!store||(staged.Count==specs.Count&&staged.Select((e,i)=>StoreOwner(e,specs[i].bp,specs[i].role)).All(valid=>valid));
    var oldPositions=selected.ToDictionary(e=>e,zone.GetEntityPosition);
    bool Provenance()=>Identity();
    bool Others()=>unchanged()&&all.Except(removed).Concat(added).ToHashSet().SetEquals(zone.GetReadOnlyEntities());
@@ -74,12 +80,14 @@ namespace CavesOfOoo.Core
      {var tactics=e.GetPart<CombatTacticsPart>();if(tactics==null){tactics=new CombatTacticsPart{SkillClasses="",AbilityChance=0};e.AddPart(tactics);}tactics.AssistAllies=true;tactics.AssistRadius=6;}
      if(spec.role=="ranged"&&(!e.HasTag("Creature")||e.GetPart<BrainPart>()==null||e.GetPart<BrainPart>().SightRadius<1||e.GetPart<BrainPart>().SightRadius>6||e.GetPart<CombatTacticsPart>()?.AssistAllies!=true
       ||e.GetPart<SkillsPart>()?.HasSkill(forge?"Pyromancy_EmberSpit":"Corrosion_AcidSpray")!=true||e.GetPart<ActivatedAbilitiesPart>()==null))return false;
-     if((spec.role=="still"&&!e.HasPart<AlchemyStillPart>())||(spec.role=="forge"&&!e.HasPart<ForgePart>())||(spec.role=="trap"&&!e.HasPart<SpikeTrapTriggerPart>())
+     if((spec.role=="still"&&!e.HasPart<AlchemyStillPart>())||(spec.role=="forge"&&!e.HasPart<ForgePart>())||(spec.role=="trap"&&(!e.HasPart<SpikeTrapTriggerPart>()||!e.HasPart<TrapJammingPart>()))
       ||(spec.role=="broken-wall"&&e.GetPart<PhysicsPart>()?.Solid!=true)||((spec.role=="binding-forage"||spec.role=="cold-forage")&&!e.HasPart<HarvestablePart>()))return false;
+     if(store&&!StoreOwner(e,spec.bp,spec.role))return false;
      if(e.HasPart<HarvestablePart>()){var h=e.GetPart<HarvestablePart>();if(h.Harvested||h.YieldChance!=100||h.YieldMin<1||h.YieldMax<h.YieldMin||h.YieldMax>2||!factory.Blueprints.ContainsKey(h.YieldBlueprint))return false;}
      string cue=spec.role=="still"?"The field alembic still works. Single flasks can be brewed in the field; this still also prepares batches. Stoneburr carries the binding used in stoneskin brews; frost lichen carries cold for a freezing coating."
       :spec.role=="forge"?"The roadside forge still works. Carried weapon components can be forged or used to re-forge a weapon. A brewed coating can quench a weapon here; frost lichen supplies the cold for freezing coatings."
-      :spec.role=="trap"?"Exposed spike teeth cross the straight approach to the store. An open gap leads around them. While armed, anything stepping on the teeth springs this trap once."
+      :spec.role=="trap"?"Exposed spike teeth guard the direct entrance to the dispatch yard. One carried salvaged timber can jam this mechanism. A fallen beam blocks the service opening on the other side. While armed, anything stepping on the teeth springs this trap once."
+      :spec.role=="haul-bypass"?"A fallen roof beam blocks the dispatch yard's service opening. There is room outside to haul it back, turn aside, and release it clear of the entrance. A heavy load slows its hauler; the supply cache remains inside."
       :spec.role=="binding-forage"?"A small, finite stand of stoneburr. Gather its seeds and brew one flask anywhere for a stoneskin tonic. A still can prepare batches."
       :spec.role=="cold-forage"?"A small, finite stand of frost lichen. Brew its cold into a freezing coating, then quench a melee weapon beside a forge. Drinking the coating freezes the drinker.":null;
      if(cue!=null){var examine=e.GetPart<ExaminablePart>();if(examine==null){examine=new ExaminablePart();e.AddPart(examine);}examine.Text=cue;}
@@ -87,7 +95,7 @@ namespace CavesOfOoo.Core
     }
    }
    catch(Exception){return false;}
-   if(!UniqueGraph(zone,staged)||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
+   if(!StoreShape()||!UniqueGraph(zone,staged)||!authority()||!Sources()||!initial()||!all.SetEquals(zone.GetReadOnlyEntities()))return false;
    if(!actors.TryConsume()||(store&&!stock.TryConsume()))return false;
    var detached=replaced.ToDictionary(e=>e,actors.CaptureDetachedOwnerState);
    var placedProof=new Dictionary<Entity,Func<bool>>();bool success=false;
@@ -107,7 +115,7 @@ namespace CavesOfOoo.Core
      if(!authority()||!Owned()||!Others()||!AddedState())return false;
     }
     var finalPacket=SpreadGenerationReceipt.CaptureFinalState(zone,packet);
-    bool Final()=>authority()&&Provenance()&&actors.MatchesOwnedState(new HashSet<Entity>(replaced))
+    bool Final()=>authority()&&Provenance()&&StoreShape()&&actors.MatchesOwnedState(new HashSet<Entity>(replaced))
      &&(!store||stock.MatchesOwnedState())&&finalPacket()&&detached.Values.All(p=>p())
      &&Fits(zone,new SpreadWildernessSituationBuilder.Geometry(zone,new HashSet<Entity>(packet)),before,positions,specs,pair,store,origin,rotation,plan);
     if(!Final()||!Others())return false;owners=packet;final=Final;success=true;return true;
@@ -129,6 +137,22 @@ namespace CavesOfOoo.Core
   static bool Fresh(Entity e,string bp)=>e!=null&&e.BlueprintName==bp&&!string.IsNullOrEmpty(e.ID)&&e.SpatialZone==null
    &&e.GetPart<PhysicsPart>() is PhysicsPart p&&p.ParentEntity==e&&p.InInventory==null&&p.Equipped==null
    &&e.GetPart<RenderPart>()?.ParentEntity==e&&!e.HasPart<SpatialFootprintPart>()&&e.Parts.All(part=>part!=null&&part.ParentEntity==e);
+  // Later factory/addition callbacks can mutate a previously staged owner.
+  // A snapshot of such a mutation is not proof of the promised physical route.
+  // Check the same semantics at creation, after staging and at final acceptance.
+  static bool StoreOwner(Entity e,string blueprint,string role)
+  {
+   if(e==null||e.BlueprintName!=blueprint||e.GetProperty(RoleKey)!=role||e.HasPart<SpatialFootprintPart>()
+    ||e.Parts.Any(p=>p==null||p.ParentEntity!=e))return false;
+   if(role!="broken-wall"&&role!="haul-bypass"&&role!="trap")return true;
+   var physical=e.GetPart<PhysicsPart>();
+   if(physical?.ParentEntity!=e||physical.Takeable||physical.InInventory!=null||physical.Equipped!=null||e.HasTag("Creature"))return false;
+   if(role=="broken-wall")return physical.Solid;
+   if(role=="haul-bypass")return physical.Solid&&e.GetPart<HandlingPart>() is HandlingPart handling
+    &&handling.Weight==60&&handling.MinLiftStrength==0&&!handling.Carryable&&!e.HasPart<HarvestablePart>()&&!e.HasPart<DestructiblePart>();
+   return !physical.Solid&&!e.HasTag("Solid")&&TrapJammingPart.IsSupported(e)&&!TrapJammingPart.IsJammed(e)
+    &&e.GetPart<SpikeTrapTriggerPart>()?.ConsumeOnTrigger==true;
+  }
   static bool OrdinaryActor(Zone z,Entity e)=>e!=null&&(e.BlueprintName=="Viper"||e.BlueprintName=="MarlbackScrabbler")
    &&e.SpatialZone==z&&z.GetEntityCell(e)!=null&&e.HasTag("Creature")&&e.GetStatValue("Hitpoints")>0
    &&e.GetPart<PhysicsPart>() is PhysicsPart p&&p.InInventory==null&&p.Equipped==null&&!e.HasPart<SpatialFootprintPart>()
@@ -169,6 +193,7 @@ namespace CavesOfOoo.Core
    if(!safe[Arrival.x,Arrival.y])return false;
    foreach(var p in new[]{(x:0,y:plan.WestY),(x:Zone.Width-1,y:plan.EastY),(x:plan.NorthX,y:0),(x:plan.SouthX,y:Zone.Height-1)})
     if(before.BorderReach[p.x,p.y]&&!safe[p.x,p.y])return false;
+   if(store)return FitsStore(g,positions,specs,origin,rotation);
    // Every functional owner retains two physical approaches; neither harvesting
    // nor opening the actual cache forces the player onto the visible trap.
    for(int i=0;i<positions.Length;i++)
@@ -176,12 +201,43 @@ namespace CavesOfOoo.Core
     if(i<specs.Count&&(specs[i].role=="broken-wall"||specs[i].role=="melee"||specs[i].role=="ranged"||specs[i].role=="trap"))continue;
     var p=positions[i];if(new[]{(p.x-1,p.y),(p.x+1,p.y),(p.x,p.y-1),(p.x,p.y+1)}.Count(n=>g.Walk(n.Item1,n.Item2,blocked)&&reachable[n.Item1,n.Item2])<2)return false;
    }
-   if(store)
-   {
-    var near=At(origin,(0,1),rotation);var far=At(origin,(0,3),rotation);
-    if(!g.Walk(near.x,near.y,blocked)||!g.Walk(far.x,far.y,blocked)||!reachable[near.x,near.y]||!reachable[far.x,far.y]||!g.Flood(blocked,far,6,null)[near.x,near.y])return false;
-   }
    return true;
+  }
+  // Store access has two priced alternatives, rather than the other worksites'
+  // free two-approach contract. Read-only generation proofs include diagonal
+  // movement/reach, while the authored two-step haul also leaves a cardinal path.
+  static bool FitsStore(SpreadWildernessSituationBuilder.Geometry g,(int x,int y)[] positions,
+   List<(string bp,string role,int x,int y)> specs,(int x,int y)origin,int rotation)
+  {
+   bool Clear(int x,int y){var p=At(origin,(x,y),rotation);return g.Place(p.x,p.y);}
+   for(int y=-2;y<=2;y++)for(int x=-3;x<=3;x++)if(!Clear(x,y))return false;
+   for(int y=-1;y<=1;y++)for(int x=-5;x<=-4;x++)if(!Clear(x,y))return false;
+   if(!Clear(4,0))return false;
+   var blocked=new HashSet<(int x,int y)>(positions);
+   var cache=At(origin,(0,0),rotation);var trap=At(origin,(3,0),rotation);var beam=At(origin,(-3,0),rotation);
+   var grab=At(origin,(-4,0),rotation);var pull=At(origin,(-5,0),rotation);var aside=At(origin,(-5,-1),rotation);
+   var direct=At(origin,(4,0),rotation);var forage=At(origin,(-4,2),rotation);
+   var closed=ReachStore(g,blocked,Arrival,true);
+   bool Touch(bool[,] reached,(int x,int y)p)
+   {for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)if(g.In(p.x+dx,p.y+dy)&&reached[p.x+dx,p.y+dy])return true;return false;}
+   if(Touch(closed,cache)||!closed[grab.x,grab.y]||!closed[pull.x,pull.y]||!closed[aside.x,aside.y]||!closed[direct.x,direct.y])return false;
+   if(new[]{(forage.x-1,forage.y),(forage.x+1,forage.y),(forage.x,forage.y-1),(forage.x,forage.y+1)}.Count(p=>g.In(p.Item1,p.Item2)&&closed[p.Item1,p.Item2])<2)return false;
+   blocked.Remove(trap);
+   if(!Touch(ReachStore(g,blocked,Arrival,false),cache))return false;
+   blocked.Add(trap);blocked.Remove(beam);blocked.Add(pull);
+   return Touch(ReachStore(g,blocked,aside,false),cache);
+  }
+  static bool[,] ReachStore(SpreadWildernessSituationBuilder.Geometry g,HashSet<(int x,int y)> blocked,(int x,int y)start,bool diagonals)
+  {
+   var reached=new bool[Zone.Width,Zone.Height];var queue=new Queue<(int x,int y)>();
+   void Add(int x,int y){if(!g.Walk(x,y,blocked)||reached[x,y])return;reached[x,y]=true;queue.Enqueue((x,y));}
+   Add(start.x,start.y);
+   while(queue.Count>0)
+   {
+    var p=queue.Dequeue();
+    for(int dy=-1;dy<=1;dy++)for(int dx=-1;dx<=1;dx++)if((dx!=0||dy!=0)&&(diagonals||dx==0||dy==0))Add(p.x+dx,p.y+dy);
+   }
+   return reached;
   }
  }
 }

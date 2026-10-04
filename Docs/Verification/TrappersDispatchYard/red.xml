@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Failed(Child)" total="10" passed="2" failed="8" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 04:35:10Z" end-time="2026-10-04 04:35:16Z" duration="6.4344409">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24601" result="Failed" site="Child" start-time="2026-10-04 04:35:10Z" end-time="2026-10-04 04:35:16Z" duration="6.434441" total="10" passed="2" failed="8" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="30268" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24601" result="Failed" site="Child" start-time="2026-10-04 04:35:10Z" end-time="2026-10-04 04:35:16Z" duration="6.422909" total="10" passed="2" failed="8" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28753" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="30269" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24601" result="Failed" site="Child" start-time="2026-10-04 04:35:10Z" end-time="2026-10-04 04:35:16Z" duration="6.415183" total="10" passed="2" failed="8" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="30270" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24601" result="Failed" site="Child" start-time="2026-10-04 04:35:10Z" end-time="2026-10-04 04:35:16Z" duration="6.407719" total="10" passed="2" failed="8" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="21450" name="TrappersDispatchYardTests" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2026-10-04 04:35:10Z" end-time="2026-10-04 04:35:16Z" duration="6.399026" total="10" passed="2" failed="8" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="21457" name="ActualBeamHaulUsesStrengthAndSpeedAndLeavesAPassableReleasedEntrance" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.ActualBeamHaulUsesStrengthAndSpeedAndLeavesAPassableReleasedEntrance" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 04:35:10Z" end-time="2026-10-04 04:35:11Z" duration="1.228836" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="21455" name="ActualBeamHaulUsesStrengthAndSpeedAndLeavesAPassableReleasedEntrance(7,False)" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.ActualBeamHaulUsesStrengthAndSpeedAndLeavesAPassableReleasedEntrance(7,False)" methodname="ActualBeamHaulUsesStrengthAndSpeedAndLeavesAPassableReleasedEntrance" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" seed="1412256111" result="Failed" start-time="2026-10-04 04:35:10Z" end-time="2026-10-04 04:35:11Z" duration="0.827792" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The generated yard must own its real haul-bypass.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrappersDispatchYardTests+Fixture.Role (System.String role) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:52
+at CavesOfOoo.Tests.TrappersDispatchYardTests.ActualBeamHaulUsesStrengthAndSpeedAndLeavesAPassableReleasedEntrance (System.Int32 strength, System.Boolean allowed) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21456" name="ActualBeamHaulUsesStrengthAndSpeedAndLeavesAPassableReleasedEntrance(8,True)" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.ActualBeamHaulUsesStrengthAndSpeedAndLeavesAPassableReleasedEntrance(8,True)" methodname="ActualBeamHaulUsesStrengthAndSpeedAndLeavesAPassableReleasedEntrance" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" seed="1498384560" result="Failed" start-time="2026-10-04 04:35:11Z" end-time="2026-10-04 04:35:11Z" duration="0.397498" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The generated yard must own its real haul-bypass.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrappersDispatchYardTests+Fixture.Role (System.String role) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:52
+at CavesOfOoo.Tests.TrappersDispatchYardTests.ActualBeamHaulUsesStrengthAndSpeedAndLeavesAPassableReleasedEntrance (System.Int32 strength, System.Boolean allowed) [0x00018] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:143
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="21461" name="ActualSouthernGenerationContainsBothRealEntrancesAndRetainsTheirOwners" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.ActualSouthernGenerationContainsBothRealEntrancesAndRetainsTheirOwners" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 04:35:11Z" end-time="2026-10-04 04:35:12Z" duration="1.408463" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="21459" name="ActualSouthernGenerationContainsBothRealEntrancesAndRetainsTheirOwners(64)" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.ActualSouthernGenerationContainsBothRealEntrancesAndRetainsTheirOwners(64)" methodname="ActualSouthernGenerationContainsBothRealEntrancesAndRetainsTheirOwners" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" seed="48972855" result="Failed" start-time="2026-10-04 04:35:11Z" end-time="2026-10-04 04:35:12Z" duration="0.825790" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The new yard must actually fit at its ordinary southern address.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrappersDispatchYardTests.ActualSouthernGenerationContainsBothRealEntrancesAndRetainsTheirOwners (System.Int32 seed) [0x00093] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21460" name="ActualSouthernGenerationContainsBothRealEntrancesAndRetainsTheirOwners(1729)" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.ActualSouthernGenerationContainsBothRealEntrancesAndRetainsTheirOwners(1729)" methodname="ActualSouthernGenerationContainsBothRealEntrancesAndRetainsTheirOwners" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" seed="549195787" result="Failed" start-time="2026-10-04 04:35:12Z" end-time="2026-10-04 04:35:12Z" duration="0.578444" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The new yard must actually fit at its ordinary southern address.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrappersDispatchYardTests.ActualSouthernGenerationContainsBothRealEntrancesAndRetainsTheirOwners (System.Int32 seed) [0x00093] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:198
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="21451" name="ClosedYardLeavesShallowForageReachableButCannotLootDeepStockEvenDiagonally" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.ClosedYardLeavesShallowForageReachableButCannotLootDeepStockEvenDiagonally" methodname="ClosedYardLeavesShallowForageReachableButCannotLootDeepStockEvenDiagonally" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" seed="184296555" result="Failed" start-time="2026-10-04 04:35:12Z" end-time="2026-10-04 04:35:13Z" duration="0.697278" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The old free walk-around must not silently erase the new material/hauling choice.
+  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrappersDispatchYardTests.ClosedYardLeavesShallowForageReachableButCannotLootDeepStockEvenDiagonally () [0x00058] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:107
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="21454" name="EachEntranceIndependentlyExposesTheSameOriginalFiniteStock" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.EachEntranceIndependentlyExposesTheSameOriginalFiniteStock" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 04:35:13Z" end-time="2026-10-04 04:35:15Z" duration="1.346948" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="21452" name="EachEntranceIndependentlyExposesTheSameOriginalFiniteStock(&quot;jam&quot;)" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.EachEntranceIndependentlyExposesTheSameOriginalFiniteStock(&quot;jam&quot;)" methodname="EachEntranceIndependentlyExposesTheSameOriginalFiniteStock" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" seed="1807132376" result="Failed" start-time="2026-10-04 04:35:13Z" end-time="2026-10-04 04:35:14Z" duration="0.715885" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The generated yard must own its real haul-bypass.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrappersDispatchYardTests+Fixture.Role (System.String role) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:52
+at CavesOfOoo.Tests.TrappersDispatchYardTests.EachEntranceIndependentlyExposesTheSameOriginalFiniteStock (System.String route) [0x00068] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:122
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="21453" name="EachEntranceIndependentlyExposesTheSameOriginalFiniteStock(&quot;haul&quot;)" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.EachEntranceIndependentlyExposesTheSameOriginalFiniteStock(&quot;haul&quot;)" methodname="EachEntranceIndependentlyExposesTheSameOriginalFiniteStock" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" seed="93487573" result="Failed" start-time="2026-10-04 04:35:14Z" end-time="2026-10-04 04:35:15Z" duration="0.627981" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  The generated yard must own its real haul-bypass.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.TrappersDispatchYardTests+Fixture.Role (System.String role) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:52
+at CavesOfOoo.Tests.TrappersDispatchYardTests.EachEntranceIndependentlyExposesTheSameOriginalFiniteStock (System.String route) [0x00068] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:122
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="21464" name="OtherWorksitesKeepTheirOpenAccessAndDoNotAcquireTheYard" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.OtherWorksitesKeepTheirOpenAccessAndDoNotAcquireTheYard" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-04 04:35:15Z" end-time="2026-10-04 04:35:16Z" duration="1.023177" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="21462" name="OtherWorksitesKeepTheirOpenAccessAndDoNotAcquireTheYard(&quot;FieldAlembic&quot;)" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.OtherWorksitesKeepTheirOpenAccessAndDoNotAcquireTheYard(&quot;FieldAlembic&quot;)" methodname="OtherWorksitesKeepTheirOpenAccessAndDoNotAcquireTheYard" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" seed="1666408745" result="Passed" start-time="2026-10-04 04:35:15Z" end-time="2026-10-04 04:35:15Z" duration="0.482066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="21463" name="OtherWorksitesKeepTheirOpenAccessAndDoNotAcquireTheYard(&quot;TemperingShelter&quot;)" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.OtherWorksitesKeepTheirOpenAccessAndDoNotAcquireTheYard(&quot;TemperingShelter&quot;)" methodname="OtherWorksitesKeepTheirOpenAccessAndDoNotAcquireTheYard" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" seed="674296363" result="Passed" start-time="2026-10-04 04:35:15Z" end-time="2026-10-04 04:35:16Z" duration="0.537092" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="21458" name="VisibleDescriptionsExplainTheBlockedServiceOpeningAndFiniteMaterialChoice" fullname="CavesOfOoo.Tests.TrappersDispatchYardTests.VisibleDescriptionsExplainTheBlockedServiceOpeningAndFiniteMaterialChoice" methodname="VisibleDescriptionsExplainTheBlockedServiceOpeningAndFiniteMaterialChoice" classname="CavesOfOoo.Tests.TrappersDispatchYardTests" runstate="Runnable" seed="424727135" result="Failed" start-time="2026-10-04 04:35:16Z" end-time="2026-10-04 04:35:16Z" duration="0.689832" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  The generated yard must own its real haul-bypass.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.TrappersDispatchYardTests+Fixture.Role (System.String role) [0x0002b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:52
+at CavesOfOoo.Tests.TrappersDispatchYardTests.VisibleDescriptionsExplainTheBlockedServiceOpeningAndFiniteMaterialChoice () [0x00033] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/TrappersDispatchYardTests.cs:179
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

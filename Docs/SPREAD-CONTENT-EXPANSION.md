@@ -2,6 +2,8 @@
 
 Status: complete and verified for publication to main. Starting from dbe93a4d7. Original CoO content; no Qud mechanics-parity claim.
 
+Later iteration: [Trappers' dispatch yard](TRAPPERS-DISPATCH-YARD.md) replaces the store's free walk-around with a beam-blocked service entrance and a trapped direct entrance. The historical acceptance below describes the original small worksite. The new yard preserves its original cache contents and hostile allowance; old cached chunks stay literal.
+
 ## Player outcome and ordered plan
 
 1. Use existing lasting charm-flowers in opted-in meadow landscapes, retaining temporary conjured FlowerField owners in legacy and spell paths.
