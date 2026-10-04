@@ -33196,6 +33196,7 @@
             { "Key": "Wanders", "Value": "true" }
           ]
         },
+        { "Name": "CommittedMelee", "Params": [ { "Key": "AttackName", "Value": "tendril lash" }, { "Key": "Reach", "Value": "2" } ] },
         {
           "Name": "Corpse",
           "Params": [
@@ -33208,7 +33209,7 @@
         {
           "Name": "Examinable",
           "Params": [
-            { "Key": "Description", "Value": "It was somebody's shape once, and the growth kept the shape because the shape still walked. It is not in a hurry. Nothing here is." }
+            { "Key": "Description", "Value": "It was somebody's shape once, and the growth kept the shape because the shape still walked. Before lashing, it draws one tendril straight back. The lash follows that line for two paces; the body hangs loose while the tendril gathers again." }
           ]
         }
       ],
@@ -39336,7 +39337,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "Dry supplies survive behind a buckled salt hood: ink-making botanicals, fire clay, work gloves and an imported sumpsieve dressing. The emergency label says: FOR THE PERSON CONDUCTING THE INSPECTION. The stock is finite; the empty cabinet will remain empty."
+              "Value": "Dry supplies survive behind a buckled salt hood: fire clay, work gloves and an imported sumpsieve dressing. The emergency label says: FOR THE PERSON CONDUCTING THE INSPECTION. The stock is finite; the empty cabinet will remain empty."
             }
           ]
         },
@@ -39345,7 +39346,65 @@
           "Params": [
             {
               "Key": "MaxItems",
-              "Value": "7"
+              "Value": "3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "CurationConservationCase",
+      "Inherits": "PhysicalObject",
+      "Parts": [
+        {
+          "Name": "Render",
+          "Params": [
+            {
+              "Key": "DisplayName",
+              "Value": "botanical conservation case"
+            },
+            {
+              "Key": "RenderString",
+              "Value": "]"
+            },
+            {
+              "Key": "ColorString",
+              "Value": "&W"
+            },
+            {
+              "Key": "RenderLayer",
+              "Value": "3"
+            }
+          ]
+        },
+        {
+          "Name": "Physics",
+          "Params": [
+            {
+              "Key": "Solid",
+              "Value": "true"
+            },
+            {
+              "Key": "Takeable",
+              "Value": "false"
+            }
+          ]
+        },
+        {
+          "Name": "Examinable",
+          "Params": [
+            {
+              "Key": "Description",
+              "Value": "Two packets of sootroot pulp and a measure of pitchpod resin sit under a salt-tight lid. These are ink ingredients, reserved for the record that was to follow the inspection. The label reads: COMPLETION MATERIALS. DO NOT USE TO COMPLETE THE SUBJECT. The case stands beyond the central slab; its stock will not be replaced."
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "Params": [
+            {
+              "Key": "MaxItems",
+              "Value": "2"
             }
           ]
         }
@@ -39394,7 +39453,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "Two sound lengths were measured for the holding-room service gate. The sign reads: REPAIR AUTHORISED. ENTRY PENDING REPAIR. This rack is on the safe side of the masonry. Take its timber and examine the sagging gate from the southern passage."
+              "Value": "Two sound lengths were measured for the holding-room service gate. The sign reads: REPAIR AUTHORISED. ENTRY PENDING REPAIR. This rack is on the safe side of the masonry. The measured lengths match the sagging frame beside the southern passage."
             }
           ]
         },
@@ -39452,7 +39511,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "A stone slab has shallow drainage grooves and a single buckle polished brighter than the others. Older holes show where a second set of restraints was removed. A note in Doreth's hand reads: NO SUBJECT RECEIVED BEFORE DEATH. Beneath it, in a different hand: THIS ALSO APPLIES TO REPLACEMENT SUBJECTS. The remaining straps secure vessels during inspection; they cannot restrain a moving creature for you."
+              "Value": "A stone slab has shallow drainage grooves and a single buckle polished brighter than the others. Older holes show where a second set of restraints was removed. A note in Doreth's hand reads: NO SUBJECT RECEIVED BEFORE DEATH. Beneath it, in a different hand: THIS ALSO APPLIES TO REPLACEMENT SUBJECTS. The remaining straps secure vessels during inspection; they cannot restrain a moving creature for you. Deep tendril marks stop against its stone edge. There is room to pass along either side."
             }
           ]
         }
@@ -39501,7 +39560,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "A salt-spotted board carries a maintenance sketch, a supply list and an incomplete intake record. Read it for the service approach, the two holding-room gates and the reason the gallery remains closed."
+              "Value": "A salt-spotted board carries a maintenance sketch, a supply list and an incomplete intake record. A margin sketch records the growth drawing back before it lashes. The board also marks two holding-room gates and the reason the gallery remains closed."
             }
           ]
         },
@@ -40130,6 +40189,13 @@
           ]
         },
         {
+          "Name": "CommittedMelee",
+          "Params": [
+            { "Key": "AttackName", "Value": "tendril lash" },
+            { "Key": "Reach", "Value": "2" }
+          ]
+        },
+        {
           "Name": "Armor",
           "Params": [
             {
@@ -40165,7 +40231,7 @@
           "Params": [
             {
               "Key": "Description",
-              "Value": "Salt covers one shoulder and ends in a damp line across the ribs. Green growth works through the gap; its tendril pulls the human frame after it. An intake tag turns face-in against the chest. This cure was interrupted. The movement is not a response to speech."
+              "Value": "Salt covers one shoulder and ends in a damp line across the ribs. Green growth works through the gap; its tendril pulls the human frame after it. An intake tag turns face-in against the chest. This cure was interrupted. The movement is not a response to speech. Before it lashes, a tendril draws straight back. It strikes along that line for two paces, then hangs loose while the tendril gathers again."
             }
           ]
         }

@@ -11,7 +11,7 @@ namespace CavesOfOoo.Skills
     /// (cell swap) — Backstab gates damage on positional geometry.
     ///
     /// <para><b>Mechanic:</b> requires a Piercing-class weapon equipped.
-    /// Finds an adjacent creature (mirrors Shank's 8-dir scan). Computes
+    /// Uses the chosen adjacent creature (or legacy first-adjacent fallback). Computes
     /// the cell directly opposite the attacker through the target — if
     /// that cell contains a Creature (any non-attacker non-target
     /// Creature counts as a flanker), the swing fires with bonus damage
@@ -86,9 +86,8 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            // Find adjacent target + remember the direction we found
-            // them in (so we can compute the opposite cell for flanking).
-            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out var contact);
+            // Use the chosen contact to find the far side of this target's body.
+            var target = SkillCombatHelpers.FindAdjacentSkillTarget(actor, ctx.Zone, ctx.TargetCell, out var contact);
             int targetDir = MultiCellAbilityQueries.ContactDirection(ctx.Zone, actor, contact);
 
             if (target == null)

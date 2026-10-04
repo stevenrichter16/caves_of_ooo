@@ -31,7 +31,7 @@ namespace CavesOfOoo.Rendering
    index=next;
   }
   public static bool IsPortable(string bp)=>bp=="CurationSaltRake"||bp=="CurationCounterfoil"||bp=="CurationInspectionKey"||bp=="CurationTransferDocket"||bp=="CurationDiscrepancyReport";
-  public static bool Handles(string bp)=>IsPortable(bp)||SpreadBiomeHumanoidSource.IsCuration(bp)||bp=="SaltCuredBody"||bp=="CurationIntakeIndex"||bp=="CurationReceivingBay"||bp=="CurationToolCabinet"||bp=="CurationSaltBench"||bp=="CurationQuarantineGate"||bp=="CurationQuarantineRail"||IsAnnexGate(bp)||bp=="CurationRecoveryCabinet"||bp=="CurationMaintenanceRack"||bp=="CurationInspectionSlab"||bp=="CurationAnnexPlacard";
+  public static bool Handles(string bp)=>IsPortable(bp)||SpreadBiomeHumanoidSource.IsCuration(bp)||bp=="SaltCuredBody"||bp=="CurationIntakeIndex"||bp=="CurationReceivingBay"||bp=="CurationToolCabinet"||bp=="CurationSaltBench"||bp=="CurationQuarantineGate"||bp=="CurationQuarantineRail"||IsAnnexGate(bp)||bp=="CurationRecoveryCabinet"||bp=="CurationConservationCase"||bp=="CurationMaintenanceRack"||bp=="CurationInspectionSlab"||bp=="CurationAnnexPlacard";
   static bool IsAnnexGate(string bp)=>bp=="CurationTransferGate"||bp=="CurationGalleryGate"||bp=="CurationServiceGate";
   static bool Appearance(Entity e,string glyph,string color)
   {
@@ -74,6 +74,7 @@ namespace CavesOfOoo.Rendering
     case "CurationToolCabinet":return Appearance(e,"]","&W")&&e.GetPart<ContainerPart>()?.ParentEntity==e&&e.GetPart<LockPart>()?.ParentEntity==e?"curation-yard-tool-cabinet":null;
     case "CurationSaltBench":return Appearance(e,"=","&w")?"curation-yard-salt-bench":null;
     case "CurationQuarantineRail":return Appearance(e,"#","&w")?"curation-yard-quarantine-rail":null;
+    case "CurationConservationCase":
     case "CurationRecoveryCabinet":return Appearance(e,"]","&W")&&e.GetPart<ContainerPart>()?.ParentEntity==e?"curation-yard-recovery-cabinet":null;
     case "CurationMaintenanceRack":return Appearance(e,"=","&w")&&e.GetPart<ContainerPart>()?.ParentEntity==e?"curation-yard-maintenance-rack":null;
     case "CurationInspectionSlab":return Appearance(e,"=","&w")?"curation-yard-inspection-slab":null;

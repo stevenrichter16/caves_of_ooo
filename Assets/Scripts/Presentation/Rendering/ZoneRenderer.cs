@@ -133,6 +133,7 @@ namespace CavesOfOoo.Rendering
         private AmbientMotesRenderer _ambientMotesRenderer;     // Round 5
         private WorldCursorRenderer _worldCursorRenderer;
         private WorldAffordanceRenderer _worldAffordanceRenderer;
+        private CombatIntentRenderer _combatIntentRenderer;
         private InputHandler _affordanceInput;
         private WorldAffordance? _worldAffordance;
 
@@ -507,6 +508,7 @@ namespace CavesOfOoo.Rendering
 
             _worldCursorRenderer = new WorldCursorRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
             _worldAffordanceRenderer = new WorldAffordanceRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
+            _combatIntentRenderer = new CombatIntentRenderer(gridParent, _tilemap, GameplayRenderLayers.WorldLayer);
             _sidebarRenderer = new GameplaySidebarRenderer(_sidebarTilemap, _sidebarBgTilemap, _sidebarGridTransform, MessageReferenceZoom);
             _hotbarRenderer = new GameplayHotbarRenderer(_hotbarTilemap, _hotbarBgTilemap);
 
@@ -570,6 +572,7 @@ namespace CavesOfOoo.Rendering
         private void OnDestroy()
         {
             _worldAffordanceRenderer?.Dispose(); _worldAffordanceRenderer = null; _affordanceInput = null;
+            _combatIntentRenderer?.Dispose(); _combatIntentRenderer = null;
             _fellingScenePresenter?.Unbind();
             _fellingDressingPresenter?.Unbind();
             _morrowfastScenePresenter?.Unbind();
@@ -970,6 +973,7 @@ namespace CavesOfOoo.Rendering
                     UpdateAmbientAnimations(Time.deltaTime);
 
                 RefreshWorldAffordance();
+                RefreshCombatIntent();
                 RenderSidebar(cam);
                 RenderHotbar();
 
@@ -1682,12 +1686,19 @@ namespace CavesOfOoo.Rendering
         public void ClearAffordanceInput(InputHandler input)
         { if (_affordanceInput == input) { _affordanceInput = null; ClearWorldAffordance(); } }
         private void ClearWorldAffordance()
-        { _worldAffordance = null; _worldAffordanceRenderer?.Clear(); }
+        { _worldAffordance = null; _worldAffordanceRenderer?.Clear(); _combatIntentRenderer?.Clear(); }
         private void RefreshWorldAffordance()
         {
             _worldAffordance = _affordanceInput != null && _affordanceInput.ZoneRenderer == this
                 ? _affordanceInput.QueryWorldAffordance(CurrentZone, PlayerEntity) : null;
             _worldAffordanceRenderer?.Refresh(PlayerEntity, CurrentZone, _worldAffordance);
+        }
+
+        private void RefreshCombatIntent()
+        {
+            bool allowed = !Paused && _affordanceInput != null && _affordanceInput.ZoneRenderer == this
+                && _affordanceInput.CanShowCombatIntent(CurrentZone, PlayerEntity);
+            _combatIntentRenderer?.Refresh(PlayerEntity, CurrentZone, allowed);
         }
 
         public void SetWorldCursorState(WorldCursorState state, Entity player)

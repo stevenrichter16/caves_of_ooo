@@ -12,7 +12,7 @@ namespace CavesOfOoo.Skills
     ///
     /// <para><b>Mechanic (CoO):</b> requires a Piercing-attribute weapon
     /// equipped (Dagger / Spear / ChoirSpine / TemporalShard). Adjacent
-    /// target lookup mirrors Shank's 8-dir scan. Calls
+    /// target lookup honors the chosen cell, like Shank. Calls
     /// <see cref="CombatSystem.PerformSingleAttack"/> in a loop with
     /// <see cref="FLURRY_STRIKE_COUNT"/> iterations, marker tag
     /// <c>(Flurry)</c>. Loop short-circuits if the target's HP hits 0
@@ -79,8 +79,8 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            // Find adjacent target (mirrors Shank's 8-dir lookup).
-            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out _);
+            // Every strike stays with the creature in the chosen cell.
+            var target = SkillCombatHelpers.FindAdjacentSkillTarget(actor, ctx.Zone, ctx.TargetCell, out _);
 
             if (target == null)
             {

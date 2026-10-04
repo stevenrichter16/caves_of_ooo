@@ -91,23 +91,28 @@ namespace CavesOfOoo.Core
         /// proper noun (starts uppercase), we leave it alone. Otherwise we
         /// prepend "a ".
         /// </summary>
-        public string BuildExamineLine() => BuildDescription(false, null);
+        public string BuildExamineLine() => BuildDescription(false, null,
+            intent: CombatIntentReadout.ActorLine(ParentEntity, ParentEntity?.SpatialZone));
 
         /// <summary>World reader snapshot: immediate effects and visible ground precede long flavor.</summary>
         public string BuildWorldExamineLine(Zone zone, Cell cell, Entity viewer = null)
         {
             string description = BuildDescription(true, CellStatusReadout.GroundLine(zone, cell),
                 ParentEntity?.GetPart<CampfirePart>()?.DescribeFiniteCooking(zone, cell),
-                ParentEntity?.GetPart<CropPart>()?.DescribeGrowth(zone, cell));
+                ParentEntity?.GetPart<CropPart>()?.DescribeGrowth(zone, cell),
+                CombatIntentReadout.ActorLine(ParentEntity, zone), CombatIntentReadout.ThreatLine(zone, cell));
             string warning = LocalGatheringClaims.WarningFor(viewer, ParentEntity, zone);
             return string.IsNullOrEmpty(warning) ? description : warning + "\n\n" + description;
         }
 
-        private string BuildDescription(bool statusFirst, string ground, string cooking = null, string growth = null)
+        private string BuildDescription(bool statusFirst, string ground, string cooking = null, string growth = null,
+            string intent = null, string threat = null)
         {
             string name = ParentEntity?.GetDisplayName() ?? "something";
             string article = GetArticle(name);
             string baseLine = $"You see {article}{name}.";
+            if (!string.IsNullOrEmpty(intent)) baseLine += "\n" + intent;
+            if (!string.IsNullOrEmpty(threat)) baseLine += "\n" + threat;
             var batch = ParentEntity?.GetPart<KitchenBatchPart>()?.Describe();
             if (!string.IsNullOrEmpty(batch)) baseLine += "\n" + batch;
             var dressing = ParentEntity?.GetPart<SoddenPreparationPart>()?.Describe();

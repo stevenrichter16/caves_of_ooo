@@ -45,8 +45,9 @@ namespace CavesOfOoo.Core
                 ("CurationServiceGate",disused.X+23,disused.Y+6),
                 ("CurationHalfSet",disused.X+14,disused.Y+3),
                 ("CurationRecoveryCabinet",disused.X+12,disused.Y+1),
-                ("CurationInspectionSlab",disused.X+17,disused.Y+2),
-                ("CurationQuarantineRail",disused.X+18,disused.Y+4),
+                ("CurationConservationCase",disused.X+18,disused.Y+5),
+                ("CurationInspectionSlab",disused.X+16,disused.Y+3),
+                ("CurationQuarantineRail",disused.X+18,disused.Y+1),
                 ("CurationMaintenanceRack",disused.X+3,disused.Y+5),
                 ("CurationAnnexPlacard",disused.X+7,disused.Y+1)
             });
@@ -56,8 +57,8 @@ namespace CavesOfOoo.Core
             var annexStock=new[]
             {
                 (container:"CurationMaintenanceRack",bp:"SalvagedTimber",count:2),
-                (container:"CurationRecoveryCabinet",bp:"SootrootPulp",count:2),
-                (container:"CurationRecoveryCabinet",bp:"PitchpodResin",count:1),
+                (container:"CurationConservationCase",bp:"SootrootPulp",count:2),
+                (container:"CurationConservationCase",bp:"PitchpodResin",count:1),
                 (container:"CurationRecoveryCabinet",bp:"FireClay",count:2),
                 (container:"CurationRecoveryCabinet",bp:"SoddenFieldDressing",count:1),
                 (container:"CurationRecoveryCabinet",bp:"LeatherGloves",count:1)
@@ -213,9 +214,9 @@ namespace CavesOfOoo.Core
             if(bp=="CurationQuarantineGate")return e.GetPart<DoorPart>() is DoorPart door && !door.IsOpen && string.IsNullOrEmpty(door.OwnerId)
                 && e.GetPart<LockPart>() is LockPart gateLock && gateLock.IsLocked && gateLock.KeyId=="marrowstye-quarantine" && !e.HasPart<DestructiblePart>();
             if(bp=="CurationQuarantineRail")return !e.HasPart<DoorPart>() && !e.HasPart<DestructiblePart>() && !e.HasPart<HandlingPart>();
-            if(bp=="CurationMaintenanceRack"||bp=="CurationRecoveryCabinet")
+            if(bp=="CurationMaintenanceRack"||bp=="CurationRecoveryCabinet"||bp=="CurationConservationCase")
             {
-                var container=e.GetPart<ContainerPart>();int capacity=bp=="CurationMaintenanceRack"?1:5;
+                var container=e.GetPart<ContainerPart>();int capacity=bp=="CurationMaintenanceRack"?1:bp=="CurationConservationCase"?2:3;
                 return container!=null&&!container.IsLocked&&container.Contents.Count==0&&(container.MaxItems<0||container.MaxItems>=capacity);
             }
             return bp=="CurationSaltBench"||bp=="CurationInspectionSlab"||bp=="CurationAnnexPlacard" || (bp=="BotanicalInkDesk" && e.HasPart<BotanicalInkDeskPart>());

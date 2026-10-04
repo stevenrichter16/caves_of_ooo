@@ -83,6 +83,14 @@ namespace CavesOfOoo.Core
         /// Returns true if the attack was attempted.
         /// </summary>
         public static bool PerformMeleeAttack(Entity attacker, Entity defender, Zone zone, Random rng)
+            => PerformMeleeAttackCore(attacker, defender, zone, rng, singleStrike: false);
+
+        /// <summary>One primary strike for an already committed physical ray.
+        /// Shares normal attack veto, weapon selection, FX, rolls, damage and hooks.</summary>
+        public static bool PerformCommittedMeleeAttack(Entity attacker, Entity defender, Zone zone, Random rng)
+            => PerformMeleeAttackCore(attacker, defender, zone, rng, singleStrike: true);
+
+        private static bool PerformMeleeAttackCore(Entity attacker, Entity defender, Zone zone, Random rng, bool singleStrike)
         {
             using (PerformanceMarkers.Combat.PerformMeleeAttack.Auto())
             {
@@ -125,7 +133,7 @@ namespace CavesOfOoo.Core
                 var body = attacker.GetPart<Body>();
 
                 if (body != null)
-                    return PerformBodyPartAwareAttack(attacker, defender, body, zone, rng);
+                    return PerformBodyPartAwareAttack(attacker, defender, body, zone, rng, singleStrike);
                 else
                     return PerformLegacyAttack(attacker, defender, zone, rng);
             }
@@ -136,7 +144,7 @@ namespace CavesOfOoo.Core
         /// Mirrors Qud's multi-weapon melee combat.
         /// </summary>
         private static bool PerformBodyPartAwareAttack(Entity attacker, Entity defender,
-            Body body, Zone zone, Random rng)
+            Body body, Zone zone, Random rng, bool singleStrike = false)
         {
             var weapons = GatherMeleeWeapons(attacker, body);
 
@@ -152,7 +160,7 @@ namespace CavesOfOoo.Core
             }
 
             // Attack with each weapon
-            for (int i = 0; i < weapons.Count; i++)
+            for (int i = 0; i < weapons.Count && (!singleStrike || i == 0); i++)
             {
                 if (IsDeathHandled(defender) || defender.GetStatValue("Hitpoints", 0) <= 0)
                     break; // Target already dead
@@ -717,6 +725,8 @@ namespace CavesOfOoo.Core
 
             baseDV += StatUtils.GetModifier(entity, "Agility");
             baseDV += entity.GetStatValue("DV", 0);
+            if (entity.GetPart<CommittedMeleePart>()?.IsRecovering == true)
+                baseDV -= CommittedMeleePart.RecoveryDVPenalty;
             return baseDV;
         }
 

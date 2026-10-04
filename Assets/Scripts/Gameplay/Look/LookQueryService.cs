@@ -47,6 +47,13 @@ namespace CavesOfOoo.Core
             string summary = BuildSummary(primary, visibleObjects);
             List<string> details = new List<string>();
 
+            // A pending strike must survive the small FOCUS line budget. These
+            // readouts independently verify current physical ownership and fog.
+            string intent = CombatIntentReadout.ActorLine(primary, zone);
+            if (!string.IsNullOrEmpty(intent)) details.Add(intent);
+            string threat = CombatIntentReadout.ThreatLine(zone, cell);
+            if (!string.IsNullOrEmpty(threat)) details.Add(threat);
+
             // Detail order = value order, because the sidebar FOCUS panel
             // truncates on a line budget (live finding, 2026-07-19: the
             // Afflicted block was built but the Contents line ate the

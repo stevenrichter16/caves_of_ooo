@@ -19,6 +19,62 @@ namespace CavesOfOoo.Skills
     public static class SkillCombatHelpers
     {
         /// <summary>
+        /// Resolve an adjacent weapon skill's chosen physical cell. A supplied
+        /// cell is authoritative: invalid, empty, foreign or remote selections
+        /// refuse instead of falling back to another creature. The returned
+        /// contact is the actual selected body cell, which may differ from the
+        /// target's anchor. Null selection preserves legacy first-adjacent order.
+        /// This query never dispatches events, spends a cooldown or draws RNG.
+        /// </summary>
+        public static Entity FindAdjacentSkillTarget(Entity actor, Zone zone,
+            Cell selectedCell, out Cell contact)
+        {
+            contact = null;
+            if (!IsPlacedSkillOwner(actor, zone)) return null;
+            if (selectedCell != null)
+            {
+                if (selectedCell.ParentZone != zone
+                    || zone.GetCell(selectedCell.X, selectedCell.Y) != selectedCell
+                    || SpatialQuery.DistanceToCell(zone, actor, selectedCell.X, selectedCell.Y) != 1)
+                    return null;
+                return FindSkillCreatureAt(actor, zone, selectedCell, out contact);
+            }
+
+            foreach (var cell in MultiCellAbilityQueries.AdjacentCells(zone, actor))
+            {
+                var target = FindSkillCreatureAt(actor, zone, cell, out contact);
+                if (target != null) return target;
+            }
+            return null;
+        }
+
+        private static Entity FindSkillCreatureAt(Entity actor, Zone zone, Cell cell, out Cell contact)
+        {
+            contact = null;
+            foreach (var candidate in cell.Occupants)
+            {
+                if (!AbilityTargeting.IsCreatureTarget(candidate, actor)
+                    || !IsPlacedSkillOwner(candidate, zone)) continue;
+                // Occupants can include stale or manually aliased objects. The
+                // current placed body, rather than an anchor label, owns contact.
+                foreach (var occupied in zone.GetOccupiedCells(candidate))
+                    if (occupied == cell)
+                    { contact = cell; return candidate; }
+            }
+            return null;
+        }
+
+        private static bool IsPlacedSkillOwner(Entity entity, Zone zone)
+        {
+            if (entity == null || zone == null || entity.SpatialZone != zone
+                || zone.GetEntityCell(entity) == null || entity.GetStatValue("Hitpoints", 1) <= 0
+                || CombatSystem.IsDeathHandled(entity)) return false;
+            var physics = entity.GetPart<PhysicsPart>();
+            return physics == null || (physics.ParentEntity == entity
+                && physics.InInventory == null && physics.Equipped == null);
+        }
+
+        /// <summary>
         /// Finds the first Creature entity adjacent to defender (in
         /// direction-iteration order N → NE → E → SE → S → SW → W → NW)
         /// that isn't the attacker themselves. Null if none found or

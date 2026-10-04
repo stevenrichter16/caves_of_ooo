@@ -80,6 +80,7 @@ namespace CavesOfOoo.Core
         {
             public ActivatedAbility Ability;
             public int Dx, Dy;
+            public Cell TargetCell;
         }
 
         /// <summary>
@@ -126,7 +127,7 @@ namespace CavesOfOoo.Core
                 command.SetParameter("Zone", (object)zone);
                 command.SetParameter("RNG", (object)rng);
                 command.SetParameter("SourceCell", (object)zone.GetEntityCell(actor));
-                command.SetParameter("TargetCell", (object)zone.GetEntityCell(target));
+                command.SetParameter("TargetCell", (object)(picked.TargetCell ?? zone.GetEntityCell(target)));
                 command.SetParameter("DirectionX", picked.Dx);
                 command.SetParameter("DirectionY", picked.Dy);
                 command.SetParameter("Range", picked.Ability.Range);
@@ -156,9 +157,13 @@ namespace CavesOfOoo.Core
             }
             if (skill is ShortBlades_Shank)
             {
-                if (MultiCellAbilityQueries.FirstAdjacentCreature(zone, actor, out _) != target)
-                { Reject(target, ability, "adjacent-target-mismatch"); return null; }
-                return new Candidate { Ability = ability };
+                // Preview the same chosen-cell policy the skill executes. An
+                // ally in another direction no longer steals the selection;
+                // an earlier occupant of this exact cell still blocks it.
+                foreach (var cell in MultiCellAbilityQueries.AdjacentCells(zone, actor))
+                    if (SkillCombatHelpers.FindAdjacentSkillTarget(actor, zone, cell, out var contact) == target)
+                        return new Candidate { Ability = ability, TargetCell = contact };
+                Reject(target, ability, "adjacent-target-mismatch"); return null;
             }
             // Preview the actual power's first-impact policy, including targetable
             // scenery. Eight rays support footprint contacts without aiming at an

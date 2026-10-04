@@ -1,0 +1,25 @@
+{
+  "runId": "60629425f73e4d12acd02e606d1cfd43",
+  "complete": false,
+  "failures": 1,
+  "errors": 0,
+  "fatal": "System.NullReferenceException: Object reference not set to an instance of an object\n  at CavesOfOoo.Scenarios.Custom.DirectedMeleeNativePlayer+<Run>d__37.MoveNext () [0x00643] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DirectedMeleeNativePlayer.cs:102 \n  at CavesOfOoo.Scenarios.Custom.DirectedMeleeNativePlayer+<RunSafely>d__48.MoveNext () [0x00057] in /Users/steven/caves-of-ooo/Assets/Scripts/Scenarios/Custom/DirectedMeleeNativePlayer.cs:202 ",
+  "seconds": 3.5503289,
+  "checks": [
+    "PASS ordinary_breaker_start",
+    "PASS original_ready_bound_skills",
+    "PASS controlled_crowd_geometry",
+    "PASS native_selected_slam_paid_once",
+    "PASS east_target_actual_wall_damage",
+    "FAIL precondition"
+  ],
+  "observations": [],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/GalleryTactics/NativeTargeting/60629425f73e4d12acd02e606d1cfd43/00-native-breaker-picker.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/GalleryTactics/NativeTargeting/60629425f73e4d12acd02e606d1cfd43/01-controlled-crowd-before.png"
+  ],
+  "source": "Overworld.11.10.0",
+  "fixture": "Native N/Breaker picker and original player; isolated starting zone cleared to floor; actual factory MarlbackGleaners staged east/north with Brain removed and registered for turns; real east wall. No HP/stat/skill/weapon/RNG edits. All casts use keyboard hotbar/direction input.",
+  "canVerify": "Native chosen-cell input, paid Slam turn/cooldown, actual selected target HP loss and damage attribution, untouched bystander, empty-cell refusal with no turn/energy/cooldown cost.",
+  "cannotVerify": "Controlled stationary crowd, not ordinary generated encounter discovery, enemy decisions, sustained balance or fun. Screenshots need independent inspection; this does not establish all eight skills visually."
+}

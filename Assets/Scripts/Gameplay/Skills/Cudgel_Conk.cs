@@ -10,9 +10,8 @@ namespace CavesOfOoo.Skills
     /// to land. CoO simplifies: any adjacent Creature is a valid target.
     ///
     /// <para><b>Mechanic (CoO):</b> requires a Cudgel-attribute weapon
-    /// equipped. Targets the first adjacent Creature (in N→NE→E→...→NW
-    /// direction-iteration order for determinism — same lookup as
-    /// <see cref="SkillCombatHelpers.FindAdjacentCleaveTarget"/>). If
+    /// equipped. Targets the chosen adjacent creature; callers without
+    /// a chosen cell retain deterministic first-adjacent selection. If
     /// found, performs a melee attack via
     /// <see cref="CombatSystem.PerformSingleAttack"/> AND applies
     /// <see cref="StunnedEffect"/> for <see cref="STUN_DURATION"/>
@@ -66,7 +65,7 @@ namespace CavesOfOoo.Skills
                 EmitSkillRejectedDiag(ctx, "no_zone");
                 return false;
             }
-            var target = SkillCombatHelpers.FindAdjacentCleaveTarget(actor, actor, ctx.Zone);
+            var target = SkillCombatHelpers.FindAdjacentSkillTarget(actor, ctx.Zone, ctx.TargetCell, out _);
             if (target == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " swings at nothing.");

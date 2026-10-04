@@ -1,6 +1,8 @@
 # Marrowstye: the continuing inspection
 
-Status: implemented and reviewed, 2026-10-03. Native containment passed; combat gameplay passed with the existing attack-pose capture limitation retained. This is the chosen content avenue after the user asked for a substantial, coherent addition rather than more small disconnected mechanics.
+Status: initial annex implemented and reviewed, 2026-10-03. The subsequent gallery/combat iteration is documented in [GALLERY-AND-TACTICAL-COMBAT.md](GALLERY-AND-TACTICAL-COMBAT.md); it splits recovery stock and adds fixed tendril commitments. Historical evidence below describes the initial annex.
+
+Initial status: Native containment passed; combat gameplay passed with the existing attack-pose capture limitation retained. This is the chosen content avenue after the user asked for a substantial, coherent addition rather than more small disconnected mechanics.
 
 ## Player outcome and scope
 
@@ -30,7 +32,7 @@ Read before implementation: `CLAUDE.md`, `Docs/CURATION-RECEIVING-YARD.md`, `Doc
 
 Relative to the expanded disused wing: public vestibule X1–8; gallery X10–19/Y1–5; holding X21–25/Y1–5; screened service passage at Y7. Masonry partitions at X9 and X20, and along Y6. Public north entrance moves to the vestibule. Existing locked inspection gate at (9,2); unlocked transfer gate at (20,3); closed gallery service gate at (15,6); broken-open holding escape gate at (23,6). Ordinary arrival remains safe because the gallery and transfer entrances are closed.
 
-Place the existing half-set in the gallery. A safe maintenance rack supplies two timber lengths. The gallery contains an inspection slab, old restraint rail, and finite recovery cabinet: two sootroot pulp, one pitchpod resin, two fire clay, one imported dressing and protective gloves. The existing nearby ink service gives the botanical stock an immediate purpose. A placard and staff dialogue explain the real layout, repair and risk without map icons, quest flags or an automatic solution.
+Place the existing half-set in the gallery. A safe maintenance rack supplies two timber lengths. The gallery contains an inspection slab, old restraint rail, and finite supplies: two sootroot pulp, one pitchpod resin, two fire clay, one imported dressing and protective gloves. The first implementation used one cabinet; the subsequent iteration separates the botanicals into a deeper conservation case. The existing nearby ink service gives the botanical stock an immediate purpose. A placard and staff dialogue explain the real layout, repair and risk without map icons, quest flags or an automatic solution.
 
 Create matching voxel forms for the new working furniture, placard and visibly broken service gate; reuse compatible existing healthy gate and actor art. No new animation system is needed for existing pursuit and door actions.
 

@@ -101,8 +101,8 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            // Find adjacent Creature (mirrors Cudgel_Slam's lookup).
-            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out _);
+            // The selected cell decides which creature's debuffs to exploit.
+            var target = SkillCombatHelpers.FindAdjacentSkillTarget(actor, ctx.Zone, ctx.TargetCell, out _);
 
             if (target == null)
             {

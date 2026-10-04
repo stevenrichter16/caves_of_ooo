@@ -1,0 +1,1013 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="89" result="Failed(Child)" total="89" passed="46" failed="43" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:28Z" duration="8.1994862">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24515" result="Failed" site="Child" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:28Z" duration="8.199486" total="89" passed="46" failed="43" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="30170" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24515" result="Failed" site="Child" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:28Z" duration="8.188442" total="89" passed="46" failed="43" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70907" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="30171" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24515" result="Failed" site="Child" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:28Z" duration="8.185929" total="89" passed="46" failed="43" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="30172" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24515" result="Failed" site="Child" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:28Z" duration="8.184141" total="89" passed="46" failed="43" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1295" name="CommittedMeleeTests" fullname="CavesOfOoo.Tests.CommittedMeleeTests" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" testcasecount="31" result="Failed" site="Child" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:21Z" duration="1.856604" total="31" passed="30" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1322" name="ActorWithoutPartKeepsImmediateAdjacentMelee" fullname="CavesOfOoo.Tests.CommittedMeleeTests.ActorWithoutPartKeepsImmediateAdjacentMelee" methodname="ActorWithoutPartKeepsImmediateAdjacentMelee" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="110287517" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.098243" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1312" name="AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction" fullname="CavesOfOoo.Tests.CommittedMeleeTests.AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.101635" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1308" name="AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction(&quot;stun&quot;)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction(&quot;stun&quot;)" methodname="AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="624617999" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.031485" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1309" name="AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction(&quot;freeze&quot;)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction(&quot;freeze&quot;)" methodname="AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1017490203" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.023224" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1310" name="AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction(&quot;paralysis&quot;)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction(&quot;paralysis&quot;)" methodname="AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1203701387" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.022843" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1311" name="AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction(&quot;sleep&quot;)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction(&quot;sleep&quot;)" methodname="AppliedDisablingEffectCancelsEvenWhenRemovedBeforeNextAction" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="354866420" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.022476" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1330" name="BothHandsNeverTurnOneCommitmentIntoTwoWeaponStrikes" fullname="CavesOfOoo.Tests.CommittedMeleeTests.BothHandsNeverTurnOneCommitmentIntoTwoWeaponStrikes" methodname="BothHandsNeverTurnOneCommitmentIntoTwoWeaponStrikes" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="944207764" result="Failed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.024825" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 3
+  But was:  2
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CommittedMeleeTests.BothHandsNeverTurnOneCommitmentIntoTwoWeaponStrikes () [0x00107] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CommittedMeleeTests.cs:216
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1307" name="ClearExactTargetIsRequiredBeforeCommitting" fullname="CavesOfOoo.Tests.CommittedMeleeTests.ClearExactTargetIsRequiredBeforeCommitting" methodname="ClearExactTargetIsRequiredBeforeCommitting" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="334998221" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.022942" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1328" name="DeathClearsARealPendingWindup" fullname="CavesOfOoo.Tests.CommittedMeleeTests.DeathClearsARealPendingWindup" methodname="DeathClearsARealPendingWindup" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1736372359" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.023375" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1315" name="DisplacementCancelsAndConsumesThatActionWithoutMovingAgain" fullname="CavesOfOoo.Tests.CommittedMeleeTests.DisplacementCancelsAndConsumesThatActionWithoutMovingAgain" methodname="DisplacementCancelsAndConsumesThatActionWithoutMovingAgain" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1539257929" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.022649" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1296" name="FirstActionWindsUpSecondResolvesOneNormalAttackThirdRecovers" fullname="CavesOfOoo.Tests.CommittedMeleeTests.FirstActionWindsUpSecondResolvesOneNormalAttackThirdRecovers" methodname="FirstActionWindsUpSecondResolvesOneNormalAttackThirdRecovers" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1866531763" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.022667" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1327" name="ForcedDisplacementOutAndBackStillInterrupts" fullname="CavesOfOoo.Tests.CommittedMeleeTests.ForcedDisplacementOutAndBackStillInterrupts" methodname="ForcedDisplacementOutAndBackStillInterrupts" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="272966671" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.023545" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1314" name="HarmlessAppliedStatusDoesNotInterruptCommitment" fullname="CavesOfOoo.Tests.CommittedMeleeTests.HarmlessAppliedStatusDoesNotInterruptCommitment" methodname="HarmlessAppliedStatusDoesNotInterruptCommitment" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1227221431" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.022189" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1320" name="LosingHostileIntentCancelsWithoutAnExtraAction" fullname="CavesOfOoo.Tests.CommittedMeleeTests.LosingHostileIntentCancelsWithoutAnExtraAction" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.089727" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1316" name="LosingHostileIntentCancelsWithoutAnExtraAction(&quot;calm&quot;)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.LosingHostileIntentCancelsWithoutAnExtraAction(&quot;calm&quot;)" methodname="LosingHostileIntentCancelsWithoutAnExtraAction" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="235312218" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.022136" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1317" name="LosingHostileIntentCancelsWithoutAnExtraAction(&quot;conversation&quot;)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.LosingHostileIntentCancelsWithoutAnExtraAction(&quot;conversation&quot;)" methodname="LosingHostileIntentCancelsWithoutAnExtraAction" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="193411896" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.022219" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1318" name="LosingHostileIntentCancelsWithoutAnExtraAction(&quot;party&quot;)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.LosingHostileIntentCancelsWithoutAnExtraAction(&quot;party&quot;)" methodname="LosingHostileIntentCancelsWithoutAnExtraAction" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1505358869" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.021847" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1319" name="LosingHostileIntentCancelsWithoutAnExtraAction(&quot;lost-target&quot;)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.LosingHostileIntentCancelsWithoutAnExtraAction(&quot;lost-target&quot;)" methodname="LosingHostileIntentCancelsWithoutAnExtraAction" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="590834041" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.021830" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1298" name="NewBodyInCommittedRayInterceptsExactlyOneStrike" fullname="CavesOfOoo.Tests.CommittedMeleeTests.NewBodyInCommittedRayInterceptsExactlyOneStrike" methodname="NewBodyInCommittedRayInterceptsExactlyOneStrike" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="2109658456" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.022081" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1303" name="NonSolidLooseItemDoesNotStopTheMeleeRay" fullname="CavesOfOoo.Tests.CommittedMeleeTests.NonSolidLooseItemDoesNotStopTheMeleeRay" methodname="NonSolidLooseItemDoesNotStopTheMeleeRay" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1222732122" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.022033" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1306" name="OffRayOrOutOfRangeCannotStart" fullname="CavesOfOoo.Tests.CommittedMeleeTests.OffRayOrOutOfRangeCannotStart" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.136437" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1304" name="OffRayOrOutOfRangeCannotStart(12,11)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.OffRayOrOutOfRangeCannotStart(12,11)" methodname="OffRayOrOutOfRangeCannotStart" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1713453589" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.022982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1305" name="OffRayOrOutOfRangeCannotStart(13,10)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.OffRayOrOutOfRangeCannotStart(13,10)" methodname="OffRayOrOutOfRangeCannotStart" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1443569937" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.112556" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1323" name="PlayerGetsAnInputOpportunityBetweenWindupAndResolutionAtSpeedSeventy" fullname="CavesOfOoo.Tests.CommittedMeleeTests.PlayerGetsAnInputOpportunityBetweenWindupAndResolutionAtSpeedSeventy" methodname="PlayerGetsAnInputOpportunityBetweenWindupAndResolutionAtSpeedSeventy" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1463465649" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.026320" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1313" name="RefusedStatusDoesNotInterruptCommitment" fullname="CavesOfOoo.Tests.CommittedMeleeTests.RefusedStatusDoesNotInterruptCommitment" methodname="RefusedStatusDoesNotInterruptCommitment" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1132424230" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.024119" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1329" name="SavedStationaryTargetStillReceivesTheCommittedStrike" fullname="CavesOfOoo.Tests.CommittedMeleeTests.SavedStationaryTargetStillReceivesTheCommittedStrike" methodname="SavedStationaryTargetStillReceivesTheCommittedStrike" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="517340905" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.091836" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1297" name="SidestepLeavesOriginalRayEmptyWithoutTrackingTarget" fullname="CavesOfOoo.Tests.CommittedMeleeTests.SidestepLeavesOriginalRayEmptyWithoutTrackingTarget" methodname="SidestepLeavesOriginalRayEmptyWithoutTrackingTarget" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1013370983" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.021798" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1302" name="SolidInterpositionSpendsAttackWithoutDamagingPropOrTarget" fullname="CavesOfOoo.Tests.CommittedMeleeTests.SolidInterpositionSpendsAttackWithoutDamagingPropOrTarget" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:21Z" duration="0.181283" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1299" name="SolidInterpositionSpendsAttackWithoutDamagingPropOrTarget(&quot;wall&quot;)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.SolidInterpositionSpendsAttackWithoutDamagingPropOrTarget(&quot;wall&quot;)" methodname="SolidInterpositionSpendsAttackWithoutDamagingPropOrTarget" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1989389475" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.021768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1300" name="SolidInterpositionSpendsAttackWithoutDamagingPropOrTarget(&quot;door&quot;)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.SolidInterpositionSpendsAttackWithoutDamagingPropOrTarget(&quot;door&quot;)" methodname="SolidInterpositionSpendsAttackWithoutDamagingPropOrTarget" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1524146369" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:20Z" duration="0.022266" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1301" name="SolidInterpositionSpendsAttackWithoutDamagingPropOrTarget(&quot;physics&quot;)" fullname="CavesOfOoo.Tests.CommittedMeleeTests.SolidInterpositionSpendsAttackWithoutDamagingPropOrTarget(&quot;physics&quot;)" methodname="SolidInterpositionSpendsAttackWithoutDamagingPropOrTarget" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="39840432" result="Passed" start-time="2026-10-04 03:56:20Z" end-time="2026-10-04 03:56:21Z" duration="0.134435" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1321" name="UnrelatedNewGoalDoesNotBypassPendingResolutionOrRecovery" fullname="CavesOfOoo.Tests.CommittedMeleeTests.UnrelatedNewGoalDoesNotBypassPendingResolutionOrRecovery" methodname="UnrelatedNewGoalDoesNotBypassPendingResolutionOrRecovery" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1846172555" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.134987" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1325" name="VisibleWarningAndTransitionsHaveDiagnosticsWithoutHiddenWarnings" fullname="CavesOfOoo.Tests.CommittedMeleeTests.VisibleWarningAndTransitionsHaveDiagnosticsWithoutHiddenWarnings" methodname="VisibleWarningAndTransitionsHaveDiagnosticsWithoutHiddenWarnings" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1201206548" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.070582" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1324" name="WindupSaveLoadPreservesDirectionAndOriginalTargetReference" fullname="CavesOfOoo.Tests.CommittedMeleeTests.WindupSaveLoadPreservesDirectionAndOriginalTargetReference" methodname="WindupSaveLoadPreservesDirectionAndOriginalTargetReference" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1630244969" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.639339" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1326" name="ZoneChangeNeverResolvesTheSavedWindup" fullname="CavesOfOoo.Tests.CommittedMeleeTests.ZoneChangeNeverResolvesTheSavedWindup" methodname="ZoneChangeNeverResolvesTheSavedWindup" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="381735847" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.024407" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="11961" name="DirectedMeleeTargetingTests" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" testcasecount="53" result="Failed" site="Child" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:22Z" duration="0.188191" total="53" passed="16" failed="37" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="11987" name="AbsentTargetCellPreservesLegacyFirstAdjacentSelection" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.AbsentTargetCellPreservesLegacyFirstAdjacentSelection" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.017612" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="11979" name="AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;Cudgel_Conk&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;Cudgel_Conk&quot;)" methodname="AbsentTargetCellPreservesLegacyFirstAdjacentSelection" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="508691266" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.006982" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11980" name="AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;Cudgel_Slam&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;Cudgel_Slam&quot;)" methodname="AbsentTargetCellPreservesLegacyFirstAdjacentSelection" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1217741085" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.001843" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11981" name="AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;Cudgel_Disarm&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;Cudgel_Disarm&quot;)" methodname="AbsentTargetCellPreservesLegacyFirstAdjacentSelection" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="732660214" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.002665" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11982" name="AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;Axe_RendArmor&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;Axe_RendArmor&quot;)" methodname="AbsentTargetCellPreservesLegacyFirstAdjacentSelection" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="412964754" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000858" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11983" name="AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;Axe_HookAndDrag&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;Axe_HookAndDrag&quot;)" methodname="AbsentTargetCellPreservesLegacyFirstAdjacentSelection" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="255207168" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000943" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11984" name="AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;ShortBlades_Shank&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;ShortBlades_Shank&quot;)" methodname="AbsentTargetCellPreservesLegacyFirstAdjacentSelection" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1383443520" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000945" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11985" name="AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;ShortBlades_Flurry&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;ShortBlades_Flurry&quot;)" methodname="AbsentTargetCellPreservesLegacyFirstAdjacentSelection" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1209232141" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.001108" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11986" name="AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;ShortBlades_Backstab&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.AbsentTargetCellPreservesLegacyFirstAdjacentSelection(&quot;ShortBlades_Backstab&quot;)" methodname="AbsentTargetCellPreservesLegacyFirstAdjacentSelection" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1631034067" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.001058" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="12014" name="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.009677" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="12006" name="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;Cudgel_Conk&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;Cudgel_Conk&quot;)" methodname="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="407755618" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.002995" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency (System.String skill) [0x0004c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:141
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12007" name="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;Cudgel_Slam&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;Cudgel_Slam&quot;)" methodname="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="35857140" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000931" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cudgel_Slam
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:55
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency (System.String skill) [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12008" name="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;Cudgel_Disarm&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;Cudgel_Disarm&quot;)" methodname="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="405073064" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000719" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cudgel_Disarm
+  Expected: null
+  But was:  <Entity(probe)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:56
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency (System.String skill) [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12009" name="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;Axe_RendArmor&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;Axe_RendArmor&quot;)" methodname="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1242132958" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000788" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Axe_RendArmor
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:57
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency (System.String skill) [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12010" name="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;Axe_HookAndDrag&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;Axe_HookAndDrag&quot;)" methodname="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1488017757" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000766" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Axe_HookAndDrag
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x000ae] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:58
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency (System.String skill) [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12011" name="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;ShortBlades_Shank&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;ShortBlades_Shank&quot;)" methodname="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="504454143" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000827" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ShortBlades_Shank
+  Expected: less than 1000
+  But was:  1000
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x000cb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:59
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency (System.String skill) [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12012" name="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;ShortBlades_Flurry&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;ShortBlades_Flurry&quot;)" methodname="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1121721701" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000945" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ShortBlades_Flurry
+  Expected: less than 1000
+  But was:  1000
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x000cb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:59
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency (System.String skill) [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12013" name="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;ShortBlades_Backstab&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency(&quot;ShortBlades_Backstab&quot;)" methodname="ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="995810022" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000763" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ShortBlades_Backstab
+  Expected: less than 1000
+  But was:  1000
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x000cb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:59
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ActorPhysicalEdgeCanReachSelectedCellBeyondAnchorAdjacency (System.String skill) [0x00069] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:142
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="12018" name="BackstabComputesFlankBeyondChosenTargetInsteadOfBystander" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.BackstabComputesFlankBeyondChosenTargetInsteadOfBystander" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.002257" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="12016" name="BackstabComputesFlankBeyondChosenTargetInsteadOfBystander(True)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.BackstabComputesFlankBeyondChosenTargetInsteadOfBystander(True)" methodname="BackstabComputesFlankBeyondChosenTargetInsteadOfBystander" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1686629110" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000876" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  One selected swing; the actual far-side ally permits the second bonus damage application.
+  Expected: 2
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.BackstabComputesFlankBeyondChosenTargetInsteadOfBystander (System.Boolean flanked) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:164
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12017" name="BackstabComputesFlankBeyondChosenTargetInsteadOfBystander(False)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.BackstabComputesFlankBeyondChosenTargetInsteadOfBystander(False)" methodname="BackstabComputesFlankBeyondChosenTargetInsteadOfBystander" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1468536033" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000789" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  One selected swing; the actual far-side ally permits the second bonus damage application.
+  Expected: 1
+  But was:  0
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.BackstabComputesFlankBeyondChosenTargetInsteadOfBystander (System.Boolean flanked) [0x00041] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:164
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="11978" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" testcasecount="16" result="Failed" site="Child" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.026615" total="16" passed="8" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="11962" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Cudgel_Conk&quot;,True)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Cudgel_Conk&quot;,True)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="71932635" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000820" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cudgel_Conk
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:55
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched (System.String skill, System.Boolean east) [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11963" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Cudgel_Conk&quot;,False)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Cudgel_Conk&quot;,False)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1879370757" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000756" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11964" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Cudgel_Slam&quot;,True)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Cudgel_Slam&quot;,True)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="286271822" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000618" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cudgel_Slam
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:55
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched (System.String skill, System.Boolean east) [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11965" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Cudgel_Slam&quot;,False)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Cudgel_Slam&quot;,False)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="978834812" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000629" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11966" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Cudgel_Disarm&quot;,True)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Cudgel_Disarm&quot;,True)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="583377080" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000775" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cudgel_Disarm
+  Expected: null
+  But was:  <Entity(probe)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:56
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched (System.String skill, System.Boolean east) [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11967" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Cudgel_Disarm&quot;,False)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Cudgel_Disarm&quot;,False)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="586835652" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000707" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11968" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Axe_RendArmor&quot;,True)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Axe_RendArmor&quot;,True)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="2050641786" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000707" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Axe_RendArmor
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:57
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched (System.String skill, System.Boolean east) [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11969" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Axe_RendArmor&quot;,False)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Axe_RendArmor&quot;,False)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1584525467" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000650" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11970" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Axe_HookAndDrag&quot;,True)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Axe_HookAndDrag&quot;,True)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="2031410354" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000785" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Axe_HookAndDrag
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x000ae] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:58
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched (System.String skill, System.Boolean east) [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11971" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Axe_HookAndDrag&quot;,False)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;Axe_HookAndDrag&quot;,False)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="853209293" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000731" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11972" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;ShortBlades_Shank&quot;,True)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;ShortBlades_Shank&quot;,True)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="663918133" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000794" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ShortBlades_Shank
+  Expected: less than 1000
+  But was:  1000
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x000cb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:59
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched (System.String skill, System.Boolean east) [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11973" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;ShortBlades_Shank&quot;,False)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;ShortBlades_Shank&quot;,False)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="997066925" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.000608" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11974" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;ShortBlades_Flurry&quot;,True)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;ShortBlades_Flurry&quot;,True)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="859430930" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.009898" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ShortBlades_Flurry
+  Expected: less than 1000
+  But was:  1000
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x000cb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:59
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched (System.String skill, System.Boolean east) [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11975" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;ShortBlades_Flurry&quot;,False)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;ShortBlades_Flurry&quot;,False)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="580815791" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.003183" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="11976" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;ShortBlades_Backstab&quot;,True)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;ShortBlades_Backstab&quot;,True)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="829937168" result="Failed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.001782" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ShortBlades_Backstab
+  Expected: less than 1000
+  But was:  1000
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x000cb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:59
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched (System.String skill, System.Boolean east) [0x0003c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:97
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11977" name="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;ShortBlades_Backstab&quot;,False)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched(&quot;ShortBlades_Backstab&quot;,False)" methodname="ChosenAdjacentEnemyReceivesTheSkillAndOtherCreatureIsUntouched" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1728616532" result="Passed" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:21Z" duration="0.001383" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="11996" name="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-04 03:56:21Z" end-time="2026-10-04 03:56:22Z" duration="0.061351" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="11988" name="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;Cudgel_Conk&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;Cudgel_Conk&quot;)" methodname="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="596820912" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.004657" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unhandled refusal is the native input contract for a free failed cast.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng (System.String skill) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:114
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11989" name="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;Cudgel_Slam&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;Cudgel_Slam&quot;)" methodname="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1216721942" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.004066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unhandled refusal is the native input contract for a free failed cast.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng (System.String skill) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:114
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11990" name="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;Cudgel_Disarm&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;Cudgel_Disarm&quot;)" methodname="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="877856247" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.002672" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unhandled refusal is the native input contract for a free failed cast.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng (System.String skill) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:114
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11991" name="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;Axe_RendArmor&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;Axe_RendArmor&quot;)" methodname="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1415677658" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.003295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unhandled refusal is the native input contract for a free failed cast.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng (System.String skill) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:114
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11992" name="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;Axe_HookAndDrag&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;Axe_HookAndDrag&quot;)" methodname="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="701956156" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.003542" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unhandled refusal is the native input contract for a free failed cast.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng (System.String skill) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:114
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11993" name="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;ShortBlades_Shank&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;ShortBlades_Shank&quot;)" methodname="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="615456300" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.003597" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unhandled refusal is the native input contract for a free failed cast.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng (System.String skill) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:114
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11994" name="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;ShortBlades_Flurry&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;ShortBlades_Flurry&quot;)" methodname="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1744289311" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.036460" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unhandled refusal is the native input contract for a free failed cast.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng (System.String skill) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:114
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11995" name="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;ShortBlades_Backstab&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng(&quot;ShortBlades_Backstab&quot;)" methodname="EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1638364525" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.000628" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Unhandled refusal is the native input contract for a free failed cast.
+  Expected: False
+  But was:  True
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.EmptyChosenCellRefusesWithoutDamagingBystandersOrSpendingActionCooldownOrRng (System.String skill) [0x00007] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:114
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="12005" name="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" testcasecount="8" result="Failed" site="Child" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.006667" total="8" passed="0" failed="8" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="11997" name="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;Cudgel_Conk&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;Cudgel_Conk&quot;)" methodname="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="895980928" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.000754" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cudgel_Conk
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:55
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant (System.String skill) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:130
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11998" name="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;Cudgel_Slam&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;Cudgel_Slam&quot;)" methodname="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="130708856" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.000533" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cudgel_Slam
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x0004f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:55
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant (System.String skill) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:130
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="11999" name="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;Cudgel_Disarm&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;Cudgel_Disarm&quot;)" methodname="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="926420083" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.000707" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Cudgel_Disarm
+  Expected: null
+  But was:  <Entity(probe)>
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x0006f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:56
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant (System.String skill) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:130
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12000" name="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;Axe_RendArmor&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;Axe_RendArmor&quot;)" methodname="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="616072675" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.000701" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Axe_RendArmor
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x00091] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:57
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant (System.String skill) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:130
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12001" name="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;Axe_HookAndDrag&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;Axe_HookAndDrag&quot;)" methodname="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1737151424" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.000801" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Axe_HookAndDrag
+  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x000ae] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:58
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant (System.String skill) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:130
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12002" name="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;ShortBlades_Shank&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;ShortBlades_Shank&quot;)" methodname="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1234994437" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.000820" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ShortBlades_Shank
+  Expected: less than 1000
+  But was:  1000
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x000cb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:59
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant (System.String skill) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:130
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12003" name="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;ShortBlades_Flurry&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;ShortBlades_Flurry&quot;)" methodname="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="635484459" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.000878" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ShortBlades_Flurry
+  Expected: less than 1000
+  But was:  1000
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x000cb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:59
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant (System.String skill) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:130
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12004" name="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;ShortBlades_Backstab&quot;)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant(&quot;ShortBlades_Backstab&quot;)" methodname="SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1027606169" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.000743" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  ShortBlades_Backstab
+  Expected: less than 1000
+  But was:  1000
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeFixture.AssertAffected (CavesOfOoo.Core.Entity target) [0x000cb] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:59
+at CavesOfOoo.Tests.DirectedMeleeTargetingTests.SelectedPhysicalBodyCanBeAdjacentWhenItsAnchorIsDistant (System.String skill) [0x0009d] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:130
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="12021" name="ShankAiSelectsActualEnemyContactWithoutHarmingEarlierAlly" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ShankAiSelectsActualEnemyContactWithoutHarmingEarlierAlly" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.059549" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="12019" name="ShankAiSelectsActualEnemyContactWithoutHarmingEarlierAlly(True)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ShankAiSelectsActualEnemyContactWithoutHarmingEarlierAlly(True)" methodname="ShankAiSelectsActualEnemyContactWithoutHarmingEarlierAlly" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1535963013" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.031004" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ShankAiSelectsActualEnemyContactWithoutHarmingEarlierAlly (System.Boolean wideTarget) [0x0008b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:183
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="12020" name="ShankAiSelectsActualEnemyContactWithoutHarmingEarlierAlly(False)" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.ShankAiSelectsActualEnemyContactWithoutHarmingEarlierAlly(False)" methodname="ShankAiSelectsActualEnemyContactWithoutHarmingEarlierAlly" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="914454163" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.027952" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.ShankAiSelectsActualEnemyContactWithoutHarmingEarlierAlly (System.Boolean wideTarget) [0x0008b] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:183
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="12015" name="SlamUsesChosenContactDirectionAndRealObstacleDamage" fullname="CavesOfOoo.Tests.DirectedMeleeTargetingTests.SlamUsesChosenContactDirectionAndRealObstacleDamage" methodname="SlamUsesChosenContactDirectionAndRealObstacleDamage" classname="CavesOfOoo.Tests.DirectedMeleeTargetingTests" runstate="Runnable" seed="1487299940" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.001063" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: (12, 10)
+  But was:  (11, 10)
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.DirectedMeleeTargetingTests.SlamUsesChosenContactDirectionAndRealObstacleDamage () [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Skills/DirectedMeleeTargetingTests.cs:153
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="16338" name="GalleryTacticsContentTests" fullname="CavesOfOoo.Tests.GalleryTacticsContentTests" classname="CavesOfOoo.Tests.GalleryTacticsContentTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:28Z" duration="6.086405" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="16341" name="ExistingSlowTendrilCreaturesTeachTheSameOptInCommitment" fullname="CavesOfOoo.Tests.GalleryTacticsContentTests.ExistingSlowTendrilCreaturesTeachTheSameOptInCommitment" classname="CavesOfOoo.Tests.GalleryTacticsContentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.079340" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16339" name="ExistingSlowTendrilCreaturesTeachTheSameOptInCommitment(&quot;CurationHalfSet&quot;,70)" fullname="CavesOfOoo.Tests.GalleryTacticsContentTests.ExistingSlowTendrilCreaturesTeachTheSameOptInCommitment(&quot;CurationHalfSet&quot;,70)" methodname="ExistingSlowTendrilCreaturesTeachTheSameOptInCommitment" classname="CavesOfOoo.Tests.GalleryTacticsContentTests" runstate="Runnable" seed="276019729" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.040184" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.GalleryTacticsContentTests.ExistingSlowTendrilCreaturesTeachTheSameOptInCommitment (System.String blueprint, System.Int32 speed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/GalleryTacticsContentTests.cs:17
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16340" name="ExistingSlowTendrilCreaturesTeachTheSameOptInCommitment(&quot;Shambler&quot;,80)" fullname="CavesOfOoo.Tests.GalleryTacticsContentTests.ExistingSlowTendrilCreaturesTeachTheSameOptInCommitment(&quot;Shambler&quot;,80)" methodname="ExistingSlowTendrilCreaturesTeachTheSameOptInCommitment" classname="CavesOfOoo.Tests.GalleryTacticsContentTests" runstate="Runnable" seed="208940703" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:22Z" duration="0.038802" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.GalleryTacticsContentTests.ExistingSlowTendrilCreaturesTeachTheSameOptInCommitment (System.String blueprint, System.Int32 speed) [0x00013] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/GalleryTacticsContentTests.cs:17
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="16344" name="GalleryOffersPartialRecoveryAndClearLateralRoutesAroundItsSolidSlab" fullname="CavesOfOoo.Tests.GalleryTacticsContentTests.GalleryOffersPartialRecoveryAndClearLateralRoutesAroundItsSolidSlab" classname="CavesOfOoo.Tests.GalleryTacticsContentTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:25Z" duration="3.363656" total="2" passed="0" failed="2" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="16342" name="GalleryOffersPartialRecoveryAndClearLateralRoutesAroundItsSolidSlab(64)" fullname="CavesOfOoo.Tests.GalleryTacticsContentTests.GalleryOffersPartialRecoveryAndClearLateralRoutesAroundItsSolidSlab(64)" methodname="GalleryOffersPartialRecoveryAndClearLateralRoutesAroundItsSolidSlab" classname="CavesOfOoo.Tests.GalleryTacticsContentTests" runstate="Runnable" seed="5323913" result="Failed" start-time="2026-10-04 03:56:22Z" end-time="2026-10-04 03:56:24Z" duration="1.839685" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < "FireClay", "SoddenFieldDressing", "LeatherGloves" >
+  But was:  < "SootrootPulp", "PitchpodResin", "FireClay", "SoddenFieldDressing", "LeatherGloves" >
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.GalleryTacticsContentTests.GalleryOffersPartialRecoveryAndClearLateralRoutesAroundItsSolidSlab (System.Int32 seed) [0x000dc] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/GalleryTacticsContentTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="16343" name="GalleryOffersPartialRecoveryAndClearLateralRoutesAroundItsSolidSlab(1729)" fullname="CavesOfOoo.Tests.GalleryTacticsContentTests.GalleryOffersPartialRecoveryAndClearLateralRoutesAroundItsSolidSlab(1729)" methodname="GalleryOffersPartialRecoveryAndClearLateralRoutesAroundItsSolidSlab" classname="CavesOfOoo.Tests.GalleryTacticsContentTests" runstate="Runnable" seed="1155431048" result="Failed" start-time="2026-10-04 03:56:24Z" end-time="2026-10-04 03:56:25Z" duration="1.521985" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Expected: equivalent to < "FireClay", "SoddenFieldDressing", "LeatherGloves" >
+  But was:  < "SootrootPulp", "PitchpodResin", "FireClay", "SoddenFieldDressing", "LeatherGloves" >
+]]></message>
+                  <stack-trace><![CDATA[at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual, System.String message, System.Object[] args) [0x00007] in <f577cd9686154d6ab10efd7e65e64366>:0
+at NUnit.Framework.CollectionAssert.AreEquivalent (System.Collections.IEnumerable expected, System.Collections.IEnumerable actual) [0x00000] in <f577cd9686154d6ab10efd7e65e64366>:0
+at CavesOfOoo.Tests.GalleryTacticsContentTests.GalleryOffersPartialRecoveryAndClearLateralRoutesAroundItsSolidSlab (System.Int32 seed) [0x000dc] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/GalleryTacticsContentTests.cs:38
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="16345" name="SeparateConservationCaseHasRealStockAuthorityAndApprovedExistingCabinetArt" fullname="CavesOfOoo.Tests.GalleryTacticsContentTests.SeparateConservationCaseHasRealStockAuthorityAndApprovedExistingCabinetArt" methodname="SeparateConservationCaseHasRealStockAuthorityAndApprovedExistingCabinetArt" classname="CavesOfOoo.Tests.GalleryTacticsContentTests" runstate="Runnable" seed="542441444" result="Failed" start-time="2026-10-04 03:56:25Z" end-time="2026-10-04 03:56:28Z" duration="2.642435" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.GalleryTacticsContentTests.SeparateConservationCaseHasRealStockAuthorityAndApprovedExistingCabinetArt () [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/World/GalleryTacticsContentTests.cs:60
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

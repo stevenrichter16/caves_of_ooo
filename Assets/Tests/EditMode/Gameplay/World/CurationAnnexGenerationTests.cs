@@ -108,8 +108,10 @@ namespace CavesOfOoo.Tests
                 foreach(var pair in original) Assert.AreEqual(pair.Value,f.Zone.GetEntityPosition(pair.Key),"Enrichment must preserve each prior owner and position.");
                 var maintenance=f.Owner("CurationMaintenanceRack").GetPart<ContainerPart>(); Assert.AreEqual(2,Units(maintenance,"SalvagedTimber"));
                 var recovery=f.Owner("CurationRecoveryCabinet").GetPart<ContainerPart>();
-                foreach(var expected in new[]{("SootrootPulp",2),("PitchpodResin",1),("FireClay",2),("SoddenFieldDressing",1),("LeatherGloves",1)}) Assert.AreEqual(expected.Item2,Units(recovery,expected.Item1),expected.Item1);
-                foreach(var owner in new[]{f.Owner("CurationMaintenanceRack"),f.Owner("CurationRecoveryCabinet")})
+                foreach(var expected in new[]{("FireClay",2),("SoddenFieldDressing",1),("LeatherGloves",1)}) Assert.AreEqual(expected.Item2,Units(recovery,expected.Item1),expected.Item1);
+                var conservation=f.Owner("CurationConservationCase").GetPart<ContainerPart>();
+                Assert.AreEqual(2,Units(conservation,"SootrootPulp"));Assert.AreEqual(1,Units(conservation,"PitchpodResin"));
+                foreach(var owner in new[]{f.Owner("CurationMaintenanceRack"),f.Owner("CurationRecoveryCabinet"),f.Owner("CurationConservationCase")})
                     foreach(var item in owner.GetPart<ContainerPart>().Contents) Assert.AreSame(owner,item.GetPart<PhysicsPart>().InInventory);
                 var old=f.Owner("CurationToolCabinet").GetPart<ContainerPart>(); CollectionAssert.AreEquivalent(new[]{"CurationSaltRake","CurationInspectionKey","CurationTransferDocket","CurationDiscrepancyReport"},old.Contents.Select(e=>e.BlueprintName));
                 var taken=recovery.Contents.First(); Assert.True(recovery.RemoveItem(taken)); Assert.False(f.Receiving.BuildZone(f.Zone,f.Factory,new Random(64))); Assert.False(recovery.Contents.Contains(taken));
@@ -152,6 +154,7 @@ namespace CavesOfOoo.Tests
                 var service=f.Owner("CurationServiceGate");Assert.True(service.GetPart<RepairablePart>().TryRepair(actor,f.Zone));Assert.True(service.GetPart<DoorPart>().TrySetOpen(actor,f.Zone,false));
                 var enemy=f.Owner("CurationHalfSet");Assert.True(f.Zone.MoveEntity(enemy,f.Room.X+23,f.Room.Y+3));
                 var recovery=f.Owner("CurationRecoveryCabinet").GetPart<ContainerPart>();var removed=recovery.Contents.First();Assert.True(recovery.RemoveItem(removed));Assert.True(actor.GetPart<InventoryPart>().AddObject(removed));
+                var deep=f.Owner("CurationConservationCase").GetPart<ContainerPart>();var deepTaken=deep.Contents.First();Assert.True(deep.RemoveItem(deepTaken));Assert.True(actor.GetPart<InventoryPart>().AddObject(deepTaken));
                 var manager=OverworldZoneManager.CreateDetached(f.Factory,64,true);manager.SetActiveZone(f.Zone);
                 var saved=HotbarSaveFixture.RoundTrip(GameSessionState.Capture("annex","contained",manager,null,actor));var zone=saved.ZoneManager.ActiveZone;
                 var restoredService=zone.GetReadOnlyEntities().Single(e=>e.ID==service.ID);Assert.AreNotSame(service,restoredService);
@@ -160,6 +163,7 @@ namespace CavesOfOoo.Tests
                 Assert.AreEqual(f.At(23,3),zone.GetEntityPosition(restoredEnemy));Assert.False(Flood(zone,zone.GetEntityPosition(restoredEnemy)).Contains((40,11)));
                 Assert.IsEmpty(zone.GetReadOnlyEntities().Single(e=>e.BlueprintName=="CurationMaintenanceRack").GetPart<ContainerPart>().Contents);
                 Assert.False(zone.GetReadOnlyEntities().Single(e=>e.BlueprintName=="CurationRecoveryCabinet").GetPart<ContainerPart>().Contents.Any(e=>e.ID==removed.ID));
+                Assert.False(zone.GetReadOnlyEntities().Single(e=>e.BlueprintName=="CurationConservationCase").GetPart<ContainerPart>().Contents.Any(e=>e.ID==deepTaken.ID));
                 saved.ZoneManager.UnloadZone(Id);Assert.AreSame(zone,saved.ZoneManager.GetZone(Id));
             }
         }
@@ -176,7 +180,7 @@ namespace CavesOfOoo.Tests
         }
 
         [TestCase("CurationTransferGate")][TestCase("CurationServiceGate")][TestCase("CurationGalleryGate")]
-        [TestCase("CurationRecoveryCabinet")][TestCase("CurationMaintenanceRack")][TestCase("CurationInspectionSlab")][TestCase("CurationAnnexPlacard")]
+        [TestCase("CurationConservationCase")][TestCase("CurationRecoveryCabinet")][TestCase("CurationMaintenanceRack")][TestCase("CurationInspectionSlab")][TestCase("CurationAnnexPlacard")]
         public void MissingAnnexOwnerRefusesBeforePublishingAnyNewStockOrChangingPublicSubjects(string missing)
         {
             using(var f=new Fixture())

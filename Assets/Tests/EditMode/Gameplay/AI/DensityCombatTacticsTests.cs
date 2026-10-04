@@ -87,12 +87,13 @@ namespace CavesOfOoo.Tests
             Assert.Greater(DensityCombatFixture.Ability(actor).CooldownRemaining, 0);
             Assert.AreEqual(500, actor.GetStatValue("Hitpoints"));
         }
-        [Test] public void AdjacentAllyPickedByShankPreventsCastOnWrongTarget()
+        [Test] public void AdjacentAllyDoesNotRedirectShankFromChosenEnemy()
         {
             var actor = f.Actor(skills: "ShortBlades_Shank"); f.Equip(actor, "Dagger");
             var ally = f.Actor(10, 9, ""); var target = f.Target(11, 10);
-            Assert.IsFalse(f.Cast(actor, target)); Assert.AreEqual(500, ally.GetStatValue("Hitpoints"));
-            f.Zone.RemoveEntity(ally); Assert.IsTrue(f.Cast(actor, target));
+            Assert.IsTrue(f.Cast(actor, target)); Assert.AreEqual(500, ally.GetStatValue("Hitpoints"));
+            Assert.Greater(DensityCombatFixture.Ability(actor).CooldownRemaining, 0);
+            Assert.IsFalse(f.Cast(actor, target));
         }
         [Test] public void ReachAttackHitsAtTwoCellsWithoutMoving()
         {

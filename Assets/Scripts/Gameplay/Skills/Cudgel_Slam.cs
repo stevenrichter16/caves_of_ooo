@@ -21,11 +21,9 @@ namespace CavesOfOoo.Skills
     /// Divergent (no chain / no wall-destroy) per CLAUDE.md §4.2.</para>
     ///
     /// <para><b>Mechanic (CoO):</b> requires a Cudgel-attribute weapon
-    /// equipped and an adjacent Creature. Iterates 8 directions in
-    /// N→NE→E→...→NW order (mirrors
-    /// <see cref="SkillCombatHelpers.FindAdjacentCleaveTarget"/>) for
-    /// determinism — first creature found becomes target, the iteration
-    /// direction becomes slam direction. Per cell pushed:
+    /// equipped and a chosen adjacent creature. The chosen physical
+    /// contact determines the slam direction. Callers without a chosen
+    /// cell retain deterministic first-adjacent selection. Per cell pushed:
     /// <c>Cell.IsSolid()</c> check; if solid OR off-map, push stops and
     /// wallHits++; if clear, <c>Zone.MoveEntity</c> succeeds and
     /// cellsPushed++. After pushing: target takes
@@ -85,11 +83,8 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            // Find adjacent target + remember which direction to slam in.
-            // Iterate the same 8-dir order as FindAdjacentCleaveTarget for
-            // determinism. The slam direction is the same direction we
-            // found the target — pushing them AWAY from the attacker.
-            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out var contact);
+            // The chosen physical contact determines which way to push.
+            var target = SkillCombatHelpers.FindAdjacentSkillTarget(actor, ctx.Zone, ctx.TargetCell, out var contact);
             int slamDir = MultiCellAbilityQueries.ContactDirection(ctx.Zone, actor, contact);
 
             if (target == null)

@@ -11,9 +11,9 @@ namespace CavesOfOoo.Scenarios.Custom
     public sealed partial class ReferenceGladeNativePlayer
     {
         private static readonly string[] CurationAnnexChecks = {
-            "annex_wayfinding_and_materials", "annex_paid_repair", "annex_living_transfer",
+            "annex_commitment_and_sidestep", "annex_partial_recovery", "annex_wayfinding_and_materials", "annex_paid_repair", "annex_living_transfer",
             "annex_finite_recovery", "annex_closed_return", "annex_native_checkpoint" };
-        private const string CurationAnnexCanVerify = "Real seed64 generated Marrowstye after the complete native public filing route. Keyboard examination, exact finite rack supplies, paid two-timber repair, ordinary door commands, scheduled hostile pursuit through the transfer aperture, living containment, actual recovery stock and F5/F6 graph replacement. Models and actual closed boundaries are observed; screenshots record the native view.";
+        private const string CurationAnnexCanVerify = "Real seed64 generated Marrowstye after the complete native public filing route. Keyboard examination, exact finite rack supplies, paid two-timber repair, ordinary door commands, a visible fixed lash, paid sidestep, scheduled recovery, hostile pursuit through the transfer aperture, living containment, split actual recovery stock and F5/F6 graph replacement. Models and actual closed boundaries are observed; screenshots record the native view.";
         private const string CurationAnnexCannotVerify = "The public route uses its one disclosed player travel shortcut; all annex movement and actions use ordinary keys. No item grants, actor/target relocation, damage calls, AI overrides or direct repairs/door changes. The lure and escape have finite bounds and may truthfully fail. No subjective readability, natural discovery, universal balance, offscreen simulation or old-save layout migration claim. The hostile remains a Bloom-occupied deceased subject; containment is not rescue or cure.";
 
         private IEnumerator RunCurationAnnex()
@@ -22,7 +22,7 @@ namespace CavesOfOoo.Scenarios.Custom
             var rack = CurationOwner("CurationMaintenanceRack"); var placard = CurationOwner("CurationAnnexPlacard");
             var service = CurationOwner("CurationServiceGate"); var transfer = CurationOwner("CurationTransferGate");
             var gallery = CurationOwner("CurationGalleryGate"); var enemy = CurationOwner("CurationHalfSet");
-            var cabinet = CurationOwner("CurationRecoveryCabinet"); var inspection = CurationOwner("CurationQuarantineGate");
+            var cabinet = CurationOwner("CurationRecoveryCabinet"); var conservation = CurationOwner("CurationConservationCase"); var inspection = CurationOwner("CurationQuarantineGate");
             var mainCell = zone.GetEntityCell(inspection); int x = mainCell.X - 9, y = mainCell.Y - 2;
             var serviceCell = zone.GetEntityCell(service); var transferCell = zone.GetEntityCell(transfer);
             int subjectHP = enemy.GetStatValue("Hitpoints"); string subjectID = enemy.ID;
@@ -80,7 +80,10 @@ namespace CavesOfOoo.Scenarios.Custom
             }
             Require(enemy.GetPart<BrainPart>().Target == actor, "subject notices actual visible player before retreat");
             yield return Capture("annex-03b-visible-approach-before-retreat");
-            yield return AnnexWalkTo(transferCell.X + 2, transferCell.Y);
+            yield return AnnexObserveCommitment(enemy, transferCell.X, transferCell.Y);
+            // The two-cell lash can reach from the aperture; lure one cell farther
+            // so the subject must actually enter the holding chamber.
+            yield return AnnexWalkTo(transferCell.X + 3, transferCell.Y);
             int waits = 0;
             while (zone.GetEntityCell(enemy)?.X <= transferCell.X && waits < 20)
             {
@@ -117,12 +120,24 @@ namespace CavesOfOoo.Scenarios.Custom
             yield return AnnexWalkTo(galleryCell.X, galleryCell.Y + 1);
             yield return ResidentWorldAction(gallery, DoorPart.OpenCommand); yield return ResidentCloseMenus();
             yield return CurationApproach(cabinet);
-            var goods = cabinet.GetPart<ContainerPart>().Contents.ToArray(); Require(goods.Length == 5, "actual original recovery stock");
+            var goods = cabinet.GetPart<ContainerPart>().Contents.ToArray(); Require(goods.Length == 3, "near cabinet contains only dressing, gloves and clay");
+            var deepGoods = conservation.GetPart<ContainerPart>().Contents.ToArray();
+            Require(deepGoods.Length == 2, "deeper ink stock still untouched");
             var quantities = goods.GroupBy(e => e.BlueprintName).ToDictionary(g => g.Key, g => g.Sum(e => e.GetPart<StackerPart>()?.StackCount ?? 1));
             var beforeGoods = quantities.Keys.ToDictionary(bp => bp, bp => ResidentUnits(actor, bp));
             yield return ResidentWorldAction(cabinet, "OpenContainer"); Require(State() == "PickupOpen", "native gallery recovery contents");
             yield return Capture("annex-06-actual-recovery-stock"); yield return Tap(Key.Tab); yield return ResidentCloseMenus();
-            Check("annex_finite_recovery", cabinet.GetPart<ContainerPart>().Contents.Count == 0
+            Check("annex_partial_recovery", cabinet.GetPart<ContainerPart>().Contents.Count == 0
+                && conservation.GetPart<ContainerPart>().Contents.SequenceEqual(deepGoods)
+                && quantities.All(q => ResidentUnits(actor, q.Key) == beforeGoods[q.Key] + q.Value));
+            yield return CurationApproach(conservation);
+            var deepQuantities = deepGoods.ToDictionary(e => e.BlueprintName, e => e.GetPart<StackerPart>()?.StackCount ?? 1);
+            var deepBefore = deepQuantities.Keys.ToDictionary(bp => bp, bp => ResidentUnits(actor, bp));
+            yield return ResidentWorldAction(conservation, "OpenContainer"); Require(State() == "PickupOpen", "native deeper conservation contents");
+            yield return Capture("annex-06b-deeper-conservation-stock"); yield return Tap(Key.Tab); yield return ResidentCloseMenus();
+            Check("annex_finite_recovery", conservation.GetPart<ContainerPart>().Contents.Count == 0
+                && deepQuantities.All(q => ResidentUnits(actor, q.Key) == deepBefore[q.Key] + q.Value)
+                && cabinet.GetPart<ContainerPart>().Contents.Count == 0
                 && quantities.All(q => ResidentUnits(actor, q.Key) == beforeGoods[q.Key] + q.Value)
                 && HoldingContains(enemy, transferCell.X, y) && enemy.GetStatValue("Hitpoints") == subjectHP);
             yield return AnnexWalkTo(galleryCell.X, galleryCell.Y + 1);
@@ -134,10 +149,54 @@ namespace CavesOfOoo.Scenarios.Custom
                 retained &= HoldingContains(enemy, transferCell.X, y) && serviceDoor.IsClosed && transfer.GetPart<DoorPart>().IsClosed
                     && gallery.GetPart<DoorPart>().IsClosed && inspection.GetPart<DoorPart>().IsClosed;
             }
-            Check("annex_closed_return", retained && cabinet.GetPart<ContainerPart>().Contents.Count == 0
+            Check("annex_closed_return", retained && conservation.GetPart<ContainerPart>().Contents.Count == 0 && cabinet.GetPart<ContainerPart>().Contents.Count == 0
                 && rack.GetPart<ContainerPart>().Contents.Count == 0 && enemy.GetStatValue("Hitpoints") == subjectHP && actor.GetStatValue("Hitpoints") > 0);
             yield return Capture("annex-07-depleted-stock-living-containment");
             yield return CurationAnnexCheckpoint(subjectID, subjectHP, transferCell.X, y);
+        }
+
+        // Real generated actor, ordinary scheduler, no relocation or attack calls.
+        private IEnumerator AnnexObserveCommitment(Entity enemy, int exitX, int exitY)
+        {
+            var zone = _input.CurrentZone; var actor = _input.PlayerEntity;
+            var commitment = enemy.GetPart<CommittedMeleePart>(); Require(commitment != null, "authored half-set commitment");
+            for (int i = 0; !commitment.IsWindingUp && i < 18; i++)
+            {
+                Require(actor.GetStatValue("Hitpoints") > 0, "live player awaiting actual tell");
+                var from = Cell(); var target = zone.GetEntityCell(enemy);
+                if (SpatialQuery.Distance(zone, actor, enemy) <= 2)
+                { yield return Tap(Key.Period); yield return CombatWaitForFx(); }
+                else
+                {
+                    var path = FindPath.Search(zone, from.X, from.Y, target.X, target.Y);
+                    Require(path.Usable && path.Steps.Count > 0, "actual approach to tendril reach");
+                    var d = path.Steps[0]; yield return AnnexWalkTo(from.X + d.dx, from.Y + d.dy);
+                }
+            }
+            var standing = Cell();
+            Require(commitment.IsWindingUp && commitment.ThreatensCell(zone, standing.X, standing.Y), "player stands on actual signalled ray");
+            Require(!string.IsNullOrEmpty(CombatIntentReadout.ActorLine(enemy, zone))
+                && !string.IsNullOrEmpty(CombatIntentReadout.ThreatLine(zone, standing)), "normal visible actor and ground readouts exist");
+            yield return Capture("annex-03c-visible-fixed-lash");
+            int hp = actor.GetStatValue("Hitpoints"), tick = _input.TurnManager.TickCount;
+            var side = (from dx in new[] { -1, 0, 1 } from dy in new[] { -1, 0, 1 }
+                where dx != 0 || dy != 0 let c = zone.GetCell(standing.X + dx, standing.Y + dy)
+                where c != null && !c.BlocksMovement(actor) && !c.Objects.Any(e => e != actor && e.HasTag("Creature"))
+                    && !commitment.ThreatensCell(zone, c.X, c.Y)
+                orderby Math.Abs(c.X - exitX) + Math.Abs(c.Y - exitY) select c).FirstOrDefault();
+            Require(side != null, "real lateral escape exists before acting");
+            yield return AnnexWalkTo(side.X, side.Y);
+            for (int i = 0; commitment.IsWindingUp && i < 3; i++)
+            { yield return Tap(Key.Period); yield return CombatWaitForFx(); }
+            Check("annex_commitment_and_sidestep", commitment.IsRecovering
+                && actor.GetStatValue("Hitpoints") == hp && _input.TurnManager.TickCount > tick
+                && !commitment.ThreatensCell(zone, Cell().X, Cell().Y)
+                && CombatIntentReadout.ActorLine(enemy, zone).Contains("Recovering"));
+            _descriptions.Add(new Description { subject = "Actual fixed lash and sidestep", source = enemy.ID,
+                text = "Player stepped from " + standing.X + "," + standing.Y + " to " + side.X + "," + side.Y
+                    + "; HP stayed " + hp + "; subject now " + commitment.Describe()
+                    + " No enemy, phase, HP, RNG or scheduler state was set." });
+            yield return Capture("annex-03d-sidestep-recovery-opening");
         }
 
         private bool HoldingContains(Entity subject, int left, int top)
@@ -185,6 +244,7 @@ namespace CavesOfOoo.Scenarios.Custom
                 && new[] { "CurationQuarantineGate", "CurationTransferGate", "CurationGalleryGate", "CurationServiceGate" }.All(bp => CurationOwner(bp).GetPart<DoorPart>().IsClosed)
                 && service.GetPart<RepairablePart>().Repaired && CurationOwner("CurationRecoveryCabinet").GetPart<ContainerPart>().Contents.Count == 0
                 && CurationOwner("CurationMaintenanceRack").GetPart<ContainerPart>().Contents.Count == 0
+                && CurationOwner("CurationConservationCase").GetPart<ContainerPart>().Contents.Count == 0
                 && BiomeItemCollection(_input.PlayerEntity) == gear && _input.PlayerEntity.GetStatValue("Hitpoints") == hp
                 && _input.TurnManager.TickCount == tick && CheckpointHash(path) == saved && State() == "Normal");
             yield return Capture("annex-08-restored-persistent-aftermath");

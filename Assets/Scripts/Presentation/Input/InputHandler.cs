@@ -383,6 +383,17 @@ namespace CavesOfOoo.Rendering
             return null;
         }
 
+        /// <summary>Pure presentation gate independent of nearby interaction
+        /// affordances. Menus and inactive player turns cannot retain ray cues.</summary>
+        public bool CanShowCombatIntent(Zone zone, Entity actor)
+        {
+            if (!isActiveAndEnabled || actor == null || actor != PlayerEntity || zone == null || zone != CurrentZone
+                || TurnManager == null || !TurnManager.WaitingForInput || TurnManager.CurrentActor != actor
+                || _bootMenuController.IsActive || _buildMenuController.IsOpen || _deathScreenController.IsActive
+                || SpellFxSettingsPanel.IsOpen || (ZoneRenderer != null && ZoneRenderer.Paused)) return false;
+            return _inputState == InputState.Normal || _inputState == InputState.LookMode;
+        }
+
         private void OnDisable()
         {
             if (ZoneRenderer != null) ZoneRenderer.ClearAffordanceInput(this);

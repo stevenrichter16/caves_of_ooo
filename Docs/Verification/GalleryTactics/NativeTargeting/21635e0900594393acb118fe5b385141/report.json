@@ -1,0 +1,175 @@
+{
+  "runId": "21635e0900594393acb118fe5b385141",
+  "complete": true,
+  "failures": 0,
+  "errors": 0,
+  "fatal": null,
+  "seconds": 5.0221103,
+  "checks": [
+    "PASS ordinary_breaker_start",
+    "PASS original_ready_bound_skills",
+    "PASS controlled_crowd_geometry",
+    "PASS native_selected_slam_paid_once",
+    "PASS east_target_actual_wall_damage",
+    "PASS north_bystander_untouched",
+    "PASS native_empty_choice_is_free",
+    "PASS original_player_finish"
+  ],
+  "observations": [
+    {
+      "phase": "native-right-slam",
+      "eastBefore": 20,
+      "eastAfter": 14,
+      "northBefore": 20,
+      "northAfter": 20,
+      "playerEnds": 1,
+      "cooldown": 49,
+      "records": [
+        {
+          "TraceId": "c612fdf7",
+          "Category": "damage",
+          "Kind": "DamageDealt",
+          "TimestampUnixMs": 1791088052770,
+          "Turn": 10,
+          "ActorId": "2696",
+          "TargetId": "4498",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"amount\":6,\"hpAfter\":14,\"lethal\":false,\"attributes\":[\"Melee\",\"Bludgeoning\",\"Cudgel\"]}"
+        },
+        {
+          "TraceId": "bdd73353",
+          "Category": "damage",
+          "Kind": "ClassEffectRolled",
+          "TimestampUnixMs": 1791088052771,
+          "Turn": 10,
+          "ActorId": "2696",
+          "TargetId": "4498",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"effect\":\"Stunned\",\"roll\":73,\"chancePercent\":15,\"fired\":false}"
+        },
+        {
+          "TraceId": "d27b5543",
+          "Category": "effect",
+          "Kind": "OnApply",
+          "TimestampUnixMs": 1791088052773,
+          "Turn": 10,
+          "ActorId": "2696",
+          "TargetId": "4498",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"effect\":\"ShatterArmorEffect\",\"duration\":4,\"justApplied\":false,\"forced\":false}"
+        },
+        {
+          "TraceId": "039628fd",
+          "Category": "effect",
+          "Kind": "OnApply",
+          "TimestampUnixMs": 1791088052774,
+          "Turn": 10,
+          "ActorId": "2696",
+          "TargetId": "4498",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"effect\":\"StunnedEffect\",\"duration\":1,\"justApplied\":false,\"forced\":false}"
+        },
+        {
+          "TraceId": "7f51de4c",
+          "Category": "skill",
+          "Kind": "CommandRouted",
+          "TimestampUnixMs": 1791088052774,
+          "Turn": 10,
+          "ActorId": "2696",
+          "TargetId": "2696",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"command\":\"CommandSlam\",\"skillClass\":\"Cudgel_Slam\",\"displayName\":\"Slam\"}"
+        },
+        {
+          "TraceId": "283544b5",
+          "Category": "turn",
+          "Kind": "End",
+          "TimestampUnixMs": 1791088052776,
+          "Turn": 10,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        },
+        {
+          "TraceId": "30e79901",
+          "Category": "turn",
+          "Kind": "Begin",
+          "TimestampUnixMs": 1791088052776,
+          "Turn": 20,
+          "ActorId": "2696",
+          "TargetId": null,
+          "CauseTraceId": null,
+          "PayloadJson": "{\"blueprintName\":\"Player\",\"hp\":40}"
+        }
+      ],
+      "messages": [
+        "Surface: [< / Shift+,] world map; move to a [!] settlement, [> / Shift+.] enter selected destination.",
+        "Villagers have work for you — press [Q] for your quest log.",
+        "Choose how you begin.",
+        "You equip cudgel.",
+        "You equip buckler.",
+        "You begin as The Breaker.",
+        "Initial checkpoint saved.",
+        "Slam - choose a direction.",
+        "marlback gleaner's armor cracks!",
+        "marlback gleaner is stunned!",
+        "You slams marlback gleaner into a wall (×1)!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ"
+      ]
+    },
+    {
+      "phase": "native-left-empty-conk",
+      "beforeTick": 20,
+      "afterTick": 20,
+      "beforeEnergy": 1000,
+      "afterEnergy": 1000,
+      "playerEnds": 0,
+      "cooldown": 0,
+      "records": [
+        {
+          "TraceId": "04624d59",
+          "Category": "skill",
+          "Kind": "SkillRejected",
+          "TimestampUnixMs": 1791088053899,
+          "Turn": 20,
+          "ActorId": "2696",
+          "TargetId": "2696",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"skillClass\":\"Cudgel_Conk\",\"displayName\":\"Conk\",\"reason\":\"no_target\"}"
+        },
+        {
+          "TraceId": "7ad25706",
+          "Category": "skill",
+          "Kind": "CommandRouted",
+          "TimestampUnixMs": 1791088053900,
+          "Turn": 20,
+          "ActorId": "2696",
+          "TargetId": "2696",
+          "CauseTraceId": null,
+          "PayloadJson": "{\"command\":\"CommandConk\",\"skillClass\":\"Cudgel_Conk\",\"displayName\":\"Conk\"}"
+        }
+      ],
+      "messages": [
+        "Slam - choose a direction.",
+        "marlback gleaner's armor cracks!",
+        "marlback gleaner is stunned!",
+        "You slams marlback gleaner into a wall (×1)!",
+        "ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ",
+        "Conk - choose a direction.",
+        "You swings at nothing.",
+        "The rite fails to resolve."
+      ]
+    }
+  ],
+  "screenshots": [
+    "/Users/steven/caves-of-ooo/Docs/Verification/GalleryTactics/NativeTargeting/21635e0900594393acb118fe5b385141/00-native-breaker-picker.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/GalleryTactics/NativeTargeting/21635e0900594393acb118fe5b385141/01-controlled-crowd-before.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/GalleryTactics/NativeTargeting/21635e0900594393acb118fe5b385141/02-selected-wall-impact.png",
+    "/Users/steven/caves-of-ooo/Docs/Verification/GalleryTactics/NativeTargeting/21635e0900594393acb118fe5b385141/03-empty-selection-refused.png"
+  ],
+  "source": "Overworld.11.10.0",
+  "fixture": "Native N/Breaker picker and original player; isolated starting zone cleared to floor; actual factory MarlbackGleaners staged east/north with Brain removed and registered for turns; real east wall. No HP/stat/skill/weapon/RNG edits. All casts use keyboard hotbar/direction input.",
+  "canVerify": "Native chosen-cell input, paid Slam turn/cooldown, actual selected target HP loss and damage attribution, untouched bystander, empty-cell refusal with no turn/energy/cooldown cost.",
+  "cannotVerify": "Controlled stationary crowd, not ordinary generated encounter discovery, enemy decisions, sustained balance or fun. Screenshots need independent inspection; this does not establish all eight skills visually."
+}

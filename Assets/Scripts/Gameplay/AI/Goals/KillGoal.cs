@@ -57,11 +57,17 @@ namespace CavesOfOoo.Core
                 return;
             }
 
+            // Only opted-in actors replace immediate melee with a commitment.
+            // A refused adjacent start cannot fall through into an instant swing.
+            var commitment = ParentEntity.GetPart<CommittedMeleePart>();
+            if (commitment != null && commitment.TryBegin(Target, CurrentZone)) return;
+
             var tactics = ParentEntity.GetPart<CombatTacticsPart>();
             if (tactics != null && tactics.TryUseAbility(Target, CurrentZone, Rng)) return;
 
             if (SpatialQuery.Distance(CurrentZone,ParentEntity,Target) == 1)
             {
+                if (commitment != null) return;
                 Think($"attacking {Target.GetDisplayName()}");
                 CombatSystem.PerformMeleeAttack(ParentEntity, Target, CurrentZone, Rng);
             }

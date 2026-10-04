@@ -75,8 +75,8 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            // Find adjacent Creature (mirrors Cudgel_Slam's pattern).
-            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out _);
+            // Hook the chosen creature, preserving its physical contact.
+            var target = SkillCombatHelpers.FindAdjacentSkillTarget(actor, ctx.Zone, ctx.TargetCell, out _);
 
             if (target == null)
             {

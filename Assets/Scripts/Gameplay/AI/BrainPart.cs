@@ -499,6 +499,8 @@ namespace CavesOfOoo.Core
             goal.ParentBrain = this;
             _goals.Add(goal);
             goal.OnPush();
+            if (goal is NoFightGoal && !goal.Finished())
+                ParentEntity?.GetPart<CommittedMeleePart>()?.Cancel("no-fight-goal");
         }
 
         // Recruitment's persistent follower must not bury an already accepted
@@ -616,6 +618,11 @@ namespace CavesOfOoo.Core
         {
             using (PerformanceMarkers.Turns.AiTakeTurn.Auto())
             {
+                // Authored commitments own their whole scheduled opportunity,
+                // including cancellation/recovery when goals or zones changed.
+                if (ParentEntity.GetPart<CommittedMeleePart>()?.AdvancePendingAction(CurrentZone, Rng) == true)
+                    return true;
+
                 // Guard: no zone or not in zone (dead/removed)
                 if (CurrentZone == null) return true;
                 if (CurrentZone.GetEntityCell(ParentEntity) == null) return true;

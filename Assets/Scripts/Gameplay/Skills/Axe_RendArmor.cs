@@ -11,7 +11,7 @@ namespace CavesOfOoo.Skills
     /// Disarm (equipment-slot mutation) — Rend is AV-stat reduction.
     ///
     /// <para><b>Mechanic:</b> requires an Axe-class weapon equipped.
-    /// Finds an adjacent creature (mirrors Slam's 8-dir scan), then
+    /// Uses the chosen adjacent creature (or legacy first-adjacent fallback), then
     /// constructs a ShatterArmorEffect with
     /// <see cref="ShatterArmorEffect.StackCount"/> = REND_STACKS and
     /// applies it. The defender's effective AV drops by
@@ -71,7 +71,7 @@ namespace CavesOfOoo.Skills
                 return false;
             }
 
-            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out _);
+            var target = SkillCombatHelpers.FindAdjacentSkillTarget(actor, ctx.Zone, ctx.TargetCell, out _);
 
             if (target == null)
             {

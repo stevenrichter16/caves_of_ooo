@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="35" result="Failed(Child)" total="35" passed="0" failed="35" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:56Z" duration="1.0755046">
+  <test-suite type="TestSuite" id="1000" name="caves-of-ooo" fullname="caves-of-ooo" runstate="Runnable" testcasecount="24535" result="Failed" site="Child" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:56Z" duration="1.075505" total="35" passed="0" failed="35" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="30194" name="EditModeTests.dll" fullname="/Users/steven/caves-of-ooo/Library/ScriptAssemblies/EditModeTests.dll" runstate="Runnable" testcasecount="24535" result="Failed" site="Child" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:56Z" duration="1.069186" total="35" passed="0" failed="35" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="70907" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="30195" name="CavesOfOoo" fullname="CavesOfOoo" runstate="Runnable" testcasecount="24535" result="Failed" site="Child" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:56Z" duration="1.068311" total="35" passed="0" failed="35" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="30196" name="Tests" fullname="CavesOfOoo.Tests" runstate="Runnable" testcasecount="24535" result="Failed" site="Child" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:56Z" duration="1.067727" total="35" passed="0" failed="35" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="10017" name="CombatIntentReadoutTests" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:56Z" duration="0.380805" total="15" passed="0" failed="15" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="10034" name="ActualFocusAndWorldExaminePlaceIntentBeforeFlavorWithoutDebugMode" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.ActualFocusAndWorldExaminePlaceIntentBeforeFlavorWithoutDebugMode" methodname="ActualFocusAndWorldExaminePlaceIntentBeforeFlavorWithoutDebugMode" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="1546107249" result="Failed" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:55Z" duration="0.046959" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ActorLine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:35
+at CavesOfOoo.Tests.CombatIntentReadoutTests.ActualFocusAndWorldExaminePlaceIntentBeforeFlavorWithoutDebugMode () [0x00023] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:101
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="10028" name="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" testcasecount="9" result="Failed" site="Child" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:55Z" duration="0.211668" total="9" passed="0" failed="9" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="10019" name="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;fog&quot;)" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;fog&quot;)" methodname="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="520657847" result="Failed" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:55Z" duration="0.024093" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ActorLine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:35
+at CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10020" name="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;unexplored&quot;)" methodname="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="1118283407" result="Failed" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:55Z" duration="0.023578" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ActorLine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:35
+at CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10021" name="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;render-hidden&quot;)" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;render-hidden&quot;)" methodname="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="1542835962" result="Failed" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:55Z" duration="0.023798" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ActorLine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:35
+at CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10022" name="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;foreign-render&quot;)" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;foreign-render&quot;)" methodname="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="1249700386" result="Failed" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:55Z" duration="0.023774" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ActorLine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:35
+at CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10023" name="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;foreign-physics&quot;)" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;foreign-physics&quot;)" methodname="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="1603330003" result="Failed" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:55Z" duration="0.023180" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ActorLine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:35
+at CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10024" name="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;carried&quot;)" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;carried&quot;)" methodname="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="1920550594" result="Failed" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:55Z" duration="0.022764" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ActorLine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:35
+at CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10025" name="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;equipped&quot;)" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;equipped&quot;)" methodname="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="1559459669" result="Failed" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:55Z" duration="0.022852" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ActorLine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:35
+at CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10026" name="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;removed&quot;)" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;removed&quot;)" methodname="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="1505829072" result="Failed" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:55Z" duration="0.023144" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ActorLine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:35
+at CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10027" name="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;dead&quot;)" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay(&quot;dead&quot;)" methodname="HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="1366986970" result="Failed" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:55Z" duration="0.022534" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ActorLine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:35
+at CavesOfOoo.Tests.CombatIntentReadoutTests.HiddenOrMalformedOwnerCannotRevealItsIntentEvenOnVisibleRay (System.String change) [0x0000c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:61
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="10033" name="QueriesArePureAndDoNotAdvanceOrDispatchTheCommitment" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.QueriesArePureAndDoNotAdvanceOrDispatchTheCommitment" methodname="QueriesArePureAndDoNotAdvanceOrDispatchTheCommitment" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="465988539" result="Failed" start-time="2026-10-04 04:03:55Z" end-time="2026-10-04 04:03:56Z" duration="0.023127" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ActorLine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:35
+at CavesOfOoo.Tests.CombatIntentReadoutTests.QueriesArePureAndDoNotAdvanceOrDispatchTheCommitment () [0x0007f] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:92
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="10032" name="ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.070238" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="10029" name="ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone(&quot;fog&quot;)" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone(&quot;fog&quot;)" methodname="ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="261948144" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.022780" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ThreatLine (CavesOfOoo.Core.Cell cell) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:36
+at CavesOfOoo.Tests.CombatIntentReadoutTests.ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone (System.String change) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10030" name="ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone(&quot;unexplored&quot;)" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone(&quot;unexplored&quot;)" methodname="ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="583652385" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.022255" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ThreatLine (CavesOfOoo.Core.Cell cell) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:36
+at CavesOfOoo.Tests.CombatIntentReadoutTests.ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone (System.String change) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="10031" name="ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone(&quot;foreign&quot;)" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone(&quot;foreign&quot;)" methodname="ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="1344294782" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.023002" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ThreatLine (CavesOfOoo.Core.Cell cell) [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:36
+at CavesOfOoo.Tests.CombatIntentReadoutTests.ThreatCellMustBeVisibleExploredAndActuallyOwnedByZone (System.String change) [0x0001c] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:79
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="10018" name="WindupDescribesItsDirectionAndThreatButIdleAndRecoveryDoNotThreaten" fullname="CavesOfOoo.Tests.CombatIntentReadoutTests.WindupDescribesItsDirectionAndThreatButIdleAndRecoveryDoNotThreaten" methodname="WindupDescribesItsDirectionAndThreatButIdleAndRecoveryDoNotThreaten" classname="CavesOfOoo.Tests.CombatIntentReadoutTests" runstate="Runnable" seed="1669154612" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.023012" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing visible combat intent readout.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentFixture.Query (System.String name, System.Object[] args) [0x00019] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:32
+at CavesOfOoo.Tests.CombatIntentFixture.ActorLine () [0x00000] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:35
+at CavesOfOoo.Tests.CombatIntentReadoutTests.WindupDescribesItsDirectionAndThreatButIdleAndRecoveryDoNotThreaten () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/Look/CombatIntentReadoutTests.cs:46
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="22726" name="CombatIntentRendererTests" fullname="CavesOfOoo.Tests.CombatIntentRendererTests" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" testcasecount="19" result="Failed" site="Child" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.569512" total="19" passed="0" failed="19" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-suite type="ParameterizedMethod" id="22743" name="ActualModalInputStatesHideIntent" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.ActualModalInputStatesHideIntent" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.225681" total="5" passed="0" failed="5" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="22738" name="ActualModalInputStatesHideIntent(&quot;InventoryOpen&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.ActualModalInputStatesHideIntent(&quot;InventoryOpen&quot;)" methodname="ActualModalInputStatesHideIntent" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1520462839" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.039697" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing actual world-input visibility gate.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Allowed (CavesOfOoo.Core.Zone zone) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:37
+at CavesOfOoo.Tests.CombatIntentRendererTests.ActualModalInputStatesHideIntent (System.String state) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="22739" name="ActualModalInputStatesHideIntent(&quot;WorldActionMenuOpen&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.ActualModalInputStatesHideIntent(&quot;WorldActionMenuOpen&quot;)" methodname="ActualModalInputStatesHideIntent" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1753713626" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.113572" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing actual world-input visibility gate.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Allowed (CavesOfOoo.Core.Zone zone) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:37
+at CavesOfOoo.Tests.CombatIntentRendererTests.ActualModalInputStatesHideIntent (System.String state) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="22740" name="ActualModalInputStatesHideIntent(&quot;AwaitingTalkDirection&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.ActualModalInputStatesHideIntent(&quot;AwaitingTalkDirection&quot;)" methodname="ActualModalInputStatesHideIntent" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1762950598" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.023490" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing actual world-input visibility gate.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Allowed (CavesOfOoo.Core.Zone zone) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:37
+at CavesOfOoo.Tests.CombatIntentRendererTests.ActualModalInputStatesHideIntent (System.String state) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="22741" name="ActualModalInputStatesHideIntent(&quot;WaitingForFxResolution&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.ActualModalInputStatesHideIntent(&quot;WaitingForFxResolution&quot;)" methodname="ActualModalInputStatesHideIntent" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1579197097" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.024126" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing actual world-input visibility gate.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Allowed (CavesOfOoo.Core.Zone zone) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:37
+at CavesOfOoo.Tests.CombatIntentRendererTests.ActualModalInputStatesHideIntent (System.String state) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="22742" name="ActualModalInputStatesHideIntent(&quot;AnnouncementOpen&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.ActualModalInputStatesHideIntent(&quot;AnnouncementOpen&quot;)" methodname="ActualModalInputStatesHideIntent" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1528291516" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.024079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing actual world-input visibility gate.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Allowed (CavesOfOoo.Core.Zone zone) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:37
+at CavesOfOoo.Tests.CombatIntentRendererTests.ActualModalInputStatesHideIntent (System.String state) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:93
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="22747" name="ActualTurnAndEnabledInputAreRequired" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.ActualTurnAndEnabledInputAreRequired" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.073505" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="22744" name="ActualTurnAndEnabledInputAreRequired(&quot;disabled&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.ActualTurnAndEnabledInputAreRequired(&quot;disabled&quot;)" methodname="ActualTurnAndEnabledInputAreRequired" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1155766228" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.023657" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing actual world-input visibility gate.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Allowed (CavesOfOoo.Core.Zone zone) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:37
+at CavesOfOoo.Tests.CombatIntentRendererTests.ActualTurnAndEnabledInputAreRequired (System.String reason) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="22745" name="ActualTurnAndEnabledInputAreRequired(&quot;not-turn&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.ActualTurnAndEnabledInputAreRequired(&quot;not-turn&quot;)" methodname="ActualTurnAndEnabledInputAreRequired" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1815439344" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.023656" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing actual world-input visibility gate.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Allowed (CavesOfOoo.Core.Zone zone) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:37
+at CavesOfOoo.Tests.CombatIntentRendererTests.ActualTurnAndEnabledInputAreRequired (System.String reason) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="22746" name="ActualTurnAndEnabledInputAreRequired(&quot;foreign-actor&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.ActualTurnAndEnabledInputAreRequired(&quot;foreign-actor&quot;)" methodname="ActualTurnAndEnabledInputAreRequired" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1156196173" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.023433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing actual world-input visibility gate.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Allowed (CavesOfOoo.Core.Zone zone) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:37
+at CavesOfOoo.Tests.CombatIntentRendererTests.ActualTurnAndEnabledInputAreRequired (System.String reason) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:99
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="22735" name="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.163181" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="22728" name="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;owner-fog&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;owner-fog&quot;)" methodname="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1874470171" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.023215" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing persistent local combat cue renderer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:31
+at CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable (System.String reason) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="22729" name="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;owner-hidden&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;owner-hidden&quot;)" methodname="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="890983685" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.023049" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing persistent local combat cue renderer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:31
+at CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable (System.String reason) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="22730" name="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;ray-fog&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;ray-fog&quot;)" methodname="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1811980626" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.022712" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing persistent local combat cue renderer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:31
+at CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable (System.String reason) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="22731" name="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;ray-unexplored&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;ray-unexplored&quot;)" methodname="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="666556068" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.022703" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing persistent local combat cue renderer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:31
+at CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable (System.String reason) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="22732" name="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;disabled&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;disabled&quot;)" methodname="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1987973893" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.023296" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing persistent local combat cue renderer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:31
+at CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable (System.String reason) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="22733" name="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;dead-player&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;dead-player&quot;)" methodname="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1628507078" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.023280" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing persistent local combat cue renderer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:31
+at CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable (System.String reason) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case id="22734" name="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;dead-owner&quot;)" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable(&quot;dead-owner&quot;)" methodname="CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="61084774" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.022146" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  Missing persistent local combat cue renderer.
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:31
+at CavesOfOoo.Tests.CombatIntentRendererTests.CuesClearWhenSourceRayOrCurrentPlayBecomesUnavailable (System.String reason) [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:62
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </test-suite>
+            <test-case id="22736" name="DisposeDestroysOwnedMaterialAndCueChildrenButKeepsOtherPresentation" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.DisposeDestroysOwnedMaterialAndCueChildrenButKeepsOtherPresentation" methodname="DisposeDestroysOwnedMaterialAndCueChildrenButKeepsOtherPresentation" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1654241660" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.022901" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing persistent local combat cue renderer.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:31
+at CavesOfOoo.Tests.CombatIntentRendererTests.DisposeDestroysOwnedMaterialAndCueChildrenButKeepsOtherPresentation () [0x00027] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:77
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="22737" name="NormalAndLookAllowIntentEvenWithoutAdjacentWorldAffordance" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.NormalAndLookAllowIntentEvenWithoutAdjacentWorldAffordance" methodname="NormalAndLookAllowIntentEvenWithoutAdjacentWorldAffordance" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="1222744752" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.022545" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing actual world-input visibility gate.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Allowed (CavesOfOoo.Core.Zone zone) [0x00014] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:37
+at CavesOfOoo.Tests.CombatIntentRendererTests.NormalAndLookAllowIntentEvenWithoutAdjacentWorldAffordance () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:86
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="22727" name="TwoVisibleAmberChevronsPersistWithoutAllocatingMoreObjectsAndClearOnRecovery" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.TwoVisibleAmberChevronsPersistWithoutAllocatingMoreObjectsAndClearOnRecovery" methodname="TwoVisibleAmberChevronsPersistWithoutAllocatingMoreObjectsAndClearOnRecovery" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="100313592" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.022854" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing persistent local combat cue renderer.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:31
+at CavesOfOoo.Tests.CombatIntentRendererTests.TwoVisibleAmberChevronsPersistWithoutAllocatingMoreObjectsAndClearOnRecovery () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:45
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="22748" name="ZoneRendererActuallyRefreshesAndClearsItsOwnedCueOnMenuPauseAndZoneChange" fullname="CavesOfOoo.Tests.CombatIntentRendererTests.ZoneRendererActuallyRefreshesAndClearsItsOwnedCueOnMenuPauseAndZoneChange" methodname="ZoneRendererActuallyRefreshesAndClearsItsOwnedCueOnMenuPauseAndZoneChange" classname="CavesOfOoo.Tests.CombatIntentRendererTests" runstate="Runnable" seed="385236827" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.037590" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Missing persistent local combat cue renderer.
+  Expected: not null
+  But was:  null
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CombatIntentRendererTests+Fixture.Create () [0x0001a] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:31
+at CavesOfOoo.Tests.CombatIntentRendererTests.ZoneRendererActuallyRefreshesAndClearsItsOwnedCueOnMenuPauseAndZoneChange () [0x00006] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Presentation/Rendering/CombatIntentRendererTests.cs:110
+]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1295" name="CommittedMeleeTests" fullname="CavesOfOoo.Tests.CommittedMeleeTests" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" testcasecount="32" result="Failed" site="Child" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.100572" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1303" name="ThreatReadoutStopsAtCurrentPhysicalInterception" fullname="CavesOfOoo.Tests.CommittedMeleeTests.ThreatReadoutStopsAtCurrentPhysicalInterception" methodname="ThreatReadoutStopsAtCurrentPhysicalInterception" classname="CavesOfOoo.Tests.CommittedMeleeTests" runstate="Runnable" seed="1343976252" result="Failed" start-time="2026-10-04 04:03:56Z" end-time="2026-10-04 04:03:56Z" duration="0.093635" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: False
+  But was:  True
+]]></message>
+                <stack-trace><![CDATA[at CavesOfOoo.Tests.CommittedMeleeTests.ThreatReadoutStopsAtCurrentPhysicalInterception () [0x00053] in /Users/steven/caves-of-ooo/Assets/Tests/EditMode/Gameplay/AI/CommittedMeleeTests.cs:69
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: /Users/steven/Library/Application Support/DefaultCompany/caves-of-ooo/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -59,8 +59,8 @@ namespace CavesOfOoo.Skills
             var actorPos = ctx.Zone.GetEntityPosition(actor);
             if (actorPos.x < 0) { EmitSkillRejectedDiag(ctx, "actor_not_in_zone"); return false; }
 
-            // Find adjacent target.
-            var target = MultiCellAbilityQueries.FirstAdjacentCreature(ctx.Zone, actor, out _);
+            // Honor the chosen cell; an empty choice never disarms a bystander.
+            var target = SkillCombatHelpers.FindAdjacentSkillTarget(actor, ctx.Zone, ctx.TargetCell, out _);
             if (target == null)
             {
                 MessageLog.Add(actor.GetDisplayName() + " has nothing to disarm.");
